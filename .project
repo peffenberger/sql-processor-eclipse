@@ -3,6 +3,11 @@
 	<name>org.sqlproc.dsl.parent</name>
 	<comment></comment>
 	<projects>
+		<project>org.sqlproc.dsl</project>
+		<project>org.sqlproc.dsl.feature</project>
+		<project>org.sqlproc.dsl.tests</project>
+		<project>org.sqlproc.dsl.ui</project>
+		<project>org.sqlproc.dsl.updatesite</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>
