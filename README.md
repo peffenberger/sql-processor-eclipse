@@ -19,8 +19,7 @@ To install SQLEP, the next P2 repos can be used
  - http://sql-processor.org/plugins/milestones/
  - http://sql-processor.org/plugins/releases/
 
-To build from the command line the Maven 3 is required plus
-the next command:
+To build from the command line the Maven 3 is required plus the next command:
 
     cd ~/git/sql-processor-eclipse
     mvn clean install -Dtycho.targetPlatform=PATH_TO_ECLIPSE
@@ -29,15 +28,11 @@ or simple (using Eclipse P2 repositories)
 
     mvn clean install
 
-To install this plugin from the build, copy the next jars into eclipse/dropins
-directory:
-./org.sqlproc.dsl/target/org.sqlproc.dsl-1.5.0-SNAPSHOT.jar
-./org.sqlproc.dsl.ui/target/org.sqlproc.dsl.ui-1.5.0-SNAPSHOT.jar
+To install this plugin from the build, copy the next jars into eclipse/dropins directory:
+ - ./org.sqlproc.dsl/target/org.sqlproc.dsl-1.5.0-SNAPSHOT.jar
+ - ./org.sqlproc.dsl.ui/target/org.sqlproc.dsl.ui-1.5.0-SNAPSHOT.jar
 
 For example
-cp ./org.sqlproc.dsl/target/org.sqlproc.dsl-1.5.0-SNAPSHOT.jar ~/springsource/sts-3.2.0.RELEASE/dropins/
-cp ./org.sqlproc.dsl.ui/target/org.sqlproc.dsl.ui-1.5.0-SNAPSHOT.jar ~/springsource/sts-3.2.0.RELEASE/dropins/
-
-
-
+    cp ./org.sqlproc.dsl/target/org.sqlproc.dsl-1.5.0-SNAPSHOT.jar ~/springsource/sts-3.2.0.RELEASE/dropins/
+    cp ./org.sqlproc.dsl.ui/target/org.sqlproc.dsl.ui-1.5.0-SNAPSHOT.jar ~/springsource/sts-3.2.0.RELEASE/dropins/
 
