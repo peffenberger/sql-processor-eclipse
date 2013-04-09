@@ -22,13 +22,12 @@ To install SQLEP, the next P2 repos can be used
 To build from the command line the Maven 3 is required plus
 the next command:
 
- cd ~/git/sql-processor-eclipse
-
- mvn clean install -Dtycho.targetPlatform=PATH_TO_ECLIPSE
+    cd ~/git/sql-processor-eclipse
+    mvn clean install -Dtycho.targetPlatform=PATH_TO_ECLIPSE
 
 or simple (using Eclipse P2 repositories)
 
- mvn clean install
+    mvn clean install
 
 To install this plugin from the build, copy the next jars into eclipse/dropins
 directory:
