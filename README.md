@@ -33,6 +33,7 @@ To install this plugin from the build, copy the next jars into eclipse/dropins d
  - ./org.sqlproc.dsl.ui/target/org.sqlproc.dsl.ui-1.5.0-SNAPSHOT.jar
 
 For example
+
     cp ./org.sqlproc.dsl/target/org.sqlproc.dsl-1.5.0-SNAPSHOT.jar ~/springsource/sts-3.2.0.RELEASE/dropins/
     cp ./org.sqlproc.dsl.ui/target/org.sqlproc.dsl.ui-1.5.0-SNAPSHOT.jar ~/springsource/sts-3.2.0.RELEASE/dropins/
 
