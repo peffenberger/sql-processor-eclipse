@@ -488,6 +488,7 @@ public class DbResolverBean implements DbResolver {
                 }
             }
         }
+        trace("<<<getCatalogs", catalogsForModel);
         return catalogsForModel;
     }
 
@@ -521,6 +522,7 @@ public class DbResolverBean implements DbResolver {
                 }
             }
         }
+        trace("<<<getSchemas", schemasForModel);
         return schemasForModel;
     }
 
@@ -699,7 +701,6 @@ public class DbResolverBean implements DbResolver {
 
     @Override
     public boolean checkColumn(EObject model, String table, String column) {
-        trace(">>>checkColumn");
         if (table == null || column == null)
             return false;
         return getColumns(model, table).contains(column);
@@ -748,13 +749,12 @@ public class DbResolverBean implements DbResolver {
                 }
             }
         }
-        trace("<<<getProcColumns " + columnsForModel);
+        trace("<<<getProcColumns", columnsForModel);
         return columnsForModel;
     }
 
     @Override
     public boolean checkProcColumn(EObject model, String table, String column) {
-        trace(">>>checkProcColumn");
         if (doSkipProcedures(model))
             return true;
         if (table == null || column == null)
@@ -805,13 +805,12 @@ public class DbResolverBean implements DbResolver {
                 }
             }
         }
-        trace("<<<getFunColumns " + columnsForModel);
+        trace("<<<getFunColumns", columnsForModel);
         return columnsForModel;
     }
 
     @Override
     public boolean checkFunColumn(EObject model, String table, String column) {
-        trace(">>>checkFunColumn");
         if (doSkipProcedures(model))
             return true;
         if (table == null || column == null)
@@ -873,7 +872,7 @@ public class DbResolverBean implements DbResolver {
                 }
             }
         }
-        trace("<<<getDbTables " + tablesForModel);
+        trace("<<<getDbTables", tablesForModel);
         return tablesForModel;
     }
 
@@ -942,7 +941,7 @@ public class DbResolverBean implements DbResolver {
             }
         }
         // Collections.sort(columnsForModel);
-        trace("<<<getDbColumns " + columnsForModel);
+        trace("<<<getDbColumns", columnsForModel);
         return columnsForModel;
     }
 
@@ -993,7 +992,7 @@ public class DbResolverBean implements DbResolver {
                 }
             }
         }
-        trace("<<<getDbProcedures " + tablesForModel);
+        trace("<<<getDbProcedures", tablesForModel);
         return tablesForModel;
     }
 
@@ -1066,7 +1065,7 @@ public class DbResolverBean implements DbResolver {
             }
         }
         // Collections.sort(columnsForModel);
-        trace("<<<getDbProcColumns " + columnsForModel);
+        trace("<<<getDbProcColumns", columnsForModel);
         return columnsForModel;
     }
 
@@ -1125,7 +1124,7 @@ public class DbResolverBean implements DbResolver {
                 }
             }
         }
-        trace("<<<getDbFunctions " + tablesForModel);
+        trace("<<<getDbFunctions", tablesForModel);
         return tablesForModel;
     }
 
@@ -1202,7 +1201,7 @@ public class DbResolverBean implements DbResolver {
             }
         }
         // Collections.sort(columnsForModel);
-        trace("<<<getDbFunColumns " + columnsForModel);
+        trace("<<<getDbFunColumns", columnsForModel);
         return columnsForModel;
     }
 
@@ -1248,6 +1247,7 @@ public class DbResolverBean implements DbResolver {
                 }
             }
         }
+        trace("<<<getDbPrimaryKeys", primaryKeysForModel);
         return primaryKeysForModel;
     }
 
@@ -1301,6 +1301,7 @@ public class DbResolverBean implements DbResolver {
                 }
             }
         }
+        trace("<<<getDbExports", exportsForModel);
         return exportsForModel;
     }
 
@@ -1354,6 +1355,7 @@ public class DbResolverBean implements DbResolver {
                 }
             }
         }
+        trace("<<<getDbImports", importsForModel);
         return importsForModel;
     }
 
@@ -1402,6 +1404,7 @@ public class DbResolverBean implements DbResolver {
                 error("getType error " + e, e);
             }
         }
+        trace("<<<getType", type + "(" + typeSize + ")");
         return type + "(" + typeSize + ")";
     }
 
@@ -1468,6 +1471,7 @@ public class DbResolverBean implements DbResolver {
                 }
             }
         }
+        trace("<<<getDbIndexes", indexesForModel);
         return indexesForModel;
     }
 
@@ -1502,6 +1506,7 @@ public class DbResolverBean implements DbResolver {
                 }
             }
         }
+        trace("<<<getSequences", sequencesForModel);
         return sequencesForModel;
     }
 
@@ -1521,6 +1526,7 @@ public class DbResolverBean implements DbResolver {
         } catch (SQLException e) {
             error("getDbMetaInfo error " + e, e);
         }
+        trace("<<<getDbMetaInfo", sb);
         return sb.toString();
     }
 
@@ -1540,6 +1546,7 @@ public class DbResolverBean implements DbResolver {
         } catch (SQLException e) {
             error("getDbDriverInfo error " + e, e);
         }
+        trace("<<<getDbDriverInfo", sb);
         return sb.toString();
     }
 
@@ -1557,6 +1564,7 @@ public class DbResolverBean implements DbResolver {
         } catch (SQLException e) {
             error("getDbJdbcInfo error " + e, e);
         }
+        trace("<<<getDbJdbcInfo", sb);
         return sb.toString();
     }
 
@@ -1589,6 +1597,7 @@ public class DbResolverBean implements DbResolver {
                 error("getDriverMethods error " + e, e);
             }
         }
+        trace("<<<getDriverMethods", driverMethodsForModel);
         return driverMethodsForModel;
     }
 
@@ -1616,6 +1625,7 @@ public class DbResolverBean implements DbResolver {
         } catch (InvocationTargetException e) {
             error("getDriverMethodOutput error " + e, e);
         }
+        trace("<<<getDriverMethodOutput", methodCallOutput);
         return methodCallOutput;
     }
 
