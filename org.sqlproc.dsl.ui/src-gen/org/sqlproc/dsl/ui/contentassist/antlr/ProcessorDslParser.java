@@ -40,6 +40,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getArtifactsAccess().getAlternatives_2(), "rule__Artifacts__Alternatives_2");
 					put(grammarAccess.getPropertyAccess().getAlternatives_0(), "rule__Property__Alternatives_0");
 					put(grammarAccess.getDatabasePropertyAccess().getAlternatives(), "rule__DatabaseProperty__Alternatives");
+					put(grammarAccess.getDatabasePropertyAccess().getAlternatives_7_2(), "rule__DatabaseProperty__Alternatives_7_2");
 					put(grammarAccess.getPojogenPropertyAccess().getAlternatives(), "rule__PojogenProperty__Alternatives");
 					put(grammarAccess.getMetagenPropertyAccess().getAlternatives(), "rule__MetagenProperty__Alternatives");
 					put(grammarAccess.getDaogenPropertyAccess().getAlternatives(), "rule__DaogenProperty__Alternatives");
@@ -136,6 +137,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDatabasePropertyAccess().getGroup_5(), "rule__DatabaseProperty__Group_5__0");
 					put(grammarAccess.getDatabasePropertyAccess().getGroup_6(), "rule__DatabaseProperty__Group_6__0");
 					put(grammarAccess.getDatabasePropertyAccess().getGroup_7(), "rule__DatabaseProperty__Group_7__0");
+					put(grammarAccess.getDatabasePropertyAccess().getGroup_7_2_0(), "rule__DatabaseProperty__Group_7_2_0__0");
 					put(grammarAccess.getDatabasePropertyAccess().getGroup_8(), "rule__DatabaseProperty__Group_8__0");
 					put(grammarAccess.getDatabasePropertyAccess().getGroup_9(), "rule__DatabaseProperty__Group_9__0");
 					put(grammarAccess.getDatabasePropertyAccess().getGroup_10(), "rule__DatabaseProperty__Group_10__0");
@@ -401,7 +403,8 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDatabasePropertyAccess().getNameAssignment_6_0(), "rule__DatabaseProperty__NameAssignment_6_0");
 					put(grammarAccess.getDatabasePropertyAccess().getDbSchemaAssignment_6_2(), "rule__DatabaseProperty__DbSchemaAssignment_6_2");
 					put(grammarAccess.getDatabasePropertyAccess().getNameAssignment_7_0(), "rule__DatabaseProperty__NameAssignment_7_0");
-					put(grammarAccess.getDatabasePropertyAccess().getDbDriverAssignment_7_2(), "rule__DatabaseProperty__DbDriverAssignment_7_2");
+					put(grammarAccess.getDatabasePropertyAccess().getDbDriverxAssignment_7_2_0_1(), "rule__DatabaseProperty__DbDriverxAssignment_7_2_0_1");
+					put(grammarAccess.getDatabasePropertyAccess().getDbDriverAssignment_7_2_1(), "rule__DatabaseProperty__DbDriverAssignment_7_2_1");
 					put(grammarAccess.getDatabasePropertyAccess().getNameAssignment_8_0(), "rule__DatabaseProperty__NameAssignment_8_0");
 					put(grammarAccess.getDatabasePropertyAccess().getDbExecuteBeforeAssignment_8_2(), "rule__DatabaseProperty__DbExecuteBeforeAssignment_8_2");
 					put(grammarAccess.getDatabasePropertyAccess().getNameAssignment_9_0(), "rule__DatabaseProperty__NameAssignment_9_0");

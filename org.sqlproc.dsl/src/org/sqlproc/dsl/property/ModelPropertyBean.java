@@ -438,7 +438,10 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             else
                 modelValues.dbSchema = null;
         } else if (DATABASE_JDBC_DRIVER.equals(property.getName())) {
-            modelValues.dbDriver = getPropertyValue(property.getDbDriver());
+            if (property.getDbDriverx() != null)
+                modelValues.dbDriver = getPropertyValue(property.getDbDriverx().getQualifiedName());
+            else
+                modelValues.dbDriver = getPropertyValue(property.getDbDriver());
         } else if (DATABASE_EXECUTE_BEFORE.equals(property.getName())) {
             modelValues.dbSqlsBefore = getPropertyValue(property.getDbExecuteBefore());
         } else if (DATABASE_EXECUTE_AFTER.equals(property.getName())) {

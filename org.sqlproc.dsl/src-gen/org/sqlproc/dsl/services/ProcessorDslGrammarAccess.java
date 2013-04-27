@@ -888,8 +888,14 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_7_0 = (Assignment)cGroup_7.eContents().get(0);
 		private final Keyword cNameJdbcDriverKeyword_7_0_0 = (Keyword)cNameAssignment_7_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_7_1 = (RuleCall)cGroup_7.eContents().get(1);
-		private final Assignment cDbDriverAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
-		private final RuleCall cDbDriverPropertyValueParserRuleCall_7_2_0 = (RuleCall)cDbDriverAssignment_7_2.eContents().get(0);
+		private final Alternatives cAlternatives_7_2 = (Alternatives)cGroup_7.eContents().get(2);
+		private final Group cGroup_7_2_0 = (Group)cAlternatives_7_2.eContents().get(0);
+		private final RuleCall cCOLONTerminalRuleCall_7_2_0_0 = (RuleCall)cGroup_7_2_0.eContents().get(0);
+		private final Assignment cDbDriverxAssignment_7_2_0_1 = (Assignment)cGroup_7_2_0.eContents().get(1);
+		private final CrossReference cDbDriverxJvmTypeCrossReference_7_2_0_1_0 = (CrossReference)cDbDriverxAssignment_7_2_0_1.eContents().get(0);
+		private final RuleCall cDbDriverxJvmTypeQualifiedNameParserRuleCall_7_2_0_1_0_1 = (RuleCall)cDbDriverxJvmTypeCrossReference_7_2_0_1_0.eContents().get(1);
+		private final Assignment cDbDriverAssignment_7_2_1 = (Assignment)cAlternatives_7_2.eContents().get(1);
+		private final RuleCall cDbDriverPropertyValueParserRuleCall_7_2_1_0 = (RuleCall)cDbDriverAssignment_7_2_1.eContents().get(0);
 		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
 		private final Assignment cNameAssignment_8_0 = (Assignment)cGroup_8.eContents().get(0);
 		private final Keyword cNameDdlCreateKeyword_8_0_0 = (Keyword)cNameAssignment_8_0.eContents().get(0);
@@ -948,10 +954,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=PropertyValue | name="login-username" WS+
 		//	dbUsername=PropertyValue | name="login-password" WS+ dbPassword=PropertyValue | name="in-catalog" WS+
 		//	dbCatalog=DatabaseCatalogAssignement | name="active-schema" WS+ dbSchema=DatabaseSchemaAssignement |
-		//	name="jdbc-driver" WS+ dbDriver=PropertyValue | name="ddl-create" WS+ dbExecuteBefore=PropertyValue | name="ddl-drop"
-		//	WS+ dbExecuteAfter=PropertyValue | name="index-types" WS+ dbIndexTypes=PropertyValue | name="skip-indexes" |
-		//	name="skip-functions-procedures" | name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info"
-		//	WS+ dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
+		//	name="jdbc-driver" WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=PropertyValue) |
+		//	name="ddl-create" WS+ dbExecuteBefore=PropertyValue | name="ddl-drop" WS+ dbExecuteAfter=PropertyValue |
+		//	name="index-types" WS+ dbIndexTypes=PropertyValue | name="skip-indexes" | name="skip-functions-procedures" |
+		//	name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
+		//	dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
 		//	name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
 		//	debug=DebugLevelAssignement;
 		public ParserRule getRule() { return rule; }
@@ -959,12 +966,12 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=PropertyValue | name="login-username" WS+
 		//dbUsername=PropertyValue | name="login-password" WS+ dbPassword=PropertyValue | name="in-catalog" WS+
 		//dbCatalog=DatabaseCatalogAssignement | name="active-schema" WS+ dbSchema=DatabaseSchemaAssignement | name="jdbc-driver"
-		//WS+ dbDriver=PropertyValue | name="ddl-create" WS+ dbExecuteBefore=PropertyValue | name="ddl-drop" WS+
-		//dbExecuteAfter=PropertyValue | name="index-types" WS+ dbIndexTypes=PropertyValue | name="skip-indexes" |
-		//name="skip-functions-procedures" | name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
-		//dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
-		//name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
-		//debug=DebugLevelAssignement
+		//WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=PropertyValue) | name="ddl-create" WS+
+		//dbExecuteBefore=PropertyValue | name="ddl-drop" WS+ dbExecuteAfter=PropertyValue | name="index-types" WS+
+		//dbIndexTypes=PropertyValue | name="skip-indexes" | name="skip-functions-procedures" | name="is-of-type" WS+
+		//dbType=DatabaseTypeAssignement | name="show-database-info" WS+ dbMetaInfo=DatabaseMetaInfoAssignement |
+		//name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement | name="show-driver-output" (WS+
+		//dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+ debug=DebugLevelAssignement
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="is-online"
@@ -1069,7 +1076,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//DatabaseSchemaAssignement
 		public RuleCall getDbSchemaDatabaseSchemaAssignementParserRuleCall_6_2_0() { return cDbSchemaDatabaseSchemaAssignementParserRuleCall_6_2_0; }
 
-		//name="jdbc-driver" WS+ dbDriver=PropertyValue
+		//name="jdbc-driver" WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=PropertyValue)
 		public Group getGroup_7() { return cGroup_7; }
 
 		//name="jdbc-driver"
@@ -1081,11 +1088,29 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_7_1() { return cWSTerminalRuleCall_7_1; }
 
+		//COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=PropertyValue
+		public Alternatives getAlternatives_7_2() { return cAlternatives_7_2; }
+
+		//COLON dbDriverx=[jvmTypes::JvmType|QualifiedName]
+		public Group getGroup_7_2_0() { return cGroup_7_2_0; }
+
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_7_2_0_0() { return cCOLONTerminalRuleCall_7_2_0_0; }
+
+		//dbDriverx=[jvmTypes::JvmType|QualifiedName]
+		public Assignment getDbDriverxAssignment_7_2_0_1() { return cDbDriverxAssignment_7_2_0_1; }
+
+		//[jvmTypes::JvmType|QualifiedName]
+		public CrossReference getDbDriverxJvmTypeCrossReference_7_2_0_1_0() { return cDbDriverxJvmTypeCrossReference_7_2_0_1_0; }
+
+		//QualifiedName
+		public RuleCall getDbDriverxJvmTypeQualifiedNameParserRuleCall_7_2_0_1_0_1() { return cDbDriverxJvmTypeQualifiedNameParserRuleCall_7_2_0_1_0_1; }
+
 		//dbDriver=PropertyValue
-		public Assignment getDbDriverAssignment_7_2() { return cDbDriverAssignment_7_2; }
+		public Assignment getDbDriverAssignment_7_2_1() { return cDbDriverAssignment_7_2_1; }
 
 		//PropertyValue
-		public RuleCall getDbDriverPropertyValueParserRuleCall_7_2_0() { return cDbDriverPropertyValueParserRuleCall_7_2_0; }
+		public RuleCall getDbDriverPropertyValueParserRuleCall_7_2_1_0() { return cDbDriverPropertyValueParserRuleCall_7_2_1_0; }
 
 		//name="ddl-create" WS+ dbExecuteBefore=PropertyValue
 		public Group getGroup_8() { return cGroup_8; }
@@ -7787,10 +7812,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=PropertyValue | name="login-username" WS+
 	//	dbUsername=PropertyValue | name="login-password" WS+ dbPassword=PropertyValue | name="in-catalog" WS+
 	//	dbCatalog=DatabaseCatalogAssignement | name="active-schema" WS+ dbSchema=DatabaseSchemaAssignement |
-	//	name="jdbc-driver" WS+ dbDriver=PropertyValue | name="ddl-create" WS+ dbExecuteBefore=PropertyValue | name="ddl-drop"
-	//	WS+ dbExecuteAfter=PropertyValue | name="index-types" WS+ dbIndexTypes=PropertyValue | name="skip-indexes" |
-	//	name="skip-functions-procedures" | name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info"
-	//	WS+ dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
+	//	name="jdbc-driver" WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=PropertyValue) |
+	//	name="ddl-create" WS+ dbExecuteBefore=PropertyValue | name="ddl-drop" WS+ dbExecuteAfter=PropertyValue |
+	//	name="index-types" WS+ dbIndexTypes=PropertyValue | name="skip-indexes" | name="skip-functions-procedures" |
+	//	name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
+	//	dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
 	//	name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
 	//	debug=DebugLevelAssignement;
 	public DatabasePropertyElements getDatabasePropertyAccess() {

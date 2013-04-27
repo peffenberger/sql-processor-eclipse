@@ -905,13 +905,22 @@ public interface ProcessorDslPackage extends EPackage
   int DATABASE_PROPERTY__DB_SCHEMA = 5;
 
   /**
+   * The feature id for the '<em><b>Db Driverx</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATABASE_PROPERTY__DB_DRIVERX = 6;
+
+  /**
    * The feature id for the '<em><b>Db Driver</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_DRIVER = 6;
+  int DATABASE_PROPERTY__DB_DRIVER = 7;
 
   /**
    * The feature id for the '<em><b>Db Execute Before</b></em>' attribute.
@@ -920,7 +929,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_EXECUTE_BEFORE = 7;
+  int DATABASE_PROPERTY__DB_EXECUTE_BEFORE = 8;
 
   /**
    * The feature id for the '<em><b>Db Execute After</b></em>' attribute.
@@ -929,7 +938,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_EXECUTE_AFTER = 8;
+  int DATABASE_PROPERTY__DB_EXECUTE_AFTER = 9;
 
   /**
    * The feature id for the '<em><b>Db Index Types</b></em>' attribute.
@@ -938,7 +947,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_INDEX_TYPES = 9;
+  int DATABASE_PROPERTY__DB_INDEX_TYPES = 10;
 
   /**
    * The feature id for the '<em><b>Db Type</b></em>' containment reference.
@@ -947,7 +956,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_TYPE = 10;
+  int DATABASE_PROPERTY__DB_TYPE = 11;
 
   /**
    * The feature id for the '<em><b>Db Meta Info</b></em>' containment reference.
@@ -956,7 +965,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_META_INFO = 11;
+  int DATABASE_PROPERTY__DB_META_INFO = 12;
 
   /**
    * The feature id for the '<em><b>Db Driver Info</b></em>' containment reference.
@@ -965,7 +974,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_DRIVER_INFO = 12;
+  int DATABASE_PROPERTY__DB_DRIVER_INFO = 13;
 
   /**
    * The feature id for the '<em><b>Db Methods Calls</b></em>' containment reference list.
@@ -974,7 +983,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_METHODS_CALLS = 13;
+  int DATABASE_PROPERTY__DB_METHODS_CALLS = 14;
 
   /**
    * The feature id for the '<em><b>Debug</b></em>' containment reference.
@@ -983,7 +992,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DEBUG = 14;
+  int DATABASE_PROPERTY__DEBUG = 15;
 
   /**
    * The number of structural features of the '<em>Database Property</em>' class.
@@ -992,7 +1001,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY_FEATURE_COUNT = 15;
+  int DATABASE_PROPERTY_FEATURE_COUNT = 16;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl <em>Pojogen Property</em>}' class.
@@ -4341,6 +4350,17 @@ public interface ProcessorDslPackage extends EPackage
   EReference getDatabaseProperty_DbSchema();
 
   /**
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.DatabaseProperty#getDbDriverx <em>Db Driverx</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Db Driverx</em>'.
+   * @see org.sqlproc.dsl.processorDsl.DatabaseProperty#getDbDriverx()
+   * @see #getDatabaseProperty()
+   * @generated
+   */
+  EReference getDatabaseProperty_DbDriverx();
+
+  /**
    * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.DatabaseProperty#getDbDriver <em>Db Driver</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -7542,6 +7562,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference DATABASE_PROPERTY__DB_SCHEMA = eINSTANCE.getDatabaseProperty_DbSchema();
+
+    /**
+     * The meta object literal for the '<em><b>Db Driverx</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DATABASE_PROPERTY__DB_DRIVERX = eINSTANCE.getDatabaseProperty_DbDriverx();
 
     /**
      * The meta object literal for the '<em><b>Db Driver</b></em>' attribute feature.

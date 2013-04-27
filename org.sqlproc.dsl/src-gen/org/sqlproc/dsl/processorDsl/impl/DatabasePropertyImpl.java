@@ -18,6 +18,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.xtext.common.types.JvmType;
+
 import org.sqlproc.dsl.processorDsl.DatabaseCatalogAssignement;
 import org.sqlproc.dsl.processorDsl.DatabaseMetaInfoAssignement;
 import org.sqlproc.dsl.processorDsl.DatabaseProperty;
@@ -41,6 +43,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DatabasePropertyImpl#getDbPassword <em>Db Password</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DatabasePropertyImpl#getDbCatalog <em>Db Catalog</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DatabasePropertyImpl#getDbSchema <em>Db Schema</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DatabasePropertyImpl#getDbDriverx <em>Db Driverx</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DatabasePropertyImpl#getDbDriver <em>Db Driver</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DatabasePropertyImpl#getDbExecuteBefore <em>Db Execute Before</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DatabasePropertyImpl#getDbExecuteAfter <em>Db Execute After</em>}</li>
@@ -156,6 +159,16 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * @ordered
    */
   protected DatabaseSchemaAssignement dbSchema;
+
+  /**
+   * The cached value of the '{@link #getDbDriverx() <em>Db Driverx</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDbDriverx()
+   * @generated
+   * @ordered
+   */
+  protected JvmType dbDriverx;
 
   /**
    * The default value of the '{@link #getDbDriver() <em>Db Driver</em>}' attribute.
@@ -494,6 +507,49 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DATABASE_PROPERTY__DB_SCHEMA, newDbSchema, newDbSchema));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public JvmType getDbDriverx()
+  {
+    if (dbDriverx != null && dbDriverx.eIsProxy())
+    {
+      InternalEObject oldDbDriverx = (InternalEObject)dbDriverx;
+      dbDriverx = (JvmType)eResolveProxy(oldDbDriverx);
+      if (dbDriverx != oldDbDriverx)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.DATABASE_PROPERTY__DB_DRIVERX, oldDbDriverx, dbDriverx));
+      }
+    }
+    return dbDriverx;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public JvmType basicGetDbDriverx()
+  {
+    return dbDriverx;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDbDriverx(JvmType newDbDriverx)
+  {
+    JvmType oldDbDriverx = dbDriverx;
+    dbDriverx = newDbDriverx;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DATABASE_PROPERTY__DB_DRIVERX, oldDbDriverx, dbDriverx));
   }
 
   /**
@@ -844,6 +900,9 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         return getDbCatalog();
       case ProcessorDslPackage.DATABASE_PROPERTY__DB_SCHEMA:
         return getDbSchema();
+      case ProcessorDslPackage.DATABASE_PROPERTY__DB_DRIVERX:
+        if (resolve) return getDbDriverx();
+        return basicGetDbDriverx();
       case ProcessorDslPackage.DATABASE_PROPERTY__DB_DRIVER:
         return getDbDriver();
       case ProcessorDslPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:
@@ -894,6 +953,9 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         return;
       case ProcessorDslPackage.DATABASE_PROPERTY__DB_SCHEMA:
         setDbSchema((DatabaseSchemaAssignement)newValue);
+        return;
+      case ProcessorDslPackage.DATABASE_PROPERTY__DB_DRIVERX:
+        setDbDriverx((JvmType)newValue);
         return;
       case ProcessorDslPackage.DATABASE_PROPERTY__DB_DRIVER:
         setDbDriver((String)newValue);
@@ -955,6 +1017,9 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
       case ProcessorDslPackage.DATABASE_PROPERTY__DB_SCHEMA:
         setDbSchema((DatabaseSchemaAssignement)null);
         return;
+      case ProcessorDslPackage.DATABASE_PROPERTY__DB_DRIVERX:
+        setDbDriverx((JvmType)null);
+        return;
       case ProcessorDslPackage.DATABASE_PROPERTY__DB_DRIVER:
         setDbDriver(DB_DRIVER_EDEFAULT);
         return;
@@ -1008,6 +1073,8 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         return dbCatalog != null;
       case ProcessorDslPackage.DATABASE_PROPERTY__DB_SCHEMA:
         return dbSchema != null;
+      case ProcessorDslPackage.DATABASE_PROPERTY__DB_DRIVERX:
+        return dbDriverx != null;
       case ProcessorDslPackage.DATABASE_PROPERTY__DB_DRIVER:
         return DB_DRIVER_EDEFAULT == null ? dbDriver != null : !DB_DRIVER_EDEFAULT.equals(dbDriver);
       case ProcessorDslPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:

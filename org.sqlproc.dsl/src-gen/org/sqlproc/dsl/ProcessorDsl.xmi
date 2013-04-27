@@ -422,8 +422,21 @@
           <terminal xsi:type="xtext:Keyword" value="jdbc-driver"/>
         </elements>
         <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.72"/>
-        <elements xsi:type="xtext:Assignment" feature="dbDriver" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.24"/>
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:Group">
+            <elements xsi:type="xtext:RuleCall" rule="//@rules.75"/>
+            <elements xsi:type="xtext:Assignment" feature="dbDriverx" operator="=">
+              <terminal xsi:type="xtext:CrossReference">
+                <type metamodel="//@metamodelDeclarations.1">
+                  <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/xtext/common/JavaVMTypes#//JvmType"/>
+                </type>
+                <terminal xsi:type="xtext:RuleCall" rule="//@rules.118"/>
+              </terminal>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Assignment" feature="dbDriver" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.24"/>
+          </elements>
         </elements>
       </elements>
       <elements xsi:type="xtext:Group">

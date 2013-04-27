@@ -671,7 +671,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='login-password' dbPassword=PropertyValue) | 
 	 *         (name='in-catalog' dbCatalog=DatabaseCatalogAssignement) | 
 	 *         (name='active-schema' dbSchema=DatabaseSchemaAssignement) | 
-	 *         (name='jdbc-driver' dbDriver=PropertyValue) | 
+	 *         (name='jdbc-driver' (dbDriverx=[JvmType|QualifiedName] | dbDriver=PropertyValue)) | 
 	 *         (name='ddl-create' dbExecuteBefore=PropertyValue) | 
 	 *         (name='ddl-drop' dbExecuteAfter=PropertyValue) | 
 	 *         (name='index-types' dbIndexTypes=PropertyValue) | 

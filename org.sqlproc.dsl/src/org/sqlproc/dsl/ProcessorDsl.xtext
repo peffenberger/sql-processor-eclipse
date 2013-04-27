@@ -47,7 +47,7 @@ DatabaseProperty:
 	|name='login-password' WS+ dbPassword=PropertyValue
 	|name='in-catalog' WS+ dbCatalog=DatabaseCatalogAssignement
 	|name='active-schema' WS+ dbSchema=DatabaseSchemaAssignement
-	|name='jdbc-driver' WS+ dbDriver=PropertyValue
+	|name='jdbc-driver' WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName]|dbDriver=PropertyValue)
 	|name='ddl-create' WS+ dbExecuteBefore=PropertyValue
 	|name='ddl-drop' WS+ dbExecuteAfter=PropertyValue
 	|name='index-types' WS+ dbIndexTypes=PropertyValue
