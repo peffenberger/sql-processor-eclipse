@@ -154,8 +154,8 @@ public class ProcessorDslJavaValidator extends AbstractProcessorDslJavaValidator
 
     @Check
     public void checkUniquePojoDefinition(PojoDefinition pojoDefinition) {
-        if (isResolvePojo(pojoDefinition) && !checkClass(pojoDefinition.getClass_()))
-            error("Class name : " + pojoDefinition.getClass_() + " not exists",
+        if (isResolvePojo(pojoDefinition) && !checkClass(getClass(pojoDefinition)))
+            error("Class name : " + getClass(pojoDefinition) + " not exists",
                     ProcessorDslPackage.Literals.POJO_DEFINITION__NAME);
         Artifacts artifacts;
         EObject object = EcoreUtil.getRootContainer(pojoDefinition);
@@ -281,7 +281,7 @@ public class ProcessorDslJavaValidator extends AbstractProcessorDslJavaValidator
         String pojoName = Utils.getTokenFromModifier(statement, COLUMN_USAGE);
         PojoDefinition pojo = (pojoName != null) ? Utils.findPojo(qualifiedNameConverter, artifacts,
                 scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS), pojoName) : null;
-        String columnUsageClass = (pojo != null) ? pojo.getClass_() : null;
+        String columnUsageClass = (pojo != null) ? getClass(pojo) : null;
         if (columnUsageClass != null) {
             switch (checkClassProperty(columnUsageClass, columnName)) {
             case WARNING:
@@ -330,7 +330,7 @@ public class ProcessorDslJavaValidator extends AbstractProcessorDslJavaValidator
         String pojoName = Utils.getTokenFromModifier(statement, IDENTIFIER_USAGE);
         PojoDefinition pojo = (pojoName != null) ? Utils.findPojo(qualifiedNameConverter, artifacts,
                 scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS), pojoName) : null;
-        String identifierUsageClass = (pojo != null) ? pojo.getClass_() : null;
+        String identifierUsageClass = (pojo != null) ? getClass(pojo) : null;
         if (identifierUsageClass != null) {
             switch (checkClassProperty(identifierUsageClass, identifierName)) {
             case WARNING:
@@ -379,7 +379,7 @@ public class ProcessorDslJavaValidator extends AbstractProcessorDslJavaValidator
         String pojoName = Utils.getTokenFromModifier(statement, CONSTANT_USAGE);
         PojoDefinition pojo = (pojoName != null) ? Utils.findPojo(qualifiedNameConverter, artifacts,
                 scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS), pojoName) : null;
-        String constantUsageClass = (pojo != null) ? pojo.getClass_() : null;
+        String constantUsageClass = (pojo != null) ? getClass(pojo) : null;
         if (constantUsageClass != null) {
             switch (checkClassProperty(constantUsageClass, constant.getName())) {
             case WARNING:
@@ -431,7 +431,7 @@ public class ProcessorDslJavaValidator extends AbstractProcessorDslJavaValidator
         String pojoName = Utils.getTokenFromModifier(rule, MAPPING_USAGE);
         PojoDefinition pojo = (pojoName != null) ? Utils.findPojo(qualifiedNameConverter, artifacts,
                 scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS), pojoName) : null;
-        String mappingUsageClass = (pojo != null) ? pojo.getClass_() : null;
+        String mappingUsageClass = (pojo != null) ? getClass(pojo) : null;
         if (mappingUsageClass != null) {
             switch (checkClassProperty(mappingUsageClass, columnName)) {
             case WARNING:
@@ -903,5 +903,11 @@ public class ProcessorDslJavaValidator extends AbstractProcessorDslJavaValidator
                 }
             }
         }
+    }
+
+    protected String getClass(PojoDefinition pojo) {
+        if (pojo.getClassx() != null)
+            return pojo.getClassx().getQualifiedName();
+        return pojo.getClass_();
     }
 }

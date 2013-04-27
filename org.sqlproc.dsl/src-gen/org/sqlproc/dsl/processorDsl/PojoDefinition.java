@@ -4,6 +4,8 @@ package org.sqlproc.dsl.processorDsl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.xtext.common.types.JvmType;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Pojo Definition</b></em>'.
@@ -14,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoDefinition#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoDefinition#getClass_ <em>Class</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojoDefinition#getClassx <em>Classx</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,5 +77,31 @@ public interface PojoDefinition extends EObject
    * @generated
    */
   void setClass(String value);
+
+  /**
+   * Returns the value of the '<em><b>Classx</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Classx</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Classx</em>' reference.
+   * @see #setClassx(JvmType)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoDefinition_Classx()
+   * @model
+   * @generated
+   */
+  JvmType getClassx();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoDefinition#getClassx <em>Classx</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Classx</em>' reference.
+   * @see #getClassx()
+   * @generated
+   */
+  void setClassx(JvmType value);
 
 } // PojoDefinition

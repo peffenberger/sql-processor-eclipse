@@ -207,7 +207,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         }
 
         if (pojoDefinition != null) {
-            String clazz = getClassName(pojoDefinition.getClass_(), prefix);
+            String clazz = getClassName(getClass(pojoDefinition), prefix);
             if (clazz == null)
                 return false;
             PropertyDescriptor[] descriptors = pojoResolver.getPropertyDescriptors(clazz);
@@ -301,7 +301,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         }
 
         if (pojoDefinition != null) {
-            String clazz = getClassName(pojoDefinition.getClass_(), prefix);
+            String clazz = getClassName(getClass(pojoDefinition), prefix);
             if (clazz == null)
                 return;
             PropertyDescriptor[] descriptors = pojoResolver.getPropertyDescriptors(clazz);
@@ -331,6 +331,12 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
                 acceptor.accept(completionProposal);
             }
         }
+    }
+
+    protected String getClass(PojoDefinition pojo) {
+        if (pojo.getClassx() != null)
+            return pojo.getClassx().getQualifiedName();
+        return pojo.getClass_();
     }
 
     protected PojoEntity getPojoEntity(PojoEntity baseEntity, String property) {

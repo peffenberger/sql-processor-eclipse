@@ -1282,11 +1282,24 @@
       <elements xsi:type="xtext:Assignment" feature="name" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="//@rules.67"/>
       </elements>
-      <elements xsi:type="xtext:Assignment" feature="class" operator="=">
-        <terminal xsi:type="xtext:Alternatives">
-          <elements xsi:type="xtext:RuleCall" rule="//@rules.67"/>
-          <elements xsi:type="xtext:RuleCall" rule="//@rules.66"/>
-        </terminal>
+      <elements xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Assignment" feature="class" operator="=">
+          <terminal xsi:type="xtext:Alternatives">
+            <elements xsi:type="xtext:RuleCall" rule="//@rules.67"/>
+            <elements xsi:type="xtext:RuleCall" rule="//@rules.66"/>
+          </terminal>
+        </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.75"/>
+          <elements xsi:type="xtext:Assignment" feature="classx" operator="=">
+            <terminal xsi:type="xtext:CrossReference">
+              <type metamodel="//@metamodelDeclarations.1">
+                <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/xtext/common/JavaVMTypes#//JvmType"/>
+              </type>
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.118"/>
+            </terminal>
+          </elements>
+        </elements>
       </elements>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.76"/>
     </alternatives>

@@ -1486,13 +1486,22 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_DEFINITION__CLASS = 1;
 
   /**
+   * The feature id for the '<em><b>Classx</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_DEFINITION__CLASSX = 2;
+
+  /**
    * The number of structural features of the '<em>Pojo Definition</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_DEFINITION_FEATURE_COUNT = 2;
+  int POJO_DEFINITION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.TableDefinitionImpl <em>Table Definition</em>}' class.
@@ -4976,6 +4985,17 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getPojoDefinition_Class();
 
   /**
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoDefinition#getClassx <em>Classx</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Classx</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoDefinition#getClassx()
+   * @see #getPojoDefinition()
+   * @generated
+   */
+  EReference getPojoDefinition_Classx();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.TableDefinition <em>Table Definition</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8004,6 +8024,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute POJO_DEFINITION__CLASS = eINSTANCE.getPojoDefinition_Class();
+
+    /**
+     * The meta object literal for the '<em><b>Classx</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_DEFINITION__CLASSX = eINSTANCE.getPojoDefinition_Classx();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.TableDefinitionImpl <em>Table Definition</em>}' class.

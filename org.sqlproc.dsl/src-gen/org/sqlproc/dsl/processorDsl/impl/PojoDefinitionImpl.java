@@ -5,9 +5,12 @@ package org.sqlproc.dsl.processorDsl.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.xtext.common.types.JvmType;
 
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
@@ -21,6 +24,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDefinitionImpl#getClass_ <em>Class</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDefinitionImpl#getClassx <em>Classx</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,6 +71,16 @@ public class PojoDefinitionImpl extends MinimalEObjectImpl.Container implements 
    * @ordered
    */
   protected String class_ = CLASS_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getClassx() <em>Classx</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getClassx()
+   * @generated
+   * @ordered
+   */
+  protected JvmType classx;
 
   /**
    * <!-- begin-user-doc -->
@@ -140,6 +154,49 @@ public class PojoDefinitionImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  public JvmType getClassx()
+  {
+    if (classx != null && classx.eIsProxy())
+    {
+      InternalEObject oldClassx = (InternalEObject)classx;
+      classx = (JvmType)eResolveProxy(oldClassx);
+      if (classx != oldClassx)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.POJO_DEFINITION__CLASSX, oldClassx, classx));
+      }
+    }
+    return classx;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public JvmType basicGetClassx()
+  {
+    return classx;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setClassx(JvmType newClassx)
+  {
+    JvmType oldClassx = classx;
+    classx = newClassx;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_DEFINITION__CLASSX, oldClassx, classx));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -149,6 +206,9 @@ public class PojoDefinitionImpl extends MinimalEObjectImpl.Container implements 
         return getName();
       case ProcessorDslPackage.POJO_DEFINITION__CLASS:
         return getClass_();
+      case ProcessorDslPackage.POJO_DEFINITION__CLASSX:
+        if (resolve) return getClassx();
+        return basicGetClassx();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -168,6 +228,9 @@ public class PojoDefinitionImpl extends MinimalEObjectImpl.Container implements 
         return;
       case ProcessorDslPackage.POJO_DEFINITION__CLASS:
         setClass((String)newValue);
+        return;
+      case ProcessorDslPackage.POJO_DEFINITION__CLASSX:
+        setClassx((JvmType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -189,6 +252,9 @@ public class PojoDefinitionImpl extends MinimalEObjectImpl.Container implements 
       case ProcessorDslPackage.POJO_DEFINITION__CLASS:
         setClass(CLASS_EDEFAULT);
         return;
+      case ProcessorDslPackage.POJO_DEFINITION__CLASSX:
+        setClassx((JvmType)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -207,6 +273,8 @@ public class PojoDefinitionImpl extends MinimalEObjectImpl.Container implements 
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ProcessorDslPackage.POJO_DEFINITION__CLASS:
         return CLASS_EDEFAULT == null ? class_ != null : !CLASS_EDEFAULT.equals(class_);
+      case ProcessorDslPackage.POJO_DEFINITION__CLASSX:
+        return classx != null;
     }
     return super.eIsSet(featureID);
   }
