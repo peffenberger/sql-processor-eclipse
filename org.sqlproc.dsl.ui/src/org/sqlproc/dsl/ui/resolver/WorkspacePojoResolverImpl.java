@@ -107,6 +107,14 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
             } catch (ClassNotFoundException ignore) {
             }
         }
+        // for the case a new project is opened
+        init();
+        for (URLClassLoader loader : allLoaders) {
+            try {
+                return loader.loadClass(name);
+            } catch (ClassNotFoundException ignore) {
+            }
+        }
         LOGGER.warn("Can't find class '" + name + "' in any loader " + allLoaders);
         return null;
     }
