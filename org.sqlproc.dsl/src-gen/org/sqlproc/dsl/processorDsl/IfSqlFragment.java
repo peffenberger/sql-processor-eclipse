@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.dsl.processorDsl.IfSqlFragment#getCol <em>Col</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.IfSqlFragment#getCnst <em>Cnst</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.IfSqlFragment#getIdent <em>Ident</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.IfSqlFragment#getCnstOper <em>Cnst Oper</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.IfSqlFragment#getIdentOper <em>Ident Oper</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.IfSqlFragment#getDbtab <em>Dbtab</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.IfSqlFragment#getDbcol <em>Dbcol</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.IfSqlFragment#getMeta <em>Meta</em>}</li>
@@ -131,6 +133,58 @@ public interface IfSqlFragment extends EObject
    * @generated
    */
   void setIdent(Identifier value);
+
+  /**
+   * Returns the value of the '<em><b>Cnst Oper</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Cnst Oper</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Cnst Oper</em>' containment reference.
+   * @see #setCnstOper(ConstantOperator)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getIfSqlFragment_CnstOper()
+   * @model containment="true"
+   * @generated
+   */
+  ConstantOperator getCnstOper();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.IfSqlFragment#getCnstOper <em>Cnst Oper</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Cnst Oper</em>' containment reference.
+   * @see #getCnstOper()
+   * @generated
+   */
+  void setCnstOper(ConstantOperator value);
+
+  /**
+   * Returns the value of the '<em><b>Ident Oper</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Ident Oper</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ident Oper</em>' containment reference.
+   * @see #setIdentOper(IdentifierOperator)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getIfSqlFragment_IdentOper()
+   * @model containment="true"
+   * @generated
+   */
+  IdentifierOperator getIdentOper();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.IfSqlFragment#getIdentOper <em>Ident Oper</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ident Oper</em>' containment reference.
+   * @see #getIdentOper()
+   * @generated
+   */
+  void setIdentOper(IdentifierOperator value);
 
   /**
    * Returns the value of the '<em><b>Dbtab</b></em>' containment reference.

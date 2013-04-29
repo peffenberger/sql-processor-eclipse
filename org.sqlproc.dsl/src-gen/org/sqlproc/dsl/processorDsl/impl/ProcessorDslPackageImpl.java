@@ -17,6 +17,7 @@ import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.ColumnAssignement;
 import org.sqlproc.dsl.processorDsl.ColumnTypeAssignement;
 import org.sqlproc.dsl.processorDsl.Constant;
+import org.sqlproc.dsl.processorDsl.ConstantOperator;
 import org.sqlproc.dsl.processorDsl.DaogenProperty;
 import org.sqlproc.dsl.processorDsl.DatabaseCatalogAssignement;
 import org.sqlproc.dsl.processorDsl.DatabaseColumn;
@@ -35,6 +36,7 @@ import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
 import org.sqlproc.dsl.processorDsl.Extends;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
 import org.sqlproc.dsl.processorDsl.Identifier;
+import org.sqlproc.dsl.processorDsl.IdentifierOperator;
 import org.sqlproc.dsl.processorDsl.IfMetaSql;
 import org.sqlproc.dsl.processorDsl.IfSql;
 import org.sqlproc.dsl.processorDsl.IfSqlBool;
@@ -400,6 +402,20 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * @generated
    */
   private EClass identifierEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass constantOperatorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass identifierOperatorEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2211,7 +2227,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSqlFragment_Meta()
+  public EReference getSqlFragment_CnstOper()
   {
     return (EReference)sqlFragmentEClass.getEStructuralFeatures().get(4);
   }
@@ -2221,7 +2237,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSqlFragment_Dbtab()
+  public EReference getSqlFragment_IdentOper()
   {
     return (EReference)sqlFragmentEClass.getEStructuralFeatures().get(5);
   }
@@ -2231,9 +2247,29 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSqlFragment_Dbcol()
+  public EReference getSqlFragment_Meta()
   {
     return (EReference)sqlFragmentEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSqlFragment_Dbtab()
+  {
+    return (EReference)sqlFragmentEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSqlFragment_Dbcol()
+  {
+    return (EReference)sqlFragmentEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -2371,7 +2407,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getIfSqlFragment_Dbtab()
+  public EReference getIfSqlFragment_CnstOper()
   {
     return (EReference)ifSqlFragmentEClass.getEStructuralFeatures().get(4);
   }
@@ -2381,7 +2417,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getIfSqlFragment_Dbcol()
+  public EReference getIfSqlFragment_IdentOper()
   {
     return (EReference)ifSqlFragmentEClass.getEStructuralFeatures().get(5);
   }
@@ -2391,9 +2427,29 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getIfSqlFragment_Meta()
+  public EReference getIfSqlFragment_Dbtab()
   {
     return (EReference)ifSqlFragmentEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIfSqlFragment_Dbcol()
+  {
+    return (EReference)ifSqlFragmentEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIfSqlFragment_Meta()
+  {
+    return (EReference)ifSqlFragmentEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -2754,6 +2810,46 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
   public EAttribute getIdentifier_Modifiers()
   {
     return (EAttribute)identifierEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getConstantOperator()
+  {
+    return constantOperatorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getConstantOperator_Name()
+  {
+    return (EAttribute)constantOperatorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIdentifierOperator()
+  {
+    return identifierOperatorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIdentifierOperator_Name()
+  {
+    return (EAttribute)identifierOperatorEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -3981,6 +4077,8 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEReference(sqlFragmentEClass, SQL_FRAGMENT__COL);
     createEReference(sqlFragmentEClass, SQL_FRAGMENT__CNST);
     createEReference(sqlFragmentEClass, SQL_FRAGMENT__IDENT);
+    createEReference(sqlFragmentEClass, SQL_FRAGMENT__CNST_OPER);
+    createEReference(sqlFragmentEClass, SQL_FRAGMENT__IDENT_OPER);
     createEReference(sqlFragmentEClass, SQL_FRAGMENT__META);
     createEReference(sqlFragmentEClass, SQL_FRAGMENT__DBTAB);
     createEReference(sqlFragmentEClass, SQL_FRAGMENT__DBCOL);
@@ -4000,6 +4098,8 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEReference(ifSqlFragmentEClass, IF_SQL_FRAGMENT__COL);
     createEReference(ifSqlFragmentEClass, IF_SQL_FRAGMENT__CNST);
     createEReference(ifSqlFragmentEClass, IF_SQL_FRAGMENT__IDENT);
+    createEReference(ifSqlFragmentEClass, IF_SQL_FRAGMENT__CNST_OPER);
+    createEReference(ifSqlFragmentEClass, IF_SQL_FRAGMENT__IDENT_OPER);
     createEReference(ifSqlFragmentEClass, IF_SQL_FRAGMENT__DBTAB);
     createEReference(ifSqlFragmentEClass, IF_SQL_FRAGMENT__DBCOL);
     createEReference(ifSqlFragmentEClass, IF_SQL_FRAGMENT__META);
@@ -4049,6 +4149,12 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEAttribute(identifierEClass, IDENTIFIER__CASE);
     createEAttribute(identifierEClass, IDENTIFIER__NAME);
     createEAttribute(identifierEClass, IDENTIFIER__MODIFIERS);
+
+    constantOperatorEClass = createEClass(CONSTANT_OPERATOR);
+    createEAttribute(constantOperatorEClass, CONSTANT_OPERATOR__NAME);
+
+    identifierOperatorEClass = createEClass(IDENTIFIER_OPERATOR);
+    createEAttribute(identifierOperatorEClass, IDENTIFIER_OPERATOR__NAME);
 
     databaseColumnEClass = createEClass(DATABASE_COLUMN);
     createEAttribute(databaseColumnEClass, DATABASE_COLUMN__NAME);
@@ -4405,6 +4511,8 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEReference(getSqlFragment_Col(), this.getColumn(), null, "col", null, 0, 1, SqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSqlFragment_Cnst(), this.getConstant(), null, "cnst", null, 0, 1, SqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSqlFragment_Ident(), this.getIdentifier(), null, "ident", null, 0, 1, SqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSqlFragment_CnstOper(), this.getConstantOperator(), null, "cnstOper", null, 0, 1, SqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSqlFragment_IdentOper(), this.getIdentifierOperator(), null, "identOper", null, 0, 1, SqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSqlFragment_Meta(), this.getMetaSql(), null, "meta", null, 0, 1, SqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSqlFragment_Dbtab(), this.getDatabaseTable(), null, "dbtab", null, 0, 1, SqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSqlFragment_Dbcol(), this.getDatabaseColumn(), null, "dbcol", null, 0, 1, SqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4424,6 +4532,8 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEReference(getIfSqlFragment_Col(), this.getColumn(), null, "col", null, 0, 1, IfSqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfSqlFragment_Cnst(), this.getConstant(), null, "cnst", null, 0, 1, IfSqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfSqlFragment_Ident(), this.getIdentifier(), null, "ident", null, 0, 1, IfSqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfSqlFragment_CnstOper(), this.getConstantOperator(), null, "cnstOper", null, 0, 1, IfSqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfSqlFragment_IdentOper(), this.getIdentifierOperator(), null, "identOper", null, 0, 1, IfSqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfSqlFragment_Dbtab(), this.getDatabaseTable(), null, "dbtab", null, 0, 1, IfSqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfSqlFragment_Dbcol(), this.getDatabaseColumn(), null, "dbcol", null, 0, 1, IfSqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfSqlFragment_Meta(), this.getIfMetaSql(), null, "meta", null, 0, 1, IfSqlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4473,6 +4583,12 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEAttribute(getIdentifier_Case(), ecorePackage.getEString(), "case", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getIdentifier_Name(), ecorePackage.getEString(), "name", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getIdentifier_Modifiers(), ecorePackage.getEString(), "modifiers", null, 0, -1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(constantOperatorEClass, ConstantOperator.class, "ConstantOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getConstantOperator_Name(), ecorePackage.getEString(), "name", null, 0, 1, ConstantOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(identifierOperatorEClass, IdentifierOperator.class, "IdentifierOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIdentifierOperator_Name(), ecorePackage.getEString(), "name", null, 0, 1, IdentifierOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(databaseColumnEClass, DatabaseColumn.class, "DatabaseColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDatabaseColumn_Name(), ecorePackage.getEString(), "name", null, 0, 1, DatabaseColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

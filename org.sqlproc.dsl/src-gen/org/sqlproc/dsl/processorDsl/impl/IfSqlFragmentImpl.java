@@ -13,9 +13,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.Constant;
+import org.sqlproc.dsl.processorDsl.ConstantOperator;
 import org.sqlproc.dsl.processorDsl.DatabaseColumn;
 import org.sqlproc.dsl.processorDsl.DatabaseTable;
 import org.sqlproc.dsl.processorDsl.Identifier;
+import org.sqlproc.dsl.processorDsl.IdentifierOperator;
 import org.sqlproc.dsl.processorDsl.IfMetaSql;
 import org.sqlproc.dsl.processorDsl.IfSqlFragment;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
@@ -31,6 +33,8 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.IfSqlFragmentImpl#getCol <em>Col</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.IfSqlFragmentImpl#getCnst <em>Cnst</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.IfSqlFragmentImpl#getIdent <em>Ident</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.IfSqlFragmentImpl#getCnstOper <em>Cnst Oper</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.IfSqlFragmentImpl#getIdentOper <em>Ident Oper</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.IfSqlFragmentImpl#getDbtab <em>Dbtab</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.IfSqlFragmentImpl#getDbcol <em>Dbcol</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.IfSqlFragmentImpl#getMeta <em>Meta</em>}</li>
@@ -90,6 +94,26 @@ public class IfSqlFragmentImpl extends MinimalEObjectImpl.Container implements I
    * @ordered
    */
   protected Identifier ident;
+
+  /**
+   * The cached value of the '{@link #getCnstOper() <em>Cnst Oper</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCnstOper()
+   * @generated
+   * @ordered
+   */
+  protected ConstantOperator cnstOper;
+
+  /**
+   * The cached value of the '{@link #getIdentOper() <em>Ident Oper</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIdentOper()
+   * @generated
+   * @ordered
+   */
+  protected IdentifierOperator identOper;
 
   /**
    * The cached value of the '{@link #getDbtab() <em>Dbtab</em>}' containment reference.
@@ -314,6 +338,102 @@ public class IfSqlFragmentImpl extends MinimalEObjectImpl.Container implements I
    * <!-- end-user-doc -->
    * @generated
    */
+  public ConstantOperator getCnstOper()
+  {
+    return cnstOper;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetCnstOper(ConstantOperator newCnstOper, NotificationChain msgs)
+  {
+    ConstantOperator oldCnstOper = cnstOper;
+    cnstOper = newCnstOper;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.IF_SQL_FRAGMENT__CNST_OPER, oldCnstOper, newCnstOper);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCnstOper(ConstantOperator newCnstOper)
+  {
+    if (newCnstOper != cnstOper)
+    {
+      NotificationChain msgs = null;
+      if (cnstOper != null)
+        msgs = ((InternalEObject)cnstOper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.IF_SQL_FRAGMENT__CNST_OPER, null, msgs);
+      if (newCnstOper != null)
+        msgs = ((InternalEObject)newCnstOper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.IF_SQL_FRAGMENT__CNST_OPER, null, msgs);
+      msgs = basicSetCnstOper(newCnstOper, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.IF_SQL_FRAGMENT__CNST_OPER, newCnstOper, newCnstOper));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IdentifierOperator getIdentOper()
+  {
+    return identOper;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetIdentOper(IdentifierOperator newIdentOper, NotificationChain msgs)
+  {
+    IdentifierOperator oldIdentOper = identOper;
+    identOper = newIdentOper;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.IF_SQL_FRAGMENT__IDENT_OPER, oldIdentOper, newIdentOper);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setIdentOper(IdentifierOperator newIdentOper)
+  {
+    if (newIdentOper != identOper)
+    {
+      NotificationChain msgs = null;
+      if (identOper != null)
+        msgs = ((InternalEObject)identOper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.IF_SQL_FRAGMENT__IDENT_OPER, null, msgs);
+      if (newIdentOper != null)
+        msgs = ((InternalEObject)newIdentOper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.IF_SQL_FRAGMENT__IDENT_OPER, null, msgs);
+      msgs = basicSetIdentOper(newIdentOper, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.IF_SQL_FRAGMENT__IDENT_OPER, newIdentOper, newIdentOper));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public DatabaseTable getDbtab()
   {
     return dbtab;
@@ -469,6 +589,10 @@ public class IfSqlFragmentImpl extends MinimalEObjectImpl.Container implements I
         return basicSetCnst(null, msgs);
       case ProcessorDslPackage.IF_SQL_FRAGMENT__IDENT:
         return basicSetIdent(null, msgs);
+      case ProcessorDslPackage.IF_SQL_FRAGMENT__CNST_OPER:
+        return basicSetCnstOper(null, msgs);
+      case ProcessorDslPackage.IF_SQL_FRAGMENT__IDENT_OPER:
+        return basicSetIdentOper(null, msgs);
       case ProcessorDslPackage.IF_SQL_FRAGMENT__DBTAB:
         return basicSetDbtab(null, msgs);
       case ProcessorDslPackage.IF_SQL_FRAGMENT__DBCOL:
@@ -497,6 +621,10 @@ public class IfSqlFragmentImpl extends MinimalEObjectImpl.Container implements I
         return getCnst();
       case ProcessorDslPackage.IF_SQL_FRAGMENT__IDENT:
         return getIdent();
+      case ProcessorDslPackage.IF_SQL_FRAGMENT__CNST_OPER:
+        return getCnstOper();
+      case ProcessorDslPackage.IF_SQL_FRAGMENT__IDENT_OPER:
+        return getIdentOper();
       case ProcessorDslPackage.IF_SQL_FRAGMENT__DBTAB:
         return getDbtab();
       case ProcessorDslPackage.IF_SQL_FRAGMENT__DBCOL:
@@ -528,6 +656,12 @@ public class IfSqlFragmentImpl extends MinimalEObjectImpl.Container implements I
         return;
       case ProcessorDslPackage.IF_SQL_FRAGMENT__IDENT:
         setIdent((Identifier)newValue);
+        return;
+      case ProcessorDslPackage.IF_SQL_FRAGMENT__CNST_OPER:
+        setCnstOper((ConstantOperator)newValue);
+        return;
+      case ProcessorDslPackage.IF_SQL_FRAGMENT__IDENT_OPER:
+        setIdentOper((IdentifierOperator)newValue);
         return;
       case ProcessorDslPackage.IF_SQL_FRAGMENT__DBTAB:
         setDbtab((DatabaseTable)newValue);
@@ -564,6 +698,12 @@ public class IfSqlFragmentImpl extends MinimalEObjectImpl.Container implements I
       case ProcessorDslPackage.IF_SQL_FRAGMENT__IDENT:
         setIdent((Identifier)null);
         return;
+      case ProcessorDslPackage.IF_SQL_FRAGMENT__CNST_OPER:
+        setCnstOper((ConstantOperator)null);
+        return;
+      case ProcessorDslPackage.IF_SQL_FRAGMENT__IDENT_OPER:
+        setIdentOper((IdentifierOperator)null);
+        return;
       case ProcessorDslPackage.IF_SQL_FRAGMENT__DBTAB:
         setDbtab((DatabaseTable)null);
         return;
@@ -595,6 +735,10 @@ public class IfSqlFragmentImpl extends MinimalEObjectImpl.Container implements I
         return cnst != null;
       case ProcessorDslPackage.IF_SQL_FRAGMENT__IDENT:
         return ident != null;
+      case ProcessorDslPackage.IF_SQL_FRAGMENT__CNST_OPER:
+        return cnstOper != null;
+      case ProcessorDslPackage.IF_SQL_FRAGMENT__IDENT_OPER:
+        return identOper != null;
       case ProcessorDslPackage.IF_SQL_FRAGMENT__DBTAB:
         return dbtab != null;
       case ProcessorDslPackage.IF_SQL_FRAGMENT__DBCOL:

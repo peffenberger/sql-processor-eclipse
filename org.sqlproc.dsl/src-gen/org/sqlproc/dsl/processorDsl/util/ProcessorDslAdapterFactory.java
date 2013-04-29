@@ -295,6 +295,16 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createIdentifierAdapter();
       }
       @Override
+      public Adapter caseConstantOperator(ConstantOperator object)
+      {
+        return createConstantOperatorAdapter();
+      }
+      @Override
+      public Adapter caseIdentifierOperator(IdentifierOperator object)
+      {
+        return createIdentifierOperatorAdapter();
+      }
+      @Override
       public Adapter caseDatabaseColumn(DatabaseColumn object)
       {
         return createDatabaseColumnAdapter();
@@ -1107,6 +1117,36 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIdentifierAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.ConstantOperator <em>Constant Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.ConstantOperator
+   * @generated
+   */
+  public Adapter createConstantOperatorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.IdentifierOperator <em>Identifier Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.IdentifierOperator
+   * @generated
+   */
+  public Adapter createIdentifierOperatorAdapter()
   {
     return null;
   }

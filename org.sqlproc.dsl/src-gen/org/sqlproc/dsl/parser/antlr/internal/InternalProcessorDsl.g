@@ -5967,54 +5967,108 @@ ruleSqlFragment returns [EObject current=null]
 
 )
 ))
-    |(this_LBRACE_7=RULE_LBRACE
+    |(this_STRING_7=RULE_STRING
     { 
-    newLeafNode(this_LBRACE_7, grammarAccess.getSqlFragmentAccess().getLBRACETerminalRuleCall_4_0()); 
+    newLeafNode(this_STRING_7, grammarAccess.getSqlFragmentAccess().getSTRINGTerminalRuleCall_4_0()); 
+    }
+this_STRING_8=RULE_STRING
+    { 
+    newLeafNode(this_STRING_8, grammarAccess.getSqlFragmentAccess().getSTRINGTerminalRuleCall_4_1()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSqlFragmentAccess().getMetaMetaSqlParserRuleCall_4_1_0()); 
+	        newCompositeNode(grammarAccess.getSqlFragmentAccess().getCnstOperConstantOperatorParserRuleCall_4_2_0()); 
 	    }
-		lv_meta_8_0=ruleMetaSql		{
+		lv_cnstOper_9_0=ruleConstantOperator		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSqlFragmentRule());
+	        }
+       		set(
+       			$current, 
+       			"cnstOper",
+        		lv_cnstOper_9_0, 
+        		"ConstantOperator");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(this_COLON_10=RULE_COLON
+    { 
+    newLeafNode(this_COLON_10, grammarAccess.getSqlFragmentAccess().getCOLONTerminalRuleCall_5_0()); 
+    }
+this_COLON_11=RULE_COLON
+    { 
+    newLeafNode(this_COLON_11, grammarAccess.getSqlFragmentAccess().getCOLONTerminalRuleCall_5_1()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSqlFragmentAccess().getIdentOperIdentifierOperatorParserRuleCall_5_2_0()); 
+	    }
+		lv_identOper_12_0=ruleIdentifierOperator		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSqlFragmentRule());
+	        }
+       		set(
+       			$current, 
+       			"identOper",
+        		lv_identOper_12_0, 
+        		"IdentifierOperator");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(this_LBRACE_13=RULE_LBRACE
+    { 
+    newLeafNode(this_LBRACE_13, grammarAccess.getSqlFragmentAccess().getLBRACETerminalRuleCall_6_0()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSqlFragmentAccess().getMetaMetaSqlParserRuleCall_6_1_0()); 
+	    }
+		lv_meta_14_0=ruleMetaSql		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSqlFragmentRule());
 	        }
        		set(
        			$current, 
        			"meta",
-        		lv_meta_8_0, 
+        		lv_meta_14_0, 
         		"MetaSql");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)this_RBRACE_9=RULE_RBRACE
+)this_RBRACE_15=RULE_RBRACE
     { 
-    newLeafNode(this_RBRACE_9, grammarAccess.getSqlFragmentAccess().getRBRACETerminalRuleCall_4_2()); 
+    newLeafNode(this_RBRACE_15, grammarAccess.getSqlFragmentAccess().getRBRACETerminalRuleCall_6_2()); 
     }
 )
-    |(this_PERCENT_10=RULE_PERCENT
+    |(this_PERCENT_16=RULE_PERCENT
     { 
-    newLeafNode(this_PERCENT_10, grammarAccess.getSqlFragmentAccess().getPERCENTTerminalRuleCall_5_0()); 
+    newLeafNode(this_PERCENT_16, grammarAccess.getSqlFragmentAccess().getPERCENTTerminalRuleCall_7_0()); 
     }
-((this_PERCENT_11=RULE_PERCENT
+((this_PERCENT_17=RULE_PERCENT
     { 
-    newLeafNode(this_PERCENT_11, grammarAccess.getSqlFragmentAccess().getPERCENTTerminalRuleCall_5_1_0_0()); 
+    newLeafNode(this_PERCENT_17, grammarAccess.getSqlFragmentAccess().getPERCENTTerminalRuleCall_7_1_0_0()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSqlFragmentAccess().getDbtabDatabaseTableParserRuleCall_5_1_0_1_0()); 
+	        newCompositeNode(grammarAccess.getSqlFragmentAccess().getDbtabDatabaseTableParserRuleCall_7_1_0_1_0()); 
 	    }
-		lv_dbtab_12_0=ruleDatabaseTable		{
+		lv_dbtab_18_0=ruleDatabaseTable		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSqlFragmentRule());
 	        }
        		set(
        			$current, 
        			"dbtab",
-        		lv_dbtab_12_0, 
+        		lv_dbtab_18_0, 
         		"DatabaseTable");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -6024,16 +6078,16 @@ ruleSqlFragment returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSqlFragmentAccess().getDbcolDatabaseColumnParserRuleCall_5_1_1_0()); 
+	        newCompositeNode(grammarAccess.getSqlFragmentAccess().getDbcolDatabaseColumnParserRuleCall_7_1_1_0()); 
 	    }
-		lv_dbcol_13_0=ruleDatabaseColumn		{
+		lv_dbcol_19_0=ruleDatabaseColumn		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSqlFragmentRule());
 	        }
        		set(
        			$current, 
        			"dbcol",
-        		lv_dbcol_13_0, 
+        		lv_dbcol_19_0, 
         		"DatabaseColumn");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -7045,27 +7099,81 @@ ruleIfSqlFragment returns [EObject current=null]
 
 )
 ))
-    |(this_PERCENT_7=RULE_PERCENT
+    |(this_STRING_7=RULE_STRING
     { 
-    newLeafNode(this_PERCENT_7, grammarAccess.getIfSqlFragmentAccess().getPERCENTTerminalRuleCall_4_0()); 
+    newLeafNode(this_STRING_7, grammarAccess.getIfSqlFragmentAccess().getSTRINGTerminalRuleCall_4_0()); 
     }
-((this_PERCENT_8=RULE_PERCENT
+this_STRING_8=RULE_STRING
     { 
-    newLeafNode(this_PERCENT_8, grammarAccess.getIfSqlFragmentAccess().getPERCENTTerminalRuleCall_4_1_0_0()); 
+    newLeafNode(this_STRING_8, grammarAccess.getIfSqlFragmentAccess().getSTRINGTerminalRuleCall_4_1()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getIfSqlFragmentAccess().getDbtabDatabaseTableParserRuleCall_4_1_0_1_0()); 
+	        newCompositeNode(grammarAccess.getIfSqlFragmentAccess().getCnstOperConstantOperatorParserRuleCall_4_2_0()); 
 	    }
-		lv_dbtab_9_0=ruleDatabaseTable		{
+		lv_cnstOper_9_0=ruleConstantOperator		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getIfSqlFragmentRule());
+	        }
+       		set(
+       			$current, 
+       			"cnstOper",
+        		lv_cnstOper_9_0, 
+        		"ConstantOperator");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(this_COLON_10=RULE_COLON
+    { 
+    newLeafNode(this_COLON_10, grammarAccess.getIfSqlFragmentAccess().getCOLONTerminalRuleCall_5_0()); 
+    }
+this_COLON_11=RULE_COLON
+    { 
+    newLeafNode(this_COLON_11, grammarAccess.getIfSqlFragmentAccess().getCOLONTerminalRuleCall_5_1()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getIfSqlFragmentAccess().getIdentOperIdentifierOperatorParserRuleCall_5_2_0()); 
+	    }
+		lv_identOper_12_0=ruleIdentifierOperator		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getIfSqlFragmentRule());
+	        }
+       		set(
+       			$current, 
+       			"identOper",
+        		lv_identOper_12_0, 
+        		"IdentifierOperator");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(this_PERCENT_13=RULE_PERCENT
+    { 
+    newLeafNode(this_PERCENT_13, grammarAccess.getIfSqlFragmentAccess().getPERCENTTerminalRuleCall_6_0()); 
+    }
+((this_PERCENT_14=RULE_PERCENT
+    { 
+    newLeafNode(this_PERCENT_14, grammarAccess.getIfSqlFragmentAccess().getPERCENTTerminalRuleCall_6_1_0_0()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getIfSqlFragmentAccess().getDbtabDatabaseTableParserRuleCall_6_1_0_1_0()); 
+	    }
+		lv_dbtab_15_0=ruleDatabaseTable		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getIfSqlFragmentRule());
 	        }
        		set(
        			$current, 
        			"dbtab",
-        		lv_dbtab_9_0, 
+        		lv_dbtab_15_0, 
         		"DatabaseTable");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -7075,47 +7183,47 @@ ruleIfSqlFragment returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getIfSqlFragmentAccess().getDbcolDatabaseColumnParserRuleCall_4_1_1_0()); 
+	        newCompositeNode(grammarAccess.getIfSqlFragmentAccess().getDbcolDatabaseColumnParserRuleCall_6_1_1_0()); 
 	    }
-		lv_dbcol_10_0=ruleDatabaseColumn		{
+		lv_dbcol_16_0=ruleDatabaseColumn		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getIfSqlFragmentRule());
 	        }
        		set(
        			$current, 
        			"dbcol",
-        		lv_dbcol_10_0, 
+        		lv_dbcol_16_0, 
         		"DatabaseColumn");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )))
-    |(this_LBRACE_11=RULE_LBRACE
+    |(this_LBRACE_17=RULE_LBRACE
     { 
-    newLeafNode(this_LBRACE_11, grammarAccess.getIfSqlFragmentAccess().getLBRACETerminalRuleCall_5_0()); 
+    newLeafNode(this_LBRACE_17, grammarAccess.getIfSqlFragmentAccess().getLBRACETerminalRuleCall_7_0()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getIfSqlFragmentAccess().getMetaIfMetaSqlParserRuleCall_5_1_0()); 
+	        newCompositeNode(grammarAccess.getIfSqlFragmentAccess().getMetaIfMetaSqlParserRuleCall_7_1_0()); 
 	    }
-		lv_meta_12_0=ruleIfMetaSql		{
+		lv_meta_18_0=ruleIfMetaSql		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getIfSqlFragmentRule());
 	        }
        		set(
        			$current, 
        			"meta",
-        		lv_meta_12_0, 
+        		lv_meta_18_0, 
         		"IfMetaSql");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)this_RBRACE_13=RULE_RBRACE
+)this_RBRACE_19=RULE_RBRACE
     { 
-    newLeafNode(this_RBRACE_13, grammarAccess.getIfSqlFragmentAccess().getRBRACETerminalRuleCall_5_2()); 
+    newLeafNode(this_RBRACE_19, grammarAccess.getIfSqlFragmentAccess().getRBRACETerminalRuleCall_7_2()); 
     }
 ))
 ;
@@ -9358,6 +9466,120 @@ ruleIdentifier returns [EObject current=null]
     newLeafNode(this_RPAREN_7, grammarAccess.getIdentifierAccess().getRPARENTerminalRuleCall_3_3()); 
     }
 )?)
+;
+
+
+
+
+
+// Entry rule entryRuleConstantOperator
+entryRuleConstantOperator returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getConstantOperatorRule()); }
+	 iv_ruleConstantOperator=ruleConstantOperator 
+	 { $current=$iv_ruleConstantOperator.current; } 
+	 EOF 
+;
+
+// Rule ConstantOperator
+ruleConstantOperator returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+(
+		lv_name_0_1=RULE_IDENT
+		{
+			newLeafNode(lv_name_0_1, grammarAccess.getConstantOperatorAccess().getNameIDENTTerminalRuleCall_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getConstantOperatorRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_0_1, 
+        		"IDENT");
+	    }
+
+    |		lv_name_0_2=RULE_EQUALS
+		{
+			newLeafNode(lv_name_0_2, grammarAccess.getConstantOperatorAccess().getNameEQUALSTerminalRuleCall_0_1()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getConstantOperatorRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_0_2, 
+        		"EQUALS");
+	    }
+
+)
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleIdentifierOperator
+entryRuleIdentifierOperator returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getIdentifierOperatorRule()); }
+	 iv_ruleIdentifierOperator=ruleIdentifierOperator 
+	 { $current=$iv_ruleIdentifierOperator.current; } 
+	 EOF 
+;
+
+// Rule IdentifierOperator
+ruleIdentifierOperator returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+(
+		lv_name_0_1=RULE_IDENT
+		{
+			newLeafNode(lv_name_0_1, grammarAccess.getIdentifierOperatorAccess().getNameIDENTTerminalRuleCall_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getIdentifierOperatorRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_0_1, 
+        		"IDENT");
+	    }
+
+    |		lv_name_0_2=RULE_EQUALS
+		{
+			newLeafNode(lv_name_0_2, grammarAccess.getIdentifierOperatorAccess().getNameEQUALSTerminalRuleCall_0_1()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getIdentifierOperatorRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_0_2, 
+        		"EQUALS");
+	    }
+
+)
+
+)
+)
 ;
 
 

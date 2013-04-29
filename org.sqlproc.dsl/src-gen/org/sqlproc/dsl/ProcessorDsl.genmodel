@@ -192,6 +192,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//SqlFragment/col"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//SqlFragment/cnst"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//SqlFragment/ident"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//SqlFragment/cnstOper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//SqlFragment/identOper"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//SqlFragment/meta"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//SqlFragment/dbtab"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//SqlFragment/dbcol"/>
@@ -211,6 +213,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//IfSqlFragment/col"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//IfSqlFragment/cnst"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//IfSqlFragment/ident"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//IfSqlFragment/cnstOper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//IfSqlFragment/identOper"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//IfSqlFragment/dbtab"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//IfSqlFragment/dbcol"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//IfSqlFragment/meta"/>
@@ -260,6 +264,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//Identifier/case"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//Identifier/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//Identifier/modifiers"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//ConstantOperator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//ConstantOperator/name"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//IdentifierOperator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//IdentifierOperator/name"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//DatabaseColumn">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//DatabaseColumn/name"/>

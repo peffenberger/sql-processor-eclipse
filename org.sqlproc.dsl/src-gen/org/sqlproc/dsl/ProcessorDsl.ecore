@@ -239,6 +239,10 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ident" eType="#//Identifier"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cnstOper" eType="#//ConstantOperator"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="identOper" eType="#//IdentifierOperator"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="meta" eType="#//MetaSql"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dbtab" eType="#//DatabaseTable"
@@ -267,6 +271,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="cnst" eType="#//Constant"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ident" eType="#//Identifier"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cnstOper" eType="#//ConstantOperator"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="identOper" eType="#//IdentifierOperator"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dbtab" eType="#//DatabaseTable"
         containment="true"/>
@@ -337,6 +345,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifiers" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstantOperator">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IdentifierOperator">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DatabaseColumn">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

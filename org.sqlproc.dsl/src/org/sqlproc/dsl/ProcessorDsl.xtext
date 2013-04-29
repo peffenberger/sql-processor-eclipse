@@ -149,6 +149,8 @@ SqlFragment:
     | AT col=Column
     | STRING cnst=Constant
     | COLON ident=Identifier
+    | STRING STRING cnstOper=ConstantOperator
+    | COLON COLON identOper=IdentifierOperator
     | LBRACE meta=MetaSql RBRACE
     | PERCENT (PERCENT dbtab=DatabaseTable|dbcol=DatabaseColumn)
     ;
@@ -174,6 +176,8 @@ IfSqlFragment:
     | AT col=Column
     | STRING cnst=Constant
     | COLON ident=Identifier
+    | STRING STRING cnstOper=ConstantOperator
+    | COLON COLON identOper=IdentifierOperator
     | PERCENT (PERCENT dbtab=DatabaseTable|dbcol=DatabaseColumn)
     | LBRACE meta=IfMetaSql RBRACE
     ;
@@ -228,6 +232,12 @@ Identifier:
     (mode=(EQUALS|LESS_THAN|MORE_THAN))? (case=(PLUS|MINUS))? name=(IDENT|NUMBER|IDENT_DOT)
     (=> LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
 
+ConstantOperator:
+	name=(IDENT|EQUALS);
+
+IdentifierOperator:
+	name=(IDENT|EQUALS);
+	
 DatabaseColumn:
     name=(IDENT|IDENT_DOT);
 

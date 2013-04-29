@@ -419,6 +419,24 @@ public interface ProcessorDslFactory extends EFactory
   Identifier createIdentifier();
 
   /**
+   * Returns a new object of class '<em>Constant Operator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Constant Operator</em>'.
+   * @generated
+   */
+  ConstantOperator createConstantOperator();
+
+  /**
+   * Returns a new object of class '<em>Identifier Operator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Identifier Operator</em>'.
+   * @generated
+   */
+  IdentifierOperator createIdentifierOperator();
+
+  /**
    * Returns a new object of class '<em>Database Column</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

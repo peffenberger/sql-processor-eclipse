@@ -18,6 +18,7 @@ import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.ColumnAssignement;
 import org.sqlproc.dsl.processorDsl.ColumnTypeAssignement;
 import org.sqlproc.dsl.processorDsl.Constant;
+import org.sqlproc.dsl.processorDsl.ConstantOperator;
 import org.sqlproc.dsl.processorDsl.DaogenProperty;
 import org.sqlproc.dsl.processorDsl.DatabaseCatalogAssignement;
 import org.sqlproc.dsl.processorDsl.DatabaseColumn;
@@ -36,6 +37,7 @@ import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
 import org.sqlproc.dsl.processorDsl.Extends;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
 import org.sqlproc.dsl.processorDsl.Identifier;
+import org.sqlproc.dsl.processorDsl.IdentifierOperator;
 import org.sqlproc.dsl.processorDsl.IfMetaSql;
 import org.sqlproc.dsl.processorDsl.IfSql;
 import org.sqlproc.dsl.processorDsl.IfSqlBool;
@@ -121,6 +123,12 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case ProcessorDslPackage.CONSTANT:
 				if(context == grammarAccess.getConstantRule()) {
 					sequence_Constant(context, (Constant) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.CONSTANT_OPERATOR:
+				if(context == grammarAccess.getConstantOperatorRule()) {
+					sequence_ConstantOperator(context, (ConstantOperator) semanticObject); 
 					return; 
 				}
 				else break;
@@ -230,6 +238,12 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case ProcessorDslPackage.IDENTIFIER:
 				if(context == grammarAccess.getIdentifierRule()) {
 					sequence_Identifier(context, (Identifier) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.IDENTIFIER_OPERATOR:
+				if(context == grammarAccess.getIdentifierOperatorRule()) {
+					sequence_IdentifierOperator(context, (IdentifierOperator) semanticObject); 
 					return; 
 				}
 				else break;
@@ -595,6 +609,15 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
+	 *     (name=IDENT | name=EQUALS)
+	 */
+	protected void sequence_ConstantOperator(EObject context, ConstantOperator semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     ((case=PLUS | case=MINUS)? (name=IDENT | name=IDENT_DOT) (modifiers+=Modifier modifiers+=Modifier*)?)
 	 */
 	protected void sequence_Constant(EObject context, Constant semanticObject) {
@@ -854,6 +877,15 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
+	 *     (name=IDENT | name=EQUALS)
+	 */
+	protected void sequence_IdentifierOperator(EObject context, IdentifierOperator semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (
 	 *         (mode=EQUALS | mode=LESS_THAN | mode=MORE_THAN)? 
 	 *         (case=PLUS | case=MINUS)? 
@@ -905,6 +937,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         col=Column | 
 	 *         cnst=Constant | 
 	 *         ident=Identifier | 
+	 *         cnstOper=ConstantOperator | 
+	 *         identOper=IdentifierOperator | 
 	 *         dbtab=DatabaseTable | 
 	 *         dbcol=DatabaseColumn | 
 	 *         meta=IfMetaSql
@@ -1404,6 +1438,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         col=Column | 
 	 *         cnst=Constant | 
 	 *         ident=Identifier | 
+	 *         cnstOper=ConstantOperator | 
+	 *         identOper=IdentifierOperator | 
 	 *         meta=MetaSql | 
 	 *         dbtab=DatabaseTable | 
 	 *         dbcol=DatabaseColumn

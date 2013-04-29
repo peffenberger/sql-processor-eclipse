@@ -3673,27 +3673,39 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cIdentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cIdentIdentifierParserRuleCall_3_1_0 = (RuleCall)cIdentAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final RuleCall cLBRACETerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cMetaAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cMetaMetaSqlParserRuleCall_4_1_0 = (RuleCall)cMetaAssignment_4_1.eContents().get(0);
-		private final RuleCall cRBRACETerminalRuleCall_4_2 = (RuleCall)cGroup_4.eContents().get(2);
+		private final RuleCall cSTRINGTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final RuleCall cSTRINGTerminalRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
+		private final Assignment cCnstOperAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
+		private final RuleCall cCnstOperConstantOperatorParserRuleCall_4_2_0 = (RuleCall)cCnstOperAssignment_4_2.eContents().get(0);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
-		private final RuleCall cPERCENTTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
-		private final Alternatives cAlternatives_5_1 = (Alternatives)cGroup_5.eContents().get(1);
-		private final Group cGroup_5_1_0 = (Group)cAlternatives_5_1.eContents().get(0);
-		private final RuleCall cPERCENTTerminalRuleCall_5_1_0_0 = (RuleCall)cGroup_5_1_0.eContents().get(0);
-		private final Assignment cDbtabAssignment_5_1_0_1 = (Assignment)cGroup_5_1_0.eContents().get(1);
-		private final RuleCall cDbtabDatabaseTableParserRuleCall_5_1_0_1_0 = (RuleCall)cDbtabAssignment_5_1_0_1.eContents().get(0);
-		private final Assignment cDbcolAssignment_5_1_1 = (Assignment)cAlternatives_5_1.eContents().get(1);
-		private final RuleCall cDbcolDatabaseColumnParserRuleCall_5_1_1_0 = (RuleCall)cDbcolAssignment_5_1_1.eContents().get(0);
+		private final RuleCall cCOLONTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
+		private final RuleCall cCOLONTerminalRuleCall_5_1 = (RuleCall)cGroup_5.eContents().get(1);
+		private final Assignment cIdentOperAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
+		private final RuleCall cIdentOperIdentifierOperatorParserRuleCall_5_2_0 = (RuleCall)cIdentOperAssignment_5_2.eContents().get(0);
+		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
+		private final RuleCall cLBRACETerminalRuleCall_6_0 = (RuleCall)cGroup_6.eContents().get(0);
+		private final Assignment cMetaAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cMetaMetaSqlParserRuleCall_6_1_0 = (RuleCall)cMetaAssignment_6_1.eContents().get(0);
+		private final RuleCall cRBRACETerminalRuleCall_6_2 = (RuleCall)cGroup_6.eContents().get(2);
+		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
+		private final RuleCall cPERCENTTerminalRuleCall_7_0 = (RuleCall)cGroup_7.eContents().get(0);
+		private final Alternatives cAlternatives_7_1 = (Alternatives)cGroup_7.eContents().get(1);
+		private final Group cGroup_7_1_0 = (Group)cAlternatives_7_1.eContents().get(0);
+		private final RuleCall cPERCENTTerminalRuleCall_7_1_0_0 = (RuleCall)cGroup_7_1_0.eContents().get(0);
+		private final Assignment cDbtabAssignment_7_1_0_1 = (Assignment)cGroup_7_1_0.eContents().get(1);
+		private final RuleCall cDbtabDatabaseTableParserRuleCall_7_1_0_1_0 = (RuleCall)cDbtabAssignment_7_1_0_1.eContents().get(0);
+		private final Assignment cDbcolAssignment_7_1_1 = (Assignment)cAlternatives_7_1.eContents().get(1);
+		private final RuleCall cDbcolDatabaseColumnParserRuleCall_7_1_1_0 = (RuleCall)cDbcolAssignment_7_1_1.eContents().get(0);
 		
 		//SqlFragment:
-		//	value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | LBRACE meta=MetaSql RBRACE | PERCENT
-		//	(PERCENT dbtab=DatabaseTable | dbcol=DatabaseColumn);
+		//	value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
+		//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT
+		//	dbtab=DatabaseTable | dbcol=DatabaseColumn);
 		public ParserRule getRule() { return rule; }
 
-		//value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | LBRACE meta=MetaSql RBRACE | PERCENT
-		//(PERCENT dbtab=DatabaseTable | dbcol=DatabaseColumn)
+		//value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING cnstOper=ConstantOperator
+		//| COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT dbtab=DatabaseTable |
+		//dbcol=DatabaseColumn)
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//value=SqlValue
@@ -3738,47 +3750,77 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getIdentIdentifierParserRuleCall_3_1_0() { return cIdentIdentifierParserRuleCall_3_1_0; }
 
-		//LBRACE meta=MetaSql RBRACE
+		//STRING STRING cnstOper=ConstantOperator
 		public Group getGroup_4() { return cGroup_4; }
 
-		//LBRACE
-		public RuleCall getLBRACETerminalRuleCall_4_0() { return cLBRACETerminalRuleCall_4_0; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_4_0() { return cSTRINGTerminalRuleCall_4_0; }
 
-		//meta=MetaSql
-		public Assignment getMetaAssignment_4_1() { return cMetaAssignment_4_1; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_4_1() { return cSTRINGTerminalRuleCall_4_1; }
 
-		//MetaSql
-		public RuleCall getMetaMetaSqlParserRuleCall_4_1_0() { return cMetaMetaSqlParserRuleCall_4_1_0; }
+		//cnstOper=ConstantOperator
+		public Assignment getCnstOperAssignment_4_2() { return cCnstOperAssignment_4_2; }
 
-		//RBRACE
-		public RuleCall getRBRACETerminalRuleCall_4_2() { return cRBRACETerminalRuleCall_4_2; }
+		//ConstantOperator
+		public RuleCall getCnstOperConstantOperatorParserRuleCall_4_2_0() { return cCnstOperConstantOperatorParserRuleCall_4_2_0; }
 
-		//PERCENT (PERCENT dbtab=DatabaseTable | dbcol=DatabaseColumn)
+		//COLON COLON identOper=IdentifierOperator
 		public Group getGroup_5() { return cGroup_5; }
 
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_5_0() { return cCOLONTerminalRuleCall_5_0; }
+
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_5_1() { return cCOLONTerminalRuleCall_5_1; }
+
+		//identOper=IdentifierOperator
+		public Assignment getIdentOperAssignment_5_2() { return cIdentOperAssignment_5_2; }
+
+		//IdentifierOperator
+		public RuleCall getIdentOperIdentifierOperatorParserRuleCall_5_2_0() { return cIdentOperIdentifierOperatorParserRuleCall_5_2_0; }
+
+		//LBRACE meta=MetaSql RBRACE
+		public Group getGroup_6() { return cGroup_6; }
+
+		//LBRACE
+		public RuleCall getLBRACETerminalRuleCall_6_0() { return cLBRACETerminalRuleCall_6_0; }
+
+		//meta=MetaSql
+		public Assignment getMetaAssignment_6_1() { return cMetaAssignment_6_1; }
+
+		//MetaSql
+		public RuleCall getMetaMetaSqlParserRuleCall_6_1_0() { return cMetaMetaSqlParserRuleCall_6_1_0; }
+
+		//RBRACE
+		public RuleCall getRBRACETerminalRuleCall_6_2() { return cRBRACETerminalRuleCall_6_2; }
+
+		//PERCENT (PERCENT dbtab=DatabaseTable | dbcol=DatabaseColumn)
+		public Group getGroup_7() { return cGroup_7; }
+
 		//PERCENT
-		public RuleCall getPERCENTTerminalRuleCall_5_0() { return cPERCENTTerminalRuleCall_5_0; }
+		public RuleCall getPERCENTTerminalRuleCall_7_0() { return cPERCENTTerminalRuleCall_7_0; }
 
 		//PERCENT dbtab=DatabaseTable | dbcol=DatabaseColumn
-		public Alternatives getAlternatives_5_1() { return cAlternatives_5_1; }
+		public Alternatives getAlternatives_7_1() { return cAlternatives_7_1; }
 
 		//PERCENT dbtab=DatabaseTable
-		public Group getGroup_5_1_0() { return cGroup_5_1_0; }
+		public Group getGroup_7_1_0() { return cGroup_7_1_0; }
 
 		//PERCENT
-		public RuleCall getPERCENTTerminalRuleCall_5_1_0_0() { return cPERCENTTerminalRuleCall_5_1_0_0; }
+		public RuleCall getPERCENTTerminalRuleCall_7_1_0_0() { return cPERCENTTerminalRuleCall_7_1_0_0; }
 
 		//dbtab=DatabaseTable
-		public Assignment getDbtabAssignment_5_1_0_1() { return cDbtabAssignment_5_1_0_1; }
+		public Assignment getDbtabAssignment_7_1_0_1() { return cDbtabAssignment_7_1_0_1; }
 
 		//DatabaseTable
-		public RuleCall getDbtabDatabaseTableParserRuleCall_5_1_0_1_0() { return cDbtabDatabaseTableParserRuleCall_5_1_0_1_0; }
+		public RuleCall getDbtabDatabaseTableParserRuleCall_7_1_0_1_0() { return cDbtabDatabaseTableParserRuleCall_7_1_0_1_0; }
 
 		//dbcol=DatabaseColumn
-		public Assignment getDbcolAssignment_5_1_1() { return cDbcolAssignment_5_1_1; }
+		public Assignment getDbcolAssignment_7_1_1() { return cDbcolAssignment_7_1_1; }
 
 		//DatabaseColumn
-		public RuleCall getDbcolDatabaseColumnParserRuleCall_5_1_1_0() { return cDbcolDatabaseColumnParserRuleCall_5_1_1_0; }
+		public RuleCall getDbcolDatabaseColumnParserRuleCall_7_1_1_0() { return cDbcolDatabaseColumnParserRuleCall_7_1_1_0; }
 	}
 
 	public class SqlValueElements extends AbstractParserRuleElementFinder {
@@ -4302,27 +4344,39 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cIdentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cIdentIdentifierParserRuleCall_3_1_0 = (RuleCall)cIdentAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final RuleCall cPERCENTTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Alternatives cAlternatives_4_1 = (Alternatives)cGroup_4.eContents().get(1);
-		private final Group cGroup_4_1_0 = (Group)cAlternatives_4_1.eContents().get(0);
-		private final RuleCall cPERCENTTerminalRuleCall_4_1_0_0 = (RuleCall)cGroup_4_1_0.eContents().get(0);
-		private final Assignment cDbtabAssignment_4_1_0_1 = (Assignment)cGroup_4_1_0.eContents().get(1);
-		private final RuleCall cDbtabDatabaseTableParserRuleCall_4_1_0_1_0 = (RuleCall)cDbtabAssignment_4_1_0_1.eContents().get(0);
-		private final Assignment cDbcolAssignment_4_1_1 = (Assignment)cAlternatives_4_1.eContents().get(1);
-		private final RuleCall cDbcolDatabaseColumnParserRuleCall_4_1_1_0 = (RuleCall)cDbcolAssignment_4_1_1.eContents().get(0);
+		private final RuleCall cSTRINGTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final RuleCall cSTRINGTerminalRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
+		private final Assignment cCnstOperAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
+		private final RuleCall cCnstOperConstantOperatorParserRuleCall_4_2_0 = (RuleCall)cCnstOperAssignment_4_2.eContents().get(0);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
-		private final RuleCall cLBRACETerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
-		private final Assignment cMetaAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cMetaIfMetaSqlParserRuleCall_5_1_0 = (RuleCall)cMetaAssignment_5_1.eContents().get(0);
-		private final RuleCall cRBRACETerminalRuleCall_5_2 = (RuleCall)cGroup_5.eContents().get(2);
+		private final RuleCall cCOLONTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
+		private final RuleCall cCOLONTerminalRuleCall_5_1 = (RuleCall)cGroup_5.eContents().get(1);
+		private final Assignment cIdentOperAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
+		private final RuleCall cIdentOperIdentifierOperatorParserRuleCall_5_2_0 = (RuleCall)cIdentOperAssignment_5_2.eContents().get(0);
+		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
+		private final RuleCall cPERCENTTerminalRuleCall_6_0 = (RuleCall)cGroup_6.eContents().get(0);
+		private final Alternatives cAlternatives_6_1 = (Alternatives)cGroup_6.eContents().get(1);
+		private final Group cGroup_6_1_0 = (Group)cAlternatives_6_1.eContents().get(0);
+		private final RuleCall cPERCENTTerminalRuleCall_6_1_0_0 = (RuleCall)cGroup_6_1_0.eContents().get(0);
+		private final Assignment cDbtabAssignment_6_1_0_1 = (Assignment)cGroup_6_1_0.eContents().get(1);
+		private final RuleCall cDbtabDatabaseTableParserRuleCall_6_1_0_1_0 = (RuleCall)cDbtabAssignment_6_1_0_1.eContents().get(0);
+		private final Assignment cDbcolAssignment_6_1_1 = (Assignment)cAlternatives_6_1.eContents().get(1);
+		private final RuleCall cDbcolDatabaseColumnParserRuleCall_6_1_1_0 = (RuleCall)cDbcolAssignment_6_1_1.eContents().get(0);
+		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
+		private final RuleCall cLBRACETerminalRuleCall_7_0 = (RuleCall)cGroup_7.eContents().get(0);
+		private final Assignment cMetaAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cMetaIfMetaSqlParserRuleCall_7_1_0 = (RuleCall)cMetaAssignment_7_1.eContents().get(0);
+		private final RuleCall cRBRACETerminalRuleCall_7_2 = (RuleCall)cGroup_7.eContents().get(2);
 		
 		//IfSqlFragment:
-		//	value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | PERCENT (PERCENT
-		//	dbtab=DatabaseTable | dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE;
+		//	value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
+		//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | PERCENT (PERCENT dbtab=DatabaseTable |
+		//	dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE;
 		public ParserRule getRule() { return rule; }
 
-		//value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | PERCENT (PERCENT dbtab=DatabaseTable
-		//| dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE
+		//value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
+		//cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | PERCENT (PERCENT dbtab=DatabaseTable |
+		//dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//value=IfSqlValue
@@ -4367,47 +4421,77 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getIdentIdentifierParserRuleCall_3_1_0() { return cIdentIdentifierParserRuleCall_3_1_0; }
 
-		//PERCENT (PERCENT dbtab=DatabaseTable | dbcol=DatabaseColumn)
+		//STRING STRING cnstOper=ConstantOperator
 		public Group getGroup_4() { return cGroup_4; }
 
-		//PERCENT
-		public RuleCall getPERCENTTerminalRuleCall_4_0() { return cPERCENTTerminalRuleCall_4_0; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_4_0() { return cSTRINGTerminalRuleCall_4_0; }
 
-		//PERCENT dbtab=DatabaseTable | dbcol=DatabaseColumn
-		public Alternatives getAlternatives_4_1() { return cAlternatives_4_1; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_4_1() { return cSTRINGTerminalRuleCall_4_1; }
 
-		//PERCENT dbtab=DatabaseTable
-		public Group getGroup_4_1_0() { return cGroup_4_1_0; }
+		//cnstOper=ConstantOperator
+		public Assignment getCnstOperAssignment_4_2() { return cCnstOperAssignment_4_2; }
 
-		//PERCENT
-		public RuleCall getPERCENTTerminalRuleCall_4_1_0_0() { return cPERCENTTerminalRuleCall_4_1_0_0; }
+		//ConstantOperator
+		public RuleCall getCnstOperConstantOperatorParserRuleCall_4_2_0() { return cCnstOperConstantOperatorParserRuleCall_4_2_0; }
 
-		//dbtab=DatabaseTable
-		public Assignment getDbtabAssignment_4_1_0_1() { return cDbtabAssignment_4_1_0_1; }
-
-		//DatabaseTable
-		public RuleCall getDbtabDatabaseTableParserRuleCall_4_1_0_1_0() { return cDbtabDatabaseTableParserRuleCall_4_1_0_1_0; }
-
-		//dbcol=DatabaseColumn
-		public Assignment getDbcolAssignment_4_1_1() { return cDbcolAssignment_4_1_1; }
-
-		//DatabaseColumn
-		public RuleCall getDbcolDatabaseColumnParserRuleCall_4_1_1_0() { return cDbcolDatabaseColumnParserRuleCall_4_1_1_0; }
-
-		//LBRACE meta=IfMetaSql RBRACE
+		//COLON COLON identOper=IdentifierOperator
 		public Group getGroup_5() { return cGroup_5; }
 
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_5_0() { return cCOLONTerminalRuleCall_5_0; }
+
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_5_1() { return cCOLONTerminalRuleCall_5_1; }
+
+		//identOper=IdentifierOperator
+		public Assignment getIdentOperAssignment_5_2() { return cIdentOperAssignment_5_2; }
+
+		//IdentifierOperator
+		public RuleCall getIdentOperIdentifierOperatorParserRuleCall_5_2_0() { return cIdentOperIdentifierOperatorParserRuleCall_5_2_0; }
+
+		//PERCENT (PERCENT dbtab=DatabaseTable | dbcol=DatabaseColumn)
+		public Group getGroup_6() { return cGroup_6; }
+
+		//PERCENT
+		public RuleCall getPERCENTTerminalRuleCall_6_0() { return cPERCENTTerminalRuleCall_6_0; }
+
+		//PERCENT dbtab=DatabaseTable | dbcol=DatabaseColumn
+		public Alternatives getAlternatives_6_1() { return cAlternatives_6_1; }
+
+		//PERCENT dbtab=DatabaseTable
+		public Group getGroup_6_1_0() { return cGroup_6_1_0; }
+
+		//PERCENT
+		public RuleCall getPERCENTTerminalRuleCall_6_1_0_0() { return cPERCENTTerminalRuleCall_6_1_0_0; }
+
+		//dbtab=DatabaseTable
+		public Assignment getDbtabAssignment_6_1_0_1() { return cDbtabAssignment_6_1_0_1; }
+
+		//DatabaseTable
+		public RuleCall getDbtabDatabaseTableParserRuleCall_6_1_0_1_0() { return cDbtabDatabaseTableParserRuleCall_6_1_0_1_0; }
+
+		//dbcol=DatabaseColumn
+		public Assignment getDbcolAssignment_6_1_1() { return cDbcolAssignment_6_1_1; }
+
+		//DatabaseColumn
+		public RuleCall getDbcolDatabaseColumnParserRuleCall_6_1_1_0() { return cDbcolDatabaseColumnParserRuleCall_6_1_1_0; }
+
+		//LBRACE meta=IfMetaSql RBRACE
+		public Group getGroup_7() { return cGroup_7; }
+
 		//LBRACE
-		public RuleCall getLBRACETerminalRuleCall_5_0() { return cLBRACETerminalRuleCall_5_0; }
+		public RuleCall getLBRACETerminalRuleCall_7_0() { return cLBRACETerminalRuleCall_7_0; }
 
 		//meta=IfMetaSql
-		public Assignment getMetaAssignment_5_1() { return cMetaAssignment_5_1; }
+		public Assignment getMetaAssignment_7_1() { return cMetaAssignment_7_1; }
 
 		//IfMetaSql
-		public RuleCall getMetaIfMetaSqlParserRuleCall_5_1_0() { return cMetaIfMetaSqlParserRuleCall_5_1_0; }
+		public RuleCall getMetaIfMetaSqlParserRuleCall_7_1_0() { return cMetaIfMetaSqlParserRuleCall_7_1_0; }
 
 		//RBRACE
-		public RuleCall getRBRACETerminalRuleCall_5_2() { return cRBRACETerminalRuleCall_5_2; }
+		public RuleCall getRBRACETerminalRuleCall_7_2() { return cRBRACETerminalRuleCall_7_2; }
 	}
 
 	public class IfSqlValueElements extends AbstractParserRuleElementFinder {
@@ -5642,6 +5726,54 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//RPAREN
 		public RuleCall getRPARENTerminalRuleCall_3_3() { return cRPARENTerminalRuleCall_3_3; }
+	}
+
+	public class ConstantOperatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConstantOperator");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final Alternatives cNameAlternatives_0 = (Alternatives)cNameAssignment.eContents().get(0);
+		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAlternatives_0.eContents().get(0);
+		private final RuleCall cNameEQUALSTerminalRuleCall_0_1 = (RuleCall)cNameAlternatives_0.eContents().get(1);
+		
+		//ConstantOperator:
+		//	name=(IDENT | EQUALS);
+		public ParserRule getRule() { return rule; }
+
+		//name=(IDENT | EQUALS)
+		public Assignment getNameAssignment() { return cNameAssignment; }
+
+		//IDENT | EQUALS
+		public Alternatives getNameAlternatives_0() { return cNameAlternatives_0; }
+
+		//IDENT
+		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
+
+		//EQUALS
+		public RuleCall getNameEQUALSTerminalRuleCall_0_1() { return cNameEQUALSTerminalRuleCall_0_1; }
+	}
+
+	public class IdentifierOperatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IdentifierOperator");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final Alternatives cNameAlternatives_0 = (Alternatives)cNameAssignment.eContents().get(0);
+		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAlternatives_0.eContents().get(0);
+		private final RuleCall cNameEQUALSTerminalRuleCall_0_1 = (RuleCall)cNameAlternatives_0.eContents().get(1);
+		
+		//IdentifierOperator:
+		//	name=(IDENT | EQUALS);
+		public ParserRule getRule() { return rule; }
+
+		//name=(IDENT | EQUALS)
+		public Assignment getNameAssignment() { return cNameAssignment; }
+
+		//IDENT | EQUALS
+		public Alternatives getNameAlternatives_0() { return cNameAlternatives_0; }
+
+		//IDENT
+		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
+
+		//EQUALS
+		public RuleCall getNameEQUALSTerminalRuleCall_0_1() { return cNameEQUALSTerminalRuleCall_0_1; }
 	}
 
 	public class DatabaseColumnElements extends AbstractParserRuleElementFinder {
@@ -7513,6 +7645,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	private ExtendedColumnNameElements pExtendedColumnName;
 	private ConstantElements pConstant;
 	private IdentifierElements pIdentifier;
+	private ConstantOperatorElements pConstantOperator;
+	private IdentifierOperatorElements pIdentifierOperator;
 	private DatabaseColumnElements pDatabaseColumn;
 	private DatabaseTableElements pDatabaseTable;
 	private MappingRuleElements pMappingRule;
@@ -7973,8 +8107,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SqlFragment:
-	//	value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | LBRACE meta=MetaSql RBRACE | PERCENT
-	//	(PERCENT dbtab=DatabaseTable | dbcol=DatabaseColumn);
+	//	value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
+	//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT
+	//	dbtab=DatabaseTable | dbcol=DatabaseColumn);
 	public SqlFragmentElements getSqlFragmentAccess() {
 		return (pSqlFragment != null) ? pSqlFragment : (pSqlFragment = new SqlFragmentElements());
 	}
@@ -8021,8 +8156,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IfSqlFragment:
-	//	value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | PERCENT (PERCENT
-	//	dbtab=DatabaseTable | dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE;
+	//	value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
+	//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | PERCENT (PERCENT dbtab=DatabaseTable |
+	//	dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE;
 	public IfSqlFragmentElements getIfSqlFragmentAccess() {
 		return (pIfSqlFragment != null) ? pIfSqlFragment : (pIfSqlFragment = new IfSqlFragmentElements());
 	}
@@ -8161,6 +8297,26 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getIdentifierRule() {
 		return getIdentifierAccess().getRule();
+	}
+
+	//ConstantOperator:
+	//	name=(IDENT | EQUALS);
+	public ConstantOperatorElements getConstantOperatorAccess() {
+		return (pConstantOperator != null) ? pConstantOperator : (pConstantOperator = new ConstantOperatorElements());
+	}
+	
+	public ParserRule getConstantOperatorRule() {
+		return getConstantOperatorAccess().getRule();
+	}
+
+	//IdentifierOperator:
+	//	name=(IDENT | EQUALS);
+	public IdentifierOperatorElements getIdentifierOperatorAccess() {
+		return (pIdentifierOperator != null) ? pIdentifierOperator : (pIdentifierOperator = new IdentifierOperatorElements());
+	}
+	
+	public ParserRule getIdentifierOperatorRule() {
+		return getIdentifierOperatorAccess().getRule();
 	}
 
 	//DatabaseColumn:
