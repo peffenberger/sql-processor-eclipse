@@ -32,6 +32,8 @@ import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.Constant;
 import org.sqlproc.dsl.processorDsl.DatabaseColumn;
 import org.sqlproc.dsl.processorDsl.DatabaseTable;
+import org.sqlproc.dsl.processorDsl.EnumEntity;
+import org.sqlproc.dsl.processorDsl.EnumProperty;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
 import org.sqlproc.dsl.processorDsl.Identifier;
 import org.sqlproc.dsl.processorDsl.MappingColumn;
@@ -676,8 +678,18 @@ public class ProcessorDslJavaValidator extends AbstractProcessorDslJavaValidator
             if (pojoProperty.getName().equals(checkProperty)) {
                 if (innerProperty == null)
                     return ValidationResult.OK;
-                if (pojoProperty.getRef() != null)
-                    return checkEntityProperty(pojoProperty.getRef(), innerProperty);
+                if (pojoProperty.getRef() != null) {
+                    if (pojoProperty.getRef() instanceof PojoEntity) {
+                        return checkEntityProperty((PojoEntity) pojoProperty.getRef(), innerProperty);
+                    }
+                    System.out.println("XXXXXX1 " + entity.getName());
+                    System.out.println("XXXXXX2 " + property);
+                    System.out.println("XXXXXX3 " + innerProperty);
+                    System.out.println("XXXXXX4 " + checkProperty);
+                    System.out.println("XXXXXX5 " + pojoProperty.getName());
+                    System.out.println("XXXXXX6 " + pojoProperty.getRef());
+                    return ValidationResult.OK;
+                }
                 if (pojoProperty.getGref() != null)
                     return checkEntityProperty(pojoProperty.getGref(), innerProperty);
                 return ValidationResult.ERROR;
@@ -861,7 +873,7 @@ public class ProcessorDslJavaValidator extends AbstractProcessorDslJavaValidator
                 if (pentity == pojoEntity)
                     continue;
                 if (pojoEntity.getName().equals(pentity.getName())) {
-                    error("Duplicate name : " + pojoEntity.getName(), ProcessorDslPackage.Literals.POJO_ENTITY__NAME);
+                    error("Duplicate name : " + pojoEntity.getName(), ProcessorDslPackage.Literals.ENTITY__NAME);
                     return;
                 }
             }
@@ -876,6 +888,43 @@ public class ProcessorDslJavaValidator extends AbstractProcessorDslJavaValidator
                 continue;
             if (pojoProperty.getName().equals(property.getName())) {
                 error("Duplicate name : " + pojoProperty.getName(), ProcessorDslPackage.Literals.POJO_PROPERTY__NAME);
+                return;
+            }
+        }
+    }
+
+    @Check
+    public void checkUniqueEnumEntity(EnumEntity enumEntity) {
+        Artifacts artifacts;
+        EObject object = EcoreUtil.getRootContainer(enumEntity);
+        if (!(object instanceof Artifacts))
+            return;
+        artifacts = (Artifacts) object;
+        for (PackageDeclaration pkg : artifacts.getPojoPackages()) {
+            if (pkg == null)
+                continue;
+            for (AbstractPojoEntity entity : pkg.getElements()) {
+                if (entity == null || !(entity instanceof EnumEntity))
+                    continue;
+                EnumEntity pentity = (EnumEntity) entity;
+                if (pentity == enumEntity)
+                    continue;
+                if (enumEntity.getName().equals(pentity.getName())) {
+                    error("Duplicate name : " + enumEntity.getName(), ProcessorDslPackage.Literals.ENTITY__NAME);
+                    return;
+                }
+            }
+        }
+    }
+
+    @Check
+    public void checkUniqueEnumProperty(EnumProperty enumProperty) {
+        EnumEntity entity = EcoreUtil2.getContainerOfType(enumProperty, EnumEntity.class);
+        for (EnumProperty property : entity.getFeatures()) {
+            if (property == null || property == enumProperty)
+                continue;
+            if (enumProperty.getName().equals(property.getName())) {
+                error("Duplicate name : " + enumProperty.getName(), ProcessorDslPackage.Literals.ENUM_PROPERTY__NAME);
                 return;
             }
         }

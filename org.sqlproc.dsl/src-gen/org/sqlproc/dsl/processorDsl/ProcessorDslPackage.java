@@ -2883,7 +2883,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAbstractPojoEntity()
    * @generated
    */
-  int ABSTRACT_POJO_ENTITY = 57;
+  int ABSTRACT_POJO_ENTITY = 58;
 
   /**
    * The number of structural features of the '<em>Abstract Pojo Entity</em>' class.
@@ -2941,6 +2941,34 @@ public interface ProcessorDslPackage extends EPackage
   int PACKAGE_DECLARATION_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EntityImpl <em>Entity</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.EntityImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEntity()
+   * @generated
+   */
+  int ENTITY = 57;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY__NAME = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Entity</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ImportImpl <em>Import</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2948,7 +2976,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getImport()
    * @generated
    */
-  int IMPORT = 58;
+  int IMPORT = 59;
 
   /**
    * The feature id for the '<em><b>Imported Namespace</b></em>' attribute.
@@ -2976,7 +3004,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getImplements()
    * @generated
    */
-  int IMPLEMENTS = 59;
+  int IMPLEMENTS = 60;
 
   /**
    * The feature id for the '<em><b>Implements</b></em>' reference.
@@ -3004,7 +3032,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getExtends()
    * @generated
    */
-  int EXTENDS = 60;
+  int EXTENDS = 61;
 
   /**
    * The feature id for the '<em><b>Extends</b></em>' reference.
@@ -3032,7 +3060,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getImplPackage()
    * @generated
    */
-  int IMPL_PACKAGE = 61;
+  int IMPL_PACKAGE = 62;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3060,7 +3088,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoEntityModifier1()
    * @generated
    */
-  int POJO_ENTITY_MODIFIER1 = 62;
+  int POJO_ENTITY_MODIFIER1 = 63;
 
   /**
    * The feature id for the '<em><b>Final</b></em>' attribute.
@@ -3097,7 +3125,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoEntityModifier2()
    * @generated
    */
-  int POJO_ENTITY_MODIFIER2 = 63;
+  int POJO_ENTITY_MODIFIER2 = 64;
 
   /**
    * The feature id for the '<em><b>Super Type</b></em>' reference.
@@ -3143,16 +3171,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoEntity()
    * @generated
    */
-  int POJO_ENTITY = 64;
-
-  /**
-   * The feature id for the '<em><b>Modifiers1</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_ENTITY__MODIFIERS1 = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 0;
+  int POJO_ENTITY = 65;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3161,7 +3180,16 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_ENTITY__NAME = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
+  int POJO_ENTITY__NAME = ENTITY__NAME;
+
+  /**
+   * The feature id for the '<em><b>Modifiers1</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_ENTITY__MODIFIERS1 = ENTITY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Modifiers2</b></em>' containment reference list.
@@ -3170,7 +3198,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_ENTITY__MODIFIERS2 = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
+  int POJO_ENTITY__MODIFIERS2 = ENTITY_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -3179,7 +3207,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_ENTITY__FEATURES = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
+  int POJO_ENTITY__FEATURES = ENTITY_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Pojo Entity</em>' class.
@@ -3188,7 +3216,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_ENTITY_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
+  int POJO_ENTITY_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyModifierImpl <em>Pojo Property Modifier</em>}' class.
@@ -3198,7 +3226,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyModifier()
    * @generated
    */
-  int POJO_PROPERTY_MODIFIER = 65;
+  int POJO_PROPERTY_MODIFIER = 66;
 
   /**
    * The feature id for the '<em><b>Required</b></em>' attribute.
@@ -3262,7 +3290,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoProperty()
    * @generated
    */
-  int POJO_PROPERTY = 66;
+  int POJO_PROPERTY = 67;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3355,6 +3383,181 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_PROPERTY_FEATURE_COUNT = 9;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumEntityModifier1Impl <em>Enum Entity Modifier1</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.EnumEntityModifier1Impl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumEntityModifier1()
+   * @generated
+   */
+  int ENUM_ENTITY_MODIFIER1 = 68;
+
+  /**
+   * The feature id for the '<em><b>Final</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_ENTITY_MODIFIER1__FINAL = 0;
+
+  /**
+   * The number of structural features of the '<em>Enum Entity Modifier1</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_ENTITY_MODIFIER1_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumEntityModifier2Impl <em>Enum Entity Modifier2</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.EnumEntityModifier2Impl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumEntityModifier2()
+   * @generated
+   */
+  int ENUM_ENTITY_MODIFIER2 = 69;
+
+  /**
+   * The feature id for the '<em><b>Super Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_ENTITY_MODIFIER2__SUPER_TYPE = 0;
+
+  /**
+   * The feature id for the '<em><b>Sernum</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_ENTITY_MODIFIER2__SERNUM = 1;
+
+  /**
+   * The number of structural features of the '<em>Enum Entity Modifier2</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_ENTITY_MODIFIER2_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumEntityImpl <em>Enum Entity</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.EnumEntityImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumEntity()
+   * @generated
+   */
+  int ENUM_ENTITY = 70;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_ENTITY__NAME = ENTITY__NAME;
+
+  /**
+   * The feature id for the '<em><b>Modifiers1</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_ENTITY__MODIFIERS1 = ENTITY_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Modifiers2</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_ENTITY__MODIFIERS2 = ENTITY_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Features</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_ENTITY__FEATURES = ENTITY_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Enum Entity</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_ENTITY_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl <em>Enum Property</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumProperty()
+   * @generated
+   */
+  int ENUM_PROPERTY = 71;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_PROPERTY__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Native</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_PROPERTY__NATIVE = 1;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_PROPERTY__VALUE = 2;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_PROPERTY__TYPE = 3;
+
+  /**
+   * The number of structural features of the '<em>Enum Property</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_PROPERTY_FEATURE_COUNT = 4;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoModifierImpl <em>Pojo Dao Modifier</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3362,7 +3565,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDaoModifier()
    * @generated
    */
-  int POJO_DAO_MODIFIER = 67;
+  int POJO_DAO_MODIFIER = 72;
 
   /**
    * The feature id for the '<em><b>Super Type</b></em>' reference.
@@ -3399,7 +3602,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDao()
    * @generated
    */
-  int POJO_DAO = 68;
+  int POJO_DAO = 73;
 
   /**
    * The feature id for the '<em><b>Modifiers1</b></em>' containment reference list.
@@ -3472,7 +3675,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoMethodModifier()
    * @generated
    */
-  int POJO_METHOD_MODIFIER = 69;
+  int POJO_METHOD_MODIFIER = 74;
 
   /**
    * The feature id for the '<em><b>Call Function</b></em>' attribute.
@@ -3536,7 +3739,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoMethod()
    * @generated
    */
-  int POJO_METHOD = 70;
+  int POJO_METHOD = 75;
 
   /**
    * The feature id for the '<em><b>Modifiers1</b></em>' containment reference list.
@@ -3591,7 +3794,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getToInitMethod()
    * @generated
    */
-  int TO_INIT_METHOD = 71;
+  int TO_INIT_METHOD = 76;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3628,7 +3831,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoMethodArg()
    * @generated
    */
-  int POJO_METHOD_ARG = 72;
+  int POJO_METHOD_ARG = 77;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6407,6 +6610,27 @@ public interface ProcessorDslPackage extends EPackage
   EReference getPackageDeclaration_Elements();
 
   /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.Entity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Entity</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Entity
+   * @generated
+   */
+  EClass getEntity();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.Entity#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Entity#getName()
+   * @see #getEntity()
+   * @generated
+   */
+  EAttribute getEntity_Name();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.AbstractPojoEntity <em>Abstract Pojo Entity</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6595,17 +6819,6 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EReference getPojoEntity_Modifiers1();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoEntity#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoEntity#getName()
-   * @see #getPojoEntity()
-   * @generated
-   */
-  EAttribute getPojoEntity_Name();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.PojoEntity#getModifiers2 <em>Modifiers2</em>}'.
@@ -6802,6 +7015,156 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EReference getPojoProperty_Modifiers();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.EnumEntityModifier1 <em>Enum Entity Modifier1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Enum Entity Modifier1</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumEntityModifier1
+   * @generated
+   */
+  EClass getEnumEntityModifier1();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.EnumEntityModifier1#isFinal <em>Final</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Final</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumEntityModifier1#isFinal()
+   * @see #getEnumEntityModifier1()
+   * @generated
+   */
+  EAttribute getEnumEntityModifier1_Final();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.EnumEntityModifier2 <em>Enum Entity Modifier2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Enum Entity Modifier2</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumEntityModifier2
+   * @generated
+   */
+  EClass getEnumEntityModifier2();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.EnumEntityModifier2#getSuperType <em>Super Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Super Type</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumEntityModifier2#getSuperType()
+   * @see #getEnumEntityModifier2()
+   * @generated
+   */
+  EReference getEnumEntityModifier2_SuperType();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.EnumEntityModifier2#getSernum <em>Sernum</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Sernum</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumEntityModifier2#getSernum()
+   * @see #getEnumEntityModifier2()
+   * @generated
+   */
+  EAttribute getEnumEntityModifier2_Sernum();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.EnumEntity <em>Enum Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Enum Entity</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumEntity
+   * @generated
+   */
+  EClass getEnumEntity();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.EnumEntity#getModifiers1 <em>Modifiers1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Modifiers1</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumEntity#getModifiers1()
+   * @see #getEnumEntity()
+   * @generated
+   */
+  EReference getEnumEntity_Modifiers1();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.EnumEntity#getModifiers2 <em>Modifiers2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Modifiers2</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumEntity#getModifiers2()
+   * @see #getEnumEntity()
+   * @generated
+   */
+  EReference getEnumEntity_Modifiers2();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.EnumEntity#getFeatures <em>Features</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Features</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumEntity#getFeatures()
+   * @see #getEnumEntity()
+   * @generated
+   */
+  EReference getEnumEntity_Features();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.EnumProperty <em>Enum Property</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Enum Property</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumProperty
+   * @generated
+   */
+  EClass getEnumProperty();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.EnumProperty#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumProperty#getName()
+   * @see #getEnumProperty()
+   * @generated
+   */
+  EAttribute getEnumProperty_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.EnumProperty#getNative <em>Native</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Native</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumProperty#getNative()
+   * @see #getEnumProperty()
+   * @generated
+   */
+  EAttribute getEnumProperty_Native();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.EnumProperty#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumProperty#getValue()
+   * @see #getEnumProperty()
+   * @generated
+   */
+  EAttribute getEnumProperty_Value();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.EnumProperty#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumProperty#getType()
+   * @see #getEnumProperty()
+   * @generated
+   */
+  EReference getEnumProperty_Type();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoDaoModifier <em>Pojo Dao Modifier</em>}'.
@@ -9272,6 +9635,24 @@ public interface ProcessorDslPackage extends EPackage
     EReference PACKAGE_DECLARATION__ELEMENTS = eINSTANCE.getPackageDeclaration_Elements();
 
     /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EntityImpl <em>Entity</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.EntityImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEntity()
+     * @generated
+     */
+    EClass ENTITY = eINSTANCE.getEntity();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENTITY__NAME = eINSTANCE.getEntity_Name();
+
+    /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.AbstractPojoEntityImpl <em>Abstract Pojo Entity</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9432,14 +9813,6 @@ public interface ProcessorDslPackage extends EPackage
     EReference POJO_ENTITY__MODIFIERS1 = eINSTANCE.getPojoEntity_Modifiers1();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_ENTITY__NAME = eINSTANCE.getPojoEntity_Name();
-
-    /**
      * The meta object literal for the '<em><b>Modifiers2</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9586,6 +9959,126 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference POJO_PROPERTY__MODIFIERS = eINSTANCE.getPojoProperty_Modifiers();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumEntityModifier1Impl <em>Enum Entity Modifier1</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.EnumEntityModifier1Impl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumEntityModifier1()
+     * @generated
+     */
+    EClass ENUM_ENTITY_MODIFIER1 = eINSTANCE.getEnumEntityModifier1();
+
+    /**
+     * The meta object literal for the '<em><b>Final</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENUM_ENTITY_MODIFIER1__FINAL = eINSTANCE.getEnumEntityModifier1_Final();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumEntityModifier2Impl <em>Enum Entity Modifier2</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.EnumEntityModifier2Impl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumEntityModifier2()
+     * @generated
+     */
+    EClass ENUM_ENTITY_MODIFIER2 = eINSTANCE.getEnumEntityModifier2();
+
+    /**
+     * The meta object literal for the '<em><b>Super Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENUM_ENTITY_MODIFIER2__SUPER_TYPE = eINSTANCE.getEnumEntityModifier2_SuperType();
+
+    /**
+     * The meta object literal for the '<em><b>Sernum</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENUM_ENTITY_MODIFIER2__SERNUM = eINSTANCE.getEnumEntityModifier2_Sernum();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumEntityImpl <em>Enum Entity</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.EnumEntityImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumEntity()
+     * @generated
+     */
+    EClass ENUM_ENTITY = eINSTANCE.getEnumEntity();
+
+    /**
+     * The meta object literal for the '<em><b>Modifiers1</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENUM_ENTITY__MODIFIERS1 = eINSTANCE.getEnumEntity_Modifiers1();
+
+    /**
+     * The meta object literal for the '<em><b>Modifiers2</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENUM_ENTITY__MODIFIERS2 = eINSTANCE.getEnumEntity_Modifiers2();
+
+    /**
+     * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENUM_ENTITY__FEATURES = eINSTANCE.getEnumEntity_Features();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl <em>Enum Property</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumProperty()
+     * @generated
+     */
+    EClass ENUM_PROPERTY = eINSTANCE.getEnumProperty();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENUM_PROPERTY__NAME = eINSTANCE.getEnumProperty_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Native</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENUM_PROPERTY__NATIVE = eINSTANCE.getEnumProperty_Native();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENUM_PROPERTY__VALUE = eINSTANCE.getEnumProperty_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENUM_PROPERTY__TYPE = eINSTANCE.getEnumProperty_Type();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoModifierImpl <em>Pojo Dao Modifier</em>}' class.

@@ -332,8 +332,10 @@ PackageDeclaration hidden(ML_COMMENT, SL_COMMENT, WS):
 		elements+=AbstractPojoEntity*
 	RBRACE;
 
+Entity: PojoEntity | EnumEntity;
+
 AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-	PackageDeclaration | PojoEntity | Import | Implements | Extends | ImplPackage | PojoDao;
+	PackageDeclaration | Entity | Import | Implements | Extends | ImplPackage | PojoDao;
 
 Import hidden(ML_COMMENT, SL_COMMENT, WS):
 	'import' importedNamespace = QualifiedNameWithWildcard;
@@ -361,9 +363,26 @@ PojoPropertyModifier: ((required?='required') | (discriminator?='discriminator')
 
 PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 	name=IDENT (native = ('_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 
-	(COLON (COLON (COLON (attrs+=[PojoProperty|IDENT])* | ref=[PojoEntity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
+	(COLON (COLON (COLON (attrs+=[PojoProperty|IDENT])* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
 	(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) (array ?= '[]')?
 	(modifiers+=PojoPropertyModifier)*
+;
+
+EnumEntityModifier1: ((final?='final'));
+
+EnumEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('serializable' sernum=NUMBER));
+
+EnumEntity hidden(ML_COMMENT, SL_COMMENT, WS):
+	(modifiers1+=EnumEntityModifier1)* 'enum' name=IDENT (modifiers2+=EnumEntityModifier2)* 
+	LBRACE
+		features+=EnumProperty*
+	RBRACE;
+
+terminal STRING_VALUE : '"' -> '"' ;
+
+EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
+	name=IDENT (native = ('_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 
+	(COLON (COLON COLON value=(NUMBER|STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName])))
 ;
 
 PojoDaoModifier: (('extends' superType=[PojoDao|IDENT]) | ('serializable' sernum=NUMBER));

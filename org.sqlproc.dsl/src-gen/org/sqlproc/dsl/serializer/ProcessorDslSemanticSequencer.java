@@ -30,6 +30,10 @@ import org.sqlproc.dsl.processorDsl.DatabaseTypeAssignement;
 import org.sqlproc.dsl.processorDsl.DebugLevelAssignement;
 import org.sqlproc.dsl.processorDsl.DriverMetaInfoAssignement;
 import org.sqlproc.dsl.processorDsl.DriverMethodOutputAssignement;
+import org.sqlproc.dsl.processorDsl.EnumEntity;
+import org.sqlproc.dsl.processorDsl.EnumEntityModifier1;
+import org.sqlproc.dsl.processorDsl.EnumEntityModifier2;
+import org.sqlproc.dsl.processorDsl.EnumProperty;
 import org.sqlproc.dsl.processorDsl.ExportAssignement;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
 import org.sqlproc.dsl.processorDsl.ExtendedColumnName;
@@ -195,6 +199,32 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case ProcessorDslPackage.DRIVER_METHOD_OUTPUT_ASSIGNEMENT:
 				if(context == grammarAccess.getDriverMethodOutputAssignementRule()) {
 					sequence_DriverMethodOutputAssignement(context, (DriverMethodOutputAssignement) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.ENUM_ENTITY:
+				if(context == grammarAccess.getAbstractPojoEntityRule() ||
+				   context == grammarAccess.getEntityRule() ||
+				   context == grammarAccess.getEnumEntityRule()) {
+					sequence_EnumEntity(context, (EnumEntity) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.ENUM_ENTITY_MODIFIER1:
+				if(context == grammarAccess.getEnumEntityModifier1Rule()) {
+					sequence_EnumEntityModifier1(context, (EnumEntityModifier1) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.ENUM_ENTITY_MODIFIER2:
+				if(context == grammarAccess.getEnumEntityModifier2Rule()) {
+					sequence_EnumEntityModifier2(context, (EnumEntityModifier2) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.ENUM_PROPERTY:
+				if(context == grammarAccess.getEnumPropertyRule()) {
+					sequence_EnumProperty(context, (EnumProperty) semanticObject); 
 					return; 
 				}
 				else break;
@@ -422,6 +452,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 				else break;
 			case ProcessorDslPackage.POJO_ENTITY:
 				if(context == grammarAccess.getAbstractPojoEntityRule() ||
+				   context == grammarAccess.getEntityRule() ||
 				   context == grammarAccess.getPojoEntityRule()) {
 					sequence_PojoEntity(context, (PojoEntity) semanticObject); 
 					return; 
@@ -801,6 +832,64 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 		feeder.accept(grammarAccess.getDriverMethodOutputAssignementAccess().getDriverMethodIDENTTerminalRuleCall_0_0(), semanticObject.getDriverMethod());
 		feeder.accept(grammarAccess.getDriverMethodOutputAssignementAccess().getCallOutputPropertyValueParserRuleCall_2_0(), semanticObject.getCallOutput());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     final?='final'
+	 */
+	protected void sequence_EnumEntityModifier1(EObject context, EnumEntityModifier1 semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.ENUM_ENTITY_MODIFIER1__FINAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.ENUM_ENTITY_MODIFIER1__FINAL));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getEnumEntityModifier1Access().getFinalFinalKeyword_0(), semanticObject.isFinal());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (superType=[PojoEntity|IDENT] | sernum=NUMBER)
+	 */
+	protected void sequence_EnumEntityModifier2(EObject context, EnumEntityModifier2 semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (modifiers1+=EnumEntityModifier1* name=IDENT modifiers2+=EnumEntityModifier2* features+=EnumProperty*)
+	 */
+	protected void sequence_EnumEntity(EObject context, EnumEntity semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         name=IDENT 
+	 *         (
+	 *             native='_char' | 
+	 *             native='_byte' | 
+	 *             native='_short' | 
+	 *             native='_int' | 
+	 *             native='_long' | 
+	 *             native='_float' | 
+	 *             native='_double' | 
+	 *             native='_boolean' | 
+	 *             value=NUMBER | 
+	 *             value=STRING_VALUE | 
+	 *             type=[JvmType|QualifiedName]
+	 *         )
+	 *     )
+	 */
+	protected void sequence_EnumProperty(EObject context, EnumProperty semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1301,10 +1390,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *             native='_float' | 
 	 *             native='_double' | 
 	 *             native='_boolean' | 
-	 *             (
-	 *                 (attrs+=[PojoProperty|IDENT]* | ref=[PojoEntity|IDENT] | type=[JvmType|QualifiedName]) 
-	 *                 (gref=[PojoEntity|IDENT] | gtype=[JvmType|QualifiedName])?
-	 *             )
+	 *             ((attrs+=[PojoProperty|IDENT]* | ref=[Entity|IDENT] | type=[JvmType|QualifiedName]) (gref=[PojoEntity|IDENT] | gtype=[JvmType|QualifiedName])?)
 	 *         ) 
 	 *         array?='[]'? 
 	 *         modifiers+=PojoPropertyModifier*

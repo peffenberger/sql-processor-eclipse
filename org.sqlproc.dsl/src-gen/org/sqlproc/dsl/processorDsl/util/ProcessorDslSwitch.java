@@ -492,6 +492,14 @@ public class ProcessorDslSwitch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorDslPackage.ENTITY:
+      {
+        Entity entity = (Entity)theEObject;
+        T result = caseEntity(entity);
+        if (result == null) result = caseAbstractPojoEntity(entity);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorDslPackage.ABSTRACT_POJO_ENTITY:
       {
         AbstractPojoEntity abstractPojoEntity = (AbstractPojoEntity)theEObject;
@@ -549,6 +557,7 @@ public class ProcessorDslSwitch<T>
       {
         PojoEntity pojoEntity = (PojoEntity)theEObject;
         T result = casePojoEntity(pojoEntity);
+        if (result == null) result = caseEntity(pojoEntity);
         if (result == null) result = caseAbstractPojoEntity(pojoEntity);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -564,6 +573,36 @@ public class ProcessorDslSwitch<T>
       {
         PojoProperty pojoProperty = (PojoProperty)theEObject;
         T result = casePojoProperty(pojoProperty);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ENUM_ENTITY_MODIFIER1:
+      {
+        EnumEntityModifier1 enumEntityModifier1 = (EnumEntityModifier1)theEObject;
+        T result = caseEnumEntityModifier1(enumEntityModifier1);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ENUM_ENTITY_MODIFIER2:
+      {
+        EnumEntityModifier2 enumEntityModifier2 = (EnumEntityModifier2)theEObject;
+        T result = caseEnumEntityModifier2(enumEntityModifier2);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ENUM_ENTITY:
+      {
+        EnumEntity enumEntity = (EnumEntity)theEObject;
+        T result = caseEnumEntity(enumEntity);
+        if (result == null) result = caseEntity(enumEntity);
+        if (result == null) result = caseAbstractPojoEntity(enumEntity);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ENUM_PROPERTY:
+      {
+        EnumProperty enumProperty = (EnumProperty)theEObject;
+        T result = caseEnumProperty(enumProperty);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1527,6 +1566,22 @@ public class ProcessorDslSwitch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Entity</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Entity</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEntity(Entity object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Abstract Pojo Entity</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1682,6 +1737,70 @@ public class ProcessorDslSwitch<T>
    * @generated
    */
   public T casePojoProperty(PojoProperty object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Entity Modifier1</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Entity Modifier1</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumEntityModifier1(EnumEntityModifier1 object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Entity Modifier2</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Entity Modifier2</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumEntityModifier2(EnumEntityModifier2 object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Entity</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Entity</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumEntity(EnumEntity object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Property</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Property</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumProperty(EnumProperty object)
   {
     return null;
   }

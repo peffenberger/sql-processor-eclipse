@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.common.types.JvmType;
 
+import org.sqlproc.dsl.processorDsl.Entity;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.PojoPropertyModifier;
@@ -107,7 +108,7 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
    * @generated
    * @ordered
    */
-  protected PojoEntity ref;
+  protected Entity ref;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' reference.
@@ -255,12 +256,12 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoEntity getRef()
+  public Entity getRef()
   {
     if (ref != null && ref.eIsProxy())
     {
       InternalEObject oldRef = (InternalEObject)ref;
-      ref = (PojoEntity)eResolveProxy(oldRef);
+      ref = (Entity)eResolveProxy(oldRef);
       if (ref != oldRef)
       {
         if (eNotificationRequired())
@@ -275,7 +276,7 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoEntity basicGetRef()
+  public Entity basicGetRef()
   {
     return ref;
   }
@@ -285,9 +286,9 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRef(PojoEntity newRef)
+  public void setRef(Entity newRef)
   {
-    PojoEntity oldRef = ref;
+    Entity oldRef = ref;
     ref = newRef;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_PROPERTY__REF, oldRef, ref));
@@ -533,7 +534,7 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
         getAttrs().addAll((Collection<? extends PojoProperty>)newValue);
         return;
       case ProcessorDslPackage.POJO_PROPERTY__REF:
-        setRef((PojoEntity)newValue);
+        setRef((Entity)newValue);
         return;
       case ProcessorDslPackage.POJO_PROPERTY__TYPE:
         setType((JvmType)newValue);
@@ -575,7 +576,7 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
         getAttrs().clear();
         return;
       case ProcessorDslPackage.POJO_PROPERTY__REF:
-        setRef((PojoEntity)null);
+        setRef((Entity)null);
         return;
       case ProcessorDslPackage.POJO_PROPERTY__TYPE:
         setType((JvmType)null);

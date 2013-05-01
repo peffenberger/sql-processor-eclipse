@@ -15,6 +15,9 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculato
 import org.sqlproc.dsl.processorDsl.Constant;
 import org.sqlproc.dsl.processorDsl.DatabaseColumn;
 import org.sqlproc.dsl.processorDsl.DatabaseTable;
+import org.sqlproc.dsl.processorDsl.Entity;
+import org.sqlproc.dsl.processorDsl.EnumEntity;
+import org.sqlproc.dsl.processorDsl.EnumProperty;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
 import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
@@ -147,12 +150,20 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
                 ICompositeNode node = NodeModelUtils.getNode(current);
                 PojoProperty property = (PojoProperty) current;
                 provideHighlightingForPojoProperty(property.getName(), node, acceptor);
-                PojoEntity ref = property.getRef();
-                if (ref != null)
-                    provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
+                Entity ref = property.getRef();
+                if (ref != null) {
+                    if (ref instanceof PojoEntity)
+                        provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
+                    else if (ref instanceof EnumEntity)
+                        provideHighlightingForEnumEntity(ref.getName(), node, acceptor);
+                }
                 PojoEntity gref = property.getGref();
                 if (gref != null)
                     provideHighlightingForPojoEntity(gref.getName(), node, acceptor);
+            } else if (current instanceof EnumProperty) {
+                ICompositeNode node = NodeModelUtils.getNode(current);
+                EnumProperty property = (EnumProperty) current;
+                provideHighlightingForEnumProperty(property.getName(), node, acceptor);
             } else if (current instanceof PojoDao) {
                 ICompositeNode node = NodeModelUtils.getNode(current);
                 PojoDao dao = (PojoDao) current;
@@ -250,6 +261,34 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
     }
 
     private void provideHighlightingForPojoProperty(String pojo, ICompositeNode node,
+            IHighlightedPositionAcceptor acceptor) {
+        if (pojo == null)
+            return;
+        Iterator<INode> iterator = new NodeTreeIterator(node);
+        while (iterator.hasNext()) {
+            INode inode = iterator.next();
+            if (pojo != null && pojo.contains(inode.getText())) {
+                acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.PROPERTY_NAME);
+                return;
+            }
+        }
+    }
+
+    private void provideHighlightingForEnumEntity(String pojo, ICompositeNode node,
+            IHighlightedPositionAcceptor acceptor) {
+        if (pojo == null)
+            return;
+        Iterator<INode> iterator = new NodeTreeIterator(node);
+        while (iterator.hasNext()) {
+            INode inode = iterator.next();
+            if (pojo != null && pojo.contains(inode.getText())) {
+                acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.ENTITY_NAME);
+                return;
+            }
+        }
+    }
+
+    private void provideHighlightingForEnumProperty(String pojo, ICompositeNode node,
             IHighlightedPositionAcceptor acceptor) {
         if (pojo == null)
             return;

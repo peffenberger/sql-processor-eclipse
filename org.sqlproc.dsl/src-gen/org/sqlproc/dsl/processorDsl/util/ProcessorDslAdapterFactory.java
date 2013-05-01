@@ -360,6 +360,11 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createPackageDeclarationAdapter();
       }
       @Override
+      public Adapter caseEntity(Entity object)
+      {
+        return createEntityAdapter();
+      }
+      @Override
       public Adapter caseAbstractPojoEntity(AbstractPojoEntity object)
       {
         return createAbstractPojoEntityAdapter();
@@ -408,6 +413,26 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
       public Adapter casePojoProperty(PojoProperty object)
       {
         return createPojoPropertyAdapter();
+      }
+      @Override
+      public Adapter caseEnumEntityModifier1(EnumEntityModifier1 object)
+      {
+        return createEnumEntityModifier1Adapter();
+      }
+      @Override
+      public Adapter caseEnumEntityModifier2(EnumEntityModifier2 object)
+      {
+        return createEnumEntityModifier2Adapter();
+      }
+      @Override
+      public Adapter caseEnumEntity(EnumEntity object)
+      {
+        return createEnumEntityAdapter();
+      }
+      @Override
+      public Adapter caseEnumProperty(EnumProperty object)
+      {
+        return createEnumPropertyAdapter();
       }
       @Override
       public Adapter casePojoDaoModifier(PojoDaoModifier object)
@@ -1317,6 +1342,21 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.Entity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.Entity
+   * @generated
+   */
+  public Adapter createEntityAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.AbstractPojoEntity <em>Abstract Pojo Entity</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1462,6 +1502,66 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPojoPropertyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.EnumEntityModifier1 <em>Enum Entity Modifier1</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.EnumEntityModifier1
+   * @generated
+   */
+  public Adapter createEnumEntityModifier1Adapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.EnumEntityModifier2 <em>Enum Entity Modifier2</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.EnumEntityModifier2
+   * @generated
+   */
+  public Adapter createEnumEntityModifier2Adapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.EnumEntity <em>Enum Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.EnumEntity
+   * @generated
+   */
+  public Adapter createEnumEntityAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.EnumProperty <em>Enum Property</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.EnumProperty
+   * @generated
+   */
+  public Adapter createEnumPropertyAdapter()
   {
     return null;
   }

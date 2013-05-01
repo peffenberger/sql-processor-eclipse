@@ -4,15 +4,12 @@ package org.sqlproc.dsl.processorDsl.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -31,7 +28,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl#getModifiers1 <em>Modifiers1</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl#getModifiers2 <em>Modifiers2</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl#getFeatures <em>Features</em>}</li>
  * </ul>
@@ -39,7 +35,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *
  * @generated
  */
-public class PojoEntityImpl extends AbstractPojoEntityImpl implements PojoEntity
+public class PojoEntityImpl extends EntityImpl implements PojoEntity
 {
   /**
    * The cached value of the '{@link #getModifiers1() <em>Modifiers1</em>}' containment reference list.
@@ -50,26 +46,6 @@ public class PojoEntityImpl extends AbstractPojoEntityImpl implements PojoEntity
    * @ordered
    */
   protected EList<PojoEntityModifier1> modifiers1;
-
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getModifiers2() <em>Modifiers2</em>}' containment reference list.
@@ -124,29 +100,6 @@ public class PojoEntityImpl extends AbstractPojoEntityImpl implements PojoEntity
       modifiers1 = new EObjectContainmentEList<PojoEntityModifier1>(PojoEntityModifier1.class, this, ProcessorDslPackage.POJO_ENTITY__MODIFIERS1);
     }
     return modifiers1;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_ENTITY__NAME, oldName, name));
   }
 
   /**
@@ -209,8 +162,6 @@ public class PojoEntityImpl extends AbstractPojoEntityImpl implements PojoEntity
     {
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS1:
         return getModifiers1();
-      case ProcessorDslPackage.POJO_ENTITY__NAME:
-        return getName();
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS2:
         return getModifiers2();
       case ProcessorDslPackage.POJO_ENTITY__FEATURES:
@@ -233,9 +184,6 @@ public class PojoEntityImpl extends AbstractPojoEntityImpl implements PojoEntity
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS1:
         getModifiers1().clear();
         getModifiers1().addAll((Collection<? extends PojoEntityModifier1>)newValue);
-        return;
-      case ProcessorDslPackage.POJO_ENTITY__NAME:
-        setName((String)newValue);
         return;
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS2:
         getModifiers2().clear();
@@ -262,9 +210,6 @@ public class PojoEntityImpl extends AbstractPojoEntityImpl implements PojoEntity
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS1:
         getModifiers1().clear();
         return;
-      case ProcessorDslPackage.POJO_ENTITY__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS2:
         getModifiers2().clear();
         return;
@@ -287,31 +232,12 @@ public class PojoEntityImpl extends AbstractPojoEntityImpl implements PojoEntity
     {
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS1:
         return modifiers1 != null && !modifiers1.isEmpty();
-      case ProcessorDslPackage.POJO_ENTITY__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS2:
         return modifiers2 != null && !modifiers2.isEmpty();
       case ProcessorDslPackage.POJO_ENTITY__FEATURES:
         return features != null && !features.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //PojoEntityImpl

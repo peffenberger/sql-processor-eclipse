@@ -536,6 +536,15 @@ public interface ProcessorDslFactory extends EFactory
   PackageDeclaration createPackageDeclaration();
 
   /**
+   * Returns a new object of class '<em>Entity</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Entity</em>'.
+   * @generated
+   */
+  Entity createEntity();
+
+  /**
    * Returns a new object of class '<em>Abstract Pojo Entity</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -624,6 +633,42 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   PojoProperty createPojoProperty();
+
+  /**
+   * Returns a new object of class '<em>Enum Entity Modifier1</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Entity Modifier1</em>'.
+   * @generated
+   */
+  EnumEntityModifier1 createEnumEntityModifier1();
+
+  /**
+   * Returns a new object of class '<em>Enum Entity Modifier2</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Entity Modifier2</em>'.
+   * @generated
+   */
+  EnumEntityModifier2 createEnumEntityModifier2();
+
+  /**
+   * Returns a new object of class '<em>Enum Entity</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Entity</em>'.
+   * @generated
+   */
+  EnumEntity createEnumEntity();
+
+  /**
+   * Returns a new object of class '<em>Enum Property</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Property</em>'.
+   * @generated
+   */
+  EnumProperty createEnumProperty();
 
   /**
    * Returns a new object of class '<em>Pojo Dao Modifier</em>'.

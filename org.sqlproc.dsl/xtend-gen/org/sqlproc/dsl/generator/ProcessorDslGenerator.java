@@ -23,6 +23,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.sqlproc.dsl.processorDsl.Entity;
 import org.sqlproc.dsl.processorDsl.Extends;
 import org.sqlproc.dsl.processorDsl.ImplPackage;
 import org.sqlproc.dsl.processorDsl.Implements;
@@ -1060,10 +1061,10 @@ public class ProcessorDslGenerator implements IGenerator {
         String _substring = _native_1.substring(1);
         _builder.append(_substring, "");
       } else {
-        PojoEntity _ref = f.getRef();
+        Entity _ref = f.getRef();
         boolean _notEquals_1 = (!Objects.equal(_ref, null));
         if (_notEquals_1) {
-          PojoEntity _ref_1 = f.getRef();
+          Entity _ref_1 = f.getRef();
           QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_ref_1);
           _builder.append(_fullyQualifiedName, "");
         } else {
@@ -4672,7 +4673,7 @@ public class ProcessorDslGenerator implements IGenerator {
     if (_notEquals) {
       _or_1 = true;
     } else {
-      PojoEntity _ref = f.getRef();
+      Entity _ref = f.getRef();
       boolean _notEquals_1 = (!Objects.equal(_ref, null));
       _or_1 = (_notEquals || _notEquals_1);
     }

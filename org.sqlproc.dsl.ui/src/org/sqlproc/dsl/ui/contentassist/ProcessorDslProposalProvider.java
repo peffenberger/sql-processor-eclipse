@@ -40,6 +40,7 @@ import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.DatabaseProperty;
 import org.sqlproc.dsl.processorDsl.DriverMethodOutputAssignement;
+import org.sqlproc.dsl.processorDsl.Entity;
 import org.sqlproc.dsl.processorDsl.ExportAssignement;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
 import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
@@ -367,9 +368,17 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         }
         if (innerPojoProperty == null || (innerPojoProperty.getRef() == null && innerPojoProperty.getGref() == null))
             return null;
-        PojoEntity innerPojoEntity = (innerPojoProperty.getRef() != null) ? innerPojoProperty.getRef()
-                : innerPojoProperty.getGref();
-        return getPojoEntity(innerPojoEntity, innerProperty);
+        Entity innerEntity = (innerPojoProperty.getRef() != null) ? innerPojoProperty.getRef() : innerPojoProperty
+                .getGref();
+        if (innerEntity instanceof PojoEntity)
+            return getPojoEntity((PojoEntity) innerEntity, innerProperty);
+        System.out.println("YYYYYY1 " + baseEntity.getName());
+        System.out.println("YYYYYY2 " + property);
+        System.out.println("YYYYYY3 " + innerProperty);
+        System.out.println("YYYYYY4 " + checkProperty);
+        System.out.println("YYYYYY5 " + innerPojoProperty.getName());
+        System.out.println("YYYYYY6 " + innerPojoProperty.getRef());
+        return null;
     }
 
     List<PojoProperty> getProperties(PojoEntity pojoEntity, List<PojoProperty> inproperties) {

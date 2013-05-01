@@ -13,7 +13,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoEntity#getModifiers1 <em>Modifiers1</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.PojoEntity#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoEntity#getModifiers2 <em>Modifiers2</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoEntity#getFeatures <em>Features</em>}</li>
  * </ul>
@@ -23,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface PojoEntity extends AbstractPojoEntity
+public interface PojoEntity extends Entity
 {
   /**
    * Returns the value of the '<em><b>Modifiers1</b></em>' containment reference list.
@@ -40,32 +39,6 @@ public interface PojoEntity extends AbstractPojoEntity
    * @generated
    */
   EList<PojoEntityModifier1> getModifiers1();
-
-  /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoEntity_Name()
-   * @model
-   * @generated
-   */
-  String getName();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoEntity#getName <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
-   * @generated
-   */
-  void setName(String value);
 
   /**
    * Returns the value of the '<em><b>Modifiers2</b></em>' containment reference list.

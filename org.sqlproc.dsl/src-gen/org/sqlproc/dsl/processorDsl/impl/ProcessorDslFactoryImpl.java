@@ -121,6 +121,7 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.OPTIONAL_FEATURE: return createOptionalFeature();
       case ProcessorDslPackage.POJO_TYPE: return createPojoType();
       case ProcessorDslPackage.PACKAGE_DECLARATION: return createPackageDeclaration();
+      case ProcessorDslPackage.ENTITY: return createEntity();
       case ProcessorDslPackage.ABSTRACT_POJO_ENTITY: return createAbstractPojoEntity();
       case ProcessorDslPackage.IMPORT: return createImport();
       case ProcessorDslPackage.IMPLEMENTS: return createImplements();
@@ -131,6 +132,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.POJO_ENTITY: return createPojoEntity();
       case ProcessorDslPackage.POJO_PROPERTY_MODIFIER: return createPojoPropertyModifier();
       case ProcessorDslPackage.POJO_PROPERTY: return createPojoProperty();
+      case ProcessorDslPackage.ENUM_ENTITY_MODIFIER1: return createEnumEntityModifier1();
+      case ProcessorDslPackage.ENUM_ENTITY_MODIFIER2: return createEnumEntityModifier2();
+      case ProcessorDslPackage.ENUM_ENTITY: return createEnumEntity();
+      case ProcessorDslPackage.ENUM_PROPERTY: return createEnumProperty();
       case ProcessorDslPackage.POJO_DAO_MODIFIER: return createPojoDaoModifier();
       case ProcessorDslPackage.POJO_DAO: return createPojoDao();
       case ProcessorDslPackage.POJO_METHOD_MODIFIER: return createPojoMethodModifier();
@@ -774,6 +779,17 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public Entity createEntity()
+  {
+    EntityImpl entity = new EntityImpl();
+    return entity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public AbstractPojoEntity createAbstractPojoEntity()
   {
     AbstractPojoEntityImpl abstractPojoEntity = new AbstractPojoEntityImpl();
@@ -877,6 +893,50 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     PojoPropertyImpl pojoProperty = new PojoPropertyImpl();
     return pojoProperty;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EnumEntityModifier1 createEnumEntityModifier1()
+  {
+    EnumEntityModifier1Impl enumEntityModifier1 = new EnumEntityModifier1Impl();
+    return enumEntityModifier1;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EnumEntityModifier2 createEnumEntityModifier2()
+  {
+    EnumEntityModifier2Impl enumEntityModifier2 = new EnumEntityModifier2Impl();
+    return enumEntityModifier2;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EnumEntity createEnumEntity()
+  {
+    EnumEntityImpl enumEntity = new EnumEntityImpl();
+    return enumEntity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EnumProperty createEnumProperty()
+  {
+    EnumPropertyImpl enumProperty = new EnumPropertyImpl();
+    return enumProperty;
   }
 
   /**

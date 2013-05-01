@@ -111,12 +111,12 @@ public interface PojoProperty extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Ref</em>' reference.
-   * @see #setRef(PojoEntity)
+   * @see #setRef(Entity)
    * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoProperty_Ref()
    * @model
    * @generated
    */
-  PojoEntity getRef();
+  Entity getRef();
 
   /**
    * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getRef <em>Ref</em>}' reference.
@@ -126,7 +126,7 @@ public interface PojoProperty extends EObject
    * @see #getRef()
    * @generated
    */
-  void setRef(PojoEntity value);
+  void setRef(Entity value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' reference.
