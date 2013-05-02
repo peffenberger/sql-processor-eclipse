@@ -25,6 +25,9 @@ import org.eclipse.xtext.scoping.IScope;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
+import org.sqlproc.dsl.processorDsl.EnumEntity;
+import org.sqlproc.dsl.processorDsl.EnumEntityModifier2;
+import org.sqlproc.dsl.processorDsl.EnumProperty;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
 import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
@@ -165,6 +168,16 @@ public class Utils {
         return false;
     }
 
+    public static PojoEntity getSuperType(EnumEntity e) {
+        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
+            return null;
+        for (EnumEntityModifier2 modifier : e.getModifiers2()) {
+            if (modifier.getSuperType() != null)
+                return modifier.getSuperType();
+        }
+        return null;
+    }
+
     public static PojoEntity getSuperType(PojoEntity e) {
         if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
             return null;
@@ -191,6 +204,16 @@ public class Utils {
         for (PojoEntityModifier2 modifier : e.getModifiers2()) {
             if (modifier.getDiscriminator() != null)
                 return modifier.getDiscriminator();
+        }
+        return null;
+    }
+
+    public static String getSernum(EnumEntity e) {
+        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
+            return null;
+        for (EnumEntityModifier2 modifier : e.getModifiers2()) {
+            if (modifier.getSernum() != null)
+                return modifier.getSernum();
         }
         return null;
     }
@@ -622,6 +645,14 @@ public class Utils {
                 return true;
         }
         return false;
+    }
+
+    public static EnumProperty getEnumAttr(EnumEntity e) {
+        for (EnumProperty attr : e.getFeatures()) {
+            if (attr.getType() != null)
+                return attr;
+        }
+        return null;
     }
 
     public static JvmType pojoMethod2jvmType(final PojoEntity e) {

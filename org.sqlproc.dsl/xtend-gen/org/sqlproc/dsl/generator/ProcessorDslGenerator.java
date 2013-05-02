@@ -24,6 +24,8 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.sqlproc.dsl.processorDsl.Entity;
+import org.sqlproc.dsl.processorDsl.EnumEntity;
+import org.sqlproc.dsl.processorDsl.EnumProperty;
 import org.sqlproc.dsl.processorDsl.Extends;
 import org.sqlproc.dsl.processorDsl.ImplPackage;
 import org.sqlproc.dsl.processorDsl.Implements;
@@ -43,8 +45,8 @@ public class ProcessorDslGenerator implements IGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
     TreeIterator<EObject> _allContents = resource.getAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
-    Iterable<PojoEntity> _filter = Iterables.<PojoEntity>filter(_iterable, PojoEntity.class);
-    for (final PojoEntity e : _filter) {
+    Iterable<EnumEntity> _filter = Iterables.<EnumEntity>filter(_iterable, EnumEntity.class);
+    for (final EnumEntity e : _filter) {
       EObject _eContainer = e.eContainer();
       QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer);
       String _string = _fullyQualifiedName.toString("/");
@@ -57,44 +59,313 @@ public class ProcessorDslGenerator implements IGenerator {
     }
     TreeIterator<EObject> _allContents_1 = resource.getAllContents();
     Iterable<EObject> _iterable_1 = IteratorExtensions.<EObject>toIterable(_allContents_1);
-    Iterable<PojoDao> _filter_1 = Iterables.<PojoDao>filter(_iterable_1, PojoDao.class);
-    for (final PojoDao d : _filter_1) {
+    Iterable<PojoEntity> _filter_1 = Iterables.<PojoEntity>filter(_iterable_1, PojoEntity.class);
+    for (final PojoEntity e_1 : _filter_1) {
+      EObject _eContainer_1 = e_1.eContainer();
+      QualifiedName _fullyQualifiedName_2 = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_1);
+      String _string_1 = _fullyQualifiedName_2.toString("/");
+      String _plus_3 = (_string_1 + "/");
+      QualifiedName _fullyQualifiedName_3 = this._iQualifiedNameProvider.getFullyQualifiedName(e_1);
+      String _plus_4 = (_plus_3 + _fullyQualifiedName_3);
+      String _plus_5 = (_plus_4 + ".java");
+      CharSequence _compile_1 = this.compile(e_1);
+      fsa.generateFile(_plus_5, _compile_1);
+    }
+    TreeIterator<EObject> _allContents_2 = resource.getAllContents();
+    Iterable<EObject> _iterable_2 = IteratorExtensions.<EObject>toIterable(_allContents_2);
+    Iterable<PojoDao> _filter_2 = Iterables.<PojoDao>filter(_iterable_2, PojoDao.class);
+    for (final PojoDao d : _filter_2) {
       String _implPackage = this.getImplPackage(d);
       boolean _notEquals = (!Objects.equal(_implPackage, null));
       if (_notEquals) {
-        EObject _eContainer_1 = d.eContainer();
-        QualifiedName _fullyQualifiedName_2 = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_1);
-        String _string_1 = _fullyQualifiedName_2.toString("/");
-        String _plus_3 = (_string_1 + "/");
-        QualifiedName _fullyQualifiedName_3 = this._iQualifiedNameProvider.getFullyQualifiedName(d);
-        String _plus_4 = (_plus_3 + _fullyQualifiedName_3);
-        String _plus_5 = (_plus_4 + ".java");
-        CharSequence _compileIfx = this.compileIfx(d);
-        fsa.generateFile(_plus_5, _compileIfx);
         EObject _eContainer_2 = d.eContainer();
         QualifiedName _fullyQualifiedName_4 = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_2);
         String _string_2 = _fullyQualifiedName_4.toString("/");
         String _plus_6 = (_string_2 + "/");
-        String _implPackage_1 = this.getImplPackage(d);
-        String _plus_7 = (_plus_6 + _implPackage_1);
-        String _plus_8 = (_plus_7 + "/");
         QualifiedName _fullyQualifiedName_5 = this._iQualifiedNameProvider.getFullyQualifiedName(d);
-        String _plus_9 = (_plus_8 + _fullyQualifiedName_5);
-        String _plus_10 = (_plus_9 + "Impl.java");
-        CharSequence _compile_1 = this.compile(d);
-        fsa.generateFile(_plus_10, _compile_1);
-      } else {
+        String _plus_7 = (_plus_6 + _fullyQualifiedName_5);
+        String _plus_8 = (_plus_7 + ".java");
+        CharSequence _compileIfx = this.compileIfx(d);
+        fsa.generateFile(_plus_8, _compileIfx);
         EObject _eContainer_3 = d.eContainer();
         QualifiedName _fullyQualifiedName_6 = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_3);
         String _string_3 = _fullyQualifiedName_6.toString("/");
-        String _plus_11 = (_string_3 + "/");
+        String _plus_9 = (_string_3 + "/");
+        String _implPackage_1 = this.getImplPackage(d);
+        String _plus_10 = (_plus_9 + _implPackage_1);
+        String _plus_11 = (_plus_10 + "/");
         QualifiedName _fullyQualifiedName_7 = this._iQualifiedNameProvider.getFullyQualifiedName(d);
         String _plus_12 = (_plus_11 + _fullyQualifiedName_7);
-        String _plus_13 = (_plus_12 + ".java");
+        String _plus_13 = (_plus_12 + "Impl.java");
         CharSequence _compile_2 = this.compile(d);
         fsa.generateFile(_plus_13, _compile_2);
+      } else {
+        EObject _eContainer_4 = d.eContainer();
+        QualifiedName _fullyQualifiedName_8 = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_4);
+        String _string_4 = _fullyQualifiedName_8.toString("/");
+        String _plus_14 = (_string_4 + "/");
+        QualifiedName _fullyQualifiedName_9 = this._iQualifiedNameProvider.getFullyQualifiedName(d);
+        String _plus_15 = (_plus_14 + _fullyQualifiedName_9);
+        String _plus_16 = (_plus_15 + ".java");
+        CharSequence _compile_3 = this.compile(d);
+        fsa.generateFile(_plus_16, _compile_3);
       }
     }
+  }
+  
+  public CharSequence compile(final EnumEntity e) {
+    StringConcatenation _builder = new StringConcatenation();
+    ImportManager _importManager = new ImportManager(true);
+    final ImportManager importManager = _importManager;
+    _builder.newLineIfNotEmpty();
+    final EnumProperty eattr = Utils.getEnumAttr(e);
+    _builder.newLineIfNotEmpty();
+    this.addImplements(e, importManager);
+    _builder.newLineIfNotEmpty();
+    this.addExtends(e, importManager);
+    _builder.newLineIfNotEmpty();
+    final CharSequence classBody = this.compile(e, importManager, eattr);
+    _builder.newLineIfNotEmpty();
+    {
+      EObject _eContainer = e.eContainer();
+      boolean _notEquals = (!Objects.equal(_eContainer, null));
+      if (_notEquals) {
+        _builder.append("package ");
+        EObject _eContainer_1 = e.eContainer();
+        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_1);
+        _builder.append(_fullyQualifiedName, "");
+        _builder.append(";");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    {
+      List<String> _imports = importManager.getImports();
+      boolean _isEmpty = _imports.isEmpty();
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        _builder.append("  ");
+        _builder.newLine();
+        {
+          List<String> _imports_1 = importManager.getImports();
+          for(final String i : _imports_1) {
+            _builder.append("import ");
+            _builder.append(i, "");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    {
+      String _sernum = Utils.getSernum(e);
+      boolean _notEquals_1 = (!Objects.equal(_sernum, null));
+      if (_notEquals_1) {
+        _builder.newLine();
+        _builder.append("import java.io.Serializable;");
+        _builder.newLine();
+      }
+    }
+    {
+      EList<EnumProperty> _features = e.getFeatures();
+      boolean _isEmpty_1 = _features.isEmpty();
+      boolean _not_1 = (!_isEmpty_1);
+      if (_not_1) {
+        _builder.append("import java.util.HashMap;");
+        _builder.newLine();
+        _builder.append("import java.util.Map;");
+        _builder.newLine();
+      }
+    }
+    _builder.newLine();
+    _builder.append(classBody, "");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence compile(final EnumEntity e, final ImportManager importManager, final EnumProperty ea) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public enum ");
+    String _name = e.getName();
+    _builder.append(_name, "");
+    _builder.append(" ");
+    CharSequence _compileExtends = this.compileExtends(e);
+    _builder.append(_compileExtends, "");
+    CharSequence _compileImplements = this.compileImplements(e);
+    _builder.append(_compileImplements, "");
+    _builder.append("{");
+    _builder.newLineIfNotEmpty();
+    {
+      String _sernum = Utils.getSernum(e);
+      boolean _notEquals = (!Objects.equal(_sernum, null));
+      if (_notEquals) {
+        _builder.append("  ");
+        _builder.newLine();
+        _builder.append("  ");
+        _builder.append("private static final long serialVersionUID = ");
+        String _sernum_1 = Utils.getSernum(e);
+        _builder.append(_sernum_1, "  ");
+        _builder.append("L;");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("  ");
+    {
+      EList<EnumProperty> _features = e.getFeatures();
+      final Function1<EnumProperty,Boolean> _function = new Function1<EnumProperty,Boolean>() {
+          public Boolean apply(final EnumProperty x) {
+            String _value = x.getValue();
+            boolean _notEquals = (!Objects.equal(_value, null));
+            return Boolean.valueOf(_notEquals);
+          }
+        };
+      Iterable<EnumProperty> _filter = IterableExtensions.<EnumProperty>filter(_features, _function);
+      boolean _hasElements = false;
+      for(final EnumProperty f : _filter) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(", ", "  ");
+        }
+        String _name_1 = f.getName();
+        _builder.append(_name_1, "  ");
+        _builder.append("(");
+        String _value = f.getValue();
+        _builder.append(_value, "  ");
+        _builder.append(")");
+      }
+    }
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("private static Map<");
+    CharSequence _compileType = this.compileType(ea, importManager);
+    _builder.append(_compileType, "  ");
+    _builder.append(", ");
+    String _name_2 = e.getName();
+    _builder.append(_name_2, "  ");
+    _builder.append("> identifierMap = new HashMap<");
+    CharSequence _compileType_1 = this.compileType(ea, importManager);
+    _builder.append(_compileType_1, "  ");
+    _builder.append(", ");
+    String _name_3 = e.getName();
+    _builder.append(_name_3, "  ");
+    _builder.append(">();");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("static {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("for (");
+    String _name_4 = e.getName();
+    _builder.append(_name_4, "        ");
+    _builder.append(" value : ");
+    String _name_5 = e.getName();
+    _builder.append(_name_5, "        ");
+    _builder.append(".values()) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("            ");
+    _builder.append("identifierMap.put(value.getValue(), value);");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("private ");
+    CharSequence _compileType_2 = this.compileType(ea, importManager);
+    _builder.append(_compileType_2, "    ");
+    _builder.append(" ");
+    String _name_6 = ea.getName();
+    _builder.append(_name_6, "    ");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("private ");
+    String _name_7 = e.getName();
+    _builder.append(_name_7, "    ");
+    _builder.append("(");
+    CharSequence _compileType_3 = this.compileType(ea, importManager);
+    _builder.append(_compileType_3, "    ");
+    _builder.append(" value) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("this.");
+    String _name_8 = ea.getName();
+    _builder.append(_name_8, "        ");
+    _builder.append(" = value;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public static ");
+    String _name_9 = e.getName();
+    _builder.append(_name_9, "    ");
+    _builder.append(" fromValue(");
+    CharSequence _compileType_4 = this.compileType(ea, importManager);
+    _builder.append(_compileType_4, "    ");
+    _builder.append(" value) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    String _name_10 = e.getName();
+    _builder.append(_name_10, "        ");
+    _builder.append(" result = identifierMap.get(value);");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("if (result == null) {");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("throw new IllegalArgumentException(\"No ");
+    String _name_11 = e.getName();
+    _builder.append(_name_11, "            ");
+    _builder.append(" for value: \" + value);");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return result;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public ");
+    CharSequence _compileType_5 = this.compileType(ea, importManager);
+    _builder.append(_compileType_5, "    ");
+    _builder.append(" getValue() {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("return ");
+    String _name_12 = ea.getName();
+    _builder.append(_name_12, "        ");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public String getName() {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return name();");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
   }
   
   public CharSequence compile(final PojoEntity e) {
@@ -1048,6 +1319,28 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("}");
     _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compileType(final EnumProperty f, final ImportManager importManager) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      String _native = f.getNative();
+      boolean _notEquals = (!Objects.equal(_native, null));
+      if (_notEquals) {
+        String _native_1 = f.getNative();
+        String _substring = _native_1.substring(1);
+        _builder.append(_substring, "");
+      } else {
+        JvmType _type = f.getType();
+        boolean _notEquals_1 = (!Objects.equal(_type, null));
+        if (_notEquals_1) {
+          JvmType _type_1 = f.getType();
+          CharSequence _serialize = importManager.serialize(_type_1);
+          _builder.append(_serialize, "");
+        }
+      }
+    }
     return _builder;
   }
   
@@ -4708,6 +5001,80 @@ public class ProcessorDslGenerator implements IGenerator {
     return IterableExtensions.<PojoProperty>toList(_filter);
   }
   
+  public CharSequence compileExtends(final EnumEntity e) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      PojoEntity _superType = Utils.getSuperType(e);
+      boolean _notEquals = (!Objects.equal(_superType, null));
+      if (_notEquals) {
+        _builder.append("extends ");
+        PojoEntity _superType_1 = Utils.getSuperType(e);
+        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_1);
+        _builder.append(_fullyQualifiedName, "");
+        _builder.append(" ");
+      } else {
+        String _extends = this.getExtends(e);
+        boolean _notEquals_1 = (!Objects.equal(_extends, ""));
+        if (_notEquals_1) {
+          _builder.append("extends ");
+          String _extends_1 = this.getExtends(e);
+          _builder.append(_extends_1, "");
+          _builder.append(" ");
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compileImplements(final EnumEntity e) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      boolean _or = false;
+      boolean _isImplements = this.isImplements(e);
+      if (_isImplements) {
+        _or = true;
+      } else {
+        String _sernum = Utils.getSernum(e);
+        boolean _notEquals = (!Objects.equal(_sernum, null));
+        _or = (_isImplements || _notEquals);
+      }
+      if (_or) {
+        _builder.append("implements ");
+        {
+          EObject _eContainer = e.eContainer();
+          EList<EObject> _eContents = _eContainer.eContents();
+          Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
+          boolean _hasElements = false;
+          for(final Implements f : _filter) {
+            if (!_hasElements) {
+              _hasElements = true;
+            } else {
+              _builder.appendImmediate(", ", "");
+            }
+            JvmType _implements = f.getImplements();
+            String _simpleName = _implements.getSimpleName();
+            _builder.append(_simpleName, "");
+          }
+        }
+        {
+          String _sernum_1 = Utils.getSernum(e);
+          boolean _notEquals_1 = (!Objects.equal(_sernum_1, null));
+          if (_notEquals_1) {
+            {
+              boolean _isImplements_1 = this.isImplements(e);
+              if (_isImplements_1) {
+                _builder.append(", ");
+              }
+            }
+            _builder.append("Serializable");
+          }
+        }
+        _builder.append(" ");
+      }
+    }
+    return _builder;
+  }
+  
   public CharSequence compileExtends(final PojoEntity e) {
     StringConcatenation _builder = new StringConcatenation();
     {
@@ -4892,6 +5259,26 @@ public class ProcessorDslGenerator implements IGenerator {
     return _addImportFor;
   }
   
+  public void addImplements(final EnumEntity e, final ImportManager importManager) {
+    EObject _eContainer = e.eContainer();
+    EList<EObject> _eContents = _eContainer.eContents();
+    Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
+    for (final Implements impl : _filter) {
+      JvmType _implements = impl.getImplements();
+      importManager.addImportFor(_implements);
+    }
+  }
+  
+  public void addExtends(final EnumEntity e, final ImportManager importManager) {
+    EObject _eContainer = e.eContainer();
+    EList<EObject> _eContents = _eContainer.eContents();
+    Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
+    for (final Extends ext : _filter) {
+      JvmType _extends = ext.getExtends();
+      importManager.addImportFor(_extends);
+    }
+  }
+  
   public void addImplements(final PojoEntity e, final ImportManager importManager) {
     EObject _eContainer = e.eContainer();
     EList<EObject> _eContents = _eContainer.eContents();
@@ -4930,6 +5317,27 @@ public class ProcessorDslGenerator implements IGenerator {
       JvmType _extends = ext.getExtends();
       importManager.addImportFor(_extends);
     }
+  }
+  
+  public String getExtends(final EnumEntity e) {
+    EObject _eContainer = e.eContainer();
+    EList<EObject> _eContents = _eContainer.eContents();
+    Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
+    for (final Extends ext : _filter) {
+      JvmType _extends = ext.getExtends();
+      return _extends.getSimpleName();
+    }
+    return "";
+  }
+  
+  public boolean isImplements(final EnumEntity e) {
+    EObject _eContainer = e.eContainer();
+    EList<EObject> _eContents = _eContainer.eContents();
+    Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
+    for (final Implements ext : _filter) {
+      return true;
+    }
+    return false;
   }
   
   public String getExtends(final PojoEntity e) {

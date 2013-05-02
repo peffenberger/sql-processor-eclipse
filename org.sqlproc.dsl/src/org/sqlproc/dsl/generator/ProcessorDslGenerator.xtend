@@ -23,12 +23,19 @@ import java.util.Map
 import org.sqlproc.dsl.processorDsl.ImplPackage
 import org.sqlproc.dsl.processorDsl.PojoMethod
 import org.sqlproc.dsl.processorDsl.PojoType
+import org.sqlproc.dsl.processorDsl.EnumEntity
+import org.sqlproc.dsl.processorDsl.EnumProperty
 
 class ProcessorDslGenerator implements IGenerator {
 	
 @Inject extension IQualifiedNameProvider
 	
 override void doGenerate(Resource resource, IFileSystemAccess fsa) {
+	for(e: resource.allContents.toIterable.filter(typeof(EnumEntity))) {
+		fsa.generateFile(e.eContainer.fullyQualifiedName.toString("/") + "/"+
+			e.fullyQualifiedName + ".java",e.compile
+		)
+	}
 	for(e: resource.allContents.toIterable.filter(typeof(PojoEntity))) {
 		fsa.generateFile(e.eContainer.fullyQualifiedName.toString("/") + "/"+
 			e.fullyQualifiedName + ".java",e.compile
@@ -50,6 +57,71 @@ override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		}
 	}
 }
+
+def compile(EnumEntity e) '''
+«val importManager = new ImportManager(true)»
+«val eattr = getEnumAttr(e)»
+«addImplements(e, importManager)»
+«addExtends(e, importManager)»
+«val classBody = compile(e, importManager, eattr)»
+«IF e.eContainer != null»package «e.eContainer.fullyQualifiedName»;«ENDIF»
+  «IF !importManager.imports.empty»
+  
+  «FOR i : importManager.imports»
+import «i»;
+  «ENDFOR»
+  «ENDIF»
+  «IF getSernum(e) != null»
+
+import java.io.Serializable;
+  «ENDIF»
+  «IF !e.features.empty»
+import java.util.HashMap;
+import java.util.Map;
+  «ENDIF»
+
+«classBody»
+'''
+def compile(EnumEntity e, ImportManager importManager, EnumProperty ea) '''
+public enum «e.name» «compileExtends(e)»«compileImplements(e)»{
+  «IF getSernum(e) != null»
+  
+  private static final long serialVersionUID = «getSernum(e)»L;
+  «ENDIF»
+  «FOR f:e.features.filter(x| x.value!=null) SEPARATOR ", "»«f.name»(«f.value»)«ENDFOR»;
+  
+  private static Map<«ea.compileType(importManager)», «e.name»> identifierMap = new HashMap<«ea.compileType(importManager)», «e.name»>();
+
+    static {
+        for («e.name» value : «e.name».values()) {
+            identifierMap.put(value.getValue(), value);
+        }
+    }
+
+    private «ea.compileType(importManager)» «ea.name»;
+
+    private «e.name»(«ea.compileType(importManager)» value) {
+        this.«ea.name» = value;
+    }
+
+    public static «e.name» fromValue(«ea.compileType(importManager)» value) {
+        «e.name» result = identifierMap.get(value);
+        if (result == null) {
+            throw new IllegalArgumentException("No «e.name» for value: " + value);
+        }
+        return result;
+    }
+
+    public «ea.compileType(importManager)» getValue() {
+        return «ea.name»;
+    }
+
+    public String getName() {
+        return name();
+    }
+}
+'''
+
 
 def compile(PojoEntity e) '''
 «val importManager = new ImportManager(true)»
@@ -290,6 +362,9 @@ def compileEnumInit(PojoProperty f, ImportManager importManager, PojoEntity e) '
     }
 '''
 
+def compileType(EnumProperty f, ImportManager importManager) '''
+  «IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getType != null»«importManager.serialize(f.getType)»«ENDIF»'''
+  
 def compileType(PojoProperty f, ImportManager importManager) '''
   «IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getRef != null»«f.getRef.fullyQualifiedName»«ELSEIF f.getType != null»«importManager.serialize(f.getType)»«ENDIF»«IF f.getGtype != null»<«importManager.serialize(f.getGtype)»>«ENDIF»«IF f.getGref != null»<«f.getGref.fullyQualifiedName»>«ENDIF»«IF f.array»[]«ENDIF»'''
   
@@ -872,6 +947,12 @@ def simplAttrs(PojoProperty f) {
 	return f.attrs.filter(f2|f2.getNative != null || f2.getType != null).toList
 }
 
+def compileExtends(EnumEntity e) '''
+	«IF getSuperType(e) != null»extends «getSuperType(e).fullyQualifiedName» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
+
+def compileImplements(EnumEntity e) '''
+	«IF isImplements(e) || getSernum(e) != null»implements «FOR f:e.eContainer.eContents.filter(typeof(Implements)) SEPARATOR ", " »«f.getImplements().simpleName»«ENDFOR»«IF getSernum(e) != null»«IF isImplements(e)», «ENDIF»Serializable«ENDIF» «ENDIF»'''
+
 def compileExtends(PojoEntity e) '''
 	«IF getSuperType(e) != null»extends «getSuperType(e).fullyQualifiedName» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
 
@@ -886,6 +967,18 @@ def compileImplements(PojoDao d) '''
 
 def compile(Extends e, ImportManager importManager) {
 	importManager.addImportFor(e.getExtends())
+}
+
+def addImplements(EnumEntity e, ImportManager importManager) {
+	for(impl: e.eContainer.eContents.filter(typeof(Implements))) {
+		importManager.addImportFor(impl.getImplements())
+	}
+}
+
+def addExtends(EnumEntity e, ImportManager importManager) {
+	for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
+		importManager.addImportFor(ext.getExtends())
+	}
 }
 
 def addImplements(PojoEntity e, ImportManager importManager) {
@@ -910,6 +1003,20 @@ def addExtends(PojoDao e, ImportManager importManager) {
 	for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
 		importManager.addImportFor(ext.getExtends())
 	}
+}
+
+def getExtends(EnumEntity e) {
+	for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
+		return ext.getExtends().simpleName
+	}
+	return ""
+}
+
+def isImplements(EnumEntity e) {
+	for(ext: e.eContainer.eContents.filter(typeof(Implements))) {
+		return true
+	}
+	return false
 }
 
 def getExtends(PojoEntity e) {
