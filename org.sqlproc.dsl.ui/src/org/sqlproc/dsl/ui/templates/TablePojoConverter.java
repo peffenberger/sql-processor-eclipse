@@ -18,10 +18,13 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Level;
 import org.eclipse.xtext.common.types.JvmType;
 import org.sqlproc.dsl.processorDsl.Artifacts;
+import org.sqlproc.dsl.property.EnumAttribute;
 import org.sqlproc.dsl.property.ModelProperty;
 import org.sqlproc.dsl.property.PojoAttrType;
 import org.sqlproc.dsl.property.PojoAttribute;
@@ -102,6 +105,7 @@ public class TablePojoConverter {
     protected Map<String, List<Map<PojoAttribute, Boolean>>> indexes = new TreeMap<String, List<Map<PojoAttribute, Boolean>>>();
     protected Set<String> dbSequences = new TreeSet<String>();
     protected DbType dbType = null;
+    protected Map<String, Map<String, List<EnumAttribute>>> enums = new TreeMap<String, Map<String, List<EnumAttribute>>>();
 
     protected Map<String, String> metaFunctionsResult = new HashMap<String, String>();
 
@@ -447,7 +451,54 @@ public class TablePojoConverter {
                 }
             }
         }
+
+        // (PUBLIC.CONTACT.TYPE) IN ((0),(1))
+        // (PUBLIC.PERSON.GENDER) IN (('M'),('F'))
+        for (int i = 0, l = dbCheckConstraints.size(); i < l; i++) {
+            if (!enums.containsKey(table))
+                enums.put(table, new LinkedHashMap<String, List<EnumAttribute>>());
+            Map<String, List<EnumAttribute>> map = enums.get(table);
+            DbCheckConstraint check = dbCheckConstraints.get(i);
+            String clause = check.getCheckClause();
+            Matcher matcher = HSQLDB_CHECK.matcher(clause);
+            if (matcher.matches()) {
+                String[] names = matcher.group(1).trim().split("\\.");
+                String[] values = matcher.group(2).trim().split(",");
+                String enumName = names[names.length - 2] + "_" + names[names.length - 1];
+                List<EnumAttribute> attrs = new ArrayList<EnumAttribute>();
+                map.put(enumName, attrs);
+                EnumAttribute pattr = new EnumAttribute();
+                pattr.setName("VALUE");
+                String className = null;
+                attrs.add(pattr);
+                for (int j = 0; j < values.length; j++) {
+                    String val = values[j].trim();
+                    if (val.startsWith("("))
+                        val = val.substring(1);
+                    if (val.endsWith(")"))
+                        val = val.substring(0, val.length() - 1);
+                    EnumAttribute attr = new EnumAttribute();
+                    String name = null;
+                    if (val.startsWith("'") || val.startsWith("\"")) {
+                        className = String.class.getName();
+                        val = val.substring(1);
+                        val = val.substring(0, val.length() - 1);
+                        name = val.toUpperCase();
+                        attr.setStrValue(val);
+                    } else {
+                        className = Integer.class.getName();
+                        name = "I" + val;
+                        attr.setIntValue(Integer.parseInt(val));
+                    }
+                    attr.setName(name);
+                    attr.setClassName(className);
+                }
+                pattr.setClassName(className);
+            }
+        }
     }
+
+    static final Pattern HSQLDB_CHECK = Pattern.compile("\\(([^\\)]*)\\)\\s*IN\\s*\\((.*)\\)");
 
     public void joinTables() {
         for (String table : joinTables.keySet()) {
@@ -727,6 +778,7 @@ public class TablePojoConverter {
                 System.out.println("indexes " + this.indexes);
                 System.out.println("procedures " + this.procedures);
                 System.out.println("functions " + this.functions);
+                System.out.println("enums " + this.enums);
             }
 
             StringBuilder buffer = new StringBuilder();
