@@ -379,7 +379,7 @@ EnumEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 		features+=EnumProperty*
 	RBRACE;
 
-terminal STRING_VALUE : '"' -> '"' ;
+terminal STRING_VALUE : '\'' -> '\'' ;
 
 EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 	name=IDENT (native = ('_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 

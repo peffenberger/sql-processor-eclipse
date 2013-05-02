@@ -35950,6 +35950,6 @@ RULE_DOT : '.';
 
 RULE_REST : ~(RULE_SEMICOLON);
 
-RULE_STRING_VALUE : '"' ( options {greedy=false;} : . )*'"';
+RULE_STRING_VALUE : '\'' ( options {greedy=false;} : . )*'\'';
 
 

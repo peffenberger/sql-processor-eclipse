@@ -9139,7 +9139,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal STRING_VALUE:
-	//	"\""->"\"";
+	//	"\'"->"\'";
 	public TerminalRule getSTRING_VALUERule() {
 		return (tSTRING_VALUE != null) ? tSTRING_VALUE : (tSTRING_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING_VALUE"));
 	} 

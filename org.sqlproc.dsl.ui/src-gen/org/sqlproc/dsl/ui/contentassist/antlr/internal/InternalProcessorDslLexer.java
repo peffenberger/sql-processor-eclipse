@@ -3480,27 +3480,27 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_STRING_VALUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl.ui/src-gen/org/sqlproc/dsl/ui/contentassist/antlr/internal/InternalProcessorDsl.g:35953:19: ( '\"' ( options {greedy=false; } : . )* '\"' )
-            // ../org.sqlproc.dsl.ui/src-gen/org/sqlproc/dsl/ui/contentassist/antlr/internal/InternalProcessorDsl.g:35953:21: '\"' ( options {greedy=false; } : . )* '\"'
+            // ../org.sqlproc.dsl.ui/src-gen/org/sqlproc/dsl/ui/contentassist/antlr/internal/InternalProcessorDsl.g:35953:19: ( '\\'' ( options {greedy=false; } : . )* '\\'' )
+            // ../org.sqlproc.dsl.ui/src-gen/org/sqlproc/dsl/ui/contentassist/antlr/internal/InternalProcessorDsl.g:35953:21: '\\'' ( options {greedy=false; } : . )* '\\''
             {
-            match('\"'); 
-            // ../org.sqlproc.dsl.ui/src-gen/org/sqlproc/dsl/ui/contentassist/antlr/internal/InternalProcessorDsl.g:35953:25: ( options {greedy=false; } : . )*
+            match('\''); 
+            // ../org.sqlproc.dsl.ui/src-gen/org/sqlproc/dsl/ui/contentassist/antlr/internal/InternalProcessorDsl.g:35953:26: ( options {greedy=false; } : . )*
             loop12:
             do {
                 int alt12=2;
                 int LA12_0 = input.LA(1);
 
-                if ( (LA12_0=='\"') ) {
+                if ( (LA12_0=='\'') ) {
                     alt12=2;
                 }
-                else if ( ((LA12_0>='\u0000' && LA12_0<='!')||(LA12_0>='#' && LA12_0<='\uFFFF')) ) {
+                else if ( ((LA12_0>='\u0000' && LA12_0<='&')||(LA12_0>='(' && LA12_0<='\uFFFF')) ) {
                     alt12=1;
                 }
 
 
                 switch (alt12) {
             	case 1 :
-            	    // ../org.sqlproc.dsl.ui/src-gen/org/sqlproc/dsl/ui/contentassist/antlr/internal/InternalProcessorDsl.g:35953:53: .
+            	    // ../org.sqlproc.dsl.ui/src-gen/org/sqlproc/dsl/ui/contentassist/antlr/internal/InternalProcessorDsl.g:35953:54: .
             	    {
             	    matchAny(); 
 
@@ -3512,7 +3512,7 @@ public class InternalProcessorDslLexer extends Lexer {
                 }
             } while (true);
 
-            match('\"'); 
+            match('\''); 
 
             }
 
@@ -4602,8 +4602,8 @@ public class InternalProcessorDslLexer extends Lexer {
     static final String DFA13_specialS =
         "\1\0\66\uffff\1\1\u01e6\uffff}>";
     static final String[] DFA13_transitionS = {
-            "\11\70\2\42\2\70\1\42\22\70\1\42\1\57\1\67\1\60\1\47\1\66\1"+
-            "\43\1\70\1\52\1\53\1\70\1\51\1\50\1\2\1\12\1\41\12\37\1\45\1"+
+            "\11\70\2\42\2\70\1\42\22\70\1\42\1\57\1\70\1\60\1\47\1\66\1"+
+            "\43\1\67\1\52\1\53\1\70\1\51\1\50\1\2\1\12\1\41\12\37\1\45\1"+
             "\46\1\64\1\63\1\65\1\56\1\61\1\36\1\35\1\31\5\36\1\33\2\36\1"+
             "\32\2\36\1\27\1\36\1\30\1\36\1\34\7\36\1\26\1\40\1\70\1\62\1"+
             "\1\1\70\1\17\1\36\1\23\1\11\1\10\1\5\1\24\1\15\1\7\1\20\1\36"+
@@ -5642,9 +5642,9 @@ public class InternalProcessorDslLexer extends Lexer {
 
                         else if ( (LA13_0=='%') ) {s = 54;}
 
-                        else if ( (LA13_0=='\"') ) {s = 55;}
+                        else if ( (LA13_0=='\'') ) {s = 55;}
 
-                        else if ( ((LA13_0>='\u0000' && LA13_0<='\b')||(LA13_0>='\u000B' && LA13_0<='\f')||(LA13_0>='\u000E' && LA13_0<='\u001F')||LA13_0=='\''||LA13_0=='*'||LA13_0==']'||LA13_0=='`'||(LA13_0>='~' && LA13_0<='\uFFFF')) ) {s = 56;}
+                        else if ( ((LA13_0>='\u0000' && LA13_0<='\b')||(LA13_0>='\u000B' && LA13_0<='\f')||(LA13_0>='\u000E' && LA13_0<='\u001F')||LA13_0=='\"'||LA13_0=='*'||LA13_0==']'||LA13_0=='`'||(LA13_0>='~' && LA13_0<='\uFFFF')) ) {s = 56;}
 
                         if ( s>=0 ) return s;
                         break;
