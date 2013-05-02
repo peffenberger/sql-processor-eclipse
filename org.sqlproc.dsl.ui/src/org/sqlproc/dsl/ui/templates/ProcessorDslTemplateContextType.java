@@ -25,6 +25,7 @@ import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
 import org.sqlproc.dsl.property.ModelProperty;
+import org.sqlproc.dsl.resolver.DbCheckConstraint;
 import org.sqlproc.dsl.resolver.DbColumn;
 import org.sqlproc.dsl.resolver.DbExport;
 import org.sqlproc.dsl.resolver.DbImport;
@@ -840,7 +841,9 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                 List<DbExport> dbExports = dbResolver.getDbExports(artifacts, table);
                 List<DbImport> dbImports = dbResolver.getDbImports(artifacts, table);
                 List<DbIndex> dbIndexes = dbResolver.getDbIndexes(artifacts, table);
-                converter.addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes);
+                List<DbCheckConstraint> dbCheckConstraints = dbResolver.getDbCheckConstraints(artifacts, table);
+                converter.addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes,
+                        dbCheckConstraints);
             }
             // converter.resolveReferencesOnConvention();
             converter.resolveReferencesOnKeys();

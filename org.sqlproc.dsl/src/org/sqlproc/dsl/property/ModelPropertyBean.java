@@ -55,6 +55,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String DATABASE_JDBC_DRIVER = "jdbc-driver";
     public static final String DATABASE_INDEX_TYPES = "index-types";
     public static final String DATABASE_SKIP_INDEXES = "skip-indexes";
+    public static final String DATABASE_SKIP_CHECK_CONSTRAINTS = "skip-check-constraints";
     public static final String DATABASE_SKIP_PROCEDURES = "skip-functions-procedures";
     public static final String DATABASE_OF_TYPE = "is-of-type";
     public static final String DATABASE_DEBUG_LEVEL = "debug-level";
@@ -137,6 +138,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public String dbIndexTypes;
         public boolean dbSkipIndexes;
         public boolean dbSkipProcedures;
+        public boolean dbSkipCheckConstraints;
         public String dbType;
         public Level dbDebugLevel;
         public String dir;
@@ -338,6 +340,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.dbIndexTypes = null;
         modelValues.dbSkipIndexes = false;
         modelValues.dbSkipProcedures = false;
+        modelValues.dbSkipCheckConstraints = false;
         modelValues.dbType = null;
         modelValues.dbDebugLevel = null;
     }
@@ -452,6 +455,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.dbSkipIndexes = true;
         } else if (DATABASE_SKIP_PROCEDURES.equals(property.getName())) {
             modelValues.dbSkipProcedures = true;
+        } else if (DATABASE_SKIP_CHECK_CONSTRAINTS.equals(property.getName())) {
+            modelValues.dbSkipCheckConstraints = true;
         } else if (DATABASE_OF_TYPE.equals(property.getName())) {
             if (property.getDbType() != null)
                 modelValues.dbType = getPropertyValue(property.getDbType().getDbType());

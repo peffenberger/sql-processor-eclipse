@@ -25,6 +25,7 @@ import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.property.ModelProperty;
 import org.sqlproc.dsl.property.PojoAttrType;
 import org.sqlproc.dsl.property.PojoAttribute;
+import org.sqlproc.dsl.resolver.DbCheckConstraint;
 import org.sqlproc.dsl.resolver.DbColumn;
 import org.sqlproc.dsl.resolver.DbExport;
 import org.sqlproc.dsl.resolver.DbImport;
@@ -279,13 +280,15 @@ public class TablePojoConverter {
     }
 
     public void addTableDefinition(String table, List<DbColumn> dbColumns, List<String> dbPrimaryKeys,
-            List<DbExport> dbExports, List<DbImport> dbImports, List<DbIndex> dbIndexes) {
+            List<DbExport> dbExports, List<DbImport> dbImports, List<DbIndex> dbIndexes,
+            List<DbCheckConstraint> dbCheckConstraints) {
         if (debug) {
             System.out.println("addTableDefinition: " + table + " dbColumns " + dbColumns);
             System.out.println("addTableDefinition: " + table + " dbPrimaryKeys " + dbPrimaryKeys);
             System.out.println("addTableDefinition: " + table + " dbExports " + dbExports);
             System.out.println("addTableDefinition: " + table + " dbImports " + dbImports);
             System.out.println("addTableDefinition: " + table + " dbIndexes " + dbIndexes);
+            System.out.println("addTableDefinition: " + table + " dbCheckConstraints " + dbCheckConstraints);
         }
         if (table == null || dbColumns == null)
             return;

@@ -731,6 +731,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='index-types' dbIndexTypes=PropertyValue) | 
 	 *         name='skip-indexes' | 
 	 *         name='skip-functions-procedures' | 
+	 *         name='skip-check-constraints' | 
 	 *         (name='is-of-type' dbType=DatabaseTypeAssignement) | 
 	 *         (name='show-database-info' dbMetaInfo=DatabaseMetaInfoAssignement) | 
 	 *         (name='show-driver-info' dbDriverInfo=DriverMetaInfoAssignement) | 

@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.Driver;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class DbResolverBean implements DbResolver {
         public String dbIndexTypes;
         public boolean dbSkipIndexes;
         public boolean dbSkipProcedures;
+        public boolean dbSkipCheckConstraints;
         public DbType dbType;
         public String dir;
         public Connection connection;
@@ -65,7 +67,8 @@ public class DbResolverBean implements DbResolver {
                     + ", dbPassword=" + dbPassword + ", dbCatalog=" + dbCatalog + ", dbSchema=" + dbSchema
                     + ", dbSqlsBefore=" + dbSqlsBefore + ", dbSqlsAfter=" + dbSqlsAfter + ", connection=" + connection
                     + ", dbIndexTypes=" + dbIndexTypes + ", dbSkipIndexes=" + dbSkipIndexes + ", dbSkipProcedures="
-                    + dbSkipProcedures + ", dbType=" + dbType + ", dir=" + dir + "]";
+                    + dbSkipProcedures + ", dbSkipCheckConstraints=" + dbSkipCheckConstraints + ", dbType=" + dbType
+                    + ", dir=" + dir + "]";
         }
 
     }
@@ -120,6 +123,8 @@ public class DbResolverBean implements DbResolver {
             .synchronizedMap(new HashMap<String, List<String>>());
     private final Map<String, SortedSet<String>> driverMethods = Collections
             .synchronizedMap(new HashMap<String, SortedSet<String>>());
+    private final Map<String, Map<String, List<DbCheckConstraint>>> dbChecksConstraints = Collections
+            .synchronizedMap(new HashMap<String, Map<String, List<DbCheckConstraint>>>());
 
     private DatabaseDirectives checkReconnect(EObject model) {
         trace(">>>checkReconnect");
@@ -236,6 +241,9 @@ public class DbResolverBean implements DbResolver {
         }
         if (modelModelValues.dbSkipIndexes != modelDatabaseValues.dbSkipIndexes) {
             modelDatabaseValues.dbSkipIndexes = modelModelValues.dbSkipIndexes;
+        }
+        if (modelModelValues.dbSkipCheckConstraints != modelDatabaseValues.dbSkipCheckConstraints) {
+            modelDatabaseValues.dbSkipCheckConstraints = modelModelValues.dbSkipCheckConstraints;
         }
         if (modelModelValues.dbSkipProcedures != modelDatabaseValues.dbSkipProcedures) {
             modelDatabaseValues.dbSkipProcedures = modelModelValues.dbSkipProcedures;
@@ -359,6 +367,7 @@ public class DbResolverBean implements DbResolver {
             driverMethods.remove(modelDatabaseValues.dir);
             procedures.remove(modelDatabaseValues.dir);
             functions.remove(modelDatabaseValues.dir);
+            dbChecksConstraints.remove(modelDatabaseValues.dir);
         }
     }
 
@@ -1627,6 +1636,67 @@ public class DbResolverBean implements DbResolver {
         }
         trace("<<<getDriverMethodOutput", methodCallOutput);
         return methodCallOutput;
+    }
+
+    @Override
+    public List<DbCheckConstraint> getDbCheckConstraints(EObject model, String table) {
+        trace(">>>getDbCheckConstraints");
+        if (table == null)
+            return Collections.emptyList();
+        DatabaseDirectives modelDatabaseValues = getConnection(model);
+        if (modelDatabaseValues == null || modelDatabaseValues.dbSkipCheckConstraints)
+            return Collections.emptyList();
+        boolean doInit = false;
+        Map<String, List<DbCheckConstraint>> allCheckConstraintsForModel = dbChecksConstraints
+                .get(modelDatabaseValues.dir);
+        if (allCheckConstraintsForModel == null) {
+            allCheckConstraintsForModel = Collections.synchronizedMap(new HashMap<String, List<DbCheckConstraint>>());
+            dbChecksConstraints.put(modelDatabaseValues.dir, allCheckConstraintsForModel);
+            doInit = true;
+        }
+        List<DbCheckConstraint> checkConstraintsForModel = allCheckConstraintsForModel.get(table);
+        if (checkConstraintsForModel == null) {
+            checkConstraintsForModel = Collections.synchronizedList(new ArrayList<DbCheckConstraint>());
+            allCheckConstraintsForModel.put(table, checkConstraintsForModel);
+            doInit = true;
+        }
+        if (!doInit)
+            return checkConstraintsForModel;
+        if (modelDatabaseValues.connection != null) {
+            ResultSet result = null;
+            try {
+                Map<String, DbCheckConstraint> mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
+                DbType dbType = getDbType(model);
+                if (dbType == DbType.HSQLDB) {
+                    String sql = "select * from INFORMATION_SCHEMA.TABLE_CONSTRAINTS";
+                    Statement stmt = modelDatabaseValues.connection.createStatement();
+                    result = stmt.executeQuery(sql);
+                    ResultSetMetaData meta = result.getMetaData();
+                    dump(meta);
+                    while (result.next()) {
+                    }
+                }
+                checkConstraintsForModel.addAll(mapOfCheckConstraints.values());
+            } catch (SQLException e) {
+                error("getDbIndexes error " + e, e);
+            } finally {
+                try {
+                    if (result != null)
+                        result.close();
+                } catch (SQLException e) {
+                    error("getDbIndexes error " + e, e);
+                }
+            }
+        }
+        trace("<<<getDbCheckConstraints", checkConstraintsForModel);
+        return checkConstraintsForModel;
+    }
+
+    private void dump(ResultSetMetaData meta) throws SQLException {
+        for (int i = 1; i <= meta.getColumnCount(); i++) {
+            System.out.println("" + i + " " + meta.getColumnName(i) + " " + meta.getColumnType(i) + " "
+                    + meta.getColumnTypeName(i));
+        }
     }
 
     private DbType getDbType(EObject model) {

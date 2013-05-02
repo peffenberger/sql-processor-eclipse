@@ -123,4 +123,6 @@ public interface DbResolver {
     boolean checkProcedure(EObject model, String table);
 
     boolean checkFunction(EObject model, String function);
+
+    List<DbCheckConstraint> getDbCheckConstraints(EObject model, String table);
 }
