@@ -84,11 +84,12 @@ import java.util.Map;
 '''
 def compile(EnumEntity e, ImportManager importManager, EnumProperty ea) '''
 public enum «e.name» «compileExtends(e)»«compileImplements(e)»{
+
+  «FOR f:e.features.filter(x| x.value!=null) SEPARATOR ", "»«f.name»(«getValue(f)»)«ENDFOR»;
   «IF getSernum(e) != null»
   
   private static final long serialVersionUID = «getSernum(e)»L;
   «ENDIF»
-  «FOR f:e.features.filter(x| x.value!=null) SEPARATOR ", "»«f.name»(«f.value»)«ENDFOR»;
   
   private static Map<«ea.compileType(importManager)», «e.name»> identifierMap = new HashMap<«ea.compileType(importManager)», «e.name»>();
 

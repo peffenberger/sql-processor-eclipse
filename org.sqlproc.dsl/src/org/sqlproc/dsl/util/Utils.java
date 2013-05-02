@@ -655,6 +655,12 @@ public class Utils {
         return null;
     }
 
+    public static String getValue(EnumProperty p) {
+        if (p.getValue() == null)
+            return null;
+        return p.getValue().replaceAll("'", "\"");
+    }
+
     public static JvmType pojoMethod2jvmType(final PojoEntity e) {
         return new JvmType() {
 

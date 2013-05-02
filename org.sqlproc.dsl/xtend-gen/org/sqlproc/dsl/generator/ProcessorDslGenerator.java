@@ -194,20 +194,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.append(_compileImplements, "");
     _builder.append("{");
     _builder.newLineIfNotEmpty();
-    {
-      String _sernum = Utils.getSernum(e);
-      boolean _notEquals = (!Objects.equal(_sernum, null));
-      if (_notEquals) {
-        _builder.append("  ");
-        _builder.newLine();
-        _builder.append("  ");
-        _builder.append("private static final long serialVersionUID = ");
-        String _sernum_1 = Utils.getSernum(e);
-        _builder.append(_sernum_1, "  ");
-        _builder.append("L;");
-        _builder.newLineIfNotEmpty();
-      }
-    }
+    _builder.newLine();
     _builder.append("  ");
     {
       EList<EnumProperty> _features = e.getFeatures();
@@ -229,13 +216,27 @@ public class ProcessorDslGenerator implements IGenerator {
         String _name_1 = f.getName();
         _builder.append(_name_1, "  ");
         _builder.append("(");
-        String _value = f.getValue();
+        String _value = Utils.getValue(f);
         _builder.append(_value, "  ");
         _builder.append(")");
       }
     }
     _builder.append(";");
     _builder.newLineIfNotEmpty();
+    {
+      String _sernum = Utils.getSernum(e);
+      boolean _notEquals = (!Objects.equal(_sernum, null));
+      if (_notEquals) {
+        _builder.append("  ");
+        _builder.newLine();
+        _builder.append("  ");
+        _builder.append("private static final long serialVersionUID = ");
+        String _sernum_1 = Utils.getSernum(e);
+        _builder.append(_sernum_1, "  ");
+        _builder.append("L;");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("  ");
     _builder.newLine();
     _builder.append("  ");

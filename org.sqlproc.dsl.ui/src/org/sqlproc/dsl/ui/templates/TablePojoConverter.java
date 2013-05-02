@@ -501,7 +501,8 @@ public class TablePojoConverter {
                     PojoAttribute attribute = (pojos.containsKey(relTable) && pojos.get(relTable).containsKey(relCol)) ? pojos
                             .get(relTable).get(relCol) : null;
                     if (attribute != null) {
-                        attribute.setRef(enumName);
+                        attribute.setDependencyClassName(tableToCamelCase(enumName));
+                        // attribute.setClassName(null);
                     }
                 }
             }
