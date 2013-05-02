@@ -44,8 +44,9 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojogenPropertyAccess().getAlternatives(), "rule__PojogenProperty__Alternatives");
 					put(grammarAccess.getMetagenPropertyAccess().getAlternatives(), "rule__MetagenProperty__Alternatives");
 					put(grammarAccess.getDaogenPropertyAccess().getAlternatives(), "rule__DaogenProperty__Alternatives");
-					put(grammarAccess.getPropertyValueAccess().getAlternatives_0(), "rule__PropertyValue__Alternatives_0");
-					put(grammarAccess.getPropertyValueAccess().getAlternatives_1_0(), "rule__PropertyValue__Alternatives_1_0");
+					put(grammarAccess.getPropertyValueAccess().getAlternatives(), "rule__PropertyValue__Alternatives");
+					put(grammarAccess.getPropertyValueAccess().getAlternatives_0_0(), "rule__PropertyValue__Alternatives_0_0");
+					put(grammarAccess.getPropertyValueAccess().getAlternatives_0_1_0(), "rule__PropertyValue__Alternatives_0_1_0");
 					put(grammarAccess.getPojoDefinitionAccess().getAlternatives_2(), "rule__PojoDefinition__Alternatives_2");
 					put(grammarAccess.getPojoDefinitionAccess().getClassAlternatives_2_0_0(), "rule__PojoDefinition__ClassAlternatives_2_0_0");
 					put(grammarAccess.getSqlFragmentAccess().getAlternatives(), "rule__SqlFragment__Alternatives");
@@ -238,8 +239,8 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_4(), "rule__DaogenProperty__Group_4__0");
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_6(), "rule__DaogenProperty__Group_6__0");
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_7(), "rule__DaogenProperty__Group_7__0");
-					put(grammarAccess.getPropertyValueAccess().getGroup(), "rule__PropertyValue__Group__0");
-					put(grammarAccess.getPropertyValueAccess().getGroup_1(), "rule__PropertyValue__Group_1__0");
+					put(grammarAccess.getPropertyValueAccess().getGroup_0(), "rule__PropertyValue__Group_0__0");
+					put(grammarAccess.getPropertyValueAccess().getGroup_0_1(), "rule__PropertyValue__Group_0_1__0");
 					put(grammarAccess.getPojoDefinitionAccess().getGroup(), "rule__PojoDefinition__Group__0");
 					put(grammarAccess.getPojoDefinitionAccess().getGroup_2_1(), "rule__PojoDefinition__Group_2_1__0");
 					put(grammarAccess.getTableDefinitionAccess().getGroup(), "rule__TableDefinition__Group__0");

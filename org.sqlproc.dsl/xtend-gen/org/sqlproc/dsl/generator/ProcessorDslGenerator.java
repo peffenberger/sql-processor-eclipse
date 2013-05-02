@@ -216,7 +216,7 @@ public class ProcessorDslGenerator implements IGenerator {
         String _name_1 = f.getName();
         _builder.append(_name_1, "  ");
         _builder.append("(");
-        String _value = Utils.getValue(f);
+        String _value = f.getValue();
         _builder.append(_value, "  ");
         _builder.append(")");
       }

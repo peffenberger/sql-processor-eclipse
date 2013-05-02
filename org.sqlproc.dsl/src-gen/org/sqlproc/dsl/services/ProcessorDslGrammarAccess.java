@@ -3108,300 +3108,313 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class PropertyValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyValue");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final RuleCall cRESTTerminalRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
-		private final RuleCall cIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
-		private final RuleCall cCOLONTerminalRuleCall_0_4 = (RuleCall)cAlternatives_0.eContents().get(4);
-		private final RuleCall cSTRINGTerminalRuleCall_0_5 = (RuleCall)cAlternatives_0.eContents().get(5);
-		private final RuleCall cCOMMATerminalRuleCall_0_6 = (RuleCall)cAlternatives_0.eContents().get(6);
-		private final RuleCall cMINUSTerminalRuleCall_0_7 = (RuleCall)cAlternatives_0.eContents().get(7);
-		private final RuleCall cPLUSTerminalRuleCall_0_8 = (RuleCall)cAlternatives_0.eContents().get(8);
-		private final RuleCall cLPARENTerminalRuleCall_0_9 = (RuleCall)cAlternatives_0.eContents().get(9);
-		private final RuleCall cRPARENTerminalRuleCall_0_10 = (RuleCall)cAlternatives_0.eContents().get(10);
-		private final RuleCall cLBRACETerminalRuleCall_0_11 = (RuleCall)cAlternatives_0.eContents().get(11);
-		private final RuleCall cRBRACETerminalRuleCall_0_12 = (RuleCall)cAlternatives_0.eContents().get(12);
-		private final RuleCall cQUESTITerminalRuleCall_0_13 = (RuleCall)cAlternatives_0.eContents().get(13);
-		private final RuleCall cNOTTerminalRuleCall_0_14 = (RuleCall)cAlternatives_0.eContents().get(14);
-		private final RuleCall cBANDTerminalRuleCall_0_15 = (RuleCall)cAlternatives_0.eContents().get(15);
-		private final RuleCall cBORTerminalRuleCall_0_16 = (RuleCall)cAlternatives_0.eContents().get(16);
-		private final RuleCall cHASHTerminalRuleCall_0_17 = (RuleCall)cAlternatives_0.eContents().get(17);
-		private final RuleCall cATTerminalRuleCall_0_18 = (RuleCall)cAlternatives_0.eContents().get(18);
-		private final RuleCall cCARETTerminalRuleCall_0_19 = (RuleCall)cAlternatives_0.eContents().get(19);
-		private final RuleCall cEQUALSTerminalRuleCall_0_20 = (RuleCall)cAlternatives_0.eContents().get(20);
-		private final RuleCall cLESS_THANTerminalRuleCall_0_21 = (RuleCall)cAlternatives_0.eContents().get(21);
-		private final RuleCall cMORE_THANTerminalRuleCall_0_22 = (RuleCall)cAlternatives_0.eContents().get(22);
-		private final RuleCall cPERCENTTerminalRuleCall_0_23 = (RuleCall)cAlternatives_0.eContents().get(23);
-		private final RuleCall cDOTTerminalRuleCall_0_24 = (RuleCall)cAlternatives_0.eContents().get(24);
-		private final RuleCall cANDTerminalRuleCall_0_25 = (RuleCall)cAlternatives_0.eContents().get(25);
-		private final RuleCall cORTerminalRuleCall_0_26 = (RuleCall)cAlternatives_0.eContents().get(26);
-		private final RuleCall cESC_CHARTerminalRuleCall_0_27 = (RuleCall)cAlternatives_0.eContents().get(27);
-		private final RuleCall cON_OFFTerminalRuleCall_0_28 = (RuleCall)cAlternatives_0.eContents().get(28);
-		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_0_29 = (RuleCall)cAlternatives_0.eContents().get(29);
-		private final RuleCall cMAPPING_TYPETerminalRuleCall_0_30 = (RuleCall)cAlternatives_0.eContents().get(30);
-		private final RuleCall cOPTION_TYPETerminalRuleCall_0_31 = (RuleCall)cAlternatives_0.eContents().get(31);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final RuleCall cRESTTerminalRuleCall_1_0_0 = (RuleCall)cAlternatives_1_0.eContents().get(0);
-		private final RuleCall cIDENT_DOTTerminalRuleCall_1_0_1 = (RuleCall)cAlternatives_1_0.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_1_0_2 = (RuleCall)cAlternatives_1_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_1_0_4 = (RuleCall)cAlternatives_1_0.eContents().get(4);
-		private final RuleCall cCOLONTerminalRuleCall_1_0_5 = (RuleCall)cAlternatives_1_0.eContents().get(5);
-		private final RuleCall cSTRINGTerminalRuleCall_1_0_6 = (RuleCall)cAlternatives_1_0.eContents().get(6);
-		private final RuleCall cCOMMATerminalRuleCall_1_0_7 = (RuleCall)cAlternatives_1_0.eContents().get(7);
-		private final RuleCall cMINUSTerminalRuleCall_1_0_8 = (RuleCall)cAlternatives_1_0.eContents().get(8);
-		private final RuleCall cPLUSTerminalRuleCall_1_0_9 = (RuleCall)cAlternatives_1_0.eContents().get(9);
-		private final RuleCall cLPARENTerminalRuleCall_1_0_10 = (RuleCall)cAlternatives_1_0.eContents().get(10);
-		private final RuleCall cRPARENTerminalRuleCall_1_0_11 = (RuleCall)cAlternatives_1_0.eContents().get(11);
-		private final RuleCall cLBRACETerminalRuleCall_1_0_12 = (RuleCall)cAlternatives_1_0.eContents().get(12);
-		private final RuleCall cRBRACETerminalRuleCall_1_0_13 = (RuleCall)cAlternatives_1_0.eContents().get(13);
-		private final RuleCall cQUESTITerminalRuleCall_1_0_14 = (RuleCall)cAlternatives_1_0.eContents().get(14);
-		private final RuleCall cNOTTerminalRuleCall_1_0_15 = (RuleCall)cAlternatives_1_0.eContents().get(15);
-		private final RuleCall cBANDTerminalRuleCall_1_0_16 = (RuleCall)cAlternatives_1_0.eContents().get(16);
-		private final RuleCall cBORTerminalRuleCall_1_0_17 = (RuleCall)cAlternatives_1_0.eContents().get(17);
-		private final RuleCall cHASHTerminalRuleCall_1_0_18 = (RuleCall)cAlternatives_1_0.eContents().get(18);
-		private final RuleCall cATTerminalRuleCall_1_0_19 = (RuleCall)cAlternatives_1_0.eContents().get(19);
-		private final RuleCall cCARETTerminalRuleCall_1_0_20 = (RuleCall)cAlternatives_1_0.eContents().get(20);
-		private final RuleCall cEQUALSTerminalRuleCall_1_0_21 = (RuleCall)cAlternatives_1_0.eContents().get(21);
-		private final RuleCall cLESS_THANTerminalRuleCall_1_0_22 = (RuleCall)cAlternatives_1_0.eContents().get(22);
-		private final RuleCall cMORE_THANTerminalRuleCall_1_0_23 = (RuleCall)cAlternatives_1_0.eContents().get(23);
-		private final RuleCall cPERCENTTerminalRuleCall_1_0_24 = (RuleCall)cAlternatives_1_0.eContents().get(24);
-		private final RuleCall cDOTTerminalRuleCall_1_0_25 = (RuleCall)cAlternatives_1_0.eContents().get(25);
-		private final RuleCall cANDTerminalRuleCall_1_0_26 = (RuleCall)cAlternatives_1_0.eContents().get(26);
-		private final RuleCall cORTerminalRuleCall_1_0_27 = (RuleCall)cAlternatives_1_0.eContents().get(27);
-		private final RuleCall cESC_CHARTerminalRuleCall_1_0_28 = (RuleCall)cAlternatives_1_0.eContents().get(28);
-		private final RuleCall cON_OFFTerminalRuleCall_1_0_29 = (RuleCall)cAlternatives_1_0.eContents().get(29);
-		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_1_0_30 = (RuleCall)cAlternatives_1_0.eContents().get(30);
-		private final RuleCall cMAPPING_TYPETerminalRuleCall_1_0_31 = (RuleCall)cAlternatives_1_0.eContents().get(31);
-		private final RuleCall cOPTION_TYPETerminalRuleCall_1_0_32 = (RuleCall)cAlternatives_1_0.eContents().get(32);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Alternatives cAlternatives_0_0 = (Alternatives)cGroup_0.eContents().get(0);
+		private final RuleCall cRESTTerminalRuleCall_0_0_0 = (RuleCall)cAlternatives_0_0.eContents().get(0);
+		private final RuleCall cIDENT_DOTTerminalRuleCall_0_0_1 = (RuleCall)cAlternatives_0_0.eContents().get(1);
+		private final RuleCall cIDENTTerminalRuleCall_0_0_2 = (RuleCall)cAlternatives_0_0.eContents().get(2);
+		private final RuleCall cNUMBERTerminalRuleCall_0_0_3 = (RuleCall)cAlternatives_0_0.eContents().get(3);
+		private final RuleCall cCOLONTerminalRuleCall_0_0_4 = (RuleCall)cAlternatives_0_0.eContents().get(4);
+		private final RuleCall cSTRINGTerminalRuleCall_0_0_5 = (RuleCall)cAlternatives_0_0.eContents().get(5);
+		private final RuleCall cCOMMATerminalRuleCall_0_0_6 = (RuleCall)cAlternatives_0_0.eContents().get(6);
+		private final RuleCall cMINUSTerminalRuleCall_0_0_7 = (RuleCall)cAlternatives_0_0.eContents().get(7);
+		private final RuleCall cPLUSTerminalRuleCall_0_0_8 = (RuleCall)cAlternatives_0_0.eContents().get(8);
+		private final RuleCall cLPARENTerminalRuleCall_0_0_9 = (RuleCall)cAlternatives_0_0.eContents().get(9);
+		private final RuleCall cRPARENTerminalRuleCall_0_0_10 = (RuleCall)cAlternatives_0_0.eContents().get(10);
+		private final RuleCall cLBRACETerminalRuleCall_0_0_11 = (RuleCall)cAlternatives_0_0.eContents().get(11);
+		private final RuleCall cRBRACETerminalRuleCall_0_0_12 = (RuleCall)cAlternatives_0_0.eContents().get(12);
+		private final RuleCall cQUESTITerminalRuleCall_0_0_13 = (RuleCall)cAlternatives_0_0.eContents().get(13);
+		private final RuleCall cNOTTerminalRuleCall_0_0_14 = (RuleCall)cAlternatives_0_0.eContents().get(14);
+		private final RuleCall cBANDTerminalRuleCall_0_0_15 = (RuleCall)cAlternatives_0_0.eContents().get(15);
+		private final RuleCall cBORTerminalRuleCall_0_0_16 = (RuleCall)cAlternatives_0_0.eContents().get(16);
+		private final RuleCall cHASHTerminalRuleCall_0_0_17 = (RuleCall)cAlternatives_0_0.eContents().get(17);
+		private final RuleCall cATTerminalRuleCall_0_0_18 = (RuleCall)cAlternatives_0_0.eContents().get(18);
+		private final RuleCall cCARETTerminalRuleCall_0_0_19 = (RuleCall)cAlternatives_0_0.eContents().get(19);
+		private final RuleCall cEQUALSTerminalRuleCall_0_0_20 = (RuleCall)cAlternatives_0_0.eContents().get(20);
+		private final RuleCall cLESS_THANTerminalRuleCall_0_0_21 = (RuleCall)cAlternatives_0_0.eContents().get(21);
+		private final RuleCall cMORE_THANTerminalRuleCall_0_0_22 = (RuleCall)cAlternatives_0_0.eContents().get(22);
+		private final RuleCall cPERCENTTerminalRuleCall_0_0_23 = (RuleCall)cAlternatives_0_0.eContents().get(23);
+		private final RuleCall cDOTTerminalRuleCall_0_0_24 = (RuleCall)cAlternatives_0_0.eContents().get(24);
+		private final RuleCall cANDTerminalRuleCall_0_0_25 = (RuleCall)cAlternatives_0_0.eContents().get(25);
+		private final RuleCall cORTerminalRuleCall_0_0_26 = (RuleCall)cAlternatives_0_0.eContents().get(26);
+		private final RuleCall cESC_CHARTerminalRuleCall_0_0_27 = (RuleCall)cAlternatives_0_0.eContents().get(27);
+		private final RuleCall cON_OFFTerminalRuleCall_0_0_28 = (RuleCall)cAlternatives_0_0.eContents().get(28);
+		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_0_0_29 = (RuleCall)cAlternatives_0_0.eContents().get(29);
+		private final RuleCall cMAPPING_TYPETerminalRuleCall_0_0_30 = (RuleCall)cAlternatives_0_0.eContents().get(30);
+		private final RuleCall cOPTION_TYPETerminalRuleCall_0_0_31 = (RuleCall)cAlternatives_0_0.eContents().get(31);
+		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
+		private final Alternatives cAlternatives_0_1_0 = (Alternatives)cGroup_0_1.eContents().get(0);
+		private final RuleCall cRESTTerminalRuleCall_0_1_0_0 = (RuleCall)cAlternatives_0_1_0.eContents().get(0);
+		private final RuleCall cIDENT_DOTTerminalRuleCall_0_1_0_1 = (RuleCall)cAlternatives_0_1_0.eContents().get(1);
+		private final RuleCall cIDENTTerminalRuleCall_0_1_0_2 = (RuleCall)cAlternatives_0_1_0.eContents().get(2);
+		private final RuleCall cNUMBERTerminalRuleCall_0_1_0_3 = (RuleCall)cAlternatives_0_1_0.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_0_1_0_4 = (RuleCall)cAlternatives_0_1_0.eContents().get(4);
+		private final RuleCall cCOLONTerminalRuleCall_0_1_0_5 = (RuleCall)cAlternatives_0_1_0.eContents().get(5);
+		private final RuleCall cSTRINGTerminalRuleCall_0_1_0_6 = (RuleCall)cAlternatives_0_1_0.eContents().get(6);
+		private final RuleCall cCOMMATerminalRuleCall_0_1_0_7 = (RuleCall)cAlternatives_0_1_0.eContents().get(7);
+		private final RuleCall cMINUSTerminalRuleCall_0_1_0_8 = (RuleCall)cAlternatives_0_1_0.eContents().get(8);
+		private final RuleCall cPLUSTerminalRuleCall_0_1_0_9 = (RuleCall)cAlternatives_0_1_0.eContents().get(9);
+		private final RuleCall cLPARENTerminalRuleCall_0_1_0_10 = (RuleCall)cAlternatives_0_1_0.eContents().get(10);
+		private final RuleCall cRPARENTerminalRuleCall_0_1_0_11 = (RuleCall)cAlternatives_0_1_0.eContents().get(11);
+		private final RuleCall cLBRACETerminalRuleCall_0_1_0_12 = (RuleCall)cAlternatives_0_1_0.eContents().get(12);
+		private final RuleCall cRBRACETerminalRuleCall_0_1_0_13 = (RuleCall)cAlternatives_0_1_0.eContents().get(13);
+		private final RuleCall cQUESTITerminalRuleCall_0_1_0_14 = (RuleCall)cAlternatives_0_1_0.eContents().get(14);
+		private final RuleCall cNOTTerminalRuleCall_0_1_0_15 = (RuleCall)cAlternatives_0_1_0.eContents().get(15);
+		private final RuleCall cBANDTerminalRuleCall_0_1_0_16 = (RuleCall)cAlternatives_0_1_0.eContents().get(16);
+		private final RuleCall cBORTerminalRuleCall_0_1_0_17 = (RuleCall)cAlternatives_0_1_0.eContents().get(17);
+		private final RuleCall cHASHTerminalRuleCall_0_1_0_18 = (RuleCall)cAlternatives_0_1_0.eContents().get(18);
+		private final RuleCall cATTerminalRuleCall_0_1_0_19 = (RuleCall)cAlternatives_0_1_0.eContents().get(19);
+		private final RuleCall cCARETTerminalRuleCall_0_1_0_20 = (RuleCall)cAlternatives_0_1_0.eContents().get(20);
+		private final RuleCall cEQUALSTerminalRuleCall_0_1_0_21 = (RuleCall)cAlternatives_0_1_0.eContents().get(21);
+		private final RuleCall cLESS_THANTerminalRuleCall_0_1_0_22 = (RuleCall)cAlternatives_0_1_0.eContents().get(22);
+		private final RuleCall cMORE_THANTerminalRuleCall_0_1_0_23 = (RuleCall)cAlternatives_0_1_0.eContents().get(23);
+		private final RuleCall cPERCENTTerminalRuleCall_0_1_0_24 = (RuleCall)cAlternatives_0_1_0.eContents().get(24);
+		private final RuleCall cDOTTerminalRuleCall_0_1_0_25 = (RuleCall)cAlternatives_0_1_0.eContents().get(25);
+		private final RuleCall cANDTerminalRuleCall_0_1_0_26 = (RuleCall)cAlternatives_0_1_0.eContents().get(26);
+		private final RuleCall cORTerminalRuleCall_0_1_0_27 = (RuleCall)cAlternatives_0_1_0.eContents().get(27);
+		private final RuleCall cESC_CHARTerminalRuleCall_0_1_0_28 = (RuleCall)cAlternatives_0_1_0.eContents().get(28);
+		private final RuleCall cON_OFFTerminalRuleCall_0_1_0_29 = (RuleCall)cAlternatives_0_1_0.eContents().get(29);
+		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_0_1_0_30 = (RuleCall)cAlternatives_0_1_0.eContents().get(30);
+		private final RuleCall cMAPPING_TYPETerminalRuleCall_0_1_0_31 = (RuleCall)cAlternatives_0_1_0.eContents().get(31);
+		private final RuleCall cOPTION_TYPETerminalRuleCall_0_1_0_32 = (RuleCall)cAlternatives_0_1_0.eContents().get(32);
+		private final RuleCall cSTRING_VALUETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//PropertyValue:
 		//	(REST | IDENT_DOT | IDENT | NUMBER | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
 		//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR |
 		//	ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING |
 		//	COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS |
-		//	LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*;
+		//	LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)* |
+		//	STRING_VALUE;
 		public ParserRule getRule() { return rule; }
 
 		//(REST | IDENT_DOT | IDENT | NUMBER | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI
 		//| NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF
 		//| STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA |
 		//MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN |
+		//MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)* | STRING_VALUE
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//(REST | IDENT_DOT | IDENT | NUMBER | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI
+		//| NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF
+		//| STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA |
+		//MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN |
 		//MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*
-		public Group getGroup() { return cGroup; }
+		public Group getGroup_0() { return cGroup_0; }
 
 		//REST | IDENT_DOT | IDENT | NUMBER | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI |
 		//NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF |
 		//STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		public Alternatives getAlternatives_0_0() { return cAlternatives_0_0; }
 
 		//REST
-		public RuleCall getRESTTerminalRuleCall_0_0() { return cRESTTerminalRuleCall_0_0; }
+		public RuleCall getRESTTerminalRuleCall_0_0_0() { return cRESTTerminalRuleCall_0_0_0; }
 
 		//IDENT_DOT
-		public RuleCall getIDENT_DOTTerminalRuleCall_0_1() { return cIDENT_DOTTerminalRuleCall_0_1; }
+		public RuleCall getIDENT_DOTTerminalRuleCall_0_0_1() { return cIDENT_DOTTerminalRuleCall_0_0_1; }
 
 		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_0_2() { return cIDENTTerminalRuleCall_0_2; }
+		public RuleCall getIDENTTerminalRuleCall_0_0_2() { return cIDENTTerminalRuleCall_0_0_2; }
 
 		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_0_3() { return cNUMBERTerminalRuleCall_0_3; }
+		public RuleCall getNUMBERTerminalRuleCall_0_0_3() { return cNUMBERTerminalRuleCall_0_0_3; }
 
 		//COLON
-		public RuleCall getCOLONTerminalRuleCall_0_4() { return cCOLONTerminalRuleCall_0_4; }
+		public RuleCall getCOLONTerminalRuleCall_0_0_4() { return cCOLONTerminalRuleCall_0_0_4; }
 
 		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_0_5() { return cSTRINGTerminalRuleCall_0_5; }
+		public RuleCall getSTRINGTerminalRuleCall_0_0_5() { return cSTRINGTerminalRuleCall_0_0_5; }
 
 		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_0_6() { return cCOMMATerminalRuleCall_0_6; }
+		public RuleCall getCOMMATerminalRuleCall_0_0_6() { return cCOMMATerminalRuleCall_0_0_6; }
 
 		//MINUS
-		public RuleCall getMINUSTerminalRuleCall_0_7() { return cMINUSTerminalRuleCall_0_7; }
+		public RuleCall getMINUSTerminalRuleCall_0_0_7() { return cMINUSTerminalRuleCall_0_0_7; }
 
 		//PLUS
-		public RuleCall getPLUSTerminalRuleCall_0_8() { return cPLUSTerminalRuleCall_0_8; }
+		public RuleCall getPLUSTerminalRuleCall_0_0_8() { return cPLUSTerminalRuleCall_0_0_8; }
 
 		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_0_9() { return cLPARENTerminalRuleCall_0_9; }
+		public RuleCall getLPARENTerminalRuleCall_0_0_9() { return cLPARENTerminalRuleCall_0_0_9; }
 
 		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_0_10() { return cRPARENTerminalRuleCall_0_10; }
+		public RuleCall getRPARENTerminalRuleCall_0_0_10() { return cRPARENTerminalRuleCall_0_0_10; }
 
 		//LBRACE
-		public RuleCall getLBRACETerminalRuleCall_0_11() { return cLBRACETerminalRuleCall_0_11; }
+		public RuleCall getLBRACETerminalRuleCall_0_0_11() { return cLBRACETerminalRuleCall_0_0_11; }
 
 		//RBRACE
-		public RuleCall getRBRACETerminalRuleCall_0_12() { return cRBRACETerminalRuleCall_0_12; }
+		public RuleCall getRBRACETerminalRuleCall_0_0_12() { return cRBRACETerminalRuleCall_0_0_12; }
 
 		//QUESTI
-		public RuleCall getQUESTITerminalRuleCall_0_13() { return cQUESTITerminalRuleCall_0_13; }
+		public RuleCall getQUESTITerminalRuleCall_0_0_13() { return cQUESTITerminalRuleCall_0_0_13; }
 
 		//NOT
-		public RuleCall getNOTTerminalRuleCall_0_14() { return cNOTTerminalRuleCall_0_14; }
+		public RuleCall getNOTTerminalRuleCall_0_0_14() { return cNOTTerminalRuleCall_0_0_14; }
 
 		//BAND
-		public RuleCall getBANDTerminalRuleCall_0_15() { return cBANDTerminalRuleCall_0_15; }
+		public RuleCall getBANDTerminalRuleCall_0_0_15() { return cBANDTerminalRuleCall_0_0_15; }
 
 		//BOR
-		public RuleCall getBORTerminalRuleCall_0_16() { return cBORTerminalRuleCall_0_16; }
+		public RuleCall getBORTerminalRuleCall_0_0_16() { return cBORTerminalRuleCall_0_0_16; }
 
 		//HASH
-		public RuleCall getHASHTerminalRuleCall_0_17() { return cHASHTerminalRuleCall_0_17; }
+		public RuleCall getHASHTerminalRuleCall_0_0_17() { return cHASHTerminalRuleCall_0_0_17; }
 
 		//AT
-		public RuleCall getATTerminalRuleCall_0_18() { return cATTerminalRuleCall_0_18; }
+		public RuleCall getATTerminalRuleCall_0_0_18() { return cATTerminalRuleCall_0_0_18; }
 
 		//CARET
-		public RuleCall getCARETTerminalRuleCall_0_19() { return cCARETTerminalRuleCall_0_19; }
+		public RuleCall getCARETTerminalRuleCall_0_0_19() { return cCARETTerminalRuleCall_0_0_19; }
 
 		//EQUALS
-		public RuleCall getEQUALSTerminalRuleCall_0_20() { return cEQUALSTerminalRuleCall_0_20; }
+		public RuleCall getEQUALSTerminalRuleCall_0_0_20() { return cEQUALSTerminalRuleCall_0_0_20; }
 
 		//LESS_THAN
-		public RuleCall getLESS_THANTerminalRuleCall_0_21() { return cLESS_THANTerminalRuleCall_0_21; }
+		public RuleCall getLESS_THANTerminalRuleCall_0_0_21() { return cLESS_THANTerminalRuleCall_0_0_21; }
 
 		//MORE_THAN
-		public RuleCall getMORE_THANTerminalRuleCall_0_22() { return cMORE_THANTerminalRuleCall_0_22; }
+		public RuleCall getMORE_THANTerminalRuleCall_0_0_22() { return cMORE_THANTerminalRuleCall_0_0_22; }
 
 		//PERCENT
-		public RuleCall getPERCENTTerminalRuleCall_0_23() { return cPERCENTTerminalRuleCall_0_23; }
+		public RuleCall getPERCENTTerminalRuleCall_0_0_23() { return cPERCENTTerminalRuleCall_0_0_23; }
 
 		//DOT
-		public RuleCall getDOTTerminalRuleCall_0_24() { return cDOTTerminalRuleCall_0_24; }
+		public RuleCall getDOTTerminalRuleCall_0_0_24() { return cDOTTerminalRuleCall_0_0_24; }
 
 		//AND
-		public RuleCall getANDTerminalRuleCall_0_25() { return cANDTerminalRuleCall_0_25; }
+		public RuleCall getANDTerminalRuleCall_0_0_25() { return cANDTerminalRuleCall_0_0_25; }
 
 		//OR
-		public RuleCall getORTerminalRuleCall_0_26() { return cORTerminalRuleCall_0_26; }
+		public RuleCall getORTerminalRuleCall_0_0_26() { return cORTerminalRuleCall_0_0_26; }
 
 		//ESC_CHAR
-		public RuleCall getESC_CHARTerminalRuleCall_0_27() { return cESC_CHARTerminalRuleCall_0_27; }
+		public RuleCall getESC_CHARTerminalRuleCall_0_0_27() { return cESC_CHARTerminalRuleCall_0_0_27; }
 
 		//ON_OFF
-		public RuleCall getON_OFFTerminalRuleCall_0_28() { return cON_OFFTerminalRuleCall_0_28; }
+		public RuleCall getON_OFFTerminalRuleCall_0_0_28() { return cON_OFFTerminalRuleCall_0_0_28; }
 
 		//STATEMENT_TYPE
-		public RuleCall getSTATEMENT_TYPETerminalRuleCall_0_29() { return cSTATEMENT_TYPETerminalRuleCall_0_29; }
+		public RuleCall getSTATEMENT_TYPETerminalRuleCall_0_0_29() { return cSTATEMENT_TYPETerminalRuleCall_0_0_29; }
 
 		//MAPPING_TYPE
-		public RuleCall getMAPPING_TYPETerminalRuleCall_0_30() { return cMAPPING_TYPETerminalRuleCall_0_30; }
+		public RuleCall getMAPPING_TYPETerminalRuleCall_0_0_30() { return cMAPPING_TYPETerminalRuleCall_0_0_30; }
 
 		//OPTION_TYPE
-		public RuleCall getOPTION_TYPETerminalRuleCall_0_31() { return cOPTION_TYPETerminalRuleCall_0_31; }
+		public RuleCall getOPTION_TYPETerminalRuleCall_0_0_31() { return cOPTION_TYPETerminalRuleCall_0_0_31; }
 
 		//=> (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
 		//QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR |
 		//ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*
-		public Group getGroup_1() { return cGroup_1; }
+		public Group getGroup_0_1() { return cGroup_0_1; }
 
 		//REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
 		//QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR |
 		//ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE
-		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
+		public Alternatives getAlternatives_0_1_0() { return cAlternatives_0_1_0; }
 
 		//REST
-		public RuleCall getRESTTerminalRuleCall_1_0_0() { return cRESTTerminalRuleCall_1_0_0; }
+		public RuleCall getRESTTerminalRuleCall_0_1_0_0() { return cRESTTerminalRuleCall_0_1_0_0; }
 
 		//IDENT_DOT
-		public RuleCall getIDENT_DOTTerminalRuleCall_1_0_1() { return cIDENT_DOTTerminalRuleCall_1_0_1; }
+		public RuleCall getIDENT_DOTTerminalRuleCall_0_1_0_1() { return cIDENT_DOTTerminalRuleCall_0_1_0_1; }
 
 		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_1_0_2() { return cIDENTTerminalRuleCall_1_0_2; }
+		public RuleCall getIDENTTerminalRuleCall_0_1_0_2() { return cIDENTTerminalRuleCall_0_1_0_2; }
 
 		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1_0_3() { return cNUMBERTerminalRuleCall_1_0_3; }
+		public RuleCall getNUMBERTerminalRuleCall_0_1_0_3() { return cNUMBERTerminalRuleCall_0_1_0_3; }
 
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0_4() { return cWSTerminalRuleCall_1_0_4; }
+		public RuleCall getWSTerminalRuleCall_0_1_0_4() { return cWSTerminalRuleCall_0_1_0_4; }
 
 		//COLON
-		public RuleCall getCOLONTerminalRuleCall_1_0_5() { return cCOLONTerminalRuleCall_1_0_5; }
+		public RuleCall getCOLONTerminalRuleCall_0_1_0_5() { return cCOLONTerminalRuleCall_0_1_0_5; }
 
 		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_1_0_6() { return cSTRINGTerminalRuleCall_1_0_6; }
+		public RuleCall getSTRINGTerminalRuleCall_0_1_0_6() { return cSTRINGTerminalRuleCall_0_1_0_6; }
 
 		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_1_0_7() { return cCOMMATerminalRuleCall_1_0_7; }
+		public RuleCall getCOMMATerminalRuleCall_0_1_0_7() { return cCOMMATerminalRuleCall_0_1_0_7; }
 
 		//MINUS
-		public RuleCall getMINUSTerminalRuleCall_1_0_8() { return cMINUSTerminalRuleCall_1_0_8; }
+		public RuleCall getMINUSTerminalRuleCall_0_1_0_8() { return cMINUSTerminalRuleCall_0_1_0_8; }
 
 		//PLUS
-		public RuleCall getPLUSTerminalRuleCall_1_0_9() { return cPLUSTerminalRuleCall_1_0_9; }
+		public RuleCall getPLUSTerminalRuleCall_0_1_0_9() { return cPLUSTerminalRuleCall_0_1_0_9; }
 
 		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_1_0_10() { return cLPARENTerminalRuleCall_1_0_10; }
+		public RuleCall getLPARENTerminalRuleCall_0_1_0_10() { return cLPARENTerminalRuleCall_0_1_0_10; }
 
 		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_1_0_11() { return cRPARENTerminalRuleCall_1_0_11; }
+		public RuleCall getRPARENTerminalRuleCall_0_1_0_11() { return cRPARENTerminalRuleCall_0_1_0_11; }
 
 		//LBRACE
-		public RuleCall getLBRACETerminalRuleCall_1_0_12() { return cLBRACETerminalRuleCall_1_0_12; }
+		public RuleCall getLBRACETerminalRuleCall_0_1_0_12() { return cLBRACETerminalRuleCall_0_1_0_12; }
 
 		//RBRACE
-		public RuleCall getRBRACETerminalRuleCall_1_0_13() { return cRBRACETerminalRuleCall_1_0_13; }
+		public RuleCall getRBRACETerminalRuleCall_0_1_0_13() { return cRBRACETerminalRuleCall_0_1_0_13; }
 
 		//QUESTI
-		public RuleCall getQUESTITerminalRuleCall_1_0_14() { return cQUESTITerminalRuleCall_1_0_14; }
+		public RuleCall getQUESTITerminalRuleCall_0_1_0_14() { return cQUESTITerminalRuleCall_0_1_0_14; }
 
 		//NOT
-		public RuleCall getNOTTerminalRuleCall_1_0_15() { return cNOTTerminalRuleCall_1_0_15; }
+		public RuleCall getNOTTerminalRuleCall_0_1_0_15() { return cNOTTerminalRuleCall_0_1_0_15; }
 
 		//BAND
-		public RuleCall getBANDTerminalRuleCall_1_0_16() { return cBANDTerminalRuleCall_1_0_16; }
+		public RuleCall getBANDTerminalRuleCall_0_1_0_16() { return cBANDTerminalRuleCall_0_1_0_16; }
 
 		//BOR
-		public RuleCall getBORTerminalRuleCall_1_0_17() { return cBORTerminalRuleCall_1_0_17; }
+		public RuleCall getBORTerminalRuleCall_0_1_0_17() { return cBORTerminalRuleCall_0_1_0_17; }
 
 		//HASH
-		public RuleCall getHASHTerminalRuleCall_1_0_18() { return cHASHTerminalRuleCall_1_0_18; }
+		public RuleCall getHASHTerminalRuleCall_0_1_0_18() { return cHASHTerminalRuleCall_0_1_0_18; }
 
 		//AT
-		public RuleCall getATTerminalRuleCall_1_0_19() { return cATTerminalRuleCall_1_0_19; }
+		public RuleCall getATTerminalRuleCall_0_1_0_19() { return cATTerminalRuleCall_0_1_0_19; }
 
 		//CARET
-		public RuleCall getCARETTerminalRuleCall_1_0_20() { return cCARETTerminalRuleCall_1_0_20; }
+		public RuleCall getCARETTerminalRuleCall_0_1_0_20() { return cCARETTerminalRuleCall_0_1_0_20; }
 
 		//EQUALS
-		public RuleCall getEQUALSTerminalRuleCall_1_0_21() { return cEQUALSTerminalRuleCall_1_0_21; }
+		public RuleCall getEQUALSTerminalRuleCall_0_1_0_21() { return cEQUALSTerminalRuleCall_0_1_0_21; }
 
 		//LESS_THAN
-		public RuleCall getLESS_THANTerminalRuleCall_1_0_22() { return cLESS_THANTerminalRuleCall_1_0_22; }
+		public RuleCall getLESS_THANTerminalRuleCall_0_1_0_22() { return cLESS_THANTerminalRuleCall_0_1_0_22; }
 
 		//MORE_THAN
-		public RuleCall getMORE_THANTerminalRuleCall_1_0_23() { return cMORE_THANTerminalRuleCall_1_0_23; }
+		public RuleCall getMORE_THANTerminalRuleCall_0_1_0_23() { return cMORE_THANTerminalRuleCall_0_1_0_23; }
 
 		//PERCENT
-		public RuleCall getPERCENTTerminalRuleCall_1_0_24() { return cPERCENTTerminalRuleCall_1_0_24; }
+		public RuleCall getPERCENTTerminalRuleCall_0_1_0_24() { return cPERCENTTerminalRuleCall_0_1_0_24; }
 
 		//DOT
-		public RuleCall getDOTTerminalRuleCall_1_0_25() { return cDOTTerminalRuleCall_1_0_25; }
+		public RuleCall getDOTTerminalRuleCall_0_1_0_25() { return cDOTTerminalRuleCall_0_1_0_25; }
 
 		//AND
-		public RuleCall getANDTerminalRuleCall_1_0_26() { return cANDTerminalRuleCall_1_0_26; }
+		public RuleCall getANDTerminalRuleCall_0_1_0_26() { return cANDTerminalRuleCall_0_1_0_26; }
 
 		//OR
-		public RuleCall getORTerminalRuleCall_1_0_27() { return cORTerminalRuleCall_1_0_27; }
+		public RuleCall getORTerminalRuleCall_0_1_0_27() { return cORTerminalRuleCall_0_1_0_27; }
 
 		//ESC_CHAR
-		public RuleCall getESC_CHARTerminalRuleCall_1_0_28() { return cESC_CHARTerminalRuleCall_1_0_28; }
+		public RuleCall getESC_CHARTerminalRuleCall_0_1_0_28() { return cESC_CHARTerminalRuleCall_0_1_0_28; }
 
 		//ON_OFF
-		public RuleCall getON_OFFTerminalRuleCall_1_0_29() { return cON_OFFTerminalRuleCall_1_0_29; }
+		public RuleCall getON_OFFTerminalRuleCall_0_1_0_29() { return cON_OFFTerminalRuleCall_0_1_0_29; }
 
 		//STATEMENT_TYPE
-		public RuleCall getSTATEMENT_TYPETerminalRuleCall_1_0_30() { return cSTATEMENT_TYPETerminalRuleCall_1_0_30; }
+		public RuleCall getSTATEMENT_TYPETerminalRuleCall_0_1_0_30() { return cSTATEMENT_TYPETerminalRuleCall_0_1_0_30; }
 
 		//MAPPING_TYPE
-		public RuleCall getMAPPING_TYPETerminalRuleCall_1_0_31() { return cMAPPING_TYPETerminalRuleCall_1_0_31; }
+		public RuleCall getMAPPING_TYPETerminalRuleCall_0_1_0_31() { return cMAPPING_TYPETerminalRuleCall_0_1_0_31; }
 
 		//OPTION_TYPE
-		public RuleCall getOPTION_TYPETerminalRuleCall_1_0_32() { return cOPTION_TYPETerminalRuleCall_1_0_32; }
+		public RuleCall getOPTION_TYPETerminalRuleCall_0_1_0_32() { return cOPTION_TYPETerminalRuleCall_0_1_0_32; }
+
+		//STRING_VALUE
+		public RuleCall getSTRING_VALUETerminalRuleCall_1() { return cSTRING_VALUETerminalRuleCall_1; }
 	}
 
 	public class PojoDefinitionElements extends AbstractParserRuleElementFinder {
@@ -8313,7 +8326,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR |
 	//	ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING |
 	//	COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS |
-	//	LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*;
+	//	LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)* |
+	//	STRING_VALUE;
 	public PropertyValueElements getPropertyValueAccess() {
 		return (pPropertyValue != null) ? pPropertyValue : (pPropertyValue = new PropertyValueElements());
 	}
@@ -9139,7 +9153,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal STRING_VALUE:
-	//	"\'"->"\'";
+	//	"\""->"\"";
 	public TerminalRule getSTRING_VALUERule() {
 		return (tSTRING_VALUE != null) ? tSTRING_VALUE : (tSTRING_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING_VALUE"));
 	} 

@@ -856,7 +856,7 @@ public class TablePojoConverter {
                         } else if (attribute.getIntValue() != null) {
                             buffer.append("::: ").append(attribute.getIntValue());
                         } else if (attribute.getStrValue() != null) {
-                            buffer.append("::: \'").append(attribute.getStrValue()).append("\'");
+                            buffer.append("::: \"").append(attribute.getStrValue()).append("\"");
                         }
                     }
                     if (pojoExtends.containsKey(pojo)) {

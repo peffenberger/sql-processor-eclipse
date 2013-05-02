@@ -4834,12 +4834,12 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((    this_REST_0=RULE_REST    {
+(((    this_REST_0=RULE_REST    {
 		$current.merge(this_REST_0);
     }
 
     { 
-    newLeafNode(this_REST_0, grammarAccess.getPropertyValueAccess().getRESTTerminalRuleCall_0_0()); 
+    newLeafNode(this_REST_0, grammarAccess.getPropertyValueAccess().getRESTTerminalRuleCall_0_0_0()); 
     }
 
     |    this_IDENT_DOT_1=RULE_IDENT_DOT    {
@@ -4847,7 +4847,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_IDENT_DOT_1, grammarAccess.getPropertyValueAccess().getIDENT_DOTTerminalRuleCall_0_1()); 
+    newLeafNode(this_IDENT_DOT_1, grammarAccess.getPropertyValueAccess().getIDENT_DOTTerminalRuleCall_0_0_1()); 
     }
 
     |    this_IDENT_2=RULE_IDENT    {
@@ -4855,7 +4855,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_IDENT_2, grammarAccess.getPropertyValueAccess().getIDENTTerminalRuleCall_0_2()); 
+    newLeafNode(this_IDENT_2, grammarAccess.getPropertyValueAccess().getIDENTTerminalRuleCall_0_0_2()); 
     }
 
     |    this_NUMBER_3=RULE_NUMBER    {
@@ -4863,7 +4863,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_NUMBER_3, grammarAccess.getPropertyValueAccess().getNUMBERTerminalRuleCall_0_3()); 
+    newLeafNode(this_NUMBER_3, grammarAccess.getPropertyValueAccess().getNUMBERTerminalRuleCall_0_0_3()); 
     }
 
     |    this_COLON_4=RULE_COLON    {
@@ -4871,7 +4871,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_COLON_4, grammarAccess.getPropertyValueAccess().getCOLONTerminalRuleCall_0_4()); 
+    newLeafNode(this_COLON_4, grammarAccess.getPropertyValueAccess().getCOLONTerminalRuleCall_0_0_4()); 
     }
 
     |    this_STRING_5=RULE_STRING    {
@@ -4879,7 +4879,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_STRING_5, grammarAccess.getPropertyValueAccess().getSTRINGTerminalRuleCall_0_5()); 
+    newLeafNode(this_STRING_5, grammarAccess.getPropertyValueAccess().getSTRINGTerminalRuleCall_0_0_5()); 
     }
 
     |    this_COMMA_6=RULE_COMMA    {
@@ -4887,7 +4887,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_COMMA_6, grammarAccess.getPropertyValueAccess().getCOMMATerminalRuleCall_0_6()); 
+    newLeafNode(this_COMMA_6, grammarAccess.getPropertyValueAccess().getCOMMATerminalRuleCall_0_0_6()); 
     }
 
     |    this_MINUS_7=RULE_MINUS    {
@@ -4895,7 +4895,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_MINUS_7, grammarAccess.getPropertyValueAccess().getMINUSTerminalRuleCall_0_7()); 
+    newLeafNode(this_MINUS_7, grammarAccess.getPropertyValueAccess().getMINUSTerminalRuleCall_0_0_7()); 
     }
 
     |    this_PLUS_8=RULE_PLUS    {
@@ -4903,7 +4903,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_PLUS_8, grammarAccess.getPropertyValueAccess().getPLUSTerminalRuleCall_0_8()); 
+    newLeafNode(this_PLUS_8, grammarAccess.getPropertyValueAccess().getPLUSTerminalRuleCall_0_0_8()); 
     }
 
     |    this_LPAREN_9=RULE_LPAREN    {
@@ -4911,7 +4911,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_LPAREN_9, grammarAccess.getPropertyValueAccess().getLPARENTerminalRuleCall_0_9()); 
+    newLeafNode(this_LPAREN_9, grammarAccess.getPropertyValueAccess().getLPARENTerminalRuleCall_0_0_9()); 
     }
 
     |    this_RPAREN_10=RULE_RPAREN    {
@@ -4919,7 +4919,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_RPAREN_10, grammarAccess.getPropertyValueAccess().getRPARENTerminalRuleCall_0_10()); 
+    newLeafNode(this_RPAREN_10, grammarAccess.getPropertyValueAccess().getRPARENTerminalRuleCall_0_0_10()); 
     }
 
     |    this_LBRACE_11=RULE_LBRACE    {
@@ -4927,7 +4927,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_LBRACE_11, grammarAccess.getPropertyValueAccess().getLBRACETerminalRuleCall_0_11()); 
+    newLeafNode(this_LBRACE_11, grammarAccess.getPropertyValueAccess().getLBRACETerminalRuleCall_0_0_11()); 
     }
 
     |    this_RBRACE_12=RULE_RBRACE    {
@@ -4935,7 +4935,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_RBRACE_12, grammarAccess.getPropertyValueAccess().getRBRACETerminalRuleCall_0_12()); 
+    newLeafNode(this_RBRACE_12, grammarAccess.getPropertyValueAccess().getRBRACETerminalRuleCall_0_0_12()); 
     }
 
     |    this_QUESTI_13=RULE_QUESTI    {
@@ -4943,7 +4943,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_QUESTI_13, grammarAccess.getPropertyValueAccess().getQUESTITerminalRuleCall_0_13()); 
+    newLeafNode(this_QUESTI_13, grammarAccess.getPropertyValueAccess().getQUESTITerminalRuleCall_0_0_13()); 
     }
 
     |    this_NOT_14=RULE_NOT    {
@@ -4951,7 +4951,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_NOT_14, grammarAccess.getPropertyValueAccess().getNOTTerminalRuleCall_0_14()); 
+    newLeafNode(this_NOT_14, grammarAccess.getPropertyValueAccess().getNOTTerminalRuleCall_0_0_14()); 
     }
 
     |    this_BAND_15=RULE_BAND    {
@@ -4959,7 +4959,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_BAND_15, grammarAccess.getPropertyValueAccess().getBANDTerminalRuleCall_0_15()); 
+    newLeafNode(this_BAND_15, grammarAccess.getPropertyValueAccess().getBANDTerminalRuleCall_0_0_15()); 
     }
 
     |    this_BOR_16=RULE_BOR    {
@@ -4967,7 +4967,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_BOR_16, grammarAccess.getPropertyValueAccess().getBORTerminalRuleCall_0_16()); 
+    newLeafNode(this_BOR_16, grammarAccess.getPropertyValueAccess().getBORTerminalRuleCall_0_0_16()); 
     }
 
     |    this_HASH_17=RULE_HASH    {
@@ -4975,7 +4975,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_HASH_17, grammarAccess.getPropertyValueAccess().getHASHTerminalRuleCall_0_17()); 
+    newLeafNode(this_HASH_17, grammarAccess.getPropertyValueAccess().getHASHTerminalRuleCall_0_0_17()); 
     }
 
     |    this_AT_18=RULE_AT    {
@@ -4983,7 +4983,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_AT_18, grammarAccess.getPropertyValueAccess().getATTerminalRuleCall_0_18()); 
+    newLeafNode(this_AT_18, grammarAccess.getPropertyValueAccess().getATTerminalRuleCall_0_0_18()); 
     }
 
     |    this_CARET_19=RULE_CARET    {
@@ -4991,7 +4991,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_CARET_19, grammarAccess.getPropertyValueAccess().getCARETTerminalRuleCall_0_19()); 
+    newLeafNode(this_CARET_19, grammarAccess.getPropertyValueAccess().getCARETTerminalRuleCall_0_0_19()); 
     }
 
     |    this_EQUALS_20=RULE_EQUALS    {
@@ -4999,7 +4999,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_EQUALS_20, grammarAccess.getPropertyValueAccess().getEQUALSTerminalRuleCall_0_20()); 
+    newLeafNode(this_EQUALS_20, grammarAccess.getPropertyValueAccess().getEQUALSTerminalRuleCall_0_0_20()); 
     }
 
     |    this_LESS_THAN_21=RULE_LESS_THAN    {
@@ -5007,7 +5007,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_LESS_THAN_21, grammarAccess.getPropertyValueAccess().getLESS_THANTerminalRuleCall_0_21()); 
+    newLeafNode(this_LESS_THAN_21, grammarAccess.getPropertyValueAccess().getLESS_THANTerminalRuleCall_0_0_21()); 
     }
 
     |    this_MORE_THAN_22=RULE_MORE_THAN    {
@@ -5015,7 +5015,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_MORE_THAN_22, grammarAccess.getPropertyValueAccess().getMORE_THANTerminalRuleCall_0_22()); 
+    newLeafNode(this_MORE_THAN_22, grammarAccess.getPropertyValueAccess().getMORE_THANTerminalRuleCall_0_0_22()); 
     }
 
     |    this_PERCENT_23=RULE_PERCENT    {
@@ -5023,7 +5023,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_PERCENT_23, grammarAccess.getPropertyValueAccess().getPERCENTTerminalRuleCall_0_23()); 
+    newLeafNode(this_PERCENT_23, grammarAccess.getPropertyValueAccess().getPERCENTTerminalRuleCall_0_0_23()); 
     }
 
     |    this_DOT_24=RULE_DOT    {
@@ -5031,7 +5031,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_DOT_24, grammarAccess.getPropertyValueAccess().getDOTTerminalRuleCall_0_24()); 
+    newLeafNode(this_DOT_24, grammarAccess.getPropertyValueAccess().getDOTTerminalRuleCall_0_0_24()); 
     }
 
     |    this_AND_25=RULE_AND    {
@@ -5039,7 +5039,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_AND_25, grammarAccess.getPropertyValueAccess().getANDTerminalRuleCall_0_25()); 
+    newLeafNode(this_AND_25, grammarAccess.getPropertyValueAccess().getANDTerminalRuleCall_0_0_25()); 
     }
 
     |    this_OR_26=RULE_OR    {
@@ -5047,7 +5047,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_OR_26, grammarAccess.getPropertyValueAccess().getORTerminalRuleCall_0_26()); 
+    newLeafNode(this_OR_26, grammarAccess.getPropertyValueAccess().getORTerminalRuleCall_0_0_26()); 
     }
 
     |    this_ESC_CHAR_27=RULE_ESC_CHAR    {
@@ -5055,7 +5055,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_ESC_CHAR_27, grammarAccess.getPropertyValueAccess().getESC_CHARTerminalRuleCall_0_27()); 
+    newLeafNode(this_ESC_CHAR_27, grammarAccess.getPropertyValueAccess().getESC_CHARTerminalRuleCall_0_0_27()); 
     }
 
     |    this_ON_OFF_28=RULE_ON_OFF    {
@@ -5063,7 +5063,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_ON_OFF_28, grammarAccess.getPropertyValueAccess().getON_OFFTerminalRuleCall_0_28()); 
+    newLeafNode(this_ON_OFF_28, grammarAccess.getPropertyValueAccess().getON_OFFTerminalRuleCall_0_0_28()); 
     }
 
     |    this_STATEMENT_TYPE_29=RULE_STATEMENT_TYPE    {
@@ -5071,7 +5071,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_STATEMENT_TYPE_29, grammarAccess.getPropertyValueAccess().getSTATEMENT_TYPETerminalRuleCall_0_29()); 
+    newLeafNode(this_STATEMENT_TYPE_29, grammarAccess.getPropertyValueAccess().getSTATEMENT_TYPETerminalRuleCall_0_0_29()); 
     }
 
     |    this_MAPPING_TYPE_30=RULE_MAPPING_TYPE    {
@@ -5079,7 +5079,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_MAPPING_TYPE_30, grammarAccess.getPropertyValueAccess().getMAPPING_TYPETerminalRuleCall_0_30()); 
+    newLeafNode(this_MAPPING_TYPE_30, grammarAccess.getPropertyValueAccess().getMAPPING_TYPETerminalRuleCall_0_0_30()); 
     }
 
     |    this_OPTION_TYPE_31=RULE_OPTION_TYPE    {
@@ -5087,7 +5087,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_OPTION_TYPE_31, grammarAccess.getPropertyValueAccess().getOPTION_TYPETerminalRuleCall_0_31()); 
+    newLeafNode(this_OPTION_TYPE_31, grammarAccess.getPropertyValueAccess().getOPTION_TYPETerminalRuleCall_0_0_31()); 
     }
 )((( RULE_REST
     | RULE_IDENT_DOT
@@ -5126,7 +5126,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_REST_32, grammarAccess.getPropertyValueAccess().getRESTTerminalRuleCall_1_0_0()); 
+    newLeafNode(this_REST_32, grammarAccess.getPropertyValueAccess().getRESTTerminalRuleCall_0_1_0_0()); 
     }
 
     |    this_IDENT_DOT_33=RULE_IDENT_DOT    {
@@ -5134,7 +5134,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_IDENT_DOT_33, grammarAccess.getPropertyValueAccess().getIDENT_DOTTerminalRuleCall_1_0_1()); 
+    newLeafNode(this_IDENT_DOT_33, grammarAccess.getPropertyValueAccess().getIDENT_DOTTerminalRuleCall_0_1_0_1()); 
     }
 
     |    this_IDENT_34=RULE_IDENT    {
@@ -5142,7 +5142,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_IDENT_34, grammarAccess.getPropertyValueAccess().getIDENTTerminalRuleCall_1_0_2()); 
+    newLeafNode(this_IDENT_34, grammarAccess.getPropertyValueAccess().getIDENTTerminalRuleCall_0_1_0_2()); 
     }
 
     |    this_NUMBER_35=RULE_NUMBER    {
@@ -5150,7 +5150,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_NUMBER_35, grammarAccess.getPropertyValueAccess().getNUMBERTerminalRuleCall_1_0_3()); 
+    newLeafNode(this_NUMBER_35, grammarAccess.getPropertyValueAccess().getNUMBERTerminalRuleCall_0_1_0_3()); 
     }
 
     |    this_WS_36=RULE_WS    {
@@ -5158,7 +5158,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_WS_36, grammarAccess.getPropertyValueAccess().getWSTerminalRuleCall_1_0_4()); 
+    newLeafNode(this_WS_36, grammarAccess.getPropertyValueAccess().getWSTerminalRuleCall_0_1_0_4()); 
     }
 
     |    this_COLON_37=RULE_COLON    {
@@ -5166,7 +5166,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_COLON_37, grammarAccess.getPropertyValueAccess().getCOLONTerminalRuleCall_1_0_5()); 
+    newLeafNode(this_COLON_37, grammarAccess.getPropertyValueAccess().getCOLONTerminalRuleCall_0_1_0_5()); 
     }
 
     |    this_STRING_38=RULE_STRING    {
@@ -5174,7 +5174,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_STRING_38, grammarAccess.getPropertyValueAccess().getSTRINGTerminalRuleCall_1_0_6()); 
+    newLeafNode(this_STRING_38, grammarAccess.getPropertyValueAccess().getSTRINGTerminalRuleCall_0_1_0_6()); 
     }
 
     |    this_COMMA_39=RULE_COMMA    {
@@ -5182,7 +5182,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_COMMA_39, grammarAccess.getPropertyValueAccess().getCOMMATerminalRuleCall_1_0_7()); 
+    newLeafNode(this_COMMA_39, grammarAccess.getPropertyValueAccess().getCOMMATerminalRuleCall_0_1_0_7()); 
     }
 
     |    this_MINUS_40=RULE_MINUS    {
@@ -5190,7 +5190,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_MINUS_40, grammarAccess.getPropertyValueAccess().getMINUSTerminalRuleCall_1_0_8()); 
+    newLeafNode(this_MINUS_40, grammarAccess.getPropertyValueAccess().getMINUSTerminalRuleCall_0_1_0_8()); 
     }
 
     |    this_PLUS_41=RULE_PLUS    {
@@ -5198,7 +5198,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_PLUS_41, grammarAccess.getPropertyValueAccess().getPLUSTerminalRuleCall_1_0_9()); 
+    newLeafNode(this_PLUS_41, grammarAccess.getPropertyValueAccess().getPLUSTerminalRuleCall_0_1_0_9()); 
     }
 
     |    this_LPAREN_42=RULE_LPAREN    {
@@ -5206,7 +5206,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_LPAREN_42, grammarAccess.getPropertyValueAccess().getLPARENTerminalRuleCall_1_0_10()); 
+    newLeafNode(this_LPAREN_42, grammarAccess.getPropertyValueAccess().getLPARENTerminalRuleCall_0_1_0_10()); 
     }
 
     |    this_RPAREN_43=RULE_RPAREN    {
@@ -5214,7 +5214,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_RPAREN_43, grammarAccess.getPropertyValueAccess().getRPARENTerminalRuleCall_1_0_11()); 
+    newLeafNode(this_RPAREN_43, grammarAccess.getPropertyValueAccess().getRPARENTerminalRuleCall_0_1_0_11()); 
     }
 
     |    this_LBRACE_44=RULE_LBRACE    {
@@ -5222,7 +5222,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_LBRACE_44, grammarAccess.getPropertyValueAccess().getLBRACETerminalRuleCall_1_0_12()); 
+    newLeafNode(this_LBRACE_44, grammarAccess.getPropertyValueAccess().getLBRACETerminalRuleCall_0_1_0_12()); 
     }
 
     |    this_RBRACE_45=RULE_RBRACE    {
@@ -5230,7 +5230,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_RBRACE_45, grammarAccess.getPropertyValueAccess().getRBRACETerminalRuleCall_1_0_13()); 
+    newLeafNode(this_RBRACE_45, grammarAccess.getPropertyValueAccess().getRBRACETerminalRuleCall_0_1_0_13()); 
     }
 
     |    this_QUESTI_46=RULE_QUESTI    {
@@ -5238,7 +5238,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_QUESTI_46, grammarAccess.getPropertyValueAccess().getQUESTITerminalRuleCall_1_0_14()); 
+    newLeafNode(this_QUESTI_46, grammarAccess.getPropertyValueAccess().getQUESTITerminalRuleCall_0_1_0_14()); 
     }
 
     |    this_NOT_47=RULE_NOT    {
@@ -5246,7 +5246,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_NOT_47, grammarAccess.getPropertyValueAccess().getNOTTerminalRuleCall_1_0_15()); 
+    newLeafNode(this_NOT_47, grammarAccess.getPropertyValueAccess().getNOTTerminalRuleCall_0_1_0_15()); 
     }
 
     |    this_BAND_48=RULE_BAND    {
@@ -5254,7 +5254,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_BAND_48, grammarAccess.getPropertyValueAccess().getBANDTerminalRuleCall_1_0_16()); 
+    newLeafNode(this_BAND_48, grammarAccess.getPropertyValueAccess().getBANDTerminalRuleCall_0_1_0_16()); 
     }
 
     |    this_BOR_49=RULE_BOR    {
@@ -5262,7 +5262,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_BOR_49, grammarAccess.getPropertyValueAccess().getBORTerminalRuleCall_1_0_17()); 
+    newLeafNode(this_BOR_49, grammarAccess.getPropertyValueAccess().getBORTerminalRuleCall_0_1_0_17()); 
     }
 
     |    this_HASH_50=RULE_HASH    {
@@ -5270,7 +5270,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_HASH_50, grammarAccess.getPropertyValueAccess().getHASHTerminalRuleCall_1_0_18()); 
+    newLeafNode(this_HASH_50, grammarAccess.getPropertyValueAccess().getHASHTerminalRuleCall_0_1_0_18()); 
     }
 
     |    this_AT_51=RULE_AT    {
@@ -5278,7 +5278,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_AT_51, grammarAccess.getPropertyValueAccess().getATTerminalRuleCall_1_0_19()); 
+    newLeafNode(this_AT_51, grammarAccess.getPropertyValueAccess().getATTerminalRuleCall_0_1_0_19()); 
     }
 
     |    this_CARET_52=RULE_CARET    {
@@ -5286,7 +5286,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_CARET_52, grammarAccess.getPropertyValueAccess().getCARETTerminalRuleCall_1_0_20()); 
+    newLeafNode(this_CARET_52, grammarAccess.getPropertyValueAccess().getCARETTerminalRuleCall_0_1_0_20()); 
     }
 
     |    this_EQUALS_53=RULE_EQUALS    {
@@ -5294,7 +5294,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_EQUALS_53, grammarAccess.getPropertyValueAccess().getEQUALSTerminalRuleCall_1_0_21()); 
+    newLeafNode(this_EQUALS_53, grammarAccess.getPropertyValueAccess().getEQUALSTerminalRuleCall_0_1_0_21()); 
     }
 
     |    this_LESS_THAN_54=RULE_LESS_THAN    {
@@ -5302,7 +5302,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_LESS_THAN_54, grammarAccess.getPropertyValueAccess().getLESS_THANTerminalRuleCall_1_0_22()); 
+    newLeafNode(this_LESS_THAN_54, grammarAccess.getPropertyValueAccess().getLESS_THANTerminalRuleCall_0_1_0_22()); 
     }
 
     |    this_MORE_THAN_55=RULE_MORE_THAN    {
@@ -5310,7 +5310,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_MORE_THAN_55, grammarAccess.getPropertyValueAccess().getMORE_THANTerminalRuleCall_1_0_23()); 
+    newLeafNode(this_MORE_THAN_55, grammarAccess.getPropertyValueAccess().getMORE_THANTerminalRuleCall_0_1_0_23()); 
     }
 
     |    this_PERCENT_56=RULE_PERCENT    {
@@ -5318,7 +5318,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_PERCENT_56, grammarAccess.getPropertyValueAccess().getPERCENTTerminalRuleCall_1_0_24()); 
+    newLeafNode(this_PERCENT_56, grammarAccess.getPropertyValueAccess().getPERCENTTerminalRuleCall_0_1_0_24()); 
     }
 
     |    this_DOT_57=RULE_DOT    {
@@ -5326,7 +5326,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_DOT_57, grammarAccess.getPropertyValueAccess().getDOTTerminalRuleCall_1_0_25()); 
+    newLeafNode(this_DOT_57, grammarAccess.getPropertyValueAccess().getDOTTerminalRuleCall_0_1_0_25()); 
     }
 
     |    this_AND_58=RULE_AND    {
@@ -5334,7 +5334,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_AND_58, grammarAccess.getPropertyValueAccess().getANDTerminalRuleCall_1_0_26()); 
+    newLeafNode(this_AND_58, grammarAccess.getPropertyValueAccess().getANDTerminalRuleCall_0_1_0_26()); 
     }
 
     |    this_OR_59=RULE_OR    {
@@ -5342,7 +5342,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_OR_59, grammarAccess.getPropertyValueAccess().getORTerminalRuleCall_1_0_27()); 
+    newLeafNode(this_OR_59, grammarAccess.getPropertyValueAccess().getORTerminalRuleCall_0_1_0_27()); 
     }
 
     |    this_ESC_CHAR_60=RULE_ESC_CHAR    {
@@ -5350,7 +5350,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_ESC_CHAR_60, grammarAccess.getPropertyValueAccess().getESC_CHARTerminalRuleCall_1_0_28()); 
+    newLeafNode(this_ESC_CHAR_60, grammarAccess.getPropertyValueAccess().getESC_CHARTerminalRuleCall_0_1_0_28()); 
     }
 
     |    this_ON_OFF_61=RULE_ON_OFF    {
@@ -5358,7 +5358,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_ON_OFF_61, grammarAccess.getPropertyValueAccess().getON_OFFTerminalRuleCall_1_0_29()); 
+    newLeafNode(this_ON_OFF_61, grammarAccess.getPropertyValueAccess().getON_OFFTerminalRuleCall_0_1_0_29()); 
     }
 
     |    this_STATEMENT_TYPE_62=RULE_STATEMENT_TYPE    {
@@ -5366,7 +5366,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_STATEMENT_TYPE_62, grammarAccess.getPropertyValueAccess().getSTATEMENT_TYPETerminalRuleCall_1_0_30()); 
+    newLeafNode(this_STATEMENT_TYPE_62, grammarAccess.getPropertyValueAccess().getSTATEMENT_TYPETerminalRuleCall_0_1_0_30()); 
     }
 
     |    this_MAPPING_TYPE_63=RULE_MAPPING_TYPE    {
@@ -5374,7 +5374,7 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_MAPPING_TYPE_63, grammarAccess.getPropertyValueAccess().getMAPPING_TYPETerminalRuleCall_1_0_31()); 
+    newLeafNode(this_MAPPING_TYPE_63, grammarAccess.getPropertyValueAccess().getMAPPING_TYPETerminalRuleCall_0_1_0_31()); 
     }
 
     |    this_OPTION_TYPE_64=RULE_OPTION_TYPE    {
@@ -5382,9 +5382,17 @@ rulePropertyValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     { 
-    newLeafNode(this_OPTION_TYPE_64, grammarAccess.getPropertyValueAccess().getOPTION_TYPETerminalRuleCall_1_0_32()); 
+    newLeafNode(this_OPTION_TYPE_64, grammarAccess.getPropertyValueAccess().getOPTION_TYPETerminalRuleCall_0_1_0_32()); 
     }
 ))*)
+    |    this_STRING_VALUE_65=RULE_STRING_VALUE    {
+		$current.merge(this_STRING_VALUE_65);
+    }
+
+    { 
+    newLeafNode(this_STRING_VALUE_65, grammarAccess.getPropertyValueAccess().getSTRING_VALUETerminalRuleCall_1()); 
+    }
+)
     ;
 
 
@@ -13303,6 +13311,6 @@ RULE_DOT : '.';
 
 RULE_REST : ~(RULE_SEMICOLON);
 
-RULE_STRING_VALUE : '\'' ( options {greedy=false;} : . )*'\'';
+RULE_STRING_VALUE : '"' ( options {greedy=false;} : . )*'"';
 
 

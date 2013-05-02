@@ -85,7 +85,7 @@ import java.util.Map;
 def compile(EnumEntity e, ImportManager importManager, EnumProperty ea) '''
 public enum «e.name» «compileExtends(e)»«compileImplements(e)»{
 
-  «FOR f:e.features.filter(x| x.value!=null) SEPARATOR ", "»«f.name»(«getValue(f)»)«ENDFOR»;
+  «FOR f:e.features.filter(x| x.value!=null) SEPARATOR ", "»«f.name»(«f.value»)«ENDFOR»;
   «IF getSernum(e) != null»
   
   private static final long serialVersionUID = «getSernum(e)»L;
