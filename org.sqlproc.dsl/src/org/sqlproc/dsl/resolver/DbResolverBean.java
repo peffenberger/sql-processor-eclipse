@@ -1672,8 +1672,39 @@ public class DbResolverBean implements DbResolver {
                     Statement stmt = modelDatabaseValues.connection.createStatement();
                     result = stmt.executeQuery(sql);
                     ResultSetMetaData meta = result.getMetaData();
-                    dump(meta);
+                    // dump(meta);
+                    String constraintName = null;
                     while (result.next()) {
+                        String constraintType = result.getString(4);
+                        String tableName = result.getString(7);
+                        if ("CHECK".equalsIgnoreCase(constraintType) && table.equalsIgnoreCase(tableName)) {
+                            constraintName = result.getString(3);
+                            System.out.println(table + " constraintName " + constraintName);
+                            break;
+                        }
+                    }
+                    stmt.close();
+                    result.close();
+                    String checkClause = null;
+                    if (constraintName != null) {
+                        sql = "select * from INFORMATION_SCHEMA.CHECK_CONSTRAINTS";
+                        stmt = modelDatabaseValues.connection.createStatement();
+                        result = stmt.executeQuery(sql);
+                        meta = result.getMetaData();
+                        while (result.next()) {
+                            if (constraintName.equals(result.getString(3))) {
+                                checkClause = result.getString(4);
+                                System.out.println(table + " checkClause " + checkClause);
+                                break;
+                            }
+                        }
+                        stmt.close();
+                    }
+                    if (checkClause != null) {
+                        DbCheckConstraint check = new DbCheckConstraint();
+                        check.setConstraintName(constraintName);
+                        check.setCheckClause(checkClause);
+                        mapOfCheckConstraints.put(constraintName, check);
                     }
                 }
                 checkConstraintsForModel.addAll(mapOfCheckConstraints.values());
