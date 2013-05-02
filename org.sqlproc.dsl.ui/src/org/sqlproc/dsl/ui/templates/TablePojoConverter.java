@@ -452,48 +452,51 @@ public class TablePojoConverter {
             }
         }
 
-        // (PUBLIC.CONTACT.TYPE) IN ((0),(1))
-        // (PUBLIC.PERSON.GENDER) IN (('M'),('F'))
         for (int i = 0, l = dbCheckConstraints.size(); i < l; i++) {
             if (!enums.containsKey(table))
                 enums.put(table, new LinkedHashMap<String, List<EnumAttribute>>());
             Map<String, List<EnumAttribute>> map = enums.get(table);
             DbCheckConstraint check = dbCheckConstraints.get(i);
             String clause = check.getCheckClause();
-            Matcher matcher = HSQLDB_CHECK.matcher(clause);
-            if (matcher.matches()) {
-                String[] names = matcher.group(1).trim().split("\\.");
-                String[] values = matcher.group(2).trim().split(",");
-                String enumName = names[names.length - 2] + "_" + names[names.length - 1];
-                List<EnumAttribute> attrs = new ArrayList<EnumAttribute>();
-                map.put(enumName, attrs);
-                EnumAttribute pattr = new EnumAttribute();
-                pattr.setName("VALUE");
-                String className = null;
-                attrs.add(pattr);
-                for (int j = 0; j < values.length; j++) {
-                    String val = values[j].trim();
-                    if (val.startsWith("("))
-                        val = val.substring(1);
-                    if (val.endsWith(")"))
-                        val = val.substring(0, val.length() - 1);
-                    EnumAttribute attr = new EnumAttribute();
-                    String name = null;
-                    if (val.startsWith("'") || val.startsWith("\"")) {
-                        className = String.class.getName();
-                        val = val.substring(1);
-                        val = val.substring(0, val.length() - 1);
-                        name = val.toUpperCase();
-                        attr.setStrValue(val);
-                    } else {
-                        className = Integer.class.getName();
-                        name = "I" + val;
-                        attr.setIntValue(Integer.parseInt(val));
+            if (dbType == DbType.HSQLDB) {
+                // (PUBLIC.CONTACT.TYPE) IN ((0),(1))
+                // (PUBLIC.PERSON.GENDER) IN (('M'),('F'))
+                Matcher matcher = HSQLDB_CHECK.matcher(clause);
+                if (matcher.matches()) {
+                    String[] names = matcher.group(1).trim().split("\\.");
+                    String[] values = matcher.group(2).trim().split(",");
+                    String enumName = names[names.length - 2] + "_" + names[names.length - 1];
+                    List<EnumAttribute> attrs = new ArrayList<EnumAttribute>();
+                    map.put(enumName, attrs);
+                    EnumAttribute pattr = new EnumAttribute();
+                    pattr.setName("VALUE");
+                    String className = null;
+                    attrs.add(pattr);
+                    for (int j = 0; j < values.length; j++) {
+                        String val = values[j].trim();
+                        if (val.startsWith("("))
+                            val = val.substring(1);
+                        if (val.endsWith(")"))
+                            val = val.substring(0, val.length() - 1);
+                        EnumAttribute attr = new EnumAttribute();
+                        String name = null;
+                        if (val.startsWith("'") || val.startsWith("\"")) {
+                            className = String.class.getName();
+                            val = val.substring(1);
+                            val = val.substring(0, val.length() - 1);
+                            name = val.toUpperCase();
+                            attr.setStrValue(val);
+                        } else {
+                            className = Integer.class.getName();
+                            name = "I" + val;
+                            attr.setIntValue(Integer.parseInt(val));
+                        }
+                        attr.setName(name);
+                        attr.setClassName(className);
+                        attrs.add(attr);
                     }
-                    attr.setName(name);
-                    attr.setClassName(className);
+                    pattr.setClassName(className);
                 }
-                pattr.setClassName(className);
             }
         }
     }
