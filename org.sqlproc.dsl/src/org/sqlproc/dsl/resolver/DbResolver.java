@@ -127,4 +127,6 @@ public interface DbResolver {
     List<DbCheckConstraint> getDbCheckConstraints(EObject model, String table);
 
     List<String> getCheckConstraints(EObject model);
+
+    List<String> getCheckColumns(EObject model, String table);
 }

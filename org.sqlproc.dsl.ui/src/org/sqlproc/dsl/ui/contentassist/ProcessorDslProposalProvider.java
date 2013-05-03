@@ -696,6 +696,11 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
                 ICompletionProposal completionProposal = createCompletionProposal(proposal + "->", context);
                 acceptor.accept(completionProposal);
             }
+            for (String column : dbResolver.getCheckColumns(model, prop.getDbTable())) {
+                String proposal = getValueConverter().toString(column, "IDENT");
+                ICompletionProposal completionProposal = createCompletionProposal(proposal + "->", context);
+                acceptor.accept(completionProposal);
+            }
         }
     }
 

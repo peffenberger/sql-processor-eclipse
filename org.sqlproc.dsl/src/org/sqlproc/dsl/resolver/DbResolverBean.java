@@ -93,9 +93,11 @@ public class DbResolverBean implements DbResolver {
             .synchronizedMap(new HashMap<String, List<String>>());
     private final Map<String, List<String>> functions = Collections
             .synchronizedMap(new HashMap<String, List<String>>());
-    private final Map<String, List<String>> checksConstraints = Collections
+    private final Map<String, List<String>> checkConstraints = Collections
             .synchronizedMap(new HashMap<String, List<String>>());
     private final Map<String, Map<String, List<String>>> columns = Collections
+            .synchronizedMap(new HashMap<String, Map<String, List<String>>>());
+    private final Map<String, Map<String, List<String>>> checkColumns = Collections
             .synchronizedMap(new HashMap<String, Map<String, List<String>>>());
     private final Map<String, Map<String, List<String>>> procColumns = Collections
             .synchronizedMap(new HashMap<String, Map<String, List<String>>>());
@@ -1646,11 +1648,11 @@ public class DbResolverBean implements DbResolver {
         DatabaseDirectives modelDatabaseValues = getConnection(model);
         if (modelDatabaseValues == null)
             return Collections.emptyList();
-        List<String> checksConstraintsForModel = checksConstraints.get(modelDatabaseValues.dir);
-        if (checksConstraintsForModel != null)
-            return checksConstraintsForModel;
-        checksConstraintsForModel = Collections.synchronizedList(new ArrayList<String>());
-        checksConstraints.put(modelDatabaseValues.dir, checksConstraintsForModel);
+        List<String> checkConstraintsForModel = checkConstraints.get(modelDatabaseValues.dir);
+        if (checkConstraintsForModel != null)
+            return checkConstraintsForModel;
+        checkConstraintsForModel = Collections.synchronizedList(new ArrayList<String>());
+        checkConstraints.put(modelDatabaseValues.dir, checkConstraintsForModel);
         if (modelDatabaseValues.connection != null) {
             try {
                 DbType dbType = getDbType(model);
@@ -1661,13 +1663,64 @@ public class DbResolverBean implements DbResolver {
                     mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
                 }
                 for (DbCheckConstraint check : mapOfCheckConstraints.values())
-                    checksConstraintsForModel.add(check.getEnumName());
+                    checkConstraintsForModel.add(check.getEnumName());
             } catch (SQLException e) {
                 error("getDbCheckConstraints error " + e, e);
             }
         }
-        trace("<<<getCheckConstraints", checksConstraintsForModel);
-        return checksConstraintsForModel;
+        trace("<<<getCheckConstraints", checkConstraintsForModel);
+        return checkConstraintsForModel;
+    }
+
+    @Override
+    public List<String> getCheckColumns(EObject model, String table) {
+        trace(">>>getCheckColumns " + table);
+        if (table == null)
+            return Collections.emptyList();
+        DatabaseDirectives modelDatabaseValues = getConnection(model);
+        if (modelDatabaseValues == null)
+            return Collections.emptyList();
+        boolean doInit = false;
+        Map<String, List<String>> allCheckColumnsForModel = checkColumns.get(modelDatabaseValues.dir);
+        if (allCheckColumnsForModel == null) {
+            allCheckColumnsForModel = Collections.synchronizedMap(new HashMap<String, List<String>>());
+            checkColumns.put(modelDatabaseValues.dir, allCheckColumnsForModel);
+            doInit = true;
+        }
+        List<String> checkColumnsForModel = allCheckColumnsForModel.get(table);
+        if (checkColumnsForModel == null) {
+            checkColumnsForModel = Collections.synchronizedList(new ArrayList<String>());
+            allCheckColumnsForModel.put(table, checkColumnsForModel);
+            doInit = true;
+        }
+        if (!doInit)
+            return checkColumnsForModel;
+        if (modelDatabaseValues.connection != null) {
+            try {
+                DbType dbType = getDbType(model);
+                Map<String, DbCheckConstraint> mapOfCheckConstraints;
+                if (dbType == DbType.HSQLDB) {
+                    mapOfCheckConstraints = getHsqldbCheckConstraints(modelDatabaseValues, null);
+                } else {
+                    mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
+                }
+                for (DbCheckConstraint check : mapOfCheckConstraints.values()) {
+                    if (table.equals(check.getEnumName())) {
+                        for (String val : check.getValues()) {
+                            if (Character.isDigit(val.charAt(0)))
+                                checkColumnsForModel.add("I" + val);
+                            else
+                                checkColumnsForModel.add(val);
+                        }
+                        break;
+                    }
+                }
+            } catch (SQLException e) {
+                error("getDbCheckConstraints error " + e, e);
+            }
+        }
+        trace("<<<getCheckColumns", checkColumnsForModel);
+        return checkColumnsForModel;
     }
 
     @Override
