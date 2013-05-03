@@ -61,8 +61,9 @@ public class DbCheckConstraint {
         this.column = column;
     }
 
-    static final Pattern HSQLDB_CHECK = Pattern
-            .compile("\\(([^\\)]*)\\)\\s*IN\\s*\\(\\s*\\('?(.*?)'?\\)\\s*,(?:s*\\('?(.*?)'?\\)\\s*)*\\)");
+    static final Pattern HSQLDB_CHECK = Pattern.compile("(?i)\\(([^\\)]*)\\)\\s*IN\\s*\\(\\(('?.*?'?,'?.*?'?)\\)\\)*");
+    static final Pattern ORACLE_CHECK = Pattern
+            .compile("(?i)(.*\\s*IS NULL OR\\s*\\()?([^\\)]*)\\s*IN\\s*\\(('?.*?'?,'?.*?'?)\\)\\)*");
 
     public static DbCheckConstraint parseHsqldb(String name, String clause) {
         // (PUBLIC.CONTACT.TYPE) IN ((0),(1))
@@ -73,9 +74,39 @@ public class DbCheckConstraint {
             String relTable = names[names.length - 2];
             String relCol = names[names.length - 1];
             String enumName = relTable + "_" + relCol;
+            String[] constraintValues = matcher.group(2).trim().split(",");
             List<String> values = new ArrayList<String>();
-            for (int j = 2; j <= matcher.groupCount(); j++) {
-                values.add(matcher.group(j));
+            for (int j = 0; j < constraintValues.length; j++) {
+                String value = constraintValues[j].trim();
+                value = value.replaceAll("'|\\(|\\)", "");
+                values.add(value);
+            }
+            DbCheckConstraint dbCheckConstraint = new DbCheckConstraint();
+            dbCheckConstraint.setConstraintName(name);
+            dbCheckConstraint.setCheckClause(clause);
+            dbCheckConstraint.setEnumName(enumName);
+            dbCheckConstraint.setValues(values);
+            dbCheckConstraint.setTable(relTable);
+            dbCheckConstraint.setColumn(relCol);
+            return dbCheckConstraint;
+        }
+        return null;
+    }
+
+    public static DbCheckConstraint parseOracle(String name, String clause, String relTable) {
+        // GENDER IN ('M','F')
+        // TYPE IN (0, 1)
+        // TABLE_NAME is null or (TABLE_NAME in ('O','P',''))
+        Matcher matcher = ORACLE_CHECK.matcher(clause);
+        if (matcher.matches()) {
+            String relCol = matcher.group(2).trim();
+            String enumName = relTable + "_" + relCol;
+            String[] constraintValues = matcher.group(3).trim().split(",");
+            List<String> values = new ArrayList<String>();
+            for (int j = 0; j < constraintValues.length; j++) {
+                String value = constraintValues[j].trim();
+                value = value.replaceAll("'", "");
+                values.add(value);
             }
             DbCheckConstraint dbCheckConstraint = new DbCheckConstraint();
             dbCheckConstraint.setConstraintName(name);

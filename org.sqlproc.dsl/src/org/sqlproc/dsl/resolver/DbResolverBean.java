@@ -1659,6 +1659,8 @@ public class DbResolverBean implements DbResolver {
                 Map<String, DbCheckConstraint> mapOfCheckConstraints;
                 if (dbType == DbType.HSQLDB) {
                     mapOfCheckConstraints = getHsqldbCheckConstraints(modelDatabaseValues, null);
+                } else if (dbType == DbType.ORACLE) {
+                    mapOfCheckConstraints = getOracleCheckConstraints(modelDatabaseValues, null);
                 } else {
                     mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
                 }
@@ -1701,6 +1703,8 @@ public class DbResolverBean implements DbResolver {
                 Map<String, DbCheckConstraint> mapOfCheckConstraints;
                 if (dbType == DbType.HSQLDB) {
                     mapOfCheckConstraints = getHsqldbCheckConstraints(modelDatabaseValues, null);
+                } else if (dbType == DbType.ORACLE) {
+                    mapOfCheckConstraints = getOracleCheckConstraints(modelDatabaseValues, null);
                 } else {
                     mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
                 }
@@ -1709,8 +1713,9 @@ public class DbResolverBean implements DbResolver {
                         for (String val : check.getValues()) {
                             if (Character.isDigit(val.charAt(0)))
                                 checkColumnsForModel.add("I" + val);
-                            else
-                                checkColumnsForModel.add(val);
+                            else if (!val.isEmpty() && Character.isDigit(val.charAt(0)))
+                                checkColumnsForModel.add("S" + val);
+                            checkColumnsForModel.add(val);
                         }
                         break;
                     }
@@ -1753,6 +1758,8 @@ public class DbResolverBean implements DbResolver {
                 Map<String, DbCheckConstraint> mapOfCheckConstraints;
                 if (dbType == DbType.HSQLDB) {
                     mapOfCheckConstraints = getHsqldbCheckConstraints(modelDatabaseValues, table);
+                } else if (dbType == DbType.ORACLE) {
+                    mapOfCheckConstraints = getOracleCheckConstraints(modelDatabaseValues, table);
                 } else {
                     mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
                 }
@@ -1763,6 +1770,43 @@ public class DbResolverBean implements DbResolver {
         }
         trace("<<<getDbCheckConstraints", checkConstraintsForModel);
         return checkConstraintsForModel;
+    }
+
+    private Map<String, DbCheckConstraint> getOracleCheckConstraints(DatabaseDirectives modelDatabaseValues,
+            String table) throws SQLException {
+        Map<String, DbCheckConstraint> mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
+        ResultSet result = null;
+        try {
+            String sql = "select * from USER_CONSTRAINTS";
+            Statement stmt = modelDatabaseValues.connection.createStatement();
+            result = stmt.executeQuery(sql);
+            ResultSetMetaData meta = result.getMetaData();
+            // dump(meta);
+            while (result.next()) {
+                String constraintType = result.getString(3);
+                String tableName = result.getString(4);
+                if ("C".equalsIgnoreCase(constraintType) && (table == null || table.equalsIgnoreCase(tableName))) {
+                    String constraintName = result.getString(2);
+                    String checkClause = result.getString(5);
+
+                    System.out.println(table + " constraintName " + constraintName);
+                    System.out.println(table + " checkClause " + checkClause);
+
+                    DbCheckConstraint check = DbCheckConstraint.parseOracle(constraintName, checkClause, tableName);
+                    if (check != null)
+                        mapOfCheckConstraints.put(constraintName, check);
+                }
+            }
+            stmt.close();
+        } finally {
+            try {
+                if (result != null)
+                    result.close();
+            } catch (SQLException e) {
+                error("getDbIndexes error " + e, e);
+            }
+        }
+        return mapOfCheckConstraints;
     }
 
     private Map<String, DbCheckConstraint> getHsqldbCheckConstraints(DatabaseDirectives modelDatabaseValues,
