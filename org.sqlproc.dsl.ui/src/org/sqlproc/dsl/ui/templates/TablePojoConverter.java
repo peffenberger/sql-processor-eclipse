@@ -105,7 +105,7 @@ public class TablePojoConverter {
     protected Map<String, List<Map<PojoAttribute, Boolean>>> indexes = new TreeMap<String, List<Map<PojoAttribute, Boolean>>>();
     protected Set<String> dbSequences = new TreeSet<String>();
     protected DbType dbType = null;
-    protected Map<String, Map<String, List<EnumAttribute>>> enums = new TreeMap<String, Map<String, List<EnumAttribute>>>();
+    protected Map<String, List<EnumAttribute>> enums = new TreeMap<String, List<EnumAttribute>>();
 
     protected Map<String, String> metaFunctionsResult = new HashMap<String, String>();
 
@@ -453,9 +453,6 @@ public class TablePojoConverter {
         }
 
         for (int i = 0, l = dbCheckConstraints.size(); i < l; i++) {
-            if (!enums.containsKey(table))
-                enums.put(table, new LinkedHashMap<String, List<EnumAttribute>>());
-            Map<String, List<EnumAttribute>> map = enums.get(table);
             DbCheckConstraint check = dbCheckConstraints.get(i);
             String clause = check.getCheckClause();
             if (dbType == DbType.HSQLDB) {
@@ -464,52 +461,44 @@ public class TablePojoConverter {
                 Matcher matcher = HSQLDB_CHECK.matcher(clause);
                 if (matcher.matches()) {
                     String[] names = matcher.group(1).trim().split("\\.");
-                    String[] values = matcher.group(2).trim().split(",");
                     String relTable = names[names.length - 2];
                     String relCol = names[names.length - 1];
                     String enumName = relTable + "_" + relCol;
-                    List<EnumAttribute> attrs = new ArrayList<EnumAttribute>();
-                    map.put(enumName, attrs);
-                    EnumAttribute pattr = new EnumAttribute();
-                    pattr.setName("VALUE");
-                    String className = null;
-                    attrs.add(pattr);
-                    for (int j = 0; j < values.length; j++) {
-                        String val = values[j].trim();
-                        if (val.startsWith("("))
-                            val = val.substring(1);
-                        if (val.endsWith(")"))
-                            val = val.substring(0, val.length() - 1);
-                        EnumAttribute attr = new EnumAttribute();
-                        String name = null;
-                        if (val.startsWith("'") || val.startsWith("\"")) {
-                            className = String.class.getName();
-                            val = val.substring(1);
-                            val = val.substring(0, val.length() - 1);
-                            name = val.toUpperCase();
-                            attr.setStrValue(val);
-                        } else {
-                            className = Integer.class.getName();
-                            name = "I" + val;
-                            attr.setIntValue(Integer.parseInt(val));
-                        }
-                        attr.setName(name);
-                        attr.setClassName(className);
-                        attrs.add(attr);
-                    }
-                    pattr.setClassName(className);
                     PojoAttribute attribute = (pojos.containsKey(relTable) && pojos.get(relTable).containsKey(relCol)) ? pojos
                             .get(relTable).get(relCol) : null;
-                    if (attribute != null) {
-                        attribute.setDependencyClassName(tableToCamelCase(enumName));
-                        // attribute.setClassName(null);
+                    if (attribute == null) {
+                        System.out.println("For the constraint " + enumName + " there's not table or column");
+                        continue;
+                    }
+                    attribute.setDependencyClassName(tableToCamelCase(enumName));
+
+                    List<EnumAttribute> attrs = new ArrayList<EnumAttribute>();
+                    enums.put(enumName, attrs);
+                    EnumAttribute pattr = new EnumAttribute();
+                    pattr.setName("VALUE");
+                    pattr.setClassName(attribute.getClassName());
+                    attrs.add(pattr);
+
+                    for (int j = 2; j <= matcher.groupCount(); j++) {
+                        String val = matcher.group(j);
+                        EnumAttribute attr = new EnumAttribute();
+                        attr.setClassName(attribute.getClassName());
+                        if (attribute.isString()) {
+                            attr.setStrValue(val);
+                            attr.setName(val);
+                        } else {
+                            attr.setIntValue(val);
+                            attr.setName("I" + val);
+                        }
+                        attrs.add(attr);
                     }
                 }
             }
         }
     }
 
-    static final Pattern HSQLDB_CHECK = Pattern.compile("\\(([^\\)]*)\\)\\s*IN\\s*\\((.*)\\)");
+    static final Pattern HSQLDB_CHECK = Pattern
+            .compile("\\(([^\\)]*)\\)\\s*IN\\s*\\(\\s*\\('?(.*?)'?\\)\\s*,(?:s*\\('?(.*?)'?\\)\\s*)*\\)");
 
     public void joinTables() {
         for (String table : joinTables.keySet()) {
@@ -816,54 +805,51 @@ public class TablePojoConverter {
             if (oneMoreLine) {
                 buffer.append("\n");
             }
-            for (String pojo0 : enums.keySet()) {
-                for (Entry<String, List<EnumAttribute>> pentry : enums.get(pojo0).entrySet()) {
-                    String pojo = pentry.getKey();
-                    // System.out.println("QQQQQ " + pojo);
-                    if (!onlyTables.isEmpty() && !onlyTables.contains(pojo))
-                        continue;
-                    if (ignoreTables.contains(pojo))
-                        continue;
-                    String pojoName = tableNames.get(pojo);
-                    if (pojoName == null)
-                        pojoName = pojo;
-                    if (finalEntities.contains(tableToCamelCase(pojoName)))
-                        continue;
-                    buffer.append("\n  ");
-                    if (makeItFinal)
-                        buffer.append("final ");
-                    buffer.append("enum ");
-                    buffer.append(tableToCamelCase(pojoName));
-                    if (pojoExtends.containsKey(pojo))
-                        buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
-                    if (pojoDiscriminators.containsKey(pojo))
-                        buffer.append(" discriminator ").append(pojoDiscriminators.get(pojo));
-                    if (isSerializable)
-                        buffer.append(" serializable 1 ");
-                    buffer.append(" {");
-                    for (EnumAttribute attribute : pentry.getValue()) {
-                        // System.out.println("  RRR " + pentry.getKey());
-                        String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(pentry.getKey())
-                                : null;
-                        if (name == null)
-                            name = attribute.getName();
-                        if (attribute.getIntValue() == null && attribute.getStrValue() == null)
-                            name = columnToCamelCase(name);
-                        buffer.append("\n    ").append(name).append(' ');
+            for (Entry<String, List<EnumAttribute>> pentry : enums.entrySet()) {
+                String pojo = pentry.getKey();
+                // System.out.println("QQQQQ " + pojo);
+                if (!onlyTables.isEmpty() && !onlyTables.contains(pojo))
+                    continue;
+                if (ignoreTables.contains(pojo))
+                    continue;
+                String pojoName = tableNames.get(pojo);
+                if (pojoName == null)
+                    pojoName = pojo;
+                if (finalEntities.contains(tableToCamelCase(pojoName)))
+                    continue;
+                buffer.append("\n  ");
+                if (makeItFinal)
+                    buffer.append("final ");
+                buffer.append("enum ");
+                buffer.append(tableToCamelCase(pojoName));
+                if (pojoExtends.containsKey(pojo))
+                    buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
+                if (pojoDiscriminators.containsKey(pojo))
+                    buffer.append(" discriminator ").append(pojoDiscriminators.get(pojo));
+                if (isSerializable)
+                    buffer.append(" serializable 1 ");
+                buffer.append(" {");
+                for (EnumAttribute attribute : pentry.getValue()) {
+                    // System.out.println("  RRR " + pentry.getKey());
+                    String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(pentry.getKey()) : null;
+                    if (name == null)
+                        name = attribute.getName();
+                    if (attribute.getIntValue() == null && attribute.getStrValue() == null)
+                        name = columnToCamelCase(name);
+                    buffer.append("\n    ").append(name).append(' ');
 
-                        if (attribute.getIntValue() == null && attribute.getStrValue() == null) {
-                            buffer.append(": ").append(attribute.getClassName());
-                        } else if (attribute.getIntValue() != null) {
-                            buffer.append("::: ").append(attribute.getIntValue());
-                        } else if (attribute.getStrValue() != null) {
-                            buffer.append("::: \"").append(attribute.getStrValue()).append("\"");
-                        }
+                    if (attribute.getIntValue() == null && attribute.getStrValue() == null) {
+                        buffer.append(": ").append(attribute.getClassName());
+                    } else if (attribute.getIntValue() != null) {
+                        buffer.append("::: ").append(attribute.getIntValue());
+                    } else if (attribute.getStrValue() != null) {
+                        buffer.append("::: \"").append(attribute.getStrValue()).append("\"");
                     }
-                    if (pojoExtends.containsKey(pojo)) {
-                        getParentAttrs(pojoExtends.get(pojo), null, null);
-                    }
-                    buffer.append("\n  }\n");
                 }
+                if (pojoExtends.containsKey(pojo)) {
+                    getParentAttrs(pojoExtends.get(pojo), null, null);
+                }
+                buffer.append("\n  }\n");
             }
             for (String pojo : pojos.keySet()) {
                 // System.out.println("QQQQQ " + pojo);

@@ -4,7 +4,7 @@ public class EnumAttribute {
 
     private String name;
     private String className;
-    private Integer intValue;
+    private String intValue;
     private String strValue;
 
     public String getName() {
@@ -23,11 +23,11 @@ public class EnumAttribute {
         this.className = className;
     }
 
-    public Integer getIntValue() {
+    public String getIntValue() {
         return intValue;
     }
 
-    public void setIntValue(Integer intValue) {
+    public void setIntValue(String intValue) {
         this.intValue = intValue;
     }
 

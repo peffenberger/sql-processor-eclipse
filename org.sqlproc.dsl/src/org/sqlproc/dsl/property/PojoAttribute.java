@@ -267,6 +267,14 @@ public class PojoAttribute {
         this.sqlType = sqlType;
     }
 
+    public boolean isString() {
+        if (className == null)
+            return false;
+        if (className.indexOf("String") >= 0)
+            return true;
+        return false;
+    }
+
     @Override
     public String toString() {
         return "PojoAttribute [dbName=" + dbName + ", primitive=" + primitive + ", required=" + required
