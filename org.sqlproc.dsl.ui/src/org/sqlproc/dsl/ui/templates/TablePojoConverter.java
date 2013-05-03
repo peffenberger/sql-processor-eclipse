@@ -830,8 +830,9 @@ public class TablePojoConverter {
                     buffer.append(" serializable 1 ");
                 buffer.append(" {");
                 for (EnumAttribute attribute : pentry.getValue()) {
-                    // System.out.println("  RRR " + pentry.getKey());
-                    String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(pentry.getKey()) : null;
+                    // System.out.println("  RRR " + attribute.getName());
+                    String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(attribute.getName())
+                            : null;
                     if (name == null)
                         name = attribute.getName();
                     if (attribute.getIntValue() == null && attribute.getStrValue() == null)
