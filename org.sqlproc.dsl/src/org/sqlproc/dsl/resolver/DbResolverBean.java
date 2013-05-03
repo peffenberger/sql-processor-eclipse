@@ -1646,33 +1646,28 @@ public class DbResolverBean implements DbResolver {
         DatabaseDirectives modelDatabaseValues = getConnection(model);
         if (modelDatabaseValues == null)
             return Collections.emptyList();
-        List<String> tablesForModel = tables.get(modelDatabaseValues.dir);
-        if (tablesForModel != null)
-            return tablesForModel;
-        tablesForModel = Collections.synchronizedList(new ArrayList<String>());
-        tables.put(modelDatabaseValues.dir, tablesForModel);
+        List<String> checksConstraintsForModel = checksConstraints.get(modelDatabaseValues.dir);
+        if (checksConstraintsForModel != null)
+            return checksConstraintsForModel;
+        checksConstraintsForModel = Collections.synchronizedList(new ArrayList<String>());
+        checksConstraints.put(modelDatabaseValues.dir, checksConstraintsForModel);
         if (modelDatabaseValues.connection != null) {
-            ResultSet result = null;
             try {
-                DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
-                result = meta.getTables(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, null,
-                        new String[] { "TABLE", "VIEW" });
-                while (result.next()) {
-                    tablesForModel.add(result.getString("TABLE_NAME"));
+                DbType dbType = getDbType(model);
+                Map<String, DbCheckConstraint> mapOfCheckConstraints;
+                if (dbType == DbType.HSQLDB) {
+                    mapOfCheckConstraints = getHsqldbCheckConstraints(modelDatabaseValues, null);
+                } else {
+                    mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
                 }
+                for (DbCheckConstraint check : mapOfCheckConstraints.values())
+                    checksConstraintsForModel.add(check.getEnumName());
             } catch (SQLException e) {
-                error("getCheckConstraints error " + e, e);
-            } finally {
-                try {
-                    if (result != null)
-                        result.close();
-                } catch (SQLException e) {
-                    error("getCheckConstraints error " + e, e);
-                }
+                error("getDbCheckConstraints error " + e, e);
             }
         }
-        trace("<<<getCheckConstraints", tablesForModel);
-        return tablesForModel;
+        trace("<<<getCheckConstraints", checksConstraintsForModel);
+        return checksConstraintsForModel;
     }
 
     @Override
@@ -1731,9 +1726,9 @@ public class DbResolverBean implements DbResolver {
             while (result.next()) {
                 String constraintType = result.getString(4);
                 String tableName = result.getString(7);
-                if ("CHECK".equalsIgnoreCase(constraintType) && table.equalsIgnoreCase(tableName)) {
+                if ("CHECK".equalsIgnoreCase(constraintType) && (table == null || table.equalsIgnoreCase(tableName))) {
                     String constraintName = result.getString(3);
-                    System.out.println(table + " constraintName " + constraintName);
+                    System.out.println(((table != null) ? table : "null") + " constraintName " + constraintName);
                     constraintsNames.add(constraintName);
                     continue;
                 }
@@ -1750,7 +1745,7 @@ public class DbResolverBean implements DbResolver {
                     String constraintName = result.getString(3);
                     if (constraintsNames.contains(constraintName)) {
                         checkClause = result.getString(4);
-                        System.out.println(table + " checkClause " + checkClause);
+                        System.out.println(((table != null) ? table : "null") + " checkClause " + checkClause);
                         DbCheckConstraint check = DbCheckConstraint.parseHsqldb(constraintName, checkClause);
                         if (check != null)
                             mapOfCheckConstraints.put(constraintName, check);
