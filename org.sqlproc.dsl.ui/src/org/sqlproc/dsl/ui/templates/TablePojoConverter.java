@@ -18,8 +18,6 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.apache.log4j.Level;
 import org.eclipse.xtext.common.types.JvmType;
@@ -454,51 +452,35 @@ public class TablePojoConverter {
 
         for (int i = 0, l = dbCheckConstraints.size(); i < l; i++) {
             DbCheckConstraint check = dbCheckConstraints.get(i);
-            String clause = check.getCheckClause();
-            if (dbType == DbType.HSQLDB) {
-                // (PUBLIC.CONTACT.TYPE) IN ((0),(1))
-                // (PUBLIC.PERSON.GENDER) IN (('M'),('F'))
-                Matcher matcher = HSQLDB_CHECK.matcher(clause);
-                if (matcher.matches()) {
-                    String[] names = matcher.group(1).trim().split("\\.");
-                    String relTable = names[names.length - 2];
-                    String relCol = names[names.length - 1];
-                    String enumName = relTable + "_" + relCol;
-                    PojoAttribute attribute = (pojos.containsKey(relTable) && pojos.get(relTable).containsKey(relCol)) ? pojos
-                            .get(relTable).get(relCol) : null;
-                    if (attribute == null) {
-                        System.out.println("For the constraint " + enumName + " there's not table or column");
-                        continue;
-                    }
-                    attribute.setDependencyClassName(tableToCamelCase(enumName));
+            PojoAttribute attribute = (pojos.containsKey(check.getTable()) && pojos.get(check.getTable()).containsKey(
+                    check.getColumn())) ? pojos.get(check.getTable()).get(check.getColumn()) : null;
+            if (attribute == null) {
+                System.out.println("For the constraint " + check.getEnumName() + " there's no table or column");
+                continue;
+            }
+            attribute.setDependencyClassName(tableToCamelCase(check.getEnumName()));
 
-                    List<EnumAttribute> attrs = new ArrayList<EnumAttribute>();
-                    enums.put(enumName, attrs);
-                    EnumAttribute pattr = new EnumAttribute();
-                    pattr.setName("VALUE");
-                    pattr.setClassName(attribute.getClassName());
-                    attrs.add(pattr);
+            List<EnumAttribute> attrs = new ArrayList<EnumAttribute>();
+            enums.put(check.getEnumName(), attrs);
+            EnumAttribute pattr = new EnumAttribute();
+            pattr.setName("VALUE");
+            pattr.setClassName(attribute.getClassName());
+            attrs.add(pattr);
 
-                    for (int j = 2; j <= matcher.groupCount(); j++) {
-                        String val = matcher.group(j);
-                        EnumAttribute attr = new EnumAttribute();
-                        attr.setClassName(attribute.getClassName());
-                        if (attribute.isString()) {
-                            attr.setStrValue(val);
-                            attr.setName(val);
-                        } else {
-                            attr.setIntValue(val);
-                            attr.setName("I" + val);
-                        }
-                        attrs.add(attr);
-                    }
+            for (String val : check.getValues()) {
+                EnumAttribute attr = new EnumAttribute();
+                attr.setClassName(attribute.getClassName());
+                if (attribute.isString()) {
+                    attr.setStrValue(val);
+                    attr.setName(val);
+                } else {
+                    attr.setIntValue(val);
+                    attr.setName("I" + val);
                 }
+                attrs.add(attr);
             }
         }
     }
-
-    static final Pattern HSQLDB_CHECK = Pattern
-            .compile("\\(([^\\)]*)\\)\\s*IN\\s*\\(\\s*\\('?(.*?)'?\\)\\s*,(?:s*\\('?(.*?)'?\\)\\s*)*\\)");
 
     public void joinTables() {
         for (String table : joinTables.keySet()) {
