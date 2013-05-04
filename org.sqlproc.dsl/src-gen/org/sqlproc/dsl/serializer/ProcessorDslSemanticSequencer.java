@@ -1310,7 +1310,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (superType=[PojoEntity|IDENT] | discriminator=IDENT | discriminator=NUMBER | sernum=NUMBER)
+	 *     (superType=[PojoEntity|IDENT] | discriminator=IDENT | discriminator=NUMBER | (operators='operators' operatorsSuffix=IDENT?) | sernum=NUMBER)
 	 */
 	protected void sequence_PojoEntityModifier2(EObject context, PojoEntityModifier2 semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1450,6 +1450,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='table-many-to-many' dbTable=IDENT many2s+=ManyToManyAssignement+) | 
 	 *         (name='inherit-discriminator' dbTable=IDENT dbColumn=IDENT inheritance+=InheritanceAssignement+) | 
 	 *         (name='generate-methods' methods+=IDENT+) | 
+	 *         (name='generate-operators' operatorsSuffix=IDENT?) | 
 	 *         (name='implements-interfaces' toImplements+=[JvmType|QualifiedName]+) | 
 	 *         (name='extends-class' toExtends=[JvmType|QualifiedName]) | 
 	 *         name='generate-wrappers' | 

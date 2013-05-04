@@ -84,6 +84,7 @@ PojogenProperty:
 	|name='table-many-to-many' WS+ dbTable=IDENT (WS+ many2s+=ManyToManyAssignement)+
 	|name='inherit-discriminator' WS+ dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+
 	|name='generate-methods' (WS+ methods+=IDENT)+
+	|name='generate-operators' (operatorsSuffix=IDENT)?
 	|name='implements-interfaces' (WS+ toImplements+=[jvmTypes::JvmType|QualifiedName])+
 	|name='extends-class' WS+ toExtends=[jvmTypes::JvmType|QualifiedName]
 	|name='generate-wrappers'
@@ -353,7 +354,7 @@ ImplPackage hidden(ML_COMMENT, SL_COMMENT, WS):
 
 PojoEntityModifier1: ((final?='final') | (abstract?='abstract'));
 
-PojoEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('discriminator' discriminator=(IDENT|NUMBER)) | ('serializable' sernum=NUMBER));
+PojoEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('discriminator' discriminator=(IDENT|NUMBER)) | (operators='operators' (operatorsSuffix=IDENT)?)| ('serializable' sernum=NUMBER));
 
 PojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 	(modifiers1+=PojoEntityModifier1)* 'pojo' name=IDENT (modifiers2+=PojoEntityModifier2)* 

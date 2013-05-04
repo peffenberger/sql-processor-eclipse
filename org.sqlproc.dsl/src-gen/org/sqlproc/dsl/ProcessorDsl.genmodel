@@ -127,6 +127,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojogenProperty/dbColumn"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojogenProperty/inheritance"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojogenProperty/methods"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojogenProperty/operatorsSuffix"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojogenProperty/toImplements"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojogenProperty/toExtends"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojogenProperty/implPackage"/>
@@ -342,6 +343,8 @@
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoEntityModifier2">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntityModifier2/superType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoEntityModifier2/discriminator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoEntityModifier2/operators"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoEntityModifier2/operatorsSuffix"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoEntityModifier2/sernum"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoEntity">

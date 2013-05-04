@@ -159,6 +159,7 @@
         eType="#//InheritanceAssignement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="methods" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatorsSuffix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="toImplements" unique="false"
         upperBound="-1" eType="ecore:EClass ../../../../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="toExtends" eType="ecore:EClass ../../../../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
@@ -432,6 +433,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="PojoEntityModifier2">
     <eStructuralFeatures xsi:type="ecore:EReference" name="superType" eType="#//PojoEntity"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="discriminator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatorsSuffix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sernum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoEntity" eSuperTypes="#//Entity">

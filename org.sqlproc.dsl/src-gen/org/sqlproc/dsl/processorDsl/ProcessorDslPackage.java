@@ -1158,13 +1158,22 @@ public interface ProcessorDslPackage extends EPackage
   int POJOGEN_PROPERTY__METHODS = 15;
 
   /**
+   * The feature id for the '<em><b>Operators Suffix</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJOGEN_PROPERTY__OPERATORS_SUFFIX = 16;
+
+  /**
    * The feature id for the '<em><b>To Implements</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__TO_IMPLEMENTS = 16;
+  int POJOGEN_PROPERTY__TO_IMPLEMENTS = 17;
 
   /**
    * The feature id for the '<em><b>To Extends</b></em>' reference.
@@ -1173,7 +1182,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__TO_EXTENDS = 17;
+  int POJOGEN_PROPERTY__TO_EXTENDS = 18;
 
   /**
    * The feature id for the '<em><b>Impl Package</b></em>' attribute.
@@ -1182,7 +1191,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__IMPL_PACKAGE = 18;
+  int POJOGEN_PROPERTY__IMPL_PACKAGE = 19;
 
   /**
    * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -1191,7 +1200,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__VERSION = 19;
+  int POJOGEN_PROPERTY__VERSION = 20;
 
   /**
    * The feature id for the '<em><b>Debug</b></em>' containment reference.
@@ -1200,7 +1209,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__DEBUG = 20;
+  int POJOGEN_PROPERTY__DEBUG = 21;
 
   /**
    * The number of structural features of the '<em>Pojogen Property</em>' class.
@@ -1209,7 +1218,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY_FEATURE_COUNT = 21;
+  int POJOGEN_PROPERTY_FEATURE_COUNT = 22;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.MetaTypeAssignementImpl <em>Meta Type Assignement</em>}' class.
@@ -3146,13 +3155,31 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_ENTITY_MODIFIER2__DISCRIMINATOR = 1;
 
   /**
+   * The feature id for the '<em><b>Operators</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_ENTITY_MODIFIER2__OPERATORS = 2;
+
+  /**
+   * The feature id for the '<em><b>Operators Suffix</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_ENTITY_MODIFIER2__OPERATORS_SUFFIX = 3;
+
+  /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_ENTITY_MODIFIER2__SERNUM = 2;
+  int POJO_ENTITY_MODIFIER2__SERNUM = 4;
 
   /**
    * The number of structural features of the '<em>Pojo Entity Modifier2</em>' class.
@@ -3161,7 +3188,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_ENTITY_MODIFIER2_FEATURE_COUNT = 3;
+  int POJO_ENTITY_MODIFIER2_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl <em>Pojo Entity</em>}' class.
@@ -4939,6 +4966,17 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EAttribute getPojogenProperty_Methods();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getOperatorsSuffix <em>Operators Suffix</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Operators Suffix</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojogenProperty#getOperatorsSuffix()
+   * @see #getPojogenProperty()
+   * @generated
+   */
+  EAttribute getPojogenProperty_OperatorsSuffix();
 
   /**
    * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToImplements <em>To Implements</em>}'.
@@ -6789,6 +6827,28 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getPojoEntityModifier2_Discriminator();
 
   /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoEntityModifier2#getOperators <em>Operators</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Operators</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoEntityModifier2#getOperators()
+   * @see #getPojoEntityModifier2()
+   * @generated
+   */
+  EAttribute getPojoEntityModifier2_Operators();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoEntityModifier2#getOperatorsSuffix <em>Operators Suffix</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Operators Suffix</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoEntityModifier2#getOperatorsSuffix()
+   * @see #getPojoEntityModifier2()
+   * @generated
+   */
+  EAttribute getPojoEntityModifier2_OperatorsSuffix();
+
+  /**
    * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoEntityModifier2#getSernum <em>Sernum</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8323,6 +8383,14 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute POJOGEN_PROPERTY__METHODS = eINSTANCE.getPojogenProperty_Methods();
 
     /**
+     * The meta object literal for the '<em><b>Operators Suffix</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJOGEN_PROPERTY__OPERATORS_SUFFIX = eINSTANCE.getPojogenProperty_OperatorsSuffix();
+
+    /**
      * The meta object literal for the '<em><b>To Implements</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9785,6 +9853,22 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute POJO_ENTITY_MODIFIER2__DISCRIMINATOR = eINSTANCE.getPojoEntityModifier2_Discriminator();
+
+    /**
+     * The meta object literal for the '<em><b>Operators</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_ENTITY_MODIFIER2__OPERATORS = eINSTANCE.getPojoEntityModifier2_Operators();
+
+    /**
+     * The meta object literal for the '<em><b>Operators Suffix</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_ENTITY_MODIFIER2__OPERATORS_SUFFIX = eINSTANCE.getPojoEntityModifier2_OperatorsSuffix();
 
     /**
      * The meta object literal for the '<em><b>Sernum</b></em>' attribute feature.

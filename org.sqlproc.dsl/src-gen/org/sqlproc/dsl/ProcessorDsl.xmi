@@ -835,6 +835,14 @@
       </elements>
       <elements xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:Keyword" value="generate-operators"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="operatorsSuffix" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.69"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
           <terminal xsi:type="xtext:Keyword" value="implements-interfaces"/>
         </elements>
         <elements xsi:type="xtext:Group" cardinality="+">
@@ -2907,6 +2915,14 @@
             <elements xsi:type="xtext:RuleCall" rule="//@rules.69"/>
             <elements xsi:type="xtext:RuleCall" rule="//@rules.70"/>
           </terminal>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="operators" operator="=">
+          <terminal xsi:type="xtext:Keyword" value="operators"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="operatorsSuffix" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.69"/>
         </elements>
       </elements>
       <elements xsi:type="xtext:Group">

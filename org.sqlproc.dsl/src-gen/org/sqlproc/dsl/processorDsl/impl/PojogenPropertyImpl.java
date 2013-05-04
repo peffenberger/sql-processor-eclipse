@@ -59,6 +59,7 @@ import org.sqlproc.dsl.processorDsl.TableAssignement;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getDbColumn <em>Db Column</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getInheritance <em>Inheritance</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getMethods <em>Methods</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getOperatorsSuffix <em>Operators Suffix</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getToImplements <em>To Implements</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getToExtends <em>To Extends</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getImplPackage <em>Impl Package</em>}</li>
@@ -260,6 +261,26 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected EList<String> methods;
+
+  /**
+   * The default value of the '{@link #getOperatorsSuffix() <em>Operators Suffix</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOperatorsSuffix()
+   * @generated
+   * @ordered
+   */
+  protected static final String OPERATORS_SUFFIX_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getOperatorsSuffix() <em>Operators Suffix</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOperatorsSuffix()
+   * @generated
+   * @ordered
+   */
+  protected String operatorsSuffix = OPERATORS_SUFFIX_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getToImplements() <em>To Implements</em>}' reference list.
@@ -642,6 +663,29 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getOperatorsSuffix()
+  {
+    return operatorsSuffix;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setOperatorsSuffix(String newOperatorsSuffix)
+  {
+    String oldOperatorsSuffix = operatorsSuffix;
+    operatorsSuffix = newOperatorsSuffix;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJOGEN_PROPERTY__OPERATORS_SUFFIX, oldOperatorsSuffix, operatorsSuffix));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<JvmType> getToImplements()
   {
     if (toImplements == null)
@@ -866,6 +910,8 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return getInheritance();
       case ProcessorDslPackage.POJOGEN_PROPERTY__METHODS:
         return getMethods();
+      case ProcessorDslPackage.POJOGEN_PROPERTY__OPERATORS_SUFFIX:
+        return getOperatorsSuffix();
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS:
         return getToImplements();
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS:
@@ -952,6 +998,9 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         getMethods().clear();
         getMethods().addAll((Collection<? extends String>)newValue);
         return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__OPERATORS_SUFFIX:
+        setOperatorsSuffix((String)newValue);
+        return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS:
         getToImplements().clear();
         getToImplements().addAll((Collection<? extends JvmType>)newValue);
@@ -1030,6 +1079,9 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJOGEN_PROPERTY__METHODS:
         getMethods().clear();
         return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__OPERATORS_SUFFIX:
+        setOperatorsSuffix(OPERATORS_SUFFIX_EDEFAULT);
+        return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS:
         getToImplements().clear();
         return;
@@ -1091,6 +1143,8 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return inheritance != null && !inheritance.isEmpty();
       case ProcessorDslPackage.POJOGEN_PROPERTY__METHODS:
         return methods != null && !methods.isEmpty();
+      case ProcessorDslPackage.POJOGEN_PROPERTY__OPERATORS_SUFFIX:
+        return OPERATORS_SUFFIX_EDEFAULT == null ? operatorsSuffix != null : !OPERATORS_SUFFIX_EDEFAULT.equals(operatorsSuffix);
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS:
         return toImplements != null && !toImplements.isEmpty();
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS:
@@ -1128,6 +1182,8 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
     result.append(dbColumn);
     result.append(", methods: ");
     result.append(methods);
+    result.append(", operatorsSuffix: ");
+    result.append(operatorsSuffix);
     result.append(", implPackage: ");
     result.append(implPackage);
     result.append(", version: ");

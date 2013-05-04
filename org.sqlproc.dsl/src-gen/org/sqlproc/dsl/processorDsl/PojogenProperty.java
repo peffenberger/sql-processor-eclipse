@@ -32,6 +32,7 @@ import org.eclipse.xtext.common.types.JvmType;
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDbColumn <em>Db Column</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getInheritance <em>Inheritance</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getMethods <em>Methods</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getOperatorsSuffix <em>Operators Suffix</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToImplements <em>To Implements</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToExtends <em>To Extends</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getImplPackage <em>Impl Package</em>}</li>
@@ -341,6 +342,32 @@ public interface PojogenProperty extends EObject
    * @generated
    */
   EList<String> getMethods();
+
+  /**
+   * Returns the value of the '<em><b>Operators Suffix</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Operators Suffix</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Operators Suffix</em>' attribute.
+   * @see #setOperatorsSuffix(String)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojogenProperty_OperatorsSuffix()
+   * @model
+   * @generated
+   */
+  String getOperatorsSuffix();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getOperatorsSuffix <em>Operators Suffix</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Operators Suffix</em>' attribute.
+   * @see #getOperatorsSuffix()
+   * @generated
+   */
+  void setOperatorsSuffix(String value);
 
   /**
    * Returns the value of the '<em><b>To Implements</b></em>' reference list.

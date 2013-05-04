@@ -23,6 +23,8 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityModifier2Impl#getSuperType <em>Super Type</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityModifier2Impl#getDiscriminator <em>Discriminator</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityModifier2Impl#getOperators <em>Operators</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityModifier2Impl#getOperatorsSuffix <em>Operators Suffix</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityModifier2Impl#getSernum <em>Sernum</em>}</li>
  * </ul>
  * </p>
@@ -60,6 +62,46 @@ public class PojoEntityModifier2Impl extends MinimalEObjectImpl.Container implem
    * @ordered
    */
   protected String discriminator = DISCRIMINATOR_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getOperators() <em>Operators</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOperators()
+   * @generated
+   * @ordered
+   */
+  protected static final String OPERATORS_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getOperators() <em>Operators</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOperators()
+   * @generated
+   * @ordered
+   */
+  protected String operators = OPERATORS_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getOperatorsSuffix() <em>Operators Suffix</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOperatorsSuffix()
+   * @generated
+   * @ordered
+   */
+  protected static final String OPERATORS_SUFFIX_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getOperatorsSuffix() <em>Operators Suffix</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOperatorsSuffix()
+   * @generated
+   * @ordered
+   */
+  protected String operatorsSuffix = OPERATORS_SUFFIX_EDEFAULT;
 
   /**
    * The default value of the '{@link #getSernum() <em>Sernum</em>}' attribute.
@@ -173,6 +215,52 @@ public class PojoEntityModifier2Impl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getOperators()
+  {
+    return operators;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setOperators(String newOperators)
+  {
+    String oldOperators = operators;
+    operators = newOperators;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_ENTITY_MODIFIER2__OPERATORS, oldOperators, operators));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getOperatorsSuffix()
+  {
+    return operatorsSuffix;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setOperatorsSuffix(String newOperatorsSuffix)
+  {
+    String oldOperatorsSuffix = operatorsSuffix;
+    operatorsSuffix = newOperatorsSuffix;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_ENTITY_MODIFIER2__OPERATORS_SUFFIX, oldOperatorsSuffix, operatorsSuffix));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getSernum()
   {
     return sernum;
@@ -206,6 +294,10 @@ public class PojoEntityModifier2Impl extends MinimalEObjectImpl.Container implem
         return basicGetSuperType();
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__DISCRIMINATOR:
         return getDiscriminator();
+      case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__OPERATORS:
+        return getOperators();
+      case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__OPERATORS_SUFFIX:
+        return getOperatorsSuffix();
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__SERNUM:
         return getSernum();
     }
@@ -227,6 +319,12 @@ public class PojoEntityModifier2Impl extends MinimalEObjectImpl.Container implem
         return;
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__DISCRIMINATOR:
         setDiscriminator((String)newValue);
+        return;
+      case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__OPERATORS:
+        setOperators((String)newValue);
+        return;
+      case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__OPERATORS_SUFFIX:
+        setOperatorsSuffix((String)newValue);
         return;
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__SERNUM:
         setSernum((String)newValue);
@@ -251,6 +349,12 @@ public class PojoEntityModifier2Impl extends MinimalEObjectImpl.Container implem
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__DISCRIMINATOR:
         setDiscriminator(DISCRIMINATOR_EDEFAULT);
         return;
+      case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__OPERATORS:
+        setOperators(OPERATORS_EDEFAULT);
+        return;
+      case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__OPERATORS_SUFFIX:
+        setOperatorsSuffix(OPERATORS_SUFFIX_EDEFAULT);
+        return;
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__SERNUM:
         setSernum(SERNUM_EDEFAULT);
         return;
@@ -272,6 +376,10 @@ public class PojoEntityModifier2Impl extends MinimalEObjectImpl.Container implem
         return superType != null;
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__DISCRIMINATOR:
         return DISCRIMINATOR_EDEFAULT == null ? discriminator != null : !DISCRIMINATOR_EDEFAULT.equals(discriminator);
+      case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__OPERATORS:
+        return OPERATORS_EDEFAULT == null ? operators != null : !OPERATORS_EDEFAULT.equals(operators);
+      case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__OPERATORS_SUFFIX:
+        return OPERATORS_SUFFIX_EDEFAULT == null ? operatorsSuffix != null : !OPERATORS_SUFFIX_EDEFAULT.equals(operatorsSuffix);
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER2__SERNUM:
         return SERNUM_EDEFAULT == null ? sernum != null : !SERNUM_EDEFAULT.equals(sernum);
     }
@@ -291,6 +399,10 @@ public class PojoEntityModifier2Impl extends MinimalEObjectImpl.Container implem
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (discriminator: ");
     result.append(discriminator);
+    result.append(", operators: ");
+    result.append(operators);
+    result.append(", operatorsSuffix: ");
+    result.append(operatorsSuffix);
     result.append(", sernum: ");
     result.append(sernum);
     result.append(')');

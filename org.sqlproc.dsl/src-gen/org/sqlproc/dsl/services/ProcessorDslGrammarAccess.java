@@ -1487,45 +1487,50 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMethodsIDENTTerminalRuleCall_21_1_1_0 = (RuleCall)cMethodsAssignment_21_1_1.eContents().get(0);
 		private final Group cGroup_22 = (Group)cAlternatives.eContents().get(22);
 		private final Assignment cNameAssignment_22_0 = (Assignment)cGroup_22.eContents().get(0);
-		private final Keyword cNameImplementsInterfacesKeyword_22_0_0 = (Keyword)cNameAssignment_22_0.eContents().get(0);
-		private final Group cGroup_22_1 = (Group)cGroup_22.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_22_1_0 = (RuleCall)cGroup_22_1.eContents().get(0);
-		private final Assignment cToImplementsAssignment_22_1_1 = (Assignment)cGroup_22_1.eContents().get(1);
-		private final CrossReference cToImplementsJvmTypeCrossReference_22_1_1_0 = (CrossReference)cToImplementsAssignment_22_1_1.eContents().get(0);
-		private final RuleCall cToImplementsJvmTypeQualifiedNameParserRuleCall_22_1_1_0_1 = (RuleCall)cToImplementsJvmTypeCrossReference_22_1_1_0.eContents().get(1);
+		private final Keyword cNameGenerateOperatorsKeyword_22_0_0 = (Keyword)cNameAssignment_22_0.eContents().get(0);
+		private final Assignment cOperatorsSuffixAssignment_22_1 = (Assignment)cGroup_22.eContents().get(1);
+		private final RuleCall cOperatorsSuffixIDENTTerminalRuleCall_22_1_0 = (RuleCall)cOperatorsSuffixAssignment_22_1.eContents().get(0);
 		private final Group cGroup_23 = (Group)cAlternatives.eContents().get(23);
 		private final Assignment cNameAssignment_23_0 = (Assignment)cGroup_23.eContents().get(0);
-		private final Keyword cNameExtendsClassKeyword_23_0_0 = (Keyword)cNameAssignment_23_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_23_1 = (RuleCall)cGroup_23.eContents().get(1);
-		private final Assignment cToExtendsAssignment_23_2 = (Assignment)cGroup_23.eContents().get(2);
-		private final CrossReference cToExtendsJvmTypeCrossReference_23_2_0 = (CrossReference)cToExtendsAssignment_23_2.eContents().get(0);
-		private final RuleCall cToExtendsJvmTypeQualifiedNameParserRuleCall_23_2_0_1 = (RuleCall)cToExtendsJvmTypeCrossReference_23_2_0.eContents().get(1);
-		private final Assignment cNameAssignment_24 = (Assignment)cAlternatives.eContents().get(24);
-		private final Keyword cNameGenerateWrappersKeyword_24_0 = (Keyword)cNameAssignment_24.eContents().get(0);
-		private final Group cGroup_25 = (Group)cAlternatives.eContents().get(25);
-		private final Assignment cNameAssignment_25_0 = (Assignment)cGroup_25.eContents().get(0);
-		private final Keyword cNameImplementationPackageKeyword_25_0_0 = (Keyword)cNameAssignment_25_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_25_1 = (RuleCall)cGroup_25.eContents().get(1);
-		private final Assignment cImplPackageAssignment_25_2 = (Assignment)cGroup_25.eContents().get(2);
-		private final RuleCall cImplPackageIDENTTerminalRuleCall_25_2_0 = (RuleCall)cImplPackageAssignment_25_2.eContents().get(0);
-		private final Assignment cNameAssignment_26 = (Assignment)cAlternatives.eContents().get(26);
-		private final Keyword cNameMakeItFinalKeyword_26_0 = (Keyword)cNameAssignment_26.eContents().get(0);
-		private final Group cGroup_27 = (Group)cAlternatives.eContents().get(27);
-		private final Assignment cNameAssignment_27_0 = (Assignment)cGroup_27.eContents().get(0);
-		private final Keyword cNameVersionColumnKeyword_27_0_0 = (Keyword)cNameAssignment_27_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_27_1 = (RuleCall)cGroup_27.eContents().get(1);
-		private final Assignment cVersionAssignment_27_2 = (Assignment)cGroup_27.eContents().get(2);
-		private final RuleCall cVersionIDENTTerminalRuleCall_27_2_0 = (RuleCall)cVersionAssignment_27_2.eContents().get(0);
-		private final Group cGroup_27_3 = (Group)cGroup_27.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_27_3_0 = (RuleCall)cGroup_27_3.eContents().get(0);
-		private final Assignment cDbTablesAssignment_27_3_1 = (Assignment)cGroup_27_3.eContents().get(1);
-		private final RuleCall cDbTablesIDENTTerminalRuleCall_27_3_1_0 = (RuleCall)cDbTablesAssignment_27_3_1.eContents().get(0);
+		private final Keyword cNameImplementsInterfacesKeyword_23_0_0 = (Keyword)cNameAssignment_23_0.eContents().get(0);
+		private final Group cGroup_23_1 = (Group)cGroup_23.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_23_1_0 = (RuleCall)cGroup_23_1.eContents().get(0);
+		private final Assignment cToImplementsAssignment_23_1_1 = (Assignment)cGroup_23_1.eContents().get(1);
+		private final CrossReference cToImplementsJvmTypeCrossReference_23_1_1_0 = (CrossReference)cToImplementsAssignment_23_1_1.eContents().get(0);
+		private final RuleCall cToImplementsJvmTypeQualifiedNameParserRuleCall_23_1_1_0_1 = (RuleCall)cToImplementsJvmTypeCrossReference_23_1_1_0.eContents().get(1);
+		private final Group cGroup_24 = (Group)cAlternatives.eContents().get(24);
+		private final Assignment cNameAssignment_24_0 = (Assignment)cGroup_24.eContents().get(0);
+		private final Keyword cNameExtendsClassKeyword_24_0_0 = (Keyword)cNameAssignment_24_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_24_1 = (RuleCall)cGroup_24.eContents().get(1);
+		private final Assignment cToExtendsAssignment_24_2 = (Assignment)cGroup_24.eContents().get(2);
+		private final CrossReference cToExtendsJvmTypeCrossReference_24_2_0 = (CrossReference)cToExtendsAssignment_24_2.eContents().get(0);
+		private final RuleCall cToExtendsJvmTypeQualifiedNameParserRuleCall_24_2_0_1 = (RuleCall)cToExtendsJvmTypeCrossReference_24_2_0.eContents().get(1);
+		private final Assignment cNameAssignment_25 = (Assignment)cAlternatives.eContents().get(25);
+		private final Keyword cNameGenerateWrappersKeyword_25_0 = (Keyword)cNameAssignment_25.eContents().get(0);
+		private final Group cGroup_26 = (Group)cAlternatives.eContents().get(26);
+		private final Assignment cNameAssignment_26_0 = (Assignment)cGroup_26.eContents().get(0);
+		private final Keyword cNameImplementationPackageKeyword_26_0_0 = (Keyword)cNameAssignment_26_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_26_1 = (RuleCall)cGroup_26.eContents().get(1);
+		private final Assignment cImplPackageAssignment_26_2 = (Assignment)cGroup_26.eContents().get(2);
+		private final RuleCall cImplPackageIDENTTerminalRuleCall_26_2_0 = (RuleCall)cImplPackageAssignment_26_2.eContents().get(0);
+		private final Assignment cNameAssignment_27 = (Assignment)cAlternatives.eContents().get(27);
+		private final Keyword cNameMakeItFinalKeyword_27_0 = (Keyword)cNameAssignment_27.eContents().get(0);
 		private final Group cGroup_28 = (Group)cAlternatives.eContents().get(28);
 		private final Assignment cNameAssignment_28_0 = (Assignment)cGroup_28.eContents().get(0);
-		private final Keyword cNameDebugLevelKeyword_28_0_0 = (Keyword)cNameAssignment_28_0.eContents().get(0);
+		private final Keyword cNameVersionColumnKeyword_28_0_0 = (Keyword)cNameAssignment_28_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_28_1 = (RuleCall)cGroup_28.eContents().get(1);
-		private final Assignment cDebugAssignment_28_2 = (Assignment)cGroup_28.eContents().get(2);
-		private final RuleCall cDebugDebugLevelAssignementParserRuleCall_28_2_0 = (RuleCall)cDebugAssignment_28_2.eContents().get(0);
+		private final Assignment cVersionAssignment_28_2 = (Assignment)cGroup_28.eContents().get(2);
+		private final RuleCall cVersionIDENTTerminalRuleCall_28_2_0 = (RuleCall)cVersionAssignment_28_2.eContents().get(0);
+		private final Group cGroup_28_3 = (Group)cGroup_28.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_28_3_0 = (RuleCall)cGroup_28_3.eContents().get(0);
+		private final Assignment cDbTablesAssignment_28_3_1 = (Assignment)cGroup_28_3.eContents().get(1);
+		private final RuleCall cDbTablesIDENTTerminalRuleCall_28_3_1_0 = (RuleCall)cDbTablesAssignment_28_3_1.eContents().get(0);
+		private final Group cGroup_29 = (Group)cAlternatives.eContents().get(29);
+		private final Assignment cNameAssignment_29_0 = (Assignment)cGroup_29.eContents().get(0);
+		private final Keyword cNameDebugLevelKeyword_29_0_0 = (Keyword)cNameAssignment_29_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_29_1 = (RuleCall)cGroup_29.eContents().get(1);
+		private final Assignment cDebugAssignment_29_2 = (Assignment)cGroup_29.eContents().get(2);
+		private final RuleCall cDebugDebugLevelAssignementParserRuleCall_29_2_0 = (RuleCall)cDebugAssignment_29_2.eContents().get(0);
 		
 		//PojogenProperty:
 		//	name="types-sqltypes" (WS+ sqlTypes+=SqlTypeAssignement)+ | name="types-in-table" WS+ dbTable=IDENT (WS+
@@ -1544,10 +1549,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	| name="create-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 		//	| name="table-many-to-many" WS+ dbTable=IDENT (WS+ many2s+=ManyToManyAssignement)+ | name="inherit-discriminator" WS+
 		//	dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+ | name="generate-methods" (WS+
-		//	methods+=IDENT)+ | name="implements-interfaces" (WS+ toImplements+=[jvmTypes::JvmType|QualifiedName])+ |
-		//	name="extends-class" WS+ toExtends=[jvmTypes::JvmType|QualifiedName] | name="generate-wrappers" |
-		//	name="implementation-package" WS+ implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT
-		//	(WS+ dbTables+=IDENT)* | name="debug-level" WS+ debug=DebugLevelAssignement;
+		//	methods+=IDENT)+ | name="generate-operators" operatorsSuffix=IDENT? | name="implements-interfaces" (WS+
+		//	toImplements+=[jvmTypes::JvmType|QualifiedName])+ | name="extends-class" WS+
+		//	toExtends=[jvmTypes::JvmType|QualifiedName] | name="generate-wrappers" | name="implementation-package" WS+
+		//	implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT (WS+ dbTables+=IDENT)* |
+		//	name="debug-level" WS+ debug=DebugLevelAssignement;
 		public ParserRule getRule() { return rule; }
 
 		//name="types-sqltypes" (WS+ sqlTypes+=SqlTypeAssignement)+ | name="types-in-table" WS+ dbTable=IDENT (WS+
@@ -1566,10 +1572,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//| name="create-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 		//| name="table-many-to-many" WS+ dbTable=IDENT (WS+ many2s+=ManyToManyAssignement)+ | name="inherit-discriminator" WS+
 		//dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+ | name="generate-methods" (WS+
-		//methods+=IDENT)+ | name="implements-interfaces" (WS+ toImplements+=[jvmTypes::JvmType|QualifiedName])+ |
-		//name="extends-class" WS+ toExtends=[jvmTypes::JvmType|QualifiedName] | name="generate-wrappers" |
-		//name="implementation-package" WS+ implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT
-		//(WS+ dbTables+=IDENT)* | name="debug-level" WS+ debug=DebugLevelAssignement
+		//methods+=IDENT)+ | name="generate-operators" operatorsSuffix=IDENT? | name="implements-interfaces" (WS+
+		//toImplements+=[jvmTypes::JvmType|QualifiedName])+ | name="extends-class" WS+
+		//toExtends=[jvmTypes::JvmType|QualifiedName] | name="generate-wrappers" | name="implementation-package" WS+
+		//implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT (WS+ dbTables+=IDENT)* |
+		//name="debug-level" WS+ debug=DebugLevelAssignement
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="types-sqltypes" (WS+ sqlTypes+=SqlTypeAssignement)+
@@ -2175,128 +2182,143 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getMethodsIDENTTerminalRuleCall_21_1_1_0() { return cMethodsIDENTTerminalRuleCall_21_1_1_0; }
 
-		//name="implements-interfaces" (WS+ toImplements+=[jvmTypes::JvmType|QualifiedName])+
+		//name="generate-operators" operatorsSuffix=IDENT?
 		public Group getGroup_22() { return cGroup_22; }
 
-		//name="implements-interfaces"
+		//name="generate-operators"
 		public Assignment getNameAssignment_22_0() { return cNameAssignment_22_0; }
 
-		//"implements-interfaces"
-		public Keyword getNameImplementsInterfacesKeyword_22_0_0() { return cNameImplementsInterfacesKeyword_22_0_0; }
+		//"generate-operators"
+		public Keyword getNameGenerateOperatorsKeyword_22_0_0() { return cNameGenerateOperatorsKeyword_22_0_0; }
 
-		//(WS+ toImplements+=[jvmTypes::JvmType|QualifiedName])+
-		public Group getGroup_22_1() { return cGroup_22_1; }
+		//operatorsSuffix=IDENT?
+		public Assignment getOperatorsSuffixAssignment_22_1() { return cOperatorsSuffixAssignment_22_1; }
 
-		//WS+
-		public RuleCall getWSTerminalRuleCall_22_1_0() { return cWSTerminalRuleCall_22_1_0; }
+		//IDENT
+		public RuleCall getOperatorsSuffixIDENTTerminalRuleCall_22_1_0() { return cOperatorsSuffixIDENTTerminalRuleCall_22_1_0; }
 
-		//toImplements+=[jvmTypes::JvmType|QualifiedName]
-		public Assignment getToImplementsAssignment_22_1_1() { return cToImplementsAssignment_22_1_1; }
-
-		//[jvmTypes::JvmType|QualifiedName]
-		public CrossReference getToImplementsJvmTypeCrossReference_22_1_1_0() { return cToImplementsJvmTypeCrossReference_22_1_1_0; }
-
-		//QualifiedName
-		public RuleCall getToImplementsJvmTypeQualifiedNameParserRuleCall_22_1_1_0_1() { return cToImplementsJvmTypeQualifiedNameParserRuleCall_22_1_1_0_1; }
-
-		//name="extends-class" WS+ toExtends=[jvmTypes::JvmType|QualifiedName]
+		//name="implements-interfaces" (WS+ toImplements+=[jvmTypes::JvmType|QualifiedName])+
 		public Group getGroup_23() { return cGroup_23; }
 
-		//name="extends-class"
+		//name="implements-interfaces"
 		public Assignment getNameAssignment_23_0() { return cNameAssignment_23_0; }
 
-		//"extends-class"
-		public Keyword getNameExtendsClassKeyword_23_0_0() { return cNameExtendsClassKeyword_23_0_0; }
+		//"implements-interfaces"
+		public Keyword getNameImplementsInterfacesKeyword_23_0_0() { return cNameImplementsInterfacesKeyword_23_0_0; }
+
+		//(WS+ toImplements+=[jvmTypes::JvmType|QualifiedName])+
+		public Group getGroup_23_1() { return cGroup_23_1; }
 
 		//WS+
-		public RuleCall getWSTerminalRuleCall_23_1() { return cWSTerminalRuleCall_23_1; }
+		public RuleCall getWSTerminalRuleCall_23_1_0() { return cWSTerminalRuleCall_23_1_0; }
 
-		//toExtends=[jvmTypes::JvmType|QualifiedName]
-		public Assignment getToExtendsAssignment_23_2() { return cToExtendsAssignment_23_2; }
+		//toImplements+=[jvmTypes::JvmType|QualifiedName]
+		public Assignment getToImplementsAssignment_23_1_1() { return cToImplementsAssignment_23_1_1; }
 
 		//[jvmTypes::JvmType|QualifiedName]
-		public CrossReference getToExtendsJvmTypeCrossReference_23_2_0() { return cToExtendsJvmTypeCrossReference_23_2_0; }
+		public CrossReference getToImplementsJvmTypeCrossReference_23_1_1_0() { return cToImplementsJvmTypeCrossReference_23_1_1_0; }
 
 		//QualifiedName
-		public RuleCall getToExtendsJvmTypeQualifiedNameParserRuleCall_23_2_0_1() { return cToExtendsJvmTypeQualifiedNameParserRuleCall_23_2_0_1; }
+		public RuleCall getToImplementsJvmTypeQualifiedNameParserRuleCall_23_1_1_0_1() { return cToImplementsJvmTypeQualifiedNameParserRuleCall_23_1_1_0_1; }
+
+		//name="extends-class" WS+ toExtends=[jvmTypes::JvmType|QualifiedName]
+		public Group getGroup_24() { return cGroup_24; }
+
+		//name="extends-class"
+		public Assignment getNameAssignment_24_0() { return cNameAssignment_24_0; }
+
+		//"extends-class"
+		public Keyword getNameExtendsClassKeyword_24_0_0() { return cNameExtendsClassKeyword_24_0_0; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_24_1() { return cWSTerminalRuleCall_24_1; }
+
+		//toExtends=[jvmTypes::JvmType|QualifiedName]
+		public Assignment getToExtendsAssignment_24_2() { return cToExtendsAssignment_24_2; }
+
+		//[jvmTypes::JvmType|QualifiedName]
+		public CrossReference getToExtendsJvmTypeCrossReference_24_2_0() { return cToExtendsJvmTypeCrossReference_24_2_0; }
+
+		//QualifiedName
+		public RuleCall getToExtendsJvmTypeQualifiedNameParserRuleCall_24_2_0_1() { return cToExtendsJvmTypeQualifiedNameParserRuleCall_24_2_0_1; }
 
 		//name="generate-wrappers"
-		public Assignment getNameAssignment_24() { return cNameAssignment_24; }
+		public Assignment getNameAssignment_25() { return cNameAssignment_25; }
 
 		//"generate-wrappers"
-		public Keyword getNameGenerateWrappersKeyword_24_0() { return cNameGenerateWrappersKeyword_24_0; }
+		public Keyword getNameGenerateWrappersKeyword_25_0() { return cNameGenerateWrappersKeyword_25_0; }
 
 		//name="implementation-package" WS+ implPackage=IDENT
-		public Group getGroup_25() { return cGroup_25; }
+		public Group getGroup_26() { return cGroup_26; }
 
 		//name="implementation-package"
-		public Assignment getNameAssignment_25_0() { return cNameAssignment_25_0; }
+		public Assignment getNameAssignment_26_0() { return cNameAssignment_26_0; }
 
 		//"implementation-package"
-		public Keyword getNameImplementationPackageKeyword_25_0_0() { return cNameImplementationPackageKeyword_25_0_0; }
+		public Keyword getNameImplementationPackageKeyword_26_0_0() { return cNameImplementationPackageKeyword_26_0_0; }
 
 		//WS+
-		public RuleCall getWSTerminalRuleCall_25_1() { return cWSTerminalRuleCall_25_1; }
+		public RuleCall getWSTerminalRuleCall_26_1() { return cWSTerminalRuleCall_26_1; }
 
 		//implPackage=IDENT
-		public Assignment getImplPackageAssignment_25_2() { return cImplPackageAssignment_25_2; }
+		public Assignment getImplPackageAssignment_26_2() { return cImplPackageAssignment_26_2; }
 
 		//IDENT
-		public RuleCall getImplPackageIDENTTerminalRuleCall_25_2_0() { return cImplPackageIDENTTerminalRuleCall_25_2_0; }
+		public RuleCall getImplPackageIDENTTerminalRuleCall_26_2_0() { return cImplPackageIDENTTerminalRuleCall_26_2_0; }
 
 		//name="make-it-final"
-		public Assignment getNameAssignment_26() { return cNameAssignment_26; }
+		public Assignment getNameAssignment_27() { return cNameAssignment_27; }
 
 		//"make-it-final"
-		public Keyword getNameMakeItFinalKeyword_26_0() { return cNameMakeItFinalKeyword_26_0; }
+		public Keyword getNameMakeItFinalKeyword_27_0() { return cNameMakeItFinalKeyword_27_0; }
 
 		//name="version-column" WS+ version=IDENT (WS+ dbTables+=IDENT)*
-		public Group getGroup_27() { return cGroup_27; }
-
-		//name="version-column"
-		public Assignment getNameAssignment_27_0() { return cNameAssignment_27_0; }
-
-		//"version-column"
-		public Keyword getNameVersionColumnKeyword_27_0_0() { return cNameVersionColumnKeyword_27_0_0; }
-
-		//WS+
-		public RuleCall getWSTerminalRuleCall_27_1() { return cWSTerminalRuleCall_27_1; }
-
-		//version=IDENT
-		public Assignment getVersionAssignment_27_2() { return cVersionAssignment_27_2; }
-
-		//IDENT
-		public RuleCall getVersionIDENTTerminalRuleCall_27_2_0() { return cVersionIDENTTerminalRuleCall_27_2_0; }
-
-		//(WS+ dbTables+=IDENT)*
-		public Group getGroup_27_3() { return cGroup_27_3; }
-
-		//WS+
-		public RuleCall getWSTerminalRuleCall_27_3_0() { return cWSTerminalRuleCall_27_3_0; }
-
-		//dbTables+=IDENT
-		public Assignment getDbTablesAssignment_27_3_1() { return cDbTablesAssignment_27_3_1; }
-
-		//IDENT
-		public RuleCall getDbTablesIDENTTerminalRuleCall_27_3_1_0() { return cDbTablesIDENTTerminalRuleCall_27_3_1_0; }
-
-		//name="debug-level" WS+ debug=DebugLevelAssignement
 		public Group getGroup_28() { return cGroup_28; }
 
-		//name="debug-level"
+		//name="version-column"
 		public Assignment getNameAssignment_28_0() { return cNameAssignment_28_0; }
 
-		//"debug-level"
-		public Keyword getNameDebugLevelKeyword_28_0_0() { return cNameDebugLevelKeyword_28_0_0; }
+		//"version-column"
+		public Keyword getNameVersionColumnKeyword_28_0_0() { return cNameVersionColumnKeyword_28_0_0; }
 
 		//WS+
 		public RuleCall getWSTerminalRuleCall_28_1() { return cWSTerminalRuleCall_28_1; }
 
+		//version=IDENT
+		public Assignment getVersionAssignment_28_2() { return cVersionAssignment_28_2; }
+
+		//IDENT
+		public RuleCall getVersionIDENTTerminalRuleCall_28_2_0() { return cVersionIDENTTerminalRuleCall_28_2_0; }
+
+		//(WS+ dbTables+=IDENT)*
+		public Group getGroup_28_3() { return cGroup_28_3; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_28_3_0() { return cWSTerminalRuleCall_28_3_0; }
+
+		//dbTables+=IDENT
+		public Assignment getDbTablesAssignment_28_3_1() { return cDbTablesAssignment_28_3_1; }
+
+		//IDENT
+		public RuleCall getDbTablesIDENTTerminalRuleCall_28_3_1_0() { return cDbTablesIDENTTerminalRuleCall_28_3_1_0; }
+
+		//name="debug-level" WS+ debug=DebugLevelAssignement
+		public Group getGroup_29() { return cGroup_29; }
+
+		//name="debug-level"
+		public Assignment getNameAssignment_29_0() { return cNameAssignment_29_0; }
+
+		//"debug-level"
+		public Keyword getNameDebugLevelKeyword_29_0_0() { return cNameDebugLevelKeyword_29_0_0; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_29_1() { return cWSTerminalRuleCall_29_1; }
+
 		//debug=DebugLevelAssignement
-		public Assignment getDebugAssignment_28_2() { return cDebugAssignment_28_2; }
+		public Assignment getDebugAssignment_29_2() { return cDebugAssignment_29_2; }
 
 		//DebugLevelAssignement
-		public RuleCall getDebugDebugLevelAssignementParserRuleCall_28_2_0() { return cDebugDebugLevelAssignementParserRuleCall_28_2_0; }
+		public RuleCall getDebugDebugLevelAssignementParserRuleCall_29_2_0() { return cDebugDebugLevelAssignementParserRuleCall_29_2_0; }
 	}
 
 	public class MetaTypeAssignementElements extends AbstractParserRuleElementFinder {
@@ -6889,16 +6911,22 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDiscriminatorIDENTTerminalRuleCall_1_1_0_0 = (RuleCall)cDiscriminatorAlternatives_1_1_0.eContents().get(0);
 		private final RuleCall cDiscriminatorNUMBERTerminalRuleCall_1_1_0_1 = (RuleCall)cDiscriminatorAlternatives_1_1_0.eContents().get(1);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Keyword cSerializableKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cSernumAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cSernumNUMBERTerminalRuleCall_2_1_0 = (RuleCall)cSernumAssignment_2_1.eContents().get(0);
+		private final Assignment cOperatorsAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final Keyword cOperatorsOperatorsKeyword_2_0_0 = (Keyword)cOperatorsAssignment_2_0.eContents().get(0);
+		private final Assignment cOperatorsSuffixAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cOperatorsSuffixIDENTTerminalRuleCall_2_1_0 = (RuleCall)cOperatorsSuffixAssignment_2_1.eContents().get(0);
+		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
+		private final Keyword cSerializableKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cSernumAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cSernumNUMBERTerminalRuleCall_3_1_0 = (RuleCall)cSernumAssignment_3_1.eContents().get(0);
 		
 		//PojoEntityModifier2:
-		//	"extends" superType=[PojoEntity|IDENT] | "discriminator" discriminator=(IDENT | NUMBER) | "serializable"
-		//	sernum=NUMBER;
+		//	"extends" superType=[PojoEntity|IDENT] | "discriminator" discriminator=(IDENT | NUMBER) | operators="operators"
+		//	operatorsSuffix=IDENT? | "serializable" sernum=NUMBER;
 		public ParserRule getRule() { return rule; }
 
-		//"extends" superType=[PojoEntity|IDENT] | "discriminator" discriminator=(IDENT | NUMBER) | "serializable" sernum=NUMBER
+		//"extends" superType=[PojoEntity|IDENT] | "discriminator" discriminator=(IDENT | NUMBER) | operators="operators"
+		//operatorsSuffix=IDENT? | "serializable" sernum=NUMBER
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"extends" superType=[PojoEntity|IDENT]
@@ -6934,17 +6962,32 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//NUMBER
 		public RuleCall getDiscriminatorNUMBERTerminalRuleCall_1_1_0_1() { return cDiscriminatorNUMBERTerminalRuleCall_1_1_0_1; }
 
-		//"serializable" sernum=NUMBER
+		//operators="operators" operatorsSuffix=IDENT?
 		public Group getGroup_2() { return cGroup_2; }
 
+		//operators="operators"
+		public Assignment getOperatorsAssignment_2_0() { return cOperatorsAssignment_2_0; }
+
+		//"operators"
+		public Keyword getOperatorsOperatorsKeyword_2_0_0() { return cOperatorsOperatorsKeyword_2_0_0; }
+
+		//operatorsSuffix=IDENT?
+		public Assignment getOperatorsSuffixAssignment_2_1() { return cOperatorsSuffixAssignment_2_1; }
+
+		//IDENT
+		public RuleCall getOperatorsSuffixIDENTTerminalRuleCall_2_1_0() { return cOperatorsSuffixIDENTTerminalRuleCall_2_1_0; }
+
+		//"serializable" sernum=NUMBER
+		public Group getGroup_3() { return cGroup_3; }
+
 		//"serializable"
-		public Keyword getSerializableKeyword_2_0() { return cSerializableKeyword_2_0; }
+		public Keyword getSerializableKeyword_3_0() { return cSerializableKeyword_3_0; }
 
 		//sernum=NUMBER
-		public Assignment getSernumAssignment_2_1() { return cSernumAssignment_2_1; }
+		public Assignment getSernumAssignment_3_1() { return cSernumAssignment_3_1; }
 
 		//NUMBER
-		public RuleCall getSernumNUMBERTerminalRuleCall_2_1_0() { return cSernumNUMBERTerminalRuleCall_2_1_0; }
+		public RuleCall getSernumNUMBERTerminalRuleCall_3_1_0() { return cSernumNUMBERTerminalRuleCall_3_1_0; }
 	}
 
 	public class PojoEntityElements extends AbstractParserRuleElementFinder {
@@ -8267,10 +8310,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	| name="create-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 	//	| name="table-many-to-many" WS+ dbTable=IDENT (WS+ many2s+=ManyToManyAssignement)+ | name="inherit-discriminator" WS+
 	//	dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+ | name="generate-methods" (WS+
-	//	methods+=IDENT)+ | name="implements-interfaces" (WS+ toImplements+=[jvmTypes::JvmType|QualifiedName])+ |
-	//	name="extends-class" WS+ toExtends=[jvmTypes::JvmType|QualifiedName] | name="generate-wrappers" |
-	//	name="implementation-package" WS+ implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT
-	//	(WS+ dbTables+=IDENT)* | name="debug-level" WS+ debug=DebugLevelAssignement;
+	//	methods+=IDENT)+ | name="generate-operators" operatorsSuffix=IDENT? | name="implements-interfaces" (WS+
+	//	toImplements+=[jvmTypes::JvmType|QualifiedName])+ | name="extends-class" WS+
+	//	toExtends=[jvmTypes::JvmType|QualifiedName] | name="generate-wrappers" | name="implementation-package" WS+
+	//	implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT (WS+ dbTables+=IDENT)* |
+	//	name="debug-level" WS+ debug=DebugLevelAssignement;
 	public PojogenPropertyElements getPojogenPropertyAccess() {
 		return (pPojogenProperty != null) ? pPojogenProperty : (pPojogenProperty = new PojogenPropertyElements());
 	}
@@ -9076,8 +9120,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PojoEntityModifier2:
-	//	"extends" superType=[PojoEntity|IDENT] | "discriminator" discriminator=(IDENT | NUMBER) | "serializable"
-	//	sernum=NUMBER;
+	//	"extends" superType=[PojoEntity|IDENT] | "discriminator" discriminator=(IDENT | NUMBER) | operators="operators"
+	//	operatorsSuffix=IDENT? | "serializable" sernum=NUMBER;
 	public PojoEntityModifier2Elements getPojoEntityModifier2Access() {
 		return (pPojoEntityModifier2 != null) ? pPojoEntityModifier2 : (pPojoEntityModifier2 = new PojoEntityModifier2Elements());
 	}
