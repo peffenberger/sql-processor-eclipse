@@ -450,6 +450,23 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.newLine();
       }
     }
+    {
+      boolean _and = false;
+      boolean _hasOperators = Utils.hasOperators(e);
+      if (!_hasOperators) {
+        _and = false;
+      } else {
+        String _operatorsSuffix = Utils.getOperatorsSuffix(e);
+        boolean _equals = Objects.equal(_operatorsSuffix, null);
+        _and = (_hasOperators && _equals);
+      }
+      if (_and) {
+        _builder.append("import java.util.Map;");
+        _builder.newLine();
+        _builder.append("import java.util.HashMap;");
+        _builder.newLine();
+      }
+    }
     _builder.newLine();
     _builder.append(classBody, "");
     _builder.newLineIfNotEmpty();
@@ -710,6 +727,23 @@ public class ProcessorDslGenerator implements IGenerator {
             }
           }
         }
+      }
+    }
+    {
+      boolean _and = false;
+      boolean _hasOperators = Utils.hasOperators(e);
+      if (!_hasOperators) {
+        _and = false;
+      } else {
+        String _operatorsSuffix_1 = Utils.getOperatorsSuffix(e);
+        boolean _equals = Objects.equal(_operatorsSuffix_1, null);
+        _and = (_hasOperators && _equals);
+      }
+      if (_and) {
+        _builder.newLineIfNotEmpty();
+        _builder.append("  ");
+        CharSequence _compileOperators = this.compileOperators(importManager, e);
+        _builder.append(_compileOperators, "  ");
       }
     }
     _builder.newLineIfNotEmpty();
@@ -1172,6 +1206,40 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
+    _builder.append("public void setNull(String... attributes) {");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("if (attributes == null)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("throw new IllegalArgumentException();");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("for (String attribute : attributes)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("nullValues.add(attribute);");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public void clearNull(String... attributes) {");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("if (attributes == null)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("throw new IllegalArgumentException();");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("for (String attribute : attributes)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("nullValues.remove(attribute);");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
     _builder.append("public Boolean isNull(String attrName) {");
     _builder.newLine();
     _builder.append("  ");
@@ -1335,6 +1403,40 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.append("private Set<String> initAssociations = new HashSet<String>();");
     _builder.newLine();
     _builder.newLine();
+    _builder.append("public void setInit(Association... associations) {");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("if (associations == null)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("throw new IllegalArgumentException();");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("for (Association association : associations)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("initAssociations.add(association.name());");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public void clearInit(Association... associations) {");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("if (associations == null)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("throw new IllegalArgumentException();");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("for (Association association : associations)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("initAssociations.remove(association.name());");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
     _builder.append("public void setInit(String... associations) {");
     _builder.newLine();
     _builder.append("  ");
@@ -1413,6 +1515,131 @@ public class ProcessorDslGenerator implements IGenerator {
       }
     }
     _builder.newLineIfNotEmpty();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compileOperators(final ImportManager importManager, final PojoEntity e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.newLine();
+    _builder.append("public enum Operator {");
+    _builder.newLine();
+    _builder.append("    ");
+    {
+      EList<PojoProperty> _features = e.getFeatures();
+      final Function1<PojoProperty,Boolean> _function = new Function1<PojoProperty,Boolean>() {
+          public Boolean apply(final PojoProperty x) {
+            boolean _isAttribute = ProcessorDslGenerator.this.isAttribute(x);
+            return Boolean.valueOf(_isAttribute);
+          }
+        };
+      Iterable<PojoProperty> _filter = IterableExtensions.<PojoProperty>filter(_features, _function);
+      boolean _hasElements = false;
+      for(final PojoProperty f : _filter) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(", ", "    ");
+        }
+        String _name = f.getName();
+        _builder.append(_name, "    ");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("private Map<String, String> operators = new HashMap<String, String>();");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public Map<String, String> getOperators() {");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return operators;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public void setOperators(Map<String, String> operators) {");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("this.operators = operators;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public ");
+    String _name_1 = e.getName();
+    _builder.append(_name_1, "");
+    _builder.append(" addOp(String name, String value) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("if (operators == null)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("operators = new HashMap<String, String>();");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("operators.put(name, value);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public ");
+    String _name_2 = e.getName();
+    _builder.append(_name_2, "");
+    _builder.append(" addFirstOp(String name, String value) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("operators = new HashMap<String, String>();");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("operators.put(name, value);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public ");
+    String _name_3 = e.getName();
+    _builder.append(_name_3, "");
+    _builder.append(" addOp(Operator operator, String value) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("if (operators == null)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("operators = new HashMap<String, String>();");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("operators.put(operator.name(), value);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public ");
+    String _name_4 = e.getName();
+    _builder.append(_name_4, "");
+    _builder.append(" addFirstOp(Operator operator, String value) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("operators = new HashMap<String, String>();");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("operators.put(operator.name(), value);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
+    _builder.newLine();
     _builder.append("}");
     _builder.newLine();
     return _builder;

@@ -149,6 +149,10 @@ import java.util.HashSet;
 import java.lang.reflect.InvocationTargetException;
 import org.apache.commons.beanutils.MethodUtils;
   «ENDIF»
+  «IF hasOperators(e) && getOperatorsSuffix(e) == null»
+import java.util.Map;
+import java.util.HashMap;
+  «ENDIF»
 
 «classBody»
 '''
@@ -185,7 +189,8 @@ public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e
   «ELSEIF f.name.equalsIgnoreCase("enumInit")»«f.compileEnumInit(importManager, e)»
   «ELSEIF f.name.equalsIgnoreCase("isDef")»«f.compileIsDef(importManager, e)»
   «ELSEIF f.name.equalsIgnoreCase("enumDef")»«f.compileEnumDef(importManager, e)»
-  «ELSEIF f.name.equalsIgnoreCase("toString")»«f.compileToString(importManager, e)»«ENDIF»«ENDFOR»
+  «ELSEIF f.name.equalsIgnoreCase("toString")»«f.compileToString(importManager, e)»«ENDIF»«ENDFOR»«IF hasOperators(e) && getOperatorsSuffix(e) == null»
+  «compileOperators(importManager, e)»«ENDIF»
 }
 '''
 
@@ -288,6 +293,20 @@ def compileIsDef(PojoProperty f, ImportManager importManager, PojoEntity e) '''
         nullValues.remove(attribute.name());
     }
 
+    public void setNull(String... attributes) {
+      if (attributes == null)
+        throw new IllegalArgumentException();
+      for (String attribute : attributes)
+        nullValues.add(attribute);
+    }
+
+    public void clearNull(String... attributes) {
+      if (attributes == null)
+        throw new IllegalArgumentException();
+      for (String attribute : attributes)
+        nullValues.remove(attribute);
+    }
+
     public Boolean isNull(String attrName) {
       if (attrName == null)
         throw new IllegalArgumentException();
@@ -346,6 +365,20 @@ def compileToInit(PojoProperty f, ImportManager importManager, PojoEntity e) '''
 
     private Set<String> initAssociations = new HashSet<String>();
 
+    public void setInit(Association... associations) {
+      if (associations == null)
+        throw new IllegalArgumentException();
+      for (Association association : associations)
+        initAssociations.add(association.name());
+    }
+
+    public void clearInit(Association... associations) {
+      if (associations == null)
+        throw new IllegalArgumentException();
+      for (Association association : associations)
+        initAssociations.remove(association.name());
+    }
+
     public void setInit(String... associations) {
       if (associations == null)
         throw new IllegalArgumentException();
@@ -375,6 +408,49 @@ def compileEnumInit(PojoProperty f, ImportManager importManager, PojoEntity e) '
 
     public enum Association {
       «FOR f2:f.attrs SEPARATOR ", "»«f2.name»«ENDFOR»
+    }
+'''
+
+def compileOperators(ImportManager importManager, PojoEntity e) '''
+
+    public enum Operator {
+        «FOR f:e.features.filter(x| isAttribute(x)) SEPARATOR ", "»«f.name»«ENDFOR»
+    }
+
+    private Map<String, String> operators = new HashMap<String, String>();
+
+    public Map<String, String> getOperators() {
+      return operators;
+    }
+
+    public void setOperators(Map<String, String> operators) {
+      this.operators = operators;
+    }
+
+    public «e.name» addOp(String name, String value) {
+      if (operators == null)
+        operators = new HashMap<String, String>();
+      operators.put(name, value);
+      return this;
+    }
+
+    public «e.name» addFirstOp(String name, String value) {
+      operators = new HashMap<String, String>();
+      operators.put(name, value);
+      return this;
+    }
+
+    public «e.name» addOp(Operator operator, String value) {
+      if (operators == null)
+        operators = new HashMap<String, String>();
+      operators.put(operator.name(), value);
+      return this;
+    }
+
+    public «e.name» addFirstOp(Operator operator, String value) {
+      operators = new HashMap<String, String>();
+      operators.put(operator.name(), value);
+      return this;
     }
 '''
 
