@@ -177,7 +177,7 @@ public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e
   }
   «ENDIF»
   «FOR f:e.features.filter(x| isAttribute(x))»
-    «f.compile(importManager, e)»
+    «f.compile(importManager, e, getOperatorsSuffix(e))»
   «ENDFOR»
   «FOR f:e.features.filter(x| !isAttribute(x))»«IF f.name.equalsIgnoreCase("hashCode")»«f.compileHashCode(importManager, e)»
   «ELSEIF f.name.equalsIgnoreCase("equals")»«f.compileEquals(importManager, e)»
@@ -189,7 +189,7 @@ public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e
 }
 '''
 
-def compile(PojoProperty f, ImportManager importManager, PojoEntity e) '''
+def compile(PojoProperty f, ImportManager importManager, PojoEntity e, String operatorSuffix) '''
 
     private «f.compileType(importManager)» «f.name»«IF isList(f)» = new Array«f.compileType(importManager)»()«ELSEIF isOptLock(f)» = 0«ENDIF»;
   
@@ -204,7 +204,22 @@ def compile(PojoProperty f, ImportManager importManager, PojoEntity e) '''
     public «e.name» _set«f.name.toFirstUpper»(«f.compileType(importManager)» «f.name») {
       this.«f.name» = «f.name»;
       return this;
+    }«IF hasOperators(e) && operatorSuffix != null»
+    
+    private String «f.name»«operatorSuffix»;
+
+    public String get«f.name.toFirstUpper»«operatorSuffix»() {
+      return «f.name»«operatorSuffix»;
     }
+  
+    public void set«f.name.toFirstUpper»«operatorSuffix»(String «f.name»«operatorSuffix») {
+      this.«f.name»«operatorSuffix» = «f.name»«operatorSuffix»;
+    }
+  
+    public «e.name» _set«f.name.toFirstUpper»«operatorSuffix»(String «f.name»«operatorSuffix») {
+      this.«f.name»«operatorSuffix» = «f.name»«operatorSuffix»;
+      return this;
+    }«ENDIF»
 '''
 
 def compileHashCode(PojoProperty f, ImportManager importManager, PojoEntity e) '''

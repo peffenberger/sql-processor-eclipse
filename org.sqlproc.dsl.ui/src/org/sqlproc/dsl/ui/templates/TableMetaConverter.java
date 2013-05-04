@@ -630,6 +630,8 @@ public class TableMetaConverter extends TablePojoConverter {
             buffer.append(pentry.getKey());
             if (useLike) {
                 buffer.append(") like :+");
+            } else if (metaGenerateOperators || generateOperators != null) {
+                buffer.append(" ::= :");
             } else {
                 buffer.append(" = :");
             }

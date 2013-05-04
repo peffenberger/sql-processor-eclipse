@@ -630,7 +630,8 @@ public class ProcessorDslGenerator implements IGenerator {
       Iterable<PojoProperty> _filter_2 = IterableExtensions.<PojoProperty>filter(_features_2, _function_2);
       for(final PojoProperty f_5 : _filter_2) {
         _builder.append("  ");
-        CharSequence _compile = this.compile(f_5, importManager, e);
+        String _operatorsSuffix = Utils.getOperatorsSuffix(e);
+        CharSequence _compile = this.compile(f_5, importManager, e, _operatorsSuffix);
         _builder.append(_compile, "  ");
         _builder.newLineIfNotEmpty();
       }
@@ -717,7 +718,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final PojoProperty f, final ImportManager importManager, final PojoEntity e) {
+  public CharSequence compile(final PojoProperty f, final ImportManager importManager, final PojoEntity e, final String operatorSuffix) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("private ");
@@ -816,7 +817,101 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.append("return this;");
     _builder.newLine();
     _builder.append("}");
-    _builder.newLine();
+    {
+      boolean _and = false;
+      boolean _hasOperators = Utils.hasOperators(e);
+      if (!_hasOperators) {
+        _and = false;
+      } else {
+        boolean _notEquals = (!Objects.equal(operatorSuffix, null));
+        _and = (_hasOperators && _notEquals);
+      }
+      if (_and) {
+        _builder.newLineIfNotEmpty();
+        _builder.newLine();
+        _builder.append("private String ");
+        String _name_12 = f.getName();
+        _builder.append(_name_12, "");
+        _builder.append(operatorSuffix, "");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.newLine();
+        _builder.append("public String get");
+        String _name_13 = f.getName();
+        String _firstUpper_3 = StringExtensions.toFirstUpper(_name_13);
+        _builder.append(_firstUpper_3, "");
+        _builder.append(operatorSuffix, "");
+        _builder.append("() {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("  ");
+        _builder.append("return ");
+        String _name_14 = f.getName();
+        _builder.append(_name_14, "  ");
+        _builder.append(operatorSuffix, "  ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("  ");
+        _builder.newLine();
+        _builder.append("public void set");
+        String _name_15 = f.getName();
+        String _firstUpper_4 = StringExtensions.toFirstUpper(_name_15);
+        _builder.append(_firstUpper_4, "");
+        _builder.append(operatorSuffix, "");
+        _builder.append("(String ");
+        String _name_16 = f.getName();
+        _builder.append(_name_16, "");
+        _builder.append(operatorSuffix, "");
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("  ");
+        _builder.append("this.");
+        String _name_17 = f.getName();
+        _builder.append(_name_17, "  ");
+        _builder.append(operatorSuffix, "  ");
+        _builder.append(" = ");
+        String _name_18 = f.getName();
+        _builder.append(_name_18, "  ");
+        _builder.append(operatorSuffix, "  ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("  ");
+        _builder.newLine();
+        _builder.append("public ");
+        String _name_19 = e.getName();
+        _builder.append(_name_19, "");
+        _builder.append(" _set");
+        String _name_20 = f.getName();
+        String _firstUpper_5 = StringExtensions.toFirstUpper(_name_20);
+        _builder.append(_firstUpper_5, "");
+        _builder.append(operatorSuffix, "");
+        _builder.append("(String ");
+        String _name_21 = f.getName();
+        _builder.append(_name_21, "");
+        _builder.append(operatorSuffix, "");
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("  ");
+        _builder.append("this.");
+        String _name_22 = f.getName();
+        _builder.append(_name_22, "  ");
+        _builder.append(operatorSuffix, "  ");
+        _builder.append(" = ");
+        String _name_23 = f.getName();
+        _builder.append(_name_23, "  ");
+        _builder.append(operatorSuffix, "  ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("  ");
+        _builder.append("return this;");
+        _builder.newLine();
+        _builder.append("}");
+      }
+    }
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   

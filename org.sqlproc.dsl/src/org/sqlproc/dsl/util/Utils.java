@@ -128,6 +128,26 @@ public class Utils {
         return false;
     }
 
+    public static boolean hasOperators(PojoEntity e) {
+        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
+            return false;
+        for (PojoEntityModifier2 modifier : e.getModifiers2()) {
+            if (modifier.getOperators() != null)
+                return true;
+        }
+        return false;
+    }
+
+    public static String getOperatorsSuffix(PojoEntity e) {
+        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
+            return null;
+        for (PojoEntityModifier2 modifier : e.getModifiers2()) {
+            if (modifier.getOperatorsSuffix() != null)
+                return modifier.getOperatorsSuffix();
+        }
+        return null;
+    }
+
     public static boolean isOptLock(PojoProperty f) {
         if (f.getModifiers() == null || f.getModifiers().isEmpty())
             return false;
