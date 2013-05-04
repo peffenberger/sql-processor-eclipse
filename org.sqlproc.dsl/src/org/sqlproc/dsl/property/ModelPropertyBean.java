@@ -79,6 +79,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String POJOGEN_MANY_TO_MANY_IMPORTS = "table-many-to-many";
     public static final String POJOGEN_INHERITANCE = "inherit-discriminator";
     public static final String POJOGEN_GENERATE_METHODS = "generate-methods";
+    public static final String POJOGEN_GENERATE_OPERATORS = "generate-operators";
     public static final String POJOGEN_IMPLEMENTS_INTERFACES = "implements-interfaces";
     public static final String POJOGEN_EXTENDS_CLASS = "extends-class";
     public static final String POJOGEN_JOIN_TABLES = "join-tables";
@@ -104,6 +105,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String METAGEN_FUNCTION_RESULT_SET = "function-result-set";
     public static final String METAGEN_PROCEDURE_RESULT_SET = "procedure-result-set";
     public static final String METAGEN_DEBUG_LEVEL = "debug-level";
+    public static final String METAGEN_GENERATE_OPERATORS = "generate-operators";
     public static final String DAOGEN = "daogen";
     public static final String DAOGEN_IGNORE_TABLES = "ignore-tables";
     public static final String DAOGEN_ONLY_TABLES = "only-tables";
@@ -163,6 +165,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, Map<String, Map<String, List<String>>>> inheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
         public Map<String, String> inheritanceColumns;
         public Set<String> generateMethods;
+        public String generateOperators;
         public Map<String, JvmType> toImplements;
         public JvmType toExtends;
         public Map<String, List<String>> joinTables;
@@ -188,6 +191,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, String> metaFunctionsResultSet;
         public Map<String, String> metaProceduresResultSet;
         public Level metaDebugLevel;
+        public boolean metaGenerateOperators;
 
         public Set<String> daoIgnoreTables;
         public Set<String> daoOnlyTables;
@@ -367,6 +371,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.inheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
         modelValues.inheritanceColumns = new HashMap<String, String>();
         modelValues.generateMethods = new HashSet<String>();
+        modelValues.generateOperators = null;
         modelValues.toImplements = new HashMap<String, JvmType>();
         modelValues.toExtends = null;
         modelValues.joinTables = new HashMap<String, List<String>>();
@@ -394,6 +399,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.metaFunctionsResultSet = new HashMap<String, String>();
         modelValues.metaProceduresResultSet = new HashMap<String, String>();
         modelValues.metaDebugLevel = null;
+        modelValues.metaGenerateOperators = false;
     }
 
     private void initDaogenModel(ModelValues modelValues) {
@@ -671,6 +677,10 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             for (int i = 0, m = property.getMethods().size(); i < m; i++) {
                 modelValues.generateMethods.add(property.getMethods().get(i));
             }
+        } else if (POJOGEN_GENERATE_OPERATORS.equals(property.getName())) {
+            modelValues.generateOperators = getPropertyValue(property.getOperatorsSuffix());
+            if (modelValues.generateOperators == null)
+                modelValues.generateOperators = "operators";
         } else if (POJOGEN_IMPLEMENTS_INTERFACES.equals(property.getName())) {
             // if (modelValues.toImplements == null)
             // modelValues.toImplements = new HashMap<String, JvmType>();
@@ -768,6 +778,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         } else if (METAGEN_DEBUG_LEVEL.equals(property.getName())) {
             modelValues.metaDebugLevel = Level.toLevel((property.getDebug() != null) ? property.getDebug().getDebug()
                     : null, Level.WARN);
+        } else if (METAGEN_GENERATE_OPERATORS.equals(property.getName())) {
+            modelValues.metaGenerateOperators = true;
         }
     }
 
@@ -950,6 +962,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
+    public String getGenerateOperators(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.generateOperators : null;
+    }
+
+    @Override
     public Map<String, JvmType> getToImplements(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.toImplements : Collections.<String, JvmType> emptyMap();
@@ -1093,6 +1111,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public Level getMetaDebugLevel(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.metaDebugLevel : null;
+    }
+
+    @Override
+    public boolean isMetaGenerateOperators(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGenerateOperators : false;
     }
 
     @Override

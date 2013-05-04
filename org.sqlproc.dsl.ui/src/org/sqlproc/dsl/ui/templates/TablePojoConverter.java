@@ -92,6 +92,7 @@ public class TablePojoConverter {
     protected boolean makeItFinal;
     protected String versionColumn;
     protected Map<String, String> versionColumns = new HashMap<String, String>();
+    protected String generateOperators = null;
 
     protected Map<String, Map<String, PojoAttribute>> pojos = new TreeMap<String, Map<String, PojoAttribute>>();
     protected Map<String, Map<String, PojoAttribute>> procedures = new TreeMap<String, Map<String, PojoAttribute>>();
@@ -207,6 +208,7 @@ public class TablePojoConverter {
         if (generateMethods != null) {
             this.generateMethods.addAll(generateMethods);
         }
+        this.generateOperators = modelProperty.getGenerateOperators(artifacts);
         Map<String, JvmType> toImplements = modelProperty.getToImplements(artifacts);
         if (toImplements != null) {
             this.toImplements.putAll(toImplements);
@@ -267,6 +269,7 @@ public class TablePojoConverter {
             System.out.println("inheritance " + this.inheritance);
             System.out.println("inheritanceColumns " + this.inheritanceColumns);
             System.out.println("generateMethods " + this.generateMethods);
+            System.out.println("generateOperators " + this.generateOperators);
             System.out.println("toImplements " + this.toImplements);
             System.out.println("toExtends " + this.toExtends);
             System.out.println("joinTables " + this.joinTables);
@@ -865,7 +868,12 @@ public class TablePojoConverter {
                 if (pojoDiscriminators.containsKey(pojo))
                     buffer.append(" discriminator ").append(pojoDiscriminators.get(pojo));
                 if (isSerializable)
-                    buffer.append(" serializable 1 ");
+                    buffer.append(" serializable 1");
+                if (generateOperators != null) {
+                    buffer.append(" operators");
+                    if (!"operators".equals(generateOperators))
+                        buffer.append(" ").append(generateOperators);
+                }
                 buffer.append(" {");
                 Set<String> pkeys = new HashSet<String>();
                 Set<String> toStr = new HashSet<String>();

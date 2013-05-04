@@ -1488,8 +1488,10 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_22 = (Group)cAlternatives.eContents().get(22);
 		private final Assignment cNameAssignment_22_0 = (Assignment)cGroup_22.eContents().get(0);
 		private final Keyword cNameGenerateOperatorsKeyword_22_0_0 = (Keyword)cNameAssignment_22_0.eContents().get(0);
-		private final Assignment cOperatorsSuffixAssignment_22_1 = (Assignment)cGroup_22.eContents().get(1);
-		private final RuleCall cOperatorsSuffixIDENTTerminalRuleCall_22_1_0 = (RuleCall)cOperatorsSuffixAssignment_22_1.eContents().get(0);
+		private final Group cGroup_22_1 = (Group)cGroup_22.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_22_1_0 = (RuleCall)cGroup_22_1.eContents().get(0);
+		private final Assignment cOperatorsSuffixAssignment_22_1_1 = (Assignment)cGroup_22_1.eContents().get(1);
+		private final RuleCall cOperatorsSuffixIDENTTerminalRuleCall_22_1_1_0 = (RuleCall)cOperatorsSuffixAssignment_22_1_1.eContents().get(0);
 		private final Group cGroup_23 = (Group)cAlternatives.eContents().get(23);
 		private final Assignment cNameAssignment_23_0 = (Assignment)cGroup_23.eContents().get(0);
 		private final Keyword cNameImplementsInterfacesKeyword_23_0_0 = (Keyword)cNameAssignment_23_0.eContents().get(0);
@@ -1549,7 +1551,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	| name="create-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 		//	| name="table-many-to-many" WS+ dbTable=IDENT (WS+ many2s+=ManyToManyAssignement)+ | name="inherit-discriminator" WS+
 		//	dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+ | name="generate-methods" (WS+
-		//	methods+=IDENT)+ | name="generate-operators" operatorsSuffix=IDENT? | name="implements-interfaces" (WS+
+		//	methods+=IDENT)+ | name="generate-operators" (WS+ operatorsSuffix=IDENT)? | name="implements-interfaces" (WS+
 		//	toImplements+=[jvmTypes::JvmType|QualifiedName])+ | name="extends-class" WS+
 		//	toExtends=[jvmTypes::JvmType|QualifiedName] | name="generate-wrappers" | name="implementation-package" WS+
 		//	implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT (WS+ dbTables+=IDENT)* |
@@ -1572,7 +1574,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//| name="create-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 		//| name="table-many-to-many" WS+ dbTable=IDENT (WS+ many2s+=ManyToManyAssignement)+ | name="inherit-discriminator" WS+
 		//dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+ | name="generate-methods" (WS+
-		//methods+=IDENT)+ | name="generate-operators" operatorsSuffix=IDENT? | name="implements-interfaces" (WS+
+		//methods+=IDENT)+ | name="generate-operators" (WS+ operatorsSuffix=IDENT)? | name="implements-interfaces" (WS+
 		//toImplements+=[jvmTypes::JvmType|QualifiedName])+ | name="extends-class" WS+
 		//toExtends=[jvmTypes::JvmType|QualifiedName] | name="generate-wrappers" | name="implementation-package" WS+
 		//implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT (WS+ dbTables+=IDENT)* |
@@ -2182,7 +2184,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getMethodsIDENTTerminalRuleCall_21_1_1_0() { return cMethodsIDENTTerminalRuleCall_21_1_1_0; }
 
-		//name="generate-operators" operatorsSuffix=IDENT?
+		//name="generate-operators" (WS+ operatorsSuffix=IDENT)?
 		public Group getGroup_22() { return cGroup_22; }
 
 		//name="generate-operators"
@@ -2191,11 +2193,17 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"generate-operators"
 		public Keyword getNameGenerateOperatorsKeyword_22_0_0() { return cNameGenerateOperatorsKeyword_22_0_0; }
 
-		//operatorsSuffix=IDENT?
-		public Assignment getOperatorsSuffixAssignment_22_1() { return cOperatorsSuffixAssignment_22_1; }
+		//(WS+ operatorsSuffix=IDENT)?
+		public Group getGroup_22_1() { return cGroup_22_1; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_22_1_0() { return cWSTerminalRuleCall_22_1_0; }
+
+		//operatorsSuffix=IDENT
+		public Assignment getOperatorsSuffixAssignment_22_1_1() { return cOperatorsSuffixAssignment_22_1_1; }
 
 		//IDENT
-		public RuleCall getOperatorsSuffixIDENTTerminalRuleCall_22_1_0() { return cOperatorsSuffixIDENTTerminalRuleCall_22_1_0; }
+		public RuleCall getOperatorsSuffixIDENTTerminalRuleCall_22_1_1_0() { return cOperatorsSuffixIDENTTerminalRuleCall_22_1_1_0; }
 
 		//name="implements-interfaces" (WS+ toImplements+=[jvmTypes::JvmType|QualifiedName])+
 		public Group getGroup_23() { return cGroup_23; }
@@ -2498,6 +2506,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_14_1 = (RuleCall)cGroup_14.eContents().get(1);
 		private final Assignment cDebugAssignment_14_2 = (Assignment)cGroup_14.eContents().get(2);
 		private final RuleCall cDebugDebugLevelAssignementParserRuleCall_14_2_0 = (RuleCall)cDebugAssignment_14_2.eContents().get(0);
+		private final Assignment cNameAssignment_15 = (Assignment)cAlternatives.eContents().get(15);
+		private final Keyword cNameGenerateOperatorsKeyword_15_0 = (Keyword)cNameAssignment_15.eContents().get(0);
 		
 		//MetagenProperty:
 		//	name="global-sequence" WS+ sequence=IDENT (WS+ type=IDENT)? | name="table-sequence" WS+ dbTable=IDENT WS+
@@ -2508,7 +2518,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	dbColumns+=IDENT)+ | name="not-like-columns" WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+ | name="generate-sequences" |
 		//	name="generate-identities" | name="function-result" WS+ dbFunction=IDENT WS+ type=IDENT | name="function-result-set"
 		//	WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT WS+ dbTable=IDENT |
-		//	name="debug-level" WS+ debug=DebugLevelAssignement;
+		//	name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators";
 		public ParserRule getRule() { return rule; }
 
 		//name="global-sequence" WS+ sequence=IDENT (WS+ type=IDENT)? | name="table-sequence" WS+ dbTable=IDENT WS+ sequence=IDENT
@@ -2519,7 +2529,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//| name="not-like-columns" WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+ | name="generate-sequences" |
 		//name="generate-identities" | name="function-result" WS+ dbFunction=IDENT WS+ type=IDENT | name="function-result-set"
 		//WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT WS+ dbTable=IDENT |
-		//name="debug-level" WS+ debug=DebugLevelAssignement
+		//name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="global-sequence" WS+ sequence=IDENT (WS+ type=IDENT)?
@@ -2899,6 +2909,12 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//DebugLevelAssignement
 		public RuleCall getDebugDebugLevelAssignementParserRuleCall_14_2_0() { return cDebugDebugLevelAssignementParserRuleCall_14_2_0; }
+
+		//name="generate-operators"
+		public Assignment getNameAssignment_15() { return cNameAssignment_15; }
+
+		//"generate-operators"
+		public Keyword getNameGenerateOperatorsKeyword_15_0() { return cNameGenerateOperatorsKeyword_15_0; }
 	}
 
 	public class DaogenPropertyElements extends AbstractParserRuleElementFinder {
@@ -8310,7 +8326,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	| name="create-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 	//	| name="table-many-to-many" WS+ dbTable=IDENT (WS+ many2s+=ManyToManyAssignement)+ | name="inherit-discriminator" WS+
 	//	dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+ | name="generate-methods" (WS+
-	//	methods+=IDENT)+ | name="generate-operators" operatorsSuffix=IDENT? | name="implements-interfaces" (WS+
+	//	methods+=IDENT)+ | name="generate-operators" (WS+ operatorsSuffix=IDENT)? | name="implements-interfaces" (WS+
 	//	toImplements+=[jvmTypes::JvmType|QualifiedName])+ | name="extends-class" WS+
 	//	toExtends=[jvmTypes::JvmType|QualifiedName] | name="generate-wrappers" | name="implementation-package" WS+
 	//	implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT (WS+ dbTables+=IDENT)* |
@@ -8342,7 +8358,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	dbColumns+=IDENT)+ | name="not-like-columns" WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+ | name="generate-sequences" |
 	//	name="generate-identities" | name="function-result" WS+ dbFunction=IDENT WS+ type=IDENT | name="function-result-set"
 	//	WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT WS+ dbTable=IDENT |
-	//	name="debug-level" WS+ debug=DebugLevelAssignement;
+	//	name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators";
 	public MetagenPropertyElements getMetagenPropertyAccess() {
 		return (pMetagenProperty != null) ? pMetagenProperty : (pMetagenProperty = new MetagenPropertyElements());
 	}

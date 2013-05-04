@@ -200,6 +200,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_21(), "rule__PojogenProperty__Group_21__0");
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_21_1(), "rule__PojogenProperty__Group_21_1__0");
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_22(), "rule__PojogenProperty__Group_22__0");
+					put(grammarAccess.getPojogenPropertyAccess().getGroup_22_1(), "rule__PojogenProperty__Group_22_1__0");
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_23(), "rule__PojogenProperty__Group_23__0");
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_23_1(), "rule__PojogenProperty__Group_23_1__0");
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_24(), "rule__PojogenProperty__Group_24__0");
@@ -506,7 +507,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojogenPropertyAccess().getNameAssignment_21_0(), "rule__PojogenProperty__NameAssignment_21_0");
 					put(grammarAccess.getPojogenPropertyAccess().getMethodsAssignment_21_1_1(), "rule__PojogenProperty__MethodsAssignment_21_1_1");
 					put(grammarAccess.getPojogenPropertyAccess().getNameAssignment_22_0(), "rule__PojogenProperty__NameAssignment_22_0");
-					put(grammarAccess.getPojogenPropertyAccess().getOperatorsSuffixAssignment_22_1(), "rule__PojogenProperty__OperatorsSuffixAssignment_22_1");
+					put(grammarAccess.getPojogenPropertyAccess().getOperatorsSuffixAssignment_22_1_1(), "rule__PojogenProperty__OperatorsSuffixAssignment_22_1_1");
 					put(grammarAccess.getPojogenPropertyAccess().getNameAssignment_23_0(), "rule__PojogenProperty__NameAssignment_23_0");
 					put(grammarAccess.getPojogenPropertyAccess().getToImplementsAssignment_23_1_1(), "rule__PojogenProperty__ToImplementsAssignment_23_1_1");
 					put(grammarAccess.getPojogenPropertyAccess().getNameAssignment_24_0(), "rule__PojogenProperty__NameAssignment_24_0");
@@ -563,6 +564,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMetagenPropertyAccess().getDbTableAssignment_13_4(), "rule__MetagenProperty__DbTableAssignment_13_4");
 					put(grammarAccess.getMetagenPropertyAccess().getNameAssignment_14_0(), "rule__MetagenProperty__NameAssignment_14_0");
 					put(grammarAccess.getMetagenPropertyAccess().getDebugAssignment_14_2(), "rule__MetagenProperty__DebugAssignment_14_2");
+					put(grammarAccess.getMetagenPropertyAccess().getNameAssignment_15(), "rule__MetagenProperty__NameAssignment_15");
 					put(grammarAccess.getDaogenPropertyAccess().getNameAssignment_0_0(), "rule__DaogenProperty__NameAssignment_0_0");
 					put(grammarAccess.getDaogenPropertyAccess().getDbTablesAssignment_0_1_1(), "rule__DaogenProperty__DbTablesAssignment_0_1_1");
 					put(grammarAccess.getDaogenPropertyAccess().getNameAssignment_1_0(), "rule__DaogenProperty__NameAssignment_1_0");

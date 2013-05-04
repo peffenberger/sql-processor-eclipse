@@ -125,4 +125,8 @@ public interface ModelProperty extends Adapter {
     Level getMetaDebugLevel(EObject model);
 
     Level getDaoDebugLevel(EObject model);
+
+    String getGenerateOperators(EObject model);
+
+    boolean isMetaGenerateOperators(EObject model);
 }

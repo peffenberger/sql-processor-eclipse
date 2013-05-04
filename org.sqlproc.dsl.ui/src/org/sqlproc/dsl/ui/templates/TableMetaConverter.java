@@ -49,6 +49,7 @@ public class TableMetaConverter extends TablePojoConverter {
     protected Map<String, StringBuilder> identities = null;
     protected Map<String, String> metaFunctionsResultSet = new HashMap<String, String>();
     protected Map<String, String> metaProceduresResultSet = new HashMap<String, String>();
+    protected boolean metaGenerateOperators = false;
 
     enum StatementType {
         INSERT, GET, UPDATE, DELETE, SELECT
@@ -136,6 +137,7 @@ public class TableMetaConverter extends TablePojoConverter {
         if (metaProceduresResultSet != null) {
             this.metaProceduresResultSet.putAll(metaProceduresResultSet);
         }
+        this.metaGenerateOperators = modelProperty.isMetaGenerateOperators(artifacts);
 
         if (debug) {
             System.out.println("finalMetas " + this.finalMetas);
@@ -152,6 +154,7 @@ public class TableMetaConverter extends TablePojoConverter {
             System.out.println("metaGenerateIdentities " + this.metaGenerateIdentities);
             System.out.println("metaFunctionsResultSet " + this.metaFunctionsResultSet);
             System.out.println("metaProceduresResultSet " + this.metaProceduresResultSet);
+            System.out.println("metaGenerateOperators " + this.metaGenerateOperators);
         }
     }
 
