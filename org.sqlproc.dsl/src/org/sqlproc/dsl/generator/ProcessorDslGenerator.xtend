@@ -413,7 +413,7 @@ def compileEnumInit(PojoProperty f, ImportManager importManager, PojoEntity e) '
 
 def compileOperators(ImportManager importManager, PojoEntity e) '''
 
-    public enum Operator {
+    public enum OpAttribute {
         «FOR f:e.features.filter(x| isAttribute(x)) SEPARATOR ", "»«f.name»«ENDFOR»
     }
 
@@ -423,34 +423,36 @@ def compileOperators(ImportManager importManager, PojoEntity e) '''
       return operators;
     }
 
-    public void setOperators(Map<String, String> operators) {
-      this.operators = operators;
+    public void setOp(String operator, OpAttribute... attributes) {
+      if (attributes == null)
+        throw new IllegalArgumentException();
+      for (OpAttribute attribute : attributes)
+        operators.put(attribute.name(), operator);
     }
 
-    public «e.name» addOp(String name, String value) {
-      if (operators == null)
-        operators = new HashMap<String, String>();
-      operators.put(name, value);
-      return this;
+    public void clearOp(OpAttribute... attributes) {
+      if (attributes == null)
+        throw new IllegalArgumentException();
+      for (OpAttribute attribute : attributes)
+        operators.remove(attribute.name());
     }
 
-    public «e.name» addFirstOp(String name, String value) {
+    public void setOp(String operator, String... attributes) {
+      if (attributes == null)
+        throw new IllegalArgumentException();
+      for (String attribute : attributes)
+        operators.put(attribute, operator);
+    }
+
+    public void clearOp(String... attributes) {
+      if (attributes == null)
+        throw new IllegalArgumentException();
+      for (String attribute : attributes)
+        operators.remove(attribute);
+    }
+
+    public void clearAllOps() {
       operators = new HashMap<String, String>();
-      operators.put(name, value);
-      return this;
-    }
-
-    public «e.name» addOp(Operator operator, String value) {
-      if (operators == null)
-        operators = new HashMap<String, String>();
-      operators.put(operator.name(), value);
-      return this;
-    }
-
-    public «e.name» addFirstOp(Operator operator, String value) {
-      operators = new HashMap<String, String>();
-      operators.put(operator.name(), value);
-      return this;
     }
 '''
 
