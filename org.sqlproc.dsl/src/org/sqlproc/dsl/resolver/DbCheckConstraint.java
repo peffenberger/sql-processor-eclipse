@@ -120,6 +120,12 @@ public class DbCheckConstraint {
         return null;
     }
 
+    // Informix
+    // contact constraintName c177_297
+    // contact checkClause (type IN (0 ,1 ))
+    // person constraintName c176_292
+    // person checkClause (gender IN ('M' ,'F' ))
+
     @Override
     public String toString() {
         return "DbCheckConstraint [constraintName=" + constraintName + ", checkClause=" + checkClause + "]";

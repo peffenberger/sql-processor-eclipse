@@ -9,6 +9,7 @@ import java.sql.BatchUpdateException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.Driver;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -1656,14 +1657,8 @@ public class DbResolverBean implements DbResolver {
         if (modelDatabaseValues.connection != null) {
             try {
                 DbType dbType = getDbType(model);
-                Map<String, DbCheckConstraint> mapOfCheckConstraints;
-                if (dbType == DbType.HSQLDB) {
-                    mapOfCheckConstraints = getHsqldbCheckConstraints(modelDatabaseValues, null);
-                } else if (dbType == DbType.ORACLE) {
-                    mapOfCheckConstraints = getOracleCheckConstraints(modelDatabaseValues, null);
-                } else {
-                    mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
-                }
+                Map<String, DbCheckConstraint> mapOfCheckConstraints = getCheckConstraints(modelDatabaseValues, null,
+                        dbType);
                 for (DbCheckConstraint check : mapOfCheckConstraints.values())
                     checkConstraintsForModel.add(check.getEnumName());
             } catch (SQLException e) {
@@ -1700,14 +1695,8 @@ public class DbResolverBean implements DbResolver {
         if (modelDatabaseValues.connection != null) {
             try {
                 DbType dbType = getDbType(model);
-                Map<String, DbCheckConstraint> mapOfCheckConstraints;
-                if (dbType == DbType.HSQLDB) {
-                    mapOfCheckConstraints = getHsqldbCheckConstraints(modelDatabaseValues, null);
-                } else if (dbType == DbType.ORACLE) {
-                    mapOfCheckConstraints = getOracleCheckConstraints(modelDatabaseValues, null);
-                } else {
-                    mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
-                }
+                Map<String, DbCheckConstraint> mapOfCheckConstraints = getCheckConstraints(modelDatabaseValues, null,
+                        dbType);
                 for (DbCheckConstraint check : mapOfCheckConstraints.values()) {
                     if (table.equals(check.getEnumName())) {
                         for (String val : check.getValues()) {
@@ -1755,14 +1744,8 @@ public class DbResolverBean implements DbResolver {
         if (modelDatabaseValues.connection != null) {
             try {
                 DbType dbType = getDbType(model);
-                Map<String, DbCheckConstraint> mapOfCheckConstraints;
-                if (dbType == DbType.HSQLDB) {
-                    mapOfCheckConstraints = getHsqldbCheckConstraints(modelDatabaseValues, table);
-                } else if (dbType == DbType.ORACLE) {
-                    mapOfCheckConstraints = getOracleCheckConstraints(modelDatabaseValues, table);
-                } else {
-                    mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
-                }
+                Map<String, DbCheckConstraint> mapOfCheckConstraints = getCheckConstraints(modelDatabaseValues, table,
+                        dbType);
                 checkConstraintsForModel.addAll(mapOfCheckConstraints.values());
             } catch (SQLException e) {
                 error("getDbCheckConstraints error " + e, e);
@@ -1772,90 +1755,69 @@ public class DbResolverBean implements DbResolver {
         return checkConstraintsForModel;
     }
 
-    private Map<String, DbCheckConstraint> getOracleCheckConstraints(DatabaseDirectives modelDatabaseValues,
-            String table) throws SQLException {
+    private Map<String, DbCheckConstraint> getCheckConstraints(DatabaseDirectives modelDatabaseValues, String table,
+            DbType dbType) throws SQLException {
         Map<String, DbCheckConstraint> mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
-        ResultSet result = null;
-        try {
-            String sql = "select * from USER_CONSTRAINTS";
-            Statement stmt = modelDatabaseValues.connection.createStatement();
-            result = stmt.executeQuery(sql);
-            ResultSetMetaData meta = result.getMetaData();
-            // dump(meta);
-            while (result.next()) {
-                String constraintType = result.getString(3);
-                String tableName = result.getString(4);
-                if ("C".equalsIgnoreCase(constraintType) && (table == null || table.equalsIgnoreCase(tableName))) {
-                    String constraintName = result.getString(2);
-                    String checkClause = result.getString(5);
-
-                    System.out.println(table + " constraintName " + constraintName);
-                    System.out.println(table + " checkClause " + checkClause);
-
-                    DbCheckConstraint check = DbCheckConstraint.parseOracle(constraintName, checkClause, tableName);
-                    if (check != null)
-                        mapOfCheckConstraints.put(constraintName, check);
-                }
+        // TODO - might be also schema and catalog should be taken into account
+        if (dbType == DbType.HSQLDB) {
+            String query = "select tc.TABLE_NAME, tc.CONSTRAINT_NAME, cc.CHECK_CLAUSE from INFORMATION_SCHEMA.TABLE_CONSTRAINTS tc, INFORMATION_SCHEMA.CHECK_CONSTRAINTS cc where tc.CONSTRAINT_NAME = cc.CONSTRAINT_NAME and tc.CONSTRAINT_TYPE = 'CHECK' and tc.TABLE_NAME = ?";
+            String query2 = "select tc.TABLE_NAME, tc.CONSTRAINT_NAME, cc.CHECK_CLAUSE from INFORMATION_SCHEMA.TABLE_CONSTRAINTS tc, INFORMATION_SCHEMA.CHECK_CONSTRAINTS cc where tc.CONSTRAINT_NAME = cc.CONSTRAINT_NAME and tc.CONSTRAINT_TYPE = 'CHECK'";
+            Map<String, List<String>> map = getCheckConstraints(modelDatabaseValues, table, query, query2);
+            for (String constraintName : map.keySet()) {
+                DbCheckConstraint check = DbCheckConstraint.parseHsqldb(constraintName, map.get(constraintName).get(0));
+                if (check != null)
+                    mapOfCheckConstraints.put(constraintName, check);
             }
-            stmt.close();
-        } finally {
-            try {
-                if (result != null)
-                    result.close();
-            } catch (SQLException e) {
-                error("getDbIndexes error " + e, e);
+        } else if (dbType == DbType.ORACLE) {
+            String query = "select TABLE_NAME, CONSTRAINT_NAME, SEARCH_CONDITION from USER_CONSTRAINTS where TABLE_NAME not like 'BIN%' and CONSTRAINT_TYPE = 'C' and TABLE_NAME = ?";
+            String query2 = "select TABLE_NAME, CONSTRAINT_NAME, SEARCH_CONDITION from USER_CONSTRAINTS where TABLE_NAME not like 'BIN%' and CONSTRAINT_TYPE = 'C'";
+            Map<String, List<String>> map = getCheckConstraints(modelDatabaseValues, table, query, query2);
+            for (String constraintName : map.keySet()) {
+                DbCheckConstraint check = DbCheckConstraint.parseOracle(constraintName, map.get(constraintName).get(0),
+                        map.get(constraintName).get(1));
+                if (check != null)
+                    mapOfCheckConstraints.put(constraintName, check);
             }
+        } else if (dbType == DbType.INFORMIX) {
+            String query = "select st.tabname, ss.constrname, sc.checktext from systables st, sysconstraints ss, syschecks sc where st.tabid = ss.tabid and ss.constrid = sc.constrid and ss.constrtype = 'C' and sc.type = 'T' and st.tabname = ?";
+            String query2 = "select st.tabname, ss.constrname, sc.checktext from systables st, sysconstraints ss, syschecks sc where st.tabid = ss.tabid and ss.constrid = sc.constrid and ss.constrtype = 'C' and sc.type = 'T'";
+            Map<String, List<String>> map = getCheckConstraints(modelDatabaseValues, table, query, query2);
+        } else {
+            mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
         }
         return mapOfCheckConstraints;
     }
 
-    private Map<String, DbCheckConstraint> getHsqldbCheckConstraints(DatabaseDirectives modelDatabaseValues,
-            String table) throws SQLException {
-        Map<String, DbCheckConstraint> mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
+    private Map<String, List<String>> getCheckConstraints(DatabaseDirectives modelDatabaseValues, String table,
+            String query, String query2) throws SQLException {
+        Map<String, List<String>> mapOfCheckConstraints = new LinkedHashMap<String, List<String>>();
         ResultSet result = null;
         try {
-            String sql = "select * from INFORMATION_SCHEMA.TABLE_CONSTRAINTS";
-            Statement stmt = modelDatabaseValues.connection.createStatement();
-            result = stmt.executeQuery(sql);
-            // ResultSetMetaData meta = result.getMetaData();
-            // dump(meta);
-            Set<String> constraintsNames = new HashSet<String>();
-            while (result.next()) {
-                String constraintType = result.getString(4);
-                String tableName = result.getString(7);
-                if ("CHECK".equalsIgnoreCase(constraintType) && (table == null || table.equalsIgnoreCase(tableName))) {
-                    String constraintName = result.getString(3);
-                    System.out.println(((table != null) ? table : "null") + " constraintName " + constraintName);
-                    constraintsNames.add(constraintName);
-                    continue;
-                }
+            if (table != null) {
+                PreparedStatement stmt = modelDatabaseValues.connection.prepareStatement(query);
+                stmt.setString(1, table);
+                result = stmt.executeQuery();
+            } else {
+                Statement stmt = modelDatabaseValues.connection.createStatement();
+                result = stmt.executeQuery(query2);
             }
-            stmt.close();
-            result.close();
-            String checkClause = null;
-            if (!constraintsNames.isEmpty()) {
-                sql = "select * from INFORMATION_SCHEMA.CHECK_CONSTRAINTS";
-                stmt = modelDatabaseValues.connection.createStatement();
-                result = stmt.executeQuery(sql);
-                // meta = result.getMetaData();
-                while (result.next()) {
-                    String constraintName = result.getString(3);
-                    if (constraintsNames.contains(constraintName)) {
-                        checkClause = result.getString(4);
-                        System.out.println(((table != null) ? table : "null") + " checkClause " + checkClause);
-                        DbCheckConstraint check = DbCheckConstraint.parseHsqldb(constraintName, checkClause);
-                        if (check != null)
-                            mapOfCheckConstraints.put(constraintName, check);
-                    }
-                }
-                stmt.close();
+            while (result.next()) {
+                String tableName = result.getString(1);
+                String constraintName = result.getString(2);
+                String checkClause = result.getString(3);
+                System.out.println(tableName + " constraintName " + constraintName + ", " + " checkClause "
+                        + checkClause);
+                List<String> list = new ArrayList<String>();
+                list.add(checkClause);
+                list.add(tableName);
+                mapOfCheckConstraints.put(constraintName, list);
             }
         } finally {
             try {
                 if (result != null)
                     result.close();
             } catch (SQLException e) {
-                error("getDbIndexes error " + e, e);
+                error("getHsqldbCheckConstraints error " + e, e);
             }
         }
         return mapOfCheckConstraints;
