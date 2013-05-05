@@ -1782,9 +1782,16 @@ public class DbResolverBean implements DbResolver {
             String query = "select st.tabname, ss.constrname, sc.checktext from systables st, sysconstraints ss, syschecks sc where st.tabid = ss.tabid and ss.constrid = sc.constrid and ss.constrtype = 'C' and sc.type = 'T' and st.tabname = ?";
             String query2 = "select st.tabname, ss.constrname, sc.checktext from systables st, sysconstraints ss, syschecks sc where st.tabid = ss.tabid and ss.constrid = sc.constrid and ss.constrtype = 'C' and sc.type = 'T'";
             Map<String, List<String>> map = getCheckConstraints(modelDatabaseValues, table, query, query2);
+            for (String constraintName : map.keySet()) {
+                DbCheckConstraint check = DbCheckConstraint.parseInformix(constraintName, map.get(constraintName)
+                        .get(0), map.get(constraintName).get(1));
+                if (check != null)
+                    mapOfCheckConstraints.put(constraintName, check);
+            }
         } else {
             mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
         }
+        System.out.println("XXX " + mapOfCheckConstraints);
         return mapOfCheckConstraints;
     }
 

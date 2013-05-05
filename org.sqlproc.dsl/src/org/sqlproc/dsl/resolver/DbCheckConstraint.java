@@ -120,15 +120,53 @@ public class DbCheckConstraint {
         return null;
     }
 
-    // Informix
-    // contact constraintName c177_297
-    // contact checkClause (type IN (0 ,1 ))
-    // person constraintName c176_292
-    // person checkClause (gender IN ('M' ,'F' ))
+    static final Pattern INFORMIX_CHECK = Pattern.compile("(?i)\\((.*)\\s*IN\\s*\\(('?.*?'?\\s*,'?.*?'?\\s*)\\)*");
+
+    public static DbCheckConstraint parseInformix(String name, String clause, String relTable) {
+        // (type IN (0 ,1 ))
+        // (gender IN ('M' ,'F' ))
+        Matcher matcher = INFORMIX_CHECK.matcher(clause.trim());
+        if (matcher.matches()) {
+            String relCol = matcher.group(1).trim();
+            String enumName = relTable + "_" + relCol;
+            String[] constraintValues = matcher.group(2).trim().split(",");
+            List<String> values = new ArrayList<String>();
+            for (int j = 0; j < constraintValues.length; j++) {
+                String value = constraintValues[j].trim();
+                value = value.replaceAll("'", "");
+                values.add(value);
+            }
+            DbCheckConstraint dbCheckConstraint = new DbCheckConstraint();
+            dbCheckConstraint.setConstraintName(name);
+            dbCheckConstraint.setCheckClause(clause);
+            dbCheckConstraint.setEnumName(enumName);
+            dbCheckConstraint.setValues(values);
+            dbCheckConstraint.setTable(relTable);
+            dbCheckConstraint.setColumn(relCol);
+            return dbCheckConstraint;
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        Matcher matcher = INFORMIX_CHECK.matcher("(type IN (0 ,1 ))  ");
+        if (matcher.matches()) {
+            String relCol = matcher.group(1).trim();
+            System.out.println("1 " + relCol);
+            String[] constraintValues = matcher.group(2).trim().split(",");
+            List<String> values = new ArrayList<String>();
+            for (int j = 0; j < constraintValues.length; j++) {
+                String value = constraintValues[j].trim();
+                value = value.replaceAll("'", "");
+                values.add(value);
+            }
+            System.out.println("9 " + values);
+        }
+    }
 
     @Override
     public String toString() {
-        return "DbCheckConstraint [constraintName=" + constraintName + ", checkClause=" + checkClause + "]";
+        return "DbCheckConstraint [constraintName=" + constraintName + ", checkClause=" + checkClause + ", enumName="
+                + enumName + ", values=" + values + ", table=" + table + ", column=" + column + "]";
     }
-
 }
