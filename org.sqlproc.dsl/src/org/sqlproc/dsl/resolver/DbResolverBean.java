@@ -1700,13 +1700,12 @@ public class DbResolverBean implements DbResolver {
                 for (DbCheckConstraint check : mapOfCheckConstraints.values()) {
                     if (table.equals(check.getEnumName())) {
                         for (String val : check.getValues()) {
-                            // System.out.println("enum value '" + val + "' " + Character.isDigit(val.charAt(0)));
-                            if (Character.isDigit(val.charAt(0)))
-                                checkColumnsForModel.add("I" + val);
-                            else
-                                // if (!val.isEmpty() && Character.isDigit(val.charAt(0))) ???
-                                // checkColumnsForModel.add("S" + val);
-                                checkColumnsForModel.add(val);
+                            if (!val.isEmpty()) {
+                                if (Character.isDigit(val.charAt(0)))
+                                    checkColumnsForModel.add("I" + val);
+                                else
+                                    checkColumnsForModel.add(val);
+                            }
                         }
                         break;
                     }

@@ -475,13 +475,12 @@ public class TablePojoConverter {
                 attr.setClassName(attribute.getClassName());
                 if (attribute.isString()) {
                     attr.setStrValue(val);
-                    if (val.isEmpty()) {
-                        val = "EMPTY_VALUE";
-                    }
-                    if (Character.isDigit(val.charAt(0))) {
-                        val = "S" + val;
-                    }
-                    attr.setName(val);
+                    if (val.isEmpty())
+                        continue;
+                    else if (Character.isDigit(val.charAt(0)))
+                        attr.setName("I" + val);
+                    else
+                        attr.setName(val);
                 } else {
                     attr.setIntValue(val);
                     attr.setName("I" + val);
