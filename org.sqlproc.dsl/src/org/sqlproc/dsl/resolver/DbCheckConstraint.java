@@ -62,8 +62,6 @@ public class DbCheckConstraint {
     }
 
     static final Pattern HSQLDB_CHECK = Pattern.compile("(?i)\\(([^\\)]*)\\)\\s*IN\\s*\\(\\(('?.*?'?,'?.*?'?)\\)\\)*");
-    static final Pattern ORACLE_CHECK = Pattern
-            .compile("(?i)(.*\\s*IS NULL OR\\s*\\()?([^\\)]*)\\s*IN\\s*\\(('?.*?'?,'?.*?'?)\\)\\)*");
 
     public static DbCheckConstraint parseHsqldb(String name, String clause) {
         // (PUBLIC.CONTACT.TYPE) IN ((0),(1))
@@ -92,6 +90,9 @@ public class DbCheckConstraint {
         }
         return null;
     }
+
+    static final Pattern ORACLE_CHECK = Pattern
+            .compile("(?i)(.*\\s*IS NULL OR\\s*\\()?([^\\)]*)\\s*IN\\s*\\(('?.*?'?,'?.*?'?)\\)\\)*");
 
     public static DbCheckConstraint parseOracle(String name, String clause, String relTable) {
         // GENDER IN ('M','F')
@@ -148,12 +149,39 @@ public class DbCheckConstraint {
         return null;
     }
 
+    static final Pattern MYSQL_CHECK = Pattern.compile("(?i)\\s*enum\\((.*)\\)\\s*");
+
+    public static DbCheckConstraint parseMysql(String relCol, String clause, String relTable) {
+        // enum('0','1','2')
+        // enum('M','F','0')
+        Matcher matcher = MYSQL_CHECK.matcher(clause.trim());
+        if (matcher.matches()) {
+            String enumName = relTable + "_" + relCol;
+            String[] constraintValues = matcher.group(1).trim().split(",");
+            List<String> values = new ArrayList<String>();
+            for (int j = 0; j < constraintValues.length; j++) {
+                String value = constraintValues[j].trim();
+                value = value.replaceAll("'", "");
+                values.add(value);
+            }
+            DbCheckConstraint dbCheckConstraint = new DbCheckConstraint();
+            dbCheckConstraint.setConstraintName(enumName);
+            dbCheckConstraint.setCheckClause(clause);
+            dbCheckConstraint.setEnumName(enumName);
+            dbCheckConstraint.setValues(values);
+            dbCheckConstraint.setTable(relTable);
+            dbCheckConstraint.setColumn(relCol);
+            return dbCheckConstraint;
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
-        Matcher matcher = INFORMIX_CHECK.matcher("(type IN (0 ,1 ))  ");
+        Matcher matcher = MYSQL_CHECK.matcher("enum('M','F','0')");
         if (matcher.matches()) {
             String relCol = matcher.group(1).trim();
             System.out.println("1 " + relCol);
-            String[] constraintValues = matcher.group(2).trim().split(",");
+            String[] constraintValues = matcher.group(1).trim().split(",");
             List<String> values = new ArrayList<String>();
             for (int j = 0; j < constraintValues.length; j++) {
                 String value = constraintValues[j].trim();

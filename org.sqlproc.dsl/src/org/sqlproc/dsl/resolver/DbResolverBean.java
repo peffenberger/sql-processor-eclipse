@@ -1763,7 +1763,7 @@ public class DbResolverBean implements DbResolver {
         if (dbType == DbType.HSQLDB) {
             String query = "select tc.TABLE_NAME, tc.CONSTRAINT_NAME, cc.CHECK_CLAUSE from INFORMATION_SCHEMA.TABLE_CONSTRAINTS tc, INFORMATION_SCHEMA.CHECK_CONSTRAINTS cc where tc.CONSTRAINT_NAME = cc.CONSTRAINT_NAME and tc.CONSTRAINT_TYPE = 'CHECK' and tc.TABLE_NAME = ?";
             String query2 = "select tc.TABLE_NAME, tc.CONSTRAINT_NAME, cc.CHECK_CLAUSE from INFORMATION_SCHEMA.TABLE_CONSTRAINTS tc, INFORMATION_SCHEMA.CHECK_CONSTRAINTS cc where tc.CONSTRAINT_NAME = cc.CONSTRAINT_NAME and tc.CONSTRAINT_TYPE = 'CHECK'";
-            Map<String, List<String>> map = getCheckConstraints(modelDatabaseValues, table, query, query2);
+            Map<String, List<String>> map = getCheckConstraints(modelDatabaseValues, table, query, query2, false);
             for (String constraintName : map.keySet()) {
                 DbCheckConstraint check = DbCheckConstraint.parseHsqldb(constraintName, map.get(constraintName).get(0));
                 if (check != null)
@@ -1772,7 +1772,7 @@ public class DbResolverBean implements DbResolver {
         } else if (dbType == DbType.ORACLE) {
             String query = "select TABLE_NAME, CONSTRAINT_NAME, SEARCH_CONDITION from USER_CONSTRAINTS where TABLE_NAME not like 'BIN%' and CONSTRAINT_TYPE = 'C' and TABLE_NAME = ?";
             String query2 = "select TABLE_NAME, CONSTRAINT_NAME, SEARCH_CONDITION from USER_CONSTRAINTS where TABLE_NAME not like 'BIN%' and CONSTRAINT_TYPE = 'C'";
-            Map<String, List<String>> map = getCheckConstraints(modelDatabaseValues, table, query, query2);
+            Map<String, List<String>> map = getCheckConstraints(modelDatabaseValues, table, query, query2, false);
             for (String constraintName : map.keySet()) {
                 DbCheckConstraint check = DbCheckConstraint.parseOracle(constraintName, map.get(constraintName).get(0),
                         map.get(constraintName).get(1));
@@ -1782,10 +1782,20 @@ public class DbResolverBean implements DbResolver {
         } else if (dbType == DbType.INFORMIX) {
             String query = "select st.tabname, ss.constrname, sc.checktext from systables st, sysconstraints ss, syschecks sc where st.tabid = ss.tabid and ss.constrid = sc.constrid and ss.constrtype = 'C' and sc.type = 'T' and st.tabname = ?";
             String query2 = "select st.tabname, ss.constrname, sc.checktext from systables st, sysconstraints ss, syschecks sc where st.tabid = ss.tabid and ss.constrid = sc.constrid and ss.constrtype = 'C' and sc.type = 'T'";
-            Map<String, List<String>> map = getCheckConstraints(modelDatabaseValues, table, query, query2);
+            Map<String, List<String>> map = getCheckConstraints(modelDatabaseValues, table, query, query2, false);
             for (String constraintName : map.keySet()) {
                 DbCheckConstraint check = DbCheckConstraint.parseInformix(constraintName, map.get(constraintName)
                         .get(0), map.get(constraintName).get(1));
+                if (check != null)
+                    mapOfCheckConstraints.put(constraintName, check);
+            }
+        } else if (dbType == DbType.MY_SQL) {
+            String query = "select TABLE_NAME,COLUMN_NAME,COLUMN_TYPE from information_schema.COLUMNS where DATA_TYPE = \"enum\" and TABLE_NAME = ?";
+            String query2 = "select TABLE_NAME,COLUMN_NAME,COLUMN_TYPE from information_schema.COLUMNS where DATA_TYPE = \"enum\"";
+            Map<String, List<String>> map = getCheckConstraints(modelDatabaseValues, table, query, query2, true);
+            for (String constraintName : map.keySet()) {
+                DbCheckConstraint check = DbCheckConstraint.parseMysql(map.get(constraintName).get(2),
+                        map.get(constraintName).get(0), map.get(constraintName).get(1));
                 if (check != null)
                     mapOfCheckConstraints.put(constraintName, check);
             }
@@ -1796,7 +1806,7 @@ public class DbResolverBean implements DbResolver {
     }
 
     private Map<String, List<String>> getCheckConstraints(DatabaseDirectives modelDatabaseValues, String table,
-            String query, String query2) throws SQLException {
+            String query, String query2, boolean combine) throws SQLException {
         Map<String, List<String>> mapOfCheckConstraints = new LinkedHashMap<String, List<String>>();
         ResultSet result = null;
         try {
@@ -1817,7 +1827,11 @@ public class DbResolverBean implements DbResolver {
                 List<String> list = new ArrayList<String>();
                 list.add(checkClause);
                 list.add(tableName);
-                mapOfCheckConstraints.put(constraintName, list);
+                list.add(constraintName);
+                if (combine)
+                    mapOfCheckConstraints.put(tableName + constraintName, list);
+                else
+                    mapOfCheckConstraints.put(constraintName, list);
             }
         } finally {
             try {
