@@ -1700,11 +1700,13 @@ public class DbResolverBean implements DbResolver {
                 for (DbCheckConstraint check : mapOfCheckConstraints.values()) {
                     if (table.equals(check.getEnumName())) {
                         for (String val : check.getValues()) {
+                            // System.out.println("enum value '" + val + "' " + Character.isDigit(val.charAt(0)));
                             if (Character.isDigit(val.charAt(0)))
                                 checkColumnsForModel.add("I" + val);
-                            else if (!val.isEmpty() && Character.isDigit(val.charAt(0)))
-                                checkColumnsForModel.add("S" + val);
-                            checkColumnsForModel.add(val);
+                            else
+                                // if (!val.isEmpty() && Character.isDigit(val.charAt(0))) ???
+                                // checkColumnsForModel.add("S" + val);
+                                checkColumnsForModel.add(val);
                         }
                         break;
                     }
@@ -1791,7 +1793,6 @@ public class DbResolverBean implements DbResolver {
         } else {
             mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
         }
-        System.out.println("XXX " + mapOfCheckConstraints);
         return mapOfCheckConstraints;
     }
 
