@@ -3090,6 +3090,80 @@ public interface ProcessorDslPackage extends EPackage
   int IMPL_PACKAGE_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationImpl <em>Annotation</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.AnnotationImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotation()
+   * @generated
+   */
+  int ANNOTATION = 63;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION__TYPE = 0;
+
+  /**
+   * The feature id for the '<em><b>Features</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION__FEATURES = 1;
+
+  /**
+   * The number of structural features of the '<em>Annotation</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl <em>Annotation Property</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotationProperty()
+   * @generated
+   */
+  int ANNOTATION_PROPERTY = 64;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_PROPERTY__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_PROPERTY__VALUE = 1;
+
+  /**
+   * The number of structural features of the '<em>Annotation Property</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_PROPERTY_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityModifier1Impl <em>Pojo Entity Modifier1</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3097,7 +3171,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoEntityModifier1()
    * @generated
    */
-  int POJO_ENTITY_MODIFIER1 = 63;
+  int POJO_ENTITY_MODIFIER1 = 65;
 
   /**
    * The feature id for the '<em><b>Final</b></em>' attribute.
@@ -3134,7 +3208,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoEntityModifier2()
    * @generated
    */
-  int POJO_ENTITY_MODIFIER2 = 64;
+  int POJO_ENTITY_MODIFIER2 = 66;
 
   /**
    * The feature id for the '<em><b>Super Type</b></em>' reference.
@@ -3198,7 +3272,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoEntity()
    * @generated
    */
-  int POJO_ENTITY = 65;
+  int POJO_ENTITY = 67;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3246,6 +3320,61 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_ENTITY_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoAnnotatedPropertyImpl <em>Pojo Annotated Property</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.PojoAnnotatedPropertyImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoAnnotatedProperty()
+   * @generated
+   */
+  int POJO_ANNOTATED_PROPERTY = 68;
+
+  /**
+   * The feature id for the '<em><b>Setter Annotation</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_ANNOTATED_PROPERTY__SETTER_ANNOTATION = 0;
+
+  /**
+   * The feature id for the '<em><b>Getter Annotation</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_ANNOTATED_PROPERTY__GETTER_ANNOTATION = 1;
+
+  /**
+   * The feature id for the '<em><b>Attribute Annotation</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_ANNOTATED_PROPERTY__ATTRIBUTE_ANNOTATION = 2;
+
+  /**
+   * The feature id for the '<em><b>Feature</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_ANNOTATED_PROPERTY__FEATURE = 3;
+
+  /**
+   * The number of structural features of the '<em>Pojo Annotated Property</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_ANNOTATED_PROPERTY_FEATURE_COUNT = 4;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyModifierImpl <em>Pojo Property Modifier</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3253,7 +3382,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyModifier()
    * @generated
    */
-  int POJO_PROPERTY_MODIFIER = 66;
+  int POJO_PROPERTY_MODIFIER = 69;
 
   /**
    * The feature id for the '<em><b>Required</b></em>' attribute.
@@ -3317,7 +3446,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoProperty()
    * @generated
    */
-  int POJO_PROPERTY = 67;
+  int POJO_PROPERTY = 70;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3417,7 +3546,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumEntityModifier1()
    * @generated
    */
-  int ENUM_ENTITY_MODIFIER1 = 68;
+  int ENUM_ENTITY_MODIFIER1 = 71;
 
   /**
    * The feature id for the '<em><b>Final</b></em>' attribute.
@@ -3445,7 +3574,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumEntityModifier2()
    * @generated
    */
-  int ENUM_ENTITY_MODIFIER2 = 69;
+  int ENUM_ENTITY_MODIFIER2 = 72;
 
   /**
    * The feature id for the '<em><b>Super Type</b></em>' reference.
@@ -3482,7 +3611,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumEntity()
    * @generated
    */
-  int ENUM_ENTITY = 70;
+  int ENUM_ENTITY = 73;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3537,7 +3666,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumProperty()
    * @generated
    */
-  int ENUM_PROPERTY = 71;
+  int ENUM_PROPERTY = 74;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3592,7 +3721,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDaoModifier()
    * @generated
    */
-  int POJO_DAO_MODIFIER = 72;
+  int POJO_DAO_MODIFIER = 75;
 
   /**
    * The feature id for the '<em><b>Super Type</b></em>' reference.
@@ -3629,7 +3758,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDao()
    * @generated
    */
-  int POJO_DAO = 73;
+  int POJO_DAO = 76;
 
   /**
    * The feature id for the '<em><b>Modifiers1</b></em>' containment reference list.
@@ -3702,7 +3831,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoMethodModifier()
    * @generated
    */
-  int POJO_METHOD_MODIFIER = 74;
+  int POJO_METHOD_MODIFIER = 77;
 
   /**
    * The feature id for the '<em><b>Call Function</b></em>' attribute.
@@ -3766,7 +3895,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoMethod()
    * @generated
    */
-  int POJO_METHOD = 75;
+  int POJO_METHOD = 78;
 
   /**
    * The feature id for the '<em><b>Modifiers1</b></em>' containment reference list.
@@ -3821,7 +3950,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getToInitMethod()
    * @generated
    */
-  int TO_INIT_METHOD = 76;
+  int TO_INIT_METHOD = 79;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3858,7 +3987,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoMethodArg()
    * @generated
    */
-  int POJO_METHOD_ARG = 77;
+  int POJO_METHOD_ARG = 80;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6763,6 +6892,70 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getImplPackage_Name();
 
   /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.Annotation <em>Annotation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Annotation</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Annotation
+   * @generated
+   */
+  EClass getAnnotation();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.Annotation#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Annotation#getType()
+   * @see #getAnnotation()
+   * @generated
+   */
+  EReference getAnnotation_Type();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.Annotation#getFeatures <em>Features</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Features</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Annotation#getFeatures()
+   * @see #getAnnotation()
+   * @generated
+   */
+  EReference getAnnotation_Features();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty <em>Annotation Property</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Annotation Property</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationProperty
+   * @generated
+   */
+  EClass getAnnotationProperty();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationProperty#getName()
+   * @see #getAnnotationProperty()
+   * @generated
+   */
+  EAttribute getAnnotationProperty_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationProperty#getValue()
+   * @see #getAnnotationProperty()
+   * @generated
+   */
+  EAttribute getAnnotationProperty_Value();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoEntityModifier1 <em>Pojo Entity Modifier1</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6901,6 +7094,60 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EReference getPojoEntity_Features();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty <em>Pojo Annotated Property</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pojo Annotated Property</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty
+   * @generated
+   */
+  EClass getPojoAnnotatedProperty();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getSetterAnnotation <em>Setter Annotation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Setter Annotation</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getSetterAnnotation()
+   * @see #getPojoAnnotatedProperty()
+   * @generated
+   */
+  EReference getPojoAnnotatedProperty_SetterAnnotation();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getGetterAnnotation <em>Getter Annotation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Getter Annotation</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getGetterAnnotation()
+   * @see #getPojoAnnotatedProperty()
+   * @generated
+   */
+  EReference getPojoAnnotatedProperty_GetterAnnotation();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getAttributeAnnotation <em>Attribute Annotation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Attribute Annotation</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getAttributeAnnotation()
+   * @see #getPojoAnnotatedProperty()
+   * @generated
+   */
+  EReference getPojoAnnotatedProperty_AttributeAnnotation();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getFeature <em>Feature</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Feature</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getFeature()
+   * @see #getPojoAnnotatedProperty()
+   * @generated
+   */
+  EReference getPojoAnnotatedProperty_Feature();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier <em>Pojo Property Modifier</em>}'.
@@ -9803,6 +10050,58 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute IMPL_PACKAGE__NAME = eINSTANCE.getImplPackage_Name();
 
     /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationImpl <em>Annotation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.AnnotationImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotation()
+     * @generated
+     */
+    EClass ANNOTATION = eINSTANCE.getAnnotation();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ANNOTATION__TYPE = eINSTANCE.getAnnotation_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ANNOTATION__FEATURES = eINSTANCE.getAnnotation_Features();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl <em>Annotation Property</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotationProperty()
+     * @generated
+     */
+    EClass ANNOTATION_PROPERTY = eINSTANCE.getAnnotationProperty();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ANNOTATION_PROPERTY__NAME = eINSTANCE.getAnnotationProperty_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ANNOTATION_PROPERTY__VALUE = eINSTANCE.getAnnotationProperty_Value();
+
+    /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityModifier1Impl <em>Pojo Entity Modifier1</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9911,6 +10210,48 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference POJO_ENTITY__FEATURES = eINSTANCE.getPojoEntity_Features();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoAnnotatedPropertyImpl <em>Pojo Annotated Property</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.PojoAnnotatedPropertyImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoAnnotatedProperty()
+     * @generated
+     */
+    EClass POJO_ANNOTATED_PROPERTY = eINSTANCE.getPojoAnnotatedProperty();
+
+    /**
+     * The meta object literal for the '<em><b>Setter Annotation</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_ANNOTATED_PROPERTY__SETTER_ANNOTATION = eINSTANCE.getPojoAnnotatedProperty_SetterAnnotation();
+
+    /**
+     * The meta object literal for the '<em><b>Getter Annotation</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_ANNOTATED_PROPERTY__GETTER_ANNOTATION = eINSTANCE.getPojoAnnotatedProperty_GetterAnnotation();
+
+    /**
+     * The meta object literal for the '<em><b>Attribute Annotation</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_ANNOTATED_PROPERTY__ATTRIBUTE_ANNOTATION = eINSTANCE.getPojoAnnotatedProperty_AttributeAnnotation();
+
+    /**
+     * The meta object literal for the '<em><b>Feature</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_ANNOTATED_PROPERTY__FEATURE = eINSTANCE.getPojoAnnotatedProperty_Feature();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyModifierImpl <em>Pojo Property Modifier</em>}' class.

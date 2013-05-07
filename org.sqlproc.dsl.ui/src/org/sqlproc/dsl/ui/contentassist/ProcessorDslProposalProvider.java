@@ -52,6 +52,7 @@ import org.sqlproc.dsl.processorDsl.MappingRule;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.MetagenProperty;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
+import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
@@ -386,7 +387,8 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         if (pojoEntity == null)
             return properties;
 
-        for (PojoProperty pojoProperty : pojoEntity.getFeatures()) {
+        for (PojoAnnotatedProperty apojoProperty : pojoEntity.getFeatures()) {
+            PojoProperty pojoProperty = apojoProperty.getFeature();
             if (pojoProperty.getNative() != null || pojoProperty.getRef() != null || pojoProperty.getType() != null)
                 properties.add(pojoProperty);
         }

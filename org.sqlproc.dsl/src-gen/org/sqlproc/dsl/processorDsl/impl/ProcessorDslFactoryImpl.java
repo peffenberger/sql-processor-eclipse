@@ -127,9 +127,12 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.IMPLEMENTS: return createImplements();
       case ProcessorDslPackage.EXTENDS: return createExtends();
       case ProcessorDslPackage.IMPL_PACKAGE: return createImplPackage();
+      case ProcessorDslPackage.ANNOTATION: return createAnnotation();
+      case ProcessorDslPackage.ANNOTATION_PROPERTY: return createAnnotationProperty();
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER1: return createPojoEntityModifier1();
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER2: return createPojoEntityModifier2();
       case ProcessorDslPackage.POJO_ENTITY: return createPojoEntity();
+      case ProcessorDslPackage.POJO_ANNOTATED_PROPERTY: return createPojoAnnotatedProperty();
       case ProcessorDslPackage.POJO_PROPERTY_MODIFIER: return createPojoPropertyModifier();
       case ProcessorDslPackage.POJO_PROPERTY: return createPojoProperty();
       case ProcessorDslPackage.ENUM_ENTITY_MODIFIER1: return createEnumEntityModifier1();
@@ -845,6 +848,28 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public Annotation createAnnotation()
+  {
+    AnnotationImpl annotation = new AnnotationImpl();
+    return annotation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationProperty createAnnotationProperty()
+  {
+    AnnotationPropertyImpl annotationProperty = new AnnotationPropertyImpl();
+    return annotationProperty;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PojoEntityModifier1 createPojoEntityModifier1()
   {
     PojoEntityModifier1Impl pojoEntityModifier1 = new PojoEntityModifier1Impl();
@@ -871,6 +896,17 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     PojoEntityImpl pojoEntity = new PojoEntityImpl();
     return pojoEntity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoAnnotatedProperty createPojoAnnotatedProperty()
+  {
+    PojoAnnotatedPropertyImpl pojoAnnotatedProperty = new PojoAnnotatedPropertyImpl();
+    return pojoAnnotatedProperty;
   }
 
   /**

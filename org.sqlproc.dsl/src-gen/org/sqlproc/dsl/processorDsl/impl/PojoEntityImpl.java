@@ -14,10 +14,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier2;
-import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
 /**
@@ -65,7 +65,7 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
    * @generated
    * @ordered
    */
-  protected EList<PojoProperty> features;
+  protected EList<PojoAnnotatedProperty> features;
 
   /**
    * <!-- begin-user-doc -->
@@ -121,11 +121,11 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoProperty> getFeatures()
+  public EList<PojoAnnotatedProperty> getFeatures()
   {
     if (features == null)
     {
-      features = new EObjectContainmentEList<PojoProperty>(PojoProperty.class, this, ProcessorDslPackage.POJO_ENTITY__FEATURES);
+      features = new EObjectContainmentEList<PojoAnnotatedProperty>(PojoAnnotatedProperty.class, this, ProcessorDslPackage.POJO_ENTITY__FEATURES);
     }
     return features;
   }
@@ -191,7 +191,7 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
         return;
       case ProcessorDslPackage.POJO_ENTITY__FEATURES:
         getFeatures().clear();
-        getFeatures().addAll((Collection<? extends PojoProperty>)newValue);
+        getFeatures().addAll((Collection<? extends PojoAnnotatedProperty>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

@@ -58,7 +58,7 @@ public interface PojoEntity extends Entity
 
   /**
    * Returns the value of the '<em><b>Features</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PojoProperty}.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Features</em>' containment reference list isn't clear,
@@ -70,6 +70,6 @@ public interface PojoEntity extends Entity
    * @model containment="true"
    * @generated
    */
-  EList<PojoProperty> getFeatures();
+  EList<PojoAnnotatedProperty> getFeatures();
 
 } // PojoEntity

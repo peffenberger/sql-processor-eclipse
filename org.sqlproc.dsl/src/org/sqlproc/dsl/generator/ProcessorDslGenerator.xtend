@@ -25,6 +25,7 @@ import org.sqlproc.dsl.processorDsl.PojoMethod
 import org.sqlproc.dsl.processorDsl.PojoType
 import org.sqlproc.dsl.processorDsl.EnumEntity
 import org.sqlproc.dsl.processorDsl.EnumProperty
+import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty
 
 class ProcessorDslGenerator implements IGenerator {
 	
@@ -163,66 +164,66 @@ public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e
   
   private static final long serialVersionUID = «getSernum(e)»L;
   «ENDIF»
-  «FOR f:e.features.filter(x| getIndex(x)!=null)»
-  public static final int ORDER_BY_«constName(f)» = «getIndex(f)»;
+  «FOR f:e.features.filter(x| getIndex(x.feature)!=null)»
+  public static final int ORDER_BY_«constName(f.feature)» = «getIndex(f.feature)»;
   «ENDFOR»
-  «FOR f:e.features.filter(x| x.name.startsWith("index="))»
-  public static final int ORDER_BY_«constName2(f)» = «f.name.substring(6)»;
+  «FOR f:e.features.filter(x| x.feature.name.startsWith("index="))»
+  public static final int ORDER_BY_«constName2(f.feature)» = «f.feature.name.substring(6)»;
   «ENDFOR»
 	
   public «e.name»() {
   }
   «IF !e.requiredFeatures.empty»
   
-  public «e.name»(«FOR f:e.requiredFeatures SEPARATOR ", "»«f.compileType(importManager)» «f.name»«ENDFOR») {
-  «FOR f:e.requiredSuperFeatures BEFORE "  super(" SEPARATOR ", " AFTER ");"»«f.name»«ENDFOR»
+  public «e.name»(«FOR f:e.requiredFeatures SEPARATOR ", "»«f.feature.compileType(importManager)» «f.feature.name»«ENDFOR») {
+  «FOR f:e.requiredSuperFeatures BEFORE "  super(" SEPARATOR ", " AFTER ");"»«f.feature.name»«ENDFOR»
   «FOR f:e.requiredFeatures1 SEPARATOR "
-"»  this.«f.name» = «f.name»;«ENDFOR»
+"»  this.«f.feature.name» = «f.feature.name»;«ENDFOR»
   }
   «ENDIF»
-  «FOR f:e.features.filter(x| isAttribute(x))»
+  «FOR f:e.features.filter(x| isAttribute(x.feature))»
     «f.compile(importManager, e, getOperatorsSuffix(e))»
   «ENDFOR»
-  «FOR f:e.features.filter(x| !isAttribute(x))»«IF f.name.equalsIgnoreCase("hashCode")»«f.compileHashCode(importManager, e)»
-  «ELSEIF f.name.equalsIgnoreCase("equals")»«f.compileEquals(importManager, e)»
-  «ELSEIF f.name.equalsIgnoreCase("toInit")»«f.compileToInit(importManager, e)»
-  «ELSEIF f.name.equalsIgnoreCase("enumInit")»«f.compileEnumInit(importManager, e)»
-  «ELSEIF f.name.equalsIgnoreCase("isDef")»«f.compileIsDef(importManager, e)»
-  «ELSEIF f.name.equalsIgnoreCase("enumDef")»«f.compileEnumDef(importManager, e)»
-  «ELSEIF f.name.equalsIgnoreCase("toString")»«f.compileToString(importManager, e)»«ENDIF»«ENDFOR»«IF hasOperators(e) && getOperatorsSuffix(e) == null»
+  «FOR f:e.features.filter(x| !isAttribute(x.feature))»«IF f.feature.name.equalsIgnoreCase("hashCode")»«f.feature.compileHashCode(importManager, e)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("equals")»«f.feature.compileEquals(importManager, e)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("toInit")»«f.feature.compileToInit(importManager, e)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("enumInit")»«f.feature.compileEnumInit(importManager, e)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("isDef")»«f.feature.compileIsDef(importManager, e)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("enumDef")»«f.feature.compileEnumDef(importManager, e)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("toString")»«f.feature.compileToString(importManager, e)»«ENDIF»«ENDFOR»«IF hasOperators(e) && getOperatorsSuffix(e) == null»
   «compileOperators(importManager, e)»«ENDIF»
 }
 '''
 
-def compile(PojoProperty f, ImportManager importManager, PojoEntity e, String operatorSuffix) '''
+def compile(PojoAnnotatedProperty f, ImportManager importManager, PojoEntity e, String operatorSuffix) '''
 
-    private «f.compileType(importManager)» «f.name»«IF isList(f)» = new Array«f.compileType(importManager)»()«ELSEIF isOptLock(f)» = 0«ENDIF»;
+    private «f.feature.compileType(importManager)» «f.feature.name»«IF isList(f.feature)» = new Array«f.feature.compileType(importManager)»()«ELSEIF isOptLock(f.feature)» = 0«ENDIF»;
   
-    public «f.compileType(importManager)» get«f.name.toFirstUpper»() {
-      return «f.name»;
+    public «f.feature.compileType(importManager)» get«f.feature.name.toFirstUpper»() {
+      return «f.feature.name»;
     }
   
-    public void set«f.name.toFirstUpper»(«f.compileType(importManager)» «f.name») {
-      this.«f.name» = «f.name»;
+    public void set«f.feature.name.toFirstUpper»(«f.feature.compileType(importManager)» «f.feature.name») {
+      this.«f.feature.name» = «f.feature.name»;
     }
   
-    public «e.name» _set«f.name.toFirstUpper»(«f.compileType(importManager)» «f.name») {
-      this.«f.name» = «f.name»;
+    public «e.name» _set«f.feature.name.toFirstUpper»(«f.feature.compileType(importManager)» «f.feature.name») {
+      this.«f.feature.name» = «f.feature.name»;
       return this;
     }«IF hasOperators(e) && operatorSuffix != null»
     
-    private String «f.name»«operatorSuffix»;
+    private String «f.feature.name»«operatorSuffix»;
 
-    public String get«f.name.toFirstUpper»«operatorSuffix»() {
-      return «f.name»«operatorSuffix»;
+    public String get«f.feature.name.toFirstUpper»«operatorSuffix»() {
+      return «f.feature.name»«operatorSuffix»;
     }
   
-    public void set«f.name.toFirstUpper»«operatorSuffix»(String «f.name»«operatorSuffix») {
-      this.«f.name»«operatorSuffix» = «f.name»«operatorSuffix»;
+    public void set«f.feature.name.toFirstUpper»«operatorSuffix»(String «f.feature.name»«operatorSuffix») {
+      this.«f.feature.name»«operatorSuffix» = «f.feature.name»«operatorSuffix»;
     }
   
-    public «e.name» _set«f.name.toFirstUpper»«operatorSuffix»(String «f.name»«operatorSuffix») {
-      this.«f.name»«operatorSuffix» = «f.name»«operatorSuffix»;
+    public «e.name» _set«f.feature.name.toFirstUpper»«operatorSuffix»(String «f.feature.name»«operatorSuffix») {
+      this.«f.feature.name»«operatorSuffix» = «f.feature.name»«operatorSuffix»;
       return this;
     }«ENDIF»
 '''
@@ -414,7 +415,7 @@ def compileEnumInit(PojoProperty f, ImportManager importManager, PojoEntity e) '
 def compileOperators(ImportManager importManager, PojoEntity e) '''
 
     public enum OpAttribute {
-        «FOR f:e.features.filter(x| isAttribute(x)) SEPARATOR ", "»«f.name»«ENDFOR»
+        «FOR f:e.features.filter(x| isAttribute(x.feature)) SEPARATOR ", "»«f.feature.name»«ENDFOR»
     }
 
     private Map<String, String> operators = new HashMap<String, String>();
@@ -1005,9 +1006,9 @@ def compileCountIfx(PojoDao d, PojoEntity e, ImportManager importManager) '''
     public int count(«e.name» «e.name.toFirstLower»);
 '''
 
-def List<PojoProperty> listFeatures(PojoEntity e) {
+def List<PojoAnnotatedProperty> listFeatures(PojoEntity e) {
 	
-   	val list = new ArrayList<PojoProperty>()
+   	val list = new ArrayList<PojoAnnotatedProperty>()
 	if (getSuperType(e) != null)
 	  list.addAll(getSuperType(e).listFeatures)
 	list.addAll(e.listFeatures1)
@@ -1015,12 +1016,12 @@ def List<PojoProperty> listFeatures(PojoEntity e) {
 }
 
 def listFeatures1(PojoEntity e) {
-	return e.features.filter(f|isList(f)).toList
+	return e.features.filter(f|isList(f.feature)).toList
 }
   
-def List<PojoProperty> requiredFeatures(PojoEntity e) {
+def List<PojoAnnotatedProperty> requiredFeatures(PojoEntity e) {
 	
-   	val list = new ArrayList<PojoProperty>()
+   	val list = new ArrayList<PojoAnnotatedProperty>()
 	if (getSuperType(e) != null)
 	  list.addAll(getSuperType(e).requiredFeatures)
 	list.addAll(e.requiredFeatures1)
@@ -1029,22 +1030,22 @@ def List<PojoProperty> requiredFeatures(PojoEntity e) {
 
 def requiredSuperFeatures(PojoEntity e) {
 	
-   	val list = new ArrayList<PojoProperty>()
+   	val list = new ArrayList<PojoAnnotatedProperty>()
 	if (getSuperType(e) != null)
 	  list.addAll(getSuperType(e).requiredFeatures)
     return list
 }
 
 def requiredFeatures1(PojoEntity e) {
-	return e.features.filter(f|isRequired(f)).toList
+	return e.features.filter(f|isRequired(f.feature)).toList
 }
 
 def hasIsDef(PojoEntity e) {
-	return e.features.findFirst(f|f.name == "isDef")
+	return e.features.findFirst(f|f.feature.name == "isDef")
 }
 
 def hasToInit(PojoEntity e) {
-	return e.features.findFirst(f|f.name == "toInit")
+	return e.features.findFirst(f|f.feature.name == "toInit")
 }
 
 def isAttribute(PojoProperty f) {

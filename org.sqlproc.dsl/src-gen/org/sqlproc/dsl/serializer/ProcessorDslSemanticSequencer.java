@@ -13,6 +13,8 @@ import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEOb
 import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import org.sqlproc.dsl.processorDsl.Annotation;
+import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.ColumnAssignement;
@@ -67,6 +69,7 @@ import org.sqlproc.dsl.processorDsl.OptionalFeature;
 import org.sqlproc.dsl.processorDsl.OrdSql;
 import org.sqlproc.dsl.processorDsl.OrdSql2;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
+import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
@@ -100,6 +103,18 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == ProcessorDslPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+			case ProcessorDslPackage.ANNOTATION:
+				if(context == grammarAccess.getAnnotationRule()) {
+					sequence_Annotation(context, (Annotation) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.ANNOTATION_PROPERTY:
+				if(context == grammarAccess.getAnnotationPropertyRule()) {
+					sequence_AnnotationProperty(context, (AnnotationProperty) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorDslPackage.ARTIFACTS:
 				if(context == grammarAccess.getArtifactsRule()) {
 					sequence_Artifacts(context, (Artifacts) semanticObject); 
@@ -431,6 +446,12 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
+			case ProcessorDslPackage.POJO_ANNOTATED_PROPERTY:
+				if(context == grammarAccess.getPojoAnnotatedPropertyRule()) {
+					sequence_PojoAnnotatedProperty(context, (PojoAnnotatedProperty) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorDslPackage.POJO_DAO:
 				if(context == grammarAccess.getAbstractPojoEntityRule() ||
 				   context == grammarAccess.getPojoDaoRule()) {
@@ -569,6 +590,24 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Constraint:
+	 *     (name=IDENT (value=NUMBER | value=STRING_VALUE))
+	 */
+	protected void sequence_AnnotationProperty(EObject context, AnnotationProperty semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (type=[JvmType|QualifiedName] features+=AnnotationProperty*)
+	 */
+	protected void sequence_Annotation(EObject context, Annotation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Constraint:
@@ -1268,6 +1307,15 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
+	 *     ((setterAnnotation=Annotation | getterAnnotation=Annotation | attributeAnnotation=Annotation)* feature=PojoProperty)
+	 */
+	protected void sequence_PojoAnnotatedProperty(EObject context, PojoAnnotatedProperty semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (superType=[PojoDao|IDENT] | sernum=NUMBER)
 	 */
 	protected void sequence_PojoDaoModifier(EObject context, PojoDaoModifier semanticObject) {
@@ -1320,7 +1368,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (modifiers1+=PojoEntityModifier1* name=IDENT modifiers2+=PojoEntityModifier2* features+=PojoProperty*)
+	 *     (modifiers1+=PojoEntityModifier1* name=IDENT modifiers2+=PojoEntityModifier2* features+=PojoAnnotatedProperty*)
 	 */
 	protected void sequence_PojoEntity(EObject context, PojoEntity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

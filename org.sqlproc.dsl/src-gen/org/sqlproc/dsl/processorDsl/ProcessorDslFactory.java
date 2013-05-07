@@ -590,6 +590,24 @@ public interface ProcessorDslFactory extends EFactory
   ImplPackage createImplPackage();
 
   /**
+   * Returns a new object of class '<em>Annotation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation</em>'.
+   * @generated
+   */
+  Annotation createAnnotation();
+
+  /**
+   * Returns a new object of class '<em>Annotation Property</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Property</em>'.
+   * @generated
+   */
+  AnnotationProperty createAnnotationProperty();
+
+  /**
    * Returns a new object of class '<em>Pojo Entity Modifier1</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -615,6 +633,15 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   PojoEntity createPojoEntity();
+
+  /**
+   * Returns a new object of class '<em>Pojo Annotated Property</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Annotated Property</em>'.
+   * @generated
+   */
+  PojoAnnotatedProperty createPojoAnnotatedProperty();
 
   /**
    * Returns a new object of class '<em>Pojo Property Modifier</em>'.

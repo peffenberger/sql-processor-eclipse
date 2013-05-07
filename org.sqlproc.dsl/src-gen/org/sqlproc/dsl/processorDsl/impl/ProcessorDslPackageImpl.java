@@ -12,6 +12,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.xtext.common.types.TypesPackage;
 
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
+import org.sqlproc.dsl.processorDsl.Annotation;
+import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.ColumnAssignement;
@@ -67,6 +69,7 @@ import org.sqlproc.dsl.processorDsl.OptionalFeature;
 import org.sqlproc.dsl.processorDsl.OrdSql;
 import org.sqlproc.dsl.processorDsl.OrdSql2;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
+import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
@@ -546,6 +549,20 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass annotationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass annotationPropertyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass pojoEntityModifier1EClass = null;
 
   /**
@@ -561,6 +578,13 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * @generated
    */
   private EClass pojoEntityEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pojoAnnotatedPropertyEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -3387,6 +3411,66 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getAnnotation()
+  {
+    return annotationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAnnotation_Type()
+  {
+    return (EReference)annotationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAnnotation_Features()
+  {
+    return (EReference)annotationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAnnotationProperty()
+  {
+    return annotationPropertyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAnnotationProperty_Name()
+  {
+    return (EAttribute)annotationPropertyEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAnnotationProperty_Value()
+  {
+    return (EAttribute)annotationPropertyEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPojoEntityModifier1()
   {
     return pojoEntityModifier1EClass;
@@ -3510,6 +3594,56 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
   public EReference getPojoEntity_Features()
   {
     return (EReference)pojoEntityEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPojoAnnotatedProperty()
+  {
+    return pojoAnnotatedPropertyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoAnnotatedProperty_SetterAnnotation()
+  {
+    return (EReference)pojoAnnotatedPropertyEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoAnnotatedProperty_GetterAnnotation()
+  {
+    return (EReference)pojoAnnotatedPropertyEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoAnnotatedProperty_AttributeAnnotation()
+  {
+    return (EReference)pojoAnnotatedPropertyEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoAnnotatedProperty_Feature()
+  {
+    return (EReference)pojoAnnotatedPropertyEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -4442,6 +4576,14 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     implPackageEClass = createEClass(IMPL_PACKAGE);
     createEAttribute(implPackageEClass, IMPL_PACKAGE__NAME);
 
+    annotationEClass = createEClass(ANNOTATION);
+    createEReference(annotationEClass, ANNOTATION__TYPE);
+    createEReference(annotationEClass, ANNOTATION__FEATURES);
+
+    annotationPropertyEClass = createEClass(ANNOTATION_PROPERTY);
+    createEAttribute(annotationPropertyEClass, ANNOTATION_PROPERTY__NAME);
+    createEAttribute(annotationPropertyEClass, ANNOTATION_PROPERTY__VALUE);
+
     pojoEntityModifier1EClass = createEClass(POJO_ENTITY_MODIFIER1);
     createEAttribute(pojoEntityModifier1EClass, POJO_ENTITY_MODIFIER1__FINAL);
     createEAttribute(pojoEntityModifier1EClass, POJO_ENTITY_MODIFIER1__ABSTRACT);
@@ -4457,6 +4599,12 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEReference(pojoEntityEClass, POJO_ENTITY__MODIFIERS1);
     createEReference(pojoEntityEClass, POJO_ENTITY__MODIFIERS2);
     createEReference(pojoEntityEClass, POJO_ENTITY__FEATURES);
+
+    pojoAnnotatedPropertyEClass = createEClass(POJO_ANNOTATED_PROPERTY);
+    createEReference(pojoAnnotatedPropertyEClass, POJO_ANNOTATED_PROPERTY__SETTER_ANNOTATION);
+    createEReference(pojoAnnotatedPropertyEClass, POJO_ANNOTATED_PROPERTY__GETTER_ANNOTATION);
+    createEReference(pojoAnnotatedPropertyEClass, POJO_ANNOTATED_PROPERTY__ATTRIBUTE_ANNOTATION);
+    createEReference(pojoAnnotatedPropertyEClass, POJO_ANNOTATED_PROPERTY__FEATURE);
 
     pojoPropertyModifierEClass = createEClass(POJO_PROPERTY_MODIFIER);
     createEAttribute(pojoPropertyModifierEClass, POJO_PROPERTY_MODIFIER__REQUIRED);
@@ -4901,6 +5049,14 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEClass(implPackageEClass, ImplPackage.class, "ImplPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getImplPackage_Name(), ecorePackage.getEString(), "name", null, 0, 1, ImplPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAnnotation_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAnnotation_Features(), this.getAnnotationProperty(), null, "features", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(annotationPropertyEClass, AnnotationProperty.class, "AnnotationProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAnnotationProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, AnnotationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAnnotationProperty_Value(), ecorePackage.getEString(), "value", null, 0, 1, AnnotationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(pojoEntityModifier1EClass, PojoEntityModifier1.class, "PojoEntityModifier1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPojoEntityModifier1_Final(), ecorePackage.getEBoolean(), "final", null, 0, 1, PojoEntityModifier1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojoEntityModifier1_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 0, 1, PojoEntityModifier1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4915,7 +5071,13 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEClass(pojoEntityEClass, PojoEntity.class, "PojoEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPojoEntity_Modifiers1(), this.getPojoEntityModifier1(), null, "modifiers1", null, 0, -1, PojoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoEntity_Modifiers2(), this.getPojoEntityModifier2(), null, "modifiers2", null, 0, -1, PojoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoEntity_Features(), this.getPojoProperty(), null, "features", null, 0, -1, PojoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoEntity_Features(), this.getPojoAnnotatedProperty(), null, "features", null, 0, -1, PojoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(pojoAnnotatedPropertyEClass, PojoAnnotatedProperty.class, "PojoAnnotatedProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPojoAnnotatedProperty_SetterAnnotation(), this.getAnnotation(), null, "setterAnnotation", null, 0, 1, PojoAnnotatedProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoAnnotatedProperty_GetterAnnotation(), this.getAnnotation(), null, "getterAnnotation", null, 0, 1, PojoAnnotatedProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoAnnotatedProperty_AttributeAnnotation(), this.getAnnotation(), null, "attributeAnnotation", null, 0, 1, PojoAnnotatedProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoAnnotatedProperty_Feature(), this.getPojoProperty(), null, "feature", null, 0, 1, PojoAnnotatedProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoPropertyModifierEClass, PojoPropertyModifier.class, "PojoPropertyModifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPojoPropertyModifier_Required(), ecorePackage.getEBoolean(), "required", null, 0, 1, PojoPropertyModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

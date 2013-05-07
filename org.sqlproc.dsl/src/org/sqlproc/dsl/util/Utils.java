@@ -35,6 +35,7 @@ import org.sqlproc.dsl.processorDsl.MappingColumn;
 import org.sqlproc.dsl.processorDsl.MappingRule;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
+import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
@@ -262,7 +263,8 @@ public class Utils {
         List<PojoProperty> features = new ArrayList<PojoProperty>();
         if (e == null || e.getFeatures() == null)
             return features;
-        for (PojoProperty f : e.getFeatures()) {
+        for (PojoAnnotatedProperty af : e.getFeatures()) {
+            PojoProperty f = af.getFeature();
             if (isRequired(f))
                 features.add(f);
         }
@@ -277,7 +279,8 @@ public class Utils {
         List<PojoProperty> features = new ArrayList<PojoProperty>();
         if (e == null || e.getFeatures() == null)
             return features;
-        for (PojoProperty f : e.getFeatures()) {
+        for (PojoAnnotatedProperty af : e.getFeatures()) {
+            PojoProperty f = af.getFeature();
             if (isAttribute(f))
                 features.add(f);
         }
@@ -556,7 +559,8 @@ public class Utils {
     public static PojoProperty getOptLock(PojoEntity e) {
         if (e == null || e.getFeatures() == null)
             return null;
-        for (PojoProperty f : e.getFeatures()) {
+        for (PojoAnnotatedProperty af : e.getFeatures()) {
+            PojoProperty f = af.getFeature();
             if (isOptLock(f))
                 return f;
         }

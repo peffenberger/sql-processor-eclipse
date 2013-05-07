@@ -42,6 +42,7 @@ import org.sqlproc.dsl.processorDsl.MetaSql;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.OptionalFeature;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
+import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
@@ -674,7 +675,8 @@ public class ProcessorDslJavaValidator extends AbstractProcessorDslJavaValidator
             checkProperty = checkProperty.substring(0, pos1);
         }
 
-        for (PojoProperty pojoProperty : entity.getFeatures()) {
+        for (PojoAnnotatedProperty apojoProperty : entity.getFeatures()) {
+            PojoProperty pojoProperty = apojoProperty.getFeature();
             if (pojoProperty.getName().equals(checkProperty)) {
                 if (innerProperty == null)
                     return ValidationResult.OK;
@@ -883,7 +885,8 @@ public class ProcessorDslJavaValidator extends AbstractProcessorDslJavaValidator
     @Check
     public void checkUniquePojoProperty(PojoProperty pojoProperty) {
         PojoEntity entity = EcoreUtil2.getContainerOfType(pojoProperty, PojoEntity.class);
-        for (PojoProperty property : entity.getFeatures()) {
+        for (PojoAnnotatedProperty aproperty : entity.getFeatures()) {
+            PojoProperty property = aproperty.getFeature();
             if (property == null || property == pojoProperty)
                 continue;
             if (pojoProperty.getName().equals(property.getName())) {

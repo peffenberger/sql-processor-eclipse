@@ -318,6 +318,8 @@ terminal DOT:      '.' ;
 
 terminal REST: !(SEMICOLON);
 
+terminal STRING_VALUE : '\"' -> '\"' ;
+
 
 FeatureValue:
   (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)+;
@@ -353,6 +355,14 @@ Extends hidden(ML_COMMENT, SL_COMMENT, WS):
 ImplPackage hidden(ML_COMMENT, SL_COMMENT, WS):
 	'implementation-package' name=(IDENT|IDENT_DOT);
 
+Annotation:
+	type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?
+;
+
+AnnotationProperty:
+	name=IDENT value=(NUMBER|STRING_VALUE)
+;
+
 PojoEntityModifier1: ((final?='final') | (abstract?='abstract'));
 
 PojoEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('discriminator' discriminator=(IDENT|NUMBER)) | (operators='operators' (operatorsSuffix=IDENT)?)| ('serializable' sernum=NUMBER));
@@ -360,8 +370,10 @@ PojoEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('discriminator
 PojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 	(modifiers1+=PojoEntityModifier1)* 'pojo' name=IDENT (modifiers2+=PojoEntityModifier2)* 
 	LBRACE
-		features+=PojoProperty*
+		features+=PojoAnnotatedProperty*
 	RBRACE;
+
+PojoAnnotatedProperty: (=> AT (=> AT (=> AT setterAnnotation=Annotation | getterAnnotation=Annotation) | attributeAnnotation=Annotation))* feature=PojoProperty;
 
 PojoPropertyModifier: ((required?='required') | (discriminator?='discriminator') | (primaryKey?='primaryKey') | ('index' index=NUMBER) | (version?='optLock'));
 
@@ -381,8 +393,6 @@ EnumEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 	LBRACE
 		features+=EnumProperty*
 	RBRACE;
-
-terminal STRING_VALUE : '\"' -> '\"' ;
 
 EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 	name=IDENT (native = ('_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 

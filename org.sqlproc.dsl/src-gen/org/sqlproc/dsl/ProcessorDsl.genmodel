@@ -336,6 +336,14 @@
     <genClasses ecoreClass="ProcessorDsl.ecore#//ImplPackage">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//ImplPackage/name"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//Annotation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//Annotation/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//Annotation/features"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//AnnotationProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//AnnotationProperty/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//AnnotationProperty/value"/>
+    </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoEntityModifier1">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoEntityModifier1/final"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoEntityModifier1/abstract"/>
@@ -351,6 +359,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntity/modifiers1"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntity/modifiers2"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntity/features"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoAnnotatedProperty">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoAnnotatedProperty/setterAnnotation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoAnnotatedProperty/getterAnnotation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoAnnotatedProperty/attributeAnnotation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoAnnotatedProperty/feature"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyModifier">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoPropertyModifier/required"/>

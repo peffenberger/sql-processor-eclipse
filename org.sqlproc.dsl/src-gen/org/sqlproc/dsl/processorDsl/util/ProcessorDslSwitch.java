@@ -539,6 +539,20 @@ public class ProcessorDslSwitch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorDslPackage.ANNOTATION:
+      {
+        Annotation annotation = (Annotation)theEObject;
+        T result = caseAnnotation(annotation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ANNOTATION_PROPERTY:
+      {
+        AnnotationProperty annotationProperty = (AnnotationProperty)theEObject;
+        T result = caseAnnotationProperty(annotationProperty);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER1:
       {
         PojoEntityModifier1 pojoEntityModifier1 = (PojoEntityModifier1)theEObject;
@@ -559,6 +573,13 @@ public class ProcessorDslSwitch<T>
         T result = casePojoEntity(pojoEntity);
         if (result == null) result = caseEntity(pojoEntity);
         if (result == null) result = caseAbstractPojoEntity(pojoEntity);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_ANNOTATED_PROPERTY:
+      {
+        PojoAnnotatedProperty pojoAnnotatedProperty = (PojoAnnotatedProperty)theEObject;
+        T result = casePojoAnnotatedProperty(pojoAnnotatedProperty);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1662,6 +1683,38 @@ public class ProcessorDslSwitch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Annotation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAnnotation(Annotation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Annotation Property</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Annotation Property</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAnnotationProperty(AnnotationProperty object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Pojo Entity Modifier1</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1705,6 +1758,22 @@ public class ProcessorDslSwitch<T>
    * @generated
    */
   public T casePojoEntity(PojoEntity object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Annotated Property</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Annotated Property</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoAnnotatedProperty(PojoAnnotatedProperty object)
   {
     return null;
   }
