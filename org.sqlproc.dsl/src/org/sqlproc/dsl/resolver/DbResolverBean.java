@@ -1799,6 +1799,16 @@ public class DbResolverBean implements DbResolver {
                 if (check != null)
                     mapOfCheckConstraints.put(constraintName, check);
             }
+        } else if (dbType == DbType.POSTGRESQL) {
+            String query = "select ccu.table_name, ccu.column_name, cc.check_clause from information_schema.constraint_column_usage ccu, information_schema.check_constraints cc where ccu.constraint_name = cc.constraint_name and ccu.table_name = ?";
+            String query2 = "select ccu.table_name, ccu.column_name, cc.check_clause from information_schema.constraint_column_usage ccu, information_schema.check_constraints cc where ccu.constraint_name = cc.constraint_name";
+            Map<String, List<String>> map = getCheckConstraints(modelDatabaseValues, table, query, query2, true);
+            for (String constraintName : map.keySet()) {
+                DbCheckConstraint check = DbCheckConstraint.parsePostgresql(map.get(constraintName).get(2),
+                        map.get(constraintName).get(0), map.get(constraintName).get(1));
+                if (check != null)
+                    mapOfCheckConstraints.put(constraintName, check);
+            }
         } else {
             mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
         }

@@ -176,20 +176,63 @@ public class DbCheckConstraint {
         return null;
     }
 
-    public static void main(String[] args) {
-        Matcher matcher = MYSQL_CHECK.matcher("enum('M','F','0')");
+    static final Pattern POSTGRESQL_CHECK = Pattern.compile("(?i).*ARRAY\\[(.*?)\\].*");
+
+    public static DbCheckConstraint parsePostgresql(String relCol, String clause, String relTable) {
+        // ((ctype = ANY (ARRAY[0, 1, 2])))
+        // (((gender)::text = ANY ((ARRAY['M'::character varying, 'F'::character varying, '0'::character
+        // varying])::text[])))
+        List<String> values = new ArrayList<String>();
+        String enumName = relTable + "_" + relCol;
+        Matcher matcher = POSTGRESQL_CHECK.matcher(clause.trim());
         if (matcher.matches()) {
-            String relCol = matcher.group(1).trim();
-            System.out.println("1 " + relCol);
+            String[] constraintValues = matcher.group(1).trim().split(",");
+            for (int j = 0; j < constraintValues.length; j++) {
+                String value = constraintValues[j].trim();
+                int ix = value.indexOf("'");
+                if (ix >= 0)
+                    value = value.substring(ix + 1);
+                ix = value.indexOf("'");
+                if (ix >= 0)
+                    value = value.substring(0, ix);
+                values.add(value);
+            }
+        }
+        if (!values.isEmpty()) {
+            DbCheckConstraint dbCheckConstraint = new DbCheckConstraint();
+            dbCheckConstraint.setConstraintName(enumName);
+            dbCheckConstraint.setCheckClause(clause);
+            dbCheckConstraint.setEnumName(enumName);
+            dbCheckConstraint.setValues(values);
+            dbCheckConstraint.setTable(relTable);
+            dbCheckConstraint.setColumn(relCol);
+            return dbCheckConstraint;
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        Matcher matcher = POSTGRESQL_CHECK
+                .matcher("(((gender)::text = ANY ((ARRAY['M'::character varying, 'F'::character varying, '0'::character varying])::text[])))");
+        // Matcher matcher = POSTGRESQL_CHECK.matcher("((ctype = ANY (ARRAY[0, 1, 2])))");
+        if (matcher.matches()) {
+            // String relCol = matcher.group(1).trim();
+            // System.out.println("1 " + relCol);
             String[] constraintValues = matcher.group(1).trim().split(",");
             List<String> values = new ArrayList<String>();
             for (int j = 0; j < constraintValues.length; j++) {
                 String value = constraintValues[j].trim();
-                value = value.replaceAll("'", "");
+                int ix = value.indexOf("'");
+                if (ix >= 0)
+                    value = value.substring(ix + 1);
+                ix = value.indexOf("'");
+                if (ix >= 0)
+                    value = value.substring(0, ix);
                 values.add(value);
             }
             System.out.println("9 " + values);
-        }
+        } else
+            System.out.println("uch");
     }
 
     @Override
