@@ -3155,13 +3155,22 @@ public interface ProcessorDslPackage extends EPackage
   int ANNOTATION_PROPERTY__VALUE = 1;
 
   /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_PROPERTY__TYPE = 2;
+
+  /**
    * The number of structural features of the '<em>Annotation Property</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANNOTATION_PROPERTY_FEATURE_COUNT = 2;
+  int ANNOTATION_PROPERTY_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityModifier1Impl <em>Pojo Entity Modifier1</em>}' class.
@@ -6956,6 +6965,17 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getAnnotationProperty_Value();
 
   /**
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationProperty#getType()
+   * @see #getAnnotationProperty()
+   * @generated
+   */
+  EReference getAnnotationProperty_Type();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoEntityModifier1 <em>Pojo Entity Modifier1</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -10100,6 +10120,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute ANNOTATION_PROPERTY__VALUE = eINSTANCE.getAnnotationProperty_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ANNOTATION_PROPERTY__TYPE = eINSTANCE.getAnnotationProperty_Type();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityModifier1Impl <em>Pojo Entity Modifier1</em>}' class.

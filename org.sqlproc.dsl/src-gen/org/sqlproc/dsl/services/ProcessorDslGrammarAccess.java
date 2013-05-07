@@ -6934,38 +6934,55 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class AnnotationPropertyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AnnotationProperty");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final Alternatives cValueAlternatives_1_0 = (Alternatives)cValueAssignment_1.eContents().get(0);
-		private final RuleCall cValueNUMBERTerminalRuleCall_1_0_0 = (RuleCall)cValueAlternatives_1_0.eContents().get(0);
-		private final RuleCall cValueSTRING_VALUETerminalRuleCall_1_0_1 = (RuleCall)cValueAlternatives_1_0.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Assignment cNameAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
+		private final RuleCall cNameIDENTTerminalRuleCall_0_0_0 = (RuleCall)cNameAssignment_0_0.eContents().get(0);
+		private final Assignment cValueAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final Alternatives cValueAlternatives_0_1_0 = (Alternatives)cValueAssignment_0_1.eContents().get(0);
+		private final RuleCall cValueNUMBERTerminalRuleCall_0_1_0_0 = (RuleCall)cValueAlternatives_0_1_0.eContents().get(0);
+		private final RuleCall cValueSTRING_VALUETerminalRuleCall_0_1_0_1 = (RuleCall)cValueAlternatives_0_1_0.eContents().get(1);
+		private final Assignment cTypeAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final CrossReference cTypeJvmTypeCrossReference_1_0 = (CrossReference)cTypeAssignment_1.eContents().get(0);
+		private final RuleCall cTypeJvmTypeQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cTypeJvmTypeCrossReference_1_0.eContents().get(1);
 		
+		////	name=IDENT value=(NUMBER|STRING_VALUE)
 		//AnnotationProperty:
-		//	name=IDENT value=(NUMBER | STRING_VALUE);
+		//	name=IDENT value=(NUMBER | STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName];
 		public ParserRule getRule() { return rule; }
 
+		//name=IDENT value=(NUMBER | STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName]
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//name=IDENT value=(NUMBER | STRING_VALUE)
-		public Group getGroup() { return cGroup; }
+		public Group getGroup_0() { return cGroup_0; }
 
 		//name=IDENT
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		public Assignment getNameAssignment_0_0() { return cNameAssignment_0_0; }
 
 		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
+		public RuleCall getNameIDENTTerminalRuleCall_0_0_0() { return cNameIDENTTerminalRuleCall_0_0_0; }
 
 		//value=(NUMBER | STRING_VALUE)
-		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		public Assignment getValueAssignment_0_1() { return cValueAssignment_0_1; }
 
 		//NUMBER | STRING_VALUE
-		public Alternatives getValueAlternatives_1_0() { return cValueAlternatives_1_0; }
+		public Alternatives getValueAlternatives_0_1_0() { return cValueAlternatives_0_1_0; }
 
 		//NUMBER
-		public RuleCall getValueNUMBERTerminalRuleCall_1_0_0() { return cValueNUMBERTerminalRuleCall_1_0_0; }
+		public RuleCall getValueNUMBERTerminalRuleCall_0_1_0_0() { return cValueNUMBERTerminalRuleCall_0_1_0_0; }
 
 		//STRING_VALUE
-		public RuleCall getValueSTRING_VALUETerminalRuleCall_1_0_1() { return cValueSTRING_VALUETerminalRuleCall_1_0_1; }
+		public RuleCall getValueSTRING_VALUETerminalRuleCall_0_1_0_1() { return cValueSTRING_VALUETerminalRuleCall_0_1_0_1; }
+
+		//type=[jvmTypes::JvmType|QualifiedName]
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+
+		//[jvmTypes::JvmType|QualifiedName]
+		public CrossReference getTypeJvmTypeCrossReference_1_0() { return cTypeJvmTypeCrossReference_1_0; }
+
+		//QualifiedName
+		public RuleCall getTypeJvmTypeQualifiedNameParserRuleCall_1_0_1() { return cTypeJvmTypeQualifiedNameParserRuleCall_1_0_1; }
 	}
 
 	public class PojoEntityModifier1Elements extends AbstractParserRuleElementFinder {
@@ -9306,8 +9323,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getAnnotationAccess().getRule();
 	}
 
+	////	name=IDENT value=(NUMBER|STRING_VALUE)
 	//AnnotationProperty:
-	//	name=IDENT value=(NUMBER | STRING_VALUE);
+	//	name=IDENT value=(NUMBER | STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName];
 	public AnnotationPropertyElements getAnnotationPropertyAccess() {
 		return (pAnnotationProperty != null) ? pAnnotationProperty : (pAnnotationProperty = new AnnotationPropertyElements());
 	}

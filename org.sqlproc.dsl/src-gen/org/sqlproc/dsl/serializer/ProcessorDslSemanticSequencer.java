@@ -593,7 +593,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (name=IDENT (value=NUMBER | value=STRING_VALUE))
+	 *     ((name=IDENT (value=NUMBER | value=STRING_VALUE)) | type=[JvmType|QualifiedName])
 	 */
 	protected void sequence_AnnotationProperty(EObject context, AnnotationProperty semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

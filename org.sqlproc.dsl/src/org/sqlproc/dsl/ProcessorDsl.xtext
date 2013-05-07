@@ -360,7 +360,8 @@ Annotation:
 ;
 
 AnnotationProperty:
-	name=IDENT value=(NUMBER|STRING_VALUE)
+	name=IDENT value=(NUMBER|STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName]
+//	name=IDENT value=(NUMBER|STRING_VALUE)
 ;
 
 PojoEntityModifier1: ((final?='final') | (abstract?='abstract'));

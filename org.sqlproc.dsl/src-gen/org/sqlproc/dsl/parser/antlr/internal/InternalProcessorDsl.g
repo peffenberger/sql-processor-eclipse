@@ -11638,11 +11638,11 @@ ruleAnnotationProperty returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(((
 (
 		lv_name_0_0=RULE_IDENT
 		{
-			newLeafNode(lv_name_0_0, grammarAccess.getAnnotationPropertyAccess().getNameIDENTTerminalRuleCall_0_0()); 
+			newLeafNode(lv_name_0_0, grammarAccess.getAnnotationPropertyAccess().getNameIDENTTerminalRuleCall_0_0_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -11661,7 +11661,7 @@ ruleAnnotationProperty returns [EObject current=null]
 (
 		lv_value_1_1=RULE_NUMBER
 		{
-			newLeafNode(lv_value_1_1, grammarAccess.getAnnotationPropertyAccess().getValueNUMBERTerminalRuleCall_1_0_0()); 
+			newLeafNode(lv_value_1_1, grammarAccess.getAnnotationPropertyAccess().getValueNUMBERTerminalRuleCall_0_1_0_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -11676,7 +11676,7 @@ ruleAnnotationProperty returns [EObject current=null]
 
     |		lv_value_1_2=RULE_STRING_VALUE
 		{
-			newLeafNode(lv_value_1_2, grammarAccess.getAnnotationPropertyAccess().getValueSTRING_VALUETerminalRuleCall_1_0_1()); 
+			newLeafNode(lv_value_1_2, grammarAccess.getAnnotationPropertyAccess().getValueSTRING_VALUETerminalRuleCall_0_1_0_1()); 
 		}
 		{
 	        if ($current==null) {
@@ -11690,6 +11690,22 @@ ruleAnnotationProperty returns [EObject current=null]
 	    }
 
 )
+
+)
+))
+    |(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAnnotationPropertyRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getAnnotationPropertyAccess().getTypeJvmTypeCrossReference_1_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
 ))

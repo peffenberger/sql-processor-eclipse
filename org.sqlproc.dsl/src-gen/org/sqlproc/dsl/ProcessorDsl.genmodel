@@ -343,6 +343,7 @@
     <genClasses ecoreClass="ProcessorDsl.ecore#//AnnotationProperty">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//AnnotationProperty/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//AnnotationProperty/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//AnnotationProperty/type"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoEntityModifier1">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoEntityModifier1/final"/>
