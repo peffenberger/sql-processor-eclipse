@@ -146,30 +146,32 @@ public class TableDaoConverter extends TableMetaConverter {
                     buffer.append(" serializable 1 ");
                 buffer.append(" {");
                 buffer.append("\n    scaffold");
-                Map<String, String> toInit = new LinkedHashMap<String, String>();
-                toInits(pojo, toInit);
-                for (Entry<String, String> entry : toInit.entrySet()) {
-                    buffer.append("\n    ").append(entry.getKey()).append(" :::");
-                    // pojoExtends {BANK_ACCOUNT=BILLING_DETAILS, MOVIE=MEDIA, CREDIT_CARD=BILLING_DETAILS,
-                    // BOOK=MEDIA}
-                    // pojoInheritanceDiscriminator {BILLING_DETAILS=[BANK_ACCOUNT, CREDIT_CARD]}
-                    // pojoInheritanceSimple {MEDIA=[MOVIE, BOOK]}
-                    // pojoDiscriminators {BANK_ACCOUNT=BA, CREDIT_CARD=CC}
-                    if (pojoInheritanceSimple.containsKey(entry.getValue())) {
-                        for (String pojo2 : pojoInheritanceSimple.get(entry.getValue())) {
-                            buffer.append(" ").append(columnToCamelCase(pojo2));
-                            String pojoName2 = tableNames.get(pojo2);
-                            if (pojoName2 == null)
-                                pojoName2 = pojo2;
-                            buffer.append(" ::").append(tableToCamelCase(pojoName2));
-                        }
-                    } else {
-                        for (String pojo2 : pojoInheritanceDiscriminator.get(entry.getValue())) {
-                            buffer.append(" ").append(pojoDiscriminators.get(pojo2));
-                            String pojoName2 = tableNames.get(pojo2);
-                            if (pojoName2 == null)
-                                pojoName2 = pojo2;
-                            buffer.append(" ::").append(tableToCamelCase(pojoName2));
+                if (generateMethods.contains(METHOD_TO_INIT)) {
+                    Map<String, String> toInit = new LinkedHashMap<String, String>();
+                    toInits(pojo, toInit);
+                    for (Entry<String, String> entry : toInit.entrySet()) {
+                        buffer.append("\n    ").append(entry.getKey()).append(" :::");
+                        // pojoExtends {BANK_ACCOUNT=BILLING_DETAILS, MOVIE=MEDIA, CREDIT_CARD=BILLING_DETAILS,
+                        // BOOK=MEDIA}
+                        // pojoInheritanceDiscriminator {BILLING_DETAILS=[BANK_ACCOUNT, CREDIT_CARD]}
+                        // pojoInheritanceSimple {MEDIA=[MOVIE, BOOK]}
+                        // pojoDiscriminators {BANK_ACCOUNT=BA, CREDIT_CARD=CC}
+                        if (pojoInheritanceSimple.containsKey(entry.getValue())) {
+                            for (String pojo2 : pojoInheritanceSimple.get(entry.getValue())) {
+                                buffer.append(" ").append(columnToCamelCase(pojo2));
+                                String pojoName2 = tableNames.get(pojo2);
+                                if (pojoName2 == null)
+                                    pojoName2 = pojo2;
+                                buffer.append(" ::").append(tableToCamelCase(pojoName2));
+                            }
+                        } else {
+                            for (String pojo2 : pojoInheritanceDiscriminator.get(entry.getValue())) {
+                                buffer.append(" ").append(pojoDiscriminators.get(pojo2));
+                                String pojoName2 = tableNames.get(pojo2);
+                                if (pojoName2 == null)
+                                    pojoName2 = pojo2;
+                                buffer.append(" ::").append(tableToCamelCase(pojoName2));
+                            }
                         }
                     }
                 }
