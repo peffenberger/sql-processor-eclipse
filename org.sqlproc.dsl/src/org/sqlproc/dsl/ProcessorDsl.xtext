@@ -47,7 +47,7 @@ DatabaseProperty:
 	|name='login-password' WS+ dbPassword=PropertyValue
 	|name='in-catalog' WS+ dbCatalog=DatabaseCatalogAssignement
 	|name='active-schema' WS+ dbSchema=DatabaseSchemaAssignement
-	|name='jdbc-driver' WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName]|dbDriver=PropertyValue)
+	|name='jdbc-driver' WS+ (=> COLON dbDriverx=[jvmTypes::JvmType|QualifiedName]|dbDriver=PropertyValue)
 	|name='ddl-create' WS+ dbExecuteBefore=PropertyValue
 	|name='ddl-drop' WS+ dbExecuteAfter=PropertyValue
 	|name='index-types' WS+ dbIndexTypes=PropertyValue
@@ -338,10 +338,20 @@ PackageDeclaration hidden(ML_COMMENT, SL_COMMENT, WS):
 		elements+=AbstractPojoEntity*
 	RBRACE;
 
+Annotation:
+	type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?
+;
+
+AnnotationProperty:
+	(COMMA)? name=IDENT (COLON type=[jvmTypes::JvmType|QualifiedName])? value=(NUMBER|STRING_VALUE)
+;
+
 Entity: PojoEntity | EnumEntity;
 
+AnnotatedEntity: (AT setterAnnotation+=Annotation)* entity=Entity;
+
 AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-	PackageDeclaration | Entity | Import | Implements | Extends | ImplPackage | PojoDao;
+	PackageDeclaration | AnnotatedEntity | Import | Implements | Extends | ImplPackage | PojoDao;
 
 Import hidden(ML_COMMENT, SL_COMMENT, WS):
 	'import' importedNamespace = QualifiedNameWithWildcard;
@@ -355,15 +365,6 @@ Extends hidden(ML_COMMENT, SL_COMMENT, WS):
 ImplPackage hidden(ML_COMMENT, SL_COMMENT, WS):
 	'implementation-package' name=(IDENT|IDENT_DOT);
 
-Annotation:
-	type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?
-;
-
-AnnotationProperty:
-	name=IDENT value=(NUMBER|STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName]
-//	name=IDENT value=(NUMBER|STRING_VALUE)
-;
-
 PojoEntityModifier1: ((final?='final') | (abstract?='abstract'));
 
 PojoEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('discriminator' discriminator=(IDENT|NUMBER)) | (operators='operators' (operatorsSuffix=IDENT)?)| ('serializable' sernum=NUMBER));
@@ -374,7 +375,7 @@ PojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 		features+=PojoAnnotatedProperty*
 	RBRACE;
 
-PojoAnnotatedProperty: (=> AT (=> AT (=> AT setterAnnotation=Annotation | getterAnnotation=Annotation) | attributeAnnotation=Annotation))* feature=PojoProperty;
+PojoAnnotatedProperty: (=> AT (=> AT (=> AT setterAnnotations+=Annotation | getterAnnotations+=Annotation) | attributeAnnotations+=Annotation))* feature=PojoProperty;
 
 PojoPropertyModifier: ((required?='required') | (discriminator?='discriminator') | (primaryKey?='primaryKey') | ('index' index=NUMBER) | (version?='optLock'));
 

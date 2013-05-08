@@ -13,6 +13,7 @@ import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEOb
 import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.Artifacts;
@@ -103,6 +104,13 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == ProcessorDslPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+			case ProcessorDslPackage.ANNOTATED_ENTITY:
+				if(context == grammarAccess.getAbstractPojoEntityRule() ||
+				   context == grammarAccess.getAnnotatedEntityRule()) {
+					sequence_AnnotatedEntity(context, (AnnotatedEntity) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorDslPackage.ANNOTATION:
 				if(context == grammarAccess.getAnnotationRule()) {
 					sequence_Annotation(context, (Annotation) semanticObject); 
@@ -218,8 +226,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 				}
 				else break;
 			case ProcessorDslPackage.ENUM_ENTITY:
-				if(context == grammarAccess.getAbstractPojoEntityRule() ||
-				   context == grammarAccess.getEntityRule() ||
+				if(context == grammarAccess.getEntityRule() ||
 				   context == grammarAccess.getEnumEntityRule()) {
 					sequence_EnumEntity(context, (EnumEntity) semanticObject); 
 					return; 
@@ -472,8 +479,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 				}
 				else break;
 			case ProcessorDslPackage.POJO_ENTITY:
-				if(context == grammarAccess.getAbstractPojoEntityRule() ||
-				   context == grammarAccess.getEntityRule() ||
+				if(context == grammarAccess.getEntityRule() ||
 				   context == grammarAccess.getPojoEntityRule()) {
 					sequence_PojoEntity(context, (PojoEntity) semanticObject); 
 					return; 
@@ -593,7 +599,16 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     ((name=IDENT (value=NUMBER | value=STRING_VALUE)) | type=[JvmType|QualifiedName])
+	 *     (setterAnnotation+=Annotation* entity=Entity)
+	 */
+	protected void sequence_AnnotatedEntity(EObject context, AnnotatedEntity semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=IDENT type=[JvmType|QualifiedName]? (value=NUMBER | value=STRING_VALUE))
 	 */
 	protected void sequence_AnnotationProperty(EObject context, AnnotationProperty semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1307,7 +1322,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     ((setterAnnotation=Annotation | getterAnnotation=Annotation | attributeAnnotation=Annotation)* feature=PojoProperty)
+	 *     ((setterAnnotations+=Annotation | getterAnnotations+=Annotation | attributeAnnotations+=Annotation)* feature=PojoProperty)
 	 */
 	protected void sequence_PojoAnnotatedProperty(EObject context, PojoAnnotatedProperty semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -7,6 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.dsl.processorDsl.Entity;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
@@ -24,7 +25,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *
  * @generated
  */
-public class EntityImpl extends AbstractPojoEntityImpl implements Entity
+public class EntityImpl extends MinimalEObjectImpl.Container implements Entity
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.

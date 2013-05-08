@@ -121,14 +121,15 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.OPTIONAL_FEATURE: return createOptionalFeature();
       case ProcessorDslPackage.POJO_TYPE: return createPojoType();
       case ProcessorDslPackage.PACKAGE_DECLARATION: return createPackageDeclaration();
+      case ProcessorDslPackage.ANNOTATION: return createAnnotation();
+      case ProcessorDslPackage.ANNOTATION_PROPERTY: return createAnnotationProperty();
       case ProcessorDslPackage.ENTITY: return createEntity();
+      case ProcessorDslPackage.ANNOTATED_ENTITY: return createAnnotatedEntity();
       case ProcessorDslPackage.ABSTRACT_POJO_ENTITY: return createAbstractPojoEntity();
       case ProcessorDslPackage.IMPORT: return createImport();
       case ProcessorDslPackage.IMPLEMENTS: return createImplements();
       case ProcessorDslPackage.EXTENDS: return createExtends();
       case ProcessorDslPackage.IMPL_PACKAGE: return createImplPackage();
-      case ProcessorDslPackage.ANNOTATION: return createAnnotation();
-      case ProcessorDslPackage.ANNOTATION_PROPERTY: return createAnnotationProperty();
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER1: return createPojoEntityModifier1();
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER2: return createPojoEntityModifier2();
       case ProcessorDslPackage.POJO_ENTITY: return createPojoEntity();
@@ -782,10 +783,43 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public Annotation createAnnotation()
+  {
+    AnnotationImpl annotation = new AnnotationImpl();
+    return annotation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationProperty createAnnotationProperty()
+  {
+    AnnotationPropertyImpl annotationProperty = new AnnotationPropertyImpl();
+    return annotationProperty;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Entity createEntity()
   {
     EntityImpl entity = new EntityImpl();
     return entity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotatedEntity createAnnotatedEntity()
+  {
+    AnnotatedEntityImpl annotatedEntity = new AnnotatedEntityImpl();
+    return annotatedEntity;
   }
 
   /**
@@ -841,28 +875,6 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     ImplPackageImpl implPackage = new ImplPackageImpl();
     return implPackage;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Annotation createAnnotation()
-  {
-    AnnotationImpl annotation = new AnnotationImpl();
-    return annotation;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AnnotationProperty createAnnotationProperty()
-  {
-    AnnotationPropertyImpl annotationProperty = new AnnotationPropertyImpl();
-    return annotationProperty;
   }
 
   /**

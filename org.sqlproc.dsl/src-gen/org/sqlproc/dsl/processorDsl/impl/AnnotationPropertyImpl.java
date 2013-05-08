@@ -23,8 +23,8 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,6 +53,16 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
   protected String name = NAME_EDEFAULT;
 
   /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected JvmType type;
+
+  /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -71,16 +81,6 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
    * @ordered
    */
   protected String value = VALUE_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected JvmType type;
 
   /**
    * <!-- begin-user-doc -->
@@ -131,29 +131,6 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getValue()
-  {
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setValue(String newValue)
-  {
-    String oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ANNOTATION_PROPERTY__VALUE, oldValue, value));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public JvmType getType()
   {
     if (type != null && type.eIsProxy())
@@ -197,6 +174,29 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getValue()
+  {
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(String newValue)
+  {
+    String oldValue = value;
+    value = newValue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ANNOTATION_PROPERTY__VALUE, oldValue, value));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -204,11 +204,11 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
     {
       case ProcessorDslPackage.ANNOTATION_PROPERTY__NAME:
         return getName();
-      case ProcessorDslPackage.ANNOTATION_PROPERTY__VALUE:
-        return getValue();
       case ProcessorDslPackage.ANNOTATION_PROPERTY__TYPE:
         if (resolve) return getType();
         return basicGetType();
+      case ProcessorDslPackage.ANNOTATION_PROPERTY__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -226,11 +226,11 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
       case ProcessorDslPackage.ANNOTATION_PROPERTY__NAME:
         setName((String)newValue);
         return;
-      case ProcessorDslPackage.ANNOTATION_PROPERTY__VALUE:
-        setValue((String)newValue);
-        return;
       case ProcessorDslPackage.ANNOTATION_PROPERTY__TYPE:
         setType((JvmType)newValue);
+        return;
+      case ProcessorDslPackage.ANNOTATION_PROPERTY__VALUE:
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -249,11 +249,11 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
       case ProcessorDslPackage.ANNOTATION_PROPERTY__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ProcessorDslPackage.ANNOTATION_PROPERTY__VALUE:
-        setValue(VALUE_EDEFAULT);
-        return;
       case ProcessorDslPackage.ANNOTATION_PROPERTY__TYPE:
         setType((JvmType)null);
+        return;
+      case ProcessorDslPackage.ANNOTATION_PROPERTY__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -271,10 +271,10 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
     {
       case ProcessorDslPackage.ANNOTATION_PROPERTY__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ProcessorDslPackage.ANNOTATION_PROPERTY__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
       case ProcessorDslPackage.ANNOTATION_PROPERTY__TYPE:
         return type != null;
+      case ProcessorDslPackage.ANNOTATION_PROPERTY__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }

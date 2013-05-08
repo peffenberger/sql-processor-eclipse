@@ -2,6 +2,7 @@
  */
 package org.sqlproc.dsl.processorDsl;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +20,7 @@ package org.sqlproc.dsl.processorDsl;
  * @model
  * @generated
  */
-public interface Entity extends AbstractPojoEntity
+public interface Entity extends EObject
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

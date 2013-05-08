@@ -2,6 +2,8 @@
  */
 package org.sqlproc.dsl.processorDsl;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -12,9 +14,9 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getSetterAnnotation <em>Setter Annotation</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getGetterAnnotation <em>Getter Annotation</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getAttributeAnnotation <em>Attribute Annotation</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getSetterAnnotations <em>Setter Annotations</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getGetterAnnotations <em>Getter Annotations</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getAttributeAnnotations <em>Attribute Annotations</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getFeature <em>Feature</em>}</li>
  * </ul>
  * </p>
@@ -26,82 +28,52 @@ import org.eclipse.emf.ecore.EObject;
 public interface PojoAnnotatedProperty extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Setter Annotation</b></em>' containment reference.
+   * Returns the value of the '<em><b>Setter Annotations</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.Annotation}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Setter Annotation</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Setter Annotations</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Setter Annotation</em>' containment reference.
-   * @see #setSetterAnnotation(Annotation)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoAnnotatedProperty_SetterAnnotation()
+   * @return the value of the '<em>Setter Annotations</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoAnnotatedProperty_SetterAnnotations()
    * @model containment="true"
    * @generated
    */
-  Annotation getSetterAnnotation();
+  EList<Annotation> getSetterAnnotations();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getSetterAnnotation <em>Setter Annotation</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Setter Annotation</em>' containment reference.
-   * @see #getSetterAnnotation()
-   * @generated
-   */
-  void setSetterAnnotation(Annotation value);
-
-  /**
-   * Returns the value of the '<em><b>Getter Annotation</b></em>' containment reference.
+   * Returns the value of the '<em><b>Getter Annotations</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.Annotation}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Getter Annotation</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Getter Annotations</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Getter Annotation</em>' containment reference.
-   * @see #setGetterAnnotation(Annotation)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoAnnotatedProperty_GetterAnnotation()
+   * @return the value of the '<em>Getter Annotations</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoAnnotatedProperty_GetterAnnotations()
    * @model containment="true"
    * @generated
    */
-  Annotation getGetterAnnotation();
+  EList<Annotation> getGetterAnnotations();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getGetterAnnotation <em>Getter Annotation</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Getter Annotation</em>' containment reference.
-   * @see #getGetterAnnotation()
-   * @generated
-   */
-  void setGetterAnnotation(Annotation value);
-
-  /**
-   * Returns the value of the '<em><b>Attribute Annotation</b></em>' containment reference.
+   * Returns the value of the '<em><b>Attribute Annotations</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.Annotation}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Attribute Annotation</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Attribute Annotations</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Attribute Annotation</em>' containment reference.
-   * @see #setAttributeAnnotation(Annotation)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoAnnotatedProperty_AttributeAnnotation()
+   * @return the value of the '<em>Attribute Annotations</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoAnnotatedProperty_AttributeAnnotations()
    * @model containment="true"
    * @generated
    */
-  Annotation getAttributeAnnotation();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty#getAttributeAnnotation <em>Attribute Annotation</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Attribute Annotation</em>' containment reference.
-   * @see #getAttributeAnnotation()
-   * @generated
-   */
-  void setAttributeAnnotation(Annotation value);
+  EList<Annotation> getAttributeAnnotations();
 
   /**
    * Returns the value of the '<em><b>Feature</b></em>' containment reference.

@@ -23,6 +23,7 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
+import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
@@ -52,6 +53,18 @@ import org.sqlproc.dsl.processorDsl.TableDefinition;
 import org.sqlproc.dsl.processorDsl.ToInitMethod;
 
 public class Utils {
+
+    public static EnumEntity enumEntity(AnnotatedEntity e) {
+        if (e.getEntity() instanceof EnumEntity)
+            return (EnumEntity) e.getEntity();
+        return null;
+    }
+
+    public static PojoEntity pojoEntity(AnnotatedEntity e) {
+        if (e.getEntity() instanceof PojoEntity)
+            return (PojoEntity) e.getEntity();
+        return null;
+    }
 
     public static String resourceDir(Resource resource) {
         String uri = (resource.getURI() != null) ? resource.getURI().toString() : null;
@@ -385,10 +398,13 @@ public class Utils {
             PackageDeclaration packageDeclaration = (PackageDeclaration) artifacts.eResource().getResourceSet()
                     .getEObject(description.getEObjectURI(), true);
             for (AbstractPojoEntity aEntity : packageDeclaration.getElements()) {
-                if (aEntity instanceof PojoEntity) {
-                    PojoEntity entity = (PojoEntity) aEntity;
-                    if (name.equals(entity.getName())) {
-                        return entity;
+                if (aEntity instanceof AnnotatedEntity) {
+                    AnnotatedEntity ae = (AnnotatedEntity) aEntity;
+                    if (ae.getEntity() instanceof PojoEntity) {
+                        PojoEntity entity = (PojoEntity) ae.getEntity();
+                        if (name.equals(entity.getName())) {
+                            return entity;
+                        }
                     }
                 }
             }

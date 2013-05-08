@@ -17,6 +17,7 @@ import org.sqlproc.dsl.services.ProcessorDslGrammarAccess;
 public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected ProcessorDslGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_AnnotationProperty_COMMATerminalRuleCall_0_q;
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_1_a;
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_0_1_a;
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_1_1_a;
@@ -131,6 +132,7 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (ProcessorDslGrammarAccess) access;
+		match_AnnotationProperty_COMMATerminalRuleCall_0_q = new TokenAlias(false, true, grammarAccess.getAnnotationPropertyAccess().getCOMMATerminalRuleCall_0());
 		match_Artifacts_WSTerminalRuleCall_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_1());
 		match_Artifacts_WSTerminalRuleCall_2_0_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_0_1());
 		match_Artifacts_WSTerminalRuleCall_2_1_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_1_1());
@@ -441,7 +443,9 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if(match_Artifacts_WSTerminalRuleCall_1_a.equals(syntax))
+			if(match_AnnotationProperty_COMMATerminalRuleCall_0_q.equals(syntax))
+				emit_AnnotationProperty_COMMATerminalRuleCall_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Artifacts_WSTerminalRuleCall_1_a.equals(syntax))
 				emit_Artifacts_WSTerminalRuleCall_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Artifacts_WSTerminalRuleCall_2_0_1_a.equals(syntax))
 				emit_Artifacts_WSTerminalRuleCall_2_0_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -665,6 +669,14 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		}
 	}
 
+	/**
+	 * Syntax:
+	 *     COMMA?
+	 */
+	protected void emit_AnnotationProperty_COMMATerminalRuleCall_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * Syntax:
 	 *     WS*

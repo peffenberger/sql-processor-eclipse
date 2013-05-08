@@ -36,6 +36,7 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
+import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.DatabaseProperty;
@@ -1097,8 +1098,10 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
             PackageDeclaration packageDeclaration = (PackageDeclaration) resourceSet.getEObject(
                     description.getEObjectURI(), true);
             for (AbstractPojoEntity aEntity : packageDeclaration.getElements()) {
-                if (aEntity instanceof PojoEntity) {
-                    result.add((PojoEntity) aEntity);
+                if (aEntity instanceof AnnotatedEntity) {
+                    AnnotatedEntity ae = (AnnotatedEntity) aEntity;
+                    if (ae.getEntity() instanceof PojoEntity)
+                        result.add((PojoEntity) ae.getEntity());
                 }
             }
         }

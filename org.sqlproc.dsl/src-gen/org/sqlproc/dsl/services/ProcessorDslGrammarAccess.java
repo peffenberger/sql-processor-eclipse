@@ -1091,13 +1091,13 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_7_1() { return cWSTerminalRuleCall_7_1; }
 
-		//COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=PropertyValue
+		//=> COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=PropertyValue
 		public Alternatives getAlternatives_7_2() { return cAlternatives_7_2; }
 
-		//COLON dbDriverx=[jvmTypes::JvmType|QualifiedName]
+		//=> COLON dbDriverx=[jvmTypes::JvmType|QualifiedName]
 		public Group getGroup_7_2_0() { return cGroup_7_2_0; }
 
-		//COLON
+		//=> COLON
 		public RuleCall getCOLONTerminalRuleCall_7_2_0_0() { return cCOLONTerminalRuleCall_7_2_0_0; }
 
 		//dbDriverx=[jvmTypes::JvmType|QualifiedName]
@@ -6712,6 +6712,114 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getRBRACETerminalRuleCall_5() { return cRBRACETerminalRuleCall_5; }
 	}
 
+	public class AnnotationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Annotation");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cTypeJvmTypeCrossReference_0_0 = (CrossReference)cTypeAssignment_0.eContents().get(0);
+		private final RuleCall cTypeJvmTypeQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cTypeJvmTypeCrossReference_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cCOLONTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final RuleCall cCOLONTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final RuleCall cCOLONTerminalRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
+		private final Assignment cFeaturesAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
+		private final RuleCall cFeaturesAnnotationPropertyParserRuleCall_1_3_0 = (RuleCall)cFeaturesAssignment_1_3.eContents().get(0);
+		
+		//Annotation:
+		//	type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?;
+		public ParserRule getRule() { return rule; }
+
+		//type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?
+		public Group getGroup() { return cGroup; }
+
+		//type=[jvmTypes::JvmType|QualifiedName]
+		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+
+		//[jvmTypes::JvmType|QualifiedName]
+		public CrossReference getTypeJvmTypeCrossReference_0_0() { return cTypeJvmTypeCrossReference_0_0; }
+
+		//QualifiedName
+		public RuleCall getTypeJvmTypeQualifiedNameParserRuleCall_0_0_1() { return cTypeJvmTypeQualifiedNameParserRuleCall_0_0_1; }
+
+		//(COLON COLON COLON features+=AnnotationProperty+)?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_1_0() { return cCOLONTerminalRuleCall_1_0; }
+
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_1_1() { return cCOLONTerminalRuleCall_1_1; }
+
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_1_2() { return cCOLONTerminalRuleCall_1_2; }
+
+		//features+=AnnotationProperty+
+		public Assignment getFeaturesAssignment_1_3() { return cFeaturesAssignment_1_3; }
+
+		//AnnotationProperty
+		public RuleCall getFeaturesAnnotationPropertyParserRuleCall_1_3_0() { return cFeaturesAnnotationPropertyParserRuleCall_1_3_0; }
+	}
+
+	public class AnnotationPropertyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AnnotationProperty");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cCOMMATerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDENTTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final RuleCall cCOLONTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
+		private final Assignment cTypeAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final CrossReference cTypeJvmTypeCrossReference_2_1_0 = (CrossReference)cTypeAssignment_2_1.eContents().get(0);
+		private final RuleCall cTypeJvmTypeQualifiedNameParserRuleCall_2_1_0_1 = (RuleCall)cTypeJvmTypeCrossReference_2_1_0.eContents().get(1);
+		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Alternatives cValueAlternatives_3_0 = (Alternatives)cValueAssignment_3.eContents().get(0);
+		private final RuleCall cValueNUMBERTerminalRuleCall_3_0_0 = (RuleCall)cValueAlternatives_3_0.eContents().get(0);
+		private final RuleCall cValueSTRING_VALUETerminalRuleCall_3_0_1 = (RuleCall)cValueAlternatives_3_0.eContents().get(1);
+		
+		//AnnotationProperty:
+		//	COMMA? name=IDENT (COLON type=[jvmTypes::JvmType|QualifiedName])? value=(NUMBER | STRING_VALUE);
+		public ParserRule getRule() { return rule; }
+
+		//COMMA? name=IDENT (COLON type=[jvmTypes::JvmType|QualifiedName])? value=(NUMBER | STRING_VALUE)
+		public Group getGroup() { return cGroup; }
+
+		//COMMA?
+		public RuleCall getCOMMATerminalRuleCall_0() { return cCOMMATerminalRuleCall_0; }
+
+		//name=IDENT
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//IDENT
+		public RuleCall getNameIDENTTerminalRuleCall_1_0() { return cNameIDENTTerminalRuleCall_1_0; }
+
+		//(COLON type=[jvmTypes::JvmType|QualifiedName])?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_2_0() { return cCOLONTerminalRuleCall_2_0; }
+
+		//type=[jvmTypes::JvmType|QualifiedName]
+		public Assignment getTypeAssignment_2_1() { return cTypeAssignment_2_1; }
+
+		//[jvmTypes::JvmType|QualifiedName]
+		public CrossReference getTypeJvmTypeCrossReference_2_1_0() { return cTypeJvmTypeCrossReference_2_1_0; }
+
+		//QualifiedName
+		public RuleCall getTypeJvmTypeQualifiedNameParserRuleCall_2_1_0_1() { return cTypeJvmTypeQualifiedNameParserRuleCall_2_1_0_1; }
+
+		//value=(NUMBER | STRING_VALUE)
+		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
+
+		//NUMBER | STRING_VALUE
+		public Alternatives getValueAlternatives_3_0() { return cValueAlternatives_3_0; }
+
+		//NUMBER
+		public RuleCall getValueNUMBERTerminalRuleCall_3_0_0() { return cValueNUMBERTerminalRuleCall_3_0_0; }
+
+		//STRING_VALUE
+		public RuleCall getValueSTRING_VALUETerminalRuleCall_3_0_1() { return cValueSTRING_VALUETerminalRuleCall_3_0_1; }
+	}
+
 	public class EntityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Entity");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -6732,11 +6840,47 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getEnumEntityParserRuleCall_1() { return cEnumEntityParserRuleCall_1; }
 	}
 
+	public class AnnotatedEntityElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AnnotatedEntity");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final RuleCall cATTerminalRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
+		private final Assignment cSetterAnnotationAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cSetterAnnotationAnnotationParserRuleCall_0_1_0 = (RuleCall)cSetterAnnotationAssignment_0_1.eContents().get(0);
+		private final Assignment cEntityAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cEntityEntityParserRuleCall_1_0 = (RuleCall)cEntityAssignment_1.eContents().get(0);
+		
+		//AnnotatedEntity:
+		//	(AT setterAnnotation+=Annotation)* entity=Entity;
+		public ParserRule getRule() { return rule; }
+
+		//(AT setterAnnotation+=Annotation)* entity=Entity
+		public Group getGroup() { return cGroup; }
+
+		//(AT setterAnnotation+=Annotation)*
+		public Group getGroup_0() { return cGroup_0; }
+
+		//AT
+		public RuleCall getATTerminalRuleCall_0_0() { return cATTerminalRuleCall_0_0; }
+
+		//setterAnnotation+=Annotation
+		public Assignment getSetterAnnotationAssignment_0_1() { return cSetterAnnotationAssignment_0_1; }
+
+		//Annotation
+		public RuleCall getSetterAnnotationAnnotationParserRuleCall_0_1_0() { return cSetterAnnotationAnnotationParserRuleCall_0_1_0; }
+
+		//entity=Entity
+		public Assignment getEntityAssignment_1() { return cEntityAssignment_1; }
+
+		//Entity
+		public RuleCall getEntityEntityParserRuleCall_1_0() { return cEntityEntityParserRuleCall_1_0; }
+	}
+
 	public class AbstractPojoEntityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AbstractPojoEntity");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cPackageDeclarationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cEntityParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cAnnotatedEntityParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cImportParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cImplementsParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cExtendsParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
@@ -6744,17 +6888,17 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPojoDaoParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-		//	PackageDeclaration | Entity | Import | Implements | Extends | ImplPackage | PojoDao;
+		//	PackageDeclaration | AnnotatedEntity | Import | Implements | Extends | ImplPackage | PojoDao;
 		public ParserRule getRule() { return rule; }
 
-		//PackageDeclaration | Entity | Import | Implements | Extends | ImplPackage | PojoDao
+		//PackageDeclaration | AnnotatedEntity | Import | Implements | Extends | ImplPackage | PojoDao
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//PackageDeclaration
 		public RuleCall getPackageDeclarationParserRuleCall_0() { return cPackageDeclarationParserRuleCall_0; }
 
-		//Entity
-		public RuleCall getEntityParserRuleCall_1() { return cEntityParserRuleCall_1; }
+		//AnnotatedEntity
+		public RuleCall getAnnotatedEntityParserRuleCall_1() { return cAnnotatedEntityParserRuleCall_1; }
 
 		//Import
 		public RuleCall getImportParserRuleCall_2() { return cImportParserRuleCall_2; }
@@ -6882,107 +7026,6 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//IDENT_DOT
 		public RuleCall getNameIDENT_DOTTerminalRuleCall_1_0_1() { return cNameIDENT_DOTTerminalRuleCall_1_0_1; }
-	}
-
-	public class AnnotationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Annotation");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cTypeJvmTypeCrossReference_0_0 = (CrossReference)cTypeAssignment_0.eContents().get(0);
-		private final RuleCall cTypeJvmTypeQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cTypeJvmTypeCrossReference_0_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cCOLONTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
-		private final RuleCall cCOLONTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		private final RuleCall cCOLONTerminalRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
-		private final Assignment cFeaturesAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
-		private final RuleCall cFeaturesAnnotationPropertyParserRuleCall_1_3_0 = (RuleCall)cFeaturesAssignment_1_3.eContents().get(0);
-		
-		//Annotation:
-		//	type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?;
-		public ParserRule getRule() { return rule; }
-
-		//type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?
-		public Group getGroup() { return cGroup; }
-
-		//type=[jvmTypes::JvmType|QualifiedName]
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
-
-		//[jvmTypes::JvmType|QualifiedName]
-		public CrossReference getTypeJvmTypeCrossReference_0_0() { return cTypeJvmTypeCrossReference_0_0; }
-
-		//QualifiedName
-		public RuleCall getTypeJvmTypeQualifiedNameParserRuleCall_0_0_1() { return cTypeJvmTypeQualifiedNameParserRuleCall_0_0_1; }
-
-		//(COLON COLON COLON features+=AnnotationProperty+)?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_1_0() { return cCOLONTerminalRuleCall_1_0; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_1_1() { return cCOLONTerminalRuleCall_1_1; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_1_2() { return cCOLONTerminalRuleCall_1_2; }
-
-		//features+=AnnotationProperty+
-		public Assignment getFeaturesAssignment_1_3() { return cFeaturesAssignment_1_3; }
-
-		//AnnotationProperty
-		public RuleCall getFeaturesAnnotationPropertyParserRuleCall_1_3_0() { return cFeaturesAnnotationPropertyParserRuleCall_1_3_0; }
-	}
-
-	public class AnnotationPropertyElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AnnotationProperty");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Assignment cNameAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final RuleCall cNameIDENTTerminalRuleCall_0_0_0 = (RuleCall)cNameAssignment_0_0.eContents().get(0);
-		private final Assignment cValueAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final Alternatives cValueAlternatives_0_1_0 = (Alternatives)cValueAssignment_0_1.eContents().get(0);
-		private final RuleCall cValueNUMBERTerminalRuleCall_0_1_0_0 = (RuleCall)cValueAlternatives_0_1_0.eContents().get(0);
-		private final RuleCall cValueSTRING_VALUETerminalRuleCall_0_1_0_1 = (RuleCall)cValueAlternatives_0_1_0.eContents().get(1);
-		private final Assignment cTypeAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final CrossReference cTypeJvmTypeCrossReference_1_0 = (CrossReference)cTypeAssignment_1.eContents().get(0);
-		private final RuleCall cTypeJvmTypeQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cTypeJvmTypeCrossReference_1_0.eContents().get(1);
-		
-		////	name=IDENT value=(NUMBER|STRING_VALUE)
-		//AnnotationProperty:
-		//	name=IDENT value=(NUMBER | STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName];
-		public ParserRule getRule() { return rule; }
-
-		//name=IDENT value=(NUMBER | STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName]
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//name=IDENT value=(NUMBER | STRING_VALUE)
-		public Group getGroup_0() { return cGroup_0; }
-
-		//name=IDENT
-		public Assignment getNameAssignment_0_0() { return cNameAssignment_0_0; }
-
-		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_0_0_0() { return cNameIDENTTerminalRuleCall_0_0_0; }
-
-		//value=(NUMBER | STRING_VALUE)
-		public Assignment getValueAssignment_0_1() { return cValueAssignment_0_1; }
-
-		//NUMBER | STRING_VALUE
-		public Alternatives getValueAlternatives_0_1_0() { return cValueAlternatives_0_1_0; }
-
-		//NUMBER
-		public RuleCall getValueNUMBERTerminalRuleCall_0_1_0_0() { return cValueNUMBERTerminalRuleCall_0_1_0_0; }
-
-		//STRING_VALUE
-		public RuleCall getValueSTRING_VALUETerminalRuleCall_0_1_0_1() { return cValueSTRING_VALUETerminalRuleCall_0_1_0_1; }
-
-		//type=[jvmTypes::JvmType|QualifiedName]
-		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
-
-		//[jvmTypes::JvmType|QualifiedName]
-		public CrossReference getTypeJvmTypeCrossReference_1_0() { return cTypeJvmTypeCrossReference_1_0; }
-
-		//QualifiedName
-		public RuleCall getTypeJvmTypeQualifiedNameParserRuleCall_1_0_1() { return cTypeJvmTypeQualifiedNameParserRuleCall_1_0_1; }
 	}
 
 	public class PojoEntityModifier1Elements extends AbstractParserRuleElementFinder {
@@ -7176,65 +7219,65 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_0_1_0_1 = (Alternatives)cGroup_0_1_0.eContents().get(1);
 		private final Group cGroup_0_1_0_1_0 = (Group)cAlternatives_0_1_0_1.eContents().get(0);
 		private final RuleCall cATTerminalRuleCall_0_1_0_1_0_0 = (RuleCall)cGroup_0_1_0_1_0.eContents().get(0);
-		private final Assignment cSetterAnnotationAssignment_0_1_0_1_0_1 = (Assignment)cGroup_0_1_0_1_0.eContents().get(1);
-		private final RuleCall cSetterAnnotationAnnotationParserRuleCall_0_1_0_1_0_1_0 = (RuleCall)cSetterAnnotationAssignment_0_1_0_1_0_1.eContents().get(0);
-		private final Assignment cGetterAnnotationAssignment_0_1_0_1_1 = (Assignment)cAlternatives_0_1_0_1.eContents().get(1);
-		private final RuleCall cGetterAnnotationAnnotationParserRuleCall_0_1_0_1_1_0 = (RuleCall)cGetterAnnotationAssignment_0_1_0_1_1.eContents().get(0);
-		private final Assignment cAttributeAnnotationAssignment_0_1_1 = (Assignment)cAlternatives_0_1.eContents().get(1);
-		private final RuleCall cAttributeAnnotationAnnotationParserRuleCall_0_1_1_0 = (RuleCall)cAttributeAnnotationAssignment_0_1_1.eContents().get(0);
+		private final Assignment cSetterAnnotationsAssignment_0_1_0_1_0_1 = (Assignment)cGroup_0_1_0_1_0.eContents().get(1);
+		private final RuleCall cSetterAnnotationsAnnotationParserRuleCall_0_1_0_1_0_1_0 = (RuleCall)cSetterAnnotationsAssignment_0_1_0_1_0_1.eContents().get(0);
+		private final Assignment cGetterAnnotationsAssignment_0_1_0_1_1 = (Assignment)cAlternatives_0_1_0_1.eContents().get(1);
+		private final RuleCall cGetterAnnotationsAnnotationParserRuleCall_0_1_0_1_1_0 = (RuleCall)cGetterAnnotationsAssignment_0_1_0_1_1.eContents().get(0);
+		private final Assignment cAttributeAnnotationsAssignment_0_1_1 = (Assignment)cAlternatives_0_1.eContents().get(1);
+		private final RuleCall cAttributeAnnotationsAnnotationParserRuleCall_0_1_1_0 = (RuleCall)cAttributeAnnotationsAssignment_0_1_1.eContents().get(0);
 		private final Assignment cFeatureAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cFeaturePojoPropertyParserRuleCall_1_0 = (RuleCall)cFeatureAssignment_1.eContents().get(0);
 		
 		//PojoAnnotatedProperty:
-		//	(AT (AT (AT setterAnnotation=Annotation | getterAnnotation=Annotation) | attributeAnnotation=Annotation))*
+		//	(AT (AT (AT setterAnnotations+=Annotation | getterAnnotations+=Annotation) | attributeAnnotations+=Annotation))*
 		//	feature=PojoProperty;
 		public ParserRule getRule() { return rule; }
 
-		//(=> AT (AT (AT setterAnnotation=Annotation | getterAnnotation=Annotation) | attributeAnnotation=Annotation))*
+		//(=> AT (AT (AT setterAnnotations+=Annotation | getterAnnotations+=Annotation) | attributeAnnotations+=Annotation))*
 		//feature=PojoProperty
 		public Group getGroup() { return cGroup; }
 
-		//(=> AT (AT (AT setterAnnotation=Annotation | getterAnnotation=Annotation) | attributeAnnotation=Annotation))*
+		//(=> AT (AT (AT setterAnnotations+=Annotation | getterAnnotations+=Annotation) | attributeAnnotations+=Annotation))*
 		public Group getGroup_0() { return cGroup_0; }
 
 		//=> AT
 		public RuleCall getATTerminalRuleCall_0_0() { return cATTerminalRuleCall_0_0; }
 
-		//=> AT (AT setterAnnotation=Annotation | getterAnnotation=Annotation) | attributeAnnotation=Annotation
+		//=> AT (AT setterAnnotations+=Annotation | getterAnnotations+=Annotation) | attributeAnnotations+=Annotation
 		public Alternatives getAlternatives_0_1() { return cAlternatives_0_1; }
 
-		//=> AT (AT setterAnnotation=Annotation | getterAnnotation=Annotation)
+		//=> AT (AT setterAnnotations+=Annotation | getterAnnotations+=Annotation)
 		public Group getGroup_0_1_0() { return cGroup_0_1_0; }
 
 		//=> AT
 		public RuleCall getATTerminalRuleCall_0_1_0_0() { return cATTerminalRuleCall_0_1_0_0; }
 
-		//=> AT setterAnnotation=Annotation | getterAnnotation=Annotation
+		//=> AT setterAnnotations+=Annotation | getterAnnotations+=Annotation
 		public Alternatives getAlternatives_0_1_0_1() { return cAlternatives_0_1_0_1; }
 
-		//=> AT setterAnnotation=Annotation
+		//=> AT setterAnnotations+=Annotation
 		public Group getGroup_0_1_0_1_0() { return cGroup_0_1_0_1_0; }
 
 		//=> AT
 		public RuleCall getATTerminalRuleCall_0_1_0_1_0_0() { return cATTerminalRuleCall_0_1_0_1_0_0; }
 
-		//setterAnnotation=Annotation
-		public Assignment getSetterAnnotationAssignment_0_1_0_1_0_1() { return cSetterAnnotationAssignment_0_1_0_1_0_1; }
+		//setterAnnotations+=Annotation
+		public Assignment getSetterAnnotationsAssignment_0_1_0_1_0_1() { return cSetterAnnotationsAssignment_0_1_0_1_0_1; }
 
 		//Annotation
-		public RuleCall getSetterAnnotationAnnotationParserRuleCall_0_1_0_1_0_1_0() { return cSetterAnnotationAnnotationParserRuleCall_0_1_0_1_0_1_0; }
+		public RuleCall getSetterAnnotationsAnnotationParserRuleCall_0_1_0_1_0_1_0() { return cSetterAnnotationsAnnotationParserRuleCall_0_1_0_1_0_1_0; }
 
-		//getterAnnotation=Annotation
-		public Assignment getGetterAnnotationAssignment_0_1_0_1_1() { return cGetterAnnotationAssignment_0_1_0_1_1; }
-
-		//Annotation
-		public RuleCall getGetterAnnotationAnnotationParserRuleCall_0_1_0_1_1_0() { return cGetterAnnotationAnnotationParserRuleCall_0_1_0_1_1_0; }
-
-		//attributeAnnotation=Annotation
-		public Assignment getAttributeAnnotationAssignment_0_1_1() { return cAttributeAnnotationAssignment_0_1_1; }
+		//getterAnnotations+=Annotation
+		public Assignment getGetterAnnotationsAssignment_0_1_0_1_1() { return cGetterAnnotationsAssignment_0_1_0_1_1; }
 
 		//Annotation
-		public RuleCall getAttributeAnnotationAnnotationParserRuleCall_0_1_1_0() { return cAttributeAnnotationAnnotationParserRuleCall_0_1_1_0; }
+		public RuleCall getGetterAnnotationsAnnotationParserRuleCall_0_1_0_1_1_0() { return cGetterAnnotationsAnnotationParserRuleCall_0_1_0_1_1_0; }
+
+		//attributeAnnotations+=Annotation
+		public Assignment getAttributeAnnotationsAssignment_0_1_1() { return cAttributeAnnotationsAssignment_0_1_1; }
+
+		//Annotation
+		public RuleCall getAttributeAnnotationsAnnotationParserRuleCall_0_1_1_0() { return cAttributeAnnotationsAnnotationParserRuleCall_0_1_1_0; }
 
 		//feature=PojoProperty
 		public Assignment getFeatureAssignment_1() { return cFeatureAssignment_1; }
@@ -8222,14 +8265,15 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	private FeatureValueElements pFeatureValue;
 	private PojoTypeElements pPojoType;
 	private PackageDeclarationElements pPackageDeclaration;
+	private AnnotationElements pAnnotation;
+	private AnnotationPropertyElements pAnnotationProperty;
 	private EntityElements pEntity;
+	private AnnotatedEntityElements pAnnotatedEntity;
 	private AbstractPojoEntityElements pAbstractPojoEntity;
 	private ImportElements pImport;
 	private ImplementsElements pImplements;
 	private ExtendsElements pExtends;
 	private ImplPackageElements pImplPackage;
-	private AnnotationElements pAnnotation;
-	private AnnotationPropertyElements pAnnotationProperty;
 	private PojoEntityModifier1Elements pPojoEntityModifier1;
 	private PojoEntityModifier2Elements pPojoEntityModifier2;
 	private PojoEntityElements pPojoEntity;
@@ -9253,6 +9297,26 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getPackageDeclarationAccess().getRule();
 	}
 
+	//Annotation:
+	//	type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?;
+	public AnnotationElements getAnnotationAccess() {
+		return (pAnnotation != null) ? pAnnotation : (pAnnotation = new AnnotationElements());
+	}
+	
+	public ParserRule getAnnotationRule() {
+		return getAnnotationAccess().getRule();
+	}
+
+	//AnnotationProperty:
+	//	COMMA? name=IDENT (COLON type=[jvmTypes::JvmType|QualifiedName])? value=(NUMBER | STRING_VALUE);
+	public AnnotationPropertyElements getAnnotationPropertyAccess() {
+		return (pAnnotationProperty != null) ? pAnnotationProperty : (pAnnotationProperty = new AnnotationPropertyElements());
+	}
+	
+	public ParserRule getAnnotationPropertyRule() {
+		return getAnnotationPropertyAccess().getRule();
+	}
+
 	//Entity:
 	//	PojoEntity | EnumEntity;
 	public EntityElements getEntityAccess() {
@@ -9263,8 +9327,18 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getEntityAccess().getRule();
 	}
 
+	//AnnotatedEntity:
+	//	(AT setterAnnotation+=Annotation)* entity=Entity;
+	public AnnotatedEntityElements getAnnotatedEntityAccess() {
+		return (pAnnotatedEntity != null) ? pAnnotatedEntity : (pAnnotatedEntity = new AnnotatedEntityElements());
+	}
+	
+	public ParserRule getAnnotatedEntityRule() {
+		return getAnnotatedEntityAccess().getRule();
+	}
+
 	//AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-	//	PackageDeclaration | Entity | Import | Implements | Extends | ImplPackage | PojoDao;
+	//	PackageDeclaration | AnnotatedEntity | Import | Implements | Extends | ImplPackage | PojoDao;
 	public AbstractPojoEntityElements getAbstractPojoEntityAccess() {
 		return (pAbstractPojoEntity != null) ? pAbstractPojoEntity : (pAbstractPojoEntity = new AbstractPojoEntityElements());
 	}
@@ -9313,27 +9387,6 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getImplPackageAccess().getRule();
 	}
 
-	//Annotation:
-	//	type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?;
-	public AnnotationElements getAnnotationAccess() {
-		return (pAnnotation != null) ? pAnnotation : (pAnnotation = new AnnotationElements());
-	}
-	
-	public ParserRule getAnnotationRule() {
-		return getAnnotationAccess().getRule();
-	}
-
-	////	name=IDENT value=(NUMBER|STRING_VALUE)
-	//AnnotationProperty:
-	//	name=IDENT value=(NUMBER | STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName];
-	public AnnotationPropertyElements getAnnotationPropertyAccess() {
-		return (pAnnotationProperty != null) ? pAnnotationProperty : (pAnnotationProperty = new AnnotationPropertyElements());
-	}
-	
-	public ParserRule getAnnotationPropertyRule() {
-		return getAnnotationPropertyAccess().getRule();
-	}
-
 	//PojoEntityModifier1:
 	//	final?="final" | abstract?="abstract";
 	public PojoEntityModifier1Elements getPojoEntityModifier1Access() {
@@ -9367,7 +9420,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PojoAnnotatedProperty:
-	//	(AT (AT (AT setterAnnotation=Annotation | getterAnnotation=Annotation) | attributeAnnotation=Annotation))*
+	//	(AT (AT (AT setterAnnotations+=Annotation | getterAnnotations+=Annotation) | attributeAnnotations+=Annotation))*
 	//	feature=PojoProperty;
 	public PojoAnnotatedPropertyElements getPojoAnnotatedPropertyAccess() {
 		return (pPojoAnnotatedProperty != null) ? pPojoAnnotatedProperty : (pPojoAnnotatedProperty = new PojoAnnotatedPropertyElements());

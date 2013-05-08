@@ -26,22 +26,28 @@ import org.sqlproc.dsl.processorDsl.PojoType
 import org.sqlproc.dsl.processorDsl.EnumEntity
 import org.sqlproc.dsl.processorDsl.EnumProperty
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty
+import org.sqlproc.dsl.processorDsl.AnnotatedEntity
 
 class ProcessorDslGenerator implements IGenerator {
 	
 @Inject extension IQualifiedNameProvider
 	
 override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-	for(e: resource.allContents.toIterable.filter(typeof(EnumEntity))) {
+	for(e: resource.allContents.toIterable.filter(typeof(AnnotatedEntity))) {
 		fsa.generateFile(e.eContainer.fullyQualifiedName.toString("/") + "/"+
 			e.fullyQualifiedName + ".java",e.compile
 		)
 	}
-	for(e: resource.allContents.toIterable.filter(typeof(PojoEntity))) {
-		fsa.generateFile(e.eContainer.fullyQualifiedName.toString("/") + "/"+
-			e.fullyQualifiedName + ".java",e.compile
-		)
-	}
+//	for(e: resource.allContents.toIterable.filter(typeof(EnumEntity))) {
+//		fsa.generateFile(e.eContainer.fullyQualifiedName.toString("/") + "/"+
+//			e.fullyQualifiedName + ".java",e.compile
+//		)
+//	}
+//	for(e: resource.allContents.toIterable.filter(typeof(PojoEntity))) {
+//		fsa.generateFile(e.eContainer.fullyQualifiedName.toString("/") + "/"+
+//			e.fullyQualifiedName + ".java",e.compile
+//		)
+//	}
 	for(d: resource.allContents.toIterable.filter(typeof(PojoDao))) {
 		if (d.implPackage != null) {
     		fsa.generateFile(d.eContainer.fullyQualifiedName.toString("/") + "/"+
@@ -59,13 +65,17 @@ override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 	}
 }
 
+def compile(AnnotatedEntity e) '''
+«IF e.entity instanceof EnumEntity»«enumEntity(e).compile»«ENDIF»«IF e.entity instanceof PojoEntity»«pojoEntity(e).compile»«ENDIF»
+'''
+
 def compile(EnumEntity e) '''
 «val importManager = new ImportManager(true)»
 «val eattr = getEnumAttr(e)»
 «addImplements(e, importManager)»
 «addExtends(e, importManager)»
 «val classBody = compile(e, importManager, eattr)»
-«IF e.eContainer != null»package «e.eContainer.fullyQualifiedName»;«ENDIF»
+«IF e.eContainer != null»package «e.eContainer.eContainer.fullyQualifiedName»;«ENDIF»
   «IF !importManager.imports.empty»
   
   «FOR i : importManager.imports»
@@ -130,7 +140,7 @@ def compile(PojoEntity e) '''
 «addImplements(e, importManager)»
 «addExtends(e, importManager)»
 «val classBody = compile(e, importManager)»
-«IF e.eContainer != null»package «e.eContainer.fullyQualifiedName»;«ENDIF»
+«IF e.eContainer != null»package «e.eContainer.eContainer.fullyQualifiedName»;«ENDIF»
   «IF !importManager.imports.empty»
   
   «FOR i : importManager.imports»
