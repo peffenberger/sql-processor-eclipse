@@ -64,6 +64,7 @@ public class TablePojoConverter {
     protected String suffix;
     protected Set<String> finalEntities;
     protected Annotations annotations;
+    protected Set<String> imports = new HashSet<String>();
     protected Map<String, PojoAttrType> sqlTypes = new HashMap<String, PojoAttrType>();
     protected Map<String, Map<String, PojoAttrType>> tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
     protected Map<String, Map<String, PojoAttrType>> columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
@@ -125,6 +126,8 @@ public class TablePojoConverter {
         this.suffix = (suffix != null) ? suffix : "";
         this.finalEntities = finalEntities;
         this.annotations = annotations;
+        if (annotations != null)
+            this.imports = annotations.getImports();
 
         Map<String, PojoAttrType> sqlTypes = modelProperty.getSqlTypes(artifacts);
         if (sqlTypes != null) {
@@ -798,6 +801,11 @@ public class TablePojoConverter {
             if (oneMoreLine) {
                 buffer.append("\n");
             }
+            if (imports != null) {
+                for (String qualifiedName : imports) {
+                    buffer.append("  import ").append(qualifiedName).append("\n");
+                }
+            }
             for (Entry<String, List<EnumAttribute>> pentry : enums.entrySet()) {
                 String pojo = pentry.getKey();
                 // System.out.println("QQQQQ " + pojo);
@@ -858,7 +866,7 @@ public class TablePojoConverter {
                     continue;
                 String realPojoName = tableToCamelCase(pojoName);
                 if (annotations != null)
-                    buffer.append(annotations.getEntityAnnotationsDefinitions(realPojoName));
+                    buffer.append(annotations.getEntityAnnotationsDefinitions(realPojoName, true));
                 buffer.append("\n  ");
                 if (makeItFinal)
                     buffer.append("final ");
@@ -895,9 +903,9 @@ public class TablePojoConverter {
                     else
                         name = columnToCamelCase(name);
                     if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, name));
-                        buffer.append(annotations.getGetterAnnotationsDefinitions(realPojoName, name));
-                        buffer.append(annotations.getSetterAnnotationsDefinitions(realPojoName, name));
+                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, name, true));
+                        buffer.append(annotations.getGetterAnnotationsDefinitions(realPojoName, name, true));
+                        buffer.append(annotations.getSetterAnnotationsDefinitions(realPojoName, name, true));
                     }
                     buffer.append("\n    ").append(name).append(' ');
                     if (attribute.getDependencyClassName() != null) {

@@ -2,8 +2,10 @@ package org.sqlproc.dsl.ui.templates;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
@@ -46,48 +48,48 @@ public class Annotations {
         list.addAll(annotations);
     }
 
-    StringBuilder getEntityAnnotationsDefinitions(String pojoName) {
+    StringBuilder getEntityAnnotationsDefinitions(String pojoName, boolean simpleNames) {
         StringBuilder sb = new StringBuilder();
         if (!entityAnnotations.containsKey(pojoName))
             return sb;
         for (Annotation a : entityAnnotations.get(pojoName)) {
-            getAnnotationDefinition(sb, a, "\n  @");
+            getAnnotationDefinition(sb, a, "\n  @", simpleNames);
         }
         return sb;
     }
 
-    StringBuilder getGetterAnnotationsDefinitions(String pojoName, String featureName) {
+    StringBuilder getGetterAnnotationsDefinitions(String pojoName, String featureName, boolean simpleNames) {
         StringBuilder sb = new StringBuilder();
         if (!getterAnnotations.containsKey(pojoName) || !getterAnnotations.get(pojoName).containsKey(featureName))
             return sb;
         for (Annotation a : getterAnnotations.get(pojoName).get(featureName)) {
-            getAnnotationDefinition(sb, a, "\n    @@");
+            getAnnotationDefinition(sb, a, "\n    @@", simpleNames);
         }
         return sb;
     }
 
-    StringBuilder getSetterAnnotationsDefinitions(String pojoName, String featureName) {
+    StringBuilder getSetterAnnotationsDefinitions(String pojoName, String featureName, boolean simpleNames) {
         StringBuilder sb = new StringBuilder();
         if (!setterAnnotations.containsKey(pojoName) || !setterAnnotations.get(pojoName).containsKey(featureName))
             return sb;
         for (Annotation a : setterAnnotations.get(pojoName).get(featureName)) {
-            getAnnotationDefinition(sb, a, "\n    @@@");
+            getAnnotationDefinition(sb, a, "\n    @@@", simpleNames);
         }
         return sb;
     }
 
-    StringBuilder getAttributeAnnotationsDefinitions(String pojoName, String featureName) {
+    StringBuilder getAttributeAnnotationsDefinitions(String pojoName, String featureName, boolean simpleNames) {
         StringBuilder sb = new StringBuilder();
         if (!attributeAnnotations.containsKey(pojoName) || !attributeAnnotations.get(pojoName).containsKey(featureName))
             return sb;
         for (Annotation a : attributeAnnotations.get(pojoName).get(featureName)) {
-            getAnnotationDefinition(sb, a, "\n    @");
+            getAnnotationDefinition(sb, a, "\n    @", simpleNames);
         }
         return sb;
     }
 
-    void getAnnotationDefinition(StringBuilder sb, Annotation a, String prefix) {
-        sb.append(prefix).append(a.getType().getQualifiedName());
+    void getAnnotationDefinition(StringBuilder sb, Annotation a, String prefix, boolean simpleNames) {
+        sb.append(prefix).append((simpleNames) ? a.getType().getSimpleName() : a.getType().getQualifiedName());
         if (a.getFeatures() != null && !a.getFeatures().isEmpty()) {
             sb.append(" ::: ");
             boolean first = true;
@@ -96,16 +98,49 @@ public class Annotations {
                     first = false;
                 else
                     sb.append(", ");
-                getAnnotationPropertyDefinition(sb, ap);
+                getAnnotationPropertyDefinition(sb, ap, simpleNames);
             }
         }
     }
 
-    void getAnnotationPropertyDefinition(StringBuilder sb, AnnotationProperty ap) {
+    void getAnnotationPropertyDefinition(StringBuilder sb, AnnotationProperty ap, boolean simpleNames) {
         sb.append(ap.getName());
         if (ap.getType() != null)
-            sb.append(" :").append(ap.getType().getQualifiedName());
+            sb.append(" :").append((simpleNames) ? ap.getType().getSimpleName() : ap.getType().getQualifiedName());
         sb.append(" ").append(ap.getValue());
+    }
+
+    Set<String> getImports() {
+        Set<String> imports = new HashSet<String>();
+        for (List<Annotation> al : entityAnnotations.values())
+            getImports(imports, al);
+        for (Map<String, List<Annotation>> am : attributeAnnotations.values()) {
+            for (List<Annotation> al : am.values()) {
+                getImports(imports, al);
+            }
+        }
+        for (Map<String, List<Annotation>> am : getterAnnotations.values()) {
+            for (List<Annotation> al : am.values()) {
+                getImports(imports, al);
+            }
+        }
+        for (Map<String, List<Annotation>> am : setterAnnotations.values()) {
+            for (List<Annotation> al : am.values()) {
+                getImports(imports, al);
+            }
+        }
+        return imports;
+    }
+
+    void getImports(Set<String> imports, List<Annotation> al) {
+        for (Annotation a : al) {
+            if (a.getType() != null)
+                imports.add(a.getType().getQualifiedName());
+            for (AnnotationProperty ap : a.getFeatures()) {
+                if (ap.getType() != null)
+                    imports.add(ap.getType().getQualifiedName());
+            }
+        }
     }
 
     @Override
