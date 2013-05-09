@@ -1809,6 +1809,16 @@ public class DbResolverBean implements DbResolver {
                 if (check != null)
                     mapOfCheckConstraints.put(constraintName, check);
             }
+        } else if (dbType == DbType.DB2) {
+            String query = "select cc.TABNAME, cc.COLNAME, ch.TEXT from SYSCAT.COLCHECKS cc, SYSCAT.CHECKS ch where cc.TABNAME = ch.TABNAME and cc.CONSTNAME = ch.CONSTNAME and ch.TYPE = 'C' and cc.TABNAME = ?";
+            String query2 = "select cc.TABNAME, cc.COLNAME, ch.TEXT from SYSCAT.COLCHECKS cc, SYSCAT.CHECKS ch where cc.TABNAME = ch.TABNAME and cc.CONSTNAME = ch.CONSTNAME and ch.TYPE = 'C'";
+            Map<String, List<String>> map = getCheckConstraints(modelDatabaseValues, table, query, query2, true);
+            for (String constraintName : map.keySet()) {
+                DbCheckConstraint check = DbCheckConstraint.parseDb2(map.get(constraintName).get(2),
+                        map.get(constraintName).get(0), map.get(constraintName).get(1));
+                if (check != null)
+                    mapOfCheckConstraints.put(constraintName, check);
+            }
         } else {
             mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
         }
@@ -1832,8 +1842,8 @@ public class DbResolverBean implements DbResolver {
                 String tableName = result.getString(1);
                 String constraintName = result.getString(2);
                 String checkClause = result.getString(3);
-                System.out.println(tableName + " constraintName " + constraintName + ", " + " checkClause "
-                        + checkClause);
+                // System.out.println(tableName + " constraintName " + constraintName + ", " + " checkClause "
+                // + checkClause);
                 List<String> list = new ArrayList<String>();
                 list.add(checkClause);
                 list.add(tableName);

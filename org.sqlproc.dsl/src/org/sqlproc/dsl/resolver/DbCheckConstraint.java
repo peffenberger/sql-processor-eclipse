@@ -149,6 +149,38 @@ public class DbCheckConstraint {
         return null;
     }
 
+    static final Pattern DB2_CHECK = Pattern.compile("(?i).*IN\\s*\\(('?.*?'?\\s*,'?.*?'?\\s*)\\)*");
+
+    public static DbCheckConstraint parseDb2(String relCol, String clause, String relTable) {
+        // TYPE IN (0, 1)
+        // GENDER IN ('M', 'F')
+        Matcher matcher = DB2_CHECK.matcher(clause.trim());
+        if (matcher.matches()) {
+            String enumName = relTable + "_" + relCol;
+            String[] constraintValues = matcher.group(1).trim().split(",");
+            List<String> values = new ArrayList<String>();
+            for (int j = 0; j < constraintValues.length; j++) {
+                String value = constraintValues[j].trim();
+                int ix = value.indexOf("'");
+                if (ix >= 0)
+                    value = value.substring(ix + 1);
+                ix = value.indexOf("'");
+                if (ix >= 0)
+                    value = value.substring(0, ix);
+                values.add(value);
+            }
+            DbCheckConstraint dbCheckConstraint = new DbCheckConstraint();
+            dbCheckConstraint.setConstraintName(enumName);
+            dbCheckConstraint.setCheckClause(clause);
+            dbCheckConstraint.setEnumName(enumName);
+            dbCheckConstraint.setValues(values);
+            dbCheckConstraint.setTable(relTable);
+            dbCheckConstraint.setColumn(relCol);
+            return dbCheckConstraint;
+        }
+        return null;
+    }
+
     static final Pattern MYSQL_CHECK = Pattern.compile("(?i)\\s*enum\\((.*)\\)\\s*");
 
     public static DbCheckConstraint parseMysql(String relCol, String clause, String relTable) {
@@ -212,9 +244,7 @@ public class DbCheckConstraint {
     }
 
     public static void main(String[] args) {
-        Matcher matcher = POSTGRESQL_CHECK
-                .matcher("(((gender)::text = ANY ((ARRAY['M'::character varying, 'F'::character varying, '0'::character varying])::text[])))");
-        // Matcher matcher = POSTGRESQL_CHECK.matcher("((ctype = ANY (ARRAY[0, 1, 2])))");
+        Matcher matcher = DB2_CHECK.matcher("GENDER IN ('M', 'F', 'G')");
         if (matcher.matches()) {
             // String relCol = matcher.group(1).trim();
             // System.out.println("1 " + relCol);
