@@ -6845,29 +6845,29 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
 		private final RuleCall cATTerminalRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
-		private final Assignment cSetterAnnotationAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cSetterAnnotationAnnotationParserRuleCall_0_1_0 = (RuleCall)cSetterAnnotationAssignment_0_1.eContents().get(0);
+		private final Assignment cAnnotationsAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cAnnotationsAnnotationParserRuleCall_0_1_0 = (RuleCall)cAnnotationsAssignment_0_1.eContents().get(0);
 		private final Assignment cEntityAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cEntityEntityParserRuleCall_1_0 = (RuleCall)cEntityAssignment_1.eContents().get(0);
 		
 		//AnnotatedEntity:
-		//	(AT setterAnnotation+=Annotation)* entity=Entity;
+		//	(AT annotations+=Annotation)* entity=Entity;
 		public ParserRule getRule() { return rule; }
 
-		//(AT setterAnnotation+=Annotation)* entity=Entity
+		//(AT annotations+=Annotation)* entity=Entity
 		public Group getGroup() { return cGroup; }
 
-		//(AT setterAnnotation+=Annotation)*
+		//(AT annotations+=Annotation)*
 		public Group getGroup_0() { return cGroup_0; }
 
 		//AT
 		public RuleCall getATTerminalRuleCall_0_0() { return cATTerminalRuleCall_0_0; }
 
-		//setterAnnotation+=Annotation
-		public Assignment getSetterAnnotationAssignment_0_1() { return cSetterAnnotationAssignment_0_1; }
+		//annotations+=Annotation
+		public Assignment getAnnotationsAssignment_0_1() { return cAnnotationsAssignment_0_1; }
 
 		//Annotation
-		public RuleCall getSetterAnnotationAnnotationParserRuleCall_0_1_0() { return cSetterAnnotationAnnotationParserRuleCall_0_1_0; }
+		public RuleCall getAnnotationsAnnotationParserRuleCall_0_1_0() { return cAnnotationsAnnotationParserRuleCall_0_1_0; }
 
 		//entity=Entity
 		public Assignment getEntityAssignment_1() { return cEntityAssignment_1; }
@@ -9328,7 +9328,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AnnotatedEntity:
-	//	(AT setterAnnotation+=Annotation)* entity=Entity;
+	//	(AT annotations+=Annotation)* entity=Entity;
 	public AnnotatedEntityElements getAnnotatedEntityAccess() {
 		return (pAnnotatedEntity != null) ? pAnnotatedEntity : (pAnnotatedEntity = new AnnotatedEntityElements());
 	}

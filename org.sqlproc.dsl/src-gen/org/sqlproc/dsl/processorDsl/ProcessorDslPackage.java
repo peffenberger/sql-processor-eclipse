@@ -3071,13 +3071,13 @@ public interface ProcessorDslPackage extends EPackage
   int ANNOTATED_ENTITY = 60;
 
   /**
-   * The feature id for the '<em><b>Setter Annotation</b></em>' containment reference list.
+   * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY__SETTER_ANNOTATION = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 0;
+  int ANNOTATED_ENTITY__ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Entity</b></em>' containment reference.
@@ -6929,15 +6929,15 @@ public interface ProcessorDslPackage extends EPackage
   EClass getAnnotatedEntity();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getSetterAnnotation <em>Setter Annotation</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getAnnotations <em>Annotations</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Setter Annotation</em>'.
-   * @see org.sqlproc.dsl.processorDsl.AnnotatedEntity#getSetterAnnotation()
+   * @return the meta object for the containment reference list '<em>Annotations</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotatedEntity#getAnnotations()
    * @see #getAnnotatedEntity()
    * @generated
    */
-  EReference getAnnotatedEntity_SetterAnnotation();
+  EReference getAnnotatedEntity_Annotations();
 
   /**
    * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getEntity <em>Entity</em>}'.
@@ -10127,12 +10127,12 @@ public interface ProcessorDslPackage extends EPackage
     EClass ANNOTATED_ENTITY = eINSTANCE.getAnnotatedEntity();
 
     /**
-     * The meta object literal for the '<em><b>Setter Annotation</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Annotations</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ANNOTATED_ENTITY__SETTER_ANNOTATION = eINSTANCE.getAnnotatedEntity_SetterAnnotation();
+    EReference ANNOTATED_ENTITY__ANNOTATIONS = eINSTANCE.getAnnotatedEntity_Annotations();
 
     /**
      * The meta object literal for the '<em><b>Entity</b></em>' containment reference feature.

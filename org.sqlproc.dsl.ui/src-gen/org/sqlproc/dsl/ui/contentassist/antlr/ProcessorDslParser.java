@@ -721,7 +721,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAnnotationPropertyAccess().getNameAssignment_1(), "rule__AnnotationProperty__NameAssignment_1");
 					put(grammarAccess.getAnnotationPropertyAccess().getTypeAssignment_2_1(), "rule__AnnotationProperty__TypeAssignment_2_1");
 					put(grammarAccess.getAnnotationPropertyAccess().getValueAssignment_3(), "rule__AnnotationProperty__ValueAssignment_3");
-					put(grammarAccess.getAnnotatedEntityAccess().getSetterAnnotationAssignment_0_1(), "rule__AnnotatedEntity__SetterAnnotationAssignment_0_1");
+					put(grammarAccess.getAnnotatedEntityAccess().getAnnotationsAssignment_0_1(), "rule__AnnotatedEntity__AnnotationsAssignment_0_1");
 					put(grammarAccess.getAnnotatedEntityAccess().getEntityAssignment_1(), "rule__AnnotatedEntity__EntityAssignment_1");
 					put(grammarAccess.getImportAccess().getImportedNamespaceAssignment_1(), "rule__Import__ImportedNamespaceAssignment_1");
 					put(grammarAccess.getImplementsAccess().getImplementsAssignment_1(), "rule__Implements__ImplementsAssignment_1");

@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getSetterAnnotation <em>Setter Annotation</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getEntity <em>Entity</em>}</li>
  * </ul>
  * </p>
@@ -24,20 +24,20 @@ import org.eclipse.emf.common.util.EList;
 public interface AnnotatedEntity extends AbstractPojoEntity
 {
   /**
-   * Returns the value of the '<em><b>Setter Annotation</b></em>' containment reference list.
+   * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.
    * The list contents are of type {@link org.sqlproc.dsl.processorDsl.Annotation}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Setter Annotation</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Annotations</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Setter Annotation</em>' containment reference list.
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getAnnotatedEntity_SetterAnnotation()
+   * @return the value of the '<em>Annotations</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getAnnotatedEntity_Annotations()
    * @model containment="true"
    * @generated
    */
-  EList<Annotation> getSetterAnnotation();
+  EList<Annotation> getAnnotations();
 
   /**
    * Returns the value of the '<em><b>Entity</b></em>' containment reference.

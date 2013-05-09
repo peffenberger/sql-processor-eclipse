@@ -333,7 +333,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//Entity/name"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//AnnotatedEntity">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//AnnotatedEntity/setterAnnotation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//AnnotatedEntity/annotations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//AnnotatedEntity/entity"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//AbstractPojoEntity"/>

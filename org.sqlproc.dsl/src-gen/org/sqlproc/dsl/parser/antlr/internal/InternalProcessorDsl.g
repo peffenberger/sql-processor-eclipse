@@ -11419,16 +11419,16 @@ ruleAnnotatedEntity returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getSetterAnnotationAnnotationParserRuleCall_0_1_0()); 
+	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getAnnotationsAnnotationParserRuleCall_0_1_0()); 
 	    }
-		lv_setterAnnotation_1_0=ruleAnnotation		{
+		lv_annotations_1_0=ruleAnnotation		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAnnotatedEntityRule());
 	        }
        		add(
        			$current, 
-       			"setterAnnotation",
-        		lv_setterAnnotation_1_0, 
+       			"annotations",
+        		lv_annotations_1_0, 
         		"Annotation");
 	        afterParserOrEnumRuleCall();
 	    }

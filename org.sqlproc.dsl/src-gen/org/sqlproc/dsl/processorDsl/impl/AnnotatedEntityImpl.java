@@ -29,7 +29,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotatedEntityImpl#getSetterAnnotation <em>Setter Annotation</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotatedEntityImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotatedEntityImpl#getEntity <em>Entity</em>}</li>
  * </ul>
  * </p>
@@ -39,14 +39,14 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 public class AnnotatedEntityImpl extends AbstractPojoEntityImpl implements AnnotatedEntity
 {
   /**
-   * The cached value of the '{@link #getSetterAnnotation() <em>Setter Annotation</em>}' containment reference list.
+   * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSetterAnnotation()
+   * @see #getAnnotations()
    * @generated
    * @ordered
    */
-  protected EList<Annotation> setterAnnotation;
+  protected EList<Annotation> annotations;
 
   /**
    * The cached value of the '{@link #getEntity() <em>Entity</em>}' containment reference.
@@ -84,13 +84,13 @@ public class AnnotatedEntityImpl extends AbstractPojoEntityImpl implements Annot
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Annotation> getSetterAnnotation()
+  public EList<Annotation> getAnnotations()
   {
-    if (setterAnnotation == null)
+    if (annotations == null)
     {
-      setterAnnotation = new EObjectContainmentEList<Annotation>(Annotation.class, this, ProcessorDslPackage.ANNOTATED_ENTITY__SETTER_ANNOTATION);
+      annotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, ProcessorDslPackage.ANNOTATED_ENTITY__ANNOTATIONS);
     }
-    return setterAnnotation;
+    return annotations;
   }
 
   /**
@@ -151,8 +151,8 @@ public class AnnotatedEntityImpl extends AbstractPojoEntityImpl implements Annot
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.ANNOTATED_ENTITY__SETTER_ANNOTATION:
-        return ((InternalEList<?>)getSetterAnnotation()).basicRemove(otherEnd, msgs);
+      case ProcessorDslPackage.ANNOTATED_ENTITY__ANNOTATIONS:
+        return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
       case ProcessorDslPackage.ANNOTATED_ENTITY__ENTITY:
         return basicSetEntity(null, msgs);
     }
@@ -169,8 +169,8 @@ public class AnnotatedEntityImpl extends AbstractPojoEntityImpl implements Annot
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.ANNOTATED_ENTITY__SETTER_ANNOTATION:
-        return getSetterAnnotation();
+      case ProcessorDslPackage.ANNOTATED_ENTITY__ANNOTATIONS:
+        return getAnnotations();
       case ProcessorDslPackage.ANNOTATED_ENTITY__ENTITY:
         return getEntity();
     }
@@ -188,9 +188,9 @@ public class AnnotatedEntityImpl extends AbstractPojoEntityImpl implements Annot
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.ANNOTATED_ENTITY__SETTER_ANNOTATION:
-        getSetterAnnotation().clear();
-        getSetterAnnotation().addAll((Collection<? extends Annotation>)newValue);
+      case ProcessorDslPackage.ANNOTATED_ENTITY__ANNOTATIONS:
+        getAnnotations().clear();
+        getAnnotations().addAll((Collection<? extends Annotation>)newValue);
         return;
       case ProcessorDslPackage.ANNOTATED_ENTITY__ENTITY:
         setEntity((Entity)newValue);
@@ -209,8 +209,8 @@ public class AnnotatedEntityImpl extends AbstractPojoEntityImpl implements Annot
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.ANNOTATED_ENTITY__SETTER_ANNOTATION:
-        getSetterAnnotation().clear();
+      case ProcessorDslPackage.ANNOTATED_ENTITY__ANNOTATIONS:
+        getAnnotations().clear();
         return;
       case ProcessorDslPackage.ANNOTATED_ENTITY__ENTITY:
         setEntity((Entity)null);
@@ -229,8 +229,8 @@ public class AnnotatedEntityImpl extends AbstractPojoEntityImpl implements Annot
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.ANNOTATED_ENTITY__SETTER_ANNOTATION:
-        return setterAnnotation != null && !setterAnnotation.isEmpty();
+      case ProcessorDslPackage.ANNOTATED_ENTITY__ANNOTATIONS:
+        return annotations != null && !annotations.isEmpty();
       case ProcessorDslPackage.ANNOTATED_ENTITY__ENTITY:
         return entity != null;
     }

@@ -2883,7 +2883,7 @@
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Group" cardinality="*">
         <elements xsi:type="xtext:RuleCall" rule="//@rules.92"/>
-        <elements xsi:type="xtext:Assignment" feature="setterAnnotation" operator="+=">
+        <elements xsi:type="xtext:Assignment" feature="annotations" operator="+=">
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.104"/>
         </elements>
       </elements>

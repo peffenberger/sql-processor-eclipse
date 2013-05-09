@@ -27,6 +27,8 @@ import org.sqlproc.dsl.processorDsl.EnumEntity
 import org.sqlproc.dsl.processorDsl.EnumProperty
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity
+import org.sqlproc.dsl.processorDsl.Annotation
+import org.sqlproc.dsl.processorDsl.AnnotationProperty
 
 class ProcessorDslGenerator implements IGenerator {
 	
@@ -66,7 +68,7 @@ override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 }
 
 def compile(AnnotatedEntity e) '''
-«IF e.entity instanceof EnumEntity»«enumEntity(e).compile»«ENDIF»«IF e.entity instanceof PojoEntity»«pojoEntity(e).compile»«ENDIF»
+«IF e.entity instanceof EnumEntity»«enumEntity(e).compile»«ENDIF»«IF e.entity instanceof PojoEntity»«compile(pojoEntity(e), e.annotations)»«ENDIF»
 '''
 
 def compile(EnumEntity e) '''
@@ -135,11 +137,11 @@ public enum «e.name» «compileExtends(e)»«compileImplements(e)»{
 '''
 
 
-def compile(PojoEntity e) '''
+def compile(PojoEntity e, List<Annotation> annotations) '''
 «val importManager = new ImportManager(true)»
 «addImplements(e, importManager)»
 «addExtends(e, importManager)»
-«val classBody = compile(e, importManager)»
+«val classBody = compile(e, annotations, importManager)»
 «IF e.eContainer != null»package «e.eContainer.eContainer.fullyQualifiedName»;«ENDIF»
   «IF !importManager.imports.empty»
   
@@ -168,7 +170,10 @@ import java.util.HashMap;
 «classBody»
 '''
 
-def compile(PojoEntity e, ImportManager importManager) '''
+def compile(PojoEntity e, List<Annotation> annotations, ImportManager importManager) '''
+  «FOR a:annotations»
+@«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, importManager)»«ENDFOR»)«ENDIF»
+  «ENDFOR»
 public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e)»«compileImplements(e)»{
   «IF getSernum(e) != null»
   
@@ -205,14 +210,26 @@ public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e
 }
 '''
 
+def compileAnnotationProperty(AnnotationProperty f, ImportManager importManager) '''
+  «f.name» = «IF isAnnotationEnum(f)»«importManager.serialize(f.getType)»«ENDIF»«getAnnotationValue(f)»'''
+
 def compile(PojoAnnotatedProperty f, ImportManager importManager, PojoEntity e, String operatorSuffix) '''
 
+    «FOR a:f.attributeAnnotations»
+    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     private «f.feature.compileType(importManager)» «f.feature.name»«IF isList(f.feature)» = new Array«f.feature.compileType(importManager)»()«ELSEIF isOptLock(f.feature)» = 0«ENDIF»;
   
+    «FOR a:f.getterAnnotations»
+    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public «f.feature.compileType(importManager)» get«f.feature.name.toFirstUpper»() {
       return «f.feature.name»;
     }
   
+    «FOR a:f.setterAnnotations»
+    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public void set«f.feature.name.toFirstUpper»(«f.feature.compileType(importManager)» «f.feature.name») {
       this.«f.feature.name» = «f.feature.name»;
     }
@@ -1121,6 +1138,12 @@ def addImplements(PojoDao e, ImportManager importManager) {
 def addExtends(PojoDao e, ImportManager importManager) {
 	for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
 		importManager.addImportFor(ext.getExtends())
+	}
+}
+
+def addAnnotations(List<Annotation> annotations, ImportManager importManager) {
+	for(a: annotations) {
+		importManager.serialize(a.getType)
 	}
 }
 

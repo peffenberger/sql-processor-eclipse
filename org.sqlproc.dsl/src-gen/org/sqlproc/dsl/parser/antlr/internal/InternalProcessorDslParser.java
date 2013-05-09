@@ -33997,12 +33997,12 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAnnotatedEntity"
-    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11411:1: ruleAnnotatedEntity returns [EObject current=null] : ( (this_AT_0= RULE_AT ( (lv_setterAnnotation_1_0= ruleAnnotation ) ) )* ( (lv_entity_2_0= ruleEntity ) ) ) ;
+    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11411:1: ruleAnnotatedEntity returns [EObject current=null] : ( (this_AT_0= RULE_AT ( (lv_annotations_1_0= ruleAnnotation ) ) )* ( (lv_entity_2_0= ruleEntity ) ) ) ;
     public final EObject ruleAnnotatedEntity() throws RecognitionException {
         EObject current = null;
 
         Token this_AT_0=null;
-        EObject lv_setterAnnotation_1_0 = null;
+        EObject lv_annotations_1_0 = null;
 
         EObject lv_entity_2_0 = null;
 
@@ -34010,13 +34010,13 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11414:28: ( ( (this_AT_0= RULE_AT ( (lv_setterAnnotation_1_0= ruleAnnotation ) ) )* ( (lv_entity_2_0= ruleEntity ) ) ) )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11415:1: ( (this_AT_0= RULE_AT ( (lv_setterAnnotation_1_0= ruleAnnotation ) ) )* ( (lv_entity_2_0= ruleEntity ) ) )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11414:28: ( ( (this_AT_0= RULE_AT ( (lv_annotations_1_0= ruleAnnotation ) ) )* ( (lv_entity_2_0= ruleEntity ) ) ) )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11415:1: ( (this_AT_0= RULE_AT ( (lv_annotations_1_0= ruleAnnotation ) ) )* ( (lv_entity_2_0= ruleEntity ) ) )
             {
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11415:1: ( (this_AT_0= RULE_AT ( (lv_setterAnnotation_1_0= ruleAnnotation ) ) )* ( (lv_entity_2_0= ruleEntity ) ) )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11415:2: (this_AT_0= RULE_AT ( (lv_setterAnnotation_1_0= ruleAnnotation ) ) )* ( (lv_entity_2_0= ruleEntity ) )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11415:1: ( (this_AT_0= RULE_AT ( (lv_annotations_1_0= ruleAnnotation ) ) )* ( (lv_entity_2_0= ruleEntity ) ) )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11415:2: (this_AT_0= RULE_AT ( (lv_annotations_1_0= ruleAnnotation ) ) )* ( (lv_entity_2_0= ruleEntity ) )
             {
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11415:2: (this_AT_0= RULE_AT ( (lv_setterAnnotation_1_0= ruleAnnotation ) ) )*
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11415:2: (this_AT_0= RULE_AT ( (lv_annotations_1_0= ruleAnnotation ) ) )*
             loop253:
             do {
                 int alt253=2;
@@ -34029,7 +34029,7 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
 
                 switch (alt253) {
             	case 1 :
-            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11415:3: this_AT_0= RULE_AT ( (lv_setterAnnotation_1_0= ruleAnnotation ) )
+            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11415:3: this_AT_0= RULE_AT ( (lv_annotations_1_0= ruleAnnotation ) )
             	    {
             	    this_AT_0=(Token)match(input,RULE_AT,FollowSets002.FOLLOW_RULE_AT_in_ruleAnnotatedEntity26203); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
@@ -34037,19 +34037,19 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
             	          newLeafNode(this_AT_0, grammarAccess.getAnnotatedEntityAccess().getATTerminalRuleCall_0_0()); 
             	          
             	    }
-            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11419:1: ( (lv_setterAnnotation_1_0= ruleAnnotation ) )
-            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11420:1: (lv_setterAnnotation_1_0= ruleAnnotation )
+            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11419:1: ( (lv_annotations_1_0= ruleAnnotation ) )
+            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11420:1: (lv_annotations_1_0= ruleAnnotation )
             	    {
-            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11420:1: (lv_setterAnnotation_1_0= ruleAnnotation )
-            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11421:3: lv_setterAnnotation_1_0= ruleAnnotation
+            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11420:1: (lv_annotations_1_0= ruleAnnotation )
+            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:11421:3: lv_annotations_1_0= ruleAnnotation
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getSetterAnnotationAnnotationParserRuleCall_0_1_0()); 
+            	      	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getAnnotationsAnnotationParserRuleCall_0_1_0()); 
             	      	    
             	    }
             	    pushFollow(FollowSets002.FOLLOW_ruleAnnotation_in_ruleAnnotatedEntity26223);
-            	    lv_setterAnnotation_1_0=ruleAnnotation();
+            	    lv_annotations_1_0=ruleAnnotation();
 
             	    state._fsp--;
             	    if (state.failed) return current;
@@ -34060,8 +34060,8 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
             	      	        }
             	             		add(
             	             			current, 
-            	             			"setterAnnotation",
-            	              		lv_setterAnnotation_1_0, 
+            	             			"annotations",
+            	              		lv_annotations_1_0, 
             	              		"Annotation");
             	      	        afterParserOrEnumRuleCall();
             	      	    

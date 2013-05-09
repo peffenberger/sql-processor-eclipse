@@ -27046,9 +27046,9 @@ rule__AnnotatedEntity__Group_0__1__Impl
     }
 :
 (
-{ before(grammarAccess.getAnnotatedEntityAccess().getSetterAnnotationAssignment_0_1()); }
-(rule__AnnotatedEntity__SetterAnnotationAssignment_0_1)
-{ after(grammarAccess.getAnnotatedEntityAccess().getSetterAnnotationAssignment_0_1()); }
+{ before(grammarAccess.getAnnotatedEntityAccess().getAnnotationsAssignment_0_1()); }
+(rule__AnnotatedEntity__AnnotationsAssignment_0_1)
+{ after(grammarAccess.getAnnotatedEntityAccess().getAnnotationsAssignment_0_1()); }
 )
 
 ;
@@ -36129,14 +36129,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__AnnotatedEntity__SetterAnnotationAssignment_0_1
+rule__AnnotatedEntity__AnnotationsAssignment_0_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getAnnotatedEntityAccess().getSetterAnnotationAnnotationParserRuleCall_0_1_0()); }
-	ruleAnnotation{ after(grammarAccess.getAnnotatedEntityAccess().getSetterAnnotationAnnotationParserRuleCall_0_1_0()); }
+{ before(grammarAccess.getAnnotatedEntityAccess().getAnnotationsAnnotationParserRuleCall_0_1_0()); }
+	ruleAnnotation{ after(grammarAccess.getAnnotatedEntityAccess().getAnnotationsAnnotationParserRuleCall_0_1_0()); }
 )
 
 ;

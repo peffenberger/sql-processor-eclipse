@@ -348,7 +348,7 @@ AnnotationProperty:
 
 Entity: PojoEntity | EnumEntity;
 
-AnnotatedEntity: (AT setterAnnotation+=Annotation)* entity=Entity;
+AnnotatedEntity: (AT annotations+=Annotation)* entity=Entity;
 
 AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 	PackageDeclaration | AnnotatedEntity | Import | Implements | Extends | ImplPackage | PojoDao;

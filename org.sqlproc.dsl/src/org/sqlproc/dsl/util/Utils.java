@@ -24,6 +24,7 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
+import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
@@ -64,6 +65,30 @@ public class Utils {
         if (e.getEntity() instanceof PojoEntity)
             return (PojoEntity) e.getEntity();
         return null;
+    }
+
+    public static boolean isAnnotationEnum(AnnotationProperty a) {
+        if (a.getType() != null) {
+            String qname = a.getType().getQualifiedName();
+            if (qname.indexOf("java.") >= 0) // TODO - better
+                return false;
+            return true;
+        }
+        return false;
+    }
+
+    public static String getAnnotationValue(AnnotationProperty a) {
+        String value = a.getValue();
+        // System.out.println("XXXX " + value);
+        if (Character.isDigit(value.charAt(0)))
+            return value;
+        if ("\"true\"".equalsIgnoreCase(value) || "\"false\"".equalsIgnoreCase(value))
+            return value.substring(1, value.length() - 1);
+        if (isAnnotationEnum(a))
+            return "." + value.substring(1, value.length() - 1);
+        if (a.getType() != null)
+            return value; // TODO - better
+        return value;
     }
 
     public static String resourceDir(Resource resource) {
