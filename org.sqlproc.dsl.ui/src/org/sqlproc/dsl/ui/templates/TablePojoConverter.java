@@ -856,6 +856,9 @@ public class TablePojoConverter {
                     pojoName = pojo;
                 if (finalEntities.contains(tableToCamelCase(pojoName)))
                     continue;
+                String realPojoName = tableToCamelCase(pojoName);
+                if (annotations != null)
+                    buffer.append(annotations.getEntityAnnotationsDefinitions(realPojoName));
                 buffer.append("\n  ");
                 if (makeItFinal)
                     buffer.append("final ");
@@ -864,7 +867,7 @@ public class TablePojoConverter {
                         buffer.append("abstract ");
                 }
                 buffer.append("pojo ");
-                buffer.append(tableToCamelCase(pojoName));
+                buffer.append(realPojoName);
                 if (pojoExtends.containsKey(pojo))
                     buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
                 if (pojoDiscriminators.containsKey(pojo))
@@ -891,6 +894,11 @@ public class TablePojoConverter {
                         name = attribute.getName();
                     else
                         name = columnToCamelCase(name);
+                    if (annotations != null) {
+                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, name));
+                        buffer.append(annotations.getGetterAnnotationsDefinitions(realPojoName, name));
+                        buffer.append(annotations.getSetterAnnotationsDefinitions(realPojoName, name));
+                    }
                     buffer.append("\n    ").append(name).append(' ');
                     if (attribute.getDependencyClassName() != null) {
                         buffer.append(":: ").append(attribute.getDependencyClassName());
