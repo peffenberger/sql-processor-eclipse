@@ -17,7 +17,6 @@ import org.apache.log4j.Level;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
-import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
@@ -62,8 +61,7 @@ public class TableMetaConverter extends TablePojoConverter {
 
     public TableMetaConverter(ModelProperty modelProperty, Artifacts artifacts, IScopeProvider scopeProvider,
             Set<String> finalMetas, List<String> dbSequences, DbType dbType) {
-        super(modelProperty, artifacts, null, Collections.<String> emptySet(), Collections
-                .<String, List<Annotation>> emptyMap(), dbSequences, dbType);
+        super(modelProperty, artifacts, null, Collections.<String> emptySet(), null, dbSequences, dbType);
         this.scopeProvider = scopeProvider;
         this.artifacts = artifacts;
         this.finalMetas = finalMetas;

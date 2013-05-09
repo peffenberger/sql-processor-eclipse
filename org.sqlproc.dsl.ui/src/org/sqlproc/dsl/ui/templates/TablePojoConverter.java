@@ -21,7 +21,6 @@ import java.util.TreeSet;
 
 import org.apache.log4j.Level;
 import org.eclipse.xtext.common.types.JvmType;
-import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.property.EnumAttribute;
 import org.sqlproc.dsl.property.ModelProperty;
@@ -64,7 +63,7 @@ public class TablePojoConverter {
 
     protected String suffix;
     protected Set<String> finalEntities;
-    protected Map<String, List<Annotation>> annotatedEntities = new HashMap<String, List<Annotation>>();
+    protected Annotations annotations;
     protected Map<String, PojoAttrType> sqlTypes = new HashMap<String, PojoAttrType>();
     protected Map<String, Map<String, PojoAttrType>> tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
     protected Map<String, Map<String, PojoAttrType>> columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
@@ -114,8 +113,7 @@ public class TablePojoConverter {
     }
 
     public TablePojoConverter(ModelProperty modelProperty, Artifacts artifacts, String suffix,
-            Set<String> finalEntities, Map<String, List<Annotation>> annotatedEntities, List<String> dbSequences,
-            DbType dbType) {
+            Set<String> finalEntities, Annotations annotations, List<String> dbSequences, DbType dbType) {
 
         if (modelProperty.getDebugLevel(artifacts) != null
                 && modelProperty.getDebugLevel(artifacts).isGreaterOrEqual(Level.DEBUG)) {
@@ -126,10 +124,7 @@ public class TablePojoConverter {
 
         this.suffix = (suffix != null) ? suffix : "";
         this.finalEntities = finalEntities;
-        for (Entry<String, List<Annotation>> e : annotatedEntities.entrySet()) {
-            this.annotatedEntities.put(e.getKey(), new ArrayList<Annotation>());
-            this.annotatedEntities.get(e.getKey()).addAll(e.getValue());
-        }
+        this.annotations = annotations;
 
         Map<String, PojoAttrType> sqlTypes = modelProperty.getSqlTypes(artifacts);
         if (sqlTypes != null) {
@@ -258,7 +253,7 @@ public class TablePojoConverter {
 
         if (debug) {
             System.out.println("finalEntities " + this.finalEntities);
-            System.out.println("annotatedEntities " + this.annotatedEntities);
+            System.out.println("annotations " + this.annotations);
             System.out.println("sqlTypes " + this.sqlTypes);
             System.out.println("tableTypes " + this.tableTypes);
             System.out.println("columnTypes " + this.columnTypes);

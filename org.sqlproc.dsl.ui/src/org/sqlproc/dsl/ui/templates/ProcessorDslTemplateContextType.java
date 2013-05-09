@@ -3,10 +3,8 @@ package org.sqlproc.dsl.ui.templates;
 import static org.sqlproc.dsl.util.Constants.TABLE_USAGE;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
@@ -20,10 +18,10 @@ import org.eclipse.xtext.ui.editor.templates.XtextTemplateContext;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
-import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
+import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
@@ -691,15 +689,14 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
 
                 List<PojoEntity> entitiesToRemove = new ArrayList<PojoEntity>();
                 Set<String> finalEntities = new HashSet<String>();
-                Map<String, List<Annotation>> annotatedEntities = new HashMap<String, List<Annotation>>();
+                Annotations annotations = new Annotations();
                 String suffix = packagex.getSuffix();
-
                 for (AbstractPojoEntity ape : packagex.getElements()) {
                     if (ape instanceof AnnotatedEntity) {
                         AnnotatedEntity apojo = (AnnotatedEntity) ape;
-                        if (apojo.getEntity() instanceof PojoEntity) {
-                            PojoEntity pojo = (PojoEntity) apojo;
-                            annotatedEntities.put(pojo.getName(), ((AnnotatedEntity) ape).getAnnotations());
+                        if (apojo.getEntity() != null && apojo.getEntity() instanceof PojoEntity) {
+                            PojoEntity pojo = (PojoEntity) apojo.getEntity();
+                            grabAnnotations(apojo, pojo, annotations);
                             if (Utils.isFinal(pojo)) {
                                 // if (suffix != null && pojo.getName().endsWith(suffix))
                                 // finalEntities.add(pojo.getName()
@@ -715,12 +712,11 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                 // for (PojoEntity pojo : entitiesToRemove) {
                 // packagex.getElements().remove(pojo);
                 // }
-
                 // List<String> tables = dbResolver.getTables(artifacts);
                 List<String> dbSequences = dbResolver.getSequences(artifacts);
                 DbType dbType = getDbType(artifacts);
                 TablePojoConverter converter = new TablePojoConverter(modelProperty, artifacts, suffix, finalEntities,
-                        annotatedEntities, dbSequences, dbType);
+                        annotations, dbSequences, dbType);
                 if (addDefinitions(converter, artifacts))
                     return converter.getPojoDefinitions();
             }
@@ -730,6 +726,21 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
         @Override
         protected boolean isUnambiguous(TemplateContext context) {
             return true;
+        }
+    }
+
+    private void grabAnnotations(AnnotatedEntity apojo, PojoEntity pojo, Annotations as) {
+        String pojoName = pojo.getName();
+        as.addEntityAnnotations(pojoName, apojo.getAnnotations());
+        for (PojoAnnotatedProperty feature : pojo.getFeatures()) {
+            if (feature.getFeature() == null)
+                continue;
+            if (feature.getAttributeAnnotations() != null)
+                as.addAttributeAnnotations(pojoName, feature.getFeature().getName(), feature.getAttributeAnnotations());
+            if (feature.getSetterAnnotations() != null)
+                as.addSetterAnnotations(pojoName, feature.getFeature().getName(), feature.getSetterAnnotations());
+            if (feature.getGetterAnnotations() != null)
+                as.addGetterAnnotations(pojoName, feature.getFeature().getName(), feature.getGetterAnnotations());
         }
     }
 
