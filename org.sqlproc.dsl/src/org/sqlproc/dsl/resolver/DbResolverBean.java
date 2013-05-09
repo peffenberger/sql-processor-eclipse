@@ -1121,7 +1121,7 @@ public class DbResolverBean implements DbResolver {
                 while (result.next()) {
                     DbTable dbTable = new DbTable();
                     dbTable.setName(result.getString("FUNCTION_NAME"));
-                    if (dbType != DbType.DB2)
+                    if (dbType != DbType.DB2 && dbType != DbType.ORACLE)
                         dbTable.setFtype(result.getShort("FUNCTION_TYPE"));
                     dbTable.setRemarks(result.getString("REMARKS"));
                     tablesForModel.add(dbTable);

@@ -3,8 +3,10 @@ package org.sqlproc.dsl.ui.templates;
 import static org.sqlproc.dsl.util.Constants.TABLE_USAGE;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
@@ -17,6 +19,8 @@ import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContext;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
+import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
+import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
@@ -687,19 +691,24 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
 
                 List<PojoEntity> entitiesToRemove = new ArrayList<PojoEntity>();
                 Set<String> finalEntities = new HashSet<String>();
+                Map<String, List<Annotation>> annotatedEntities = new HashMap<String, List<Annotation>>();
                 String suffix = packagex.getSuffix();
 
                 for (AbstractPojoEntity ape : packagex.getElements()) {
-                    if (ape instanceof PojoEntity) {
-                        PojoEntity pojo = (PojoEntity) ape;
-                        if (Utils.isFinal(pojo)) {
-                            // if (suffix != null && pojo.getName().endsWith(suffix))
-                            // finalEntities.add(pojo.getName()
-                            // .substring(0, pojo.getName().length() - suffix.length()));
-                            // else
-                            finalEntities.add(pojo.getName());
-                        } else {
-                            entitiesToRemove.add(pojo);
+                    if (ape instanceof AnnotatedEntity) {
+                        AnnotatedEntity apojo = (AnnotatedEntity) ape;
+                        if (apojo.getEntity() instanceof PojoEntity) {
+                            PojoEntity pojo = (PojoEntity) apojo;
+                            annotatedEntities.put(pojo.getName(), ((AnnotatedEntity) ape).getAnnotations());
+                            if (Utils.isFinal(pojo)) {
+                                // if (suffix != null && pojo.getName().endsWith(suffix))
+                                // finalEntities.add(pojo.getName()
+                                // .substring(0, pojo.getName().length() - suffix.length()));
+                                // else
+                                finalEntities.add(pojo.getName());
+                            } else {
+                                entitiesToRemove.add(pojo);
+                            }
                         }
                     }
                 }
@@ -711,7 +720,7 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                 List<String> dbSequences = dbResolver.getSequences(artifacts);
                 DbType dbType = getDbType(artifacts);
                 TablePojoConverter converter = new TablePojoConverter(modelProperty, artifacts, suffix, finalEntities,
-                        dbSequences, dbType);
+                        annotatedEntities, dbSequences, dbType);
                 if (addDefinitions(converter, artifacts))
                     return converter.getPojoDefinitions();
             }
