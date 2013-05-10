@@ -16,7 +16,9 @@ import org.eclipse.xtext.common.types.JvmType;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getType <em>Type</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getNumber <em>Number</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getValue <em>Value</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getConstant <em>Constant</em>}</li>
  * </ul>
  * </p>
  *
@@ -79,6 +81,32 @@ public interface AnnotationProperty extends EObject
   void setType(JvmType value);
 
   /**
+   * Returns the value of the '<em><b>Number</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Number</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Number</em>' attribute.
+   * @see #setNumber(String)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getAnnotationProperty_Number()
+   * @model
+   * @generated
+   */
+  String getNumber();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getNumber <em>Number</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Number</em>' attribute.
+   * @see #getNumber()
+   * @generated
+   */
+  void setNumber(String value);
+
+  /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
@@ -103,5 +131,31 @@ public interface AnnotationProperty extends EObject
    * @generated
    */
   void setValue(String value);
+
+  /**
+   * Returns the value of the '<em><b>Constant</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Constant</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Constant</em>' attribute.
+   * @see #setConstant(String)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getAnnotationProperty_Constant()
+   * @model
+   * @generated
+   */
+  String getConstant();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getConstant <em>Constant</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Constant</em>' attribute.
+   * @see #getConstant()
+   * @generated
+   */
+  void setConstant(String value);
 
 } // AnnotationProperty

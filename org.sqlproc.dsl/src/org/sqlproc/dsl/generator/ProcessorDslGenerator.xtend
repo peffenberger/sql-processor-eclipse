@@ -211,7 +211,7 @@ public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e
 '''
 
 def compileAnnotationProperty(AnnotationProperty f, ImportManager importManager) '''
-  «f.name» = «IF isAnnotationEnum(f)»«importManager.serialize(f.getType)»«ENDIF»«getAnnotationValue(f)»'''
+  «f.name» = «IF f.getType != null»«importManager.serialize(f.getType)»«ENDIF»«getAnnotationValue(f)»'''
 
 def compile(PojoAnnotatedProperty f, ImportManager importManager, PojoEntity e, String operatorSuffix) '''
 

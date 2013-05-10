@@ -343,7 +343,7 @@ Annotation:
 ;
 
 AnnotationProperty:
-	(COMMA)? name=IDENT (COLON type=[jvmTypes::JvmType|QualifiedName])? value=(NUMBER|STRING_VALUE)
+	(COMMA)? name=IDENT (COLON type=[jvmTypes::JvmType|QualifiedName])? (number=NUMBER|value=STRING_VALUE|constant=IDENT)
 ;
 
 Entity: PojoEntity | EnumEntity;

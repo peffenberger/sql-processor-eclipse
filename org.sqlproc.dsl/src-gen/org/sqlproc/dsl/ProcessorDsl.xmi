@@ -2859,11 +2859,16 @@
           </terminal>
         </elements>
       </elements>
-      <elements xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:Alternatives">
-          <elements xsi:type="xtext:RuleCall" rule="//@rules.70"/>
-          <elements xsi:type="xtext:RuleCall" rule="//@rules.100"/>
-        </terminal>
+      <elements xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Assignment" feature="number" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.70"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="value" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.100"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="constant" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.69"/>
+        </elements>
       </elements>
     </alternatives>
   </rules>

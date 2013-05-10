@@ -11315,12 +11315,11 @@ ruleAnnotationProperty returns [EObject current=null]
 	    }
 
 )
-))?(
+))?((
 (
-(
-		lv_value_4_1=RULE_NUMBER
+		lv_number_4_0=RULE_NUMBER
 		{
-			newLeafNode(lv_value_4_1, grammarAccess.getAnnotationPropertyAccess().getValueNUMBERTerminalRuleCall_3_0_0()); 
+			newLeafNode(lv_number_4_0, grammarAccess.getAnnotationPropertyAccess().getNumberNUMBERTerminalRuleCall_3_0_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -11328,14 +11327,18 @@ ruleAnnotationProperty returns [EObject current=null]
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"value",
-        		lv_value_4_1, 
+       			"number",
+        		lv_number_4_0, 
         		"NUMBER");
 	    }
 
-    |		lv_value_4_2=RULE_STRING_VALUE
+)
+)
+    |(
+(
+		lv_value_5_0=RULE_STRING_VALUE
 		{
-			newLeafNode(lv_value_4_2, grammarAccess.getAnnotationPropertyAccess().getValueSTRING_VALUETerminalRuleCall_3_0_1()); 
+			newLeafNode(lv_value_5_0, grammarAccess.getAnnotationPropertyAccess().getValueSTRING_VALUETerminalRuleCall_3_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -11344,14 +11347,31 @@ ruleAnnotationProperty returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"value",
-        		lv_value_4_2, 
+        		lv_value_5_0, 
         		"STRING_VALUE");
 	    }
 
 )
+)
+    |(
+(
+		lv_constant_6_0=RULE_IDENT
+		{
+			newLeafNode(lv_constant_6_0, grammarAccess.getAnnotationPropertyAccess().getConstantIDENTTerminalRuleCall_3_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAnnotationPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"constant",
+        		lv_constant_6_0, 
+        		"IDENT");
+	    }
 
 )
-))
+)))
 ;
 
 

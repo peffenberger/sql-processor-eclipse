@@ -67,27 +67,26 @@ public class Utils {
         return null;
     }
 
-    public static boolean isAnnotationEnum(AnnotationProperty a) {
-        if (a.getType() != null) {
-            String qname = a.getType().getQualifiedName();
-            if (qname.indexOf("java.") >= 0) // TODO - better
-                return false;
-            return true;
-        }
-        return false;
-    }
+    // public static boolean isAnnotationEnum(AnnotationProperty a) {
+    // if (a.getType() != null) {
+    // String qname = a.getType().getQualifiedName();
+    // if (qname.indexOf("java.") >= 0) // TODO - better
+    // return false;
+    // return true;
+    // }
+    // return false;
+    // }
 
     public static String getAnnotationValue(AnnotationProperty a) {
-        String value = a.getValue();
-        // System.out.println("XXXX " + value);
-        if (Character.isDigit(value.charAt(0)))
+        String value = a.getNumber();
+        if (value != null)
             return value;
-        if ("\"true\"".equalsIgnoreCase(value) || "\"false\"".equalsIgnoreCase(value))
-            return value.substring(1, value.length() - 1);
-        if (isAnnotationEnum(a))
-            return "." + value.substring(1, value.length() - 1);
+        value = a.getValue();
+        if (value != null)
+            return value;
+        value = a.getConstant();
         if (a.getType() != null)
-            return value; // TODO - better
+            return "." + value;
         return value;
     }
 

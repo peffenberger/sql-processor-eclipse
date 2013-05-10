@@ -88,7 +88,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoTypeAccess().getAlternatives_0_1_1_1(), "rule__PojoType__Alternatives_0_1_1_1");
 					put(grammarAccess.getPackageDeclarationAccess().getNameAlternatives_1_0(), "rule__PackageDeclaration__NameAlternatives_1_0");
 					put(grammarAccess.getPackageDeclarationAccess().getSuffixAlternatives_2_1_0(), "rule__PackageDeclaration__SuffixAlternatives_2_1_0");
-					put(grammarAccess.getAnnotationPropertyAccess().getValueAlternatives_3_0(), "rule__AnnotationProperty__ValueAlternatives_3_0");
+					put(grammarAccess.getAnnotationPropertyAccess().getAlternatives_3(), "rule__AnnotationProperty__Alternatives_3");
 					put(grammarAccess.getEntityAccess().getAlternatives(), "rule__Entity__Alternatives");
 					put(grammarAccess.getAbstractPojoEntityAccess().getAlternatives(), "rule__AbstractPojoEntity__Alternatives");
 					put(grammarAccess.getImplPackageAccess().getNameAlternatives_1_0(), "rule__ImplPackage__NameAlternatives_1_0");
@@ -720,7 +720,9 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAnnotationAccess().getFeaturesAssignment_1_3(), "rule__Annotation__FeaturesAssignment_1_3");
 					put(grammarAccess.getAnnotationPropertyAccess().getNameAssignment_1(), "rule__AnnotationProperty__NameAssignment_1");
 					put(grammarAccess.getAnnotationPropertyAccess().getTypeAssignment_2_1(), "rule__AnnotationProperty__TypeAssignment_2_1");
-					put(grammarAccess.getAnnotationPropertyAccess().getValueAssignment_3(), "rule__AnnotationProperty__ValueAssignment_3");
+					put(grammarAccess.getAnnotationPropertyAccess().getNumberAssignment_3_0(), "rule__AnnotationProperty__NumberAssignment_3_0");
+					put(grammarAccess.getAnnotationPropertyAccess().getValueAssignment_3_1(), "rule__AnnotationProperty__ValueAssignment_3_1");
+					put(grammarAccess.getAnnotationPropertyAccess().getConstantAssignment_3_2(), "rule__AnnotationProperty__ConstantAssignment_3_2");
 					put(grammarAccess.getAnnotatedEntityAccess().getAnnotationsAssignment_0_1(), "rule__AnnotatedEntity__AnnotationsAssignment_0_1");
 					put(grammarAccess.getAnnotatedEntityAccess().getEntityAssignment_1(), "rule__AnnotatedEntity__EntityAssignment_1");
 					put(grammarAccess.getImportAccess().getImportedNamespaceAssignment_1(), "rule__Import__ImportedNamespaceAssignment_1");

@@ -3015,13 +3015,31 @@ public interface ProcessorDslPackage extends EPackage
   int ANNOTATION_PROPERTY__TYPE = 1;
 
   /**
+   * The feature id for the '<em><b>Number</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_PROPERTY__NUMBER = 2;
+
+  /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANNOTATION_PROPERTY__VALUE = 2;
+  int ANNOTATION_PROPERTY__VALUE = 3;
+
+  /**
+   * The feature id for the '<em><b>Constant</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_PROPERTY__CONSTANT = 4;
 
   /**
    * The number of structural features of the '<em>Annotation Property</em>' class.
@@ -3030,7 +3048,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATION_PROPERTY_FEATURE_COUNT = 3;
+  int ANNOTATION_PROPERTY_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EntityImpl <em>Entity</em>}' class.
@@ -6887,6 +6905,17 @@ public interface ProcessorDslPackage extends EPackage
   EReference getAnnotationProperty_Type();
 
   /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getNumber <em>Number</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Number</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationProperty#getNumber()
+   * @see #getAnnotationProperty()
+   * @generated
+   */
+  EAttribute getAnnotationProperty_Number();
+
+  /**
    * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6896,6 +6925,17 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EAttribute getAnnotationProperty_Value();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getConstant <em>Constant</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Constant</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationProperty#getConstant()
+   * @see #getAnnotationProperty()
+   * @generated
+   */
+  EAttribute getAnnotationProperty_Constant();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.Entity <em>Entity</em>}'.
@@ -10091,12 +10131,28 @@ public interface ProcessorDslPackage extends EPackage
     EReference ANNOTATION_PROPERTY__TYPE = eINSTANCE.getAnnotationProperty_Type();
 
     /**
+     * The meta object literal for the '<em><b>Number</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ANNOTATION_PROPERTY__NUMBER = eINSTANCE.getAnnotationProperty_Number();
+
+    /**
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute ANNOTATION_PROPERTY__VALUE = eINSTANCE.getAnnotationProperty_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Constant</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ANNOTATION_PROPERTY__CONSTANT = eINSTANCE.getAnnotationProperty_Constant();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EntityImpl <em>Entity</em>}' class.

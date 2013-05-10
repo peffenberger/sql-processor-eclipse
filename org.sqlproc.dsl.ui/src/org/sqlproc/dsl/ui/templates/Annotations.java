@@ -107,7 +107,13 @@ public class Annotations {
         sb.append(ap.getName());
         if (ap.getType() != null)
             sb.append(" :").append((simpleNames) ? ap.getType().getSimpleName() : ap.getType().getQualifiedName());
-        sb.append(" ").append(ap.getValue());
+        sb.append(" ");
+        if (ap.getValue() != null)
+            sb.append(ap.getValue());
+        else if (ap.getNumber() != null)
+            sb.append(ap.getNumber());
+        else
+            sb.append(ap.getConstant());
     }
 
     Set<String> getImports() {

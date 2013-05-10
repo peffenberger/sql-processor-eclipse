@@ -831,10 +831,11 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.append(_name, "");
     _builder.append(" = ");
     {
-      boolean _isAnnotationEnum = Utils.isAnnotationEnum(f);
-      if (_isAnnotationEnum) {
-        JvmType _type = f.getType();
-        CharSequence _serialize = importManager.serialize(_type);
+      JvmType _type = f.getType();
+      boolean _notEquals = (!Objects.equal(_type, null));
+      if (_notEquals) {
+        JvmType _type_1 = f.getType();
+        CharSequence _serialize = importManager.serialize(_type_1);
         _builder.append(_serialize, "");
       }
     }
