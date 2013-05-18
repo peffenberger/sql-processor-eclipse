@@ -3089,13 +3089,31 @@ public interface ProcessorDslPackage extends EPackage
   int ANNOTATED_ENTITY = 60;
 
   /**
+   * The feature id for the '<em><b>Static Annotations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATED_ENTITY__STATIC_ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Constructor Annotations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATED_ENTITY__CONSTRUCTOR_ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
+
+  /**
    * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY__ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 0;
+  int ANNOTATED_ENTITY__ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Entity</b></em>' containment reference.
@@ -3104,7 +3122,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY__ENTITY = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
+  int ANNOTATED_ENTITY__ENTITY = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Annotated Entity</em>' class.
@@ -3113,7 +3131,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
+  int ANNOTATED_ENTITY_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ImportImpl <em>Import</em>}' class.
@@ -6969,6 +6987,28 @@ public interface ProcessorDslPackage extends EPackage
   EClass getAnnotatedEntity();
 
   /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getStaticAnnotations <em>Static Annotations</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Static Annotations</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotatedEntity#getStaticAnnotations()
+   * @see #getAnnotatedEntity()
+   * @generated
+   */
+  EReference getAnnotatedEntity_StaticAnnotations();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getConstructorAnnotations <em>Constructor Annotations</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Constructor Annotations</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotatedEntity#getConstructorAnnotations()
+   * @see #getAnnotatedEntity()
+   * @generated
+   */
+  EReference getAnnotatedEntity_ConstructorAnnotations();
+
+  /**
    * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getAnnotations <em>Annotations</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -10181,6 +10221,22 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EClass ANNOTATED_ENTITY = eINSTANCE.getAnnotatedEntity();
+
+    /**
+     * The meta object literal for the '<em><b>Static Annotations</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ANNOTATED_ENTITY__STATIC_ANNOTATIONS = eINSTANCE.getAnnotatedEntity_StaticAnnotations();
+
+    /**
+     * The meta object literal for the '<em><b>Constructor Annotations</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ANNOTATED_ENTITY__CONSTRUCTOR_ANNOTATIONS = eINSTANCE.getAnnotatedEntity_ConstructorAnnotations();
 
     /**
      * The meta object literal for the '<em><b>Annotations</b></em>' containment reference list feature.

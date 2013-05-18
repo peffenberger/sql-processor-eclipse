@@ -2887,9 +2887,25 @@
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Group" cardinality="*">
-        <elements xsi:type="xtext:RuleCall" rule="//@rules.92"/>
-        <elements xsi:type="xtext:Assignment" feature="annotations" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.104"/>
+        <elements xsi:type="xtext:RuleCall" predicated="true" rule="//@rules.92"/>
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:Group">
+            <elements xsi:type="xtext:RuleCall" predicated="true" rule="//@rules.92"/>
+            <elements xsi:type="xtext:Alternatives">
+              <elements xsi:type="xtext:Group">
+                <elements xsi:type="xtext:RuleCall" predicated="true" rule="//@rules.92"/>
+                <elements xsi:type="xtext:Assignment" feature="staticAnnotations" operator="+=">
+                  <terminal xsi:type="xtext:RuleCall" rule="//@rules.104"/>
+                </elements>
+              </elements>
+              <elements xsi:type="xtext:Assignment" feature="constructorAnnotations" operator="+=">
+                <terminal xsi:type="xtext:RuleCall" rule="//@rules.104"/>
+              </elements>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Assignment" feature="annotations" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.104"/>
+          </elements>
         </elements>
       </elements>
       <elements xsi:type="xtext:Assignment" feature="entity" operator="=">

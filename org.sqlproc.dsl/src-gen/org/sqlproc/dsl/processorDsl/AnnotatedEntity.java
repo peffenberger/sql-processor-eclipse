@@ -12,6 +12,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getStaticAnnotations <em>Static Annotations</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getConstructorAnnotations <em>Constructor Annotations</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getEntity <em>Entity</em>}</li>
  * </ul>
@@ -23,6 +25,38 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface AnnotatedEntity extends AbstractPojoEntity
 {
+  /**
+   * Returns the value of the '<em><b>Static Annotations</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.Annotation}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Static Annotations</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Static Annotations</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getAnnotatedEntity_StaticAnnotations()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Annotation> getStaticAnnotations();
+
+  /**
+   * Returns the value of the '<em><b>Constructor Annotations</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.Annotation}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Constructor Annotations</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Constructor Annotations</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getAnnotatedEntity_ConstructorAnnotations()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Annotation> getConstructorAnnotations();
+
   /**
    * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.
    * The list contents are of type {@link org.sqlproc.dsl.processorDsl.Annotation}.

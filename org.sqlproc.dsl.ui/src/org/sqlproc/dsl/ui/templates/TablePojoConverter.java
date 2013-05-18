@@ -865,8 +865,11 @@ public class TablePojoConverter {
                 if (finalEntities.contains(tableToCamelCase(pojoName)))
                     continue;
                 String realPojoName = tableToCamelCase(pojoName);
-                if (annotations != null)
+                if (annotations != null) {
                     buffer.append(annotations.getEntityAnnotationsDefinitions(realPojoName, true));
+                    buffer.append(annotations.getConstructorAnnotationsDefinitions(realPojoName, true));
+                    buffer.append(annotations.getStaticAnnotationsDefinitions(realPojoName, true));
+                }
                 buffer.append("\n  ");
                 if (makeItFinal)
                     buffer.append("final ");
@@ -948,40 +951,64 @@ public class TablePojoConverter {
                     getParentAttrs(pojoExtends.get(pojo), isDef, toInit);
                 }
                 if (generateMethods.contains(METHOD_EQUALS) && !pkeys.isEmpty()) {
+                    if (annotations != null) {
+                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_EQUALS, true));
+                    }
                     buffer.append("\n    ").append(METHOD_EQUALS).append(" :::");
                     for (String name : pkeys) {
                         buffer.append(" ").append(name);
                     }
                 }
                 if (generateMethods.contains(METHOD_HASH_CODE) && !pkeys.isEmpty()) {
+                    if (annotations != null) {
+                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_HASH_CODE,
+                                true));
+                    }
                     buffer.append("\n    ").append(METHOD_HASH_CODE).append(" :::");
                     for (String name : pkeys) {
                         buffer.append(" ").append(name);
                     }
                 }
                 if (generateMethods.contains(METHOD_TO_INIT)) {
+                    if (annotations != null) {
+                        buffer.append(annotations
+                                .getAttributeAnnotationsDefinitions(realPojoName, METHOD_TO_INIT, true));
+                    }
                     buffer.append("\n    ").append(METHOD_TO_INIT).append(" :::");
                     for (String name : toInit) {
                         buffer.append(" ").append(name);
                     }
                 } else if (generateMethods.contains(ENUM_TO_INIT) && !toInit.isEmpty()) {
+                    if (annotations != null) {
+                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, ENUM_TO_INIT, true));
+                    }
                     buffer.append("\n    ").append(ENUM_TO_INIT).append(" :::");
                     for (String name : toInit) {
                         buffer.append(" ").append(name);
                     }
                 }
                 if (generateMethods.contains(METHOD_IS_DEF)) {
+                    if (annotations != null) {
+                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_IS_DEF, true));
+                    }
                     buffer.append("\n    ").append(METHOD_IS_DEF).append(" :::");
                     for (String name : isDef) {
                         buffer.append(" ").append(name);
                     }
                 } else if (generateMethods.contains(ENUM_IS_DEF) && !isDef.isEmpty()) {
+                    if (annotations != null) {
+                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, ENUM_IS_DEF, true));
+                    }
                     buffer.append("\n    ").append(ENUM_IS_DEF).append(" :::");
                     for (String name : isDef) {
                         buffer.append(" ").append(name);
                     }
                 }
                 if (generateMethods.contains(METHOD_TO_STRING) && !toStr.isEmpty()) {
+                    if (annotations != null) {
+                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_TO_STRING,
+                                true));
+                    }
                     buffer.append("\n    ").append(METHOD_TO_STRING).append(" :::");
                     for (String name : toStr) {
                         buffer.append(" ").append(name);
@@ -990,6 +1017,10 @@ public class TablePojoConverter {
                 if (generateMethods.contains(METHOD_INDEX) && indexes.containsKey(pojo)) {
                     List<Map<PojoAttribute, Boolean>> mainList = indexes.get(pojo);
                     for (int i = 0, l = mainList.size(); i < l; i++) {
+                        if (annotations != null) {
+                            buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_INDEX,
+                                    true));
+                        }
                         buffer.append("\n    ").append(METHOD_INDEX).append(i + 1).append(" :::");
                         for (PojoAttribute attr : mainList.get(i).keySet()) {
                             String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(attr.getName())

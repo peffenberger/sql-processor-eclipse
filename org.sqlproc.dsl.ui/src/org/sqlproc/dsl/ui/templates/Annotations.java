@@ -12,6 +12,8 @@ import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 
 public class Annotations {
     Map<String, List<Annotation>> entityAnnotations = new HashMap<String, List<Annotation>>();
+    Map<String, List<Annotation>> constructorAnnotations = new HashMap<String, List<Annotation>>();
+    Map<String, List<Annotation>> staticAnnotations = new HashMap<String, List<Annotation>>();
     Map<String, Map<String, List<Annotation>>> setterAnnotations = new HashMap<String, Map<String, List<Annotation>>>();
     Map<String, Map<String, List<Annotation>>> getterAnnotations = new HashMap<String, Map<String, List<Annotation>>>();
     Map<String, Map<String, List<Annotation>>> attributeAnnotations = new HashMap<String, Map<String, List<Annotation>>>();
@@ -19,6 +21,16 @@ public class Annotations {
     void addEntityAnnotations(String pojoName, List<Annotation> annotations) {
         entityAnnotations.put(pojoName, new ArrayList<Annotation>());
         entityAnnotations.get(pojoName).addAll(annotations);
+    }
+
+    void addConstructorAnnotations(String pojoName, List<Annotation> annotations) {
+        constructorAnnotations.put(pojoName, new ArrayList<Annotation>());
+        constructorAnnotations.get(pojoName).addAll(annotations);
+    }
+
+    void addStaticAnnotations(String pojoName, List<Annotation> annotations) {
+        staticAnnotations.put(pojoName, new ArrayList<Annotation>());
+        staticAnnotations.get(pojoName).addAll(annotations);
     }
 
     void addGetterAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
@@ -54,6 +66,26 @@ public class Annotations {
             return sb;
         for (Annotation a : entityAnnotations.get(pojoName)) {
             getAnnotationDefinition(sb, a, "\n  @", simpleNames);
+        }
+        return sb;
+    }
+
+    StringBuilder getConstructorAnnotationsDefinitions(String pojoName, boolean simpleNames) {
+        StringBuilder sb = new StringBuilder();
+        if (!constructorAnnotations.containsKey(pojoName))
+            return sb;
+        for (Annotation a : constructorAnnotations.get(pojoName)) {
+            getAnnotationDefinition(sb, a, "\n  @@", simpleNames);
+        }
+        return sb;
+    }
+
+    StringBuilder getStaticAnnotationsDefinitions(String pojoName, boolean simpleNames) {
+        StringBuilder sb = new StringBuilder();
+        if (!staticAnnotations.containsKey(pojoName))
+            return sb;
+        for (Annotation a : staticAnnotations.get(pojoName)) {
+            getAnnotationDefinition(sb, a, "\n  @@@", simpleNames);
         }
         return sb;
     }
@@ -120,6 +152,10 @@ public class Annotations {
         Set<String> imports = new HashSet<String>();
         for (List<Annotation> al : entityAnnotations.values())
             getImports(imports, al);
+        for (List<Annotation> al : constructorAnnotations.values())
+            getImports(imports, al);
+        for (List<Annotation> al : staticAnnotations.values())
+            getImports(imports, al);
         for (Map<String, List<Annotation>> am : attributeAnnotations.values()) {
             for (List<Annotation> al : am.values()) {
                 getImports(imports, al);
@@ -151,7 +187,9 @@ public class Annotations {
 
     @Override
     public String toString() {
-        return "Annotations [entityAnnotations=" + entityAnnotations + ", setterAnnotations=" + setterAnnotations
-                + ", getterAnnotations=" + getterAnnotations + ", attributeAnnotations=" + attributeAnnotations + "]";
+        return "Annotations [entityAnnotations=" + entityAnnotations + ", constructorAnnotations="
+                + constructorAnnotations + ", staticAnnotations=" + staticAnnotations + ", setterAnnotations="
+                + setterAnnotations + ", getterAnnotations=" + getterAnnotations + ", attributeAnnotations="
+                + attributeAnnotations + "]";
     }
 }

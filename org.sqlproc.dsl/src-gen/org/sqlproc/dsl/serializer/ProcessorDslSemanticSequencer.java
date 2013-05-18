@@ -599,7 +599,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (annotations+=Annotation* entity=Entity)
+	 *     ((staticAnnotations+=Annotation | constructorAnnotations+=Annotation | annotations+=Annotation)* entity=Entity)
 	 */
 	protected void sequence_AnnotatedEntity(EObject context, AnnotatedEntity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

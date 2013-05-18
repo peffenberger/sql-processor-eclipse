@@ -11432,41 +11432,87 @@ ruleAnnotatedEntity returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((this_AT_0=RULE_AT
+((((	RULE_AT)=>this_AT_0=RULE_AT
     { 
     newLeafNode(this_AT_0, grammarAccess.getAnnotatedEntityAccess().getATTerminalRuleCall_0_0()); 
     }
-(
+)((((	RULE_AT)=>this_AT_1=RULE_AT
+    { 
+    newLeafNode(this_AT_1, grammarAccess.getAnnotatedEntityAccess().getATTerminalRuleCall_0_1_0_0()); 
+    }
+)((((	RULE_AT)=>this_AT_2=RULE_AT
+    { 
+    newLeafNode(this_AT_2, grammarAccess.getAnnotatedEntityAccess().getATTerminalRuleCall_0_1_0_1_0_0()); 
+    }
+)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getAnnotationsAnnotationParserRuleCall_0_1_0()); 
+	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getStaticAnnotationsAnnotationParserRuleCall_0_1_0_1_0_1_0()); 
 	    }
-		lv_annotations_1_0=ruleAnnotation		{
+		lv_staticAnnotations_3_0=ruleAnnotation		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getAnnotatedEntityRule());
+	        }
+       		add(
+       			$current, 
+       			"staticAnnotations",
+        		lv_staticAnnotations_3_0, 
+        		"Annotation");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getConstructorAnnotationsAnnotationParserRuleCall_0_1_0_1_1_0()); 
+	    }
+		lv_constructorAnnotations_4_0=ruleAnnotation		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getAnnotatedEntityRule());
+	        }
+       		add(
+       			$current, 
+       			"constructorAnnotations",
+        		lv_constructorAnnotations_4_0, 
+        		"Annotation");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)))
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getAnnotationsAnnotationParserRuleCall_0_1_1_0()); 
+	    }
+		lv_annotations_5_0=ruleAnnotation		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAnnotatedEntityRule());
 	        }
        		add(
        			$current, 
        			"annotations",
-        		lv_annotations_1_0, 
+        		lv_annotations_5_0, 
         		"Annotation");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))*(
+)))*(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getEntityEntityParserRuleCall_1_0()); 
 	    }
-		lv_entity_2_0=ruleEntity		{
+		lv_entity_6_0=ruleEntity		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAnnotatedEntityRule());
 	        }
        		set(
        			$current, 
        			"entity",
-        		lv_entity_2_0, 
+        		lv_entity_6_0, 
         		"Entity");
 	        afterParserOrEnumRuleCall();
 	    }

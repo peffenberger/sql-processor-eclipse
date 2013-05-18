@@ -732,6 +732,8 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
     private void grabAnnotations(AnnotatedEntity apojo, PojoEntity pojo, Annotations as) {
         String pojoName = pojo.getName();
         as.addEntityAnnotations(pojoName, apojo.getAnnotations());
+        as.addConstructorAnnotations(pojoName, apojo.getConstructorAnnotations());
+        as.addStaticAnnotations(pojoName, apojo.getStaticAnnotations());
         for (PojoAnnotatedProperty feature : pojo.getFeatures()) {
             if (feature.getFeature() == null)
                 continue;
