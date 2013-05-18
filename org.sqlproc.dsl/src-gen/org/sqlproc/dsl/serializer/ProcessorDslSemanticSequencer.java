@@ -599,7 +599,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     ((staticAnnotations+=Annotation | constructorAnnotations+=Annotation | annotations+=Annotation)* entity=Entity)
+	 *     (
+	 *         (conflictAnnotations+=Annotation | staticAnnotations+=Annotation | constructorAnnotations+=Annotation | annotations+=Annotation)* 
+	 *         entity=Entity
+	 *     )
 	 */
 	protected void sequence_AnnotatedEntity(EObject context, AnnotatedEntity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -608,7 +611,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (name=IDENT type=[JvmType|QualifiedName]? (number=NUMBER | value=STRING_VALUE | constant=IDENT))
+	 *     (name=IDENT (ref=[PojoEntity|IDENT] | type=[JvmType|QualifiedName])? (number=NUMBER | value=STRING_VALUE | constant=IDENT))
 	 */
 	protected void sequence_AnnotationProperty(EObject context, AnnotationProperty semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -85,7 +85,7 @@ public class Utils {
         if (value != null)
             return value;
         value = a.getConstant();
-        if (a.getType() != null)
+        if (a.getType() != null || a.getRef() != null)
             return "." + value;
         return value;
     }

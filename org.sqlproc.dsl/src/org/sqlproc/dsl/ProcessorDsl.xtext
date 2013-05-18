@@ -343,12 +343,12 @@ Annotation:
 ;
 
 AnnotationProperty:
-	(COMMA)? name=IDENT (COLON type=[jvmTypes::JvmType|QualifiedName])? (number=NUMBER|value=STRING_VALUE|constant=IDENT)
+	(COMMA)? name=IDENT (COLON (COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]))? (number=NUMBER|value=STRING_VALUE|constant=IDENT)
 ;
 
 Entity: PojoEntity | EnumEntity;
 
-AnnotatedEntity: (=> AT (=> AT (=> AT staticAnnotations+=Annotation | constructorAnnotations+=Annotation) | annotations+=Annotation))* entity=Entity;
+AnnotatedEntity: (=> AT (=> AT (=> AT (=> AT conflictAnnotations+=Annotation | staticAnnotations+=Annotation) | constructorAnnotations+=Annotation) | annotations+=Annotation))* entity=Entity;
 
 AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 	PackageDeclaration | AnnotatedEntity | Import | Implements | Extends | ImplPackage | PojoDao;

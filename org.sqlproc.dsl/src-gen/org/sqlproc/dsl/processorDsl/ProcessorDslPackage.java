@@ -3006,13 +3006,22 @@ public interface ProcessorDslPackage extends EPackage
   int ANNOTATION_PROPERTY__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Ref</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_PROPERTY__REF = 1;
+
+  /**
    * The feature id for the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANNOTATION_PROPERTY__TYPE = 1;
+  int ANNOTATION_PROPERTY__TYPE = 2;
 
   /**
    * The feature id for the '<em><b>Number</b></em>' attribute.
@@ -3021,7 +3030,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATION_PROPERTY__NUMBER = 2;
+  int ANNOTATION_PROPERTY__NUMBER = 3;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -3030,7 +3039,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATION_PROPERTY__VALUE = 3;
+  int ANNOTATION_PROPERTY__VALUE = 4;
 
   /**
    * The feature id for the '<em><b>Constant</b></em>' attribute.
@@ -3039,7 +3048,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATION_PROPERTY__CONSTANT = 4;
+  int ANNOTATION_PROPERTY__CONSTANT = 5;
 
   /**
    * The number of structural features of the '<em>Annotation Property</em>' class.
@@ -3048,7 +3057,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATION_PROPERTY_FEATURE_COUNT = 5;
+  int ANNOTATION_PROPERTY_FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EntityImpl <em>Entity</em>}' class.
@@ -3089,13 +3098,22 @@ public interface ProcessorDslPackage extends EPackage
   int ANNOTATED_ENTITY = 60;
 
   /**
+   * The feature id for the '<em><b>Conflict Annotations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATED_ENTITY__CONFLICT_ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Static Annotations</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY__STATIC_ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 0;
+  int ANNOTATED_ENTITY__STATIC_ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Constructor Annotations</b></em>' containment reference list.
@@ -3104,7 +3122,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY__CONSTRUCTOR_ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
+  int ANNOTATED_ENTITY__CONSTRUCTOR_ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -3113,7 +3131,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY__ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
+  int ANNOTATED_ENTITY__ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Entity</b></em>' containment reference.
@@ -3122,7 +3140,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY__ENTITY = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
+  int ANNOTATED_ENTITY__ENTITY = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Annotated Entity</em>' class.
@@ -3131,7 +3149,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
+  int ANNOTATED_ENTITY_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 5;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ImportImpl <em>Import</em>}' class.
@@ -6912,6 +6930,17 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getAnnotationProperty_Name();
 
   /**
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getRef <em>Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Ref</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationProperty#getRef()
+   * @see #getAnnotationProperty()
+   * @generated
+   */
+  EReference getAnnotationProperty_Ref();
+
+  /**
    * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6985,6 +7014,17 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EClass getAnnotatedEntity();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getConflictAnnotations <em>Conflict Annotations</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Conflict Annotations</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotatedEntity#getConflictAnnotations()
+   * @see #getAnnotatedEntity()
+   * @generated
+   */
+  EReference getAnnotatedEntity_ConflictAnnotations();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getStaticAnnotations <em>Static Annotations</em>}'.
@@ -10163,6 +10203,14 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute ANNOTATION_PROPERTY__NAME = eINSTANCE.getAnnotationProperty_Name();
 
     /**
+     * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ANNOTATION_PROPERTY__REF = eINSTANCE.getAnnotationProperty_Ref();
+
+    /**
      * The meta object literal for the '<em><b>Type</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10221,6 +10269,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EClass ANNOTATED_ENTITY = eINSTANCE.getAnnotatedEntity();
+
+    /**
+     * The meta object literal for the '<em><b>Conflict Annotations</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ANNOTATED_ENTITY__CONFLICT_ANNOTATIONS = eINSTANCE.getAnnotatedEntity_ConflictAnnotations();
 
     /**
      * The meta object literal for the '<em><b>Static Annotations</b></em>' containment reference list feature.

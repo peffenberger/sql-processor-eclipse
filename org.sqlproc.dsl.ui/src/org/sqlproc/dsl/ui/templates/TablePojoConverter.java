@@ -869,6 +869,7 @@ public class TablePojoConverter {
                     buffer.append(annotations.getEntityAnnotationsDefinitions(realPojoName, true));
                     buffer.append(annotations.getConstructorAnnotationsDefinitions(realPojoName, true));
                     buffer.append(annotations.getStaticAnnotationsDefinitions(realPojoName, true));
+                    buffer.append(annotations.getConflictAnnotationsDefinitions(realPojoName, true));
                 }
                 buffer.append("\n  ");
                 if (makeItFinal)

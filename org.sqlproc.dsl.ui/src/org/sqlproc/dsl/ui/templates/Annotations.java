@@ -14,6 +14,7 @@ public class Annotations {
     Map<String, List<Annotation>> entityAnnotations = new HashMap<String, List<Annotation>>();
     Map<String, List<Annotation>> constructorAnnotations = new HashMap<String, List<Annotation>>();
     Map<String, List<Annotation>> staticAnnotations = new HashMap<String, List<Annotation>>();
+    Map<String, List<Annotation>> conflictAnnotations = new HashMap<String, List<Annotation>>();
     Map<String, Map<String, List<Annotation>>> setterAnnotations = new HashMap<String, Map<String, List<Annotation>>>();
     Map<String, Map<String, List<Annotation>>> getterAnnotations = new HashMap<String, Map<String, List<Annotation>>>();
     Map<String, Map<String, List<Annotation>>> attributeAnnotations = new HashMap<String, Map<String, List<Annotation>>>();
@@ -31,6 +32,11 @@ public class Annotations {
     void addStaticAnnotations(String pojoName, List<Annotation> annotations) {
         staticAnnotations.put(pojoName, new ArrayList<Annotation>());
         staticAnnotations.get(pojoName).addAll(annotations);
+    }
+
+    void addConflictAnnotations(String pojoName, List<Annotation> annotations) {
+        conflictAnnotations.put(pojoName, new ArrayList<Annotation>());
+        conflictAnnotations.get(pojoName).addAll(annotations);
     }
 
     void addGetterAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
@@ -90,6 +96,16 @@ public class Annotations {
         return sb;
     }
 
+    StringBuilder getConflictAnnotationsDefinitions(String pojoName, boolean simpleNames) {
+        StringBuilder sb = new StringBuilder();
+        if (!conflictAnnotations.containsKey(pojoName))
+            return sb;
+        for (Annotation a : conflictAnnotations.get(pojoName)) {
+            getAnnotationDefinition(sb, a, "\n  @@@@", simpleNames);
+        }
+        return sb;
+    }
+
     StringBuilder getGetterAnnotationsDefinitions(String pojoName, String featureName, boolean simpleNames) {
         StringBuilder sb = new StringBuilder();
         if (!getterAnnotations.containsKey(pojoName) || !getterAnnotations.get(pojoName).containsKey(featureName))
@@ -139,6 +155,8 @@ public class Annotations {
         sb.append(ap.getName());
         if (ap.getType() != null)
             sb.append(" :").append((simpleNames) ? ap.getType().getSimpleName() : ap.getType().getQualifiedName());
+        else if (ap.getRef() != null)
+            sb.append(" ::").append(ap.getRef().getName());
         sb.append(" ");
         if (ap.getValue() != null)
             sb.append(ap.getValue());
@@ -155,6 +173,8 @@ public class Annotations {
         for (List<Annotation> al : constructorAnnotations.values())
             getImports(imports, al);
         for (List<Annotation> al : staticAnnotations.values())
+            getImports(imports, al);
+        for (List<Annotation> al : conflictAnnotations.values())
             getImports(imports, al);
         for (Map<String, List<Annotation>> am : attributeAnnotations.values()) {
             for (List<Annotation> al : am.values()) {
@@ -188,8 +208,8 @@ public class Annotations {
     @Override
     public String toString() {
         return "Annotations [entityAnnotations=" + entityAnnotations + ", constructorAnnotations="
-                + constructorAnnotations + ", staticAnnotations=" + staticAnnotations + ", setterAnnotations="
-                + setterAnnotations + ", getterAnnotations=" + getterAnnotations + ", attributeAnnotations="
-                + attributeAnnotations + "]";
+                + constructorAnnotations + ", staticAnnotations=" + staticAnnotations + ", conflictAnnotations="
+                + conflictAnnotations + ", setterAnnotations=" + setterAnnotations + ", getterAnnotations="
+                + getterAnnotations + ", attributeAnnotations=" + attributeAnnotations + "]";
     }
 }
