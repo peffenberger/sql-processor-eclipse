@@ -68,7 +68,7 @@ override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 }
 
 def compile(AnnotatedEntity e) '''
-«IF e.entity instanceof EnumEntity»«enumEntity(e).compile»«ENDIF»«IF e.entity instanceof PojoEntity»«compile(pojoEntity(e), e.annotations)»«ENDIF»
+«IF e.entity instanceof EnumEntity»«enumEntity(e).compile»«ENDIF»«IF e.entity instanceof PojoEntity»«compile(pojoEntity(e), e)»«ENDIF»
 '''
 
 def compile(EnumEntity e) '''
@@ -137,11 +137,11 @@ public enum «e.name» «compileExtends(e)»«compileImplements(e)»{
 '''
 
 
-def compile(PojoEntity e, List<Annotation> annotations) '''
+def compile(PojoEntity e, AnnotatedEntity ae) '''
 «val importManager = new ImportManager(true)»
 «addImplements(e, importManager)»
 «addExtends(e, importManager)»
-«val classBody = compile(e, annotations, importManager)»
+«val classBody = compile(e, ae, importManager)»
 «IF e.eContainer != null»package «e.eContainer.eContainer.fullyQualifiedName»;«ENDIF»
   «IF !importManager.imports.empty»
   
@@ -170,8 +170,8 @@ import java.util.HashMap;
 «classBody»
 '''
 
-def compile(PojoEntity e, List<Annotation> annotations, ImportManager importManager) '''
-  «FOR a:annotations»
+def compile(PojoEntity e, AnnotatedEntity ae, ImportManager importManager) '''
+  «FOR a:ae.annotations»
 @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, importManager)»«ENDFOR»)«ENDIF»
   «ENDFOR»
 public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e)»«compileImplements(e)»{
@@ -180,16 +180,28 @@ public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e
   private static final long serialVersionUID = «getSernum(e)»L;
   «ENDIF»
   «FOR f:e.features.filter(x| getIndex(x.feature)!=null)»
+  «FOR a:ae.staticAnnotations»
+  @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, importManager)»«ENDFOR»)«ENDIF»
+  «ENDFOR»
   public static final int ORDER_BY_«constName(f.feature)» = «getIndex(f.feature)»;
   «ENDFOR»
   «FOR f:e.features.filter(x| x.feature.name.startsWith("index="))»
+  «FOR a:ae.staticAnnotations»
+  @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, importManager)»«ENDFOR»)«ENDIF»
+  «ENDFOR»
   public static final int ORDER_BY_«constName2(f.feature)» = «f.feature.name.substring(6)»;
   «ENDFOR»
 	
+  «FOR a:ae.constructorAnnotations»
+  @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, importManager)»«ENDFOR»)«ENDIF»
+  «ENDFOR»
   public «e.name»() {
   }
   «IF !e.requiredFeatures.empty»
   
+  «FOR a:ae.constructorAnnotations»
+  @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, importManager)»«ENDFOR»)«ENDIF»
+  «ENDFOR»
   public «e.name»(«FOR f:e.requiredFeatures SEPARATOR ", "»«f.feature.compileType(importManager)» «f.feature.name»«ENDFOR») {
   «FOR f:e.requiredSuperFeatures BEFORE "  super(" SEPARATOR ", " AFTER ");"»«f.feature.name»«ENDFOR»
   «FOR f:e.requiredFeatures1 SEPARATOR "
@@ -197,15 +209,15 @@ public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e
   }
   «ENDIF»
   «FOR f:e.features.filter(x| isAttribute(x.feature))»
-    «f.compile(importManager, e, getOperatorsSuffix(e))»
+    «f.feature.compile(f, importManager, e, getOperatorsSuffix(e))»
   «ENDFOR»
-  «FOR f:e.features.filter(x| !isAttribute(x.feature))»«IF f.feature.name.equalsIgnoreCase("hashCode")»«f.feature.compileHashCode(importManager, e)»
-  «ELSEIF f.feature.name.equalsIgnoreCase("equals")»«f.feature.compileEquals(importManager, e)»
-  «ELSEIF f.feature.name.equalsIgnoreCase("toInit")»«f.feature.compileToInit(importManager, e)»
-  «ELSEIF f.feature.name.equalsIgnoreCase("enumInit")»«f.feature.compileEnumInit(importManager, e)»
-  «ELSEIF f.feature.name.equalsIgnoreCase("isDef")»«f.feature.compileIsDef(importManager, e)»
-  «ELSEIF f.feature.name.equalsIgnoreCase("enumDef")»«f.feature.compileEnumDef(importManager, e)»
-  «ELSEIF f.feature.name.equalsIgnoreCase("toString")»«f.feature.compileToString(importManager, e)»«ENDIF»«ENDFOR»«IF hasOperators(e) && getOperatorsSuffix(e) == null»
+  «FOR f:e.features.filter(x| !isAttribute(x.feature))»«IF f.feature.name.equalsIgnoreCase("hashCode")»«f.feature.compileHashCode(f, importManager, e)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("equals")»«f.feature.compileEquals(f, importManager, e)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("toInit")»«f.feature.compileToInit(f, importManager, e)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("enumInit")»«f.feature.compileEnumInit(f,importManager, e)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("isDef")»«f.feature.compileIsDef(f, importManager, e)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("enumDef")»«f.feature.compileEnumDef(f, importManager, e)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("toString")»«f.feature.compileToString(f, importManager, e)»«ENDIF»«ENDFOR»«IF hasOperators(e) && getOperatorsSuffix(e) == null»
   «compileOperators(importManager, e)»«ENDIF»
 }
 '''
@@ -213,51 +225,54 @@ public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e
 def compileAnnotationProperty(AnnotationProperty f, ImportManager importManager) '''
   «f.name» = «IF f.getType != null»«importManager.serialize(f.getType)»«ENDIF»«getAnnotationValue(f)»'''
 
-def compile(PojoAnnotatedProperty f, ImportManager importManager, PojoEntity e, String operatorSuffix) '''
+def compile(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e, String operatorSuffix) '''
 
-    «FOR a:f.attributeAnnotations»
+    «FOR a:aaf.attributeAnnotations»
     @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
     «ENDFOR»
-    private «f.feature.compileType(importManager)» «f.feature.name»«IF isList(f.feature)» = new Array«f.feature.compileType(importManager)»()«ELSEIF isOptLock(f.feature)» = 0«ENDIF»;
+    private «f.compileType(importManager)» «f.name»«IF isList(f)» = new Array«f.compileType(importManager)»()«ELSEIF isOptLock(f)» = 0«ENDIF»;
   
-    «FOR a:f.getterAnnotations»
+    «FOR a:aaf.getterAnnotations»
     @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
     «ENDFOR»
-    public «f.feature.compileType(importManager)» get«f.feature.name.toFirstUpper»() {
-      return «f.feature.name»;
+    public «f.compileType(importManager)» get«f.name.toFirstUpper»() {
+      return «f.name»;
     }
   
-    «FOR a:f.setterAnnotations»
+    «FOR a:aaf.setterAnnotations»
     @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
     «ENDFOR»
-    public void set«f.feature.name.toFirstUpper»(«f.feature.compileType(importManager)» «f.feature.name») {
-      this.«f.feature.name» = «f.feature.name»;
+    public void set«f.name.toFirstUpper»(«f.compileType(importManager)» «f.name») {
+      this.«f.name» = «f.name»;
     }
   
-    public «e.name» _set«f.feature.name.toFirstUpper»(«f.feature.compileType(importManager)» «f.feature.name») {
-      this.«f.feature.name» = «f.feature.name»;
+    public «e.name» _set«f.name.toFirstUpper»(«f.compileType(importManager)» «f.name») {
+      this.«f.name» = «f.name»;
       return this;
     }«IF hasOperators(e) && operatorSuffix != null»
     
-    private String «f.feature.name»«operatorSuffix»;
+    private String «f.name»«operatorSuffix»;
 
-    public String get«f.feature.name.toFirstUpper»«operatorSuffix»() {
-      return «f.feature.name»«operatorSuffix»;
+    public String get«f.name.toFirstUpper»«operatorSuffix»() {
+      return «f.name»«operatorSuffix»;
     }
   
-    public void set«f.feature.name.toFirstUpper»«operatorSuffix»(String «f.feature.name»«operatorSuffix») {
-      this.«f.feature.name»«operatorSuffix» = «f.feature.name»«operatorSuffix»;
+    public void set«f.name.toFirstUpper»«operatorSuffix»(String «f.name»«operatorSuffix») {
+      this.«f.name»«operatorSuffix» = «f.name»«operatorSuffix»;
     }
   
-    public «e.name» _set«f.feature.name.toFirstUpper»«operatorSuffix»(String «f.feature.name»«operatorSuffix») {
-      this.«f.feature.name»«operatorSuffix» = «f.feature.name»«operatorSuffix»;
+    public «e.name» _set«f.name.toFirstUpper»«operatorSuffix»(String «f.name»«operatorSuffix») {
+      this.«f.name»«operatorSuffix» = «f.name»«operatorSuffix»;
       return this;
     }«ENDIF»
 '''
 
-def compileHashCode(PojoProperty f, ImportManager importManager, PojoEntity e) '''
+def compileHashCode(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e) '''
 
     @Override
+    «FOR a:aaf.attributeAnnotations»
+    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public int hashCode() {
       final int prime = 31;
       int result = 1;
@@ -268,9 +283,12 @@ def compileHashCode(PojoProperty f, ImportManager importManager, PojoEntity e) '
     }  
 '''
 
-def compileEquals(PojoProperty f, ImportManager importManager, PojoEntity e) '''
+def compileEquals(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e) '''
 
     @Override
+    «FOR a:aaf.attributeAnnotations»
+    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public boolean equals(Object obj) {
       if (this == obj)
         return true;
@@ -287,20 +305,29 @@ def compileEquals(PojoProperty f, ImportManager importManager, PojoEntity e) '''
     }  
 '''
 
-def compileToString(PojoProperty f, ImportManager importManager, PojoEntity e) '''
+def compileToString(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e) '''
 
     @Override
+    «FOR a:aaf.attributeAnnotations»
+    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public String toString() {
       return "«e.name» [«FOR f2:f.simplAttrs SEPARATOR " + \", "»«f2.name»=" + «f2.name»«ENDFOR»«IF getSuperType(e) != null» + super.toString()«ENDIF» + "]";
     }
 
+    «FOR a:aaf.attributeAnnotations»
+    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public String toStringFull() {
       return "«e.name» [«FOR f2:f.attrs SEPARATOR " + \", "»«f2.name»=" + «f2.name»«ENDFOR»«IF getSuperType(e) != null» + super.toString()«ENDIF» + "]";
     }
 '''
 
-def compileIsDef(PojoProperty f, ImportManager importManager, PojoEntity e) '''
+def compileIsDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e) '''
 
+    «FOR a:aaf.attributeAnnotations»
+    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public enum Attribute {
       «FOR f2:f.attrs SEPARATOR ", "»«f2.name»«ENDFOR»
     }
@@ -378,15 +405,21 @@ def compileIsDef(PojoProperty f, ImportManager importManager, PojoEntity e) '''
     }
 '''
 
-def compileEnumDef(PojoProperty f, ImportManager importManager, PojoEntity e) '''
+def compileEnumDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e) '''
 
+    «FOR a:aaf.attributeAnnotations»
+    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public enum Attribute {
       «FOR f2:f.attrs SEPARATOR ", "»«f2.name»«ENDFOR»
     }
 '''
 
-def compileToInit(PojoProperty f, ImportManager importManager, PojoEntity e) '''
+def compileToInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e) '''
 
+    «FOR a:aaf.attributeAnnotations»
+    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public enum Association {
       «FOR f2:f.attrs SEPARATOR ", "»«f2.name»«ENDFOR»
     }
@@ -432,8 +465,11 @@ def compileToInit(PojoProperty f, ImportManager importManager, PojoEntity e) '''
     }
 '''
 
-def compileEnumInit(PojoProperty f, ImportManager importManager, PojoEntity e) '''
+def compileEnumInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e) '''
 
+    «FOR a:aaf.attributeAnnotations»
+    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public enum Association {
       «FOR f2:f.attrs SEPARATOR ", "»«f2.name»«ENDFOR»
     }
