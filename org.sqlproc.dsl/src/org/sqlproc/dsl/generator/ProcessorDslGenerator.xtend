@@ -10,7 +10,7 @@ import org.sqlproc.dsl.processorDsl.PojoEntity
 import com.google.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.sqlproc.dsl.processorDsl.PojoProperty
-import org.eclipse.xtext.xbase.compiler.ImportManager
+import org.sqlproc.dsl.ImportManager
 
 import static org.sqlproc.dsl.util.Utils.*;
 import java.util.ArrayList
@@ -72,15 +72,15 @@ def compile(AnnotatedEntity e) '''
 '''
 
 def compile(EnumEntity e) '''
-«val importManager = new ImportManager(true)»
+«val im = new ImportManager(true)»
 «val eattr = getEnumAttr(e)»
-«addImplements(e, importManager)»
-«addExtends(e, importManager)»
-«val classBody = compile(e, importManager, eattr)»
+«addImplements(e, im)»
+«addExtends(e, im)»
+«val classBody = compile(e, im, eattr)»
 «IF e.eContainer != null»package «e.eContainer.eContainer.fullyQualifiedName»;«ENDIF»
-  «IF !importManager.imports.empty»
+  «IF !im.imports.empty»
   
-  «FOR i : importManager.imports»
+  «FOR i : im.imports»
 import «i»;
   «ENDFOR»
   «ENDIF»
@@ -95,8 +95,8 @@ import java.util.Map;
 
 «classBody»
 '''
-def compile(EnumEntity e, ImportManager importManager, EnumProperty ea) '''
-public enum «e.name» «compileExtends(e)»«compileImplements(e)»{
+def compile(EnumEntity e, ImportManager im, EnumProperty ea) '''
+public enum «e.name» «compileExtends(e, im)»«compileImplements(e)»{
 
   «FOR f:e.features.filter(x| x.value!=null) SEPARATOR ", "»«f.name»(«f.value»)«ENDFOR»;
   «IF getSernum(e) != null»
@@ -104,7 +104,7 @@ public enum «e.name» «compileExtends(e)»«compileImplements(e)»{
   private static final long serialVersionUID = «getSernum(e)»L;
   «ENDIF»
   
-  private static Map<«ea.compileType(importManager)», «e.name»> identifierMap = new HashMap<«ea.compileType(importManager)», «e.name»>();
+  private static Map<«ea.compileType(im)», «e.name»> identifierMap = new HashMap<«ea.compileType(im)», «e.name»>();
 
     static {
         for («e.name» value : «e.name».values()) {
@@ -112,13 +112,13 @@ public enum «e.name» «compileExtends(e)»«compileImplements(e)»{
         }
     }
 
-    private «ea.compileType(importManager)» «ea.name»;
+    private «ea.compileType(im)» «ea.name»;
 
-    private «e.name»(«ea.compileType(importManager)» value) {
+    private «e.name»(«ea.compileType(im)» value) {
         this.«ea.name» = value;
     }
 
-    public static «e.name» fromValue(«ea.compileType(importManager)» value) {
+    public static «e.name» fromValue(«ea.compileType(im)» value) {
         «e.name» result = identifierMap.get(value);
         if (result == null) {
             throw new IllegalArgumentException("No «e.name» for value: " + value);
@@ -126,7 +126,7 @@ public enum «e.name» «compileExtends(e)»«compileImplements(e)»{
         return result;
     }
 
-    public «ea.compileType(importManager)» getValue() {
+    public «ea.compileType(im)» getValue() {
         return «ea.name»;
     }
 
@@ -138,14 +138,14 @@ public enum «e.name» «compileExtends(e)»«compileImplements(e)»{
 
 
 def compile(PojoEntity e, AnnotatedEntity ae) '''
-«val importManager = new ImportManager(true)»
-«addImplements(e, importManager)»
-«addExtends(e, importManager)»
-«val classBody = compile(e, ae, importManager)»
+«val im = new ImportManager(true)»
+«addImplements(e, im)»
+«addExtends(e, im)»
+«val classBody = compile(e, ae, im)»
 «IF e.eContainer != null»package «e.eContainer.eContainer.fullyQualifiedName»;«ENDIF»
-  «IF !importManager.imports.empty»
+  «IF !im.imports.empty»
   
-  «FOR i : importManager.imports»
+  «FOR i : im.imports»
 import «i»;
   «ENDFOR»
   «ENDIF»
@@ -170,83 +170,83 @@ import java.util.HashMap;
 «classBody»
 '''
 
-def compile(PojoEntity e, AnnotatedEntity ae, ImportManager importManager) '''
+def compile(PojoEntity e, AnnotatedEntity ae, ImportManager im) '''
   «FOR a:ae.annotations»
-@«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, importManager)»«ENDFOR»)«ENDIF»
+@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, im)»«ENDFOR»)«ENDIF»
   «ENDFOR»
-public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e)»«compileImplements(e)»{
+public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e, im)»«compileImplements(e)»{
   «IF getSernum(e) != null»
   
   private static final long serialVersionUID = «getSernum(e)»L;
   «ENDIF»
   «FOR f:e.features.filter(x| getIndex(x.feature)!=null)»
   «FOR a:ae.staticAnnotations»
-  @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, importManager)»«ENDFOR»)«ENDIF»
+  @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
   «ENDFOR»
   public static final int ORDER_BY_«constName(f.feature)» = «getIndex(f.feature)»;
   «ENDFOR»
   «FOR f:e.features.filter(x| x.feature.name.startsWith("index="))»
   «FOR a:ae.staticAnnotations»
-  @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, importManager)»«ENDFOR»)«ENDIF»
+  @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
   «ENDFOR»
   public static final int ORDER_BY_«constName2(f.feature)» = «f.feature.name.substring(6)»;
   «ENDFOR»
 	
   «FOR a:ae.constructorAnnotations»
-  @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, importManager)»«ENDFOR»)«ENDIF»
+  @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, im)»«ENDFOR»)«ENDIF»
   «ENDFOR»
   public «e.name»() {
   }
   «IF !e.requiredFeatures.empty»
   
   «FOR a:ae.constructorAnnotations»
-  @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, importManager)»«ENDFOR»)«ENDIF»
+  @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, im)»«ENDFOR»)«ENDIF»
   «ENDFOR»
-  public «e.name»(«FOR f:e.requiredFeatures SEPARATOR ", "»«f.feature.compileType(importManager)» «f.feature.name»«ENDFOR») {
+  public «e.name»(«FOR f:e.requiredFeatures SEPARATOR ", "»«getFullName(e, f, f.feature.compileType(im), im)» «f.feature.name»«ENDFOR») {
   «FOR f:e.requiredSuperFeatures BEFORE "  super(" SEPARATOR ", " AFTER ");"»«f.feature.name»«ENDFOR»
   «FOR f:e.requiredFeatures1 SEPARATOR "
 "»  this.«f.feature.name» = «f.feature.name»;«ENDFOR»
   }
   «ENDIF»
   «FOR f:e.features.filter(x| isAttribute(x.feature))»
-    «f.feature.compile(f, importManager, e, ae, getOperatorsSuffix(e))»
+    «f.feature.compile(f, im, e, ae, getOperatorsSuffix(e))»
   «ENDFOR»
-  «FOR f:e.features.filter(x| !isAttribute(x.feature))»«IF f.feature.name.equalsIgnoreCase("hashCode")»«f.feature.compileHashCode(f, importManager, e, ae)»
-  «ELSEIF f.feature.name.equalsIgnoreCase("equals")»«f.feature.compileEquals(f, importManager, e, ae)»
-  «ELSEIF f.feature.name.equalsIgnoreCase("toInit")»«f.feature.compileToInit(f, importManager, e, ae)»
-  «ELSEIF f.feature.name.equalsIgnoreCase("enumInit")»«f.feature.compileEnumInit(f,importManager, e, ae)»
-  «ELSEIF f.feature.name.equalsIgnoreCase("isDef")»«f.feature.compileIsDef(f, importManager, e, ae)»
-  «ELSEIF f.feature.name.equalsIgnoreCase("enumDef")»«f.feature.compileEnumDef(f, importManager, e, ae)»
-  «ELSEIF f.feature.name.equalsIgnoreCase("toString")»«f.feature.compileToString(f, importManager, e, ae)»«ENDIF»«ENDFOR»«IF hasOperators(e) && getOperatorsSuffix(e) == null»
-  «compileOperators(importManager, e, ae)»«ENDIF»
+  «FOR f:e.features.filter(x| !isAttribute(x.feature))»«IF f.feature.name.equalsIgnoreCase("hashCode")»«f.feature.compileHashCode(f, im, e, ae)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("equals")»«f.feature.compileEquals(f, im, e, ae)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("toInit")»«f.feature.compileToInit(f, im, e, ae)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("enumInit")»«f.feature.compileEnumInit(f, im, e, ae)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("isDef")»«f.feature.compileIsDef(f, im, e, ae)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("enumDef")»«f.feature.compileEnumDef(f, im, e, ae)»
+  «ELSEIF f.feature.name.equalsIgnoreCase("toString")»«f.feature.compileToString(f, im, e, ae)»«ENDIF»«ENDFOR»«IF hasOperators(e) && getOperatorsSuffix(e) == null»
+  «compileOperators(im, e, ae)»«ENDIF»
 }
 '''
 
-def compileAnnotationProperty(AnnotationProperty f, ImportManager importManager) '''
-  «f.name» = «IF f.getType != null»«importManager.serialize(f.getType)»«ELSEIF f.getRef != null»«f.getRef.fullyQualifiedName»«ENDIF»«getAnnotationValue(f)»'''
+def compileAnnotationProperty(AnnotationProperty f, ImportManager im) '''
+  «f.name» = «IF f.getType != null»«im.serialize(f.getType)»«ELSEIF f.getRef != null»«f.getRef.fullyQualifiedName»«ENDIF»«getAnnotationValue(f)»'''
 
-def compile(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e, AnnotatedEntity ae, String operatorSuffix) '''
+def compile(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae, String operatorSuffix) '''
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
-    private «f.compileType(importManager)» «f.name»«IF isList(f)» = new Array«f.compileType(importManager)»()«ELSEIF isOptLock(f)» = 0«ENDIF»;
+    private «f.compileType(im)» «f.name»«IF isList(f)» = new Array«f.compileType(im)»()«ELSEIF isOptLock(f)» = 0«ENDIF»;
   
     «FOR a:aaf.getterAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
-    public «f.compileType(importManager)» get«f.name.toFirstUpper»() {
+    public «f.compileType(im)» get«f.name.toFirstUpper»() {
       return «f.name»;
     }
   
     «FOR a:aaf.setterAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
-    public void set«f.name.toFirstUpper»(«f.compileType(importManager)» «f.name») {
+    public void set«f.name.toFirstUpper»(«f.compileType(im)» «f.name») {
       this.«f.name» = «f.name»;
     }
   
-    public «e.name» _set«f.name.toFirstUpper»(«f.compileType(importManager)» «f.name») {
+    public «e.name» _set«f.name.toFirstUpper»(«f.compileType(im)» «f.name») {
       this.«f.name» = «f.name»;
       return this;
     }«IF hasOperators(e) && operatorSuffix != null»
@@ -267,11 +267,11 @@ def compile(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManag
     }«ENDIF»
 '''
 
-def compileHashCode(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e, AnnotatedEntity ae) '''
+def compileHashCode(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 
     @Override
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public int hashCode() {
       final int prime = 31;
@@ -283,11 +283,11 @@ def compileHashCode(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager imp
     }  
 '''
 
-def compileEquals(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e, AnnotatedEntity ae) '''
+def compileEquals(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 
     @Override
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public boolean equals(Object obj) {
       if (this == obj)
@@ -305,40 +305,40 @@ def compileEquals(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager impor
     }  
 '''
 
-def compileToString(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e, AnnotatedEntity ae) '''
+def compileToString(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 
     @Override
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public String toString() {
       return "«e.name» [«FOR f2:f.simplAttrs SEPARATOR " + \", "»«f2.name»=" + «f2.name»«ENDFOR»«IF getSuperType(e) != null» + super.toString()«ENDIF» + "]";
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public String toStringFull() {
       return "«e.name» [«FOR f2:f.attrs SEPARATOR " + \", "»«f2.name»=" + «f2.name»«ENDFOR»«IF getSuperType(e) != null» + super.toString()«ENDIF» + "]";
     }
 '''
 
-def compileIsDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e, AnnotatedEntity ae) '''
+def compileIsDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 
     public enum Attribute {
       «FOR f2:f.attrs SEPARATOR ", "»«f2.name»«ENDFOR»
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     private Set<String> nullValues = new HashSet<String>();
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     «FOR a:ae.conflictAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public void setNull(Attribute... attributes) {
       if (attributes == null)
@@ -348,10 +348,10 @@ def compileIsDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager import
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     «FOR a:ae.conflictAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public void clearNull(Attribute... attributes) {
       if (attributes == null)
@@ -361,7 +361,7 @@ def compileIsDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager import
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public void setNull(String... attributes) {
       if (attributes == null)
@@ -371,7 +371,7 @@ def compileIsDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager import
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public void clearNull(String... attributes) {
       if (attributes == null)
@@ -381,7 +381,7 @@ def compileIsDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager import
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public Boolean isNull(String attrName) {
       if (attrName == null)
@@ -390,10 +390,10 @@ def compileIsDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager import
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     «FOR a:ae.conflictAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public Boolean isNull(Attribute attribute) {
       if (attribute == null)
@@ -402,7 +402,7 @@ def compileIsDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager import
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public Boolean isDef(String attrName) {
       if (attrName == null)
@@ -431,36 +431,36 @@ def compileIsDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager import
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public void clearAllNull() {
       nullValues = new HashSet<String>();
     }
 '''
 
-def compileEnumDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e, AnnotatedEntity ae) '''
+def compileEnumDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 
     public enum Attribute {
       «FOR f2:f.attrs SEPARATOR ", "»«f2.name»«ENDFOR»
     }
 '''
 
-def compileToInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e, AnnotatedEntity ae) '''
+def compileToInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 
     public enum Association {
       «FOR f2:f.attrs SEPARATOR ", "»«f2.name»«ENDFOR»
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     private Set<String> initAssociations = new HashSet<String>();
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     «FOR a:ae.conflictAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public void setInit(Association... associations) {
       if (associations == null)
@@ -470,10 +470,10 @@ def compileToInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager impor
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     «FOR a:ae.conflictAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public void clearInit(Association... associations) {
       if (associations == null)
@@ -483,7 +483,7 @@ def compileToInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager impor
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public void setInit(String... associations) {
       if (associations == null)
@@ -493,7 +493,7 @@ def compileToInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager impor
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public void clearInit(String... associations) {
       if (associations == null)
@@ -503,7 +503,7 @@ def compileToInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager impor
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public Boolean toInit(String association) {
       if (association == null)
@@ -512,21 +512,21 @@ def compileToInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager impor
     }
 
     «FOR a:aaf.attributeAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public void clearAllInit() {
       initAssociations = new HashSet<String>();
     }
 '''
 
-def compileEnumInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager importManager, PojoEntity e, AnnotatedEntity ae) '''
+def compileEnumInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 
     public enum Association {
       «FOR f2:f.attrs SEPARATOR ", "»«f2.name»«ENDFOR»
     }
 '''
 
-def compileOperators(ImportManager importManager, PojoEntity e, AnnotatedEntity ae) '''
+def compileOperators(ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 
     public enum OpAttribute {
         «FOR f:e.features.filter(x| isAttribute(x.feature)) SEPARATOR ", "»«f.feature.name»«ENDFOR»
@@ -539,7 +539,7 @@ def compileOperators(ImportManager importManager, PojoEntity e, AnnotatedEntity 
     }
 
     «FOR a:ae.conflictAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public void setOp(String operator, OpAttribute... attributes) {
       if (attributes == null)
@@ -549,7 +549,7 @@ def compileOperators(ImportManager importManager, PojoEntity e, AnnotatedEntity 
     }
 
     «FOR a:ae.conflictAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public void clearOp(OpAttribute... attributes) {
       if (attributes == null)
@@ -573,7 +573,7 @@ def compileOperators(ImportManager importManager, PojoEntity e, AnnotatedEntity 
     }
 
     «FOR a:ae.conflictAnnotations»
-    @«importManager.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, importManager)»«ENDFOR»)«ENDIF»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public void setNullOp(OpAttribute... attributes) {
       if (attributes == null)
@@ -594,29 +594,29 @@ def compileOperators(ImportManager importManager, PojoEntity e, AnnotatedEntity 
     }
 '''
 
-def compileType(EnumProperty f, ImportManager importManager) '''
-  «IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getType != null»«importManager.serialize(f.getType)»«ENDIF»'''
+def compileType(EnumProperty f, ImportManager im) '''
+  «IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getType != null»«im.serialize(f.getType)»«ENDIF»'''
   
-def compileType(PojoProperty f, ImportManager importManager) '''
-  «IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getRef != null»«f.getRef.fullyQualifiedName»«ELSEIF f.getType != null»«importManager.serialize(f.getType)»«ENDIF»«IF f.getGtype != null»<«importManager.serialize(f.getGtype)»>«ENDIF»«IF f.getGref != null»<«f.getGref.fullyQualifiedName»>«ENDIF»«IF f.array»[]«ENDIF»'''
+def compileType(PojoProperty f, ImportManager im) '''
+  «IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getRef != null»«f.getRef.fullyQualifiedName»«ELSEIF f.getType != null»«im.serialize(f.getType)»«ENDIF»«IF f.getGtype != null»<«im.serialize(f.getGtype)»>«ENDIF»«IF f.getGref != null»<«f.getGref.fullyQualifiedName»>«ENDIF»«IF f.array»[]«ENDIF»'''
   
-def compileType(PojoType f, ImportManager importManager) '''
-  «IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getRef != null»«importManager.serialize(pojoMethod2jvmType(f.getRef))»«ELSEIF f.getType != null»«importManager.serialize(f.getType)»«ENDIF»«IF f.getGtype != null»<«importManager.serialize(f.getGtype)»>«ENDIF»«IF f.getGref != null»<«importManager.serialize(pojoMethod2jvmType(f.getGref))»>«ENDIF»«IF f.array»[]«ENDIF»'''
+def compileType(PojoType f, ImportManager im) '''
+  «IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getRef != null»«im.serialize(pojoMethod2jvmType(f.getRef))»«ELSEIF f.getType != null»«im.serialize(f.getType)»«ENDIF»«IF f.getGtype != null»<«im.serialize(f.getGtype)»>«ENDIF»«IF f.getGref != null»<«im.serialize(pojoMethod2jvmType(f.getGref))»>«ENDIF»«IF f.array»[]«ENDIF»'''
 
 def compile(PojoDao d) '''
-«val importManager = new ImportManager(true)»
-«addImplements(d, importManager)»
-«addExtends(d, importManager)»
+«val im = new ImportManager(true)»
+«addImplements(d, im)»
+«addExtends(d, im)»
 «val toInits = getToInits(d)»
-«val classBody = compile(d, d.pojo, toInits, importManager)»
+«val classBody = compile(d, d.pojo, toInits, im)»
 «IF d.eContainer != null»package «d.eContainer.fullyQualifiedName»«IF d.implPackage != null».«d.implPackage»«ENDIF»;«ENDIF»
   «IF d.implPackage != null»
 
 import «d.eContainer.fullyQualifiedName».«d.name»;
   «ENDIF»
-  «IF !importManager.imports.empty»
+  «IF !im.imports.empty»
   
-  «FOR i : importManager.imports»
+  «FOR i : im.imports»
 import «i»;
   «ENDFOR»
   «ENDIF»
@@ -646,8 +646,8 @@ import org.sqlproc.engine.impl.SqlStandardControl;
 «classBody»
 '''
 
-def compile(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager importManager) '''
-public «IF isAbstract(d)»abstract «ENDIF»class «d.name»«IF d.implPackage != null»Impl«ENDIF» «compileExtends(d)»«compileImplements(d)»{
+def compile(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im) '''
+public «IF isAbstract(d)»abstract «ENDIF»class «d.name»«IF d.implPackage != null»Impl«ENDIF» «compileExtends(d, im)»«compileImplements(d)»{
   «IF getSernum(d) != null»
   
   private static final long serialVersionUID = «getSernum(d)»L;
@@ -666,47 +666,47 @@ public «IF isAbstract(d)»abstract «ENDIF»class «d.name»«IF d.implPackage 
     this.sqlSessionFactory = sqlSessionFactory;
   }
   
-  «FOR m:d.methods»«IF m.name == "scaffold"»«compileInsert(d, e, getParent(e), importManager)»
-  «compileGet(d, e, toInits, importManager)»
-  «compileUpdate(d, e, getParent(e), importManager)»
-  «compileDelete(d, e, getParent(e), importManager)»
-  «compileList(d, e, toInits, importManager)»
-  «compileCount(d, e, toInits, importManager)»
-  «IF !toInits.empty»«compileMoreResultClasses(d, e, toInits, importManager)»«ENDIF»«ELSEIF isCallUpdate(m)»
-  «compileCallUpdate(d, m, importManager)»«ELSEIF isCallFunction(m)»«compileCallFunction(d, m, importManager)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQuery(d, m, importManager, isCallQueryFunction(m))»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunction(d, m, importManager)»«ENDIF»«ENDFOR»
+  «FOR m:d.methods»«IF m.name == "scaffold"»«compileInsert(d, e, getParent(e), im)»
+  «compileGet(d, e, toInits, im)»
+  «compileUpdate(d, e, getParent(e), im)»
+  «compileDelete(d, e, getParent(e), im)»
+  «compileList(d, e, toInits, im)»
+  «compileCount(d, e, toInits, im)»
+  «IF !toInits.empty»«compileMoreResultClasses(d, e, toInits, im)»«ENDIF»«ELSEIF isCallUpdate(m)»
+  «compileCallUpdate(d, m, im)»«ELSEIF isCallFunction(m)»«compileCallFunction(d, m, im)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQuery(d, m, im, isCallQueryFunction(m))»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunction(d, m, im)»«ENDIF»«ENDFOR»
 }
 '''
 
-def compileCallQuery(PojoDao d, PojoMethod m, ImportManager importManager, boolean isFunction) '''
+def compileCallQuery(PojoDao d, PojoMethod m, ImportManager im, boolean isFunction) '''
 
-    public «m.type.compileType(importManager)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl) {
+    public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
         logger.trace("«m.name»: " + «FOR ma:m.args SEPARATOR " + \" \" "»«ma.name»«ENDFOR» + " " + sqlControl);
       }
       SqlProcedureEngine sqlProc«m.name.toFirstUpper» = sqlEngineFactory.getCheckedProcedureEngine("«IF isFunction»FUN«ELSE»PROC«ENDIF»_«dbName(m)»");
-      «m.type.compileType(importManager)» list = sqlProc«m.name.toFirstUpper».callQuery(sqlSession, «m.type.gref.name».class, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
+      «m.type.compileType(im)» list = sqlProc«m.name.toFirstUpper».callQuery(sqlSession, «m.type.gref.name».class, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
       if (logger.isTraceEnabled()) {
         logger.trace("«m.name» result: " + list);
       }
       return list;
     }
 
-    public «m.type.compileType(importManager)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl) {
+    public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
     	return «m.name»(sqlSessionFactory.getSqlSession(), «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
     }
 
-    public «m.type.compileType(importManager)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR») {
+    public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
 
-    public «m.type.compileType(importManager)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR») {
+    public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
 '''
 
-def compileCallFunction(PojoDao d, PojoMethod m, ImportManager importManager) '''
+def compileCallFunction(PojoDao d, PojoMethod m, ImportManager im) '''
 
-    public «m.type.compileType(importManager)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl) {
+    public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
         logger.trace("«m.name»: " + «FOR ma:m.args SEPARATOR " + \" \" "»«ma.name»«ENDFOR» + " " + sqlControl);
       }
@@ -715,25 +715,25 @@ def compileCallFunction(PojoDao d, PojoMethod m, ImportManager importManager) ''
       if (logger.isTraceEnabled()) {
         logger.trace("«m.name» result: " + result);
       }
-      return («m.type.compileType(importManager)») result;
+      return («m.type.compileType(im)») result;
     }
 
-    public «m.type.compileType(importManager)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl) {
+    public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
     	return «m.name»(sqlSessionFactory.getSqlSession(), «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
     }
 
-    public «m.type.compileType(importManager)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR») {
+    public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
 
-    public «m.type.compileType(importManager)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR») {
+    public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
 '''
 
-def compileCallUpdate(PojoDao d, PojoMethod m, ImportManager importManager) '''
+def compileCallUpdate(PojoDao d, PojoMethod m, ImportManager im) '''
 
-    public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl) {
+    public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
         logger.trace("«m.name»: " + «FOR ma:m.args SEPARATOR " + \" \" "»«ma.name»«ENDFOR» + " " + sqlControl);
       }
@@ -745,47 +745,47 @@ def compileCallUpdate(PojoDao d, PojoMethod m, ImportManager importManager) '''
       return count;
     }
 
-    public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl) {
+    public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
     	return «m.name»(sqlSessionFactory.getSqlSession(), «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
     }
 
-    public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR») {
+    public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
 
-    public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR») {
+    public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
 '''
 
-def compileCallSelectFunction(PojoDao d, PojoMethod m, ImportManager importManager) '''
+def compileCallSelectFunction(PojoDao d, PojoMethod m, ImportManager im) '''
 
-    public «m.type.compileType(importManager)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl) {
+    public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
         logger.trace("«m.name»: " + «FOR ma:m.args SEPARATOR " + \" \" "»«ma.name»«ENDFOR» + " " + sqlControl);
       }
       SqlQueryEngine sqlFun«m.name.toFirstUpper» = sqlEngineFactory.getCheckedQueryEngine("FUN_«dbName(m)»");
-      java.util.List<«m.args.get(0).type.compileType(importManager)»> list = sqlFun«m.name.toFirstUpper».query(sqlSession, «m.args.get(0).type.compileType(importManager)».class, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
+      java.util.List<«m.args.get(0).type.compileType(im)»> list = sqlFun«m.name.toFirstUpper».query(sqlSession, «m.args.get(0).type.compileType(im)».class, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
       if (logger.isTraceEnabled()) {
         logger.trace("«m.name» result: " + list);
       }
       return (list != null && !list.isEmpty()) ? list.get(0).getResult() : null;
     }
 
-    public «m.type.compileType(importManager)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl) {
+    public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
     	return «m.name»(sqlSessionFactory.getSqlSession(), «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
     }
 
-    public «m.type.compileType(importManager)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR») {
+    public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
 
-    public «m.type.compileType(importManager)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR») {
+    public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
 '''
 
-def compileInsert(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager importManager) '''
+def compileInsert(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager im) '''
 
     public «e.name» insert(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -817,7 +817,7 @@ def compileInsert(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager importMa
     }
 '''
 
-def compileGet(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager importManager) '''
+def compileGet(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im) '''
 
     public «e.name» get(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -845,7 +845,7 @@ def compileGet(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits
     }
 '''
 
-def compileUpdate(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager importManager) '''
+def compileUpdate(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager im) '''
 
     public int update(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -879,7 +879,7 @@ def compileUpdate(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager importMa
     }
 '''
 
-def compileDelete(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager importManager) '''
+def compileDelete(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager im) '''
 
     public int delete(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -913,7 +913,7 @@ def compileDelete(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager importMa
     }
 '''
 
-def compileList(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager importManager) '''
+def compileList(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im) '''
 
     public List<«e.name»> list(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -941,7 +941,7 @@ def compileList(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInit
     }
 '''
 
-def compileCount(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager importManager) '''
+def compileCount(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im) '''
 
     public int count(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -969,7 +969,7 @@ def compileCount(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toIni
     }
 '''
 
-def compileMoreResultClasses(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager importManager) '''
+def compileMoreResultClasses(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im) '''
 
     SqlControl getMoreResultClasses(«e.name» «e.name.toFirstLower», SqlControl sqlControl) {
       if (sqlControl != null && sqlControl.getMoreResultClasses() != null)
@@ -992,10 +992,10 @@ def compileMoreResultClasses(PojoDao d, PojoEntity e, Map<String, List<PojoMetho
 '''
 
 def compileIfx(PojoDao d) '''
-«val importManager = new ImportManager(true)»
-«addImplements(d, importManager)»
-«addExtends(d, importManager)»
-«val classBody = compileIfx(d, d.pojo, importManager)»
+«val im = new ImportManager(true)»
+«addImplements(d, im)»
+«addExtends(d, im)»
+«val classBody = compileIfx(d, d.pojo, im)»
 «IF d.eContainer != null»package «d.eContainer.fullyQualifiedName»;«ENDIF»
 
 import java.util.List;
@@ -1006,64 +1006,64 @@ import «d.pojo.completeName»;
 «classBody»
 '''
 
-def compileIfx(PojoDao d, PojoEntity e, ImportManager importManager) '''
+def compileIfx(PojoDao d, PojoEntity e, ImportManager im) '''
 public interface «d.name» {
-  «FOR m:d.methods»«IF m.name == "scaffold"»«compileInsertIfx(d, e, importManager)»
-  «compileGetIfx(d, e, importManager)»
-  «compileUpdateIfx(d, e, importManager)»
-  «compileDeleteIfx(d, e, importManager)»
-  «compileListIfx(d, e, importManager)»
-  «compileCountIfx(d, e, importManager)»
+  «FOR m:d.methods»«IF m.name == "scaffold"»«compileInsertIfx(d, e, im)»
+  «compileGetIfx(d, e, im)»
+  «compileUpdateIfx(d, e, im)»
+  «compileDeleteIfx(d, e, im)»
+  «compileListIfx(d, e, im)»
+  «compileCountIfx(d, e, im)»
   «ELSEIF isCallUpdate(m)»
-  «compileCallUpdateIfx(d, m, importManager)»«ELSEIF isCallFunction(m)»«compileCallFunctionIfx(d, m, importManager)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQueryIfx(d, m, importManager, isCallQueryFunction(m))»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunctionIfx(d, m, importManager)»«ENDIF»«ENDFOR»
+  «compileCallUpdateIfx(d, m, im)»«ELSEIF isCallFunction(m)»«compileCallFunctionIfx(d, m, im)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQueryIfx(d, m, im, isCallQueryFunction(m))»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunctionIfx(d, m, im)»«ENDIF»«ENDFOR»
 }
 '''
 
-def compileCallQueryIfx(PojoDao d, PojoMethod m, ImportManager importManager, boolean isFunction) '''
+def compileCallQueryIfx(PojoDao d, PojoMethod m, ImportManager im, boolean isFunction) '''
 
-    public «m.type.compileType(importManager)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl);
+    public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
 
-    public «m.type.compileType(importManager)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl);
+    public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
 
-    public «m.type.compileType(importManager)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR»);
+    public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
 
-    public «m.type.compileType(importManager)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR»);
+    public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
 '''
 
-def compileCallFunctionIfx(PojoDao d, PojoMethod m, ImportManager importManager) '''
+def compileCallFunctionIfx(PojoDao d, PojoMethod m, ImportManager im) '''
 
-    public «m.type.compileType(importManager)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl);
+    public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
 
-    public «m.type.compileType(importManager)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl);
+    public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
 
-    public «m.type.compileType(importManager)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR»);
+    public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
 
-    public «m.type.compileType(importManager)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR»);
+    public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
 '''
 
-def compileCallUpdateIfx(PojoDao d, PojoMethod m, ImportManager importManager) '''
+def compileCallUpdateIfx(PojoDao d, PojoMethod m, ImportManager im) '''
 
-    public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl);
+    public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
 
-    public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl);
+    public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
 
-    public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR»);
+    public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
 
-    public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR»);
+    public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
 '''
 
-def compileCallSelectFunctionIfx(PojoDao d, PojoMethod m, ImportManager importManager) '''
+def compileCallSelectFunctionIfx(PojoDao d, PojoMethod m, ImportManager im) '''
 
-    public «m.type.compileType(importManager)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl);
+    public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
 
-    public «m.type.compileType(importManager)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR», SqlControl sqlControl);
+    public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
 
-    public «m.type.compileType(importManager)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR»);
+    public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
 
-    public «m.type.compileType(importManager)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(importManager)» «ma.name»«ENDFOR»);
+    public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
 '''
 
-def compileInsertIfx(PojoDao d, PojoEntity e, ImportManager importManager) '''
+def compileInsertIfx(PojoDao d, PojoEntity e, ImportManager im) '''
 
     public «e.name» insert(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
 
@@ -1074,7 +1074,7 @@ def compileInsertIfx(PojoDao d, PojoEntity e, ImportManager importManager) '''
     public «e.name» insert(«e.name» «e.name.toFirstLower»);
 '''
 
-def compileGetIfx(PojoDao d, PojoEntity e, ImportManager importManager) '''
+def compileGetIfx(PojoDao d, PojoEntity e, ImportManager im) '''
 
     public «e.name» get(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
 	
@@ -1085,7 +1085,7 @@ def compileGetIfx(PojoDao d, PojoEntity e, ImportManager importManager) '''
     public «e.name» get(«e.name» «e.name.toFirstLower»);
 '''
 
-def compileUpdateIfx(PojoDao d, PojoEntity e, ImportManager importManager) '''
+def compileUpdateIfx(PojoDao d, PojoEntity e, ImportManager im) '''
 
     public int update(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
 
@@ -1096,7 +1096,7 @@ def compileUpdateIfx(PojoDao d, PojoEntity e, ImportManager importManager) '''
     public int update(«e.name» «e.name.toFirstLower»);
 '''
 
-def compileDeleteIfx(PojoDao d, PojoEntity e, ImportManager importManager) '''
+def compileDeleteIfx(PojoDao d, PojoEntity e, ImportManager im) '''
 
     public int delete(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
 
@@ -1107,7 +1107,7 @@ def compileDeleteIfx(PojoDao d, PojoEntity e, ImportManager importManager) '''
     public int delete(«e.name» «e.name.toFirstLower»);
 '''
 
-def compileListIfx(PojoDao d, PojoEntity e, ImportManager importManager) '''
+def compileListIfx(PojoDao d, PojoEntity e, ImportManager im) '''
 
     public List<«e.name»> list(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
 
@@ -1118,7 +1118,7 @@ def compileListIfx(PojoDao d, PojoEntity e, ImportManager importManager) '''
     public List<«e.name»> list(«e.name» «e.name.toFirstLower»);
 '''
 
-def compileCountIfx(PojoDao d, PojoEntity e, ImportManager importManager) '''
+def compileCountIfx(PojoDao d, PojoEntity e, ImportManager im) '''
 
     public int count(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
 
@@ -1179,67 +1179,67 @@ def simplAttrs(PojoProperty f) {
 	return f.attrs.filter(f2|f2.getNative != null || f2.getType != null).toList
 }
 
-def compileExtends(EnumEntity e) '''
-	«IF getSuperType(e) != null»extends «getSuperType(e).fullyQualifiedName» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
+def compileExtends(EnumEntity e, ImportManager im) '''
+	«IF getSuperType(e) != null»extends «getFullName(e, getSuperType(e), getSuperType(e).fullyQualifiedName, im)» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
 
 def compileImplements(EnumEntity e) '''
 	«IF isImplements(e) || getSernum(e) != null»implements «FOR f:e.eContainer.eContents.filter(typeof(Implements)) SEPARATOR ", " »«f.getImplements().simpleName»«ENDFOR»«IF getSernum(e) != null»«IF isImplements(e)», «ENDIF»Serializable«ENDIF» «ENDIF»'''
 
-def compileExtends(PojoEntity e) '''
-	«IF getSuperType(e) != null»extends «getSuperType(e).fullyQualifiedName» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
+def compileExtends(PojoEntity e, ImportManager im) '''
+	«IF getSuperType(e) != null»extends «getFullName(e, getSuperType(e), getSuperType(e).fullyQualifiedName, im)» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
 
 def compileImplements(PojoEntity e) '''
 	«IF isImplements(e) || getSernum(e) != null»implements «FOR f:e.eContainer.eContents.filter(typeof(Implements)) SEPARATOR ", " »«f.getImplements().simpleName»«ENDFOR»«IF getSernum(e) != null»«IF isImplements(e)», «ENDIF»Serializable«ENDIF» «ENDIF»'''
 
-def compileExtends(PojoDao e) '''
-	«IF getSuperType(e) != null»extends «getSuperType(e).fullyQualifiedName» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
+def compileExtends(PojoDao e, ImportManager im) '''
+	«IF getSuperType(e) != null»extends «getFullName(e, getSuperType(e), getSuperType(e).fullyQualifiedName, im)» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
 
 def compileImplements(PojoDao d) '''
 	«IF isImplements(d) || getSernum(d) != null || d.implPackage != null»implements «FOR f:d.eContainer.eContents.filter(typeof(Implements)) SEPARATOR ", " »«f.getImplements().simpleName»«ENDFOR»«IF getSernum(d) != null»«IF isImplements(d)», «ENDIF»Serializable«ENDIF»«IF d.implPackage != null»«IF isImplements(d) || getSernum(d) != null», «ENDIF»«d.name»«ENDIF» «ENDIF»'''
 
-def compile(Extends e, ImportManager importManager) {
-	importManager.addImportFor(e.getExtends())
+def compile(Extends e, ImportManager im) {
+	im.addImportFor(e.getExtends())
 }
 
-def addImplements(EnumEntity e, ImportManager importManager) {
+def addImplements(EnumEntity e, ImportManager im) {
 	for(impl: e.eContainer.eContents.filter(typeof(Implements))) {
-		importManager.addImportFor(impl.getImplements())
+		im.addImportFor(impl.getImplements())
 	}
 }
 
-def addExtends(EnumEntity e, ImportManager importManager) {
+def addExtends(EnumEntity e, ImportManager im) {
 	for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
-		importManager.addImportFor(ext.getExtends())
+		im.addImportFor(ext.getExtends())
 	}
 }
 
-def addImplements(PojoEntity e, ImportManager importManager) {
+def addImplements(PojoEntity e, ImportManager im) {
 	for(impl: e.eContainer.eContents.filter(typeof(Implements))) {
-		importManager.addImportFor(impl.getImplements())
+		im.addImportFor(impl.getImplements())
 	}
 }
 
-def addExtends(PojoEntity e, ImportManager importManager) {
+def addExtends(PojoEntity e, ImportManager im) {
 	for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
-		importManager.addImportFor(ext.getExtends())
+		im.addImportFor(ext.getExtends())
 	}
 }
 
-def addImplements(PojoDao e, ImportManager importManager) {
+def addImplements(PojoDao e, ImportManager im) {
 	for(impl: e.eContainer.eContents.filter(typeof(Implements))) {
-		importManager.addImportFor(impl.getImplements())
+		im.addImportFor(impl.getImplements())
 	}
 }
 
-def addExtends(PojoDao e, ImportManager importManager) {
+def addExtends(PojoDao e, ImportManager im) {
 	for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
-		importManager.addImportFor(ext.getExtends())
+		im.addImportFor(ext.getExtends())
 	}
 }
 
-def addAnnotations(List<Annotation> annotations, ImportManager importManager) {
+def addAnnotations(List<Annotation> annotations, ImportManager im) {
 	for(a: annotations) {
-		importManager.serialize(a.getType)
+		im.serialize(a.getType)
 	}
 }
 

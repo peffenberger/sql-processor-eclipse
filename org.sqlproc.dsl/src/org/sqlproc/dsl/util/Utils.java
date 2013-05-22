@@ -20,8 +20,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
+import org.sqlproc.dsl.ImportManager;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
@@ -240,8 +242,9 @@ public class Utils {
         if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
             return null;
         for (PojoEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getSuperType() != null)
+            if (modifier.getSuperType() != null) {
                 return modifier.getSuperType();
+            }
         }
         return null;
     }
@@ -567,6 +570,65 @@ public class Utils {
     public static String getPackage(PojoEntity e) {
         PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(e, PackageDeclaration.class);
         return packageDeclaration.getName();
+    }
+
+    public static String getFullName(PojoEntity e1, PojoEntity e2, QualifiedName qn2, ImportManager im) {
+        String sqn = qn2.toString();
+        if (sqn.indexOf(".") > 0)
+            return sqn;
+        String pkg1 = getPackage(e1);
+        String pkg2 = getPackage(e2);
+        if (!pkg1.equals(pkg2))
+            im.addImportFor(e2);
+        return sqn;
+    }
+
+    public static String getPackage(EnumEntity e) {
+        PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(e, PackageDeclaration.class);
+        return packageDeclaration.getName();
+    }
+
+    public static String getFullName(EnumEntity e1, PojoEntity e2, QualifiedName qn2, ImportManager im) {
+        String sqn = qn2.toString();
+        if (sqn.indexOf(".") > 0)
+            return sqn;
+        String pkg1 = getPackage(e1);
+        String pkg2 = getPackage(e2);
+        if (!pkg1.equals(pkg2))
+            im.addImportFor(e2);
+        return sqn;
+    }
+
+    public static String getPackage(PojoDao e) {
+        PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(e, PackageDeclaration.class);
+        return packageDeclaration.getName();
+    }
+
+    public static String getFullName(PojoDao e1, PojoDao e2, QualifiedName qn2, ImportManager im) {
+        String sqn = qn2.toString();
+        if (sqn.indexOf(".") > 0)
+            return sqn;
+        String pkg1 = getPackage(e1);
+        String pkg2 = getPackage(e2);
+        if (!pkg1.equals(pkg2))
+            im.addImportFor(e2);
+        return sqn;
+    }
+
+    public static String getPackage(PojoAnnotatedProperty e) {
+        PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(e, PackageDeclaration.class);
+        return packageDeclaration.getName();
+    }
+
+    public static CharSequence getFullName(PojoEntity e1, PojoAnnotatedProperty e2, CharSequence qn2, ImportManager im) {
+        String sqn = qn2.toString();
+        if (sqn.indexOf(".") > 0)
+            return qn2;
+        String pkg1 = getPackage(e1);
+        String pkg2 = getPackage(e2);
+        if (!pkg1.equals(pkg2))
+            im.addImportFor(e2, sqn);
+        return qn2;
     }
 
     public static Map<String, List<PojoMethodArg>> getToInits(PojoDao d) {

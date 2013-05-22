@@ -18,11 +18,11 @@ import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
-import org.eclipse.xtext.xbase.compiler.ImportManager;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.sqlproc.dsl.ImportManager;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
@@ -128,15 +128,15 @@ public class ProcessorDslGenerator implements IGenerator {
   public CharSequence compile(final EnumEntity e) {
     StringConcatenation _builder = new StringConcatenation();
     ImportManager _importManager = new ImportManager(true);
-    final ImportManager importManager = _importManager;
+    final ImportManager im = _importManager;
     _builder.newLineIfNotEmpty();
     final EnumProperty eattr = Utils.getEnumAttr(e);
     _builder.newLineIfNotEmpty();
-    this.addImplements(e, importManager);
+    this.addImplements(e, im);
     _builder.newLineIfNotEmpty();
-    this.addExtends(e, importManager);
+    this.addExtends(e, im);
     _builder.newLineIfNotEmpty();
-    final CharSequence classBody = this.compile(e, importManager, eattr);
+    final CharSequence classBody = this.compile(e, im, eattr);
     _builder.newLineIfNotEmpty();
     {
       EObject _eContainer = e.eContainer();
@@ -152,14 +152,14 @@ public class ProcessorDslGenerator implements IGenerator {
     }
     _builder.newLineIfNotEmpty();
     {
-      List<String> _imports = importManager.getImports();
+      List<String> _imports = im.getImports();
       boolean _isEmpty = _imports.isEmpty();
       boolean _not = (!_isEmpty);
       if (_not) {
         _builder.append("  ");
         _builder.newLine();
         {
-          List<String> _imports_1 = importManager.getImports();
+          List<String> _imports_1 = im.getImports();
           for(final String i : _imports_1) {
             _builder.append("import ");
             _builder.append(i, "");
@@ -195,13 +195,13 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final EnumEntity e, final ImportManager importManager, final EnumProperty ea) {
+  public CharSequence compile(final EnumEntity e, final ImportManager im, final EnumProperty ea) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public enum ");
     String _name = e.getName();
     _builder.append(_name, "");
     _builder.append(" ");
-    CharSequence _compileExtends = this.compileExtends(e);
+    CharSequence _compileExtends = this.compileExtends(e, im);
     _builder.append(_compileExtends, "");
     CharSequence _compileImplements = this.compileImplements(e);
     _builder.append(_compileImplements, "");
@@ -254,13 +254,13 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("  ");
     _builder.append("private static Map<");
-    CharSequence _compileType = this.compileType(ea, importManager);
+    CharSequence _compileType = this.compileType(ea, im);
     _builder.append(_compileType, "  ");
     _builder.append(", ");
     String _name_2 = e.getName();
     _builder.append(_name_2, "  ");
     _builder.append("> identifierMap = new HashMap<");
-    CharSequence _compileType_1 = this.compileType(ea, importManager);
+    CharSequence _compileType_1 = this.compileType(ea, im);
     _builder.append(_compileType_1, "  ");
     _builder.append(", ");
     String _name_3 = e.getName();
@@ -292,7 +292,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("    ");
     _builder.append("private ");
-    CharSequence _compileType_2 = this.compileType(ea, importManager);
+    CharSequence _compileType_2 = this.compileType(ea, im);
     _builder.append(_compileType_2, "    ");
     _builder.append(" ");
     String _name_6 = ea.getName();
@@ -305,7 +305,7 @@ public class ProcessorDslGenerator implements IGenerator {
     String _name_7 = e.getName();
     _builder.append(_name_7, "    ");
     _builder.append("(");
-    CharSequence _compileType_3 = this.compileType(ea, importManager);
+    CharSequence _compileType_3 = this.compileType(ea, im);
     _builder.append(_compileType_3, "    ");
     _builder.append(" value) {");
     _builder.newLineIfNotEmpty();
@@ -324,7 +324,7 @@ public class ProcessorDslGenerator implements IGenerator {
     String _name_9 = e.getName();
     _builder.append(_name_9, "    ");
     _builder.append(" fromValue(");
-    CharSequence _compileType_4 = this.compileType(ea, importManager);
+    CharSequence _compileType_4 = this.compileType(ea, im);
     _builder.append(_compileType_4, "    ");
     _builder.append(" value) {");
     _builder.newLineIfNotEmpty();
@@ -354,7 +354,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("    ");
     _builder.append("public ");
-    CharSequence _compileType_5 = this.compileType(ea, importManager);
+    CharSequence _compileType_5 = this.compileType(ea, im);
     _builder.append(_compileType_5, "    ");
     _builder.append(" getValue() {");
     _builder.newLineIfNotEmpty();
@@ -385,13 +385,13 @@ public class ProcessorDslGenerator implements IGenerator {
   public CharSequence compile(final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     ImportManager _importManager = new ImportManager(true);
-    final ImportManager importManager = _importManager;
+    final ImportManager im = _importManager;
     _builder.newLineIfNotEmpty();
-    this.addImplements(e, importManager);
+    this.addImplements(e, im);
     _builder.newLineIfNotEmpty();
-    this.addExtends(e, importManager);
+    this.addExtends(e, im);
     _builder.newLineIfNotEmpty();
-    final CharSequence classBody = this.compile(e, ae, importManager);
+    final CharSequence classBody = this.compile(e, ae, im);
     _builder.newLineIfNotEmpty();
     {
       EObject _eContainer = e.eContainer();
@@ -407,14 +407,14 @@ public class ProcessorDslGenerator implements IGenerator {
     }
     _builder.newLineIfNotEmpty();
     {
-      List<String> _imports = importManager.getImports();
+      List<String> _imports = im.getImports();
       boolean _isEmpty = _imports.isEmpty();
       boolean _not = (!_isEmpty);
       if (_not) {
         _builder.append("  ");
         _builder.newLine();
         {
-          List<String> _imports_1 = importManager.getImports();
+          List<String> _imports_1 = im.getImports();
           for(final String i : _imports_1) {
             _builder.append("import ");
             _builder.append(i, "");
@@ -487,14 +487,14 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final PojoEntity e, final AnnotatedEntity ae, final ImportManager importManager) {
+  public CharSequence compile(final PojoEntity e, final AnnotatedEntity ae, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<Annotation> _annotations = ae.getAnnotations();
       for(final Annotation a : _annotations) {
         _builder.append("@");
         JvmType _type = a.getType();
-        CharSequence _serialize = importManager.serialize(_type);
+        CharSequence _serialize = im.serialize(_type);
         _builder.append(_serialize, "");
         {
           EList<AnnotationProperty> _features = a.getFeatures();
@@ -511,7 +511,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(f, importManager);
+                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(f, im);
                 _builder.append(_compileAnnotationProperty, "");
               }
             }
@@ -532,7 +532,7 @@ public class ProcessorDslGenerator implements IGenerator {
     String _name = e.getName();
     _builder.append(_name, "");
     _builder.append(" ");
-    CharSequence _compileExtends = this.compileExtends(e);
+    CharSequence _compileExtends = this.compileExtends(e, im);
     _builder.append(_compileExtends, "");
     CharSequence _compileImplements = this.compileImplements(e);
     _builder.append(_compileImplements, "");
@@ -570,7 +570,7 @@ public class ProcessorDslGenerator implements IGenerator {
             _builder.append("  ");
             _builder.append("@");
             JvmType _type_1 = a_1.getType();
-            CharSequence _serialize_1 = importManager.serialize(_type_1);
+            CharSequence _serialize_1 = im.serialize(_type_1);
             _builder.append(_serialize_1, "  ");
             {
               EList<AnnotationProperty> _features_3 = a_1.getFeatures();
@@ -587,7 +587,7 @@ public class ProcessorDslGenerator implements IGenerator {
                     } else {
                       _builder.appendImmediate(", ", "  ");
                     }
-                    CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(ff, importManager);
+                    CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(ff, im);
                     _builder.append(_compileAnnotationProperty_1, "  ");
                   }
                 }
@@ -628,7 +628,7 @@ public class ProcessorDslGenerator implements IGenerator {
             _builder.append("  ");
             _builder.append("@");
             JvmType _type_2 = a_2.getType();
-            CharSequence _serialize_2 = importManager.serialize(_type_2);
+            CharSequence _serialize_2 = im.serialize(_type_2);
             _builder.append(_serialize_2, "  ");
             {
               EList<AnnotationProperty> _features_6 = a_2.getFeatures();
@@ -645,7 +645,7 @@ public class ProcessorDslGenerator implements IGenerator {
                     } else {
                       _builder.appendImmediate(", ", "  ");
                     }
-                    CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff_1, importManager);
+                    CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff_1, im);
                     _builder.append(_compileAnnotationProperty_2, "  ");
                   }
                 }
@@ -677,7 +677,7 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.append("  ");
         _builder.append("@");
         JvmType _type_3 = a_3.getType();
-        CharSequence _serialize_3 = importManager.serialize(_type_3);
+        CharSequence _serialize_3 = im.serialize(_type_3);
         _builder.append(_serialize_3, "  ");
         {
           EList<AnnotationProperty> _features_8 = a_3.getFeatures();
@@ -694,7 +694,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "  ");
                 }
-                CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(f_3, importManager);
+                CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(f_3, im);
                 _builder.append(_compileAnnotationProperty_3, "  ");
               }
             }
@@ -726,7 +726,7 @@ public class ProcessorDslGenerator implements IGenerator {
             _builder.append("  ");
             _builder.append("@");
             JvmType _type_4 = a_4.getType();
-            CharSequence _serialize_4 = importManager.serialize(_type_4);
+            CharSequence _serialize_4 = im.serialize(_type_4);
             _builder.append(_serialize_4, "  ");
             {
               EList<AnnotationProperty> _features_10 = a_4.getFeatures();
@@ -743,7 +743,7 @@ public class ProcessorDslGenerator implements IGenerator {
                     } else {
                       _builder.appendImmediate(", ", "  ");
                     }
-                    CharSequence _compileAnnotationProperty_4 = this.compileAnnotationProperty(f_4, importManager);
+                    CharSequence _compileAnnotationProperty_4 = this.compileAnnotationProperty(f_4, im);
                     _builder.append(_compileAnnotationProperty_4, "  ");
                   }
                 }
@@ -768,8 +768,9 @@ public class ProcessorDslGenerator implements IGenerator {
               _builder.appendImmediate(", ", "  ");
             }
             PojoProperty _feature_4 = f_5.getFeature();
-            CharSequence _compileType = this.compileType(_feature_4, importManager);
-            _builder.append(_compileType, "  ");
+            CharSequence _compileType = this.compileType(_feature_4, im);
+            CharSequence _fullName = Utils.getFullName(e, f_5, _compileType, im);
+            _builder.append(_fullName, "  ");
             _builder.append(" ");
             PojoProperty _feature_5 = f_5.getFeature();
             String _name_4 = _feature_5.getName();
@@ -839,7 +840,7 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.append("  ");
         PojoProperty _feature_9 = f_8.getFeature();
         String _operatorsSuffix = Utils.getOperatorsSuffix(e);
-        CharSequence _compile = this.compile(_feature_9, f_8, importManager, e, ae, _operatorsSuffix);
+        CharSequence _compile = this.compile(_feature_9, f_8, im, e, ae, _operatorsSuffix);
         _builder.append(_compile, "  ");
         _builder.newLineIfNotEmpty();
       }
@@ -863,7 +864,7 @@ public class ProcessorDslGenerator implements IGenerator {
           boolean _equalsIgnoreCase = _name_8.equalsIgnoreCase("hashCode");
           if (_equalsIgnoreCase) {
             PojoProperty _feature_11 = f_9.getFeature();
-            CharSequence _compileHashCode = this.compileHashCode(_feature_11, f_9, importManager, e, ae);
+            CharSequence _compileHashCode = this.compileHashCode(_feature_11, f_9, im, e, ae);
             _builder.append(_compileHashCode, "  ");
             _builder.newLineIfNotEmpty();
             _builder.append("  ");
@@ -873,7 +874,7 @@ public class ProcessorDslGenerator implements IGenerator {
             boolean _equalsIgnoreCase_1 = _name_9.equalsIgnoreCase("equals");
             if (_equalsIgnoreCase_1) {
               PojoProperty _feature_13 = f_9.getFeature();
-              CharSequence _compileEquals = this.compileEquals(_feature_13, f_9, importManager, e, ae);
+              CharSequence _compileEquals = this.compileEquals(_feature_13, f_9, im, e, ae);
               _builder.append(_compileEquals, "  ");
               _builder.newLineIfNotEmpty();
               _builder.append("  ");
@@ -883,7 +884,7 @@ public class ProcessorDslGenerator implements IGenerator {
               boolean _equalsIgnoreCase_2 = _name_10.equalsIgnoreCase("toInit");
               if (_equalsIgnoreCase_2) {
                 PojoProperty _feature_15 = f_9.getFeature();
-                CharSequence _compileToInit = this.compileToInit(_feature_15, f_9, importManager, e, ae);
+                CharSequence _compileToInit = this.compileToInit(_feature_15, f_9, im, e, ae);
                 _builder.append(_compileToInit, "  ");
                 _builder.newLineIfNotEmpty();
                 _builder.append("  ");
@@ -893,7 +894,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 boolean _equalsIgnoreCase_3 = _name_11.equalsIgnoreCase("enumInit");
                 if (_equalsIgnoreCase_3) {
                   PojoProperty _feature_17 = f_9.getFeature();
-                  CharSequence _compileEnumInit = this.compileEnumInit(_feature_17, f_9, importManager, e, ae);
+                  CharSequence _compileEnumInit = this.compileEnumInit(_feature_17, f_9, im, e, ae);
                   _builder.append(_compileEnumInit, "  ");
                   _builder.newLineIfNotEmpty();
                   _builder.append("  ");
@@ -903,7 +904,7 @@ public class ProcessorDslGenerator implements IGenerator {
                   boolean _equalsIgnoreCase_4 = _name_12.equalsIgnoreCase("isDef");
                   if (_equalsIgnoreCase_4) {
                     PojoProperty _feature_19 = f_9.getFeature();
-                    CharSequence _compileIsDef = this.compileIsDef(_feature_19, f_9, importManager, e, ae);
+                    CharSequence _compileIsDef = this.compileIsDef(_feature_19, f_9, im, e, ae);
                     _builder.append(_compileIsDef, "  ");
                     _builder.newLineIfNotEmpty();
                     _builder.append("  ");
@@ -913,7 +914,7 @@ public class ProcessorDslGenerator implements IGenerator {
                     boolean _equalsIgnoreCase_5 = _name_13.equalsIgnoreCase("enumDef");
                     if (_equalsIgnoreCase_5) {
                       PojoProperty _feature_21 = f_9.getFeature();
-                      CharSequence _compileEnumDef = this.compileEnumDef(_feature_21, f_9, importManager, e, ae);
+                      CharSequence _compileEnumDef = this.compileEnumDef(_feature_21, f_9, im, e, ae);
                       _builder.append(_compileEnumDef, "  ");
                       _builder.newLineIfNotEmpty();
                       _builder.append("  ");
@@ -923,7 +924,7 @@ public class ProcessorDslGenerator implements IGenerator {
                       boolean _equalsIgnoreCase_6 = _name_14.equalsIgnoreCase("toString");
                       if (_equalsIgnoreCase_6) {
                         PojoProperty _feature_23 = f_9.getFeature();
-                        CharSequence _compileToString = this.compileToString(_feature_23, f_9, importManager, e, ae);
+                        CharSequence _compileToString = this.compileToString(_feature_23, f_9, im, e, ae);
                         _builder.append(_compileToString, "  ");
                       }
                     }
@@ -948,7 +949,7 @@ public class ProcessorDslGenerator implements IGenerator {
       if (_and) {
         _builder.newLineIfNotEmpty();
         _builder.append("  ");
-        CharSequence _compileOperators = this.compileOperators(importManager, e, ae);
+        CharSequence _compileOperators = this.compileOperators(im, e, ae);
         _builder.append(_compileOperators, "  ");
       }
     }
@@ -958,7 +959,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileAnnotationProperty(final AnnotationProperty f, final ImportManager importManager) {
+  public CharSequence compileAnnotationProperty(final AnnotationProperty f, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     String _name = f.getName();
     _builder.append(_name, "");
@@ -968,7 +969,7 @@ public class ProcessorDslGenerator implements IGenerator {
       boolean _notEquals = (!Objects.equal(_type, null));
       if (_notEquals) {
         JvmType _type_1 = f.getType();
-        CharSequence _serialize = importManager.serialize(_type_1);
+        CharSequence _serialize = im.serialize(_type_1);
         _builder.append(_serialize, "");
       } else {
         PojoEntity _ref = f.getRef();
@@ -985,7 +986,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager importManager, final PojoEntity e, final AnnotatedEntity ae, final String operatorSuffix) {
+  public CharSequence compile(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae, final String operatorSuffix) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     {
@@ -993,7 +994,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a : _attributeAnnotations) {
         _builder.append("@");
         JvmType _type = a.getType();
-        CharSequence _serialize = importManager.serialize(_type);
+        CharSequence _serialize = im.serialize(_type);
         _builder.append(_serialize, "");
         {
           EList<AnnotationProperty> _features = a.getFeatures();
@@ -1010,7 +1011,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, importManager);
+                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
                 _builder.append(_compileAnnotationProperty, "");
               }
             }
@@ -1021,7 +1022,7 @@ public class ProcessorDslGenerator implements IGenerator {
       }
     }
     _builder.append("private ");
-    CharSequence _compileType = this.compileType(f, importManager);
+    CharSequence _compileType = this.compileType(f, im);
     _builder.append(_compileType, "");
     _builder.append(" ");
     String _name = f.getName();
@@ -1030,7 +1031,7 @@ public class ProcessorDslGenerator implements IGenerator {
       boolean _isList = Utils.isList(f);
       if (_isList) {
         _builder.append(" = new Array");
-        CharSequence _compileType_1 = this.compileType(f, importManager);
+        CharSequence _compileType_1 = this.compileType(f, im);
         _builder.append(_compileType_1, "");
         _builder.append("()");
       } else {
@@ -1049,7 +1050,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_1 : _getterAnnotations) {
         _builder.append("@");
         JvmType _type_1 = a_1.getType();
-        CharSequence _serialize_1 = importManager.serialize(_type_1);
+        CharSequence _serialize_1 = im.serialize(_type_1);
         _builder.append(_serialize_1, "");
         {
           EList<AnnotationProperty> _features_2 = a_1.getFeatures();
@@ -1066,7 +1067,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, importManager);
+                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, im);
                 _builder.append(_compileAnnotationProperty_1, "");
               }
             }
@@ -1077,7 +1078,7 @@ public class ProcessorDslGenerator implements IGenerator {
       }
     }
     _builder.append("public ");
-    CharSequence _compileType_2 = this.compileType(f, importManager);
+    CharSequence _compileType_2 = this.compileType(f, im);
     _builder.append(_compileType_2, "");
     _builder.append(" get");
     String _name_1 = f.getName();
@@ -1100,7 +1101,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_2 : _setterAnnotations) {
         _builder.append("@");
         JvmType _type_2 = a_2.getType();
-        CharSequence _serialize_2 = importManager.serialize(_type_2);
+        CharSequence _serialize_2 = im.serialize(_type_2);
         _builder.append(_serialize_2, "");
         {
           EList<AnnotationProperty> _features_4 = a_2.getFeatures();
@@ -1117,7 +1118,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(af_2, importManager);
+                CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(af_2, im);
                 _builder.append(_compileAnnotationProperty_2, "");
               }
             }
@@ -1132,7 +1133,7 @@ public class ProcessorDslGenerator implements IGenerator {
     String _firstUpper_1 = StringExtensions.toFirstUpper(_name_3);
     _builder.append(_firstUpper_1, "");
     _builder.append("(");
-    CharSequence _compileType_3 = this.compileType(f, importManager);
+    CharSequence _compileType_3 = this.compileType(f, im);
     _builder.append(_compileType_3, "");
     _builder.append(" ");
     String _name_4 = f.getName();
@@ -1160,7 +1161,7 @@ public class ProcessorDslGenerator implements IGenerator {
     String _firstUpper_2 = StringExtensions.toFirstUpper(_name_8);
     _builder.append(_firstUpper_2, "");
     _builder.append("(");
-    CharSequence _compileType_4 = this.compileType(f, importManager);
+    CharSequence _compileType_4 = this.compileType(f, im);
     _builder.append(_compileType_4, "");
     _builder.append(" ");
     String _name_9 = f.getName();
@@ -1278,7 +1279,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileHashCode(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager importManager, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileHashCode(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("@Override");
@@ -1288,7 +1289,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a : _attributeAnnotations) {
         _builder.append("@");
         JvmType _type = a.getType();
-        CharSequence _serialize = importManager.serialize(_type);
+        CharSequence _serialize = im.serialize(_type);
         _builder.append(_serialize, "");
         {
           EList<AnnotationProperty> _features = a.getFeatures();
@@ -1305,7 +1306,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, importManager);
+                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
                 _builder.append(_compileAnnotationProperty, "");
               }
             }
@@ -1357,7 +1358,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileEquals(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager importManager, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileEquals(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("@Override");
@@ -1367,7 +1368,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a : _attributeAnnotations) {
         _builder.append("@");
         JvmType _type = a.getType();
-        CharSequence _serialize = importManager.serialize(_type);
+        CharSequence _serialize = im.serialize(_type);
         _builder.append(_serialize, "");
         {
           EList<AnnotationProperty> _features = a.getFeatures();
@@ -1384,7 +1385,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, importManager);
+                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
                 _builder.append(_compileAnnotationProperty, "");
               }
             }
@@ -1462,7 +1463,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileToString(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager importManager, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileToString(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("@Override");
@@ -1472,7 +1473,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a : _attributeAnnotations) {
         _builder.append("@");
         JvmType _type = a.getType();
-        CharSequence _serialize = importManager.serialize(_type);
+        CharSequence _serialize = im.serialize(_type);
         _builder.append(_serialize, "");
         {
           EList<AnnotationProperty> _features = a.getFeatures();
@@ -1489,7 +1490,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, importManager);
+                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
                 _builder.append(_compileAnnotationProperty, "");
               }
             }
@@ -1539,7 +1540,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_1 : _attributeAnnotations_1) {
         _builder.append("@");
         JvmType _type_1 = a_1.getType();
-        CharSequence _serialize_1 = importManager.serialize(_type_1);
+        CharSequence _serialize_1 = im.serialize(_type_1);
         _builder.append(_serialize_1, "");
         {
           EList<AnnotationProperty> _features_2 = a_1.getFeatures();
@@ -1556,7 +1557,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, importManager);
+                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, im);
                 _builder.append(_compileAnnotationProperty_1, "");
               }
             }
@@ -1603,7 +1604,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileIsDef(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager importManager, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileIsDef(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public enum Attribute {");
@@ -1631,7 +1632,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a : _attributeAnnotations) {
         _builder.append("@");
         JvmType _type = a.getType();
-        CharSequence _serialize = importManager.serialize(_type);
+        CharSequence _serialize = im.serialize(_type);
         _builder.append(_serialize, "");
         {
           EList<AnnotationProperty> _features = a.getFeatures();
@@ -1648,7 +1649,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, importManager);
+                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
                 _builder.append(_compileAnnotationProperty, "");
               }
             }
@@ -1666,7 +1667,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_1 : _attributeAnnotations_1) {
         _builder.append("@");
         JvmType _type_1 = a_1.getType();
-        CharSequence _serialize_1 = importManager.serialize(_type_1);
+        CharSequence _serialize_1 = im.serialize(_type_1);
         _builder.append(_serialize_1, "");
         {
           EList<AnnotationProperty> _features_2 = a_1.getFeatures();
@@ -1683,7 +1684,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, importManager);
+                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, im);
                 _builder.append(_compileAnnotationProperty_1, "");
               }
             }
@@ -1698,7 +1699,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_2 : _conflictAnnotations) {
         _builder.append("@");
         JvmType _type_2 = a_2.getType();
-        CharSequence _serialize_2 = importManager.serialize(_type_2);
+        CharSequence _serialize_2 = im.serialize(_type_2);
         _builder.append(_serialize_2, "");
         {
           EList<AnnotationProperty> _features_4 = a_2.getFeatures();
@@ -1715,7 +1716,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff, importManager);
+                CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff, im);
                 _builder.append(_compileAnnotationProperty_2, "");
               }
             }
@@ -1747,7 +1748,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_3 : _attributeAnnotations_2) {
         _builder.append("@");
         JvmType _type_3 = a_3.getType();
-        CharSequence _serialize_3 = importManager.serialize(_type_3);
+        CharSequence _serialize_3 = im.serialize(_type_3);
         _builder.append(_serialize_3, "");
         {
           EList<AnnotationProperty> _features_6 = a_3.getFeatures();
@@ -1764,7 +1765,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(af_2, importManager);
+                CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(af_2, im);
                 _builder.append(_compileAnnotationProperty_3, "");
               }
             }
@@ -1779,7 +1780,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_4 : _conflictAnnotations_1) {
         _builder.append("@");
         JvmType _type_4 = a_4.getType();
-        CharSequence _serialize_4 = importManager.serialize(_type_4);
+        CharSequence _serialize_4 = im.serialize(_type_4);
         _builder.append(_serialize_4, "");
         {
           EList<AnnotationProperty> _features_8 = a_4.getFeatures();
@@ -1796,7 +1797,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_4 = this.compileAnnotationProperty(ff_1, importManager);
+                CharSequence _compileAnnotationProperty_4 = this.compileAnnotationProperty(ff_1, im);
                 _builder.append(_compileAnnotationProperty_4, "");
               }
             }
@@ -1828,7 +1829,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_5 : _attributeAnnotations_3) {
         _builder.append("@");
         JvmType _type_5 = a_5.getType();
-        CharSequence _serialize_5 = importManager.serialize(_type_5);
+        CharSequence _serialize_5 = im.serialize(_type_5);
         _builder.append(_serialize_5, "");
         {
           EList<AnnotationProperty> _features_10 = a_5.getFeatures();
@@ -1845,7 +1846,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_5 = this.compileAnnotationProperty(af_3, importManager);
+                CharSequence _compileAnnotationProperty_5 = this.compileAnnotationProperty(af_3, im);
                 _builder.append(_compileAnnotationProperty_5, "");
               }
             }
@@ -1877,7 +1878,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_6 : _attributeAnnotations_4) {
         _builder.append("@");
         JvmType _type_6 = a_6.getType();
-        CharSequence _serialize_6 = importManager.serialize(_type_6);
+        CharSequence _serialize_6 = im.serialize(_type_6);
         _builder.append(_serialize_6, "");
         {
           EList<AnnotationProperty> _features_12 = a_6.getFeatures();
@@ -1894,7 +1895,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_6 = this.compileAnnotationProperty(af_4, importManager);
+                CharSequence _compileAnnotationProperty_6 = this.compileAnnotationProperty(af_4, im);
                 _builder.append(_compileAnnotationProperty_6, "");
               }
             }
@@ -1926,7 +1927,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_7 : _attributeAnnotations_5) {
         _builder.append("@");
         JvmType _type_7 = a_7.getType();
-        CharSequence _serialize_7 = importManager.serialize(_type_7);
+        CharSequence _serialize_7 = im.serialize(_type_7);
         _builder.append(_serialize_7, "");
         {
           EList<AnnotationProperty> _features_14 = a_7.getFeatures();
@@ -1943,7 +1944,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_7 = this.compileAnnotationProperty(af_5, importManager);
+                CharSequence _compileAnnotationProperty_7 = this.compileAnnotationProperty(af_5, im);
                 _builder.append(_compileAnnotationProperty_7, "");
               }
             }
@@ -1972,7 +1973,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_8 : _attributeAnnotations_6) {
         _builder.append("@");
         JvmType _type_8 = a_8.getType();
-        CharSequence _serialize_8 = importManager.serialize(_type_8);
+        CharSequence _serialize_8 = im.serialize(_type_8);
         _builder.append(_serialize_8, "");
         {
           EList<AnnotationProperty> _features_16 = a_8.getFeatures();
@@ -1989,7 +1990,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_8 = this.compileAnnotationProperty(af_6, importManager);
+                CharSequence _compileAnnotationProperty_8 = this.compileAnnotationProperty(af_6, im);
                 _builder.append(_compileAnnotationProperty_8, "");
               }
             }
@@ -2004,7 +2005,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_9 : _conflictAnnotations_2) {
         _builder.append("@");
         JvmType _type_9 = a_9.getType();
-        CharSequence _serialize_9 = importManager.serialize(_type_9);
+        CharSequence _serialize_9 = im.serialize(_type_9);
         _builder.append(_serialize_9, "");
         {
           EList<AnnotationProperty> _features_18 = a_9.getFeatures();
@@ -2021,7 +2022,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_9 = this.compileAnnotationProperty(ff_2, importManager);
+                CharSequence _compileAnnotationProperty_9 = this.compileAnnotationProperty(ff_2, im);
                 _builder.append(_compileAnnotationProperty_9, "");
               }
             }
@@ -2050,7 +2051,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_10 : _attributeAnnotations_7) {
         _builder.append("@");
         JvmType _type_10 = a_10.getType();
-        CharSequence _serialize_10 = importManager.serialize(_type_10);
+        CharSequence _serialize_10 = im.serialize(_type_10);
         _builder.append(_serialize_10, "");
         {
           EList<AnnotationProperty> _features_20 = a_10.getFeatures();
@@ -2067,7 +2068,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_10 = this.compileAnnotationProperty(af_7, importManager);
+                CharSequence _compileAnnotationProperty_10 = this.compileAnnotationProperty(af_7, im);
                 _builder.append(_compileAnnotationProperty_10, "");
               }
             }
@@ -2156,7 +2157,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_11 : _attributeAnnotations_8) {
         _builder.append("@");
         JvmType _type_11 = a_11.getType();
-        CharSequence _serialize_11 = importManager.serialize(_type_11);
+        CharSequence _serialize_11 = im.serialize(_type_11);
         _builder.append(_serialize_11, "");
         {
           EList<AnnotationProperty> _features_22 = a_11.getFeatures();
@@ -2173,7 +2174,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_11 = this.compileAnnotationProperty(af_8, importManager);
+                CharSequence _compileAnnotationProperty_11 = this.compileAnnotationProperty(af_8, im);
                 _builder.append(_compileAnnotationProperty_11, "");
               }
             }
@@ -2193,7 +2194,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileEnumDef(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager importManager, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileEnumDef(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public enum Attribute {");
@@ -2218,7 +2219,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileToInit(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager importManager, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileToInit(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public enum Association {");
@@ -2246,7 +2247,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a : _attributeAnnotations) {
         _builder.append("@");
         JvmType _type = a.getType();
-        CharSequence _serialize = importManager.serialize(_type);
+        CharSequence _serialize = im.serialize(_type);
         _builder.append(_serialize, "");
         {
           EList<AnnotationProperty> _features = a.getFeatures();
@@ -2263,7 +2264,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, importManager);
+                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
                 _builder.append(_compileAnnotationProperty, "");
               }
             }
@@ -2281,7 +2282,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_1 : _attributeAnnotations_1) {
         _builder.append("@");
         JvmType _type_1 = a_1.getType();
-        CharSequence _serialize_1 = importManager.serialize(_type_1);
+        CharSequence _serialize_1 = im.serialize(_type_1);
         _builder.append(_serialize_1, "");
         {
           EList<AnnotationProperty> _features_2 = a_1.getFeatures();
@@ -2298,7 +2299,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, importManager);
+                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, im);
                 _builder.append(_compileAnnotationProperty_1, "");
               }
             }
@@ -2313,7 +2314,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_2 : _conflictAnnotations) {
         _builder.append("@");
         JvmType _type_2 = a_2.getType();
-        CharSequence _serialize_2 = importManager.serialize(_type_2);
+        CharSequence _serialize_2 = im.serialize(_type_2);
         _builder.append(_serialize_2, "");
         {
           EList<AnnotationProperty> _features_4 = a_2.getFeatures();
@@ -2330,7 +2331,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff, importManager);
+                CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff, im);
                 _builder.append(_compileAnnotationProperty_2, "");
               }
             }
@@ -2362,7 +2363,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_3 : _attributeAnnotations_2) {
         _builder.append("@");
         JvmType _type_3 = a_3.getType();
-        CharSequence _serialize_3 = importManager.serialize(_type_3);
+        CharSequence _serialize_3 = im.serialize(_type_3);
         _builder.append(_serialize_3, "");
         {
           EList<AnnotationProperty> _features_6 = a_3.getFeatures();
@@ -2379,7 +2380,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(af_2, importManager);
+                CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(af_2, im);
                 _builder.append(_compileAnnotationProperty_3, "");
               }
             }
@@ -2394,7 +2395,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_4 : _conflictAnnotations_1) {
         _builder.append("@");
         JvmType _type_4 = a_4.getType();
-        CharSequence _serialize_4 = importManager.serialize(_type_4);
+        CharSequence _serialize_4 = im.serialize(_type_4);
         _builder.append(_serialize_4, "");
         {
           EList<AnnotationProperty> _features_8 = a_4.getFeatures();
@@ -2411,7 +2412,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_4 = this.compileAnnotationProperty(ff_1, importManager);
+                CharSequence _compileAnnotationProperty_4 = this.compileAnnotationProperty(ff_1, im);
                 _builder.append(_compileAnnotationProperty_4, "");
               }
             }
@@ -2443,7 +2444,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_5 : _attributeAnnotations_3) {
         _builder.append("@");
         JvmType _type_5 = a_5.getType();
-        CharSequence _serialize_5 = importManager.serialize(_type_5);
+        CharSequence _serialize_5 = im.serialize(_type_5);
         _builder.append(_serialize_5, "");
         {
           EList<AnnotationProperty> _features_10 = a_5.getFeatures();
@@ -2460,7 +2461,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_5 = this.compileAnnotationProperty(af_3, importManager);
+                CharSequence _compileAnnotationProperty_5 = this.compileAnnotationProperty(af_3, im);
                 _builder.append(_compileAnnotationProperty_5, "");
               }
             }
@@ -2492,7 +2493,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_6 : _attributeAnnotations_4) {
         _builder.append("@");
         JvmType _type_6 = a_6.getType();
-        CharSequence _serialize_6 = importManager.serialize(_type_6);
+        CharSequence _serialize_6 = im.serialize(_type_6);
         _builder.append(_serialize_6, "");
         {
           EList<AnnotationProperty> _features_12 = a_6.getFeatures();
@@ -2509,7 +2510,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_6 = this.compileAnnotationProperty(af_4, importManager);
+                CharSequence _compileAnnotationProperty_6 = this.compileAnnotationProperty(af_4, im);
                 _builder.append(_compileAnnotationProperty_6, "");
               }
             }
@@ -2541,7 +2542,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_7 : _attributeAnnotations_5) {
         _builder.append("@");
         JvmType _type_7 = a_7.getType();
-        CharSequence _serialize_7 = importManager.serialize(_type_7);
+        CharSequence _serialize_7 = im.serialize(_type_7);
         _builder.append(_serialize_7, "");
         {
           EList<AnnotationProperty> _features_14 = a_7.getFeatures();
@@ -2558,7 +2559,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_7 = this.compileAnnotationProperty(af_5, importManager);
+                CharSequence _compileAnnotationProperty_7 = this.compileAnnotationProperty(af_5, im);
                 _builder.append(_compileAnnotationProperty_7, "");
               }
             }
@@ -2587,7 +2588,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_8 : _attributeAnnotations_6) {
         _builder.append("@");
         JvmType _type_8 = a_8.getType();
-        CharSequence _serialize_8 = importManager.serialize(_type_8);
+        CharSequence _serialize_8 = im.serialize(_type_8);
         _builder.append(_serialize_8, "");
         {
           EList<AnnotationProperty> _features_16 = a_8.getFeatures();
@@ -2604,7 +2605,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_8 = this.compileAnnotationProperty(af_6, importManager);
+                CharSequence _compileAnnotationProperty_8 = this.compileAnnotationProperty(af_6, im);
                 _builder.append(_compileAnnotationProperty_8, "");
               }
             }
@@ -2624,7 +2625,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileEnumInit(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager importManager, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileEnumInit(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public enum Association {");
@@ -2649,7 +2650,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileOperators(final ImportManager importManager, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileOperators(final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public enum OpAttribute {");
@@ -2697,7 +2698,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a : _conflictAnnotations) {
         _builder.append("@");
         JvmType _type = a.getType();
-        CharSequence _serialize = importManager.serialize(_type);
+        CharSequence _serialize = im.serialize(_type);
         _builder.append(_serialize, "");
         {
           EList<AnnotationProperty> _features_1 = a.getFeatures();
@@ -2714,7 +2715,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(ff, importManager);
+                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(ff, im);
                 _builder.append(_compileAnnotationProperty, "");
               }
             }
@@ -2746,7 +2747,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_1 : _conflictAnnotations_1) {
         _builder.append("@");
         JvmType _type_1 = a_1.getType();
-        CharSequence _serialize_1 = importManager.serialize(_type_1);
+        CharSequence _serialize_1 = im.serialize(_type_1);
         _builder.append(_serialize_1, "");
         {
           EList<AnnotationProperty> _features_3 = a_1.getFeatures();
@@ -2763,7 +2764,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(ff_1, importManager);
+                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(ff_1, im);
                 _builder.append(_compileAnnotationProperty_1, "");
               }
             }
@@ -2829,7 +2830,7 @@ public class ProcessorDslGenerator implements IGenerator {
       for(final Annotation a_2 : _conflictAnnotations_2) {
         _builder.append("@");
         JvmType _type_2 = a_2.getType();
-        CharSequence _serialize_2 = importManager.serialize(_type_2);
+        CharSequence _serialize_2 = im.serialize(_type_2);
         _builder.append(_serialize_2, "");
         {
           EList<AnnotationProperty> _features_5 = a_2.getFeatures();
@@ -2846,7 +2847,7 @@ public class ProcessorDslGenerator implements IGenerator {
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff_2, importManager);
+                CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff_2, im);
                 _builder.append(_compileAnnotationProperty_2, "");
               }
             }
@@ -2900,7 +2901,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileType(final EnumProperty f, final ImportManager importManager) {
+  public CharSequence compileType(final EnumProperty f, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _native = f.getNative();
@@ -2914,7 +2915,7 @@ public class ProcessorDslGenerator implements IGenerator {
         boolean _notEquals_1 = (!Objects.equal(_type, null));
         if (_notEquals_1) {
           JvmType _type_1 = f.getType();
-          CharSequence _serialize = importManager.serialize(_type_1);
+          CharSequence _serialize = im.serialize(_type_1);
           _builder.append(_serialize, "");
         }
       }
@@ -2922,7 +2923,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileType(final PojoProperty f, final ImportManager importManager) {
+  public CharSequence compileType(final PojoProperty f, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _native = f.getNative();
@@ -2943,7 +2944,7 @@ public class ProcessorDslGenerator implements IGenerator {
           boolean _notEquals_2 = (!Objects.equal(_type, null));
           if (_notEquals_2) {
             JvmType _type_1 = f.getType();
-            CharSequence _serialize = importManager.serialize(_type_1);
+            CharSequence _serialize = im.serialize(_type_1);
             _builder.append(_serialize, "");
           }
         }
@@ -2955,7 +2956,7 @@ public class ProcessorDslGenerator implements IGenerator {
       if (_notEquals_3) {
         _builder.append("<");
         JvmType _gtype_1 = f.getGtype();
-        CharSequence _serialize_1 = importManager.serialize(_gtype_1);
+        CharSequence _serialize_1 = im.serialize(_gtype_1);
         _builder.append(_serialize_1, "");
         _builder.append(">");
       }
@@ -2980,7 +2981,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileType(final PojoType f, final ImportManager importManager) {
+  public CharSequence compileType(final PojoType f, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _native = f.getNative();
@@ -2995,14 +2996,14 @@ public class ProcessorDslGenerator implements IGenerator {
         if (_notEquals_1) {
           PojoEntity _ref_1 = f.getRef();
           JvmType _pojoMethod2jvmType = Utils.pojoMethod2jvmType(_ref_1);
-          CharSequence _serialize = importManager.serialize(_pojoMethod2jvmType);
+          CharSequence _serialize = im.serialize(_pojoMethod2jvmType);
           _builder.append(_serialize, "");
         } else {
           JvmType _type = f.getType();
           boolean _notEquals_2 = (!Objects.equal(_type, null));
           if (_notEquals_2) {
             JvmType _type_1 = f.getType();
-            CharSequence _serialize_1 = importManager.serialize(_type_1);
+            CharSequence _serialize_1 = im.serialize(_type_1);
             _builder.append(_serialize_1, "");
           }
         }
@@ -3014,7 +3015,7 @@ public class ProcessorDslGenerator implements IGenerator {
       if (_notEquals_3) {
         _builder.append("<");
         JvmType _gtype_1 = f.getGtype();
-        CharSequence _serialize_2 = importManager.serialize(_gtype_1);
+        CharSequence _serialize_2 = im.serialize(_gtype_1);
         _builder.append(_serialize_2, "");
         _builder.append(">");
       }
@@ -3026,7 +3027,7 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.append("<");
         PojoEntity _gref_1 = f.getGref();
         JvmType _pojoMethod2jvmType_1 = Utils.pojoMethod2jvmType(_gref_1);
-        CharSequence _serialize_3 = importManager.serialize(_pojoMethod2jvmType_1);
+        CharSequence _serialize_3 = im.serialize(_pojoMethod2jvmType_1);
         _builder.append(_serialize_3, "");
         _builder.append(">");
       }
@@ -3043,16 +3044,16 @@ public class ProcessorDslGenerator implements IGenerator {
   public CharSequence compile(final PojoDao d) {
     StringConcatenation _builder = new StringConcatenation();
     ImportManager _importManager = new ImportManager(true);
-    final ImportManager importManager = _importManager;
+    final ImportManager im = _importManager;
     _builder.newLineIfNotEmpty();
-    this.addImplements(d, importManager);
+    this.addImplements(d, im);
     _builder.newLineIfNotEmpty();
-    this.addExtends(d, importManager);
+    this.addExtends(d, im);
     _builder.newLineIfNotEmpty();
     final Map<String,List<PojoMethodArg>> toInits = Utils.getToInits(d);
     _builder.newLineIfNotEmpty();
     PojoEntity _pojo = d.getPojo();
-    final CharSequence classBody = this.compile(d, _pojo, toInits, importManager);
+    final CharSequence classBody = this.compile(d, _pojo, toInits, im);
     _builder.newLineIfNotEmpty();
     {
       EObject _eContainer = d.eContainer();
@@ -3092,14 +3093,14 @@ public class ProcessorDslGenerator implements IGenerator {
       }
     }
     {
-      List<String> _imports = importManager.getImports();
+      List<String> _imports = im.getImports();
       boolean _isEmpty = _imports.isEmpty();
       boolean _not = (!_isEmpty);
       if (_not) {
         _builder.append("  ");
         _builder.newLine();
         {
-          List<String> _imports_1 = importManager.getImports();
+          List<String> _imports_1 = im.getImports();
           for(final String i : _imports_1) {
             _builder.append("import ");
             _builder.append(i, "");
@@ -3187,7 +3188,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager importManager) {
+  public CharSequence compile(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public ");
     {
@@ -3207,7 +3208,7 @@ public class ProcessorDslGenerator implements IGenerator {
       }
     }
     _builder.append(" ");
-    CharSequence _compileExtends = this.compileExtends(d);
+    CharSequence _compileExtends = this.compileExtends(d, im);
     _builder.append(_compileExtends, "");
     CharSequence _compileImplements = this.compileImplements(d);
     _builder.append(_compileImplements, "");
@@ -3293,29 +3294,29 @@ public class ProcessorDslGenerator implements IGenerator {
           boolean _equals = Objects.equal(_name_3, "scaffold");
           if (_equals) {
             PojoEntity _parent = Utils.getParent(e);
-            CharSequence _compileInsert = this.compileInsert(d, e, _parent, importManager);
+            CharSequence _compileInsert = this.compileInsert(d, e, _parent, im);
             _builder.append(_compileInsert, "  ");
             _builder.newLineIfNotEmpty();
             _builder.append("  ");
-            CharSequence _compileGet = this.compileGet(d, e, toInits, importManager);
+            CharSequence _compileGet = this.compileGet(d, e, toInits, im);
             _builder.append(_compileGet, "  ");
             _builder.newLineIfNotEmpty();
             _builder.append("  ");
             PojoEntity _parent_1 = Utils.getParent(e);
-            CharSequence _compileUpdate = this.compileUpdate(d, e, _parent_1, importManager);
+            CharSequence _compileUpdate = this.compileUpdate(d, e, _parent_1, im);
             _builder.append(_compileUpdate, "  ");
             _builder.newLineIfNotEmpty();
             _builder.append("  ");
             PojoEntity _parent_2 = Utils.getParent(e);
-            CharSequence _compileDelete = this.compileDelete(d, e, _parent_2, importManager);
+            CharSequence _compileDelete = this.compileDelete(d, e, _parent_2, im);
             _builder.append(_compileDelete, "  ");
             _builder.newLineIfNotEmpty();
             _builder.append("  ");
-            CharSequence _compileList = this.compileList(d, e, toInits, importManager);
+            CharSequence _compileList = this.compileList(d, e, toInits, im);
             _builder.append(_compileList, "  ");
             _builder.newLineIfNotEmpty();
             _builder.append("  ");
-            CharSequence _compileCount = this.compileCount(d, e, toInits, importManager);
+            CharSequence _compileCount = this.compileCount(d, e, toInits, im);
             _builder.append(_compileCount, "  ");
             _builder.newLineIfNotEmpty();
             _builder.append("  ");
@@ -3323,7 +3324,7 @@ public class ProcessorDslGenerator implements IGenerator {
               boolean _isEmpty = toInits.isEmpty();
               boolean _not = (!_isEmpty);
               if (_not) {
-                CharSequence _compileMoreResultClasses = this.compileMoreResultClasses(d, e, toInits, importManager);
+                CharSequence _compileMoreResultClasses = this.compileMoreResultClasses(d, e, toInits, im);
                 _builder.append(_compileMoreResultClasses, "  ");
               }
             }
@@ -3332,12 +3333,12 @@ public class ProcessorDslGenerator implements IGenerator {
             if (_isCallUpdate) {
               _builder.newLineIfNotEmpty();
               _builder.append("  ");
-              CharSequence _compileCallUpdate = this.compileCallUpdate(d, m, importManager);
+              CharSequence _compileCallUpdate = this.compileCallUpdate(d, m, im);
               _builder.append(_compileCallUpdate, "  ");
             } else {
               boolean _isCallFunction = Utils.isCallFunction(m);
               if (_isCallFunction) {
-                CharSequence _compileCallFunction = this.compileCallFunction(d, m, importManager);
+                CharSequence _compileCallFunction = this.compileCallFunction(d, m, im);
                 _builder.append(_compileCallFunction, "  ");
               } else {
                 boolean _or = false;
@@ -3350,12 +3351,12 @@ public class ProcessorDslGenerator implements IGenerator {
                 }
                 if (_or) {
                   boolean _isCallQueryFunction_1 = Utils.isCallQueryFunction(m);
-                  CharSequence _compileCallQuery = this.compileCallQuery(d, m, importManager, _isCallQueryFunction_1);
+                  CharSequence _compileCallQuery = this.compileCallQuery(d, m, im, _isCallQueryFunction_1);
                   _builder.append(_compileCallQuery, "  ");
                 } else {
                   boolean _isCallSelectFunction = Utils.isCallSelectFunction(m);
                   if (_isCallSelectFunction) {
-                    CharSequence _compileCallSelectFunction = this.compileCallSelectFunction(d, m, importManager);
+                    CharSequence _compileCallSelectFunction = this.compileCallSelectFunction(d, m, im);
                     _builder.append(_compileCallSelectFunction, "  ");
                   }
                 }
@@ -3371,12 +3372,12 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileCallQuery(final PojoDao d, final PojoMethod m, final ImportManager importManager, final boolean isFunction) {
+  public CharSequence compileCallQuery(final PojoDao d, final PojoMethod m, final ImportManager im, final boolean isFunction) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public ");
     PojoType _type = m.getType();
-    CharSequence _compileType = this.compileType(_type, importManager);
+    CharSequence _compileType = this.compileType(_type, im);
     _builder.append(_compileType, "");
     _builder.append(" ");
     String _name = m.getName();
@@ -3392,7 +3393,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_1 = ma.getType();
-        CharSequence _compileType_1 = this.compileType(_type_1, importManager);
+        CharSequence _compileType_1 = this.compileType(_type_1, im);
         _builder.append(_compileType_1, "");
         _builder.append(" ");
         String _name_1 = ma.getName();
@@ -3447,7 +3448,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("  ");
     PojoType _type_2 = m.getType();
-    CharSequence _compileType_2 = this.compileType(_type_2, importManager);
+    CharSequence _compileType_2 = this.compileType(_type_2, im);
     _builder.append(_compileType_2, "  ");
     _builder.append(" list = sqlProc");
     String _name_5 = m.getName();
@@ -3494,7 +3495,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_4 = m.getType();
-    CharSequence _compileType_3 = this.compileType(_type_4, importManager);
+    CharSequence _compileType_3 = this.compileType(_type_4, im);
     _builder.append(_compileType_3, "");
     _builder.append(" ");
     String _name_9 = m.getName();
@@ -3510,7 +3511,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_5 = ma_3.getType();
-        CharSequence _compileType_4 = this.compileType(_type_5, importManager);
+        CharSequence _compileType_4 = this.compileType(_type_5, im);
         _builder.append(_compileType_4, "");
         _builder.append(" ");
         String _name_10 = ma_3.getName();
@@ -3544,7 +3545,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_6 = m.getType();
-    CharSequence _compileType_5 = this.compileType(_type_6, importManager);
+    CharSequence _compileType_5 = this.compileType(_type_6, im);
     _builder.append(_compileType_5, "");
     _builder.append(" ");
     String _name_13 = m.getName();
@@ -3560,7 +3561,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_7 = ma_5.getType();
-        CharSequence _compileType_6 = this.compileType(_type_7, importManager);
+        CharSequence _compileType_6 = this.compileType(_type_7, im);
         _builder.append(_compileType_6, "");
         _builder.append(" ");
         String _name_14 = ma_5.getName();
@@ -3594,7 +3595,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_8 = m.getType();
-    CharSequence _compileType_7 = this.compileType(_type_8, importManager);
+    CharSequence _compileType_7 = this.compileType(_type_8, im);
     _builder.append(_compileType_7, "");
     _builder.append(" ");
     String _name_17 = m.getName();
@@ -3610,7 +3611,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_9 = ma_7.getType();
-        CharSequence _compileType_8 = this.compileType(_type_9, importManager);
+        CharSequence _compileType_8 = this.compileType(_type_9, im);
         _builder.append(_compileType_8, "");
         _builder.append(" ");
         String _name_18 = ma_7.getName();
@@ -3644,12 +3645,12 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileCallFunction(final PojoDao d, final PojoMethod m, final ImportManager importManager) {
+  public CharSequence compileCallFunction(final PojoDao d, final PojoMethod m, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public ");
     PojoType _type = m.getType();
-    CharSequence _compileType = this.compileType(_type, importManager);
+    CharSequence _compileType = this.compileType(_type, im);
     _builder.append(_compileType, "");
     _builder.append(" ");
     String _name = m.getName();
@@ -3665,7 +3666,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_1 = ma.getType();
-        CharSequence _compileType_1 = this.compileType(_type_1, importManager);
+        CharSequence _compileType_1 = this.compileType(_type_1, im);
         _builder.append(_compileType_1, "");
         _builder.append(" ");
         String _name_1 = ma.getName();
@@ -3746,7 +3747,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.append("  ");
     _builder.append("return (");
     PojoType _type_2 = m.getType();
-    CharSequence _compileType_2 = this.compileType(_type_2, importManager);
+    CharSequence _compileType_2 = this.compileType(_type_2, im);
     _builder.append(_compileType_2, "  ");
     _builder.append(") result;");
     _builder.newLineIfNotEmpty();
@@ -3755,7 +3756,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_3 = m.getType();
-    CharSequence _compileType_3 = this.compileType(_type_3, importManager);
+    CharSequence _compileType_3 = this.compileType(_type_3, im);
     _builder.append(_compileType_3, "");
     _builder.append(" ");
     String _name_8 = m.getName();
@@ -3771,7 +3772,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_4 = ma_3.getType();
-        CharSequence _compileType_4 = this.compileType(_type_4, importManager);
+        CharSequence _compileType_4 = this.compileType(_type_4, im);
         _builder.append(_compileType_4, "");
         _builder.append(" ");
         String _name_9 = ma_3.getName();
@@ -3805,7 +3806,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_5 = m.getType();
-    CharSequence _compileType_5 = this.compileType(_type_5, importManager);
+    CharSequence _compileType_5 = this.compileType(_type_5, im);
     _builder.append(_compileType_5, "");
     _builder.append(" ");
     String _name_12 = m.getName();
@@ -3821,7 +3822,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_6 = ma_5.getType();
-        CharSequence _compileType_6 = this.compileType(_type_6, importManager);
+        CharSequence _compileType_6 = this.compileType(_type_6, im);
         _builder.append(_compileType_6, "");
         _builder.append(" ");
         String _name_13 = ma_5.getName();
@@ -3855,7 +3856,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_7 = m.getType();
-    CharSequence _compileType_7 = this.compileType(_type_7, importManager);
+    CharSequence _compileType_7 = this.compileType(_type_7, im);
     _builder.append(_compileType_7, "");
     _builder.append(" ");
     String _name_16 = m.getName();
@@ -3871,7 +3872,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_8 = ma_7.getType();
-        CharSequence _compileType_8 = this.compileType(_type_8, importManager);
+        CharSequence _compileType_8 = this.compileType(_type_8, im);
         _builder.append(_compileType_8, "");
         _builder.append(" ");
         String _name_17 = ma_7.getName();
@@ -3905,7 +3906,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileCallUpdate(final PojoDao d, final PojoMethod m, final ImportManager importManager) {
+  public CharSequence compileCallUpdate(final PojoDao d, final PojoMethod m, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public int ");
@@ -3922,7 +3923,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type = ma.getType();
-        CharSequence _compileType = this.compileType(_type, importManager);
+        CharSequence _compileType = this.compileType(_type, im);
         _builder.append(_compileType, "");
         _builder.append(" ");
         String _name_1 = ma.getName();
@@ -4020,7 +4021,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_1 = ma_3.getType();
-        CharSequence _compileType_1 = this.compileType(_type_1, importManager);
+        CharSequence _compileType_1 = this.compileType(_type_1, im);
         _builder.append(_compileType_1, "");
         _builder.append(" ");
         String _name_9 = ma_3.getName();
@@ -4066,7 +4067,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_2 = ma_5.getType();
-        CharSequence _compileType_2 = this.compileType(_type_2, importManager);
+        CharSequence _compileType_2 = this.compileType(_type_2, im);
         _builder.append(_compileType_2, "");
         _builder.append(" ");
         String _name_13 = ma_5.getName();
@@ -4112,7 +4113,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_3 = ma_7.getType();
-        CharSequence _compileType_3 = this.compileType(_type_3, importManager);
+        CharSequence _compileType_3 = this.compileType(_type_3, im);
         _builder.append(_compileType_3, "");
         _builder.append(" ");
         String _name_17 = ma_7.getName();
@@ -4146,12 +4147,12 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileCallSelectFunction(final PojoDao d, final PojoMethod m, final ImportManager importManager) {
+  public CharSequence compileCallSelectFunction(final PojoDao d, final PojoMethod m, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public ");
     PojoType _type = m.getType();
-    CharSequence _compileType = this.compileType(_type, importManager);
+    CharSequence _compileType = this.compileType(_type, im);
     _builder.append(_compileType, "");
     _builder.append(" ");
     String _name = m.getName();
@@ -4167,7 +4168,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_1 = ma.getType();
-        CharSequence _compileType_1 = this.compileType(_type_1, importManager);
+        CharSequence _compileType_1 = this.compileType(_type_1, im);
         _builder.append(_compileType_1, "");
         _builder.append(" ");
         String _name_1 = ma.getName();
@@ -4217,7 +4218,7 @@ public class ProcessorDslGenerator implements IGenerator {
     EList<PojoMethodArg> _args_2 = m.getArgs();
     PojoMethodArg _get = _args_2.get(0);
     PojoType _type_2 = _get.getType();
-    CharSequence _compileType_2 = this.compileType(_type_2, importManager);
+    CharSequence _compileType_2 = this.compileType(_type_2, im);
     _builder.append(_compileType_2, "  ");
     _builder.append("> list = sqlFun");
     String _name_5 = m.getName();
@@ -4227,7 +4228,7 @@ public class ProcessorDslGenerator implements IGenerator {
     EList<PojoMethodArg> _args_3 = m.getArgs();
     PojoMethodArg _get_1 = _args_3.get(0);
     PojoType _type_3 = _get_1.getType();
-    CharSequence _compileType_3 = this.compileType(_type_3, importManager);
+    CharSequence _compileType_3 = this.compileType(_type_3, im);
     _builder.append(_compileType_3, "  ");
     _builder.append(".class, ");
     {
@@ -4265,7 +4266,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_4 = m.getType();
-    CharSequence _compileType_4 = this.compileType(_type_4, importManager);
+    CharSequence _compileType_4 = this.compileType(_type_4, im);
     _builder.append(_compileType_4, "");
     _builder.append(" ");
     String _name_8 = m.getName();
@@ -4281,7 +4282,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_5 = ma_3.getType();
-        CharSequence _compileType_5 = this.compileType(_type_5, importManager);
+        CharSequence _compileType_5 = this.compileType(_type_5, im);
         _builder.append(_compileType_5, "");
         _builder.append(" ");
         String _name_9 = ma_3.getName();
@@ -4315,7 +4316,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_6 = m.getType();
-    CharSequence _compileType_6 = this.compileType(_type_6, importManager);
+    CharSequence _compileType_6 = this.compileType(_type_6, im);
     _builder.append(_compileType_6, "");
     _builder.append(" ");
     String _name_12 = m.getName();
@@ -4331,7 +4332,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_7 = ma_5.getType();
-        CharSequence _compileType_7 = this.compileType(_type_7, importManager);
+        CharSequence _compileType_7 = this.compileType(_type_7, im);
         _builder.append(_compileType_7, "");
         _builder.append(" ");
         String _name_13 = ma_5.getName();
@@ -4365,7 +4366,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_8 = m.getType();
-    CharSequence _compileType_8 = this.compileType(_type_8, importManager);
+    CharSequence _compileType_8 = this.compileType(_type_8, im);
     _builder.append(_compileType_8, "");
     _builder.append(" ");
     String _name_16 = m.getName();
@@ -4381,7 +4382,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_9 = ma_7.getType();
-        CharSequence _compileType_9 = this.compileType(_type_9, importManager);
+        CharSequence _compileType_9 = this.compileType(_type_9, im);
         _builder.append(_compileType_9, "");
         _builder.append(" ");
         String _name_17 = ma_7.getName();
@@ -4415,7 +4416,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileInsert(final PojoDao d, final PojoEntity e, final PojoEntity pe, final ImportManager importManager) {
+  public CharSequence compileInsert(final PojoDao d, final PojoEntity e, final PojoEntity pe, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public ");
@@ -4603,7 +4604,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileGet(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager importManager) {
+  public CharSequence compileGet(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public ");
@@ -4768,7 +4769,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileUpdate(final PojoDao d, final PojoEntity e, final PojoEntity pe, final ImportManager importManager) {
+  public CharSequence compileUpdate(final PojoDao d, final PojoEntity e, final PojoEntity pe, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public int update(SqlSession sqlSession, ");
@@ -4961,7 +4962,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileDelete(final PojoDao d, final PojoEntity e, final PojoEntity pe, final ImportManager importManager) {
+  public CharSequence compileDelete(final PojoDao d, final PojoEntity e, final PojoEntity pe, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public int delete(SqlSession sqlSession, ");
@@ -5154,7 +5155,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileList(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager importManager) {
+  public CharSequence compileList(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public List<");
@@ -5327,7 +5328,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileCount(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager importManager) {
+  public CharSequence compileCount(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public int count(SqlSession sqlSession, ");
@@ -5462,7 +5463,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileMoreResultClasses(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager importManager) {
+  public CharSequence compileMoreResultClasses(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("SqlControl getMoreResultClasses(");
@@ -5563,14 +5564,14 @@ public class ProcessorDslGenerator implements IGenerator {
   public CharSequence compileIfx(final PojoDao d) {
     StringConcatenation _builder = new StringConcatenation();
     ImportManager _importManager = new ImportManager(true);
-    final ImportManager importManager = _importManager;
+    final ImportManager im = _importManager;
     _builder.newLineIfNotEmpty();
-    this.addImplements(d, importManager);
+    this.addImplements(d, im);
     _builder.newLineIfNotEmpty();
-    this.addExtends(d, importManager);
+    this.addExtends(d, im);
     _builder.newLineIfNotEmpty();
     PojoEntity _pojo = d.getPojo();
-    final CharSequence classBody = this.compileIfx(d, _pojo, importManager);
+    final CharSequence classBody = this.compileIfx(d, _pojo, im);
     _builder.newLineIfNotEmpty();
     {
       EObject _eContainer = d.eContainer();
@@ -5603,7 +5604,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileIfx(final PojoDao d, final PojoEntity e, final ImportManager importManager) {
+  public CharSequence compileIfx(final PojoDao d, final PojoEntity e, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public interface ");
     String _name = d.getName();
@@ -5618,39 +5619,39 @@ public class ProcessorDslGenerator implements IGenerator {
           String _name_1 = m.getName();
           boolean _equals = Objects.equal(_name_1, "scaffold");
           if (_equals) {
-            CharSequence _compileInsertIfx = this.compileInsertIfx(d, e, importManager);
+            CharSequence _compileInsertIfx = this.compileInsertIfx(d, e, im);
             _builder.append(_compileInsertIfx, "  ");
             _builder.newLineIfNotEmpty();
             _builder.append("  ");
-            CharSequence _compileGetIfx = this.compileGetIfx(d, e, importManager);
+            CharSequence _compileGetIfx = this.compileGetIfx(d, e, im);
             _builder.append(_compileGetIfx, "  ");
             _builder.newLineIfNotEmpty();
             _builder.append("  ");
-            CharSequence _compileUpdateIfx = this.compileUpdateIfx(d, e, importManager);
+            CharSequence _compileUpdateIfx = this.compileUpdateIfx(d, e, im);
             _builder.append(_compileUpdateIfx, "  ");
             _builder.newLineIfNotEmpty();
             _builder.append("  ");
-            CharSequence _compileDeleteIfx = this.compileDeleteIfx(d, e, importManager);
+            CharSequence _compileDeleteIfx = this.compileDeleteIfx(d, e, im);
             _builder.append(_compileDeleteIfx, "  ");
             _builder.newLineIfNotEmpty();
             _builder.append("  ");
-            CharSequence _compileListIfx = this.compileListIfx(d, e, importManager);
+            CharSequence _compileListIfx = this.compileListIfx(d, e, im);
             _builder.append(_compileListIfx, "  ");
             _builder.newLineIfNotEmpty();
             _builder.append("  ");
-            CharSequence _compileCountIfx = this.compileCountIfx(d, e, importManager);
+            CharSequence _compileCountIfx = this.compileCountIfx(d, e, im);
             _builder.append(_compileCountIfx, "  ");
             _builder.newLineIfNotEmpty();
           } else {
             boolean _isCallUpdate = Utils.isCallUpdate(m);
             if (_isCallUpdate) {
               _builder.append("  ");
-              CharSequence _compileCallUpdateIfx = this.compileCallUpdateIfx(d, m, importManager);
+              CharSequence _compileCallUpdateIfx = this.compileCallUpdateIfx(d, m, im);
               _builder.append(_compileCallUpdateIfx, "  ");
             } else {
               boolean _isCallFunction = Utils.isCallFunction(m);
               if (_isCallFunction) {
-                CharSequence _compileCallFunctionIfx = this.compileCallFunctionIfx(d, m, importManager);
+                CharSequence _compileCallFunctionIfx = this.compileCallFunctionIfx(d, m, im);
                 _builder.append(_compileCallFunctionIfx, "  ");
               } else {
                 boolean _or = false;
@@ -5663,12 +5664,12 @@ public class ProcessorDslGenerator implements IGenerator {
                 }
                 if (_or) {
                   boolean _isCallQueryFunction_1 = Utils.isCallQueryFunction(m);
-                  CharSequence _compileCallQueryIfx = this.compileCallQueryIfx(d, m, importManager, _isCallQueryFunction_1);
+                  CharSequence _compileCallQueryIfx = this.compileCallQueryIfx(d, m, im, _isCallQueryFunction_1);
                   _builder.append(_compileCallQueryIfx, "  ");
                 } else {
                   boolean _isCallSelectFunction = Utils.isCallSelectFunction(m);
                   if (_isCallSelectFunction) {
-                    CharSequence _compileCallSelectFunctionIfx = this.compileCallSelectFunctionIfx(d, m, importManager);
+                    CharSequence _compileCallSelectFunctionIfx = this.compileCallSelectFunctionIfx(d, m, im);
                     _builder.append(_compileCallSelectFunctionIfx, "  ");
                   }
                 }
@@ -5684,12 +5685,12 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileCallQueryIfx(final PojoDao d, final PojoMethod m, final ImportManager importManager, final boolean isFunction) {
+  public CharSequence compileCallQueryIfx(final PojoDao d, final PojoMethod m, final ImportManager im, final boolean isFunction) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public ");
     PojoType _type = m.getType();
-    CharSequence _compileType = this.compileType(_type, importManager);
+    CharSequence _compileType = this.compileType(_type, im);
     _builder.append(_compileType, "");
     _builder.append(" ");
     String _name = m.getName();
@@ -5705,7 +5706,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_1 = ma.getType();
-        CharSequence _compileType_1 = this.compileType(_type_1, importManager);
+        CharSequence _compileType_1 = this.compileType(_type_1, im);
         _builder.append(_compileType_1, "");
         _builder.append(" ");
         String _name_1 = ma.getName();
@@ -5717,7 +5718,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_2 = m.getType();
-    CharSequence _compileType_2 = this.compileType(_type_2, importManager);
+    CharSequence _compileType_2 = this.compileType(_type_2, im);
     _builder.append(_compileType_2, "");
     _builder.append(" ");
     String _name_2 = m.getName();
@@ -5733,7 +5734,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_3 = ma_1.getType();
-        CharSequence _compileType_3 = this.compileType(_type_3, importManager);
+        CharSequence _compileType_3 = this.compileType(_type_3, im);
         _builder.append(_compileType_3, "");
         _builder.append(" ");
         String _name_3 = ma_1.getName();
@@ -5745,7 +5746,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_4 = m.getType();
-    CharSequence _compileType_4 = this.compileType(_type_4, importManager);
+    CharSequence _compileType_4 = this.compileType(_type_4, im);
     _builder.append(_compileType_4, "");
     _builder.append(" ");
     String _name_4 = m.getName();
@@ -5761,7 +5762,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_5 = ma_2.getType();
-        CharSequence _compileType_5 = this.compileType(_type_5, importManager);
+        CharSequence _compileType_5 = this.compileType(_type_5, im);
         _builder.append(_compileType_5, "");
         _builder.append(" ");
         String _name_5 = ma_2.getName();
@@ -5773,7 +5774,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_6 = m.getType();
-    CharSequence _compileType_6 = this.compileType(_type_6, importManager);
+    CharSequence _compileType_6 = this.compileType(_type_6, im);
     _builder.append(_compileType_6, "");
     _builder.append(" ");
     String _name_6 = m.getName();
@@ -5789,7 +5790,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_7 = ma_3.getType();
-        CharSequence _compileType_7 = this.compileType(_type_7, importManager);
+        CharSequence _compileType_7 = this.compileType(_type_7, im);
         _builder.append(_compileType_7, "");
         _builder.append(" ");
         String _name_7 = ma_3.getName();
@@ -5801,12 +5802,12 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileCallFunctionIfx(final PojoDao d, final PojoMethod m, final ImportManager importManager) {
+  public CharSequence compileCallFunctionIfx(final PojoDao d, final PojoMethod m, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public ");
     PojoType _type = m.getType();
-    CharSequence _compileType = this.compileType(_type, importManager);
+    CharSequence _compileType = this.compileType(_type, im);
     _builder.append(_compileType, "");
     _builder.append(" ");
     String _name = m.getName();
@@ -5822,7 +5823,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_1 = ma.getType();
-        CharSequence _compileType_1 = this.compileType(_type_1, importManager);
+        CharSequence _compileType_1 = this.compileType(_type_1, im);
         _builder.append(_compileType_1, "");
         _builder.append(" ");
         String _name_1 = ma.getName();
@@ -5834,7 +5835,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_2 = m.getType();
-    CharSequence _compileType_2 = this.compileType(_type_2, importManager);
+    CharSequence _compileType_2 = this.compileType(_type_2, im);
     _builder.append(_compileType_2, "");
     _builder.append(" ");
     String _name_2 = m.getName();
@@ -5850,7 +5851,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_3 = ma_1.getType();
-        CharSequence _compileType_3 = this.compileType(_type_3, importManager);
+        CharSequence _compileType_3 = this.compileType(_type_3, im);
         _builder.append(_compileType_3, "");
         _builder.append(" ");
         String _name_3 = ma_1.getName();
@@ -5862,7 +5863,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_4 = m.getType();
-    CharSequence _compileType_4 = this.compileType(_type_4, importManager);
+    CharSequence _compileType_4 = this.compileType(_type_4, im);
     _builder.append(_compileType_4, "");
     _builder.append(" ");
     String _name_4 = m.getName();
@@ -5878,7 +5879,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_5 = ma_2.getType();
-        CharSequence _compileType_5 = this.compileType(_type_5, importManager);
+        CharSequence _compileType_5 = this.compileType(_type_5, im);
         _builder.append(_compileType_5, "");
         _builder.append(" ");
         String _name_5 = ma_2.getName();
@@ -5890,7 +5891,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_6 = m.getType();
-    CharSequence _compileType_6 = this.compileType(_type_6, importManager);
+    CharSequence _compileType_6 = this.compileType(_type_6, im);
     _builder.append(_compileType_6, "");
     _builder.append(" ");
     String _name_6 = m.getName();
@@ -5906,7 +5907,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_7 = ma_3.getType();
-        CharSequence _compileType_7 = this.compileType(_type_7, importManager);
+        CharSequence _compileType_7 = this.compileType(_type_7, im);
         _builder.append(_compileType_7, "");
         _builder.append(" ");
         String _name_7 = ma_3.getName();
@@ -5918,7 +5919,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileCallUpdateIfx(final PojoDao d, final PojoMethod m, final ImportManager importManager) {
+  public CharSequence compileCallUpdateIfx(final PojoDao d, final PojoMethod m, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public int ");
@@ -5935,7 +5936,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type = ma.getType();
-        CharSequence _compileType = this.compileType(_type, importManager);
+        CharSequence _compileType = this.compileType(_type, im);
         _builder.append(_compileType, "");
         _builder.append(" ");
         String _name_1 = ma.getName();
@@ -5959,7 +5960,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_1 = ma_1.getType();
-        CharSequence _compileType_1 = this.compileType(_type_1, importManager);
+        CharSequence _compileType_1 = this.compileType(_type_1, im);
         _builder.append(_compileType_1, "");
         _builder.append(" ");
         String _name_3 = ma_1.getName();
@@ -5983,7 +5984,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_2 = ma_2.getType();
-        CharSequence _compileType_2 = this.compileType(_type_2, importManager);
+        CharSequence _compileType_2 = this.compileType(_type_2, im);
         _builder.append(_compileType_2, "");
         _builder.append(" ");
         String _name_5 = ma_2.getName();
@@ -6007,7 +6008,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_3 = ma_3.getType();
-        CharSequence _compileType_3 = this.compileType(_type_3, importManager);
+        CharSequence _compileType_3 = this.compileType(_type_3, im);
         _builder.append(_compileType_3, "");
         _builder.append(" ");
         String _name_7 = ma_3.getName();
@@ -6019,12 +6020,12 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileCallSelectFunctionIfx(final PojoDao d, final PojoMethod m, final ImportManager importManager) {
+  public CharSequence compileCallSelectFunctionIfx(final PojoDao d, final PojoMethod m, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public ");
     PojoType _type = m.getType();
-    CharSequence _compileType = this.compileType(_type, importManager);
+    CharSequence _compileType = this.compileType(_type, im);
     _builder.append(_compileType, "");
     _builder.append(" ");
     String _name = m.getName();
@@ -6040,7 +6041,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_1 = ma.getType();
-        CharSequence _compileType_1 = this.compileType(_type_1, importManager);
+        CharSequence _compileType_1 = this.compileType(_type_1, im);
         _builder.append(_compileType_1, "");
         _builder.append(" ");
         String _name_1 = ma.getName();
@@ -6052,7 +6053,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_2 = m.getType();
-    CharSequence _compileType_2 = this.compileType(_type_2, importManager);
+    CharSequence _compileType_2 = this.compileType(_type_2, im);
     _builder.append(_compileType_2, "");
     _builder.append(" ");
     String _name_2 = m.getName();
@@ -6068,7 +6069,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_3 = ma_1.getType();
-        CharSequence _compileType_3 = this.compileType(_type_3, importManager);
+        CharSequence _compileType_3 = this.compileType(_type_3, im);
         _builder.append(_compileType_3, "");
         _builder.append(" ");
         String _name_3 = ma_1.getName();
@@ -6080,7 +6081,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_4 = m.getType();
-    CharSequence _compileType_4 = this.compileType(_type_4, importManager);
+    CharSequence _compileType_4 = this.compileType(_type_4, im);
     _builder.append(_compileType_4, "");
     _builder.append(" ");
     String _name_4 = m.getName();
@@ -6096,7 +6097,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_5 = ma_2.getType();
-        CharSequence _compileType_5 = this.compileType(_type_5, importManager);
+        CharSequence _compileType_5 = this.compileType(_type_5, im);
         _builder.append(_compileType_5, "");
         _builder.append(" ");
         String _name_5 = ma_2.getName();
@@ -6108,7 +6109,7 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("public ");
     PojoType _type_6 = m.getType();
-    CharSequence _compileType_6 = this.compileType(_type_6, importManager);
+    CharSequence _compileType_6 = this.compileType(_type_6, im);
     _builder.append(_compileType_6, "");
     _builder.append(" ");
     String _name_6 = m.getName();
@@ -6124,7 +6125,7 @@ public class ProcessorDslGenerator implements IGenerator {
           _builder.appendImmediate(", ", "");
         }
         PojoType _type_7 = ma_3.getType();
-        CharSequence _compileType_7 = this.compileType(_type_7, importManager);
+        CharSequence _compileType_7 = this.compileType(_type_7, im);
         _builder.append(_compileType_7, "");
         _builder.append(" ");
         String _name_7 = ma_3.getName();
@@ -6136,7 +6137,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileInsertIfx(final PojoDao d, final PojoEntity e, final ImportManager importManager) {
+  public CharSequence compileInsertIfx(final PojoDao d, final PojoEntity e, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public ");
@@ -6193,7 +6194,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileGetIfx(final PojoDao d, final PojoEntity e, final ImportManager importManager) {
+  public CharSequence compileGetIfx(final PojoDao d, final PojoEntity e, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public ");
@@ -6253,7 +6254,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileUpdateIfx(final PojoDao d, final PojoEntity e, final ImportManager importManager) {
+  public CharSequence compileUpdateIfx(final PojoDao d, final PojoEntity e, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public int update(SqlSession sqlSession, ");
@@ -6298,7 +6299,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileDeleteIfx(final PojoDao d, final PojoEntity e, final ImportManager importManager) {
+  public CharSequence compileDeleteIfx(final PojoDao d, final PojoEntity e, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public int delete(SqlSession sqlSession, ");
@@ -6343,7 +6344,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileListIfx(final PojoDao d, final PojoEntity e, final ImportManager importManager) {
+  public CharSequence compileListIfx(final PojoDao d, final PojoEntity e, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public List<");
@@ -6400,7 +6401,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileCountIfx(final PojoDao d, final PojoEntity e, final ImportManager importManager) {
+  public CharSequence compileCountIfx(final PojoDao d, final PojoEntity e, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public int count(SqlSession sqlSession, ");
@@ -6583,7 +6584,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return IterableExtensions.<PojoProperty>toList(_filter);
   }
   
-  public CharSequence compileExtends(final EnumEntity e) {
+  public CharSequence compileExtends(final EnumEntity e, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     {
       PojoEntity _superType = Utils.getSuperType(e);
@@ -6591,8 +6592,10 @@ public class ProcessorDslGenerator implements IGenerator {
       if (_notEquals) {
         _builder.append("extends ");
         PojoEntity _superType_1 = Utils.getSuperType(e);
-        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_1);
-        _builder.append(_fullyQualifiedName, "");
+        PojoEntity _superType_2 = Utils.getSuperType(e);
+        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_2);
+        String _fullName = Utils.getFullName(e, _superType_1, _fullyQualifiedName, im);
+        _builder.append(_fullName, "");
         _builder.append(" ");
       } else {
         String _extends = this.getExtends(e);
@@ -6657,7 +6660,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileExtends(final PojoEntity e) {
+  public CharSequence compileExtends(final PojoEntity e, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     {
       PojoEntity _superType = Utils.getSuperType(e);
@@ -6665,8 +6668,10 @@ public class ProcessorDslGenerator implements IGenerator {
       if (_notEquals) {
         _builder.append("extends ");
         PojoEntity _superType_1 = Utils.getSuperType(e);
-        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_1);
-        _builder.append(_fullyQualifiedName, "");
+        PojoEntity _superType_2 = Utils.getSuperType(e);
+        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_2);
+        String _fullName = Utils.getFullName(e, _superType_1, _fullyQualifiedName, im);
+        _builder.append(_fullName, "");
         _builder.append(" ");
       } else {
         String _extends = this.getExtends(e);
@@ -6731,7 +6736,7 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileExtends(final PojoDao e) {
+  public CharSequence compileExtends(final PojoDao e, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     {
       PojoDao _superType = Utils.getSuperType(e);
@@ -6739,8 +6744,10 @@ public class ProcessorDslGenerator implements IGenerator {
       if (_notEquals) {
         _builder.append("extends ");
         PojoDao _superType_1 = Utils.getSuperType(e);
-        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_1);
-        _builder.append(_fullyQualifiedName, "");
+        PojoDao _superType_2 = Utils.getSuperType(e);
+        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_2);
+        String _fullName = Utils.getFullName(e, _superType_1, _fullyQualifiedName, im);
+        _builder.append(_fullName, "");
         _builder.append(" ");
       } else {
         String _extends = this.getExtends(e);
@@ -6835,76 +6842,76 @@ public class ProcessorDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public boolean compile(final Extends e, final ImportManager importManager) {
+  public boolean compile(final Extends e, final ImportManager im) {
     JvmType _extends = e.getExtends();
-    boolean _addImportFor = importManager.addImportFor(_extends);
+    boolean _addImportFor = im.addImportFor(_extends);
     return _addImportFor;
   }
   
-  public void addImplements(final EnumEntity e, final ImportManager importManager) {
+  public void addImplements(final EnumEntity e, final ImportManager im) {
     EObject _eContainer = e.eContainer();
     EList<EObject> _eContents = _eContainer.eContents();
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
     for (final Implements impl : _filter) {
       JvmType _implements = impl.getImplements();
-      importManager.addImportFor(_implements);
+      im.addImportFor(_implements);
     }
   }
   
-  public void addExtends(final EnumEntity e, final ImportManager importManager) {
+  public void addExtends(final EnumEntity e, final ImportManager im) {
     EObject _eContainer = e.eContainer();
     EList<EObject> _eContents = _eContainer.eContents();
     Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
     for (final Extends ext : _filter) {
       JvmType _extends = ext.getExtends();
-      importManager.addImportFor(_extends);
+      im.addImportFor(_extends);
     }
   }
   
-  public void addImplements(final PojoEntity e, final ImportManager importManager) {
+  public void addImplements(final PojoEntity e, final ImportManager im) {
     EObject _eContainer = e.eContainer();
     EList<EObject> _eContents = _eContainer.eContents();
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
     for (final Implements impl : _filter) {
       JvmType _implements = impl.getImplements();
-      importManager.addImportFor(_implements);
+      im.addImportFor(_implements);
     }
   }
   
-  public void addExtends(final PojoEntity e, final ImportManager importManager) {
+  public void addExtends(final PojoEntity e, final ImportManager im) {
     EObject _eContainer = e.eContainer();
     EList<EObject> _eContents = _eContainer.eContents();
     Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
     for (final Extends ext : _filter) {
       JvmType _extends = ext.getExtends();
-      importManager.addImportFor(_extends);
+      im.addImportFor(_extends);
     }
   }
   
-  public void addImplements(final PojoDao e, final ImportManager importManager) {
+  public void addImplements(final PojoDao e, final ImportManager im) {
     EObject _eContainer = e.eContainer();
     EList<EObject> _eContents = _eContainer.eContents();
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
     for (final Implements impl : _filter) {
       JvmType _implements = impl.getImplements();
-      importManager.addImportFor(_implements);
+      im.addImportFor(_implements);
     }
   }
   
-  public void addExtends(final PojoDao e, final ImportManager importManager) {
+  public void addExtends(final PojoDao e, final ImportManager im) {
     EObject _eContainer = e.eContainer();
     EList<EObject> _eContents = _eContainer.eContents();
     Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
     for (final Extends ext : _filter) {
       JvmType _extends = ext.getExtends();
-      importManager.addImportFor(_extends);
+      im.addImportFor(_extends);
     }
   }
   
-  public void addAnnotations(final List<Annotation> annotations, final ImportManager importManager) {
+  public void addAnnotations(final List<Annotation> annotations, final ImportManager im) {
     for (final Annotation a : annotations) {
       JvmType _type = a.getType();
-      importManager.serialize(_type);
+      im.serialize(_type);
     }
   }
   
