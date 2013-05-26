@@ -80,7 +80,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMappingRuleModifierAccess().getAlternatives(), "rule__MappingRuleModifier__Alternatives");
 					put(grammarAccess.getMappingItemModifierAccess().getAlternatives(), "rule__MappingItemModifier__Alternatives");
 					put(grammarAccess.getOptionalFeatureModifierAccess().getAlternatives(), "rule__OptionalFeatureModifier__Alternatives");
-					put(grammarAccess.getModifierAccess().getAlternatives(), "rule__Modifier__Alternatives");
+					put(grammarAccess.getModifierAccess().getAlternatives_1(), "rule__Modifier__Alternatives_1");
 					put(grammarAccess.getFeatureValueAccess().getAlternatives(), "rule__FeatureValue__Alternatives");
 					put(grammarAccess.getPojoTypeAccess().getAlternatives_0(), "rule__PojoType__Alternatives_0");
 					put(grammarAccess.getPojoTypeAccess().getNativeAlternatives_0_0_0(), "rule__PojoType__NativeAlternatives_0_0_0");
@@ -327,6 +327,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExtendedMappingItemAccess().getGroup_1_2(), "rule__ExtendedMappingItem__Group_1_2__0");
 					put(grammarAccess.getOptionalFeatureAccess().getGroup(), "rule__OptionalFeature__Group__0");
 					put(grammarAccess.getOptionalFeatureAccess().getGroup_3(), "rule__OptionalFeature__Group_3__0");
+					put(grammarAccess.getModifierAccess().getGroup(), "rule__Modifier__Group__0");
 					put(grammarAccess.getPojoTypeAccess().getGroup(), "rule__PojoType__Group__0");
 					put(grammarAccess.getPojoTypeAccess().getGroup_0_1(), "rule__PojoType__Group_0_1__0");
 					put(grammarAccess.getPojoTypeAccess().getGroup_0_1_0(), "rule__PojoType__Group_0_1_0__0");

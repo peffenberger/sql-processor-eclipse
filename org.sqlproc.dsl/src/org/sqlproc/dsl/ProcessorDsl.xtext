@@ -273,7 +273,7 @@ StatementModifier: (IDENT | NUMBER);
 MappingRuleModifier: (IDENT | NUMBER);
 MappingItemModifier: (IDENT | NUMBER);
 OptionalFeatureModifier: (IDENT | NUMBER);
-Modifier: (IDENT | NUMBER);
+Modifier: (NOT? (IDENT | NUMBER));
 
 terminal ON_OFF: 'ON'|'OFF';
 terminal STATEMENT_TYPE: 'QRY'|'CRUD'|'CALL';

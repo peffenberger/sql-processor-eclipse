@@ -10530,22 +10530,29 @@ ruleModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(    this_IDENT_0=RULE_IDENT    {
-		$current.merge(this_IDENT_0);
+((    this_NOT_0=RULE_NOT    {
+		$current.merge(this_NOT_0);
     }
 
     { 
-    newLeafNode(this_IDENT_0, grammarAccess.getModifierAccess().getIDENTTerminalRuleCall_0()); 
+    newLeafNode(this_NOT_0, grammarAccess.getModifierAccess().getNOTTerminalRuleCall_0()); 
     }
-
-    |    this_NUMBER_1=RULE_NUMBER    {
-		$current.merge(this_NUMBER_1);
+)?(    this_IDENT_1=RULE_IDENT    {
+		$current.merge(this_IDENT_1);
     }
 
     { 
-    newLeafNode(this_NUMBER_1, grammarAccess.getModifierAccess().getNUMBERTerminalRuleCall_1()); 
+    newLeafNode(this_IDENT_1, grammarAccess.getModifierAccess().getIDENTTerminalRuleCall_1_0()); 
     }
-)
+
+    |    this_NUMBER_2=RULE_NUMBER    {
+		$current.merge(this_NUMBER_2);
+    }
+
+    { 
+    newLeafNode(this_NUMBER_2, grammarAccess.getModifierAccess().getNUMBERTerminalRuleCall_1_1()); 
+    }
+))
     ;
 
 

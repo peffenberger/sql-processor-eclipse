@@ -6304,22 +6304,30 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ModifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Modifier");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cNUMBERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cNOTTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final RuleCall cIDENTTerminalRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
+		private final RuleCall cNUMBERTerminalRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
 		
 		//Modifier:
-		//	IDENT | NUMBER;
+		//	NOT? (IDENT | NUMBER);
 		public ParserRule getRule() { return rule; }
 
+		//NOT? (IDENT | NUMBER)
+		public Group getGroup() { return cGroup; }
+
+		//NOT?
+		public RuleCall getNOTTerminalRuleCall_0() { return cNOTTerminalRuleCall_0; }
+
 		//IDENT | NUMBER
-		public Alternatives getAlternatives() { return cAlternatives; }
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_0() { return cIDENTTerminalRuleCall_0; }
+		public RuleCall getIDENTTerminalRuleCall_1_0() { return cIDENTTerminalRuleCall_1_0; }
 
 		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1() { return cNUMBERTerminalRuleCall_1; }
+		public RuleCall getNUMBERTerminalRuleCall_1_1() { return cNUMBERTerminalRuleCall_1_1; }
 	}
 
 	public class FeatureValueElements extends AbstractParserRuleElementFinder {
@@ -9129,7 +9137,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Modifier:
-	//	IDENT | NUMBER;
+	//	NOT? (IDENT | NUMBER);
 	public ModifierElements getModifierAccess() {
 		return (pModifier != null) ? pModifier : (pModifier = new ModifierElements());
 	}
