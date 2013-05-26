@@ -666,7 +666,7 @@ public class TableMetaConverter extends TablePojoConverter {
                 buffer.append(".").append(columnToCamelCase(attr.attribute.getPkColumn()));
             }
             if (!metaTypes(buffer, attr.tableName, attr.attributeName, statementName, true))
-                buffer.append("(notnull)");
+                buffer.append("(!empty)");
 
             else
                 buffer.append(")");
