@@ -879,6 +879,17 @@
       </elements>
       <elements xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:Keyword" value="preserve-foreign-keys"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.74"/>
+          <elements xsi:type="xtext:Assignment" feature="dbTables" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.69"/>
+          </elements>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
           <terminal xsi:type="xtext:Keyword" value="implementation-package"/>
         </elements>
         <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.74"/>
@@ -3138,6 +3149,26 @@
       </elements>
       <elements xsi:type="xtext:Assignment" feature="version" operator="?=">
         <terminal xsi:type="xtext:Keyword" value="optLock"/>
+      </elements>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="updateCol"/>
+        <elements xsi:type="xtext:Assignment" feature="updateColumn1" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.69"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="->"/>
+        <elements xsi:type="xtext:Assignment" feature="updateColumn2" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.69"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="createCol"/>
+        <elements xsi:type="xtext:Assignment" feature="createColumn1" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.69"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="->"/>
+        <elements xsi:type="xtext:Assignment" feature="createColumn2" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.69"/>
+        </elements>
       </elements>
     </alternatives>
   </rules>

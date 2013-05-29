@@ -244,10 +244,28 @@ def compile(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEnt
     «ENDFOR»
     public void set«f.name.toFirstUpper»(«f.compileType(im)» «f.name») {
       this.«f.name» = «f.name»;
+      «IF getUpdateColumn1(f) != null»
+      if (this.«f.name» != null)
+        this.«getUpdateColumn2(f)» = this.«f.name».get«getUpdateColumn1(f).toFirstUpper»(); 
+      «ENDIF»
+      «IF getCreateColumn1(f) != null»
+        if (this.«getCreateColumn1(f)» == null)
+            this.«getCreateColumn1(f)» = new «getAttribute(e, getCreateColumn1(f)).compileType(im)»();
+        this.«getCreateColumn1(f)».set«getCreateColumn2(f).toFirstUpper»(«f.name»);
+      «ENDIF»
     }
   
     public «e.name» _set«f.name.toFirstUpper»(«f.compileType(im)» «f.name») {
       this.«f.name» = «f.name»;
+      «IF getUpdateColumn1(f) != null»
+      if (this.«f.name» != null)
+        this.«getUpdateColumn2(f)» = this.«f.name».get«getUpdateColumn1(f).toFirstUpper»(); 
+      «ENDIF»
+      «IF getCreateColumn1(f) != null»
+        if (this.«getCreateColumn1(f)» == null)
+            this.«getCreateColumn1(f)» = new «getAttribute(e, getCreateColumn1(f)).compileType(im)»();
+        this.«getCreateColumn1(f)».set«getCreateColumn2(f).toFirstUpper»(«f.name»);
+      «ENDIF»
       return this;
     }«IF hasOperators(e) && operatorSuffix != null»
     

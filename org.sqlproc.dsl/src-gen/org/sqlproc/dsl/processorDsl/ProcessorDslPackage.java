@@ -3530,13 +3530,49 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_PROPERTY_MODIFIER__VERSION = 4;
 
   /**
+   * The feature id for the '<em><b>Update Column1</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_MODIFIER__UPDATE_COLUMN1 = 5;
+
+  /**
+   * The feature id for the '<em><b>Update Column2</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_MODIFIER__UPDATE_COLUMN2 = 6;
+
+  /**
+   * The feature id for the '<em><b>Create Column1</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_MODIFIER__CREATE_COLUMN1 = 7;
+
+  /**
+   * The feature id for the '<em><b>Create Column2</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_MODIFIER__CREATE_COLUMN2 = 8;
+
+  /**
    * The number of structural features of the '<em>Pojo Property Modifier</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY_MODIFIER_FEATURE_COUNT = 5;
+  int POJO_PROPERTY_MODIFIER_FEATURE_COUNT = 9;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl <em>Pojo Property</em>}' class.
@@ -7424,6 +7460,50 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getPojoPropertyModifier_Version();
 
   /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getUpdateColumn1 <em>Update Column1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Update Column1</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getUpdateColumn1()
+   * @see #getPojoPropertyModifier()
+   * @generated
+   */
+  EAttribute getPojoPropertyModifier_UpdateColumn1();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getUpdateColumn2 <em>Update Column2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Update Column2</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getUpdateColumn2()
+   * @see #getPojoPropertyModifier()
+   * @generated
+   */
+  EAttribute getPojoPropertyModifier_UpdateColumn2();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getCreateColumn1 <em>Create Column1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Create Column1</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getCreateColumn1()
+   * @see #getPojoPropertyModifier()
+   * @generated
+   */
+  EAttribute getPojoPropertyModifier_CreateColumn1();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getCreateColumn2 <em>Create Column2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Create Column2</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getCreateColumn2()
+   * @see #getPojoPropertyModifier()
+   * @generated
+   */
+  EAttribute getPojoPropertyModifier_CreateColumn2();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoProperty <em>Pojo Property</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -10593,6 +10673,38 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute POJO_PROPERTY_MODIFIER__VERSION = eINSTANCE.getPojoPropertyModifier_Version();
+
+    /**
+     * The meta object literal for the '<em><b>Update Column1</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_PROPERTY_MODIFIER__UPDATE_COLUMN1 = eINSTANCE.getPojoPropertyModifier_UpdateColumn1();
+
+    /**
+     * The meta object literal for the '<em><b>Update Column2</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_PROPERTY_MODIFIER__UPDATE_COLUMN2 = eINSTANCE.getPojoPropertyModifier_UpdateColumn2();
+
+    /**
+     * The meta object literal for the '<em><b>Create Column1</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_PROPERTY_MODIFIER__CREATE_COLUMN1 = eINSTANCE.getPojoPropertyModifier_CreateColumn1();
+
+    /**
+     * The meta object literal for the '<em><b>Create Column2</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_PROPERTY_MODIFIER__CREATE_COLUMN2 = eINSTANCE.getPojoPropertyModifier_CreateColumn2();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl <em>Pojo Property</em>}' class.

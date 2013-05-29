@@ -138,6 +138,46 @@ public class Utils {
         return null;
     }
 
+    public static String getUpdateColumn1(PojoProperty f) {
+        if (f.getModifiers() == null || f.getModifiers().isEmpty())
+            return null;
+        for (PojoPropertyModifier modifier : f.getModifiers()) {
+            if (modifier.getUpdateColumn1() != null)
+                return modifier.getUpdateColumn1();
+        }
+        return null;
+    }
+
+    public static String getUpdateColumn2(PojoProperty f) {
+        if (f.getModifiers() == null || f.getModifiers().isEmpty())
+            return null;
+        for (PojoPropertyModifier modifier : f.getModifiers()) {
+            if (modifier.getUpdateColumn2() != null)
+                return modifier.getUpdateColumn2();
+        }
+        return null;
+    }
+
+    public static String getCreateColumn1(PojoProperty f) {
+        if (f.getModifiers() == null || f.getModifiers().isEmpty())
+            return null;
+        for (PojoPropertyModifier modifier : f.getModifiers()) {
+            if (modifier.getCreateColumn1() != null)
+                return modifier.getCreateColumn1();
+        }
+        return null;
+    }
+
+    public static String getCreateColumn2(PojoProperty f) {
+        if (f.getModifiers() == null || f.getModifiers().isEmpty())
+            return null;
+        for (PojoPropertyModifier modifier : f.getModifiers()) {
+            if (modifier.getCreateColumn2() != null)
+                return modifier.getCreateColumn2();
+        }
+        return null;
+    }
+
     public static boolean isDiscriminator(PojoProperty f) {
         if (f.getModifiers() == null || f.getModifiers().isEmpty())
             return false;
@@ -329,6 +369,20 @@ public class Utils {
             return features;
         features.addAll(attributes(s));
         return features;
+    }
+
+    public static PojoProperty getAttribute(PojoEntity e, String name) {
+        if (e == null || e.getFeatures() == null)
+            return null;
+        for (PojoAnnotatedProperty af : e.getFeatures()) {
+            PojoProperty f = af.getFeature();
+            if (isAttribute(f) && f.getName().equals(name))
+                return f;
+        }
+        PojoEntity s = getSuperType(e);
+        if (s == null)
+            return null;
+        return getAttribute(s, name);
     }
 
     public static boolean hasName(PojoProperty f, String name) {

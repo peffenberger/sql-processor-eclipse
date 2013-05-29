@@ -3491,104 +3491,28 @@ rulePojogenProperty returns [EObject current=null]
 )
     |((
 (
-		lv_name_108_0=	'implementation-package' 
+		lv_name_108_0=	'preserve-foreign-keys' 
     {
-        newLeafNode(lv_name_108_0, grammarAccess.getPojogenPropertyAccess().getNameImplementationPackageKeyword_26_0_0());
+        newLeafNode(lv_name_108_0, grammarAccess.getPojogenPropertyAccess().getNamePreserveForeignKeysKeyword_26_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_108_0, "implementation-package");
+       		setWithLastConsumed($current, "name", lv_name_108_0, "preserve-foreign-keys");
 	    }
 
 )
-)(this_WS_109=RULE_WS
+)((this_WS_109=RULE_WS
     { 
-    newLeafNode(this_WS_109, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_26_1()); 
+    newLeafNode(this_WS_109, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_26_1_0()); 
     }
 )+(
 (
-		lv_implPackage_110_0=RULE_IDENT
+		lv_dbTables_110_0=RULE_IDENT
 		{
-			newLeafNode(lv_implPackage_110_0, grammarAccess.getPojogenPropertyAccess().getImplPackageIDENTTerminalRuleCall_26_2_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"implPackage",
-        		lv_implPackage_110_0, 
-        		"IDENT");
-	    }
-
-)
-))
-    |(
-(
-		lv_name_111_0=	'make-it-final' 
-    {
-        newLeafNode(lv_name_111_0, grammarAccess.getPojogenPropertyAccess().getNameMakeItFinalKeyword_27_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_111_0, "make-it-final");
-	    }
-
-)
-)
-    |((
-(
-		lv_name_112_0=	'version-column' 
-    {
-        newLeafNode(lv_name_112_0, grammarAccess.getPojogenPropertyAccess().getNameVersionColumnKeyword_28_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_112_0, "version-column");
-	    }
-
-)
-)(this_WS_113=RULE_WS
-    { 
-    newLeafNode(this_WS_113, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_28_1()); 
-    }
-)+(
-(
-		lv_version_114_0=RULE_IDENT
-		{
-			newLeafNode(lv_version_114_0, grammarAccess.getPojogenPropertyAccess().getVersionIDENTTerminalRuleCall_28_2_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"version",
-        		lv_version_114_0, 
-        		"IDENT");
-	    }
-
-)
-)((this_WS_115=RULE_WS
-    { 
-    newLeafNode(this_WS_115, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_28_3_0()); 
-    }
-)+(
-(
-		lv_dbTables_116_0=RULE_IDENT
-		{
-			newLeafNode(lv_dbTables_116_0, grammarAccess.getPojogenPropertyAccess().getDbTablesIDENTTerminalRuleCall_28_3_1_0()); 
+			newLeafNode(lv_dbTables_110_0, grammarAccess.getPojogenPropertyAccess().getDbTablesIDENTTerminalRuleCall_26_1_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -3597,7 +3521,7 @@ rulePojogenProperty returns [EObject current=null]
        		addWithLastConsumed(
        			$current, 
        			"dbTables",
-        		lv_dbTables_116_0, 
+        		lv_dbTables_110_0, 
         		"IDENT");
 	    }
 
@@ -3605,36 +3529,150 @@ rulePojogenProperty returns [EObject current=null]
 ))*)
     |((
 (
-		lv_name_117_0=	'debug-level' 
+		lv_name_111_0=	'implementation-package' 
     {
-        newLeafNode(lv_name_117_0, grammarAccess.getPojogenPropertyAccess().getNameDebugLevelKeyword_29_0_0());
+        newLeafNode(lv_name_111_0, grammarAccess.getPojogenPropertyAccess().getNameImplementationPackageKeyword_27_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_117_0, "debug-level");
+       		setWithLastConsumed($current, "name", lv_name_111_0, "implementation-package");
 	    }
 
 )
-)(this_WS_118=RULE_WS
+)(this_WS_112=RULE_WS
     { 
-    newLeafNode(this_WS_118, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_29_1()); 
+    newLeafNode(this_WS_112, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_27_1()); 
+    }
+)+(
+(
+		lv_implPackage_113_0=RULE_IDENT
+		{
+			newLeafNode(lv_implPackage_113_0, grammarAccess.getPojogenPropertyAccess().getImplPackageIDENTTerminalRuleCall_27_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"implPackage",
+        		lv_implPackage_113_0, 
+        		"IDENT");
+	    }
+
+)
+))
+    |(
+(
+		lv_name_114_0=	'make-it-final' 
+    {
+        newLeafNode(lv_name_114_0, grammarAccess.getPojogenPropertyAccess().getNameMakeItFinalKeyword_28_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_114_0, "make-it-final");
+	    }
+
+)
+)
+    |((
+(
+		lv_name_115_0=	'version-column' 
+    {
+        newLeafNode(lv_name_115_0, grammarAccess.getPojogenPropertyAccess().getNameVersionColumnKeyword_29_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_115_0, "version-column");
+	    }
+
+)
+)(this_WS_116=RULE_WS
+    { 
+    newLeafNode(this_WS_116, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_29_1()); 
+    }
+)+(
+(
+		lv_version_117_0=RULE_IDENT
+		{
+			newLeafNode(lv_version_117_0, grammarAccess.getPojogenPropertyAccess().getVersionIDENTTerminalRuleCall_29_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"version",
+        		lv_version_117_0, 
+        		"IDENT");
+	    }
+
+)
+)((this_WS_118=RULE_WS
+    { 
+    newLeafNode(this_WS_118, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_29_3_0()); 
+    }
+)+(
+(
+		lv_dbTables_119_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbTables_119_0, grammarAccess.getPojogenPropertyAccess().getDbTablesIDENTTerminalRuleCall_29_3_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"dbTables",
+        		lv_dbTables_119_0, 
+        		"IDENT");
+	    }
+
+)
+))*)
+    |((
+(
+		lv_name_120_0=	'debug-level' 
+    {
+        newLeafNode(lv_name_120_0, grammarAccess.getPojogenPropertyAccess().getNameDebugLevelKeyword_30_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_120_0, "debug-level");
+	    }
+
+)
+)(this_WS_121=RULE_WS
+    { 
+    newLeafNode(this_WS_121, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_30_1()); 
     }
 )+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPojogenPropertyAccess().getDebugDebugLevelAssignementParserRuleCall_29_2_0()); 
+	        newCompositeNode(grammarAccess.getPojogenPropertyAccess().getDebugDebugLevelAssignementParserRuleCall_30_2_0()); 
 	    }
-		lv_debug_119_0=ruleDebugLevelAssignement		{
+		lv_debug_122_0=ruleDebugLevelAssignement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPojogenPropertyRule());
 	        }
        		set(
        			$current, 
        			"debug",
-        		lv_debug_119_0, 
+        		lv_debug_122_0, 
         		"DebugLevelAssignement");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -12407,7 +12445,97 @@ rulePojoPropertyModifier returns [EObject current=null]
 	    }
 
 )
+)
+    |(	otherlv_6='updateCol' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getPojoPropertyModifierAccess().getUpdateColKeyword_5_0());
+    }
+(
+(
+		lv_updateColumn1_7_0=RULE_IDENT
+		{
+			newLeafNode(lv_updateColumn1_7_0, grammarAccess.getPojoPropertyModifierAccess().getUpdateColumn1IDENTTerminalRuleCall_5_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoPropertyModifierRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"updateColumn1",
+        		lv_updateColumn1_7_0, 
+        		"IDENT");
+	    }
+
+)
+)	otherlv_8='->' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getPojoPropertyModifierAccess().getHyphenMinusGreaterThanSignKeyword_5_2());
+    }
+(
+(
+		lv_updateColumn2_9_0=RULE_IDENT
+		{
+			newLeafNode(lv_updateColumn2_9_0, grammarAccess.getPojoPropertyModifierAccess().getUpdateColumn2IDENTTerminalRuleCall_5_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoPropertyModifierRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"updateColumn2",
+        		lv_updateColumn2_9_0, 
+        		"IDENT");
+	    }
+
+)
 ))
+    |(	otherlv_10='createCol' 
+    {
+    	newLeafNode(otherlv_10, grammarAccess.getPojoPropertyModifierAccess().getCreateColKeyword_6_0());
+    }
+(
+(
+		lv_createColumn1_11_0=RULE_IDENT
+		{
+			newLeafNode(lv_createColumn1_11_0, grammarAccess.getPojoPropertyModifierAccess().getCreateColumn1IDENTTerminalRuleCall_6_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoPropertyModifierRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"createColumn1",
+        		lv_createColumn1_11_0, 
+        		"IDENT");
+	    }
+
+)
+)	otherlv_12='->' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getPojoPropertyModifierAccess().getHyphenMinusGreaterThanSignKeyword_6_2());
+    }
+(
+(
+		lv_createColumn2_13_0=RULE_IDENT
+		{
+			newLeafNode(lv_createColumn2_13_0, grammarAccess.getPojoPropertyModifierAccess().getCreateColumn2IDENTTerminalRuleCall_6_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoPropertyModifierRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"createColumn2",
+        		lv_createColumn2_13_0, 
+        		"IDENT");
+	    }
+
+)
+)))
 ;
 
 
