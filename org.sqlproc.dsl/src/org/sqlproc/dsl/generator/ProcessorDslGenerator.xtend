@@ -295,7 +295,7 @@ def compileHashCode(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im,
       final int prime = 31;
       int result = 1;
       «FOR f2:f.attrs»
-      result = prime * result + «IF f2.native != null»(int) («f2.name» ^ («f2.name» >>> 32))«ELSE»«f2.name».hashCode()«ENDIF»;
+      result = prime * result + «IF f2.native != null»(int) («f2.name» ^ («f2.name» >>> 32))«ELSE»((«f2.name» != null) ? «f2.name».hashCode() : 0)«ENDIF»;
       «ENDFOR»
       return result;
     }  

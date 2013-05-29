@@ -1486,9 +1486,13 @@ public class ProcessorDslGenerator implements IGenerator {
             _builder.append(_name_1, "  ");
             _builder.append(" >>> 32))");
           } else {
+            _builder.append("((");
             String _name_2 = f2.getName();
             _builder.append(_name_2, "  ");
-            _builder.append(".hashCode()");
+            _builder.append(" != null) ? ");
+            String _name_3 = f2.getName();
+            _builder.append(_name_3, "  ");
+            _builder.append(".hashCode() : 0)");
           }
         }
         _builder.append(";");
