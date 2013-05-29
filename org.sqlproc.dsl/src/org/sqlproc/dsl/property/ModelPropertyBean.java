@@ -89,6 +89,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String POJOGEN_MAKE_IT_FINAL = "make-it-final";
     public static final String POJOGEN_VERSION_COLUMN = "version-column";
     public static final String POJOGEN_DEBUG_LEVEL = "debug-level";
+    public static final String POJOGEN_PRESERVE_FOREIGN_KEYS = "preserve-foreign-keys";
     public static final String METAGEN = "metagen";
     public static final String METAGEN_GLOBAL_SEQUENCE = "global-sequence";
     public static final String METAGEN_TABLE_SEQUENCE = "table-sequence";
@@ -175,6 +176,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public String versionColumn;
         public Map<String, String> versionColumns;
         public Level debugLevel;
+        public Set<String> preserveForeignKeys;
 
         public PairValues metaGlobalSequence;
         public Map<String, PairValues> metaTablesSequence;
@@ -381,6 +383,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.versionColumn = null;
         modelValues.versionColumns = new HashMap<String, String>();
         modelValues.debugLevel = null;
+        modelValues.preserveForeignKeys = new HashSet<String>();
     }
 
     private void initMetagenModel(ModelValues modelValues) {
@@ -719,6 +722,14 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         } else if (POJOGEN_DEBUG_LEVEL.equals(property.getName())) {
             modelValues.debugLevel = Level.toLevel((property.getDebug() != null) ? property.getDebug().getDebug()
                     : null, Level.WARN);
+        } else if (POJOGEN_PRESERVE_FOREIGN_KEYS.equals(property.getName())) {
+            if (property.getDbTables().isEmpty()) {
+                modelValues.preserveForeignKeys.add("_ALL_");
+            } else {
+                for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
+                    modelValues.preserveForeignKeys.add(property.getDbTables().get(i));
+                }
+            }
         }
     }
 
@@ -1019,6 +1030,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public Level getDebugLevel(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.debugLevel : null;
+    }
+
+    @Override
+    public Set<String> getPreserveForeignKeys(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.preserveForeignKeys : Collections.<String> emptySet();
     }
 
     @Override

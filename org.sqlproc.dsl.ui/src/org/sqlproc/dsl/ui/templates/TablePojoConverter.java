@@ -95,6 +95,7 @@ public class TablePojoConverter {
     protected String versionColumn;
     protected Map<String, String> versionColumns = new HashMap<String, String>();
     protected String generateOperators = null;
+    protected Set<String> preserveForeignKeys = new HashSet<String>();
 
     protected Map<String, Map<String, PojoAttribute>> pojos = new TreeMap<String, Map<String, PojoAttribute>>();
     protected Map<String, Map<String, PojoAttribute>> procedures = new TreeMap<String, Map<String, PojoAttribute>>();
@@ -231,6 +232,10 @@ public class TablePojoConverter {
         if (versionColumns != null) {
             this.versionColumns.putAll(versionColumns);
         }
+        Set<String> preserveForeignKeys = modelProperty.getPreserveForeignKeys(artifacts);
+        if (preserveForeignKeys != null) {
+            this.preserveForeignKeys.addAll(preserveForeignKeys);
+        }
 
         for (Map.Entry<String, Map<String, Map<String, String>>> inheritImport : this.inheritImports.entrySet()) {
             for (Map.Entry<String, Map<String, String>> inherit : inheritImport.getValue().entrySet()) {
@@ -287,6 +292,7 @@ public class TablePojoConverter {
             System.out.println("sequences " + this.dbSequences);
             System.out.println("dbType " + this.dbType);
             System.out.println("metaFunctionsResult " + this.metaFunctionsResult);
+            System.out.println("preserveForeignKeys " + this.preserveForeignKeys);
         }
     }
 
@@ -896,6 +902,7 @@ public class TablePojoConverter {
                 Set<String> toStr = new HashSet<String>();
                 Set<String> isDef = new HashSet<String>();
                 Set<String> toInit = new HashSet<String>();
+                Map<String, PojoAttribute> addedAttributes = new LinkedHashMap<String, PojoAttribute>();
                 for (Map.Entry<String, PojoAttribute> pentry : pojos.get(pojo).entrySet()) {
                     // System.out.println("  RRR " + pentry.getKey());
                     if (ignoreColumns.containsKey(pojo) && ignoreColumns.get(pojo).contains(pentry.getKey()))
@@ -915,6 +922,13 @@ public class TablePojoConverter {
                     if (attribute.getDependencyClassName() != null) {
                         buffer.append(":: ").append(attribute.getDependencyClassName());
                         toStr.add(name);
+                        if (preserveForeignKeys.contains(pojo) || preserveForeignKeys.contains("_ALL_")) {
+                            if (attribute.getPkTable() != null) {
+                                addedAttributes.put(name, pentry.getValue());
+                                buffer.append(" updateCol ").append(columnToCamelCase(attribute.getPkColumn()))
+                                        .append("->").append(columnToCamelCase(attribute.getDbName()));
+                            }
+                        }
                     } else if (attribute.isPrimitive()) {
                         buffer.append('_').append(attribute.getClassName());
                         toStr.add(name);
@@ -950,6 +964,14 @@ public class TablePojoConverter {
                 }
                 if (pojoExtends.containsKey(pojo)) {
                     getParentAttrs(pojoExtends.get(pojo), isDef, toInit);
+                }
+                for (Map.Entry<String, PojoAttribute> pentry : addedAttributes.entrySet()) {
+                    PojoAttribute attribute = pentry.getValue();
+                    buffer.append("\n    ").append(columnToCamelCase(attribute.getDbName())).append(' ');
+                    buffer.append(": ").append(attribute.getClassName());
+                    buffer.append(" createCol ").append(pentry.getKey()).append("->")
+                            .append(columnToCamelCase(attribute.getPkColumn()));
+                    toStr.add(columnToCamelCase(attribute.getDbName()));
                 }
                 if (generateMethods.contains(METHOD_EQUALS) && !pkeys.isEmpty()) {
                     if (annotations != null) {
