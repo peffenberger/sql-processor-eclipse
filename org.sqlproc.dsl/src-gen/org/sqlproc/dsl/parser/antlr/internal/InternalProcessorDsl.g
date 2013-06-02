@@ -4587,7 +4587,45 @@ ruleMetagenProperty returns [EObject current=null]
 	    }
 
 )
-))
+)
+    |((
+(
+		lv_name_66_0=	'optimize-insert' 
+    {
+        newLeafNode(lv_name_66_0, grammarAccess.getMetagenPropertyAccess().getNameOptimizeInsertKeyword_16_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_66_0, "optimize-insert");
+	    }
+
+)
+)((this_WS_67=RULE_WS
+    { 
+    newLeafNode(this_WS_67, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_16_1_0()); 
+    }
+)+(
+(
+		lv_dbTables_68_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbTables_68_0, grammarAccess.getMetagenPropertyAccess().getDbTablesIDENTTerminalRuleCall_16_1_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"dbTables",
+        		lv_dbTables_68_0, 
+        		"IDENT");
+	    }
+
+)
+))*))
 ;
 
 

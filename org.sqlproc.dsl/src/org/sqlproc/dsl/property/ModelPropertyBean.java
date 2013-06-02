@@ -107,6 +107,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String METAGEN_PROCEDURE_RESULT_SET = "procedure-result-set";
     public static final String METAGEN_DEBUG_LEVEL = "debug-level";
     public static final String METAGEN_GENERATE_OPERATORS = "generate-operators";
+    public static final String METAGEN_OPTIMIZE_INSERT = "optimize-insert";
     public static final String DAOGEN = "daogen";
     public static final String DAOGEN_IGNORE_TABLES = "ignore-tables";
     public static final String DAOGEN_ONLY_TABLES = "only-tables";
@@ -194,6 +195,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, String> metaProceduresResultSet;
         public Level metaDebugLevel;
         public boolean metaGenerateOperators;
+        public Set<String> metaOptimizeInsert;
 
         public Set<String> daoIgnoreTables;
         public Set<String> daoOnlyTables;
@@ -403,6 +405,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.metaProceduresResultSet = new HashMap<String, String>();
         modelValues.metaDebugLevel = null;
         modelValues.metaGenerateOperators = false;
+        modelValues.metaOptimizeInsert = new HashSet<String>();
     }
 
     private void initDaogenModel(ModelValues modelValues) {
@@ -791,6 +794,14 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                     : null, Level.WARN);
         } else if (METAGEN_GENERATE_OPERATORS.equals(property.getName())) {
             modelValues.metaGenerateOperators = true;
+        } else if (METAGEN_OPTIMIZE_INSERT.equals(property.getName())) {
+            if (property.getDbTables().isEmpty()) {
+                modelValues.metaOptimizeInsert.add("_ALL_");
+            } else {
+                for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
+                    modelValues.metaOptimizeInsert.add(property.getDbTables().get(i));
+                }
+            }
         }
     }
 
@@ -1134,6 +1145,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public boolean isMetaGenerateOperators(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.metaGenerateOperators : false;
+    }
+
+    @Override
+    public Set<String> getMetaOptimizeInsert(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaOptimizeInsert : Collections.<String> emptySet();
     }
 
     @Override

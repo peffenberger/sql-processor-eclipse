@@ -131,4 +131,6 @@ public interface ModelProperty extends Adapter {
     boolean isMetaGenerateOperators(EObject model);
 
     Set<String> getPreserveForeignKeys(EObject model);
+
+    Set<String> getMetaOptimizeInsert(EObject model);
 }

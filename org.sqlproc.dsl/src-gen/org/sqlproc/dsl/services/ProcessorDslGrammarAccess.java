@@ -2536,6 +2536,13 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDebugDebugLevelAssignementParserRuleCall_14_2_0 = (RuleCall)cDebugAssignment_14_2.eContents().get(0);
 		private final Assignment cNameAssignment_15 = (Assignment)cAlternatives.eContents().get(15);
 		private final Keyword cNameGenerateOperatorsKeyword_15_0 = (Keyword)cNameAssignment_15.eContents().get(0);
+		private final Group cGroup_16 = (Group)cAlternatives.eContents().get(16);
+		private final Assignment cNameAssignment_16_0 = (Assignment)cGroup_16.eContents().get(0);
+		private final Keyword cNameOptimizeInsertKeyword_16_0_0 = (Keyword)cNameAssignment_16_0.eContents().get(0);
+		private final Group cGroup_16_1 = (Group)cGroup_16.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_16_1_0 = (RuleCall)cGroup_16_1.eContents().get(0);
+		private final Assignment cDbTablesAssignment_16_1_1 = (Assignment)cGroup_16_1.eContents().get(1);
+		private final RuleCall cDbTablesIDENTTerminalRuleCall_16_1_1_0 = (RuleCall)cDbTablesAssignment_16_1_1.eContents().get(0);
 		
 		//MetagenProperty:
 		//	name="global-sequence" WS+ sequence=IDENT (WS+ type=IDENT)? | name="table-sequence" WS+ dbTable=IDENT WS+
@@ -2546,7 +2553,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	dbColumns+=IDENT)+ | name="not-like-columns" WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+ | name="generate-sequences" |
 		//	name="generate-identities" | name="function-result" WS+ dbFunction=IDENT WS+ type=IDENT | name="function-result-set"
 		//	WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT WS+ dbTable=IDENT |
-		//	name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators";
+		//	name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" | name="optimize-insert" (WS+
+		//	dbTables+=IDENT)*;
 		public ParserRule getRule() { return rule; }
 
 		//name="global-sequence" WS+ sequence=IDENT (WS+ type=IDENT)? | name="table-sequence" WS+ dbTable=IDENT WS+ sequence=IDENT
@@ -2557,7 +2565,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//| name="not-like-columns" WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+ | name="generate-sequences" |
 		//name="generate-identities" | name="function-result" WS+ dbFunction=IDENT WS+ type=IDENT | name="function-result-set"
 		//WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT WS+ dbTable=IDENT |
-		//name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators"
+		//name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" | name="optimize-insert" (WS+
+		//dbTables+=IDENT)*
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="global-sequence" WS+ sequence=IDENT (WS+ type=IDENT)?
@@ -2943,6 +2952,27 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"generate-operators"
 		public Keyword getNameGenerateOperatorsKeyword_15_0() { return cNameGenerateOperatorsKeyword_15_0; }
+
+		//name="optimize-insert" (WS+ dbTables+=IDENT)*
+		public Group getGroup_16() { return cGroup_16; }
+
+		//name="optimize-insert"
+		public Assignment getNameAssignment_16_0() { return cNameAssignment_16_0; }
+
+		//"optimize-insert"
+		public Keyword getNameOptimizeInsertKeyword_16_0_0() { return cNameOptimizeInsertKeyword_16_0_0; }
+
+		//(WS+ dbTables+=IDENT)*
+		public Group getGroup_16_1() { return cGroup_16_1; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_16_1_0() { return cWSTerminalRuleCall_16_1_0; }
+
+		//dbTables+=IDENT
+		public Assignment getDbTablesAssignment_16_1_1() { return cDbTablesAssignment_16_1_1; }
+
+		//IDENT
+		public RuleCall getDbTablesIDENTTerminalRuleCall_16_1_1_0() { return cDbTablesIDENTTerminalRuleCall_16_1_1_0; }
 	}
 
 	public class DaogenPropertyElements extends AbstractParserRuleElementFinder {
@@ -8780,7 +8810,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	dbColumns+=IDENT)+ | name="not-like-columns" WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+ | name="generate-sequences" |
 	//	name="generate-identities" | name="function-result" WS+ dbFunction=IDENT WS+ type=IDENT | name="function-result-set"
 	//	WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT WS+ dbTable=IDENT |
-	//	name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators";
+	//	name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" | name="optimize-insert" (WS+
+	//	dbTables+=IDENT)*;
 	public MetagenPropertyElements getMetagenPropertyAccess() {
 		return (pMetagenProperty != null) ? pMetagenProperty : (pMetagenProperty = new MetagenPropertyElements());
 	}

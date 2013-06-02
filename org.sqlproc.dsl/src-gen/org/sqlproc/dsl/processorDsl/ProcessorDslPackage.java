@@ -1376,13 +1376,22 @@ public interface ProcessorDslPackage extends EPackage
   int METAGEN_PROPERTY__DEBUG = 10;
 
   /**
+   * The feature id for the '<em><b>Db Tables</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METAGEN_PROPERTY__DB_TABLES = 11;
+
+  /**
    * The number of structural features of the '<em>Metagen Property</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY_FEATURE_COUNT = 11;
+  int METAGEN_PROPERTY_FEATURE_COUNT = 12;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl <em>Daogen Property</em>}' class.
@@ -5473,6 +5482,17 @@ public interface ProcessorDslPackage extends EPackage
   EReference getMetagenProperty_Debug();
 
   /**
+   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbTables <em>Db Tables</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Db Tables</em>'.
+   * @see org.sqlproc.dsl.processorDsl.MetagenProperty#getDbTables()
+   * @see #getMetagenProperty()
+   * @generated
+   */
+  EAttribute getMetagenProperty_DbTables();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DaogenProperty <em>Daogen Property</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9097,6 +9117,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference METAGEN_PROPERTY__DEBUG = eINSTANCE.getMetagenProperty_Debug();
+
+    /**
+     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute METAGEN_PROPERTY__DB_TABLES = eINSTANCE.getMetagenProperty_DbTables();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl <em>Daogen Property</em>}' class.

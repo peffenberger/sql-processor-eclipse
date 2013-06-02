@@ -50,6 +50,7 @@ public class TableMetaConverter extends TablePojoConverter {
     protected Map<String, String> metaFunctionsResultSet = new HashMap<String, String>();
     protected Map<String, String> metaProceduresResultSet = new HashMap<String, String>();
     protected boolean metaGenerateOperators = false;
+    protected Set<String> metaOptimizeInsert = new HashSet<String>();
 
     enum StatementType {
         INSERT, GET, UPDATE, DELETE, SELECT
@@ -138,6 +139,10 @@ public class TableMetaConverter extends TablePojoConverter {
             this.metaProceduresResultSet.putAll(metaProceduresResultSet);
         }
         this.metaGenerateOperators = modelProperty.isMetaGenerateOperators(artifacts);
+        Set<String> metaOptimizeInsert = modelProperty.getMetaOptimizeInsert(artifacts);
+        if (metaOptimizeInsert != null) {
+            this.metaOptimizeInsert.addAll(metaOptimizeInsert);
+        }
 
         if (debug) {
             System.out.println("finalMetas " + this.finalMetas);
@@ -155,6 +160,7 @@ public class TableMetaConverter extends TablePojoConverter {
             System.out.println("metaFunctionsResultSet " + this.metaFunctionsResultSet);
             System.out.println("metaProceduresResultSet " + this.metaProceduresResultSet);
             System.out.println("metaGenerateOperators " + this.metaGenerateOperators);
+            System.out.println("metaOptimizeInsert " + this.metaOptimizeInsert);
         }
     }
 
@@ -252,14 +258,20 @@ public class TableMetaConverter extends TablePojoConverter {
         boolean first = insertColumns(buffer, pojo, true);
         if (parentPojo != null)
             insertColumns(buffer, parentPojo, first);
-        buffer.append(")\n  {= values (");
+        if (metaOptimizeInsert.contains(pojo) || metaOptimizeInsert.contains("_ALL_"))
+            buffer.append("\n  )\n  {= values (");
+        else
+            buffer.append(")\n  {= values (");
         first = insertIdentity(buffer, pojo, true);
         if (parentPojo != null)
             first = insertIdentity(buffer, parentPojo, first);
         first = pojoColumns(buffer, pojo, first, header.statementName);
         if (parentPojo != null)
             pojoColumns(buffer, parentPojo, first, header.statementName);
-        buffer.append(") }");
+        if (metaOptimizeInsert.contains(pojo) || metaOptimizeInsert.contains("_ALL_"))
+            buffer.append("\n  ) }");
+        else
+            buffer.append(") }");
         buffer.append("\n;\n");
         return buffer;
     }
@@ -456,11 +468,30 @@ public class TableMetaConverter extends TablePojoConverter {
             PojoAttribute attribute = pentry.getValue();
             if (attribute.getClassName().startsWith(COLLECTION_LIST))
                 continue;
+            String name = null;
+            if (metaOptimizeInsert.contains(pojo) || metaOptimizeInsert.contains("_ALL_")) {
+                if (!attribute.isRequired()) {
+                    Attribute attr = getStatementAttribute(pojo, pentry.getKey(), pentry.getValue(), true);
+                    if (attr == null)
+                        continue;
+                    name = (columnNames.containsKey(attr.tableName)) ? columnNames.get(attr.tableName).get(
+                            attr.attributeName) : null;
+                    if (name == null)
+                        name = attr.attribute.getName();
+                    else
+                        name = columnToCamelCase(name);
+                }
+                buffer.append("\n    ");
+                if (name != null)
+                    buffer.append("{? :").append(name).append(" | ");
+            }
             if (!first)
-                buffer.append(", %");
+                buffer.append((name != null) ? ",%" : ", %");
             else
                 buffer.append("%");
             buffer.append(pentry.getKey());
+            if (name != null)
+                buffer.append("}");
             first = false;
         }
         return first;
@@ -478,7 +509,10 @@ public class TableMetaConverter extends TablePojoConverter {
                     name = pentry.getValue().getName();
                 else
                     name = columnToCamelCase(name);
-                buffer.append(":");
+                if (metaOptimizeInsert.contains(pojo) || metaOptimizeInsert.contains("_ALL_"))
+                    buffer.append("\n    :");
+                else
+                    buffer.append(":");
                 buffer.append(name);
                 buffer.append("(");
                 if (identity.value2 != null)
@@ -505,10 +539,20 @@ public class TableMetaConverter extends TablePojoConverter {
                 name = attr.attribute.getName();
             else
                 name = columnToCamelCase(name);
-            if (!first)
-                buffer.append(", :");
-            else
-                buffer.append(":");
+            if (metaOptimizeInsert.contains(pojo) || metaOptimizeInsert.contains("_ALL_")) {
+                buffer.append("\n    ");
+                if (!pentry.getValue().isRequired())
+                    buffer.append("{? :").append(name).append(" | ");
+                if (!first)
+                    buffer.append(",:");
+                else
+                    buffer.append(":");
+            } else {
+                if (!first)
+                    buffer.append(", :");
+                else
+                    buffer.append(":");
+            }
             buffer.append(name);
             if (attr.attribute.getPkTable() != null && attr.attribute.getRef() != null) {
                 buffer.append(".").append(columnToCamelCase(attr.attribute.getPkColumn()));
@@ -524,6 +568,10 @@ public class TableMetaConverter extends TablePojoConverter {
             if (metaTypes(buffer, attr.tableName, attr.attributeName, statementName, attr.sequence == null)
                     || attr.sequence != null)
                 buffer.append(")");
+            if (metaOptimizeInsert.contains(pojo) || metaOptimizeInsert.contains("_ALL_")) {
+                if (!pentry.getValue().isRequired())
+                    buffer.append("}");
+            }
             first = false;
         }
         return first;

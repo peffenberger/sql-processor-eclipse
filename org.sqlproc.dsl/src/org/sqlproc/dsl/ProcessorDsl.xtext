@@ -114,6 +114,7 @@ MetagenProperty:
 	|name='procedure-result-set' WS+ dbProcedure=IDENT WS+ dbTable=IDENT
 	|name='debug-level' WS+ debug=DebugLevelAssignement
 	|name='generate-operators'
+	|name='optimize-insert' (WS+ dbTables+=IDENT)*
 	);
 
 DaogenProperty:

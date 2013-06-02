@@ -1279,7 +1279,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='function-result-set' dbFunction=IDENT dbTable=IDENT) | 
 	 *         (name='procedure-result-set' dbProcedure=IDENT dbTable=IDENT) | 
 	 *         (name='debug-level' debug=DebugLevelAssignement) | 
-	 *         name='generate-operators'
+	 *         name='generate-operators' | 
+	 *         (name='optimize-insert' dbTables+=IDENT*)
 	 *     )
 	 */
 	protected void sequence_MetagenProperty(EObject context, MetagenProperty semanticObject) {
