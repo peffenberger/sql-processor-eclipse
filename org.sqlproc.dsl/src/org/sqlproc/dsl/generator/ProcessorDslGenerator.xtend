@@ -231,14 +231,14 @@ def compile(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEnt
     @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     private «f.compileType(im)» «f.name»«IF isList(f)» = new Array«f.compileType(im)»()«ELSEIF isOptLock(f)» = 0«ENDIF»;
-  
+
     «FOR a:aaf.getterAnnotations»
     @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public «f.compileType(im)» get«f.name.toFirstUpper»() {
       return «f.name»;
     }
-  
+
     «FOR a:aaf.setterAnnotations»
     @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
@@ -246,7 +246,7 @@ def compile(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEnt
       this.«f.name» = «f.name»;
       «IF getUpdateColumn1(f) != null»
       if (this.«f.name» != null)
-        this.«getUpdateColumn2(f)» = this.«f.name».get«getUpdateColumn1(f).toFirstUpper»(); 
+        this.«getUpdateColumn2(f)» = this.«f.name».get«getUpdateColumn1(f).toFirstUpper»();
       «ENDIF»
       «IF getCreateColumn1(f) != null»
         if (this.«getCreateColumn1(f)» == null)
@@ -254,12 +254,12 @@ def compile(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEnt
         this.«getCreateColumn1(f)».set«getCreateColumn2(f).toFirstUpper»(«f.name»);
       «ENDIF»
     }
-  
+
     public «e.name» _set«f.name.toFirstUpper»(«f.compileType(im)» «f.name») {
       this.«f.name» = «f.name»;
       «IF getUpdateColumn1(f) != null»
       if (this.«f.name» != null)
-        this.«getUpdateColumn2(f)» = this.«f.name».get«getUpdateColumn1(f).toFirstUpper»(); 
+        this.«getUpdateColumn2(f)» = this.«f.name».get«getUpdateColumn1(f).toFirstUpper»();
       «ENDIF»
       «IF getCreateColumn1(f) != null»
         if (this.«getCreateColumn1(f)» == null)
@@ -268,17 +268,17 @@ def compile(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEnt
       «ENDIF»
       return this;
     }«IF hasOperators(e) && operatorSuffix != null»
-    
+
     private String «f.name»«operatorSuffix»;
 
     public String get«f.name.toFirstUpper»«operatorSuffix»() {
       return «f.name»«operatorSuffix»;
     }
-  
+
     public void set«f.name.toFirstUpper»«operatorSuffix»(String «f.name»«operatorSuffix») {
       this.«f.name»«operatorSuffix» = «f.name»«operatorSuffix»;
     }
-  
+
     public «e.name» _set«f.name.toFirstUpper»«operatorSuffix»(String «f.name»«operatorSuffix») {
       this.«f.name»«operatorSuffix» = «f.name»«operatorSuffix»;
       return this;
@@ -316,7 +316,7 @@ def compileEquals(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, P
         return false;
       «e.name» other = («e.name») obj;
       «FOR f2:f.attrs»
-      «IF f2.native != null»if («f2.name» != other.«f2.name»)«ELSE»if (!«f2.name».equals(other.«f2.name»))«ENDIF»
+      «IF f2.native != null»if («f2.name» != other.«f2.name»)«ELSE»if («f2.name» == null || !«f2.name».equals(other.«f2.name»))«ENDIF»
         return false;
       «ENDFOR»
       return true;

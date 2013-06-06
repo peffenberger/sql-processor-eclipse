@@ -992,11 +992,10 @@ public class ProcessorDslGenerator implements IGenerator {
     {
       EList<Annotation> _attributeAnnotations = aaf.getAttributeAnnotations();
       for(final Annotation a : _attributeAnnotations) {
-        _builder.append("  ");
         _builder.append("@");
         JvmType _type = a.getType();
         CharSequence _serialize = im.serialize(_type);
-        _builder.append(_serialize, "  ");
+        _builder.append(_serialize, "");
         {
           EList<AnnotationProperty> _features = a.getFeatures();
           boolean _isEmpty = _features.isEmpty();
@@ -1010,10 +1009,10 @@ public class ProcessorDslGenerator implements IGenerator {
                 if (!_hasElements) {
                   _hasElements = true;
                 } else {
-                  _builder.appendImmediate(", ", "  ");
+                  _builder.appendImmediate(", ", "");
                 }
                 CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
-                _builder.append(_compileAnnotationProperty, "  ");
+                _builder.append(_compileAnnotationProperty, "");
               }
             }
             _builder.append(")");
@@ -1022,19 +1021,18 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("  ");
     _builder.append("private ");
     CharSequence _compileType = this.compileType(f, im);
-    _builder.append(_compileType, "  ");
+    _builder.append(_compileType, "");
     _builder.append(" ");
     String _name = f.getName();
-    _builder.append(_name, "  ");
+    _builder.append(_name, "");
     {
       boolean _isList = Utils.isList(f);
       if (_isList) {
         _builder.append(" = new Array");
         CharSequence _compileType_1 = this.compileType(f, im);
-        _builder.append(_compileType_1, "  ");
+        _builder.append(_compileType_1, "");
         _builder.append("()");
       } else {
         boolean _isOptLock = Utils.isOptLock(f);
@@ -1049,11 +1047,10 @@ public class ProcessorDslGenerator implements IGenerator {
     {
       EList<Annotation> _getterAnnotations = aaf.getGetterAnnotations();
       for(final Annotation a_1 : _getterAnnotations) {
-        _builder.append("  ");
         _builder.append("@");
         JvmType _type_1 = a_1.getType();
         CharSequence _serialize_1 = im.serialize(_type_1);
-        _builder.append(_serialize_1, "  ");
+        _builder.append(_serialize_1, "");
         {
           EList<AnnotationProperty> _features_2 = a_1.getFeatures();
           boolean _isEmpty_1 = _features_2.isEmpty();
@@ -1067,10 +1064,10 @@ public class ProcessorDslGenerator implements IGenerator {
                 if (!_hasElements_1) {
                   _hasElements_1 = true;
                 } else {
-                  _builder.appendImmediate(", ", "  ");
+                  _builder.appendImmediate(", ", "");
                 }
                 CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, im);
-                _builder.append(_compileAnnotationProperty_1, "  ");
+                _builder.append(_compileAnnotationProperty_1, "");
               }
             }
             _builder.append(")");
@@ -1079,34 +1076,31 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("  ");
     _builder.append("public ");
     CharSequence _compileType_2 = this.compileType(f, im);
-    _builder.append(_compileType_2, "  ");
+    _builder.append(_compileType_2, "");
     _builder.append(" get");
     String _name_1 = f.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name_1);
-    _builder.append(_firstUpper, "  ");
+    _builder.append(_firstUpper, "");
     _builder.append("() {");
     _builder.newLineIfNotEmpty();
-    _builder.append("    ");
+    _builder.append("  ");
     _builder.append("return ");
     String _name_2 = f.getName();
-    _builder.append(_name_2, "    ");
+    _builder.append(_name_2, "  ");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
-    _builder.append("  ");
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
     {
       EList<Annotation> _setterAnnotations = aaf.getSetterAnnotations();
       for(final Annotation a_2 : _setterAnnotations) {
-        _builder.append("  ");
         _builder.append("@");
         JvmType _type_2 = a_2.getType();
         CharSequence _serialize_2 = im.serialize(_type_2);
-        _builder.append(_serialize_2, "  ");
+        _builder.append(_serialize_2, "");
         {
           EList<AnnotationProperty> _features_4 = a_2.getFeatures();
           boolean _isEmpty_2 = _features_4.isEmpty();
@@ -1120,10 +1114,10 @@ public class ProcessorDslGenerator implements IGenerator {
                 if (!_hasElements_2) {
                   _hasElements_2 = true;
                 } else {
-                  _builder.appendImmediate(", ", "  ");
+                  _builder.appendImmediate(", ", "");
                 }
                 CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(af_2, im);
-                _builder.append(_compileAnnotationProperty_2, "  ");
+                _builder.append(_compileAnnotationProperty_2, "");
               }
             }
             _builder.append(")");
@@ -1132,51 +1126,50 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("  ");
     _builder.append("public void set");
     String _name_3 = f.getName();
     String _firstUpper_1 = StringExtensions.toFirstUpper(_name_3);
-    _builder.append(_firstUpper_1, "  ");
+    _builder.append(_firstUpper_1, "");
     _builder.append("(");
     CharSequence _compileType_3 = this.compileType(f, im);
-    _builder.append(_compileType_3, "  ");
+    _builder.append(_compileType_3, "");
     _builder.append(" ");
     String _name_4 = f.getName();
-    _builder.append(_name_4, "  ");
+    _builder.append(_name_4, "");
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
-    _builder.append("    ");
+    _builder.append("  ");
     _builder.append("this.");
     String _name_5 = f.getName();
-    _builder.append(_name_5, "    ");
+    _builder.append(_name_5, "  ");
     _builder.append(" = ");
     String _name_6 = f.getName();
-    _builder.append(_name_6, "    ");
+    _builder.append(_name_6, "  ");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     {
       String _updateColumn1 = Utils.getUpdateColumn1(f);
       boolean _notEquals = (!Objects.equal(_updateColumn1, null));
       if (_notEquals) {
-        _builder.append("    ");
+        _builder.append("  ");
         _builder.append("if (this.");
         String _name_7 = f.getName();
-        _builder.append(_name_7, "    ");
+        _builder.append(_name_7, "  ");
         _builder.append(" != null)");
         _builder.newLineIfNotEmpty();
-        _builder.append("    ");
+        _builder.append("  ");
         _builder.append("  ");
         _builder.append("this.");
         String _updateColumn2 = Utils.getUpdateColumn2(f);
-        _builder.append(_updateColumn2, "      ");
+        _builder.append(_updateColumn2, "    ");
         _builder.append(" = this.");
         String _name_8 = f.getName();
-        _builder.append(_name_8, "      ");
+        _builder.append(_name_8, "    ");
         _builder.append(".get");
         String _updateColumn1_1 = Utils.getUpdateColumn1(f);
         String _firstUpper_2 = StringExtensions.toFirstUpper(_updateColumn1_1);
-        _builder.append(_firstUpper_2, "      ");
-        _builder.append("(); ");
+        _builder.append(_firstUpper_2, "    ");
+        _builder.append("();");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -1184,91 +1177,89 @@ public class ProcessorDslGenerator implements IGenerator {
       String _createColumn1 = Utils.getCreateColumn1(f);
       boolean _notEquals_1 = (!Objects.equal(_createColumn1, null));
       if (_notEquals_1) {
-        _builder.append("    ");
+        _builder.append("  ");
         _builder.append("if (this.");
         String _createColumn1_1 = Utils.getCreateColumn1(f);
-        _builder.append(_createColumn1_1, "    ");
+        _builder.append(_createColumn1_1, "  ");
         _builder.append(" == null)");
         _builder.newLineIfNotEmpty();
-        _builder.append("    ");
+        _builder.append("  ");
         _builder.append("    ");
         _builder.append("this.");
         String _createColumn1_2 = Utils.getCreateColumn1(f);
-        _builder.append(_createColumn1_2, "        ");
+        _builder.append(_createColumn1_2, "      ");
         _builder.append(" = new ");
         String _createColumn1_3 = Utils.getCreateColumn1(f);
         PojoProperty _attribute = Utils.getAttribute(e, _createColumn1_3);
         CharSequence _compileType_4 = this.compileType(_attribute, im);
-        _builder.append(_compileType_4, "        ");
+        _builder.append(_compileType_4, "      ");
         _builder.append("();");
         _builder.newLineIfNotEmpty();
-        _builder.append("    ");
+        _builder.append("  ");
         _builder.append("this.");
         String _createColumn1_4 = Utils.getCreateColumn1(f);
-        _builder.append(_createColumn1_4, "    ");
+        _builder.append(_createColumn1_4, "  ");
         _builder.append(".set");
         String _createColumn2 = Utils.getCreateColumn2(f);
         String _firstUpper_3 = StringExtensions.toFirstUpper(_createColumn2);
-        _builder.append(_firstUpper_3, "    ");
+        _builder.append(_firstUpper_3, "  ");
         _builder.append("(");
         String _name_9 = f.getName();
-        _builder.append(_name_9, "    ");
+        _builder.append(_name_9, "  ");
         _builder.append(");");
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("  ");
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("  ");
     _builder.append("public ");
     String _name_10 = e.getName();
-    _builder.append(_name_10, "  ");
+    _builder.append(_name_10, "");
     _builder.append(" _set");
     String _name_11 = f.getName();
     String _firstUpper_4 = StringExtensions.toFirstUpper(_name_11);
-    _builder.append(_firstUpper_4, "  ");
+    _builder.append(_firstUpper_4, "");
     _builder.append("(");
     CharSequence _compileType_5 = this.compileType(f, im);
-    _builder.append(_compileType_5, "  ");
+    _builder.append(_compileType_5, "");
     _builder.append(" ");
     String _name_12 = f.getName();
-    _builder.append(_name_12, "  ");
+    _builder.append(_name_12, "");
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
-    _builder.append("    ");
+    _builder.append("  ");
     _builder.append("this.");
     String _name_13 = f.getName();
-    _builder.append(_name_13, "    ");
+    _builder.append(_name_13, "  ");
     _builder.append(" = ");
     String _name_14 = f.getName();
-    _builder.append(_name_14, "    ");
+    _builder.append(_name_14, "  ");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     {
       String _updateColumn1_2 = Utils.getUpdateColumn1(f);
       boolean _notEquals_2 = (!Objects.equal(_updateColumn1_2, null));
       if (_notEquals_2) {
-        _builder.append("    ");
+        _builder.append("  ");
         _builder.append("if (this.");
         String _name_15 = f.getName();
-        _builder.append(_name_15, "    ");
+        _builder.append(_name_15, "  ");
         _builder.append(" != null)");
         _builder.newLineIfNotEmpty();
-        _builder.append("    ");
+        _builder.append("  ");
         _builder.append("  ");
         _builder.append("this.");
         String _updateColumn2_1 = Utils.getUpdateColumn2(f);
-        _builder.append(_updateColumn2_1, "      ");
+        _builder.append(_updateColumn2_1, "    ");
         _builder.append(" = this.");
         String _name_16 = f.getName();
-        _builder.append(_name_16, "      ");
+        _builder.append(_name_16, "    ");
         _builder.append(".get");
         String _updateColumn1_3 = Utils.getUpdateColumn1(f);
         String _firstUpper_5 = StringExtensions.toFirstUpper(_updateColumn1_3);
-        _builder.append(_firstUpper_5, "      ");
-        _builder.append("(); ");
+        _builder.append(_firstUpper_5, "    ");
+        _builder.append("();");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -1276,43 +1267,42 @@ public class ProcessorDslGenerator implements IGenerator {
       String _createColumn1_5 = Utils.getCreateColumn1(f);
       boolean _notEquals_3 = (!Objects.equal(_createColumn1_5, null));
       if (_notEquals_3) {
-        _builder.append("    ");
+        _builder.append("  ");
         _builder.append("if (this.");
         String _createColumn1_6 = Utils.getCreateColumn1(f);
-        _builder.append(_createColumn1_6, "    ");
+        _builder.append(_createColumn1_6, "  ");
         _builder.append(" == null)");
         _builder.newLineIfNotEmpty();
-        _builder.append("    ");
+        _builder.append("  ");
         _builder.append("    ");
         _builder.append("this.");
         String _createColumn1_7 = Utils.getCreateColumn1(f);
-        _builder.append(_createColumn1_7, "        ");
+        _builder.append(_createColumn1_7, "      ");
         _builder.append(" = new ");
         String _createColumn1_8 = Utils.getCreateColumn1(f);
         PojoProperty _attribute_1 = Utils.getAttribute(e, _createColumn1_8);
         CharSequence _compileType_6 = this.compileType(_attribute_1, im);
-        _builder.append(_compileType_6, "        ");
+        _builder.append(_compileType_6, "      ");
         _builder.append("();");
         _builder.newLineIfNotEmpty();
-        _builder.append("    ");
+        _builder.append("  ");
         _builder.append("this.");
         String _createColumn1_9 = Utils.getCreateColumn1(f);
-        _builder.append(_createColumn1_9, "    ");
+        _builder.append(_createColumn1_9, "  ");
         _builder.append(".set");
         String _createColumn2_1 = Utils.getCreateColumn2(f);
         String _firstUpper_6 = StringExtensions.toFirstUpper(_createColumn2_1);
-        _builder.append(_firstUpper_6, "    ");
+        _builder.append(_firstUpper_6, "  ");
         _builder.append("(");
         String _name_17 = f.getName();
-        _builder.append(_name_17, "    ");
+        _builder.append(_name_17, "  ");
         _builder.append(");");
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("    ");
+    _builder.append("  ");
     _builder.append("return this;");
     _builder.newLine();
-    _builder.append("  ");
     _builder.append("}");
     {
       boolean _and = false;
@@ -1325,98 +1315,84 @@ public class ProcessorDslGenerator implements IGenerator {
       }
       if (_and) {
         _builder.newLineIfNotEmpty();
-        _builder.append("  ");
         _builder.newLine();
-        _builder.append("  ");
         _builder.append("private String ");
         String _name_18 = f.getName();
-        _builder.append(_name_18, "  ");
-        _builder.append(operatorSuffix, "  ");
+        _builder.append(_name_18, "");
+        _builder.append(operatorSuffix, "");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
         _builder.newLine();
-        _builder.append("  ");
         _builder.append("public String get");
         String _name_19 = f.getName();
         String _firstUpper_7 = StringExtensions.toFirstUpper(_name_19);
-        _builder.append(_firstUpper_7, "  ");
-        _builder.append(operatorSuffix, "  ");
+        _builder.append(_firstUpper_7, "");
+        _builder.append(operatorSuffix, "");
         _builder.append("() {");
         _builder.newLineIfNotEmpty();
         _builder.append("  ");
-        _builder.append("  ");
         _builder.append("return ");
         String _name_20 = f.getName();
-        _builder.append(_name_20, "    ");
-        _builder.append(operatorSuffix, "    ");
+        _builder.append(_name_20, "  ");
+        _builder.append(operatorSuffix, "  ");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
-        _builder.append("  ");
         _builder.append("}");
         _builder.newLine();
-        _builder.append("  ");
         _builder.newLine();
-        _builder.append("  ");
         _builder.append("public void set");
         String _name_21 = f.getName();
         String _firstUpper_8 = StringExtensions.toFirstUpper(_name_21);
-        _builder.append(_firstUpper_8, "  ");
-        _builder.append(operatorSuffix, "  ");
+        _builder.append(_firstUpper_8, "");
+        _builder.append(operatorSuffix, "");
         _builder.append("(String ");
         String _name_22 = f.getName();
-        _builder.append(_name_22, "  ");
-        _builder.append(operatorSuffix, "  ");
+        _builder.append(_name_22, "");
+        _builder.append(operatorSuffix, "");
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
-        _builder.append("  ");
         _builder.append("  ");
         _builder.append("this.");
         String _name_23 = f.getName();
-        _builder.append(_name_23, "    ");
-        _builder.append(operatorSuffix, "    ");
+        _builder.append(_name_23, "  ");
+        _builder.append(operatorSuffix, "  ");
         _builder.append(" = ");
         String _name_24 = f.getName();
-        _builder.append(_name_24, "    ");
-        _builder.append(operatorSuffix, "    ");
+        _builder.append(_name_24, "  ");
+        _builder.append(operatorSuffix, "  ");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
-        _builder.append("  ");
         _builder.append("}");
         _builder.newLine();
-        _builder.append("  ");
         _builder.newLine();
-        _builder.append("  ");
         _builder.append("public ");
         String _name_25 = e.getName();
-        _builder.append(_name_25, "  ");
+        _builder.append(_name_25, "");
         _builder.append(" _set");
         String _name_26 = f.getName();
         String _firstUpper_9 = StringExtensions.toFirstUpper(_name_26);
-        _builder.append(_firstUpper_9, "  ");
-        _builder.append(operatorSuffix, "  ");
+        _builder.append(_firstUpper_9, "");
+        _builder.append(operatorSuffix, "");
         _builder.append("(String ");
         String _name_27 = f.getName();
-        _builder.append(_name_27, "  ");
-        _builder.append(operatorSuffix, "  ");
+        _builder.append(_name_27, "");
+        _builder.append(operatorSuffix, "");
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
         _builder.append("  ");
-        _builder.append("  ");
         _builder.append("this.");
         String _name_28 = f.getName();
-        _builder.append(_name_28, "    ");
-        _builder.append(operatorSuffix, "    ");
+        _builder.append(_name_28, "  ");
+        _builder.append(operatorSuffix, "  ");
         _builder.append(" = ");
         String _name_29 = f.getName();
-        _builder.append(_name_29, "    ");
-        _builder.append(operatorSuffix, "    ");
+        _builder.append(_name_29, "  ");
+        _builder.append(operatorSuffix, "  ");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
         _builder.append("  ");
-        _builder.append("  ");
         _builder.append("return this;");
         _builder.newLine();
-        _builder.append("  ");
         _builder.append("}");
       }
     }
@@ -1588,12 +1564,15 @@ public class ProcessorDslGenerator implements IGenerator {
             _builder.append(_name_3, "  ");
             _builder.append(")");
           } else {
-            _builder.append("if (!");
+            _builder.append("if (");
             String _name_4 = f2.getName();
             _builder.append(_name_4, "  ");
-            _builder.append(".equals(other.");
+            _builder.append(" == null || !");
             String _name_5 = f2.getName();
             _builder.append(_name_5, "  ");
+            _builder.append(".equals(other.");
+            String _name_6 = f2.getName();
+            _builder.append(_name_6, "  ");
             _builder.append("))");
           }
         }
