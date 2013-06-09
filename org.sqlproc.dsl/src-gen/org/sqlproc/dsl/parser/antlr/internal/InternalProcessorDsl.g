@@ -4625,7 +4625,67 @@ ruleMetagenProperty returns [EObject current=null]
 	    }
 
 )
-))*))
+))*)
+    |((
+(
+		lv_name_69_0=	'optional-features' 
+    {
+        newLeafNode(lv_name_69_0, grammarAccess.getMetagenPropertyAccess().getNameOptionalFeaturesKeyword_17_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_69_0, "optional-features");
+	    }
+
+)
+)(this_WS_70=RULE_WS
+    { 
+    newLeafNode(this_WS_70, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_17_1()); 
+    }
+)+(
+(
+		lv_dbStatement_71_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbStatement_71_0, grammarAccess.getMetagenPropertyAccess().getDbStatementIDENTTerminalRuleCall_17_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dbStatement",
+        		lv_dbStatement_71_0, 
+        		"IDENT");
+	    }
+
+)
+)((this_WS_72=RULE_WS
+    { 
+    newLeafNode(this_WS_72, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_17_3_0()); 
+    }
+)+(
+(
+		lv_optionalFeatures_73_0=RULE_IDENT
+		{
+			newLeafNode(lv_optionalFeatures_73_0, grammarAccess.getMetagenPropertyAccess().getOptionalFeaturesIDENTTerminalRuleCall_17_3_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"optionalFeatures",
+        		lv_optionalFeatures_73_0, 
+        		"IDENT");
+	    }
+
+)
+))+))
 ;
 
 

@@ -1385,13 +1385,22 @@ public interface ProcessorDslPackage extends EPackage
   int METAGEN_PROPERTY__DB_TABLES = 11;
 
   /**
+   * The feature id for the '<em><b>Optional Features</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METAGEN_PROPERTY__OPTIONAL_FEATURES = 12;
+
+  /**
    * The number of structural features of the '<em>Metagen Property</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY_FEATURE_COUNT = 12;
+  int METAGEN_PROPERTY_FEATURE_COUNT = 13;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl <em>Daogen Property</em>}' class.
@@ -5493,6 +5502,17 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getMetagenProperty_DbTables();
 
   /**
+   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getOptionalFeatures <em>Optional Features</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Optional Features</em>'.
+   * @see org.sqlproc.dsl.processorDsl.MetagenProperty#getOptionalFeatures()
+   * @see #getMetagenProperty()
+   * @generated
+   */
+  EAttribute getMetagenProperty_OptionalFeatures();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DaogenProperty <em>Daogen Property</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9125,6 +9145,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute METAGEN_PROPERTY__DB_TABLES = eINSTANCE.getMetagenProperty_DbTables();
+
+    /**
+     * The meta object literal for the '<em><b>Optional Features</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute METAGEN_PROPERTY__OPTIONAL_FEATURES = eINSTANCE.getMetagenProperty_OptionalFeatures();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl <em>Daogen Property</em>}' class.

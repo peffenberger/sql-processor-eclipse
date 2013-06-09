@@ -51,6 +51,7 @@ public class TableMetaConverter extends TablePojoConverter {
     protected Map<String, String> metaProceduresResultSet = new HashMap<String, String>();
     protected boolean metaGenerateOperators = false;
     protected Set<String> metaOptimizeInsert = new HashSet<String>();
+    protected Map<String, Set<String>> metaOptionalFeatures = new HashMap<String, Set<String>>();
 
     enum StatementType {
         INSERT, GET, UPDATE, DELETE, SELECT
@@ -143,6 +144,10 @@ public class TableMetaConverter extends TablePojoConverter {
         if (metaOptimizeInsert != null) {
             this.metaOptimizeInsert.addAll(metaOptimizeInsert);
         }
+        Map<String, Set<String>> metaOptionalFeatures = modelProperty.getMetaOptionalFeatures(artifacts);
+        if (metaOptionalFeatures != null) {
+            this.metaOptionalFeatures.putAll(metaOptionalFeatures);
+        }
 
         if (debug) {
             System.out.println("finalMetas " + this.finalMetas);
@@ -161,6 +166,7 @@ public class TableMetaConverter extends TablePojoConverter {
             System.out.println("metaProceduresResultSet " + this.metaProceduresResultSet);
             System.out.println("metaGenerateOperators " + this.metaGenerateOperators);
             System.out.println("metaOptimizeInsert " + this.metaOptimizeInsert);
+            System.out.println("metaOptionalFeatures " + this.metaOptionalFeatures);
         }
     }
 
@@ -583,7 +589,7 @@ public class TableMetaConverter extends TablePojoConverter {
         if (discriminator != null) {
             Attribute attr = getStatementAttribute(pojo, discriminator, pojos.get(pojo).get(discriminator), false);
             first = selectColumn(discriminator, attr, buffer, pojo, first, statementName, tablePrefix, pojoPrefix,
-                    notPrimaryKeys, assocTables, discriminator, inherTables, inheritance);
+                    notPrimaryKeys, assocTables, discriminator, inherTables, inheritance, false);
         }
         if (pojos.get(pojo) == null)
             return first;
@@ -596,7 +602,13 @@ public class TableMetaConverter extends TablePojoConverter {
                 continue;
             Attribute attr = getStatementAttribute(pojo, pentry.getKey(), pentry.getValue(), false);
             first = selectColumn(pentry.getKey(), attr, buffer, pojo, first, statementName, tablePrefix, pojoPrefix,
-                    notPrimaryKeys, assocTables, null, inherTables, null);
+                    notPrimaryKeys, assocTables, null, inherTables, null, false);
+            if (preserveForeignKeys.contains(pojo) || preserveForeignKeys.contains("_ALL_")) {
+                if (pentry.getValue().getPkTable() != null) {
+                    first = selectColumn(pentry.getKey(), attr, buffer, pojo, first, statementName, tablePrefix,
+                            pojoPrefix, notPrimaryKeys, assocTables, null, inherTables, null, true);
+                }
+            }
         }
         return first;
     }
@@ -604,7 +616,7 @@ public class TableMetaConverter extends TablePojoConverter {
     boolean selectColumn(String colname, Attribute attr, StringBuilder buffer, String pojo, boolean first,
             String statementName, String tablePrefix, String pojoPrefix, boolean notPrimaryKeys,
             Map<String, Table> assocTables, String discriminator, Map<String, List<Table>> inherTables,
-            String inheritance) {
+            String inheritance, boolean foreignKey) {
         if (attr == null)
             return first;
         if (attr.attribute.isPrimaryKey() && notPrimaryKeys)
@@ -633,16 +645,20 @@ public class TableMetaConverter extends TablePojoConverter {
         }
         if (pojoPrefix != null && discriminator == null)
             buffer.append(".");
-        buffer.append(name);
-        if (attr.attribute.getPkTable() != null && attr.attribute.getRef() != null) {
-            buffer.append(".").append(columnToCamelCase(attr.attribute.getPkColumn()));
+        if (!foreignKey) {
+            buffer.append(name);
+            if (attr.attribute.getPkTable() != null && attr.attribute.getRef() != null) {
+                buffer.append(".").append(columnToCamelCase(attr.attribute.getPkColumn()));
+            }
+            if (attr.attribute.isPrimaryKey() || assocTables.containsKey(colname))
+                buffer.append("(id");
+            if (metaTypes(buffer, attr.tableName, attr.attributeName, statementName, !attr.attribute.isPrimaryKey()
+                    && !assocTables.containsKey(colname))
+                    || attr.attribute.isPrimaryKey() || assocTables.containsKey(colname))
+                buffer.append(")");
+        } else {
+            buffer.append(columnToCamelCase(attr.attribute.getDbName()));
         }
-        if (attr.attribute.isPrimaryKey() || assocTables.containsKey(colname))
-            buffer.append("(id");
-        if (metaTypes(buffer, attr.tableName, attr.attributeName, statementName, !attr.attribute.isPrimaryKey()
-                && !assocTables.containsKey(colname))
-                || attr.attribute.isPrimaryKey() || assocTables.containsKey(colname))
-            buffer.append(")");
         return false;
     }
 
@@ -1440,6 +1456,11 @@ public class TableMetaConverter extends TablePojoConverter {
             buffer.append("(CRUD,");
         if (metaMakeItFinal)
             buffer.append("final=,");
+        if (metaOptionalFeatures.containsKey(header.statementName)) {
+            for (String optionalFeature : metaOptionalFeatures.get(header.statementName)) {
+                buffer.append(optionalFeature).append(",");
+            }
+        }
         buffer.append(Constants.IDENTIFIER_USAGE_EXTENDED).append("=").append(tableToCamelCase(header.table.tableName));
         buffer.append(",").append(Constants.COLUMN_USAGE_EXTENDED).append("=")
                 .append(tableToCamelCase(header.table.tableName));

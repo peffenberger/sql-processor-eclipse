@@ -1152,6 +1152,21 @@
           </elements>
         </elements>
       </elements>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:Keyword" value="optional-features"/>
+        </elements>
+        <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.74"/>
+        <elements xsi:type="xtext:Assignment" feature="dbStatement" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.69"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="+">
+          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.74"/>
+          <elements xsi:type="xtext:Assignment" feature="optionalFeatures" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.69"/>
+          </elements>
+        </elements>
+      </elements>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="DaogenProperty">

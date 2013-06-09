@@ -43,6 +43,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getDbProcedure <em>Db Procedure</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getDebug <em>Debug</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getDbTables <em>Db Tables</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getOptionalFeatures <em>Optional Features</em>}</li>
  * </ul>
  * </p>
  *
@@ -249,6 +250,16 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected EList<String> dbTables;
+
+  /**
+   * The cached value of the '{@link #getOptionalFeatures() <em>Optional Features</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOptionalFeatures()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> optionalFeatures;
 
   /**
    * <!-- begin-user-doc -->
@@ -550,6 +561,20 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<String> getOptionalFeatures()
+  {
+    if (optionalFeatures == null)
+    {
+      optionalFeatures = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.METAGEN_PROPERTY__OPTIONAL_FEATURES);
+    }
+    return optionalFeatures;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -597,6 +622,8 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return getDebug();
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLES:
         return getDbTables();
+      case ProcessorDslPackage.METAGEN_PROPERTY__OPTIONAL_FEATURES:
+        return getOptionalFeatures();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -651,6 +678,10 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         getDbTables().clear();
         getDbTables().addAll((Collection<? extends String>)newValue);
         return;
+      case ProcessorDslPackage.METAGEN_PROPERTY__OPTIONAL_FEATURES:
+        getOptionalFeatures().clear();
+        getOptionalFeatures().addAll((Collection<? extends String>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -701,6 +732,9 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLES:
         getDbTables().clear();
         return;
+      case ProcessorDslPackage.METAGEN_PROPERTY__OPTIONAL_FEATURES:
+        getOptionalFeatures().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -739,6 +773,8 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return debug != null;
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLES:
         return dbTables != null && !dbTables.isEmpty();
+      case ProcessorDslPackage.METAGEN_PROPERTY__OPTIONAL_FEATURES:
+        return optionalFeatures != null && !optionalFeatures.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -774,6 +810,8 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
     result.append(dbProcedure);
     result.append(", dbTables: ");
     result.append(dbTables);
+    result.append(", optionalFeatures: ");
+    result.append(optionalFeatures);
     result.append(')');
     return result.toString();
   }

@@ -133,4 +133,6 @@ public interface ModelProperty extends Adapter {
     Set<String> getPreserveForeignKeys(EObject model);
 
     Set<String> getMetaOptimizeInsert(EObject model);
+
+    Map<String, Set<String>> getMetaOptionalFeatures(EObject model);
 }

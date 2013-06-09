@@ -2543,6 +2543,16 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_16_1_0 = (RuleCall)cGroup_16_1.eContents().get(0);
 		private final Assignment cDbTablesAssignment_16_1_1 = (Assignment)cGroup_16_1.eContents().get(1);
 		private final RuleCall cDbTablesIDENTTerminalRuleCall_16_1_1_0 = (RuleCall)cDbTablesAssignment_16_1_1.eContents().get(0);
+		private final Group cGroup_17 = (Group)cAlternatives.eContents().get(17);
+		private final Assignment cNameAssignment_17_0 = (Assignment)cGroup_17.eContents().get(0);
+		private final Keyword cNameOptionalFeaturesKeyword_17_0_0 = (Keyword)cNameAssignment_17_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_17_1 = (RuleCall)cGroup_17.eContents().get(1);
+		private final Assignment cDbStatementAssignment_17_2 = (Assignment)cGroup_17.eContents().get(2);
+		private final RuleCall cDbStatementIDENTTerminalRuleCall_17_2_0 = (RuleCall)cDbStatementAssignment_17_2.eContents().get(0);
+		private final Group cGroup_17_3 = (Group)cGroup_17.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_17_3_0 = (RuleCall)cGroup_17_3.eContents().get(0);
+		private final Assignment cOptionalFeaturesAssignment_17_3_1 = (Assignment)cGroup_17_3.eContents().get(1);
+		private final RuleCall cOptionalFeaturesIDENTTerminalRuleCall_17_3_1_0 = (RuleCall)cOptionalFeaturesAssignment_17_3_1.eContents().get(0);
 		
 		//MetagenProperty:
 		//	name="global-sequence" WS+ sequence=IDENT (WS+ type=IDENT)? | name="table-sequence" WS+ dbTable=IDENT WS+
@@ -2554,7 +2564,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="generate-identities" | name="function-result" WS+ dbFunction=IDENT WS+ type=IDENT | name="function-result-set"
 		//	WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT WS+ dbTable=IDENT |
 		//	name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" | name="optimize-insert" (WS+
-		//	dbTables+=IDENT)*;
+		//	dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+ optionalFeatures+=IDENT)+;
 		public ParserRule getRule() { return rule; }
 
 		//name="global-sequence" WS+ sequence=IDENT (WS+ type=IDENT)? | name="table-sequence" WS+ dbTable=IDENT WS+ sequence=IDENT
@@ -2566,7 +2576,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//name="generate-identities" | name="function-result" WS+ dbFunction=IDENT WS+ type=IDENT | name="function-result-set"
 		//WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT WS+ dbTable=IDENT |
 		//name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" | name="optimize-insert" (WS+
-		//dbTables+=IDENT)*
+		//dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+ optionalFeatures+=IDENT)+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="global-sequence" WS+ sequence=IDENT (WS+ type=IDENT)?
@@ -2973,6 +2983,36 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//IDENT
 		public RuleCall getDbTablesIDENTTerminalRuleCall_16_1_1_0() { return cDbTablesIDENTTerminalRuleCall_16_1_1_0; }
+
+		//name="optional-features" WS+ dbStatement=IDENT (WS+ optionalFeatures+=IDENT)+
+		public Group getGroup_17() { return cGroup_17; }
+
+		//name="optional-features"
+		public Assignment getNameAssignment_17_0() { return cNameAssignment_17_0; }
+
+		//"optional-features"
+		public Keyword getNameOptionalFeaturesKeyword_17_0_0() { return cNameOptionalFeaturesKeyword_17_0_0; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_17_1() { return cWSTerminalRuleCall_17_1; }
+
+		//dbStatement=IDENT
+		public Assignment getDbStatementAssignment_17_2() { return cDbStatementAssignment_17_2; }
+
+		//IDENT
+		public RuleCall getDbStatementIDENTTerminalRuleCall_17_2_0() { return cDbStatementIDENTTerminalRuleCall_17_2_0; }
+
+		//(WS+ optionalFeatures+=IDENT)+
+		public Group getGroup_17_3() { return cGroup_17_3; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_17_3_0() { return cWSTerminalRuleCall_17_3_0; }
+
+		//optionalFeatures+=IDENT
+		public Assignment getOptionalFeaturesAssignment_17_3_1() { return cOptionalFeaturesAssignment_17_3_1; }
+
+		//IDENT
+		public RuleCall getOptionalFeaturesIDENTTerminalRuleCall_17_3_1_0() { return cOptionalFeaturesIDENTTerminalRuleCall_17_3_1_0; }
 	}
 
 	public class DaogenPropertyElements extends AbstractParserRuleElementFinder {
@@ -8811,7 +8851,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="generate-identities" | name="function-result" WS+ dbFunction=IDENT WS+ type=IDENT | name="function-result-set"
 	//	WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT WS+ dbTable=IDENT |
 	//	name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" | name="optimize-insert" (WS+
-	//	dbTables+=IDENT)*;
+	//	dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+ optionalFeatures+=IDENT)+;
 	public MetagenPropertyElements getMetagenPropertyAccess() {
 		return (pMetagenProperty != null) ? pMetagenProperty : (pMetagenProperty = new MetagenPropertyElements());
 	}

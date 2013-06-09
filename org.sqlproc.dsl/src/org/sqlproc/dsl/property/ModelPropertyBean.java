@@ -108,6 +108,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String METAGEN_DEBUG_LEVEL = "debug-level";
     public static final String METAGEN_GENERATE_OPERATORS = "generate-operators";
     public static final String METAGEN_OPTIMIZE_INSERT = "optimize-insert";
+    public static final String METAGEN_OPTIONAL_FEATURES = "optional-features";
     public static final String DAOGEN = "daogen";
     public static final String DAOGEN_IGNORE_TABLES = "ignore-tables";
     public static final String DAOGEN_ONLY_TABLES = "only-tables";
@@ -196,6 +197,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Level metaDebugLevel;
         public boolean metaGenerateOperators;
         public Set<String> metaOptimizeInsert;
+        public Map<String, Set<String>> metaOptionalFeatures;
 
         public Set<String> daoIgnoreTables;
         public Set<String> daoOnlyTables;
@@ -406,6 +408,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.metaDebugLevel = null;
         modelValues.metaGenerateOperators = false;
         modelValues.metaOptimizeInsert = new HashSet<String>();
+        modelValues.metaOptionalFeatures = new HashMap<String, Set<String>>();
     }
 
     private void initDaogenModel(ModelValues modelValues) {
@@ -802,6 +805,13 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                     modelValues.metaOptimizeInsert.add(property.getDbTables().get(i));
                 }
             }
+        } else if (METAGEN_OPTIONAL_FEATURES.equals(property.getName())) {
+            if (!modelValues.metaOptionalFeatures.containsKey(property.getDbStatement()))
+                modelValues.metaOptionalFeatures.put(property.getDbStatement(), new HashSet<String>());
+            for (int i = 0, m = property.getOptionalFeatures().size(); i < m; i++) {
+                String optionalFeature = property.getOptionalFeatures().get(i);
+                modelValues.metaOptionalFeatures.get(property.getDbStatement()).add(optionalFeature);
+            }
         }
     }
 
@@ -1151,6 +1161,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public Set<String> getMetaOptimizeInsert(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.metaOptimizeInsert : Collections.<String> emptySet();
+    }
+
+    @Override
+    public Map<String, Set<String>> getMetaOptionalFeatures(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaOptionalFeatures : Collections.<String, Set<String>> emptyMap();
     }
 
     @Override

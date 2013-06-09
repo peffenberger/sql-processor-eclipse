@@ -115,6 +115,7 @@ MetagenProperty:
 	|name='debug-level' WS+ debug=DebugLevelAssignement
 	|name='generate-operators'
 	|name='optimize-insert' (WS+ dbTables+=IDENT)*
+	|name='optional-features' WS+ dbStatement=IDENT (WS+ optionalFeatures+=IDENT)+
 	);
 
 DaogenProperty:
