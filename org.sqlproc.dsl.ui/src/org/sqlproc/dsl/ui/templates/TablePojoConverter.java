@@ -373,11 +373,17 @@ public class TablePojoConverter {
             // AAA3 PERSON PERSON ID PERSON_LIBRARY PERSON_ID
             // AAA3 MEDIA MEDIA ID PERSON_LIBRARY MEDIA_ID
             // pojogen table many-to-many PERSON_LIBRARY ID->MEDIA->LIBRARY;
-            // System.out.println("AAA3 " + table + " " + dbExport.getPkTable() + " " + dbExport.getPkColumn() + " " +
-            // dbExport.getFkTable() + " " + dbExport.getFkColumn());
+            // System.out.println("AAA3 " + table + " " + dbExport.getPkTable() + " " + dbExport.getPkColumn() + " "
+            // + dbExport.getFkTable() + " " + dbExport.getFkColumn());
             if (ignoreExports.containsKey(table) && ignoreExports.get(table).containsKey(dbExport.getPkColumn())
-                    && ignoreExports.get(table).get(dbExport.getPkColumn()).containsKey(dbExport.getFkTable()))
-                continue;
+                    && ignoreExports.get(table).get(dbExport.getPkColumn()).containsKey(dbExport.getFkTable())) {
+                // System.out.println("AAAE " + ignoreExports.get(table));
+                String fkColumn = ignoreExports.get(table).get(dbExport.getPkColumn()).get(dbExport.getFkTable());
+                if (fkColumn == null || fkColumn.length() == 0)
+                    continue;
+                if (fkColumn.equals(dbExport.getFkColumn()))
+                    continue;
+            }
             if (manyToManyImports.containsKey(dbExport.getFkTable())) {
                 if (manyToManyImports.get(dbExport.getFkTable()).containsKey(dbExport.getPkColumn())) {
                     for (Map.Entry<String, String> manyToMany : manyToManyImports.get(dbExport.getFkTable())
