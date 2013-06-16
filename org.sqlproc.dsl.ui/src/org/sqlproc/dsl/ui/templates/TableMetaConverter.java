@@ -258,17 +258,22 @@ public class TableMetaConverter extends TablePojoConverter {
         if (header == null)
             return buffer;
         buffer.append("\n  insert into %%").append(header.table.realTableName);
-        buffer.append(" (");
+        if (metaOptimizeInsert.contains(pojo) || metaOptimizeInsert.contains("_ALL_"))
+            buffer.append(" {= columns (");
+        else
+            buffer.append(" (");
         String parentPojo = pojoDiscriminators.containsKey(header.table.tableName) ? pojoExtends
                 .get(header.table.tableName) : null;
-        boolean first = insertColumns(buffer, pojo, true);
+        boolean first = (metaOptimizeInsert.contains(pojo) || metaOptimizeInsert.contains("_ALL_")) ? false : true;
+        first = insertColumns(buffer, pojo, first);
         if (parentPojo != null)
             insertColumns(buffer, parentPojo, first);
         if (metaOptimizeInsert.contains(pojo) || metaOptimizeInsert.contains("_ALL_"))
-            buffer.append("\n  )\n  {= values (");
+            buffer.append("\n  ) }\n  {= values (");
         else
             buffer.append(")\n  {= values (");
-        first = insertIdentity(buffer, pojo, true);
+        first = (metaOptimizeInsert.contains(pojo) || metaOptimizeInsert.contains("_ALL_")) ? false : true;
+        first = insertIdentity(buffer, pojo, first);
         if (parentPojo != null)
             first = insertIdentity(buffer, parentPojo, first);
         first = pojoColumns(buffer, pojo, first, header.statementName);
