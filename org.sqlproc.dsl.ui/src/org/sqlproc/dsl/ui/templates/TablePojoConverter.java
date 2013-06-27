@@ -546,6 +546,12 @@ public class TablePojoConverter {
         }
     }
 
+    protected String getTableName(String name) {
+        String realName = tableNames.get(name);
+        System.out.println("xxx " + name + " -> " + realName);
+        return (realName != null) ? realName : name;
+    }
+
     public void resolveReferencesOnKeys() {
         for (String pojo : pojos.keySet()) {
             Map<String, PojoAttribute> newAttributes = new HashMap<String, PojoAttribute>();
@@ -553,7 +559,7 @@ public class TablePojoConverter {
                 PojoAttribute attribute = entry.getValue();
                 if (attribute.getPkTable() != null) {
                     if (pojos.containsKey(attribute.getPkTable())) {
-                        attribute.setDependencyClassName(tableToCamelCase(attribute.getPkTable()));
+                        attribute.setDependencyClassName(tableToCamelCase(getTableName(attribute.getPkTable())));
                         attribute.setRef(attribute.getPkTable());
                         if (attribute.getName().length() >= 3) {
                             if (attribute.getName().startsWith("id")) {
@@ -580,7 +586,8 @@ public class TablePojoConverter {
                                 attrib.setOneToManyColumn(entry.getKey());
                                 attrib.setOneToManyOppositeColumn(fkColumn);
                                 attrib.setOneToManyTable(fk.getKey());
-                                attrib.setClassName(COLLECTION_LIST + " <:" + tableToCamelCase(fk.getKey()) + ">");
+                                attrib.setClassName(COLLECTION_LIST + " <:"
+                                        + tableToCamelCase(getTableName(fk.getKey())) + ">");
                                 attrib.setRef(fk.getKey());
                                 String dbColumnName = columnToDbConv(attrib.getName());
                                 newAttributes.put(dbColumnName, attrib);
@@ -605,7 +612,7 @@ public class TablePojoConverter {
                             attrib.setOneToManyOppositeColumn(attribute.getFkColumns().get(fk.getKey()).get(0));
                             attrib.setOneToManyTable(fk.getKey());
                         }
-                        attrib.setClassName(COLLECTION_LIST + " <:" + tableToCamelCase(fk.getKey()) + ">");
+                        attrib.setClassName(COLLECTION_LIST + " <:" + tableToCamelCase(getTableName(fk.getKey())) + ">");
                         attrib.setRef(fk.getKey());
                         String dbColumnName = columnToDbConv(attrib.getName());
                         newAttributes.put(dbColumnName, attrib);
