@@ -47,6 +47,8 @@ import org.sqlproc.dsl.processorDsl.TableAssignement;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getSqlTypes <em>Sql Types</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getDbTable <em>Db Table</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getColumnTypes <em>Column Types</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getDbProcedure <em>Db Procedure</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getDbFunction <em>Db Function</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getColumnType <em>Column Type</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getDbTables <em>Db Tables</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getJoinTables <em>Join Tables</em>}</li>
@@ -131,6 +133,46 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected EList<ColumnTypeAssignement> columnTypes;
+
+  /**
+   * The default value of the '{@link #getDbProcedure() <em>Db Procedure</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDbProcedure()
+   * @generated
+   * @ordered
+   */
+  protected static final String DB_PROCEDURE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getDbProcedure() <em>Db Procedure</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDbProcedure()
+   * @generated
+   * @ordered
+   */
+  protected String dbProcedure = DB_PROCEDURE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getDbFunction() <em>Db Function</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDbFunction()
+   * @generated
+   * @ordered
+   */
+  protected static final String DB_FUNCTION_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getDbFunction() <em>Db Function</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDbFunction()
+   * @generated
+   * @ordered
+   */
+  protected String dbFunction = DB_FUNCTION_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getColumnType() <em>Column Type</em>}' containment reference.
@@ -445,6 +487,52 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       columnTypes = new EObjectContainmentEList<ColumnTypeAssignement>(ColumnTypeAssignement.class, this, ProcessorDslPackage.POJOGEN_PROPERTY__COLUMN_TYPES);
     }
     return columnTypes;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getDbProcedure()
+  {
+    return dbProcedure;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDbProcedure(String newDbProcedure)
+  {
+    String oldDbProcedure = dbProcedure;
+    dbProcedure = newDbProcedure;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJOGEN_PROPERTY__DB_PROCEDURE, oldDbProcedure, dbProcedure));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getDbFunction()
+  {
+    return dbFunction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDbFunction(String newDbFunction)
+  {
+    String oldDbFunction = dbFunction;
+    dbFunction = newDbFunction;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJOGEN_PROPERTY__DB_FUNCTION, oldDbFunction, dbFunction));
   }
 
   /**
@@ -886,6 +974,10 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return getDbTable();
       case ProcessorDslPackage.POJOGEN_PROPERTY__COLUMN_TYPES:
         return getColumnTypes();
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_PROCEDURE:
+        return getDbProcedure();
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_FUNCTION:
+        return getDbFunction();
       case ProcessorDslPackage.POJOGEN_PROPERTY__COLUMN_TYPE:
         return getColumnType();
       case ProcessorDslPackage.POJOGEN_PROPERTY__DB_TABLES:
@@ -951,6 +1043,12 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJOGEN_PROPERTY__COLUMN_TYPES:
         getColumnTypes().clear();
         getColumnTypes().addAll((Collection<? extends ColumnTypeAssignement>)newValue);
+        return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_PROCEDURE:
+        setDbProcedure((String)newValue);
+        return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_FUNCTION:
+        setDbFunction((String)newValue);
         return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__COLUMN_TYPE:
         setColumnType((ShowColumnTypeAssignement)newValue);
@@ -1043,6 +1141,12 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJOGEN_PROPERTY__COLUMN_TYPES:
         getColumnTypes().clear();
         return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_PROCEDURE:
+        setDbProcedure(DB_PROCEDURE_EDEFAULT);
+        return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_FUNCTION:
+        setDbFunction(DB_FUNCTION_EDEFAULT);
+        return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__COLUMN_TYPE:
         setColumnType((ShowColumnTypeAssignement)null);
         return;
@@ -1119,6 +1223,10 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return DB_TABLE_EDEFAULT == null ? dbTable != null : !DB_TABLE_EDEFAULT.equals(dbTable);
       case ProcessorDslPackage.POJOGEN_PROPERTY__COLUMN_TYPES:
         return columnTypes != null && !columnTypes.isEmpty();
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_PROCEDURE:
+        return DB_PROCEDURE_EDEFAULT == null ? dbProcedure != null : !DB_PROCEDURE_EDEFAULT.equals(dbProcedure);
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_FUNCTION:
+        return DB_FUNCTION_EDEFAULT == null ? dbFunction != null : !DB_FUNCTION_EDEFAULT.equals(dbFunction);
       case ProcessorDslPackage.POJOGEN_PROPERTY__COLUMN_TYPE:
         return columnType != null;
       case ProcessorDslPackage.POJOGEN_PROPERTY__DB_TABLES:
@@ -1174,6 +1282,10 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
     result.append(name);
     result.append(", dbTable: ");
     result.append(dbTable);
+    result.append(", dbProcedure: ");
+    result.append(dbProcedure);
+    result.append(", dbFunction: ");
+    result.append(dbFunction);
     result.append(", dbTables: ");
     result.append(dbTables);
     result.append(", dbColumns: ");

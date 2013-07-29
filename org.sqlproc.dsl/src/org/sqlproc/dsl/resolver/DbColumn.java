@@ -1,6 +1,6 @@
 package org.sqlproc.dsl.resolver;
 
-public class DbColumn implements Comparable<DbColumn> {
+public class DbColumn { // implements Comparable<DbColumn> {
 
     private String name;
     private String type;
@@ -53,18 +53,18 @@ public class DbColumn implements Comparable<DbColumn> {
         this.nullable = nullable;
     }
 
-    public int getPosition() {
-        return position;
-    }
+    // public int getPosition() {
+    // return position;
+    // }
+    //
+    // public void setPosition(int position) {
+    // this.position = position;
+    // }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    @Override
-    public int compareTo(DbColumn dbColumn) {
-        return position - dbColumn.getPosition();
-    }
+    // @Override
+    // public int compareTo(DbColumn dbColumn) {
+    // return position - dbColumn.getPosition();
+    // }
 
     public short getColumnType() {
         return columnType;

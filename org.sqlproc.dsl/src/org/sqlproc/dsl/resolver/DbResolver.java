@@ -129,4 +129,8 @@ public interface DbResolver {
     List<String> getCheckConstraints(EObject model);
 
     List<String> getCheckColumns(EObject model, String table);
+
+    String getProcType(EObject model, String procedure, String column);
+
+    String getFunType(EObject model, String function, String column);
 }

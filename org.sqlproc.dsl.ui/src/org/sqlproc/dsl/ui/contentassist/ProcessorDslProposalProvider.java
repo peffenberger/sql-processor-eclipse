@@ -587,6 +587,38 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
 
     @Override
+    public void completePojogenProperty_DbProcedure(EObject model, Assignment assignment, ContentAssistContext context,
+            ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completePojogenProperty_DbProcedure(model, assignment, context, acceptor);
+            return;
+        }
+        for (String table : dbResolver.getProcedures(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+    }
+
+    @Override
+    public void completePojogenProperty_DbFunction(EObject model, Assignment assignment, ContentAssistContext context,
+            ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completePojogenProperty_DbFunction(model, assignment, context, acceptor);
+            return;
+        }
+        for (String table : dbResolver.getFunctions(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+    }
+
+    @Override
     public void completeTableAssignement_DbTable(EObject model, Assignment assignment, ContentAssistContext context,
             ICompletionProposalAcceptor acceptor) {
         if (!isResolveDb(model)) {
@@ -678,6 +710,18 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         PojogenProperty prop = (PojogenProperty) model;
         if (prop.getDbTable() != null) {
             for (String column : dbResolver.getColumns(model, prop.getDbTable())) {
+                String proposal = getValueConverter().toString(column, "IDENT");
+                ICompletionProposal completionProposal = createCompletionProposal(proposal + "->", context);
+                acceptor.accept(completionProposal);
+            }
+        } else if (prop.getDbProcedure() != null) {
+            for (String column : dbResolver.getProcColumns(model, prop.getDbProcedure())) {
+                String proposal = getValueConverter().toString(column, "IDENT");
+                ICompletionProposal completionProposal = createCompletionProposal(proposal + "->", context);
+                acceptor.accept(completionProposal);
+            }
+        } else if (prop.getDbFunction() != null) {
+            for (String column : dbResolver.getFunColumns(model, prop.getDbFunction())) {
                 String proposal = getValueConverter().toString(column, "IDENT");
                 ICompletionProposal completionProposal = createCompletionProposal(proposal + "->", context);
                 acceptor.accept(completionProposal);
@@ -954,6 +998,18 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
                 ICompletionProposal completionProposal = createCompletionProposal(proposal + "->", context);
                 acceptor.accept(completionProposal);
             }
+        } else if (prop.getDbProcedure() != null) {
+            for (String column : dbResolver.getProcColumns(model, prop.getDbProcedure())) {
+                String proposal = getValueConverter().toString(column, "IDENT");
+                ICompletionProposal completionProposal = createCompletionProposal(proposal + "->", context);
+                acceptor.accept(completionProposal);
+            }
+        } else if (prop.getDbFunction() != null) {
+            for (String column : dbResolver.getFunColumns(model, prop.getDbFunction())) {
+                String proposal = getValueConverter().toString(column, "IDENT");
+                ICompletionProposal completionProposal = createCompletionProposal(proposal + "->", context);
+                acceptor.accept(completionProposal);
+            }
         }
     }
 
@@ -966,12 +1022,25 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         }
         ShowColumnTypeAssignement prop = (ShowColumnTypeAssignement) model;
         PojogenProperty pojogenProperty = EcoreUtil2.getContainerOfType(model, PojogenProperty.class);
-        String table = pojogenProperty.getDbTable();
-        String column = prop.getDbColumn();
-        String type = dbResolver.getType(model, table, column);
-        String proposal = getValueConverter().toString(type, "PropertyValue");
-        ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
-        acceptor.accept(completionProposal);
+        String type = null;
+        if (pojogenProperty.getDbTable() != null) {
+            String table = pojogenProperty.getDbTable();
+            String column = prop.getDbColumn();
+            type = dbResolver.getType(model, table, column);
+        } else if (pojogenProperty.getDbProcedure() != null) {
+            String procedure = pojogenProperty.getDbProcedure();
+            String column = prop.getDbColumn();
+            type = dbResolver.getProcType(model, procedure, column);
+        } else if (pojogenProperty.getDbFunction() != null) {
+            String function = pojogenProperty.getDbFunction();
+            String column = prop.getDbColumn();
+            type = dbResolver.getFunType(model, function, column);
+        }
+        if (type != null) {
+            String proposal = getValueConverter().toString(type, "PropertyValue");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
     }
 
     @Override

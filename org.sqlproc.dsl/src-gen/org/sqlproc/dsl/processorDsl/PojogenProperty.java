@@ -20,6 +20,8 @@ import org.eclipse.xtext.common.types.JvmType;
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getSqlTypes <em>Sql Types</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDbTable <em>Db Table</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getColumnTypes <em>Column Types</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDbProcedure <em>Db Procedure</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDbFunction <em>Db Function</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getColumnType <em>Column Type</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDbTables <em>Db Tables</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getJoinTables <em>Join Tables</em>}</li>
@@ -130,6 +132,58 @@ public interface PojogenProperty extends EObject
    * @generated
    */
   EList<ColumnTypeAssignement> getColumnTypes();
+
+  /**
+   * Returns the value of the '<em><b>Db Procedure</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Db Procedure</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Db Procedure</em>' attribute.
+   * @see #setDbProcedure(String)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojogenProperty_DbProcedure()
+   * @model
+   * @generated
+   */
+  String getDbProcedure();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDbProcedure <em>Db Procedure</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Db Procedure</em>' attribute.
+   * @see #getDbProcedure()
+   * @generated
+   */
+  void setDbProcedure(String value);
+
+  /**
+   * Returns the value of the '<em><b>Db Function</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Db Function</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Db Function</em>' attribute.
+   * @see #setDbFunction(String)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojogenProperty_DbFunction()
+   * @model
+   * @generated
+   */
+  String getDbFunction();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDbFunction <em>Db Function</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Db Function</em>' attribute.
+   * @see #getDbFunction()
+   * @generated
+   */
+  void setDbFunction(String value);
 
   /**
    * Returns the value of the '<em><b>Column Type</b></em>' containment reference.

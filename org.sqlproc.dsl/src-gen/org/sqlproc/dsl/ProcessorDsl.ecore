@@ -136,6 +136,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbTable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="columnTypes" upperBound="-1"
         eType="#//ColumnTypeAssignement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbProcedure" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbFunction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="columnType" eType="#//ShowColumnTypeAssignement"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbTables" unique="false"

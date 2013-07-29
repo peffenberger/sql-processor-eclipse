@@ -1508,7 +1508,11 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='types-sqltypes' sqlTypes+=SqlTypeAssignement+) | 
 	 *         (name='types-in-table' dbTable=IDENT sqlTypes+=SqlTypeAssignement+) | 
 	 *         (name='types-for-columns' dbTable=IDENT columnTypes+=ColumnTypeAssignement+) | 
+	 *         (name='types-for-procedure' dbProcedure=IDENT columnTypes+=ColumnTypeAssignement+) | 
+	 *         (name='types-for-function' dbFunction=IDENT columnTypes+=ColumnTypeAssignement+) | 
 	 *         (name='show-type-for-column' dbTable=IDENT columnType=ShowColumnTypeAssignement) | 
+	 *         (name='show-type-for-procedure' dbProcedure=IDENT columnType=ShowColumnTypeAssignement) | 
+	 *         (name='show-type-for-function' dbFunction=IDENT columnType=ShowColumnTypeAssignement) | 
 	 *         (name='ignore-tables' dbTables+=IDENT+) | 
 	 *         (name='only-tables' dbTables+=IDENT+) | 
 	 *         (name='not-abstract-tables' dbTables+=IDENT+) | 

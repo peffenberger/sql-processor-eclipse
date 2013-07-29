@@ -939,7 +939,7 @@ public class DbResolverBean implements DbResolver {
                     }
                     dbColumn.setSqlType(result.getInt("DATA_TYPE"));
                     dbColumn.setNullable(result.getInt("NULLABLE") != DatabaseMetaData.columnNoNulls);
-                    dbColumn.setPosition(result.getInt("ORDINAL_POSITION"));
+                    // dbColumn.setPosition(result.getInt("ORDINAL_POSITION"));
                     columnsForModel.add(dbColumn);
                     // info(table + ": " + dbColumn.toString());
                 }
@@ -1062,8 +1062,8 @@ public class DbResolverBean implements DbResolver {
                     }
                     dbColumn.setSqlType(result.getInt("DATA_TYPE"));
                     dbColumn.setNullable(result.getInt("NULLABLE") != DatabaseMetaData.columnNoNulls);
-                    if (DbType.MY_SQL != dbType && DbType.INFORMIX != dbType)
-                        dbColumn.setPosition(result.getInt("ORDINAL_POSITION"));
+                    // if (DbType.MY_SQL != dbType && DbType.INFORMIX != dbType)
+                    // dbColumn.setPosition(result.getInt("ORDINAL_POSITION"));
                     columnsForModel.add(dbColumn);
                     info(procedure + ": " + dbColumn.toString());
                 }
@@ -1198,8 +1198,8 @@ public class DbResolverBean implements DbResolver {
                     }
                     dbColumn.setSqlType(result.getInt("DATA_TYPE"));
                     dbColumn.setNullable(result.getInt("NULLABLE") != DatabaseMetaData.columnNoNulls);
-                    if (DbType.MY_SQL != dbType)
-                        dbColumn.setPosition(result.getInt("ORDINAL_POSITION"));
+                    // if (DbType.MY_SQL != dbType)
+                    // dbColumn.setPosition(result.getInt("ORDINAL_POSITION"));
                     columnsForModel.add(dbColumn);
                     // info(function + ": " + dbColumn.toString());
                 }
@@ -1419,6 +1419,108 @@ public class DbResolverBean implements DbResolver {
             }
         }
         trace("<<<getType", type + "(" + typeSize + ")");
+        return type + "(" + typeSize + ")";
+    }
+
+    @Override
+    public String getProcType(EObject model, String procedure, String column) {
+        trace(">>>getDbProcType");
+        if (procedure == null || column == null)
+            return "";
+        DatabaseDirectives modelDatabaseValues = getConnection(model);
+        if (modelDatabaseValues == null)
+            return "";
+        DbType dbType = getDbType(model);
+        ResultSet result = null;
+        String type = null;
+        int typeSize = 0;
+        try {
+            DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
+            result = meta.getProcedureColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, procedure,
+                    null);
+            while (result.next()) {
+                if (column.equals(result.getString("COLUMN_NAME"))) {
+                    type = result.getString("TYPE_NAME");
+                    int ix = type.indexOf('(');
+                    if (ix > 0) {
+                        String size = type.substring(ix + 1);
+                        type = type.substring(0, ix);
+                        ix = size.indexOf(')');
+                        if (ix > 0) {
+                            size = size.substring(0, ix);
+                        }
+                        try {
+                            typeSize = Integer.parseInt(size);
+                        } catch (Exception ignore) {
+                        }
+                    } else {
+                        typeSize = result.getInt("LENGTH");
+                    }
+                    break;
+                }
+            }
+        } catch (SQLException e) {
+            error("getDbProcType error " + e, e);
+        } finally {
+            try {
+                if (result != null)
+                    result.close();
+            } catch (SQLException e) {
+                error("getDbProcType error " + e, e);
+            }
+        }
+        trace("<<<getDbProcType", type + "(" + typeSize + ")");
+        return type + "(" + typeSize + ")";
+    }
+
+    @Override
+    public String getFunType(EObject model, String function, String column) {
+        trace(">>>getDbFunType");
+        if (function == null || column == null)
+            return "";
+        DatabaseDirectives modelDatabaseValues = getConnection(model);
+        if (modelDatabaseValues == null)
+            return "";
+        DbType dbType = getDbType(model);
+        ResultSet result = null;
+        String type = null;
+        int typeSize = 0;
+        try {
+            DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
+            result = meta.getFunctionColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, function,
+                    null);
+            while (result.next()) {
+                if (column.equals(result.getString(dbType == DbType.DB2 ? "PARAMETER_NAME" : "COLUMN_NAME"))) {
+                    type = result.getString("TYPE_NAME");
+                    int ix = type.indexOf('(');
+                    if (ix > 0) {
+                        String size = type.substring(ix + 1);
+                        type = type.substring(0, ix);
+                        ix = size.indexOf(')');
+                        if (ix > 0) {
+                            size = size.substring(0, ix);
+                        }
+                        try {
+                            typeSize = Integer.parseInt(size);
+                        } catch (Exception ignore) {
+                        }
+                    } else {
+                        typeSize = result.getInt("LENGTH");
+                    }
+                    break;
+                }
+            }
+        } catch (SQLException e) {
+            error("getDbFunType error " + e, e);
+        } finally {
+            try {
+                if (result != null)
+                    result.close();
+            } catch (SQLException e) {
+                error("getDbFunType error " + e, e);
+            }
+        }
+        trace("<<<getDbFunType", type + "(" + typeSize + ")");
         return type + "(" + typeSize + ")";
     }
 

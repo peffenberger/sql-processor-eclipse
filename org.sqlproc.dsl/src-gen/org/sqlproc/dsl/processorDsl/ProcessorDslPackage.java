@@ -1050,13 +1050,31 @@ public interface ProcessorDslPackage extends EPackage
   int POJOGEN_PROPERTY__COLUMN_TYPES = 3;
 
   /**
+   * The feature id for the '<em><b>Db Procedure</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJOGEN_PROPERTY__DB_PROCEDURE = 4;
+
+  /**
+   * The feature id for the '<em><b>Db Function</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJOGEN_PROPERTY__DB_FUNCTION = 5;
+
+  /**
    * The feature id for the '<em><b>Column Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__COLUMN_TYPE = 4;
+  int POJOGEN_PROPERTY__COLUMN_TYPE = 6;
 
   /**
    * The feature id for the '<em><b>Db Tables</b></em>' attribute list.
@@ -1065,7 +1083,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__DB_TABLES = 5;
+  int POJOGEN_PROPERTY__DB_TABLES = 7;
 
   /**
    * The feature id for the '<em><b>Join Tables</b></em>' containment reference list.
@@ -1074,7 +1092,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__JOIN_TABLES = 6;
+  int POJOGEN_PROPERTY__JOIN_TABLES = 8;
 
   /**
    * The feature id for the '<em><b>Db Columns</b></em>' attribute list.
@@ -1083,7 +1101,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__DB_COLUMNS = 7;
+  int POJOGEN_PROPERTY__DB_COLUMNS = 9;
 
   /**
    * The feature id for the '<em><b>Tables</b></em>' containment reference list.
@@ -1092,7 +1110,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__TABLES = 8;
+  int POJOGEN_PROPERTY__TABLES = 10;
 
   /**
    * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -1101,7 +1119,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__COLUMNS = 9;
+  int POJOGEN_PROPERTY__COLUMNS = 11;
 
   /**
    * The feature id for the '<em><b>Exports</b></em>' containment reference list.
@@ -1110,7 +1128,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__EXPORTS = 10;
+  int POJOGEN_PROPERTY__EXPORTS = 12;
 
   /**
    * The feature id for the '<em><b>Imports</b></em>' containment reference list.
@@ -1119,7 +1137,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__IMPORTS = 11;
+  int POJOGEN_PROPERTY__IMPORTS = 13;
 
   /**
    * The feature id for the '<em><b>Many2s</b></em>' containment reference list.
@@ -1128,7 +1146,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__MANY2S = 12;
+  int POJOGEN_PROPERTY__MANY2S = 14;
 
   /**
    * The feature id for the '<em><b>Db Column</b></em>' attribute.
@@ -1137,7 +1155,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__DB_COLUMN = 13;
+  int POJOGEN_PROPERTY__DB_COLUMN = 15;
 
   /**
    * The feature id for the '<em><b>Inheritance</b></em>' containment reference list.
@@ -1146,7 +1164,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__INHERITANCE = 14;
+  int POJOGEN_PROPERTY__INHERITANCE = 16;
 
   /**
    * The feature id for the '<em><b>Methods</b></em>' attribute list.
@@ -1155,7 +1173,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__METHODS = 15;
+  int POJOGEN_PROPERTY__METHODS = 17;
 
   /**
    * The feature id for the '<em><b>Operators Suffix</b></em>' attribute.
@@ -1164,7 +1182,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__OPERATORS_SUFFIX = 16;
+  int POJOGEN_PROPERTY__OPERATORS_SUFFIX = 18;
 
   /**
    * The feature id for the '<em><b>To Implements</b></em>' reference list.
@@ -1173,7 +1191,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__TO_IMPLEMENTS = 17;
+  int POJOGEN_PROPERTY__TO_IMPLEMENTS = 19;
 
   /**
    * The feature id for the '<em><b>To Extends</b></em>' reference.
@@ -1182,7 +1200,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__TO_EXTENDS = 18;
+  int POJOGEN_PROPERTY__TO_EXTENDS = 20;
 
   /**
    * The feature id for the '<em><b>Impl Package</b></em>' attribute.
@@ -1191,7 +1209,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__IMPL_PACKAGE = 19;
+  int POJOGEN_PROPERTY__IMPL_PACKAGE = 21;
 
   /**
    * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -1200,7 +1218,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__VERSION = 20;
+  int POJOGEN_PROPERTY__VERSION = 22;
 
   /**
    * The feature id for the '<em><b>Debug</b></em>' containment reference.
@@ -1209,7 +1227,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__DEBUG = 21;
+  int POJOGEN_PROPERTY__DEBUG = 23;
 
   /**
    * The number of structural features of the '<em>Pojogen Property</em>' class.
@@ -1218,7 +1236,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY_FEATURE_COUNT = 22;
+  int POJOGEN_PROPERTY_FEATURE_COUNT = 24;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.MetaTypeAssignementImpl <em>Meta Type Assignement</em>}' class.
@@ -5119,6 +5137,28 @@ public interface ProcessorDslPackage extends EPackage
   EReference getPojogenProperty_ColumnTypes();
 
   /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDbProcedure <em>Db Procedure</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Db Procedure</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojogenProperty#getDbProcedure()
+   * @see #getPojogenProperty()
+   * @generated
+   */
+  EAttribute getPojogenProperty_DbProcedure();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDbFunction <em>Db Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Db Function</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojogenProperty#getDbFunction()
+   * @see #getPojogenProperty()
+   * @generated
+   */
+  EAttribute getPojogenProperty_DbFunction();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getColumnType <em>Column Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8861,6 +8901,22 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference POJOGEN_PROPERTY__COLUMN_TYPES = eINSTANCE.getPojogenProperty_ColumnTypes();
+
+    /**
+     * The meta object literal for the '<em><b>Db Procedure</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJOGEN_PROPERTY__DB_PROCEDURE = eINSTANCE.getPojogenProperty_DbProcedure();
+
+    /**
+     * The meta object literal for the '<em><b>Db Function</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJOGEN_PROPERTY__DB_FUNCTION = eINSTANCE.getPojogenProperty_DbFunction();
 
     /**
      * The meta object literal for the '<em><b>Column Type</b></em>' containment reference feature.
