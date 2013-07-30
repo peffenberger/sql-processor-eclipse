@@ -68,6 +68,8 @@ public class TablePojoConverter {
     protected Map<String, PojoAttrType> sqlTypes = new HashMap<String, PojoAttrType>();
     protected Map<String, Map<String, PojoAttrType>> tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
     protected Map<String, Map<String, PojoAttrType>> columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
+    protected Map<String, Map<String, PojoAttrType>> functionTypes = new HashMap<String, Map<String, PojoAttrType>>();
+    protected Map<String, Map<String, PojoAttrType>> procedureTypes = new HashMap<String, Map<String, PojoAttrType>>();
     protected Map<String, String> tableNames = new HashMap<String, String>();
     protected Map<String, Map<String, String>> columnNames = new HashMap<String, Map<String, String>>();
     protected Set<String> ignoreTables = new HashSet<String>();
@@ -141,6 +143,14 @@ public class TablePojoConverter {
         Map<String, Map<String, PojoAttrType>> columnTypes = modelProperty.getColumnTypes(artifacts);
         if (columnTypes != null) {
             this.columnTypes.putAll(columnTypes);
+        }
+        Map<String, Map<String, PojoAttrType>> procedureTypes = modelProperty.getProcedureTypes(artifacts);
+        if (procedureTypes != null) {
+            this.procedureTypes.putAll(procedureTypes);
+        }
+        Map<String, Map<String, PojoAttrType>> functionTypes = modelProperty.getFunctionTypes(artifacts);
+        if (functionTypes != null) {
+            this.functionTypes.putAll(functionTypes);
         }
         Map<String, String> tableNames = modelProperty.getTableNames(artifacts);
         if (tableNames != null) {
@@ -265,6 +275,8 @@ public class TablePojoConverter {
             System.out.println("sqlTypes " + this.sqlTypes);
             System.out.println("tableTypes " + this.tableTypes);
             System.out.println("columnTypes " + this.columnTypes);
+            System.out.println("procedureTypes " + this.procedureTypes);
+            System.out.println("functionTypes " + this.functionTypes);
             System.out.println("tableNames " + this.tableNames);
             System.out.println("columnNames " + this.columnNames);
             System.out.println("ignoreTables " + this.ignoreTables);
@@ -311,7 +323,7 @@ public class TablePojoConverter {
             return;
         Map<String, PojoAttribute> attributes = new LinkedHashMap<String, PojoAttribute>();
         for (DbColumn dbColumn : dbColumns) {
-            PojoAttribute attribute = convertDbColumnDefinition(table, dbColumn);
+            PojoAttribute attribute = convertDbColumnDefinition(table, dbColumn, columnTypes);
             if (attribute != null) {
                 attributes.put(dbColumn.getName(), attribute);
             } else {
@@ -548,7 +560,6 @@ public class TablePojoConverter {
 
     protected String getTableName(String name) {
         String realName = tableNames.get(name);
-        System.out.println("xxx " + name + " -> " + realName);
         return (realName != null) ? realName : name;
     }
 
@@ -656,7 +667,7 @@ public class TablePojoConverter {
             if (dbType == DbType.INFORMIX && ix == 1 && isFunction
                     && !FAKE_FUN_PROC_COLUMN_NAME.equals(dbColumn.getName()))
                 continue;
-            PojoAttribute attribute = convertDbColumnDefinition(procedure, dbColumn);
+            PojoAttribute attribute = convertDbColumnDefinition(procedure, dbColumn, procedureTypes);
             if (attribute != null) {
                 attributes.put(dbColumn.getName(), attribute);
             } else {
@@ -697,7 +708,7 @@ public class TablePojoConverter {
             return;
         Map<String, PojoAttribute> attributes = new LinkedHashMap<String, PojoAttribute>();
         for (DbColumn dbColumn : dbFunColumns) {
-            PojoAttribute attribute = convertDbColumnDefinition(function, dbColumn);
+            PojoAttribute attribute = convertDbColumnDefinition(function, dbColumn, functionTypes);
             if (attribute != null) {
                 attributes.put(dbColumn.getName(), attribute);
             } else {
@@ -1315,10 +1326,12 @@ public class TablePojoConverter {
         return attribute;
     }
 
-    protected PojoAttribute convertDbColumnDefinition(String table, DbColumn dbColumn) {
+    protected PojoAttribute convertDbColumnDefinition(String table, DbColumn dbColumn,
+            Map<String, Map<String, PojoAttrType>> redefinedTypes) {
         if (dbColumn == null)
             return null;
-        PojoAttrType sqlType = columnTypes.containsKey(table) ? columnTypes.get(table).get(dbColumn.getName()) : null;
+        PojoAttrType sqlType = redefinedTypes.containsKey(table) ? redefinedTypes.get(table).get(dbColumn.getName())
+                : null;
         if (sqlType == null)
             sqlType = tableTypes.containsKey(table) ? tableTypes.get(table)
                     .get(dbColumn.getType() + dbColumn.getSize()) : null;

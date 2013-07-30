@@ -63,6 +63,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String POJOGEN_TYPE_SQLTYPES = "types-sqltypes";
     public static final String POJOGEN_TYPE_IN_TABLE = "types-in-table";
     public static final String POJOGEN_TYPE_FOR_COLUMNS = "types-for-columns";
+    public static final String POJOGEN_TYPE_FOR_PROCEDURE = "types-for-procedure";
+    public static final String POJOGEN_TYPE_FOR_FUNCTION = "types-for-function";
     public static final String POJOGEN_IGNORE_TABLES = "ignore-tables";
     public static final String POJOGEN_ONLY_TABLES = "only-tables";
     public static final String POJOGEN_IGNORE_COLUMNS = "ignore-columns";
@@ -150,6 +152,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, PojoAttrType> sqlTypes;
         public Map<String, Map<String, PojoAttrType>> tableTypes;
         public Map<String, Map<String, PojoAttrType>> columnTypes;
+        public Map<String, Map<String, PojoAttrType>> procedureTypes;
+        public Map<String, Map<String, PojoAttrType>> functionTypes;
         public Map<String, String> tableNames;
         public Map<String, Map<String, String>> columnNames;
         public Set<String> ignoreTables;
@@ -359,6 +363,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.sqlTypes = new HashMap<String, PojoAttrType>();
         modelValues.tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
         modelValues.columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
+        modelValues.procedureTypes = new HashMap<String, Map<String, PojoAttrType>>();
+        modelValues.functionTypes = new HashMap<String, Map<String, PojoAttrType>>();
         modelValues.tableNames = new HashMap<String, String>();
         modelValues.columnNames = new HashMap<String, Map<String, String>>();
         modelValues.ignoreTables = new HashSet<String>();
@@ -524,6 +530,26 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
                         .getColumnTypes().get(i).getType());
                 modelValues.columnTypes.get(property.getDbTable()).put(type.getName(), type);
+            }
+        } else if (POJOGEN_TYPE_FOR_PROCEDURE.equals(property.getName())) {
+            // if (modelValues.columnTypes == null)
+            // modelValues.columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
+            if (!modelValues.procedureTypes.containsKey(property.getDbProcedure()))
+                modelValues.procedureTypes.put(property.getDbProcedure(), new HashMap<String, PojoAttrType>());
+            for (int i = 0, m = property.getColumnTypes().size(); i < m; i++) {
+                PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
+                        .getColumnTypes().get(i).getType());
+                modelValues.procedureTypes.get(property.getDbProcedure()).put(type.getName(), type);
+            }
+        } else if (POJOGEN_TYPE_FOR_FUNCTION.equals(property.getName())) {
+            // if (modelValues.columnTypes == null)
+            // modelValues.columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
+            if (!modelValues.functionTypes.containsKey(property.getDbFunction()))
+                modelValues.functionTypes.put(property.getDbFunction(), new HashMap<String, PojoAttrType>());
+            for (int i = 0, m = property.getColumnTypes().size(); i < m; i++) {
+                PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
+                        .getColumnTypes().get(i).getType());
+                modelValues.functionTypes.get(property.getDbFunction()).put(type.getName(), type);
             }
         } else if (POJOGEN_RENAME_TABLES.equals(property.getName())) {
             // if (modelValues.tableNames == null)
@@ -874,6 +900,20 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public Map<String, Map<String, PojoAttrType>> getColumnTypes(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.columnTypes : Collections
+                .<String, Map<String, PojoAttrType>> emptyMap();
+    }
+
+    @Override
+    public Map<String, Map<String, PojoAttrType>> getProcedureTypes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.procedureTypes : Collections
+                .<String, Map<String, PojoAttrType>> emptyMap();
+    }
+
+    @Override
+    public Map<String, Map<String, PojoAttrType>> getFunctionTypes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.functionTypes : Collections
                 .<String, Map<String, PojoAttrType>> emptyMap();
     }
 

@@ -135,4 +135,8 @@ public interface ModelProperty extends Adapter {
     Set<String> getMetaOptimizeInsert(EObject model);
 
     Map<String, Set<String>> getMetaOptionalFeatures(EObject model);
+
+    Map<String, Map<String, PojoAttrType>> getProcedureTypes(EObject model);
+
+    Map<String, Map<String, PojoAttrType>> getFunctionTypes(EObject model);
 }
