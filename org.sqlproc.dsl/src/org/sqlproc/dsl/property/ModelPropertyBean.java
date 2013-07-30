@@ -92,6 +92,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String POJOGEN_VERSION_COLUMN = "version-column";
     public static final String POJOGEN_DEBUG_LEVEL = "debug-level";
     public static final String POJOGEN_PRESERVE_FOREIGN_KEYS = "preserve-foreign-keys";
+    public static final String POJOGEN_POJOS_FOR_PROCEDURES = "pojos-for-procedures";
+    public static final String POJOGEN_POJOS_FOR_FUNCTIONS = "pojos-for-functions";
     public static final String METAGEN = "metagen";
     public static final String METAGEN_GLOBAL_SEQUENCE = "global-sequence";
     public static final String METAGEN_TABLE_SEQUENCE = "table-sequence";
@@ -183,6 +185,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, String> versionColumns;
         public Level debugLevel;
         public Set<String> preserveForeignKeys;
+        public Map<String, PojoType> pojosForProcedures;
+        public Map<String, PojoType> pojosForFunctions;
 
         public PairValues metaGlobalSequence;
         public Map<String, PairValues> metaTablesSequence;
@@ -394,6 +398,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.versionColumns = new HashMap<String, String>();
         modelValues.debugLevel = null;
         modelValues.preserveForeignKeys = new HashSet<String>();
+        modelValues.pojosForProcedures = new HashMap<String, PojoType>();
+        modelValues.pojosForFunctions = new HashMap<String, PojoType>();
     }
 
     private void initMetagenModel(ModelValues modelValues) {
@@ -762,6 +768,16 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                     modelValues.preserveForeignKeys.add(property.getDbTables().get(i));
                 }
             }
+        } else if (POJOGEN_POJOS_FOR_PROCEDURES.equals(property.getName())) {
+            for (int i = 0, m = property.getProcPojos().size(); i < m; i++) {
+                modelValues.pojosForProcedures.put(property.getProcPojos().get(i).getDbProcedure(), property
+                        .getProcPojos().get(i).getPojo());
+            }
+        } else if (POJOGEN_POJOS_FOR_FUNCTIONS.equals(property.getName())) {
+            for (int i = 0, m = property.getFunPojos().size(); i < m; i++) {
+                modelValues.pojosForFunctions.put(property.getFunPojos().get(i).getDbFunction(), property.getFunPojos()
+                        .get(i).getPojo());
+            }
         }
     }
 
@@ -1103,6 +1119,18 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public PairValues getMetaGlobalIdentity(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.metaGlobalIdentity : null;
+    }
+
+    @Override
+    public Map<String, PojoType> getPojosForProcedures(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.pojosForProcedures : Collections.<String, PojoType> emptyMap();
+    }
+
+    @Override
+    public Map<String, PojoType> getPojosForFunctions(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.pojosForFunctions : Collections.<String, PojoType> emptyMap();
     }
 
     @Override

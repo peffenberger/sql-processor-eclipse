@@ -85,6 +85,14 @@
     <genClasses ecoreClass="ProcessorDsl.ecore#//DebugLevelAssignement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//DebugLevelAssignement/debug"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//ProcedurePojoAssignement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//ProcedurePojoAssignement/dbProcedure"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//ProcedurePojoAssignement/pojo"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//FunctionPojoAssignement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//FunctionPojoAssignement/dbFunction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//FunctionPojoAssignement/pojo"/>
+    </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//Property">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//Property/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//Property/database"/>
@@ -135,6 +143,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojogenProperty/implPackage"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojogenProperty/version"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojogenProperty/debug"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojogenProperty/procPojos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojogenProperty/funPojos"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//MetaTypeAssignement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//MetaTypeAssignement/dbColumn"/>

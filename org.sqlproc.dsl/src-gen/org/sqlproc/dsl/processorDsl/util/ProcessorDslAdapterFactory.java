@@ -165,6 +165,16 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createDebugLevelAssignementAdapter();
       }
       @Override
+      public Adapter caseProcedurePojoAssignement(ProcedurePojoAssignement object)
+      {
+        return createProcedurePojoAssignementAdapter();
+      }
+      @Override
+      public Adapter caseFunctionPojoAssignement(FunctionPojoAssignement object)
+      {
+        return createFunctionPojoAssignementAdapter();
+      }
+      @Override
       public Adapter caseProperty(Property object)
       {
         return createPropertyAdapter();
@@ -772,6 +782,36 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDebugLevelAssignementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.ProcedurePojoAssignement <em>Procedure Pojo Assignement</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.ProcedurePojoAssignement
+   * @generated
+   */
+  public Adapter createProcedurePojoAssignementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.FunctionPojoAssignement <em>Function Pojo Assignement</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.FunctionPojoAssignement
+   * @generated
+   */
+  public Adapter createFunctionPojoAssignementAdapter()
   {
     return null;
   }

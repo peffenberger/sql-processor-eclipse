@@ -40,6 +40,8 @@ import org.eclipse.xtext.common.types.JvmType;
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getImplPackage <em>Impl Package</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getVersion <em>Version</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDebug <em>Debug</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getProcPojos <em>Proc Pojos</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getFunPojos <em>Fun Pojos</em>}</li>
  * </ul>
  * </p>
  *
@@ -542,5 +544,37 @@ public interface PojogenProperty extends EObject
    * @generated
    */
   void setDebug(DebugLevelAssignement value);
+
+  /**
+   * Returns the value of the '<em><b>Proc Pojos</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.ProcedurePojoAssignement}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Proc Pojos</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Proc Pojos</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojogenProperty_ProcPojos()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ProcedurePojoAssignement> getProcPojos();
+
+  /**
+   * Returns the value of the '<em><b>Fun Pojos</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.FunctionPojoAssignement}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Fun Pojos</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Fun Pojos</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojogenProperty_FunPojos()
+   * @model containment="true"
+   * @generated
+   */
+  EList<FunctionPojoAssignement> getFunPojos();
 
 } // PojogenProperty

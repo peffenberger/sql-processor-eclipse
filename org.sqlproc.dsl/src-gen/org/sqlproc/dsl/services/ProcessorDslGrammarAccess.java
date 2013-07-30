@@ -728,6 +728,70 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getDebugIDENTTerminalRuleCall_0() { return cDebugIDENTTerminalRuleCall_0; }
 	}
 
+	public class ProcedurePojoAssignementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ProcedurePojoAssignement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDbProcedureAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cDbProcedureIDENTTerminalRuleCall_0_0 = (RuleCall)cDbProcedureAssignment_0.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cPojoAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPojoPojoTypeParserRuleCall_2_0 = (RuleCall)cPojoAssignment_2.eContents().get(0);
+		
+		//ProcedurePojoAssignement:
+		//	dbProcedure=IDENT "->" pojo=PojoType;
+		public ParserRule getRule() { return rule; }
+
+		//dbProcedure=IDENT "->" pojo=PojoType
+		public Group getGroup() { return cGroup; }
+
+		//dbProcedure=IDENT
+		public Assignment getDbProcedureAssignment_0() { return cDbProcedureAssignment_0; }
+
+		//IDENT
+		public RuleCall getDbProcedureIDENTTerminalRuleCall_0_0() { return cDbProcedureIDENTTerminalRuleCall_0_0; }
+
+		//"->"
+		public Keyword getHyphenMinusGreaterThanSignKeyword_1() { return cHyphenMinusGreaterThanSignKeyword_1; }
+
+		//pojo=PojoType
+		public Assignment getPojoAssignment_2() { return cPojoAssignment_2; }
+
+		//PojoType
+		public RuleCall getPojoPojoTypeParserRuleCall_2_0() { return cPojoPojoTypeParserRuleCall_2_0; }
+	}
+
+	public class FunctionPojoAssignementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FunctionPojoAssignement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDbFunctionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cDbFunctionIDENTTerminalRuleCall_0_0 = (RuleCall)cDbFunctionAssignment_0.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cPojoAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPojoPojoTypeParserRuleCall_2_0 = (RuleCall)cPojoAssignment_2.eContents().get(0);
+		
+		//FunctionPojoAssignement:
+		//	dbFunction=IDENT "->" pojo=PojoType;
+		public ParserRule getRule() { return rule; }
+
+		//dbFunction=IDENT "->" pojo=PojoType
+		public Group getGroup() { return cGroup; }
+
+		//dbFunction=IDENT
+		public Assignment getDbFunctionAssignment_0() { return cDbFunctionAssignment_0; }
+
+		//IDENT
+		public RuleCall getDbFunctionIDENTTerminalRuleCall_0_0() { return cDbFunctionIDENTTerminalRuleCall_0_0; }
+
+		//"->"
+		public Keyword getHyphenMinusGreaterThanSignKeyword_1() { return cHyphenMinusGreaterThanSignKeyword_1; }
+
+		//pojo=PojoType
+		public Assignment getPojoAssignment_2() { return cPojoAssignment_2; }
+
+		//PojoType
+		public RuleCall getPojoPojoTypeParserRuleCall_2_0() { return cPojoPojoTypeParserRuleCall_2_0; }
+	}
+
 	public class PropertyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Property");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1578,6 +1642,20 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_34_1 = (RuleCall)cGroup_34.eContents().get(1);
 		private final Assignment cDebugAssignment_34_2 = (Assignment)cGroup_34.eContents().get(2);
 		private final RuleCall cDebugDebugLevelAssignementParserRuleCall_34_2_0 = (RuleCall)cDebugAssignment_34_2.eContents().get(0);
+		private final Group cGroup_35 = (Group)cAlternatives.eContents().get(35);
+		private final Assignment cNameAssignment_35_0 = (Assignment)cGroup_35.eContents().get(0);
+		private final Keyword cNamePojosForProceduresKeyword_35_0_0 = (Keyword)cNameAssignment_35_0.eContents().get(0);
+		private final Group cGroup_35_1 = (Group)cGroup_35.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_35_1_0 = (RuleCall)cGroup_35_1.eContents().get(0);
+		private final Assignment cProcPojosAssignment_35_1_1 = (Assignment)cGroup_35_1.eContents().get(1);
+		private final RuleCall cProcPojosProcedurePojoAssignementParserRuleCall_35_1_1_0 = (RuleCall)cProcPojosAssignment_35_1_1.eContents().get(0);
+		private final Group cGroup_36 = (Group)cAlternatives.eContents().get(36);
+		private final Assignment cNameAssignment_36_0 = (Assignment)cGroup_36.eContents().get(0);
+		private final Keyword cNamePojosForFunctionsKeyword_36_0_0 = (Keyword)cNameAssignment_36_0.eContents().get(0);
+		private final Group cGroup_36_1 = (Group)cGroup_36.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_36_1_0 = (RuleCall)cGroup_36_1.eContents().get(0);
+		private final Assignment cFunPojosAssignment_36_1_1 = (Assignment)cGroup_36_1.eContents().get(1);
+		private final RuleCall cFunPojosFunctionPojoAssignementParserRuleCall_36_1_1_0 = (RuleCall)cFunPojosAssignment_36_1_1.eContents().get(0);
 		
 		//PojogenProperty:
 		//	name="types-sqltypes" (WS+ sqlTypes+=SqlTypeAssignement)+ | name="types-in-table" WS+ dbTable=IDENT (WS+
@@ -1603,7 +1681,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	toImplements+=[jvmTypes::JvmType|QualifiedName])+ | name="extends-class" WS+
 		//	toExtends=[jvmTypes::JvmType|QualifiedName] | name="generate-wrappers" | name="preserve-foreign-keys" (WS+
 		//	dbTables+=IDENT)* | name="implementation-package" WS+ implPackage=IDENT | name="make-it-final" | name="version-column"
-		//	WS+ version=IDENT (WS+ dbTables+=IDENT)* | name="debug-level" WS+ debug=DebugLevelAssignement;
+		//	WS+ version=IDENT (WS+ dbTables+=IDENT)* | name="debug-level" WS+ debug=DebugLevelAssignement |
+		//	name="pojos-for-procedures" (WS+ procPojos+=ProcedurePojoAssignement)+ | name="pojos-for-functions" (WS+
+		//	funPojos+=FunctionPojoAssignement)+;
 		public ParserRule getRule() { return rule; }
 
 		//name="types-sqltypes" (WS+ sqlTypes+=SqlTypeAssignement)+ | name="types-in-table" WS+ dbTable=IDENT (WS+
@@ -1629,7 +1709,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//toImplements+=[jvmTypes::JvmType|QualifiedName])+ | name="extends-class" WS+
 		//toExtends=[jvmTypes::JvmType|QualifiedName] | name="generate-wrappers" | name="preserve-foreign-keys" (WS+
 		//dbTables+=IDENT)* | name="implementation-package" WS+ implPackage=IDENT | name="make-it-final" | name="version-column"
-		//WS+ version=IDENT (WS+ dbTables+=IDENT)* | name="debug-level" WS+ debug=DebugLevelAssignement
+		//WS+ version=IDENT (WS+ dbTables+=IDENT)* | name="debug-level" WS+ debug=DebugLevelAssignement |
+		//name="pojos-for-procedures" (WS+ procPojos+=ProcedurePojoAssignement)+ | name="pojos-for-functions" (WS+
+		//funPojos+=FunctionPojoAssignement)+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="types-sqltypes" (WS+ sqlTypes+=SqlTypeAssignement)+
@@ -2513,6 +2595,48 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//DebugLevelAssignement
 		public RuleCall getDebugDebugLevelAssignementParserRuleCall_34_2_0() { return cDebugDebugLevelAssignementParserRuleCall_34_2_0; }
+
+		//name="pojos-for-procedures" (WS+ procPojos+=ProcedurePojoAssignement)+
+		public Group getGroup_35() { return cGroup_35; }
+
+		//name="pojos-for-procedures"
+		public Assignment getNameAssignment_35_0() { return cNameAssignment_35_0; }
+
+		//"pojos-for-procedures"
+		public Keyword getNamePojosForProceduresKeyword_35_0_0() { return cNamePojosForProceduresKeyword_35_0_0; }
+
+		//(WS+ procPojos+=ProcedurePojoAssignement)+
+		public Group getGroup_35_1() { return cGroup_35_1; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_35_1_0() { return cWSTerminalRuleCall_35_1_0; }
+
+		//procPojos+=ProcedurePojoAssignement
+		public Assignment getProcPojosAssignment_35_1_1() { return cProcPojosAssignment_35_1_1; }
+
+		//ProcedurePojoAssignement
+		public RuleCall getProcPojosProcedurePojoAssignementParserRuleCall_35_1_1_0() { return cProcPojosProcedurePojoAssignementParserRuleCall_35_1_1_0; }
+
+		//name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+
+		public Group getGroup_36() { return cGroup_36; }
+
+		//name="pojos-for-functions"
+		public Assignment getNameAssignment_36_0() { return cNameAssignment_36_0; }
+
+		//"pojos-for-functions"
+		public Keyword getNamePojosForFunctionsKeyword_36_0_0() { return cNamePojosForFunctionsKeyword_36_0_0; }
+
+		//(WS+ funPojos+=FunctionPojoAssignement)+
+		public Group getGroup_36_1() { return cGroup_36_1; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_36_1_0() { return cWSTerminalRuleCall_36_1_0; }
+
+		//funPojos+=FunctionPojoAssignement
+		public Assignment getFunPojosAssignment_36_1_1() { return cFunPojosAssignment_36_1_1; }
+
+		//FunctionPojoAssignement
+		public RuleCall getFunPojosFunctionPojoAssignementParserRuleCall_36_1_1_0() { return cFunPojosFunctionPojoAssignementParserRuleCall_36_1_1_0; }
 	}
 
 	public class MetaTypeAssignementElements extends AbstractParserRuleElementFinder {
@@ -8603,6 +8727,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	private InheritanceAssignementElements pInheritanceAssignement;
 	private ManyToManyAssignementElements pManyToManyAssignement;
 	private DebugLevelAssignementElements pDebugLevelAssignement;
+	private ProcedurePojoAssignementElements pProcedurePojoAssignement;
+	private FunctionPojoAssignementElements pFunctionPojoAssignement;
 	private PropertyElements pProperty;
 	private DatabasePropertyElements pDatabaseProperty;
 	private PojogenPropertyElements pPojogenProperty;
@@ -8929,6 +9055,26 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getDebugLevelAssignementAccess().getRule();
 	}
 
+	//ProcedurePojoAssignement:
+	//	dbProcedure=IDENT "->" pojo=PojoType;
+	public ProcedurePojoAssignementElements getProcedurePojoAssignementAccess() {
+		return (pProcedurePojoAssignement != null) ? pProcedurePojoAssignement : (pProcedurePojoAssignement = new ProcedurePojoAssignementElements());
+	}
+	
+	public ParserRule getProcedurePojoAssignementRule() {
+		return getProcedurePojoAssignementAccess().getRule();
+	}
+
+	//FunctionPojoAssignement:
+	//	dbFunction=IDENT "->" pojo=PojoType;
+	public FunctionPojoAssignementElements getFunctionPojoAssignementAccess() {
+		return (pFunctionPojoAssignement != null) ? pFunctionPojoAssignement : (pFunctionPojoAssignement = new FunctionPojoAssignementElements());
+	}
+	
+	public ParserRule getFunctionPojoAssignementRule() {
+		return getFunctionPojoAssignementAccess().getRule();
+	}
+
 	//Property:
 	//	(name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
 	//	pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty) SEMICOLON;
@@ -8983,7 +9129,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	toImplements+=[jvmTypes::JvmType|QualifiedName])+ | name="extends-class" WS+
 	//	toExtends=[jvmTypes::JvmType|QualifiedName] | name="generate-wrappers" | name="preserve-foreign-keys" (WS+
 	//	dbTables+=IDENT)* | name="implementation-package" WS+ implPackage=IDENT | name="make-it-final" | name="version-column"
-	//	WS+ version=IDENT (WS+ dbTables+=IDENT)* | name="debug-level" WS+ debug=DebugLevelAssignement;
+	//	WS+ version=IDENT (WS+ dbTables+=IDENT)* | name="debug-level" WS+ debug=DebugLevelAssignement |
+	//	name="pojos-for-procedures" (WS+ procPojos+=ProcedurePojoAssignement)+ | name="pojos-for-functions" (WS+
+	//	funPojos+=FunctionPojoAssignement)+;
 	public PojogenPropertyElements getPojogenPropertyAccess() {
 		return (pPojogenProperty != null) ? pPojogenProperty : (pPojogenProperty = new PojogenPropertyElements());
 	}

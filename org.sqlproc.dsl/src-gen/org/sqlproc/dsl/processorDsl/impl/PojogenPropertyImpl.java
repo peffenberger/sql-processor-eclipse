@@ -26,11 +26,13 @@ import org.sqlproc.dsl.processorDsl.ColumnAssignement;
 import org.sqlproc.dsl.processorDsl.ColumnTypeAssignement;
 import org.sqlproc.dsl.processorDsl.DebugLevelAssignement;
 import org.sqlproc.dsl.processorDsl.ExportAssignement;
+import org.sqlproc.dsl.processorDsl.FunctionPojoAssignement;
 import org.sqlproc.dsl.processorDsl.ImportAssignement;
 import org.sqlproc.dsl.processorDsl.InheritanceAssignement;
 import org.sqlproc.dsl.processorDsl.JoinTableAssignement;
 import org.sqlproc.dsl.processorDsl.ManyToManyAssignement;
 import org.sqlproc.dsl.processorDsl.PojogenProperty;
+import org.sqlproc.dsl.processorDsl.ProcedurePojoAssignement;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 import org.sqlproc.dsl.processorDsl.ShowColumnTypeAssignement;
 import org.sqlproc.dsl.processorDsl.SqlTypeAssignement;
@@ -67,6 +69,8 @@ import org.sqlproc.dsl.processorDsl.TableAssignement;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getImplPackage <em>Impl Package</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getDebug <em>Debug</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getProcPojos <em>Proc Pojos</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getFunPojos <em>Fun Pojos</em>}</li>
  * </ul>
  * </p>
  *
@@ -393,6 +397,26 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected DebugLevelAssignement debug;
+
+  /**
+   * The cached value of the '{@link #getProcPojos() <em>Proc Pojos</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getProcPojos()
+   * @generated
+   * @ordered
+   */
+  protected EList<ProcedurePojoAssignement> procPojos;
+
+  /**
+   * The cached value of the '{@link #getFunPojos() <em>Fun Pojos</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFunPojos()
+   * @generated
+   * @ordered
+   */
+  protected EList<FunctionPojoAssignement> funPojos;
 
   /**
    * <!-- begin-user-doc -->
@@ -925,6 +949,34 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<ProcedurePojoAssignement> getProcPojos()
+  {
+    if (procPojos == null)
+    {
+      procPojos = new EObjectContainmentEList<ProcedurePojoAssignement>(ProcedurePojoAssignement.class, this, ProcessorDslPackage.POJOGEN_PROPERTY__PROC_POJOS);
+    }
+    return procPojos;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<FunctionPojoAssignement> getFunPojos()
+  {
+    if (funPojos == null)
+    {
+      funPojos = new EObjectContainmentEList<FunctionPojoAssignement>(FunctionPojoAssignement.class, this, ProcessorDslPackage.POJOGEN_PROPERTY__FUN_POJOS);
+    }
+    return funPojos;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -952,6 +1004,10 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return ((InternalEList<?>)getInheritance()).basicRemove(otherEnd, msgs);
       case ProcessorDslPackage.POJOGEN_PROPERTY__DEBUG:
         return basicSetDebug(null, msgs);
+      case ProcessorDslPackage.POJOGEN_PROPERTY__PROC_POJOS:
+        return ((InternalEList<?>)getProcPojos()).basicRemove(otherEnd, msgs);
+      case ProcessorDslPackage.POJOGEN_PROPERTY__FUN_POJOS:
+        return ((InternalEList<?>)getFunPojos()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -1015,6 +1071,10 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return getVersion();
       case ProcessorDslPackage.POJOGEN_PROPERTY__DEBUG:
         return getDebug();
+      case ProcessorDslPackage.POJOGEN_PROPERTY__PROC_POJOS:
+        return getProcPojos();
+      case ProcessorDslPackage.POJOGEN_PROPERTY__FUN_POJOS:
+        return getFunPojos();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -1115,6 +1175,14 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJOGEN_PROPERTY__DEBUG:
         setDebug((DebugLevelAssignement)newValue);
         return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__PROC_POJOS:
+        getProcPojos().clear();
+        getProcPojos().addAll((Collection<? extends ProcedurePojoAssignement>)newValue);
+        return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__FUN_POJOS:
+        getFunPojos().clear();
+        getFunPojos().addAll((Collection<? extends FunctionPojoAssignement>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -1201,6 +1269,12 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJOGEN_PROPERTY__DEBUG:
         setDebug((DebugLevelAssignement)null);
         return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__PROC_POJOS:
+        getProcPojos().clear();
+        return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__FUN_POJOS:
+        getFunPojos().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -1263,6 +1337,10 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
       case ProcessorDslPackage.POJOGEN_PROPERTY__DEBUG:
         return debug != null;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__PROC_POJOS:
+        return procPojos != null && !procPojos.isEmpty();
+      case ProcessorDslPackage.POJOGEN_PROPERTY__FUN_POJOS:
+        return funPojos != null && !funPojos.isEmpty();
     }
     return super.eIsSet(featureID);
   }

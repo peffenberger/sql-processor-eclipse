@@ -22,6 +22,7 @@ import java.util.TreeSet;
 import org.apache.log4j.Level;
 import org.eclipse.xtext.common.types.JvmType;
 import org.sqlproc.dsl.processorDsl.Artifacts;
+import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.property.EnumAttribute;
 import org.sqlproc.dsl.property.ModelProperty;
 import org.sqlproc.dsl.property.PojoAttrType;
@@ -98,6 +99,8 @@ public class TablePojoConverter {
     protected Map<String, String> versionColumns = new HashMap<String, String>();
     protected String generateOperators = null;
     protected Set<String> preserveForeignKeys = new HashSet<String>();
+    protected Map<String, PojoType> pojosForProcedures = new HashMap<String, PojoType>();
+    protected Map<String, PojoType> pojosForFunctions = new HashMap<String, PojoType>();
 
     protected Map<String, Map<String, PojoAttribute>> pojos = new TreeMap<String, Map<String, PojoAttribute>>();
     protected Map<String, Map<String, PojoAttribute>> procedures = new TreeMap<String, Map<String, PojoAttribute>>();
@@ -246,6 +249,14 @@ public class TablePojoConverter {
         if (preserveForeignKeys != null) {
             this.preserveForeignKeys.addAll(preserveForeignKeys);
         }
+        Map<String, PojoType> pojosForProcedures = modelProperty.getPojosForProcedures(artifacts);
+        if (pojosForProcedures != null) {
+            this.pojosForProcedures.putAll(pojosForProcedures);
+        }
+        Map<String, PojoType> pojosForFunctions = modelProperty.getPojosForFunctions(artifacts);
+        if (pojosForProcedures != null) {
+            this.pojosForFunctions.putAll(pojosForFunctions);
+        }
 
         for (Map.Entry<String, Map<String, Map<String, String>>> inheritImport : this.inheritImports.entrySet()) {
             for (Map.Entry<String, Map<String, String>> inherit : inheritImport.getValue().entrySet()) {
@@ -305,6 +316,8 @@ public class TablePojoConverter {
             System.out.println("dbType " + this.dbType);
             System.out.println("metaFunctionsResult " + this.metaFunctionsResult);
             System.out.println("preserveForeignKeys " + this.preserveForeignKeys);
+            System.out.println("pojosForProcedures " + this.pojosForProcedures);
+            System.out.println("pojosForFunctions " + this.pojosForFunctions);
         }
     }
 

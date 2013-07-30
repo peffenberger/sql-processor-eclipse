@@ -93,6 +93,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="DebugLevelAssignement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="debug" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcedurePojoAssignement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbProcedure" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="#//PojoType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionPojoAssignement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbFunction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="#//PojoType"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Property">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="database" eType="#//DatabaseProperty"
@@ -169,6 +179,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="debug" eType="#//DebugLevelAssignement"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procPojos" upperBound="-1"
+        eType="#//ProcedurePojoAssignement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="funPojos" upperBound="-1"
+        eType="#//FunctionPojoAssignement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MetaTypeAssignement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

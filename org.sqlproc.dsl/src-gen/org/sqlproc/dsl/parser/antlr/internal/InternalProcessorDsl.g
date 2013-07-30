@@ -1319,6 +1319,128 @@ ruleDebugLevelAssignement returns [EObject current=null]
 
 
 
+// Entry rule entryRuleProcedurePojoAssignement
+entryRuleProcedurePojoAssignement returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getProcedurePojoAssignementRule()); }
+	 iv_ruleProcedurePojoAssignement=ruleProcedurePojoAssignement 
+	 { $current=$iv_ruleProcedurePojoAssignement.current; } 
+	 EOF 
+;
+
+// Rule ProcedurePojoAssignement
+ruleProcedurePojoAssignement returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		lv_dbProcedure_0_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbProcedure_0_0, grammarAccess.getProcedurePojoAssignementAccess().getDbProcedureIDENTTerminalRuleCall_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getProcedurePojoAssignementRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dbProcedure",
+        		lv_dbProcedure_0_0, 
+        		"IDENT");
+	    }
+
+)
+)	otherlv_1='->' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getProcedurePojoAssignementAccess().getHyphenMinusGreaterThanSignKeyword_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getProcedurePojoAssignementAccess().getPojoPojoTypeParserRuleCall_2_0()); 
+	    }
+		lv_pojo_2_0=rulePojoType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getProcedurePojoAssignementRule());
+	        }
+       		set(
+       			$current, 
+       			"pojo",
+        		lv_pojo_2_0, 
+        		"PojoType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleFunctionPojoAssignement
+entryRuleFunctionPojoAssignement returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getFunctionPojoAssignementRule()); }
+	 iv_ruleFunctionPojoAssignement=ruleFunctionPojoAssignement 
+	 { $current=$iv_ruleFunctionPojoAssignement.current; } 
+	 EOF 
+;
+
+// Rule FunctionPojoAssignement
+ruleFunctionPojoAssignement returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		lv_dbFunction_0_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbFunction_0_0, grammarAccess.getFunctionPojoAssignementAccess().getDbFunctionIDENTTerminalRuleCall_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getFunctionPojoAssignementRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dbFunction",
+        		lv_dbFunction_0_0, 
+        		"IDENT");
+	    }
+
+)
+)	otherlv_1='->' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getFunctionPojoAssignementAccess().getHyphenMinusGreaterThanSignKeyword_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getFunctionPojoAssignementAccess().getPojoPojoTypeParserRuleCall_2_0()); 
+	    }
+		lv_pojo_2_0=rulePojoType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getFunctionPojoAssignementRule());
+	        }
+       		set(
+       			$current, 
+       			"pojo",
+        		lv_pojo_2_0, 
+        		"PojoType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
 // Entry rule entryRuleProperty
 entryRuleProperty returns [EObject current=null] 
 	:
@@ -3918,7 +4040,83 @@ rulePojogenProperty returns [EObject current=null]
 	    }
 
 )
-)))
+))
+    |((
+(
+		lv_name_143_0=	'pojos-for-procedures' 
+    {
+        newLeafNode(lv_name_143_0, grammarAccess.getPojogenPropertyAccess().getNamePojosForProceduresKeyword_35_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_143_0, "pojos-for-procedures");
+	    }
+
+)
+)((this_WS_144=RULE_WS
+    { 
+    newLeafNode(this_WS_144, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_35_1_0()); 
+    }
+)+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPojogenPropertyAccess().getProcPojosProcedurePojoAssignementParserRuleCall_35_1_1_0()); 
+	    }
+		lv_procPojos_145_0=ruleProcedurePojoAssignement		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPojogenPropertyRule());
+	        }
+       		add(
+       			$current, 
+       			"procPojos",
+        		lv_procPojos_145_0, 
+        		"ProcedurePojoAssignement");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))+)
+    |((
+(
+		lv_name_146_0=	'pojos-for-functions' 
+    {
+        newLeafNode(lv_name_146_0, grammarAccess.getPojogenPropertyAccess().getNamePojosForFunctionsKeyword_36_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_146_0, "pojos-for-functions");
+	    }
+
+)
+)((this_WS_147=RULE_WS
+    { 
+    newLeafNode(this_WS_147, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_36_1_0()); 
+    }
+)+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPojogenPropertyAccess().getFunPojosFunctionPojoAssignementParserRuleCall_36_1_1_0()); 
+	    }
+		lv_funPojos_148_0=ruleFunctionPojoAssignement		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPojogenPropertyRule());
+	        }
+       		add(
+       			$current, 
+       			"funPojos",
+        		lv_funPojos_148_0, 
+        		"FunctionPojoAssignement");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))+))
 ;
 
 

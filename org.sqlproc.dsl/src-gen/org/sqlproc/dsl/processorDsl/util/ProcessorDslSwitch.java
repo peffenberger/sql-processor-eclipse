@@ -218,6 +218,20 @@ public class ProcessorDslSwitch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorDslPackage.PROCEDURE_POJO_ASSIGNEMENT:
+      {
+        ProcedurePojoAssignement procedurePojoAssignement = (ProcedurePojoAssignement)theEObject;
+        T result = caseProcedurePojoAssignement(procedurePojoAssignement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.FUNCTION_POJO_ASSIGNEMENT:
+      {
+        FunctionPojoAssignement functionPojoAssignement = (FunctionPojoAssignement)theEObject;
+        T result = caseFunctionPojoAssignement(functionPojoAssignement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorDslPackage.PROPERTY:
       {
         Property property = (Property)theEObject;
@@ -963,6 +977,38 @@ public class ProcessorDslSwitch<T>
    * @generated
    */
   public T caseDebugLevelAssignement(DebugLevelAssignement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Procedure Pojo Assignement</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Procedure Pojo Assignement</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseProcedurePojoAssignement(ProcedurePojoAssignement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Function Pojo Assignement</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Function Pojo Assignement</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFunctionPojoAssignement(FunctionPojoAssignement object)
   {
     return null;
   }

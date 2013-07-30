@@ -185,6 +185,24 @@ public interface ProcessorDslFactory extends EFactory
   DebugLevelAssignement createDebugLevelAssignement();
 
   /**
+   * Returns a new object of class '<em>Procedure Pojo Assignement</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Procedure Pojo Assignement</em>'.
+   * @generated
+   */
+  ProcedurePojoAssignement createProcedurePojoAssignement();
+
+  /**
+   * Returns a new object of class '<em>Function Pojo Assignement</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function Pojo Assignement</em>'.
+   * @generated
+   */
+  FunctionPojoAssignement createFunctionPojoAssignement();
+
+  /**
    * Returns a new object of class '<em>Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -139,4 +139,8 @@ public interface ModelProperty extends Adapter {
     Map<String, Map<String, PojoAttrType>> getProcedureTypes(EObject model);
 
     Map<String, Map<String, PojoAttrType>> getFunctionTypes(EObject model);
+
+    Map<String, PojoType> getPojosForFunctions(EObject model);
+
+    Map<String, PojoType> getPojosForProcedures(EObject model);
 }

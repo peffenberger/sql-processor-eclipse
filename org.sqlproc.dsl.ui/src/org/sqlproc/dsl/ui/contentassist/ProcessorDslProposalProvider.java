@@ -1228,6 +1228,22 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
 
     @Override
+    public void completeMetagenProperty_DbTables(EObject model, Assignment assignment, ContentAssistContext context,
+            ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completeDaogenProperty_DbTables(model, assignment, context, acceptor);
+            return;
+        }
+        for (String table : dbResolver.getTables(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+    }
+
+    @Override
     public void completeMetagenProperty_DbFunction(EObject model, Assignment assignment, ContentAssistContext context,
             ICompletionProposalAcceptor acceptor) {
         if (!isResolveDb(model)) {
@@ -1430,5 +1446,37 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     public void completeDebugLevelAssignement_Debug(EObject model, Assignment assignment, ContentAssistContext context,
             ICompletionProposalAcceptor acceptor) {
         addProposalList(DEBUG_LEVELS, "DEBUG_LEVELS", context, acceptor, null);
+    }
+
+    @Override
+    public void completeProcedurePojoAssignement_DbProcedure(EObject model, Assignment assignment,
+            ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completeProcedurePojoAssignement_DbProcedure(model, assignment, context, acceptor);
+            return;
+        }
+        for (String table : dbResolver.getProcedures(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+    }
+
+    @Override
+    public void completeFunctionPojoAssignement_DbFunction(EObject model, Assignment assignment,
+            ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completeFunctionPojoAssignement_DbFunction(model, assignment, context, acceptor);
+            return;
+        }
+        for (String table : dbResolver.getFunctions(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
     }
 }
