@@ -227,7 +227,13 @@ public class TableDaoConverter extends TableMetaConverter {
                             buffer.append("callUpdate ").append(procedureName).append(" _void");
                         }
                     }
-                    buffer.append(" ::: ").append(lowerFirstChar(pojoName)).append(" ::").append(pojoName);
+                    String dispName = null;
+                    PojoType ptype = pojosForProcedures.get(procedure);
+                    if (ptype != null)
+                        dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType()
+                                .getSimpleName();
+                    buffer.append(" ::: ").append(lowerFirstChar(pojoName)).append(" ::")
+                            .append((dispName != null) ? dispName : pojoName);
                 }
                 buffer.append("\n  }\n");
             }
@@ -284,7 +290,13 @@ public class TableDaoConverter extends TableMetaConverter {
                             buffer.append("callUpdateFunction ").append(procedureName).append(" _void");
                         }
                     }
-                    buffer.append(" ::: ").append(lowerFirstChar(pojoName)).append(" ::").append(pojoName);
+                    String dispName = null;
+                    PojoType ptype = pojosForProcedures.get(procedure);
+                    if (ptype != null)
+                        dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType()
+                                .getSimpleName();
+                    buffer.append(" ::: ").append(lowerFirstChar(pojoName)).append(" ::")
+                            .append((dispName != null) ? dispName : pojoName);
                 }
                 buffer.append("\n  }\n");
             }
@@ -344,7 +356,13 @@ public class TableDaoConverter extends TableMetaConverter {
                             buffer.append("callUpdateFunction ").append(functionName).append(" _void");
                         }
                     }
-                    buffer.append(" ::: ").append(lowerFirstChar(pojoName)).append(" ::").append(pojoName);
+                    String dispName = null;
+                    PojoType ptype = pojosForFunctions.get(function);
+                    if (ptype != null)
+                        dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType()
+                                .getSimpleName();
+                    buffer.append(" ::: ").append(lowerFirstChar(pojoName)).append(" ::")
+                            .append((dispName != null) ? dispName : pojoName);
                 }
                 buffer.append("\n  }\n");
             }
