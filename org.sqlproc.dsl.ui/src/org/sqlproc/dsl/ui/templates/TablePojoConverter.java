@@ -1099,6 +1099,8 @@ public class TablePojoConverter {
                 // System.out.println("QQQQQ " + pojo);
                 if (ignoreTables.contains(pojo))
                     continue;
+                if (pojosForProcedures.containsKey(pojo))
+                    continue;
                 boolean isFunction = functions.containsKey(pojo);
                 String pojoName = tableNames.get(pojo);
                 if (pojoName == null)
@@ -1168,6 +1170,8 @@ public class TablePojoConverter {
                 if (ignoreTables.contains(pojo))
                     continue;
                 if (procedures.containsKey(pojo))
+                    continue;
+                if (pojosForFunctions.containsKey(pojo))
                     continue;
                 String pojoName = tableNames.get(pojo);
                 if (pojoName == null)

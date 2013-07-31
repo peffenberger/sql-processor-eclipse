@@ -18,6 +18,7 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.sqlproc.dsl.processorDsl.Artifacts;
+import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
 import org.sqlproc.dsl.property.ModelProperty;
@@ -876,9 +877,20 @@ public class TableMetaConverter extends TablePojoConverter {
         if (metaMakeItFinal)
             buffer.append(",final=");
         String pojoName = tableNames.get(pojo);
+        String dispName = pojoName;
+        if (dispName == null) {
+            PojoType ptype = pojosForProcedures.get(pojo);
+            if (ptype != null)
+                dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType().getSimpleName();
+        }
+        if (dispName == null) {
+            PojoType ptype = pojosForFunctions.get(pojo);
+            if (ptype != null)
+                dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType().getSimpleName();
+        }
         if (pojoName == null)
             pojoName = pojo;
-        buffer.append(",inx=").append(tableToCamelCase(pojoName));
+        buffer.append(",inx=").append((dispName != null) ? dispName : tableToCamelCase(pojoName));
         buffer.append(")=");
         buffer.append("\n  ");
         PojoAttribute resultSetAttribute = resultSetAttribute(pojoName, isFunction);
