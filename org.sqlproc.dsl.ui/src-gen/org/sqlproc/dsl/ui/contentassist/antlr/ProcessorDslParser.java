@@ -149,6 +149,8 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyAccess().getGroup_0_3(), "rule__Property__Group_0_3__0");
 					put(grammarAccess.getPropertyAccess().getGroup_0_4(), "rule__Property__Group_0_4__0");
 					put(grammarAccess.getPropertyAccess().getGroup_0_5(), "rule__Property__Group_0_5__0");
+					put(grammarAccess.getPropertyAccess().getGroup_0_6(), "rule__Property__Group_0_6__0");
+					put(grammarAccess.getPropertyAccess().getGroup_0_7(), "rule__Property__Group_0_7__0");
 					put(grammarAccess.getDatabasePropertyAccess().getGroup_2(), "rule__DatabaseProperty__Group_2__0");
 					put(grammarAccess.getDatabasePropertyAccess().getGroup_3(), "rule__DatabaseProperty__Group_3__0");
 					put(grammarAccess.getDatabasePropertyAccess().getGroup_4(), "rule__DatabaseProperty__Group_4__0");
@@ -458,6 +460,12 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyAccess().getMetagenAssignment_0_4_1(), "rule__Property__MetagenAssignment_0_4_1");
 					put(grammarAccess.getPropertyAccess().getNameAssignment_0_5_0(), "rule__Property__NameAssignment_0_5_0");
 					put(grammarAccess.getPropertyAccess().getDaogenAssignment_0_5_1(), "rule__Property__DaogenAssignment_0_5_1");
+					put(grammarAccess.getPropertyAccess().getNameAssignment_0_6_0(), "rule__Property__NameAssignment_0_6_0");
+					put(grammarAccess.getPropertyAccess().getReplaceIdAssignment_0_6_2(), "rule__Property__ReplaceIdAssignment_0_6_2");
+					put(grammarAccess.getPropertyAccess().getRegexAssignment_0_6_4(), "rule__Property__RegexAssignment_0_6_4");
+					put(grammarAccess.getPropertyAccess().getNameAssignment_0_7_0(), "rule__Property__NameAssignment_0_7_0");
+					put(grammarAccess.getPropertyAccess().getReplaceIdAssignment_0_7_2(), "rule__Property__ReplaceIdAssignment_0_7_2");
+					put(grammarAccess.getPropertyAccess().getReplacementAssignment_0_7_4(), "rule__Property__ReplacementAssignment_0_7_4");
 					put(grammarAccess.getDatabasePropertyAccess().getNameAssignment_0(), "rule__DatabaseProperty__NameAssignment_0");
 					put(grammarAccess.getDatabasePropertyAccess().getNameAssignment_1(), "rule__DatabaseProperty__NameAssignment_1");
 					put(grammarAccess.getDatabasePropertyAccess().getNameAssignment_2_0(), "rule__DatabaseProperty__NameAssignment_2_0");

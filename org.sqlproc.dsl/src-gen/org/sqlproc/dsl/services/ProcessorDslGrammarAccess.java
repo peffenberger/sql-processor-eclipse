@@ -820,19 +820,43 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNameDaogenKeyword_0_5_0_0 = (Keyword)cNameAssignment_0_5_0.eContents().get(0);
 		private final Assignment cDaogenAssignment_0_5_1 = (Assignment)cGroup_0_5.eContents().get(1);
 		private final RuleCall cDaogenDaogenPropertyParserRuleCall_0_5_1_0 = (RuleCall)cDaogenAssignment_0_5_1.eContents().get(0);
+		private final Group cGroup_0_6 = (Group)cAlternatives_0.eContents().get(6);
+		private final Assignment cNameAssignment_0_6_0 = (Assignment)cGroup_0_6.eContents().get(0);
+		private final Keyword cNameReplaceAllRegexKeyword_0_6_0_0 = (Keyword)cNameAssignment_0_6_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_0_6_1 = (RuleCall)cGroup_0_6.eContents().get(1);
+		private final Assignment cReplaceIdAssignment_0_6_2 = (Assignment)cGroup_0_6.eContents().get(2);
+		private final RuleCall cReplaceIdIDENTTerminalRuleCall_0_6_2_0 = (RuleCall)cReplaceIdAssignment_0_6_2.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_0_6_3 = (RuleCall)cGroup_0_6.eContents().get(3);
+		private final Assignment cRegexAssignment_0_6_4 = (Assignment)cGroup_0_6.eContents().get(4);
+		private final RuleCall cRegexPropertyValueParserRuleCall_0_6_4_0 = (RuleCall)cRegexAssignment_0_6_4.eContents().get(0);
+		private final Group cGroup_0_7 = (Group)cAlternatives_0.eContents().get(7);
+		private final Assignment cNameAssignment_0_7_0 = (Assignment)cGroup_0_7.eContents().get(0);
+		private final Keyword cNameReplaceAllReplacementKeyword_0_7_0_0 = (Keyword)cNameAssignment_0_7_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_0_7_1 = (RuleCall)cGroup_0_7.eContents().get(1);
+		private final Assignment cReplaceIdAssignment_0_7_2 = (Assignment)cGroup_0_7.eContents().get(2);
+		private final RuleCall cReplaceIdIDENTTerminalRuleCall_0_7_2_0 = (RuleCall)cReplaceIdAssignment_0_7_2.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_0_7_3 = (RuleCall)cGroup_0_7.eContents().get(3);
+		private final Assignment cReplacementAssignment_0_7_4 = (Assignment)cGroup_0_7.eContents().get(4);
+		private final RuleCall cReplacementPropertyValueParserRuleCall_0_7_4_0 = (RuleCall)cReplacementAssignment_0_7_4.eContents().get(0);
 		private final RuleCall cSEMICOLONTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//Property:
 		//	(name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
-		//	pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty) SEMICOLON;
+		//	pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
+		//	name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue | name="replace-all-replacement" WS+
+		//	replaceId=IDENT WS+ replacement=PropertyValue) SEMICOLON;
 		public ParserRule getRule() { return rule; }
 
 		//(name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
-		//pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty) SEMICOLON
+		//pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
+		//name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue | name="replace-all-replacement" WS+
+		//replaceId=IDENT WS+ replacement=PropertyValue) SEMICOLON
 		public Group getGroup() { return cGroup; }
 
 		//name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
-		//pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty
+		//pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
+		//name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue | name="replace-all-replacement" WS+
+		//replaceId=IDENT WS+ replacement=PropertyValue
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
 		//name="resolve-pojo-on"
@@ -906,6 +930,60 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//DaogenProperty
 		public RuleCall getDaogenDaogenPropertyParserRuleCall_0_5_1_0() { return cDaogenDaogenPropertyParserRuleCall_0_5_1_0; }
+
+		//name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue
+		public Group getGroup_0_6() { return cGroup_0_6; }
+
+		//name="replace-all-regex"
+		public Assignment getNameAssignment_0_6_0() { return cNameAssignment_0_6_0; }
+
+		//"replace-all-regex"
+		public Keyword getNameReplaceAllRegexKeyword_0_6_0_0() { return cNameReplaceAllRegexKeyword_0_6_0_0; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_0_6_1() { return cWSTerminalRuleCall_0_6_1; }
+
+		//replaceId=IDENT
+		public Assignment getReplaceIdAssignment_0_6_2() { return cReplaceIdAssignment_0_6_2; }
+
+		//IDENT
+		public RuleCall getReplaceIdIDENTTerminalRuleCall_0_6_2_0() { return cReplaceIdIDENTTerminalRuleCall_0_6_2_0; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_0_6_3() { return cWSTerminalRuleCall_0_6_3; }
+
+		//regex=PropertyValue
+		public Assignment getRegexAssignment_0_6_4() { return cRegexAssignment_0_6_4; }
+
+		//PropertyValue
+		public RuleCall getRegexPropertyValueParserRuleCall_0_6_4_0() { return cRegexPropertyValueParserRuleCall_0_6_4_0; }
+
+		//name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=PropertyValue
+		public Group getGroup_0_7() { return cGroup_0_7; }
+
+		//name="replace-all-replacement"
+		public Assignment getNameAssignment_0_7_0() { return cNameAssignment_0_7_0; }
+
+		//"replace-all-replacement"
+		public Keyword getNameReplaceAllReplacementKeyword_0_7_0_0() { return cNameReplaceAllReplacementKeyword_0_7_0_0; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_0_7_1() { return cWSTerminalRuleCall_0_7_1; }
+
+		//replaceId=IDENT
+		public Assignment getReplaceIdAssignment_0_7_2() { return cReplaceIdAssignment_0_7_2; }
+
+		//IDENT
+		public RuleCall getReplaceIdIDENTTerminalRuleCall_0_7_2_0() { return cReplaceIdIDENTTerminalRuleCall_0_7_2_0; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_0_7_3() { return cWSTerminalRuleCall_0_7_3; }
+
+		//replacement=PropertyValue
+		public Assignment getReplacementAssignment_0_7_4() { return cReplacementAssignment_0_7_4; }
+
+		//PropertyValue
+		public RuleCall getReplacementPropertyValueParserRuleCall_0_7_4_0() { return cReplacementPropertyValueParserRuleCall_0_7_4_0; }
 
 		//SEMICOLON
 		public RuleCall getSEMICOLONTerminalRuleCall_1() { return cSEMICOLONTerminalRuleCall_1; }
@@ -9077,7 +9155,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Property:
 	//	(name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
-	//	pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty) SEMICOLON;
+	//	pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
+	//	name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue | name="replace-all-replacement" WS+
+	//	replaceId=IDENT WS+ replacement=PropertyValue) SEMICOLON;
 	public PropertyElements getPropertyAccess() {
 		return (pProperty != null) ? pProperty : (pProperty = new PropertyElements());
 	}

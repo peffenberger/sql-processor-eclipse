@@ -39,6 +39,8 @@ Property:
 	|name='pojogen-' pojogen=PojogenProperty
 	|name='metagen-' metagen=MetagenProperty
 	|name='daogen-' daogen=DaogenProperty
+	|name='replace-all-regex' WS+ replaceId=IDENT WS+ regex=PropertyValue
+	|name='replace-all-replacement' WS+ replaceId=IDENT WS+ replacement=PropertyValue
 	) SEMICOLON;
 
 DatabaseProperty:

@@ -1628,7 +1628,9 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='database-' database=DatabaseProperty) | 
 	 *         (name='pojogen-' pojogen=PojogenProperty) | 
 	 *         (name='metagen-' metagen=MetagenProperty) | 
-	 *         (name='daogen-' daogen=DaogenProperty)
+	 *         (name='daogen-' daogen=DaogenProperty) | 
+	 *         (name='replace-all-regex' replaceId=IDENT regex=PropertyValue) | 
+	 *         (name='replace-all-replacement' replaceId=IDENT replacement=PropertyValue)
 	 *     )
 	 */
 	protected void sequence_Property(EObject context, Property semanticObject) {

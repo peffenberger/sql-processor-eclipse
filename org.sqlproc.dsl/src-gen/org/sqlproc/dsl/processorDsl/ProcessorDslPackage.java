@@ -906,13 +906,40 @@ public interface ProcessorDslPackage extends EPackage
   int PROPERTY__DAOGEN = 4;
 
   /**
+   * The feature id for the '<em><b>Replace Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY__REPLACE_ID = 5;
+
+  /**
+   * The feature id for the '<em><b>Regex</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY__REGEX = 6;
+
+  /**
+   * The feature id for the '<em><b>Replacement</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY__REPLACEMENT = 7;
+
+  /**
    * The number of structural features of the '<em>Property</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_FEATURE_COUNT = 5;
+  int PROPERTY_FEATURE_COUNT = 8;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DatabasePropertyImpl <em>Database Property</em>}' class.
@@ -5053,6 +5080,39 @@ public interface ProcessorDslPackage extends EPackage
   EReference getProperty_Daogen();
 
   /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.Property#getReplaceId <em>Replace Id</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Replace Id</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Property#getReplaceId()
+   * @see #getProperty()
+   * @generated
+   */
+  EAttribute getProperty_ReplaceId();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.Property#getRegex <em>Regex</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Regex</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Property#getRegex()
+   * @see #getProperty()
+   * @generated
+   */
+  EAttribute getProperty_Regex();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.Property#getReplacement <em>Replacement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Replacement</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Property#getReplacement()
+   * @see #getProperty()
+   * @generated
+   */
+  EAttribute getProperty_Replacement();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DatabaseProperty <em>Database Property</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8951,6 +9011,30 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference PROPERTY__DAOGEN = eINSTANCE.getProperty_Daogen();
+
+    /**
+     * The meta object literal for the '<em><b>Replace Id</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PROPERTY__REPLACE_ID = eINSTANCE.getProperty_ReplaceId();
+
+    /**
+     * The meta object literal for the '<em><b>Regex</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PROPERTY__REGEX = eINSTANCE.getProperty_Regex();
+
+    /**
+     * The meta object literal for the '<em><b>Replacement</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PROPERTY__REPLACEMENT = eINSTANCE.getProperty_Replacement();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DatabasePropertyImpl <em>Database Property</em>}' class.

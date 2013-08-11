@@ -718,7 +718,7 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                 TablePojoConverter converter = new TablePojoConverter(modelProperty, artifacts, suffix, finalEntities,
                         annotations, dbSequences, dbType);
                 if (addDefinitions(converter, artifacts))
-                    return converter.getPojoDefinitions();
+                    return replaceAll(converter.getPojoDefinitions(), artifacts);
             }
             return super.resolve(context);
         }
@@ -780,7 +780,7 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                 TableMetaConverter converter = new TableMetaConverter(modelProperty, artifacts, scopeProvider,
                         finalMetas, dbSequences, dbType);
                 if (addDefinitions(converter, artifacts))
-                    return converter.getMetaDefinitions();
+                    return replaceAll(converter.getMetaDefinitions(), artifacts);
             }
             return super.resolve(context);
         }
@@ -832,8 +832,9 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                 DbType dbType = getDbType(artifacts);
                 TableDaoConverter converter = new TableDaoConverter(modelProperty, artifacts, suffix, scopeProvider,
                         finalDaos, dbSequences, dbType);
-                if (addDefinitions(converter, artifacts))
-                    return converter.getDaoDefinitions();
+                if (addDefinitions(converter, artifacts)) {
+                    return replaceAll(converter.getDaoDefinitions(), artifacts);
+                }
             }
             return super.resolve(context);
         }
@@ -842,6 +843,17 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
         protected boolean isUnambiguous(TemplateContext context) {
             return true;
         }
+    }
+
+    private String replaceAll(String buffer, Artifacts artifacts) {
+        for (Entry<String, String> entry : modelProperty.getReplaceAll(artifacts).entrySet()) {
+            String regex = entry.getKey();
+            String replacement = entry.getValue();
+            System.out.println("REGEX " + regex);
+            System.out.println("REPLACEMENT " + replacement);
+            buffer = buffer.replaceAll(regex, replacement);
+        }
+        return buffer;
     }
 
     protected boolean addDefinitions(TablePojoConverter converter, Artifacts artifacts) {

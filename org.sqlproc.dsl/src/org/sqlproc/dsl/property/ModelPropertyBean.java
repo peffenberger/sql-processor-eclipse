@@ -42,6 +42,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 
     public static final String RESOLVE_POJO_ON = "resolve-pojo-on";
     public static final String RESOLVE_POJO_OFF = "resolve-pojo-off";
+    public static final String REPLACE_ALL_REGEX = "replace-all-regex";
+    public static final String REPLACE_ALL_REPLACEMENT = "replace-all-replacement";
     public static final String DATABASE = "database";
     public static final String DATABASE_IS_ONLINE = "is-online";
     public static final String DATABASE_IS_OFFLINE = "is-offline";
@@ -136,6 +138,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static class ModelValues {
         public boolean doResolvePojo;
         public boolean doResolveDb;
+        public Map<String, String> replaceAllRegex;
+        public Map<String, String> replaceAllReplacement;
         public String dbDriver;
         public String dbUrl;
         public String dbUsername;
@@ -262,6 +266,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 if (artifacts.getProperties().isEmpty())
                     return;
 
+                initModel(modelValues);
                 boolean reloadDatabase = false;
                 for (Property property : artifacts.getProperties()) {
                     if (property.getName().startsWith(DATABASE)) {
@@ -343,6 +348,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             // return;
             // }
         }
+    }
+
+    private void initModel(ModelValues modelValues) {
+        modelValues.replaceAllRegex = new HashMap<String, String>();
+        modelValues.replaceAllReplacement = new HashMap<String, String>();
     }
 
     private void initDatabaseModel(ModelValues modelValues) {
@@ -441,6 +451,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.doResolvePojo = true;
         } else if (RESOLVE_POJO_OFF.equals(property.getName())) {
             modelValues.doResolvePojo = false;
+        } else if (REPLACE_ALL_REGEX.equals(property.getName())) {
+            if (property.getRegex() != null && property.getReplaceId() != null)
+                modelValues.replaceAllRegex.put(property.getReplaceId(), property.getRegex());
+        } else if (REPLACE_ALL_REPLACEMENT.equals(property.getName())) {
+            if (property.getReplacement() != null && property.getReplaceId() != null)
+                modelValues.replaceAllReplacement.put(property.getReplaceId(), property.getReplacement());
         }
     }
 
@@ -897,6 +913,20 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public boolean isDoResolveDb(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.doResolveDb : false;
+    }
+
+    @Override
+    public Map<String, String> getReplaceAll(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        if (modelValues == null || modelValues.replaceAllRegex == null || modelValues.replaceAllReplacement == null)
+            return Collections.<String, String> emptyMap();
+        Map<String, String> result = new HashMap<String, String>();
+        for (String replaceId : modelValues.replaceAllRegex.keySet()) {
+            if (modelValues.replaceAllReplacement.containsKey(replaceId)) {
+                result.put(modelValues.replaceAllRegex.get(replaceId), modelValues.replaceAllReplacement.get(replaceId));
+            }
+        }
+        return result;
     }
 
     @Override

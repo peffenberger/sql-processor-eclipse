@@ -17,6 +17,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.dsl.processorDsl.Property#getPojogen <em>Pojogen</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Property#getMetagen <em>Metagen</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Property#getDaogen <em>Daogen</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.Property#getReplaceId <em>Replace Id</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.Property#getRegex <em>Regex</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.Property#getReplacement <em>Replacement</em>}</li>
  * </ul>
  * </p>
  *
@@ -155,5 +158,83 @@ public interface Property extends EObject
    * @generated
    */
   void setDaogen(DaogenProperty value);
+
+  /**
+   * Returns the value of the '<em><b>Replace Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Replace Id</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Replace Id</em>' attribute.
+   * @see #setReplaceId(String)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getProperty_ReplaceId()
+   * @model
+   * @generated
+   */
+  String getReplaceId();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.Property#getReplaceId <em>Replace Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Replace Id</em>' attribute.
+   * @see #getReplaceId()
+   * @generated
+   */
+  void setReplaceId(String value);
+
+  /**
+   * Returns the value of the '<em><b>Regex</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Regex</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Regex</em>' attribute.
+   * @see #setRegex(String)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getProperty_Regex()
+   * @model
+   * @generated
+   */
+  String getRegex();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.Property#getRegex <em>Regex</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Regex</em>' attribute.
+   * @see #getRegex()
+   * @generated
+   */
+  void setRegex(String value);
+
+  /**
+   * Returns the value of the '<em><b>Replacement</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Replacement</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Replacement</em>' attribute.
+   * @see #setReplacement(String)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getProperty_Replacement()
+   * @model
+   * @generated
+   */
+  String getReplacement();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.Property#getReplacement <em>Replacement</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Replacement</em>' attribute.
+   * @see #getReplacement()
+   * @generated
+   */
+  void setReplacement(String value);
 
 } // Property

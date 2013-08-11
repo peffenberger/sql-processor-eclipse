@@ -385,6 +385,32 @@
             <terminal xsi:type="xtext:RuleCall" rule="//@rules.25"/>
           </elements>
         </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+            <terminal xsi:type="xtext:Keyword" value="replace-all-regex"/>
+          </elements>
+          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.76"/>
+          <elements xsi:type="xtext:Assignment" feature="replaceId" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.71"/>
+          </elements>
+          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.76"/>
+          <elements xsi:type="xtext:Assignment" feature="regex" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.26"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+            <terminal xsi:type="xtext:Keyword" value="replace-all-replacement"/>
+          </elements>
+          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.76"/>
+          <elements xsi:type="xtext:Assignment" feature="replaceId" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.71"/>
+          </elements>
+          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.76"/>
+          <elements xsi:type="xtext:Assignment" feature="replacement" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.26"/>
+          </elements>
+        </elements>
       </elements>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.80"/>
     </alternatives>

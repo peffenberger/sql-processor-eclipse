@@ -1622,9 +1622,129 @@ ruleProperty returns [EObject current=null]
 	    }
 
 )
-)))this_SEMICOLON_10=RULE_SEMICOLON
+))
+    |((
+(
+		lv_name_10_0=	'replace-all-regex' 
+    {
+        newLeafNode(lv_name_10_0, grammarAccess.getPropertyAccess().getNameReplaceAllRegexKeyword_0_6_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_10_0, "replace-all-regex");
+	    }
+
+)
+)(this_WS_11=RULE_WS
     { 
-    newLeafNode(this_SEMICOLON_10, grammarAccess.getPropertyAccess().getSEMICOLONTerminalRuleCall_1()); 
+    newLeafNode(this_WS_11, grammarAccess.getPropertyAccess().getWSTerminalRuleCall_0_6_1()); 
+    }
+)+(
+(
+		lv_replaceId_12_0=RULE_IDENT
+		{
+			newLeafNode(lv_replaceId_12_0, grammarAccess.getPropertyAccess().getReplaceIdIDENTTerminalRuleCall_0_6_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"replaceId",
+        		lv_replaceId_12_0, 
+        		"IDENT");
+	    }
+
+)
+)(this_WS_13=RULE_WS
+    { 
+    newLeafNode(this_WS_13, grammarAccess.getPropertyAccess().getWSTerminalRuleCall_0_6_3()); 
+    }
+)+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPropertyAccess().getRegexPropertyValueParserRuleCall_0_6_4_0()); 
+	    }
+		lv_regex_14_0=rulePropertyValue		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPropertyRule());
+	        }
+       		set(
+       			$current, 
+       			"regex",
+        		lv_regex_14_0, 
+        		"PropertyValue");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |((
+(
+		lv_name_15_0=	'replace-all-replacement' 
+    {
+        newLeafNode(lv_name_15_0, grammarAccess.getPropertyAccess().getNameReplaceAllReplacementKeyword_0_7_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_15_0, "replace-all-replacement");
+	    }
+
+)
+)(this_WS_16=RULE_WS
+    { 
+    newLeafNode(this_WS_16, grammarAccess.getPropertyAccess().getWSTerminalRuleCall_0_7_1()); 
+    }
+)+(
+(
+		lv_replaceId_17_0=RULE_IDENT
+		{
+			newLeafNode(lv_replaceId_17_0, grammarAccess.getPropertyAccess().getReplaceIdIDENTTerminalRuleCall_0_7_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"replaceId",
+        		lv_replaceId_17_0, 
+        		"IDENT");
+	    }
+
+)
+)(this_WS_18=RULE_WS
+    { 
+    newLeafNode(this_WS_18, grammarAccess.getPropertyAccess().getWSTerminalRuleCall_0_7_3()); 
+    }
+)+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPropertyAccess().getReplacementPropertyValueParserRuleCall_0_7_4_0()); 
+	    }
+		lv_replacement_19_0=rulePropertyValue		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPropertyRule());
+	        }
+       		set(
+       			$current, 
+       			"replacement",
+        		lv_replacement_19_0, 
+        		"PropertyValue");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)))this_SEMICOLON_20=RULE_SEMICOLON
+    { 
+    newLeafNode(this_SEMICOLON_20, grammarAccess.getPropertyAccess().getSEMICOLONTerminalRuleCall_1()); 
     }
 )
 ;

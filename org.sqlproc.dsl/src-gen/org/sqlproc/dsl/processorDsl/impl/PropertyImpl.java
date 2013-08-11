@@ -30,6 +30,9 @@ import org.sqlproc.dsl.processorDsl.Property;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PropertyImpl#getPojogen <em>Pojogen</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PropertyImpl#getMetagen <em>Metagen</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PropertyImpl#getDaogen <em>Daogen</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PropertyImpl#getReplaceId <em>Replace Id</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PropertyImpl#getRegex <em>Regex</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PropertyImpl#getReplacement <em>Replacement</em>}</li>
  * </ul>
  * </p>
  *
@@ -96,6 +99,66 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @ordered
    */
   protected DaogenProperty daogen;
+
+  /**
+   * The default value of the '{@link #getReplaceId() <em>Replace Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getReplaceId()
+   * @generated
+   * @ordered
+   */
+  protected static final String REPLACE_ID_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getReplaceId() <em>Replace Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getReplaceId()
+   * @generated
+   * @ordered
+   */
+  protected String replaceId = REPLACE_ID_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getRegex() <em>Regex</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRegex()
+   * @generated
+   * @ordered
+   */
+  protected static final String REGEX_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getRegex() <em>Regex</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRegex()
+   * @generated
+   * @ordered
+   */
+  protected String regex = REGEX_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getReplacement() <em>Replacement</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getReplacement()
+   * @generated
+   * @ordered
+   */
+  protected static final String REPLACEMENT_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getReplacement() <em>Replacement</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getReplacement()
+   * @generated
+   * @ordered
+   */
+  protected String replacement = REPLACEMENT_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -338,6 +401,75 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getReplaceId()
+  {
+    return replaceId;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setReplaceId(String newReplaceId)
+  {
+    String oldReplaceId = replaceId;
+    replaceId = newReplaceId;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.PROPERTY__REPLACE_ID, oldReplaceId, replaceId));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getRegex()
+  {
+    return regex;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setRegex(String newRegex)
+  {
+    String oldRegex = regex;
+    regex = newRegex;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.PROPERTY__REGEX, oldRegex, regex));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getReplacement()
+  {
+    return replacement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setReplacement(String newReplacement)
+  {
+    String oldReplacement = replacement;
+    replacement = newReplacement;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.PROPERTY__REPLACEMENT, oldReplacement, replacement));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -375,6 +507,12 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return getMetagen();
       case ProcessorDslPackage.PROPERTY__DAOGEN:
         return getDaogen();
+      case ProcessorDslPackage.PROPERTY__REPLACE_ID:
+        return getReplaceId();
+      case ProcessorDslPackage.PROPERTY__REGEX:
+        return getRegex();
+      case ProcessorDslPackage.PROPERTY__REPLACEMENT:
+        return getReplacement();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -403,6 +541,15 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return;
       case ProcessorDslPackage.PROPERTY__DAOGEN:
         setDaogen((DaogenProperty)newValue);
+        return;
+      case ProcessorDslPackage.PROPERTY__REPLACE_ID:
+        setReplaceId((String)newValue);
+        return;
+      case ProcessorDslPackage.PROPERTY__REGEX:
+        setRegex((String)newValue);
+        return;
+      case ProcessorDslPackage.PROPERTY__REPLACEMENT:
+        setReplacement((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -433,6 +580,15 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
       case ProcessorDslPackage.PROPERTY__DAOGEN:
         setDaogen((DaogenProperty)null);
         return;
+      case ProcessorDslPackage.PROPERTY__REPLACE_ID:
+        setReplaceId(REPLACE_ID_EDEFAULT);
+        return;
+      case ProcessorDslPackage.PROPERTY__REGEX:
+        setRegex(REGEX_EDEFAULT);
+        return;
+      case ProcessorDslPackage.PROPERTY__REPLACEMENT:
+        setReplacement(REPLACEMENT_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -457,6 +613,12 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return metagen != null;
       case ProcessorDslPackage.PROPERTY__DAOGEN:
         return daogen != null;
+      case ProcessorDslPackage.PROPERTY__REPLACE_ID:
+        return REPLACE_ID_EDEFAULT == null ? replaceId != null : !REPLACE_ID_EDEFAULT.equals(replaceId);
+      case ProcessorDslPackage.PROPERTY__REGEX:
+        return REGEX_EDEFAULT == null ? regex != null : !REGEX_EDEFAULT.equals(regex);
+      case ProcessorDslPackage.PROPERTY__REPLACEMENT:
+        return REPLACEMENT_EDEFAULT == null ? replacement != null : !REPLACEMENT_EDEFAULT.equals(replacement);
     }
     return super.eIsSet(featureID);
   }
@@ -474,6 +636,12 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", replaceId: ");
+    result.append(replaceId);
+    result.append(", regex: ");
+    result.append(regex);
+    result.append(", replacement: ");
+    result.append(replacement);
     result.append(')');
     return result.toString();
   }
