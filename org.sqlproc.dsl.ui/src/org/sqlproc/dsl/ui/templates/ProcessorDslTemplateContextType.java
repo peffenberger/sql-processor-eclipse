@@ -857,6 +857,7 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
     }
 
     protected boolean addDefinitions(TablePojoConverter converter, Artifacts artifacts) {
+    	try {
         List<String> tables = Utils.findTables(null, artifacts,
                 scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES));
         List<String> procedures = Utils.findProcedures(null, artifacts,
@@ -908,5 +909,9 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
             }
         }
         return true;
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		return false;
+    	}
     }
 }

@@ -1555,6 +1555,7 @@ public class DbResolverBean implements DbResolver {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
                 result = meta.getIndexInfo(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, table, false,
                         true);
+                short addToPosition = 0;
                 while (result.next()) {
                     String name = result.getString("INDEX_NAME");
                     if (!modelDatabaseValues.indexTypes.contains(result.getShort("TYPE"))) {
@@ -1572,7 +1573,11 @@ public class DbResolverBean implements DbResolver {
                     short position = result.getShort("ORDINAL_POSITION");
                     detail.setColname(result.getString("COLUMN_NAME"));
                     detail.setDesc("D".equalsIgnoreCase(result.getString("ASC_OR_DESC")));
-                    dbIndex.getColumns().add(position - 1, detail);
+                    trace("===getDbIndexes name", detail.getColname());
+                    trace("===getDbIndexes position", position);
+                    if (position == 0)
+                    	addToPosition = 1;
+                    dbIndex.getColumns().add(position - 1 + addToPosition, detail);
                 }
                 // info("EEE " + table + " " + mapOfIndexes);
                 indexesForModel.addAll(mapOfIndexes.values());
