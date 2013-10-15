@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.xtext.common.types.JvmType;
 
 import org.sqlproc.dsl.processorDsl.Implements;
+import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
@@ -31,6 +32,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ImplementsImpl#getImplements <em>Implements</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ImplementsImpl#isGenerics <em>Generics</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ImplementsImpl#getPojos <em>Pojos</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ImplementsImpl#getDaos <em>Daos</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,6 +79,16 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
    * @ordered
    */
   protected EList<PojoEntity> pojos;
+
+  /**
+   * The cached value of the '{@link #getDaos() <em>Daos</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDaos()
+   * @generated
+   * @ordered
+   */
+  protected EList<PojoDao> daos;
 
   /**
    * <!-- begin-user-doc -->
@@ -184,6 +196,20 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<PojoDao> getDaos()
+  {
+    if (daos == null)
+    {
+      daos = new EObjectResolvingEList<PojoDao>(PojoDao.class, this, ProcessorDslPackage.IMPLEMENTS__DAOS);
+    }
+    return daos;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -196,6 +222,8 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
         return isGenerics();
       case ProcessorDslPackage.IMPLEMENTS__POJOS:
         return getPojos();
+      case ProcessorDslPackage.IMPLEMENTS__DAOS:
+        return getDaos();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -221,6 +249,10 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
         getPojos().clear();
         getPojos().addAll((Collection<? extends PojoEntity>)newValue);
         return;
+      case ProcessorDslPackage.IMPLEMENTS__DAOS:
+        getDaos().clear();
+        getDaos().addAll((Collection<? extends PojoDao>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -244,6 +276,9 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
       case ProcessorDslPackage.IMPLEMENTS__POJOS:
         getPojos().clear();
         return;
+      case ProcessorDslPackage.IMPLEMENTS__DAOS:
+        getDaos().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -264,6 +299,8 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
         return generics != GENERICS_EDEFAULT;
       case ProcessorDslPackage.IMPLEMENTS__POJOS:
         return pojos != null && !pojos.isEmpty();
+      case ProcessorDslPackage.IMPLEMENTS__DAOS:
+        return daos != null && !daos.isEmpty();
     }
     return super.eIsSet(featureID);
   }

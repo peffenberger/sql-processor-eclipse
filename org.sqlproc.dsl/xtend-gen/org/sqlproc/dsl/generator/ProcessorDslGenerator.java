@@ -7111,8 +7111,8 @@ public class ProcessorDslGenerator implements IGenerator {
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
     for (final Implements ext : _filter) {
       {
-        EList<PojoEntity> _pojos = ext.getPojos();
-        for (final PojoEntity ee : _pojos) {
+        EList<PojoDao> _daos = ext.getDaos();
+        for (final PojoDao ee : _daos) {
           String _name = ee.getName();
           String _name_1 = e.getName();
           boolean _equals = Objects.equal(_name, _name_1);
@@ -7127,8 +7127,8 @@ public class ProcessorDslGenerator implements IGenerator {
   }
   
   public boolean isImplements(final PojoDao e, final Implements ext) {
-    EList<PojoEntity> _pojos = ext.getPojos();
-    for (final PojoEntity ee : _pojos) {
+    EList<PojoDao> _daos = ext.getDaos();
+    for (final PojoDao ee : _daos) {
       String _name = ee.getName();
       String _name_1 = e.getName();
       boolean _equals = Objects.equal(_name, _name_1);

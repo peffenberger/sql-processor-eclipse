@@ -3372,13 +3372,22 @@ public interface ProcessorDslPackage extends EPackage
   int IMPLEMENTS__POJOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
 
   /**
+   * The feature id for the '<em><b>Daos</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLEMENTS__DAOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
+
+  /**
    * The number of structural features of the '<em>Implements</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IMPLEMENTS_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
+  int IMPLEMENTS_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl <em>Extends</em>}' class.
@@ -7526,6 +7535,17 @@ public interface ProcessorDslPackage extends EPackage
   EReference getImplements_Pojos();
 
   /**
+   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.Implements#getDaos <em>Daos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Daos</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Implements#getDaos()
+   * @see #getImplements()
+   * @generated
+   */
+  EReference getImplements_Daos();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.Extends <em>Extends</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -10953,6 +10973,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference IMPLEMENTS__POJOS = eINSTANCE.getImplements_Pojos();
+
+    /**
+     * The meta object literal for the '<em><b>Daos</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPLEMENTS__DAOS = eINSTANCE.getImplements_Daos();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl <em>Extends</em>}' class.

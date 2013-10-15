@@ -370,7 +370,7 @@ Import hidden(ML_COMMENT, SL_COMMENT, WS):
 	'import' importedNamespace = QualifiedNameWithWildcard;
 
 Implements hidden(ML_COMMENT, SL_COMMENT, WS):
-	'implements' implements = [jvmTypes::JvmType|QualifiedName] (generics ?= '<>')? ('except' pojos+=[PojoEntity|IDENT]*)?;
+	'implements' implements = [jvmTypes::JvmType|QualifiedName] (generics ?= '<>')? ('exceptPojos' pojos+=[PojoEntity|IDENT]*)? ('exceptDaos' daos+=[PojoDao|IDENT]*)?;
 
 Extends hidden(ML_COMMENT, SL_COMMENT, WS):
 	'extends' extends = [jvmTypes::JvmType|QualifiedName];

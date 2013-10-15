@@ -7518,16 +7518,23 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cGenericsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final Keyword cGenericsLessThanSignGreaterThanSignKeyword_2_0 = (Keyword)cGenericsAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cExceptKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cExceptPojosKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cPojosAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final CrossReference cPojosPojoEntityCrossReference_3_1_0 = (CrossReference)cPojosAssignment_3_1.eContents().get(0);
 		private final RuleCall cPojosPojoEntityIDENTTerminalRuleCall_3_1_0_1 = (RuleCall)cPojosPojoEntityCrossReference_3_1_0.eContents().get(1);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cExceptDaosKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cDaosAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final CrossReference cDaosPojoDaoCrossReference_4_1_0 = (CrossReference)cDaosAssignment_4_1.eContents().get(0);
+		private final RuleCall cDaosPojoDaoIDENTTerminalRuleCall_4_1_0_1 = (RuleCall)cDaosPojoDaoCrossReference_4_1_0.eContents().get(1);
 		
 		//Implements hidden(ML_COMMENT, SL_COMMENT, WS):
-		//	"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<>"? ("except" pojos+=[PojoEntity|IDENT]*)?;
+		//	"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<>"? ("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
+		//	("exceptDaos" daos+=[PojoDao|IDENT]*)?;
 		public ParserRule getRule() { return rule; }
 
-		//"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<>"? ("except" pojos+=[PojoEntity|IDENT]*)?
+		//"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<>"? ("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
+		//("exceptDaos" daos+=[PojoDao|IDENT]*)?
 		public Group getGroup() { return cGroup; }
 
 		//"implements"
@@ -7548,11 +7555,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"<>"
 		public Keyword getGenericsLessThanSignGreaterThanSignKeyword_2_0() { return cGenericsLessThanSignGreaterThanSignKeyword_2_0; }
 
-		//("except" pojos+=[PojoEntity|IDENT]*)?
+		//("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
 		public Group getGroup_3() { return cGroup_3; }
 
-		//"except"
-		public Keyword getExceptKeyword_3_0() { return cExceptKeyword_3_0; }
+		//"exceptPojos"
+		public Keyword getExceptPojosKeyword_3_0() { return cExceptPojosKeyword_3_0; }
 
 		//pojos+=[PojoEntity|IDENT]*
 		public Assignment getPojosAssignment_3_1() { return cPojosAssignment_3_1; }
@@ -7562,6 +7569,21 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//IDENT
 		public RuleCall getPojosPojoEntityIDENTTerminalRuleCall_3_1_0_1() { return cPojosPojoEntityIDENTTerminalRuleCall_3_1_0_1; }
+
+		//("exceptDaos" daos+=[PojoDao|IDENT]*)?
+		public Group getGroup_4() { return cGroup_4; }
+
+		//"exceptDaos"
+		public Keyword getExceptDaosKeyword_4_0() { return cExceptDaosKeyword_4_0; }
+
+		//daos+=[PojoDao|IDENT]*
+		public Assignment getDaosAssignment_4_1() { return cDaosAssignment_4_1; }
+
+		//[PojoDao|IDENT]
+		public CrossReference getDaosPojoDaoCrossReference_4_1_0() { return cDaosPojoDaoCrossReference_4_1_0; }
+
+		//IDENT
+		public RuleCall getDaosPojoDaoIDENTTerminalRuleCall_4_1_0_1() { return cDaosPojoDaoIDENTTerminalRuleCall_4_1_0_1; }
 	}
 
 	public class ExtendsElements extends AbstractParserRuleElementFinder {
@@ -10052,7 +10074,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Implements hidden(ML_COMMENT, SL_COMMENT, WS):
-	//	"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<>"? ("except" pojos+=[PojoEntity|IDENT]*)?;
+	//	"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<>"? ("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
+	//	("exceptDaos" daos+=[PojoDao|IDENT]*)?;
 	public ImplementsElements getImplementsAccess() {
 		return (pImplements != null) ? pImplements : (pImplements = new ImplementsElements());
 	}

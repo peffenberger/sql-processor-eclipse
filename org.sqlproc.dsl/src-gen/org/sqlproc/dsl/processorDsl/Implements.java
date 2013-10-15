@@ -17,6 +17,7 @@ import org.eclipse.xtext.common.types.JvmType;
  *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#getImplements <em>Implements</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#isGenerics <em>Generics</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#getPojos <em>Pojos</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#getDaos <em>Daos</em>}</li>
  * </ul>
  * </p>
  *
@@ -93,5 +94,21 @@ public interface Implements extends AbstractPojoEntity
    * @generated
    */
   EList<PojoEntity> getPojos();
+
+  /**
+   * Returns the value of the '<em><b>Daos</b></em>' reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PojoDao}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Daos</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Daos</em>' reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getImplements_Daos()
+   * @model
+   * @generated
+   */
+  EList<PojoDao> getDaos();
 
 } // Implements

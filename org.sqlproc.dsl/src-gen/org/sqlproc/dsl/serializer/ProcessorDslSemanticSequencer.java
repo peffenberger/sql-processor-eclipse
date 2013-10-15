@@ -1149,7 +1149,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (implements=[JvmType|QualifiedName] generics?='<>'? pojos+=[PojoEntity|IDENT]*)
+	 *     (implements=[JvmType|QualifiedName] generics?='<>'? pojos+=[PojoEntity|IDENT]* daos+=[PojoDao|IDENT]*)
 	 */
 	protected void sequence_Implements(EObject context, Implements semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

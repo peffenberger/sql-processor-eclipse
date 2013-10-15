@@ -12475,9 +12475,9 @@ ruleImplements returns [EObject current=null]
 	    }
 
 )
-)?(	otherlv_3='except' 
+)?(	otherlv_3='exceptPojos' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getImplementsAccess().getExceptKeyword_3_0());
+    	newLeafNode(otherlv_3, grammarAccess.getImplementsAccess().getExceptPojosKeyword_3_0());
     }
 (
 (
@@ -12489,6 +12489,23 @@ ruleImplements returns [EObject current=null]
 	otherlv_4=RULE_IDENT
 	{
 		newLeafNode(otherlv_4, grammarAccess.getImplementsAccess().getPojosPojoEntityCrossReference_3_1_0()); 
+	}
+
+)
+)*)?(	otherlv_5='exceptDaos' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getImplementsAccess().getExceptDaosKeyword_4_0());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementsRule());
+	        }
+        }
+	otherlv_6=RULE_IDENT
+	{
+		newLeafNode(otherlv_6, grammarAccess.getImplementsAccess().getDaosPojoDaoCrossReference_4_1_0()); 
 	}
 
 )

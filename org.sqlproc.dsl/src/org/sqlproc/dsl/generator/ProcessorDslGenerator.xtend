@@ -1320,7 +1320,7 @@ def getExtends(PojoDao e) {
 
 def isImplements(PojoDao e) {
 	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
-		for (ee : ext.pojos) {
+		for (ee : ext.daos) {
 			if (ee.name == e.name)
 				return false;
 		}
@@ -1330,7 +1330,7 @@ def isImplements(PojoDao e) {
 }
 
 def isImplements(PojoDao e, Implements ext) {
-	for (ee : ext.pojos) {
+	for (ee : ext.daos) {
 		if (ee.name == e.name)
 			return false;
 	}
