@@ -96,7 +96,7 @@ import java.util.Map;
 «classBody»
 '''
 def compile(EnumEntity e, ImportManager im, EnumProperty ea) '''
-public enum «e.name» «compileExtends(e, im)»«compileImplements(e)»{
+public enum «e.name» «compileImplements(e)»{
 
   «FOR f:e.features.filter(x| x.value!=null) SEPARATOR ", "»«f.name»(«f.value»)«ENDFOR»;
   «IF getSernum(e) != null»
@@ -1200,17 +1200,14 @@ def simplAttrs(PojoProperty f) {
 	return f.attrs.filter(f2|f2.getNative != null || f2.getType != null).toList
 }
 
-def compileExtends(EnumEntity e, ImportManager im) '''
-	«IF getSuperType(e) != null»extends «getFullName(e, getSuperType(e), getSuperType(e).fullyQualifiedName, im)» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
-
 def compileImplements(EnumEntity e) '''
-	«IF isImplements(e) || getSernum(e) != null»implements «FOR f:e.eContainer.eContents.filter(typeof(Implements)) SEPARATOR ", " »«f.getImplements().simpleName»«ENDFOR»«IF getSernum(e) != null»«IF isImplements(e)», «ENDIF»Serializable«ENDIF» «ENDIF»'''
+	«IF getSernum(e) != null»implements Serializable«ENDIF» '''
 
 def compileExtends(PojoEntity e, ImportManager im) '''
-	«IF getSuperType(e) != null»extends «getFullName(e, getSuperType(e), getSuperType(e).fullyQualifiedName, im)» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
+	«IF getSuperType(e) != null»extends «getFullName(e, getSuperType(getSuperType(e)), getSuperType(getSuperType(e)).fullyQualifiedName, im)» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
 
 def compileImplements(PojoEntity e) '''
-	«IF isImplements(e) || getSernum(e) != null»implements «FOR f:e.eContainer.eContents.filter(typeof(Implements)) SEPARATOR ", " »«f.getImplements().simpleName»«ENDFOR»«IF getSernum(e) != null»«IF isImplements(e)», «ENDIF»Serializable«ENDIF» «ENDIF»'''
+	«IF isImplements(e) || getSernum(e) != null»implements «FOR f:e.eContainer.eContainer.eContents.filter(typeof(Implements)) SEPARATOR ", " »«f.getImplements().simpleName»«ENDFOR»«IF getSernum(e) != null»«IF isImplements(e)», «ENDIF»Serializable«ENDIF» «ENDIF»'''
 
 def compileExtends(PojoDao e, ImportManager im) '''
 	«IF getSuperType(e) != null»extends «getFullName(e, getSuperType(e), getSuperType(e).fullyQualifiedName, im)» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
@@ -1265,28 +1262,28 @@ def addAnnotations(List<Annotation> annotations, ImportManager im) {
 }
 
 def getExtends(EnumEntity e) {
-	for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
+	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Extends))) {
 		return ext.getExtends().simpleName
 	}
 	return ""
 }
 
 def isImplements(EnumEntity e) {
-	for(ext: e.eContainer.eContents.filter(typeof(Implements))) {
+	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
 		return true
 	}
 	return false
 }
 
 def getExtends(PojoEntity e) {
-	for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
+	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Extends))) {
 		return ext.getExtends().simpleName
 	}
 	return ""
 }
 
 def isImplements(PojoEntity e) {
-	for(ext: e.eContainer.eContents.filter(typeof(Implements))) {
+	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
 		return true
 	}
 	return false

@@ -201,8 +201,6 @@ public class ProcessorDslGenerator implements IGenerator {
     String _name = e.getName();
     _builder.append(_name, "");
     _builder.append(" ");
-    CharSequence _compileExtends = this.compileExtends(e, im);
-    _builder.append(_compileExtends, "");
     CharSequence _compileImplements = this.compileImplements(e);
     _builder.append(_compileImplements, "");
     _builder.append("{");
@@ -6744,79 +6742,16 @@ public class ProcessorDslGenerator implements IGenerator {
     return IterableExtensions.<PojoProperty>toList(_filter);
   }
   
-  public CharSequence compileExtends(final EnumEntity e, final ImportManager im) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      PojoEntity _superType = Utils.getSuperType(e);
-      boolean _notEquals = (!Objects.equal(_superType, null));
-      if (_notEquals) {
-        _builder.append("extends ");
-        PojoEntity _superType_1 = Utils.getSuperType(e);
-        PojoEntity _superType_2 = Utils.getSuperType(e);
-        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_2);
-        String _fullName = Utils.getFullName(e, _superType_1, _fullyQualifiedName, im);
-        _builder.append(_fullName, "");
-        _builder.append(" ");
-      } else {
-        String _extends = this.getExtends(e);
-        boolean _notEquals_1 = (!Objects.equal(_extends, ""));
-        if (_notEquals_1) {
-          _builder.append("extends ");
-          String _extends_1 = this.getExtends(e);
-          _builder.append(_extends_1, "");
-          _builder.append(" ");
-        }
-      }
-    }
-    return _builder;
-  }
-  
   public CharSequence compileImplements(final EnumEntity e) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      boolean _or = false;
-      boolean _isImplements = this.isImplements(e);
-      if (_isImplements) {
-        _or = true;
-      } else {
-        String _sernum = Utils.getSernum(e);
-        boolean _notEquals = (!Objects.equal(_sernum, null));
-        _or = (_isImplements || _notEquals);
-      }
-      if (_or) {
-        _builder.append("implements ");
-        {
-          EObject _eContainer = e.eContainer();
-          EList<EObject> _eContents = _eContainer.eContents();
-          Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
-          boolean _hasElements = false;
-          for(final Implements f : _filter) {
-            if (!_hasElements) {
-              _hasElements = true;
-            } else {
-              _builder.appendImmediate(", ", "");
-            }
-            JvmType _implements = f.getImplements();
-            String _simpleName = _implements.getSimpleName();
-            _builder.append(_simpleName, "");
-          }
-        }
-        {
-          String _sernum_1 = Utils.getSernum(e);
-          boolean _notEquals_1 = (!Objects.equal(_sernum_1, null));
-          if (_notEquals_1) {
-            {
-              boolean _isImplements_1 = this.isImplements(e);
-              if (_isImplements_1) {
-                _builder.append(", ");
-              }
-            }
-            _builder.append("Serializable");
-          }
-        }
-        _builder.append(" ");
+      String _sernum = Utils.getSernum(e);
+      boolean _notEquals = (!Objects.equal(_sernum, null));
+      if (_notEquals) {
+        _builder.append("implements Serializable");
       }
     }
+    _builder.append(" ");
     return _builder;
   }
   
@@ -6828,9 +6763,11 @@ public class ProcessorDslGenerator implements IGenerator {
       if (_notEquals) {
         _builder.append("extends ");
         PojoEntity _superType_1 = Utils.getSuperType(e);
-        PojoEntity _superType_2 = Utils.getSuperType(e);
-        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_2);
-        String _fullName = Utils.getFullName(e, _superType_1, _fullyQualifiedName, im);
+        PojoEntity _superType_2 = Utils.getSuperType(_superType_1);
+        PojoEntity _superType_3 = Utils.getSuperType(e);
+        PojoEntity _superType_4 = Utils.getSuperType(_superType_3);
+        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_4);
+        String _fullName = Utils.getFullName(e, _superType_2, _fullyQualifiedName, im);
         _builder.append(_fullName, "");
         _builder.append(" ");
       } else {
@@ -6863,7 +6800,8 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.append("implements ");
         {
           EObject _eContainer = e.eContainer();
-          EList<EObject> _eContents = _eContainer.eContents();
+          EObject _eContainer_1 = _eContainer.eContainer();
+          EList<EObject> _eContents = _eContainer_1.eContents();
           Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
           boolean _hasElements = false;
           for(final Implements f : _filter) {
@@ -7077,7 +7015,8 @@ public class ProcessorDslGenerator implements IGenerator {
   
   public String getExtends(final EnumEntity e) {
     EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
     Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
     for (final Extends ext : _filter) {
       JvmType _extends = ext.getExtends();
@@ -7088,7 +7027,8 @@ public class ProcessorDslGenerator implements IGenerator {
   
   public boolean isImplements(final EnumEntity e) {
     EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
     for (final Implements ext : _filter) {
       return true;
@@ -7098,7 +7038,8 @@ public class ProcessorDslGenerator implements IGenerator {
   
   public String getExtends(final PojoEntity e) {
     EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
     Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
     for (final Extends ext : _filter) {
       JvmType _extends = ext.getExtends();
@@ -7109,7 +7050,8 @@ public class ProcessorDslGenerator implements IGenerator {
   
   public boolean isImplements(final PojoEntity e) {
     EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
     for (final Implements ext : _filter) {
       return true;
