@@ -7106,8 +7106,7 @@ public class ProcessorDslGenerator implements IGenerator {
   
   public boolean isImplements(final PojoDao e) {
     EObject _eContainer = e.eContainer();
-    EObject _eContainer_1 = _eContainer.eContainer();
-    EList<EObject> _eContents = _eContainer_1.eContents();
+    EList<EObject> _eContents = _eContainer.eContents();
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
     for (final Implements ext : _filter) {
       {
@@ -7143,8 +7142,7 @@ public class ProcessorDslGenerator implements IGenerator {
     ArrayList<Implements> _arrayList = new ArrayList<Implements>();
     final ArrayList<Implements> list = _arrayList;
     EObject _eContainer = e.eContainer();
-    EObject _eContainer_1 = _eContainer.eContainer();
-    EList<EObject> _eContents = _eContainer_1.eContents();
+    EList<EObject> _eContents = _eContainer.eContents();
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
     for (final Implements ext : _filter) {
       boolean _isImplements = this.isImplements(e, ext);

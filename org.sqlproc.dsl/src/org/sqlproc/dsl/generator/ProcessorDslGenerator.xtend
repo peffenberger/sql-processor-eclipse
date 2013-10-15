@@ -1319,7 +1319,7 @@ def getExtends(PojoDao e) {
 }
 
 def isImplements(PojoDao e) {
-	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
+	for(ext: e.eContainer.eContents.filter(typeof(Implements))) {
 		for (ee : ext.daos) {
 			if (ee.name == e.name)
 				return false;
@@ -1340,7 +1340,7 @@ def isImplements(PojoDao e, Implements ext) {
 def getImplements(PojoDao e) {
 	val list = new ArrayList<Implements>()
 	
-	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
+	for(ext: e.eContainer.eContents.filter(typeof(Implements))) {
 		if (isImplements(e, ext))
 			list.add(ext)
 	}
