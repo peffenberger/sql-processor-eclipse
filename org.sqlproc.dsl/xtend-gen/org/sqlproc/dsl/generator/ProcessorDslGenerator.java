@@ -3409,11 +3409,8 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.append("Impl");
       }
     }
-    _builder.append("(SqlEngineFactory sqlEngineFactory) {");
+    _builder.append("() {");
     _builder.newLineIfNotEmpty();
-    _builder.append("    ");
-    _builder.append("this.sqlEngineFactory = sqlEngineFactory;");
-    _builder.newLine();
     _builder.append("  ");
     _builder.append("}");
     _builder.newLine();
@@ -3427,6 +3424,27 @@ public class ProcessorDslGenerator implements IGenerator {
       String _implPackage_2 = this.getImplPackage(d);
       boolean _notEquals_3 = (!Objects.equal(_implPackage_2, null));
       if (_notEquals_3) {
+        _builder.append("Impl");
+      }
+    }
+    _builder.append("(SqlEngineFactory sqlEngineFactory) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("this.sqlEngineFactory = sqlEngineFactory;");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("    \t");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("public ");
+    String _name_3 = d.getName();
+    _builder.append(_name_3, "  ");
+    {
+      String _implPackage_3 = this.getImplPackage(d);
+      boolean _notEquals_4 = (!Objects.equal(_implPackage_3, null));
+      if (_notEquals_4) {
         _builder.append("Impl");
       }
     }
@@ -3448,8 +3466,8 @@ public class ProcessorDslGenerator implements IGenerator {
       EList<PojoMethod> _methods = d.getMethods();
       for(final PojoMethod m : _methods) {
         {
-          String _name_3 = m.getName();
-          boolean _equals = Objects.equal(_name_3, "scaffold");
+          String _name_4 = m.getName();
+          boolean _equals = Objects.equal(_name_4, "scaffold");
           if (_equals) {
             PojoEntity _parent = Utils.getParent(e);
             CharSequence _compileInsert = this.compileInsert(d, e, _parent, im);

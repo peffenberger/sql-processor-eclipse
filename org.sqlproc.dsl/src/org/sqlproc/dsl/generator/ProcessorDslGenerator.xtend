@@ -678,6 +678,9 @@ public «IF isAbstract(d)»abstract «ENDIF»class «d.name»«IF d.implPackage 
   protected SqlEngineFactory sqlEngineFactory;
   protected SqlSessionFactory sqlSessionFactory;
     	
+  public «d.name»«IF d.implPackage != null»Impl«ENDIF»() {
+  }
+    	
   public «d.name»«IF d.implPackage != null»Impl«ENDIF»(SqlEngineFactory sqlEngineFactory) {
     this.sqlEngineFactory = sqlEngineFactory;
   }
