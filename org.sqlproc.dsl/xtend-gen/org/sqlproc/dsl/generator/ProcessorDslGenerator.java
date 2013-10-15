@@ -2810,17 +2810,6 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("private Map<String, String> operators = new HashMap<String, String>();");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("public Map<String, String> getOperators() {");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("return operators;");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
     {
       EList<Annotation> _conflictAnnotations = ae.getConflictAnnotations();
       for(final Annotation a : _conflictAnnotations) {
@@ -2853,19 +2842,13 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("public void setOp(String operator, OpAttribute... attributes) {");
+    _builder.append("private Map<String, String> operators = new HashMap<String, String>();");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public Map<String, String> getOperators() {");
     _builder.newLine();
     _builder.append("  ");
-    _builder.append("if (attributes == null)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("throw new IllegalArgumentException();");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("for (OpAttribute attribute : attributes)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("operators.put(attribute.name(), operator);");
+    _builder.append("return operators;");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
@@ -2894,6 +2877,55 @@ public class ProcessorDslGenerator implements IGenerator {
                 }
                 CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(ff_1, im);
                 _builder.append(_compileAnnotationProperty_1, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("public void setOp(String operator, OpAttribute... attributes) {");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("if (attributes == null)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("throw new IllegalArgumentException();");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("for (OpAttribute attribute : attributes)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("operators.put(attribute.name(), operator);");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      EList<Annotation> _conflictAnnotations_2 = ae.getConflictAnnotations();
+      for(final Annotation a_2 : _conflictAnnotations_2) {
+        _builder.append("@");
+        JvmType _type_2 = a_2.getType();
+        CharSequence _serialize_2 = im.serialize(_type_2);
+        _builder.append(_serialize_2, "");
+        {
+          EList<AnnotationProperty> _features_5 = a_2.getFeatures();
+          boolean _isEmpty_2 = _features_5.isEmpty();
+          boolean _not_2 = (!_isEmpty_2);
+          if (_not_2) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_6 = a_2.getFeatures();
+              boolean _hasElements_3 = false;
+              for(final AnnotationProperty ff_2 : _features_6) {
+                if (!_hasElements_3) {
+                  _hasElements_3 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff_2, im);
+                _builder.append(_compileAnnotationProperty_2, "");
               }
             }
             _builder.append(")");
@@ -2954,29 +2986,29 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _conflictAnnotations_2 = ae.getConflictAnnotations();
-      for(final Annotation a_2 : _conflictAnnotations_2) {
+      EList<Annotation> _conflictAnnotations_3 = ae.getConflictAnnotations();
+      for(final Annotation a_3 : _conflictAnnotations_3) {
         _builder.append("@");
-        JvmType _type_2 = a_2.getType();
-        CharSequence _serialize_2 = im.serialize(_type_2);
-        _builder.append(_serialize_2, "");
+        JvmType _type_3 = a_3.getType();
+        CharSequence _serialize_3 = im.serialize(_type_3);
+        _builder.append(_serialize_3, "");
         {
-          EList<AnnotationProperty> _features_5 = a_2.getFeatures();
-          boolean _isEmpty_2 = _features_5.isEmpty();
-          boolean _not_2 = (!_isEmpty_2);
-          if (_not_2) {
+          EList<AnnotationProperty> _features_7 = a_3.getFeatures();
+          boolean _isEmpty_3 = _features_7.isEmpty();
+          boolean _not_3 = (!_isEmpty_3);
+          if (_not_3) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_6 = a_2.getFeatures();
-              boolean _hasElements_3 = false;
-              for(final AnnotationProperty ff_2 : _features_6) {
-                if (!_hasElements_3) {
-                  _hasElements_3 = true;
+              EList<AnnotationProperty> _features_8 = a_3.getFeatures();
+              boolean _hasElements_4 = false;
+              for(final AnnotationProperty ff_3 : _features_8) {
+                if (!_hasElements_4) {
+                  _hasElements_4 = true;
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff_2, im);
-                _builder.append(_compileAnnotationProperty_2, "");
+                CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(ff_3, im);
+                _builder.append(_compileAnnotationProperty_3, "");
               }
             }
             _builder.append(")");

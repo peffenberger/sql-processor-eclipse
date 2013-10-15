@@ -550,6 +550,9 @@ def compileOperators(ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
         «FOR f:e.features.filter(x| isAttribute(x.feature)) SEPARATOR ", "»«f.feature.name»«ENDFOR»
     }
 
+    «FOR a:ae.conflictAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     private Map<String, String> operators = new HashMap<String, String>();
 
     public Map<String, String> getOperators() {
