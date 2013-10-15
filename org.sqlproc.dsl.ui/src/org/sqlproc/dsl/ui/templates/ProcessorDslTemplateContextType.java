@@ -19,6 +19,7 @@ import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Artifacts;
+import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
@@ -706,6 +707,15 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                             } else {
                                 entitiesToRemove.add(pojo);
                             }
+                        } else if (apojo.getEntity() != null && apojo.getEntity() instanceof EnumEntity) {
+                            EnumEntity pojo = (EnumEntity) apojo.getEntity();
+                            if (Utils.isFinal(pojo)) {
+                                // if (suffix != null && pojo.getName().endsWith(suffix))
+                                // finalEntities.add(pojo.getName()
+                                // .substring(0, pojo.getName().length() - suffix.length()));
+                                // else
+                                finalEntities.add(pojo.getName());
+                            }
                         }
                     }
                 }
@@ -857,61 +867,61 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
     }
 
     protected boolean addDefinitions(TablePojoConverter converter, Artifacts artifacts) {
-    	try {
-        List<String> tables = Utils.findTables(null, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES));
-        List<String> procedures = Utils.findProcedures(null, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PROCEDURES));
-        List<String> functions = Utils.findFunctions(null, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__FUNCTIONS));
-        if (tables == null && procedures == null && functions == null)
+        try {
+            List<String> tables = Utils.findTables(null, artifacts,
+                    scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES));
+            List<String> procedures = Utils.findProcedures(null, artifacts,
+                    scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PROCEDURES));
+            List<String> functions = Utils.findFunctions(null, artifacts,
+                    scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__FUNCTIONS));
+            if (tables == null && procedures == null && functions == null)
+                return false;
+            if (tables != null) {
+                for (String table : tables) {
+                    if (table.toUpperCase().startsWith("BIN$"))
+                        continue;
+                    List<DbColumn> dbColumns = dbResolver.getDbColumns(artifacts, table);
+                    if (dbColumns.isEmpty())
+                        continue;
+                    List<String> dbPrimaryKeys = dbResolver.getDbPrimaryKeys(artifacts, table);
+                    List<DbExport> dbExports = dbResolver.getDbExports(artifacts, table);
+                    List<DbImport> dbImports = dbResolver.getDbImports(artifacts, table);
+                    List<DbIndex> dbIndexes = dbResolver.getDbIndexes(artifacts, table);
+                    List<DbCheckConstraint> dbCheckConstraints = dbResolver.getDbCheckConstraints(artifacts, table);
+                    converter.addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes,
+                            dbCheckConstraints);
+                }
+                // converter.resolveReferencesOnConvention();
+                converter.resolveReferencesOnKeys();
+                converter.joinTables();
+            }
+            if (procedures != null) {
+                for (String procedure : procedures) {
+                    if (procedure.toUpperCase().startsWith("BIN$"))
+                        continue;
+                    List<DbTable> dbProcedures = dbResolver.getDbProcedures(artifacts, procedure);
+                    if (dbProcedures.isEmpty())
+                        continue;
+                    List<DbColumn> dbProcColumns = dbResolver.getDbProcColumns(artifacts, procedure);
+                    converter.addProcedureDefinition(procedure, dbProcedures.get(0), dbProcColumns,
+                            functions.contains(procedure));
+                }
+            }
+            if (functions != null) {
+                for (String function : functions) {
+                    if (function.toUpperCase().startsWith("BIN$"))
+                        continue;
+                    List<DbTable> dbFunctions = dbResolver.getDbFunctions(artifacts, function);
+                    if (dbFunctions.isEmpty())
+                        continue;
+                    List<DbColumn> dbFunColumns = dbResolver.getDbFunColumns(artifacts, function);
+                    converter.addFunctionDefinition(function, dbFunctions.get(0), dbFunColumns);
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
-        if (tables != null) {
-            for (String table : tables) {
-                if (table.toUpperCase().startsWith("BIN$"))
-                    continue;
-                List<DbColumn> dbColumns = dbResolver.getDbColumns(artifacts, table);
-                if (dbColumns.isEmpty())
-                    continue;
-                List<String> dbPrimaryKeys = dbResolver.getDbPrimaryKeys(artifacts, table);
-                List<DbExport> dbExports = dbResolver.getDbExports(artifacts, table);
-                List<DbImport> dbImports = dbResolver.getDbImports(artifacts, table);
-                List<DbIndex> dbIndexes = dbResolver.getDbIndexes(artifacts, table);
-                List<DbCheckConstraint> dbCheckConstraints = dbResolver.getDbCheckConstraints(artifacts, table);
-                converter.addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes,
-                        dbCheckConstraints);
-            }
-            // converter.resolveReferencesOnConvention();
-            converter.resolveReferencesOnKeys();
-            converter.joinTables();
         }
-        if (procedures != null) {
-            for (String procedure : procedures) {
-                if (procedure.toUpperCase().startsWith("BIN$"))
-                    continue;
-                List<DbTable> dbProcedures = dbResolver.getDbProcedures(artifacts, procedure);
-                if (dbProcedures.isEmpty())
-                    continue;
-                List<DbColumn> dbProcColumns = dbResolver.getDbProcColumns(artifacts, procedure);
-                converter.addProcedureDefinition(procedure, dbProcedures.get(0), dbProcColumns,
-                        functions.contains(procedure));
-            }
-        }
-        if (functions != null) {
-            for (String function : functions) {
-                if (function.toUpperCase().startsWith("BIN$"))
-                    continue;
-                List<DbTable> dbFunctions = dbResolver.getDbFunctions(artifacts, function);
-                if (dbFunctions.isEmpty())
-                    continue;
-                List<DbColumn> dbFunColumns = dbResolver.getDbFunColumns(artifacts, function);
-                converter.addFunctionDefinition(function, dbFunctions.get(0), dbFunColumns);
-            }
-        }
-        return true;
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    		return false;
-    	}
     }
 }

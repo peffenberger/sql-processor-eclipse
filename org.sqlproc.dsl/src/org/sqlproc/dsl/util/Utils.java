@@ -30,6 +30,7 @@ import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
+import org.sqlproc.dsl.processorDsl.EnumEntityModifier1;
 import org.sqlproc.dsl.processorDsl.EnumEntityModifier2;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
@@ -252,6 +253,16 @@ public class Utils {
         if (e.getModifiers1() == null || e.getModifiers1().isEmpty())
             return false;
         for (PojoEntityModifier1 modifier : e.getModifiers1()) {
+            if (modifier.isFinal())
+                return true;
+        }
+        return false;
+    }
+
+    public static boolean isFinal(EnumEntity e) {
+        if (e.getModifiers1() == null || e.getModifiers1().isEmpty())
+            return false;
+        for (EnumEntityModifier1 modifier : e.getModifiers1()) {
             if (modifier.isFinal())
                 return true;
         }
