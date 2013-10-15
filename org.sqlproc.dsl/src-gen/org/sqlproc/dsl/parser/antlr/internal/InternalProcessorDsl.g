@@ -12475,7 +12475,24 @@ ruleImplements returns [EObject current=null]
 	    }
 
 )
-)?)
+)?(	otherlv_3='except' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getImplementsAccess().getExceptKeyword_3_0());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementsRule());
+	        }
+        }
+	otherlv_4=RULE_IDENT
+	{
+		newLeafNode(otherlv_4, grammarAccess.getImplementsAccess().getPojosPojoEntityCrossReference_3_1_0()); 
+	}
+
+)
+)*)?)
 ;
 finally {
 	myHiddenTokenState.restore();

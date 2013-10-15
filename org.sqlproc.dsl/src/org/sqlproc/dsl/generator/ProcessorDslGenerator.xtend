@@ -1207,13 +1207,13 @@ def compileExtends(PojoEntity e, ImportManager im) '''
 	«IF getSuperType(e) != null»extends «getFullName(e, getSuperType(e), getSuperType(e).fullyQualifiedName, im)» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
 
 def compileImplements(PojoEntity e) '''
-	«IF isImplements(e) || getSernum(e) != null»implements «FOR f:e.eContainer.eContainer.eContents.filter(typeof(Implements)) SEPARATOR ", " »«f.getImplements().simpleName»«ENDFOR»«IF getSernum(e) != null»«IF isImplements(e)», «ENDIF»Serializable«ENDIF» «ENDIF»'''
+	«IF isImplements(e) || getSernum(e) != null»implements «FOR f:getImplements(e) SEPARATOR ", " »«f.getImplements().simpleName»«ENDFOR»«IF getSernum(e) != null»«IF isImplements(e)», «ENDIF»Serializable«ENDIF» «ENDIF»'''
 
 def compileExtends(PojoDao e, ImportManager im) '''
 	«IF getSuperType(e) != null»extends «getFullName(e, getSuperType(e), getSuperType(e).fullyQualifiedName, im)» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
 
 def compileImplements(PojoDao d) '''
-	«IF isImplements(d) || getSernum(d) != null || d.implPackage != null»implements «FOR f:d.eContainer.eContents.filter(typeof(Implements)) SEPARATOR ", " »«getDaoImplements(d, f)»«ENDFOR»«IF getSernum(d) != null»«IF isImplements(d)», «ENDIF»Serializable«ENDIF»«IF d.implPackage != null»«IF isImplements(d) || getSernum(d) != null», «ENDIF»«d.name»«ENDIF» «ENDIF»'''
+	«IF isImplements(d) || getSernum(d) != null || d.implPackage != null»implements «FOR f:getImplements(d) SEPARATOR ", " »«getDaoImplements(d, f)»«ENDFOR»«IF getSernum(d) != null»«IF isImplements(d)», «ENDIF»Serializable«ENDIF»«IF d.implPackage != null»«IF isImplements(d) || getSernum(d) != null», «ENDIF»«d.name»«ENDIF» «ENDIF»'''
 
 def compile(Extends e, ImportManager im) {
 	im.addImportFor(e.getExtends())
@@ -1284,9 +1284,31 @@ def getExtends(PojoEntity e) {
 
 def isImplements(PojoEntity e) {
 	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
+		for (ee : ext.pojos) {
+			if (ee.name == e.name)
+				return false;
+		}
 		return true
 	}
 	return false
+}
+
+def isImplements(PojoEntity e, Implements ext) {
+	for (ee : ext.pojos) {
+		if (ee.name == e.name)
+			return false;
+	}
+	return true
+}
+
+def getImplements(PojoEntity e) {
+	val list = new ArrayList<Implements>()
+	
+	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
+		if (isImplements(e, ext))
+			list.add(ext)
+	}
+	return list
 }
 
 def getExtends(PojoDao e) {
@@ -1297,10 +1319,32 @@ def getExtends(PojoDao e) {
 }
 
 def isImplements(PojoDao e) {
-	for(ext: e.eContainer.eContents.filter(typeof(Implements))) {
+	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
+		for (ee : ext.pojos) {
+			if (ee.name == e.name)
+				return false;
+		}
 		return true
 	}
 	return false
+}
+
+def isImplements(PojoDao e, Implements ext) {
+	for (ee : ext.pojos) {
+		if (ee.name == e.name)
+			return false;
+	}
+	return true
+}
+
+def getImplements(PojoDao e) {
+	val list = new ArrayList<Implements>()
+	
+	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
+		if (isImplements(e, ext))
+			list.add(ext)
+	}
+	return list
 }
 
 def getImplPackage(PojoDao e) {

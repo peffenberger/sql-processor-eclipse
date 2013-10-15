@@ -3363,13 +3363,22 @@ public interface ProcessorDslPackage extends EPackage
   int IMPLEMENTS__GENERICS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Pojos</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLEMENTS__POJOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
+
+  /**
    * The number of structural features of the '<em>Implements</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IMPLEMENTS_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
+  int IMPLEMENTS_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl <em>Extends</em>}' class.
@@ -7506,6 +7515,17 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getImplements_Generics();
 
   /**
+   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.Implements#getPojos <em>Pojos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Pojos</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Implements#getPojos()
+   * @see #getImplements()
+   * @generated
+   */
+  EReference getImplements_Pojos();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.Extends <em>Extends</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -10925,6 +10945,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute IMPLEMENTS__GENERICS = eINSTANCE.getImplements_Generics();
+
+    /**
+     * The meta object literal for the '<em><b>Pojos</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPLEMENTS__POJOS = eINSTANCE.getImplements_Pojos();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl <em>Extends</em>}' class.

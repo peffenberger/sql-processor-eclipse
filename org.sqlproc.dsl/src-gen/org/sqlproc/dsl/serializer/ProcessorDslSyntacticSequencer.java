@@ -54,6 +54,7 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_IfSqlCond_WSTerminalRuleCall_2_a;
 	protected AbstractElementAlias match_IfSqlCond_WSTerminalRuleCall_3_1_a;
 	protected AbstractElementAlias match_IfSqlCond_WSTerminalRuleCall_3_3_a;
+	protected AbstractElementAlias match_Implements_ExceptKeyword_3_0_q;
 	protected AbstractElementAlias match_Mapping_WSTerminalRuleCall_0_a;
 	protected AbstractElementAlias match_Mapping_WSTerminalRuleCall_2_0_p;
 	protected AbstractElementAlias match_Mapping_WSTerminalRuleCall_3_a;
@@ -187,6 +188,7 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_IfSqlCond_WSTerminalRuleCall_2_a = new TokenAlias(true, true, grammarAccess.getIfSqlCondAccess().getWSTerminalRuleCall_2());
 		match_IfSqlCond_WSTerminalRuleCall_3_1_a = new TokenAlias(true, true, grammarAccess.getIfSqlCondAccess().getWSTerminalRuleCall_3_1());
 		match_IfSqlCond_WSTerminalRuleCall_3_3_a = new TokenAlias(true, true, grammarAccess.getIfSqlCondAccess().getWSTerminalRuleCall_3_3());
+		match_Implements_ExceptKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getImplementsAccess().getExceptKeyword_3_0());
 		match_Mapping_WSTerminalRuleCall_0_a = new TokenAlias(true, true, grammarAccess.getMappingAccess().getWSTerminalRuleCall_0());
 		match_Mapping_WSTerminalRuleCall_2_0_p = new TokenAlias(true, false, grammarAccess.getMappingAccess().getWSTerminalRuleCall_2_0());
 		match_Mapping_WSTerminalRuleCall_3_a = new TokenAlias(true, true, grammarAccess.getMappingAccess().getWSTerminalRuleCall_3());
@@ -553,6 +555,8 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_IfSqlCond_WSTerminalRuleCall_3_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_IfSqlCond_WSTerminalRuleCall_3_3_a.equals(syntax))
 				emit_IfSqlCond_WSTerminalRuleCall_3_3_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Implements_ExceptKeyword_3_0_q.equals(syntax))
+				emit_Implements_ExceptKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Mapping_WSTerminalRuleCall_0_a.equals(syntax))
 				emit_Mapping_WSTerminalRuleCall_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Mapping_WSTerminalRuleCall_2_0_p.equals(syntax))
@@ -1034,6 +1038,14 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     WS*
 	 */
 	protected void emit_IfSqlCond_WSTerminalRuleCall_3_3_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     'except'?
+	 */
+	protected void emit_Implements_ExceptKeyword_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

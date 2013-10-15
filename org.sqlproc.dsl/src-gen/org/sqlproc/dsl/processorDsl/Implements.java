@@ -2,6 +2,8 @@
  */
 package org.sqlproc.dsl.processorDsl;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.xtext.common.types.JvmType;
 
 /**
@@ -14,6 +16,7 @@ import org.eclipse.xtext.common.types.JvmType;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#getImplements <em>Implements</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#isGenerics <em>Generics</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#getPojos <em>Pojos</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,5 +77,21 @@ public interface Implements extends AbstractPojoEntity
    * @generated
    */
   void setGenerics(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Pojos</b></em>' reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PojoEntity}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Pojos</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Pojos</em>' reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getImplements_Pojos()
+   * @model
+   * @generated
+   */
+  EList<PojoEntity> getPojos();
 
 } // Implements

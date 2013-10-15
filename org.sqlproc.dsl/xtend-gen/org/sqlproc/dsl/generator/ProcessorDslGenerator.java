@@ -6797,19 +6797,16 @@ public class ProcessorDslGenerator implements IGenerator {
       if (_or) {
         _builder.append("implements ");
         {
-          EObject _eContainer = e.eContainer();
-          EObject _eContainer_1 = _eContainer.eContainer();
-          EList<EObject> _eContents = _eContainer_1.eContents();
-          Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
+          ArrayList<Implements> _implements = this.getImplements(e);
           boolean _hasElements = false;
-          for(final Implements f : _filter) {
+          for(final Implements f : _implements) {
             if (!_hasElements) {
               _hasElements = true;
             } else {
               _builder.appendImmediate(", ", "");
             }
-            JvmType _implements = f.getImplements();
-            String _simpleName = _implements.getSimpleName();
+            JvmType _implements_1 = f.getImplements();
+            String _simpleName = _implements_1.getSimpleName();
             _builder.append(_simpleName, "");
           }
         }
@@ -6882,11 +6879,9 @@ public class ProcessorDslGenerator implements IGenerator {
       if (_or) {
         _builder.append("implements ");
         {
-          EObject _eContainer = d.eContainer();
-          EList<EObject> _eContents = _eContainer.eContents();
-          Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
+          ArrayList<Implements> _implements = this.getImplements(d);
           boolean _hasElements = false;
-          for(final Implements f : _filter) {
+          for(final Implements f : _implements) {
             if (!_hasElements) {
               _hasElements = true;
             } else {
@@ -7053,9 +7048,49 @@ public class ProcessorDslGenerator implements IGenerator {
     EList<EObject> _eContents = _eContainer_1.eContents();
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
     for (final Implements ext : _filter) {
-      return true;
+      {
+        EList<PojoEntity> _pojos = ext.getPojos();
+        for (final PojoEntity ee : _pojos) {
+          String _name = ee.getName();
+          String _name_1 = e.getName();
+          boolean _equals = Objects.equal(_name, _name_1);
+          if (_equals) {
+            return false;
+          }
+        }
+        return true;
+      }
     }
     return false;
+  }
+  
+  public boolean isImplements(final PojoEntity e, final Implements ext) {
+    EList<PojoEntity> _pojos = ext.getPojos();
+    for (final PojoEntity ee : _pojos) {
+      String _name = ee.getName();
+      String _name_1 = e.getName();
+      boolean _equals = Objects.equal(_name, _name_1);
+      if (_equals) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public ArrayList<Implements> getImplements(final PojoEntity e) {
+    ArrayList<Implements> _arrayList = new ArrayList<Implements>();
+    final ArrayList<Implements> list = _arrayList;
+    EObject _eContainer = e.eContainer();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
+    Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
+    for (final Implements ext : _filter) {
+      boolean _isImplements = this.isImplements(e, ext);
+      if (_isImplements) {
+        list.add(ext);
+      }
+    }
+    return list;
   }
   
   public String getExtends(final PojoDao e) {
@@ -7071,12 +7106,53 @@ public class ProcessorDslGenerator implements IGenerator {
   
   public boolean isImplements(final PojoDao e) {
     EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
     for (final Implements ext : _filter) {
-      return true;
+      {
+        EList<PojoEntity> _pojos = ext.getPojos();
+        for (final PojoEntity ee : _pojos) {
+          String _name = ee.getName();
+          String _name_1 = e.getName();
+          boolean _equals = Objects.equal(_name, _name_1);
+          if (_equals) {
+            return false;
+          }
+        }
+        return true;
+      }
     }
     return false;
+  }
+  
+  public boolean isImplements(final PojoDao e, final Implements ext) {
+    EList<PojoEntity> _pojos = ext.getPojos();
+    for (final PojoEntity ee : _pojos) {
+      String _name = ee.getName();
+      String _name_1 = e.getName();
+      boolean _equals = Objects.equal(_name, _name_1);
+      if (_equals) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public ArrayList<Implements> getImplements(final PojoDao e) {
+    ArrayList<Implements> _arrayList = new ArrayList<Implements>();
+    final ArrayList<Implements> list = _arrayList;
+    EObject _eContainer = e.eContainer();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
+    Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
+    for (final Implements ext : _filter) {
+      boolean _isImplements = this.isImplements(e, ext);
+      if (_isImplements) {
+        list.add(ext);
+      }
+    }
+    return list;
   }
   
   public String getImplPackage(final PojoDao e) {

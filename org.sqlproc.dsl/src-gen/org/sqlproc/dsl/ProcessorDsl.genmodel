@@ -366,6 +366,7 @@
     <genClasses ecoreClass="ProcessorDsl.ecore#//Implements">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//Implements/implements"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//Implements/generics"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//Implements/pojos"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//Extends">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//Extends/extends"/>
