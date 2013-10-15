@@ -3354,13 +3354,22 @@ public interface ProcessorDslPackage extends EPackage
   int IMPLEMENTS__IMPLEMENTS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Generics</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLEMENTS__GENERICS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Implements</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IMPLEMENTS_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
+  int IMPLEMENTS_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl <em>Extends</em>}' class.
@@ -4070,13 +4079,22 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_DAO__NAME = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Pojo Generics</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_DAO__POJO_GENERICS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
+
+  /**
    * The feature id for the '<em><b>Pojo</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_DAO__POJO = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
+  int POJO_DAO__POJO = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Modifiers2</b></em>' containment reference list.
@@ -4085,7 +4103,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_DAO__MODIFIERS2 = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
+  int POJO_DAO__MODIFIERS2 = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
 
   /**
    * The feature id for the '<em><b>Methods</b></em>' containment reference list.
@@ -4094,7 +4112,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_DAO__METHODS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
+  int POJO_DAO__METHODS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 5;
 
   /**
    * The feature id for the '<em><b>To Inits</b></em>' containment reference list.
@@ -4103,7 +4121,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_DAO__TO_INITS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 5;
+  int POJO_DAO__TO_INITS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 6;
 
   /**
    * The number of structural features of the '<em>Pojo Dao</em>' class.
@@ -4112,7 +4130,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_DAO_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 6;
+  int POJO_DAO_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 7;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoMethodModifierImpl <em>Pojo Method Modifier</em>}' class.
@@ -7477,6 +7495,17 @@ public interface ProcessorDslPackage extends EPackage
   EReference getImplements_Implements();
 
   /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.Implements#isGenerics <em>Generics</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Generics</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Implements#isGenerics()
+   * @see #getImplements()
+   * @generated
+   */
+  EAttribute getImplements_Generics();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.Extends <em>Extends</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8143,6 +8172,17 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EAttribute getPojoDao_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoDao#isPojoGenerics <em>Pojo Generics</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Pojo Generics</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoDao#isPojoGenerics()
+   * @see #getPojoDao()
+   * @generated
+   */
+  EAttribute getPojoDao_PojoGenerics();
 
   /**
    * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoDao#getPojo <em>Pojo</em>}'.
@@ -10879,6 +10919,14 @@ public interface ProcessorDslPackage extends EPackage
     EReference IMPLEMENTS__IMPLEMENTS = eINSTANCE.getImplements_Implements();
 
     /**
+     * The meta object literal for the '<em><b>Generics</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IMPLEMENTS__GENERICS = eINSTANCE.getImplements_Generics();
+
+    /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl <em>Extends</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -11401,6 +11449,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute POJO_DAO__NAME = eINSTANCE.getPojoDao_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Pojo Generics</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_DAO__POJO_GENERICS = eINSTANCE.getPojoDao_PojoGenerics();
 
     /**
      * The meta object literal for the '<em><b>Pojo</b></em>' reference feature.

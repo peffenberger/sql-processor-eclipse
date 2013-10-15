@@ -22,6 +22,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ImplementsImpl#getImplements <em>Implements</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ImplementsImpl#isGenerics <em>Generics</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,6 +39,26 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
    * @ordered
    */
   protected JvmType implements_;
+
+  /**
+   * The default value of the '{@link #isGenerics() <em>Generics</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isGenerics()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean GENERICS_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isGenerics() <em>Generics</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isGenerics()
+   * @generated
+   * @ordered
+   */
+  protected boolean generics = GENERICS_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -108,6 +129,29 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isGenerics()
+  {
+    return generics;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setGenerics(boolean newGenerics)
+  {
+    boolean oldGenerics = generics;
+    generics = newGenerics;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.IMPLEMENTS__GENERICS, oldGenerics, generics));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -116,6 +160,8 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
       case ProcessorDslPackage.IMPLEMENTS__IMPLEMENTS:
         if (resolve) return getImplements();
         return basicGetImplements();
+      case ProcessorDslPackage.IMPLEMENTS__GENERICS:
+        return isGenerics();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -132,6 +178,9 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
     {
       case ProcessorDslPackage.IMPLEMENTS__IMPLEMENTS:
         setImplements((JvmType)newValue);
+        return;
+      case ProcessorDslPackage.IMPLEMENTS__GENERICS:
+        setGenerics((Boolean)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -150,6 +199,9 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
       case ProcessorDslPackage.IMPLEMENTS__IMPLEMENTS:
         setImplements((JvmType)null);
         return;
+      case ProcessorDslPackage.IMPLEMENTS__GENERICS:
+        setGenerics(GENERICS_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -166,8 +218,27 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
     {
       case ProcessorDslPackage.IMPLEMENTS__IMPLEMENTS:
         return implements_ != null;
+      case ProcessorDslPackage.IMPLEMENTS__GENERICS:
+        return generics != GENERICS_EDEFAULT;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (generics: ");
+    result.append(generics);
+    result.append(')');
+    return result.toString();
   }
 
 } //ImplementsImpl

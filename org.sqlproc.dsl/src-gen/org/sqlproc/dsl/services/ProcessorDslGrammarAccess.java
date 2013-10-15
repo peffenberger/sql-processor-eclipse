@@ -7515,12 +7515,14 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cImplementsAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cImplementsJvmTypeCrossReference_1_0 = (CrossReference)cImplementsAssignment_1.eContents().get(0);
 		private final RuleCall cImplementsJvmTypeQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cImplementsJvmTypeCrossReference_1_0.eContents().get(1);
+		private final Assignment cGenericsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cGenericsLessThanSignGreaterThanSignKeyword_2_0 = (Keyword)cGenericsAssignment_2.eContents().get(0);
 		
 		//Implements hidden(ML_COMMENT, SL_COMMENT, WS):
-		//	"implements" implements=[jvmTypes::JvmType|QualifiedName];
+		//	"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<>"?;
 		public ParserRule getRule() { return rule; }
 
-		//"implements" implements=[jvmTypes::JvmType|QualifiedName]
+		//"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<>"?
 		public Group getGroup() { return cGroup; }
 
 		//"implements"
@@ -7534,6 +7536,12 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//QualifiedName
 		public RuleCall getImplementsJvmTypeQualifiedNameParserRuleCall_1_0_1() { return cImplementsJvmTypeQualifiedNameParserRuleCall_1_0_1; }
+
+		//generics?="<>"?
+		public Assignment getGenericsAssignment_2() { return cGenericsAssignment_2; }
+
+		//"<>"
+		public Keyword getGenericsLessThanSignGreaterThanSignKeyword_2_0() { return cGenericsLessThanSignGreaterThanSignKeyword_2_0; }
 	}
 
 	public class ExtendsElements extends AbstractParserRuleElementFinder {
@@ -8483,9 +8491,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final RuleCall cCOLONTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
 		private final RuleCall cCOLONTerminalRuleCall_3_1 = (RuleCall)cGroup_3.eContents().get(1);
-		private final Assignment cPojoAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
-		private final CrossReference cPojoPojoEntityCrossReference_3_2_0 = (CrossReference)cPojoAssignment_3_2.eContents().get(0);
-		private final RuleCall cPojoPojoEntityIDENTTerminalRuleCall_3_2_0_1 = (RuleCall)cPojoPojoEntityCrossReference_3_2_0.eContents().get(1);
+		private final Assignment cPojoGenericsAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cPojoGenericsCOLONTerminalRuleCall_3_2_0 = (RuleCall)cPojoGenericsAssignment_3_2.eContents().get(0);
+		private final Assignment cPojoAssignment_3_3 = (Assignment)cGroup_3.eContents().get(3);
+		private final CrossReference cPojoPojoEntityCrossReference_3_3_0 = (CrossReference)cPojoAssignment_3_3.eContents().get(0);
+		private final RuleCall cPojoPojoEntityIDENTTerminalRuleCall_3_3_0_1 = (RuleCall)cPojoPojoEntityCrossReference_3_3_0.eContents().get(1);
 		private final Assignment cModifiers2Assignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cModifiers2PojoDaoModifierParserRuleCall_4_0 = (RuleCall)cModifiers2Assignment_4.eContents().get(0);
 		private final RuleCall cLBRACETerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
@@ -8496,12 +8506,12 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRBRACETerminalRuleCall_8 = (RuleCall)cGroup.eContents().get(8);
 		
 		//PojoDao hidden(ML_COMMENT, SL_COMMENT, WS):
-		//	modifiers1+=PojoEntityModifier1* "dao" name=IDENT (COLON COLON pojo=[PojoEntity|IDENT])? modifiers2+=PojoDaoModifier*
-		//	LBRACE methods+=PojoMethod* toInits+=ToInitMethod* RBRACE;
+		//	modifiers1+=PojoEntityModifier1* "dao" name=IDENT (COLON COLON pojoGenerics?=COLON? pojo=[PojoEntity|IDENT])?
+		//	modifiers2+=PojoDaoModifier* LBRACE methods+=PojoMethod* toInits+=ToInitMethod* RBRACE;
 		public ParserRule getRule() { return rule; }
 
-		//modifiers1+=PojoEntityModifier1* "dao" name=IDENT (COLON COLON pojo=[PojoEntity|IDENT])? modifiers2+=PojoDaoModifier*
-		//LBRACE methods+=PojoMethod* toInits+=ToInitMethod* RBRACE
+		//modifiers1+=PojoEntityModifier1* "dao" name=IDENT (COLON COLON pojoGenerics?=COLON? pojo=[PojoEntity|IDENT])?
+		//modifiers2+=PojoDaoModifier* LBRACE methods+=PojoMethod* toInits+=ToInitMethod* RBRACE
 		public Group getGroup() { return cGroup; }
 
 		//modifiers1+=PojoEntityModifier1*
@@ -8519,7 +8529,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getNameIDENTTerminalRuleCall_2_0() { return cNameIDENTTerminalRuleCall_2_0; }
 
-		//(COLON COLON pojo=[PojoEntity|IDENT])?
+		//(COLON COLON pojoGenerics?=COLON? pojo=[PojoEntity|IDENT])?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//COLON
@@ -8528,14 +8538,20 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//COLON
 		public RuleCall getCOLONTerminalRuleCall_3_1() { return cCOLONTerminalRuleCall_3_1; }
 
+		//pojoGenerics?=COLON?
+		public Assignment getPojoGenericsAssignment_3_2() { return cPojoGenericsAssignment_3_2; }
+
+		//COLON
+		public RuleCall getPojoGenericsCOLONTerminalRuleCall_3_2_0() { return cPojoGenericsCOLONTerminalRuleCall_3_2_0; }
+
 		//pojo=[PojoEntity|IDENT]
-		public Assignment getPojoAssignment_3_2() { return cPojoAssignment_3_2; }
+		public Assignment getPojoAssignment_3_3() { return cPojoAssignment_3_3; }
 
 		//[PojoEntity|IDENT]
-		public CrossReference getPojoPojoEntityCrossReference_3_2_0() { return cPojoPojoEntityCrossReference_3_2_0; }
+		public CrossReference getPojoPojoEntityCrossReference_3_3_0() { return cPojoPojoEntityCrossReference_3_3_0; }
 
 		//IDENT
-		public RuleCall getPojoPojoEntityIDENTTerminalRuleCall_3_2_0_1() { return cPojoPojoEntityIDENTTerminalRuleCall_3_2_0_1; }
+		public RuleCall getPojoPojoEntityIDENTTerminalRuleCall_3_3_0_1() { return cPojoPojoEntityIDENTTerminalRuleCall_3_3_0_1; }
 
 		//modifiers2+=PojoDaoModifier*
 		public Assignment getModifiers2Assignment_4() { return cModifiers2Assignment_4; }
@@ -10016,7 +10032,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Implements hidden(ML_COMMENT, SL_COMMENT, WS):
-	//	"implements" implements=[jvmTypes::JvmType|QualifiedName];
+	//	"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<>"?;
 	public ImplementsElements getImplementsAccess() {
 		return (pImplements != null) ? pImplements : (pImplements = new ImplementsElements());
 	}
@@ -10166,8 +10182,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PojoDao hidden(ML_COMMENT, SL_COMMENT, WS):
-	//	modifiers1+=PojoEntityModifier1* "dao" name=IDENT (COLON COLON pojo=[PojoEntity|IDENT])? modifiers2+=PojoDaoModifier*
-	//	LBRACE methods+=PojoMethod* toInits+=ToInitMethod* RBRACE;
+	//	modifiers1+=PojoEntityModifier1* "dao" name=IDENT (COLON COLON pojoGenerics?=COLON? pojo=[PojoEntity|IDENT])?
+	//	modifiers2+=PojoDaoModifier* LBRACE methods+=PojoMethod* toInits+=ToInitMethod* RBRACE;
 	public PojoDaoElements getPojoDaoAccess() {
 		return (pPojoDao != null) ? pPojoDao : (pPojoDao = new PojoDaoElements());
 	}

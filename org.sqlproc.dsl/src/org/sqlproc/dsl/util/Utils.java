@@ -36,6 +36,7 @@ import org.sqlproc.dsl.processorDsl.EnumProperty;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
 import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
+import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.MappingColumn;
 import org.sqlproc.dsl.processorDsl.MappingRule;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
@@ -298,6 +299,14 @@ public class Utils {
             }
         }
         return null;
+    }
+
+    public static String getDaoImplements(PojoDao dao, Implements impl) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(impl.getImplements().getSimpleName());
+        if (dao.isPojoGenerics() && impl.isGenerics())
+            sb.append("<").append(dao.getPojo().getName()).append(">");
+        return sb.toString();
     }
 
     public static PojoDao getSuperType(PojoDao e) {

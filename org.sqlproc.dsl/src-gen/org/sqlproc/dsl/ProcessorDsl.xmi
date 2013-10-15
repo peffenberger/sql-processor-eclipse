@@ -3145,6 +3145,9 @@
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.132"/>
         </terminal>
       </elements>
+      <elements xsi:type="xtext:Assignment" cardinality="?" feature="generics" operator="?=">
+        <terminal xsi:type="xtext:Keyword" value="&lt;>"/>
+      </elements>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Extends" definesHiddenTokens="true" hiddenTokens="//@rules.74 //@rules.75 //@rules.76">
@@ -3564,6 +3567,9 @@
       <elements xsi:type="xtext:Group" cardinality="?">
         <elements xsi:type="xtext:RuleCall" rule="//@rules.79"/>
         <elements xsi:type="xtext:RuleCall" rule="//@rules.79"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="pojoGenerics" operator="?=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.79"/>
+        </elements>
         <elements xsi:type="xtext:Assignment" feature="pojo" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="//@metamodelDeclarations.2">

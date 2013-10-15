@@ -13,6 +13,7 @@ import org.eclipse.xtext.common.types.JvmType;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#getImplements <em>Implements</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#isGenerics <em>Generics</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,5 +48,31 @@ public interface Implements extends AbstractPojoEntity
    * @generated
    */
   void setImplements(JvmType value);
+
+  /**
+   * Returns the value of the '<em><b>Generics</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Generics</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Generics</em>' attribute.
+   * @see #setGenerics(boolean)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getImplements_Generics()
+   * @model
+   * @generated
+   */
+  boolean isGenerics();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.Implements#isGenerics <em>Generics</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Generics</em>' attribute.
+   * @see #isGenerics()
+   * @generated
+   */
+  void setGenerics(boolean value);
 
 } // Implements

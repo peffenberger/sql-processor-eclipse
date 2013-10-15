@@ -12460,7 +12460,22 @@ ruleImplements returns [EObject current=null]
 	    }
 
 )
-))
+)(
+(
+		lv_generics_2_0=	'<>' 
+    {
+        newLeafNode(lv_generics_2_0, grammarAccess.getImplementsAccess().getGenericsLessThanSignGreaterThanSignKeyword_2_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementsRule());
+	        }
+       		setWithLastConsumed($current, "generics", true, "<>");
+	    }
+
+)
+)?)
 ;
 finally {
 	myHiddenTokenState.restore();
@@ -14039,14 +14054,32 @@ this_COLON_4=RULE_COLON
     }
 (
 (
+		lv_pojoGenerics_5_0=RULE_COLON
+		{
+			newLeafNode(lv_pojoGenerics_5_0, grammarAccess.getPojoDaoAccess().getPojoGenericsCOLONTerminalRuleCall_3_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoDaoRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"pojoGenerics",
+        		true, 
+        		"COLON");
+	    }
+
+)
+)?(
+(
 		{
 			if ($current==null) {
 	            $current = createModelElement(grammarAccess.getPojoDaoRule());
 	        }
         }
-	otherlv_5=RULE_IDENT
+	otherlv_6=RULE_IDENT
 	{
-		newLeafNode(otherlv_5, grammarAccess.getPojoDaoAccess().getPojoPojoEntityCrossReference_3_2_0()); 
+		newLeafNode(otherlv_6, grammarAccess.getPojoDaoAccess().getPojoPojoEntityCrossReference_3_3_0()); 
 	}
 
 )
@@ -14055,36 +14088,36 @@ this_COLON_4=RULE_COLON
 		{ 
 	        newCompositeNode(grammarAccess.getPojoDaoAccess().getModifiers2PojoDaoModifierParserRuleCall_4_0()); 
 	    }
-		lv_modifiers2_6_0=rulePojoDaoModifier		{
+		lv_modifiers2_7_0=rulePojoDaoModifier		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPojoDaoRule());
 	        }
        		add(
        			$current, 
        			"modifiers2",
-        		lv_modifiers2_6_0, 
+        		lv_modifiers2_7_0, 
         		"PojoDaoModifier");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*this_LBRACE_7=RULE_LBRACE
+)*this_LBRACE_8=RULE_LBRACE
     { 
-    newLeafNode(this_LBRACE_7, grammarAccess.getPojoDaoAccess().getLBRACETerminalRuleCall_5()); 
+    newLeafNode(this_LBRACE_8, grammarAccess.getPojoDaoAccess().getLBRACETerminalRuleCall_5()); 
     }
 (
 (
 		{ 
 	        newCompositeNode(grammarAccess.getPojoDaoAccess().getMethodsPojoMethodParserRuleCall_6_0()); 
 	    }
-		lv_methods_8_0=rulePojoMethod		{
+		lv_methods_9_0=rulePojoMethod		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPojoDaoRule());
 	        }
        		add(
        			$current, 
        			"methods",
-        		lv_methods_8_0, 
+        		lv_methods_9_0, 
         		"PojoMethod");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -14095,22 +14128,22 @@ this_COLON_4=RULE_COLON
 		{ 
 	        newCompositeNode(grammarAccess.getPojoDaoAccess().getToInitsToInitMethodParserRuleCall_7_0()); 
 	    }
-		lv_toInits_9_0=ruleToInitMethod		{
+		lv_toInits_10_0=ruleToInitMethod		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPojoDaoRule());
 	        }
        		add(
        			$current, 
        			"toInits",
-        		lv_toInits_9_0, 
+        		lv_toInits_10_0, 
         		"ToInitMethod");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*this_RBRACE_10=RULE_RBRACE
+)*this_RBRACE_11=RULE_RBRACE
     { 
-    newLeafNode(this_RBRACE_10, grammarAccess.getPojoDaoAccess().getRBRACETerminalRuleCall_8()); 
+    newLeafNode(this_RBRACE_11, grammarAccess.getPojoDaoAccess().getRBRACETerminalRuleCall_8()); 
     }
 )
 ;

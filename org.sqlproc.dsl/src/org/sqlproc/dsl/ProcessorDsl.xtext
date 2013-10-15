@@ -370,7 +370,7 @@ Import hidden(ML_COMMENT, SL_COMMENT, WS):
 	'import' importedNamespace = QualifiedNameWithWildcard;
 
 Implements hidden(ML_COMMENT, SL_COMMENT, WS):
-	'implements' implements = [jvmTypes::JvmType|QualifiedName];
+	'implements' implements = [jvmTypes::JvmType|QualifiedName] (generics ?= '<>')?;
 
 Extends hidden(ML_COMMENT, SL_COMMENT, WS):
 	'extends' extends = [jvmTypes::JvmType|QualifiedName];
@@ -419,7 +419,7 @@ EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 PojoDaoModifier: (('extends' superType=[PojoDao|IDENT]) | ('serializable' sernum=NUMBER));
 
 PojoDao hidden(ML_COMMENT, SL_COMMENT, WS):
-	(modifiers1+=PojoEntityModifier1)* 'dao' name=IDENT (COLON COLON pojo=[PojoEntity|IDENT])?
+	(modifiers1+=PojoEntityModifier1)* 'dao' name=IDENT (COLON COLON ((pojoGenerics ?= COLON)?) pojo=[PojoEntity|IDENT])?
 	  (modifiers2+=PojoDaoModifier)* 
 	LBRACE
 		methods+=PojoMethod*

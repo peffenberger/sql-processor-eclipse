@@ -34,6 +34,7 @@ import org.sqlproc.dsl.processorDsl.ToInitMethod;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getModifiers1 <em>Modifiers1</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#isPojoGenerics <em>Pojo Generics</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getPojo <em>Pojo</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getModifiers2 <em>Modifiers2</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getMethods <em>Methods</em>}</li>
@@ -74,6 +75,26 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isPojoGenerics() <em>Pojo Generics</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isPojoGenerics()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean POJO_GENERICS_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isPojoGenerics() <em>Pojo Generics</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isPojoGenerics()
+   * @generated
+   * @ordered
+   */
+  protected boolean pojoGenerics = POJO_GENERICS_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getPojo() <em>Pojo</em>}' reference.
@@ -171,6 +192,29 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_DAO__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isPojoGenerics()
+  {
+    return pojoGenerics;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setPojoGenerics(boolean newPojoGenerics)
+  {
+    boolean oldPojoGenerics = pojoGenerics;
+    pojoGenerics = newPojoGenerics;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_DAO__POJO_GENERICS, oldPojoGenerics, pojoGenerics));
   }
 
   /**
@@ -294,6 +338,8 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
         return getModifiers1();
       case ProcessorDslPackage.POJO_DAO__NAME:
         return getName();
+      case ProcessorDslPackage.POJO_DAO__POJO_GENERICS:
+        return isPojoGenerics();
       case ProcessorDslPackage.POJO_DAO__POJO:
         if (resolve) return getPojo();
         return basicGetPojo();
@@ -324,6 +370,9 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
         return;
       case ProcessorDslPackage.POJO_DAO__NAME:
         setName((String)newValue);
+        return;
+      case ProcessorDslPackage.POJO_DAO__POJO_GENERICS:
+        setPojoGenerics((Boolean)newValue);
         return;
       case ProcessorDslPackage.POJO_DAO__POJO:
         setPojo((PojoEntity)newValue);
@@ -360,6 +409,9 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
       case ProcessorDslPackage.POJO_DAO__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case ProcessorDslPackage.POJO_DAO__POJO_GENERICS:
+        setPojoGenerics(POJO_GENERICS_EDEFAULT);
+        return;
       case ProcessorDslPackage.POJO_DAO__POJO:
         setPojo((PojoEntity)null);
         return;
@@ -390,6 +442,8 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
         return modifiers1 != null && !modifiers1.isEmpty();
       case ProcessorDslPackage.POJO_DAO__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ProcessorDslPackage.POJO_DAO__POJO_GENERICS:
+        return pojoGenerics != POJO_GENERICS_EDEFAULT;
       case ProcessorDslPackage.POJO_DAO__POJO:
         return pojo != null;
       case ProcessorDslPackage.POJO_DAO__MODIFIERS2:
@@ -415,6 +469,8 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", pojoGenerics: ");
+    result.append(pojoGenerics);
     result.append(')');
     return result.toString();
   }

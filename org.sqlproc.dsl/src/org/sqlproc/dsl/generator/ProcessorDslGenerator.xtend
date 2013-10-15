@@ -1213,7 +1213,7 @@ def compileExtends(PojoDao e, ImportManager im) '''
 	«IF getSuperType(e) != null»extends «getFullName(e, getSuperType(e), getSuperType(e).fullyQualifiedName, im)» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
 
 def compileImplements(PojoDao d) '''
-	«IF isImplements(d) || getSernum(d) != null || d.implPackage != null»implements «FOR f:d.eContainer.eContents.filter(typeof(Implements)) SEPARATOR ", " »«f.getImplements().simpleName»«ENDFOR»«IF getSernum(d) != null»«IF isImplements(d)», «ENDIF»Serializable«ENDIF»«IF d.implPackage != null»«IF isImplements(d) || getSernum(d) != null», «ENDIF»«d.name»«ENDIF» «ENDIF»'''
+	«IF isImplements(d) || getSernum(d) != null || d.implPackage != null»implements «FOR f:d.eContainer.eContents.filter(typeof(Implements)) SEPARATOR ", " »«getDaoImplements(d, f)»«ENDFOR»«IF getSernum(d) != null»«IF isImplements(d)», «ENDIF»Serializable«ENDIF»«IF d.implPackage != null»«IF isImplements(d) || getSernum(d) != null», «ENDIF»«d.name»«ENDIF» «ENDIF»'''
 
 def compile(Extends e, ImportManager im) {
 	im.addImportFor(e.getExtends())

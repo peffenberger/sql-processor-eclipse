@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoDao#getModifiers1 <em>Modifiers1</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoDao#getName <em>Name</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojoDao#isPojoGenerics <em>Pojo Generics</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoDao#getPojo <em>Pojo</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoDao#getModifiers2 <em>Modifiers2</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoDao#getMethods <em>Methods</em>}</li>
@@ -68,6 +69,32 @@ public interface PojoDao extends AbstractPojoEntity
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Pojo Generics</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Pojo Generics</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Pojo Generics</em>' attribute.
+   * @see #setPojoGenerics(boolean)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoDao_PojoGenerics()
+   * @model
+   * @generated
+   */
+  boolean isPojoGenerics();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoDao#isPojoGenerics <em>Pojo Generics</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Pojo Generics</em>' attribute.
+   * @see #isPojoGenerics()
+   * @generated
+   */
+  void setPojoGenerics(boolean value);
 
   /**
    * Returns the value of the '<em><b>Pojo</b></em>' reference.

@@ -1149,17 +1149,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     implements=[JvmType|QualifiedName]
+	 *     (implements=[JvmType|QualifiedName] generics?='<>'?)
 	 */
 	protected void sequence_Implements(EObject context, Implements semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.IMPLEMENTS__IMPLEMENTS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.IMPLEMENTS__IMPLEMENTS));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getImplementsAccess().getImplementsJvmTypeQualifiedNameParserRuleCall_1_0_1(), semanticObject.getImplements());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1381,7 +1374,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *     (
 	 *         modifiers1+=PojoEntityModifier1* 
 	 *         name=IDENT 
-	 *         pojo=[PojoEntity|IDENT]? 
+	 *         (pojoGenerics?=COLON? pojo=[PojoEntity|IDENT])? 
 	 *         modifiers2+=PojoDaoModifier* 
 	 *         methods+=PojoMethod* 
 	 *         toInits+=ToInitMethod*

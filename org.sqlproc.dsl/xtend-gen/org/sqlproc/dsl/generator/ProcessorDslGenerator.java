@@ -6892,9 +6892,8 @@ public class ProcessorDslGenerator implements IGenerator {
             } else {
               _builder.appendImmediate(", ", "");
             }
-            JvmType _implements = f.getImplements();
-            String _simpleName = _implements.getSimpleName();
-            _builder.append(_simpleName, "");
+            String _daoImplements = Utils.getDaoImplements(d, f);
+            _builder.append(_daoImplements, "");
           }
         }
         {
