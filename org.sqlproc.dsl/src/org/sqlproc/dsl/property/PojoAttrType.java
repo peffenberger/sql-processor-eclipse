@@ -11,8 +11,10 @@ public class PojoAttrType {
     int size;
     String nativeType;
     JvmType type;
+    JvmType gtype;
     boolean array;
     PojoEntity ref;
+    PojoEntity gref;
     String text;
 
     public PojoAttrType(String typeName, String size, PojoType pojoType) {
@@ -20,6 +22,8 @@ public class PojoAttrType {
         this.type = pojoType.getType();
         this.ref = pojoType.getRef();
         this.array = pojoType.isArray();
+        this.gtype = pojoType.getGtype();
+        this.gref = pojoType.getGref();
         if (size != null) {
             try {
                 this.size = Integer.parseInt(size);
@@ -101,6 +105,22 @@ public class PojoAttrType {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public JvmType getGtype() {
+        return gtype;
+    }
+
+    public void setGtype(JvmType gtype) {
+        this.gtype = gtype;
+    }
+
+    public PojoEntity getGref() {
+        return gref;
+    }
+
+    public void setGref(PojoEntity gref) {
+        this.gref = gref;
     }
 
     @Override
