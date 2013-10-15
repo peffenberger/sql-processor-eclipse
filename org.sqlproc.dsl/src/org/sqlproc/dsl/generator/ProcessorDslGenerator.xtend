@@ -1204,7 +1204,7 @@ def compileImplements(EnumEntity e) '''
 	«IF getSernum(e) != null»implements Serializable«ENDIF» '''
 
 def compileExtends(PojoEntity e, ImportManager im) '''
-	«IF getSuperType(e) != null»extends «getFullName(e, getSuperType(getSuperType(e)), getSuperType(getSuperType(e)).fullyQualifiedName, im)» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
+	«IF getSuperType(e) != null»extends «getFullName(e, getSuperType(e), getSuperType(e).fullyQualifiedName, im)» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
 
 def compileImplements(PojoEntity e) '''
 	«IF isImplements(e) || getSernum(e) != null»implements «FOR f:e.eContainer.eContainer.eContents.filter(typeof(Implements)) SEPARATOR ", " »«f.getImplements().simpleName»«ENDFOR»«IF getSernum(e) != null»«IF isImplements(e)», «ENDIF»Serializable«ENDIF» «ENDIF»'''

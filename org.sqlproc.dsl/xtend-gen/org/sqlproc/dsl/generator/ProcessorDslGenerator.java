@@ -6763,11 +6763,9 @@ public class ProcessorDslGenerator implements IGenerator {
       if (_notEquals) {
         _builder.append("extends ");
         PojoEntity _superType_1 = Utils.getSuperType(e);
-        PojoEntity _superType_2 = Utils.getSuperType(_superType_1);
-        PojoEntity _superType_3 = Utils.getSuperType(e);
-        PojoEntity _superType_4 = Utils.getSuperType(_superType_3);
-        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_4);
-        String _fullName = Utils.getFullName(e, _superType_2, _fullyQualifiedName, im);
+        PojoEntity _superType_2 = Utils.getSuperType(e);
+        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_2);
+        String _fullName = Utils.getFullName(e, _superType_1, _fullyQualifiedName, im);
         _builder.append(_fullName, "");
         _builder.append(" ");
       } else {
