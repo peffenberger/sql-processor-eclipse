@@ -6946,7 +6946,8 @@ public class ProcessorDslGenerator implements IGenerator {
   
   public void addImplements(final EnumEntity e, final ImportManager im) {
     EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
     for (final Implements impl : _filter) {
       JvmType _implements = impl.getImplements();
@@ -6966,7 +6967,8 @@ public class ProcessorDslGenerator implements IGenerator {
   
   public void addImplements(final PojoEntity e, final ImportManager im) {
     EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
     for (final Implements impl : _filter) {
       JvmType _implements = impl.getImplements();
