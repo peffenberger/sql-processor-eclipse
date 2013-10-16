@@ -31,8 +31,8 @@ ManyToManyAssignement: pkColumn=IDENT '->' pkTable=IDENT ('->' fkColumn=IDENT)?;
 DebugLevelAssignement: debug=IDENT;
 ProcedurePojoAssignement: dbProcedure=IDENT '->' pojo=PojoType;
 FunctionPojoAssignement: dbFunction=IDENT '->' pojo=PojoType;
-ImplementsAssignement: toImplement=[jvmTypes::JvmType|QualifiedName] (generics ?= '<>')? (WS+ 'except' WS+ dbColumns+=IDENT)*;
-ExtendsAssignement: toExtends=[jvmTypes::JvmType|QualifiedName] (generics ?= '<>')? (WS+ 'except' WS+ dbColumns+=IDENT)*;
+ImplementsAssignement: toImplement=[jvmTypes::JvmType|QualifiedName] (generics ?= '<>')? (WS+ 'except' (WS+ dbTables+=IDENT)+)?;
+ExtendsAssignement: toExtends=[jvmTypes::JvmType|QualifiedName] (generics ?= '<>')? (WS+ 'except' (WS+ dbTables+=IDENT)+)?;
 
 Property:
 	(name='resolve-pojo-on'

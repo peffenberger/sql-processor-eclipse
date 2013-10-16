@@ -879,13 +879,13 @@ public interface ProcessorDslPackage extends EPackage
   int IMPLEMENTS_ASSIGNEMENT__GENERICS = 1;
 
   /**
-   * The feature id for the '<em><b>Db Columns</b></em>' attribute list.
+   * The feature id for the '<em><b>Db Tables</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IMPLEMENTS_ASSIGNEMENT__DB_COLUMNS = 2;
+  int IMPLEMENTS_ASSIGNEMENT__DB_TABLES = 2;
 
   /**
    * The number of structural features of the '<em>Implements Assignement</em>' class.
@@ -925,13 +925,13 @@ public interface ProcessorDslPackage extends EPackage
   int EXTENDS_ASSIGNEMENT__GENERICS = 1;
 
   /**
-   * The feature id for the '<em><b>Db Columns</b></em>' attribute list.
+   * The feature id for the '<em><b>Db Tables</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXTENDS_ASSIGNEMENT__DB_COLUMNS = 2;
+  int EXTENDS_ASSIGNEMENT__DB_TABLES = 2;
 
   /**
    * The number of structural features of the '<em>Extends Assignement</em>' class.
@@ -5202,15 +5202,15 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getImplementsAssignement_Generics();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.ImplementsAssignement#getDbColumns <em>Db Columns</em>}'.
+   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.ImplementsAssignement#getDbTables <em>Db Tables</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Db Columns</em>'.
-   * @see org.sqlproc.dsl.processorDsl.ImplementsAssignement#getDbColumns()
+   * @return the meta object for the attribute list '<em>Db Tables</em>'.
+   * @see org.sqlproc.dsl.processorDsl.ImplementsAssignement#getDbTables()
    * @see #getImplementsAssignement()
    * @generated
    */
-  EAttribute getImplementsAssignement_DbColumns();
+  EAttribute getImplementsAssignement_DbTables();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement <em>Extends Assignement</em>}'.
@@ -5245,15 +5245,15 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getExtendsAssignement_Generics();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#getDbColumns <em>Db Columns</em>}'.
+   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#getDbTables <em>Db Tables</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Db Columns</em>'.
-   * @see org.sqlproc.dsl.processorDsl.ExtendsAssignement#getDbColumns()
+   * @return the meta object for the attribute list '<em>Db Tables</em>'.
+   * @see org.sqlproc.dsl.processorDsl.ExtendsAssignement#getDbTables()
    * @see #getExtendsAssignement()
    * @generated
    */
-  EAttribute getExtendsAssignement_DbColumns();
+  EAttribute getExtendsAssignement_DbTables();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.Property <em>Property</em>}'.
@@ -9307,12 +9307,12 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute IMPLEMENTS_ASSIGNEMENT__GENERICS = eINSTANCE.getImplementsAssignement_Generics();
 
     /**
-     * The meta object literal for the '<em><b>Db Columns</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute IMPLEMENTS_ASSIGNEMENT__DB_COLUMNS = eINSTANCE.getImplementsAssignement_DbColumns();
+    EAttribute IMPLEMENTS_ASSIGNEMENT__DB_TABLES = eINSTANCE.getImplementsAssignement_DbTables();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementImpl <em>Extends Assignement</em>}' class.
@@ -9341,12 +9341,12 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute EXTENDS_ASSIGNEMENT__GENERICS = eINSTANCE.getExtendsAssignement_Generics();
 
     /**
-     * The meta object literal for the '<em><b>Db Columns</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute EXTENDS_ASSIGNEMENT__DB_COLUMNS = eINSTANCE.getExtendsAssignement_DbColumns();
+    EAttribute EXTENDS_ASSIGNEMENT__DB_TABLES = eINSTANCE.getExtendsAssignement_DbTables();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PropertyImpl <em>Property</em>}' class.

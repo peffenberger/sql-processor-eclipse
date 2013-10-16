@@ -1493,15 +1493,15 @@ ruleImplementsAssignement returns [EObject current=null]
     {
     	newLeafNode(otherlv_3, grammarAccess.getImplementsAssignementAccess().getExceptKeyword_2_1());
     }
-(this_WS_4=RULE_WS
+((this_WS_4=RULE_WS
     { 
-    newLeafNode(this_WS_4, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_2_2()); 
+    newLeafNode(this_WS_4, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_2_2_0()); 
     }
 )+(
 (
-		lv_dbColumns_5_0=RULE_IDENT
+		lv_dbTables_5_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbColumns_5_0, grammarAccess.getImplementsAssignementAccess().getDbColumnsIDENTTerminalRuleCall_2_3_0()); 
+			newLeafNode(lv_dbTables_5_0, grammarAccess.getImplementsAssignementAccess().getDbTablesIDENTTerminalRuleCall_2_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1509,13 +1509,13 @@ ruleImplementsAssignement returns [EObject current=null]
 	        }
        		addWithLastConsumed(
        			$current, 
-       			"dbColumns",
-        		lv_dbColumns_5_0, 
+       			"dbTables",
+        		lv_dbTables_5_0, 
         		"IDENT");
 	    }
 
 )
-))*)
+))+)?)
 ;
 
 
@@ -1574,15 +1574,15 @@ ruleExtendsAssignement returns [EObject current=null]
     {
     	newLeafNode(otherlv_3, grammarAccess.getExtendsAssignementAccess().getExceptKeyword_2_1());
     }
-(this_WS_4=RULE_WS
+((this_WS_4=RULE_WS
     { 
-    newLeafNode(this_WS_4, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_2_2()); 
+    newLeafNode(this_WS_4, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_2_2_0()); 
     }
 )+(
 (
-		lv_dbColumns_5_0=RULE_IDENT
+		lv_dbTables_5_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbColumns_5_0, grammarAccess.getExtendsAssignementAccess().getDbColumnsIDENTTerminalRuleCall_2_3_0()); 
+			newLeafNode(lv_dbTables_5_0, grammarAccess.getExtendsAssignementAccess().getDbTablesIDENTTerminalRuleCall_2_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1590,13 +1590,13 @@ ruleExtendsAssignement returns [EObject current=null]
 	        }
        		addWithLastConsumed(
        			$current, 
-       			"dbColumns",
-        		lv_dbColumns_5_0, 
+       			"dbTables",
+        		lv_dbTables_5_0, 
         		"IDENT");
 	    }
 
 )
-))*)
+))+)?)
 ;
 
 

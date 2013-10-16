@@ -803,15 +803,16 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final RuleCall cWSTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
 		private final Keyword cExceptKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_2_2 = (RuleCall)cGroup_2.eContents().get(2);
-		private final Assignment cDbColumnsAssignment_2_3 = (Assignment)cGroup_2.eContents().get(3);
-		private final RuleCall cDbColumnsIDENTTerminalRuleCall_2_3_0 = (RuleCall)cDbColumnsAssignment_2_3.eContents().get(0);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final RuleCall cWSTerminalRuleCall_2_2_0 = (RuleCall)cGroup_2_2.eContents().get(0);
+		private final Assignment cDbTablesAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cDbTablesIDENTTerminalRuleCall_2_2_1_0 = (RuleCall)cDbTablesAssignment_2_2_1.eContents().get(0);
 		
 		//ImplementsAssignement:
-		//	toImplement=[jvmTypes::JvmType|QualifiedName] generics?="<>"? (WS+ "except" WS+ dbColumns+=IDENT)*;
+		//	toImplement=[jvmTypes::JvmType|QualifiedName] generics?="<>"? (WS+ "except" (WS+ dbTables+=IDENT)+)?;
 		public ParserRule getRule() { return rule; }
 
-		//toImplement=[jvmTypes::JvmType|QualifiedName] generics?="<>"? (WS+ "except" WS+ dbColumns+=IDENT)*
+		//toImplement=[jvmTypes::JvmType|QualifiedName] generics?="<>"? (WS+ "except" (WS+ dbTables+=IDENT)+)?
 		public Group getGroup() { return cGroup; }
 
 		//toImplement=[jvmTypes::JvmType|QualifiedName]
@@ -829,7 +830,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"<>"
 		public Keyword getGenericsLessThanSignGreaterThanSignKeyword_1_0() { return cGenericsLessThanSignGreaterThanSignKeyword_1_0; }
 
-		//(WS+ "except" WS+ dbColumns+=IDENT)*
+		//(WS+ "except" (WS+ dbTables+=IDENT)+)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//WS+
@@ -838,14 +839,17 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"except"
 		public Keyword getExceptKeyword_2_1() { return cExceptKeyword_2_1; }
 
-		//WS+
-		public RuleCall getWSTerminalRuleCall_2_2() { return cWSTerminalRuleCall_2_2; }
+		//(WS+ dbTables+=IDENT)+
+		public Group getGroup_2_2() { return cGroup_2_2; }
 
-		//dbColumns+=IDENT
-		public Assignment getDbColumnsAssignment_2_3() { return cDbColumnsAssignment_2_3; }
+		//WS+
+		public RuleCall getWSTerminalRuleCall_2_2_0() { return cWSTerminalRuleCall_2_2_0; }
+
+		//dbTables+=IDENT
+		public Assignment getDbTablesAssignment_2_2_1() { return cDbTablesAssignment_2_2_1; }
 
 		//IDENT
-		public RuleCall getDbColumnsIDENTTerminalRuleCall_2_3_0() { return cDbColumnsIDENTTerminalRuleCall_2_3_0; }
+		public RuleCall getDbTablesIDENTTerminalRuleCall_2_2_1_0() { return cDbTablesIDENTTerminalRuleCall_2_2_1_0; }
 	}
 
 	public class ExtendsAssignementElements extends AbstractParserRuleElementFinder {
@@ -859,15 +863,16 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final RuleCall cWSTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
 		private final Keyword cExceptKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_2_2 = (RuleCall)cGroup_2.eContents().get(2);
-		private final Assignment cDbColumnsAssignment_2_3 = (Assignment)cGroup_2.eContents().get(3);
-		private final RuleCall cDbColumnsIDENTTerminalRuleCall_2_3_0 = (RuleCall)cDbColumnsAssignment_2_3.eContents().get(0);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final RuleCall cWSTerminalRuleCall_2_2_0 = (RuleCall)cGroup_2_2.eContents().get(0);
+		private final Assignment cDbTablesAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cDbTablesIDENTTerminalRuleCall_2_2_1_0 = (RuleCall)cDbTablesAssignment_2_2_1.eContents().get(0);
 		
 		//ExtendsAssignement:
-		//	toExtends=[jvmTypes::JvmType|QualifiedName] generics?="<>"? (WS+ "except" WS+ dbColumns+=IDENT)*;
+		//	toExtends=[jvmTypes::JvmType|QualifiedName] generics?="<>"? (WS+ "except" (WS+ dbTables+=IDENT)+)?;
 		public ParserRule getRule() { return rule; }
 
-		//toExtends=[jvmTypes::JvmType|QualifiedName] generics?="<>"? (WS+ "except" WS+ dbColumns+=IDENT)*
+		//toExtends=[jvmTypes::JvmType|QualifiedName] generics?="<>"? (WS+ "except" (WS+ dbTables+=IDENT)+)?
 		public Group getGroup() { return cGroup; }
 
 		//toExtends=[jvmTypes::JvmType|QualifiedName]
@@ -885,7 +890,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"<>"
 		public Keyword getGenericsLessThanSignGreaterThanSignKeyword_1_0() { return cGenericsLessThanSignGreaterThanSignKeyword_1_0; }
 
-		//(WS+ "except" WS+ dbColumns+=IDENT)*
+		//(WS+ "except" (WS+ dbTables+=IDENT)+)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//WS+
@@ -894,14 +899,17 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"except"
 		public Keyword getExceptKeyword_2_1() { return cExceptKeyword_2_1; }
 
-		//WS+
-		public RuleCall getWSTerminalRuleCall_2_2() { return cWSTerminalRuleCall_2_2; }
+		//(WS+ dbTables+=IDENT)+
+		public Group getGroup_2_2() { return cGroup_2_2; }
 
-		//dbColumns+=IDENT
-		public Assignment getDbColumnsAssignment_2_3() { return cDbColumnsAssignment_2_3; }
+		//WS+
+		public RuleCall getWSTerminalRuleCall_2_2_0() { return cWSTerminalRuleCall_2_2_0; }
+
+		//dbTables+=IDENT
+		public Assignment getDbTablesAssignment_2_2_1() { return cDbTablesAssignment_2_2_1; }
 
 		//IDENT
-		public RuleCall getDbColumnsIDENTTerminalRuleCall_2_3_0() { return cDbColumnsIDENTTerminalRuleCall_2_3_0; }
+		public RuleCall getDbTablesIDENTTerminalRuleCall_2_2_1_0() { return cDbTablesIDENTTerminalRuleCall_2_2_1_0; }
 	}
 
 	public class PropertyElements extends AbstractParserRuleElementFinder {
@@ -9358,7 +9366,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImplementsAssignement:
-	//	toImplement=[jvmTypes::JvmType|QualifiedName] generics?="<>"? (WS+ "except" WS+ dbColumns+=IDENT)*;
+	//	toImplement=[jvmTypes::JvmType|QualifiedName] generics?="<>"? (WS+ "except" (WS+ dbTables+=IDENT)+)?;
 	public ImplementsAssignementElements getImplementsAssignementAccess() {
 		return (pImplementsAssignement != null) ? pImplementsAssignement : (pImplementsAssignement = new ImplementsAssignementElements());
 	}
@@ -9368,7 +9376,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExtendsAssignement:
-	//	toExtends=[jvmTypes::JvmType|QualifiedName] generics?="<>"? (WS+ "except" WS+ dbColumns+=IDENT)*;
+	//	toExtends=[jvmTypes::JvmType|QualifiedName] generics?="<>"? (WS+ "except" (WS+ dbTables+=IDENT)+)?;
 	public ExtendsAssignementElements getExtendsAssignementAccess() {
 		return (pExtendsAssignement != null) ? pExtendsAssignement : (pExtendsAssignement = new ExtendsAssignementElements());
 	}

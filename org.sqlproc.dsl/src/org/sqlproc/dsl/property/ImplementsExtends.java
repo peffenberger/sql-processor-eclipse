@@ -9,14 +9,14 @@ public class ImplementsExtends {
 
     JvmType toImplement;
     boolean generics;
-    List<String> dbColumns;
+    List<String> dbTables;
 
-    public ImplementsExtends(JvmType toImplement, boolean generics, List<String> dbColumns) {
+    public ImplementsExtends(JvmType toImplement, boolean generics, List<String> dbTables) {
         super();
         this.toImplement = toImplement;
         this.generics = generics;
-        this.dbColumns = new ArrayList<String>();
-        this.dbColumns.addAll(dbColumns);
+        this.dbTables = new ArrayList<String>();
+        this.dbTables.addAll(dbTables);
     }
 
     public JvmType getToImplement() {
@@ -35,17 +35,17 @@ public class ImplementsExtends {
         this.generics = generics;
     }
 
-    public List<String> getDbColumns() {
-        return dbColumns;
+    public List<String> getDbTables() {
+        return dbTables;
     }
 
-    public void setDbColumns(List<String> dbColumns) {
-        this.dbColumns = dbColumns;
+    public void setDbTables(List<String> dbTables) {
+        this.dbTables = dbTables;
     }
 
     @Override
     public String toString() {
-        return "ImplementsExtends [toImplement=" + toImplement + ", generics=" + generics + ", dbColumns=" + dbColumns
+        return "ImplementsExtends [toImplement=" + toImplement + ", generics=" + generics + ", dbTables=" + dbTables
                 + "]";
     }
 }

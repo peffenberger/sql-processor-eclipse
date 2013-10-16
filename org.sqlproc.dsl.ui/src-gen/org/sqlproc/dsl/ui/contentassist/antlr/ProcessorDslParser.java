@@ -146,8 +146,10 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFunctionPojoAssignementAccess().getGroup(), "rule__FunctionPojoAssignement__Group__0");
 					put(grammarAccess.getImplementsAssignementAccess().getGroup(), "rule__ImplementsAssignement__Group__0");
 					put(grammarAccess.getImplementsAssignementAccess().getGroup_2(), "rule__ImplementsAssignement__Group_2__0");
+					put(grammarAccess.getImplementsAssignementAccess().getGroup_2_2(), "rule__ImplementsAssignement__Group_2_2__0");
 					put(grammarAccess.getExtendsAssignementAccess().getGroup(), "rule__ExtendsAssignement__Group__0");
 					put(grammarAccess.getExtendsAssignementAccess().getGroup_2(), "rule__ExtendsAssignement__Group_2__0");
+					put(grammarAccess.getExtendsAssignementAccess().getGroup_2_2(), "rule__ExtendsAssignement__Group_2_2__0");
 					put(grammarAccess.getPropertyAccess().getGroup(), "rule__Property__Group__0");
 					put(grammarAccess.getPropertyAccess().getGroup_0_2(), "rule__Property__Group_0_2__0");
 					put(grammarAccess.getPropertyAccess().getGroup_0_3(), "rule__Property__Group_0_3__0");
@@ -460,10 +462,10 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFunctionPojoAssignementAccess().getPojoAssignment_2(), "rule__FunctionPojoAssignement__PojoAssignment_2");
 					put(grammarAccess.getImplementsAssignementAccess().getToImplementAssignment_0(), "rule__ImplementsAssignement__ToImplementAssignment_0");
 					put(grammarAccess.getImplementsAssignementAccess().getGenericsAssignment_1(), "rule__ImplementsAssignement__GenericsAssignment_1");
-					put(grammarAccess.getImplementsAssignementAccess().getDbColumnsAssignment_2_3(), "rule__ImplementsAssignement__DbColumnsAssignment_2_3");
+					put(grammarAccess.getImplementsAssignementAccess().getDbTablesAssignment_2_2_1(), "rule__ImplementsAssignement__DbTablesAssignment_2_2_1");
 					put(grammarAccess.getExtendsAssignementAccess().getToExtendsAssignment_0(), "rule__ExtendsAssignement__ToExtendsAssignment_0");
 					put(grammarAccess.getExtendsAssignementAccess().getGenericsAssignment_1(), "rule__ExtendsAssignement__GenericsAssignment_1");
-					put(grammarAccess.getExtendsAssignementAccess().getDbColumnsAssignment_2_3(), "rule__ExtendsAssignement__DbColumnsAssignment_2_3");
+					put(grammarAccess.getExtendsAssignementAccess().getDbTablesAssignment_2_2_1(), "rule__ExtendsAssignement__DbTablesAssignment_2_2_1");
 					put(grammarAccess.getPropertyAccess().getNameAssignment_0_0(), "rule__Property__NameAssignment_0_0");
 					put(grammarAccess.getPropertyAccess().getNameAssignment_0_1(), "rule__Property__NameAssignment_0_1");
 					put(grammarAccess.getPropertyAccess().getNameAssignment_0_2_0(), "rule__Property__NameAssignment_0_2_0");

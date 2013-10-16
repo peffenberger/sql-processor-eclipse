@@ -834,9 +834,9 @@ public class TablePojoConverter {
                     buffer.append("\n  implements ").append(type.getIdentifier());
                     if (ie.isGenerics())
                         buffer.append(" <>");
-                    if (!ie.getDbColumns().isEmpty()) {
+                    if (!ie.getDbTables().isEmpty()) {
                         buffer.append(" exceptPojos");
-                        for (String dbColumn : ie.getDbColumns()) {
+                        for (String dbColumn : ie.getDbTables()) {
                             String pojoName = tableNames.get(dbColumn);
                             if (pojoName == null)
                                 pojoName = dbColumn;
@@ -852,9 +852,9 @@ public class TablePojoConverter {
                 buffer.append("\n  extends ").append(type.getIdentifier());
                 if (toExtends.isGenerics())
                     buffer.append(" <>");
-                if (!toExtends.getDbColumns().isEmpty()) {
+                if (!toExtends.getDbTables().isEmpty()) {
                     buffer.append(" exceptPojos");
-                    for (String dbColumn : toExtends.getDbColumns()) {
+                    for (String dbColumn : toExtends.getDbTables()) {
                         String pojoName = tableNames.get(dbColumn);
                         if (pojoName == null)
                             pojoName = dbColumn;

@@ -30,7 +30,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementImpl#getToExtends <em>To Extends</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementImpl#isGenerics <em>Generics</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementImpl#getDbColumns <em>Db Columns</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementImpl#getDbTables <em>Db Tables</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,14 +69,14 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
   protected boolean generics = GENERICS_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getDbColumns() <em>Db Columns</em>}' attribute list.
+   * The cached value of the '{@link #getDbTables() <em>Db Tables</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDbColumns()
+   * @see #getDbTables()
    * @generated
    * @ordered
    */
-  protected EList<String> dbColumns;
+  protected EList<String> dbTables;
 
   /**
    * <!-- begin-user-doc -->
@@ -170,13 +170,13 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getDbColumns()
+  public EList<String> getDbTables()
   {
-    if (dbColumns == null)
+    if (dbTables == null)
     {
-      dbColumns = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_COLUMNS);
+      dbTables = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_TABLES);
     }
-    return dbColumns;
+    return dbTables;
   }
 
   /**
@@ -194,8 +194,8 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
         return basicGetToExtends();
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__GENERICS:
         return isGenerics();
-      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_COLUMNS:
-        return getDbColumns();
+      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_TABLES:
+        return getDbTables();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -217,9 +217,9 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__GENERICS:
         setGenerics((Boolean)newValue);
         return;
-      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_COLUMNS:
-        getDbColumns().clear();
-        getDbColumns().addAll((Collection<? extends String>)newValue);
+      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_TABLES:
+        getDbTables().clear();
+        getDbTables().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -241,8 +241,8 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__GENERICS:
         setGenerics(GENERICS_EDEFAULT);
         return;
-      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_COLUMNS:
-        getDbColumns().clear();
+      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_TABLES:
+        getDbTables().clear();
         return;
     }
     super.eUnset(featureID);
@@ -262,8 +262,8 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
         return toExtends != null;
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__GENERICS:
         return generics != GENERICS_EDEFAULT;
-      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_COLUMNS:
-        return dbColumns != null && !dbColumns.isEmpty();
+      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_TABLES:
+        return dbTables != null && !dbTables.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -281,8 +281,8 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (generics: ");
     result.append(generics);
-    result.append(", dbColumns: ");
-    result.append(dbColumns);
+    result.append(", dbTables: ");
+    result.append(dbTables);
     result.append(')');
     return result.toString();
   }

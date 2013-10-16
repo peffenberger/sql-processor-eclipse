@@ -114,9 +114,9 @@ public class TableDaoConverter extends TableMetaConverter {
                         if (notGenerics == null)
                             notGenerics = new HashSet<String>();
                     }
-                    if (!ie.getDbColumns().isEmpty()) {
+                    if (!ie.getDbTables().isEmpty()) {
                         buffer.append(" exceptDaos");
-                        for (String dbColumn : ie.getDbColumns()) {
+                        for (String dbColumn : ie.getDbTables()) {
                             String pojoName = tableNames.get(dbColumn);
                             if (pojoName == null)
                                 pojoName = dbColumn;
@@ -133,9 +133,9 @@ public class TableDaoConverter extends TableMetaConverter {
                 buffer.append("\n  extends ").append(type.getIdentifier());
                 if (daoToExtends.isGenerics())
                     buffer.append(" <>");
-                if (!daoToExtends.getDbColumns().isEmpty()) {
+                if (!daoToExtends.getDbTables().isEmpty()) {
                     buffer.append(" exceptDaos");
-                    for (String dbColumn : daoToExtends.getDbColumns()) {
+                    for (String dbColumn : daoToExtends.getDbTables()) {
                         String pojoName = tableNames.get(dbColumn);
                         if (pojoName == null)
                             pojoName = dbColumn;

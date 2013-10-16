@@ -1017,7 +1017,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (toExtends=[JvmType|QualifiedName] generics?='<>'? dbColumns+=IDENT*)
+	 *     (toExtends=[JvmType|QualifiedName] generics?='<>'? dbTables+=IDENT*)
 	 */
 	protected void sequence_ExtendsAssignement(EObject context, ExtendsAssignement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1165,7 +1165,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (toImplement=[JvmType|QualifiedName] generics?='<>'? dbColumns+=IDENT*)
+	 *     (toImplement=[JvmType|QualifiedName] generics?='<>'? dbTables+=IDENT*)
 	 */
 	protected void sequence_ImplementsAssignement(EObject context, ImplementsAssignement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

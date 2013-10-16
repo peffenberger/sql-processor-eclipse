@@ -18,7 +18,7 @@ import org.eclipse.xtext.common.types.JvmType;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#getToExtends <em>To Extends</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#isGenerics <em>Generics</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#getDbColumns <em>Db Columns</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#getDbTables <em>Db Tables</em>}</li>
  * </ul>
  * </p>
  *
@@ -81,19 +81,19 @@ public interface ExtendsAssignement extends EObject
   void setGenerics(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Db Columns</b></em>' attribute list.
+   * Returns the value of the '<em><b>Db Tables</b></em>' attribute list.
    * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Db Columns</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Db Tables</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Columns</em>' attribute list.
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getExtendsAssignement_DbColumns()
+   * @return the value of the '<em>Db Tables</em>' attribute list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getExtendsAssignement_DbTables()
    * @model unique="false"
    * @generated
    */
-  EList<String> getDbColumns();
+  EList<String> getDbTables();
 
 } // ExtendsAssignement

@@ -701,6 +701,38 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
 
     @Override
+    public void completeImplementsAssignement_DbTables(EObject model, Assignment assignment,
+            ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completeImplementsAssignement_DbTables(model, assignment, context, acceptor);
+            return;
+        }
+        for (String table : dbResolver.getTables(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+    }
+
+    @Override
+    public void completeExtendsAssignement_DbTables(EObject model, Assignment assignment, ContentAssistContext context,
+            ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completeExtendsAssignement_DbTables(model, assignment, context, acceptor);
+            return;
+        }
+        for (String table : dbResolver.getTables(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+    }
+
+    @Override
     public void completeColumnTypeAssignement_DbColumn(EObject model, Assignment assignment,
             ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
         if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {

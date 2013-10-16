@@ -742,13 +742,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             // modelValues.toImplements = new HashMap<String, JvmType>();
             for (int i = 0, m = property.getToImplements().size(); i < m; i++) {
                 ImplementsExtends ie = new ImplementsExtends(property.getToImplements().get(i).getToImplement(),
-                        property.getToImplements().get(i).isGenerics(), property.getToImplements().get(i)
-                                .getDbColumns());
+                        property.getToImplements().get(i).isGenerics(), property.getToImplements().get(i).getDbTables());
                 modelValues.toImplements.put(property.getToImplements().get(i).getToImplement().getIdentifier(), ie);
             }
         } else if (POJOGEN_EXTENDS_CLASS.equals(property.getName())) {
             ImplementsExtends ie = new ImplementsExtends(property.getToExtends().getToExtends(), property
-                    .getToExtends().isGenerics(), property.getToExtends().getDbColumns());
+                    .getToExtends().isGenerics(), property.getToExtends().getDbTables());
             modelValues.toExtends = ie;
         } else if (POJOGEN_JOIN_TABLES.equals(property.getName())) {
             // if (modelValues.joinTables == null)
@@ -892,13 +891,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         } else if (DAOGEN_IMPLEMENTS_INTERFACES.equals(property.getName())) {
             for (int i = 0, m = property.getToImplements().size(); i < m; i++) {
                 ImplementsExtends ie = new ImplementsExtends(property.getToImplements().get(i).getToImplement(),
-                        property.getToImplements().get(i).isGenerics(), property.getToImplements().get(i)
-                                .getDbColumns());
+                        property.getToImplements().get(i).isGenerics(), property.getToImplements().get(i).getDbTables());
                 modelValues.daoToImplements.put(property.getToImplements().get(i).getToImplement().getIdentifier(), ie);
             }
         } else if (DAOGEN_EXTENDS_CLASS.equals(property.getName())) {
             ImplementsExtends ie = new ImplementsExtends(property.getToExtends().getToExtends(), property
-                    .getToExtends().isGenerics(), property.getToExtends().getDbColumns());
+                    .getToExtends().isGenerics(), property.getToExtends().getDbTables());
             modelValues.daoToExtends = ie;
         } else if (DAOGEN_MAKE_IT_FINAL.equals(property.getName())) {
             modelValues.daoMakeItFinal = true;
