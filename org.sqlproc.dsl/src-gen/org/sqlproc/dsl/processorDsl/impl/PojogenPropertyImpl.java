@@ -17,16 +17,15 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.xtext.common.types.JvmType;
 
 import org.sqlproc.dsl.processorDsl.ColumnAssignement;
 import org.sqlproc.dsl.processorDsl.ColumnTypeAssignement;
 import org.sqlproc.dsl.processorDsl.DebugLevelAssignement;
 import org.sqlproc.dsl.processorDsl.ExportAssignement;
+import org.sqlproc.dsl.processorDsl.ExtendsAssignement;
 import org.sqlproc.dsl.processorDsl.FunctionPojoAssignement;
+import org.sqlproc.dsl.processorDsl.ImplementsAssignement;
 import org.sqlproc.dsl.processorDsl.ImportAssignement;
 import org.sqlproc.dsl.processorDsl.InheritanceAssignement;
 import org.sqlproc.dsl.processorDsl.JoinTableAssignement;
@@ -329,24 +328,24 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
   protected String operatorsSuffix = OPERATORS_SUFFIX_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getToImplements() <em>To Implements</em>}' reference list.
+   * The cached value of the '{@link #getToImplements() <em>To Implements</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getToImplements()
    * @generated
    * @ordered
    */
-  protected EList<JvmType> toImplements;
+  protected EList<ImplementsAssignement> toImplements;
 
   /**
-   * The cached value of the '{@link #getToExtends() <em>To Extends</em>}' reference.
+   * The cached value of the '{@link #getToExtends() <em>To Extends</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getToExtends()
    * @generated
    * @ordered
    */
-  protected JvmType toExtends;
+  protected ExtendsAssignement toExtends;
 
   /**
    * The default value of the '{@link #getImplPackage() <em>Impl Package</em>}' attribute.
@@ -798,11 +797,11 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<JvmType> getToImplements()
+  public EList<ImplementsAssignement> getToImplements()
   {
     if (toImplements == null)
     {
-      toImplements = new EObjectResolvingEList<JvmType>(JvmType.class, this, ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS);
+      toImplements = new EObjectContainmentEList<ImplementsAssignement>(ImplementsAssignement.class, this, ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS);
     }
     return toImplements;
   }
@@ -812,27 +811,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmType getToExtends()
-  {
-    if (toExtends != null && toExtends.eIsProxy())
-    {
-      InternalEObject oldToExtends = (InternalEObject)toExtends;
-      toExtends = (JvmType)eResolveProxy(oldToExtends);
-      if (toExtends != oldToExtends)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS, oldToExtends, toExtends));
-      }
-    }
-    return toExtends;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JvmType basicGetToExtends()
+  public ExtendsAssignement getToExtends()
   {
     return toExtends;
   }
@@ -842,12 +821,37 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setToExtends(JvmType newToExtends)
+  public NotificationChain basicSetToExtends(ExtendsAssignement newToExtends, NotificationChain msgs)
   {
-    JvmType oldToExtends = toExtends;
+    ExtendsAssignement oldToExtends = toExtends;
     toExtends = newToExtends;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS, oldToExtends, toExtends));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS, oldToExtends, newToExtends);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setToExtends(ExtendsAssignement newToExtends)
+  {
+    if (newToExtends != toExtends)
+    {
+      NotificationChain msgs = null;
+      if (toExtends != null)
+        msgs = ((InternalEObject)toExtends).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS, null, msgs);
+      if (newToExtends != null)
+        msgs = ((InternalEObject)newToExtends).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS, null, msgs);
+      msgs = basicSetToExtends(newToExtends, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS, newToExtends, newToExtends));
   }
 
   /**
@@ -1002,6 +1006,10 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return ((InternalEList<?>)getMany2s()).basicRemove(otherEnd, msgs);
       case ProcessorDslPackage.POJOGEN_PROPERTY__INHERITANCE:
         return ((InternalEList<?>)getInheritance()).basicRemove(otherEnd, msgs);
+      case ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS:
+        return ((InternalEList<?>)getToImplements()).basicRemove(otherEnd, msgs);
+      case ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS:
+        return basicSetToExtends(null, msgs);
       case ProcessorDslPackage.POJOGEN_PROPERTY__DEBUG:
         return basicSetDebug(null, msgs);
       case ProcessorDslPackage.POJOGEN_PROPERTY__PROC_POJOS:
@@ -1063,8 +1071,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS:
         return getToImplements();
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS:
-        if (resolve) return getToExtends();
-        return basicGetToExtends();
+        return getToExtends();
       case ProcessorDslPackage.POJOGEN_PROPERTY__IMPL_PACKAGE:
         return getImplPackage();
       case ProcessorDslPackage.POJOGEN_PROPERTY__VERSION:
@@ -1161,10 +1168,10 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS:
         getToImplements().clear();
-        getToImplements().addAll((Collection<? extends JvmType>)newValue);
+        getToImplements().addAll((Collection<? extends ImplementsAssignement>)newValue);
         return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS:
-        setToExtends((JvmType)newValue);
+        setToExtends((ExtendsAssignement)newValue);
         return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__IMPL_PACKAGE:
         setImplPackage((String)newValue);
@@ -1258,7 +1265,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         getToImplements().clear();
         return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS:
-        setToExtends((JvmType)null);
+        setToExtends((ExtendsAssignement)null);
         return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__IMPL_PACKAGE:
         setImplPackage(IMPL_PACKAGE_EDEFAULT);

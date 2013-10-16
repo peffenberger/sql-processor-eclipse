@@ -203,6 +203,24 @@ public interface ProcessorDslFactory extends EFactory
   FunctionPojoAssignement createFunctionPojoAssignement();
 
   /**
+   * Returns a new object of class '<em>Implements Assignement</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Implements Assignement</em>'.
+   * @generated
+   */
+  ImplementsAssignement createImplementsAssignement();
+
+  /**
+   * Returns a new object of class '<em>Extends Assignement</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Extends Assignement</em>'.
+   * @generated
+   */
+  ExtendsAssignement createExtendsAssignement();
+
+  /**
    * Returns a new object of class '<em>Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

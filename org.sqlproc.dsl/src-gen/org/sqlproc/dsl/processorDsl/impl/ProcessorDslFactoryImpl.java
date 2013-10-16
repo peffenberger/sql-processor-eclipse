@@ -84,6 +84,8 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.DEBUG_LEVEL_ASSIGNEMENT: return createDebugLevelAssignement();
       case ProcessorDslPackage.PROCEDURE_POJO_ASSIGNEMENT: return createProcedurePojoAssignement();
       case ProcessorDslPackage.FUNCTION_POJO_ASSIGNEMENT: return createFunctionPojoAssignement();
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT: return createImplementsAssignement();
+      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT: return createExtendsAssignement();
       case ProcessorDslPackage.PROPERTY: return createProperty();
       case ProcessorDslPackage.DATABASE_PROPERTY: return createDatabaseProperty();
       case ProcessorDslPackage.POJOGEN_PROPERTY: return createPojogenProperty();
@@ -371,6 +373,28 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     FunctionPojoAssignementImpl functionPojoAssignement = new FunctionPojoAssignementImpl();
     return functionPojoAssignement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ImplementsAssignement createImplementsAssignement()
+  {
+    ImplementsAssignementImpl implementsAssignement = new ImplementsAssignementImpl();
+    return implementsAssignement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExtendsAssignement createExtendsAssignement()
+  {
+    ExtendsAssignementImpl extendsAssignement = new ExtendsAssignementImpl();
+    return extendsAssignement;
   }
 
   /**

@@ -17,6 +17,7 @@ import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.PojoType;
+import org.sqlproc.dsl.property.ImplementsExtends;
 import org.sqlproc.dsl.property.ModelProperty;
 import org.sqlproc.dsl.property.PojoAttribute;
 import org.sqlproc.dsl.resolver.DbResolver.DbType;
@@ -29,10 +30,11 @@ public class TableDaoConverter extends TableMetaConverter {
     protected Set<String> daoIgnoreTables = new HashSet<String>();
     protected Set<String> daoOnlyTables = new HashSet<String>();
     protected String daoImplementationPackage;
-    protected Map<String, JvmType> daoToImplements = new HashMap<String, JvmType>();
-    protected JvmType daoToExtends = null;
+    protected Map<String, ImplementsExtends> daoToImplements = new HashMap<String, ImplementsExtends>();
+    protected ImplementsExtends daoToExtends = null;
     protected boolean daoMakeItFinal;
     protected Map<String, PojoType> daoFunctionsResult = new HashMap<String, PojoType>();
+    protected Set<String> notGenerics;
 
     public TableDaoConverter() {
         super();
@@ -61,7 +63,7 @@ public class TableDaoConverter extends TableMetaConverter {
             this.daoOnlyTables.addAll(daoOnlyTables);
         }
         this.daoImplementationPackage = modelProperty.getDaoImplementationPackage(artifacts);
-        Map<String, JvmType> daoToImplements = modelProperty.getDaoToImplements(artifacts);
+        Map<String, ImplementsExtends> daoToImplements = modelProperty.getDaoToImplements(artifacts);
         if (daoToImplements != null) {
             this.daoToImplements.putAll(daoToImplements);
         }
@@ -100,17 +102,47 @@ public class TableDaoConverter extends TableMetaConverter {
             boolean isSerializable = false;
             boolean oneMoreLine = false;
             if (!daoToImplements.isEmpty()) {
-                for (JvmType type : daoToImplements.values()) {
+                for (ImplementsExtends ie : daoToImplements.values()) {
+                    JvmType type = ie.getToImplement();
                     if (type.getIdentifier().endsWith("Serializable")) {
                         isSerializable = true;
                         continue;
                     }
                     buffer.append("\n  implements ").append(type.getIdentifier());
+                    if (ie.isGenerics()) {
+                        buffer.append(" <>");
+                        if (notGenerics == null)
+                            notGenerics = new HashSet<String>();
+                    }
+                    if (!ie.getDbColumns().isEmpty()) {
+                        buffer.append(" exceptDaos");
+                        for (String dbColumn : ie.getDbColumns()) {
+                            String pojoName = tableNames.get(dbColumn);
+                            if (pojoName == null)
+                                pojoName = dbColumn;
+                            String daoName = tableToCamelCase(pojoName) + "Dao";
+                            notGenerics.add(daoName);
+                            buffer.append(" ").append(daoName);
+                        }
+                    }
                 }
                 oneMoreLine = true;
             }
             if (daoToExtends != null) {
-                buffer.append("\n  extends ").append(daoToExtends.getIdentifier());
+                JvmType type = daoToExtends.getToImplement();
+                buffer.append("\n  extends ").append(type.getIdentifier());
+                if (daoToExtends.isGenerics())
+                    buffer.append(" <>");
+                if (!daoToExtends.getDbColumns().isEmpty()) {
+                    buffer.append(" exceptDaos");
+                    for (String dbColumn : daoToExtends.getDbColumns()) {
+                        String pojoName = tableNames.get(dbColumn);
+                        if (pojoName == null)
+                            pojoName = dbColumn;
+                        String daoName = tableToCamelCase(pojoName) + "Dao";
+                        buffer.append(" ").append(daoName);
+                    }
+                }
                 oneMoreLine = true;
             }
             if (daoImplementationPackage != null) {
@@ -141,7 +173,11 @@ public class TableDaoConverter extends TableMetaConverter {
                     buffer.append("final ");
                 buffer.append("dao ");
                 buffer.append(daoName);
-                buffer.append(" :: ").append(tableToCamelCase(pojoName));
+                if (notGenerics == null || notGenerics.contains(daoName))
+                    buffer.append(" :: ");
+                else
+                    buffer.append(" ::: ");
+                buffer.append(tableToCamelCase(pojoName));
                 if (isSerializable)
                     buffer.append(" serializable 1 ");
                 buffer.append(" {");

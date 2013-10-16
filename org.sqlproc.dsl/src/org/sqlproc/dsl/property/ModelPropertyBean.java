@@ -15,7 +15,6 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.resource.XtextResource;
 import org.sqlproc.dsl.processorDsl.Artifacts;
@@ -179,8 +178,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, String> inheritanceColumns;
         public Set<String> generateMethods;
         public String generateOperators;
-        public Map<String, JvmType> toImplements;
-        public JvmType toExtends;
+        public Map<String, ImplementsExtends> toImplements;
+        public ImplementsExtends toExtends;
         public Map<String, List<String>> joinTables;
         public boolean doGenerateWrappers;
         public String implementationPackage;
@@ -214,8 +213,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Set<String> daoIgnoreTables;
         public Set<String> daoOnlyTables;
         public String daoImplementationPackage;
-        public Map<String, JvmType> daoToImplements;
-        public JvmType daoToExtends;
+        public Map<String, ImplementsExtends> daoToImplements;
+        public ImplementsExtends daoToExtends;
         public boolean daoMakeItFinal;
         public Map<String, PojoType> daoFunctionsResult;
         public Level daoDebugLevel;
@@ -398,7 +397,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.inheritanceColumns = new HashMap<String, String>();
         modelValues.generateMethods = new HashSet<String>();
         modelValues.generateOperators = null;
-        modelValues.toImplements = new HashMap<String, JvmType>();
+        modelValues.toImplements = new HashMap<String, ImplementsExtends>();
         modelValues.toExtends = null;
         modelValues.joinTables = new HashMap<String, List<String>>();
         modelValues.doGenerateWrappers = false;
@@ -437,7 +436,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.daoIgnoreTables = new HashSet<String>();
         modelValues.daoOnlyTables = new HashSet<String>();
         modelValues.daoImplementationPackage = null;
-        modelValues.daoToImplements = new HashMap<String, JvmType>();
+        modelValues.daoToImplements = new HashMap<String, ImplementsExtends>();
         modelValues.daoToExtends = null;
         modelValues.daoMakeItFinal = false;
         modelValues.daoFunctionsResult = new HashMap<String, PojoType>();
@@ -742,11 +741,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             // if (modelValues.toImplements == null)
             // modelValues.toImplements = new HashMap<String, JvmType>();
             for (int i = 0, m = property.getToImplements().size(); i < m; i++) {
-                modelValues.toImplements.put(property.getToImplements().get(i).getIdentifier(), property
-                        .getToImplements().get(i));
+                ImplementsExtends ie = new ImplementsExtends(property.getToImplements().get(i).getToImplement(),
+                        property.getToImplements().get(i).isGenerics(), property.getToImplements().get(i)
+                                .getDbColumns());
+                modelValues.toImplements.put(property.getToImplements().get(i).getToImplement().getIdentifier(), ie);
             }
         } else if (POJOGEN_EXTENDS_CLASS.equals(property.getName())) {
-            modelValues.toExtends = property.getToExtends();
+            ImplementsExtends ie = new ImplementsExtends(property.getToExtends().getToExtends(), property
+                    .getToExtends().isGenerics(), property.getToExtends().getDbColumns());
+            modelValues.toExtends = ie;
         } else if (POJOGEN_JOIN_TABLES.equals(property.getName())) {
             // if (modelValues.joinTables == null)
             // modelValues.joinTables = new HashMap<String, List<String>>();
@@ -888,11 +891,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.daoImplementationPackage = property.getImplPackage();
         } else if (DAOGEN_IMPLEMENTS_INTERFACES.equals(property.getName())) {
             for (int i = 0, m = property.getToImplements().size(); i < m; i++) {
-                modelValues.daoToImplements.put(property.getToImplements().get(i).getIdentifier(), property
-                        .getToImplements().get(i));
+                ImplementsExtends ie = new ImplementsExtends(property.getToImplements().get(i).getToImplement(),
+                        property.getToImplements().get(i).isGenerics(), property.getToImplements().get(i)
+                                .getDbColumns());
+                modelValues.daoToImplements.put(property.getToImplements().get(i).getToImplement().getIdentifier(), ie);
             }
         } else if (DAOGEN_EXTENDS_CLASS.equals(property.getName())) {
-            modelValues.daoToExtends = property.getToExtends();
+            ImplementsExtends ie = new ImplementsExtends(property.getToExtends().getToExtends(), property
+                    .getToExtends().isGenerics(), property.getToExtends().getDbColumns());
+            modelValues.daoToExtends = ie;
         } else if (DAOGEN_MAKE_IT_FINAL.equals(property.getName())) {
             modelValues.daoMakeItFinal = true;
         } else if (DAOGEN_FUNCTION_RESULT.equals(property.getName())) {
@@ -1086,13 +1093,13 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public Map<String, JvmType> getToImplements(EObject model) {
+    public Map<String, ImplementsExtends> getToImplements(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.toImplements : Collections.<String, JvmType> emptyMap();
+        return (modelValues != null) ? modelValues.toImplements : Collections.<String, ImplementsExtends> emptyMap();
     }
 
     @Override
-    public JvmType getToExtends(EObject model) {
+    public ImplementsExtends getToExtends(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.toExtends : null;
     }
@@ -1286,13 +1293,13 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public Map<String, JvmType> getDaoToImplements(EObject model) {
+    public Map<String, ImplementsExtends> getDaoToImplements(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoToImplements : Collections.<String, JvmType> emptyMap();
+        return (modelValues != null) ? modelValues.daoToImplements : Collections.<String, ImplementsExtends> emptyMap();
     }
 
     @Override
-    public JvmType getDaoToExtends(EObject model) {
+    public ImplementsExtends getDaoToExtends(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.daoToExtends : null;
     }

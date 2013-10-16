@@ -6,8 +6,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.xtext.common.types.JvmType;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Daogen Property</b></em>'.
@@ -102,46 +100,46 @@ public interface DaogenProperty extends EObject
   void setImplPackage(String value);
 
   /**
-   * Returns the value of the '<em><b>To Implements</b></em>' reference list.
-   * The list contents are of type {@link org.eclipse.xtext.common.types.JvmType}.
+   * Returns the value of the '<em><b>To Implements</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.ImplementsAssignement}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>To Implements</em>' reference list isn't clear,
+   * If the meaning of the '<em>To Implements</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>To Implements</em>' reference list.
+   * @return the value of the '<em>To Implements</em>' containment reference list.
    * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getDaogenProperty_ToImplements()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  EList<JvmType> getToImplements();
+  EList<ImplementsAssignement> getToImplements();
 
   /**
-   * Returns the value of the '<em><b>To Extends</b></em>' reference.
+   * Returns the value of the '<em><b>To Extends</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>To Extends</em>' reference isn't clear,
+   * If the meaning of the '<em>To Extends</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>To Extends</em>' reference.
-   * @see #setToExtends(JvmType)
+   * @return the value of the '<em>To Extends</em>' containment reference.
+   * @see #setToExtends(ExtendsAssignement)
    * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getDaogenProperty_ToExtends()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  JvmType getToExtends();
+  ExtendsAssignement getToExtends();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getToExtends <em>To Extends</em>}' reference.
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getToExtends <em>To Extends</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>To Extends</em>' reference.
+   * @param value the new value of the '<em>To Extends</em>' containment reference.
    * @see #getToExtends()
    * @generated
    */
-  void setToExtends(JvmType value);
+  void setToExtends(ExtendsAssignement value);
 
   /**
    * Returns the value of the '<em><b>Db Function</b></em>' attribute.

@@ -7,7 +7,6 @@ import java.util.Set;
 import org.apache.log4j.Level;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.common.types.JvmType;
 import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.property.ModelPropertyBean.ModelValues;
 import org.sqlproc.dsl.property.ModelPropertyBean.PairValues;
@@ -58,9 +57,9 @@ public interface ModelProperty extends Adapter {
 
     Set<String> getGenerateMethods(EObject model);
 
-    Map<String, JvmType> getToImplements(EObject model);
+    Map<String, ImplementsExtends> getToImplements(EObject model);
 
-    JvmType getToExtends(EObject model);
+    ImplementsExtends getToExtends(EObject model);
 
     Set<String> getOnlyTables(EObject model);
 
@@ -86,9 +85,9 @@ public interface ModelProperty extends Adapter {
 
     Set<String> getDaoOnlyTables(EObject model);
 
-    JvmType getDaoToExtends(EObject model);
+    ImplementsExtends getDaoToExtends(EObject model);
 
-    Map<String, JvmType> getDaoToImplements(EObject model);
+    Map<String, ImplementsExtends> getDaoToImplements(EObject model);
 
     String getDaoImplementationPackage(EObject model);
 

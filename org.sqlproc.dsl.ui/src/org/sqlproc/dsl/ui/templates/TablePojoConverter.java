@@ -24,6 +24,7 @@ import org.eclipse.xtext.common.types.JvmType;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.property.EnumAttribute;
+import org.sqlproc.dsl.property.ImplementsExtends;
 import org.sqlproc.dsl.property.ModelProperty;
 import org.sqlproc.dsl.property.PojoAttrType;
 import org.sqlproc.dsl.property.PojoAttribute;
@@ -89,8 +90,8 @@ public class TablePojoConverter {
     protected Map<String, Map<String, Map<String, List<String>>>> inheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
     protected Map<String, String> inheritanceColumns = new HashMap<String, String>();
     protected Set<String> generateMethods = new HashSet<String>();
-    protected Map<String, JvmType> toImplements = new HashMap<String, JvmType>();
-    protected JvmType toExtends = null;
+    protected Map<String, ImplementsExtends> toImplements = new HashMap<String, ImplementsExtends>();
+    protected ImplementsExtends toExtends = null;
     protected Map<String, List<String>> joinTables = new HashMap<String, List<String>>();
     protected boolean doGenerateWrappers;
     protected String implementationPackage;
@@ -228,7 +229,7 @@ public class TablePojoConverter {
             this.generateMethods.addAll(generateMethods);
         }
         this.generateOperators = modelProperty.getGenerateOperators(artifacts);
-        Map<String, JvmType> toImplements = modelProperty.getToImplements(artifacts);
+        Map<String, ImplementsExtends> toImplements = modelProperty.getToImplements(artifacts);
         if (toImplements != null) {
             this.toImplements.putAll(toImplements);
         }
@@ -824,17 +825,43 @@ public class TablePojoConverter {
             boolean isSerializable = false;
             boolean oneMoreLine = false;
             if (!toImplements.isEmpty()) {
-                for (JvmType type : toImplements.values()) {
+                for (ImplementsExtends ie : toImplements.values()) {
+                    JvmType type = ie.getToImplement();
                     if (type.getIdentifier().endsWith("Serializable")) {
                         isSerializable = true;
                         continue;
                     }
                     buffer.append("\n  implements ").append(type.getIdentifier());
+                    if (ie.isGenerics())
+                        buffer.append(" <>");
+                    if (!ie.getDbColumns().isEmpty()) {
+                        buffer.append(" exceptPojos");
+                        for (String dbColumn : ie.getDbColumns()) {
+                            String pojoName = tableNames.get(dbColumn);
+                            if (pojoName == null)
+                                pojoName = dbColumn;
+                            String realPojoName = tableToCamelCase(pojoName);
+                            buffer.append(" ").append(realPojoName);
+                        }
+                    }
                 }
                 oneMoreLine = true;
             }
             if (toExtends != null) {
-                buffer.append("\n  extends ").append(toExtends.getIdentifier());
+                JvmType type = toExtends.getToImplement();
+                buffer.append("\n  extends ").append(type.getIdentifier());
+                if (toExtends.isGenerics())
+                    buffer.append(" <>");
+                if (!toExtends.getDbColumns().isEmpty()) {
+                    buffer.append(" exceptPojos");
+                    for (String dbColumn : toExtends.getDbColumns()) {
+                        String pojoName = tableNames.get(dbColumn);
+                        if (pojoName == null)
+                            pojoName = dbColumn;
+                        String realPojoName = tableToCamelCase(pojoName);
+                        buffer.append(" ").append(realPojoName);
+                    }
+                }
                 oneMoreLine = true;
             }
             if (implementationPackage != null) {
