@@ -1033,6 +1033,9 @@
       <elements xsi:type="xtext:Assignment" feature="name" operator="=">
         <terminal xsi:type="xtext:Keyword" value="generate-wrappers"/>
       </elements>
+      <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+        <terminal xsi:type="xtext:Keyword" value="generate-validation-annotations"/>
+      </elements>
       <elements xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="name" operator="=">
           <terminal xsi:type="xtext:Keyword" value="preserve-foreign-keys"/>

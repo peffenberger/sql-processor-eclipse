@@ -1586,6 +1586,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='implements-interfaces' toImplements+=ImplementsAssignement+) | 
 	 *         (name='extends-class' toExtends=ExtendsAssignement) | 
 	 *         name='generate-wrappers' | 
+	 *         name='generate-validation-annotations' | 
 	 *         (name='preserve-foreign-keys' dbTables+=IDENT*) | 
 	 *         (name='implementation-package' implPackage=IDENT) | 
 	 *         name='make-it-final' | 

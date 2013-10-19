@@ -144,4 +144,6 @@ public interface ModelProperty extends Adapter {
     Map<String, PojoType> getPojosForProcedures(EObject model);
 
     Map<String, String> getReplaceAll(EObject model);
+
+    boolean isDoGenerateValidationAnnotations(EObject model);
 }

@@ -98,6 +98,7 @@ PojogenProperty:
 	|name='implements-interfaces' (WS+ toImplements+=ImplementsAssignement)+ 
 	|name='extends-class' WS+ toExtends=ExtendsAssignement
 	|name='generate-wrappers'
+	|name='generate-validation-annotations'
 	|name='preserve-foreign-keys' (WS+ dbTables+=IDENT)*
 	|name='implementation-package' WS+ implPackage=IDENT
 	|name='make-it-final'

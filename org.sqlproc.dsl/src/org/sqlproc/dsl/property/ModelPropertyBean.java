@@ -87,6 +87,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String POJOGEN_EXTENDS_CLASS = "extends-class";
     public static final String POJOGEN_JOIN_TABLES = "join-tables";
     public static final String POJOGEN_GENERATE_WRAPPERS = "generate-wrappers";
+    public static final String POJOGEN_GENERATE_VALIDATION_ANNOTATIONS = "generate-validation-annotations";
     public static final String POJOGEN_NOT_ABSTRACT_TABLES_TABLES = "not-abstract-tables";
     public static final String POJOGEN_IMPLEMENTATION_PACKAGE = "implementation-package";
     public static final String POJOGEN_MAKE_IT_FINAL = "make-it-final";
@@ -182,6 +183,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public ImplementsExtends toExtends;
         public Map<String, List<String>> joinTables;
         public boolean doGenerateWrappers;
+        public boolean doGenerateValidationAnnotations;
         public String implementationPackage;
         public boolean makeItFinal;
         public String versionColumn;
@@ -401,6 +403,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.toExtends = null;
         modelValues.joinTables = new HashMap<String, List<String>>();
         modelValues.doGenerateWrappers = false;
+        modelValues.doGenerateValidationAnnotations = false;
         modelValues.implementationPackage = null;
         modelValues.makeItFinal = false;
         modelValues.versionColumn = null;
@@ -762,6 +765,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             }
         } else if (POJOGEN_GENERATE_WRAPPERS.equals(property.getName())) {
             modelValues.doGenerateWrappers = true;
+        } else if (POJOGEN_GENERATE_VALIDATION_ANNOTATIONS.equals(property.getName())) {
+            modelValues.doGenerateValidationAnnotations = true;
         } else if (POJOGEN_IMPLEMENTATION_PACKAGE.equals(property.getName())) {
             modelValues.implementationPackage = property.getImplPackage();
         } else if (POJOGEN_MAKE_IT_FINAL.equals(property.getName())) {
@@ -1112,6 +1117,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public boolean isDoGenerateWrappers(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.doGenerateWrappers : false;
+    }
+
+    @Override
+    public boolean isDoGenerateValidationAnnotations(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.doGenerateValidationAnnotations : false;
     }
 
     @Override

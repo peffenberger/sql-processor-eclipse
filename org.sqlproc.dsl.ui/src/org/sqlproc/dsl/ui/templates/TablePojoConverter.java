@@ -94,6 +94,7 @@ public class TablePojoConverter {
     protected ImplementsExtends toExtends = null;
     protected Map<String, List<String>> joinTables = new HashMap<String, List<String>>();
     protected boolean doGenerateWrappers;
+    protected boolean doGenerateValidationAnnotations;
     protected String implementationPackage;
     protected boolean makeItFinal;
     protected String versionColumn;
@@ -239,6 +240,7 @@ public class TablePojoConverter {
             this.joinTables.putAll(joinTables);
         }
         this.doGenerateWrappers = modelProperty.isDoGenerateWrappers(artifacts);
+        this.doGenerateValidationAnnotations = modelProperty.isDoGenerateValidationAnnotations(artifacts);
         this.implementationPackage = modelProperty.getImplementationPackage(artifacts);
         this.makeItFinal = modelProperty.isMakeItFinal(artifacts);
         this.versionColumn = modelProperty.getVersionColumn(artifacts);
