@@ -62,6 +62,8 @@ public class TablePojoConverter {
     protected static final String METHOD_INDEX = "index=";
     protected static final String ENUM_TO_INIT = "enumInit";
     protected static final String COLLECTION_LIST = "java.util.List";
+    protected static final String ANNOTATION_NOT_NULL = "javax.validation.constraints.NotNull";
+    protected static final String ANNOTATION_SIZE = "javax.validation.constraints.Size";
 
     protected String suffix;
     protected Set<String> finalEntities;
@@ -283,6 +285,13 @@ public class TablePojoConverter {
             this.metaFunctionsResult.putAll(metaFunctionsResult);
         }
 
+        if (doGenerateValidationAnnotations) {
+            if (this.imports == null)
+                this.imports = new HashSet<String>();
+            this.imports.add(ANNOTATION_NOT_NULL);
+            this.imports.add(ANNOTATION_SIZE);
+        }
+
         if (debug) {
             System.out.println("finalEntities " + this.finalEntities);
             System.out.println("annotations " + this.annotations);
@@ -311,6 +320,7 @@ public class TablePojoConverter {
             System.out.println("toExtends " + this.toExtends);
             System.out.println("joinTables " + this.joinTables);
             System.out.println("doGenerateWrappers " + this.doGenerateWrappers);
+            System.out.println("doGenerateValidationAnnotations " + this.doGenerateValidationAnnotations);
             System.out.println("implementationPackage " + this.implementationPackage);
             System.out.println("makeItFinal " + this.makeItFinal);
             System.out.println("versionColumn " + this.versionColumn);
@@ -984,6 +994,27 @@ public class TablePojoConverter {
                         buffer.append(annotations.getGetterAnnotationsDefinitions(realPojoName, name, true));
                         buffer.append(annotations.getSetterAnnotationsDefinitions(realPojoName, name, true));
                     }
+                    if (doGenerateValidationAnnotations) {
+                        if ((requiredColumns.containsKey(pojo) && requiredColumns.get(pojo).contains(pentry.getKey()))
+                                || (attribute.isRequired() && !attribute.isPrimaryKey())) {
+                            if (!notRequiredColumns.containsKey(pojo)
+                                    || !notRequiredColumns.get(pojo).contains(pentry.getKey()))
+                                if (annotations == null
+                                        || !annotations.hasAttributeAnnotationsDefinitions(realPojoName, name,
+                                                ANNOTATION_NOT_NULL)) {
+                                    buffer.append("\n    @NotNull");
+                                }
+                        }
+                        if (attribute.getDependencyClassName() == null && !attribute.isPrimitive()) {
+                            if (attribute.getClassName().equals("java.lang.String") && attribute.getSize() > 0) {
+                                if (annotations == null
+                                        || !annotations.hasAttributeAnnotationsDefinitions(realPojoName, name,
+                                                ANNOTATION_SIZE)) {
+                                    buffer.append("\n    @Size ::: max ").append(attribute.getSize());
+                                }
+                            }
+                        }
+                    }
                     buffer.append("\n    ").append(name).append(' ');
                     if (attribute.getDependencyClassName() != null) {
                         buffer.append(":: ").append(attribute.getDependencyClassName());
@@ -1401,6 +1432,7 @@ public class TablePojoConverter {
             attribute.setClassName(sqlType.getType().getIdentifier());
         }
         attribute.setSqlType(dbColumn.getSqlType());
+        attribute.setSize(dbColumn.getSize());
         return attribute;
     }
 
@@ -1543,6 +1575,7 @@ public class TablePojoConverter {
                 attribute.setClassName("java.lang.Object");
         }
         attribute.setSqlType(dbColumn.getSqlType());
+        attribute.setSize(dbColumn.getSize());
         return attribute;
     }
 

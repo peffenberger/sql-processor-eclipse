@@ -136,6 +136,19 @@ public class Annotations {
         return sb;
     }
 
+    boolean hasAttributeAnnotationsDefinitions(String pojoName, String featureName, String annotationName) {
+        if (attributeAnnotations == null)
+            return false;
+        if (!attributeAnnotations.containsKey(pojoName) || !attributeAnnotations.get(pojoName).containsKey(featureName))
+            return false;
+        for (Annotation a : attributeAnnotations.get(pojoName).get(featureName)) {
+            String aName = a.getType().getQualifiedName();
+            if (annotationName.equals(aName))
+                return true;
+        }
+        return false;
+    }
+
     void getAnnotationDefinition(StringBuilder sb, Annotation a, String prefix, boolean simpleNames) {
         sb.append(prefix).append((simpleNames) ? a.getType().getSimpleName() : a.getType().getQualifiedName());
         if (a.getFeatures() != null && !a.getFeatures().isEmpty()) {

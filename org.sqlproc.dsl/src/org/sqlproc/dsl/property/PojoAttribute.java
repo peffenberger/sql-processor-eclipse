@@ -33,6 +33,7 @@ public class PojoAttribute {
     private Short funProcType;
     private Short funProcColumnType;
     private int sqlType;
+    private int size;
 
     public PojoAttribute(String dbName) {
         this.dbName = dbName;
@@ -267,6 +268,14 @@ public class PojoAttribute {
         this.sqlType = sqlType;
     }
 
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     public boolean isString() {
         if (className == null)
             return false;
@@ -285,6 +294,6 @@ public class PojoAttribute {
                 + ", oneToManyColumn=" + oneToManyColumn + ", oneToManyOppositeColumn=" + oneToManyOppositeColumn
                 + ", oneToManyTable=" + oneToManyTable + ", manyToManyColumn=" + manyToManyColumn
                 + ", manyToManyTable=" + manyToManyTable + ", funProcType=" + funProcType + ", funProcColumnType="
-                + funProcColumnType + ", sqlType=" + sqlType + "]";
+                + funProcColumnType + ", sqlType=" + sqlType + ", size=" + size + "]";
     }
 }
