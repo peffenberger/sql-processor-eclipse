@@ -1213,6 +1213,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_18_1 = (RuleCall)cGroup_18.eContents().get(1);
 		private final Assignment cDebugAssignment_18_2 = (Assignment)cGroup_18.eContents().get(2);
 		private final RuleCall cDebugDebugLevelAssignementParserRuleCall_18_2_0 = (RuleCall)cDebugAssignment_18_2.eContents().get(0);
+		private final Assignment cNameAssignment_19 = (Assignment)cAlternatives.eContents().get(19);
+		private final Keyword cNameTakeCommentsKeyword_19_0 = (Keyword)cNameAssignment_19.eContents().get(0);
 		
 		//DatabaseProperty:
 		//	name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=PropertyValue | name="login-username" WS+
@@ -1224,7 +1226,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="skip-check-constraints" | name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
 		//	dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
 		//	name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
-		//	debug=DebugLevelAssignement;
+		//	debug=DebugLevelAssignement | name="take-comments";
 		public ParserRule getRule() { return rule; }
 
 		//name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=PropertyValue | name="login-username" WS+
@@ -1236,7 +1238,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
 		//dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
 		//name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
-		//debug=DebugLevelAssignement
+		//debug=DebugLevelAssignement | name="take-comments"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="is-online"
@@ -1541,6 +1543,12 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//DebugLevelAssignement
 		public RuleCall getDebugDebugLevelAssignementParserRuleCall_18_2_0() { return cDebugDebugLevelAssignementParserRuleCall_18_2_0; }
+
+		//name="take-comments"
+		public Assignment getNameAssignment_19() { return cNameAssignment_19; }
+
+		//"take-comments"
+		public Keyword getNameTakeCommentsKeyword_19_0() { return cNameTakeCommentsKeyword_19_0; }
 	}
 
 	public class PojogenPropertyElements extends AbstractParserRuleElementFinder {
@@ -9417,7 +9425,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="skip-check-constraints" | name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
 	//	dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
 	//	name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
-	//	debug=DebugLevelAssignement;
+	//	debug=DebugLevelAssignement | name="take-comments";
 	public DatabasePropertyElements getDatabasePropertyAccess() {
 		return (pDatabaseProperty != null) ? pDatabaseProperty : (pDatabaseProperty = new DatabasePropertyElements());
 	}

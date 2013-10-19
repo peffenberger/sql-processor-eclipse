@@ -3215,6 +3215,12 @@ rule__DatabaseProperty__Alternatives
 { after(grammarAccess.getDatabasePropertyAccess().getGroup_18()); }
 )
 
+    |(
+{ before(grammarAccess.getDatabasePropertyAccess().getNameAssignment_19()); }
+(rule__DatabaseProperty__NameAssignment_19)
+{ after(grammarAccess.getDatabasePropertyAccess().getNameAssignment_19()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -35829,6 +35835,29 @@ rule__DatabaseProperty__DebugAssignment_18_2
 (
 { before(grammarAccess.getDatabasePropertyAccess().getDebugDebugLevelAssignementParserRuleCall_18_2_0()); }
 	ruleDebugLevelAssignement{ after(grammarAccess.getDatabasePropertyAccess().getDebugDebugLevelAssignementParserRuleCall_18_2_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DatabaseProperty__NameAssignment_19
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getDatabasePropertyAccess().getNameTakeCommentsKeyword_19_0()); }
+(
+{ before(grammarAccess.getDatabasePropertyAccess().getNameTakeCommentsKeyword_19_0()); }
+
+	'take-comments' 
+
+{ after(grammarAccess.getDatabasePropertyAccess().getNameTakeCommentsKeyword_19_0()); }
+)
+
+{ after(grammarAccess.getDatabasePropertyAccess().getNameTakeCommentsKeyword_19_0()); }
 )
 
 ;

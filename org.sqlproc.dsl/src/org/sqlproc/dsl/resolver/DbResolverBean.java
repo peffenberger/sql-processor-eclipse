@@ -53,6 +53,7 @@ public class DbResolverBean implements DbResolver {
         public boolean dbSkipIndexes;
         public boolean dbSkipProcedures;
         public boolean dbSkipCheckConstraints;
+        public boolean dbTakeComments;
         public DbType dbType;
         public String dir;
         public Connection connection;
@@ -68,8 +69,8 @@ public class DbResolverBean implements DbResolver {
                     + ", dbPassword=" + dbPassword + ", dbCatalog=" + dbCatalog + ", dbSchema=" + dbSchema
                     + ", dbSqlsBefore=" + dbSqlsBefore + ", dbSqlsAfter=" + dbSqlsAfter + ", connection=" + connection
                     + ", dbIndexTypes=" + dbIndexTypes + ", dbSkipIndexes=" + dbSkipIndexes + ", dbSkipProcedures="
-                    + dbSkipProcedures + ", dbSkipCheckConstraints=" + dbSkipCheckConstraints + ", dbType=" + dbType
-                    + ", dir=" + dir + "]";
+                    + dbSkipProcedures + ", dbSkipCheckConstraints=" + dbSkipCheckConstraints + ", dbTakeComments="
+                    + dbTakeComments + ", dbType=" + dbType + ", dir=" + dir + "]";
         }
 
     }
@@ -252,6 +253,9 @@ public class DbResolverBean implements DbResolver {
         }
         if (modelModelValues.dbSkipProcedures != modelDatabaseValues.dbSkipProcedures) {
             modelDatabaseValues.dbSkipProcedures = modelModelValues.dbSkipProcedures;
+        }
+        if (modelModelValues.dbTakeComments != modelDatabaseValues.dbTakeComments) {
+            modelDatabaseValues.dbTakeComments = modelModelValues.dbTakeComments;
         }
         if (modelModelValues.dbType != null) {
             if (modelDatabaseValues.dbType == null
@@ -871,7 +875,8 @@ public class DbResolverBean implements DbResolver {
                     DbTable dbTable = new DbTable();
                     dbTable.setName(result.getString("TABLE_NAME"));
                     dbTable.setType(result.getString("TABLE_TYPE"));
-                    dbTable.setRemarks(result.getString("REMARKS"));
+                    if (modelDatabaseValues.dbTakeComments)
+                        dbTable.setComment(result.getString("REMARKS"));
                     tablesForModel.add(dbTable);
                     // info(table + ": " + dbTable.toString());
                 }
@@ -939,6 +944,8 @@ public class DbResolverBean implements DbResolver {
                     }
                     dbColumn.setSqlType(result.getInt("DATA_TYPE"));
                     dbColumn.setNullable(result.getInt("NULLABLE") != DatabaseMetaData.columnNoNulls);
+                    if (modelDatabaseValues.dbTakeComments)
+                        dbColumn.setComment(result.getString("REMARKS"));
                     // dbColumn.setPosition(result.getInt("ORDINAL_POSITION"));
                     columnsForModel.add(dbColumn);
                     // info(table + ": " + dbColumn.toString());
@@ -991,7 +998,8 @@ public class DbResolverBean implements DbResolver {
                     DbTable dbTable = new DbTable();
                     dbTable.setName(result.getString("PROCEDURE_NAME"));
                     dbTable.setPtype(result.getShort("PROCEDURE_TYPE"));
-                    dbTable.setRemarks(result.getString("REMARKS"));
+                    if (modelDatabaseValues.dbTakeComments)
+                        dbTable.setComment(result.getString("REMARKS"));
                     tablesForModel.add(dbTable);
                     // info(table + ": " + dbTable.toString());
                 }
@@ -1062,6 +1070,8 @@ public class DbResolverBean implements DbResolver {
                     }
                     dbColumn.setSqlType(result.getInt("DATA_TYPE"));
                     dbColumn.setNullable(result.getInt("NULLABLE") != DatabaseMetaData.columnNoNulls);
+                    if (modelDatabaseValues.dbTakeComments)
+                        dbColumn.setComment(result.getString("REMARKS"));
                     // if (DbType.MY_SQL != dbType && DbType.INFORMIX != dbType)
                     // dbColumn.setPosition(result.getInt("ORDINAL_POSITION"));
                     columnsForModel.add(dbColumn);
@@ -1123,7 +1133,8 @@ public class DbResolverBean implements DbResolver {
                     dbTable.setName(result.getString("FUNCTION_NAME"));
                     if (dbType != DbType.DB2 && dbType != DbType.ORACLE)
                         dbTable.setFtype(result.getShort("FUNCTION_TYPE"));
-                    dbTable.setRemarks(result.getString("REMARKS"));
+                    if (modelDatabaseValues.dbTakeComments)
+                        dbTable.setComment(result.getString("REMARKS"));
                     tablesForModel.add(dbTable);
                     info(table + ": " + dbTable.toString());
                 }
@@ -1198,6 +1209,8 @@ public class DbResolverBean implements DbResolver {
                     }
                     dbColumn.setSqlType(result.getInt("DATA_TYPE"));
                     dbColumn.setNullable(result.getInt("NULLABLE") != DatabaseMetaData.columnNoNulls);
+                    if (modelDatabaseValues.dbTakeComments)
+                        dbColumn.setComment(result.getString("REMARKS"));
                     // if (DbType.MY_SQL != dbType)
                     // dbColumn.setPosition(result.getInt("ORDINAL_POSITION"));
                     columnsForModel.add(dbColumn);
@@ -1576,7 +1589,7 @@ public class DbResolverBean implements DbResolver {
                     trace("===getDbIndexes name", detail.getColname());
                     trace("===getDbIndexes position", position);
                     if (position == 0)
-                    	addToPosition = 1;
+                        addToPosition = 1;
                     dbIndex.getColumns().add(position - 1 + addToPosition, detail);
                 }
                 // info("EEE " + table + " " + mapOfIndexes);

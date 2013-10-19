@@ -3,10 +3,10 @@ package org.sqlproc.dsl.resolver;
 public class DbTable {
 
     private String name;
-    private String remarks;
     private String type;
     private short ftype;
     private short ptype;
+    private String comment;
 
     public String getName() {
         return name;
@@ -14,14 +14,6 @@ public class DbTable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
     }
 
     public String getType() {
@@ -48,9 +40,17 @@ public class DbTable {
         this.ptype = ptype;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     @Override
     public String toString() {
-        return "DbTable [name=" + name + ", remarks=" + remarks + ", type=" + type + ", ftype=" + ftype + ", ptype="
+        return "DbTable [name=" + name + ", comment=" + comment + ", type=" + type + ", ftype=" + ftype + ", ptype="
                 + ptype + "]";
     }
 }

@@ -9,6 +9,7 @@ public class DbColumn { // implements Comparable<DbColumn> {
     private boolean nullable;
     private int position;
     private short columnType;
+    private String comment;
 
     public DbColumn() {
     }
@@ -74,9 +75,17 @@ public class DbColumn { // implements Comparable<DbColumn> {
         this.columnType = columnType;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     @Override
     public String toString() {
         return "DbColumn [name=" + name + ", type=" + type + ", size=" + size + ", sqlType=" + sqlType + ", nullable="
-                + nullable + ", position=" + position + ", columnType=" + columnType + "]";
+                + nullable + ", position=" + position + ", columnType=" + columnType + ", comment=" + comment + "]";
     }
 }

@@ -2560,7 +2560,23 @@ ruleDatabaseProperty returns [EObject current=null]
 	    }
 
 )
-)))
+))
+    |(
+(
+		lv_name_49_0=	'take-comments' 
+    {
+        newLeafNode(lv_name_49_0, grammarAccess.getDatabasePropertyAccess().getNameTakeCommentsKeyword_19_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_49_0, "take-comments");
+	    }
+
+)
+))
 ;
 
 

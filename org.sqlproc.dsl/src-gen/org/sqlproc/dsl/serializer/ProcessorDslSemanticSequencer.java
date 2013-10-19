@@ -821,7 +821,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='show-database-info' dbMetaInfo=DatabaseMetaInfoAssignement) | 
 	 *         (name='show-driver-info' dbDriverInfo=DriverMetaInfoAssignement) | 
 	 *         (name='show-driver-output' dbMethodsCalls+=DriverMethodOutputAssignement+) | 
-	 *         (name='debug-level' debug=DebugLevelAssignement)
+	 *         (name='debug-level' debug=DebugLevelAssignement) | 
+	 *         name='take-comments'
 	 *     )
 	 */
 	protected void sequence_DatabaseProperty(EObject context, DatabaseProperty semanticObject) {

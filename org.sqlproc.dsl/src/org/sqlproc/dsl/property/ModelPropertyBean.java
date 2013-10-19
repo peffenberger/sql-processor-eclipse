@@ -60,6 +60,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String DATABASE_SKIP_PROCEDURES = "skip-functions-procedures";
     public static final String DATABASE_OF_TYPE = "is-of-type";
     public static final String DATABASE_DEBUG_LEVEL = "debug-level";
+    public static final String DATABASE_TAKE_COMMENTS = "take-comments";
     public static final String POJOGEN = "pojogen";
     public static final String POJOGEN_TYPE_SQLTYPES = "types-sqltypes";
     public static final String POJOGEN_TYPE_IN_TABLE = "types-in-table";
@@ -154,6 +155,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public boolean dbSkipCheckConstraints;
         public String dbType;
         public Level dbDebugLevel;
+        public boolean dbTakeComments;
         public String dir;
         public Map<String, PojoAttrType> sqlTypes;
         public Map<String, Map<String, PojoAttrType>> tableTypes;
@@ -372,6 +374,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.dbSkipCheckConstraints = false;
         modelValues.dbType = null;
         modelValues.dbDebugLevel = null;
+        modelValues.dbTakeComments = false;
     }
 
     private void initPojogenModel(ModelValues modelValues) {
@@ -510,6 +513,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         } else if (DATABASE_DEBUG_LEVEL.equals(property.getName())) {
             modelValues.dbDebugLevel = Level.toLevel((property.getDebug() != null) ? property.getDebug().getDebug()
                     : null, Level.WARN);
+        } else if (DATABASE_TAKE_COMMENTS.equals(property.getName())) {
+            modelValues.dbTakeComments = true;
         }
     }
 

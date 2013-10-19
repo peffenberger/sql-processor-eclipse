@@ -65,6 +65,7 @@ DatabaseProperty:
 	|name='show-driver-info' WS+ dbDriverInfo=DriverMetaInfoAssignement
 	|name='show-driver-output' (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+
 	|name='debug-level' WS+ debug=DebugLevelAssignement
+	|name='take-comments'
 	);
 
 PojogenProperty:
