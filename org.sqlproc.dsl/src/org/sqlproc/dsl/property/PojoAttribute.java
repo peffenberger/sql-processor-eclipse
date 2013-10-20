@@ -34,6 +34,7 @@ public class PojoAttribute {
     private Short funProcColumnType;
     private int sqlType;
     private int size;
+    private String comment;
 
     public PojoAttribute(String dbName) {
         this.dbName = dbName;
@@ -282,6 +283,14 @@ public class PojoAttribute {
         if (className.indexOf("String") >= 0)
             return true;
         return false;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @Override

@@ -887,9 +887,11 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                     List<DbExport> dbExports = dbResolver.getDbExports(artifacts, table);
                     List<DbImport> dbImports = dbResolver.getDbImports(artifacts, table);
                     List<DbIndex> dbIndexes = dbResolver.getDbIndexes(artifacts, table);
+                    List<DbTable> ltables = dbResolver.getDbTables(artifacts, table);
+                    String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
                     List<DbCheckConstraint> dbCheckConstraints = dbResolver.getDbCheckConstraints(artifacts, table);
                     converter.addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes,
-                            dbCheckConstraints);
+                            dbCheckConstraints, comment);
                 }
                 // converter.resolveReferencesOnConvention();
                 converter.resolveReferencesOnKeys();
@@ -903,8 +905,10 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                     if (dbProcedures.isEmpty())
                         continue;
                     List<DbColumn> dbProcColumns = dbResolver.getDbProcColumns(artifacts, procedure);
+                    List<DbTable> ltables = dbResolver.getDbProcedures(artifacts, procedure);
+                    String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
                     converter.addProcedureDefinition(procedure, dbProcedures.get(0), dbProcColumns,
-                            functions.contains(procedure));
+                            functions.contains(procedure), comment);
                 }
             }
             if (functions != null) {
@@ -915,7 +919,9 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                     if (dbFunctions.isEmpty())
                         continue;
                     List<DbColumn> dbFunColumns = dbResolver.getDbFunColumns(artifacts, function);
-                    converter.addFunctionDefinition(function, dbFunctions.get(0), dbFunColumns);
+                    List<DbTable> ltables = dbResolver.getDbFunctions(artifacts, function);
+                    String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
+                    converter.addFunctionDefinition(function, dbFunctions.get(0), dbFunColumns, comment);
                 }
             }
             return true;

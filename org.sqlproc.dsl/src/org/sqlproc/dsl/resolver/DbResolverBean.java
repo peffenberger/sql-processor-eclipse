@@ -870,7 +870,7 @@ public class DbResolverBean implements DbResolver {
             ResultSet result = null;
             try {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
-                result = meta.getColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, table, null);
+                result = meta.getTables(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, table, null);
                 while (result.next()) {
                     DbTable dbTable = new DbTable();
                     dbTable.setName(result.getString("TABLE_NAME"));

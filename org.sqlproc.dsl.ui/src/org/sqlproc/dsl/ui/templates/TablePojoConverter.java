@@ -64,6 +64,8 @@ public class TablePojoConverter {
     protected static final String COLLECTION_LIST = "java.util.List";
     protected static final String ANNOTATION_NOT_NULL = "javax.validation.constraints.NotNull";
     protected static final String ANNOTATION_SIZE = "javax.validation.constraints.Size";
+    protected static final String INDENT = "  ";
+    protected static final String NLINDENT = "\n  ";
 
     protected String suffix;
     protected Set<String> finalEntities;
@@ -117,6 +119,7 @@ public class TablePojoConverter {
     protected Set<String> dbSequences = new TreeSet<String>();
     protected DbType dbType = null;
     protected Map<String, List<EnumAttribute>> enums = new TreeMap<String, List<EnumAttribute>>();
+    protected Map<String, String> comments = new HashMap<String, String>();
 
     protected Map<String, String> metaFunctionsResult = new HashMap<String, String>();
 
@@ -336,7 +339,7 @@ public class TablePojoConverter {
 
     public void addTableDefinition(String table, List<DbColumn> dbColumns, List<String> dbPrimaryKeys,
             List<DbExport> dbExports, List<DbImport> dbImports, List<DbIndex> dbIndexes,
-            List<DbCheckConstraint> dbCheckConstraints) {
+            List<DbCheckConstraint> dbCheckConstraints, String comment) {
         if (debug) {
             System.out.println("addTableDefinition: " + table + " dbColumns " + dbColumns);
             System.out.println("addTableDefinition: " + table + " dbPrimaryKeys " + dbPrimaryKeys);
@@ -374,6 +377,8 @@ public class TablePojoConverter {
             }
         }
         pojos.put(table, attributes);
+        if (comment != null)
+            comments.put(table, comment);
         for (DbImport dbImport : dbImports) {
             if (ignoreImports.containsKey(table)
                     && (ignoreImports.get(table) == null || ignoreImports.get(table)
@@ -672,7 +677,7 @@ public class TablePojoConverter {
     public static final String FUN_PROC_COLUMN_NAME = "RESULT";
 
     public void addProcedureDefinition(String procedure, DbTable dbProcedure, List<DbColumn> dbProcColumns,
-            boolean isFunction) {
+            boolean isFunction, String comment) {
         if (debug) {
             System.out.println("addProcedureDefinition: " + procedure + " dbProcedure " + dbProcedure);
             System.out.println("addProcedureDefinition: " + procedure + " dbProcColumns " + dbProcColumns);
@@ -721,11 +726,13 @@ public class TablePojoConverter {
             }
         }
         procedures.put(procedure, attributes);
+        if (comment != null)
+            comments.put(procedure, comment);
         if ((dbType == DbType.POSTGRESQL || dbType == DbType.INFORMIX) && isFunction)
             functions.put(procedure, attributes);
     }
 
-    public void addFunctionDefinition(String function, DbTable dbFunction, List<DbColumn> dbFunColumns) {
+    public void addFunctionDefinition(String function, DbTable dbFunction, List<DbColumn> dbFunColumns, String comment) {
         if (debug) {
             System.out.println("addFunctionDefinition: " + function + " dbFunction " + dbFunction);
             System.out.println("addFunctionDefinition: " + function + " dbFunColumns " + dbFunColumns);
@@ -762,6 +769,8 @@ public class TablePojoConverter {
             attribute.setFunProcColumnType((short) 5);
         }
         functions.put(function, attributes);
+        if (comment != null)
+            comments.put(function, comment);
     }
 
     protected String collectionName(String fkTable, String fkColumn) {
@@ -843,7 +852,7 @@ public class TablePojoConverter {
                         isSerializable = true;
                         continue;
                     }
-                    buffer.append("\n  implements ").append(type.getIdentifier());
+                    buffer.append(NLINDENT).append("implements ").append(type.getIdentifier());
                     if (ie.isGenerics())
                         buffer.append(" <>");
                     if (!ie.getDbTables().isEmpty()) {
@@ -861,7 +870,7 @@ public class TablePojoConverter {
             }
             if (toExtends != null) {
                 JvmType type = toExtends.getToImplement();
-                buffer.append("\n  extends ").append(type.getIdentifier());
+                buffer.append(NLINDENT).append("extends ").append(type.getIdentifier());
                 if (toExtends.isGenerics())
                     buffer.append(" <>");
                 if (!toExtends.getDbTables().isEmpty()) {
@@ -877,7 +886,7 @@ public class TablePojoConverter {
                 oneMoreLine = true;
             }
             if (implementationPackage != null) {
-                buffer.append("\n  implementation-package ").append(implementationPackage);
+                buffer.append(NLINDENT).append("implementation-package ").append(implementationPackage);
                 oneMoreLine = true;
             }
             if (oneMoreLine) {
@@ -885,7 +894,7 @@ public class TablePojoConverter {
             }
             if (imports != null) {
                 for (String qualifiedName : imports) {
-                    buffer.append("  import ").append(qualifiedName).append("\n");
+                    buffer.append(INDENT).append("import ").append(qualifiedName).append("\n");
                 }
             }
             for (Entry<String, List<EnumAttribute>> pentry : enums.entrySet()) {
@@ -900,7 +909,8 @@ public class TablePojoConverter {
                     pojoName = pojo;
                 if (finalEntities.contains(tableToCamelCase(pojoName)))
                     continue;
-                buffer.append("\n  ");
+                printComment(buffer, comments.get(pojo), INDENT);
+                buffer.append(NLINDENT);
                 if (makeItFinal)
                     buffer.append("final ");
                 buffer.append("enum ");
@@ -920,7 +930,7 @@ public class TablePojoConverter {
                         name = attribute.getName();
                     if (attribute.getIntValue() == null && attribute.getStrValue() == null)
                         name = columnToCamelCase(name);
-                    buffer.append("\n    ").append(name).append(' ');
+                    buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
 
                     if (attribute.getIntValue() == null && attribute.getStrValue() == null) {
                         buffer.append(": ").append(attribute.getClassName());
@@ -933,7 +943,7 @@ public class TablePojoConverter {
                 if (pojoExtends.containsKey(pojo)) {
                     getParentAttrs(pojoExtends.get(pojo), null, null);
                 }
-                buffer.append("\n  }\n");
+                buffer.append(NLINDENT).append("}\n");
             }
             for (String pojo : pojos.keySet()) {
                 // System.out.println("QQQQQ " + pojo);
@@ -947,13 +957,14 @@ public class TablePojoConverter {
                 if (finalEntities.contains(tableToCamelCase(pojoName)))
                     continue;
                 String realPojoName = tableToCamelCase(pojoName);
+                printComment(buffer, comments.get(pojo), INDENT);
                 if (annotations != null) {
                     buffer.append(annotations.getEntityAnnotationsDefinitions(realPojoName, true));
                     buffer.append(annotations.getConstructorAnnotationsDefinitions(realPojoName, true));
                     buffer.append(annotations.getStaticAnnotationsDefinitions(realPojoName, true));
                     buffer.append(annotations.getConflictAnnotationsDefinitions(realPojoName, true));
                 }
-                buffer.append("\n  ");
+                buffer.append(NLINDENT);
                 if (makeItFinal)
                     buffer.append("final ");
                 if (pojoInheritanceDiscriminator.containsKey(pojo) || pojoInheritanceSimple.containsKey(pojo)) {
@@ -989,6 +1000,7 @@ public class TablePojoConverter {
                         name = attribute.getName();
                     else
                         name = columnToCamelCase(name);
+                    printComment(buffer, attribute.getComment(), INDENT, INDENT);
                     if (annotations != null) {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, name, true));
                         buffer.append(annotations.getGetterAnnotationsDefinitions(realPojoName, name, true));
@@ -1002,7 +1014,7 @@ public class TablePojoConverter {
                                 if (annotations == null
                                         || !annotations.hasAttributeAnnotationsDefinitions(realPojoName, name,
                                                 ANNOTATION_NOT_NULL)) {
-                                    buffer.append("\n    @NotNull");
+                                    buffer.append(NLINDENT).append(INDENT).append("@NotNull");
                                 }
                         }
                         if (attribute.getDependencyClassName() == null && !attribute.isPrimitive()) {
@@ -1010,12 +1022,13 @@ public class TablePojoConverter {
                                 if (annotations == null
                                         || !annotations.hasAttributeAnnotationsDefinitions(realPojoName, name,
                                                 ANNOTATION_SIZE)) {
-                                    buffer.append("\n    @Size ::: max ").append(attribute.getSize());
+                                    buffer.append(NLINDENT).append(INDENT).append("@Size ::: max ")
+                                            .append(attribute.getSize());
                                 }
                             }
                         }
                     }
-                    buffer.append("\n    ").append(name).append(' ');
+                    buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
                     if (attribute.getDependencyClassName() != null) {
                         buffer.append(":: ").append(attribute.getDependencyClassName());
                         toStr.add(name);
@@ -1064,7 +1077,7 @@ public class TablePojoConverter {
                 }
                 for (Map.Entry<String, PojoAttribute> pentry : addedAttributes.entrySet()) {
                     PojoAttribute attribute = pentry.getValue();
-                    buffer.append("\n    ").append(columnToCamelCase(attribute.getDbName())).append(' ');
+                    buffer.append(NLINDENT).append(INDENT).append(columnToCamelCase(attribute.getDbName())).append(' ');
                     buffer.append(": ").append(attribute.getClassName());
                     buffer.append(" createCol ").append(pentry.getKey()).append("->")
                             .append(columnToCamelCase(attribute.getPkColumn()));
@@ -1074,7 +1087,7 @@ public class TablePojoConverter {
                     if (annotations != null) {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_EQUALS, true));
                     }
-                    buffer.append("\n    ").append(METHOD_EQUALS).append(" :::");
+                    buffer.append(NLINDENT).append(INDENT).append(METHOD_EQUALS).append(" :::");
                     for (String name : pkeys) {
                         buffer.append(" ").append(name);
                     }
@@ -1084,7 +1097,7 @@ public class TablePojoConverter {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_HASH_CODE,
                                 true));
                     }
-                    buffer.append("\n    ").append(METHOD_HASH_CODE).append(" :::");
+                    buffer.append(NLINDENT).append(INDENT).append(METHOD_HASH_CODE).append(" :::");
                     for (String name : pkeys) {
                         buffer.append(" ").append(name);
                     }
@@ -1094,7 +1107,7 @@ public class TablePojoConverter {
                         buffer.append(annotations
                                 .getAttributeAnnotationsDefinitions(realPojoName, METHOD_TO_INIT, true));
                     }
-                    buffer.append("\n    ").append(METHOD_TO_INIT).append(" :::");
+                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_INIT).append(" :::");
                     for (String name : toInit) {
                         buffer.append(" ").append(name);
                     }
@@ -1102,7 +1115,7 @@ public class TablePojoConverter {
                     if (annotations != null) {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, ENUM_TO_INIT, true));
                     }
-                    buffer.append("\n    ").append(ENUM_TO_INIT).append(" :::");
+                    buffer.append(NLINDENT).append(INDENT).append(ENUM_TO_INIT).append(" :::");
                     for (String name : toInit) {
                         buffer.append(" ").append(name);
                     }
@@ -1111,7 +1124,7 @@ public class TablePojoConverter {
                     if (annotations != null) {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_IS_DEF, true));
                     }
-                    buffer.append("\n    ").append(METHOD_IS_DEF).append(" :::");
+                    buffer.append(NLINDENT).append(INDENT).append(METHOD_IS_DEF).append(" :::");
                     for (String name : isDef) {
                         buffer.append(" ").append(name);
                     }
@@ -1119,7 +1132,7 @@ public class TablePojoConverter {
                     if (annotations != null) {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, ENUM_IS_DEF, true));
                     }
-                    buffer.append("\n    ").append(ENUM_IS_DEF).append(" :::");
+                    buffer.append(NLINDENT).append(INDENT).append(ENUM_IS_DEF).append(" :::");
                     for (String name : isDef) {
                         buffer.append(" ").append(name);
                     }
@@ -1129,7 +1142,7 @@ public class TablePojoConverter {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_TO_STRING,
                                 true));
                     }
-                    buffer.append("\n    ").append(METHOD_TO_STRING).append(" :::");
+                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_STRING).append(" :::");
                     for (String name : toStr) {
                         buffer.append(" ").append(name);
                     }
@@ -1141,7 +1154,7 @@ public class TablePojoConverter {
                             buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_INDEX,
                                     true));
                         }
-                        buffer.append("\n    ").append(METHOD_INDEX).append(i + 1).append(" :::");
+                        buffer.append(NLINDENT).append(INDENT).append(METHOD_INDEX).append(i + 1).append(" :::");
                         for (PojoAttribute attr : mainList.get(i).keySet()) {
                             String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(attr.getName())
                                     : null;
@@ -1153,7 +1166,7 @@ public class TablePojoConverter {
                         }
                     }
                 }
-                buffer.append("\n  }\n");
+                buffer.append(NLINDENT).append("}\n");
             }
             for (String pojo : procedures.keySet()) {
                 // System.out.println("QQQQQ " + pojo);
@@ -1167,7 +1180,8 @@ public class TablePojoConverter {
                     pojoName = pojo;
                 if (finalEntities.contains(tableToCamelCase(pojoName)))
                     continue;
-                buffer.append("\n  ");
+                printComment(buffer, comments.get(pojo), INDENT);
+                buffer.append(NLINDENT);
                 if (makeItFinal)
                     buffer.append("final ");
                 buffer.append("pojo ");
@@ -1194,7 +1208,7 @@ public class TablePojoConverter {
                         name = attribute.getName();
                     else
                         name = columnToCamelCase(name);
-                    buffer.append("\n    ").append(name).append(' ');
+                    buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
                     if (attribute.getDependencyClassName() != null) {
                         buffer.append(":: ").append(attribute.getDependencyClassName());
                         toStr.add(name);
@@ -1218,12 +1232,12 @@ public class TablePojoConverter {
                     getParentAttrs(pojoExtends.get(pojo), null, null);
                 }
                 if (generateMethods.contains(METHOD_TO_STRING) && !toStr.isEmpty()) {
-                    buffer.append("\n    ").append(METHOD_TO_STRING).append(" :::");
+                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_STRING).append(" :::");
                     for (String name : toStr) {
                         buffer.append(" ").append(name);
                     }
                 }
-                buffer.append("\n  }\n");
+                buffer.append(NLINDENT).append("}\n");
             }
             for (String pojo : functions.keySet()) {
                 // System.out.println("QQQQQ " + pojo);
@@ -1238,7 +1252,8 @@ public class TablePojoConverter {
                     pojoName = pojo;
                 if (finalEntities.contains(tableToCamelCase(pojoName)))
                     continue;
-                buffer.append("\n  ");
+                printComment(buffer, comments.get(pojo), INDENT);
+                buffer.append(NLINDENT);
                 if (makeItFinal)
                     buffer.append("final ");
                 buffer.append("pojo ");
@@ -1261,7 +1276,7 @@ public class TablePojoConverter {
                         name = attribute.getName();
                     else
                         name = columnToCamelCase(name);
-                    buffer.append("\n    ").append(name).append(' ');
+                    buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
                     if (attribute.getDependencyClassName() != null) {
                         buffer.append(":: ").append(attribute.getDependencyClassName());
                         toStr.add(name);
@@ -1285,12 +1300,12 @@ public class TablePojoConverter {
                     getParentAttrs(pojoExtends.get(pojo), null, null);
                 }
                 if (generateMethods.contains(METHOD_TO_STRING) && !toStr.isEmpty()) {
-                    buffer.append("\n    ").append(METHOD_TO_STRING).append(" :::");
+                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_STRING).append(" :::");
                     for (String name : toStr) {
                         buffer.append(" ").append(name);
                     }
                 }
-                buffer.append("\n  }\n");
+                buffer.append(NLINDENT).append("}\n");
             }
             return buffer.toString();
         } catch (RuntimeException ex) {
@@ -1433,6 +1448,7 @@ public class TablePojoConverter {
         }
         attribute.setSqlType(dbColumn.getSqlType());
         attribute.setSize(dbColumn.getSize());
+        attribute.setComment(dbColumn.getComment());
         return attribute;
     }
 
@@ -1576,6 +1592,7 @@ public class TablePojoConverter {
         }
         attribute.setSqlType(dbColumn.getSqlType());
         attribute.setSize(dbColumn.getSize());
+        attribute.setComment(dbColumn.getComment());
         return attribute;
     }
 
@@ -1636,5 +1653,23 @@ public class TablePojoConverter {
         if (metaType == null)
             return null;
         return metaType;
+    }
+
+    protected void printComment(StringBuilder buffer, String comment, String... indents) {
+        if (comment == null || comment.trim().length() == 0)
+            return;
+        for (int l = comment.length(); l > 0; l = comment.length()) {
+            buffer.append("\n");
+            for (String indent : indents)
+                buffer.append(indent);
+            buffer.append("// ");
+            if (l > 100) {
+                buffer.append(comment.substring(0, 100));
+                comment = comment.substring(100);
+            } else {
+                buffer.append(comment);
+                comment = "";
+            }
+        }
     }
 }
