@@ -1018,7 +1018,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (toExtends=[JvmType|QualifiedName] generics?='<>'? dbTables+=IDENT*)
+	 *     (toExtends=[JvmType|QualifiedName] generics?='<>'? dbTables+=IDENT* dbNotTables+=IDENT*)
 	 */
 	protected void sequence_ExtendsAssignement(EObject context, ExtendsAssignement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1166,7 +1166,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (toImplement=[JvmType|QualifiedName] generics?='<>'? dbTables+=IDENT*)
+	 *     (toImplement=[JvmType|QualifiedName] generics?='<>'? dbTables+=IDENT* dbNotTables+=IDENT*)
 	 */
 	protected void sequence_ImplementsAssignement(EObject context, ImplementsAssignement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1325,8 +1325,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         name='make-it-final' | 
 	 *         (name='like-columns' dbTable=IDENT dbColumns+=IDENT+) | 
 	 *         (name='not-like-columns' dbTable=IDENT dbColumns+=IDENT+) | 
-	 *         name='generate-sequences' | 
-	 *         name='generate-identities' | 
+	 *         (name='generate-sequences' dbTables+=IDENT* dbNotTables+=IDENT*) | 
+	 *         (name='generate-identities' dbTables+=IDENT* dbNotTables+=IDENT*) | 
 	 *         (name='function-result' dbFunction=IDENT type=IDENT) | 
 	 *         (name='function-result-set' dbFunction=IDENT dbTable=IDENT) | 
 	 *         (name='procedure-result-set' dbProcedure=IDENT dbTable=IDENT) | 
@@ -1591,7 +1591,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='preserve-foreign-keys' dbTables+=IDENT*) | 
 	 *         (name='implementation-package' implPackage=IDENT) | 
 	 *         name='make-it-final' | 
-	 *         (name='version-column' version=IDENT dbTables+=IDENT*) | 
+	 *         (name='version-column' version=IDENT dbTables+=IDENT* dbNotTables+=IDENT*) | 
 	 *         (name='debug-level' debug=DebugLevelAssignement) | 
 	 *         (name='pojos-for-procedures' procPojos+=ProcedurePojoAssignement+) | 
 	 *         (name='pojos-for-functions' funPojos+=FunctionPojoAssignement+)

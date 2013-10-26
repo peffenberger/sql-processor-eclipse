@@ -357,12 +357,18 @@
       <elements xsi:type="xtext:Assignment" cardinality="?" feature="generics" operator="?=">
         <terminal xsi:type="xtext:Keyword" value="&lt;>"/>
       </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+        <elements xsi:type="xtext:Assignment" feature="dbTables" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
+        </elements>
+      </elements>
       <elements xsi:type="xtext:Group" cardinality="?">
         <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
-        <elements xsi:type="xtext:Keyword" value="except"/>
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.92"/>
         <elements xsi:type="xtext:Group" cardinality="+">
           <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
-          <elements xsi:type="xtext:Assignment" feature="dbTables" operator="+=">
+          <elements xsi:type="xtext:Assignment" feature="dbNotTables" operator="+=">
             <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
           </elements>
         </elements>
@@ -385,12 +391,18 @@
       <elements xsi:type="xtext:Assignment" cardinality="?" feature="generics" operator="?=">
         <terminal xsi:type="xtext:Keyword" value="&lt;>"/>
       </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+        <elements xsi:type="xtext:Assignment" feature="dbTables" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
+        </elements>
+      </elements>
       <elements xsi:type="xtext:Group" cardinality="?">
         <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
-        <elements xsi:type="xtext:Keyword" value="except"/>
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.92"/>
         <elements xsi:type="xtext:Group" cardinality="+">
           <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
-          <elements xsi:type="xtext:Assignment" feature="dbTables" operator="+=">
+          <elements xsi:type="xtext:Assignment" feature="dbNotTables" operator="+=">
             <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
           </elements>
         </elements>
@@ -1076,6 +1088,16 @@
             <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
           </elements>
         </elements>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.92"/>
+          <elements xsi:type="xtext:Group" cardinality="+">
+            <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+            <elements xsi:type="xtext:Assignment" feature="dbNotTables" operator="+=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
+            </elements>
+          </elements>
+        </elements>
       </elements>
       <elements xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="name" operator="=">
@@ -1268,11 +1290,47 @@
           </elements>
         </elements>
       </elements>
-      <elements xsi:type="xtext:Assignment" feature="name" operator="=">
-        <terminal xsi:type="xtext:Keyword" value="generate-sequences"/>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:Keyword" value="generate-sequences"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+          <elements xsi:type="xtext:Assignment" feature="dbTables" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.92"/>
+          <elements xsi:type="xtext:Group" cardinality="+">
+            <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+            <elements xsi:type="xtext:Assignment" feature="dbNotTables" operator="+=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
+            </elements>
+          </elements>
+        </elements>
       </elements>
-      <elements xsi:type="xtext:Assignment" feature="name" operator="=">
-        <terminal xsi:type="xtext:Keyword" value="generate-identities"/>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:Keyword" value="generate-identities"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+          <elements xsi:type="xtext:Assignment" feature="dbTables" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.92"/>
+          <elements xsi:type="xtext:Group" cardinality="+">
+            <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+            <elements xsi:type="xtext:Assignment" feature="dbNotTables" operator="+=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
+            </elements>
+          </elements>
+        </elements>
       </elements>
       <elements xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="name" operator="=">

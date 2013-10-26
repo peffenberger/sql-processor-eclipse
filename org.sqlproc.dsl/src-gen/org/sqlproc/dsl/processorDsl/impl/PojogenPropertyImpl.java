@@ -67,6 +67,7 @@ import org.sqlproc.dsl.processorDsl.TableAssignement;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getToExtends <em>To Extends</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getImplPackage <em>Impl Package</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getVersion <em>Version</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getDbNotTables <em>Db Not Tables</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getDebug <em>Debug</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getProcPojos <em>Proc Pojos</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getFunPojos <em>Fun Pojos</em>}</li>
@@ -386,6 +387,16 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected String version = VERSION_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getDbNotTables() <em>Db Not Tables</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDbNotTables()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> dbNotTables;
 
   /**
    * The cached value of the '{@link #getDebug() <em>Debug</em>}' containment reference.
@@ -905,6 +916,20 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<String> getDbNotTables()
+  {
+    if (dbNotTables == null)
+    {
+      dbNotTables = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.POJOGEN_PROPERTY__DB_NOT_TABLES);
+    }
+    return dbNotTables;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public DebugLevelAssignement getDebug()
   {
     return debug;
@@ -1076,6 +1101,8 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return getImplPackage();
       case ProcessorDslPackage.POJOGEN_PROPERTY__VERSION:
         return getVersion();
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_NOT_TABLES:
+        return getDbNotTables();
       case ProcessorDslPackage.POJOGEN_PROPERTY__DEBUG:
         return getDebug();
       case ProcessorDslPackage.POJOGEN_PROPERTY__PROC_POJOS:
@@ -1179,6 +1206,10 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJOGEN_PROPERTY__VERSION:
         setVersion((String)newValue);
         return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_NOT_TABLES:
+        getDbNotTables().clear();
+        getDbNotTables().addAll((Collection<? extends String>)newValue);
+        return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__DEBUG:
         setDebug((DebugLevelAssignement)newValue);
         return;
@@ -1273,6 +1304,9 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJOGEN_PROPERTY__VERSION:
         setVersion(VERSION_EDEFAULT);
         return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_NOT_TABLES:
+        getDbNotTables().clear();
+        return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__DEBUG:
         setDebug((DebugLevelAssignement)null);
         return;
@@ -1342,6 +1376,8 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return IMPL_PACKAGE_EDEFAULT == null ? implPackage != null : !IMPL_PACKAGE_EDEFAULT.equals(implPackage);
       case ProcessorDslPackage.POJOGEN_PROPERTY__VERSION:
         return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_NOT_TABLES:
+        return dbNotTables != null && !dbNotTables.isEmpty();
       case ProcessorDslPackage.POJOGEN_PROPERTY__DEBUG:
         return debug != null;
       case ProcessorDslPackage.POJOGEN_PROPERTY__PROC_POJOS:
@@ -1385,6 +1421,8 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
     result.append(implPackage);
     result.append(", version: ");
     result.append(version);
+    result.append(", dbNotTables: ");
+    result.append(dbNotTables);
     result.append(')');
     return result.toString();
   }

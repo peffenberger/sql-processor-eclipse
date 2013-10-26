@@ -146,4 +146,14 @@ public interface ModelProperty extends Adapter {
     Map<String, String> getReplaceAll(EObject model);
 
     boolean isDoGenerateValidationAnnotations(EObject model);
+
+    Map<String, String> getNotVersionColumns(EObject model);
+
+    Set<String> getMetaGenerateSequencesForTables(EObject model);
+
+    Set<String> getMetaGenerateSequencesNotForTables(EObject model);
+
+    Set<String> getMetaGenerateIdentitiesForTables(EObject model);
+
+    Set<String> getMetaGenerateIdentitiesNotForTables(EObject model);
 }

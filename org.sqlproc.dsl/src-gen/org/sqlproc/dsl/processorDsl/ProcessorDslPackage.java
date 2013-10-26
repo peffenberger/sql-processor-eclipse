@@ -888,13 +888,22 @@ public interface ProcessorDslPackage extends EPackage
   int IMPLEMENTS_ASSIGNEMENT__DB_TABLES = 2;
 
   /**
+   * The feature id for the '<em><b>Db Not Tables</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLEMENTS_ASSIGNEMENT__DB_NOT_TABLES = 3;
+
+  /**
    * The number of structural features of the '<em>Implements Assignement</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IMPLEMENTS_ASSIGNEMENT_FEATURE_COUNT = 3;
+  int IMPLEMENTS_ASSIGNEMENT_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementImpl <em>Extends Assignement</em>}' class.
@@ -934,13 +943,22 @@ public interface ProcessorDslPackage extends EPackage
   int EXTENDS_ASSIGNEMENT__DB_TABLES = 2;
 
   /**
+   * The feature id for the '<em><b>Db Not Tables</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTENDS_ASSIGNEMENT__DB_NOT_TABLES = 3;
+
+  /**
    * The number of structural features of the '<em>Extends Assignement</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXTENDS_ASSIGNEMENT_FEATURE_COUNT = 3;
+  int EXTENDS_ASSIGNEMENT_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PropertyImpl <em>Property</em>}' class.
@@ -1414,13 +1432,22 @@ public interface ProcessorDslPackage extends EPackage
   int POJOGEN_PROPERTY__VERSION = 22;
 
   /**
+   * The feature id for the '<em><b>Db Not Tables</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJOGEN_PROPERTY__DB_NOT_TABLES = 23;
+
+  /**
    * The feature id for the '<em><b>Debug</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__DEBUG = 23;
+  int POJOGEN_PROPERTY__DEBUG = 24;
 
   /**
    * The feature id for the '<em><b>Proc Pojos</b></em>' containment reference list.
@@ -1429,7 +1456,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__PROC_POJOS = 24;
+  int POJOGEN_PROPERTY__PROC_POJOS = 25;
 
   /**
    * The feature id for the '<em><b>Fun Pojos</b></em>' containment reference list.
@@ -1438,7 +1465,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__FUN_POJOS = 25;
+  int POJOGEN_PROPERTY__FUN_POJOS = 26;
 
   /**
    * The number of structural features of the '<em>Pojogen Property</em>' class.
@@ -1447,7 +1474,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY_FEATURE_COUNT = 26;
+  int POJOGEN_PROPERTY_FEATURE_COUNT = 27;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.MetaTypeAssignementImpl <em>Meta Type Assignement</em>}' class.
@@ -1578,13 +1605,31 @@ public interface ProcessorDslPackage extends EPackage
   int METAGEN_PROPERTY__DB_COLUMNS = 7;
 
   /**
+   * The feature id for the '<em><b>Db Tables</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METAGEN_PROPERTY__DB_TABLES = 8;
+
+  /**
+   * The feature id for the '<em><b>Db Not Tables</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METAGEN_PROPERTY__DB_NOT_TABLES = 9;
+
+  /**
    * The feature id for the '<em><b>Db Function</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY__DB_FUNCTION = 8;
+  int METAGEN_PROPERTY__DB_FUNCTION = 10;
 
   /**
    * The feature id for the '<em><b>Db Procedure</b></em>' attribute.
@@ -1593,7 +1638,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY__DB_PROCEDURE = 9;
+  int METAGEN_PROPERTY__DB_PROCEDURE = 11;
 
   /**
    * The feature id for the '<em><b>Debug</b></em>' containment reference.
@@ -1602,16 +1647,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY__DEBUG = 10;
-
-  /**
-   * The feature id for the '<em><b>Db Tables</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int METAGEN_PROPERTY__DB_TABLES = 11;
+  int METAGEN_PROPERTY__DEBUG = 12;
 
   /**
    * The feature id for the '<em><b>Optional Features</b></em>' attribute list.
@@ -1620,7 +1656,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY__OPTIONAL_FEATURES = 12;
+  int METAGEN_PROPERTY__OPTIONAL_FEATURES = 13;
 
   /**
    * The number of structural features of the '<em>Metagen Property</em>' class.
@@ -1629,7 +1665,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY_FEATURE_COUNT = 13;
+  int METAGEN_PROPERTY_FEATURE_COUNT = 14;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl <em>Daogen Property</em>}' class.
@@ -5213,6 +5249,17 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getImplementsAssignement_DbTables();
 
   /**
+   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.ImplementsAssignement#getDbNotTables <em>Db Not Tables</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Db Not Tables</em>'.
+   * @see org.sqlproc.dsl.processorDsl.ImplementsAssignement#getDbNotTables()
+   * @see #getImplementsAssignement()
+   * @generated
+   */
+  EAttribute getImplementsAssignement_DbNotTables();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement <em>Extends Assignement</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5254,6 +5301,17 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EAttribute getExtendsAssignement_DbTables();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#getDbNotTables <em>Db Not Tables</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Db Not Tables</em>'.
+   * @see org.sqlproc.dsl.processorDsl.ExtendsAssignement#getDbNotTables()
+   * @see #getExtendsAssignement()
+   * @generated
+   */
+  EAttribute getExtendsAssignement_DbNotTables();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.Property <em>Property</em>}'.
@@ -5803,6 +5861,17 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getPojogenProperty_Version();
 
   /**
+   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDbNotTables <em>Db Not Tables</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Db Not Tables</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojogenProperty#getDbNotTables()
+   * @see #getPojogenProperty()
+   * @generated
+   */
+  EAttribute getPojogenProperty_DbNotTables();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDebug <em>Debug</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5977,6 +6046,28 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getMetagenProperty_DbColumns();
 
   /**
+   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbTables <em>Db Tables</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Db Tables</em>'.
+   * @see org.sqlproc.dsl.processorDsl.MetagenProperty#getDbTables()
+   * @see #getMetagenProperty()
+   * @generated
+   */
+  EAttribute getMetagenProperty_DbTables();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbNotTables <em>Db Not Tables</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Db Not Tables</em>'.
+   * @see org.sqlproc.dsl.processorDsl.MetagenProperty#getDbNotTables()
+   * @see #getMetagenProperty()
+   * @generated
+   */
+  EAttribute getMetagenProperty_DbNotTables();
+
+  /**
    * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbFunction <em>Db Function</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6008,17 +6099,6 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EReference getMetagenProperty_Debug();
-
-  /**
-   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbTables <em>Db Tables</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Db Tables</em>'.
-   * @see org.sqlproc.dsl.processorDsl.MetagenProperty#getDbTables()
-   * @see #getMetagenProperty()
-   * @generated
-   */
-  EAttribute getMetagenProperty_DbTables();
 
   /**
    * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getOptionalFeatures <em>Optional Features</em>}'.
@@ -9315,6 +9395,14 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute IMPLEMENTS_ASSIGNEMENT__DB_TABLES = eINSTANCE.getImplementsAssignement_DbTables();
 
     /**
+     * The meta object literal for the '<em><b>Db Not Tables</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IMPLEMENTS_ASSIGNEMENT__DB_NOT_TABLES = eINSTANCE.getImplementsAssignement_DbNotTables();
+
+    /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementImpl <em>Extends Assignement</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9347,6 +9435,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute EXTENDS_ASSIGNEMENT__DB_TABLES = eINSTANCE.getExtendsAssignement_DbTables();
+
+    /**
+     * The meta object literal for the '<em><b>Db Not Tables</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXTENDS_ASSIGNEMENT__DB_NOT_TABLES = eINSTANCE.getExtendsAssignement_DbNotTables();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PropertyImpl <em>Property</em>}' class.
@@ -9755,6 +9851,14 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute POJOGEN_PROPERTY__VERSION = eINSTANCE.getPojogenProperty_Version();
 
     /**
+     * The meta object literal for the '<em><b>Db Not Tables</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJOGEN_PROPERTY__DB_NOT_TABLES = eINSTANCE.getPojogenProperty_DbNotTables();
+
+    /**
      * The meta object literal for the '<em><b>Debug</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9887,6 +9991,22 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute METAGEN_PROPERTY__DB_COLUMNS = eINSTANCE.getMetagenProperty_DbColumns();
 
     /**
+     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute METAGEN_PROPERTY__DB_TABLES = eINSTANCE.getMetagenProperty_DbTables();
+
+    /**
+     * The meta object literal for the '<em><b>Db Not Tables</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute METAGEN_PROPERTY__DB_NOT_TABLES = eINSTANCE.getMetagenProperty_DbNotTables();
+
+    /**
      * The meta object literal for the '<em><b>Db Function</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9909,14 +10029,6 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference METAGEN_PROPERTY__DEBUG = eINSTANCE.getMetagenProperty_Debug();
-
-    /**
-     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__DB_TABLES = eINSTANCE.getMetagenProperty_DbTables();
 
     /**
      * The meta object literal for the '<em><b>Optional Features</b></em>' attribute list feature.

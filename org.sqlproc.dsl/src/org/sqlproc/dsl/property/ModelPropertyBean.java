@@ -190,6 +190,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public boolean makeItFinal;
         public String versionColumn;
         public Map<String, String> versionColumns;
+        public Map<String, String> notVersionColumns;
         public Level debugLevel;
         public Set<String> preserveForeignKeys;
         public Map<String, PojoType> pojosForProcedures;
@@ -205,7 +206,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, Set<String>> metaLikeColumns;
         public Map<String, Set<String>> metaNotLikeColumns;
         public boolean metaGenerateSequences;
+        public Set<String> metaGenerateSequencesForTables;
+        public Set<String> metaGenerateSequencesNotForTables;
         public boolean metaGenerateIdentities;
+        public Set<String> metaGenerateIdentitiesForTables;
+        public Set<String> metaGenerateIdentitiesNotForTables;
         public Map<String, String> metaFunctionsResult;
         public Map<String, String> metaFunctionsResultSet;
         public Map<String, String> metaProceduresResultSet;
@@ -411,6 +416,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.makeItFinal = false;
         modelValues.versionColumn = null;
         modelValues.versionColumns = new HashMap<String, String>();
+        modelValues.notVersionColumns = new HashMap<String, String>();
         modelValues.debugLevel = null;
         modelValues.preserveForeignKeys = new HashSet<String>();
         modelValues.pojosForProcedures = new HashMap<String, PojoType>();
@@ -428,7 +434,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.metaLikeColumns = new HashMap<String, Set<String>>();
         modelValues.metaNotLikeColumns = new HashMap<String, Set<String>>();
         modelValues.metaGenerateSequences = false;
+        modelValues.metaGenerateSequencesForTables = new HashSet<String>();
+        modelValues.metaGenerateSequencesNotForTables = new HashSet<String>();
         modelValues.metaGenerateIdentities = false;
+        modelValues.metaGenerateIdentitiesForTables = new HashSet<String>();
+        modelValues.metaGenerateIdentitiesNotForTables = new HashSet<String>();
         modelValues.metaFunctionsResult = new HashMap<String, String>();
         modelValues.metaFunctionsResultSet = new HashMap<String, String>();
         modelValues.metaProceduresResultSet = new HashMap<String, String>();
@@ -750,12 +760,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             // modelValues.toImplements = new HashMap<String, JvmType>();
             for (int i = 0, m = property.getToImplements().size(); i < m; i++) {
                 ImplementsExtends ie = new ImplementsExtends(property.getToImplements().get(i).getToImplement(),
-                        property.getToImplements().get(i).isGenerics(), property.getToImplements().get(i).getDbTables());
+                        property.getToImplements().get(i).isGenerics(),
+                        property.getToImplements().get(i).getDbTables(), property.getToImplements().get(i)
+                                .getDbNotTables());
                 modelValues.toImplements.put(property.getToImplements().get(i).getToImplement().getIdentifier(), ie);
             }
         } else if (POJOGEN_EXTENDS_CLASS.equals(property.getName())) {
             ImplementsExtends ie = new ImplementsExtends(property.getToExtends().getToExtends(), property
-                    .getToExtends().isGenerics(), property.getToExtends().getDbTables());
+                    .getToExtends().isGenerics(), property.getToExtends().getDbTables(), property.getToExtends()
+                    .getDbNotTables());
             modelValues.toExtends = ie;
         } else if (POJOGEN_JOIN_TABLES.equals(property.getName())) {
             // if (modelValues.joinTables == null)
@@ -778,11 +791,19 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.makeItFinal = true;
         } else if (POJOGEN_VERSION_COLUMN.equals(property.getName())) {
             String versionColumn = property.getVersion();
-            if (property.getDbTables() == null || property.getDbTables().isEmpty()) {
+            if ((property.getDbTables() == null || property.getDbTables().isEmpty())
+                    && (property.getDbNotTables() == null || property.getDbNotTables().isEmpty())) {
                 modelValues.versionColumn = versionColumn;
             } else {
-                for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
-                    modelValues.versionColumns.put(property.getDbTables().get(i), versionColumn);
+                if (property.getDbTables() != null) {
+                    for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
+                        modelValues.versionColumns.put(property.getDbTables().get(i), versionColumn);
+                    }
+                }
+                if (property.getDbNotTables() != null) {
+                    for (int i = 0, m = property.getDbNotTables().size(); i < m; i++) {
+                        modelValues.notVersionColumns.put(property.getDbNotTables().get(i), versionColumn);
+                    }
                 }
             }
         } else if (POJOGEN_DEBUG_LEVEL.equals(property.getName())) {
@@ -854,8 +875,20 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             }
         } else if (METAGEN_GENERATE_SEQUENCES.equals(property.getName())) {
             modelValues.metaGenerateSequences = true;
+            if (property.getDbTables() != null) {
+                modelValues.metaGenerateSequencesForTables.addAll(property.getDbTables());
+            }
+            if (property.getDbNotTables() != null) {
+                modelValues.metaGenerateSequencesNotForTables.addAll(property.getDbNotTables());
+            }
         } else if (METAGEN_GENERATE_IDENTITIES.equals(property.getName())) {
             modelValues.metaGenerateIdentities = true;
+            if (property.getDbTables() != null) {
+                modelValues.metaGenerateIdentitiesForTables.addAll(property.getDbTables());
+            }
+            if (property.getDbNotTables() != null) {
+                modelValues.metaGenerateIdentitiesNotForTables.addAll(property.getDbNotTables());
+            }
         } else if (METAGEN_FUNCTION_RESULT.equals(property.getName())) {
             modelValues.metaFunctionsResult.put(property.getDbFunction(), property.getType());
         } else if (METAGEN_FUNCTION_RESULT_SET.equals(property.getName())) {
@@ -901,12 +934,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         } else if (DAOGEN_IMPLEMENTS_INTERFACES.equals(property.getName())) {
             for (int i = 0, m = property.getToImplements().size(); i < m; i++) {
                 ImplementsExtends ie = new ImplementsExtends(property.getToImplements().get(i).getToImplement(),
-                        property.getToImplements().get(i).isGenerics(), property.getToImplements().get(i).getDbTables());
+                        property.getToImplements().get(i).isGenerics(),
+                        property.getToImplements().get(i).getDbTables(), property.getToImplements().get(i)
+                                .getDbNotTables());
                 modelValues.daoToImplements.put(property.getToImplements().get(i).getToImplement().getIdentifier(), ie);
             }
         } else if (DAOGEN_EXTENDS_CLASS.equals(property.getName())) {
             ImplementsExtends ie = new ImplementsExtends(property.getToExtends().getToExtends(), property
-                    .getToExtends().isGenerics(), property.getToExtends().getDbTables());
+                    .getToExtends().isGenerics(), property.getToExtends().getDbTables(), property.getToExtends()
+                    .getDbNotTables());
             modelValues.daoToExtends = ie;
         } else if (DAOGEN_MAKE_IT_FINAL.equals(property.getName())) {
             modelValues.daoMakeItFinal = true;
@@ -1155,6 +1191,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
+    public Map<String, String> getNotVersionColumns(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.notVersionColumns : Collections.<String, String> emptyMap();
+    }
+
+    @Override
     public Level getDebugLevel(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.debugLevel : null;
@@ -1241,9 +1283,33 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
+    public Set<String> getMetaGenerateSequencesForTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGenerateSequencesForTables : Collections.<String> emptySet();
+    }
+
+    @Override
+    public Set<String> getMetaGenerateSequencesNotForTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGenerateSequencesNotForTables : Collections.<String> emptySet();
+    }
+
+    @Override
     public boolean isMetaGenerateIdentities(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.metaGenerateIdentities : false;
+    }
+
+    @Override
+    public Set<String> getMetaGenerateIdentitiesForTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGenerateIdentitiesForTables : Collections.<String> emptySet();
+    }
+
+    @Override
+    public Set<String> getMetaGenerateIdentitiesNotForTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGenerateIdentitiesNotForTables : Collections.<String> emptySet();
     }
 
     @Override

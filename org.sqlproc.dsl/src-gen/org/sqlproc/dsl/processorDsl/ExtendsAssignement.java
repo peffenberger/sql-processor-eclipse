@@ -19,6 +19,7 @@ import org.eclipse.xtext.common.types.JvmType;
  *   <li>{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#getToExtends <em>To Extends</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#isGenerics <em>Generics</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#getDbTables <em>Db Tables</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#getDbNotTables <em>Db Not Tables</em>}</li>
  * </ul>
  * </p>
  *
@@ -95,5 +96,21 @@ public interface ExtendsAssignement extends EObject
    * @generated
    */
   EList<String> getDbTables();
+
+  /**
+   * Returns the value of the '<em><b>Db Not Tables</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Db Not Tables</em>' attribute list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Db Not Tables</em>' attribute list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getExtendsAssignement_DbNotTables()
+   * @model unique="false"
+   * @generated
+   */
+  EList<String> getDbNotTables();
 
 } // ExtendsAssignement
