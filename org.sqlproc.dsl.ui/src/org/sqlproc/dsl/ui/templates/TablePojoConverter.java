@@ -855,9 +855,9 @@ public class TablePojoConverter {
                     buffer.append(NLINDENT).append("implements ").append(type.getIdentifier());
                     if (ie.isGenerics())
                         buffer.append(" <>");
-                    if (!ie.getDbTables().isEmpty()) {
+                    if (!ie.getDbNotTables().isEmpty()) {
                         buffer.append(" exceptPojos");
-                        for (String dbColumn : ie.getDbTables()) {
+                        for (String dbColumn : ie.getDbNotTables()) {
                             String pojoName = tableNames.get(dbColumn);
                             if (pojoName == null)
                                 pojoName = dbColumn;
