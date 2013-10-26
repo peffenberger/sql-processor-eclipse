@@ -371,11 +371,33 @@ def compileIsDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, Po
     «FOR a:ae.conflictAnnotations»
     @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
+    public «e.name» _setNull(Attribute... attributes) {
+      setNull(attributes);
+      return this;
+    }
+
+    «FOR a:aaf.attributeAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
+    «FOR a:ae.conflictAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public void clearNull(Attribute... attributes) {
       if (attributes == null)
         throw new IllegalArgumentException();
       for (Attribute attribute : attributes)
         nullValues.remove(attribute.name());
+    }
+
+    «FOR a:aaf.attributeAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
+    «FOR a:ae.conflictAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
+    public «e.name» _clearNull(Attribute... attributes) {
+      clearNull(attributes);
+      return this;
     }
 
     «FOR a:aaf.attributeAnnotations»
@@ -391,11 +413,27 @@ def compileIsDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, Po
     «FOR a:aaf.attributeAnnotations»
     @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
+    public «e.name» _setNull(String... attributes) {
+      setNull(attributes);
+      return this;
+    }
+
+    «FOR a:aaf.attributeAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public void clearNull(String... attributes) {
       if (attributes == null)
         throw new IllegalArgumentException();
       for (String attribute : attributes)
         nullValues.remove(attribute);
+    }
+
+    «FOR a:aaf.attributeAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
+    public «e.name» _clearNull(String... attributes) {
+      clearNull(attributes);
+      return this;
     }
 
     «FOR a:aaf.attributeAnnotations»
@@ -486,6 +524,17 @@ def compileToInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, P
       for (Association association : associations)
         initAssociations.add(association.name());
     }
+    
+    «FOR a:aaf.attributeAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
+    «FOR a:ae.conflictAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
+    public «e.name»  _setInit(Association... associations) {
+      setInit(associations);
+      return this;
+    }
 
     «FOR a:aaf.attributeAnnotations»
     @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
@@ -503,6 +552,17 @@ def compileToInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, P
     «FOR a:aaf.attributeAnnotations»
     @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
+    «FOR a:ae.conflictAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
+    public «e.name» _clearInit(Association... associations) {
+      clearInit(associations);
+      return this;
+    }
+
+    «FOR a:aaf.attributeAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public void setInit(String... associations) {
       if (associations == null)
         throw new IllegalArgumentException();
@@ -513,11 +573,27 @@ def compileToInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, P
     «FOR a:aaf.attributeAnnotations»
     @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
+    public «e.name» _setInit(String... associations) {
+      setInit(associations);
+      return this;
+    }
+
+    «FOR a:aaf.attributeAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public void clearInit(String... associations) {
       if (associations == null)
         throw new IllegalArgumentException();
       for (String association : associations)
         initAssociations.remove(association);
+    }
+
+    «FOR a:aaf.attributeAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
+    public «e.name» _clearInit(String... associations) {
+      clearInit(associations);
+      return this;
     }
 
     «FOR a:aaf.attributeAnnotations»
@@ -572,11 +648,27 @@ def compileOperators(ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
     «FOR a:ae.conflictAnnotations»
     @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
+    public «e.name» _setOp(String operator, OpAttribute... attributes) {
+      setOp(operator, attributes);
+      return this;
+    }
+
+    «FOR a:ae.conflictAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
     public void clearOp(OpAttribute... attributes) {
       if (attributes == null)
         throw new IllegalArgumentException();
       for (OpAttribute attribute : attributes)
         operators.remove(attribute.name());
+    }
+
+    «FOR a:ae.conflictAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
+    public «e.name» _clearOp(OpAttribute... attributes) {
+      clearOp(attributes);
+      return this;
     }
 
     public void setOp(String operator, String... attributes) {
@@ -586,11 +678,21 @@ def compileOperators(ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
         operators.put(attribute, operator);
     }
 
+    public «e.name» _setOp(String operator, String... attributes) {
+      setOp(operator, attributes);
+      return this;
+    }
+
     public void clearOp(String... attributes) {
       if (attributes == null)
         throw new IllegalArgumentException();
       for (String attribute : attributes)
         operators.remove(attribute);
+    }
+
+    public «e.name» _clearOp(String... attributes) {
+      clearOp(attributes);
+      return this;
     }
 
     «FOR a:ae.conflictAnnotations»
@@ -603,11 +705,24 @@ def compileOperators(ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
         operators.put(attribute.name(), "is null");
     }
 
+    «FOR a:ae.conflictAnnotations»
+    @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
+    «ENDFOR»
+    public «e.name» _setNullOp(OpAttribute... attributes) {
+      setNullOp(attributes);
+      return this;
+    }
+
     public void setNullOp(String... attributes) {
       if (attributes == null)
         throw new IllegalArgumentException();
       for (String attribute : attributes)
         operators.put(attribute, "is null");
+    }
+
+    public «e.name» _setNullOp(String... attributes) {
+      setNullOp(attributes);
+      return this;
     }
 
     public void clearAllOps() {

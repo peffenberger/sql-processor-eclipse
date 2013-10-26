@@ -1933,19 +1933,16 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("public void clearNull(Attribute... attributes) {");
+    _builder.append("public ");
+    String _name_1 = e.getName();
+    _builder.append(_name_1, "");
+    _builder.append(" _setNull(Attribute... attributes) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("setNull(attributes);");
     _builder.newLine();
     _builder.append("  ");
-    _builder.append("if (attributes == null)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("throw new IllegalArgumentException();");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("for (Attribute attribute : attributes)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("nullValues.remove(attribute.name());");
+    _builder.append("return this;");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
@@ -1982,6 +1979,165 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    {
+      EList<Annotation> _conflictAnnotations_2 = ae.getConflictAnnotations();
+      for(final Annotation a_6 : _conflictAnnotations_2) {
+        _builder.append("@");
+        JvmType _type_6 = a_6.getType();
+        CharSequence _serialize_6 = im.serialize(_type_6);
+        _builder.append(_serialize_6, "");
+        {
+          EList<AnnotationProperty> _features_12 = a_6.getFeatures();
+          boolean _isEmpty_6 = _features_12.isEmpty();
+          boolean _not_6 = (!_isEmpty_6);
+          if (_not_6) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_13 = a_6.getFeatures();
+              boolean _hasElements_7 = false;
+              for(final AnnotationProperty ff_2 : _features_13) {
+                if (!_hasElements_7) {
+                  _hasElements_7 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_6 = this.compileAnnotationProperty(ff_2, im);
+                _builder.append(_compileAnnotationProperty_6, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("public void clearNull(Attribute... attributes) {");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("if (attributes == null)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("throw new IllegalArgumentException();");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("for (Attribute attribute : attributes)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("nullValues.remove(attribute.name());");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      EList<Annotation> _attributeAnnotations_4 = aaf.getAttributeAnnotations();
+      for(final Annotation a_7 : _attributeAnnotations_4) {
+        _builder.append("@");
+        JvmType _type_7 = a_7.getType();
+        CharSequence _serialize_7 = im.serialize(_type_7);
+        _builder.append(_serialize_7, "");
+        {
+          EList<AnnotationProperty> _features_14 = a_7.getFeatures();
+          boolean _isEmpty_7 = _features_14.isEmpty();
+          boolean _not_7 = (!_isEmpty_7);
+          if (_not_7) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_15 = a_7.getFeatures();
+              boolean _hasElements_8 = false;
+              for(final AnnotationProperty af_4 : _features_15) {
+                if (!_hasElements_8) {
+                  _hasElements_8 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_7 = this.compileAnnotationProperty(af_4, im);
+                _builder.append(_compileAnnotationProperty_7, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<Annotation> _conflictAnnotations_3 = ae.getConflictAnnotations();
+      for(final Annotation a_8 : _conflictAnnotations_3) {
+        _builder.append("@");
+        JvmType _type_8 = a_8.getType();
+        CharSequence _serialize_8 = im.serialize(_type_8);
+        _builder.append(_serialize_8, "");
+        {
+          EList<AnnotationProperty> _features_16 = a_8.getFeatures();
+          boolean _isEmpty_8 = _features_16.isEmpty();
+          boolean _not_8 = (!_isEmpty_8);
+          if (_not_8) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_17 = a_8.getFeatures();
+              boolean _hasElements_9 = false;
+              for(final AnnotationProperty ff_3 : _features_17) {
+                if (!_hasElements_9) {
+                  _hasElements_9 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_8 = this.compileAnnotationProperty(ff_3, im);
+                _builder.append(_compileAnnotationProperty_8, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("public ");
+    String _name_2 = e.getName();
+    _builder.append(_name_2, "");
+    _builder.append(" _clearNull(Attribute... attributes) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("clearNull(attributes);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      EList<Annotation> _attributeAnnotations_5 = aaf.getAttributeAnnotations();
+      for(final Annotation a_9 : _attributeAnnotations_5) {
+        _builder.append("@");
+        JvmType _type_9 = a_9.getType();
+        CharSequence _serialize_9 = im.serialize(_type_9);
+        _builder.append(_serialize_9, "");
+        {
+          EList<AnnotationProperty> _features_18 = a_9.getFeatures();
+          boolean _isEmpty_9 = _features_18.isEmpty();
+          boolean _not_9 = (!_isEmpty_9);
+          if (_not_9) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_19 = a_9.getFeatures();
+              boolean _hasElements_10 = false;
+              for(final AnnotationProperty af_5 : _features_19) {
+                if (!_hasElements_10) {
+                  _hasElements_10 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_9 = this.compileAnnotationProperty(af_5, im);
+                _builder.append(_compileAnnotationProperty_9, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("public void setNull(String... attributes) {");
     _builder.newLine();
     _builder.append("  ");
@@ -2000,29 +2156,75 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_4 = aaf.getAttributeAnnotations();
-      for(final Annotation a_6 : _attributeAnnotations_4) {
+      EList<Annotation> _attributeAnnotations_6 = aaf.getAttributeAnnotations();
+      for(final Annotation a_10 : _attributeAnnotations_6) {
         _builder.append("@");
-        JvmType _type_6 = a_6.getType();
-        CharSequence _serialize_6 = im.serialize(_type_6);
-        _builder.append(_serialize_6, "");
+        JvmType _type_10 = a_10.getType();
+        CharSequence _serialize_10 = im.serialize(_type_10);
+        _builder.append(_serialize_10, "");
         {
-          EList<AnnotationProperty> _features_12 = a_6.getFeatures();
-          boolean _isEmpty_6 = _features_12.isEmpty();
-          boolean _not_6 = (!_isEmpty_6);
-          if (_not_6) {
+          EList<AnnotationProperty> _features_20 = a_10.getFeatures();
+          boolean _isEmpty_10 = _features_20.isEmpty();
+          boolean _not_10 = (!_isEmpty_10);
+          if (_not_10) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_13 = a_6.getFeatures();
-              boolean _hasElements_7 = false;
-              for(final AnnotationProperty af_4 : _features_13) {
-                if (!_hasElements_7) {
-                  _hasElements_7 = true;
+              EList<AnnotationProperty> _features_21 = a_10.getFeatures();
+              boolean _hasElements_11 = false;
+              for(final AnnotationProperty af_6 : _features_21) {
+                if (!_hasElements_11) {
+                  _hasElements_11 = true;
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_6 = this.compileAnnotationProperty(af_4, im);
-                _builder.append(_compileAnnotationProperty_6, "");
+                CharSequence _compileAnnotationProperty_10 = this.compileAnnotationProperty(af_6, im);
+                _builder.append(_compileAnnotationProperty_10, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("public ");
+    String _name_3 = e.getName();
+    _builder.append(_name_3, "");
+    _builder.append(" _setNull(String... attributes) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("setNull(attributes);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      EList<Annotation> _attributeAnnotations_7 = aaf.getAttributeAnnotations();
+      for(final Annotation a_11 : _attributeAnnotations_7) {
+        _builder.append("@");
+        JvmType _type_11 = a_11.getType();
+        CharSequence _serialize_11 = im.serialize(_type_11);
+        _builder.append(_serialize_11, "");
+        {
+          EList<AnnotationProperty> _features_22 = a_11.getFeatures();
+          boolean _isEmpty_11 = _features_22.isEmpty();
+          boolean _not_11 = (!_isEmpty_11);
+          if (_not_11) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_23 = a_11.getFeatures();
+              boolean _hasElements_12 = false;
+              for(final AnnotationProperty af_7 : _features_23) {
+                if (!_hasElements_12) {
+                  _hasElements_12 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_11 = this.compileAnnotationProperty(af_7, im);
+                _builder.append(_compileAnnotationProperty_11, "");
               }
             }
             _builder.append(")");
@@ -2049,29 +2251,75 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_5 = aaf.getAttributeAnnotations();
-      for(final Annotation a_7 : _attributeAnnotations_5) {
+      EList<Annotation> _attributeAnnotations_8 = aaf.getAttributeAnnotations();
+      for(final Annotation a_12 : _attributeAnnotations_8) {
         _builder.append("@");
-        JvmType _type_7 = a_7.getType();
-        CharSequence _serialize_7 = im.serialize(_type_7);
-        _builder.append(_serialize_7, "");
+        JvmType _type_12 = a_12.getType();
+        CharSequence _serialize_12 = im.serialize(_type_12);
+        _builder.append(_serialize_12, "");
         {
-          EList<AnnotationProperty> _features_14 = a_7.getFeatures();
-          boolean _isEmpty_7 = _features_14.isEmpty();
-          boolean _not_7 = (!_isEmpty_7);
-          if (_not_7) {
+          EList<AnnotationProperty> _features_24 = a_12.getFeatures();
+          boolean _isEmpty_12 = _features_24.isEmpty();
+          boolean _not_12 = (!_isEmpty_12);
+          if (_not_12) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_15 = a_7.getFeatures();
-              boolean _hasElements_8 = false;
-              for(final AnnotationProperty af_5 : _features_15) {
-                if (!_hasElements_8) {
-                  _hasElements_8 = true;
+              EList<AnnotationProperty> _features_25 = a_12.getFeatures();
+              boolean _hasElements_13 = false;
+              for(final AnnotationProperty af_8 : _features_25) {
+                if (!_hasElements_13) {
+                  _hasElements_13 = true;
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_7 = this.compileAnnotationProperty(af_5, im);
-                _builder.append(_compileAnnotationProperty_7, "");
+                CharSequence _compileAnnotationProperty_12 = this.compileAnnotationProperty(af_8, im);
+                _builder.append(_compileAnnotationProperty_12, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("public ");
+    String _name_4 = e.getName();
+    _builder.append(_name_4, "");
+    _builder.append(" _clearNull(String... attributes) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("clearNull(attributes);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      EList<Annotation> _attributeAnnotations_9 = aaf.getAttributeAnnotations();
+      for(final Annotation a_13 : _attributeAnnotations_9) {
+        _builder.append("@");
+        JvmType _type_13 = a_13.getType();
+        CharSequence _serialize_13 = im.serialize(_type_13);
+        _builder.append(_serialize_13, "");
+        {
+          EList<AnnotationProperty> _features_26 = a_13.getFeatures();
+          boolean _isEmpty_13 = _features_26.isEmpty();
+          boolean _not_13 = (!_isEmpty_13);
+          if (_not_13) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_27 = a_13.getFeatures();
+              boolean _hasElements_14 = false;
+              for(final AnnotationProperty af_9 : _features_27) {
+                if (!_hasElements_14) {
+                  _hasElements_14 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_13 = this.compileAnnotationProperty(af_9, im);
+                _builder.append(_compileAnnotationProperty_13, "");
               }
             }
             _builder.append(")");
@@ -2095,29 +2343,29 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_6 = aaf.getAttributeAnnotations();
-      for(final Annotation a_8 : _attributeAnnotations_6) {
+      EList<Annotation> _attributeAnnotations_10 = aaf.getAttributeAnnotations();
+      for(final Annotation a_14 : _attributeAnnotations_10) {
         _builder.append("@");
-        JvmType _type_8 = a_8.getType();
-        CharSequence _serialize_8 = im.serialize(_type_8);
-        _builder.append(_serialize_8, "");
+        JvmType _type_14 = a_14.getType();
+        CharSequence _serialize_14 = im.serialize(_type_14);
+        _builder.append(_serialize_14, "");
         {
-          EList<AnnotationProperty> _features_16 = a_8.getFeatures();
-          boolean _isEmpty_8 = _features_16.isEmpty();
-          boolean _not_8 = (!_isEmpty_8);
-          if (_not_8) {
+          EList<AnnotationProperty> _features_28 = a_14.getFeatures();
+          boolean _isEmpty_14 = _features_28.isEmpty();
+          boolean _not_14 = (!_isEmpty_14);
+          if (_not_14) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_17 = a_8.getFeatures();
-              boolean _hasElements_9 = false;
-              for(final AnnotationProperty af_6 : _features_17) {
-                if (!_hasElements_9) {
-                  _hasElements_9 = true;
+              EList<AnnotationProperty> _features_29 = a_14.getFeatures();
+              boolean _hasElements_15 = false;
+              for(final AnnotationProperty af_10 : _features_29) {
+                if (!_hasElements_15) {
+                  _hasElements_15 = true;
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_8 = this.compileAnnotationProperty(af_6, im);
-                _builder.append(_compileAnnotationProperty_8, "");
+                CharSequence _compileAnnotationProperty_14 = this.compileAnnotationProperty(af_10, im);
+                _builder.append(_compileAnnotationProperty_14, "");
               }
             }
             _builder.append(")");
@@ -2127,29 +2375,29 @@ public class ProcessorDslGenerator implements IGenerator {
       }
     }
     {
-      EList<Annotation> _conflictAnnotations_2 = ae.getConflictAnnotations();
-      for(final Annotation a_9 : _conflictAnnotations_2) {
+      EList<Annotation> _conflictAnnotations_4 = ae.getConflictAnnotations();
+      for(final Annotation a_15 : _conflictAnnotations_4) {
         _builder.append("@");
-        JvmType _type_9 = a_9.getType();
-        CharSequence _serialize_9 = im.serialize(_type_9);
-        _builder.append(_serialize_9, "");
+        JvmType _type_15 = a_15.getType();
+        CharSequence _serialize_15 = im.serialize(_type_15);
+        _builder.append(_serialize_15, "");
         {
-          EList<AnnotationProperty> _features_18 = a_9.getFeatures();
-          boolean _isEmpty_9 = _features_18.isEmpty();
-          boolean _not_9 = (!_isEmpty_9);
-          if (_not_9) {
+          EList<AnnotationProperty> _features_30 = a_15.getFeatures();
+          boolean _isEmpty_15 = _features_30.isEmpty();
+          boolean _not_15 = (!_isEmpty_15);
+          if (_not_15) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_19 = a_9.getFeatures();
-              boolean _hasElements_10 = false;
-              for(final AnnotationProperty ff_2 : _features_19) {
-                if (!_hasElements_10) {
-                  _hasElements_10 = true;
+              EList<AnnotationProperty> _features_31 = a_15.getFeatures();
+              boolean _hasElements_16 = false;
+              for(final AnnotationProperty ff_4 : _features_31) {
+                if (!_hasElements_16) {
+                  _hasElements_16 = true;
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_9 = this.compileAnnotationProperty(ff_2, im);
-                _builder.append(_compileAnnotationProperty_9, "");
+                CharSequence _compileAnnotationProperty_15 = this.compileAnnotationProperty(ff_4, im);
+                _builder.append(_compileAnnotationProperty_15, "");
               }
             }
             _builder.append(")");
@@ -2173,29 +2421,29 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_7 = aaf.getAttributeAnnotations();
-      for(final Annotation a_10 : _attributeAnnotations_7) {
+      EList<Annotation> _attributeAnnotations_11 = aaf.getAttributeAnnotations();
+      for(final Annotation a_16 : _attributeAnnotations_11) {
         _builder.append("@");
-        JvmType _type_10 = a_10.getType();
-        CharSequence _serialize_10 = im.serialize(_type_10);
-        _builder.append(_serialize_10, "");
+        JvmType _type_16 = a_16.getType();
+        CharSequence _serialize_16 = im.serialize(_type_16);
+        _builder.append(_serialize_16, "");
         {
-          EList<AnnotationProperty> _features_20 = a_10.getFeatures();
-          boolean _isEmpty_10 = _features_20.isEmpty();
-          boolean _not_10 = (!_isEmpty_10);
-          if (_not_10) {
+          EList<AnnotationProperty> _features_32 = a_16.getFeatures();
+          boolean _isEmpty_16 = _features_32.isEmpty();
+          boolean _not_16 = (!_isEmpty_16);
+          if (_not_16) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_21 = a_10.getFeatures();
-              boolean _hasElements_11 = false;
-              for(final AnnotationProperty af_7 : _features_21) {
-                if (!_hasElements_11) {
-                  _hasElements_11 = true;
+              EList<AnnotationProperty> _features_33 = a_16.getFeatures();
+              boolean _hasElements_17 = false;
+              for(final AnnotationProperty af_11 : _features_33) {
+                if (!_hasElements_17) {
+                  _hasElements_17 = true;
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_10 = this.compileAnnotationProperty(af_7, im);
-                _builder.append(_compileAnnotationProperty_10, "");
+                CharSequence _compileAnnotationProperty_16 = this.compileAnnotationProperty(af_11, im);
+                _builder.append(_compileAnnotationProperty_16, "");
               }
             }
             _builder.append(")");
@@ -2279,29 +2527,29 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_8 = aaf.getAttributeAnnotations();
-      for(final Annotation a_11 : _attributeAnnotations_8) {
+      EList<Annotation> _attributeAnnotations_12 = aaf.getAttributeAnnotations();
+      for(final Annotation a_17 : _attributeAnnotations_12) {
         _builder.append("@");
-        JvmType _type_11 = a_11.getType();
-        CharSequence _serialize_11 = im.serialize(_type_11);
-        _builder.append(_serialize_11, "");
+        JvmType _type_17 = a_17.getType();
+        CharSequence _serialize_17 = im.serialize(_type_17);
+        _builder.append(_serialize_17, "");
         {
-          EList<AnnotationProperty> _features_22 = a_11.getFeatures();
-          boolean _isEmpty_11 = _features_22.isEmpty();
-          boolean _not_11 = (!_isEmpty_11);
-          if (_not_11) {
+          EList<AnnotationProperty> _features_34 = a_17.getFeatures();
+          boolean _isEmpty_17 = _features_34.isEmpty();
+          boolean _not_17 = (!_isEmpty_17);
+          if (_not_17) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_23 = a_11.getFeatures();
-              boolean _hasElements_12 = false;
-              for(final AnnotationProperty af_8 : _features_23) {
-                if (!_hasElements_12) {
-                  _hasElements_12 = true;
+              EList<AnnotationProperty> _features_35 = a_17.getFeatures();
+              boolean _hasElements_18 = false;
+              for(final AnnotationProperty af_12 : _features_35) {
+                if (!_hasElements_18) {
+                  _hasElements_18 = true;
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_11 = this.compileAnnotationProperty(af_8, im);
-                _builder.append(_compileAnnotationProperty_11, "");
+                CharSequence _compileAnnotationProperty_17 = this.compileAnnotationProperty(af_12, im);
+                _builder.append(_compileAnnotationProperty_17, "");
               }
             }
             _builder.append(")");
@@ -2548,19 +2796,16 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("public void clearInit(Association... associations) {");
+    _builder.append("public ");
+    String _name_1 = e.getName();
+    _builder.append(_name_1, "");
+    _builder.append("  _setInit(Association... associations) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("setInit(associations);");
     _builder.newLine();
     _builder.append("  ");
-    _builder.append("if (associations == null)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("throw new IllegalArgumentException();");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("for (Association association : associations)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("initAssociations.remove(association.name());");
+    _builder.append("return this;");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
@@ -2597,6 +2842,165 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    {
+      EList<Annotation> _conflictAnnotations_2 = ae.getConflictAnnotations();
+      for(final Annotation a_6 : _conflictAnnotations_2) {
+        _builder.append("@");
+        JvmType _type_6 = a_6.getType();
+        CharSequence _serialize_6 = im.serialize(_type_6);
+        _builder.append(_serialize_6, "");
+        {
+          EList<AnnotationProperty> _features_12 = a_6.getFeatures();
+          boolean _isEmpty_6 = _features_12.isEmpty();
+          boolean _not_6 = (!_isEmpty_6);
+          if (_not_6) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_13 = a_6.getFeatures();
+              boolean _hasElements_7 = false;
+              for(final AnnotationProperty ff_2 : _features_13) {
+                if (!_hasElements_7) {
+                  _hasElements_7 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_6 = this.compileAnnotationProperty(ff_2, im);
+                _builder.append(_compileAnnotationProperty_6, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("public void clearInit(Association... associations) {");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("if (associations == null)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("throw new IllegalArgumentException();");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("for (Association association : associations)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("initAssociations.remove(association.name());");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      EList<Annotation> _attributeAnnotations_4 = aaf.getAttributeAnnotations();
+      for(final Annotation a_7 : _attributeAnnotations_4) {
+        _builder.append("@");
+        JvmType _type_7 = a_7.getType();
+        CharSequence _serialize_7 = im.serialize(_type_7);
+        _builder.append(_serialize_7, "");
+        {
+          EList<AnnotationProperty> _features_14 = a_7.getFeatures();
+          boolean _isEmpty_7 = _features_14.isEmpty();
+          boolean _not_7 = (!_isEmpty_7);
+          if (_not_7) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_15 = a_7.getFeatures();
+              boolean _hasElements_8 = false;
+              for(final AnnotationProperty af_4 : _features_15) {
+                if (!_hasElements_8) {
+                  _hasElements_8 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_7 = this.compileAnnotationProperty(af_4, im);
+                _builder.append(_compileAnnotationProperty_7, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<Annotation> _conflictAnnotations_3 = ae.getConflictAnnotations();
+      for(final Annotation a_8 : _conflictAnnotations_3) {
+        _builder.append("@");
+        JvmType _type_8 = a_8.getType();
+        CharSequence _serialize_8 = im.serialize(_type_8);
+        _builder.append(_serialize_8, "");
+        {
+          EList<AnnotationProperty> _features_16 = a_8.getFeatures();
+          boolean _isEmpty_8 = _features_16.isEmpty();
+          boolean _not_8 = (!_isEmpty_8);
+          if (_not_8) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_17 = a_8.getFeatures();
+              boolean _hasElements_9 = false;
+              for(final AnnotationProperty ff_3 : _features_17) {
+                if (!_hasElements_9) {
+                  _hasElements_9 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_8 = this.compileAnnotationProperty(ff_3, im);
+                _builder.append(_compileAnnotationProperty_8, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("public ");
+    String _name_2 = e.getName();
+    _builder.append(_name_2, "");
+    _builder.append(" _clearInit(Association... associations) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("clearInit(associations);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      EList<Annotation> _attributeAnnotations_5 = aaf.getAttributeAnnotations();
+      for(final Annotation a_9 : _attributeAnnotations_5) {
+        _builder.append("@");
+        JvmType _type_9 = a_9.getType();
+        CharSequence _serialize_9 = im.serialize(_type_9);
+        _builder.append(_serialize_9, "");
+        {
+          EList<AnnotationProperty> _features_18 = a_9.getFeatures();
+          boolean _isEmpty_9 = _features_18.isEmpty();
+          boolean _not_9 = (!_isEmpty_9);
+          if (_not_9) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_19 = a_9.getFeatures();
+              boolean _hasElements_10 = false;
+              for(final AnnotationProperty af_5 : _features_19) {
+                if (!_hasElements_10) {
+                  _hasElements_10 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_9 = this.compileAnnotationProperty(af_5, im);
+                _builder.append(_compileAnnotationProperty_9, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("public void setInit(String... associations) {");
     _builder.newLine();
     _builder.append("  ");
@@ -2615,29 +3019,75 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_4 = aaf.getAttributeAnnotations();
-      for(final Annotation a_6 : _attributeAnnotations_4) {
+      EList<Annotation> _attributeAnnotations_6 = aaf.getAttributeAnnotations();
+      for(final Annotation a_10 : _attributeAnnotations_6) {
         _builder.append("@");
-        JvmType _type_6 = a_6.getType();
-        CharSequence _serialize_6 = im.serialize(_type_6);
-        _builder.append(_serialize_6, "");
+        JvmType _type_10 = a_10.getType();
+        CharSequence _serialize_10 = im.serialize(_type_10);
+        _builder.append(_serialize_10, "");
         {
-          EList<AnnotationProperty> _features_12 = a_6.getFeatures();
-          boolean _isEmpty_6 = _features_12.isEmpty();
-          boolean _not_6 = (!_isEmpty_6);
-          if (_not_6) {
+          EList<AnnotationProperty> _features_20 = a_10.getFeatures();
+          boolean _isEmpty_10 = _features_20.isEmpty();
+          boolean _not_10 = (!_isEmpty_10);
+          if (_not_10) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_13 = a_6.getFeatures();
-              boolean _hasElements_7 = false;
-              for(final AnnotationProperty af_4 : _features_13) {
-                if (!_hasElements_7) {
-                  _hasElements_7 = true;
+              EList<AnnotationProperty> _features_21 = a_10.getFeatures();
+              boolean _hasElements_11 = false;
+              for(final AnnotationProperty af_6 : _features_21) {
+                if (!_hasElements_11) {
+                  _hasElements_11 = true;
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_6 = this.compileAnnotationProperty(af_4, im);
-                _builder.append(_compileAnnotationProperty_6, "");
+                CharSequence _compileAnnotationProperty_10 = this.compileAnnotationProperty(af_6, im);
+                _builder.append(_compileAnnotationProperty_10, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("public ");
+    String _name_3 = e.getName();
+    _builder.append(_name_3, "");
+    _builder.append(" _setInit(String... associations) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("setInit(associations);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      EList<Annotation> _attributeAnnotations_7 = aaf.getAttributeAnnotations();
+      for(final Annotation a_11 : _attributeAnnotations_7) {
+        _builder.append("@");
+        JvmType _type_11 = a_11.getType();
+        CharSequence _serialize_11 = im.serialize(_type_11);
+        _builder.append(_serialize_11, "");
+        {
+          EList<AnnotationProperty> _features_22 = a_11.getFeatures();
+          boolean _isEmpty_11 = _features_22.isEmpty();
+          boolean _not_11 = (!_isEmpty_11);
+          if (_not_11) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_23 = a_11.getFeatures();
+              boolean _hasElements_12 = false;
+              for(final AnnotationProperty af_7 : _features_23) {
+                if (!_hasElements_12) {
+                  _hasElements_12 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_11 = this.compileAnnotationProperty(af_7, im);
+                _builder.append(_compileAnnotationProperty_11, "");
               }
             }
             _builder.append(")");
@@ -2664,29 +3114,75 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_5 = aaf.getAttributeAnnotations();
-      for(final Annotation a_7 : _attributeAnnotations_5) {
+      EList<Annotation> _attributeAnnotations_8 = aaf.getAttributeAnnotations();
+      for(final Annotation a_12 : _attributeAnnotations_8) {
         _builder.append("@");
-        JvmType _type_7 = a_7.getType();
-        CharSequence _serialize_7 = im.serialize(_type_7);
-        _builder.append(_serialize_7, "");
+        JvmType _type_12 = a_12.getType();
+        CharSequence _serialize_12 = im.serialize(_type_12);
+        _builder.append(_serialize_12, "");
         {
-          EList<AnnotationProperty> _features_14 = a_7.getFeatures();
-          boolean _isEmpty_7 = _features_14.isEmpty();
-          boolean _not_7 = (!_isEmpty_7);
-          if (_not_7) {
+          EList<AnnotationProperty> _features_24 = a_12.getFeatures();
+          boolean _isEmpty_12 = _features_24.isEmpty();
+          boolean _not_12 = (!_isEmpty_12);
+          if (_not_12) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_15 = a_7.getFeatures();
-              boolean _hasElements_8 = false;
-              for(final AnnotationProperty af_5 : _features_15) {
-                if (!_hasElements_8) {
-                  _hasElements_8 = true;
+              EList<AnnotationProperty> _features_25 = a_12.getFeatures();
+              boolean _hasElements_13 = false;
+              for(final AnnotationProperty af_8 : _features_25) {
+                if (!_hasElements_13) {
+                  _hasElements_13 = true;
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_7 = this.compileAnnotationProperty(af_5, im);
-                _builder.append(_compileAnnotationProperty_7, "");
+                CharSequence _compileAnnotationProperty_12 = this.compileAnnotationProperty(af_8, im);
+                _builder.append(_compileAnnotationProperty_12, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("public ");
+    String _name_4 = e.getName();
+    _builder.append(_name_4, "");
+    _builder.append(" _clearInit(String... associations) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("clearInit(associations);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      EList<Annotation> _attributeAnnotations_9 = aaf.getAttributeAnnotations();
+      for(final Annotation a_13 : _attributeAnnotations_9) {
+        _builder.append("@");
+        JvmType _type_13 = a_13.getType();
+        CharSequence _serialize_13 = im.serialize(_type_13);
+        _builder.append(_serialize_13, "");
+        {
+          EList<AnnotationProperty> _features_26 = a_13.getFeatures();
+          boolean _isEmpty_13 = _features_26.isEmpty();
+          boolean _not_13 = (!_isEmpty_13);
+          if (_not_13) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_27 = a_13.getFeatures();
+              boolean _hasElements_14 = false;
+              for(final AnnotationProperty af_9 : _features_27) {
+                if (!_hasElements_14) {
+                  _hasElements_14 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_13 = this.compileAnnotationProperty(af_9, im);
+                _builder.append(_compileAnnotationProperty_13, "");
               }
             }
             _builder.append(")");
@@ -2710,29 +3206,29 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_6 = aaf.getAttributeAnnotations();
-      for(final Annotation a_8 : _attributeAnnotations_6) {
+      EList<Annotation> _attributeAnnotations_10 = aaf.getAttributeAnnotations();
+      for(final Annotation a_14 : _attributeAnnotations_10) {
         _builder.append("@");
-        JvmType _type_8 = a_8.getType();
-        CharSequence _serialize_8 = im.serialize(_type_8);
-        _builder.append(_serialize_8, "");
+        JvmType _type_14 = a_14.getType();
+        CharSequence _serialize_14 = im.serialize(_type_14);
+        _builder.append(_serialize_14, "");
         {
-          EList<AnnotationProperty> _features_16 = a_8.getFeatures();
-          boolean _isEmpty_8 = _features_16.isEmpty();
-          boolean _not_8 = (!_isEmpty_8);
-          if (_not_8) {
+          EList<AnnotationProperty> _features_28 = a_14.getFeatures();
+          boolean _isEmpty_14 = _features_28.isEmpty();
+          boolean _not_14 = (!_isEmpty_14);
+          if (_not_14) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_17 = a_8.getFeatures();
-              boolean _hasElements_9 = false;
-              for(final AnnotationProperty af_6 : _features_17) {
-                if (!_hasElements_9) {
-                  _hasElements_9 = true;
+              EList<AnnotationProperty> _features_29 = a_14.getFeatures();
+              boolean _hasElements_15 = false;
+              for(final AnnotationProperty af_10 : _features_29) {
+                if (!_hasElements_15) {
+                  _hasElements_15 = true;
                 } else {
                   _builder.appendImmediate(", ", "");
                 }
-                CharSequence _compileAnnotationProperty_8 = this.compileAnnotationProperty(af_6, im);
-                _builder.append(_compileAnnotationProperty_8, "");
+                CharSequence _compileAnnotationProperty_14 = this.compileAnnotationProperty(af_10, im);
+                _builder.append(_compileAnnotationProperty_14, "");
               }
             }
             _builder.append(")");
@@ -2932,53 +3428,16 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("public void clearOp(OpAttribute... attributes) {");
+    _builder.append("public ");
+    String _name_1 = e.getName();
+    _builder.append(_name_1, "");
+    _builder.append(" _setOp(String operator, OpAttribute... attributes) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("setOp(operator, attributes);");
     _builder.newLine();
     _builder.append("  ");
-    _builder.append("if (attributes == null)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("throw new IllegalArgumentException();");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("for (OpAttribute attribute : attributes)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("operators.remove(attribute.name());");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("public void setOp(String operator, String... attributes) {");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("if (attributes == null)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("throw new IllegalArgumentException();");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("for (String attribute : attributes)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("operators.put(attribute, operator);");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("public void clearOp(String... attributes) {");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("if (attributes == null)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("throw new IllegalArgumentException();");
-    _builder.newLine();
-    _builder.append("  ");
-    _builder.append("for (String attribute : attributes)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("operators.remove(attribute);");
+    _builder.append("return this;");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
@@ -3015,6 +3474,163 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("public void clearOp(OpAttribute... attributes) {");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("if (attributes == null)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("throw new IllegalArgumentException();");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("for (OpAttribute attribute : attributes)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("operators.remove(attribute.name());");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      EList<Annotation> _conflictAnnotations_4 = ae.getConflictAnnotations();
+      for(final Annotation a_4 : _conflictAnnotations_4) {
+        _builder.append("@");
+        JvmType _type_4 = a_4.getType();
+        CharSequence _serialize_4 = im.serialize(_type_4);
+        _builder.append(_serialize_4, "");
+        {
+          EList<AnnotationProperty> _features_9 = a_4.getFeatures();
+          boolean _isEmpty_4 = _features_9.isEmpty();
+          boolean _not_4 = (!_isEmpty_4);
+          if (_not_4) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_10 = a_4.getFeatures();
+              boolean _hasElements_5 = false;
+              for(final AnnotationProperty ff_4 : _features_10) {
+                if (!_hasElements_5) {
+                  _hasElements_5 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_4 = this.compileAnnotationProperty(ff_4, im);
+                _builder.append(_compileAnnotationProperty_4, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("public ");
+    String _name_2 = e.getName();
+    _builder.append(_name_2, "");
+    _builder.append(" _clearOp(OpAttribute... attributes) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("clearOp(attributes);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public void setOp(String operator, String... attributes) {");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("if (attributes == null)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("throw new IllegalArgumentException();");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("for (String attribute : attributes)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("operators.put(attribute, operator);");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public ");
+    String _name_3 = e.getName();
+    _builder.append(_name_3, "");
+    _builder.append(" _setOp(String operator, String... attributes) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("setOp(operator, attributes);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public void clearOp(String... attributes) {");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("if (attributes == null)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("throw new IllegalArgumentException();");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("for (String attribute : attributes)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("operators.remove(attribute);");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public ");
+    String _name_4 = e.getName();
+    _builder.append(_name_4, "");
+    _builder.append(" _clearOp(String... attributes) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("clearOp(attributes);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      EList<Annotation> _conflictAnnotations_5 = ae.getConflictAnnotations();
+      for(final Annotation a_5 : _conflictAnnotations_5) {
+        _builder.append("@");
+        JvmType _type_5 = a_5.getType();
+        CharSequence _serialize_5 = im.serialize(_type_5);
+        _builder.append(_serialize_5, "");
+        {
+          EList<AnnotationProperty> _features_11 = a_5.getFeatures();
+          boolean _isEmpty_5 = _features_11.isEmpty();
+          boolean _not_5 = (!_isEmpty_5);
+          if (_not_5) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_12 = a_5.getFeatures();
+              boolean _hasElements_6 = false;
+              for(final AnnotationProperty ff_5 : _features_12) {
+                if (!_hasElements_6) {
+                  _hasElements_6 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_5 = this.compileAnnotationProperty(ff_5, im);
+                _builder.append(_compileAnnotationProperty_5, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("public void setNullOp(OpAttribute... attributes) {");
     _builder.newLine();
     _builder.append("  ");
@@ -3032,6 +3648,52 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
+    {
+      EList<Annotation> _conflictAnnotations_6 = ae.getConflictAnnotations();
+      for(final Annotation a_6 : _conflictAnnotations_6) {
+        _builder.append("@");
+        JvmType _type_6 = a_6.getType();
+        CharSequence _serialize_6 = im.serialize(_type_6);
+        _builder.append(_serialize_6, "");
+        {
+          EList<AnnotationProperty> _features_13 = a_6.getFeatures();
+          boolean _isEmpty_6 = _features_13.isEmpty();
+          boolean _not_6 = (!_isEmpty_6);
+          if (_not_6) {
+            _builder.append("(");
+            {
+              EList<AnnotationProperty> _features_14 = a_6.getFeatures();
+              boolean _hasElements_7 = false;
+              for(final AnnotationProperty ff_6 : _features_14) {
+                if (!_hasElements_7) {
+                  _hasElements_7 = true;
+                } else {
+                  _builder.appendImmediate(", ", "");
+                }
+                CharSequence _compileAnnotationProperty_6 = this.compileAnnotationProperty(ff_6, im);
+                _builder.append(_compileAnnotationProperty_6, "");
+              }
+            }
+            _builder.append(")");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("public ");
+    String _name_5 = e.getName();
+    _builder.append(_name_5, "");
+    _builder.append(" _setNullOp(OpAttribute... attributes) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("setNullOp(attributes);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
     _builder.append("public void setNullOp(String... attributes) {");
     _builder.newLine();
     _builder.append("  ");
@@ -3045,6 +3707,20 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("    ");
     _builder.append("operators.put(attribute, \"is null\");");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public ");
+    String _name_6 = e.getName();
+    _builder.append(_name_6, "");
+    _builder.append(" _setNullOp(String... attributes) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("setNullOp(attributes);");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("return this;");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
