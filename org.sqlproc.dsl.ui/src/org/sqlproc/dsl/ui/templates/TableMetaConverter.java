@@ -45,7 +45,11 @@ public class TableMetaConverter extends TablePojoConverter {
     protected Map<String, Set<String>> metaLikeColumns = new HashMap<String, Set<String>>();
     protected Map<String, Set<String>> metaNotLikeColumns = new HashMap<String, Set<String>>();
     protected boolean metaGenerateSequences;
+    protected Set<String> metaGenerateSequencesForTables = new HashSet<String>();
+    protected Set<String> metaGenerateSequencesNotForTables = new HashSet<String>();
     protected boolean metaGenerateIdentities;
+    protected Set<String> metaGenerateIdentitiesForTables = new HashSet<String>();
+    protected Set<String> metaGenerateIdentitiesNotForTables = new HashSet<String>();
     protected Map<String, StringBuilder> sequences = null;
     protected Map<String, StringBuilder> identities = null;
     protected Map<String, String> metaFunctionsResultSet = new HashMap<String, String>();
@@ -104,7 +108,23 @@ public class TableMetaConverter extends TablePojoConverter {
             this.metaNotLikeColumns.putAll(metaNotLikeColumns);
         }
         this.metaGenerateSequences = modelProperty.isMetaGenerateSequences(artifacts);
+        Set<String> metaGenerateSequencesForTables = modelProperty.getMetaGenerateSequencesForTables(artifacts);
+        if (metaGenerateSequencesForTables != null) {
+            this.metaGenerateSequencesForTables.addAll(metaGenerateSequencesForTables);
+        }
+        Set<String> metaGenerateSequencesNotForTables = modelProperty.getMetaGenerateSequencesNotForTables(artifacts);
+        if (metaGenerateSequencesNotForTables != null) {
+            this.metaGenerateSequencesNotForTables.addAll(metaGenerateSequencesNotForTables);
+        }
         this.metaGenerateIdentities = modelProperty.isMetaGenerateIdentities(artifacts);
+        Set<String> metaGenerateIdentitiesForTables = modelProperty.getMetaGenerateIdentitiesForTables(artifacts);
+        if (metaGenerateIdentitiesForTables != null) {
+            this.metaGenerateIdentitiesForTables.addAll(metaGenerateIdentitiesForTables);
+        }
+        Set<String> metaGenerateIdentitiesNotForTables = modelProperty.getMetaGenerateIdentitiesNotForTables(artifacts);
+        if (metaGenerateIdentitiesNotForTables != null) {
+            this.metaGenerateIdentitiesNotForTables.addAll(metaGenerateIdentitiesNotForTables);
+        }
         if (metaGenerateSequences && dbType != null) {
             sequences = new HashMap<String, StringBuilder>();
             for (String sequence : dbSequences) {
@@ -162,7 +182,11 @@ public class TableMetaConverter extends TablePojoConverter {
             System.out.println("metaLikeColumns " + this.metaLikeColumns);
             System.out.println("metaNotLikeColumns " + this.metaNotLikeColumns);
             System.out.println("metaGenerateSequences " + this.metaGenerateSequences);
+            System.out.println("metaGenerateSequencesForTables " + this.metaGenerateSequencesForTables);
+            System.out.println("metaGenerateSequencesNotForTables " + this.metaGenerateSequencesNotForTables);
             System.out.println("metaGenerateIdentities " + this.metaGenerateIdentities);
+            System.out.println("metaGenerateIdentitiesForTables " + this.metaGenerateIdentitiesForTables);
+            System.out.println("metaGenerateIdentitiesNotForTables " + this.metaGenerateIdentitiesNotForTables);
             System.out.println("metaFunctionsResultSet " + this.metaFunctionsResultSet);
             System.out.println("metaProceduresResultSet " + this.metaProceduresResultSet);
             System.out.println("metaGenerateOperators " + this.metaGenerateOperators);
@@ -1626,7 +1650,12 @@ public class TableMetaConverter extends TablePojoConverter {
             if (metaTablesIdentity.containsKey(pojo)) {
                 return metaTablesIdentity.get(pojo);
             } else if (metaGlobalIdentity != null) {
-                return metaGlobalIdentity;
+                boolean generateIdentity = true;
+                if (!metaGenerateIdentitiesForTables.isEmpty() && !metaGenerateIdentitiesForTables.contains(pojo))
+                    generateIdentity = false;
+                if (!metaGenerateIdentitiesNotForTables.isEmpty() && metaGenerateIdentitiesNotForTables.contains(pojo))
+                    generateIdentity = false;
+                return (generateIdentity) ? metaGlobalIdentity : null;
             } else if (identities != null) {
                 PairValues result = null;
                 for (Entry<String, StringBuilder> entry : identities.entrySet()) {

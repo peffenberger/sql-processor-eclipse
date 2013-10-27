@@ -17,13 +17,13 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getType <em>Type</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbTables <em>Db Tables</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbNotTables <em>Db Not Tables</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbTable <em>Db Table</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getIdentity <em>Identity</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getMetaTypes <em>Meta Types</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbStatement <em>Db Statement</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbColumns <em>Db Columns</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbTables <em>Db Tables</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbNotTables <em>Db Not Tables</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbFunction <em>Db Function</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbProcedure <em>Db Procedure</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDebug <em>Debug</em>}</li>
@@ -114,6 +114,38 @@ public interface MetagenProperty extends EObject
    * @generated
    */
   void setType(String value);
+
+  /**
+   * Returns the value of the '<em><b>Db Tables</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Db Tables</em>' attribute list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Db Tables</em>' attribute list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getMetagenProperty_DbTables()
+   * @model unique="false"
+   * @generated
+   */
+  EList<String> getDbTables();
+
+  /**
+   * Returns the value of the '<em><b>Db Not Tables</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Db Not Tables</em>' attribute list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Db Not Tables</em>' attribute list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getMetagenProperty_DbNotTables()
+   * @model unique="false"
+   * @generated
+   */
+  EList<String> getDbNotTables();
 
   /**
    * Returns the value of the '<em><b>Db Table</b></em>' attribute.
@@ -224,38 +256,6 @@ public interface MetagenProperty extends EObject
    * @generated
    */
   EList<String> getDbColumns();
-
-  /**
-   * Returns the value of the '<em><b>Db Tables</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Db Tables</em>' attribute list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Tables</em>' attribute list.
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getMetagenProperty_DbTables()
-   * @model unique="false"
-   * @generated
-   */
-  EList<String> getDbTables();
-
-  /**
-   * Returns the value of the '<em><b>Db Not Tables</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Db Not Tables</em>' attribute list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Not Tables</em>' attribute list.
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getMetagenProperty_DbNotTables()
-   * @model unique="false"
-   * @generated
-   */
-  EList<String> getDbNotTables();
 
   /**
    * Returns the value of the '<em><b>Db Function</b></em>' attribute.

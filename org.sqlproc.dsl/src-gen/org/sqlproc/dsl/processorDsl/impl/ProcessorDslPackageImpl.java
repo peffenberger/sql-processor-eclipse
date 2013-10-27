@@ -2161,7 +2161,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMetagenProperty_DbTable()
+  public EAttribute getMetagenProperty_DbTables()
   {
     return (EAttribute)metagenPropertyEClass.getEStructuralFeatures().get(3);
   }
@@ -2171,7 +2171,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMetagenProperty_Identity()
+  public EAttribute getMetagenProperty_DbNotTables()
   {
     return (EAttribute)metagenPropertyEClass.getEStructuralFeatures().get(4);
   }
@@ -2181,9 +2181,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getMetagenProperty_MetaTypes()
+  public EAttribute getMetagenProperty_DbTable()
   {
-    return (EReference)metagenPropertyEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)metagenPropertyEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -2191,7 +2191,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMetagenProperty_DbStatement()
+  public EAttribute getMetagenProperty_Identity()
   {
     return (EAttribute)metagenPropertyEClass.getEStructuralFeatures().get(6);
   }
@@ -2201,9 +2201,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMetagenProperty_DbColumns()
+  public EReference getMetagenProperty_MetaTypes()
   {
-    return (EAttribute)metagenPropertyEClass.getEStructuralFeatures().get(7);
+    return (EReference)metagenPropertyEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -2211,7 +2211,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMetagenProperty_DbTables()
+  public EAttribute getMetagenProperty_DbStatement()
   {
     return (EAttribute)metagenPropertyEClass.getEStructuralFeatures().get(8);
   }
@@ -2221,7 +2221,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMetagenProperty_DbNotTables()
+  public EAttribute getMetagenProperty_DbColumns()
   {
     return (EAttribute)metagenPropertyEClass.getEStructuralFeatures().get(9);
   }
@@ -4930,13 +4930,13 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__NAME);
     createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__SEQUENCE);
     createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__TYPE);
+    createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__DB_TABLES);
+    createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__DB_NOT_TABLES);
     createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__DB_TABLE);
     createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__IDENTITY);
     createEReference(metagenPropertyEClass, METAGEN_PROPERTY__META_TYPES);
     createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__DB_STATEMENT);
     createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__DB_COLUMNS);
-    createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__DB_TABLES);
-    createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__DB_NOT_TABLES);
     createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__DB_FUNCTION);
     createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__DB_PROCEDURE);
     createEReference(metagenPropertyEClass, METAGEN_PROPERTY__DEBUG);
@@ -5456,13 +5456,13 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEAttribute(getMetagenProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMetagenProperty_Sequence(), ecorePackage.getEString(), "sequence", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMetagenProperty_Type(), ecorePackage.getEString(), "type", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMetagenProperty_DbTables(), ecorePackage.getEString(), "dbTables", null, 0, -1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMetagenProperty_DbNotTables(), ecorePackage.getEString(), "dbNotTables", null, 0, -1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMetagenProperty_DbTable(), ecorePackage.getEString(), "dbTable", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMetagenProperty_Identity(), ecorePackage.getEString(), "identity", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMetagenProperty_MetaTypes(), this.getMetaTypeAssignement(), null, "metaTypes", null, 0, -1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMetagenProperty_DbStatement(), ecorePackage.getEString(), "dbStatement", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMetagenProperty_DbColumns(), ecorePackage.getEString(), "dbColumns", null, 0, -1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMetagenProperty_DbTables(), ecorePackage.getEString(), "dbTables", null, 0, -1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMetagenProperty_DbNotTables(), ecorePackage.getEString(), "dbNotTables", null, 0, -1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMetagenProperty_DbFunction(), ecorePackage.getEString(), "dbFunction", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMetagenProperty_DbProcedure(), ecorePackage.getEString(), "dbProcedure", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMetagenProperty_Debug(), this.getDebugLevelAssignement(), null, "debug", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

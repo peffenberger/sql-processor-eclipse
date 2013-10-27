@@ -1316,17 +1316,17 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	/**
 	 * Constraint:
 	 *     (
-	 *         (name='global-sequence' sequence=IDENT type=IDENT?) | 
+	 *         (name='global-sequence' sequence=IDENT type=IDENT? dbTables+=IDENT* dbNotTables+=IDENT*) | 
 	 *         (name='table-sequence' dbTable=IDENT sequence=IDENT type=IDENT?) | 
-	 *         (name='global-identity' (identity=IDENT type=IDENT?)?) | 
+	 *         (name='global-identity' (identity=IDENT type=IDENT?)? dbTables+=IDENT* dbNotTables+=IDENT*) | 
 	 *         (name='table-identity' dbTable=IDENT identity=IDENT type=IDENT?) | 
 	 *         (name='column-meta-type' dbTable=IDENT metaTypes+=MetaTypeAssignement+) | 
 	 *         (name='statement-meta-type' dbStatement=IDENT metaTypes+=MetaTypeAssignement+) | 
 	 *         name='make-it-final' | 
 	 *         (name='like-columns' dbTable=IDENT dbColumns+=IDENT+) | 
 	 *         (name='not-like-columns' dbTable=IDENT dbColumns+=IDENT+) | 
-	 *         (name='generate-sequences' dbTables+=IDENT* dbNotTables+=IDENT*) | 
-	 *         (name='generate-identities' dbTables+=IDENT* dbNotTables+=IDENT*) | 
+	 *         name='generate-sequences' | 
+	 *         name='generate-identities' | 
 	 *         (name='function-result' dbFunction=IDENT type=IDENT) | 
 	 *         (name='function-result-set' dbFunction=IDENT dbTable=IDENT) | 
 	 *         (name='procedure-result-set' dbProcedure=IDENT dbTable=IDENT) | 

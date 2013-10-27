@@ -835,11 +835,23 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             return;
         if (METAGEN_GLOBAL_IDENTITY.equals(property.getName())) {
             modelValues.metaGlobalIdentity = new PairValues(property.getIdentity(), property.getType());
+            if (property.getDbTables() != null) {
+                modelValues.metaGenerateIdentitiesForTables.addAll(property.getDbTables());
+            }
+            if (property.getDbNotTables() != null) {
+                modelValues.metaGenerateIdentitiesNotForTables.addAll(property.getDbNotTables());
+            }
         } else if (METAGEN_TABLE_IDENTITY.equals(property.getName())) {
             modelValues.metaTablesIdentity.put(property.getDbTable(),
                     new PairValues(property.getIdentity(), property.getType()));
         } else if (METAGEN_GLOBAL_SEQUENCE.equals(property.getName())) {
             modelValues.metaGlobalSequence = new PairValues(property.getSequence(), property.getType());
+            if (property.getDbTables() != null) {
+                modelValues.metaGenerateSequencesForTables.addAll(property.getDbTables());
+            }
+            if (property.getDbNotTables() != null) {
+                modelValues.metaGenerateSequencesNotForTables.addAll(property.getDbNotTables());
+            }
         } else if (METAGEN_TABLE_SEQUENCE.equals(property.getName())) {
             modelValues.metaTablesSequence.put(property.getDbTable(),
                     new PairValues(property.getSequence(), property.getType()));
@@ -875,20 +887,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             }
         } else if (METAGEN_GENERATE_SEQUENCES.equals(property.getName())) {
             modelValues.metaGenerateSequences = true;
-            if (property.getDbTables() != null) {
-                modelValues.metaGenerateSequencesForTables.addAll(property.getDbTables());
-            }
-            if (property.getDbNotTables() != null) {
-                modelValues.metaGenerateSequencesNotForTables.addAll(property.getDbNotTables());
-            }
         } else if (METAGEN_GENERATE_IDENTITIES.equals(property.getName())) {
             modelValues.metaGenerateIdentities = true;
-            if (property.getDbTables() != null) {
-                modelValues.metaGenerateIdentitiesForTables.addAll(property.getDbTables());
-            }
-            if (property.getDbNotTables() != null) {
-                modelValues.metaGenerateIdentitiesNotForTables.addAll(property.getDbNotTables());
-            }
         } else if (METAGEN_FUNCTION_RESULT.equals(property.getName())) {
             modelValues.metaFunctionsResult.put(property.getDbFunction(), property.getType());
         } else if (METAGEN_FUNCTION_RESULT_SET.equals(property.getName())) {

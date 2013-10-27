@@ -34,13 +34,13 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getDbTables <em>Db Tables</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getDbNotTables <em>Db Not Tables</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getDbTable <em>Db Table</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getIdentity <em>Identity</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getMetaTypes <em>Meta Types</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getDbStatement <em>Db Statement</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getDbColumns <em>Db Columns</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getDbTables <em>Db Tables</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getDbNotTables <em>Db Not Tables</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getDbFunction <em>Db Function</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getDbProcedure <em>Db Procedure</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl#getDebug <em>Debug</em>}</li>
@@ -111,6 +111,26 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected String type = TYPE_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getDbTables() <em>Db Tables</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDbTables()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> dbTables;
+
+  /**
+   * The cached value of the '{@link #getDbNotTables() <em>Db Not Tables</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDbNotTables()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> dbNotTables;
 
   /**
    * The default value of the '{@link #getDbTable() <em>Db Table</em>}' attribute.
@@ -191,26 +211,6 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected EList<String> dbColumns;
-
-  /**
-   * The cached value of the '{@link #getDbTables() <em>Db Tables</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDbTables()
-   * @generated
-   * @ordered
-   */
-  protected EList<String> dbTables;
-
-  /**
-   * The cached value of the '{@link #getDbNotTables() <em>Db Not Tables</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDbNotTables()
-   * @generated
-   * @ordered
-   */
-  protected EList<String> dbNotTables;
 
   /**
    * The default value of the '{@link #getDbFunction() <em>Db Function</em>}' attribute.
@@ -367,6 +367,34 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<String> getDbTables()
+  {
+    if (dbTables == null)
+    {
+      dbTables = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLES);
+    }
+    return dbTables;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<String> getDbNotTables()
+  {
+    if (dbNotTables == null)
+    {
+      dbNotTables = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.METAGEN_PROPERTY__DB_NOT_TABLES);
+    }
+    return dbNotTables;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getDbTable()
   {
     return dbTable;
@@ -457,34 +485,6 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
       dbColumns = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.METAGEN_PROPERTY__DB_COLUMNS);
     }
     return dbColumns;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<String> getDbTables()
-  {
-    if (dbTables == null)
-    {
-      dbTables = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLES);
-    }
-    return dbTables;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<String> getDbNotTables()
-  {
-    if (dbNotTables == null)
-    {
-      dbNotTables = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.METAGEN_PROPERTY__DB_NOT_TABLES);
-    }
-    return dbNotTables;
   }
 
   /**
@@ -629,6 +629,10 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return getSequence();
       case ProcessorDslPackage.METAGEN_PROPERTY__TYPE:
         return getType();
+      case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLES:
+        return getDbTables();
+      case ProcessorDslPackage.METAGEN_PROPERTY__DB_NOT_TABLES:
+        return getDbNotTables();
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLE:
         return getDbTable();
       case ProcessorDslPackage.METAGEN_PROPERTY__IDENTITY:
@@ -639,10 +643,6 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return getDbStatement();
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_COLUMNS:
         return getDbColumns();
-      case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLES:
-        return getDbTables();
-      case ProcessorDslPackage.METAGEN_PROPERTY__DB_NOT_TABLES:
-        return getDbNotTables();
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_FUNCTION:
         return getDbFunction();
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_PROCEDURE:
@@ -675,6 +675,14 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.METAGEN_PROPERTY__TYPE:
         setType((String)newValue);
         return;
+      case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLES:
+        getDbTables().clear();
+        getDbTables().addAll((Collection<? extends String>)newValue);
+        return;
+      case ProcessorDslPackage.METAGEN_PROPERTY__DB_NOT_TABLES:
+        getDbNotTables().clear();
+        getDbNotTables().addAll((Collection<? extends String>)newValue);
+        return;
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLE:
         setDbTable((String)newValue);
         return;
@@ -691,14 +699,6 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_COLUMNS:
         getDbColumns().clear();
         getDbColumns().addAll((Collection<? extends String>)newValue);
-        return;
-      case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLES:
-        getDbTables().clear();
-        getDbTables().addAll((Collection<? extends String>)newValue);
-        return;
-      case ProcessorDslPackage.METAGEN_PROPERTY__DB_NOT_TABLES:
-        getDbNotTables().clear();
-        getDbNotTables().addAll((Collection<? extends String>)newValue);
         return;
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_FUNCTION:
         setDbFunction((String)newValue);
@@ -736,6 +736,12 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.METAGEN_PROPERTY__TYPE:
         setType(TYPE_EDEFAULT);
         return;
+      case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLES:
+        getDbTables().clear();
+        return;
+      case ProcessorDslPackage.METAGEN_PROPERTY__DB_NOT_TABLES:
+        getDbNotTables().clear();
+        return;
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLE:
         setDbTable(DB_TABLE_EDEFAULT);
         return;
@@ -750,12 +756,6 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return;
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_COLUMNS:
         getDbColumns().clear();
-        return;
-      case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLES:
-        getDbTables().clear();
-        return;
-      case ProcessorDslPackage.METAGEN_PROPERTY__DB_NOT_TABLES:
-        getDbNotTables().clear();
         return;
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_FUNCTION:
         setDbFunction(DB_FUNCTION_EDEFAULT);
@@ -789,6 +789,10 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return SEQUENCE_EDEFAULT == null ? sequence != null : !SEQUENCE_EDEFAULT.equals(sequence);
       case ProcessorDslPackage.METAGEN_PROPERTY__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+      case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLES:
+        return dbTables != null && !dbTables.isEmpty();
+      case ProcessorDslPackage.METAGEN_PROPERTY__DB_NOT_TABLES:
+        return dbNotTables != null && !dbNotTables.isEmpty();
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLE:
         return DB_TABLE_EDEFAULT == null ? dbTable != null : !DB_TABLE_EDEFAULT.equals(dbTable);
       case ProcessorDslPackage.METAGEN_PROPERTY__IDENTITY:
@@ -799,10 +803,6 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return DB_STATEMENT_EDEFAULT == null ? dbStatement != null : !DB_STATEMENT_EDEFAULT.equals(dbStatement);
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_COLUMNS:
         return dbColumns != null && !dbColumns.isEmpty();
-      case ProcessorDslPackage.METAGEN_PROPERTY__DB_TABLES:
-        return dbTables != null && !dbTables.isEmpty();
-      case ProcessorDslPackage.METAGEN_PROPERTY__DB_NOT_TABLES:
-        return dbNotTables != null && !dbNotTables.isEmpty();
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_FUNCTION:
         return DB_FUNCTION_EDEFAULT == null ? dbFunction != null : !DB_FUNCTION_EDEFAULT.equals(dbFunction);
       case ProcessorDslPackage.METAGEN_PROPERTY__DB_PROCEDURE:
@@ -832,6 +832,10 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
     result.append(sequence);
     result.append(", type: ");
     result.append(type);
+    result.append(", dbTables: ");
+    result.append(dbTables);
+    result.append(", dbNotTables: ");
+    result.append(dbNotTables);
     result.append(", dbTable: ");
     result.append(dbTable);
     result.append(", identity: ");
@@ -840,10 +844,6 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
     result.append(dbStatement);
     result.append(", dbColumns: ");
     result.append(dbColumns);
-    result.append(", dbTables: ");
-    result.append(dbTables);
-    result.append(", dbNotTables: ");
-    result.append(dbNotTables);
     result.append(", dbFunction: ");
     result.append(dbFunction);
     result.append(", dbProcedure: ");

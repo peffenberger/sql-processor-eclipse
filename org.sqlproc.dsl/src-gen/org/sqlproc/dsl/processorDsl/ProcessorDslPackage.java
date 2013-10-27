@@ -1560,58 +1560,13 @@ public interface ProcessorDslPackage extends EPackage
   int METAGEN_PROPERTY__TYPE = 2;
 
   /**
-   * The feature id for the '<em><b>Db Table</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int METAGEN_PROPERTY__DB_TABLE = 3;
-
-  /**
-   * The feature id for the '<em><b>Identity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int METAGEN_PROPERTY__IDENTITY = 4;
-
-  /**
-   * The feature id for the '<em><b>Meta Types</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int METAGEN_PROPERTY__META_TYPES = 5;
-
-  /**
-   * The feature id for the '<em><b>Db Statement</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int METAGEN_PROPERTY__DB_STATEMENT = 6;
-
-  /**
-   * The feature id for the '<em><b>Db Columns</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int METAGEN_PROPERTY__DB_COLUMNS = 7;
-
-  /**
    * The feature id for the '<em><b>Db Tables</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY__DB_TABLES = 8;
+  int METAGEN_PROPERTY__DB_TABLES = 3;
 
   /**
    * The feature id for the '<em><b>Db Not Tables</b></em>' attribute list.
@@ -1620,7 +1575,52 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY__DB_NOT_TABLES = 9;
+  int METAGEN_PROPERTY__DB_NOT_TABLES = 4;
+
+  /**
+   * The feature id for the '<em><b>Db Table</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METAGEN_PROPERTY__DB_TABLE = 5;
+
+  /**
+   * The feature id for the '<em><b>Identity</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METAGEN_PROPERTY__IDENTITY = 6;
+
+  /**
+   * The feature id for the '<em><b>Meta Types</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METAGEN_PROPERTY__META_TYPES = 7;
+
+  /**
+   * The feature id for the '<em><b>Db Statement</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METAGEN_PROPERTY__DB_STATEMENT = 8;
+
+  /**
+   * The feature id for the '<em><b>Db Columns</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METAGEN_PROPERTY__DB_COLUMNS = 9;
 
   /**
    * The feature id for the '<em><b>Db Function</b></em>' attribute.
@@ -5991,6 +5991,28 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getMetagenProperty_Type();
 
   /**
+   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbTables <em>Db Tables</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Db Tables</em>'.
+   * @see org.sqlproc.dsl.processorDsl.MetagenProperty#getDbTables()
+   * @see #getMetagenProperty()
+   * @generated
+   */
+  EAttribute getMetagenProperty_DbTables();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbNotTables <em>Db Not Tables</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Db Not Tables</em>'.
+   * @see org.sqlproc.dsl.processorDsl.MetagenProperty#getDbNotTables()
+   * @see #getMetagenProperty()
+   * @generated
+   */
+  EAttribute getMetagenProperty_DbNotTables();
+
+  /**
    * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbTable <em>Db Table</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6044,28 +6066,6 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EAttribute getMetagenProperty_DbColumns();
-
-  /**
-   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbTables <em>Db Tables</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Db Tables</em>'.
-   * @see org.sqlproc.dsl.processorDsl.MetagenProperty#getDbTables()
-   * @see #getMetagenProperty()
-   * @generated
-   */
-  EAttribute getMetagenProperty_DbTables();
-
-  /**
-   * Returns the meta object for the attribute list '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbNotTables <em>Db Not Tables</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Db Not Tables</em>'.
-   * @see org.sqlproc.dsl.processorDsl.MetagenProperty#getDbNotTables()
-   * @see #getMetagenProperty()
-   * @generated
-   */
-  EAttribute getMetagenProperty_DbNotTables();
 
   /**
    * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbFunction <em>Db Function</em>}'.
@@ -9951,6 +9951,22 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute METAGEN_PROPERTY__TYPE = eINSTANCE.getMetagenProperty_Type();
 
     /**
+     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute METAGEN_PROPERTY__DB_TABLES = eINSTANCE.getMetagenProperty_DbTables();
+
+    /**
+     * The meta object literal for the '<em><b>Db Not Tables</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute METAGEN_PROPERTY__DB_NOT_TABLES = eINSTANCE.getMetagenProperty_DbNotTables();
+
+    /**
      * The meta object literal for the '<em><b>Db Table</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9989,22 +10005,6 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute METAGEN_PROPERTY__DB_COLUMNS = eINSTANCE.getMetagenProperty_DbColumns();
-
-    /**
-     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__DB_TABLES = eINSTANCE.getMetagenProperty_DbTables();
-
-    /**
-     * The meta object literal for the '<em><b>Db Not Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__DB_NOT_TABLES = eINSTANCE.getMetagenProperty_DbNotTables();
 
     /**
      * The meta object literal for the '<em><b>Db Function</b></em>' attribute feature.
