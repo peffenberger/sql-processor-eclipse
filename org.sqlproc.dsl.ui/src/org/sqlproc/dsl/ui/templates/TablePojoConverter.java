@@ -103,6 +103,7 @@ public class TablePojoConverter {
     protected boolean makeItFinal;
     protected String versionColumn;
     protected Map<String, String> versionColumns = new HashMap<String, String>();
+    protected Map<String, String> notVersionColumns = new HashMap<String, String>();
     protected String generateOperators = null;
     protected Set<String> preserveForeignKeys = new HashSet<String>();
     protected Map<String, PojoType> pojosForProcedures = new HashMap<String, PojoType>();
@@ -253,6 +254,10 @@ public class TablePojoConverter {
         if (versionColumns != null) {
             this.versionColumns.putAll(versionColumns);
         }
+        Map<String, String> notVersionColumns = modelProperty.getNotVersionColumns(artifacts);
+        if (notVersionColumns != null) {
+            this.notVersionColumns.putAll(notVersionColumns);
+        }
         Set<String> preserveForeignKeys = modelProperty.getPreserveForeignKeys(artifacts);
         if (preserveForeignKeys != null) {
             this.preserveForeignKeys.addAll(preserveForeignKeys);
@@ -328,6 +333,7 @@ public class TablePojoConverter {
             System.out.println("makeItFinal " + this.makeItFinal);
             System.out.println("versionColumn " + this.versionColumn);
             System.out.println("versionColumns " + this.versionColumns);
+            System.out.println("notVersionColumns " + this.notVersionColumns);
             System.out.println("sequences " + this.dbSequences);
             System.out.println("dbType " + this.dbType);
             System.out.println("metaFunctionsResult " + this.metaFunctionsResult);
@@ -366,7 +372,9 @@ public class TablePojoConverter {
             if (versionColumns.containsKey(table) && dbColumn.getName().equals(versionColumns.get(table))) {
                 attribute.setVersion(true);
             } else if (dbColumn.getName().equalsIgnoreCase(versionColumn)) {
-                attribute.setVersion(true);
+                if (!notVersionColumns.containsKey(table)) {
+                    attribute.setVersion(true);
+                }
             }
         }
 

@@ -358,7 +358,7 @@
         <terminal xsi:type="xtext:Keyword" value="&lt;>"/>
       </elements>
       <elements xsi:type="xtext:Group" cardinality="*">
-        <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+        <elements xsi:type="xtext:RuleCall" cardinality="+" predicated="true" rule="//@rules.78"/>
         <elements xsi:type="xtext:Assignment" feature="dbTables" operator="+=">
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
         </elements>
@@ -392,7 +392,7 @@
         <terminal xsi:type="xtext:Keyword" value="&lt;>"/>
       </elements>
       <elements xsi:type="xtext:Group" cardinality="*">
-        <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+        <elements xsi:type="xtext:RuleCall" cardinality="+" predicated="true" rule="//@rules.78"/>
         <elements xsi:type="xtext:Assignment" feature="dbTables" operator="+=">
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
         </elements>
@@ -1083,7 +1083,7 @@
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
         </elements>
         <elements xsi:type="xtext:Group" cardinality="*">
-          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+          <elements xsi:type="xtext:RuleCall" cardinality="+" predicated="true" rule="//@rules.78"/>
           <elements xsi:type="xtext:Assignment" feature="dbTables" operator="+=">
             <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
           </elements>
@@ -1166,7 +1166,6 @@
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
         </elements>
         <elements xsi:type="xtext:Group" cardinality="?">
-          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
           <elements xsi:type="xtext:RuleCall" rule="//@rules.87"/>
           <elements xsi:type="xtext:Assignment" feature="type" operator="=">
             <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
@@ -1174,7 +1173,7 @@
           <elements xsi:type="xtext:RuleCall" rule="//@rules.88"/>
         </elements>
         <elements xsi:type="xtext:Group" cardinality="*">
-          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+          <elements xsi:type="xtext:RuleCall" cardinality="+" predicated="true" rule="//@rules.78"/>
           <elements xsi:type="xtext:Assignment" feature="dbTables" operator="+=">
             <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
           </elements>
@@ -1219,7 +1218,6 @@
             <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
           </elements>
           <elements xsi:type="xtext:Group" cardinality="?">
-            <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
             <elements xsi:type="xtext:RuleCall" rule="//@rules.87"/>
             <elements xsi:type="xtext:Assignment" feature="type" operator="=">
               <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
@@ -1228,7 +1226,7 @@
           </elements>
         </elements>
         <elements xsi:type="xtext:Group" cardinality="*">
-          <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.78"/>
+          <elements xsi:type="xtext:RuleCall" cardinality="+" predicated="true" rule="//@rules.78"/>
           <elements xsi:type="xtext:Assignment" feature="dbTables" operator="+=">
             <terminal xsi:type="xtext:RuleCall" rule="//@rules.73"/>
           </elements>

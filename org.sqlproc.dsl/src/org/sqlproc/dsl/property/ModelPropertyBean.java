@@ -801,6 +801,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                     }
                 }
                 if (property.getDbNotTables() != null) {
+                    modelValues.versionColumn = versionColumn;
                     for (int i = 0, m = property.getDbNotTables().size(); i < m; i++) {
                         modelValues.notVersionColumns.put(property.getDbNotTables().get(i), versionColumn);
                     }

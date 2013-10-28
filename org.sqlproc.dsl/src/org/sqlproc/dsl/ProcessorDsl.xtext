@@ -31,8 +31,8 @@ ManyToManyAssignement: pkColumn=IDENT '->' pkTable=IDENT ('->' fkColumn=IDENT)?;
 DebugLevelAssignement: debug=IDENT;
 ProcedurePojoAssignement: dbProcedure=IDENT '->' pojo=PojoType;
 FunctionPojoAssignement: dbFunction=IDENT '->' pojo=PojoType;
-ImplementsAssignement: toImplement=[jvmTypes::JvmType|QualifiedName] (generics ?= '<>')? (WS+ dbTables+=IDENT)* (WS+ NOT (WS+ dbNotTables+=IDENT)+)?;
-ExtendsAssignement: toExtends=[jvmTypes::JvmType|QualifiedName] (generics ?= '<>')? (WS+ dbTables+=IDENT)* (WS+ NOT (WS+ dbNotTables+=IDENT)+)?;
+ImplementsAssignement: toImplement=[jvmTypes::JvmType|QualifiedName] (generics ?= '<>')? (=> WS+ dbTables+=IDENT)* (WS+ NOT (WS+ dbNotTables+=IDENT)+)?;
+ExtendsAssignement: toExtends=[jvmTypes::JvmType|QualifiedName] (generics ?= '<>')? (=> WS+ dbTables+=IDENT)* (WS+ NOT (WS+ dbNotTables+=IDENT)+)?;
 
 Property:
 	(name='resolve-pojo-on'
@@ -103,7 +103,7 @@ PojogenProperty:
 	|name='preserve-foreign-keys' (WS+ dbTables+=IDENT)*
 	|name='implementation-package' WS+ implPackage=IDENT
 	|name='make-it-final'
-	|name='version-column' WS+ version=IDENT (WS+ dbTables+=IDENT)* (WS+ NOT (WS+ dbNotTables+=IDENT)+)?
+	|name='version-column' WS+ version=IDENT (=> WS+ dbTables+=IDENT)* (WS+ NOT (WS+ dbNotTables+=IDENT)+)?
 	|name='debug-level' WS+ debug=DebugLevelAssignement
 	|name='pojos-for-procedures' (WS+ procPojos+=ProcedurePojoAssignement)+
 	|name='pojos-for-functions' (WS+ funPojos+=FunctionPojoAssignement)+
@@ -112,9 +112,9 @@ PojogenProperty:
 MetaTypeAssignement: dbColumn=IDENT '->' type=IDENT ('->' extension=IDENT)?;
 
 MetagenProperty:
-	(name='global-sequence' WS+ sequence=IDENT (WS+ LPAREN type=IDENT RPAREN)?  (WS+ dbTables+=IDENT)* (WS+ NOT (WS+ dbNotTables+=IDENT)+)?
+	(name='global-sequence' WS+ sequence=IDENT (LPAREN type=IDENT RPAREN)?  (=> WS+ dbTables+=IDENT)* (WS+ NOT (WS+ dbNotTables+=IDENT)+)?
 	|name='table-sequence' WS+ dbTable=IDENT WS+ sequence=IDENT (WS+ type=IDENT)?
-	|name='global-identity' (WS+ identity=IDENT (WS+ LPAREN type=IDENT RPAREN)?)?  (WS+ dbTables+=IDENT)* (WS+ NOT (WS+ dbNotTables+=IDENT)+)?
+	|name='global-identity' (WS+ identity=IDENT (LPAREN type=IDENT RPAREN)?)?  (=> WS+ dbTables+=IDENT)* (WS+ NOT (WS+ dbNotTables+=IDENT)+)?
 	|name='table-identity' WS+ dbTable=IDENT WS+ identity=IDENT (WS+ type=IDENT)?
 	|name='column-meta-type' WS+ dbTable=IDENT (WS+ metaTypes+=MetaTypeAssignement)+
 	|name='statement-meta-type' WS+ dbStatement=IDENT (WS+ metaTypes+=MetaTypeAssignement)+
