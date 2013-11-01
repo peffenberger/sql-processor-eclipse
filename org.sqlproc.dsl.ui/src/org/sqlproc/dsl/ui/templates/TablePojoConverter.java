@@ -531,6 +531,7 @@ public class TablePojoConverter {
                 continue;
             }
             attribute.setDependencyClassName(tableToCamelCase(check.getEnumName()));
+            attribute.setDependencyClassNameIsEnum(true);
 
             List<EnumAttribute> attrs = new ArrayList<EnumAttribute>();
             enums.put(check.getEnumName(), attrs);
@@ -1039,7 +1040,8 @@ public class TablePojoConverter {
                     buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
                     if (attribute.getDependencyClassName() != null) {
                         buffer.append(":: ").append(attribute.getDependencyClassName());
-                        toStr.add(name);
+                        if (attribute.isDependencyClassNameIsEnum())
+                            toStr.add(name);
                         if (preserveForeignKeys.contains(pojo) || preserveForeignKeys.contains("_ALL_")) {
                             if (attribute.getPkTable() != null) {
                                 addedAttributes.put(name, pentry.getValue());

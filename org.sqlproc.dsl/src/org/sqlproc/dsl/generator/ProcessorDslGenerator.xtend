@@ -330,14 +330,14 @@ def compileToString(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im,
     @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public String toString() {
-      return "«e.name» [«FOR f2:f.simplAttrs SEPARATOR " + \", "»«f2.name»=" + «f2.name»«ENDFOR»«IF getSuperType(e) != null» + super.toString()«ENDIF» + "]";
+      return "«e.name» [«FOR f2:f.attrs SEPARATOR " + \", "»«f2.name»=" + «f2.name»«ENDFOR»«IF getSuperType(e) != null» + super.toString()«ENDIF» + "]";
     }
 
     «FOR a:aaf.attributeAnnotations»
     @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
     public String toStringFull() {
-      return "«e.name» [«FOR f2:f.attrs SEPARATOR " + \", "»«f2.name»=" + «f2.name»«ENDFOR»«IF getSuperType(e) != null» + super.toString()«ENDIF» + "]";
+      return "«e.name» [«FOR f2:e.features.filter(x| isAttribute(x.feature)) SEPARATOR " + \", "»«f2.feature.name»=" + «f2.feature.name»«ENDFOR»«IF getSuperType(e) != null» + super.toString()«ENDIF» + "]";
     }
 '''
 

@@ -18,6 +18,7 @@ public class PojoAttribute {
     private String className;
     private String ref;
     private String dependencyClassName;
+    private boolean dependencyClassNameIsEnum;
     private String pkTable;
     private String pkColumn;
     private String parentTable;
@@ -291,6 +292,14 @@ public class PojoAttribute {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public boolean isDependencyClassNameIsEnum() {
+        return dependencyClassNameIsEnum;
+    }
+
+    public void setDependencyClassNameIsEnum(boolean dependencyClassNameIsEnum) {
+        this.dependencyClassNameIsEnum = dependencyClassNameIsEnum;
     }
 
     @Override

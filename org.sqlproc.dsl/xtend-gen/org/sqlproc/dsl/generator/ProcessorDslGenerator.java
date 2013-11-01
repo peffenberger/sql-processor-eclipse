@@ -1634,9 +1634,9 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.append(_name, "  ");
     _builder.append(" [");
     {
-      List<PojoProperty> _simplAttrs = this.simplAttrs(f);
+      EList<PojoProperty> _attrs = f.getAttrs();
       boolean _hasElements_1 = false;
-      for(final PojoProperty f2 : _simplAttrs) {
+      for(final PojoProperty f2 : _attrs) {
         if (!_hasElements_1) {
           _hasElements_1 = true;
         } else {
@@ -1701,18 +1701,28 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.append(_name_3, "  ");
     _builder.append(" [");
     {
-      EList<PojoProperty> _attrs = f.getAttrs();
+      EList<PojoAnnotatedProperty> _features_4 = e.getFeatures();
+      final Function1<PojoAnnotatedProperty,Boolean> _function = new Function1<PojoAnnotatedProperty,Boolean>() {
+          public Boolean apply(final PojoAnnotatedProperty x) {
+            PojoProperty _feature = x.getFeature();
+            boolean _isAttribute = ProcessorDslGenerator.this.isAttribute(_feature);
+            return Boolean.valueOf(_isAttribute);
+          }
+        };
+      Iterable<PojoAnnotatedProperty> _filter = IterableExtensions.<PojoAnnotatedProperty>filter(_features_4, _function);
       boolean _hasElements_3 = false;
-      for(final PojoProperty f2_1 : _attrs) {
+      for(final PojoAnnotatedProperty f2_1 : _filter) {
         if (!_hasElements_3) {
           _hasElements_3 = true;
         } else {
           _builder.appendImmediate(" + \", ", "  ");
         }
-        String _name_4 = f2_1.getName();
+        PojoProperty _feature = f2_1.getFeature();
+        String _name_4 = _feature.getName();
         _builder.append(_name_4, "  ");
         _builder.append("=\" + ");
-        String _name_5 = f2_1.getName();
+        PojoProperty _feature_1 = f2_1.getFeature();
+        String _name_5 = _feature_1.getName();
         _builder.append(_name_5, "  ");
       }
     }
