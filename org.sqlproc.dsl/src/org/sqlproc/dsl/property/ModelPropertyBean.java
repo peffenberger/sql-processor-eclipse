@@ -210,11 +210,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, Set<String>> metaLikeColumns;
         public Map<String, Set<String>> metaNotLikeColumns;
         public boolean metaGenerateSequences;
-        public Set<String> metaGenerateSequencesForTables;
-        public Set<String> metaGenerateSequencesNotForTables;
+        public Set<String> metaGlobalSequenceForTables;
+        public Set<String> metaGlobalSequenceNotForTables;
         public boolean metaGenerateIdentities;
-        public Set<String> metaGenerateIdentitiesForTables;
-        public Set<String> metaGenerateIdentitiesNotForTables;
+        public Set<String> metaGlobalIdentityForTables;
+        public Set<String> metaGlobalIdentityNotForTables;
         public Map<String, String> metaFunctionsResult;
         public Map<String, String> metaFunctionsResultSet;
         public Map<String, String> metaProceduresResultSet;
@@ -438,11 +438,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.metaLikeColumns = new HashMap<String, Set<String>>();
         modelValues.metaNotLikeColumns = new HashMap<String, Set<String>>();
         modelValues.metaGenerateSequences = false;
-        modelValues.metaGenerateSequencesForTables = new HashSet<String>();
-        modelValues.metaGenerateSequencesNotForTables = new HashSet<String>();
+        modelValues.metaGlobalSequenceForTables = new HashSet<String>();
+        modelValues.metaGlobalSequenceNotForTables = new HashSet<String>();
         modelValues.metaGenerateIdentities = false;
-        modelValues.metaGenerateIdentitiesForTables = new HashSet<String>();
-        modelValues.metaGenerateIdentitiesNotForTables = new HashSet<String>();
+        modelValues.metaGlobalIdentityForTables = new HashSet<String>();
+        modelValues.metaGlobalIdentityNotForTables = new HashSet<String>();
         modelValues.metaFunctionsResult = new HashMap<String, String>();
         modelValues.metaFunctionsResultSet = new HashMap<String, String>();
         modelValues.metaProceduresResultSet = new HashMap<String, String>();
@@ -847,10 +847,10 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         if (METAGEN_GLOBAL_IDENTITY.equals(property.getName())) {
             modelValues.metaGlobalIdentity = new PairValues(property.getIdentity(), property.getType());
             if (property.getDbTables() != null) {
-                modelValues.metaGenerateIdentitiesForTables.addAll(property.getDbTables());
+                modelValues.metaGlobalIdentityForTables.addAll(property.getDbTables());
             }
             if (property.getDbNotTables() != null) {
-                modelValues.metaGenerateIdentitiesNotForTables.addAll(property.getDbNotTables());
+                modelValues.metaGlobalIdentityNotForTables.addAll(property.getDbNotTables());
             }
         } else if (METAGEN_TABLE_IDENTITY.equals(property.getName())) {
             modelValues.metaTablesIdentity.put(property.getDbTable(),
@@ -858,10 +858,10 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         } else if (METAGEN_GLOBAL_SEQUENCE.equals(property.getName())) {
             modelValues.metaGlobalSequence = new PairValues(property.getSequence(), property.getType());
             if (property.getDbTables() != null) {
-                modelValues.metaGenerateSequencesForTables.addAll(property.getDbTables());
+                modelValues.metaGlobalSequenceForTables.addAll(property.getDbTables());
             }
             if (property.getDbNotTables() != null) {
-                modelValues.metaGenerateSequencesNotForTables.addAll(property.getDbNotTables());
+                modelValues.metaGlobalSequenceNotForTables.addAll(property.getDbNotTables());
             }
         } else if (METAGEN_TABLE_SEQUENCE.equals(property.getName())) {
             modelValues.metaTablesSequence.put(property.getDbTable(),
@@ -1298,15 +1298,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public Set<String> getMetaGenerateSequencesForTables(EObject model) {
+    public Set<String> getMetaGlobalSequenceForTables(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGenerateSequencesForTables : Collections.<String> emptySet();
+        return (modelValues != null) ? modelValues.metaGlobalSequenceForTables : Collections.<String> emptySet();
     }
 
     @Override
-    public Set<String> getMetaGenerateSequencesNotForTables(EObject model) {
+    public Set<String> getMetaGlobalSequenceNotForTables(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGenerateSequencesNotForTables : Collections.<String> emptySet();
+        return (modelValues != null) ? modelValues.metaGlobalSequenceNotForTables : Collections.<String> emptySet();
     }
 
     @Override
@@ -1316,15 +1316,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public Set<String> getMetaGenerateIdentitiesForTables(EObject model) {
+    public Set<String> getMetaGlobalIdentityForTables(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGenerateIdentitiesForTables : Collections.<String> emptySet();
+        return (modelValues != null) ? modelValues.metaGlobalIdentityForTables : Collections.<String> emptySet();
     }
 
     @Override
-    public Set<String> getMetaGenerateIdentitiesNotForTables(EObject model) {
+    public Set<String> getMetaGlobalIdentityNotForTables(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGenerateIdentitiesNotForTables : Collections.<String> emptySet();
+        return (modelValues != null) ? modelValues.metaGlobalIdentityNotForTables : Collections.<String> emptySet();
     }
 
     @Override

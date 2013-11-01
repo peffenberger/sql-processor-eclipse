@@ -149,11 +149,11 @@ public interface ModelProperty extends Adapter {
 
     Map<String, String> getNotVersionColumns(EObject model);
 
-    Set<String> getMetaGenerateSequencesForTables(EObject model);
+    Set<String> getMetaGlobalSequenceForTables(EObject model);
 
-    Set<String> getMetaGenerateSequencesNotForTables(EObject model);
+    Set<String> getMetaGlobalSequenceNotForTables(EObject model);
 
-    Set<String> getMetaGenerateIdentitiesForTables(EObject model);
+    Set<String> getMetaGlobalIdentityForTables(EObject model);
 
-    Set<String> getMetaGenerateIdentitiesNotForTables(EObject model);
+    Set<String> getMetaGlobalIdentityNotForTables(EObject model);
 }
