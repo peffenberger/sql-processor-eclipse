@@ -13192,16 +13192,16 @@ ruleImplements returns [EObject current=null]
 )
 )(
 (
-		lv_generics_2_0=	'<>' 
+		lv_generics_2_0=	'<<>>' 
     {
-        newLeafNode(lv_generics_2_0, grammarAccess.getImplementsAccess().getGenericsLessThanSignGreaterThanSignKeyword_2_0());
+        newLeafNode(lv_generics_2_0, grammarAccess.getImplementsAccess().getGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getImplementsRule());
 	        }
-       		setWithLastConsumed($current, "generics", true, "<>");
+       		setWithLastConsumed($current, "generics", true, "<<>>");
 	    }
 
 )
@@ -13291,16 +13291,16 @@ ruleExtends returns [EObject current=null]
 )
 )(
 (
-		lv_generics_2_0=	'<>' 
+		lv_generics_2_0=	'<<>>' 
     {
-        newLeafNode(lv_generics_2_0, grammarAccess.getExtendsAccess().getGenericsLessThanSignGreaterThanSignKeyword_2_0());
+        newLeafNode(lv_generics_2_0, grammarAccess.getExtendsAccess().getGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getExtendsRule());
 	        }
-       		setWithLastConsumed($current, "generics", true, "<>");
+       		setWithLastConsumed($current, "generics", true, "<<>>");
 	    }
 
 )

@@ -2545,10 +2545,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__153;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl.ui/src-gen/org/sqlproc/dsl/ui/contentassist/antlr/internal/InternalProcessorDsl.g:123:8: ( '<>' )
-            // ../org.sqlproc.dsl.ui/src-gen/org/sqlproc/dsl/ui/contentassist/antlr/internal/InternalProcessorDsl.g:123:10: '<>'
+            // ../org.sqlproc.dsl.ui/src-gen/org/sqlproc/dsl/ui/contentassist/antlr/internal/InternalProcessorDsl.g:123:8: ( '<<>>' )
+            // ../org.sqlproc.dsl.ui/src-gen/org/sqlproc/dsl/ui/contentassist/antlr/internal/InternalProcessorDsl.g:123:10: '<<>>'
             {
-            match("<>"); 
+            match("<<>>"); 
 
 
             }
@@ -5176,7 +5176,7 @@ public class InternalProcessorDslLexer extends Lexer {
     static final String DFA13_eofS =
         "\u0295\uffff";
     static final String DFA13_minS =
-        "\1\0\1\142\1\76\11\56\1\52\12\56\1\135\1\76\10\56\1\uffff\1\43\1"+
+        "\1\0\1\142\1\76\11\56\1\52\12\56\1\135\1\74\10\56\1\uffff\1\43\1"+
         "\52\1\uffff\1\46\1\174\21\uffff\1\0\3\uffff\1\157\7\uffff\4\56\2"+
         "\uffff\12\56\2\55\13\56\2\uffff\20\56\3\uffff\13\56\34\uffff\21"+
         "\56\1\uffff\1\56\1\157\7\56\1\55\13\56\1\55\11\56\1\55\3\56\1\uffff"+
@@ -5204,7 +5204,7 @@ public class InternalProcessorDslLexer extends Lexer {
         "\1\55\3\uffff\1\162\1\uffff\2\56\6\uffff\1\146\2\56\1\141\2\56\1"+
         "\143\1\uffff\1\56\1\145\1\uffff\1\163\1\55\2\uffff";
     static final String DFA13_maxS =
-        "\1\uffff\1\166\1\76\11\172\1\52\12\172\1\135\1\76\10\172\1\uffff"+
+        "\1\uffff\1\166\1\76\11\172\1\52\12\172\1\135\1\74\10\172\1\uffff"+
         "\1\175\1\57\1\uffff\1\46\1\174\21\uffff\1\uffff\3\uffff\1\171\7"+
         "\uffff\4\172\2\uffff\27\172\2\uffff\20\172\3\uffff\13\172\34\uffff"+
         "\21\172\1\uffff\1\172\1\157\41\172\1\uffff\35\172\1\156\6\172\1"+
@@ -5257,7 +5257,7 @@ public class InternalProcessorDslLexer extends Lexer {
         "\1\100\1\101\1\102\1\uffff\1\26\2\uffff\1\37\1\40\1\45\1\46\1\154"+
         "\1\153\7\uffff\1\173\2\uffff\1\174\2\uffff\1\130\1\126";
     static final String DFA13_specialS =
-        "\1\1\67\uffff\1\0\u025c\uffff}>";
+        "\1\0\67\uffff\1\1\u025c\uffff}>";
     static final String[] DFA13_transitionS = {
             "\11\71\2\44\2\71\1\44\22\71\1\44\1\61\1\70\1\62\1\51\1\67\1"+
             "\45\1\71\1\54\1\55\1\71\1\53\1\52\1\2\1\14\1\43\12\41\1\47\1"+
@@ -6364,16 +6364,6 @@ public class InternalProcessorDslLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA13_56 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA13_56>='\u0000' && LA13_56<='\uFFFF')) ) {s = 154;}
-
-                        else s = 57;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA13_0 = input.LA(1);
 
                         s = -1;
@@ -6490,6 +6480,16 @@ public class InternalProcessorDslLexer extends Lexer {
                         else if ( (LA13_0=='\"') ) {s = 56;}
 
                         else if ( ((LA13_0>='\u0000' && LA13_0<='\b')||(LA13_0>='\u000B' && LA13_0<='\f')||(LA13_0>='\u000E' && LA13_0<='\u001F')||LA13_0=='\''||LA13_0=='*'||LA13_0==']'||LA13_0=='`'||(LA13_0>='~' && LA13_0<='\uFFFF')) ) {s = 57;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA13_56 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA13_56>='\u0000' && LA13_56<='\uFFFF')) ) {s = 154;}
+
+                        else s = 57;
 
                         if ( s>=0 ) return s;
                         break;

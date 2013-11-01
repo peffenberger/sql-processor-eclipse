@@ -2314,10 +2314,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__142;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:112:8: ( '<>' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:112:10: '<>'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:112:8: ( '<<>>' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:112:10: '<<>>'
             {
-            match("<>"); 
+            match("<<>>"); 
 
 
             }
@@ -5175,7 +5175,7 @@ public class InternalProcessorDslLexer extends Lexer {
     static final String DFA13_eofS =
         "\u0295\uffff";
     static final String DFA13_minS =
-        "\1\0\1\76\22\56\1\142\1\135\1\76\1\56\1\52\10\56\1\uffff\1\43\1"+
+        "\1\0\1\76\22\56\1\142\1\135\1\74\1\56\1\52\10\56\1\uffff\1\43\1"+
         "\52\1\uffff\1\46\1\174\21\uffff\1\0\3\uffff\2\56\2\uffff\11\56\2"+
         "\55\35\56\2\uffff\1\157\10\uffff\1\56\2\uffff\13\56\32\uffff\6\56"+
         "\1\55\11\56\1\157\1\uffff\4\56\1\55\21\56\1\55\13\56\2\uffff\1\56"+
@@ -5204,7 +5204,7 @@ public class InternalProcessorDslLexer extends Lexer {
         "\2\56\1\55\1\146\2\56\2\uffff\1\141\2\56\1\143\1\uffff\1\56\1\145"+
         "\1\uffff\1\163\1\55\2\uffff";
     static final String DFA13_maxS =
-        "\1\uffff\1\76\22\172\1\166\1\135\1\76\1\172\1\52\10\172\1\uffff"+
+        "\1\uffff\1\76\22\172\1\166\1\135\1\74\1\172\1\52\10\172\1\uffff"+
         "\1\175\1\57\1\uffff\1\46\1\174\21\uffff\1\uffff\3\uffff\2\172\2"+
         "\uffff\50\172\2\uffff\1\171\10\uffff\1\172\2\uffff\13\172\32\uffff"+
         "\20\172\1\157\1\uffff\42\172\2\uffff\1\172\1\uffff\20\172\1\uffff"+

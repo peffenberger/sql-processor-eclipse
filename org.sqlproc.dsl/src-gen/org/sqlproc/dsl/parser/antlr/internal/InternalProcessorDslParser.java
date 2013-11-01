@@ -22,7 +22,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_WS", "RULE_IDENT", "RULE_LPAREN", "RULE_NUMBER", "RULE_RPAREN", "RULE_PLUS", "RULE_MINUS", "RULE_SEMICOLON", "RULE_COLON", "RULE_REST", "RULE_IDENT_DOT", "RULE_STRING", "RULE_COMMA", "RULE_LBRACE", "RULE_RBRACE", "RULE_QUESTI", "RULE_NOT", "RULE_BAND", "RULE_BOR", "RULE_HASH", "RULE_AT", "RULE_CARET", "RULE_EQUALS", "RULE_LESS_THAN", "RULE_MORE_THAN", "RULE_PERCENT", "RULE_DOT", "RULE_AND", "RULE_OR", "RULE_ESC_CHAR", "RULE_ON_OFF", "RULE_STATEMENT_TYPE", "RULE_MAPPING_TYPE", "RULE_OPTION_TYPE", "RULE_STRING_VALUE", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "'->'", "'resolve-pojo-on'", "'resolve-pojo-off'", "'database-'", "'pojogen-'", "'metagen-'", "'daogen-'", "'replace-all-regex'", "'replace-all-replacement'", "'is-online'", "'is-offline'", "'has-url'", "'login-username'", "'login-password'", "'in-catalog'", "'active-schema'", "'jdbc-driver'", "'ddl-create'", "'ddl-drop'", "'index-types'", "'skip-indexes'", "'skip-functions-procedures'", "'skip-check-constraints'", "'is-of-type'", "'show-database-info'", "'show-driver-info'", "'show-driver-output'", "'debug-level'", "'take-comments'", "'types-sqltypes'", "'types-in-table'", "'types-for-columns'", "'types-for-procedure'", "'types-for-function'", "'show-type-for-column'", "'show-type-for-procedure'", "'show-type-for-function'", "'ignore-tables'", "'only-tables'", "'not-abstract-tables'", "'join-tables'", "'ignore-columns'", "'required-columns'", "'not-required-columns'", "'create-columns'", "'rename-tables'", "'rename-columns'", "'ignore-one-to-many'", "'ignore-many-to-one'", "'inherit-many-to-one'", "'create-one-to-many'", "'create-many-to-one'", "'table-many-to-many'", "'inherit-discriminator'", "'generate-methods'", "'generate-operators'", "'implements-interfaces'", "'extends-class'", "'implements-interfaces-generics'", "'extends-class-generics'", "'generate-wrappers'", "'generate-validation-annotations'", "'preserve-foreign-keys'", "'implementation-package'", "'make-it-final'", "'version-column'", "'pojos-for-procedures'", "'pojos-for-functions'", "'global-sequence'", "'table-sequence'", "'global-identity'", "'table-identity'", "'column-meta-type'", "'statement-meta-type'", "'like-columns'", "'not-like-columns'", "'generate-sequences'", "'generate-identities'", "'function-result'", "'function-result-set'", "'procedure-result-set'", "'optimize-insert'", "'optional-features'", "'pojo'", "'table'", "'procedure'", "'function'", "'_void'", "'_char'", "'_byte'", "'_short'", "'_int'", "'_long'", "'_float'", "'_double'", "'_boolean'", "'[]'", "'package'", "'suffix'", "'import'", "'implements'", "'<>'", "'exceptPojos'", "'exceptDaos'", "'extends'", "'final'", "'abstract'", "'discriminator'", "'operators'", "'serializable'", "'required'", "'primaryKey'", "'index'", "'optLock'", "'updateCol'", "'createCol'", "'enum'", "'dao'", "'callFunction'", "'callUpdate'", "'callQuery'", "'callQueryFunction'", "'callSelectFunction'", "'.*'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_WS", "RULE_IDENT", "RULE_LPAREN", "RULE_NUMBER", "RULE_RPAREN", "RULE_PLUS", "RULE_MINUS", "RULE_SEMICOLON", "RULE_COLON", "RULE_REST", "RULE_IDENT_DOT", "RULE_STRING", "RULE_COMMA", "RULE_LBRACE", "RULE_RBRACE", "RULE_QUESTI", "RULE_NOT", "RULE_BAND", "RULE_BOR", "RULE_HASH", "RULE_AT", "RULE_CARET", "RULE_EQUALS", "RULE_LESS_THAN", "RULE_MORE_THAN", "RULE_PERCENT", "RULE_DOT", "RULE_AND", "RULE_OR", "RULE_ESC_CHAR", "RULE_ON_OFF", "RULE_STATEMENT_TYPE", "RULE_MAPPING_TYPE", "RULE_OPTION_TYPE", "RULE_STRING_VALUE", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "'->'", "'resolve-pojo-on'", "'resolve-pojo-off'", "'database-'", "'pojogen-'", "'metagen-'", "'daogen-'", "'replace-all-regex'", "'replace-all-replacement'", "'is-online'", "'is-offline'", "'has-url'", "'login-username'", "'login-password'", "'in-catalog'", "'active-schema'", "'jdbc-driver'", "'ddl-create'", "'ddl-drop'", "'index-types'", "'skip-indexes'", "'skip-functions-procedures'", "'skip-check-constraints'", "'is-of-type'", "'show-database-info'", "'show-driver-info'", "'show-driver-output'", "'debug-level'", "'take-comments'", "'types-sqltypes'", "'types-in-table'", "'types-for-columns'", "'types-for-procedure'", "'types-for-function'", "'show-type-for-column'", "'show-type-for-procedure'", "'show-type-for-function'", "'ignore-tables'", "'only-tables'", "'not-abstract-tables'", "'join-tables'", "'ignore-columns'", "'required-columns'", "'not-required-columns'", "'create-columns'", "'rename-tables'", "'rename-columns'", "'ignore-one-to-many'", "'ignore-many-to-one'", "'inherit-many-to-one'", "'create-one-to-many'", "'create-many-to-one'", "'table-many-to-many'", "'inherit-discriminator'", "'generate-methods'", "'generate-operators'", "'implements-interfaces'", "'extends-class'", "'implements-interfaces-generics'", "'extends-class-generics'", "'generate-wrappers'", "'generate-validation-annotations'", "'preserve-foreign-keys'", "'implementation-package'", "'make-it-final'", "'version-column'", "'pojos-for-procedures'", "'pojos-for-functions'", "'global-sequence'", "'table-sequence'", "'global-identity'", "'table-identity'", "'column-meta-type'", "'statement-meta-type'", "'like-columns'", "'not-like-columns'", "'generate-sequences'", "'generate-identities'", "'function-result'", "'function-result-set'", "'procedure-result-set'", "'optimize-insert'", "'optional-features'", "'pojo'", "'table'", "'procedure'", "'function'", "'_void'", "'_char'", "'_byte'", "'_short'", "'_int'", "'_long'", "'_float'", "'_double'", "'_boolean'", "'[]'", "'package'", "'suffix'", "'import'", "'implements'", "'<<>>'", "'exceptPojos'", "'exceptDaos'", "'extends'", "'final'", "'abstract'", "'discriminator'", "'operators'", "'serializable'", "'required'", "'primaryKey'", "'index'", "'optLock'", "'updateCol'", "'createCol'", "'enum'", "'dao'", "'callFunction'", "'callUpdate'", "'callQuery'", "'callQueryFunction'", "'callSelectFunction'", "'.*'"
     };
     public static final int T__159=159;
     public static final int T__158=158;
@@ -40167,7 +40167,7 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleImplements"
-    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13169:1: ruleImplements returns [EObject current=null] : (otherlv_0= 'implements' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? ) ;
+    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13169:1: ruleImplements returns [EObject current=null] : (otherlv_0= 'implements' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<<>>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? ) ;
     public final EObject ruleImplements() throws RecognitionException {
         EObject current = null;
 
@@ -40182,11 +40182,11 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
         		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
             
         try {
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13173:28: ( (otherlv_0= 'implements' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? ) )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13174:1: (otherlv_0= 'implements' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13173:28: ( (otherlv_0= 'implements' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<<>>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? ) )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13174:1: (otherlv_0= 'implements' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<<>>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? )
             {
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13174:1: (otherlv_0= 'implements' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13174:3: otherlv_0= 'implements' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )?
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13174:1: (otherlv_0= 'implements' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<<>>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13174:3: otherlv_0= 'implements' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<<>>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )?
             {
             otherlv_0=(Token)match(input,141,FollowSets002.FOLLOW_141_in_ruleImplements29854); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -40228,7 +40228,7 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13193:2: ( (lv_generics_2_0= '<>' ) )?
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13193:2: ( (lv_generics_2_0= '<<>>' ) )?
             int alt339=2;
             int LA339_0 = input.LA(1);
 
@@ -40237,15 +40237,15 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
             }
             switch (alt339) {
                 case 1 :
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13194:1: (lv_generics_2_0= '<>' )
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13194:1: (lv_generics_2_0= '<<>>' )
                     {
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13194:1: (lv_generics_2_0= '<>' )
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13195:3: lv_generics_2_0= '<>'
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13194:1: (lv_generics_2_0= '<<>>' )
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13195:3: lv_generics_2_0= '<<>>'
                     {
                     lv_generics_2_0=(Token)match(input,142,FollowSets002.FOLLOW_142_in_ruleImplements29895); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                              newLeafNode(lv_generics_2_0, grammarAccess.getImplementsAccess().getGenericsLessThanSignGreaterThanSignKeyword_2_0());
+                              newLeafNode(lv_generics_2_0, grammarAccess.getImplementsAccess().getGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0());
                           
                     }
                     if ( state.backtracking==0 ) {
@@ -40253,7 +40253,7 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
                       	        if (current==null) {
                       	            current = createModelElement(grammarAccess.getImplementsRule());
                       	        }
-                             		setWithLastConsumed(current, "generics", true, "<>");
+                             		setWithLastConsumed(current, "generics", true, "<<>>");
                       	    
                     }
 
@@ -40469,7 +40469,7 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExtends"
-    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13268:1: ruleExtends returns [EObject current=null] : (otherlv_0= 'extends' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? ) ;
+    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13268:1: ruleExtends returns [EObject current=null] : (otherlv_0= 'extends' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<<>>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? ) ;
     public final EObject ruleExtends() throws RecognitionException {
         EObject current = null;
 
@@ -40484,11 +40484,11 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
         		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
             
         try {
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13272:28: ( (otherlv_0= 'extends' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? ) )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13273:1: (otherlv_0= 'extends' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13272:28: ( (otherlv_0= 'extends' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<<>>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? ) )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13273:1: (otherlv_0= 'extends' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<<>>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? )
             {
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13273:1: (otherlv_0= 'extends' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13273:3: otherlv_0= 'extends' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )?
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13273:1: (otherlv_0= 'extends' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<<>>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )? )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13273:3: otherlv_0= 'extends' ( ( ruleQualifiedName ) ) ( (lv_generics_2_0= '<<>>' ) )? (otherlv_3= 'exceptPojos' ( (otherlv_4= RULE_IDENT ) )* )? (otherlv_5= 'exceptDaos' ( (otherlv_6= RULE_IDENT ) )* )?
             {
             otherlv_0=(Token)match(input,145,FollowSets002.FOLLOW_145_in_ruleExtends30078); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -40530,7 +40530,7 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13292:2: ( (lv_generics_2_0= '<>' ) )?
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13292:2: ( (lv_generics_2_0= '<<>>' ) )?
             int alt344=2;
             int LA344_0 = input.LA(1);
 
@@ -40539,15 +40539,15 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
             }
             switch (alt344) {
                 case 1 :
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13293:1: (lv_generics_2_0= '<>' )
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13293:1: (lv_generics_2_0= '<<>>' )
                     {
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13293:1: (lv_generics_2_0= '<>' )
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13294:3: lv_generics_2_0= '<>'
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13293:1: (lv_generics_2_0= '<<>>' )
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:13294:3: lv_generics_2_0= '<<>>'
                     {
                     lv_generics_2_0=(Token)match(input,142,FollowSets002.FOLLOW_142_in_ruleExtends30119); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                              newLeafNode(lv_generics_2_0, grammarAccess.getExtendsAccess().getGenericsLessThanSignGreaterThanSignKeyword_2_0());
+                              newLeafNode(lv_generics_2_0, grammarAccess.getExtendsAccess().getGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0());
                           
                     }
                     if ( state.backtracking==0 ) {
@@ -40555,7 +40555,7 @@ public class InternalProcessorDslParser extends AbstractInternalAntlrParser {
                       	        if (current==null) {
                       	            current = createModelElement(grammarAccess.getExtendsRule());
                       	        }
-                             		setWithLastConsumed(current, "generics", true, "<>");
+                             		setWithLastConsumed(current, "generics", true, "<<>>");
                       	    
                     }
 

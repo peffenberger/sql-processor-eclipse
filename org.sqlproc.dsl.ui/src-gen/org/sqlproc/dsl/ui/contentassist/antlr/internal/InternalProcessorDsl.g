@@ -43814,16 +43814,16 @@ rule__Implements__GenericsAssignment_2
     }
 :
 (
-{ before(grammarAccess.getImplementsAccess().getGenericsLessThanSignGreaterThanSignKeyword_2_0()); }
+{ before(grammarAccess.getImplementsAccess().getGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0()); }
 (
-{ before(grammarAccess.getImplementsAccess().getGenericsLessThanSignGreaterThanSignKeyword_2_0()); }
+{ before(grammarAccess.getImplementsAccess().getGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0()); }
 
-	'<>' 
+	'<<>>' 
 
-{ after(grammarAccess.getImplementsAccess().getGenericsLessThanSignGreaterThanSignKeyword_2_0()); }
+{ after(grammarAccess.getImplementsAccess().getGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0()); }
 )
 
-{ after(grammarAccess.getImplementsAccess().getGenericsLessThanSignGreaterThanSignKeyword_2_0()); }
+{ after(grammarAccess.getImplementsAccess().getGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0()); }
 )
 
 ;
@@ -43894,16 +43894,16 @@ rule__Extends__GenericsAssignment_2
     }
 :
 (
-{ before(grammarAccess.getExtendsAccess().getGenericsLessThanSignGreaterThanSignKeyword_2_0()); }
+{ before(grammarAccess.getExtendsAccess().getGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0()); }
 (
-{ before(grammarAccess.getExtendsAccess().getGenericsLessThanSignGreaterThanSignKeyword_2_0()); }
+{ before(grammarAccess.getExtendsAccess().getGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0()); }
 
-	'<>' 
+	'<<>>' 
 
-{ after(grammarAccess.getExtendsAccess().getGenericsLessThanSignGreaterThanSignKeyword_2_0()); }
+{ after(grammarAccess.getExtendsAccess().getGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0()); }
 )
 
-{ after(grammarAccess.getExtendsAccess().getGenericsLessThanSignGreaterThanSignKeyword_2_0()); }
+{ after(grammarAccess.getExtendsAccess().getGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0()); }
 )
 
 ;

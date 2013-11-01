@@ -8075,7 +8075,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cImplementsJvmTypeCrossReference_1_0 = (CrossReference)cImplementsAssignment_1.eContents().get(0);
 		private final RuleCall cImplementsJvmTypeQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cImplementsJvmTypeCrossReference_1_0.eContents().get(1);
 		private final Assignment cGenericsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cGenericsLessThanSignGreaterThanSignKeyword_2_0 = (Keyword)cGenericsAssignment_2.eContents().get(0);
+		private final Keyword cGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0 = (Keyword)cGenericsAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cExceptPojosKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cPojosAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
@@ -8088,11 +8088,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDaosPojoDaoIDENTTerminalRuleCall_4_1_0_1 = (RuleCall)cDaosPojoDaoCrossReference_4_1_0.eContents().get(1);
 		
 		//Implements hidden(ML_COMMENT, SL_COMMENT, WS):
-		//	"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<>"? ("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
-		//	("exceptDaos" daos+=[PojoDao|IDENT]*)?;
+		//	"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<<>>"? ("exceptPojos"
+		//	pojos+=[PojoEntity|IDENT]*)? ("exceptDaos" daos+=[PojoDao|IDENT]*)?;
 		public ParserRule getRule() { return rule; }
 
-		//"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<>"? ("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
+		//"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<<>>"? ("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
 		//("exceptDaos" daos+=[PojoDao|IDENT]*)?
 		public Group getGroup() { return cGroup; }
 
@@ -8108,11 +8108,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getImplementsJvmTypeQualifiedNameParserRuleCall_1_0_1() { return cImplementsJvmTypeQualifiedNameParserRuleCall_1_0_1; }
 
-		//generics?="<>"?
+		//generics?="<<>>"?
 		public Assignment getGenericsAssignment_2() { return cGenericsAssignment_2; }
 
-		//"<>"
-		public Keyword getGenericsLessThanSignGreaterThanSignKeyword_2_0() { return cGenericsLessThanSignGreaterThanSignKeyword_2_0; }
+		//"<<>>"
+		public Keyword getGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0() { return cGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0; }
 
 		//("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
 		public Group getGroup_3() { return cGroup_3; }
@@ -8153,7 +8153,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cExtendsJvmTypeCrossReference_1_0 = (CrossReference)cExtendsAssignment_1.eContents().get(0);
 		private final RuleCall cExtendsJvmTypeQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cExtendsJvmTypeCrossReference_1_0.eContents().get(1);
 		private final Assignment cGenericsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cGenericsLessThanSignGreaterThanSignKeyword_2_0 = (Keyword)cGenericsAssignment_2.eContents().get(0);
+		private final Keyword cGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0 = (Keyword)cGenericsAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cExceptPojosKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cPojosAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
@@ -8166,11 +8166,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDaosPojoDaoIDENTTerminalRuleCall_4_1_0_1 = (RuleCall)cDaosPojoDaoCrossReference_4_1_0.eContents().get(1);
 		
 		//Extends hidden(ML_COMMENT, SL_COMMENT, WS):
-		//	"extends" extends=[jvmTypes::JvmType|QualifiedName] generics?="<>"? ("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
+		//	"extends" extends=[jvmTypes::JvmType|QualifiedName] generics?="<<>>"? ("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
 		//	("exceptDaos" daos+=[PojoDao|IDENT]*)?;
 		public ParserRule getRule() { return rule; }
 
-		//"extends" extends=[jvmTypes::JvmType|QualifiedName] generics?="<>"? ("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
+		//"extends" extends=[jvmTypes::JvmType|QualifiedName] generics?="<<>>"? ("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
 		//("exceptDaos" daos+=[PojoDao|IDENT]*)?
 		public Group getGroup() { return cGroup; }
 
@@ -8186,11 +8186,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getExtendsJvmTypeQualifiedNameParserRuleCall_1_0_1() { return cExtendsJvmTypeQualifiedNameParserRuleCall_1_0_1; }
 
-		//generics?="<>"?
+		//generics?="<<>>"?
 		public Assignment getGenericsAssignment_2() { return cGenericsAssignment_2; }
 
-		//"<>"
-		public Keyword getGenericsLessThanSignGreaterThanSignKeyword_2_0() { return cGenericsLessThanSignGreaterThanSignKeyword_2_0; }
+		//"<<>>"
+		public Keyword getGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0() { return cGenericsLessThanSignLessThanSignGreaterThanSignGreaterThanSignKeyword_2_0; }
 
 		//("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
 		public Group getGroup_3() { return cGroup_3; }
@@ -10735,8 +10735,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Implements hidden(ML_COMMENT, SL_COMMENT, WS):
-	//	"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<>"? ("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
-	//	("exceptDaos" daos+=[PojoDao|IDENT]*)?;
+	//	"implements" implements=[jvmTypes::JvmType|QualifiedName] generics?="<<>>"? ("exceptPojos"
+	//	pojos+=[PojoEntity|IDENT]*)? ("exceptDaos" daos+=[PojoDao|IDENT]*)?;
 	public ImplementsElements getImplementsAccess() {
 		return (pImplements != null) ? pImplements : (pImplements = new ImplementsElements());
 	}
@@ -10746,7 +10746,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Extends hidden(ML_COMMENT, SL_COMMENT, WS):
-	//	"extends" extends=[jvmTypes::JvmType|QualifiedName] generics?="<>"? ("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
+	//	"extends" extends=[jvmTypes::JvmType|QualifiedName] generics?="<<>>"? ("exceptPojos" pojos+=[PojoEntity|IDENT]*)?
 	//	("exceptDaos" daos+=[PojoDao|IDENT]*)?;
 	public ExtendsElements getExtendsAccess() {
 		return (pExtends != null) ? pExtends : (pExtends = new ExtendsElements());
