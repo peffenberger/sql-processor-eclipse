@@ -17,7 +17,6 @@ import org.eclipse.xtext.common.types.JvmType;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#getToExtends <em>To Extends</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#isGenerics <em>Generics</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#getDbTables <em>Db Tables</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#getDbNotTables <em>Db Not Tables</em>}</li>
  * </ul>
@@ -54,32 +53,6 @@ public interface ExtendsAssignement extends EObject
    * @generated
    */
   void setToExtends(JvmType value);
-
-  /**
-   * Returns the value of the '<em><b>Generics</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Generics</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Generics</em>' attribute.
-   * @see #setGenerics(boolean)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getExtendsAssignement_Generics()
-   * @model
-   * @generated
-   */
-  boolean isGenerics();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.ExtendsAssignement#isGenerics <em>Generics</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Generics</em>' attribute.
-   * @see #isGenerics()
-   * @generated
-   */
-  void setGenerics(boolean value);
 
   /**
    * Returns the value of the '<em><b>Db Tables</b></em>' attribute list.

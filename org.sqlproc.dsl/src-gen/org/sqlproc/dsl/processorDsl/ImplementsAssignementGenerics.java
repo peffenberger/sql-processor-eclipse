@@ -10,23 +10,23 @@ import org.eclipse.xtext.common.types.JvmType;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Implements Assignement</b></em>'.
+ * A representation of the model object '<em><b>Implements Assignement Generics</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.ImplementsAssignement#getToImplement <em>To Implement</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.ImplementsAssignement#getDbTables <em>Db Tables</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.ImplementsAssignement#getDbNotTables <em>Db Not Tables</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics#getToImplement <em>To Implement</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics#getDbTables <em>Db Tables</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics#getDbNotTables <em>Db Not Tables</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getImplementsAssignement()
+ * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getImplementsAssignementGenerics()
  * @model
  * @generated
  */
-public interface ImplementsAssignement extends EObject
+public interface ImplementsAssignementGenerics extends EObject
 {
   /**
    * Returns the value of the '<em><b>To Implement</b></em>' reference.
@@ -38,14 +38,14 @@ public interface ImplementsAssignement extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>To Implement</em>' reference.
    * @see #setToImplement(JvmType)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getImplementsAssignement_ToImplement()
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getImplementsAssignementGenerics_ToImplement()
    * @model
    * @generated
    */
   JvmType getToImplement();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.ImplementsAssignement#getToImplement <em>To Implement</em>}' reference.
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics#getToImplement <em>To Implement</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>To Implement</em>' reference.
@@ -64,7 +64,7 @@ public interface ImplementsAssignement extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Db Tables</em>' attribute list.
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getImplementsAssignement_DbTables()
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getImplementsAssignementGenerics_DbTables()
    * @model unique="false"
    * @generated
    */
@@ -80,10 +80,10 @@ public interface ImplementsAssignement extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Db Not Tables</em>' attribute list.
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getImplementsAssignement_DbNotTables()
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getImplementsAssignementGenerics_DbNotTables()
    * @model unique="false"
    * @generated
    */
   EList<String> getDbNotTables();
 
-} // ImplementsAssignement
+} // ImplementsAssignementGenerics

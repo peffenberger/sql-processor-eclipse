@@ -95,15 +95,23 @@
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//ImplementsAssignement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//ImplementsAssignement/toImplement"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//ImplementsAssignement/generics"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//ImplementsAssignement/dbTables"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//ImplementsAssignement/dbNotTables"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//ExtendsAssignement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//ExtendsAssignement/toExtends"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//ExtendsAssignement/generics"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//ExtendsAssignement/dbTables"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//ExtendsAssignement/dbNotTables"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//ImplementsAssignementGenerics">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//ImplementsAssignementGenerics/toImplement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//ImplementsAssignementGenerics/dbTables"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//ImplementsAssignementGenerics/dbNotTables"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//ExtendsAssignementGenerics">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//ExtendsAssignementGenerics/toExtends"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//ExtendsAssignementGenerics/dbTables"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//ExtendsAssignementGenerics/dbNotTables"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//Property">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//Property/name"/>
@@ -155,6 +163,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojogenProperty/operatorsSuffix"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojogenProperty/toImplements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojogenProperty/toExtends"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojogenProperty/toImplementsGenerics"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojogenProperty/toExtendsGenerics"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojogenProperty/implPackage"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojogenProperty/version"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojogenProperty/dbNotTables"/>
@@ -189,6 +199,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//DaogenProperty/implPackage"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaogenProperty/toImplements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaogenProperty/toExtends"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaogenProperty/toImplementsGenerics"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaogenProperty/toExtendsGenerics"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//DaogenProperty/dbFunction"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaogenProperty/resultType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaogenProperty/debug"/>

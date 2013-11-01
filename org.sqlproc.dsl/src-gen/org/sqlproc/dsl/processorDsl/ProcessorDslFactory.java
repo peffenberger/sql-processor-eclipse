@@ -221,6 +221,24 @@ public interface ProcessorDslFactory extends EFactory
   ExtendsAssignement createExtendsAssignement();
 
   /**
+   * Returns a new object of class '<em>Implements Assignement Generics</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Implements Assignement Generics</em>'.
+   * @generated
+   */
+  ImplementsAssignementGenerics createImplementsAssignementGenerics();
+
+  /**
+   * Returns a new object of class '<em>Extends Assignement Generics</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Extends Assignement Generics</em>'.
+   * @generated
+   */
+  ExtendsAssignementGenerics createExtendsAssignementGenerics();
+
+  /**
    * Returns a new object of class '<em>Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -105,7 +105,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImplementsAssignement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="toImplement" eType="ecore:EClass ../../../../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="generics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbTables" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbNotTables" unique="false"
@@ -113,7 +112,20 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExtendsAssignement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="toExtends" eType="ecore:EClass ../../../../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="generics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbTables" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbNotTables" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImplementsAssignementGenerics">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toImplement" eType="ecore:EClass ../../../../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbTables" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbNotTables" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendsAssignementGenerics">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toExtends" eType="ecore:EClass ../../../../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbTables" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbNotTables" unique="false"
@@ -195,6 +207,10 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="toExtends" eType="#//ExtendsAssignement"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toImplementsGenerics" eType="#//ImplementsAssignementGenerics"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toExtendsGenerics" eType="#//ExtendsAssignementGenerics"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implPackage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbNotTables" unique="false"
@@ -241,6 +257,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="toImplements" eType="#//ImplementsAssignement"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="toExtends" eType="#//ExtendsAssignement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toImplementsGenerics" eType="#//ImplementsAssignementGenerics"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toExtendsGenerics" eType="#//ExtendsAssignementGenerics"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbFunction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resultType" eType="#//PojoType"

@@ -35,6 +35,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getOperatorsSuffix <em>Operators Suffix</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToImplements <em>To Implements</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToExtends <em>To Extends</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToImplementsGenerics <em>To Implements Generics</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToExtendsGenerics <em>To Extends Generics</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getImplPackage <em>Impl Package</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getVersion <em>Version</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDbNotTables <em>Db Not Tables</em>}</li>
@@ -475,6 +477,58 @@ public interface PojogenProperty extends EObject
    * @generated
    */
   void setToExtends(ExtendsAssignement value);
+
+  /**
+   * Returns the value of the '<em><b>To Implements Generics</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>To Implements Generics</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>To Implements Generics</em>' containment reference.
+   * @see #setToImplementsGenerics(ImplementsAssignementGenerics)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojogenProperty_ToImplementsGenerics()
+   * @model containment="true"
+   * @generated
+   */
+  ImplementsAssignementGenerics getToImplementsGenerics();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToImplementsGenerics <em>To Implements Generics</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>To Implements Generics</em>' containment reference.
+   * @see #getToImplementsGenerics()
+   * @generated
+   */
+  void setToImplementsGenerics(ImplementsAssignementGenerics value);
+
+  /**
+   * Returns the value of the '<em><b>To Extends Generics</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>To Extends Generics</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>To Extends Generics</em>' containment reference.
+   * @see #setToExtendsGenerics(ExtendsAssignementGenerics)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojogenProperty_ToExtendsGenerics()
+   * @model containment="true"
+   * @generated
+   */
+  ExtendsAssignementGenerics getToExtendsGenerics();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToExtendsGenerics <em>To Extends Generics</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>To Extends Generics</em>' containment reference.
+   * @see #getToExtendsGenerics()
+   * @generated
+   */
+  void setToExtendsGenerics(ExtendsAssignementGenerics value);
 
   /**
    * Returns the value of the '<em><b>Impl Package</b></em>' attribute.

@@ -18,25 +18,25 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 import org.eclipse.xtext.common.types.JvmType;
 
-import org.sqlproc.dsl.processorDsl.ImplementsAssignement;
+import org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Implements Assignement</b></em>'.
+ * An implementation of the model object '<em><b>Implements Assignement Generics</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ImplementsAssignementImpl#getToImplement <em>To Implement</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ImplementsAssignementImpl#getDbTables <em>Db Tables</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ImplementsAssignementImpl#getDbNotTables <em>Db Not Tables</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ImplementsAssignementGenericsImpl#getToImplement <em>To Implement</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ImplementsAssignementGenericsImpl#getDbTables <em>Db Tables</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ImplementsAssignementGenericsImpl#getDbNotTables <em>Db Not Tables</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ImplementsAssignementImpl extends MinimalEObjectImpl.Container implements ImplementsAssignement
+public class ImplementsAssignementGenericsImpl extends MinimalEObjectImpl.Container implements ImplementsAssignementGenerics
 {
   /**
    * The cached value of the '{@link #getToImplement() <em>To Implement</em>}' reference.
@@ -73,7 +73,7 @@ public class ImplementsAssignementImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ImplementsAssignementImpl()
+  protected ImplementsAssignementGenericsImpl()
   {
     super();
   }
@@ -86,7 +86,7 @@ public class ImplementsAssignementImpl extends MinimalEObjectImpl.Container impl
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.IMPLEMENTS_ASSIGNEMENT;
+    return ProcessorDslPackage.Literals.IMPLEMENTS_ASSIGNEMENT_GENERICS;
   }
 
   /**
@@ -103,7 +103,7 @@ public class ImplementsAssignementImpl extends MinimalEObjectImpl.Container impl
       if (toImplement != oldToImplement)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__TO_IMPLEMENT, oldToImplement, toImplement));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT, oldToImplement, toImplement));
       }
     }
     return toImplement;
@@ -129,7 +129,7 @@ public class ImplementsAssignementImpl extends MinimalEObjectImpl.Container impl
     JvmType oldToImplement = toImplement;
     toImplement = newToImplement;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__TO_IMPLEMENT, oldToImplement, toImplement));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT, oldToImplement, toImplement));
   }
 
   /**
@@ -141,7 +141,7 @@ public class ImplementsAssignementImpl extends MinimalEObjectImpl.Container impl
   {
     if (dbTables == null)
     {
-      dbTables = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__DB_TABLES);
+      dbTables = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_TABLES);
     }
     return dbTables;
   }
@@ -155,7 +155,7 @@ public class ImplementsAssignementImpl extends MinimalEObjectImpl.Container impl
   {
     if (dbNotTables == null)
     {
-      dbNotTables = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__DB_NOT_TABLES);
+      dbNotTables = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_NOT_TABLES);
     }
     return dbNotTables;
   }
@@ -170,12 +170,12 @@ public class ImplementsAssignementImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__TO_IMPLEMENT:
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT:
         if (resolve) return getToImplement();
         return basicGetToImplement();
-      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__DB_TABLES:
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_TABLES:
         return getDbTables();
-      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__DB_NOT_TABLES:
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_NOT_TABLES:
         return getDbNotTables();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -192,14 +192,14 @@ public class ImplementsAssignementImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__TO_IMPLEMENT:
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT:
         setToImplement((JvmType)newValue);
         return;
-      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__DB_TABLES:
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_TABLES:
         getDbTables().clear();
         getDbTables().addAll((Collection<? extends String>)newValue);
         return;
-      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__DB_NOT_TABLES:
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_NOT_TABLES:
         getDbNotTables().clear();
         getDbNotTables().addAll((Collection<? extends String>)newValue);
         return;
@@ -217,13 +217,13 @@ public class ImplementsAssignementImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__TO_IMPLEMENT:
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT:
         setToImplement((JvmType)null);
         return;
-      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__DB_TABLES:
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_TABLES:
         getDbTables().clear();
         return;
-      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__DB_NOT_TABLES:
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_NOT_TABLES:
         getDbNotTables().clear();
         return;
     }
@@ -240,11 +240,11 @@ public class ImplementsAssignementImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__TO_IMPLEMENT:
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT:
         return toImplement != null;
-      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__DB_TABLES:
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_TABLES:
         return dbTables != null && !dbTables.isEmpty();
-      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT__DB_NOT_TABLES:
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_NOT_TABLES:
         return dbNotTables != null && !dbNotTables.isEmpty();
     }
     return super.eIsSet(featureID);
@@ -269,4 +269,4 @@ public class ImplementsAssignementImpl extends MinimalEObjectImpl.Container impl
     return result.toString();
   }
 
-} //ImplementsAssignementImpl
+} //ImplementsAssignementGenericsImpl

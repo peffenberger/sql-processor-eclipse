@@ -31,8 +31,10 @@ ManyToManyAssignement: pkColumn=IDENT '->' pkTable=IDENT ('->' fkColumn=IDENT)?;
 DebugLevelAssignement: debug=IDENT;
 ProcedurePojoAssignement: dbProcedure=IDENT '->' pojo=PojoType;
 FunctionPojoAssignement: dbFunction=IDENT '->' pojo=PojoType;
-ImplementsAssignement: toImplement=[jvmTypes::JvmType|QualifiedName] (generics ?= '<>')? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ExtendsAssignement: toExtends=[jvmTypes::JvmType|QualifiedName] (generics ?= '<>')? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ImplementsAssignement: toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ExtendsAssignement: toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ImplementsAssignementGenerics: toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ExtendsAssignementGenerics: toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 
 Property:
 	(name='resolve-pojo-on'
@@ -98,6 +100,8 @@ PojogenProperty:
 	|name='generate-operators' (WS+ operatorsSuffix=IDENT)?
 	|name='implements-interfaces' WS+ toImplements=ImplementsAssignement 
 	|name='extends-class' WS+ toExtends=ExtendsAssignement
+	|name='implements-interfaces-generics' WS+ toImplementsGenerics=ImplementsAssignementGenerics 
+	|name='extends-class-generics' WS+ toExtendsGenerics=ExtendsAssignementGenerics
 	|name='generate-wrappers'
 	|name='generate-validation-annotations'
 	|name='preserve-foreign-keys' (WS+ dbTables+=IDENT)*
@@ -138,6 +142,8 @@ DaogenProperty:
 	|name='implementation-package' WS+ implPackage=IDENT
 	|name='implements-interfaces' WS+ toImplements=ImplementsAssignement
 	|name='extends-class' WS+ toExtends=ExtendsAssignement
+	|name='implements-interfaces-generics' WS+ toImplementsGenerics=ImplementsAssignementGenerics 
+	|name='extends-class-generics' WS+ toExtendsGenerics=ExtendsAssignementGenerics
 	|name='make-it-final'
 	|name='function-result' WS+ dbFunction=IDENT WS+ resultType=PojoType
 	|name='debug-level' WS+ debug=DebugLevelAssignement

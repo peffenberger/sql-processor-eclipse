@@ -20,7 +20,9 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.sqlproc.dsl.processorDsl.DaogenProperty;
 import org.sqlproc.dsl.processorDsl.DebugLevelAssignement;
 import org.sqlproc.dsl.processorDsl.ExtendsAssignement;
+import org.sqlproc.dsl.processorDsl.ExtendsAssignementGenerics;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignement;
+import org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics;
 import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
@@ -36,6 +38,8 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getImplPackage <em>Impl Package</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getToImplements <em>To Implements</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getToExtends <em>To Extends</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getToImplementsGenerics <em>To Implements Generics</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getToExtendsGenerics <em>To Extends Generics</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getDbFunction <em>Db Function</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getResultType <em>Result Type</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getDebug <em>Debug</em>}</li>
@@ -115,6 +119,26 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * @ordered
    */
   protected ExtendsAssignement toExtends;
+
+  /**
+   * The cached value of the '{@link #getToImplementsGenerics() <em>To Implements Generics</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getToImplementsGenerics()
+   * @generated
+   * @ordered
+   */
+  protected ImplementsAssignementGenerics toImplementsGenerics;
+
+  /**
+   * The cached value of the '{@link #getToExtendsGenerics() <em>To Extends Generics</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getToExtendsGenerics()
+   * @generated
+   * @ordered
+   */
+  protected ExtendsAssignementGenerics toExtendsGenerics;
 
   /**
    * The default value of the '{@link #getDbFunction() <em>Db Function</em>}' attribute.
@@ -338,6 +362,102 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  public ImplementsAssignementGenerics getToImplementsGenerics()
+  {
+    return toImplementsGenerics;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetToImplementsGenerics(ImplementsAssignementGenerics newToImplementsGenerics, NotificationChain msgs)
+  {
+    ImplementsAssignementGenerics oldToImplementsGenerics = toImplementsGenerics;
+    toImplementsGenerics = newToImplementsGenerics;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS, oldToImplementsGenerics, newToImplementsGenerics);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setToImplementsGenerics(ImplementsAssignementGenerics newToImplementsGenerics)
+  {
+    if (newToImplementsGenerics != toImplementsGenerics)
+    {
+      NotificationChain msgs = null;
+      if (toImplementsGenerics != null)
+        msgs = ((InternalEObject)toImplementsGenerics).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS, null, msgs);
+      if (newToImplementsGenerics != null)
+        msgs = ((InternalEObject)newToImplementsGenerics).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS, null, msgs);
+      msgs = basicSetToImplementsGenerics(newToImplementsGenerics, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS, newToImplementsGenerics, newToImplementsGenerics));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExtendsAssignementGenerics getToExtendsGenerics()
+  {
+    return toExtendsGenerics;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetToExtendsGenerics(ExtendsAssignementGenerics newToExtendsGenerics, NotificationChain msgs)
+  {
+    ExtendsAssignementGenerics oldToExtendsGenerics = toExtendsGenerics;
+    toExtendsGenerics = newToExtendsGenerics;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS_GENERICS, oldToExtendsGenerics, newToExtendsGenerics);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setToExtendsGenerics(ExtendsAssignementGenerics newToExtendsGenerics)
+  {
+    if (newToExtendsGenerics != toExtendsGenerics)
+    {
+      NotificationChain msgs = null;
+      if (toExtendsGenerics != null)
+        msgs = ((InternalEObject)toExtendsGenerics).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS_GENERICS, null, msgs);
+      if (newToExtendsGenerics != null)
+        msgs = ((InternalEObject)newToExtendsGenerics).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS_GENERICS, null, msgs);
+      msgs = basicSetToExtendsGenerics(newToExtendsGenerics, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS_GENERICS, newToExtendsGenerics, newToExtendsGenerics));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getDbFunction()
   {
     return dbFunction;
@@ -466,6 +586,10 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         return basicSetToImplements(null, msgs);
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS:
         return basicSetToExtends(null, msgs);
+      case ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS:
+        return basicSetToImplementsGenerics(null, msgs);
+      case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS_GENERICS:
+        return basicSetToExtendsGenerics(null, msgs);
       case ProcessorDslPackage.DAOGEN_PROPERTY__RESULT_TYPE:
         return basicSetResultType(null, msgs);
       case ProcessorDslPackage.DAOGEN_PROPERTY__DEBUG:
@@ -494,6 +618,10 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         return getToImplements();
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS:
         return getToExtends();
+      case ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS:
+        return getToImplementsGenerics();
+      case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS_GENERICS:
+        return getToExtendsGenerics();
       case ProcessorDslPackage.DAOGEN_PROPERTY__DB_FUNCTION:
         return getDbFunction();
       case ProcessorDslPackage.DAOGEN_PROPERTY__RESULT_TYPE:
@@ -530,6 +658,12 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         return;
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS:
         setToExtends((ExtendsAssignement)newValue);
+        return;
+      case ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS:
+        setToImplementsGenerics((ImplementsAssignementGenerics)newValue);
+        return;
+      case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS_GENERICS:
+        setToExtendsGenerics((ExtendsAssignementGenerics)newValue);
         return;
       case ProcessorDslPackage.DAOGEN_PROPERTY__DB_FUNCTION:
         setDbFunction((String)newValue);
@@ -569,6 +703,12 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS:
         setToExtends((ExtendsAssignement)null);
         return;
+      case ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS:
+        setToImplementsGenerics((ImplementsAssignementGenerics)null);
+        return;
+      case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS_GENERICS:
+        setToExtendsGenerics((ExtendsAssignementGenerics)null);
+        return;
       case ProcessorDslPackage.DAOGEN_PROPERTY__DB_FUNCTION:
         setDbFunction(DB_FUNCTION_EDEFAULT);
         return;
@@ -602,6 +742,10 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         return toImplements != null;
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS:
         return toExtends != null;
+      case ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS:
+        return toImplementsGenerics != null;
+      case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS_GENERICS:
+        return toExtendsGenerics != null;
       case ProcessorDslPackage.DAOGEN_PROPERTY__DB_FUNCTION:
         return DB_FUNCTION_EDEFAULT == null ? dbFunction != null : !DB_FUNCTION_EDEFAULT.equals(dbFunction);
       case ProcessorDslPackage.DAOGEN_PROPERTY__RESULT_TYPE:

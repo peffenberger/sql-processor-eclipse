@@ -29,7 +29,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementImpl#getToExtends <em>To Extends</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementImpl#isGenerics <em>Generics</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementImpl#getDbTables <em>Db Tables</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementImpl#getDbNotTables <em>Db Not Tables</em>}</li>
  * </ul>
@@ -48,26 +47,6 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
    * @ordered
    */
   protected JvmType toExtends;
-
-  /**
-   * The default value of the '{@link #isGenerics() <em>Generics</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isGenerics()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean GENERICS_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isGenerics() <em>Generics</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isGenerics()
-   * @generated
-   * @ordered
-   */
-  protected boolean generics = GENERICS_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getDbTables() <em>Db Tables</em>}' attribute list.
@@ -158,29 +137,6 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isGenerics()
-  {
-    return generics;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setGenerics(boolean newGenerics)
-  {
-    boolean oldGenerics = generics;
-    generics = newGenerics;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.EXTENDS_ASSIGNEMENT__GENERICS, oldGenerics, generics));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EList<String> getDbTables()
   {
     if (dbTables == null)
@@ -217,8 +173,6 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__TO_EXTENDS:
         if (resolve) return getToExtends();
         return basicGetToExtends();
-      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__GENERICS:
-        return isGenerics();
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_TABLES:
         return getDbTables();
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_NOT_TABLES:
@@ -240,9 +194,6 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
     {
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__TO_EXTENDS:
         setToExtends((JvmType)newValue);
-        return;
-      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__GENERICS:
-        setGenerics((Boolean)newValue);
         return;
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_TABLES:
         getDbTables().clear();
@@ -269,9 +220,6 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__TO_EXTENDS:
         setToExtends((JvmType)null);
         return;
-      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__GENERICS:
-        setGenerics(GENERICS_EDEFAULT);
-        return;
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_TABLES:
         getDbTables().clear();
         return;
@@ -294,8 +242,6 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
     {
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__TO_EXTENDS:
         return toExtends != null;
-      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__GENERICS:
-        return generics != GENERICS_EDEFAULT;
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_TABLES:
         return dbTables != null && !dbTables.isEmpty();
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT__DB_NOT_TABLES:
@@ -315,9 +261,7 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (generics: ");
-    result.append(generics);
-    result.append(", dbTables: ");
+    result.append(" (dbTables: ");
     result.append(dbTables);
     result.append(", dbNotTables: ");
     result.append(dbNotTables);

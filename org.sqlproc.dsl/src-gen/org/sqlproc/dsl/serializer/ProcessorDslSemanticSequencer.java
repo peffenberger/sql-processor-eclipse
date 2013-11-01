@@ -43,6 +43,7 @@ import org.sqlproc.dsl.processorDsl.ExtendedColumnName;
 import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
 import org.sqlproc.dsl.processorDsl.Extends;
 import org.sqlproc.dsl.processorDsl.ExtendsAssignement;
+import org.sqlproc.dsl.processorDsl.ExtendsAssignementGenerics;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
 import org.sqlproc.dsl.processorDsl.FunctionPojoAssignement;
 import org.sqlproc.dsl.processorDsl.Identifier;
@@ -55,6 +56,7 @@ import org.sqlproc.dsl.processorDsl.IfSqlFragment;
 import org.sqlproc.dsl.processorDsl.ImplPackage;
 import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignement;
+import org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics;
 import org.sqlproc.dsl.processorDsl.Import;
 import org.sqlproc.dsl.processorDsl.ImportAssignement;
 import org.sqlproc.dsl.processorDsl.InheritanceAssignement;
@@ -291,6 +293,12 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
+			case ProcessorDslPackage.EXTENDS_ASSIGNEMENT_GENERICS:
+				if(context == grammarAccess.getExtendsAssignementGenericsRule()) {
+					sequence_ExtendsAssignementGenerics(context, (ExtendsAssignementGenerics) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorDslPackage.FUNCTION_DEFINITION:
 				if(context == grammarAccess.getFunctionDefinitionRule()) {
 					sequence_FunctionDefinition(context, (FunctionDefinition) semanticObject); 
@@ -362,6 +370,12 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT:
 				if(context == grammarAccess.getImplementsAssignementRule()) {
 					sequence_ImplementsAssignement(context, (ImplementsAssignement) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS:
+				if(context == grammarAccess.getImplementsAssignementGenericsRule()) {
+					sequence_ImplementsAssignementGenerics(context, (ImplementsAssignementGenerics) semanticObject); 
 					return; 
 				}
 				else break;
@@ -749,6 +763,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='implementation-package' implPackage=IDENT) | 
 	 *         (name='implements-interfaces' toImplements=ImplementsAssignement) | 
 	 *         (name='extends-class' toExtends=ExtendsAssignement) | 
+	 *         (name='implements-interfaces-generics' toImplementsGenerics=ImplementsAssignementGenerics) | 
+	 *         (name='extends-class-generics' toExtendsGenerics=ExtendsAssignementGenerics) | 
 	 *         name='make-it-final' | 
 	 *         (name='function-result' dbFunction=IDENT resultType=PojoType) | 
 	 *         (name='debug-level' debug=DebugLevelAssignement)
@@ -1018,7 +1034,16 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (toExtends=[JvmType|QualifiedName] generics?='<>'? dbTables+=IDENT* dbNotTables+=IDENT*)
+	 *     (toExtends=[JvmType|QualifiedName] dbTables+=IDENT* dbNotTables+=IDENT*)
+	 */
+	protected void sequence_ExtendsAssignementGenerics(EObject context, ExtendsAssignementGenerics semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (toExtends=[JvmType|QualifiedName] dbTables+=IDENT* dbNotTables+=IDENT*)
 	 */
 	protected void sequence_ExtendsAssignement(EObject context, ExtendsAssignement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1166,7 +1191,16 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (toImplement=[JvmType|QualifiedName] generics?='<>'? dbTables+=IDENT* dbNotTables+=IDENT*)
+	 *     (toImplement=[JvmType|QualifiedName] dbTables+=IDENT* dbNotTables+=IDENT*)
+	 */
+	protected void sequence_ImplementsAssignementGenerics(EObject context, ImplementsAssignementGenerics semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (toImplement=[JvmType|QualifiedName] dbTables+=IDENT* dbNotTables+=IDENT*)
 	 */
 	protected void sequence_ImplementsAssignement(EObject context, ImplementsAssignement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1586,6 +1620,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='generate-operators' operatorsSuffix=IDENT?) | 
 	 *         (name='implements-interfaces' toImplements=ImplementsAssignement) | 
 	 *         (name='extends-class' toExtends=ExtendsAssignement) | 
+	 *         (name='implements-interfaces-generics' toImplementsGenerics=ImplementsAssignementGenerics) | 
+	 *         (name='extends-class-generics' toExtendsGenerics=ExtendsAssignementGenerics) | 
 	 *         name='generate-wrappers' | 
 	 *         name='generate-validation-annotations' | 
 	 *         (name='preserve-foreign-keys' dbTables+=IDENT*) | 

@@ -86,6 +86,8 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.FUNCTION_POJO_ASSIGNEMENT: return createFunctionPojoAssignement();
       case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT: return createImplementsAssignement();
       case ProcessorDslPackage.EXTENDS_ASSIGNEMENT: return createExtendsAssignement();
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS: return createImplementsAssignementGenerics();
+      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT_GENERICS: return createExtendsAssignementGenerics();
       case ProcessorDslPackage.PROPERTY: return createProperty();
       case ProcessorDslPackage.DATABASE_PROPERTY: return createDatabaseProperty();
       case ProcessorDslPackage.POJOGEN_PROPERTY: return createPojogenProperty();
@@ -395,6 +397,28 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     ExtendsAssignementImpl extendsAssignement = new ExtendsAssignementImpl();
     return extendsAssignement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ImplementsAssignementGenerics createImplementsAssignementGenerics()
+  {
+    ImplementsAssignementGenericsImpl implementsAssignementGenerics = new ImplementsAssignementGenericsImpl();
+    return implementsAssignementGenerics;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExtendsAssignementGenerics createExtendsAssignementGenerics()
+  {
+    ExtendsAssignementGenericsImpl extendsAssignementGenerics = new ExtendsAssignementGenericsImpl();
+    return extendsAssignementGenerics;
   }
 
   /**

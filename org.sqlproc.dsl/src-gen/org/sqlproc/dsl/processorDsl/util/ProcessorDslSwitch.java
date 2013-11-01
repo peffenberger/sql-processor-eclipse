@@ -246,6 +246,20 @@ public class ProcessorDslSwitch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS:
+      {
+        ImplementsAssignementGenerics implementsAssignementGenerics = (ImplementsAssignementGenerics)theEObject;
+        T result = caseImplementsAssignementGenerics(implementsAssignementGenerics);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.EXTENDS_ASSIGNEMENT_GENERICS:
+      {
+        ExtendsAssignementGenerics extendsAssignementGenerics = (ExtendsAssignementGenerics)theEObject;
+        T result = caseExtendsAssignementGenerics(extendsAssignementGenerics);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorDslPackage.PROPERTY:
       {
         Property property = (Property)theEObject;
@@ -1055,6 +1069,38 @@ public class ProcessorDslSwitch<T>
    * @generated
    */
   public T caseExtendsAssignement(ExtendsAssignement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Implements Assignement Generics</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Implements Assignement Generics</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseImplementsAssignementGenerics(ImplementsAssignementGenerics object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Extends Assignement Generics</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Extends Assignement Generics</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExtendsAssignementGenerics(ExtendsAssignementGenerics object)
   {
     return null;
   }

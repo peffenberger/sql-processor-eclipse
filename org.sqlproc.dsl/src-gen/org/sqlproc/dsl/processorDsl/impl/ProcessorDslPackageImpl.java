@@ -43,6 +43,7 @@ import org.sqlproc.dsl.processorDsl.ExtendedColumnName;
 import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
 import org.sqlproc.dsl.processorDsl.Extends;
 import org.sqlproc.dsl.processorDsl.ExtendsAssignement;
+import org.sqlproc.dsl.processorDsl.ExtendsAssignementGenerics;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
 import org.sqlproc.dsl.processorDsl.FunctionPojoAssignement;
 import org.sqlproc.dsl.processorDsl.Identifier;
@@ -55,6 +56,7 @@ import org.sqlproc.dsl.processorDsl.IfSqlFragment;
 import org.sqlproc.dsl.processorDsl.ImplPackage;
 import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignement;
+import org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics;
 import org.sqlproc.dsl.processorDsl.Import;
 import org.sqlproc.dsl.processorDsl.ImportAssignement;
 import org.sqlproc.dsl.processorDsl.InheritanceAssignement;
@@ -261,6 +263,20 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * @generated
    */
   private EClass extendsAssignementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass implementsAssignementGenericsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass extendsAssignementGenericsEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1461,7 +1477,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getImplementsAssignement_Generics()
+  public EAttribute getImplementsAssignement_DbTables()
   {
     return (EAttribute)implementsAssignementEClass.getEStructuralFeatures().get(1);
   }
@@ -1471,19 +1487,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getImplementsAssignement_DbTables()
-  {
-    return (EAttribute)implementsAssignementEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EAttribute getImplementsAssignement_DbNotTables()
   {
-    return (EAttribute)implementsAssignementEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)implementsAssignementEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1511,7 +1517,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getExtendsAssignement_Generics()
+  public EAttribute getExtendsAssignement_DbTables()
   {
     return (EAttribute)extendsAssignementEClass.getEStructuralFeatures().get(1);
   }
@@ -1521,7 +1527,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getExtendsAssignement_DbTables()
+  public EAttribute getExtendsAssignement_DbNotTables()
   {
     return (EAttribute)extendsAssignementEClass.getEStructuralFeatures().get(2);
   }
@@ -1531,9 +1537,79 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getExtendsAssignement_DbNotTables()
+  public EClass getImplementsAssignementGenerics()
   {
-    return (EAttribute)extendsAssignementEClass.getEStructuralFeatures().get(3);
+    return implementsAssignementGenericsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getImplementsAssignementGenerics_ToImplement()
+  {
+    return (EReference)implementsAssignementGenericsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getImplementsAssignementGenerics_DbTables()
+  {
+    return (EAttribute)implementsAssignementGenericsEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getImplementsAssignementGenerics_DbNotTables()
+  {
+    return (EAttribute)implementsAssignementGenericsEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExtendsAssignementGenerics()
+  {
+    return extendsAssignementGenericsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExtendsAssignementGenerics_ToExtends()
+  {
+    return (EReference)extendsAssignementGenericsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExtendsAssignementGenerics_DbTables()
+  {
+    return (EAttribute)extendsAssignementGenericsEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExtendsAssignementGenerics_DbNotTables()
+  {
+    return (EAttribute)extendsAssignementGenericsEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2021,27 +2097,27 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getPojogenProperty_ToImplementsGenerics()
+  {
+    return (EReference)pojogenPropertyEClass.getEStructuralFeatures().get(21);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojogenProperty_ToExtendsGenerics()
+  {
+    return (EReference)pojogenPropertyEClass.getEStructuralFeatures().get(22);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getPojogenProperty_ImplPackage()
-  {
-    return (EAttribute)pojogenPropertyEClass.getEStructuralFeatures().get(21);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojogenProperty_Version()
-  {
-    return (EAttribute)pojogenPropertyEClass.getEStructuralFeatures().get(22);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojogenProperty_DbNotTables()
   {
     return (EAttribute)pojogenPropertyEClass.getEStructuralFeatures().get(23);
   }
@@ -2051,9 +2127,29 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getPojogenProperty_Version()
+  {
+    return (EAttribute)pojogenPropertyEClass.getEStructuralFeatures().get(24);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPojogenProperty_DbNotTables()
+  {
+    return (EAttribute)pojogenPropertyEClass.getEStructuralFeatures().get(25);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getPojogenProperty_Debug()
   {
-    return (EReference)pojogenPropertyEClass.getEStructuralFeatures().get(24);
+    return (EReference)pojogenPropertyEClass.getEStructuralFeatures().get(26);
   }
 
   /**
@@ -2063,7 +2159,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    */
   public EReference getPojogenProperty_ProcPojos()
   {
-    return (EReference)pojogenPropertyEClass.getEStructuralFeatures().get(25);
+    return (EReference)pojogenPropertyEClass.getEStructuralFeatures().get(27);
   }
 
   /**
@@ -2073,7 +2169,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    */
   public EReference getPojogenProperty_FunPojos()
   {
-    return (EReference)pojogenPropertyEClass.getEStructuralFeatures().get(26);
+    return (EReference)pojogenPropertyEClass.getEStructuralFeatures().get(28);
   }
 
   /**
@@ -2331,9 +2427,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDaogenProperty_DbFunction()
+  public EReference getDaogenProperty_ToImplementsGenerics()
   {
-    return (EAttribute)daogenPropertyEClass.getEStructuralFeatures().get(5);
+    return (EReference)daogenPropertyEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -2341,7 +2437,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDaogenProperty_ResultType()
+  public EReference getDaogenProperty_ToExtendsGenerics()
   {
     return (EReference)daogenPropertyEClass.getEStructuralFeatures().get(6);
   }
@@ -2351,9 +2447,29 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getDaogenProperty_DbFunction()
+  {
+    return (EAttribute)daogenPropertyEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDaogenProperty_ResultType()
+  {
+    return (EReference)daogenPropertyEClass.getEStructuralFeatures().get(8);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getDaogenProperty_Debug()
   {
-    return (EReference)daogenPropertyEClass.getEStructuralFeatures().get(7);
+    return (EReference)daogenPropertyEClass.getEStructuralFeatures().get(9);
   }
 
   /**
@@ -4854,15 +4970,23 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
 
     implementsAssignementEClass = createEClass(IMPLEMENTS_ASSIGNEMENT);
     createEReference(implementsAssignementEClass, IMPLEMENTS_ASSIGNEMENT__TO_IMPLEMENT);
-    createEAttribute(implementsAssignementEClass, IMPLEMENTS_ASSIGNEMENT__GENERICS);
     createEAttribute(implementsAssignementEClass, IMPLEMENTS_ASSIGNEMENT__DB_TABLES);
     createEAttribute(implementsAssignementEClass, IMPLEMENTS_ASSIGNEMENT__DB_NOT_TABLES);
 
     extendsAssignementEClass = createEClass(EXTENDS_ASSIGNEMENT);
     createEReference(extendsAssignementEClass, EXTENDS_ASSIGNEMENT__TO_EXTENDS);
-    createEAttribute(extendsAssignementEClass, EXTENDS_ASSIGNEMENT__GENERICS);
     createEAttribute(extendsAssignementEClass, EXTENDS_ASSIGNEMENT__DB_TABLES);
     createEAttribute(extendsAssignementEClass, EXTENDS_ASSIGNEMENT__DB_NOT_TABLES);
+
+    implementsAssignementGenericsEClass = createEClass(IMPLEMENTS_ASSIGNEMENT_GENERICS);
+    createEReference(implementsAssignementGenericsEClass, IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT);
+    createEAttribute(implementsAssignementGenericsEClass, IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_TABLES);
+    createEAttribute(implementsAssignementGenericsEClass, IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_NOT_TABLES);
+
+    extendsAssignementGenericsEClass = createEClass(EXTENDS_ASSIGNEMENT_GENERICS);
+    createEReference(extendsAssignementGenericsEClass, EXTENDS_ASSIGNEMENT_GENERICS__TO_EXTENDS);
+    createEAttribute(extendsAssignementGenericsEClass, EXTENDS_ASSIGNEMENT_GENERICS__DB_TABLES);
+    createEAttribute(extendsAssignementGenericsEClass, EXTENDS_ASSIGNEMENT_GENERICS__DB_NOT_TABLES);
 
     propertyEClass = createEClass(PROPERTY);
     createEAttribute(propertyEClass, PROPERTY__NAME);
@@ -4914,6 +5038,8 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEAttribute(pojogenPropertyEClass, POJOGEN_PROPERTY__OPERATORS_SUFFIX);
     createEReference(pojogenPropertyEClass, POJOGEN_PROPERTY__TO_IMPLEMENTS);
     createEReference(pojogenPropertyEClass, POJOGEN_PROPERTY__TO_EXTENDS);
+    createEReference(pojogenPropertyEClass, POJOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS);
+    createEReference(pojogenPropertyEClass, POJOGEN_PROPERTY__TO_EXTENDS_GENERICS);
     createEAttribute(pojogenPropertyEClass, POJOGEN_PROPERTY__IMPL_PACKAGE);
     createEAttribute(pojogenPropertyEClass, POJOGEN_PROPERTY__VERSION);
     createEAttribute(pojogenPropertyEClass, POJOGEN_PROPERTY__DB_NOT_TABLES);
@@ -4948,6 +5074,8 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEAttribute(daogenPropertyEClass, DAOGEN_PROPERTY__IMPL_PACKAGE);
     createEReference(daogenPropertyEClass, DAOGEN_PROPERTY__TO_IMPLEMENTS);
     createEReference(daogenPropertyEClass, DAOGEN_PROPERTY__TO_EXTENDS);
+    createEReference(daogenPropertyEClass, DAOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS);
+    createEReference(daogenPropertyEClass, DAOGEN_PROPERTY__TO_EXTENDS_GENERICS);
     createEAttribute(daogenPropertyEClass, DAOGEN_PROPERTY__DB_FUNCTION);
     createEReference(daogenPropertyEClass, DAOGEN_PROPERTY__RESULT_TYPE);
     createEReference(daogenPropertyEClass, DAOGEN_PROPERTY__DEBUG);
@@ -5380,15 +5508,23 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
 
     initEClass(implementsAssignementEClass, ImplementsAssignement.class, "ImplementsAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getImplementsAssignement_ToImplement(), theTypesPackage.getJvmType(), null, "toImplement", null, 0, 1, ImplementsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getImplementsAssignement_Generics(), ecorePackage.getEBoolean(), "generics", null, 0, 1, ImplementsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getImplementsAssignement_DbTables(), ecorePackage.getEString(), "dbTables", null, 0, -1, ImplementsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getImplementsAssignement_DbNotTables(), ecorePackage.getEString(), "dbNotTables", null, 0, -1, ImplementsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(extendsAssignementEClass, ExtendsAssignement.class, "ExtendsAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExtendsAssignement_ToExtends(), theTypesPackage.getJvmType(), null, "toExtends", null, 0, 1, ExtendsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getExtendsAssignement_Generics(), ecorePackage.getEBoolean(), "generics", null, 0, 1, ExtendsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExtendsAssignement_DbTables(), ecorePackage.getEString(), "dbTables", null, 0, -1, ExtendsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExtendsAssignement_DbNotTables(), ecorePackage.getEString(), "dbNotTables", null, 0, -1, ExtendsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(implementsAssignementGenericsEClass, ImplementsAssignementGenerics.class, "ImplementsAssignementGenerics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getImplementsAssignementGenerics_ToImplement(), theTypesPackage.getJvmType(), null, "toImplement", null, 0, 1, ImplementsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getImplementsAssignementGenerics_DbTables(), ecorePackage.getEString(), "dbTables", null, 0, -1, ImplementsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getImplementsAssignementGenerics_DbNotTables(), ecorePackage.getEString(), "dbNotTables", null, 0, -1, ImplementsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(extendsAssignementGenericsEClass, ExtendsAssignementGenerics.class, "ExtendsAssignementGenerics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExtendsAssignementGenerics_ToExtends(), theTypesPackage.getJvmType(), null, "toExtends", null, 0, 1, ExtendsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExtendsAssignementGenerics_DbTables(), ecorePackage.getEString(), "dbTables", null, 0, -1, ExtendsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExtendsAssignementGenerics_DbNotTables(), ecorePackage.getEString(), "dbNotTables", null, 0, -1, ExtendsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5440,6 +5576,8 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEAttribute(getPojogenProperty_OperatorsSuffix(), ecorePackage.getEString(), "operatorsSuffix", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojogenProperty_ToImplements(), this.getImplementsAssignement(), null, "toImplements", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojogenProperty_ToExtends(), this.getExtendsAssignement(), null, "toExtends", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojogenProperty_ToImplementsGenerics(), this.getImplementsAssignementGenerics(), null, "toImplementsGenerics", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojogenProperty_ToExtendsGenerics(), this.getExtendsAssignementGenerics(), null, "toExtendsGenerics", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojogenProperty_ImplPackage(), ecorePackage.getEString(), "implPackage", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojogenProperty_Version(), ecorePackage.getEString(), "version", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojogenProperty_DbNotTables(), ecorePackage.getEString(), "dbNotTables", null, 0, -1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5474,6 +5612,8 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEAttribute(getDaogenProperty_ImplPackage(), ecorePackage.getEString(), "implPackage", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDaogenProperty_ToImplements(), this.getImplementsAssignement(), null, "toImplements", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDaogenProperty_ToExtends(), this.getExtendsAssignement(), null, "toExtends", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDaogenProperty_ToImplementsGenerics(), this.getImplementsAssignementGenerics(), null, "toImplementsGenerics", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDaogenProperty_ToExtendsGenerics(), this.getExtendsAssignementGenerics(), null, "toExtendsGenerics", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDaogenProperty_DbFunction(), ecorePackage.getEString(), "dbFunction", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDaogenProperty_ResultType(), this.getPojoType(), null, "resultType", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDaogenProperty_Debug(), this.getDebugLevelAssignement(), null, "debug", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
