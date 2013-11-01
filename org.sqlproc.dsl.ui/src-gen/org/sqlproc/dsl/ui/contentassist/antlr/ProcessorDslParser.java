@@ -282,7 +282,6 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_1_1(), "rule__DaogenProperty__Group_1_1__0");
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_2(), "rule__DaogenProperty__Group_2__0");
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_3(), "rule__DaogenProperty__Group_3__0");
-					put(grammarAccess.getDaogenPropertyAccess().getGroup_3_1(), "rule__DaogenProperty__Group_3_1__0");
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_4(), "rule__DaogenProperty__Group_4__0");
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_6(), "rule__DaogenProperty__Group_6__0");
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_7(), "rule__DaogenProperty__Group_7__0");
@@ -606,7 +605,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojogenPropertyAccess().getNameAssignment_26_0(), "rule__PojogenProperty__NameAssignment_26_0");
 					put(grammarAccess.getPojogenPropertyAccess().getOperatorsSuffixAssignment_26_1_1(), "rule__PojogenProperty__OperatorsSuffixAssignment_26_1_1");
 					put(grammarAccess.getPojogenPropertyAccess().getNameAssignment_27_0(), "rule__PojogenProperty__NameAssignment_27_0");
-					put(grammarAccess.getPojogenPropertyAccess().getToImplementsAssignment_27_1(), "rule__PojogenProperty__ToImplementsAssignment_27_1");
+					put(grammarAccess.getPojogenPropertyAccess().getToImplementsAssignment_27_2(), "rule__PojogenProperty__ToImplementsAssignment_27_2");
 					put(grammarAccess.getPojogenPropertyAccess().getNameAssignment_28_0(), "rule__PojogenProperty__NameAssignment_28_0");
 					put(grammarAccess.getPojogenPropertyAccess().getToExtendsAssignment_28_2(), "rule__PojogenProperty__ToExtendsAssignment_28_2");
 					put(grammarAccess.getPojogenPropertyAccess().getNameAssignment_29(), "rule__PojogenProperty__NameAssignment_29");
@@ -686,7 +685,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDaogenPropertyAccess().getNameAssignment_2_0(), "rule__DaogenProperty__NameAssignment_2_0");
 					put(grammarAccess.getDaogenPropertyAccess().getImplPackageAssignment_2_2(), "rule__DaogenProperty__ImplPackageAssignment_2_2");
 					put(grammarAccess.getDaogenPropertyAccess().getNameAssignment_3_0(), "rule__DaogenProperty__NameAssignment_3_0");
-					put(grammarAccess.getDaogenPropertyAccess().getToImplementsAssignment_3_1_1(), "rule__DaogenProperty__ToImplementsAssignment_3_1_1");
+					put(grammarAccess.getDaogenPropertyAccess().getToImplementsAssignment_3_2(), "rule__DaogenProperty__ToImplementsAssignment_3_2");
 					put(grammarAccess.getDaogenPropertyAccess().getNameAssignment_4_0(), "rule__DaogenProperty__NameAssignment_4_0");
 					put(grammarAccess.getDaogenPropertyAccess().getToExtendsAssignment_4_2(), "rule__DaogenProperty__ToExtendsAssignment_4_2");
 					put(grammarAccess.getDaogenPropertyAccess().getNameAssignment_5(), "rule__DaogenProperty__NameAssignment_5");

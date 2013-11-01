@@ -16,8 +16,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sqlproc.dsl.processorDsl.DaogenProperty;
 import org.sqlproc.dsl.processorDsl.DebugLevelAssignement;
@@ -99,14 +97,14 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
   protected String implPackage = IMPL_PACKAGE_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getToImplements() <em>To Implements</em>}' containment reference list.
+   * The cached value of the '{@link #getToImplements() <em>To Implements</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getToImplements()
    * @generated
    * @ordered
    */
-  protected EList<ImplementsAssignement> toImplements;
+  protected ImplementsAssignement toImplements;
 
   /**
    * The cached value of the '{@link #getToExtends() <em>To Extends</em>}' containment reference.
@@ -244,13 +242,47 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ImplementsAssignement> getToImplements()
+  public ImplementsAssignement getToImplements()
   {
-    if (toImplements == null)
-    {
-      toImplements = new EObjectContainmentEList<ImplementsAssignement>(ImplementsAssignement.class, this, ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS);
-    }
     return toImplements;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetToImplements(ImplementsAssignement newToImplements, NotificationChain msgs)
+  {
+    ImplementsAssignement oldToImplements = toImplements;
+    toImplements = newToImplements;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS, oldToImplements, newToImplements);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setToImplements(ImplementsAssignement newToImplements)
+  {
+    if (newToImplements != toImplements)
+    {
+      NotificationChain msgs = null;
+      if (toImplements != null)
+        msgs = ((InternalEObject)toImplements).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS, null, msgs);
+      if (newToImplements != null)
+        msgs = ((InternalEObject)newToImplements).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS, null, msgs);
+      msgs = basicSetToImplements(newToImplements, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS, newToImplements, newToImplements));
   }
 
   /**
@@ -431,7 +463,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
     switch (featureID)
     {
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS:
-        return ((InternalEList<?>)getToImplements()).basicRemove(otherEnd, msgs);
+        return basicSetToImplements(null, msgs);
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS:
         return basicSetToExtends(null, msgs);
       case ProcessorDslPackage.DAOGEN_PROPERTY__RESULT_TYPE:
@@ -494,8 +526,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         setImplPackage((String)newValue);
         return;
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS:
-        getToImplements().clear();
-        getToImplements().addAll((Collection<? extends ImplementsAssignement>)newValue);
+        setToImplements((ImplementsAssignement)newValue);
         return;
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS:
         setToExtends((ExtendsAssignement)newValue);
@@ -533,7 +564,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         setImplPackage(IMPL_PACKAGE_EDEFAULT);
         return;
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS:
-        getToImplements().clear();
+        setToImplements((ImplementsAssignement)null);
         return;
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS:
         setToExtends((ExtendsAssignement)null);
@@ -568,7 +599,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
       case ProcessorDslPackage.DAOGEN_PROPERTY__IMPL_PACKAGE:
         return IMPL_PACKAGE_EDEFAULT == null ? implPackage != null : !IMPL_PACKAGE_EDEFAULT.equals(implPackage);
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS:
-        return toImplements != null && !toImplements.isEmpty();
+        return toImplements != null;
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS:
         return toExtends != null;
       case ProcessorDslPackage.DAOGEN_PROPERTY__DB_FUNCTION:

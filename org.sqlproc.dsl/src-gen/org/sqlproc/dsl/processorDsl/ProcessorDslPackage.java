@@ -1396,7 +1396,7 @@ public interface ProcessorDslPackage extends EPackage
   int POJOGEN_PROPERTY__OPERATORS_SUFFIX = 18;
 
   /**
-   * The feature id for the '<em><b>To Implements</b></em>' containment reference list.
+   * The feature id for the '<em><b>To Implements</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1705,7 +1705,7 @@ public interface ProcessorDslPackage extends EPackage
   int DAOGEN_PROPERTY__IMPL_PACKAGE = 2;
 
   /**
-   * The feature id for the '<em><b>To Implements</b></em>' containment reference list.
+   * The feature id for the '<em><b>To Implements</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -5817,10 +5817,10 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getPojogenProperty_OperatorsSuffix();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToImplements <em>To Implements</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToImplements <em>To Implements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>To Implements</em>'.
+   * @return the meta object for the containment reference '<em>To Implements</em>'.
    * @see org.sqlproc.dsl.processorDsl.PojogenProperty#getToImplements()
    * @see #getPojogenProperty()
    * @generated
@@ -6155,10 +6155,10 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getDaogenProperty_ImplPackage();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getToImplements <em>To Implements</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getToImplements <em>To Implements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>To Implements</em>'.
+   * @return the meta object for the containment reference '<em>To Implements</em>'.
    * @see org.sqlproc.dsl.processorDsl.DaogenProperty#getToImplements()
    * @see #getDaogenProperty()
    * @generated
@@ -9819,7 +9819,7 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute POJOGEN_PROPERTY__OPERATORS_SUFFIX = eINSTANCE.getPojogenProperty_OperatorsSuffix();
 
     /**
-     * The meta object literal for the '<em><b>To Implements</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>To Implements</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -10073,7 +10073,7 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute DAOGEN_PROPERTY__IMPL_PACKAGE = eINSTANCE.getDaogenProperty_ImplPackage();
 
     /**
-     * The meta object literal for the '<em><b>To Implements</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>To Implements</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

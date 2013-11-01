@@ -765,6 +765,38 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
 
     @Override
+    public void completeImplementsAssignement_DbNotTables(EObject model, Assignment assignment,
+            ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completeImplementsAssignement_DbNotTables(model, assignment, context, acceptor);
+            return;
+        }
+        for (String table : dbResolver.getTables(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+    }
+
+    @Override
+    public void completeExtendsAssignement_DbNotTables(EObject model, Assignment assignment,
+            ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completeExtendsAssignement_DbNotTables(model, assignment, context, acceptor);
+            return;
+        }
+        for (String table : dbResolver.getTables(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+    }
+
+    @Override
     public void completeColumnTypeAssignement_DbColumn(EObject model, Assignment assignment,
             ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
         if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {

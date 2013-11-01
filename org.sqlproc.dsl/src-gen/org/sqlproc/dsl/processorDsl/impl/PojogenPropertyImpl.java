@@ -329,14 +329,14 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
   protected String operatorsSuffix = OPERATORS_SUFFIX_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getToImplements() <em>To Implements</em>}' containment reference list.
+   * The cached value of the '{@link #getToImplements() <em>To Implements</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getToImplements()
    * @generated
    * @ordered
    */
-  protected EList<ImplementsAssignement> toImplements;
+  protected ImplementsAssignement toImplements;
 
   /**
    * The cached value of the '{@link #getToExtends() <em>To Extends</em>}' containment reference.
@@ -808,13 +808,47 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ImplementsAssignement> getToImplements()
+  public ImplementsAssignement getToImplements()
   {
-    if (toImplements == null)
-    {
-      toImplements = new EObjectContainmentEList<ImplementsAssignement>(ImplementsAssignement.class, this, ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS);
-    }
     return toImplements;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetToImplements(ImplementsAssignement newToImplements, NotificationChain msgs)
+  {
+    ImplementsAssignement oldToImplements = toImplements;
+    toImplements = newToImplements;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS, oldToImplements, newToImplements);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setToImplements(ImplementsAssignement newToImplements)
+  {
+    if (newToImplements != toImplements)
+    {
+      NotificationChain msgs = null;
+      if (toImplements != null)
+        msgs = ((InternalEObject)toImplements).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS, null, msgs);
+      if (newToImplements != null)
+        msgs = ((InternalEObject)newToImplements).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS, null, msgs);
+      msgs = basicSetToImplements(newToImplements, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS, newToImplements, newToImplements));
   }
 
   /**
@@ -1032,7 +1066,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJOGEN_PROPERTY__INHERITANCE:
         return ((InternalEList<?>)getInheritance()).basicRemove(otherEnd, msgs);
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS:
-        return ((InternalEList<?>)getToImplements()).basicRemove(otherEnd, msgs);
+        return basicSetToImplements(null, msgs);
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS:
         return basicSetToExtends(null, msgs);
       case ProcessorDslPackage.POJOGEN_PROPERTY__DEBUG:
@@ -1194,8 +1228,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         setOperatorsSuffix((String)newValue);
         return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS:
-        getToImplements().clear();
-        getToImplements().addAll((Collection<? extends ImplementsAssignement>)newValue);
+        setToImplements((ImplementsAssignement)newValue);
         return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS:
         setToExtends((ExtendsAssignement)newValue);
@@ -1293,7 +1326,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         setOperatorsSuffix(OPERATORS_SUFFIX_EDEFAULT);
         return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS:
-        getToImplements().clear();
+        setToImplements((ImplementsAssignement)null);
         return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS:
         setToExtends((ExtendsAssignement)null);
@@ -1369,7 +1402,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJOGEN_PROPERTY__OPERATORS_SUFFIX:
         return OPERATORS_SUFFIX_EDEFAULT == null ? operatorsSuffix != null : !OPERATORS_SUFFIX_EDEFAULT.equals(operatorsSuffix);
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_IMPLEMENTS:
-        return toImplements != null && !toImplements.isEmpty();
+        return toImplements != null;
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS:
         return toExtends != null;
       case ProcessorDslPackage.POJOGEN_PROPERTY__IMPL_PACKAGE:

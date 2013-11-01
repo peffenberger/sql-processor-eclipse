@@ -747,7 +747,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='ignore-tables' dbTables+=IDENT+) | 
 	 *         (name='only-tables' dbTables+=IDENT*) | 
 	 *         (name='implementation-package' implPackage=IDENT) | 
-	 *         (name='implements-interfaces' toImplements+=ImplementsAssignement+) | 
+	 *         (name='implements-interfaces' toImplements=ImplementsAssignement) | 
 	 *         (name='extends-class' toExtends=ExtendsAssignement) | 
 	 *         name='make-it-final' | 
 	 *         (name='function-result' dbFunction=IDENT resultType=PojoType) | 
@@ -1584,7 +1584,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='inherit-discriminator' dbTable=IDENT dbColumn=IDENT inheritance+=InheritanceAssignement+) | 
 	 *         (name='generate-methods' methods+=IDENT+) | 
 	 *         (name='generate-operators' operatorsSuffix=IDENT?) | 
-	 *         (name='implements-interfaces' toImplements+=ImplementsAssignement+) | 
+	 *         (name='implements-interfaces' toImplements=ImplementsAssignement) | 
 	 *         (name='extends-class' toExtends=ExtendsAssignement) | 
 	 *         name='generate-wrappers' | 
 	 *         name='generate-validation-annotations' | 

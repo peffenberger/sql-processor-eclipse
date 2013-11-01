@@ -425,20 +425,30 @@ public interface PojogenProperty extends EObject
   void setOperatorsSuffix(String value);
 
   /**
-   * Returns the value of the '<em><b>To Implements</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.ImplementsAssignement}.
+   * Returns the value of the '<em><b>To Implements</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>To Implements</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>To Implements</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>To Implements</em>' containment reference list.
+   * @return the value of the '<em>To Implements</em>' containment reference.
+   * @see #setToImplements(ImplementsAssignement)
    * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojogenProperty_ToImplements()
    * @model containment="true"
    * @generated
    */
-  EList<ImplementsAssignement> getToImplements();
+  ImplementsAssignement getToImplements();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToImplements <em>To Implements</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>To Implements</em>' containment reference.
+   * @see #getToImplements()
+   * @generated
+   */
+  void setToImplements(ImplementsAssignement value);
 
   /**
    * Returns the value of the '<em><b>To Extends</b></em>' containment reference.

@@ -96,7 +96,7 @@ PojogenProperty:
 	|name='inherit-discriminator' WS+ dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+
 	|name='generate-methods' (WS+ methods+=IDENT)+
 	|name='generate-operators' (WS+ operatorsSuffix=IDENT)?
-	|name='implements-interfaces' (toImplements+=ImplementsAssignement)+ 
+	|name='implements-interfaces' WS+ toImplements=ImplementsAssignement 
 	|name='extends-class' WS+ toExtends=ExtendsAssignement
 	|name='generate-wrappers'
 	|name='generate-validation-annotations'
@@ -136,7 +136,7 @@ DaogenProperty:
 	(name='ignore-tables' (WS+ dbTables+=IDENT)+
 	|name='only-tables' (WS+ dbTables+=IDENT)*
 	|name='implementation-package' WS+ implPackage=IDENT
-	|name='implements-interfaces' (WS+ toImplements+=ImplementsAssignement)+
+	|name='implements-interfaces' WS+ toImplements=ImplementsAssignement
 	|name='extends-class' WS+ toExtends=ExtendsAssignement
 	|name='make-it-final'
 	|name='function-result' WS+ dbFunction=IDENT WS+ resultType=PojoType

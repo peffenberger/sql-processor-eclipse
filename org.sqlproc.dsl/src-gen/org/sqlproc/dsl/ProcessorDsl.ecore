@@ -191,8 +191,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="methods" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatorsSuffix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="toImplements" upperBound="-1"
-        eType="#//ImplementsAssignement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toImplements" eType="#//ImplementsAssignement"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="toExtends" eType="#//ExtendsAssignement"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implPackage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -238,8 +238,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbTables" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implPackage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="toImplements" upperBound="-1"
-        eType="#//ImplementsAssignement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toImplements" eType="#//ImplementsAssignement"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="toExtends" eType="#//ExtendsAssignement"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbFunction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

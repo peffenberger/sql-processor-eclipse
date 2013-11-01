@@ -1863,8 +1863,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_27 = (Group)cAlternatives.eContents().get(27);
 		private final Assignment cNameAssignment_27_0 = (Assignment)cGroup_27.eContents().get(0);
 		private final Keyword cNameImplementsInterfacesKeyword_27_0_0 = (Keyword)cNameAssignment_27_0.eContents().get(0);
-		private final Assignment cToImplementsAssignment_27_1 = (Assignment)cGroup_27.eContents().get(1);
-		private final RuleCall cToImplementsImplementsAssignementParserRuleCall_27_1_0 = (RuleCall)cToImplementsAssignment_27_1.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_27_1 = (RuleCall)cGroup_27.eContents().get(1);
+		private final Assignment cToImplementsAssignment_27_2 = (Assignment)cGroup_27.eContents().get(2);
+		private final RuleCall cToImplementsImplementsAssignementParserRuleCall_27_2_0 = (RuleCall)cToImplementsAssignment_27_2.eContents().get(0);
 		private final Group cGroup_28 = (Group)cAlternatives.eContents().get(28);
 		private final Assignment cNameAssignment_28_0 = (Assignment)cGroup_28.eContents().get(0);
 		private final Keyword cNameExtendsClassKeyword_28_0_0 = (Keyword)cNameAssignment_28_0.eContents().get(0);
@@ -1951,11 +1952,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	| name="create-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 		//	| name="table-many-to-many" WS+ dbTable=IDENT (WS+ many2s+=ManyToManyAssignement)+ | name="inherit-discriminator" WS+
 		//	dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+ | name="generate-methods" (WS+
-		//	methods+=IDENT)+ | name="generate-operators" (WS+ operatorsSuffix=IDENT)? | name="implements-interfaces"
-		//	toImplements+=ImplementsAssignement+ | name="extends-class" WS+ toExtends=ExtendsAssignement |
-		//	name="generate-wrappers" | name="generate-validation-annotations" | name="preserve-foreign-keys" (WS+
-		//	dbTables+=IDENT)* | name="implementation-package" WS+ implPackage=IDENT | name="make-it-final" | name="version-column"
-		//	WS+ version=IDENT (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)? | name="debug-level" WS+
+		//	methods+=IDENT)+ | name="generate-operators" (WS+ operatorsSuffix=IDENT)? | name="implements-interfaces" WS+
+		//	toImplements=ImplementsAssignement | name="extends-class" WS+ toExtends=ExtendsAssignement | name="generate-wrappers"
+		//	| name="generate-validation-annotations" | name="preserve-foreign-keys" (WS+ dbTables+=IDENT)* |
+		//	name="implementation-package" WS+ implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT
+		//	(WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)? | name="debug-level" WS+
 		//	debug=DebugLevelAssignement | name="pojos-for-procedures" (WS+ procPojos+=ProcedurePojoAssignement)+ |
 		//	name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+;
 		public ParserRule getRule() { return rule; }
@@ -1979,9 +1980,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//| name="create-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 		//| name="table-many-to-many" WS+ dbTable=IDENT (WS+ many2s+=ManyToManyAssignement)+ | name="inherit-discriminator" WS+
 		//dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+ | name="generate-methods" (WS+
-		//methods+=IDENT)+ | name="generate-operators" (WS+ operatorsSuffix=IDENT)? | name="implements-interfaces"
-		//toImplements+=ImplementsAssignement+ | name="extends-class" WS+ toExtends=ExtendsAssignement | name="generate-wrappers"
-		//| name="generate-validation-annotations" | name="preserve-foreign-keys" (WS+ dbTables+=IDENT)* |
+		//methods+=IDENT)+ | name="generate-operators" (WS+ operatorsSuffix=IDENT)? | name="implements-interfaces" WS+
+		//toImplements=ImplementsAssignement | name="extends-class" WS+ toExtends=ExtendsAssignement | name="generate-wrappers" |
+		//name="generate-validation-annotations" | name="preserve-foreign-keys" (WS+ dbTables+=IDENT)* |
 		//name="implementation-package" WS+ implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT
 		//(WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)? | name="debug-level" WS+
 		//debug=DebugLevelAssignement | name="pojos-for-procedures" (WS+ procPojos+=ProcedurePojoAssignement)+ |
@@ -2726,7 +2727,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getOperatorsSuffixIDENTTerminalRuleCall_26_1_1_0() { return cOperatorsSuffixIDENTTerminalRuleCall_26_1_1_0; }
 
-		//name="implements-interfaces" toImplements+=ImplementsAssignement+
+		//name="implements-interfaces" WS+ toImplements=ImplementsAssignement
 		public Group getGroup_27() { return cGroup_27; }
 
 		//name="implements-interfaces"
@@ -2735,11 +2736,14 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"implements-interfaces"
 		public Keyword getNameImplementsInterfacesKeyword_27_0_0() { return cNameImplementsInterfacesKeyword_27_0_0; }
 
-		//toImplements+=ImplementsAssignement+
-		public Assignment getToImplementsAssignment_27_1() { return cToImplementsAssignment_27_1; }
+		//WS+
+		public RuleCall getWSTerminalRuleCall_27_1() { return cWSTerminalRuleCall_27_1; }
+
+		//toImplements=ImplementsAssignement
+		public Assignment getToImplementsAssignment_27_2() { return cToImplementsAssignment_27_2; }
 
 		//ImplementsAssignement
-		public RuleCall getToImplementsImplementsAssignementParserRuleCall_27_1_0() { return cToImplementsImplementsAssignementParserRuleCall_27_1_0; }
+		public RuleCall getToImplementsImplementsAssignementParserRuleCall_27_2_0() { return cToImplementsImplementsAssignementParserRuleCall_27_2_0; }
 
 		//name="extends-class" WS+ toExtends=ExtendsAssignement
 		public Group getGroup_28() { return cGroup_28; }
@@ -3722,10 +3726,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
 		private final Assignment cNameAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
 		private final Keyword cNameImplementsInterfacesKeyword_3_0_0 = (Keyword)cNameAssignment_3_0.eContents().get(0);
-		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_3_1_0 = (RuleCall)cGroup_3_1.eContents().get(0);
-		private final Assignment cToImplementsAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
-		private final RuleCall cToImplementsImplementsAssignementParserRuleCall_3_1_1_0 = (RuleCall)cToImplementsAssignment_3_1_1.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_3_1 = (RuleCall)cGroup_3.eContents().get(1);
+		private final Assignment cToImplementsAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cToImplementsImplementsAssignementParserRuleCall_3_2_0 = (RuleCall)cToImplementsAssignment_3_2.eContents().get(0);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
 		private final Assignment cNameAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
 		private final Keyword cNameExtendsClassKeyword_4_0_0 = (Keyword)cNameAssignment_4_0.eContents().get(0);
@@ -3752,15 +3755,15 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//DaogenProperty:
 		//	name="ignore-tables" (WS+ dbTables+=IDENT)+ | name="only-tables" (WS+ dbTables+=IDENT)* |
-		//	name="implementation-package" WS+ implPackage=IDENT | name="implements-interfaces" (WS+
-		//	toImplements+=ImplementsAssignement)+ | name="extends-class" WS+ toExtends=ExtendsAssignement | name="make-it-final" |
+		//	name="implementation-package" WS+ implPackage=IDENT | name="implements-interfaces" WS+
+		//	toImplements=ImplementsAssignement | name="extends-class" WS+ toExtends=ExtendsAssignement | name="make-it-final" |
 		//	name="function-result" WS+ dbFunction=IDENT WS+ resultType=PojoType | name="debug-level" WS+
 		//	debug=DebugLevelAssignement;
 		public ParserRule getRule() { return rule; }
 
 		//name="ignore-tables" (WS+ dbTables+=IDENT)+ | name="only-tables" (WS+ dbTables+=IDENT)* | name="implementation-package"
-		//WS+ implPackage=IDENT | name="implements-interfaces" (WS+ toImplements+=ImplementsAssignement)+ | name="extends-class"
-		//WS+ toExtends=ExtendsAssignement | name="make-it-final" | name="function-result" WS+ dbFunction=IDENT WS+
+		//WS+ implPackage=IDENT | name="implements-interfaces" WS+ toImplements=ImplementsAssignement | name="extends-class" WS+
+		//toExtends=ExtendsAssignement | name="make-it-final" | name="function-result" WS+ dbFunction=IDENT WS+
 		//resultType=PojoType | name="debug-level" WS+ debug=DebugLevelAssignement
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -3824,7 +3827,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getImplPackageIDENTTerminalRuleCall_2_2_0() { return cImplPackageIDENTTerminalRuleCall_2_2_0; }
 
-		//name="implements-interfaces" (WS+ toImplements+=ImplementsAssignement)+
+		//name="implements-interfaces" WS+ toImplements=ImplementsAssignement
 		public Group getGroup_3() { return cGroup_3; }
 
 		//name="implements-interfaces"
@@ -3833,17 +3836,14 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"implements-interfaces"
 		public Keyword getNameImplementsInterfacesKeyword_3_0_0() { return cNameImplementsInterfacesKeyword_3_0_0; }
 
-		//(WS+ toImplements+=ImplementsAssignement)+
-		public Group getGroup_3_1() { return cGroup_3_1; }
-
 		//WS+
-		public RuleCall getWSTerminalRuleCall_3_1_0() { return cWSTerminalRuleCall_3_1_0; }
+		public RuleCall getWSTerminalRuleCall_3_1() { return cWSTerminalRuleCall_3_1; }
 
-		//toImplements+=ImplementsAssignement
-		public Assignment getToImplementsAssignment_3_1_1() { return cToImplementsAssignment_3_1_1; }
+		//toImplements=ImplementsAssignement
+		public Assignment getToImplementsAssignment_3_2() { return cToImplementsAssignment_3_2; }
 
 		//ImplementsAssignement
-		public RuleCall getToImplementsImplementsAssignementParserRuleCall_3_1_1_0() { return cToImplementsImplementsAssignementParserRuleCall_3_1_1_0; }
+		public RuleCall getToImplementsImplementsAssignementParserRuleCall_3_2_0() { return cToImplementsImplementsAssignementParserRuleCall_3_2_0; }
 
 		//name="extends-class" WS+ toExtends=ExtendsAssignement
 		public Group getGroup_4() { return cGroup_4; }
@@ -9650,11 +9650,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	| name="create-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 	//	| name="table-many-to-many" WS+ dbTable=IDENT (WS+ many2s+=ManyToManyAssignement)+ | name="inherit-discriminator" WS+
 	//	dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+ | name="generate-methods" (WS+
-	//	methods+=IDENT)+ | name="generate-operators" (WS+ operatorsSuffix=IDENT)? | name="implements-interfaces"
-	//	toImplements+=ImplementsAssignement+ | name="extends-class" WS+ toExtends=ExtendsAssignement |
-	//	name="generate-wrappers" | name="generate-validation-annotations" | name="preserve-foreign-keys" (WS+
-	//	dbTables+=IDENT)* | name="implementation-package" WS+ implPackage=IDENT | name="make-it-final" | name="version-column"
-	//	WS+ version=IDENT (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)? | name="debug-level" WS+
+	//	methods+=IDENT)+ | name="generate-operators" (WS+ operatorsSuffix=IDENT)? | name="implements-interfaces" WS+
+	//	toImplements=ImplementsAssignement | name="extends-class" WS+ toExtends=ExtendsAssignement | name="generate-wrappers"
+	//	| name="generate-validation-annotations" | name="preserve-foreign-keys" (WS+ dbTables+=IDENT)* |
+	//	name="implementation-package" WS+ implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT
+	//	(WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)? | name="debug-level" WS+
 	//	debug=DebugLevelAssignement | name="pojos-for-procedures" (WS+ procPojos+=ProcedurePojoAssignement)+ |
 	//	name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+;
 	public PojogenPropertyElements getPojogenPropertyAccess() {
@@ -9698,8 +9698,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	//DaogenProperty:
 	//	name="ignore-tables" (WS+ dbTables+=IDENT)+ | name="only-tables" (WS+ dbTables+=IDENT)* |
-	//	name="implementation-package" WS+ implPackage=IDENT | name="implements-interfaces" (WS+
-	//	toImplements+=ImplementsAssignement)+ | name="extends-class" WS+ toExtends=ExtendsAssignement | name="make-it-final" |
+	//	name="implementation-package" WS+ implPackage=IDENT | name="implements-interfaces" WS+
+	//	toImplements=ImplementsAssignement | name="extends-class" WS+ toExtends=ExtendsAssignement | name="make-it-final" |
 	//	name="function-result" WS+ dbFunction=IDENT WS+ resultType=PojoType | name="debug-level" WS+
 	//	debug=DebugLevelAssignement;
 	public DaogenPropertyElements getDaogenPropertyAccess() {
