@@ -369,12 +369,12 @@ public class TablePojoConverter {
             if (dbPrimaryKeys.contains(dbColumn.getName())) {
                 attribute.setPrimaryKey(true);
             }
+            if (dbColumn.getName().equalsIgnoreCase(versionColumn) && !notVersionColumns.containsKey(table)) {
+                if (versionColumns.isEmpty())
+                    attribute.setVersion(true);
+            }
             if (versionColumns.containsKey(table) && dbColumn.getName().equals(versionColumns.get(table))) {
                 attribute.setVersion(true);
-            } else if (dbColumn.getName().equalsIgnoreCase(versionColumn)) {
-                if (!notVersionColumns.containsKey(table)) {
-                    attribute.setVersion(true);
-                }
             }
         }
 
