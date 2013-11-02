@@ -1327,7 +1327,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     public void completeMetagenProperty_DbTables(EObject model, Assignment assignment, ContentAssistContext context,
             ICompletionProposalAcceptor acceptor) {
         if (!isResolveDb(model)) {
-            super.completeDaogenProperty_DbTables(model, assignment, context, acceptor);
+            super.completeMetagenProperty_DbTables(model, assignment, context, acceptor);
             return;
         }
         for (String table : dbResolver.getTables(model)) {
