@@ -35,6 +35,7 @@ public class TableDaoConverter extends TableMetaConverter {
     protected boolean daoMakeItFinal;
     protected Map<String, PojoType> daoFunctionsResult = new HashMap<String, PojoType>();
     protected Set<String> notGenerics;
+    protected Set<String> generics;
 
     public TableDaoConverter() {
         super();
@@ -139,6 +140,8 @@ public class TableDaoConverter extends TableMetaConverter {
                         buffer.append(" <<>>");
                         if (notGenerics == null)
                             notGenerics = new HashSet<String>();
+                        if (generics == null)
+                            generics = new HashSet<String>();
                     }
                     if (!ie.getDbTables().isEmpty()) {
                         buffer.append(" onlyDaos");
@@ -147,8 +150,8 @@ public class TableDaoConverter extends TableMetaConverter {
                             if (pojoName == null)
                                 pojoName = dbColumn;
                             String daoName = tableToCamelCase(pojoName) + "Dao";
-                            if (notGenerics != null)
-                                notGenerics.add(daoName);
+                            if (generics != null)
+                                generics.add(daoName);
                             buffer.append(" ").append(daoName);
                         }
                     }
@@ -222,10 +225,19 @@ public class TableDaoConverter extends TableMetaConverter {
                     buffer.append("final ");
                 buffer.append("dao ");
                 buffer.append(daoName);
-                if (notGenerics == null || notGenerics.contains(daoName))
+                if (generics != null && !generics.isEmpty()) {
+                    if (generics.contains(daoName))
+                        buffer.append(" ::: ");
+                    else
+                        buffer.append(" :: ");
+                } else if (notGenerics != null && !notGenerics.isEmpty()) {
+                    if (notGenerics.contains(daoName))
+                        buffer.append(" :: ");
+                    else
+                        buffer.append(" ::: ");
+                } else {
                     buffer.append(" :: ");
-                else
-                    buffer.append(" ::: ");
+                }
                 buffer.append(tableToCamelCase(pojoName));
                 if (isSerializable || serializables.contains(pojo))
                     buffer.append(" serializable 1 ");
