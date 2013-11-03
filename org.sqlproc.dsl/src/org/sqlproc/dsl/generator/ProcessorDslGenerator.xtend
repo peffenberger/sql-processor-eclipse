@@ -1402,9 +1402,16 @@ def getExtends(PojoEntity e) {
 
 def isImplements(PojoEntity e) {
 	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
+		if (!ext.onlyPojos.empty) {
+			for (ee : ext.onlyPojos) {
+				if (ee.name == e.name)
+					return true
+			}
+			return false
+		}
 		for (ee : ext.exceptPojos) {
 			if (ee.name == e.name)
-				return false;
+				return false
 		}
 		return true
 	}
@@ -1412,6 +1419,13 @@ def isImplements(PojoEntity e) {
 }
 
 def isImplements(PojoEntity e, Implements ext) {
+	if (!ext.onlyPojos.empty) {
+		for (ee : ext.onlyPojos) {
+			if (ee.name == e.name)
+			return true
+		}
+		return false
+	}
 	for (ee : ext.exceptPojos) {
 		if (ee.name == e.name)
 			return false;
@@ -1438,6 +1452,13 @@ def getExtends(PojoDao e) {
 
 def isImplements(PojoDao e) {
 	for(ext: e.eContainer.eContents.filter(typeof(Implements))) {
+		if (!ext.onlyDaos.empty) {
+			for (ee : ext.onlyDaos) {
+				if (ee.name == e.name)
+					return true
+			}
+			return false
+		}
 		for (ee : ext.exceptDaos) {
 			if (ee.name == e.name)
 				return false;
@@ -1448,6 +1469,13 @@ def isImplements(PojoDao e) {
 }
 
 def isImplements(PojoDao e, Implements ext) {
+	if (!ext.onlyDaos.empty) {
+		for (ee : ext.onlyDaos) {
+			if (ee.name == e.name)
+			return true
+		}
+		return false
+	}
 	for (ee : ext.exceptDaos) {
 		if (ee.name == e.name)
 			return false;
