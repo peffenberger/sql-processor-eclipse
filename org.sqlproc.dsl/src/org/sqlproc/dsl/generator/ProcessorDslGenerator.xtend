@@ -1393,9 +1393,43 @@ def isImplements(EnumEntity e) {
 	return false
 }
 
+def isExtends(PojoEntity e) {
+	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Extends))) {
+		if (!ext.onlyPojos.empty) {
+			for (ee : ext.onlyPojos) {
+				if (ee.name == e.name)
+					return true
+			}
+			return false
+		}
+		for (ee : ext.exceptPojos) {
+			if (ee.name == e.name)
+				return false
+		}
+		return true
+	}
+	return false
+}
+
+def isExtends(PojoEntity e, Extends ext) {
+	if (!ext.onlyPojos.empty) {
+		for (ee : ext.onlyPojos) {
+			if (ee.name == e.name)
+			return true
+		}
+		return false
+	}
+	for (ee : ext.exceptPojos) {
+		if (ee.name == e.name)
+			return false;
+	}
+	return true
+}
+
 def getExtends(PojoEntity e) {
 	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Extends))) {
-		return ext.getExtends().simpleName
+		if (isExtends(e, ext))
+			return ext.getExtends().simpleName
 	}
 	return ""
 }
@@ -1443,9 +1477,43 @@ def getImplements(PojoEntity e) {
 	return list
 }
 
+def isExtends(PojoDao e) {
+	for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
+		if (!ext.onlyDaos.empty) {
+			for (ee : ext.onlyDaos) {
+				if (ee.name == e.name)
+					return true
+			}
+			return false
+		}
+		for (ee : ext.exceptDaos) {
+			if (ee.name == e.name)
+				return false;
+		}
+		return true
+	}
+	return false
+}
+
+def isExtends(PojoDao e, Extends ext) {
+	if (!ext.onlyDaos.empty) {
+		for (ee : ext.onlyDaos) {
+			if (ee.name == e.name)
+			return true
+		}
+		return false
+	}
+	for (ee : ext.exceptDaos) {
+		if (ee.name == e.name)
+			return false;
+	}
+	return true
+}
+
 def getExtends(PojoDao e) {
 	for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
-		return ext.getExtends().simpleName
+		if (isExtends(e, ext))
+			return ext.getExtends().simpleName
 	}
 	return ""
 }

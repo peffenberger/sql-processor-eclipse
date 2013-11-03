@@ -7734,14 +7734,82 @@ public class ProcessorDslGenerator implements IGenerator {
     return false;
   }
   
+  public boolean isExtends(final PojoEntity e) {
+    EObject _eContainer = e.eContainer();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
+    Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
+    for (final Extends ext : _filter) {
+      {
+        EList<PojoEntity> _onlyPojos = ext.getOnlyPojos();
+        boolean _isEmpty = _onlyPojos.isEmpty();
+        boolean _not = (!_isEmpty);
+        if (_not) {
+          EList<PojoEntity> _onlyPojos_1 = ext.getOnlyPojos();
+          for (final PojoEntity ee : _onlyPojos_1) {
+            String _name = ee.getName();
+            String _name_1 = e.getName();
+            boolean _equals = Objects.equal(_name, _name_1);
+            if (_equals) {
+              return true;
+            }
+          }
+          return false;
+        }
+        EList<PojoEntity> _exceptPojos = ext.getExceptPojos();
+        for (final PojoEntity ee_1 : _exceptPojos) {
+          String _name_2 = ee_1.getName();
+          String _name_3 = e.getName();
+          boolean _equals_1 = Objects.equal(_name_2, _name_3);
+          if (_equals_1) {
+            return false;
+          }
+        }
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean isExtends(final PojoEntity e, final Extends ext) {
+    EList<PojoEntity> _onlyPojos = ext.getOnlyPojos();
+    boolean _isEmpty = _onlyPojos.isEmpty();
+    boolean _not = (!_isEmpty);
+    if (_not) {
+      EList<PojoEntity> _onlyPojos_1 = ext.getOnlyPojos();
+      for (final PojoEntity ee : _onlyPojos_1) {
+        String _name = ee.getName();
+        String _name_1 = e.getName();
+        boolean _equals = Objects.equal(_name, _name_1);
+        if (_equals) {
+          return true;
+        }
+      }
+      return false;
+    }
+    EList<PojoEntity> _exceptPojos = ext.getExceptPojos();
+    for (final PojoEntity ee_1 : _exceptPojos) {
+      String _name_2 = ee_1.getName();
+      String _name_3 = e.getName();
+      boolean _equals_1 = Objects.equal(_name_2, _name_3);
+      if (_equals_1) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
   public String getExtends(final PojoEntity e) {
     EObject _eContainer = e.eContainer();
     EObject _eContainer_1 = _eContainer.eContainer();
     EList<EObject> _eContents = _eContainer_1.eContents();
     Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
     for (final Extends ext : _filter) {
-      JvmType _extends = ext.getExtends();
-      return _extends.getSimpleName();
+      boolean _isExtends = this.isExtends(e, ext);
+      if (_isExtends) {
+        JvmType _extends = ext.getExtends();
+        return _extends.getSimpleName();
+      }
     }
     return "";
   }
@@ -7827,13 +7895,80 @@ public class ProcessorDslGenerator implements IGenerator {
     return list;
   }
   
+  public boolean isExtends(final PojoDao e) {
+    EObject _eContainer = e.eContainer();
+    EList<EObject> _eContents = _eContainer.eContents();
+    Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
+    for (final Extends ext : _filter) {
+      {
+        EList<PojoDao> _onlyDaos = ext.getOnlyDaos();
+        boolean _isEmpty = _onlyDaos.isEmpty();
+        boolean _not = (!_isEmpty);
+        if (_not) {
+          EList<PojoDao> _onlyDaos_1 = ext.getOnlyDaos();
+          for (final PojoDao ee : _onlyDaos_1) {
+            String _name = ee.getName();
+            String _name_1 = e.getName();
+            boolean _equals = Objects.equal(_name, _name_1);
+            if (_equals) {
+              return true;
+            }
+          }
+          return false;
+        }
+        EList<PojoDao> _exceptDaos = ext.getExceptDaos();
+        for (final PojoDao ee_1 : _exceptDaos) {
+          String _name_2 = ee_1.getName();
+          String _name_3 = e.getName();
+          boolean _equals_1 = Objects.equal(_name_2, _name_3);
+          if (_equals_1) {
+            return false;
+          }
+        }
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean isExtends(final PojoDao e, final Extends ext) {
+    EList<PojoDao> _onlyDaos = ext.getOnlyDaos();
+    boolean _isEmpty = _onlyDaos.isEmpty();
+    boolean _not = (!_isEmpty);
+    if (_not) {
+      EList<PojoDao> _onlyDaos_1 = ext.getOnlyDaos();
+      for (final PojoDao ee : _onlyDaos_1) {
+        String _name = ee.getName();
+        String _name_1 = e.getName();
+        boolean _equals = Objects.equal(_name, _name_1);
+        if (_equals) {
+          return true;
+        }
+      }
+      return false;
+    }
+    EList<PojoDao> _exceptDaos = ext.getExceptDaos();
+    for (final PojoDao ee_1 : _exceptDaos) {
+      String _name_2 = ee_1.getName();
+      String _name_3 = e.getName();
+      boolean _equals_1 = Objects.equal(_name_2, _name_3);
+      if (_equals_1) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
   public String getExtends(final PojoDao e) {
     EObject _eContainer = e.eContainer();
     EList<EObject> _eContents = _eContainer.eContents();
     Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
     for (final Extends ext : _filter) {
-      JvmType _extends = ext.getExtends();
-      return _extends.getSimpleName();
+      boolean _isExtends = this.isExtends(e, ext);
+      if (_isExtends) {
+        JvmType _extends = ext.getExtends();
+        return _extends.getSimpleName();
+      }
     }
     return "";
   }
