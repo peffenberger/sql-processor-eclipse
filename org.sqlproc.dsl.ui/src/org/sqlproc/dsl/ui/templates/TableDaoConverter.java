@@ -100,11 +100,37 @@ public class TableDaoConverter extends TableMetaConverter {
 
             StringBuilder buffer = new StringBuilder();
             boolean isSerializable = false;
+            Set<String> serializables = new HashSet<String>();
             boolean oneMoreLine = false;
             if (!daoToImplements.isEmpty()) {
                 for (ImplementsExtends ie : daoToImplements.values()) {
                     JvmType type = ie.getToImplement();
                     if (type.getIdentifier().endsWith("Serializable")) {
+                        if (!ie.getDbTables().isEmpty()) {
+                            for (String dbTable : ie.getDbTables()) {
+                                if (dbTable.equalsIgnoreCase("Procedures"))
+                                    serializables.add("Procedures");
+                                else if (dbTable.equalsIgnoreCase("Functions"))
+                                    serializables.add("Functions");
+                                else
+                                    serializables.add(dbTable);
+                            }
+                            continue;
+                        }
+                        if (!ie.getDbNotTables().isEmpty()) {
+                            for (String pojo : pojos.keySet()) {
+                                serializables.add(pojo);
+                            }
+                            for (String pojo : enums.keySet()) {
+                                serializables.add(pojo);
+                            }
+                            serializables.add("Procedures");
+                            serializables.add("Functions");
+                            for (String dbTable : ie.getDbNotTables()) {
+                                serializables.remove(dbTable);
+                            }
+                            continue;
+                        }
                         isSerializable = true;
                         continue;
                     }
@@ -121,7 +147,8 @@ public class TableDaoConverter extends TableMetaConverter {
                             if (pojoName == null)
                                 pojoName = dbColumn;
                             String daoName = tableToCamelCase(pojoName) + "Dao";
-                            notGenerics.add(daoName);
+                            if (notGenerics != null)
+                                notGenerics.add(daoName);
                             buffer.append(" ").append(daoName);
                         }
                     }
@@ -132,7 +159,8 @@ public class TableDaoConverter extends TableMetaConverter {
                             if (pojoName == null)
                                 pojoName = dbColumn;
                             String daoName = tableToCamelCase(pojoName) + "Dao";
-                            notGenerics.add(daoName);
+                            if (notGenerics != null)
+                                notGenerics.add(daoName);
                             buffer.append(" ").append(daoName);
                         }
                     }
@@ -199,7 +227,7 @@ public class TableDaoConverter extends TableMetaConverter {
                 else
                     buffer.append(" ::: ");
                 buffer.append(tableToCamelCase(pojoName));
-                if (isSerializable)
+                if (isSerializable || serializables.contains(pojo))
                     buffer.append(" serializable 1 ");
                 buffer.append(" {");
                 buffer.append("\n    scaffold");
@@ -252,7 +280,7 @@ public class TableDaoConverter extends TableMetaConverter {
                 if (daoMakeItFinal)
                     buffer.append("final ");
                 buffer.append("dao ProceduresDao");
-                if (isSerializable)
+                if (isSerializable || serializables.contains("Procedures"))
                     buffer.append(" serializable 1 ");
                 buffer.append(" {");
                 for (String procedure : procedures.keySet()) {
@@ -312,7 +340,7 @@ public class TableDaoConverter extends TableMetaConverter {
                 if (daoMakeItFinal)
                     buffer.append("final ");
                 buffer.append("dao FunctionsDao");
-                if (isSerializable)
+                if (isSerializable || serializables.contains("Functions"))
                     buffer.append(" serializable 1 ");
                 buffer.append(" {");
                 for (String procedure : procedures.keySet()) {
@@ -375,7 +403,7 @@ public class TableDaoConverter extends TableMetaConverter {
                 if (daoMakeItFinal)
                     buffer.append("final ");
                 buffer.append("dao FunctionsDao");
-                if (isSerializable)
+                if (isSerializable || serializables.contains("Functions"))
                     buffer.append(" serializable 1 ");
                 buffer.append(" {");
                 for (String function : functions.keySet()) {
