@@ -110,9 +110,20 @@ public class TableDaoConverter extends TableMetaConverter {
                     }
                     buffer.append("\n  implements ").append(type.getIdentifier());
                     if (ie.isGenerics()) {
-                        buffer.append(" <>");
+                        buffer.append(" <<>>");
                         if (notGenerics == null)
                             notGenerics = new HashSet<String>();
+                    }
+                    if (!ie.getDbTables().isEmpty()) {
+                        buffer.append(" onlyDaos");
+                        for (String dbColumn : ie.getDbTables()) {
+                            String pojoName = tableNames.get(dbColumn);
+                            if (pojoName == null)
+                                pojoName = dbColumn;
+                            String daoName = tableToCamelCase(pojoName) + "Dao";
+                            notGenerics.add(daoName);
+                            buffer.append(" ").append(daoName);
+                        }
                     }
                     if (!ie.getDbNotTables().isEmpty()) {
                         buffer.append(" exceptDaos");
@@ -132,10 +143,20 @@ public class TableDaoConverter extends TableMetaConverter {
                 JvmType type = daoToExtends.getToImplement();
                 buffer.append("\n  extends ").append(type.getIdentifier());
                 if (daoToExtends.isGenerics())
-                    buffer.append(" <>");
+                    buffer.append(" <<>>");
                 if (!daoToExtends.getDbTables().isEmpty()) {
-                    buffer.append(" exceptDaos");
+                    buffer.append(" onlyDaos");
                     for (String dbColumn : daoToExtends.getDbTables()) {
+                        String pojoName = tableNames.get(dbColumn);
+                        if (pojoName == null)
+                            pojoName = dbColumn;
+                        String daoName = tableToCamelCase(pojoName) + "Dao";
+                        buffer.append(" ").append(daoName);
+                    }
+                }
+                if (!daoToExtends.getDbNotTables().isEmpty()) {
+                    buffer.append(" exceptDaos");
+                    for (String dbColumn : daoToExtends.getDbNotTables()) {
                         String pojoName = tableNames.get(dbColumn);
                         if (pojoName == null)
                             pojoName = dbColumn;

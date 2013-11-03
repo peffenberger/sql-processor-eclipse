@@ -1052,7 +1052,14 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (extends=[JvmType|QualifiedName] generics?='<<>>'? pojos+=[PojoEntity|IDENT]* daos+=[PojoDao|IDENT]*)
+	 *     (
+	 *         extends=[JvmType|QualifiedName] 
+	 *         generics?='<<>>'? 
+	 *         onlyPojos+=[PojoEntity|IDENT]* 
+	 *         onlyDaos+=[PojoDao|IDENT]* 
+	 *         exceptPojos+=[PojoEntity|IDENT]* 
+	 *         exceptDaos+=[PojoDao|IDENT]*
+	 *     )
 	 */
 	protected void sequence_Extends(EObject context, Extends semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1209,7 +1216,14 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (implements=[JvmType|QualifiedName] generics?='<<>>'? pojos+=[PojoEntity|IDENT]* daos+=[PojoDao|IDENT]*)
+	 *     (
+	 *         implements=[JvmType|QualifiedName] 
+	 *         generics?='<<>>'? 
+	 *         onlyPojos+=[PojoEntity|IDENT]* 
+	 *         onlyDaos+=[PojoDao|IDENT]* 
+	 *         exceptPojos+=[PojoEntity|IDENT]* 
+	 *         exceptDaos+=[PojoDao|IDENT]*
+	 *     )
 	 */
 	protected void sequence_Implements(EObject context, Implements semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

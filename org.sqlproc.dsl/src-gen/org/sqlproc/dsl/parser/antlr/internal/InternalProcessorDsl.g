@@ -13205,9 +13205,9 @@ ruleImplements returns [EObject current=null]
 	    }
 
 )
-)?(	otherlv_3='exceptPojos' 
+)?(	otherlv_3='onlyPojos' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getImplementsAccess().getExceptPojosKeyword_3_0());
+    	newLeafNode(otherlv_3, grammarAccess.getImplementsAccess().getOnlyPojosKeyword_3_0());
     }
 (
 (
@@ -13218,13 +13218,13 @@ ruleImplements returns [EObject current=null]
         }
 	otherlv_4=RULE_IDENT
 	{
-		newLeafNode(otherlv_4, grammarAccess.getImplementsAccess().getPojosPojoEntityCrossReference_3_1_0()); 
+		newLeafNode(otherlv_4, grammarAccess.getImplementsAccess().getOnlyPojosPojoEntityCrossReference_3_1_0()); 
 	}
 
 )
-)*)?(	otherlv_5='exceptDaos' 
+)*)?(	otherlv_5='onlyDaos' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getImplementsAccess().getExceptDaosKeyword_4_0());
+    	newLeafNode(otherlv_5, grammarAccess.getImplementsAccess().getOnlyDaosKeyword_4_0());
     }
 (
 (
@@ -13235,7 +13235,41 @@ ruleImplements returns [EObject current=null]
         }
 	otherlv_6=RULE_IDENT
 	{
-		newLeafNode(otherlv_6, grammarAccess.getImplementsAccess().getDaosPojoDaoCrossReference_4_1_0()); 
+		newLeafNode(otherlv_6, grammarAccess.getImplementsAccess().getOnlyDaosPojoDaoCrossReference_4_1_0()); 
+	}
+
+)
+)*)?(	otherlv_7='exceptPojos' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getImplementsAccess().getExceptPojosKeyword_5_0());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementsRule());
+	        }
+        }
+	otherlv_8=RULE_IDENT
+	{
+		newLeafNode(otherlv_8, grammarAccess.getImplementsAccess().getExceptPojosPojoEntityCrossReference_5_1_0()); 
+	}
+
+)
+)*)?(	otherlv_9='exceptDaos' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getImplementsAccess().getExceptDaosKeyword_6_0());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementsRule());
+	        }
+        }
+	otherlv_10=RULE_IDENT
+	{
+		newLeafNode(otherlv_10, grammarAccess.getImplementsAccess().getExceptDaosPojoDaoCrossReference_6_1_0()); 
 	}
 
 )
@@ -13304,9 +13338,9 @@ ruleExtends returns [EObject current=null]
 	    }
 
 )
-)?(	otherlv_3='exceptPojos' 
+)?(	otherlv_3='onlyPojos' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getExtendsAccess().getExceptPojosKeyword_3_0());
+    	newLeafNode(otherlv_3, grammarAccess.getExtendsAccess().getOnlyPojosKeyword_3_0());
     }
 (
 (
@@ -13317,13 +13351,13 @@ ruleExtends returns [EObject current=null]
         }
 	otherlv_4=RULE_IDENT
 	{
-		newLeafNode(otherlv_4, grammarAccess.getExtendsAccess().getPojosPojoEntityCrossReference_3_1_0()); 
+		newLeafNode(otherlv_4, grammarAccess.getExtendsAccess().getOnlyPojosPojoEntityCrossReference_3_1_0()); 
 	}
 
 )
-)*)?(	otherlv_5='exceptDaos' 
+)*)?(	otherlv_5='onlyDaos' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getExtendsAccess().getExceptDaosKeyword_4_0());
+    	newLeafNode(otherlv_5, grammarAccess.getExtendsAccess().getOnlyDaosKeyword_4_0());
     }
 (
 (
@@ -13334,7 +13368,41 @@ ruleExtends returns [EObject current=null]
         }
 	otherlv_6=RULE_IDENT
 	{
-		newLeafNode(otherlv_6, grammarAccess.getExtendsAccess().getDaosPojoDaoCrossReference_4_1_0()); 
+		newLeafNode(otherlv_6, grammarAccess.getExtendsAccess().getOnlyDaosPojoDaoCrossReference_4_1_0()); 
+	}
+
+)
+)*)?(	otherlv_7='exceptPojos' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getExtendsAccess().getExceptPojosKeyword_5_0());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getExtendsRule());
+	        }
+        }
+	otherlv_8=RULE_IDENT
+	{
+		newLeafNode(otherlv_8, grammarAccess.getExtendsAccess().getExceptPojosPojoEntityCrossReference_5_1_0()); 
+	}
+
+)
+)*)?(	otherlv_9='exceptDaos' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getExtendsAccess().getExceptDaosKeyword_6_0());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getExtendsRule());
+	        }
+        }
+	otherlv_10=RULE_IDENT
+	{
+		newLeafNode(otherlv_10, grammarAccess.getExtendsAccess().getExceptDaosPojoDaoCrossReference_6_1_0()); 
 	}
 
 )

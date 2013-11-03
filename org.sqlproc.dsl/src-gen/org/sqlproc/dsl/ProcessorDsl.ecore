@@ -510,18 +510,26 @@
   <eClassifiers xsi:type="ecore:EClass" name="Implements" eSuperTypes="#//AbstractPojoEntity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="implements" eType="ecore:EClass ../../../../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="generics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pojos" unique="false" upperBound="-1"
-        eType="#//PojoEntity"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="daos" unique="false" upperBound="-1"
-        eType="#//PojoDao"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onlyPojos" unique="false"
+        upperBound="-1" eType="#//PojoEntity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onlyDaos" unique="false"
+        upperBound="-1" eType="#//PojoDao"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exceptPojos" unique="false"
+        upperBound="-1" eType="#//PojoEntity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exceptDaos" unique="false"
+        upperBound="-1" eType="#//PojoDao"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Extends" eSuperTypes="#//AbstractPojoEntity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="extends" eType="ecore:EClass ../../../../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="generics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pojos" unique="false" upperBound="-1"
-        eType="#//PojoEntity"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="daos" unique="false" upperBound="-1"
-        eType="#//PojoDao"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onlyPojos" unique="false"
+        upperBound="-1" eType="#//PojoEntity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onlyDaos" unique="false"
+        upperBound="-1" eType="#//PojoDao"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exceptPojos" unique="false"
+        upperBound="-1" eType="#//PojoEntity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exceptDaos" unique="false"
+        upperBound="-1" eType="#//PojoDao"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImplPackage" eSuperTypes="#//AbstractPojoEntity">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

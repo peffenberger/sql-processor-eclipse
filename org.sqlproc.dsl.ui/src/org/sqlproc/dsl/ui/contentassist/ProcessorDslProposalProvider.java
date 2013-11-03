@@ -746,6 +746,20 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
             ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
             acceptor.accept(completionProposal);
         }
+        for (String table : dbResolver.getProcedures(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+        for (String table : dbResolver.getFunctions(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
     }
 
     @Override
@@ -756,6 +770,20 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
             return;
         }
         for (String table : dbResolver.getTables(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+        for (String table : dbResolver.getProcedures(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+        for (String table : dbResolver.getFunctions(model)) {
             if (table.indexOf('$') >= 0)
                 continue;
             String proposal = getValueConverter().toString(table, "IDENT");
@@ -778,6 +806,20 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
             ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
             acceptor.accept(completionProposal);
         }
+        for (String table : dbResolver.getProcedures(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+        for (String table : dbResolver.getFunctions(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
     }
 
     @Override
@@ -788,6 +830,140 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
             return;
         }
         for (String table : dbResolver.getTables(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+        for (String table : dbResolver.getProcedures(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+        for (String table : dbResolver.getFunctions(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+    }
+
+    @Override
+    public void completeImplementsAssignementGenerics_DbTables(EObject model, Assignment assignment,
+            ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completeImplementsAssignementGenerics_DbTables(model, assignment, context, acceptor);
+            return;
+        }
+        for (String table : dbResolver.getTables(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+        for (String table : dbResolver.getProcedures(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+        for (String table : dbResolver.getFunctions(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+    }
+
+    @Override
+    public void completeExtendsAssignementGenerics_DbTables(EObject model, Assignment assignment,
+            ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completeExtendsAssignementGenerics_DbTables(model, assignment, context, acceptor);
+            return;
+        }
+        for (String table : dbResolver.getTables(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+        for (String table : dbResolver.getProcedures(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+        for (String table : dbResolver.getFunctions(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+    }
+
+    @Override
+    public void completeImplementsAssignementGenerics_DbNotTables(EObject model, Assignment assignment,
+            ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completeImplementsAssignementGenerics_DbNotTables(model, assignment, context, acceptor);
+            return;
+        }
+        for (String table : dbResolver.getTables(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+        for (String table : dbResolver.getProcedures(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+        for (String table : dbResolver.getFunctions(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+    }
+
+    @Override
+    public void completeExtendsAssignementGenerics_DbNotTables(EObject model, Assignment assignment,
+            ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completeExtendsAssignementGenerics_DbNotTables(model, assignment, context, acceptor);
+            return;
+        }
+        for (String table : dbResolver.getTables(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+        for (String table : dbResolver.getProcedures(model)) {
+            if (table.indexOf('$') >= 0)
+                continue;
+            String proposal = getValueConverter().toString(table, "IDENT");
+            ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+            acceptor.accept(completionProposal);
+        }
+        for (String table : dbResolver.getFunctions(model)) {
             if (table.indexOf('$') >= 0)
                 continue;
             String proposal = getValueConverter().toString(table, "IDENT");

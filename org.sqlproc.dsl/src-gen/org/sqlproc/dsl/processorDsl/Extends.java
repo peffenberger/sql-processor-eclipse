@@ -16,8 +16,10 @@ import org.eclipse.xtext.common.types.JvmType;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Extends#getExtends <em>Extends</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Extends#isGenerics <em>Generics</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.Extends#getPojos <em>Pojos</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.Extends#getDaos <em>Daos</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.Extends#getOnlyPojos <em>Only Pojos</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.Extends#getOnlyDaos <em>Only Daos</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.Extends#getExceptPojos <em>Except Pojos</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.Extends#getExceptDaos <em>Except Daos</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,35 +82,67 @@ public interface Extends extends AbstractPojoEntity
   void setGenerics(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Pojos</b></em>' reference list.
+   * Returns the value of the '<em><b>Only Pojos</b></em>' reference list.
    * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PojoEntity}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Pojos</em>' reference list isn't clear,
+   * If the meaning of the '<em>Only Pojos</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Pojos</em>' reference list.
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getExtends_Pojos()
+   * @return the value of the '<em>Only Pojos</em>' reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getExtends_OnlyPojos()
    * @model
    * @generated
    */
-  EList<PojoEntity> getPojos();
+  EList<PojoEntity> getOnlyPojos();
 
   /**
-   * Returns the value of the '<em><b>Daos</b></em>' reference list.
+   * Returns the value of the '<em><b>Only Daos</b></em>' reference list.
    * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PojoDao}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Daos</em>' reference list isn't clear,
+   * If the meaning of the '<em>Only Daos</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Daos</em>' reference list.
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getExtends_Daos()
+   * @return the value of the '<em>Only Daos</em>' reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getExtends_OnlyDaos()
    * @model
    * @generated
    */
-  EList<PojoDao> getDaos();
+  EList<PojoDao> getOnlyDaos();
+
+  /**
+   * Returns the value of the '<em><b>Except Pojos</b></em>' reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PojoEntity}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Except Pojos</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Except Pojos</em>' reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getExtends_ExceptPojos()
+   * @model
+   * @generated
+   */
+  EList<PojoEntity> getExceptPojos();
+
+  /**
+   * Returns the value of the '<em><b>Except Daos</b></em>' reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PojoDao}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Except Daos</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Except Daos</em>' reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getExtends_ExceptDaos()
+   * @model
+   * @generated
+   */
+  EList<PojoDao> getExceptDaos();
 
 } // Extends

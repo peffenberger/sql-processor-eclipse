@@ -3601,22 +3601,40 @@ public interface ProcessorDslPackage extends EPackage
   int IMPLEMENTS__GENERICS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Pojos</b></em>' reference list.
+   * The feature id for the '<em><b>Only Pojos</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IMPLEMENTS__POJOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
+  int IMPLEMENTS__ONLY_POJOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
 
   /**
-   * The feature id for the '<em><b>Daos</b></em>' reference list.
+   * The feature id for the '<em><b>Only Daos</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IMPLEMENTS__DAOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
+  int IMPLEMENTS__ONLY_DAOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
+
+  /**
+   * The feature id for the '<em><b>Except Pojos</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLEMENTS__EXCEPT_POJOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
+
+  /**
+   * The feature id for the '<em><b>Except Daos</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLEMENTS__EXCEPT_DAOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 5;
 
   /**
    * The number of structural features of the '<em>Implements</em>' class.
@@ -3625,7 +3643,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IMPLEMENTS_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
+  int IMPLEMENTS_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 6;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl <em>Extends</em>}' class.
@@ -3656,22 +3674,40 @@ public interface ProcessorDslPackage extends EPackage
   int EXTENDS__GENERICS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Pojos</b></em>' reference list.
+   * The feature id for the '<em><b>Only Pojos</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXTENDS__POJOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
+  int EXTENDS__ONLY_POJOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
 
   /**
-   * The feature id for the '<em><b>Daos</b></em>' reference list.
+   * The feature id for the '<em><b>Only Daos</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXTENDS__DAOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
+  int EXTENDS__ONLY_DAOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
+
+  /**
+   * The feature id for the '<em><b>Except Pojos</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTENDS__EXCEPT_POJOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
+
+  /**
+   * The feature id for the '<em><b>Except Daos</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTENDS__EXCEPT_DAOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 5;
 
   /**
    * The number of structural features of the '<em>Extends</em>' class.
@@ -3680,7 +3716,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXTENDS_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
+  int EXTENDS_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 6;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ImplPackageImpl <em>Impl Package</em>}' class.
@@ -8027,26 +8063,48 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getImplements_Generics();
 
   /**
-   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.Implements#getPojos <em>Pojos</em>}'.
+   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.Implements#getOnlyPojos <em>Only Pojos</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Pojos</em>'.
-   * @see org.sqlproc.dsl.processorDsl.Implements#getPojos()
+   * @return the meta object for the reference list '<em>Only Pojos</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Implements#getOnlyPojos()
    * @see #getImplements()
    * @generated
    */
-  EReference getImplements_Pojos();
+  EReference getImplements_OnlyPojos();
 
   /**
-   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.Implements#getDaos <em>Daos</em>}'.
+   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.Implements#getOnlyDaos <em>Only Daos</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Daos</em>'.
-   * @see org.sqlproc.dsl.processorDsl.Implements#getDaos()
+   * @return the meta object for the reference list '<em>Only Daos</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Implements#getOnlyDaos()
    * @see #getImplements()
    * @generated
    */
-  EReference getImplements_Daos();
+  EReference getImplements_OnlyDaos();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.Implements#getExceptPojos <em>Except Pojos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Except Pojos</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Implements#getExceptPojos()
+   * @see #getImplements()
+   * @generated
+   */
+  EReference getImplements_ExceptPojos();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.Implements#getExceptDaos <em>Except Daos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Except Daos</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Implements#getExceptDaos()
+   * @see #getImplements()
+   * @generated
+   */
+  EReference getImplements_ExceptDaos();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.Extends <em>Extends</em>}'.
@@ -8081,26 +8139,48 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getExtends_Generics();
 
   /**
-   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.Extends#getPojos <em>Pojos</em>}'.
+   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.Extends#getOnlyPojos <em>Only Pojos</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Pojos</em>'.
-   * @see org.sqlproc.dsl.processorDsl.Extends#getPojos()
+   * @return the meta object for the reference list '<em>Only Pojos</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Extends#getOnlyPojos()
    * @see #getExtends()
    * @generated
    */
-  EReference getExtends_Pojos();
+  EReference getExtends_OnlyPojos();
 
   /**
-   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.Extends#getDaos <em>Daos</em>}'.
+   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.Extends#getOnlyDaos <em>Only Daos</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Daos</em>'.
-   * @see org.sqlproc.dsl.processorDsl.Extends#getDaos()
+   * @return the meta object for the reference list '<em>Only Daos</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Extends#getOnlyDaos()
    * @see #getExtends()
    * @generated
    */
-  EReference getExtends_Daos();
+  EReference getExtends_OnlyDaos();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.Extends#getExceptPojos <em>Except Pojos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Except Pojos</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Extends#getExceptPojos()
+   * @see #getExtends()
+   * @generated
+   */
+  EReference getExtends_ExceptPojos();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.Extends#getExceptDaos <em>Except Daos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Except Daos</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Extends#getExceptDaos()
+   * @see #getExtends()
+   * @generated
+   */
+  EReference getExtends_ExceptDaos();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.ImplPackage <em>Impl Package</em>}'.
@@ -11687,20 +11767,36 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute IMPLEMENTS__GENERICS = eINSTANCE.getImplements_Generics();
 
     /**
-     * The meta object literal for the '<em><b>Pojos</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Only Pojos</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference IMPLEMENTS__POJOS = eINSTANCE.getImplements_Pojos();
+    EReference IMPLEMENTS__ONLY_POJOS = eINSTANCE.getImplements_OnlyPojos();
 
     /**
-     * The meta object literal for the '<em><b>Daos</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Only Daos</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference IMPLEMENTS__DAOS = eINSTANCE.getImplements_Daos();
+    EReference IMPLEMENTS__ONLY_DAOS = eINSTANCE.getImplements_OnlyDaos();
+
+    /**
+     * The meta object literal for the '<em><b>Except Pojos</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPLEMENTS__EXCEPT_POJOS = eINSTANCE.getImplements_ExceptPojos();
+
+    /**
+     * The meta object literal for the '<em><b>Except Daos</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPLEMENTS__EXCEPT_DAOS = eINSTANCE.getImplements_ExceptDaos();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl <em>Extends</em>}' class.
@@ -11729,20 +11825,36 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute EXTENDS__GENERICS = eINSTANCE.getExtends_Generics();
 
     /**
-     * The meta object literal for the '<em><b>Pojos</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Only Pojos</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXTENDS__POJOS = eINSTANCE.getExtends_Pojos();
+    EReference EXTENDS__ONLY_POJOS = eINSTANCE.getExtends_OnlyPojos();
 
     /**
-     * The meta object literal for the '<em><b>Daos</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Only Daos</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXTENDS__DAOS = eINSTANCE.getExtends_Daos();
+    EReference EXTENDS__ONLY_DAOS = eINSTANCE.getExtends_OnlyDaos();
+
+    /**
+     * The meta object literal for the '<em><b>Except Pojos</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXTENDS__EXCEPT_POJOS = eINSTANCE.getExtends_ExceptPojos();
+
+    /**
+     * The meta object literal for the '<em><b>Except Daos</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXTENDS__EXCEPT_DAOS = eINSTANCE.getExtends_ExceptDaos();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ImplPackageImpl <em>Impl Package</em>}' class.

@@ -1402,7 +1402,7 @@ def getExtends(PojoEntity e) {
 
 def isImplements(PojoEntity e) {
 	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
-		for (ee : ext.pojos) {
+		for (ee : ext.exceptPojos) {
 			if (ee.name == e.name)
 				return false;
 		}
@@ -1412,7 +1412,7 @@ def isImplements(PojoEntity e) {
 }
 
 def isImplements(PojoEntity e, Implements ext) {
-	for (ee : ext.pojos) {
+	for (ee : ext.exceptPojos) {
 		if (ee.name == e.name)
 			return false;
 	}
@@ -1438,7 +1438,7 @@ def getExtends(PojoDao e) {
 
 def isImplements(PojoDao e) {
 	for(ext: e.eContainer.eContents.filter(typeof(Implements))) {
-		for (ee : ext.daos) {
+		for (ee : ext.exceptDaos) {
 			if (ee.name == e.name)
 				return false;
 		}
@@ -1448,7 +1448,7 @@ def isImplements(PojoDao e) {
 }
 
 def isImplements(PojoDao e, Implements ext) {
-	for (ee : ext.daos) {
+	for (ee : ext.exceptDaos) {
 		if (ee.name == e.name)
 			return false;
 	}

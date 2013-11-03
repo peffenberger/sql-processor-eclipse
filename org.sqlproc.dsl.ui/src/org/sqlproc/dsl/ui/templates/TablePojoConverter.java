@@ -853,23 +853,58 @@ public class TablePojoConverter {
 
             StringBuilder buffer = new StringBuilder();
             boolean isSerializable = false;
+            Set<String> serializables = new HashSet<String>();
             boolean oneMoreLine = false;
             if (!toImplements.isEmpty()) {
                 for (ImplementsExtends ie : toImplements.values()) {
                     JvmType type = ie.getToImplement();
                     if (type.getIdentifier().endsWith("Serializable")) {
+                        if (!ie.getDbTables().isEmpty()) {
+                            for (String dbTable : ie.getDbTables()) {
+                                serializables.add(dbTable);
+                            }
+                            continue;
+                        }
+                        if (!ie.getDbNotTables().isEmpty()) {
+                            for (String pojo : pojos.keySet()) {
+                                serializables.add(pojo);
+                            }
+                            for (String pojo : enums.keySet()) {
+                                serializables.add(pojo);
+                            }
+                            for (String pojo : procedures.keySet()) {
+                                serializables.add(pojo);
+                            }
+                            for (String pojo : functions.keySet()) {
+                                serializables.add(pojo);
+                            }
+                            for (String dbTable : ie.getDbNotTables()) {
+                                serializables.remove(dbTable);
+                            }
+                            continue;
+                        }
                         isSerializable = true;
                         continue;
                     }
                     buffer.append(NLINDENT).append("implements ").append(type.getIdentifier());
                     if (ie.isGenerics())
-                        buffer.append(" <>");
+                        buffer.append(" <<>>");
+                    if (!ie.getDbTables().isEmpty()) {
+                        buffer.append(" onlyPojos");
+                        for (String dbTable : ie.getDbTables()) {
+                            String pojoName = tableNames.get(dbTable);
+                            if (pojoName == null)
+                                pojoName = dbTable;
+                            String realPojoName = tableToCamelCase(pojoName);
+                            buffer.append(" ").append(realPojoName);
+                        }
+                    }
                     if (!ie.getDbNotTables().isEmpty()) {
                         buffer.append(" exceptPojos");
-                        for (String dbColumn : ie.getDbNotTables()) {
-                            String pojoName = tableNames.get(dbColumn);
+                        for (String dbTable : ie.getDbNotTables()) {
+                            String pojoName = tableNames.get(dbTable);
                             if (pojoName == null)
-                                pojoName = dbColumn;
+                                pojoName = dbTable;
                             String realPojoName = tableToCamelCase(pojoName);
                             buffer.append(" ").append(realPojoName);
                         }
@@ -881,13 +916,23 @@ public class TablePojoConverter {
                 JvmType type = toExtends.getToImplement();
                 buffer.append(NLINDENT).append("extends ").append(type.getIdentifier());
                 if (toExtends.isGenerics())
-                    buffer.append(" <>");
+                    buffer.append(" <<>>");
                 if (!toExtends.getDbTables().isEmpty()) {
-                    buffer.append(" exceptPojos");
-                    for (String dbColumn : toExtends.getDbTables()) {
-                        String pojoName = tableNames.get(dbColumn);
+                    buffer.append(" onlyPojos");
+                    for (String dbTable : toExtends.getDbTables()) {
+                        String pojoName = tableNames.get(dbTable);
                         if (pojoName == null)
-                            pojoName = dbColumn;
+                            pojoName = dbTable;
+                        String realPojoName = tableToCamelCase(pojoName);
+                        buffer.append(" ").append(realPojoName);
+                    }
+                }
+                if (!toExtends.getDbNotTables().isEmpty()) {
+                    buffer.append(" exceptPojos");
+                    for (String dbTable : toExtends.getDbNotTables()) {
+                        String pojoName = tableNames.get(dbTable);
+                        if (pojoName == null)
+                            pojoName = dbTable;
                         String realPojoName = tableToCamelCase(pojoName);
                         buffer.append(" ").append(realPojoName);
                     }
@@ -928,7 +973,7 @@ public class TablePojoConverter {
                     buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
                 if (pojoDiscriminators.containsKey(pojo))
                     buffer.append(" discriminator ").append(pojoDiscriminators.get(pojo));
-                if (isSerializable)
+                if (isSerializable || serializables.contains(pojo))
                     buffer.append(" serializable 1 ");
                 buffer.append(" {");
                 for (EnumAttribute attribute : pentry.getValue()) {
@@ -986,7 +1031,7 @@ public class TablePojoConverter {
                     buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
                 if (pojoDiscriminators.containsKey(pojo))
                     buffer.append(" discriminator ").append(pojoDiscriminators.get(pojo));
-                if (isSerializable)
+                if (isSerializable || serializables.contains(pojo))
                     buffer.append(" serializable 1");
                 if (generateOperators != null) {
                     buffer.append(" operators");
@@ -1198,7 +1243,7 @@ public class TablePojoConverter {
                 buffer.append(tableToCamelCase(pojoName));
                 if (pojoExtends.containsKey(pojo))
                     buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
-                if (isSerializable)
+                if (isSerializable || serializables.contains(pojo))
                     buffer.append(" serializable 1 ");
                 buffer.append(" { // ");
                 if (isFunction)
@@ -1270,7 +1315,7 @@ public class TablePojoConverter {
                 buffer.append(tableToCamelCase(pojoName));
                 if (pojoExtends.containsKey(pojo))
                     buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
-                if (isSerializable)
+                if (isSerializable || serializables.contains(pojo))
                     buffer.append(" serializable 1 ");
                 buffer.append(" { // function");
                 Set<String> toStr = new HashSet<String>();

@@ -31,8 +31,10 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl#getExtends <em>Extends</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl#isGenerics <em>Generics</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl#getPojos <em>Pojos</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl#getDaos <em>Daos</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl#getOnlyPojos <em>Only Pojos</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl#getOnlyDaos <em>Only Daos</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl#getExceptPojos <em>Except Pojos</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl#getExceptDaos <em>Except Daos</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,24 +73,44 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
   protected boolean generics = GENERICS_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getPojos() <em>Pojos</em>}' reference list.
+   * The cached value of the '{@link #getOnlyPojos() <em>Only Pojos</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPojos()
+   * @see #getOnlyPojos()
    * @generated
    * @ordered
    */
-  protected EList<PojoEntity> pojos;
+  protected EList<PojoEntity> onlyPojos;
 
   /**
-   * The cached value of the '{@link #getDaos() <em>Daos</em>}' reference list.
+   * The cached value of the '{@link #getOnlyDaos() <em>Only Daos</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDaos()
+   * @see #getOnlyDaos()
    * @generated
    * @ordered
    */
-  protected EList<PojoDao> daos;
+  protected EList<PojoDao> onlyDaos;
+
+  /**
+   * The cached value of the '{@link #getExceptPojos() <em>Except Pojos</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getExceptPojos()
+   * @generated
+   * @ordered
+   */
+  protected EList<PojoEntity> exceptPojos;
+
+  /**
+   * The cached value of the '{@link #getExceptDaos() <em>Except Daos</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getExceptDaos()
+   * @generated
+   * @ordered
+   */
+  protected EList<PojoDao> exceptDaos;
 
   /**
    * <!-- begin-user-doc -->
@@ -182,13 +204,13 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoEntity> getPojos()
+  public EList<PojoEntity> getOnlyPojos()
   {
-    if (pojos == null)
+    if (onlyPojos == null)
     {
-      pojos = new EObjectResolvingEList<PojoEntity>(PojoEntity.class, this, ProcessorDslPackage.EXTENDS__POJOS);
+      onlyPojos = new EObjectResolvingEList<PojoEntity>(PojoEntity.class, this, ProcessorDslPackage.EXTENDS__ONLY_POJOS);
     }
-    return pojos;
+    return onlyPojos;
   }
 
   /**
@@ -196,13 +218,41 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoDao> getDaos()
+  public EList<PojoDao> getOnlyDaos()
   {
-    if (daos == null)
+    if (onlyDaos == null)
     {
-      daos = new EObjectResolvingEList<PojoDao>(PojoDao.class, this, ProcessorDslPackage.EXTENDS__DAOS);
+      onlyDaos = new EObjectResolvingEList<PojoDao>(PojoDao.class, this, ProcessorDslPackage.EXTENDS__ONLY_DAOS);
     }
-    return daos;
+    return onlyDaos;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<PojoEntity> getExceptPojos()
+  {
+    if (exceptPojos == null)
+    {
+      exceptPojos = new EObjectResolvingEList<PojoEntity>(PojoEntity.class, this, ProcessorDslPackage.EXTENDS__EXCEPT_POJOS);
+    }
+    return exceptPojos;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<PojoDao> getExceptDaos()
+  {
+    if (exceptDaos == null)
+    {
+      exceptDaos = new EObjectResolvingEList<PojoDao>(PojoDao.class, this, ProcessorDslPackage.EXTENDS__EXCEPT_DAOS);
+    }
+    return exceptDaos;
   }
 
   /**
@@ -220,10 +270,14 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
         return basicGetExtends();
       case ProcessorDslPackage.EXTENDS__GENERICS:
         return isGenerics();
-      case ProcessorDslPackage.EXTENDS__POJOS:
-        return getPojos();
-      case ProcessorDslPackage.EXTENDS__DAOS:
-        return getDaos();
+      case ProcessorDslPackage.EXTENDS__ONLY_POJOS:
+        return getOnlyPojos();
+      case ProcessorDslPackage.EXTENDS__ONLY_DAOS:
+        return getOnlyDaos();
+      case ProcessorDslPackage.EXTENDS__EXCEPT_POJOS:
+        return getExceptPojos();
+      case ProcessorDslPackage.EXTENDS__EXCEPT_DAOS:
+        return getExceptDaos();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -245,13 +299,21 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
       case ProcessorDslPackage.EXTENDS__GENERICS:
         setGenerics((Boolean)newValue);
         return;
-      case ProcessorDslPackage.EXTENDS__POJOS:
-        getPojos().clear();
-        getPojos().addAll((Collection<? extends PojoEntity>)newValue);
+      case ProcessorDslPackage.EXTENDS__ONLY_POJOS:
+        getOnlyPojos().clear();
+        getOnlyPojos().addAll((Collection<? extends PojoEntity>)newValue);
         return;
-      case ProcessorDslPackage.EXTENDS__DAOS:
-        getDaos().clear();
-        getDaos().addAll((Collection<? extends PojoDao>)newValue);
+      case ProcessorDslPackage.EXTENDS__ONLY_DAOS:
+        getOnlyDaos().clear();
+        getOnlyDaos().addAll((Collection<? extends PojoDao>)newValue);
+        return;
+      case ProcessorDslPackage.EXTENDS__EXCEPT_POJOS:
+        getExceptPojos().clear();
+        getExceptPojos().addAll((Collection<? extends PojoEntity>)newValue);
+        return;
+      case ProcessorDslPackage.EXTENDS__EXCEPT_DAOS:
+        getExceptDaos().clear();
+        getExceptDaos().addAll((Collection<? extends PojoDao>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -273,11 +335,17 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
       case ProcessorDslPackage.EXTENDS__GENERICS:
         setGenerics(GENERICS_EDEFAULT);
         return;
-      case ProcessorDslPackage.EXTENDS__POJOS:
-        getPojos().clear();
+      case ProcessorDslPackage.EXTENDS__ONLY_POJOS:
+        getOnlyPojos().clear();
         return;
-      case ProcessorDslPackage.EXTENDS__DAOS:
-        getDaos().clear();
+      case ProcessorDslPackage.EXTENDS__ONLY_DAOS:
+        getOnlyDaos().clear();
+        return;
+      case ProcessorDslPackage.EXTENDS__EXCEPT_POJOS:
+        getExceptPojos().clear();
+        return;
+      case ProcessorDslPackage.EXTENDS__EXCEPT_DAOS:
+        getExceptDaos().clear();
         return;
     }
     super.eUnset(featureID);
@@ -297,10 +365,14 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
         return extends_ != null;
       case ProcessorDslPackage.EXTENDS__GENERICS:
         return generics != GENERICS_EDEFAULT;
-      case ProcessorDslPackage.EXTENDS__POJOS:
-        return pojos != null && !pojos.isEmpty();
-      case ProcessorDslPackage.EXTENDS__DAOS:
-        return daos != null && !daos.isEmpty();
+      case ProcessorDslPackage.EXTENDS__ONLY_POJOS:
+        return onlyPojos != null && !onlyPojos.isEmpty();
+      case ProcessorDslPackage.EXTENDS__ONLY_DAOS:
+        return onlyDaos != null && !onlyDaos.isEmpty();
+      case ProcessorDslPackage.EXTENDS__EXCEPT_POJOS:
+        return exceptPojos != null && !exceptPojos.isEmpty();
+      case ProcessorDslPackage.EXTENDS__EXCEPT_DAOS:
+        return exceptDaos != null && !exceptDaos.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -3967,7 +3967,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getImplements_Pojos()
+  public EReference getImplements_OnlyPojos()
   {
     return (EReference)implementsEClass.getEStructuralFeatures().get(2);
   }
@@ -3977,9 +3977,29 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getImplements_Daos()
+  public EReference getImplements_OnlyDaos()
   {
     return (EReference)implementsEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getImplements_ExceptPojos()
+  {
+    return (EReference)implementsEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getImplements_ExceptDaos()
+  {
+    return (EReference)implementsEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -4017,7 +4037,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExtends_Pojos()
+  public EReference getExtends_OnlyPojos()
   {
     return (EReference)extendsEClass.getEStructuralFeatures().get(2);
   }
@@ -4027,9 +4047,29 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExtends_Daos()
+  public EReference getExtends_OnlyDaos()
   {
     return (EReference)extendsEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExtends_ExceptPojos()
+  {
+    return (EReference)extendsEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExtends_ExceptDaos()
+  {
+    return (EReference)extendsEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -5268,14 +5308,18 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     implementsEClass = createEClass(IMPLEMENTS);
     createEReference(implementsEClass, IMPLEMENTS__IMPLEMENTS);
     createEAttribute(implementsEClass, IMPLEMENTS__GENERICS);
-    createEReference(implementsEClass, IMPLEMENTS__POJOS);
-    createEReference(implementsEClass, IMPLEMENTS__DAOS);
+    createEReference(implementsEClass, IMPLEMENTS__ONLY_POJOS);
+    createEReference(implementsEClass, IMPLEMENTS__ONLY_DAOS);
+    createEReference(implementsEClass, IMPLEMENTS__EXCEPT_POJOS);
+    createEReference(implementsEClass, IMPLEMENTS__EXCEPT_DAOS);
 
     extendsEClass = createEClass(EXTENDS);
     createEReference(extendsEClass, EXTENDS__EXTENDS);
     createEAttribute(extendsEClass, EXTENDS__GENERICS);
-    createEReference(extendsEClass, EXTENDS__POJOS);
-    createEReference(extendsEClass, EXTENDS__DAOS);
+    createEReference(extendsEClass, EXTENDS__ONLY_POJOS);
+    createEReference(extendsEClass, EXTENDS__ONLY_DAOS);
+    createEReference(extendsEClass, EXTENDS__EXCEPT_POJOS);
+    createEReference(extendsEClass, EXTENDS__EXCEPT_DAOS);
 
     implPackageEClass = createEClass(IMPL_PACKAGE);
     createEAttribute(implPackageEClass, IMPL_PACKAGE__NAME);
@@ -5806,14 +5850,18 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEClass(implementsEClass, Implements.class, "Implements", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getImplements_Implements(), theTypesPackage.getJvmType(), null, "implements", null, 0, 1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getImplements_Generics(), ecorePackage.getEBoolean(), "generics", null, 0, 1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getImplements_Pojos(), this.getPojoEntity(), null, "pojos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getImplements_Daos(), this.getPojoDao(), null, "daos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImplements_OnlyPojos(), this.getPojoEntity(), null, "onlyPojos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImplements_OnlyDaos(), this.getPojoDao(), null, "onlyDaos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImplements_ExceptPojos(), this.getPojoEntity(), null, "exceptPojos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImplements_ExceptDaos(), this.getPojoDao(), null, "exceptDaos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(extendsEClass, Extends.class, "Extends", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExtends_Extends(), theTypesPackage.getJvmType(), null, "extends", null, 0, 1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExtends_Generics(), ecorePackage.getEBoolean(), "generics", null, 0, 1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExtends_Pojos(), this.getPojoEntity(), null, "pojos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExtends_Daos(), this.getPojoDao(), null, "daos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExtends_OnlyPojos(), this.getPojoEntity(), null, "onlyPojos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExtends_OnlyDaos(), this.getPojoDao(), null, "onlyDaos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExtends_ExceptPojos(), this.getPojoEntity(), null, "exceptPojos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExtends_ExceptDaos(), this.getPojoDao(), null, "exceptDaos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(implPackageEClass, ImplPackage.class, "ImplPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getImplPackage_Name(), ecorePackage.getEString(), "name", null, 0, 1, ImplPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
