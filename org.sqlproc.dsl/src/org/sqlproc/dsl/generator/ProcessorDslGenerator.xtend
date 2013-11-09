@@ -1344,7 +1344,7 @@ def addImplements(EnumEntity e, ImportManager im) {
 }
 
 def addExtends(EnumEntity e, ImportManager im) {
-	for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
+	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Extends))) {
 		im.addImportFor(ext.getExtends())
 	}
 }
@@ -1356,7 +1356,7 @@ def addImplements(PojoEntity e, ImportManager im) {
 }
 
 def addExtends(PojoEntity e, ImportManager im) {
-	for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
+	for(ext: e.eContainer.eContainer.eContents.filter(typeof(Extends))) {
 		im.addImportFor(ext.getExtends())
 	}
 }

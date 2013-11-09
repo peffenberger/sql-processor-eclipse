@@ -7655,7 +7655,8 @@ public class ProcessorDslGenerator implements IGenerator {
   
   public void addExtends(final EnumEntity e, final ImportManager im) {
     EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
     Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
     for (final Extends ext : _filter) {
       JvmType _extends = ext.getExtends();
@@ -7676,7 +7677,8 @@ public class ProcessorDslGenerator implements IGenerator {
   
   public void addExtends(final PojoEntity e, final ImportManager im) {
     EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
     Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
     for (final Extends ext : _filter) {
       JvmType _extends = ext.getExtends();
