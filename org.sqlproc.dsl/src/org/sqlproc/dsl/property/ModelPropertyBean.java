@@ -193,8 +193,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public String implementationPackage;
         public boolean makeItFinal;
         public String versionColumn;
-        public Map<String, String> versionColumns;
-        public Map<String, String> notVersionColumns;
+        public Map<String, Set<String>> versionColumns;
+        public Map<String, Set<String>> notVersionColumns;
         public Level debugLevel;
         public Set<String> preserveForeignKeys;
         public Map<String, PojoType> pojosForProcedures;
@@ -419,8 +419,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.implementationPackage = null;
         modelValues.makeItFinal = false;
         modelValues.versionColumn = null;
-        modelValues.versionColumns = new HashMap<String, String>();
-        modelValues.notVersionColumns = new HashMap<String, String>();
+        modelValues.versionColumns = new HashMap<String, Set<String>>();
+        modelValues.notVersionColumns = new HashMap<String, Set<String>>();
         modelValues.debugLevel = null;
         modelValues.preserveForeignKeys = new HashSet<String>();
         modelValues.pojosForProcedures = new HashMap<String, PojoType>();
@@ -804,17 +804,17 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             if ((property.getDbTables() == null || property.getDbTables().isEmpty())
                     && (property.getDbNotTables() == null || property.getDbNotTables().isEmpty())) {
                 modelValues.versionColumn = versionColumn;
-            } else {
-                if (property.getDbTables() != null) {
-                    for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
-                        modelValues.versionColumns.put(property.getDbTables().get(i), versionColumn);
-                    }
+            } else if (property.getDbTables() != null && !property.getDbTables().isEmpty()) {
+                if (!modelValues.versionColumns.containsKey(versionColumn))
+                    modelValues.versionColumns.put(versionColumn, new HashSet<String>());
+                for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
+                    modelValues.versionColumns.get(versionColumn).add(property.getDbTables().get(i));
                 }
-                if (property.getDbNotTables() != null) {
-                    modelValues.versionColumn = versionColumn;
-                    for (int i = 0, m = property.getDbNotTables().size(); i < m; i++) {
-                        modelValues.notVersionColumns.put(property.getDbNotTables().get(i), versionColumn);
-                    }
+            } else {
+                if (!modelValues.notVersionColumns.containsKey(versionColumn))
+                    modelValues.notVersionColumns.put(versionColumn, new HashSet<String>());
+                for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
+                    modelValues.notVersionColumns.get(versionColumn).add(property.getDbTables().get(i));
                 }
             }
         } else if (POJOGEN_DEBUG_LEVEL.equals(property.getName())) {
@@ -1200,15 +1200,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public Map<String, String> getVersionColumns(EObject model) {
+    public Map<String, Set<String>> getVersionColumns(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.versionColumns : Collections.<String, String> emptyMap();
+        return (modelValues != null) ? modelValues.versionColumns : Collections.<String, Set<String>> emptyMap();
     }
 
     @Override
-    public Map<String, String> getNotVersionColumns(EObject model) {
+    public Map<String, Set<String>> getNotVersionColumns(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.notVersionColumns : Collections.<String, String> emptyMap();
+        return (modelValues != null) ? modelValues.notVersionColumns : Collections.<String, Set<String>> emptyMap();
     }
 
     @Override

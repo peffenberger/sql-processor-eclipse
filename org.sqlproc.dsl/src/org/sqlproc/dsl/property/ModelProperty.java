@@ -99,7 +99,7 @@ public interface ModelProperty extends Adapter {
 
     boolean isMetaMakeItFinal(EObject model);
 
-    Map<String, String> getVersionColumns(EObject model);
+    Map<String, Set<String>> getVersionColumns(EObject model);
 
     String getVersionColumn(EObject model);
 
@@ -147,7 +147,7 @@ public interface ModelProperty extends Adapter {
 
     boolean isDoGenerateValidationAnnotations(EObject model);
 
-    Map<String, String> getNotVersionColumns(EObject model);
+    Map<String, Set<String>> getNotVersionColumns(EObject model);
 
     Set<String> getMetaGlobalSequenceForTables(EObject model);
 

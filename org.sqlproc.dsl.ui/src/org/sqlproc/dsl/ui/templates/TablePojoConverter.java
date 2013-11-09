@@ -102,8 +102,8 @@ public class TablePojoConverter {
     protected String implementationPackage;
     protected boolean makeItFinal;
     protected String versionColumn;
-    protected Map<String, String> versionColumns = new HashMap<String, String>();
-    protected Map<String, String> notVersionColumns = new HashMap<String, String>();
+    protected Map<String, Set<String>> versionColumns = new HashMap<String, Set<String>>();
+    protected Map<String, Set<String>> notVersionColumns = new HashMap<String, Set<String>>();
     protected String generateOperators = null;
     protected Set<String> preserveForeignKeys = new HashSet<String>();
     protected Map<String, PojoType> pojosForProcedures = new HashMap<String, PojoType>();
@@ -250,11 +250,11 @@ public class TablePojoConverter {
         this.implementationPackage = modelProperty.getImplementationPackage(artifacts);
         this.makeItFinal = modelProperty.isMakeItFinal(artifacts);
         this.versionColumn = modelProperty.getVersionColumn(artifacts);
-        Map<String, String> versionColumns = modelProperty.getVersionColumns(artifacts);
+        Map<String, Set<String>> versionColumns = modelProperty.getVersionColumns(artifacts);
         if (versionColumns != null) {
             this.versionColumns.putAll(versionColumns);
         }
-        Map<String, String> notVersionColumns = modelProperty.getNotVersionColumns(artifacts);
+        Map<String, Set<String>> notVersionColumns = modelProperty.getNotVersionColumns(artifacts);
         if (notVersionColumns != null) {
             this.notVersionColumns.putAll(notVersionColumns);
         }
@@ -369,11 +369,13 @@ public class TablePojoConverter {
             if (dbPrimaryKeys.contains(dbColumn.getName())) {
                 attribute.setPrimaryKey(true);
             }
-            if (dbColumn.getName().equalsIgnoreCase(versionColumn) && !notVersionColumns.containsKey(table)) {
-                if (versionColumns.isEmpty())
-                    attribute.setVersion(true);
-            }
-            if (versionColumns.containsKey(table) && dbColumn.getName().equals(versionColumns.get(table))) {
+            if (versionColumn != null && versionColumn.equals(dbColumn.getName())) {
+                attribute.setVersion(true);
+            } else if (versionColumns.containsKey(dbColumn.getName())
+                    && versionColumns.get(dbColumn.getName()).contains(table)) {
+                attribute.setVersion(true);
+            } else if (notVersionColumns.containsKey(dbColumn.getName())
+                    && !notVersionColumns.get(dbColumn.getName()).contains(table)) {
                 attribute.setVersion(true);
             }
         }
