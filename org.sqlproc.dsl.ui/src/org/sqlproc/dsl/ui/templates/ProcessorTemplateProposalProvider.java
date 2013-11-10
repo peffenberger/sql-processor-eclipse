@@ -101,6 +101,26 @@ public class ProcessorTemplateProposalProvider extends DefaultTemplateProposalPr
                     false);// auto-insertable?
             tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
             acceptor.accept(tp);
+            template = new Template("hsqldb", "HSQLDB initial control directives", "uniqueTemplateID", HSQLDB, false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("postgresql", "PostgreSQL initial control directives", "uniqueTemplateID",
+                    POSTGRESQL, false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("mysql", "MySQL initial control directives", "uniqueTemplateID", MYSQL, false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("oracle", "Oracle initial control directives", "uniqueTemplateID", ORACLE, false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("db2", "DB2 initial control directives", "uniqueTemplateID", DB2, false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("informix", "Informix initial control directives", "uniqueTemplateID", INFORMIX,
+                    false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
         }
 
         if (templateContext.getContextType().getId().equals(helper.getId(ga.getAbstractPojoEntityRule()))) {
@@ -120,4 +140,59 @@ public class ProcessorTemplateProposalProvider extends DefaultTemplateProposalPr
             acceptor.accept(tp);
         }
     }
+
+    static final String HSQLDB = "resolve-pojo-on;\n" + "database-is-online;\n"
+            + "database-jdbc-driver :org.hsqldb.jdbcDriver;\n" + "database-has-url jdbc:hsqldb:mem:hsqldb;\n"
+            + "database-login-username sa;\n" + "database-login-password \"\";\n" + "database-take-comments;\n" + "\n"
+            + "pojogen-generate-wrappers;\n" + "pojogen-generate-methods toString equals hashCode isDef toInit;\n"
+            + "pojogen-implements-interfaces java.io.Serializable;\n" + "pojogen-generate-operators;\n"
+            + "pojogen-generate-validation-annotations;\n" + "\n" + "metagen-global-sequence TODO_SEQUENCE_NAME;\n";
+
+    static final String POSTGRESQL = "resolve-pojo-on;\n" + "database-is-online;\n"
+            + "database-jdbc-driver :org.postgresql.Driver;\n"
+            + "database-has-url jdbc:postgresql:\\//TODO_DB_SERVER:5432/TODO_DB_NAME;\n"
+            + "database-login-username TODO_DB_USER;\n" + "database-login-password TODO_DB_PASSWORD;\n"
+            + "database-in-catalog TODO_DB_CATALOG;\n" + "database-take-comments;\n" + "\n"
+            + "pojogen-generate-wrappers;\n" + "pojogen-generate-methods toString equals hashCode isDef toInit;\n"
+            + "pojogen-implements-interfaces java.io.Serializable;\n" + "pojogen-generate-operators;\n"
+            + "pojogen-generate-validation-annotations;\n" + "\n"
+            + "metagen-table-sequence TODO_TABLE_X TODO_TABLE_X_id_seq;\n";
+
+    static final String MYSQL = "resolve-pojo-on;\n" + "database-is-online;\n"
+            + "database-jdbc-driver :com.mysql.jdbc.Driver;\n"
+            + "database-has-url jdbc:mysql:\\//TODO_DB_SERVER:3306/TODO_DB_NAME?zeroDateTimeBehavior=convertToNull;\n"
+            + "database-login-username TODO_DB_USER;\n" + "database-login-password TODO_DB_PASSWORD;\n"
+            + "database-in-catalog TODO_DB_CATALOG;\n" + "database-take-comments;\n" + "\n"
+            + "pojogen-generate-wrappers;\n" + "pojogen-generate-methods toString equals hashCode isDef toInit;\n"
+            + "pojogen-implements-interfaces java.io.Serializable;\n" + "pojogen-generate-operators;\n"
+            + "pojogen-generate-validation-annotations;\n" + "\n" + "metagen-global-identity;\n";
+
+    static final String ORACLE = "resolve-pojo-on;\n" + "database-is-online;\n"
+            + "database-jdbc-driver :oracle.jdbc.OracleDriver;\n"
+            + "database-has-url jdbc:oracle:thin:@TODO_DB_SERVER:1521:TODO_SID;\n"
+            + "database-login-username TODO_DB_USER;\n" + "database-login-password TODO_DB_PASSWORD;\n"
+            + "database-active-schema TODO_DB_SCHEMA;\n" + "database-take-comments;\n" + "\n"
+            + "pojogen-generate-wrappers;\n" + "pojogen-generate-methods toString equals hashCode isDef toInit;\n"
+            + "pojogen-implements-interfaces java.io.Serializable;\n" + "pojogen-generate-operators;\n"
+            + "pojogen-generate-validation-annotations;\n" + "\n" + "metagen-global-sequence TODO_SEQUENCE_NAME;\n";
+
+    static final String DB2 = "resolve-pojo-on;\n"
+            + "database-is-online;\n"
+            + "database-jdbc-driver :com.ibm.db2.jcc.DB2Driver;\n"
+            + "database-has-url jdbc:db2:\\//TODO_DB_SERVER:50001/TODO_DB_NAME:deferPrepares=0\\;progressiveStreaming=2\\;;\n"
+            + "database-login-username TODO_DB_USER;\n" + "database-login-password TODO_DB_PASSWORD;\n"
+            + "database-active-schema TODO_DB_SCHEMA;\n" + "database-take-comments;\n" + "\n"
+            + "pojogen-generate-wrappers;\n" + "pojogen-generate-methods toString equals hashCode isDef toInit;\n"
+            + "pojogen-implements-interfaces java.io.Serializable;\n" + "pojogen-generate-operators;\n"
+            + "pojogen-generate-validation-annotations;\n" + "\n" + "metagen-global-sequence TODO_SEQUENCE_NAME;\n";
+
+    static final String INFORMIX = "resolve-pojo-on;\n"
+            + "database-is-online;\n"
+            + "database-jdbc-driver :com.informix.jdbc.IfxDriver;\n"
+            + "database-has-url jdbc:informix-sqli:\\//TODO_DB_SERVER:1551/TODO_DB_NAME:informixserver=TODO_IFX_NAME\\;DB_LOCALE=en_US\\.57372;\n"
+            + "database-login-username TODO_DB_USER;\n" + "database-login-password TODO_DB_PASSWORD;\n"
+            + "database-in-catalog TODO_DB_CATALOG;\n" + "database-take-comments;\n" + "\n"
+            + "pojogen-generate-wrappers;\n" + "pojogen-generate-methods toString equals hashCode isDef toInit;\n"
+            + "pojogen-implements-interfaces java.io.Serializable;\n" + "pojogen-generate-operators;\n"
+            + "pojogen-generate-validation-annotations;\n" + "\n" + "metagen-global-sequence TODO_SEQUENCE_NAME;\n";
 }
