@@ -331,15 +331,15 @@ public class TablePojoConverter {
             System.out.println("doGenerateValidationAnnotations " + this.doGenerateValidationAnnotations);
             System.out.println("implementationPackage " + this.implementationPackage);
             System.out.println("makeItFinal " + this.makeItFinal);
-            System.out.println("versionColumn " + this.versionColumn);
-            System.out.println("versionColumns " + this.versionColumns);
-            System.out.println("notVersionColumns " + this.notVersionColumns);
             System.out.println("sequences " + this.dbSequences);
             System.out.println("dbType " + this.dbType);
             System.out.println("metaFunctionsResult " + this.metaFunctionsResult);
             System.out.println("preserveForeignKeys " + this.preserveForeignKeys);
             System.out.println("pojosForProcedures " + this.pojosForProcedures);
             System.out.println("pojosForFunctions " + this.pojosForFunctions);
+            System.out.println("versionColumn " + this.versionColumn);
+            System.out.println("versionColumns " + this.versionColumns);
+            System.out.println("notVersionColumns " + this.notVersionColumns);
         }
     }
 

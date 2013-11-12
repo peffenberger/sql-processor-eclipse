@@ -813,8 +813,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             } else {
                 if (!modelValues.notVersionColumns.containsKey(versionColumn))
                     modelValues.notVersionColumns.put(versionColumn, new HashSet<String>());
-                for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
-                    modelValues.notVersionColumns.get(versionColumn).add(property.getDbTables().get(i));
+                for (int i = 0, m = property.getDbNotTables().size(); i < m; i++) {
+                    modelValues.notVersionColumns.get(versionColumn).add(property.getDbNotTables().get(i));
                 }
             }
         } else if (POJOGEN_DEBUG_LEVEL.equals(property.getName())) {
