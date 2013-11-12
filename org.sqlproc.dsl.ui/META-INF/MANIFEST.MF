@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SQL Processor DSL UI
 Bundle-Vendor: SQL Processor Team
-Bundle-Version: 1.7.6.qualifier
+Bundle-Version: 1.7.6
 Bundle-SymbolicName: org.sqlproc.dsl.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.sqlproc.dsl;visibility:=reexport,
@@ -21,8 +21,7 @@ Import-Package: org.apache.log4j,
  org.eclipse.jdt.core,
  org.eclipse.jdt.launching
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.sqlproc.dsl.ui.contentassist,
- org.sqlproc.dsl.ui.contentassist.antlr,
- org.sqlproc.dsl.ui.internal,
- org.sqlproc.dsl.ui.quickfix
+Export-Package: org.sqlproc.dsl.ui.contentassist,org.sqlproc.dsl.ui.co
+ ntentassist.antlr,org.sqlproc.dsl.ui.internal,org.sqlproc.dsl.ui.quic
+ kfix
 Bundle-Activator: org.sqlproc.dsl.ui.internal.ProcessorDslActivator

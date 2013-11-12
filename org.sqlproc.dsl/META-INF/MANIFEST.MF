@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SQL Processor DSL Grammar
 Bundle-Vendor: SQL Processor Team
-Bundle-Version: 1.7.6.qualifier
+Bundle-Version: 1.7.6
 Bundle-SymbolicName: org.sqlproc.dsl; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;visibility:=reexport,
@@ -21,19 +21,10 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.sqlproc.dsl,
- org.sqlproc.dsl.services,
- org.sqlproc.dsl.processorDsl,
- org.sqlproc.dsl.processorDsl.impl,
- org.sqlproc.dsl.processorDsl.util,
- org.sqlproc.dsl.serializer,
- org.sqlproc.dsl.parser.antlr,
- org.sqlproc.dsl.parser.antlr.internal,
- org.sqlproc.dsl.property,
- org.sqlproc.dsl.resolver,
- org.sqlproc.dsl.validation,
- org.sqlproc.dsl.util,
- org.sqlproc.dsl.scoping,
- org.sqlproc.dsl.generator,
- org.sqlproc.dsl.formatting,
- org.sqlproc.dsl.jvmmodel
+Export-Package: org.sqlproc.dsl,org.sqlproc.dsl.services,org.sqlproc.d
+ sl.processorDsl,org.sqlproc.dsl.processorDsl.impl,org.sqlproc.dsl.pro
+ cessorDsl.util,org.sqlproc.dsl.serializer,org.sqlproc.dsl.parser.antl
+ r,org.sqlproc.dsl.parser.antlr.internal,org.sqlproc.dsl.property,org.
+ sqlproc.dsl.resolver,org.sqlproc.dsl.validation,org.sqlproc.dsl.util,
+ org.sqlproc.dsl.scoping,org.sqlproc.dsl.generator,org.sqlproc.dsl.for
+ matting,org.sqlproc.dsl.jvmmodel
