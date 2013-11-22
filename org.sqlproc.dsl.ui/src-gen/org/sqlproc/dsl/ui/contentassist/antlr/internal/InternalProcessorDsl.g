@@ -3277,6 +3277,18 @@ rule__DatabaseProperty__Alternatives
 { after(grammarAccess.getDatabasePropertyAccess().getNameAssignment_19()); }
 )
 
+    |(
+{ before(grammarAccess.getDatabasePropertyAccess().getNameAssignment_20()); }
+(rule__DatabaseProperty__NameAssignment_20)
+{ after(grammarAccess.getDatabasePropertyAccess().getNameAssignment_20()); }
+)
+
+    |(
+{ before(grammarAccess.getDatabasePropertyAccess().getNameAssignment_21()); }
+(rule__DatabaseProperty__NameAssignment_21)
+{ after(grammarAccess.getDatabasePropertyAccess().getNameAssignment_21()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -38937,6 +38949,52 @@ rule__DatabaseProperty__NameAssignment_19
 )
 
 { after(grammarAccess.getDatabasePropertyAccess().getNameTakeCommentsKeyword_19_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DatabaseProperty__NameAssignment_20
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getDatabasePropertyAccess().getNameLowercaseNamesKeyword_20_0()); }
+(
+{ before(grammarAccess.getDatabasePropertyAccess().getNameLowercaseNamesKeyword_20_0()); }
+
+	'lowercase-names' 
+
+{ after(grammarAccess.getDatabasePropertyAccess().getNameLowercaseNamesKeyword_20_0()); }
+)
+
+{ after(grammarAccess.getDatabasePropertyAccess().getNameLowercaseNamesKeyword_20_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DatabaseProperty__NameAssignment_21
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getDatabasePropertyAccess().getNameUppercaseNamesKeyword_21_0()); }
+(
+{ before(grammarAccess.getDatabasePropertyAccess().getNameUppercaseNamesKeyword_21_0()); }
+
+	'uppercase-names' 
+
+{ after(grammarAccess.getDatabasePropertyAccess().getNameUppercaseNamesKeyword_21_0()); }
+)
+
+{ after(grammarAccess.getDatabasePropertyAccess().getNameUppercaseNamesKeyword_21_0()); }
 )
 
 ;

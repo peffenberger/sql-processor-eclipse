@@ -61,6 +61,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String DATABASE_OF_TYPE = "is-of-type";
     public static final String DATABASE_DEBUG_LEVEL = "debug-level";
     public static final String DATABASE_TAKE_COMMENTS = "take-comments";
+    public static final String DATABASE_LOWERCASE_NAMES = "lowercase-names";
+    public static final String DATABASE_UPPERCASE_NAMES = "uppercase-names";
     public static final String POJOGEN = "pojogen";
     public static final String POJOGEN_TYPE_SQLTYPES = "types-sqltypes";
     public static final String POJOGEN_TYPE_IN_TABLE = "types-in-table";
@@ -160,6 +162,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public String dbType;
         public Level dbDebugLevel;
         public boolean dbTakeComments;
+        public boolean dbLowercaseNames;
+        public boolean dbUppercaseNames;
         public String dir;
         public Map<String, PojoAttrType> sqlTypes;
         public Map<String, Map<String, PojoAttrType>> tableTypes;
@@ -384,6 +388,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.dbType = null;
         modelValues.dbDebugLevel = null;
         modelValues.dbTakeComments = false;
+        modelValues.dbLowercaseNames = false;
+        modelValues.dbUppercaseNames = false;
     }
 
     private void initPojogenModel(ModelValues modelValues) {
@@ -529,6 +535,10 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                     : null, Level.WARN);
         } else if (DATABASE_TAKE_COMMENTS.equals(property.getName())) {
             modelValues.dbTakeComments = true;
+        } else if (DATABASE_LOWERCASE_NAMES.equals(property.getName())) {
+            modelValues.dbLowercaseNames = true;
+        } else if (DATABASE_UPPERCASE_NAMES.equals(property.getName())) {
+            modelValues.dbUppercaseNames = true;
         }
     }
 

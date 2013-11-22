@@ -68,6 +68,8 @@ DatabaseProperty:
 	|name='show-driver-output' (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+
 	|name='debug-level' WS+ debug=DebugLevelAssignement
 	|name='take-comments'
+	|name='lowercase-names'
+	|name='uppercase-names'
 	);
 
 PojogenProperty:

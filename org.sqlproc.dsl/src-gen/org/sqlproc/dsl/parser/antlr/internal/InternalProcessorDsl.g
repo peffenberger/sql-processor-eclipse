@@ -2798,6 +2798,38 @@ ruleDatabaseProperty returns [EObject current=null]
 	    }
 
 )
+)
+    |(
+(
+		lv_name_50_0=	'lowercase-names' 
+    {
+        newLeafNode(lv_name_50_0, grammarAccess.getDatabasePropertyAccess().getNameLowercaseNamesKeyword_20_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_50_0, "lowercase-names");
+	    }
+
+)
+)
+    |(
+(
+		lv_name_51_0=	'uppercase-names' 
+    {
+        newLeafNode(lv_name_51_0, grammarAccess.getDatabasePropertyAccess().getNameUppercaseNamesKeyword_21_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_51_0, "uppercase-names");
+	    }
+
+)
 ))
 ;
 

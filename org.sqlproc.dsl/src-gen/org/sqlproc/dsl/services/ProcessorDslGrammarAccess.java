@@ -1417,6 +1417,10 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDebugDebugLevelAssignementParserRuleCall_18_2_0 = (RuleCall)cDebugAssignment_18_2.eContents().get(0);
 		private final Assignment cNameAssignment_19 = (Assignment)cAlternatives.eContents().get(19);
 		private final Keyword cNameTakeCommentsKeyword_19_0 = (Keyword)cNameAssignment_19.eContents().get(0);
+		private final Assignment cNameAssignment_20 = (Assignment)cAlternatives.eContents().get(20);
+		private final Keyword cNameLowercaseNamesKeyword_20_0 = (Keyword)cNameAssignment_20.eContents().get(0);
+		private final Assignment cNameAssignment_21 = (Assignment)cAlternatives.eContents().get(21);
+		private final Keyword cNameUppercaseNamesKeyword_21_0 = (Keyword)cNameAssignment_21.eContents().get(0);
 		
 		//DatabaseProperty:
 		//	name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=PropertyValue | name="login-username" WS+
@@ -1428,7 +1432,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="skip-check-constraints" | name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
 		//	dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
 		//	name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
-		//	debug=DebugLevelAssignement | name="take-comments";
+		//	debug=DebugLevelAssignement | name="take-comments" | name="lowercase-names" | name="uppercase-names";
 		public ParserRule getRule() { return rule; }
 
 		//name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=PropertyValue | name="login-username" WS+
@@ -1440,7 +1444,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
 		//dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
 		//name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
-		//debug=DebugLevelAssignement | name="take-comments"
+		//debug=DebugLevelAssignement | name="take-comments" | name="lowercase-names" | name="uppercase-names"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="is-online"
@@ -1751,6 +1755,18 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"take-comments"
 		public Keyword getNameTakeCommentsKeyword_19_0() { return cNameTakeCommentsKeyword_19_0; }
+
+		//name="lowercase-names"
+		public Assignment getNameAssignment_20() { return cNameAssignment_20; }
+
+		//"lowercase-names"
+		public Keyword getNameLowercaseNamesKeyword_20_0() { return cNameLowercaseNamesKeyword_20_0; }
+
+		//name="uppercase-names"
+		public Assignment getNameAssignment_21() { return cNameAssignment_21; }
+
+		//"uppercase-names"
+		public Keyword getNameUppercaseNamesKeyword_21_0() { return cNameUppercaseNamesKeyword_21_0; }
 	}
 
 	public class PojogenPropertyElements extends AbstractParserRuleElementFinder {
@@ -9973,7 +9989,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="skip-check-constraints" | name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
 	//	dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
 	//	name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
-	//	debug=DebugLevelAssignement | name="take-comments";
+	//	debug=DebugLevelAssignement | name="take-comments" | name="lowercase-names" | name="uppercase-names";
 	public DatabasePropertyElements getDatabasePropertyAccess() {
 		return (pDatabaseProperty != null) ? pDatabaseProperty : (pDatabaseProperty = new DatabasePropertyElements());
 	}

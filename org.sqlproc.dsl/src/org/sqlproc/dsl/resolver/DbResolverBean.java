@@ -54,6 +54,8 @@ public class DbResolverBean implements DbResolver {
         public boolean dbSkipProcedures;
         public boolean dbSkipCheckConstraints;
         public boolean dbTakeComments;
+        public boolean dbLowercaseNames;
+        public boolean dbUppercaseNames;
         public DbType dbType;
         public String dir;
         public Connection connection;
@@ -70,7 +72,8 @@ public class DbResolverBean implements DbResolver {
                     + ", dbSqlsBefore=" + dbSqlsBefore + ", dbSqlsAfter=" + dbSqlsAfter + ", connection=" + connection
                     + ", dbIndexTypes=" + dbIndexTypes + ", dbSkipIndexes=" + dbSkipIndexes + ", dbSkipProcedures="
                     + dbSkipProcedures + ", dbSkipCheckConstraints=" + dbSkipCheckConstraints + ", dbTakeComments="
-                    + dbTakeComments + ", dbType=" + dbType + ", dir=" + dir + "]";
+                    + dbTakeComments + ", dbLowercaseNames=" + dbLowercaseNames + ", dbUppercaseNames="
+                    + dbUppercaseNames + ", dbType=" + dbType + ", dir=" + dir + "]";
         }
 
     }
@@ -256,6 +259,12 @@ public class DbResolverBean implements DbResolver {
         }
         if (modelModelValues.dbTakeComments != modelDatabaseValues.dbTakeComments) {
             modelDatabaseValues.dbTakeComments = modelModelValues.dbTakeComments;
+        }
+        if (modelModelValues.dbLowercaseNames != modelDatabaseValues.dbLowercaseNames) {
+            modelDatabaseValues.dbLowercaseNames = modelModelValues.dbLowercaseNames;
+        }
+        if (modelModelValues.dbUppercaseNames != modelDatabaseValues.dbUppercaseNames) {
+            modelDatabaseValues.dbUppercaseNames = modelModelValues.dbUppercaseNames;
         }
         if (modelModelValues.dbType != null) {
             if (modelDatabaseValues.dbType == null
@@ -493,7 +502,7 @@ public class DbResolverBean implements DbResolver {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
                 result = meta.getCatalogs();
                 while (result.next()) {
-                    catalogsForModel.add(result.getString("TABLE_CAT"));
+                    catalogsForModel.add(name(modelDatabaseValues, result.getString("TABLE_CAT")));
                 }
             } catch (SQLException e) {
                 error("getCatalogs error " + e, e);
@@ -527,7 +536,7 @@ public class DbResolverBean implements DbResolver {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
                 result = meta.getSchemas(modelDatabaseValues.dbCatalog, null);
                 while (result.next()) {
-                    schemasForModel.add(result.getString("TABLE_SCHEM"));
+                    schemasForModel.add(name(modelDatabaseValues, result.getString("TABLE_SCHEM")));
                 }
             } catch (SQLException e) {
                 error("getCatalogs error " + e, e);
@@ -562,7 +571,7 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getTables(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, null,
                         new String[] { "TABLE", "VIEW" });
                 while (result.next()) {
-                    tablesForModel.add(result.getString("TABLE_NAME"));
+                    tablesForModel.add(name(modelDatabaseValues, result.getString("TABLE_NAME")));
                 }
             } catch (SQLException e) {
                 error("getTables error " + e, e);
@@ -596,7 +605,7 @@ public class DbResolverBean implements DbResolver {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
                 result = meta.getProcedures(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, null);
                 while (result.next()) {
-                    proceduresForModel.add(result.getString("PROCEDURE_NAME"));
+                    proceduresForModel.add(name(modelDatabaseValues, result.getString("PROCEDURE_NAME")));
                 }
             } catch (SQLException e) {
                 error("getProcedures error " + e, e);
@@ -633,7 +642,7 @@ public class DbResolverBean implements DbResolver {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
                 result = meta.getFunctions(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, null);
                 while (result.next()) {
-                    functionsForModel.add(result.getString("FUNCTION_NAME"));
+                    functionsForModel.add(name(modelDatabaseValues, result.getString("FUNCTION_NAME")));
                 }
             } catch (SQLException e) {
                 error("getFunctions error " + e, e);
@@ -700,7 +709,7 @@ public class DbResolverBean implements DbResolver {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
                 result = meta.getColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, table, null);
                 while (result.next()) {
-                    columnsForModel.add(result.getString("COLUMN_NAME"));
+                    columnsForModel.add(name(modelDatabaseValues, result.getString("COLUMN_NAME")));
                 }
             } catch (SQLException e) {
                 error("getColumns error " + e, e);
@@ -754,7 +763,7 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getProcedureColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, table,
                         null);
                 while (result.next()) {
-                    columnsForModel.add(result.getString("COLUMN_NAME"));
+                    columnsForModel.add(name(modelDatabaseValues, result.getString("COLUMN_NAME")));
                 }
             } catch (SQLException e) {
                 error("getProcColumns error " + e, e);
@@ -810,7 +819,7 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getFunctionColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, table,
                         null);
                 while (result.next()) {
-                    columnsForModel.add(result.getString("COLUMN_NAME"));
+                    columnsForModel.add(name(modelDatabaseValues, result.getString("COLUMN_NAME")));
                 }
             } catch (SQLException e) {
                 error("getFunColumns error " + e, e);
@@ -873,7 +882,7 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getTables(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, table, null);
                 while (result.next()) {
                     DbTable dbTable = new DbTable();
-                    dbTable.setName(result.getString("TABLE_NAME"));
+                    dbTable.setName(name(modelDatabaseValues, result.getString("TABLE_NAME")));
                     dbTable.setType(result.getString("TABLE_TYPE"));
                     if (modelDatabaseValues.dbTakeComments)
                         dbTable.setComment(result.getString("REMARKS"));
@@ -925,7 +934,7 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, table, null);
                 while (result.next()) {
                     DbColumn dbColumn = new DbColumn();
-                    dbColumn.setName(result.getString("COLUMN_NAME"));
+                    dbColumn.setName(name(modelDatabaseValues, result.getString("COLUMN_NAME")));
                     dbColumn.setType(result.getString("TYPE_NAME"));
                     int ix = dbColumn.getType().indexOf('(');
                     if (ix > 0) {
@@ -996,7 +1005,7 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getProcedures(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, table);
                 while (result.next()) {
                     DbTable dbTable = new DbTable();
-                    dbTable.setName(result.getString("PROCEDURE_NAME"));
+                    dbTable.setName(name(modelDatabaseValues, result.getString("PROCEDURE_NAME")));
                     dbTable.setPtype(result.getShort("PROCEDURE_TYPE"));
                     if (modelDatabaseValues.dbTakeComments)
                         dbTable.setComment(result.getString("REMARKS"));
@@ -1050,7 +1059,7 @@ public class DbResolverBean implements DbResolver {
                         procedure, null);
                 while (result.next()) {
                     DbColumn dbColumn = new DbColumn();
-                    dbColumn.setName(result.getString("COLUMN_NAME"));
+                    dbColumn.setName(name(modelDatabaseValues, result.getString("COLUMN_NAME")));
                     dbColumn.setType(result.getString("TYPE_NAME"));
                     dbColumn.setColumnType(result.getShort("COLUMN_TYPE"));
                     int ix = dbColumn.getType().indexOf('(');
@@ -1130,7 +1139,7 @@ public class DbResolverBean implements DbResolver {
                 // }
                 while (result.next()) {
                     DbTable dbTable = new DbTable();
-                    dbTable.setName(result.getString("FUNCTION_NAME"));
+                    dbTable.setName(name(modelDatabaseValues, result.getString("FUNCTION_NAME")));
                     if (dbType != DbType.DB2 && dbType != DbType.ORACLE)
                         dbTable.setFtype(result.getShort("FUNCTION_TYPE"));
                     if (modelDatabaseValues.dbTakeComments)
@@ -1189,7 +1198,8 @@ public class DbResolverBean implements DbResolver {
                 // }
                 while (result.next()) {
                     DbColumn dbColumn = new DbColumn();
-                    dbColumn.setName(result.getString(dbType == DbType.DB2 ? "PARAMETER_NAME" : "COLUMN_NAME"));
+                    dbColumn.setName(name(modelDatabaseValues,
+                            result.getString(dbType == DbType.DB2 ? "PARAMETER_NAME" : "COLUMN_NAME")));
                     dbColumn.setType(result.getString("TYPE_NAME"));
                     dbColumn.setColumnType(result.getShort(dbType == DbType.DB2 ? "PARAMETER_TYPE" : "COLUMN_TYPE"));
                     int ix = dbColumn.getType().indexOf('(');
@@ -1261,7 +1271,7 @@ public class DbResolverBean implements DbResolver {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
                 result = meta.getPrimaryKeys(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, table);
                 while (result.next()) {
-                    primaryKeysForModel.add(result.getString("COLUMN_NAME"));
+                    primaryKeysForModel.add(name(modelDatabaseValues, result.getString("COLUMN_NAME")));
                 }
             } catch (SQLException e) {
                 error("getDbPrimaryKeys error " + e, e);
@@ -1308,12 +1318,12 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getExportedKeys(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, table);
                 while (result.next()) {
                     DbExport dbExport = new DbExport();
-                    dbExport.setPkTable(result.getString("PKTABLE_NAME"));
-                    dbExport.setPkColumn(result.getString("PKCOLUMN_NAME"));
-                    dbExport.setFkTable(result.getString("FKTABLE_NAME"));
-                    dbExport.setFkColumn(result.getString("FKCOLUMN_NAME"));
-                    dbExport.setFkName(result.getString("FK_NAME"));
-                    dbExport.setPkName(result.getString("PK_NAME"));
+                    dbExport.setPkTable(name(modelDatabaseValues, result.getString("PKTABLE_NAME")));
+                    dbExport.setPkColumn(name(modelDatabaseValues, result.getString("PKCOLUMN_NAME")));
+                    dbExport.setFkTable(name(modelDatabaseValues, result.getString("FKTABLE_NAME")));
+                    dbExport.setFkColumn(name(modelDatabaseValues, result.getString("FKCOLUMN_NAME")));
+                    dbExport.setFkName(name(modelDatabaseValues, result.getString("FK_NAME")));
+                    dbExport.setPkName(name(modelDatabaseValues, result.getString("PK_NAME")));
                     // info("BBB " + table + " " + dbExport.toString());
                     exportsForModel.add(dbExport);
                 }
@@ -1362,12 +1372,12 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getImportedKeys(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, table);
                 while (result.next()) {
                     DbImport dbImport = new DbImport();
-                    dbImport.setPkTable(result.getString("PKTABLE_NAME"));
-                    dbImport.setPkColumn(result.getString("PKCOLUMN_NAME"));
-                    dbImport.setFkTable(result.getString("FKTABLE_NAME"));
-                    dbImport.setFkColumn(result.getString("FKCOLUMN_NAME"));
-                    dbImport.setFkName(result.getString("FK_NAME"));
-                    dbImport.setPkName(result.getString("PK_NAME"));
+                    dbImport.setPkTable(name(modelDatabaseValues, result.getString("PKTABLE_NAME")));
+                    dbImport.setPkColumn(name(modelDatabaseValues, result.getString("PKCOLUMN_NAME")));
+                    dbImport.setFkTable(name(modelDatabaseValues, result.getString("FKTABLE_NAME")));
+                    dbImport.setFkColumn(name(modelDatabaseValues, result.getString("FKCOLUMN_NAME")));
+                    dbImport.setFkName(name(modelDatabaseValues, result.getString("FK_NAME")));
+                    dbImport.setPkName(name(modelDatabaseValues, result.getString("PK_NAME")));
                     // info("CCC " + table + " " + dbImport.toString());
                     importsForModel.add(dbImport);
                 }
@@ -1401,7 +1411,7 @@ public class DbResolverBean implements DbResolver {
             DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
             result = meta.getColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, table, null);
             while (result.next()) {
-                if (result.getString("COLUMN_NAME").equals(column)) {
+                if (name(modelDatabaseValues, result.getString("COLUMN_NAME")).equals(column)) {
                     type = result.getString("TYPE_NAME");
                     int ix = type.indexOf('(');
                     if (ix > 0) {
@@ -1452,7 +1462,7 @@ public class DbResolverBean implements DbResolver {
             result = meta.getProcedureColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, procedure,
                     null);
             while (result.next()) {
-                if (column.equals(result.getString("COLUMN_NAME"))) {
+                if (column.equals(name(modelDatabaseValues, result.getString("COLUMN_NAME")))) {
                     type = result.getString("TYPE_NAME");
                     int ix = type.indexOf('(');
                     if (ix > 0) {
@@ -1503,7 +1513,8 @@ public class DbResolverBean implements DbResolver {
             result = meta.getFunctionColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, function,
                     null);
             while (result.next()) {
-                if (column.equals(result.getString(dbType == DbType.DB2 ? "PARAMETER_NAME" : "COLUMN_NAME"))) {
+                if (column.equals(name(modelDatabaseValues,
+                        result.getString(dbType == DbType.DB2 ? "PARAMETER_NAME" : "COLUMN_NAME")))) {
                     type = result.getString("TYPE_NAME");
                     int ix = type.indexOf('(');
                     if (ix > 0) {
@@ -1570,7 +1581,7 @@ public class DbResolverBean implements DbResolver {
                         true);
                 short addToPosition = 0;
                 while (result.next()) {
-                    String name = result.getString("INDEX_NAME");
+                    String name = name(modelDatabaseValues, result.getString("INDEX_NAME"));
                     if (!modelDatabaseValues.indexTypes.contains(result.getShort("TYPE"))) {
                         // info("INDEX TYPE " + result.getShort("TYPE") + " for " + name);
                         LOGGER.warn("INDEX TYPE " + result.getShort("TYPE") + " for " + name);
@@ -1584,7 +1595,7 @@ public class DbResolverBean implements DbResolver {
                     }
                     DbIndex.DbIndexDetail detail = new DbIndex.DbIndexDetail();
                     short position = result.getShort("ORDINAL_POSITION");
-                    detail.setColname(result.getString("COLUMN_NAME"));
+                    detail.setColname(name(modelDatabaseValues, result.getString("COLUMN_NAME")));
                     detail.setDesc("D".equalsIgnoreCase(result.getString("ASC_OR_DESC")));
                     trace("===getDbIndexes name", detail.getColname());
                     trace("===getDbIndexes position", position);
@@ -1627,7 +1638,7 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getTables(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, null,
                         new String[] { "SEQUENCE" });
                 while (result.next()) {
-                    sequencesForModel.add(result.getString("TABLE_NAME"));
+                    sequencesForModel.add(name(modelDatabaseValues, result.getString("TABLE_NAME")));
                 }
             } catch (SQLException e) {
                 error("getSequences error " + e, e);
@@ -1959,7 +1970,7 @@ public class DbResolverBean implements DbResolver {
                 result = stmt.executeQuery(query2);
             }
             while (result.next()) {
-                String tableName = result.getString(1);
+                String tableName = name(modelDatabaseValues, result.getString(1));
                 String constraintName = result.getString(2);
                 String checkClause = result.getString(3);
                 // System.out.println(tableName + " constraintName " + constraintName + ", " + " checkClause "
@@ -2028,6 +2039,16 @@ public class DbResolverBean implements DbResolver {
             e.printStackTrace();
         } else
             LOGGER.error(msg, e);
+    }
+
+    private String name(DatabaseDirectives modelDatabaseValues, String s) {
+        if (s == null)
+            return null;
+        if (modelDatabaseValues.dbUppercaseNames)
+            return s.toUpperCase();
+        if (modelDatabaseValues.dbLowercaseNames)
+            return s.toLowerCase();
+        return s;
     }
 
     @Override
