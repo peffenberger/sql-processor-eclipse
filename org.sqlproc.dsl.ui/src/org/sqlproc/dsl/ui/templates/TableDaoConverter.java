@@ -36,6 +36,7 @@ public class TableDaoConverter extends TableMetaConverter {
     protected Map<String, PojoType> daoFunctionsResult = new HashMap<String, PojoType>();
     protected Set<String> notGenerics;
     protected Set<String> generics;
+    protected String daoActiveFilter = null;
 
     public TableDaoConverter() {
         super();
@@ -74,6 +75,7 @@ public class TableDaoConverter extends TableMetaConverter {
         if (daoFunctionsResult != null) {
             this.daoFunctionsResult.putAll(daoFunctionsResult);
         }
+        this.daoActiveFilter = modelProperty.getDaoActiveFilter(artifacts);
 
         if (debug) {
             System.out.println("finalDaos " + this.finalDaos);
@@ -83,6 +85,7 @@ public class TableDaoConverter extends TableMetaConverter {
             System.out.println("daoToImplements " + this.daoToImplements);
             System.out.println("daoToExtends " + this.daoToExtends);
             System.out.println("daoFunctionsResult " + this.daoFunctionsResult);
+            System.out.println("daoActiveFilter " + this.daoActiveFilter);
         }
     }
 

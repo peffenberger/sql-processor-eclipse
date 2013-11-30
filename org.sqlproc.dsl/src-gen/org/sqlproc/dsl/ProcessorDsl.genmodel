@@ -171,6 +171,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojogenProperty/debug"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojogenProperty/procPojos"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojogenProperty/funPojos"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojogenProperty/activeFilter"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//MetaTypeAssignement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//MetaTypeAssignement/dbColumn"/>
@@ -192,6 +193,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//MetagenProperty/dbProcedure"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//MetagenProperty/debug"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//MetagenProperty/optionalFeatures"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//MetagenProperty/activeFilter"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//DaogenProperty">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//DaogenProperty/name"/>
@@ -204,6 +206,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//DaogenProperty/dbFunction"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaogenProperty/resultType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaogenProperty/debug"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//DaogenProperty/activeFilter"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoDefinition/name"/>

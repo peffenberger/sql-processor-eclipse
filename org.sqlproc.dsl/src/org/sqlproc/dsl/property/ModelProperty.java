@@ -156,4 +156,10 @@ public interface ModelProperty extends Adapter {
     Set<String> getMetaGlobalIdentityForTables(EObject model);
 
     Set<String> getMetaGlobalIdentityNotForTables(EObject model);
+
+    String getActiveFilter(EObject model);
+
+    String getMetaActiveFilter(EObject model);
+
+    String getDaoActiveFilter(EObject model);
 }

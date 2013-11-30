@@ -43,6 +43,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getDbFunction <em>Db Function</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getResultType <em>Result Type</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getDebug <em>Debug</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getActiveFilter <em>Active Filter</em>}</li>
  * </ul>
  * </p>
  *
@@ -179,6 +180,26 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * @ordered
    */
   protected DebugLevelAssignement debug;
+
+  /**
+   * The default value of the '{@link #getActiveFilter() <em>Active Filter</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getActiveFilter()
+   * @generated
+   * @ordered
+   */
+  protected static final String ACTIVE_FILTER_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getActiveFilter() <em>Active Filter</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getActiveFilter()
+   * @generated
+   * @ordered
+   */
+  protected String activeFilter = ACTIVE_FILTER_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -577,6 +598,29 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getActiveFilter()
+  {
+    return activeFilter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setActiveFilter(String newActiveFilter)
+  {
+    String oldActiveFilter = activeFilter;
+    activeFilter = newActiveFilter;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAOGEN_PROPERTY__ACTIVE_FILTER, oldActiveFilter, activeFilter));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -628,6 +672,8 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         return getResultType();
       case ProcessorDslPackage.DAOGEN_PROPERTY__DEBUG:
         return getDebug();
+      case ProcessorDslPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
+        return getActiveFilter();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -674,6 +720,9 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
       case ProcessorDslPackage.DAOGEN_PROPERTY__DEBUG:
         setDebug((DebugLevelAssignement)newValue);
         return;
+      case ProcessorDslPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
+        setActiveFilter((String)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -718,6 +767,9 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
       case ProcessorDslPackage.DAOGEN_PROPERTY__DEBUG:
         setDebug((DebugLevelAssignement)null);
         return;
+      case ProcessorDslPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
+        setActiveFilter(ACTIVE_FILTER_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -752,6 +804,8 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         return resultType != null;
       case ProcessorDslPackage.DAOGEN_PROPERTY__DEBUG:
         return debug != null;
+      case ProcessorDslPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
+        return ACTIVE_FILTER_EDEFAULT == null ? activeFilter != null : !ACTIVE_FILTER_EDEFAULT.equals(activeFilter);
     }
     return super.eIsSet(featureID);
   }
@@ -775,6 +829,8 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
     result.append(implPackage);
     result.append(", dbFunction: ");
     result.append(dbFunction);
+    result.append(", activeFilter: ");
+    result.append(activeFilter);
     result.append(')');
     return result.toString();
   }

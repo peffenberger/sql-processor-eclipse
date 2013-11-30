@@ -177,6 +177,7 @@ public class InternalProcessorDslLexer extends Lexer {
     public static final int RULE_EQUALS=26;
     public static final int RULE_WS=4;
     public static final int RULE_LESS_THAN=27;
+    public static final int T__169=169;
     public static final int RULE_MAPPING_TYPE=36;
 
     // delegates
@@ -1667,10 +1668,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__111;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:81:8: ( 'global-sequence' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:81:10: 'global-sequence'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:81:8: ( 'active-filter' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:81:10: 'active-filter'
             {
-            match("global-sequence"); 
+            match("active-filter"); 
 
 
             }
@@ -1688,10 +1689,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__112;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:82:8: ( 'table-sequence' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:82:10: 'table-sequence'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:82:8: ( 'global-sequence' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:82:10: 'global-sequence'
             {
-            match("table-sequence"); 
+            match("global-sequence"); 
 
 
             }
@@ -1709,10 +1710,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__113;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:83:8: ( 'global-identity' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:83:10: 'global-identity'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:83:8: ( 'table-sequence' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:83:10: 'table-sequence'
             {
-            match("global-identity"); 
+            match("table-sequence"); 
 
 
             }
@@ -1730,10 +1731,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__114;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:84:8: ( 'table-identity' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:84:10: 'table-identity'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:84:8: ( 'global-identity' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:84:10: 'global-identity'
             {
-            match("table-identity"); 
+            match("global-identity"); 
 
 
             }
@@ -1751,10 +1752,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__115;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:85:8: ( 'column-meta-type' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:85:10: 'column-meta-type'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:85:8: ( 'table-identity' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:85:10: 'table-identity'
             {
-            match("column-meta-type"); 
+            match("table-identity"); 
 
 
             }
@@ -1772,10 +1773,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__116;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:86:8: ( 'statement-meta-type' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:86:10: 'statement-meta-type'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:86:8: ( 'column-meta-type' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:86:10: 'column-meta-type'
             {
-            match("statement-meta-type"); 
+            match("column-meta-type"); 
 
 
             }
@@ -1793,10 +1794,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__117;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:87:8: ( 'like-columns' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:87:10: 'like-columns'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:87:8: ( 'statement-meta-type' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:87:10: 'statement-meta-type'
             {
-            match("like-columns"); 
+            match("statement-meta-type"); 
 
 
             }
@@ -1814,10 +1815,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__118;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:88:8: ( 'not-like-columns' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:88:10: 'not-like-columns'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:88:8: ( 'like-columns' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:88:10: 'like-columns'
             {
-            match("not-like-columns"); 
+            match("like-columns"); 
 
 
             }
@@ -1835,10 +1836,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__119;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:89:8: ( 'generate-sequences' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:89:10: 'generate-sequences'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:89:8: ( 'not-like-columns' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:89:10: 'not-like-columns'
             {
-            match("generate-sequences"); 
+            match("not-like-columns"); 
 
 
             }
@@ -1856,10 +1857,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__120;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:90:8: ( 'generate-identities' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:90:10: 'generate-identities'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:90:8: ( 'generate-sequences' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:90:10: 'generate-sequences'
             {
-            match("generate-identities"); 
+            match("generate-sequences"); 
 
 
             }
@@ -1877,10 +1878,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__121;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:91:8: ( 'function-result' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:91:10: 'function-result'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:91:8: ( 'generate-identities' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:91:10: 'generate-identities'
             {
-            match("function-result"); 
+            match("generate-identities"); 
 
 
             }
@@ -1898,10 +1899,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__122;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:92:8: ( 'function-result-set' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:92:10: 'function-result-set'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:92:8: ( 'function-result' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:92:10: 'function-result'
             {
-            match("function-result-set"); 
+            match("function-result"); 
 
 
             }
@@ -1919,10 +1920,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__123;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:93:8: ( 'procedure-result-set' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:93:10: 'procedure-result-set'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:93:8: ( 'function-result-set' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:93:10: 'function-result-set'
             {
-            match("procedure-result-set"); 
+            match("function-result-set"); 
 
 
             }
@@ -1940,10 +1941,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__124;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:94:8: ( 'optimize-insert' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:94:10: 'optimize-insert'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:94:8: ( 'procedure-result-set' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:94:10: 'procedure-result-set'
             {
-            match("optimize-insert"); 
+            match("procedure-result-set"); 
 
 
             }
@@ -1961,10 +1962,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__125;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:95:8: ( 'optional-features' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:95:10: 'optional-features'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:95:8: ( 'optimize-insert' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:95:10: 'optimize-insert'
             {
-            match("optional-features"); 
+            match("optimize-insert"); 
 
 
             }
@@ -1982,10 +1983,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__126;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:96:8: ( 'pojo' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:96:10: 'pojo'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:96:8: ( 'optional-features' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:96:10: 'optional-features'
             {
-            match("pojo"); 
+            match("optional-features"); 
 
 
             }
@@ -2003,10 +2004,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__127;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:97:8: ( 'table' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:97:10: 'table'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:97:8: ( 'pojo' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:97:10: 'pojo'
             {
-            match("table"); 
+            match("pojo"); 
 
 
             }
@@ -2024,10 +2025,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__128;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:98:8: ( 'procedure' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:98:10: 'procedure'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:98:8: ( 'table' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:98:10: 'table'
             {
-            match("procedure"); 
+            match("table"); 
 
 
             }
@@ -2045,10 +2046,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__129;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:99:8: ( 'function' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:99:10: 'function'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:99:8: ( 'procedure' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:99:10: 'procedure'
             {
-            match("function"); 
+            match("procedure"); 
 
 
             }
@@ -2066,10 +2067,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__130;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:100:8: ( '_void' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:100:10: '_void'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:100:8: ( 'function' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:100:10: 'function'
             {
-            match("_void"); 
+            match("function"); 
 
 
             }
@@ -2087,10 +2088,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__131;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:101:8: ( '_char' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:101:10: '_char'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:101:8: ( '_void' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:101:10: '_void'
             {
-            match("_char"); 
+            match("_void"); 
 
 
             }
@@ -2108,10 +2109,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__132;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:102:8: ( '_byte' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:102:10: '_byte'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:102:8: ( '_char' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:102:10: '_char'
             {
-            match("_byte"); 
+            match("_char"); 
 
 
             }
@@ -2129,10 +2130,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__133;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:103:8: ( '_short' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:103:10: '_short'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:103:8: ( '_byte' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:103:10: '_byte'
             {
-            match("_short"); 
+            match("_byte"); 
 
 
             }
@@ -2150,10 +2151,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__134;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:104:8: ( '_int' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:104:10: '_int'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:104:8: ( '_short' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:104:10: '_short'
             {
-            match("_int"); 
+            match("_short"); 
 
 
             }
@@ -2171,10 +2172,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__135;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:105:8: ( '_long' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:105:10: '_long'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:105:8: ( '_int' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:105:10: '_int'
             {
-            match("_long"); 
+            match("_int"); 
 
 
             }
@@ -2192,10 +2193,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__136;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:106:8: ( '_float' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:106:10: '_float'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:106:8: ( '_long' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:106:10: '_long'
             {
-            match("_float"); 
+            match("_long"); 
 
 
             }
@@ -2213,10 +2214,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__137;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:107:8: ( '_double' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:107:10: '_double'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:107:8: ( '_float' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:107:10: '_float'
             {
-            match("_double"); 
+            match("_float"); 
 
 
             }
@@ -2234,10 +2235,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__138;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:108:8: ( '_boolean' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:108:10: '_boolean'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:108:8: ( '_double' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:108:10: '_double'
             {
-            match("_boolean"); 
+            match("_double"); 
 
 
             }
@@ -2255,10 +2256,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__139;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:109:8: ( '[]' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:109:10: '[]'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:109:8: ( '_boolean' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:109:10: '_boolean'
             {
-            match("[]"); 
+            match("_boolean"); 
 
 
             }
@@ -2276,10 +2277,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__140;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:110:8: ( 'package' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:110:10: 'package'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:110:8: ( '[]' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:110:10: '[]'
             {
-            match("package"); 
+            match("[]"); 
 
 
             }
@@ -2297,10 +2298,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__141;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:111:8: ( 'suffix' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:111:10: 'suffix'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:111:8: ( 'package' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:111:10: 'package'
             {
-            match("suffix"); 
+            match("package"); 
 
 
             }
@@ -2318,10 +2319,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__142;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:112:8: ( 'import' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:112:10: 'import'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:112:8: ( 'suffix' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:112:10: 'suffix'
             {
-            match("import"); 
+            match("suffix"); 
 
 
             }
@@ -2339,10 +2340,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__143;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:113:8: ( 'implements' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:113:10: 'implements'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:113:8: ( 'import' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:113:10: 'import'
             {
-            match("implements"); 
+            match("import"); 
 
 
             }
@@ -2360,10 +2361,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__144;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:114:8: ( '<<>>' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:114:10: '<<>>'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:114:8: ( 'implements' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:114:10: 'implements'
             {
-            match("<<>>"); 
+            match("implements"); 
 
 
             }
@@ -2381,10 +2382,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__145;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:115:8: ( 'onlyPojos' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:115:10: 'onlyPojos'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:115:8: ( '<<>>' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:115:10: '<<>>'
             {
-            match("onlyPojos"); 
+            match("<<>>"); 
 
 
             }
@@ -2402,10 +2403,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__146;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:116:8: ( 'onlyDaos' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:116:10: 'onlyDaos'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:116:8: ( 'onlyPojos' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:116:10: 'onlyPojos'
             {
-            match("onlyDaos"); 
+            match("onlyPojos"); 
 
 
             }
@@ -2423,10 +2424,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__147;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:117:8: ( 'exceptPojos' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:117:10: 'exceptPojos'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:117:8: ( 'onlyDaos' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:117:10: 'onlyDaos'
             {
-            match("exceptPojos"); 
+            match("onlyDaos"); 
 
 
             }
@@ -2444,10 +2445,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__148;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:118:8: ( 'exceptDaos' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:118:10: 'exceptDaos'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:118:8: ( 'exceptPojos' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:118:10: 'exceptPojos'
             {
-            match("exceptDaos"); 
+            match("exceptPojos"); 
 
 
             }
@@ -2465,10 +2466,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__149;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:119:8: ( 'extends' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:119:10: 'extends'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:119:8: ( 'exceptDaos' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:119:10: 'exceptDaos'
             {
-            match("extends"); 
+            match("exceptDaos"); 
 
 
             }
@@ -2486,10 +2487,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__150;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:120:8: ( 'final' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:120:10: 'final'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:120:8: ( 'extends' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:120:10: 'extends'
             {
-            match("final"); 
+            match("extends"); 
 
 
             }
@@ -2507,10 +2508,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__151;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:121:8: ( 'abstract' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:121:10: 'abstract'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:121:8: ( 'final' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:121:10: 'final'
             {
-            match("abstract"); 
+            match("final"); 
 
 
             }
@@ -2528,10 +2529,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__152;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:122:8: ( 'discriminator' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:122:10: 'discriminator'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:122:8: ( 'abstract' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:122:10: 'abstract'
             {
-            match("discriminator"); 
+            match("abstract"); 
 
 
             }
@@ -2549,10 +2550,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__153;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:123:8: ( 'operators' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:123:10: 'operators'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:123:8: ( 'discriminator' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:123:10: 'discriminator'
             {
-            match("operators"); 
+            match("discriminator"); 
 
 
             }
@@ -2570,10 +2571,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__154;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:124:8: ( 'serializable' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:124:10: 'serializable'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:124:8: ( 'operators' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:124:10: 'operators'
             {
-            match("serializable"); 
+            match("operators"); 
 
 
             }
@@ -2591,10 +2592,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__155;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:125:8: ( 'required' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:125:10: 'required'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:125:8: ( 'serializable' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:125:10: 'serializable'
             {
-            match("required"); 
+            match("serializable"); 
 
 
             }
@@ -2612,10 +2613,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__156;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:126:8: ( 'primaryKey' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:126:10: 'primaryKey'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:126:8: ( 'required' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:126:10: 'required'
             {
-            match("primaryKey"); 
+            match("required"); 
 
 
             }
@@ -2633,10 +2634,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__157;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:127:8: ( 'index' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:127:10: 'index'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:127:8: ( 'primaryKey' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:127:10: 'primaryKey'
             {
-            match("index"); 
+            match("primaryKey"); 
 
 
             }
@@ -2654,10 +2655,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__158;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:128:8: ( 'optLock' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:128:10: 'optLock'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:128:8: ( 'index' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:128:10: 'index'
             {
-            match("optLock"); 
+            match("index"); 
 
 
             }
@@ -2675,10 +2676,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__159;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:129:8: ( 'updateCol' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:129:10: 'updateCol'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:129:8: ( 'optLock' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:129:10: 'optLock'
             {
-            match("updateCol"); 
+            match("optLock"); 
 
 
             }
@@ -2696,10 +2697,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__160;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:130:8: ( 'createCol' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:130:10: 'createCol'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:130:8: ( 'updateCol' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:130:10: 'updateCol'
             {
-            match("createCol"); 
+            match("updateCol"); 
 
 
             }
@@ -2717,10 +2718,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__161;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:131:8: ( 'enum' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:131:10: 'enum'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:131:8: ( 'createCol' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:131:10: 'createCol'
             {
-            match("enum"); 
+            match("createCol"); 
 
 
             }
@@ -2738,10 +2739,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__162;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:132:8: ( 'dao' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:132:10: 'dao'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:132:8: ( 'enum' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:132:10: 'enum'
             {
-            match("dao"); 
+            match("enum"); 
 
 
             }
@@ -2759,10 +2760,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__163;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:133:8: ( 'callFunction' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:133:10: 'callFunction'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:133:8: ( 'dao' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:133:10: 'dao'
             {
-            match("callFunction"); 
+            match("dao"); 
 
 
             }
@@ -2780,10 +2781,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__164;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:134:8: ( 'callUpdate' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:134:10: 'callUpdate'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:134:8: ( 'callFunction' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:134:10: 'callFunction'
             {
-            match("callUpdate"); 
+            match("callFunction"); 
 
 
             }
@@ -2801,10 +2802,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__165;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:135:8: ( 'callQuery' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:135:10: 'callQuery'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:135:8: ( 'callUpdate' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:135:10: 'callUpdate'
             {
-            match("callQuery"); 
+            match("callUpdate"); 
 
 
             }
@@ -2822,10 +2823,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__166;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:136:8: ( 'callQueryFunction' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:136:10: 'callQueryFunction'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:136:8: ( 'callQuery' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:136:10: 'callQuery'
             {
-            match("callQueryFunction"); 
+            match("callQuery"); 
 
 
             }
@@ -2843,10 +2844,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__167;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:137:8: ( 'callSelectFunction' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:137:10: 'callSelectFunction'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:137:8: ( 'callQueryFunction' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:137:10: 'callQueryFunction'
             {
-            match("callSelectFunction"); 
+            match("callQueryFunction"); 
 
 
             }
@@ -2864,10 +2865,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = T__168;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:138:8: ( '.*' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:138:10: '.*'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:138:8: ( 'callSelectFunction' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:138:10: 'callSelectFunction'
             {
-            match(".*"); 
+            match("callSelectFunction"); 
 
 
             }
@@ -2880,15 +2881,36 @@ public class InternalProcessorDslLexer extends Lexer {
     }
     // $ANTLR end "T__168"
 
+    // $ANTLR start "T__169"
+    public final void mT__169() throws RecognitionException {
+        try {
+            int _type = T__169;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:139:8: ( '.*' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:139:10: '.*'
+            {
+            match(".*"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__169"
+
     // $ANTLR start "RULE_ON_OFF"
     public final void mRULE_ON_OFF() throws RecognitionException {
         try {
             int _type = RULE_ON_OFF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15506:13: ( ( 'ON' | 'OFF' ) )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15506:15: ( 'ON' | 'OFF' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15620:13: ( ( 'ON' | 'OFF' ) )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15620:15: ( 'ON' | 'OFF' )
             {
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15506:15: ( 'ON' | 'OFF' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15620:15: ( 'ON' | 'OFF' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -2916,7 +2938,7 @@ public class InternalProcessorDslLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15506:16: 'ON'
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15620:16: 'ON'
                     {
                     match("ON"); 
 
@@ -2924,7 +2946,7 @@ public class InternalProcessorDslLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15506:21: 'OFF'
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15620:21: 'OFF'
                     {
                     match("OFF"); 
 
@@ -2950,10 +2972,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_STATEMENT_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15508:21: ( ( 'QRY' | 'CRUD' | 'CALL' ) )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15508:23: ( 'QRY' | 'CRUD' | 'CALL' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15622:21: ( ( 'QRY' | 'CRUD' | 'CALL' ) )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15622:23: ( 'QRY' | 'CRUD' | 'CALL' )
             {
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15508:23: ( 'QRY' | 'CRUD' | 'CALL' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15622:23: ( 'QRY' | 'CRUD' | 'CALL' )
             int alt2=3;
             int LA2_0 = input.LA(1);
 
@@ -2984,7 +3006,7 @@ public class InternalProcessorDslLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15508:24: 'QRY'
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15622:24: 'QRY'
                     {
                     match("QRY"); 
 
@@ -2992,7 +3014,7 @@ public class InternalProcessorDslLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15508:30: 'CRUD'
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15622:30: 'CRUD'
                     {
                     match("CRUD"); 
 
@@ -3000,7 +3022,7 @@ public class InternalProcessorDslLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15508:37: 'CALL'
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15622:37: 'CALL'
                     {
                     match("CALL"); 
 
@@ -3026,8 +3048,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_MAPPING_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15510:19: ( 'OUT' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15510:21: 'OUT'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15624:19: ( 'OUT' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15624:21: 'OUT'
             {
             match("OUT"); 
 
@@ -3047,10 +3069,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_OPTION_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15512:18: ( ( 'OPT' | 'LOPT' | 'IOPT' | 'SOPT' | 'BOPT' ) )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15512:20: ( 'OPT' | 'LOPT' | 'IOPT' | 'SOPT' | 'BOPT' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15626:18: ( ( 'OPT' | 'LOPT' | 'IOPT' | 'SOPT' | 'BOPT' ) )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15626:20: ( 'OPT' | 'LOPT' | 'IOPT' | 'SOPT' | 'BOPT' )
             {
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15512:20: ( 'OPT' | 'LOPT' | 'IOPT' | 'SOPT' | 'BOPT' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15626:20: ( 'OPT' | 'LOPT' | 'IOPT' | 'SOPT' | 'BOPT' )
             int alt3=5;
             switch ( input.LA(1) ) {
             case 'O':
@@ -3087,7 +3109,7 @@ public class InternalProcessorDslLexer extends Lexer {
 
             switch (alt3) {
                 case 1 :
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15512:21: 'OPT'
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15626:21: 'OPT'
                     {
                     match("OPT"); 
 
@@ -3095,7 +3117,7 @@ public class InternalProcessorDslLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15512:27: 'LOPT'
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15626:27: 'LOPT'
                     {
                     match("LOPT"); 
 
@@ -3103,7 +3125,7 @@ public class InternalProcessorDslLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15512:34: 'IOPT'
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15626:34: 'IOPT'
                     {
                     match("IOPT"); 
 
@@ -3111,7 +3133,7 @@ public class InternalProcessorDslLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15512:41: 'SOPT'
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15626:41: 'SOPT'
                     {
                     match("SOPT"); 
 
@@ -3119,7 +3141,7 @@ public class InternalProcessorDslLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15512:48: 'BOPT'
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15626:48: 'BOPT'
                     {
                     match("BOPT"); 
 
@@ -3145,11 +3167,11 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_IDENT_DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15514:16: ( RULE_IDENT ( RULE_DOT RULE_IDENT )+ )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15514:18: RULE_IDENT ( RULE_DOT RULE_IDENT )+
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15628:16: ( RULE_IDENT ( RULE_DOT RULE_IDENT )+ )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15628:18: RULE_IDENT ( RULE_DOT RULE_IDENT )+
             {
             mRULE_IDENT(); 
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15514:29: ( RULE_DOT RULE_IDENT )+
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15628:29: ( RULE_DOT RULE_IDENT )+
             int cnt4=0;
             loop4:
             do {
@@ -3163,7 +3185,7 @@ public class InternalProcessorDslLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15514:30: RULE_DOT RULE_IDENT
+            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15628:30: RULE_DOT RULE_IDENT
             	    {
             	    mRULE_DOT(); 
             	    mRULE_IDENT(); 
@@ -3196,8 +3218,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_IDENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15516:12: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '=' )* )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15516:14: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '=' )*
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15630:12: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '=' )* )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15630:14: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '=' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -3208,7 +3230,7 @@ public class InternalProcessorDslLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15516:34: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '=' )*
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15630:34: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '=' )*
             loop5:
             do {
                 int alt5=2;
@@ -3257,10 +3279,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15518:13: ( ( '0' .. '9' )+ )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15518:15: ( '0' .. '9' )+
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15632:13: ( ( '0' .. '9' )+ )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15632:15: ( '0' .. '9' )+
             {
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15518:15: ( '0' .. '9' )+
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15632:15: ( '0' .. '9' )+
             int cnt6=0;
             loop6:
             do {
@@ -3274,7 +3296,7 @@ public class InternalProcessorDslLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15518:16: '0' .. '9'
+            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15632:16: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -3306,8 +3328,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_ESC_CHAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15520:15: ( '\\\\' ( RULE_COLON | RULE_SEMICOLON | RULE_STRING | RULE_LBRACE | RULE_RBRACE | RULE_BOR | RULE_HASH | RULE_AT | RULE_PERCENT | RULE_DOT | '/' ) )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15520:17: '\\\\' ( RULE_COLON | RULE_SEMICOLON | RULE_STRING | RULE_LBRACE | RULE_RBRACE | RULE_BOR | RULE_HASH | RULE_AT | RULE_PERCENT | RULE_DOT | '/' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15634:15: ( '\\\\' ( RULE_COLON | RULE_SEMICOLON | RULE_STRING | RULE_LBRACE | RULE_RBRACE | RULE_BOR | RULE_HASH | RULE_AT | RULE_PERCENT | RULE_DOT | '/' ) )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15634:17: '\\\\' ( RULE_COLON | RULE_SEMICOLON | RULE_STRING | RULE_LBRACE | RULE_RBRACE | RULE_BOR | RULE_HASH | RULE_AT | RULE_PERCENT | RULE_DOT | '/' )
             {
             match('\\'); 
             if ( (input.LA(1)>='#' && input.LA(1)<='%')||(input.LA(1)>='.' && input.LA(1)<='/')||(input.LA(1)>=':' && input.LA(1)<=';')||input.LA(1)=='@'||(input.LA(1)>='{' && input.LA(1)<='}') ) {
@@ -3335,12 +3357,12 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15522:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15522:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15636:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15636:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15522:24: ( options {greedy=false; } : . )*
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15636:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -3365,7 +3387,7 @@ public class InternalProcessorDslLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15522:52: .
+            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15636:52: .
             	    {
             	    matchAny(); 
 
@@ -3395,12 +3417,12 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15524:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15524:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15638:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15638:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15524:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15638:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -3413,7 +3435,7 @@ public class InternalProcessorDslLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15524:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15638:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -3433,7 +3455,7 @@ public class InternalProcessorDslLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15524:40: ( ( '\\r' )? '\\n' )?
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15638:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -3442,9 +3464,9 @@ public class InternalProcessorDslLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15524:41: ( '\\r' )? '\\n'
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15638:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15524:41: ( '\\r' )?
+                    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15638:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -3453,7 +3475,7 @@ public class InternalProcessorDslLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15524:41: '\\r'
+                            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15638:41: '\\r'
                             {
                             match('\r'); 
 
@@ -3485,10 +3507,10 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15526:9: ( ( ' ' | '\\t' | '\\n' | '\\r' )+ )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15526:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15640:9: ( ( ' ' | '\\t' | '\\n' | '\\r' )+ )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15640:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
             {
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15526:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15640:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
             int cnt11=0;
             loop11:
             do {
@@ -3542,8 +3564,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_AND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15528:10: ( '&' '&' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15528:12: '&' '&'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15642:10: ( '&' '&' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15642:12: '&' '&'
             {
             match('&'); 
             match('&'); 
@@ -3563,8 +3585,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_OR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15530:9: ( '|' '|' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15530:11: '|' '|'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15644:9: ( '|' '|' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15644:11: '|' '|'
             {
             match('|'); 
             match('|'); 
@@ -3584,8 +3606,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15532:12: ( ':' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15532:14: ':'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15646:12: ( ':' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15646:14: ':'
             {
             match(':'); 
 
@@ -3604,8 +3626,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_SEMICOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15534:16: ( ';' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15534:18: ';'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15648:16: ( ';' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15648:18: ';'
             {
             match(';'); 
 
@@ -3624,8 +3646,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15536:13: ( '$' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15536:15: '$'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15650:13: ( '$' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15650:15: '$'
             {
             match('$'); 
 
@@ -3644,8 +3666,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15538:12: ( ',' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15538:14: ','
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15652:12: ( ',' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15652:14: ','
             {
             match(','); 
 
@@ -3664,8 +3686,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_MINUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15540:12: ( '-' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15540:14: '-'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15654:12: ( '-' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15654:14: '-'
             {
             match('-'); 
 
@@ -3684,8 +3706,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15542:11: ( '+' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15542:13: '+'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15656:11: ( '+' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15656:13: '+'
             {
             match('+'); 
 
@@ -3704,8 +3726,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15544:13: ( '(' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15544:15: '('
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15658:13: ( '(' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15658:15: '('
             {
             match('('); 
 
@@ -3724,8 +3746,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15546:13: ( ')' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15546:15: ')'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15660:13: ( ')' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15660:15: ')'
             {
             match(')'); 
 
@@ -3744,8 +3766,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_LBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15548:13: ( '{' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15548:15: '{'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15662:13: ( '{' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15662:15: '{'
             {
             match('{'); 
 
@@ -3764,8 +3786,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_RBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15550:13: ( '}' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15550:15: '}'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15664:13: ( '}' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15664:15: '}'
             {
             match('}'); 
 
@@ -3784,8 +3806,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_QUESTI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15552:13: ( '?' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15552:15: '?'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15666:13: ( '?' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15666:15: '?'
             {
             match('?'); 
 
@@ -3804,8 +3826,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_NOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15554:10: ( '!' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15554:12: '!'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15668:10: ( '!' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15668:12: '!'
             {
             match('!'); 
 
@@ -3824,8 +3846,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_BAND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15556:11: ( '&' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15556:13: '&'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15670:11: ( '&' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15670:13: '&'
             {
             match('&'); 
 
@@ -3844,8 +3866,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_BOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15558:10: ( '|' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15558:12: '|'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15672:10: ( '|' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15672:12: '|'
             {
             match('|'); 
 
@@ -3864,8 +3886,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_HASH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15560:11: ( '#' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15560:13: '#'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15674:11: ( '#' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15674:13: '#'
             {
             match('#'); 
 
@@ -3884,8 +3906,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_AT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15562:9: ( '@' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15562:11: '@'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15676:9: ( '@' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15676:11: '@'
             {
             match('@'); 
 
@@ -3904,8 +3926,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_CARET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15564:12: ( '^' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15564:14: '^'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15678:12: ( '^' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15678:14: '^'
             {
             match('^'); 
 
@@ -3924,8 +3946,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_EQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15566:13: ( '=' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15566:15: '='
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15680:13: ( '=' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15680:15: '='
             {
             match('='); 
 
@@ -3944,8 +3966,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_LESS_THAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15568:16: ( '<' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15568:18: '<'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15682:16: ( '<' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15682:18: '<'
             {
             match('<'); 
 
@@ -3964,8 +3986,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_MORE_THAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15570:16: ( '>' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15570:18: '>'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15684:16: ( '>' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15684:18: '>'
             {
             match('>'); 
 
@@ -3984,8 +4006,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_PERCENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15572:14: ( '%' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15572:16: '%'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15686:14: ( '%' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15686:16: '%'
             {
             match('%'); 
 
@@ -4004,8 +4026,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15574:10: ( '.' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15574:12: '.'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15688:10: ( '.' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15688:12: '.'
             {
             match('.'); 
 
@@ -4024,8 +4046,8 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_REST;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15576:11: (~ ( RULE_SEMICOLON ) )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15576:13: ~ ( RULE_SEMICOLON )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15690:11: (~ ( RULE_SEMICOLON ) )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15690:13: ~ ( RULE_SEMICOLON )
             {
             if ( (input.LA(1)>='\u0000' && input.LA(1)<=':')||(input.LA(1)>='<' && input.LA(1)<='\uFFFF') ) {
                 input.consume();
@@ -4052,11 +4074,11 @@ public class InternalProcessorDslLexer extends Lexer {
         try {
             int _type = RULE_STRING_VALUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15578:19: ( '\"' ( options {greedy=false; } : . )* '\"' )
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15578:21: '\"' ( options {greedy=false; } : . )* '\"'
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15692:19: ( '\"' ( options {greedy=false; } : . )* '\"' )
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15692:21: '\"' ( options {greedy=false; } : . )* '\"'
             {
             match('\"'); 
-            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15578:25: ( options {greedy=false; } : . )*
+            // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15692:25: ( options {greedy=false; } : . )*
             loop12:
             do {
                 int alt12=2;
@@ -4072,7 +4094,7 @@ public class InternalProcessorDslLexer extends Lexer {
 
                 switch (alt12) {
             	case 1 :
-            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15578:53: .
+            	    // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:15692:53: .
             	    {
             	    matchAny(); 
 
@@ -4097,8 +4119,8 @@ public class InternalProcessorDslLexer extends Lexer {
     // $ANTLR end "RULE_STRING_VALUE"
 
     public void mTokens() throws RecognitionException {
-        // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:8: ( T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | T__134 | T__135 | T__136 | T__137 | T__138 | T__139 | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_ESC_CHAR | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_AND | RULE_OR | RULE_COLON | RULE_SEMICOLON | RULE_STRING | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_PERCENT | RULE_DOT | RULE_REST | RULE_STRING_VALUE )
-        int alt13=165;
+        // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:8: ( T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | T__134 | T__135 | T__136 | T__137 | T__138 | T__139 | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_ESC_CHAR | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_AND | RULE_OR | RULE_COLON | RULE_SEMICOLON | RULE_STRING | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_PERCENT | RULE_DOT | RULE_REST | RULE_STRING_VALUE )
+        int alt13=166;
         alt13 = dfa13.predict(input);
         switch (alt13) {
             case 1 :
@@ -4998,259 +5020,266 @@ public class InternalProcessorDslLexer extends Lexer {
                 }
                 break;
             case 129 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:847: RULE_ON_OFF
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:847: T__169
+                {
+                mT__169(); 
+
+                }
+                break;
+            case 130 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:854: RULE_ON_OFF
                 {
                 mRULE_ON_OFF(); 
 
                 }
                 break;
-            case 130 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:859: RULE_STATEMENT_TYPE
+            case 131 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:866: RULE_STATEMENT_TYPE
                 {
                 mRULE_STATEMENT_TYPE(); 
 
                 }
                 break;
-            case 131 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:879: RULE_MAPPING_TYPE
+            case 132 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:886: RULE_MAPPING_TYPE
                 {
                 mRULE_MAPPING_TYPE(); 
 
                 }
                 break;
-            case 132 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:897: RULE_OPTION_TYPE
+            case 133 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:904: RULE_OPTION_TYPE
                 {
                 mRULE_OPTION_TYPE(); 
 
                 }
                 break;
-            case 133 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:914: RULE_IDENT_DOT
+            case 134 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:921: RULE_IDENT_DOT
                 {
                 mRULE_IDENT_DOT(); 
 
                 }
                 break;
-            case 134 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:929: RULE_IDENT
+            case 135 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:936: RULE_IDENT
                 {
                 mRULE_IDENT(); 
 
                 }
                 break;
-            case 135 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:940: RULE_NUMBER
+            case 136 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:947: RULE_NUMBER
                 {
                 mRULE_NUMBER(); 
 
                 }
                 break;
-            case 136 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:952: RULE_ESC_CHAR
+            case 137 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:959: RULE_ESC_CHAR
                 {
                 mRULE_ESC_CHAR(); 
 
                 }
                 break;
-            case 137 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:966: RULE_ML_COMMENT
+            case 138 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:973: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 138 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:982: RULE_SL_COMMENT
+            case 139 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:989: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 139 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:998: RULE_WS
+            case 140 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1005: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 140 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1006: RULE_AND
+            case 141 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1013: RULE_AND
                 {
                 mRULE_AND(); 
 
                 }
                 break;
-            case 141 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1015: RULE_OR
+            case 142 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1022: RULE_OR
                 {
                 mRULE_OR(); 
 
                 }
                 break;
-            case 142 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1023: RULE_COLON
+            case 143 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1030: RULE_COLON
                 {
                 mRULE_COLON(); 
 
                 }
                 break;
-            case 143 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1034: RULE_SEMICOLON
+            case 144 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1041: RULE_SEMICOLON
                 {
                 mRULE_SEMICOLON(); 
 
                 }
                 break;
-            case 144 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1049: RULE_STRING
+            case 145 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1056: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 145 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1061: RULE_COMMA
+            case 146 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1068: RULE_COMMA
                 {
                 mRULE_COMMA(); 
 
                 }
                 break;
-            case 146 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1072: RULE_MINUS
+            case 147 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1079: RULE_MINUS
                 {
                 mRULE_MINUS(); 
 
                 }
                 break;
-            case 147 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1083: RULE_PLUS
+            case 148 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1090: RULE_PLUS
                 {
                 mRULE_PLUS(); 
 
                 }
                 break;
-            case 148 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1093: RULE_LPAREN
+            case 149 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1100: RULE_LPAREN
                 {
                 mRULE_LPAREN(); 
 
                 }
                 break;
-            case 149 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1105: RULE_RPAREN
+            case 150 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1112: RULE_RPAREN
                 {
                 mRULE_RPAREN(); 
 
                 }
                 break;
-            case 150 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1117: RULE_LBRACE
+            case 151 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1124: RULE_LBRACE
                 {
                 mRULE_LBRACE(); 
 
                 }
                 break;
-            case 151 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1129: RULE_RBRACE
+            case 152 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1136: RULE_RBRACE
                 {
                 mRULE_RBRACE(); 
 
                 }
                 break;
-            case 152 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1141: RULE_QUESTI
+            case 153 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1148: RULE_QUESTI
                 {
                 mRULE_QUESTI(); 
 
                 }
                 break;
-            case 153 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1153: RULE_NOT
+            case 154 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1160: RULE_NOT
                 {
                 mRULE_NOT(); 
 
                 }
                 break;
-            case 154 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1162: RULE_BAND
+            case 155 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1169: RULE_BAND
                 {
                 mRULE_BAND(); 
 
                 }
                 break;
-            case 155 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1172: RULE_BOR
+            case 156 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1179: RULE_BOR
                 {
                 mRULE_BOR(); 
 
                 }
                 break;
-            case 156 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1181: RULE_HASH
+            case 157 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1188: RULE_HASH
                 {
                 mRULE_HASH(); 
 
                 }
                 break;
-            case 157 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1191: RULE_AT
+            case 158 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1198: RULE_AT
                 {
                 mRULE_AT(); 
 
                 }
                 break;
-            case 158 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1199: RULE_CARET
+            case 159 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1206: RULE_CARET
                 {
                 mRULE_CARET(); 
 
                 }
                 break;
-            case 159 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1210: RULE_EQUALS
+            case 160 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1217: RULE_EQUALS
                 {
                 mRULE_EQUALS(); 
 
                 }
                 break;
-            case 160 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1222: RULE_LESS_THAN
+            case 161 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1229: RULE_LESS_THAN
                 {
                 mRULE_LESS_THAN(); 
 
                 }
                 break;
-            case 161 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1237: RULE_MORE_THAN
+            case 162 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1244: RULE_MORE_THAN
                 {
                 mRULE_MORE_THAN(); 
 
                 }
                 break;
-            case 162 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1252: RULE_PERCENT
+            case 163 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1259: RULE_PERCENT
                 {
                 mRULE_PERCENT(); 
 
                 }
                 break;
-            case 163 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1265: RULE_DOT
+            case 164 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1272: RULE_DOT
                 {
                 mRULE_DOT(); 
 
                 }
                 break;
-            case 164 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1274: RULE_REST
+            case 165 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1281: RULE_REST
                 {
                 mRULE_REST(); 
 
                 }
                 break;
-            case 165 :
-                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1284: RULE_STRING_VALUE
+            case 166 :
+                // ../org.sqlproc.dsl/src-gen/org/sqlproc/dsl/parser/antlr/internal/InternalProcessorDsl.g:1:1291: RULE_STRING_VALUE
                 {
                 mRULE_STRING_VALUE(); 
 
@@ -5275,21 +5304,21 @@ public class InternalProcessorDslLexer extends Lexer {
         "\5\75\4\uffff\3\75\1\u01b0\1\uffff\3\75\5\uffff\1\75\1\u01ba\1\75"+
         "\3\uffff\24\75\1\uffff\3\75\1\uffff\1\75\1\uffff\2\75\1\uffff\3"+
         "\75\1\u01e4\2\75\1\uffff\1\75\3\uffff\1\75\1\uffff\1\75\3\uffff"+
-        "\1\75\1\uffff\1\75\6\uffff\6\75\1\u01f9\1\75\1\uffff\1\75\1\uffff"+
-        "\5\75\1\uffff\1\u0207\4\75\2\uffff\1\u020f\2\uffff\2\75\2\uffff"+
-        "\3\75\7\uffff\2\75\1\u021a\2\uffff\2\75\1\uffff\3\75\1\u0223\2\75"+
-        "\1\uffff\1\75\3\uffff\6\75\4\uffff\2\75\1\uffff\1\u0231\5\uffff"+
-        "\1\75\2\uffff\1\u0237\1\75\2\uffff\2\75\3\uffff\2\75\1\uffff\1\75"+
-        "\1\u0242\1\u0243\3\uffff\1\u0244\1\u0245\2\75\1\u0249\1\75\2\uffff"+
-        "\2\75\4\uffff\1\75\3\uffff\1\u025a\1\u025c\1\75\4\uffff\1\75\6\uffff"+
-        "\1\75\1\u0265\1\75\1\uffff\1\75\7\uffff\1\75\1\u026a\3\uffff\1\75"+
-        "\5\uffff\1\75\2\uffff\1\75\3\uffff\1\75\1\uffff\2\75\1\uffff\1\u0278"+
-        "\4\uffff\1\75\1\uffff\1\75\2\uffff\1\u0282\1\u0283\2\75\5\uffff"+
-        "\1\u028a\1\uffff\1\75\5\uffff\2\75\1\u0291\5\uffff\1\75\1\uffff"+
-        "\2\75\14\uffff\2\75\1\u02a3\1\uffff\2\75\3\uffff\1\u02a8\1\75\2"+
-        "\uffff\1\u02ab\3\uffff\1\u02af\2\uffff";
+        "\1\75\1\uffff\1\75\6\uffff\6\75\1\u01fb\1\75\1\uffff\1\75\1\uffff"+
+        "\5\75\1\uffff\1\u0209\4\75\2\uffff\1\u0211\2\uffff\2\75\2\uffff"+
+        "\3\75\7\uffff\2\75\2\uffff\1\u021c\2\uffff\2\75\1\uffff\3\75\1\u0225"+
+        "\2\75\1\uffff\1\75\3\uffff\6\75\4\uffff\2\75\1\uffff\1\u0233\5\uffff"+
+        "\1\75\2\uffff\1\u0239\1\75\2\uffff\2\75\3\uffff\2\75\1\uffff\1\75"+
+        "\1\u0244\1\u0245\3\uffff\1\u0246\1\u0247\2\75\1\u024b\1\75\2\uffff"+
+        "\2\75\4\uffff\1\75\3\uffff\1\u025c\1\u025e\1\75\4\uffff\1\75\6\uffff"+
+        "\1\75\1\u0267\1\75\1\uffff\1\75\7\uffff\1\75\1\u026c\3\uffff\1\75"+
+        "\5\uffff\1\75\2\uffff\1\75\3\uffff\1\75\1\uffff\2\75\1\uffff\1\u027a"+
+        "\4\uffff\1\75\1\uffff\1\75\2\uffff\1\u0284\1\u0285\2\75\5\uffff"+
+        "\1\u028c\1\uffff\1\75\5\uffff\2\75\1\u0293\5\uffff\1\75\1\uffff"+
+        "\2\75\14\uffff\2\75\1\u02a5\1\uffff\2\75\3\uffff\1\u02aa\1\75\2"+
+        "\uffff\1\u02ad\3\uffff\1\u02b1\2\uffff";
     static final String DFA13_eofS =
-        "\u02b0\uffff";
+        "\u02b2\uffff";
     static final String DFA13_minS =
         "\1\0\1\76\23\56\1\142\1\135\1\74\1\52\10\56\1\uffff\1\43\1\52\1"+
         "\uffff\1\46\1\174\21\uffff\1\0\3\uffff\1\56\1\uffff\1\56\1\uffff"+
@@ -5303,22 +5332,22 @@ public class InternalProcessorDslLexer extends Lexer {
         "\1\56\1\55\2\56\1\160\1\56\1\55\1\56\3\uffff\1\141\1\171\3\56\1"+
         "\151\1\uffff\1\146\10\56\2\55\5\56\1\55\4\56\1\uffff\2\55\1\56\1"+
         "\143\1\56\1\uffff\1\56\1\55\1\157\4\56\2\55\1\143\1\56\3\uffff\1"+
-        "\56\1\uffff\1\56\1\uffff\1\151\1\160\1\56\1\uffff\1\56\5\uffff\1"+
-        "\157\10\56\1\143\1\56\1\uffff\5\56\1\151\1\55\2\56\1\55\1\56\1\160"+
-        "\1\141\1\55\2\uffff\1\55\1\56\1\uffff\1\162\1\55\2\56\2\uffff\1"+
-        "\144\4\uffff\3\56\1\166\1\145\2\56\1\162\4\56\2\55\1\uffff\1\56"+
-        "\3\uffff\5\56\1\55\2\uffff\1\143\1\uffff\2\56\1\uffff\1\55\1\157"+
-        "\1\154\3\uffff\1\56\1\55\1\uffff\1\55\1\56\2\uffff\1\56\1\55\1\uffff"+
-        "\1\145\2\55\1\56\2\55\2\56\3\uffff\6\56\1\151\1\154\2\56\1\162\1"+
-        "\uffff\1\152\1\154\1\56\1\146\2\uffff\1\56\1\55\1\56\1\uffff\1\162"+
-        "\1\146\1\uffff\1\56\1\143\5\uffff\3\56\1\uffff\1\56\6\uffff\1\141"+
-        "\2\56\1\145\1\157\1\55\1\56\3\uffff\1\151\1\uffff\1\56\1\55\1\157"+
-        "\1\56\3\uffff\1\56\1\uffff\2\56\1\163\1\56\1\uffff\1\163\1\55\1"+
-        "\162\1\56\1\156\1\56\1\151\1\162\4\56\1\163\1\uffff\1\165\1\157"+
-        "\1\145\1\56\1\164\1\56\2\uffff\1\55\2\uffff\2\56\1\55\1\154\1\146"+
-        "\1\147\1\uffff\1\145\1\55\1\143\2\56\2\uffff\1\164\4\uffff\1\162"+
-        "\4\uffff\2\56\1\55\1\146\2\56\2\uffff\1\141\2\56\1\143\1\uffff\1"+
-        "\56\1\145\1\uffff\1\163\1\55\2\uffff";
+        "\56\1\146\1\56\1\uffff\1\151\1\160\1\56\1\uffff\1\56\5\uffff\1\157"+
+        "\10\56\1\143\1\56\1\uffff\5\56\1\151\1\55\2\56\1\55\1\56\1\160\1"+
+        "\141\1\55\2\uffff\1\55\1\56\1\uffff\1\162\1\55\2\56\2\uffff\1\144"+
+        "\4\uffff\2\56\2\uffff\1\56\1\166\1\145\2\56\1\162\4\56\2\55\1\uffff"+
+        "\1\56\3\uffff\5\56\1\55\2\uffff\1\143\1\uffff\2\56\1\uffff\1\55"+
+        "\1\157\1\154\3\uffff\1\56\1\55\1\uffff\1\55\1\56\2\uffff\1\56\1"+
+        "\55\1\uffff\1\145\2\55\1\56\2\55\2\56\3\uffff\6\56\1\151\1\154\2"+
+        "\56\1\162\1\uffff\1\152\1\154\1\56\1\146\2\uffff\1\56\1\55\1\56"+
+        "\1\uffff\1\162\1\146\1\uffff\1\56\1\143\5\uffff\3\56\1\uffff\1\56"+
+        "\6\uffff\1\141\2\56\1\145\1\157\1\55\1\56\3\uffff\1\151\1\uffff"+
+        "\1\56\1\55\1\157\1\56\3\uffff\1\56\1\uffff\2\56\1\163\1\56\1\uffff"+
+        "\1\163\1\55\1\162\1\56\1\156\1\56\1\151\1\162\4\56\1\163\1\uffff"+
+        "\1\165\1\157\1\145\1\56\1\164\1\56\2\uffff\1\55\2\uffff\2\56\1\55"+
+        "\1\154\1\146\1\147\1\uffff\1\145\1\55\1\143\2\56\2\uffff\1\164\4"+
+        "\uffff\1\162\4\uffff\2\56\1\55\1\146\2\56\2\uffff\1\141\2\56\1\143"+
+        "\1\uffff\1\56\1\145\1\uffff\1\163\1\55\2\uffff";
     static final String DFA13_maxS =
         "\1\uffff\1\76\23\172\1\166\1\135\1\74\1\52\10\172\1\uffff\1\175"+
         "\1\57\1\uffff\1\46\1\174\21\uffff\1\uffff\3\uffff\1\172\1\uffff"+
@@ -5329,53 +5358,54 @@ public class InternalProcessorDslLexer extends Lexer {
         "\1\164\3\172\1\uffff\4\172\1\uffff\6\172\3\uffff\12\172\1\uffff"+
         "\11\172\1\uffff\2\172\1\146\5\172\4\uffff\4\172\1\165\3\172\3\uffff"+
         "\1\162\1\171\3\172\1\163\1\uffff\1\163\24\172\1\uffff\3\172\1\164"+
-        "\1\172\1\uffff\2\172\1\157\6\172\1\164\1\172\3\uffff\1\172\1\uffff"+
+        "\1\172\1\uffff\2\172\1\157\6\172\1\164\1\172\3\uffff\1\172\1\163"+
         "\1\172\1\uffff\1\151\1\160\1\172\1\uffff\1\172\5\uffff\1\157\10"+
         "\172\1\157\1\172\1\uffff\5\172\1\163\5\172\1\160\1\141\1\172\2\uffff"+
-        "\2\172\1\uffff\1\162\3\172\2\uffff\1\155\4\uffff\3\172\1\166\1\145"+
-        "\2\172\1\162\6\172\1\uffff\1\172\3\uffff\6\172\2\uffff\1\143\1\uffff"+
-        "\2\172\1\uffff\1\172\1\157\1\154\3\uffff\1\172\1\55\1\uffff\2\172"+
-        "\2\uffff\2\172\1\uffff\1\145\1\55\2\172\1\55\3\172\3\uffff\6\172"+
-        "\1\167\1\154\2\172\1\162\1\uffff\1\152\1\154\1\172\1\160\2\uffff"+
-        "\3\172\1\uffff\1\162\1\146\1\uffff\1\172\1\160\5\uffff\3\172\1\uffff"+
-        "\1\172\6\uffff\1\141\2\172\1\145\1\157\1\55\1\172\3\uffff\1\151"+
-        "\1\uffff\1\172\1\55\1\157\1\172\3\uffff\1\172\1\uffff\2\172\1\163"+
-        "\1\172\1\uffff\1\163\1\55\1\162\1\172\1\156\1\172\1\157\1\162\4"+
-        "\172\1\163\1\uffff\1\165\1\157\1\145\1\172\1\164\1\172\2\uffff\1"+
-        "\55\2\uffff\2\172\1\55\1\154\1\156\1\160\1\uffff\1\145\1\172\1\160"+
-        "\2\172\2\uffff\1\164\4\uffff\1\162\4\uffff\2\172\1\55\1\146\2\172"+
-        "\2\uffff\1\141\2\172\1\143\1\uffff\1\172\1\145\1\uffff\1\163\1\55"+
-        "\2\uffff";
+        "\2\172\1\uffff\1\162\3\172\2\uffff\1\155\4\uffff\2\172\2\uffff\1"+
+        "\172\1\166\1\145\2\172\1\162\6\172\1\uffff\1\172\3\uffff\6\172\2"+
+        "\uffff\1\143\1\uffff\2\172\1\uffff\1\172\1\157\1\154\3\uffff\1\172"+
+        "\1\55\1\uffff\2\172\2\uffff\2\172\1\uffff\1\145\1\55\2\172\1\55"+
+        "\3\172\3\uffff\6\172\1\167\1\154\2\172\1\162\1\uffff\1\152\1\154"+
+        "\1\172\1\160\2\uffff\3\172\1\uffff\1\162\1\146\1\uffff\1\172\1\160"+
+        "\5\uffff\3\172\1\uffff\1\172\6\uffff\1\141\2\172\1\145\1\157\1\55"+
+        "\1\172\3\uffff\1\151\1\uffff\1\172\1\55\1\157\1\172\3\uffff\1\172"+
+        "\1\uffff\2\172\1\163\1\172\1\uffff\1\163\1\55\1\162\1\172\1\156"+
+        "\1\172\1\157\1\162\4\172\1\163\1\uffff\1\165\1\157\1\145\1\172\1"+
+        "\164\1\172\2\uffff\1\55\2\uffff\2\172\1\55\1\154\1\156\1\160\1\uffff"+
+        "\1\145\1\172\1\160\2\172\2\uffff\1\164\4\uffff\1\162\4\uffff\2\172"+
+        "\1\55\1\146\2\172\2\uffff\1\141\2\172\1\143\1\uffff\1\172\1\145"+
+        "\1\uffff\1\163\1\55\2\uffff";
     static final String DFA13_acceptS =
-        "\41\uffff\1\u0087\2\uffff\1\u008b\2\uffff\1\u008e\1\u008f\1\u0090"+
-        "\1\u0091\1\u0093\1\u0094\1\u0095\1\u0096\1\u0097\1\u0098\1\u0099"+
-        "\1\u009c\1\u009d\1\u009e\1\u009f\1\u00a1\1\u00a2\1\uffff\1\u00a4"+
-        "\1\1\1\u0092\1\uffff\1\u0086\1\uffff\1\u0085\51\uffff\1\132\1\133"+
-        "\1\uffff\1\135\1\136\1\137\1\140\1\141\1\143\1\150\1\u00a0\1\u0080"+
-        "\1\u00a3\13\uffff\1\u0087\1\u0088\1\u0089\1\u008a\1\u008b\1\u008c"+
-        "\1\u009a\1\u008d\1\u009b\1\u008e\1\u0090\1\u0091\1\u0093\1\u0094"+
-        "\1\u0095\1\u0096\1\u0097\1\u0098\1\u0099\1\u009c\1\u009d\1\u009e"+
-        "\1\u009f\1\u00a1\1\u00a2\1\u00a5\21\uffff\1\17\45\uffff\1\134\1"+
-        "\142\1\u0081\20\uffff\1\172\20\uffff\1\14\41\uffff\1\u0083\1\u0084"+
-        "\1\u0082\14\uffff\1\22\1\23\4\uffff\1\126\5\uffff\1\103\1\12\10"+
-        "\uffff\1\115\2\uffff\1\21\1\53\5\uffff\1\35\4\uffff\1\51\6\uffff"+
-        "\1\52\1\56\1\116\12\uffff\1\171\11\uffff\1\34\10\uffff\1\13\1\30"+
-        "\1\24\1\165\10\uffff\1\25\1\26\1\27\6\uffff\1\127\25\uffff\1\156"+
-        "\5\uffff\1\7\13\uffff\1\146\1\15\1\16\1\uffff\1\20\1\uffff\1\31"+
-        "\3\uffff\1\145\1\uffff\1\67\1\110\1\112\1\40\1\41\13\uffff\1\113"+
-        "\16\uffff\1\60\1\61\2\uffff\1\5\4\uffff\1\144\1\6\1\uffff\1\50\1"+
-        "\54\1\62\1\63\16\uffff\1\166\1\uffff\1\57\1\65\1\66\6\uffff\1\107"+
-        "\1\111\1\uffff\1\155\2\uffff\1\104\3\uffff\1\55\1\163\1\4\2\uffff"+
-        "\1\101\2\uffff\1\64\1\70\2\uffff\1\157\10\uffff\1\152\1\124\1\125"+
-        "\13\uffff\1\131\4\uffff\1\123\1\130\3\uffff\1\36\2\uffff\1\114\2"+
-        "\uffff\1\37\1\167\1\151\1\161\1\170\3\uffff\1\175\1\uffff\1\71\1"+
-        "\72\1\77\1\100\1\117\1\120\7\uffff\1\105\1\106\1\164\1\uffff\1\147"+
-        "\4\uffff\1\42\1\43\1\44\1\uffff\1\174\4\uffff\1\154\15\uffff\1\153"+
-        "\6\uffff\1\32\1\33\1\uffff\1\162\1\173\6\uffff\1\160\5\uffff\1\76"+
-        "\1\74\1\uffff\1\2\1\3\1\10\1\11\1\uffff\1\102\1\45\1\46\1\47\6\uffff"+
-        "\1\122\1\121\4\uffff\1\176\2\uffff\1\177\2\uffff\1\75\1\73";
+        "\41\uffff\1\u0088\2\uffff\1\u008c\2\uffff\1\u008f\1\u0090\1\u0091"+
+        "\1\u0092\1\u0094\1\u0095\1\u0096\1\u0097\1\u0098\1\u0099\1\u009a"+
+        "\1\u009d\1\u009e\1\u009f\1\u00a0\1\u00a2\1\u00a3\1\uffff\1\u00a5"+
+        "\1\1\1\u0093\1\uffff\1\u0087\1\uffff\1\u0086\51\uffff\1\133\1\134"+
+        "\1\uffff\1\136\1\137\1\140\1\141\1\142\1\144\1\151\1\u00a1\1\u0081"+
+        "\1\u00a4\13\uffff\1\u0088\1\u0089\1\u008a\1\u008b\1\u008c\1\u008d"+
+        "\1\u009b\1\u008e\1\u009c\1\u008f\1\u0091\1\u0092\1\u0094\1\u0095"+
+        "\1\u0096\1\u0097\1\u0098\1\u0099\1\u009a\1\u009d\1\u009e\1\u009f"+
+        "\1\u00a0\1\u00a2\1\u00a3\1\u00a6\21\uffff\1\17\45\uffff\1\135\1"+
+        "\143\1\u0082\20\uffff\1\173\20\uffff\1\14\41\uffff\1\u0084\1\u0085"+
+        "\1\u0083\14\uffff\1\22\1\23\4\uffff\1\127\5\uffff\1\103\1\12\10"+
+        "\uffff\1\116\2\uffff\1\21\1\53\5\uffff\1\35\4\uffff\1\51\6\uffff"+
+        "\1\52\1\56\1\117\12\uffff\1\172\11\uffff\1\34\10\uffff\1\13\1\30"+
+        "\1\24\1\166\10\uffff\1\25\1\26\1\27\6\uffff\1\130\25\uffff\1\157"+
+        "\5\uffff\1\7\13\uffff\1\147\1\15\1\16\3\uffff\1\31\3\uffff\1\146"+
+        "\1\uffff\1\67\1\111\1\113\1\40\1\41\13\uffff\1\114\16\uffff\1\60"+
+        "\1\61\2\uffff\1\5\4\uffff\1\145\1\6\1\uffff\1\50\1\54\1\62\1\63"+
+        "\2\uffff\1\20\1\107\14\uffff\1\167\1\uffff\1\57\1\65\1\66\6\uffff"+
+        "\1\110\1\112\1\uffff\1\156\2\uffff\1\104\3\uffff\1\55\1\164\1\4"+
+        "\2\uffff\1\101\2\uffff\1\64\1\70\2\uffff\1\160\10\uffff\1\153\1"+
+        "\125\1\126\13\uffff\1\132\4\uffff\1\124\1\131\3\uffff\1\36\2\uffff"+
+        "\1\115\2\uffff\1\37\1\170\1\152\1\162\1\171\3\uffff\1\176\1\uffff"+
+        "\1\71\1\72\1\77\1\100\1\120\1\121\7\uffff\1\105\1\106\1\165\1\uffff"+
+        "\1\150\4\uffff\1\42\1\43\1\44\1\uffff\1\175\4\uffff\1\155\15\uffff"+
+        "\1\154\6\uffff\1\32\1\33\1\uffff\1\163\1\174\6\uffff\1\161\5\uffff"+
+        "\1\76\1\74\1\uffff\1\2\1\3\1\10\1\11\1\uffff\1\102\1\45\1\46\1\47"+
+        "\6\uffff\1\123\1\122\4\uffff\1\177\2\uffff\1\u0080\2\uffff\1\75"+
+        "\1\73";
     static final String DFA13_specialS =
-        "\1\1\67\uffff\1\0\u0277\uffff}>";
+        "\1\1\67\uffff\1\0\u0279\uffff}>";
     static final String[] DFA13_transitionS = {
             "\11\71\2\44\2\71\1\44\22\71\1\44\1\61\1\70\1\62\1\51\1\67\1"+
             "\45\1\71\1\54\1\55\1\71\1\53\1\52\1\1\1\30\1\43\12\41\1\47\1"+
@@ -6132,171 +6162,173 @@ public class InternalProcessorDslLexer extends Lexer {
             "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
             "\1\uffff\22\76\1\u01ec\7\76",
+            "\1\u01ee\14\uffff\1\u01ed",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\23\76\1\u01ef\6\76",
+            "",
+            "\1\u01f0",
+            "\1\u01f1",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\15\76\1\u01f2\14\76",
             "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\23\76\1\u01ed\6\76",
-            "",
-            "\1\u01ee",
-            "\1\u01ef",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\15\76\1\u01f0\14\76",
-            "",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\31\76\1\u01f1",
-            "",
-            "",
+            "\1\uffff\31\76\1\u01f3",
             "",
             "",
             "",
-            "\1\u01f2",
+            "",
+            "",
+            "\1\u01f4",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\22\76\1\u01f3\7\76",
+            "\1\uffff\22\76\1\u01f5\7\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\16\76\1\u01f4\13\76",
+            "\1\uffff\16\76\1\u01f6\13\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\16\76\1\u01f5\13\76",
+            "\1\uffff\16\76\1\u01f7\13\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\22\76\1\u01f6\7\76",
+            "\1\uffff\22\76\1\u01f8\7\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\4\76\1\u01f7\25\76",
+            "\1\uffff\4\76\1\u01f9\25\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\13\76\1\u01f8\16\76",
+            "\1\uffff\13\76\1\u01fa\16\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
             "\1\uffff\32\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\21\76\1\u01fa\10\76",
-            "\1\u01fb\11\uffff\1\u01fd\1\uffff\1\u01fc",
+            "\1\uffff\21\76\1\u01fc\10\76",
+            "\1\u01fd\11\uffff\1\u01ff\1\uffff\1\u01fe",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\16\76\1\u01fe\13\76",
+            "\1\uffff\16\76\1\u0200\13\76",
             "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\2\76\1\u01ff\27\76",
+            "\1\uffff\2\76\1\u0201\27\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\1\u0200\31\76",
+            "\1\uffff\1\u0202\31\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\21\76\1\u0201\10\76",
+            "\1\uffff\21\76\1\u0203\10\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\4\76\1\u0202\25\76",
+            "\1\uffff\4\76\1\u0204\25\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\4\76\1\u0203\25\76",
-            "\1\u0205\11\uffff\1\u0204",
-            "\1\u0206\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
+            "\1\uffff\4\76\1\u0205\25\76",
+            "\1\u0207\11\uffff\1\u0206",
+            "\1\u0208\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
             "\1\76\1\uffff\32\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\16\76\1\u0208\13\76",
+            "\1\uffff\16\76\1\u020a\13\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\1\u0209\31\76",
-            "\1\u020a\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
+            "\1\uffff\1\u020b\31\76",
+            "\1\u020c\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
             "\1\76\1\uffff\32\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\15\76\1\u020b\14\76",
-            "\1\u020c",
-            "\1\u020d",
-            "\1\u020e\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
-            "\1\76\1\uffff\32\76",
-            "",
-            "",
+            "\1\uffff\15\76\1\u020d\14\76",
+            "\1\u020e",
+            "\1\u020f",
             "\1\u0210\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
             "\1\76\1\uffff\32\76",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\15\76\1\u0211\14\76",
             "",
-            "\1\u0212",
-            "\1\u0213\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
+            "",
+            "\1\u0212\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
             "\1\76\1\uffff\32\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\4\76\1\u0214\25\76",
+            "\1\uffff\15\76\1\u0213\14\76",
+            "",
+            "\1\u0214",
+            "\1\u0215\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
+            "\1\76\1\uffff\32\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\4\76\1\u0215\25\76",
+            "\1\uffff\4\76\1\u0216\25\76",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\4\76\1\u0217\25\76",
             "",
             "",
-            "\1\u0217\10\uffff\1\u0216",
+            "\1\u0219\10\uffff\1\u0218",
             "",
             "",
             "",
             "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\23\76\1\u0218\6\76",
+            "\1\uffff\23\76\1\u021a\6\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\4\76\1\u0219\25\76",
+            "\1\uffff\4\76\1\u021b\25\76",
+            "",
+            "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
             "\1\uffff\32\76",
-            "\1\u021b",
-            "\1\u021c",
+            "\1\u021d",
+            "\1\u021e",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\23\76\1\u021d\6\76",
+            "\1\uffff\23\76\1\u021f\6\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\1\u021e\31\76",
-            "\1\u021f",
+            "\1\uffff\1\u0220\31\76",
+            "\1\u0221",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\4\76\1\u0220\25\76",
+            "\1\uffff\4\76\1\u0222\25\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\13\76\1\u0221\16\76",
+            "\1\uffff\13\76\1\u0223\16\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\22\76\1\u0222\7\76",
+            "\1\uffff\22\76\1\u0224\7\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
             "\1\uffff\32\76",
-            "\1\u0224\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
+            "\1\u0226\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
             "\1\76\1\uffff\32\76",
-            "\1\u0225\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
-            "\1\76\1\uffff\32\76",
-            "",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\22\76\1\u0226\7\76",
-            "",
-            "",
-            "",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\13\76\1\u0227\16\76",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\23\76\1\u0228\6\76",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\23\76\1\u0229\6\76",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\30\76\1\u022a\1\76",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\2\76\1\u022b\27\76",
-            "\1\u022c\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
+            "\1\u0227\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
             "\1\76\1\uffff\32\76",
             "",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\22\76\1\u0228\7\76",
             "",
-            "\1\u022d",
+            "",
             "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\11\76\1\u022e\20\76",
+            "\1\uffff\13\76\1\u0229\16\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\16\76\1\u022f\13\76",
-            "",
-            "\1\u0230\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
+            "\1\uffff\23\76\1\u022a\6\76",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\23\76\1\u022b\6\76",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\30\76\1\u022c\1\76",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\2\76\1\u022d\27\76",
+            "\1\u022e\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
             "\1\76\1\uffff\32\76",
-            "\1\u0232",
-            "\1\u0233",
             "",
             "",
+            "\1\u022f",
             "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\1\u0234\31\76",
+            "\1\uffff\11\76\1\u0230\20\76",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\16\76\1\u0231\13\76",
+            "",
+            "\1\u0232\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
+            "\1\76\1\uffff\32\76",
+            "\1\u0234",
             "\1\u0235",
             "",
-            "\1\u0236\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
-            "\1\76\1\uffff\32\76",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\30\76\1\u0238\1\76",
             "",
             "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\1\u023a\21\76\1\u0239\7\76",
-            "\1\u023b\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
-            "\1\76\1\uffff\32\76",
+            "\1\uffff\1\u0236\31\76",
+            "\1\u0237",
             "",
-            "\1\u023c",
-            "\1\u023d",
-            "\1\u023e\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
+            "\1\u0238\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
             "\1\76\1\uffff\32\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\1\76\1\u023f\30\76",
-            "\1\u0240",
-            "\1\u0241\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
+            "\1\uffff\30\76\1\u023a\1\76",
+            "",
+            "",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\1\u023c\21\76\1\u023b\7\76",
+            "\1\u023d\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
+            "\1\76\1\uffff\32\76",
+            "",
+            "\1\u023e",
+            "\1\u023f",
+            "\1\u0240\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
+            "\1\76\1\uffff\32\76",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\1\76\1\u0241\30\76",
+            "\1\u0242",
+            "\1\u0243\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
             "\1\76\1\uffff\32\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
             "\1\uffff\32\76",
@@ -6310,55 +6342,55 @@ public class InternalProcessorDslLexer extends Lexer {
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
             "\1\uffff\32\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\10\76\1\u0246\21\76",
+            "\1\uffff\10\76\1\u0248\21\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\4\76\1\u0247\25\76",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\5\76\1\u0248\24\76"+
+            "\1\uffff\4\76\1\u0249\25\76",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\5\76\1\u024a\24\76"+
             "\4\uffff\1\76\1\uffff\32\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\23\76\1\u024a\6\76",
-            "\1\u0250\3\uffff\1\u024b\1\uffff\1\u024c\3\uffff\1\u024f\2"+
-            "\uffff\1\u024e\1\u024d",
-            "\1\u0251",
+            "\1\uffff\23\76\1\u024c\6\76",
+            "\1\u0252\3\uffff\1\u024d\1\uffff\1\u024e\3\uffff\1\u0251\2"+
+            "\uffff\1\u0250\1\u024f",
+            "\1\u0253",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\16\76\1\u0252\13\76",
+            "\1\uffff\16\76\1\u0254\13\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\22\76\1\u0253\7\76",
-            "\1\u0254",
-            "",
-            "\1\u0255",
+            "\1\uffff\22\76\1\u0255\7\76",
             "\1\u0256",
+            "",
+            "\1\u0257",
+            "\1\u0258",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\23\76\1\u0257\6\76",
-            "\1\u0259\11\uffff\1\u0258",
+            "\1\uffff\23\76\1\u0259\6\76",
+            "\1\u025b\11\uffff\1\u025a",
             "",
             "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
             "\1\uffff\32\76",
-            "\1\u025b\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
+            "\1\u025d\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
             "\1\76\1\uffff\32\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\23\76\1\u025d\6\76",
+            "\1\uffff\23\76\1\u025f\6\76",
             "",
-            "\1\u025e",
-            "\1\u025f",
-            "",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\13\76\1\u0260\16\76",
-            "\1\u0261\2\uffff\1\u0263\11\uffff\1\u0262",
-            "",
-            "",
-            "",
-            "",
+            "\1\u0260",
+            "\1\u0261",
             "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\16\76\1\u0264\13\76",
+            "\1\uffff\13\76\1\u0262\16\76",
+            "\1\u0263\2\uffff\1\u0265\11\uffff\1\u0264",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\16\76\1\u0266\13\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
             "\1\uffff\32\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\24\76\1\u0266\5\76",
+            "\1\uffff\24\76\1\u0268\5\76",
             "",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\5\76\1\u0267\24\76"+
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\5\76\1\u0269\24\76"+
             "\4\uffff\1\76\1\uffff\32\76",
             "",
             "",
@@ -6366,128 +6398,128 @@ public class InternalProcessorDslLexer extends Lexer {
             "",
             "",
             "",
-            "\1\u0268",
+            "\1\u026a",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\22\76\1\u0269\7\76",
+            "\1\uffff\22\76\1\u026b\7\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
             "\1\uffff\32\76",
-            "\1\u026b",
-            "\1\u026c",
             "\1\u026d",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\16\76\1\u026e\13\76",
-            "",
-            "",
-            "",
+            "\1\u026e",
             "\1\u026f",
-            "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\10\76\1\u0270\21\76",
+            "\1\uffff\16\76\1\u0270\13\76",
+            "",
+            "",
+            "",
             "\1\u0271",
-            "\1\u0272",
+            "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\4\76\1\u0273\25\76",
+            "\1\uffff\10\76\1\u0272\21\76",
+            "\1\u0273",
+            "\1\u0274",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\4\76\1\u0275\25\76",
             "",
             "",
             "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\15\76\1\u0274\14\76",
+            "\1\uffff\15\76\1\u0276\14\76",
             "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\15\76\1\u0275\14\76",
+            "\1\uffff\15\76\1\u0277\14\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\24\76\1\u0276\5\76",
-            "\1\u0277",
+            "\1\uffff\24\76\1\u0278\5\76",
+            "\1\u0279",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
             "\1\uffff\32\76",
             "",
-            "\1\u0279",
-            "\1\u027a",
             "\1\u027b",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\21\76\1\u027c\10\76",
+            "\1\u027c",
             "\1\u027d",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\16\76\1\u027e\13\76",
-            "\1\u027f\5\uffff\1\u0280",
-            "\1\u0281",
+            "\1\uffff\21\76\1\u027e\10\76",
+            "\1\u027f",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\16\76\1\u0280\13\76",
+            "\1\u0281\5\uffff\1\u0282",
+            "\1\u0283",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
             "\1\uffff\32\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
             "\1\uffff\32\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\2\76\1\u0284\27\76",
+            "\1\uffff\2\76\1\u0286\27\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\15\76\1\u0285\14\76",
-            "\1\u0286",
-            "",
-            "\1\u0287",
+            "\1\uffff\15\76\1\u0287\14\76",
             "\1\u0288",
+            "",
             "\1\u0289",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\32\76",
+            "\1\u028a",
             "\1\u028b",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\15\76\1\u028c\14\76",
-            "",
-            "",
+            "\1\uffff\32\76",
             "\1\u028d",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\15\76\1\u028e\14\76",
+            "",
+            "",
+            "\1\u028f",
             "",
             "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\23\76\1\u028e\6\76",
+            "\1\uffff\23\76\1\u0290\6\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\2\76\1\u028f\27\76",
-            "\1\u0290",
+            "\1\uffff\2\76\1\u0291\27\76",
             "\1\u0292",
-            "\1\u0294\7\uffff\1\u0293",
-            "\1\u0295\10\uffff\1\u0296",
+            "\1\u0294",
+            "\1\u0296\7\uffff\1\u0295",
+            "\1\u0297\10\uffff\1\u0298",
             "",
-            "\1\u0297",
-            "\1\u0298\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
+            "\1\u0299",
+            "\1\u029a\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff"+
             "\1\76\1\uffff\32\76",
-            "\1\u0299\2\uffff\1\u029b\11\uffff\1\u029a",
+            "\1\u029b\2\uffff\1\u029d\11\uffff\1\u029c",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\10\76\1\u029c\21\76",
+            "\1\uffff\10\76\1\u029e\21\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\23\76\1\u029d\6\76",
+            "\1\uffff\23\76\1\u029f\6\76",
             "",
             "",
-            "\1\u029e",
+            "\1\u02a0",
             "",
             "",
             "",
             "",
-            "\1\u029f",
+            "\1\u02a1",
             "",
             "",
             "",
             "",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\16\76\1\u02a0\13\76",
+            "\1\uffff\16\76\1\u02a2\13\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\10\76\1\u02a1\21\76",
-            "\1\u02a2",
+            "\1\uffff\10\76\1\u02a3\21\76",
             "\1\u02a4",
+            "\1\u02a6",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\15\76\1\u02a5\14\76",
+            "\1\uffff\15\76\1\u02a7\14\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\16\76\1\u02a6\13\76",
+            "\1\uffff\16\76\1\u02a8\13\76",
             "",
             "",
-            "\1\u02a7",
+            "\1\u02a9",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
             "\1\uffff\32\76",
             "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\15\76\1\u02a9\14\76",
-            "\1\u02aa",
-            "",
-            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
-            "\1\uffff\32\76",
+            "\1\uffff\15\76\1\u02ab\14\76",
             "\1\u02ac",
             "",
-            "\1\u02ad",
+            "\1\77\1\uffff\12\76\3\uffff\1\76\3\uffff\32\76\4\uffff\1\76"+
+            "\1\uffff\32\76",
             "\1\u02ae",
+            "",
+            "\1\u02af",
+            "\1\u02b0",
             "",
             ""
     };
@@ -6522,7 +6554,7 @@ public class InternalProcessorDslLexer extends Lexer {
             this.transition = DFA13_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | T__134 | T__135 | T__136 | T__137 | T__138 | T__139 | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_ESC_CHAR | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_AND | RULE_OR | RULE_COLON | RULE_SEMICOLON | RULE_STRING | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_PERCENT | RULE_DOT | RULE_REST | RULE_STRING_VALUE );";
+            return "1:1: Tokens : ( T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | T__134 | T__135 | T__136 | T__137 | T__138 | T__139 | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_ESC_CHAR | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_AND | RULE_OR | RULE_COLON | RULE_SEMICOLON | RULE_STRING | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_PERCENT | RULE_DOT | RULE_REST | RULE_STRING_VALUE );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;

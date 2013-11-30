@@ -221,6 +221,7 @@
         eType="#//ProcedurePojoAssignement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="funPojos" upperBound="-1"
         eType="#//FunctionPojoAssignement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="activeFilter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MetaTypeAssignement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -248,6 +249,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="optionalFeatures" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="activeFilter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DaogenProperty">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -267,6 +269,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="debug" eType="#//DebugLevelAssignement"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="activeFilter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

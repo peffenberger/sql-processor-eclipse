@@ -2101,6 +2101,12 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_39_1_0 = (RuleCall)cGroup_39_1.eContents().get(0);
 		private final Assignment cFunPojosAssignment_39_1_1 = (Assignment)cGroup_39_1.eContents().get(1);
 		private final RuleCall cFunPojosFunctionPojoAssignementParserRuleCall_39_1_1_0 = (RuleCall)cFunPojosAssignment_39_1_1.eContents().get(0);
+		private final Group cGroup_40 = (Group)cAlternatives.eContents().get(40);
+		private final Assignment cNameAssignment_40_0 = (Assignment)cGroup_40.eContents().get(0);
+		private final Keyword cNameActiveFilterKeyword_40_0_0 = (Keyword)cNameAssignment_40_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_40_1 = (RuleCall)cGroup_40.eContents().get(1);
+		private final Assignment cActiveFilterAssignment_40_2 = (Assignment)cGroup_40.eContents().get(2);
+		private final RuleCall cActiveFilterPropertyValueParserRuleCall_40_2_0 = (RuleCall)cActiveFilterAssignment_40_2.eContents().get(0);
 		
 		//PojogenProperty:
 		//	name="types-sqltypes" (WS+ sqlTypes+=SqlTypeAssignement)+ | name="types-in-table" WS+ dbTable=IDENT (WS+
@@ -2130,7 +2136,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="implementation-package" WS+ implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT
 		//	(WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)? | name="debug-level" WS+
 		//	debug=DebugLevelAssignement | name="pojos-for-procedures" (WS+ procPojos+=ProcedurePojoAssignement)+ |
-		//	name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+;
+		//	name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+ | name="active-filter" WS+
+		//	activeFilter=PropertyValue;
 		public ParserRule getRule() { return rule; }
 
 		//name="types-sqltypes" (WS+ sqlTypes+=SqlTypeAssignement)+ | name="types-in-table" WS+ dbTable=IDENT (WS+
@@ -2160,7 +2167,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//name="implementation-package" WS+ implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT
 		//(WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)? | name="debug-level" WS+
 		//debug=DebugLevelAssignement | name="pojos-for-procedures" (WS+ procPojos+=ProcedurePojoAssignement)+ |
-		//name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+
+		//name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+ | name="active-filter" WS+
+		//activeFilter=PropertyValue
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="types-sqltypes" (WS+ sqlTypes+=SqlTypeAssignement)+
@@ -3149,6 +3157,24 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//FunctionPojoAssignement
 		public RuleCall getFunPojosFunctionPojoAssignementParserRuleCall_39_1_1_0() { return cFunPojosFunctionPojoAssignementParserRuleCall_39_1_1_0; }
+
+		//name="active-filter" WS+ activeFilter=PropertyValue
+		public Group getGroup_40() { return cGroup_40; }
+
+		//name="active-filter"
+		public Assignment getNameAssignment_40_0() { return cNameAssignment_40_0; }
+
+		//"active-filter"
+		public Keyword getNameActiveFilterKeyword_40_0_0() { return cNameActiveFilterKeyword_40_0_0; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_40_1() { return cWSTerminalRuleCall_40_1; }
+
+		//activeFilter=PropertyValue
+		public Assignment getActiveFilterAssignment_40_2() { return cActiveFilterAssignment_40_2; }
+
+		//PropertyValue
+		public RuleCall getActiveFilterPropertyValueParserRuleCall_40_2_0() { return cActiveFilterPropertyValueParserRuleCall_40_2_0; }
 	}
 
 	public class MetaTypeAssignementElements extends AbstractParserRuleElementFinder {
@@ -3371,6 +3397,12 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_17_3_0 = (RuleCall)cGroup_17_3.eContents().get(0);
 		private final Assignment cOptionalFeaturesAssignment_17_3_1 = (Assignment)cGroup_17_3.eContents().get(1);
 		private final RuleCall cOptionalFeaturesIDENTTerminalRuleCall_17_3_1_0 = (RuleCall)cOptionalFeaturesAssignment_17_3_1.eContents().get(0);
+		private final Group cGroup_18 = (Group)cAlternatives.eContents().get(18);
+		private final Assignment cNameAssignment_18_0 = (Assignment)cGroup_18.eContents().get(0);
+		private final Keyword cNameActiveFilterKeyword_18_0_0 = (Keyword)cNameAssignment_18_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_18_1 = (RuleCall)cGroup_18.eContents().get(1);
+		private final Assignment cActiveFilterAssignment_18_2 = (Assignment)cGroup_18.eContents().get(2);
+		private final RuleCall cActiveFilterPropertyValueParserRuleCall_18_2_0 = (RuleCall)cActiveFilterAssignment_18_2.eContents().get(0);
 		
 		//MetagenProperty:
 		//	name="global-sequence" WS+ sequence=IDENT type=IDENT? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
@@ -3384,7 +3416,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="function-result-set" WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT
 		//	WS+ dbTable=IDENT | name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" |
 		//	name="optimize-insert" (WS+ dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+
-		//	optionalFeatures+=IDENT)+;
+		//	optionalFeatures+=IDENT)+ | name="active-filter" WS+ activeFilter=PropertyValue;
 		public ParserRule getRule() { return rule; }
 
 		//name="global-sequence" WS+ sequence=IDENT type=IDENT? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
@@ -3397,7 +3429,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//| name="generate-identities" | name="function-result" WS+ dbFunction=IDENT WS+ type=IDENT | name="function-result-set"
 		//WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT WS+ dbTable=IDENT |
 		//name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" | name="optimize-insert" (WS+
-		//dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+ optionalFeatures+=IDENT)+
+		//dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+ optionalFeatures+=IDENT)+ |
+		//name="active-filter" WS+ activeFilter=PropertyValue
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="global-sequence" WS+ sequence=IDENT type=IDENT? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
@@ -3908,6 +3941,24 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//IDENT
 		public RuleCall getOptionalFeaturesIDENTTerminalRuleCall_17_3_1_0() { return cOptionalFeaturesIDENTTerminalRuleCall_17_3_1_0; }
+
+		//name="active-filter" WS+ activeFilter=PropertyValue
+		public Group getGroup_18() { return cGroup_18; }
+
+		//name="active-filter"
+		public Assignment getNameAssignment_18_0() { return cNameAssignment_18_0; }
+
+		//"active-filter"
+		public Keyword getNameActiveFilterKeyword_18_0_0() { return cNameActiveFilterKeyword_18_0_0; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_18_1() { return cWSTerminalRuleCall_18_1; }
+
+		//activeFilter=PropertyValue
+		public Assignment getActiveFilterAssignment_18_2() { return cActiveFilterAssignment_18_2; }
+
+		//PropertyValue
+		public RuleCall getActiveFilterPropertyValueParserRuleCall_18_2_0() { return cActiveFilterPropertyValueParserRuleCall_18_2_0; }
 	}
 
 	public class DaogenPropertyElements extends AbstractParserRuleElementFinder {
@@ -3974,6 +4025,12 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_9_1 = (RuleCall)cGroup_9.eContents().get(1);
 		private final Assignment cDebugAssignment_9_2 = (Assignment)cGroup_9.eContents().get(2);
 		private final RuleCall cDebugDebugLevelAssignementParserRuleCall_9_2_0 = (RuleCall)cDebugAssignment_9_2.eContents().get(0);
+		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
+		private final Assignment cNameAssignment_10_0 = (Assignment)cGroup_10.eContents().get(0);
+		private final Keyword cNameActiveFilterKeyword_10_0_0 = (Keyword)cNameAssignment_10_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_10_1 = (RuleCall)cGroup_10.eContents().get(1);
+		private final Assignment cActiveFilterAssignment_10_2 = (Assignment)cGroup_10.eContents().get(2);
+		private final RuleCall cActiveFilterPropertyValueParserRuleCall_10_2_0 = (RuleCall)cActiveFilterAssignment_10_2.eContents().get(0);
 		
 		//DaogenProperty:
 		//	name="ignore-tables" (WS+ dbTables+=IDENT)+ | name="only-tables" (WS+ dbTables+=IDENT)* |
@@ -3982,7 +4039,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="implements-interfaces-generics" WS+ toImplementsGenerics=ImplementsAssignementGenerics |
 		//	name="extends-class-generics" WS+ toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" |
 		//	name="function-result" WS+ dbFunction=IDENT WS+ resultType=PojoType | name="debug-level" WS+
-		//	debug=DebugLevelAssignement;
+		//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=PropertyValue;
 		public ParserRule getRule() { return rule; }
 
 		//name="ignore-tables" (WS+ dbTables+=IDENT)+ | name="only-tables" (WS+ dbTables+=IDENT)* | name="implementation-package"
@@ -3990,7 +4047,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//toExtends=ExtendsAssignement | name="implements-interfaces-generics" WS+
 		//toImplementsGenerics=ImplementsAssignementGenerics | name="extends-class-generics" WS+
 		//toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" | name="function-result" WS+ dbFunction=IDENT WS+
-		//resultType=PojoType | name="debug-level" WS+ debug=DebugLevelAssignement
+		//resultType=PojoType | name="debug-level" WS+ debug=DebugLevelAssignement | name="active-filter" WS+
+		//activeFilter=PropertyValue
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="ignore-tables" (WS+ dbTables+=IDENT)+
@@ -4175,6 +4233,24 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//DebugLevelAssignement
 		public RuleCall getDebugDebugLevelAssignementParserRuleCall_9_2_0() { return cDebugDebugLevelAssignementParserRuleCall_9_2_0; }
+
+		//name="active-filter" WS+ activeFilter=PropertyValue
+		public Group getGroup_10() { return cGroup_10; }
+
+		//name="active-filter"
+		public Assignment getNameAssignment_10_0() { return cNameAssignment_10_0; }
+
+		//"active-filter"
+		public Keyword getNameActiveFilterKeyword_10_0_0() { return cNameActiveFilterKeyword_10_0_0; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_10_1() { return cWSTerminalRuleCall_10_1; }
+
+		//activeFilter=PropertyValue
+		public Assignment getActiveFilterAssignment_10_2() { return cActiveFilterAssignment_10_2; }
+
+		//PropertyValue
+		public RuleCall getActiveFilterPropertyValueParserRuleCall_10_2_0() { return cActiveFilterPropertyValueParserRuleCall_10_2_0; }
 	}
 
 	public class PropertyValueElements extends AbstractParserRuleElementFinder {
@@ -10026,7 +10102,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="implementation-package" WS+ implPackage=IDENT | name="make-it-final" | name="version-column" WS+ version=IDENT
 	//	(WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)? | name="debug-level" WS+
 	//	debug=DebugLevelAssignement | name="pojos-for-procedures" (WS+ procPojos+=ProcedurePojoAssignement)+ |
-	//	name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+;
+	//	name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+ | name="active-filter" WS+
+	//	activeFilter=PropertyValue;
 	public PojogenPropertyElements getPojogenPropertyAccess() {
 		return (pPojogenProperty != null) ? pPojogenProperty : (pPojogenProperty = new PojogenPropertyElements());
 	}
@@ -10057,7 +10134,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="function-result-set" WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT
 	//	WS+ dbTable=IDENT | name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" |
 	//	name="optimize-insert" (WS+ dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+
-	//	optionalFeatures+=IDENT)+;
+	//	optionalFeatures+=IDENT)+ | name="active-filter" WS+ activeFilter=PropertyValue;
 	public MetagenPropertyElements getMetagenPropertyAccess() {
 		return (pMetagenProperty != null) ? pMetagenProperty : (pMetagenProperty = new MetagenPropertyElements());
 	}
@@ -10073,7 +10150,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="implements-interfaces-generics" WS+ toImplementsGenerics=ImplementsAssignementGenerics |
 	//	name="extends-class-generics" WS+ toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" |
 	//	name="function-result" WS+ dbFunction=IDENT WS+ resultType=PojoType | name="debug-level" WS+
-	//	debug=DebugLevelAssignement;
+	//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=PropertyValue;
 	public DaogenPropertyElements getDaogenPropertyAccess() {
 		return (pDaogenProperty != null) ? pDaogenProperty : (pDaogenProperty = new DaogenPropertyElements());
 	}

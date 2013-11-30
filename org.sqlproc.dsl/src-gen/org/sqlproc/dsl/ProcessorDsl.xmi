@@ -1228,6 +1228,15 @@
           </elements>
         </elements>
       </elements>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:Keyword" value="active-filter"/>
+        </elements>
+        <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.80"/>
+        <elements xsi:type="xtext:Assignment" feature="activeFilter" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+        </elements>
+      </elements>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="MetaTypeAssignement">
@@ -1505,6 +1514,15 @@
           </elements>
         </elements>
       </elements>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:Keyword" value="active-filter"/>
+        </elements>
+        <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.80"/>
+        <elements xsi:type="xtext:Assignment" feature="activeFilter" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+        </elements>
+      </elements>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="DaogenProperty">
@@ -1602,6 +1620,15 @@
         <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.80"/>
         <elements xsi:type="xtext:Assignment" feature="debug" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.17"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:Keyword" value="active-filter"/>
+        </elements>
+        <elements xsi:type="xtext:RuleCall" cardinality="+" rule="//@rules.80"/>
+        <elements xsi:type="xtext:Assignment" feature="activeFilter" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
         </elements>
       </elements>
     </alternatives>

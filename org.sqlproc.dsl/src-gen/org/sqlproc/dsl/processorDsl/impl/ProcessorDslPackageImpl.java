@@ -2177,6 +2177,16 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getPojogenProperty_ActiveFilter()
+  {
+    return (EAttribute)pojogenPropertyEClass.getEStructuralFeatures().get(29);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getMetaTypeAssignement()
   {
     return metaTypeAssignementEClass;
@@ -2367,6 +2377,16 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getMetagenProperty_ActiveFilter()
+  {
+    return (EAttribute)metagenPropertyEClass.getEStructuralFeatures().get(14);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getDaogenProperty()
   {
     return daogenPropertyEClass;
@@ -2470,6 +2490,16 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
   public EReference getDaogenProperty_Debug()
   {
     return (EReference)daogenPropertyEClass.getEStructuralFeatures().get(9);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getDaogenProperty_ActiveFilter()
+  {
+    return (EAttribute)daogenPropertyEClass.getEStructuralFeatures().get(10);
   }
 
   /**
@@ -5086,6 +5116,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEReference(pojogenPropertyEClass, POJOGEN_PROPERTY__DEBUG);
     createEReference(pojogenPropertyEClass, POJOGEN_PROPERTY__PROC_POJOS);
     createEReference(pojogenPropertyEClass, POJOGEN_PROPERTY__FUN_POJOS);
+    createEAttribute(pojogenPropertyEClass, POJOGEN_PROPERTY__ACTIVE_FILTER);
 
     metaTypeAssignementEClass = createEClass(META_TYPE_ASSIGNEMENT);
     createEAttribute(metaTypeAssignementEClass, META_TYPE_ASSIGNEMENT__DB_COLUMN);
@@ -5107,6 +5138,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__DB_PROCEDURE);
     createEReference(metagenPropertyEClass, METAGEN_PROPERTY__DEBUG);
     createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__OPTIONAL_FEATURES);
+    createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__ACTIVE_FILTER);
 
     daogenPropertyEClass = createEClass(DAOGEN_PROPERTY);
     createEAttribute(daogenPropertyEClass, DAOGEN_PROPERTY__NAME);
@@ -5119,6 +5151,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEAttribute(daogenPropertyEClass, DAOGEN_PROPERTY__DB_FUNCTION);
     createEReference(daogenPropertyEClass, DAOGEN_PROPERTY__RESULT_TYPE);
     createEReference(daogenPropertyEClass, DAOGEN_PROPERTY__DEBUG);
+    createEAttribute(daogenPropertyEClass, DAOGEN_PROPERTY__ACTIVE_FILTER);
 
     pojoDefinitionEClass = createEClass(POJO_DEFINITION);
     createEAttribute(pojoDefinitionEClass, POJO_DEFINITION__NAME);
@@ -5628,6 +5661,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEReference(getPojogenProperty_Debug(), this.getDebugLevelAssignement(), null, "debug", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojogenProperty_ProcPojos(), this.getProcedurePojoAssignement(), null, "procPojos", null, 0, -1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojogenProperty_FunPojos(), this.getFunctionPojoAssignement(), null, "funPojos", null, 0, -1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPojogenProperty_ActiveFilter(), ecorePackage.getEString(), "activeFilter", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(metaTypeAssignementEClass, MetaTypeAssignement.class, "MetaTypeAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMetaTypeAssignement_DbColumn(), ecorePackage.getEString(), "dbColumn", null, 0, 1, MetaTypeAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5649,6 +5683,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEAttribute(getMetagenProperty_DbProcedure(), ecorePackage.getEString(), "dbProcedure", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMetagenProperty_Debug(), this.getDebugLevelAssignement(), null, "debug", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMetagenProperty_OptionalFeatures(), ecorePackage.getEString(), "optionalFeatures", null, 0, -1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMetagenProperty_ActiveFilter(), ecorePackage.getEString(), "activeFilter", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(daogenPropertyEClass, DaogenProperty.class, "DaogenProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDaogenProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5661,6 +5696,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEAttribute(getDaogenProperty_DbFunction(), ecorePackage.getEString(), "dbFunction", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDaogenProperty_ResultType(), this.getPojoType(), null, "resultType", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDaogenProperty_Debug(), this.getDebugLevelAssignement(), null, "debug", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDaogenProperty_ActiveFilter(), ecorePackage.getEString(), "activeFilter", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoDefinitionEClass, PojoDefinition.class, "PojoDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPojoDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, PojoDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

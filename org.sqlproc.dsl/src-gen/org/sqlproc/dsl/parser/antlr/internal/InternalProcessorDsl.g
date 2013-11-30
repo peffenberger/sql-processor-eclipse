@@ -4804,7 +4804,45 @@ rulePojogenProperty returns [EObject current=null]
 	    }
 
 )
-))+))
+))+)
+    |((
+(
+		lv_name_162_0=	'active-filter' 
+    {
+        newLeafNode(lv_name_162_0, grammarAccess.getPojogenPropertyAccess().getNameActiveFilterKeyword_40_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_162_0, "active-filter");
+	    }
+
+)
+)(this_WS_163=RULE_WS
+    { 
+    newLeafNode(this_WS_163, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_40_1()); 
+    }
+)+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPojogenPropertyAccess().getActiveFilterPropertyValueParserRuleCall_40_2_0()); 
+	    }
+		lv_activeFilter_164_0=rulePropertyValue		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPojogenPropertyRule());
+	        }
+       		set(
+       			$current, 
+       			"activeFilter",
+        		lv_activeFilter_164_0, 
+        		"PropertyValue");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)))
 ;
 
 
@@ -5923,7 +5961,45 @@ ruleMetagenProperty returns [EObject current=null]
 	    }
 
 )
-))+))
+))+)
+    |((
+(
+		lv_name_88_0=	'active-filter' 
+    {
+        newLeafNode(lv_name_88_0, grammarAccess.getMetagenPropertyAccess().getNameActiveFilterKeyword_18_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_88_0, "active-filter");
+	    }
+
+)
+)(this_WS_89=RULE_WS
+    { 
+    newLeafNode(this_WS_89, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_18_1()); 
+    }
+)+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getActiveFilterPropertyValueParserRuleCall_18_2_0()); 
+	    }
+		lv_activeFilter_90_0=rulePropertyValue		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMetagenPropertyRule());
+	        }
+       		set(
+       			$current, 
+       			"activeFilter",
+        		lv_activeFilter_90_0, 
+        		"PropertyValue");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)))
 ;
 
 
@@ -6319,6 +6395,44 @@ ruleDaogenProperty returns [EObject current=null]
        			"debug",
         		lv_debug_29_0, 
         		"DebugLevelAssignement");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |((
+(
+		lv_name_30_0=	'active-filter' 
+    {
+        newLeafNode(lv_name_30_0, grammarAccess.getDaogenPropertyAccess().getNameActiveFilterKeyword_10_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDaogenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_30_0, "active-filter");
+	    }
+
+)
+)(this_WS_31=RULE_WS
+    { 
+    newLeafNode(this_WS_31, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_10_1()); 
+    }
+)+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDaogenPropertyAccess().getActiveFilterPropertyValueParserRuleCall_10_2_0()); 
+	    }
+		lv_activeFilter_32_0=rulePropertyValue		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDaogenPropertyRule());
+	        }
+       		set(
+       			$current, 
+       			"activeFilter",
+        		lv_activeFilter_32_0, 
+        		"PropertyValue");
 	        afterParserOrEnumRuleCall();
 	    }
 

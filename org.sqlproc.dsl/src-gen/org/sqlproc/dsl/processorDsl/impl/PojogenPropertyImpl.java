@@ -75,6 +75,7 @@ import org.sqlproc.dsl.processorDsl.TableAssignement;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getDebug <em>Debug</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getProcPojos <em>Proc Pojos</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getFunPojos <em>Fun Pojos</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getActiveFilter <em>Active Filter</em>}</li>
  * </ul>
  * </p>
  *
@@ -451,6 +452,26 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected EList<FunctionPojoAssignement> funPojos;
+
+  /**
+   * The default value of the '{@link #getActiveFilter() <em>Active Filter</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getActiveFilter()
+   * @generated
+   * @ordered
+   */
+  protected static final String ACTIVE_FILTER_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getActiveFilter() <em>Active Filter</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getActiveFilter()
+   * @generated
+   * @ordered
+   */
+  protected String activeFilter = ACTIVE_FILTER_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -1160,6 +1181,29 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getActiveFilter()
+  {
+    return activeFilter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setActiveFilter(String newActiveFilter)
+  {
+    String oldActiveFilter = activeFilter;
+    activeFilter = newActiveFilter;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJOGEN_PROPERTY__ACTIVE_FILTER, oldActiveFilter, activeFilter));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -1271,6 +1315,8 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return getProcPojos();
       case ProcessorDslPackage.POJOGEN_PROPERTY__FUN_POJOS:
         return getFunPojos();
+      case ProcessorDslPackage.POJOGEN_PROPERTY__ACTIVE_FILTER:
+        return getActiveFilter();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -1388,6 +1434,9 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         getFunPojos().clear();
         getFunPojos().addAll((Collection<? extends FunctionPojoAssignement>)newValue);
         return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__ACTIVE_FILTER:
+        setActiveFilter((String)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -1489,6 +1538,9 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJOGEN_PROPERTY__FUN_POJOS:
         getFunPojos().clear();
         return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__ACTIVE_FILTER:
+        setActiveFilter(ACTIVE_FILTER_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -1561,6 +1613,8 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return procPojos != null && !procPojos.isEmpty();
       case ProcessorDslPackage.POJOGEN_PROPERTY__FUN_POJOS:
         return funPojos != null && !funPojos.isEmpty();
+      case ProcessorDslPackage.POJOGEN_PROPERTY__ACTIVE_FILTER:
+        return ACTIVE_FILTER_EDEFAULT == null ? activeFilter != null : !ACTIVE_FILTER_EDEFAULT.equals(activeFilter);
     }
     return super.eIsSet(featureID);
   }
@@ -1600,6 +1654,8 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
     result.append(version);
     result.append(", dbNotTables: ");
     result.append(dbNotTables);
+    result.append(", activeFilter: ");
+    result.append(activeFilter);
     result.append(')');
     return result.toString();
   }

@@ -113,6 +113,7 @@ PojogenProperty:
 	|name='debug-level' WS+ debug=DebugLevelAssignement
 	|name='pojos-for-procedures' (WS+ procPojos+=ProcedurePojoAssignement)+
 	|name='pojos-for-functions' (WS+ funPojos+=FunctionPojoAssignement)+
+	|name='active-filter' WS+ activeFilter=PropertyValue
 	);
 
 MetaTypeAssignement: dbColumn=IDENT '->' type=IDENT ('->' extension=IDENT)?;
@@ -136,6 +137,7 @@ MetagenProperty:
 	|name='generate-operators'
 	|name='optimize-insert' (WS+ dbTables+=IDENT)*
 	|name='optional-features' WS+ dbStatement=IDENT (WS+ optionalFeatures+=IDENT)+
+	|name='active-filter' WS+ activeFilter=PropertyValue
 	);
 
 DaogenProperty:
@@ -149,6 +151,7 @@ DaogenProperty:
 	|name='make-it-final'
 	|name='function-result' WS+ dbFunction=IDENT WS+ resultType=PojoType
 	|name='debug-level' WS+ debug=DebugLevelAssignement
+	|name='active-filter' WS+ activeFilter=PropertyValue
 	);
 
 PropertyValue:

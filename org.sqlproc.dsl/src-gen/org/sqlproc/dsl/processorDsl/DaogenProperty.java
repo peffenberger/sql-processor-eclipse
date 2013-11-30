@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getDbFunction <em>Db Function</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getResultType <em>Result Type</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getDebug <em>Debug</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getActiveFilter <em>Active Filter</em>}</li>
  * </ul>
  * </p>
  *
@@ -282,5 +283,31 @@ public interface DaogenProperty extends EObject
    * @generated
    */
   void setDebug(DebugLevelAssignement value);
+
+  /**
+   * Returns the value of the '<em><b>Active Filter</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Active Filter</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Active Filter</em>' attribute.
+   * @see #setActiveFilter(String)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getDaogenProperty_ActiveFilter()
+   * @model
+   * @generated
+   */
+  String getActiveFilter();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getActiveFilter <em>Active Filter</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Active Filter</em>' attribute.
+   * @see #getActiveFilter()
+   * @generated
+   */
+  void setActiveFilter(String value);
 
 } // DaogenProperty

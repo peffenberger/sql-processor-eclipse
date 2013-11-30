@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDbProcedure <em>Db Procedure</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getDebug <em>Debug</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getOptionalFeatures <em>Optional Features</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getActiveFilter <em>Active Filter</em>}</li>
  * </ul>
  * </p>
  *
@@ -350,5 +351,31 @@ public interface MetagenProperty extends EObject
    * @generated
    */
   EList<String> getOptionalFeatures();
+
+  /**
+   * Returns the value of the '<em><b>Active Filter</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Active Filter</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Active Filter</em>' attribute.
+   * @see #setActiveFilter(String)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getMetagenProperty_ActiveFilter()
+   * @model
+   * @generated
+   */
+  String getActiveFilter();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getActiveFilter <em>Active Filter</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Active Filter</em>' attribute.
+   * @see #getActiveFilter()
+   * @generated
+   */
+  void setActiveFilter(String value);
 
 } // MetagenProperty

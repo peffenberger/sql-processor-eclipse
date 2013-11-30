@@ -108,6 +108,7 @@ public class TablePojoConverter {
     protected Set<String> preserveForeignKeys = new HashSet<String>();
     protected Map<String, PojoType> pojosForProcedures = new HashMap<String, PojoType>();
     protected Map<String, PojoType> pojosForFunctions = new HashMap<String, PojoType>();
+    protected String activeFilter = null;
 
     protected Map<String, Map<String, PojoAttribute>> pojos = new TreeMap<String, Map<String, PojoAttribute>>();
     protected Map<String, Map<String, PojoAttribute>> procedures = new TreeMap<String, Map<String, PojoAttribute>>();
@@ -270,6 +271,7 @@ public class TablePojoConverter {
         if (pojosForProcedures != null) {
             this.pojosForFunctions.putAll(pojosForFunctions);
         }
+        this.activeFilter = modelProperty.getActiveFilter(artifacts);
 
         for (Map.Entry<String, Map<String, Map<String, String>>> inheritImport : this.inheritImports.entrySet()) {
             for (Map.Entry<String, Map<String, String>> inherit : inheritImport.getValue().entrySet()) {
@@ -340,6 +342,7 @@ public class TablePojoConverter {
             System.out.println("versionColumn " + this.versionColumn);
             System.out.println("versionColumns " + this.versionColumns);
             System.out.println("notVersionColumns " + this.notVersionColumns);
+            System.out.println("activeFilter " + this.activeFilter);
         }
     }
 

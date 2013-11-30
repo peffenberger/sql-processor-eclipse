@@ -767,7 +767,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='extends-class-generics' toExtendsGenerics=ExtendsAssignementGenerics) | 
 	 *         name='make-it-final' | 
 	 *         (name='function-result' dbFunction=IDENT resultType=PojoType) | 
-	 *         (name='debug-level' debug=DebugLevelAssignement)
+	 *         (name='debug-level' debug=DebugLevelAssignement) | 
+	 *         (name='active-filter' activeFilter=PropertyValue)
 	 *     )
 	 */
 	protected void sequence_DaogenProperty(EObject context, DaogenProperty semanticObject) {
@@ -1383,7 +1384,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='debug-level' debug=DebugLevelAssignement) | 
 	 *         name='generate-operators' | 
 	 *         (name='optimize-insert' dbTables+=IDENT*) | 
-	 *         (name='optional-features' dbStatement=IDENT optionalFeatures+=IDENT+)
+	 *         (name='optional-features' dbStatement=IDENT optionalFeatures+=IDENT+) | 
+	 *         (name='active-filter' activeFilter=PropertyValue)
 	 *     )
 	 */
 	protected void sequence_MetagenProperty(EObject context, MetagenProperty semanticObject) {
@@ -1646,7 +1648,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='version-column' version=IDENT dbTables+=IDENT* dbNotTables+=IDENT*) | 
 	 *         (name='debug-level' debug=DebugLevelAssignement) | 
 	 *         (name='pojos-for-procedures' procPojos+=ProcedurePojoAssignement+) | 
-	 *         (name='pojos-for-functions' funPojos+=FunctionPojoAssignement+)
+	 *         (name='pojos-for-functions' funPojos+=FunctionPojoAssignement+) | 
+	 *         (name='active-filter' activeFilter=PropertyValue)
 	 *     )
 	 */
 	protected void sequence_PojogenProperty(EObject context, PojogenProperty semanticObject) {

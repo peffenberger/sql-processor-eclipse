@@ -101,6 +101,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String POJOGEN_PRESERVE_FOREIGN_KEYS = "preserve-foreign-keys";
     public static final String POJOGEN_POJOS_FOR_PROCEDURES = "pojos-for-procedures";
     public static final String POJOGEN_POJOS_FOR_FUNCTIONS = "pojos-for-functions";
+    public static final String POJOGEN_ACTIVE_FILTER = "active-filter";
     public static final String METAGEN = "metagen";
     public static final String METAGEN_GLOBAL_SEQUENCE = "global-sequence";
     public static final String METAGEN_TABLE_SEQUENCE = "table-sequence";
@@ -120,6 +121,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String METAGEN_GENERATE_OPERATORS = "generate-operators";
     public static final String METAGEN_OPTIMIZE_INSERT = "optimize-insert";
     public static final String METAGEN_OPTIONAL_FEATURES = "optional-features";
+    public static final String METAGEN_ACTIVE_FILTER = "active-filter";
     public static final String DAOGEN = "daogen";
     public static final String DAOGEN_IGNORE_TABLES = "ignore-tables";
     public static final String DAOGEN_ONLY_TABLES = "only-tables";
@@ -131,6 +133,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String DAOGEN_MAKE_IT_FINAL = "make-it-final";
     public static final String DAOGEN_FUNCTION_RESULT = "function-result";
     public static final String DAOGEN_DEBUG_LEVEL = "debug-level";
+    public static final String DAOGEN_ACTIVE_FILTER = "active-filter";
 
     public static class PairValues {
         public String value1;
@@ -203,6 +206,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Set<String> preserveForeignKeys;
         public Map<String, PojoType> pojosForProcedures;
         public Map<String, PojoType> pojosForFunctions;
+        public String activeFilter;
 
         public PairValues metaGlobalSequence;
         public Map<String, PairValues> metaTablesSequence;
@@ -226,6 +230,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public boolean metaGenerateOperators;
         public Set<String> metaOptimizeInsert;
         public Map<String, Set<String>> metaOptionalFeatures;
+        public String metaActiveFilter;
 
         public Set<String> daoIgnoreTables;
         public Set<String> daoOnlyTables;
@@ -235,6 +240,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public boolean daoMakeItFinal;
         public Map<String, PojoType> daoFunctionsResult;
         public Level daoDebugLevel;
+        public String daoActiveFilter;
     }
 
     private Map<String, ModelValues> dirs2models = new HashMap<String, ModelValues>();
@@ -431,6 +437,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.preserveForeignKeys = new HashSet<String>();
         modelValues.pojosForProcedures = new HashMap<String, PojoType>();
         modelValues.pojosForFunctions = new HashMap<String, PojoType>();
+        modelValues.activeFilter = null;
     }
 
     private void initMetagenModel(ModelValues modelValues) {
@@ -456,6 +463,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.metaGenerateOperators = false;
         modelValues.metaOptimizeInsert = new HashSet<String>();
         modelValues.metaOptionalFeatures = new HashMap<String, Set<String>>();
+        modelValues.metaActiveFilter = null;
     }
 
     private void initDaogenModel(ModelValues modelValues) {
@@ -467,6 +475,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.daoMakeItFinal = false;
         modelValues.daoFunctionsResult = new HashMap<String, PojoType>();
         modelValues.daoDebugLevel = null;
+        modelValues.daoActiveFilter = null;
     }
 
     public void setValue(ModelValues modelValues, Property property) {
@@ -848,6 +857,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 modelValues.pojosForFunctions.put(property.getFunPojos().get(i).getDbFunction(), property.getFunPojos()
                         .get(i).getPojo());
             }
+        } else if (POJOGEN_ACTIVE_FILTER.equals(property.getName())) {
+            modelValues.activeFilter = property.getActiveFilter();
         }
     }
 
@@ -936,6 +947,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 String optionalFeature = property.getOptionalFeatures().get(i);
                 modelValues.metaOptionalFeatures.get(property.getDbStatement()).add(optionalFeature);
             }
+        } else if (METAGEN_ACTIVE_FILTER.equals(property.getName())) {
+            modelValues.metaActiveFilter = property.getActiveFilter();
         }
     }
 
@@ -976,6 +989,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         } else if (DAOGEN_DEBUG_LEVEL.equals(property.getName())) {
             modelValues.daoDebugLevel = Level.toLevel((property.getDebug() != null) ? property.getDebug().getDebug()
                     : null, Level.WARN);
+        } else if (DAOGEN_ACTIVE_FILTER.equals(property.getName())) {
+            modelValues.daoActiveFilter = property.getActiveFilter();
         }
     }
 
@@ -1252,6 +1267,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
+    public String getActiveFilter(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.activeFilter : null;
+    }
+
+    @Override
     public Map<String, PairValues> getMetaTablesIdentity(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.metaTablesIdentity : Collections.<String, PairValues> emptyMap();
@@ -1380,6 +1401,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
+    public String getMetaActiveFilter(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaActiveFilter : null;
+    }
+
+    @Override
     public Set<String> getDaoIgnoreTables(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.daoIgnoreTables : Collections.<String> emptySet();
@@ -1425,6 +1452,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public Level getDaoDebugLevel(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.daoDebugLevel : null;
+    }
+
+    @Override
+    public String getDaoActiveFilter(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.daoActiveFilter : null;
     }
 
     @Override

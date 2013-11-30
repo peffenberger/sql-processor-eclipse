@@ -57,6 +57,7 @@ public class TableMetaConverter extends TablePojoConverter {
     protected boolean metaGenerateOperators = false;
     protected Set<String> metaOptimizeInsert = new HashSet<String>();
     protected Map<String, Set<String>> metaOptionalFeatures = new HashMap<String, Set<String>>();
+    protected String metaActiveFilter = null;
 
     enum StatementType {
         INSERT, GET, UPDATE, DELETE, SELECT
@@ -169,6 +170,7 @@ public class TableMetaConverter extends TablePojoConverter {
         if (metaOptionalFeatures != null) {
             this.metaOptionalFeatures.putAll(metaOptionalFeatures);
         }
+        this.metaActiveFilter = modelProperty.getMetaActiveFilter(artifacts);
 
         if (debug) {
             System.out.println("finalMetas " + this.finalMetas);
@@ -192,6 +194,7 @@ public class TableMetaConverter extends TablePojoConverter {
             System.out.println("metaGenerateOperators " + this.metaGenerateOperators);
             System.out.println("metaOptimizeInsert " + this.metaOptimizeInsert);
             System.out.println("metaOptionalFeatures " + this.metaOptionalFeatures);
+            System.out.println("metaActiveFilter " + this.metaActiveFilter);
         }
     }
 

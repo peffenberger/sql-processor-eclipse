@@ -1560,13 +1560,22 @@ public interface ProcessorDslPackage extends EPackage
   int POJOGEN_PROPERTY__FUN_POJOS = 28;
 
   /**
+   * The feature id for the '<em><b>Active Filter</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJOGEN_PROPERTY__ACTIVE_FILTER = 29;
+
+  /**
    * The number of structural features of the '<em>Pojogen Property</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY_FEATURE_COUNT = 29;
+  int POJOGEN_PROPERTY_FEATURE_COUNT = 30;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.MetaTypeAssignementImpl <em>Meta Type Assignement</em>}' class.
@@ -1751,13 +1760,22 @@ public interface ProcessorDslPackage extends EPackage
   int METAGEN_PROPERTY__OPTIONAL_FEATURES = 13;
 
   /**
+   * The feature id for the '<em><b>Active Filter</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METAGEN_PROPERTY__ACTIVE_FILTER = 14;
+
+  /**
    * The number of structural features of the '<em>Metagen Property</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY_FEATURE_COUNT = 14;
+  int METAGEN_PROPERTY_FEATURE_COUNT = 15;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl <em>Daogen Property</em>}' class.
@@ -1860,13 +1878,22 @@ public interface ProcessorDslPackage extends EPackage
   int DAOGEN_PROPERTY__DEBUG = 9;
 
   /**
+   * The feature id for the '<em><b>Active Filter</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DAOGEN_PROPERTY__ACTIVE_FILTER = 10;
+
+  /**
    * The number of structural features of the '<em>Daogen Property</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DAOGEN_PROPERTY_FEATURE_COUNT = 10;
+  int DAOGEN_PROPERTY_FEATURE_COUNT = 11;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDefinitionImpl <em>Pojo Definition</em>}' class.
@@ -6137,6 +6164,17 @@ public interface ProcessorDslPackage extends EPackage
   EReference getPojogenProperty_FunPojos();
 
   /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getActiveFilter <em>Active Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Active Filter</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojogenProperty#getActiveFilter()
+   * @see #getPojogenProperty()
+   * @generated
+   */
+  EAttribute getPojogenProperty_ActiveFilter();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.MetaTypeAssignement <em>Meta Type Assignement</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6344,6 +6382,17 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getMetagenProperty_OptionalFeatures();
 
   /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.MetagenProperty#getActiveFilter <em>Active Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Active Filter</em>'.
+   * @see org.sqlproc.dsl.processorDsl.MetagenProperty#getActiveFilter()
+   * @see #getMetagenProperty()
+   * @generated
+   */
+  EAttribute getMetagenProperty_ActiveFilter();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DaogenProperty <em>Daogen Property</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6462,6 +6511,17 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EReference getDaogenProperty_Debug();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getActiveFilter <em>Active Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Active Filter</em>'.
+   * @see org.sqlproc.dsl.processorDsl.DaogenProperty#getActiveFilter()
+   * @see #getDaogenProperty()
+   * @generated
+   */
+  EAttribute getDaogenProperty_ActiveFilter();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoDefinition <em>Pojo Definition</em>}'.
@@ -10249,6 +10309,14 @@ public interface ProcessorDslPackage extends EPackage
     EReference POJOGEN_PROPERTY__FUN_POJOS = eINSTANCE.getPojogenProperty_FunPojos();
 
     /**
+     * The meta object literal for the '<em><b>Active Filter</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJOGEN_PROPERTY__ACTIVE_FILTER = eINSTANCE.getPojogenProperty_ActiveFilter();
+
+    /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.MetaTypeAssignementImpl <em>Meta Type Assignement</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10405,6 +10473,14 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute METAGEN_PROPERTY__OPTIONAL_FEATURES = eINSTANCE.getMetagenProperty_OptionalFeatures();
 
     /**
+     * The meta object literal for the '<em><b>Active Filter</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute METAGEN_PROPERTY__ACTIVE_FILTER = eINSTANCE.getMetagenProperty_ActiveFilter();
+
+    /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl <em>Daogen Property</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10493,6 +10569,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference DAOGEN_PROPERTY__DEBUG = eINSTANCE.getDaogenProperty_Debug();
+
+    /**
+     * The meta object literal for the '<em><b>Active Filter</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DAOGEN_PROPERTY__ACTIVE_FILTER = eINSTANCE.getDaogenProperty_ActiveFilter();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDefinitionImpl <em>Pojo Definition</em>}' class.
