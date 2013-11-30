@@ -108,7 +108,7 @@ public class TablePojoConverter {
     protected Set<String> preserveForeignKeys = new HashSet<String>();
     protected Map<String, PojoType> pojosForProcedures = new HashMap<String, PojoType>();
     protected Map<String, PojoType> pojosForFunctions = new HashMap<String, PojoType>();
-    protected String activeFilter = null;
+    protected Filter activeFilter = null;
 
     protected Map<String, Map<String, PojoAttribute>> pojos = new TreeMap<String, Map<String, PojoAttribute>>();
     protected Map<String, Map<String, PojoAttribute>> procedures = new TreeMap<String, Map<String, PojoAttribute>>();
@@ -271,7 +271,7 @@ public class TablePojoConverter {
         if (pojosForProcedures != null) {
             this.pojosForFunctions.putAll(pojosForFunctions);
         }
-        this.activeFilter = modelProperty.getActiveFilter(artifacts);
+        this.activeFilter = Filter.parse(modelProperty.getActiveFilter(artifacts));
 
         for (Map.Entry<String, Map<String, Map<String, String>>> inheritImport : this.inheritImports.entrySet()) {
             for (Map.Entry<String, Map<String, String>> inherit : inheritImport.getValue().entrySet()) {
@@ -963,6 +963,8 @@ public class TablePojoConverter {
                     continue;
                 if (ignoreTables.contains(pojo))
                     continue;
+                if (!Filter.isTable(activeFilter, pojo))
+                    continue;
                 String pojoName = tableNames.get(pojo);
                 if (pojoName == null)
                     pojoName = pojo;
@@ -1009,6 +1011,8 @@ public class TablePojoConverter {
                 if (!onlyTables.isEmpty() && !onlyTables.contains(pojo))
                     continue;
                 if (ignoreTables.contains(pojo))
+                    continue;
+                if (!Filter.isTable(activeFilter, pojo))
                     continue;
                 String pojoName = tableNames.get(pojo);
                 if (pojoName == null)
@@ -1234,6 +1238,8 @@ public class TablePojoConverter {
                     continue;
                 if (pojosForProcedures.containsKey(pojo))
                     continue;
+                if (!Filter.isTable(activeFilter, pojo))
+                    continue;
                 boolean isFunction = functions.containsKey(pojo);
                 String pojoName = tableNames.get(pojo);
                 if (pojoName == null)
@@ -1306,6 +1312,8 @@ public class TablePojoConverter {
                 if (procedures.containsKey(pojo))
                     continue;
                 if (pojosForFunctions.containsKey(pojo))
+                    continue;
+                if (!Filter.isTable(activeFilter, pojo))
                     continue;
                 String pojoName = tableNames.get(pojo);
                 if (pojoName == null)
@@ -1730,6 +1738,70 @@ public class TablePojoConverter {
                 buffer.append(comment);
                 comment = "";
             }
+        }
+    }
+
+    // meta filter only-insert,get,update,delete,select,call add-filter XXXX
+    static class Filter {
+        static final String ONLY_TABLE = "only-table";
+        static final String ONLY_TABLES = "only-tables";
+        static final String ADD = "add";
+        static final String ADD_FILTER = "add-filter";
+        Map<String, String> filters;
+        Set<String> onlyTables;
+
+        static Filter parse(String s) {
+            if (s == null)
+                return null;
+            if (s.startsWith("\""))
+                s = s.substring(1);
+            if (s.endsWith("\""))
+                s = s.substring(0, s.length() - 1);
+            Filter f = new Filter();
+            f.filters = new HashMap<String, String>();
+            f.onlyTables = new HashSet<String>();
+            String[] ss = s.split(" ");
+            boolean isFilter = false;
+            boolean isTable = false;
+            boolean isTables = false;
+            for (String s1 : ss) {
+                if (isFilter) {
+                    f.filters.put(ADD, s1);
+                    isFilter = false;
+                } else if (isTable) {
+                    f.onlyTables.add(s1);
+                    isTable = false;
+                } else if (isTables) {
+                    String[] tt = s1.split(",");
+                    for (String t1 : tt)
+                        f.onlyTables.add(t1);
+                    isTables = false;
+                } else if (s1.equalsIgnoreCase(ADD_FILTER)) {
+                    isFilter = true;
+                } else if (s1.equalsIgnoreCase(ONLY_TABLE)) {
+                    isTable = true;
+                } else if (s1.equalsIgnoreCase(ONLY_TABLES)) {
+                    isTables = true;
+                }
+            }
+            return f;
+        }
+
+        static boolean isTable(Filter f, String table) {
+            if (f == null || f.onlyTables.isEmpty())
+                return true;
+            return f.onlyTables.contains(table);
+        }
+
+        static String get(Filter f, String what) {
+            if (f == null || !f.filters.containsKey(what))
+                return null;
+            return f.filters.get(what);
+        }
+
+        @Override
+        public String toString() {
+            return "Filter [filters=" + filters + "]";
         }
     }
 }

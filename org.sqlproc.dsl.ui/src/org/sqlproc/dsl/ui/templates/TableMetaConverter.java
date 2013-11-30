@@ -57,7 +57,7 @@ public class TableMetaConverter extends TablePojoConverter {
     protected boolean metaGenerateOperators = false;
     protected Set<String> metaOptimizeInsert = new HashSet<String>();
     protected Map<String, Set<String>> metaOptionalFeatures = new HashMap<String, Set<String>>();
-    protected Filter metaActiveFilter = null;
+    protected MetaFilter metaActiveFilter = null;
 
     enum StatementType {
         INSERT, GET, UPDATE, DELETE, SELECT
@@ -170,7 +170,7 @@ public class TableMetaConverter extends TablePojoConverter {
         if (metaOptionalFeatures != null) {
             this.metaOptionalFeatures.putAll(metaOptionalFeatures);
         }
-        this.metaActiveFilter = Filter.parse(modelProperty.getMetaActiveFilter(artifacts));
+        this.metaActiveFilter = MetaFilter.parse(modelProperty.getMetaActiveFilter(artifacts));
 
         if (debug) {
             System.out.println("finalMetas " + this.finalMetas);
@@ -234,12 +234,12 @@ public class TableMetaConverter extends TablePojoConverter {
             }
 
             StringBuilder buffer = new StringBuilder();
-            if (sequences != null && Filter.isGenerate(metaActiveFilter, Filter.ONLY_INSERT)) {
+            if (sequences != null && MetaFilter.isGenerate(metaActiveFilter, MetaFilter.ONLY_INSERT)) {
                 for (StringBuilder sequence : sequences.values()) {
                     buffer.append(sequence);
                 }
             }
-            if (identities != null && Filter.isGenerate(metaActiveFilter, Filter.ONLY_INSERT)) {
+            if (identities != null && MetaFilter.isGenerate(metaActiveFilter, MetaFilter.ONLY_INSERT)) {
                 for (StringBuilder identity : identities.values()) {
                     buffer.append(identity);
                 }
@@ -251,18 +251,20 @@ public class TableMetaConverter extends TablePojoConverter {
                     continue;
                 if (pojoInheritanceDiscriminator.containsKey(pojo))
                     continue;
-                if (Filter.isGenerate(metaActiveFilter, Filter.ONLY_INSERT))
+                if (!MetaFilter.isTable(metaActiveFilter, pojo))
+                    continue;
+                if (MetaFilter.isGenerate(metaActiveFilter, MetaFilter.ONLY_INSERT))
                     buffer.append(metaInsertDefinition(pojo));
-                if (Filter.isGenerate(metaActiveFilter, Filter.ONLY_GET))
+                if (MetaFilter.isGenerate(metaActiveFilter, MetaFilter.ONLY_GET))
                     buffer.append(metaGetSelectDefinition(pojo, false));
-                if (Filter.isGenerate(metaActiveFilter, Filter.ONLY_UPDATE))
+                if (MetaFilter.isGenerate(metaActiveFilter, MetaFilter.ONLY_UPDATE))
                     buffer.append(metaUpdateDefinition(pojo));
-                if (Filter.isGenerate(metaActiveFilter, Filter.ONLY_DELETE))
+                if (MetaFilter.isGenerate(metaActiveFilter, MetaFilter.ONLY_DELETE))
                     buffer.append(metaDeleteDefinition(pojo));
-                if (Filter.isGenerate(metaActiveFilter, Filter.ONLY_SELECT))
+                if (MetaFilter.isGenerate(metaActiveFilter, MetaFilter.ONLY_SELECT))
                     buffer.append(metaGetSelectDefinition(pojo, true));
             }
-            if (Filter.isGenerate(metaActiveFilter, Filter.ONLY_CALL)) {
+            if (MetaFilter.isGenerate(metaActiveFilter, MetaFilter.ONLY_CALL)) {
                 for (String pojo : procedures.keySet()) {
                     if (ignoreTables.contains(pojo))
                         continue;
@@ -1547,7 +1549,7 @@ public class TableMetaConverter extends TablePojoConverter {
                 }
             }
         }
-        String addFilter = Filter.get(metaActiveFilter, Filter.ADD);
+        String addFilter = MetaFilter.get(metaActiveFilter, MetaFilter.ADD);
         if (addFilter != null)
             buffer.append(",").append(addFilter);
         buffer.append(")=");
@@ -1843,7 +1845,7 @@ public class TableMetaConverter extends TablePojoConverter {
     }
 
     // meta filter only-insert,get,update,delete,select,call add-filter XXXX
-    static class Filter {
+    static class MetaFilter {
         static final String ONLY = "only";
         static final String ONLY_DELETE = "only-delete";
         static final String ONLY_UPDATE = "only-update";
@@ -1851,37 +1853,62 @@ public class TableMetaConverter extends TablePojoConverter {
         static final String ONLY_GET = "only-get";
         static final String ONLY_SELECT = "only-select";
         static final String ONLY_CALL = "only-call";
+        static final String ONLY_TABLE = "only-table";
+        static final String ONLY_TABLES = "only-tables";
+        static final Set<String> onlyKeys = new HashSet<String>();
+        static {
+            onlyKeys.add(ONLY_DELETE);
+            onlyKeys.add(ONLY_UPDATE);
+            onlyKeys.add(ONLY_INSERT);
+            onlyKeys.add(ONLY_GET);
+            onlyKeys.add(ONLY_SELECT);
+            onlyKeys.add(ONLY_CALL);
+        }
         static final String ADD = "add";
         static final String ADD_FILTER = "add-filter";
         Map<String, String> filters;
+        Set<String> onlyTables;
 
-        static Filter parse(String s) {
+        static MetaFilter parse(String s) {
             if (s == null)
                 return null;
             if (s.startsWith("\""))
                 s = s.substring(1);
             if (s.endsWith("\""))
                 s = s.substring(0, s.length() - 1);
-            Filter f = new Filter();
+            MetaFilter f = new MetaFilter();
             f.filters = new HashMap<String, String>();
+            f.onlyTables = new HashSet<String>();
             String[] ss = s.split(" ");
             boolean isFilter = false;
+            boolean isTable = false;
+            boolean isTables = false;
             for (String s1 : ss) {
                 if (isFilter) {
                     f.filters.put(ADD, s1);
                     isFilter = false;
-                } else if (s1.equalsIgnoreCase(ONLY_INSERT) || s1.equalsIgnoreCase(ONLY_UPDATE)
-                        || s1.equalsIgnoreCase(ONLY_DELETE) || s1.equalsIgnoreCase(ONLY_GET)
-                        || s1.equalsIgnoreCase(ONLY_CALL) || s1.equalsIgnoreCase(ONLY_SELECT)) {
+                } else if (isTable) {
+                    f.onlyTables.add(s1);
+                    isTable = false;
+                } else if (isTables) {
+                    String[] tt = s1.split(",");
+                    for (String t1 : tt)
+                        f.onlyTables.add(t1);
+                    isTables = false;
+                } else if (onlyKeys.contains(s1)) {
                     f.filters.put(ONLY, s1.toLowerCase());
                 } else if (s1.equalsIgnoreCase(ADD_FILTER)) {
                     isFilter = true;
+                } else if (s1.equalsIgnoreCase(ONLY_TABLE)) {
+                    isTable = true;
+                } else if (s1.equalsIgnoreCase(ONLY_TABLES)) {
+                    isTables = true;
                 }
             }
             return f;
         }
 
-        static boolean isGenerate(Filter f, String what) {
+        static boolean isGenerate(MetaFilter f, String what) {
             if (f == null || !f.filters.containsKey(ONLY))
                 return true;
             if (what.equals(f.filters.get(ONLY)))
@@ -1889,7 +1916,13 @@ public class TableMetaConverter extends TablePojoConverter {
             return false;
         }
 
-        static String get(Filter f, String what) {
+        static boolean isTable(MetaFilter f, String table) {
+            if (f == null || f.onlyTables.isEmpty())
+                return true;
+            return f.onlyTables.contains(table);
+        }
+
+        static String get(MetaFilter f, String what) {
             if (f == null || !f.filters.containsKey(what))
                 return null;
             return f.filters.get(what);

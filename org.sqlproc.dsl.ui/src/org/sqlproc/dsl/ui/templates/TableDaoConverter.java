@@ -36,7 +36,7 @@ public class TableDaoConverter extends TableMetaConverter {
     protected Map<String, PojoType> daoFunctionsResult = new HashMap<String, PojoType>();
     protected Set<String> notGenerics;
     protected Set<String> generics;
-    protected String daoActiveFilter = null;
+    protected Filter daoActiveFilter = null;
 
     public TableDaoConverter() {
         super();
@@ -75,7 +75,7 @@ public class TableDaoConverter extends TableMetaConverter {
         if (daoFunctionsResult != null) {
             this.daoFunctionsResult.putAll(daoFunctionsResult);
         }
-        this.daoActiveFilter = modelProperty.getDaoActiveFilter(artifacts);
+        this.daoActiveFilter = Filter.parse(modelProperty.getDaoActiveFilter(artifacts));
 
         if (debug) {
             System.out.println("finalDaos " + this.finalDaos);
@@ -213,6 +213,8 @@ public class TableDaoConverter extends TableMetaConverter {
                     continue;
                 if (daoIgnoreTables.contains(pojo))
                     continue;
+                if (!Filter.isTable(daoActiveFilter, pojo))
+                    continue;
                 String pojoName = tableNames.get(pojo);
                 if (pojoName == null)
                     pojoName = pojo;
@@ -284,6 +286,8 @@ public class TableDaoConverter extends TableMetaConverter {
                     continue;
                 if (daoIgnoreTables.contains(pojo))
                     continue;
+                if (!Filter.isTable(daoActiveFilter, pojo))
+                    continue;
                 boolean isFunction = functions.containsKey(pojo);
                 if (!isFunction) {
                     hasProcedures = true;
@@ -343,6 +347,8 @@ public class TableDaoConverter extends TableMetaConverter {
                 if (!daoOnlyTables.isEmpty() && !daoOnlyTables.contains(pojo))
                     continue;
                 if (daoIgnoreTables.contains(pojo))
+                    continue;
+                if (!Filter.isTable(daoActiveFilter, pojo))
                     continue;
                 boolean isFunction = functions.containsKey(pojo);
                 if (isFunction) {
