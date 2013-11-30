@@ -234,12 +234,12 @@ public class TableMetaConverter extends TablePojoConverter {
             }
 
             StringBuilder buffer = new StringBuilder();
-            if (sequences != null) {
+            if (sequences != null && Filter.isGenerate(metaActiveFilter, Filter.ONLY_INSERT)) {
                 for (StringBuilder sequence : sequences.values()) {
                     buffer.append(sequence);
                 }
             }
-            if (identities != null) {
+            if (identities != null && Filter.isGenerate(metaActiveFilter, Filter.ONLY_INSERT)) {
                 for (StringBuilder identity : identities.values()) {
                     buffer.append(identity);
                 }
@@ -251,24 +251,31 @@ public class TableMetaConverter extends TablePojoConverter {
                     continue;
                 if (pojoInheritanceDiscriminator.containsKey(pojo))
                     continue;
-                buffer.append(metaInsertDefinition(pojo));
-                buffer.append(metaGetSelectDefinition(pojo, false));
-                buffer.append(metaUpdateDefinition(pojo));
-                buffer.append(metaDeleteDefinition(pojo));
-                buffer.append(metaGetSelectDefinition(pojo, true));
+                if (Filter.isGenerate(metaActiveFilter, Filter.ONLY_INSERT))
+                    buffer.append(metaInsertDefinition(pojo));
+                if (Filter.isGenerate(metaActiveFilter, Filter.ONLY_GET))
+                    buffer.append(metaGetSelectDefinition(pojo, false));
+                if (Filter.isGenerate(metaActiveFilter, Filter.ONLY_UPDATE))
+                    buffer.append(metaUpdateDefinition(pojo));
+                if (Filter.isGenerate(metaActiveFilter, Filter.ONLY_DELETE))
+                    buffer.append(metaDeleteDefinition(pojo));
+                if (Filter.isGenerate(metaActiveFilter, Filter.ONLY_SELECT))
+                    buffer.append(metaGetSelectDefinition(pojo, true));
             }
-            for (String pojo : procedures.keySet()) {
-                if (ignoreTables.contains(pojo))
-                    continue;
-                boolean isFunction = functions.containsKey(pojo);
-                buffer.append(metaCallProcedureDefinition(pojo, isFunction));
-            }
-            for (String pojo : functions.keySet()) {
-                if (ignoreTables.contains(pojo))
-                    continue;
-                if (procedures.containsKey(pojo))
-                    continue;
-                buffer.append(metaCallFunctionDefinition(pojo));
+            if (Filter.isGenerate(metaActiveFilter, Filter.ONLY_CALL)) {
+                for (String pojo : procedures.keySet()) {
+                    if (ignoreTables.contains(pojo))
+                        continue;
+                    boolean isFunction = functions.containsKey(pojo);
+                    buffer.append(metaCallProcedureDefinition(pojo, isFunction));
+                }
+                for (String pojo : functions.keySet()) {
+                    if (ignoreTables.contains(pojo))
+                        continue;
+                    if (procedures.containsKey(pojo))
+                        continue;
+                    buffer.append(metaCallFunctionDefinition(pojo));
+                }
             }
             return buffer.toString();
         } catch (RuntimeException ex) {
@@ -1540,6 +1547,9 @@ public class TableMetaConverter extends TablePojoConverter {
                 }
             }
         }
+        String addFilter = Filter.get(metaActiveFilter, Filter.ADD);
+        if (addFilter != null)
+            buffer.append(",").append(addFilter);
         buffer.append(")=");
         return header;
     }
@@ -1848,28 +1858,41 @@ public class TableMetaConverter extends TablePojoConverter {
         static Filter parse(String s) {
             if (s == null)
                 return null;
+            if (s.startsWith("\""))
+                s = s.substring(1);
+            if (s.endsWith("\""))
+                s = s.substring(0, s.length() - 1);
             Filter f = new Filter();
             f.filters = new HashMap<String, String>();
             String[] ss = s.split(" ");
-            boolean isFilter = true;
+            boolean isFilter = false;
             for (String s1 : ss) {
                 if (isFilter) {
                     f.filters.put(ADD, s1);
                     isFilter = false;
                 } else if (s1.equalsIgnoreCase(ONLY_INSERT) || s1.equalsIgnoreCase(ONLY_UPDATE)
                         || s1.equalsIgnoreCase(ONLY_DELETE) || s1.equalsIgnoreCase(ONLY_GET)
-                        || s1.equalsIgnoreCase(ONLY_CALL) || s1.equalsIgnoreCase(ONLY_SELECT))
+                        || s1.equalsIgnoreCase(ONLY_CALL) || s1.equalsIgnoreCase(ONLY_SELECT)) {
                     f.filters.put(ONLY, s1.toLowerCase());
+                } else if (s1.equalsIgnoreCase(ADD_FILTER)) {
+                    isFilter = true;
+                }
             }
             return f;
         }
 
-        static boolean generate(Filter f, String what) {
+        static boolean isGenerate(Filter f, String what) {
             if (f == null || !f.filters.containsKey(ONLY))
                 return true;
             if (what.equals(f.filters.get(ONLY)))
                 return true;
             return false;
+        }
+
+        static String get(Filter f, String what) {
+            if (f == null || !f.filters.containsKey(what))
+                return null;
+            return f.filters.get(what);
         }
 
         @Override
