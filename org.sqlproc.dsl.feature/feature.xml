@@ -2,7 +2,7 @@
 <feature
       id="org.sqlproc.dsl.feature"
       label="%featureName"
-      version="1.7.7"
+      version="1.7.8.qualifier"
       provider-name="%providerName">
 
    <description>
