@@ -57,7 +57,7 @@ public class TableMetaConverter extends TablePojoConverter {
     protected boolean metaGenerateOperators = false;
     protected Set<String> metaOptimizeInsert = new HashSet<String>();
     protected Map<String, Set<String>> metaOptionalFeatures = new HashMap<String, Set<String>>();
-    protected String metaActiveFilter = null;
+    protected Filter metaActiveFilter = null;
 
     enum StatementType {
         INSERT, GET, UPDATE, DELETE, SELECT
@@ -170,7 +170,7 @@ public class TableMetaConverter extends TablePojoConverter {
         if (metaOptionalFeatures != null) {
             this.metaOptionalFeatures.putAll(metaOptionalFeatures);
         }
-        this.metaActiveFilter = modelProperty.getMetaActiveFilter(artifacts);
+        this.metaActiveFilter = Filter.parse(modelProperty.getMetaActiveFilter(artifacts));
 
         if (debug) {
             System.out.println("finalMetas " + this.finalMetas);
@@ -1830,5 +1830,51 @@ public class TableMetaConverter extends TablePojoConverter {
         if (ix >= 0)
             pattern = pattern.substring(0, ix) + column + pattern.substring(ix + 2);
         return pattern;
+    }
+
+    // meta filter only-insert,get,update,delete,select,call add-filter XXXX
+    static class Filter {
+        static final String ONLY = "only";
+        static final String ONLY_DELETE = "only-delete";
+        static final String ONLY_UPDATE = "only-update";
+        static final String ONLY_INSERT = "only-insert";
+        static final String ONLY_GET = "only-get";
+        static final String ONLY_SELECT = "only-select";
+        static final String ONLY_CALL = "only-call";
+        static final String ADD = "add";
+        static final String ADD_FILTER = "add-filter";
+        Map<String, String> filters;
+
+        static Filter parse(String s) {
+            if (s == null)
+                return null;
+            Filter f = new Filter();
+            f.filters = new HashMap<String, String>();
+            String[] ss = s.split(" ");
+            boolean isFilter = true;
+            for (String s1 : ss) {
+                if (isFilter) {
+                    f.filters.put(ADD, s1);
+                    isFilter = false;
+                } else if (s1.equalsIgnoreCase(ONLY_INSERT) || s1.equalsIgnoreCase(ONLY_UPDATE)
+                        || s1.equalsIgnoreCase(ONLY_DELETE) || s1.equalsIgnoreCase(ONLY_GET)
+                        || s1.equalsIgnoreCase(ONLY_CALL) || s1.equalsIgnoreCase(ONLY_SELECT))
+                    f.filters.put(ONLY, s1.toLowerCase());
+            }
+            return f;
+        }
+
+        static boolean generate(Filter f, String what) {
+            if (f == null || !f.filters.containsKey(ONLY))
+                return true;
+            if (what.equals(f.filters.get(ONLY)))
+                return true;
+            return false;
+        }
+
+        @Override
+        public String toString() {
+            return "Filter [filters=" + filters + "]";
+        }
     }
 }
