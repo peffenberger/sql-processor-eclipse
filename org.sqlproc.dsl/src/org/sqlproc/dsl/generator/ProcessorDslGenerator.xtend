@@ -805,18 +805,18 @@ public «IF isAbstract(d)»abstract «ENDIF»class «d.name»«IF d.implPackage 
     this.sqlSessionFactory = sqlSessionFactory;
   }
   
-  «FOR m:d.methods»«IF m.name == "scaffold"»«compileInsert(d, e, getParent(e), im)»
-  «compileGet(d, e, toInits, im)»
-  «compileUpdate(d, e, getParent(e), im)»
-  «compileDelete(d, e, getParent(e), im)»
-  «compileList(d, e, toInits, im)»
-  «compileCount(d, e, toInits, im)»
+  «FOR m:d.methods»«IF m.name == "scaffold" || m.name == "scaffold0"»«compileInsert(d, e, getParent(e), im, m.name == "scaffold")»
+  «compileGet(d, e, toInits, im, m.name == "scaffold")»
+  «compileUpdate(d, e, getParent(e), im, m.name == "scaffold")»
+  «compileDelete(d, e, getParent(e), im, m.name == "scaffold")»
+  «compileList(d, e, toInits, im, m.name == "scaffold")»
+  «compileCount(d, e, toInits, im, m.name == "scaffold")»
   «IF !toInits.empty»«compileMoreResultClasses(d, e, toInits, im)»«ENDIF»«ELSEIF isCallUpdate(m)»
-  «compileCallUpdate(d, m, im)»«ELSEIF isCallFunction(m)»«compileCallFunction(d, m, im)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQuery(d, m, im, isCallQueryFunction(m))»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunction(d, m, im)»«ENDIF»«ENDFOR»
+  «compileCallUpdate(d, m, im, m.name == "scaffold")»«ELSEIF isCallFunction(m)»«compileCallFunction(d, m, im, m.name == "scaffold")»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQuery(d, m, im, isCallQueryFunction(m), m.name == "scaffold")»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunction(d, m, im, m.name == "scaffold")»«ENDIF»«ENDFOR»
 }
 '''
 
-def compileCallQuery(PojoDao d, PojoMethod m, ImportManager im, boolean isFunction) '''
+def compileCallQuery(PojoDao d, PojoMethod m, ImportManager im, boolean isFunction, boolean all) '''
 
     public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -829,21 +829,22 @@ def compileCallQuery(PojoDao d, PojoMethod m, ImportManager im, boolean isFuncti
       }
       return list;
     }
-
+    «IF all»
     public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
     	return «m.name»(sqlSessionFactory.getSqlSession(), «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
     }
-
+    «ENDIF»
     public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
-
+    «IF all»
     public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
+    «ENDIF»
 '''
 
-def compileCallFunction(PojoDao d, PojoMethod m, ImportManager im) '''
+def compileCallFunction(PojoDao d, PojoMethod m, ImportManager im, boolean all) '''
 
     public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -856,21 +857,22 @@ def compileCallFunction(PojoDao d, PojoMethod m, ImportManager im) '''
       }
       return («m.type.compileType(im)») result;
     }
-
+    «IF all»
     public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
     	return «m.name»(sqlSessionFactory.getSqlSession(), «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
     }
-
+    «ENDIF»
     public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
-
+    «IF all»
     public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
+    «ENDIF»
 '''
 
-def compileCallUpdate(PojoDao d, PojoMethod m, ImportManager im) '''
+def compileCallUpdate(PojoDao d, PojoMethod m, ImportManager im, boolean all) '''
 
     public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -883,21 +885,22 @@ def compileCallUpdate(PojoDao d, PojoMethod m, ImportManager im) '''
       }
       return count;
     }
-
+    «IF all»
     public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
     	return «m.name»(sqlSessionFactory.getSqlSession(), «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
     }
-
+    «ENDIF»
     public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
-
+    «IF all»
     public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
+    «ENDIF»
 '''
 
-def compileCallSelectFunction(PojoDao d, PojoMethod m, ImportManager im) '''
+def compileCallSelectFunction(PojoDao d, PojoMethod m, ImportManager im, boolean all) '''
 
     public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -910,21 +913,22 @@ def compileCallSelectFunction(PojoDao d, PojoMethod m, ImportManager im) '''
       }
       return (list != null && !list.isEmpty()) ? list.get(0).getResult() : null;
     }
-
+    «IF all»
     public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
     	return «m.name»(sqlSessionFactory.getSqlSession(), «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
     }
-
+    «ENDIF»
     public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
-
+    «IF all»
     public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
       return «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
     }
+    «ENDIF»
 '''
 
-def compileInsert(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager im) '''
+def compileInsert(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager im, boolean all) '''
 
     public «e.name» insert(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -942,21 +946,22 @@ def compileInsert(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager im) '''
       }
       return (count > 0) ? «e.name.toFirstLower» : null;
     }
-
+    «IF all»
     public «e.name» insert(«e.name» «e.name.toFirstLower», SqlControl sqlControl) {
     	return insert(sqlSessionFactory.getSqlSession(), «e.name.toFirstLower», sqlControl);
     }
-
+    «ENDIF»
     public «e.name» insert(SqlSession sqlSession, «e.name» «e.name.toFirstLower») {
       return insert(sqlSession, «e.name.toFirstLower», null);
     }
-
+    «IF all»
     public «e.name» insert(«e.name» «e.name.toFirstLower») {
       return insert(«e.name.toFirstLower», null);
     }
+    «ENDIF»
 '''
 
-def compileGet(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im) '''
+def compileGet(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im, boolean all) '''
 
     public «e.name» get(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -970,21 +975,22 @@ def compileGet(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits
       }
       return «e.name.toFirstLower»Got;
     }
-	
+	«IF all»
     public «e.name» get(«e.name» «e.name.toFirstLower», SqlControl sqlControl) {
     	return get(sqlSessionFactory.getSqlSession(), «e.name.toFirstLower», sqlControl);
     }
-
+    «ENDIF»
     public «e.name» get(SqlSession sqlSession, «e.name» «e.name.toFirstLower») {
       return get(sqlSession, «e.name.toFirstLower», null);
     }
-
+    «IF all»
     public «e.name» get(«e.name» «e.name.toFirstLower») {
       return get(«e.name.toFirstLower», null);
     }
+    «ENDIF»
 '''
 
-def compileUpdate(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager im) '''
+def compileUpdate(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager im, boolean all) '''
 
     public int update(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -1004,21 +1010,22 @@ def compileUpdate(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager im) '''
       }
       return count;
     }
-
+    «IF all»
     public int update(«e.name» «e.name.toFirstLower», SqlControl sqlControl) {
     	return update(sqlSessionFactory.getSqlSession(), «e.name.toFirstLower», sqlControl);
     }
-    
+    «ENDIF»
     public int update(SqlSession sqlSession, «e.name» «e.name.toFirstLower») {
       return update(sqlSession, «e.name.toFirstLower», null);
     }
-    
+    «IF all»
     public int update(«e.name» «e.name.toFirstLower») {
       return update(«e.name.toFirstLower», null);
     }
+    «ENDIF»
 '''
 
-def compileDelete(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager im) '''
+def compileDelete(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager im, boolean all) '''
 
     public int delete(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -1038,21 +1045,22 @@ def compileDelete(PojoDao d, PojoEntity e, PojoEntity pe, ImportManager im) '''
       }
       return count;
     }
-
+    «IF all»
     public int delete(«e.name» «e.name.toFirstLower», SqlControl sqlControl) {
     	return delete(sqlSessionFactory.getSqlSession(), «e.name.toFirstLower», sqlControl);
     }
-
+    «ENDIF»
     public int delete(SqlSession sqlSession, «e.name» «e.name.toFirstLower») {
       return delete(sqlSession, «e.name.toFirstLower», null);
     }
-
+    «IF all»
     public int delete(«e.name» «e.name.toFirstLower») {
       return delete(«e.name.toFirstLower», null);
     }
+    «ENDIF»
 '''
 
-def compileList(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im) '''
+def compileList(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im, boolean all) '''
 
     public List<«e.name»> list(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -1066,21 +1074,22 @@ def compileList(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInit
       }
       return «e.name.toFirstLower»List;
     }
-
+    «IF all»
     public List<«e.name»> list(«e.name» «e.name.toFirstLower», SqlControl sqlControl) {
     	return list(sqlSessionFactory.getSqlSession(), «e.name.toFirstLower», sqlControl);
     }
-    
-    public List<«e.name»> list(SqlSession sqlSession, «e.name» «e.name.toFirstLower») {
+    «ENDIF»
+        public List<«e.name»> list(SqlSession sqlSession, «e.name» «e.name.toFirstLower») {
       return list(sqlSession, «e.name.toFirstLower», null);
     }
-    
+    «IF all»
     public List<«e.name»> list(«e.name» «e.name.toFirstLower») {
       return list(«e.name.toFirstLower», null);
     }
+    «ENDIF»
 '''
 
-def compileCount(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im) '''
+def compileCount(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im, boolean all) '''
 
     public int count(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
       if (logger.isTraceEnabled()) {
@@ -1094,18 +1103,19 @@ def compileCount(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toIni
       }
       return count;
     }
-
+    «IF all»
     public int count(«e.name» «e.name.toFirstLower», SqlControl sqlControl) {
     	return count(sqlSessionFactory.getSqlSession(), «e.name.toFirstLower», sqlControl);
     }
-    
-    public int count(SqlSession sqlSession, «e.name» «e.name.toFirstLower») {
+    «ENDIF»
+        public int count(SqlSession sqlSession, «e.name» «e.name.toFirstLower») {
       return count(sqlSession, «e.name.toFirstLower», null);
     }
-    
+    «IF all»
     public int count(«e.name» «e.name.toFirstLower») {
       return count(«e.name.toFirstLower», null);
     }
+    «ENDIF»
 '''
 
 def compileMoreResultClasses(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im) '''
@@ -1147,125 +1157,135 @@ import «d.pojo.completeName»;
 
 def compileIfx(PojoDao d, PojoEntity e, ImportManager im) '''
 public interface «d.name» {
-  «FOR m:d.methods»«IF m.name == "scaffold"»«compileInsertIfx(d, e, im)»
-  «compileGetIfx(d, e, im)»
-  «compileUpdateIfx(d, e, im)»
-  «compileDeleteIfx(d, e, im)»
-  «compileListIfx(d, e, im)»
-  «compileCountIfx(d, e, im)»
+  «FOR m:d.methods»«IF m.name == "scaffold" || m.name == "scaffold0"»«compileInsertIfx(d, e, im, m.name == "scaffold")»
+  «compileGetIfx(d, e, im, m.name == "scaffold")»
+  «compileUpdateIfx(d, e, im, m.name == "scaffold")»
+  «compileDeleteIfx(d, e, im, m.name == "scaffold")»
+  «compileListIfx(d, e, im, m.name == "scaffold")»
+  «compileCountIfx(d, e, im, m.name == "scaffold")»
   «ELSEIF isCallUpdate(m)»
-  «compileCallUpdateIfx(d, m, im)»«ELSEIF isCallFunction(m)»«compileCallFunctionIfx(d, m, im)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQueryIfx(d, m, im, isCallQueryFunction(m))»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunctionIfx(d, m, im)»«ENDIF»«ENDFOR»
+  «compileCallUpdateIfx(d, m, im, m.name == "scaffold")»«ELSEIF isCallFunction(m)»«compileCallFunctionIfx(d, m, im, m.name == "scaffold")»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQueryIfx(d, m, im, isCallQueryFunction(m), m.name == "scaffold")»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunctionIfx(d, m, im, m.name == "scaffold")»«ENDIF»«ENDFOR»
 }
 '''
 
-def compileCallQueryIfx(PojoDao d, PojoMethod m, ImportManager im, boolean isFunction) '''
+def compileCallQueryIfx(PojoDao d, PojoMethod m, ImportManager im, boolean isFunction, boolean all) '''
 
     public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
-
+    «IF all»
     public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
-
+    «ENDIF»
     public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
-
+    «IF all»
     public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
+    «ENDIF»
 '''
 
-def compileCallFunctionIfx(PojoDao d, PojoMethod m, ImportManager im) '''
+def compileCallFunctionIfx(PojoDao d, PojoMethod m, ImportManager im, boolean all) '''
 
     public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
-
+    «IF all»
     public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
-
+    «ENDIF»
     public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
-
+    «IF all»
     public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
+    «ENDIF»
 '''
 
-def compileCallUpdateIfx(PojoDao d, PojoMethod m, ImportManager im) '''
+def compileCallUpdateIfx(PojoDao d, PojoMethod m, ImportManager im, boolean all) '''
 
     public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
-
+    «IF all»
     public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
-
+    «ENDIF»
     public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
-
+    «IF all»
     public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
+    «ENDIF»
 '''
 
-def compileCallSelectFunctionIfx(PojoDao d, PojoMethod m, ImportManager im) '''
+def compileCallSelectFunctionIfx(PojoDao d, PojoMethod m, ImportManager im, boolean all) '''
 
     public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
-
+    «IF all»
     public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
-
+    «ENDIF»
     public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
-
+    «IF all»
     public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
+    «ENDIF»
 '''
 
-def compileInsertIfx(PojoDao d, PojoEntity e, ImportManager im) '''
+def compileInsertIfx(PojoDao d, PojoEntity e, ImportManager im, boolean all) '''
 
     public «e.name» insert(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
-
+    «IF all»
     public «e.name» insert(«e.name» «e.name.toFirstLower», SqlControl sqlControl);
-
+    «ENDIF»
     public «e.name» insert(SqlSession sqlSession, «e.name» «e.name.toFirstLower»);
-
+    «IF all»
     public «e.name» insert(«e.name» «e.name.toFirstLower»);
+    «ENDIF»
 '''
 
-def compileGetIfx(PojoDao d, PojoEntity e, ImportManager im) '''
+def compileGetIfx(PojoDao d, PojoEntity e, ImportManager im, boolean all) '''
 
     public «e.name» get(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
-	
+    «IF all»
     public «e.name» get(«e.name» «e.name.toFirstLower», SqlControl sqlControl);
-	
-    public «e.name» get(SqlSession sqlSession, «e.name» «e.name.toFirstLower»);
-	
+    «ENDIF»
+	    public «e.name» get(SqlSession sqlSession, «e.name» «e.name.toFirstLower»);
+    «IF all»
     public «e.name» get(«e.name» «e.name.toFirstLower»);
+    «ENDIF»
 '''
 
-def compileUpdateIfx(PojoDao d, PojoEntity e, ImportManager im) '''
+def compileUpdateIfx(PojoDao d, PojoEntity e, ImportManager im, boolean all) '''
 
     public int update(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
-
+    «IF all»
     public int update(«e.name» «e.name.toFirstLower», SqlControl sqlControl);
-
+    «ENDIF»
     public int update(SqlSession sqlSession, «e.name» «e.name.toFirstLower»);
-
+    «IF all»
     public int update(«e.name» «e.name.toFirstLower»);
+    «ENDIF»
 '''
 
-def compileDeleteIfx(PojoDao d, PojoEntity e, ImportManager im) '''
+def compileDeleteIfx(PojoDao d, PojoEntity e, ImportManager im, boolean all) '''
 
     public int delete(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
-
+    «IF all»
     public int delete(«e.name» «e.name.toFirstLower», SqlControl sqlControl);
-
+    «ENDIF»
     public int delete(SqlSession sqlSession, «e.name» «e.name.toFirstLower»);
-
+    «IF all»
     public int delete(«e.name» «e.name.toFirstLower»);
+    «ENDIF»
 '''
 
-def compileListIfx(PojoDao d, PojoEntity e, ImportManager im) '''
+def compileListIfx(PojoDao d, PojoEntity e, ImportManager im, boolean all) '''
 
     public List<«e.name»> list(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
-
+    «IF all»
     public List<«e.name»> list(«e.name» «e.name.toFirstLower», SqlControl sqlControl);
-
+    «ENDIF»
     public List<«e.name»> list(SqlSession sqlSession, «e.name» «e.name.toFirstLower»);
-
+    «IF all»
     public List<«e.name»> list(«e.name» «e.name.toFirstLower»);
+    «ENDIF»
 '''
 
-def compileCountIfx(PojoDao d, PojoEntity e, ImportManager im) '''
+def compileCountIfx(PojoDao d, PojoEntity e, ImportManager im, boolean all) '''
 
     public int count(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
-
+    «IF all»
     public int count(«e.name» «e.name.toFirstLower», SqlControl sqlControl);
-
+    «ENDIF»
     public int count(SqlSession sqlSession, «e.name» «e.name.toFirstLower»);
-
+    «IF all»
     public int count(«e.name» «e.name.toFirstLower»);
+    «ENDIF»
 '''
 
 def List<PojoAnnotatedProperty> listFeatures(PojoEntity e) {
