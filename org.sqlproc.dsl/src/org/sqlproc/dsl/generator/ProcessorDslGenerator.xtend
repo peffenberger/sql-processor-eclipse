@@ -812,7 +812,7 @@ public «IF isAbstract(d)»abstract «ENDIF»class «d.name»«IF d.implPackage 
   «compileList(d, e, toInits, im, m.name == "scaffold")»
   «compileCount(d, e, toInits, im, m.name == "scaffold")»
   «IF !toInits.empty»«compileMoreResultClasses(d, e, toInits, im)»«ENDIF»«ELSEIF isCallUpdate(m)»
-  «compileCallUpdate(d, m, im, m.name == "scaffold")»«ELSEIF isCallFunction(m)»«compileCallFunction(d, m, im, m.name == "scaffold")»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQuery(d, m, im, isCallQueryFunction(m), m.name == "scaffold")»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunction(d, m, im, m.name == "scaffold")»«ENDIF»«ENDFOR»
+  «compileCallUpdate(d, m, im, true)»«ELSEIF isCallFunction(m)»«compileCallFunction(d, m, im, true)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQuery(d, m, im, isCallQueryFunction(m), true)»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunction(d, m, im, true)»«ENDIF»«ENDFOR»
 }
 '''
 
@@ -1164,7 +1164,7 @@ public interface «d.name» {
   «compileListIfx(d, e, im, m.name == "scaffold")»
   «compileCountIfx(d, e, im, m.name == "scaffold")»
   «ELSEIF isCallUpdate(m)»
-  «compileCallUpdateIfx(d, m, im, m.name == "scaffold")»«ELSEIF isCallFunction(m)»«compileCallFunctionIfx(d, m, im, m.name == "scaffold")»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQueryIfx(d, m, im, isCallQueryFunction(m), m.name == "scaffold")»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunctionIfx(d, m, im, m.name == "scaffold")»«ENDIF»«ENDFOR»
+  «compileCallUpdateIfx(d, m, im, true)»«ELSEIF isCallFunction(m)»«compileCallFunctionIfx(d, m, im, true)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQueryIfx(d, m, im, isCallQueryFunction(m), true)»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunctionIfx(d, m, im, true)»«ENDIF»«ENDFOR»
 }
 '''
 

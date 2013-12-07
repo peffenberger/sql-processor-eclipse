@@ -4215,16 +4215,12 @@ public class ProcessorDslGenerator implements IGenerator {
             if (_isCallUpdate) {
               _builder.newLineIfNotEmpty();
               _builder.append("  ");
-              String _name_12 = m.getName();
-              boolean _equals_8 = Objects.equal(_name_12, "scaffold");
-              CharSequence _compileCallUpdate = this.compileCallUpdate(d, m, im, _equals_8);
+              CharSequence _compileCallUpdate = this.compileCallUpdate(d, m, im, true);
               _builder.append(_compileCallUpdate, "  ");
             } else {
               boolean _isCallFunction = Utils.isCallFunction(m);
               if (_isCallFunction) {
-                String _name_13 = m.getName();
-                boolean _equals_9 = Objects.equal(_name_13, "scaffold");
-                CharSequence _compileCallFunction = this.compileCallFunction(d, m, im, _equals_9);
+                CharSequence _compileCallFunction = this.compileCallFunction(d, m, im, true);
                 _builder.append(_compileCallFunction, "  ");
               } else {
                 boolean _or_1 = false;
@@ -4237,16 +4233,12 @@ public class ProcessorDslGenerator implements IGenerator {
                 }
                 if (_or_1) {
                   boolean _isCallQueryFunction_1 = Utils.isCallQueryFunction(m);
-                  String _name_14 = m.getName();
-                  boolean _equals_10 = Objects.equal(_name_14, "scaffold");
-                  CharSequence _compileCallQuery = this.compileCallQuery(d, m, im, _isCallQueryFunction_1, _equals_10);
+                  CharSequence _compileCallQuery = this.compileCallQuery(d, m, im, _isCallQueryFunction_1, true);
                   _builder.append(_compileCallQuery, "  ");
                 } else {
                   boolean _isCallSelectFunction = Utils.isCallSelectFunction(m);
                   if (_isCallSelectFunction) {
-                    String _name_15 = m.getName();
-                    boolean _equals_11 = Objects.equal(_name_15, "scaffold");
-                    CharSequence _compileCallSelectFunction = this.compileCallSelectFunction(d, m, im, _equals_11);
+                    CharSequence _compileCallSelectFunction = this.compileCallSelectFunction(d, m, im, true);
                     _builder.append(_compileCallSelectFunction, "  ");
                   }
                 }
@@ -6607,16 +6599,12 @@ public class ProcessorDslGenerator implements IGenerator {
             boolean _isCallUpdate = Utils.isCallUpdate(m);
             if (_isCallUpdate) {
               _builder.append("  ");
-              String _name_9 = m.getName();
-              boolean _equals_8 = Objects.equal(_name_9, "scaffold");
-              CharSequence _compileCallUpdateIfx = this.compileCallUpdateIfx(d, m, im, _equals_8);
+              CharSequence _compileCallUpdateIfx = this.compileCallUpdateIfx(d, m, im, true);
               _builder.append(_compileCallUpdateIfx, "  ");
             } else {
               boolean _isCallFunction = Utils.isCallFunction(m);
               if (_isCallFunction) {
-                String _name_10 = m.getName();
-                boolean _equals_9 = Objects.equal(_name_10, "scaffold");
-                CharSequence _compileCallFunctionIfx = this.compileCallFunctionIfx(d, m, im, _equals_9);
+                CharSequence _compileCallFunctionIfx = this.compileCallFunctionIfx(d, m, im, true);
                 _builder.append(_compileCallFunctionIfx, "  ");
               } else {
                 boolean _or_1 = false;
@@ -6629,16 +6617,12 @@ public class ProcessorDslGenerator implements IGenerator {
                 }
                 if (_or_1) {
                   boolean _isCallQueryFunction_1 = Utils.isCallQueryFunction(m);
-                  String _name_11 = m.getName();
-                  boolean _equals_10 = Objects.equal(_name_11, "scaffold");
-                  CharSequence _compileCallQueryIfx = this.compileCallQueryIfx(d, m, im, _isCallQueryFunction_1, _equals_10);
+                  CharSequence _compileCallQueryIfx = this.compileCallQueryIfx(d, m, im, _isCallQueryFunction_1, true);
                   _builder.append(_compileCallQueryIfx, "  ");
                 } else {
                   boolean _isCallSelectFunction = Utils.isCallSelectFunction(m);
                   if (_isCallSelectFunction) {
-                    String _name_12 = m.getName();
-                    boolean _equals_11 = Objects.equal(_name_12, "scaffold");
-                    CharSequence _compileCallSelectFunctionIfx = this.compileCallSelectFunctionIfx(d, m, im, _equals_11);
+                    CharSequence _compileCallSelectFunctionIfx = this.compileCallSelectFunctionIfx(d, m, im, true);
                     _builder.append(_compileCallSelectFunctionIfx, "  ");
                   }
                 }
