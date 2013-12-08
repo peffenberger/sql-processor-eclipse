@@ -10607,7 +10607,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal OPTION_TYPE:
-	//	"OPT" | "LOPT" | "IOPT" | "SOPT" | "BOPT";
+	//	"OPT" | "LOPT" | "IOPT" | "SOPT" | "BOPT" | "MOPT";
 	public TerminalRule getOPTION_TYPERule() {
 		return (tOPTION_TYPE != null) ? tOPTION_TYPE : (tOPTION_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OPTION_TYPE"));
 	} 

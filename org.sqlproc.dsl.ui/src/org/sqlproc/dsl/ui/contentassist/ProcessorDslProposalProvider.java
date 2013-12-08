@@ -86,8 +86,8 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
 
     private static final List<String> STATEMENT_TYPE = Arrays.asList(new String[] { "QRY", "CRUD", "CALL" });
     private static final List<String> MAPPING_TYPE = Arrays.asList(new String[] { "OUT" });
-    private static final List<String> OPTION_TYPE = Arrays
-            .asList(new String[] { "OPT", "LOPT", "IOPT", "SOPT", "BOPT" });
+    private static final List<String> OPTION_TYPE = Arrays.asList(new String[] { "OPT", "LOPT", "IOPT", "SOPT", "BOPT",
+            "MOPT" });
     private static final List<String> TYPES = Arrays.asList(new String[] { "int", "integer", "long", "byte", "short",
             "float", "double", "character", "char", "string", "str", "time", "date", "datetime", "timestamp", "stamp",
             "bool", "boolean", "bigint", "biginteger", "bigdec", "bigdecimal", "bytearr", "bytearray", "bytes", "text",

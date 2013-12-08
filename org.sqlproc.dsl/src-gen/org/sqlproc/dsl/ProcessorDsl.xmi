@@ -2798,6 +2798,7 @@
       <elements xsi:type="xtext:Keyword" value="IOPT"/>
       <elements xsi:type="xtext:Keyword" value="SOPT"/>
       <elements xsi:type="xtext:Keyword" value="BOPT"/>
+      <elements xsi:type="xtext:Keyword" value="MOPT"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:TerminalRule" name="IDENT_DOT">
