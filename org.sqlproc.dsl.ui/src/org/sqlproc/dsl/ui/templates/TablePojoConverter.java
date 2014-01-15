@@ -1432,14 +1432,19 @@ public class TablePojoConverter {
         String[] parts = value.split("_");
         String camelCaseString = "";
         for (String part : parts) {
-            if (camelCaseString.length() == 0)
-                camelCaseString = camelCaseString + part.toLowerCase();
-            else if (part.length() == 1)
+            if (camelCaseString.length() == 0) {
+                if (part.length() > 1)
+                    camelCaseString = camelCaseString + part.toLowerCase();
+                else
+                    camelCaseString = camelCaseString + part.toUpperCase();
+            } else if (part.length() == 1)
                 camelCaseString = camelCaseString + part.toUpperCase();
             else if (part.length() > 1)
                 camelCaseString = camelCaseString + part.substring(0, 1).toUpperCase()
                         + part.substring(1).toLowerCase();
         }
+        if (camelCaseString.length() == 1)
+            camelCaseString = camelCaseString.toLowerCase();
         return camelCaseString;
     }
 
