@@ -1989,20 +1989,29 @@ public class DbResolverBean implements DbResolver {
                 Statement stmt = modelDatabaseValues.connection.createStatement();
                 result = stmt.executeQuery(query2);
             }
+            String lastTableName = null;
+            String lastConstraintName = null;
+            String lastCheckClause = null;
             while (result.next()) {
                 String tableName = name(modelDatabaseValues, result.getString(1));
                 String constraintName = result.getString(2);
                 String checkClause = result.getString(3);
-                // System.out.println(tableName + " constraintName " + constraintName + ", " + " checkClause "
-                // + checkClause);
-                List<String> list = new ArrayList<String>();
-                list.add(checkClause);
-                list.add(tableName);
-                list.add(constraintName);
-                if (combine)
-                    mapOfCheckConstraints.put(tableName + constraintName, list);
-                else
-                    mapOfCheckConstraints.put(constraintName, list);
+                if (lastConstraintName == null) {
+                    lastTableName = tableName;
+                    lastConstraintName = constraintName;
+                    lastCheckClause = checkClause;
+                } else if (lastConstraintName.equals(constraintName)) {
+                    lastCheckClause = lastCheckClause + checkClause;
+                } else {
+                    addCheckConstraints(mapOfCheckConstraints, lastTableName, lastConstraintName, lastCheckClause,
+                            combine);
+                    lastTableName = tableName;
+                    lastConstraintName = constraintName;
+                    lastCheckClause = checkClause;
+                }
+            }
+            if (lastConstraintName != null) {
+                addCheckConstraints(mapOfCheckConstraints, lastTableName, lastConstraintName, lastCheckClause, combine);
             }
         } finally {
             try {
@@ -2013,6 +2022,19 @@ public class DbResolverBean implements DbResolver {
             }
         }
         return mapOfCheckConstraints;
+    }
+
+    private void addCheckConstraints(Map<String, List<String>> mapOfCheckConstraints, String tableName,
+            String constraintName, String checkClause, boolean combine) {
+        System.out.println(tableName + " constraintName " + constraintName + ", " + " checkClause " + checkClause);
+        List<String> list = new ArrayList<String>();
+        list.add(checkClause);
+        list.add(tableName);
+        list.add(constraintName);
+        if (combine)
+            mapOfCheckConstraints.put(tableName + constraintName, list);
+        else
+            mapOfCheckConstraints.put(constraintName, list);
     }
 
     private void dump(ResultSetMetaData meta) throws SQLException {
