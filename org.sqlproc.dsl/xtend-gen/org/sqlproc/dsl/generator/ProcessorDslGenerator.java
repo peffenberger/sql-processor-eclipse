@@ -1079,8 +1079,8 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.append(_compileType_2, "");
     _builder.append(" get");
     String _name_1 = f.getName();
-    String _firstUpper = StringExtensions.toFirstUpper(_name_1);
-    _builder.append(_firstUpper, "");
+    String __toFirstUpper = Utils._toFirstUpper(_name_1);
+    _builder.append(__toFirstUpper, "");
     _builder.append("() {");
     _builder.newLineIfNotEmpty();
     _builder.append("  ");
@@ -1126,8 +1126,8 @@ public class ProcessorDslGenerator implements IGenerator {
     }
     _builder.append("public void set");
     String _name_3 = f.getName();
-    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_3);
-    _builder.append(_firstUpper_1, "");
+    String __toFirstUpper_1 = Utils._toFirstUpper(_name_3);
+    _builder.append(__toFirstUpper_1, "");
     _builder.append("(");
     CharSequence _compileType_3 = this.compileType(f, im);
     _builder.append(_compileType_3, "");
@@ -1165,8 +1165,8 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.append(_name_8, "    ");
         _builder.append(".get");
         String _updateColumn1_1 = Utils.getUpdateColumn1(f);
-        String _firstUpper_2 = StringExtensions.toFirstUpper(_updateColumn1_1);
-        _builder.append(_firstUpper_2, "    ");
+        String __toFirstUpper_2 = Utils._toFirstUpper(_updateColumn1_1);
+        _builder.append(__toFirstUpper_2, "    ");
         _builder.append("();");
         _builder.newLineIfNotEmpty();
       }
@@ -1199,8 +1199,8 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.append(_createColumn1_4, "  ");
         _builder.append(".set");
         String _createColumn2 = Utils.getCreateColumn2(f);
-        String _firstUpper_3 = StringExtensions.toFirstUpper(_createColumn2);
-        _builder.append(_firstUpper_3, "  ");
+        String __toFirstUpper_3 = Utils._toFirstUpper(_createColumn2);
+        _builder.append(__toFirstUpper_3, "  ");
         _builder.append("(");
         String _name_9 = f.getName();
         _builder.append(_name_9, "  ");
@@ -1216,8 +1216,8 @@ public class ProcessorDslGenerator implements IGenerator {
     _builder.append(_name_10, "");
     _builder.append(" _set");
     String _name_11 = f.getName();
-    String _firstUpper_4 = StringExtensions.toFirstUpper(_name_11);
-    _builder.append(_firstUpper_4, "");
+    String __toFirstUpper_4 = Utils._toFirstUpper(_name_11);
+    _builder.append(__toFirstUpper_4, "");
     _builder.append("(");
     CharSequence _compileType_5 = this.compileType(f, im);
     _builder.append(_compileType_5, "");
@@ -1255,8 +1255,8 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.append(_name_16, "    ");
         _builder.append(".get");
         String _updateColumn1_3 = Utils.getUpdateColumn1(f);
-        String _firstUpper_5 = StringExtensions.toFirstUpper(_updateColumn1_3);
-        _builder.append(_firstUpper_5, "    ");
+        String __toFirstUpper_5 = Utils._toFirstUpper(_updateColumn1_3);
+        _builder.append(__toFirstUpper_5, "    ");
         _builder.append("();");
         _builder.newLineIfNotEmpty();
       }
@@ -1289,8 +1289,8 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.append(_createColumn1_9, "  ");
         _builder.append(".set");
         String _createColumn2_1 = Utils.getCreateColumn2(f);
-        String _firstUpper_6 = StringExtensions.toFirstUpper(_createColumn2_1);
-        _builder.append(_firstUpper_6, "  ");
+        String __toFirstUpper_6 = Utils._toFirstUpper(_createColumn2_1);
+        _builder.append(__toFirstUpper_6, "  ");
         _builder.append("(");
         String _name_17 = f.getName();
         _builder.append(_name_17, "  ");
@@ -1323,8 +1323,8 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.newLine();
         _builder.append("public String get");
         String _name_19 = f.getName();
-        String _firstUpper_7 = StringExtensions.toFirstUpper(_name_19);
-        _builder.append(_firstUpper_7, "");
+        String __toFirstUpper_7 = Utils._toFirstUpper(_name_19);
+        _builder.append(__toFirstUpper_7, "");
         _builder.append(operatorSuffix, "");
         _builder.append("() {");
         _builder.newLineIfNotEmpty();
@@ -1340,8 +1340,8 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.newLine();
         _builder.append("public void set");
         String _name_21 = f.getName();
-        String _firstUpper_8 = StringExtensions.toFirstUpper(_name_21);
-        _builder.append(_firstUpper_8, "");
+        String __toFirstUpper_8 = Utils._toFirstUpper(_name_21);
+        _builder.append(__toFirstUpper_8, "");
         _builder.append(operatorSuffix, "");
         _builder.append("(String ");
         String _name_22 = f.getName();
@@ -1368,8 +1368,8 @@ public class ProcessorDslGenerator implements IGenerator {
         _builder.append(_name_25, "");
         _builder.append(" _set");
         String _name_26 = f.getName();
-        String _firstUpper_9 = StringExtensions.toFirstUpper(_name_26);
-        _builder.append(_firstUpper_9, "");
+        String __toFirstUpper_9 = Utils._toFirstUpper(_name_26);
+        _builder.append(__toFirstUpper_9, "");
         _builder.append(operatorSuffix, "");
         _builder.append("(String ");
         String _name_27 = f.getName();

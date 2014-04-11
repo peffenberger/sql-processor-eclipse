@@ -235,51 +235,51 @@ def compile(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEnt
     «FOR a:aaf.getterAnnotations»
     @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
-    public «f.compileType(im)» get«f.name.toFirstUpper»() {
+    public «f.compileType(im)» get«_toFirstUpper(f.name)»() {
       return «f.name»;
     }
 
     «FOR a:aaf.setterAnnotations»
     @«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
     «ENDFOR»
-    public void set«f.name.toFirstUpper»(«f.compileType(im)» «f.name») {
+    public void set«_toFirstUpper(f.name)»(«f.compileType(im)» «f.name») {
       this.«f.name» = «f.name»;
       «IF getUpdateColumn1(f) != null»
       if (this.«f.name» != null)
-        this.«getUpdateColumn2(f)» = this.«f.name».get«getUpdateColumn1(f).toFirstUpper»();
+        this.«getUpdateColumn2(f)» = this.«f.name».get«_toFirstUpper(getUpdateColumn1(f))»();
       «ENDIF»
       «IF getCreateColumn1(f) != null»
         if (this.«getCreateColumn1(f)» == null)
             this.«getCreateColumn1(f)» = new «getAttribute(e, getCreateColumn1(f)).compileType(im)»();
-        this.«getCreateColumn1(f)».set«getCreateColumn2(f).toFirstUpper»(«f.name»);
+        this.«getCreateColumn1(f)».set«_toFirstUpper(getCreateColumn2(f))»(«f.name»);
       «ENDIF»
     }
 
-    public «e.name» _set«f.name.toFirstUpper»(«f.compileType(im)» «f.name») {
+    public «e.name» _set«_toFirstUpper(f.name)»(«f.compileType(im)» «f.name») {
       this.«f.name» = «f.name»;
       «IF getUpdateColumn1(f) != null»
       if (this.«f.name» != null)
-        this.«getUpdateColumn2(f)» = this.«f.name».get«getUpdateColumn1(f).toFirstUpper»();
+        this.«getUpdateColumn2(f)» = this.«f.name».get«_toFirstUpper(getUpdateColumn1(f))»();
       «ENDIF»
       «IF getCreateColumn1(f) != null»
         if (this.«getCreateColumn1(f)» == null)
             this.«getCreateColumn1(f)» = new «getAttribute(e, getCreateColumn1(f)).compileType(im)»();
-        this.«getCreateColumn1(f)».set«getCreateColumn2(f).toFirstUpper»(«f.name»);
+        this.«getCreateColumn1(f)».set«_toFirstUpper(getCreateColumn2(f))»(«f.name»);
       «ENDIF»
       return this;
     }«IF hasOperators(e) && operatorSuffix != null»
 
     private String «f.name»«operatorSuffix»;
 
-    public String get«f.name.toFirstUpper»«operatorSuffix»() {
+    public String get«_toFirstUpper(f.name)»«operatorSuffix»() {
       return «f.name»«operatorSuffix»;
     }
 
-    public void set«f.name.toFirstUpper»«operatorSuffix»(String «f.name»«operatorSuffix») {
+    public void set«_toFirstUpper(f.name)»«operatorSuffix»(String «f.name»«operatorSuffix») {
       this.«f.name»«operatorSuffix» = «f.name»«operatorSuffix»;
     }
 
-    public «e.name» _set«f.name.toFirstUpper»«operatorSuffix»(String «f.name»«operatorSuffix») {
+    public «e.name» _set«_toFirstUpper(f.name)»«operatorSuffix»(String «f.name»«operatorSuffix») {
       this.«f.name»«operatorSuffix» = «f.name»«operatorSuffix»;
       return this;
     }«ENDIF»

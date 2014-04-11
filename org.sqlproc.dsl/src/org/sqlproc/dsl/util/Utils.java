@@ -981,4 +981,16 @@ public class Utils {
 
         };
     }
+
+    public static String _toFirstUpper(String name) {
+        int l = name.length();
+        if (l == 0)
+            return name;
+        if (l == 1)
+            return name.toUpperCase();
+        char c = name.charAt(1);
+        if (Character.isUpperCase(c))
+            return name;
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
+    }
 }
