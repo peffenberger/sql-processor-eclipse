@@ -676,6 +676,18 @@ public class DbResolverBean implements DbResolver {
     }
 
     @Override
+    public boolean checkTableName(EObject model, String table) {
+        if (table == null)
+            return false;
+        DatabaseDirectives modelDatabaseValues = getConnection(model);
+        String origName = origName(model, modelDatabaseValues, table);
+        System.out.println(table + " -> " + origName);
+        if (origName == null)
+            return false;
+        return true;
+    }
+
+    @Override
     public boolean checkProcedure(EObject model, String procedure) {
         if (procedure == null)
             return false;

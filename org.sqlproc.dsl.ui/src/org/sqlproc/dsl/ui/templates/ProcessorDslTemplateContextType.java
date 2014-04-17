@@ -880,6 +880,8 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                 for (String table : tables) {
                     if (table.toUpperCase().startsWith("BIN$"))
                         continue;
+                    if (!dbResolver.checkTable(artifacts, table))
+                        continue;
                     List<DbColumn> dbColumns = dbResolver.getDbColumns(artifacts, table);
                     if (dbColumns.isEmpty())
                         continue;

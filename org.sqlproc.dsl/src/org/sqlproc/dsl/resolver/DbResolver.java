@@ -133,4 +133,6 @@ public interface DbResolver {
     String getProcType(EObject model, String procedure, String column);
 
     String getFunType(EObject model, String function, String column);
+
+    boolean checkTableName(EObject model, String table);
 }
