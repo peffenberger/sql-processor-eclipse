@@ -1461,7 +1461,6 @@ def isImplements(PojoEntity e) {
 				if (ee.name == e.name)
 					return true
 			}
-			return false
 		}
 		for (ee : ext.exceptPojos) {
 			if (ee.name == e.name)
@@ -1545,7 +1544,6 @@ def isImplements(PojoDao e) {
 				if (ee.name == e.name)
 					return true
 			}
-			return false
 		}
 		for (ee : ext.exceptDaos) {
 			if (ee.name == e.name)

@@ -7975,7 +7975,6 @@ public class ProcessorDslGenerator implements IGenerator {
               return true;
             }
           }
-          return false;
         }
         EList<PojoEntity> _exceptPojos = ext.getExceptPojos();
         for (final PojoEntity ee_1 : _exceptPojos) {
@@ -8133,7 +8132,6 @@ public class ProcessorDslGenerator implements IGenerator {
               return true;
             }
           }
-          return false;
         }
         EList<PojoDao> _exceptDaos = ext.getExceptDaos();
         for (final PojoDao ee_1 : _exceptDaos) {
