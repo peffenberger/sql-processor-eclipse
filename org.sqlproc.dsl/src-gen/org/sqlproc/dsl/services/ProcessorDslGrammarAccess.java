@@ -7900,15 +7900,15 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
 		private final RuleCall cValueSTRING_VALUETerminalRuleCall_3_1_0 = (RuleCall)cValueAssignment_3_1.eContents().get(0);
 		private final Assignment cConstantAssignment_3_2 = (Assignment)cAlternatives_3.eContents().get(2);
-		private final RuleCall cConstantIDENTTerminalRuleCall_3_2_0 = (RuleCall)cConstantAssignment_3_2.eContents().get(0);
+		private final RuleCall cConstantIDENT_DOTTerminalRuleCall_3_2_0 = (RuleCall)cConstantAssignment_3_2.eContents().get(0);
 		
 		//AnnotationProperty:
 		//	COMMA? name=IDENT (COLON (COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]))? (number=NUMBER |
-		//	value=STRING_VALUE | constant=IDENT);
+		//	value=STRING_VALUE | constant=IDENT_DOT);
 		public ParserRule getRule() { return rule; }
 
 		//COMMA? name=IDENT (COLON (COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]))? (number=NUMBER |
-		//value=STRING_VALUE | constant=IDENT)
+		//value=STRING_VALUE | constant=IDENT_DOT)
 		public Group getGroup() { return cGroup; }
 
 		//COMMA?
@@ -7953,7 +7953,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getTypeJvmTypeQualifiedNameParserRuleCall_2_1_1_0_1() { return cTypeJvmTypeQualifiedNameParserRuleCall_2_1_1_0_1; }
 
-		//number=NUMBER | value=STRING_VALUE | constant=IDENT
+		//number=NUMBER | value=STRING_VALUE | constant=IDENT_DOT
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 
 		//number=NUMBER
@@ -7968,11 +7968,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING_VALUE
 		public RuleCall getValueSTRING_VALUETerminalRuleCall_3_1_0() { return cValueSTRING_VALUETerminalRuleCall_3_1_0; }
 
-		//constant=IDENT
+		//constant=IDENT_DOT
 		public Assignment getConstantAssignment_3_2() { return cConstantAssignment_3_2; }
 
-		//IDENT
-		public RuleCall getConstantIDENTTerminalRuleCall_3_2_0() { return cConstantIDENTTerminalRuleCall_3_2_0; }
+		//IDENT_DOT
+		public RuleCall getConstantIDENT_DOTTerminalRuleCall_3_2_0() { return cConstantIDENT_DOTTerminalRuleCall_3_2_0; }
 	}
 
 	public class EntityElements extends AbstractParserRuleElementFinder {
@@ -10861,7 +10861,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	//AnnotationProperty:
 	//	COMMA? name=IDENT (COLON (COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]))? (number=NUMBER |
-	//	value=STRING_VALUE | constant=IDENT);
+	//	value=STRING_VALUE | constant=IDENT_DOT);
 	public AnnotationPropertyElements getAnnotationPropertyAccess() {
 		return (pAnnotationProperty != null) ? pAnnotationProperty : (pAnnotationProperty = new AnnotationPropertyElements());
 	}

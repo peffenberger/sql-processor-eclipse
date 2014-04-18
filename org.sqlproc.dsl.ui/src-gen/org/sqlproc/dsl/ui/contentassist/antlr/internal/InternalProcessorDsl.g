@@ -44553,8 +44553,8 @@ rule__AnnotationProperty__ConstantAssignment_3_2
     }
 :
 (
-{ before(grammarAccess.getAnnotationPropertyAccess().getConstantIDENTTerminalRuleCall_3_2_0()); }
-	RULE_IDENT{ after(grammarAccess.getAnnotationPropertyAccess().getConstantIDENTTerminalRuleCall_3_2_0()); }
+{ before(grammarAccess.getAnnotationPropertyAccess().getConstantIDENT_DOTTerminalRuleCall_3_2_0()); }
+	RULE_IDENT_DOT{ after(grammarAccess.getAnnotationPropertyAccess().getConstantIDENT_DOTTerminalRuleCall_3_2_0()); }
 )
 
 ;
