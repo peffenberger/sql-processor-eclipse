@@ -3292,7 +3292,7 @@
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.106"/>
         </elements>
         <elements xsi:type="xtext:Assignment" feature="constant" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.74"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.75"/>
         </elements>
       </elements>
     </alternatives>

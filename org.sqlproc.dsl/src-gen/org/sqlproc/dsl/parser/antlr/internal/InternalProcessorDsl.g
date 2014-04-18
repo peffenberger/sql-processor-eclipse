@@ -12950,9 +12950,9 @@ ruleAnnotationProperty returns [EObject current=null]
 )
     |(
 (
-		lv_constant_8_0=RULE_IDENT_DOT
+		lv_constant_8_0=RULE_IDENT
 		{
-			newLeafNode(lv_constant_8_0, grammarAccess.getAnnotationPropertyAccess().getConstantIDENT_DOTTerminalRuleCall_3_2_0()); 
+			newLeafNode(lv_constant_8_0, grammarAccess.getAnnotationPropertyAccess().getConstantIDENTTerminalRuleCall_3_2_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -12962,7 +12962,7 @@ ruleAnnotationProperty returns [EObject current=null]
        			$current, 
        			"constant",
         		lv_constant_8_0, 
-        		"IDENT_DOT");
+        		"IDENT");
 	    }
 
 )

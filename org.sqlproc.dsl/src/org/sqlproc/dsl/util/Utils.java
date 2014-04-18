@@ -89,6 +89,8 @@ public class Utils {
         if (value != null)
             return value;
         value = a.getConstant();
+        if (value != null)
+            value = value.replaceAll("___", ".");
         if (a.getType() != null || a.getRef() != null)
             return "." + value;
         return value;
