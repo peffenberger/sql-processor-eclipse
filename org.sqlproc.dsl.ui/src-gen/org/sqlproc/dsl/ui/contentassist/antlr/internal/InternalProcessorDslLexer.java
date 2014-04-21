@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class InternalProcessorDslLexer extends Lexer {
     public static final int T__159=159;
     public static final int T__158=158;
-    public static final int RULE_PERCENT=28;
     public static final int RULE_OR=31;
+    public static final int RULE_PERCENT=28;
     public static final int T__160=160;
     public static final int RULE_AND=30;
     public static final int T__167=167;
@@ -99,8 +99,8 @@ public class InternalProcessorDslLexer extends Lexer {
     public static final int T__131=131;
     public static final int T__73=73;
     public static final int T__132=132;
-    public static final int T__133=133;
     public static final int T__79=79;
+    public static final int T__133=133;
     public static final int T__78=78;
     public static final int T__134=134;
     public static final int RULE_AT=23;

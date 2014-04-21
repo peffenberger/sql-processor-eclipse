@@ -30,7 +30,7 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     try
     {
-      ProcessorDslFactory theProcessorDslFactory = (ProcessorDslFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.sqlproc.org/dsl/ProcessorDsl"); 
+      ProcessorDslFactory theProcessorDslFactory = (ProcessorDslFactory)EPackage.Registry.INSTANCE.getEFactory(ProcessorDslPackage.eNS_URI);
       if (theProcessorDslFactory != null)
       {
         return theProcessorDslFactory;

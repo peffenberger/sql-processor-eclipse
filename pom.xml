@@ -98,12 +98,10 @@
     </dependencyManagement>
     <repositories>
         <repository>
-            <id>p2.eclipse.juno</id>
-            <url>http://download.eclipse.org/releases/juno</url>
+            <id>p2.eclipse.kepler</id>
+            <url>http://download.eclipse.org/releases/kepler</url>
             <layout>p2</layout>
         </repository>
-        <!-- repository> <id>p2.eclipse.orbit</id> <url>http://download.eclipse.org/tools/orbit/downloads/drops/R20110523182458/repository</url> 
-            <layout>p2</layout> </repository -->
     </repositories>
     <pluginRepositories>
         <pluginRepository>
