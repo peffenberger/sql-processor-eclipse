@@ -5344,28 +5344,28 @@ ruleMetagenProperty returns [EObject current=null]
 ))?)
     |((
 (
-		lv_name_38_0=	'column-meta-type' 
+		lv_name_38_0=	'global-idgenerator' 
     {
-        newLeafNode(lv_name_38_0, grammarAccess.getMetagenPropertyAccess().getNameColumnMetaTypeKeyword_4_0_0());
+        newLeafNode(lv_name_38_0, grammarAccess.getMetagenPropertyAccess().getNameGlobalIdgeneratorKeyword_4_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_38_0, "column-meta-type");
+       		setWithLastConsumed($current, "name", lv_name_38_0, "global-idgenerator");
 	    }
 
 )
-)(this_WS_39=RULE_WS
+)((this_WS_39=RULE_WS
     { 
-    newLeafNode(this_WS_39, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_4_1()); 
+    newLeafNode(this_WS_39, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_4_1_0()); 
     }
 )+(
 (
-		lv_dbTable_40_0=RULE_IDENT
+		lv_identity_40_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbTable_40_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_4_2_0()); 
+			newLeafNode(lv_identity_40_0, grammarAccess.getMetagenPropertyAccess().getIdentityIDENTTerminalRuleCall_4_1_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -5373,309 +5373,17 @@ ruleMetagenProperty returns [EObject current=null]
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"dbTable",
-        		lv_dbTable_40_0, 
+       			"identity",
+        		lv_identity_40_0, 
         		"IDENT");
 	    }
 
 )
-)((this_WS_41=RULE_WS
-    { 
-    newLeafNode(this_WS_41, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_4_3_0()); 
-    }
-)+(
+)(
 (
-		{ 
-	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getMetaTypesMetaTypeAssignementParserRuleCall_4_3_1_0()); 
-	    }
-		lv_metaTypes_42_0=ruleMetaTypeAssignement		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMetagenPropertyRule());
-	        }
-       		add(
-       			$current, 
-       			"metaTypes",
-        		lv_metaTypes_42_0, 
-        		"MetaTypeAssignement");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))+)
-    |((
-(
-		lv_name_43_0=	'statement-meta-type' 
-    {
-        newLeafNode(lv_name_43_0, grammarAccess.getMetagenPropertyAccess().getNameStatementMetaTypeKeyword_5_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_43_0, "statement-meta-type");
-	    }
-
-)
-)(this_WS_44=RULE_WS
-    { 
-    newLeafNode(this_WS_44, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_5_1()); 
-    }
-)+(
-(
-		lv_dbStatement_45_0=RULE_IDENT
+		lv_type_41_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbStatement_45_0, grammarAccess.getMetagenPropertyAccess().getDbStatementIDENTTerminalRuleCall_5_2_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"dbStatement",
-        		lv_dbStatement_45_0, 
-        		"IDENT");
-	    }
-
-)
-)((this_WS_46=RULE_WS
-    { 
-    newLeafNode(this_WS_46, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_5_3_0()); 
-    }
-)+(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getMetaTypesMetaTypeAssignementParserRuleCall_5_3_1_0()); 
-	    }
-		lv_metaTypes_47_0=ruleMetaTypeAssignement		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMetagenPropertyRule());
-	        }
-       		add(
-       			$current, 
-       			"metaTypes",
-        		lv_metaTypes_47_0, 
-        		"MetaTypeAssignement");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))+)
-    |(
-(
-		lv_name_48_0=	'make-it-final' 
-    {
-        newLeafNode(lv_name_48_0, grammarAccess.getMetagenPropertyAccess().getNameMakeItFinalKeyword_6_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_48_0, "make-it-final");
-	    }
-
-)
-)
-    |((
-(
-		lv_name_49_0=	'like-columns' 
-    {
-        newLeafNode(lv_name_49_0, grammarAccess.getMetagenPropertyAccess().getNameLikeColumnsKeyword_7_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_49_0, "like-columns");
-	    }
-
-)
-)(this_WS_50=RULE_WS
-    { 
-    newLeafNode(this_WS_50, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_7_1()); 
-    }
-)+(
-(
-		lv_dbTable_51_0=RULE_IDENT
-		{
-			newLeafNode(lv_dbTable_51_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_7_2_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"dbTable",
-        		lv_dbTable_51_0, 
-        		"IDENT");
-	    }
-
-)
-)((this_WS_52=RULE_WS
-    { 
-    newLeafNode(this_WS_52, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_7_3_0()); 
-    }
-)+(
-(
-		lv_dbColumns_53_0=RULE_IDENT
-		{
-			newLeafNode(lv_dbColumns_53_0, grammarAccess.getMetagenPropertyAccess().getDbColumnsIDENTTerminalRuleCall_7_3_1_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		addWithLastConsumed(
-       			$current, 
-       			"dbColumns",
-        		lv_dbColumns_53_0, 
-        		"IDENT");
-	    }
-
-)
-))+)
-    |((
-(
-		lv_name_54_0=	'not-like-columns' 
-    {
-        newLeafNode(lv_name_54_0, grammarAccess.getMetagenPropertyAccess().getNameNotLikeColumnsKeyword_8_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_54_0, "not-like-columns");
-	    }
-
-)
-)(this_WS_55=RULE_WS
-    { 
-    newLeafNode(this_WS_55, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_8_1()); 
-    }
-)+(
-(
-		lv_dbTable_56_0=RULE_IDENT
-		{
-			newLeafNode(lv_dbTable_56_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_8_2_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"dbTable",
-        		lv_dbTable_56_0, 
-        		"IDENT");
-	    }
-
-)
-)((this_WS_57=RULE_WS
-    { 
-    newLeafNode(this_WS_57, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_8_3_0()); 
-    }
-)+(
-(
-		lv_dbColumns_58_0=RULE_IDENT
-		{
-			newLeafNode(lv_dbColumns_58_0, grammarAccess.getMetagenPropertyAccess().getDbColumnsIDENTTerminalRuleCall_8_3_1_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		addWithLastConsumed(
-       			$current, 
-       			"dbColumns",
-        		lv_dbColumns_58_0, 
-        		"IDENT");
-	    }
-
-)
-))+)
-    |(
-(
-		lv_name_59_0=	'generate-sequences' 
-    {
-        newLeafNode(lv_name_59_0, grammarAccess.getMetagenPropertyAccess().getNameGenerateSequencesKeyword_9_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_59_0, "generate-sequences");
-	    }
-
-)
-)
-    |(
-(
-		lv_name_60_0=	'generate-identities' 
-    {
-        newLeafNode(lv_name_60_0, grammarAccess.getMetagenPropertyAccess().getNameGenerateIdentitiesKeyword_10_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_60_0, "generate-identities");
-	    }
-
-)
-)
-    |((
-(
-		lv_name_61_0=	'function-result' 
-    {
-        newLeafNode(lv_name_61_0, grammarAccess.getMetagenPropertyAccess().getNameFunctionResultKeyword_11_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_61_0, "function-result");
-	    }
-
-)
-)(this_WS_62=RULE_WS
-    { 
-    newLeafNode(this_WS_62, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_11_1()); 
-    }
-)+(
-(
-		lv_dbFunction_63_0=RULE_IDENT
-		{
-			newLeafNode(lv_dbFunction_63_0, grammarAccess.getMetagenPropertyAccess().getDbFunctionIDENTTerminalRuleCall_11_2_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"dbFunction",
-        		lv_dbFunction_63_0, 
-        		"IDENT");
-	    }
-
-)
-)(this_WS_64=RULE_WS
-    { 
-    newLeafNode(this_WS_64, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_11_3()); 
-    }
-)+(
-(
-		lv_type_65_0=RULE_IDENT
-		{
-			newLeafNode(lv_type_65_0, grammarAccess.getMetagenPropertyAccess().getTypeIDENTTerminalRuleCall_11_4_0()); 
+			newLeafNode(lv_type_41_0, grammarAccess.getMetagenPropertyAccess().getTypeIDENTTerminalRuleCall_4_1_2_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -5684,210 +5392,28 @@ ruleMetagenProperty returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"type",
-        		lv_type_65_0, 
+        		lv_type_41_0, 
         		"IDENT");
 	    }
 
 )
-))
-    |((
-(
-		lv_name_66_0=	'function-result-set' 
-    {
-        newLeafNode(lv_name_66_0, grammarAccess.getMetagenPropertyAccess().getNameFunctionResultSetKeyword_12_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_66_0, "function-result-set");
-	    }
-
-)
-)(this_WS_67=RULE_WS
+)?)?((this_WS_42=RULE_WS
     { 
-    newLeafNode(this_WS_67, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_12_1()); 
+    newLeafNode(this_WS_42, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_4_2_0()); 
+    }
+)+this_PLUS_43=RULE_PLUS
+    { 
+    newLeafNode(this_PLUS_43, grammarAccess.getMetagenPropertyAccess().getPLUSTerminalRuleCall_4_2_1()); 
+    }
+((this_WS_44=RULE_WS
+    { 
+    newLeafNode(this_WS_44, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_4_2_2_0()); 
     }
 )+(
 (
-		lv_dbFunction_68_0=RULE_IDENT
+		lv_dbTables_45_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbFunction_68_0, grammarAccess.getMetagenPropertyAccess().getDbFunctionIDENTTerminalRuleCall_12_2_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"dbFunction",
-        		lv_dbFunction_68_0, 
-        		"IDENT");
-	    }
-
-)
-)(this_WS_69=RULE_WS
-    { 
-    newLeafNode(this_WS_69, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_12_3()); 
-    }
-)+(
-(
-		lv_dbTable_70_0=RULE_IDENT
-		{
-			newLeafNode(lv_dbTable_70_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_12_4_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"dbTable",
-        		lv_dbTable_70_0, 
-        		"IDENT");
-	    }
-
-)
-))
-    |((
-(
-		lv_name_71_0=	'procedure-result-set' 
-    {
-        newLeafNode(lv_name_71_0, grammarAccess.getMetagenPropertyAccess().getNameProcedureResultSetKeyword_13_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_71_0, "procedure-result-set");
-	    }
-
-)
-)(this_WS_72=RULE_WS
-    { 
-    newLeafNode(this_WS_72, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_13_1()); 
-    }
-)+(
-(
-		lv_dbProcedure_73_0=RULE_IDENT
-		{
-			newLeafNode(lv_dbProcedure_73_0, grammarAccess.getMetagenPropertyAccess().getDbProcedureIDENTTerminalRuleCall_13_2_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"dbProcedure",
-        		lv_dbProcedure_73_0, 
-        		"IDENT");
-	    }
-
-)
-)(this_WS_74=RULE_WS
-    { 
-    newLeafNode(this_WS_74, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_13_3()); 
-    }
-)+(
-(
-		lv_dbTable_75_0=RULE_IDENT
-		{
-			newLeafNode(lv_dbTable_75_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_13_4_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"dbTable",
-        		lv_dbTable_75_0, 
-        		"IDENT");
-	    }
-
-)
-))
-    |((
-(
-		lv_name_76_0=	'debug-level' 
-    {
-        newLeafNode(lv_name_76_0, grammarAccess.getMetagenPropertyAccess().getNameDebugLevelKeyword_14_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_76_0, "debug-level");
-	    }
-
-)
-)(this_WS_77=RULE_WS
-    { 
-    newLeafNode(this_WS_77, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_14_1()); 
-    }
-)+(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getDebugDebugLevelAssignementParserRuleCall_14_2_0()); 
-	    }
-		lv_debug_78_0=ruleDebugLevelAssignement		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMetagenPropertyRule());
-	        }
-       		set(
-       			$current, 
-       			"debug",
-        		lv_debug_78_0, 
-        		"DebugLevelAssignement");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-    |(
-(
-		lv_name_79_0=	'generate-operators' 
-    {
-        newLeafNode(lv_name_79_0, grammarAccess.getMetagenPropertyAccess().getNameGenerateOperatorsKeyword_15_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_79_0, "generate-operators");
-	    }
-
-)
-)
-    |((
-(
-		lv_name_80_0=	'optimize-insert' 
-    {
-        newLeafNode(lv_name_80_0, grammarAccess.getMetagenPropertyAccess().getNameOptimizeInsertKeyword_16_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_80_0, "optimize-insert");
-	    }
-
-)
-)((this_WS_81=RULE_WS
-    { 
-    newLeafNode(this_WS_81, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_16_1_0()); 
-    }
-)+(
-(
-		lv_dbTables_82_0=RULE_IDENT
-		{
-			newLeafNode(lv_dbTables_82_0, grammarAccess.getMetagenPropertyAccess().getDbTablesIDENTTerminalRuleCall_16_1_1_0()); 
+			newLeafNode(lv_dbTables_45_0, grammarAccess.getMetagenPropertyAccess().getDbTablesIDENTTerminalRuleCall_4_2_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -5896,36 +5422,406 @@ ruleMetagenProperty returns [EObject current=null]
        		addWithLastConsumed(
        			$current, 
        			"dbTables",
-        		lv_dbTables_82_0, 
+        		lv_dbTables_45_0, 
         		"IDENT");
 	    }
 
 )
-))*)
+))+)?((this_WS_46=RULE_WS
+    { 
+    newLeafNode(this_WS_46, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_4_3_0()); 
+    }
+)+this_MINUS_47=RULE_MINUS
+    { 
+    newLeafNode(this_MINUS_47, grammarAccess.getMetagenPropertyAccess().getMINUSTerminalRuleCall_4_3_1()); 
+    }
+((this_WS_48=RULE_WS
+    { 
+    newLeafNode(this_WS_48, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_4_3_2_0()); 
+    }
+)+(
+(
+		lv_dbNotTables_49_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbNotTables_49_0, grammarAccess.getMetagenPropertyAccess().getDbNotTablesIDENTTerminalRuleCall_4_3_2_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"dbNotTables",
+        		lv_dbNotTables_49_0, 
+        		"IDENT");
+	    }
+
+)
+))+)?)
     |((
 (
-		lv_name_83_0=	'optional-features' 
+		lv_name_50_0=	'table-idgenerator' 
     {
-        newLeafNode(lv_name_83_0, grammarAccess.getMetagenPropertyAccess().getNameOptionalFeaturesKeyword_17_0_0());
+        newLeafNode(lv_name_50_0, grammarAccess.getMetagenPropertyAccess().getNameTableIdgeneratorKeyword_5_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_83_0, "optional-features");
+       		setWithLastConsumed($current, "name", lv_name_50_0, "table-idgenerator");
 	    }
 
 )
-)(this_WS_84=RULE_WS
+)(this_WS_51=RULE_WS
     { 
-    newLeafNode(this_WS_84, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_17_1()); 
+    newLeafNode(this_WS_51, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_5_1()); 
     }
 )+(
 (
-		lv_dbStatement_85_0=RULE_IDENT
+		lv_dbTable_52_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbStatement_85_0, grammarAccess.getMetagenPropertyAccess().getDbStatementIDENTTerminalRuleCall_17_2_0()); 
+			newLeafNode(lv_dbTable_52_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_5_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dbTable",
+        		lv_dbTable_52_0, 
+        		"IDENT");
+	    }
+
+)
+)(this_WS_53=RULE_WS
+    { 
+    newLeafNode(this_WS_53, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_5_3()); 
+    }
+)+(
+(
+		lv_identity_54_0=RULE_IDENT
+		{
+			newLeafNode(lv_identity_54_0, grammarAccess.getMetagenPropertyAccess().getIdentityIDENTTerminalRuleCall_5_4_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"identity",
+        		lv_identity_54_0, 
+        		"IDENT");
+	    }
+
+)
+)((this_WS_55=RULE_WS
+    { 
+    newLeafNode(this_WS_55, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_5_5_0()); 
+    }
+)+(
+(
+		lv_type_56_0=RULE_IDENT
+		{
+			newLeafNode(lv_type_56_0, grammarAccess.getMetagenPropertyAccess().getTypeIDENTTerminalRuleCall_5_5_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"type",
+        		lv_type_56_0, 
+        		"IDENT");
+	    }
+
+)
+))?)
+    |((
+(
+		lv_name_57_0=	'global-indirect-idgenerator' 
+    {
+        newLeafNode(lv_name_57_0, grammarAccess.getMetagenPropertyAccess().getNameGlobalIndirectIdgeneratorKeyword_6_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_57_0, "global-indirect-idgenerator");
+	    }
+
+)
+)((this_WS_58=RULE_WS
+    { 
+    newLeafNode(this_WS_58, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_6_1_0()); 
+    }
+)+(
+(
+		lv_identity_59_0=RULE_IDENT
+		{
+			newLeafNode(lv_identity_59_0, grammarAccess.getMetagenPropertyAccess().getIdentityIDENTTerminalRuleCall_6_1_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"identity",
+        		lv_identity_59_0, 
+        		"IDENT");
+	    }
+
+)
+)(
+(
+		lv_type_60_0=RULE_IDENT
+		{
+			newLeafNode(lv_type_60_0, grammarAccess.getMetagenPropertyAccess().getTypeIDENTTerminalRuleCall_6_1_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"type",
+        		lv_type_60_0, 
+        		"IDENT");
+	    }
+
+)
+)?)?((this_WS_61=RULE_WS
+    { 
+    newLeafNode(this_WS_61, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_6_2_0()); 
+    }
+)+this_PLUS_62=RULE_PLUS
+    { 
+    newLeafNode(this_PLUS_62, grammarAccess.getMetagenPropertyAccess().getPLUSTerminalRuleCall_6_2_1()); 
+    }
+((this_WS_63=RULE_WS
+    { 
+    newLeafNode(this_WS_63, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_6_2_2_0()); 
+    }
+)+(
+(
+		lv_dbTables_64_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbTables_64_0, grammarAccess.getMetagenPropertyAccess().getDbTablesIDENTTerminalRuleCall_6_2_2_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"dbTables",
+        		lv_dbTables_64_0, 
+        		"IDENT");
+	    }
+
+)
+))+)?((this_WS_65=RULE_WS
+    { 
+    newLeafNode(this_WS_65, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_6_3_0()); 
+    }
+)+this_MINUS_66=RULE_MINUS
+    { 
+    newLeafNode(this_MINUS_66, grammarAccess.getMetagenPropertyAccess().getMINUSTerminalRuleCall_6_3_1()); 
+    }
+((this_WS_67=RULE_WS
+    { 
+    newLeafNode(this_WS_67, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_6_3_2_0()); 
+    }
+)+(
+(
+		lv_dbNotTables_68_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbNotTables_68_0, grammarAccess.getMetagenPropertyAccess().getDbNotTablesIDENTTerminalRuleCall_6_3_2_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"dbNotTables",
+        		lv_dbNotTables_68_0, 
+        		"IDENT");
+	    }
+
+)
+))+)?)
+    |((
+(
+		lv_name_69_0=	'table-indirect-idgenerator' 
+    {
+        newLeafNode(lv_name_69_0, grammarAccess.getMetagenPropertyAccess().getNameTableIndirectIdgeneratorKeyword_7_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_69_0, "table-indirect-idgenerator");
+	    }
+
+)
+)(this_WS_70=RULE_WS
+    { 
+    newLeafNode(this_WS_70, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_7_1()); 
+    }
+)+(
+(
+		lv_dbTable_71_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbTable_71_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_7_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dbTable",
+        		lv_dbTable_71_0, 
+        		"IDENT");
+	    }
+
+)
+)(this_WS_72=RULE_WS
+    { 
+    newLeafNode(this_WS_72, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_7_3()); 
+    }
+)+(
+(
+		lv_identity_73_0=RULE_IDENT
+		{
+			newLeafNode(lv_identity_73_0, grammarAccess.getMetagenPropertyAccess().getIdentityIDENTTerminalRuleCall_7_4_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"identity",
+        		lv_identity_73_0, 
+        		"IDENT");
+	    }
+
+)
+)((this_WS_74=RULE_WS
+    { 
+    newLeafNode(this_WS_74, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_7_5_0()); 
+    }
+)+(
+(
+		lv_type_75_0=RULE_IDENT
+		{
+			newLeafNode(lv_type_75_0, grammarAccess.getMetagenPropertyAccess().getTypeIDENTTerminalRuleCall_7_5_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"type",
+        		lv_type_75_0, 
+        		"IDENT");
+	    }
+
+)
+))?)
+    |((
+(
+		lv_name_76_0=	'column-meta-type' 
+    {
+        newLeafNode(lv_name_76_0, grammarAccess.getMetagenPropertyAccess().getNameColumnMetaTypeKeyword_8_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_76_0, "column-meta-type");
+	    }
+
+)
+)(this_WS_77=RULE_WS
+    { 
+    newLeafNode(this_WS_77, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_8_1()); 
+    }
+)+(
+(
+		lv_dbTable_78_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbTable_78_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_8_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dbTable",
+        		lv_dbTable_78_0, 
+        		"IDENT");
+	    }
+
+)
+)((this_WS_79=RULE_WS
+    { 
+    newLeafNode(this_WS_79, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_8_3_0()); 
+    }
+)+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getMetaTypesMetaTypeAssignementParserRuleCall_8_3_1_0()); 
+	    }
+		lv_metaTypes_80_0=ruleMetaTypeAssignement		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMetagenPropertyRule());
+	        }
+       		add(
+       			$current, 
+       			"metaTypes",
+        		lv_metaTypes_80_0, 
+        		"MetaTypeAssignement");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))+)
+    |((
+(
+		lv_name_81_0=	'statement-meta-type' 
+    {
+        newLeafNode(lv_name_81_0, grammarAccess.getMetagenPropertyAccess().getNameStatementMetaTypeKeyword_9_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_81_0, "statement-meta-type");
+	    }
+
+)
+)(this_WS_82=RULE_WS
+    { 
+    newLeafNode(this_WS_82, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_9_1()); 
+    }
+)+(
+(
+		lv_dbStatement_83_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbStatement_83_0, grammarAccess.getMetagenPropertyAccess().getDbStatementIDENTTerminalRuleCall_9_2_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -5934,20 +5830,520 @@ ruleMetagenProperty returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"dbStatement",
-        		lv_dbStatement_85_0, 
+        		lv_dbStatement_83_0, 
         		"IDENT");
 	    }
 
 )
-)((this_WS_86=RULE_WS
+)((this_WS_84=RULE_WS
     { 
-    newLeafNode(this_WS_86, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_17_3_0()); 
+    newLeafNode(this_WS_84, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_9_3_0()); 
     }
 )+(
 (
-		lv_optionalFeatures_87_0=RULE_IDENT
+		{ 
+	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getMetaTypesMetaTypeAssignementParserRuleCall_9_3_1_0()); 
+	    }
+		lv_metaTypes_85_0=ruleMetaTypeAssignement		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMetagenPropertyRule());
+	        }
+       		add(
+       			$current, 
+       			"metaTypes",
+        		lv_metaTypes_85_0, 
+        		"MetaTypeAssignement");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))+)
+    |(
+(
+		lv_name_86_0=	'make-it-final' 
+    {
+        newLeafNode(lv_name_86_0, grammarAccess.getMetagenPropertyAccess().getNameMakeItFinalKeyword_10_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_86_0, "make-it-final");
+	    }
+
+)
+)
+    |((
+(
+		lv_name_87_0=	'like-columns' 
+    {
+        newLeafNode(lv_name_87_0, grammarAccess.getMetagenPropertyAccess().getNameLikeColumnsKeyword_11_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_87_0, "like-columns");
+	    }
+
+)
+)(this_WS_88=RULE_WS
+    { 
+    newLeafNode(this_WS_88, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_11_1()); 
+    }
+)+(
+(
+		lv_dbTable_89_0=RULE_IDENT
 		{
-			newLeafNode(lv_optionalFeatures_87_0, grammarAccess.getMetagenPropertyAccess().getOptionalFeaturesIDENTTerminalRuleCall_17_3_1_0()); 
+			newLeafNode(lv_dbTable_89_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_11_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dbTable",
+        		lv_dbTable_89_0, 
+        		"IDENT");
+	    }
+
+)
+)((this_WS_90=RULE_WS
+    { 
+    newLeafNode(this_WS_90, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_11_3_0()); 
+    }
+)+(
+(
+		lv_dbColumns_91_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbColumns_91_0, grammarAccess.getMetagenPropertyAccess().getDbColumnsIDENTTerminalRuleCall_11_3_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"dbColumns",
+        		lv_dbColumns_91_0, 
+        		"IDENT");
+	    }
+
+)
+))+)
+    |((
+(
+		lv_name_92_0=	'not-like-columns' 
+    {
+        newLeafNode(lv_name_92_0, grammarAccess.getMetagenPropertyAccess().getNameNotLikeColumnsKeyword_12_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_92_0, "not-like-columns");
+	    }
+
+)
+)(this_WS_93=RULE_WS
+    { 
+    newLeafNode(this_WS_93, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_12_1()); 
+    }
+)+(
+(
+		lv_dbTable_94_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbTable_94_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_12_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dbTable",
+        		lv_dbTable_94_0, 
+        		"IDENT");
+	    }
+
+)
+)((this_WS_95=RULE_WS
+    { 
+    newLeafNode(this_WS_95, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_12_3_0()); 
+    }
+)+(
+(
+		lv_dbColumns_96_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbColumns_96_0, grammarAccess.getMetagenPropertyAccess().getDbColumnsIDENTTerminalRuleCall_12_3_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"dbColumns",
+        		lv_dbColumns_96_0, 
+        		"IDENT");
+	    }
+
+)
+))+)
+    |(
+(
+		lv_name_97_0=	'generate-sequences' 
+    {
+        newLeafNode(lv_name_97_0, grammarAccess.getMetagenPropertyAccess().getNameGenerateSequencesKeyword_13_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_97_0, "generate-sequences");
+	    }
+
+)
+)
+    |(
+(
+		lv_name_98_0=	'generate-identities' 
+    {
+        newLeafNode(lv_name_98_0, grammarAccess.getMetagenPropertyAccess().getNameGenerateIdentitiesKeyword_14_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_98_0, "generate-identities");
+	    }
+
+)
+)
+    |((
+(
+		lv_name_99_0=	'function-result' 
+    {
+        newLeafNode(lv_name_99_0, grammarAccess.getMetagenPropertyAccess().getNameFunctionResultKeyword_15_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_99_0, "function-result");
+	    }
+
+)
+)(this_WS_100=RULE_WS
+    { 
+    newLeafNode(this_WS_100, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_15_1()); 
+    }
+)+(
+(
+		lv_dbFunction_101_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbFunction_101_0, grammarAccess.getMetagenPropertyAccess().getDbFunctionIDENTTerminalRuleCall_15_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dbFunction",
+        		lv_dbFunction_101_0, 
+        		"IDENT");
+	    }
+
+)
+)(this_WS_102=RULE_WS
+    { 
+    newLeafNode(this_WS_102, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_15_3()); 
+    }
+)+(
+(
+		lv_type_103_0=RULE_IDENT
+		{
+			newLeafNode(lv_type_103_0, grammarAccess.getMetagenPropertyAccess().getTypeIDENTTerminalRuleCall_15_4_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"type",
+        		lv_type_103_0, 
+        		"IDENT");
+	    }
+
+)
+))
+    |((
+(
+		lv_name_104_0=	'function-result-set' 
+    {
+        newLeafNode(lv_name_104_0, grammarAccess.getMetagenPropertyAccess().getNameFunctionResultSetKeyword_16_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_104_0, "function-result-set");
+	    }
+
+)
+)(this_WS_105=RULE_WS
+    { 
+    newLeafNode(this_WS_105, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_16_1()); 
+    }
+)+(
+(
+		lv_dbFunction_106_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbFunction_106_0, grammarAccess.getMetagenPropertyAccess().getDbFunctionIDENTTerminalRuleCall_16_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dbFunction",
+        		lv_dbFunction_106_0, 
+        		"IDENT");
+	    }
+
+)
+)(this_WS_107=RULE_WS
+    { 
+    newLeafNode(this_WS_107, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_16_3()); 
+    }
+)+(
+(
+		lv_dbTable_108_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbTable_108_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_16_4_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dbTable",
+        		lv_dbTable_108_0, 
+        		"IDENT");
+	    }
+
+)
+))
+    |((
+(
+		lv_name_109_0=	'procedure-result-set' 
+    {
+        newLeafNode(lv_name_109_0, grammarAccess.getMetagenPropertyAccess().getNameProcedureResultSetKeyword_17_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_109_0, "procedure-result-set");
+	    }
+
+)
+)(this_WS_110=RULE_WS
+    { 
+    newLeafNode(this_WS_110, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_17_1()); 
+    }
+)+(
+(
+		lv_dbProcedure_111_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbProcedure_111_0, grammarAccess.getMetagenPropertyAccess().getDbProcedureIDENTTerminalRuleCall_17_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dbProcedure",
+        		lv_dbProcedure_111_0, 
+        		"IDENT");
+	    }
+
+)
+)(this_WS_112=RULE_WS
+    { 
+    newLeafNode(this_WS_112, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_17_3()); 
+    }
+)+(
+(
+		lv_dbTable_113_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbTable_113_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_17_4_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dbTable",
+        		lv_dbTable_113_0, 
+        		"IDENT");
+	    }
+
+)
+))
+    |((
+(
+		lv_name_114_0=	'debug-level' 
+    {
+        newLeafNode(lv_name_114_0, grammarAccess.getMetagenPropertyAccess().getNameDebugLevelKeyword_18_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_114_0, "debug-level");
+	    }
+
+)
+)(this_WS_115=RULE_WS
+    { 
+    newLeafNode(this_WS_115, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_18_1()); 
+    }
+)+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getDebugDebugLevelAssignementParserRuleCall_18_2_0()); 
+	    }
+		lv_debug_116_0=ruleDebugLevelAssignement		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMetagenPropertyRule());
+	        }
+       		set(
+       			$current, 
+       			"debug",
+        		lv_debug_116_0, 
+        		"DebugLevelAssignement");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(
+(
+		lv_name_117_0=	'generate-operators' 
+    {
+        newLeafNode(lv_name_117_0, grammarAccess.getMetagenPropertyAccess().getNameGenerateOperatorsKeyword_19_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_117_0, "generate-operators");
+	    }
+
+)
+)
+    |((
+(
+		lv_name_118_0=	'optimize-insert' 
+    {
+        newLeafNode(lv_name_118_0, grammarAccess.getMetagenPropertyAccess().getNameOptimizeInsertKeyword_20_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_118_0, "optimize-insert");
+	    }
+
+)
+)((this_WS_119=RULE_WS
+    { 
+    newLeafNode(this_WS_119, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_20_1_0()); 
+    }
+)+(
+(
+		lv_dbTables_120_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbTables_120_0, grammarAccess.getMetagenPropertyAccess().getDbTablesIDENTTerminalRuleCall_20_1_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"dbTables",
+        		lv_dbTables_120_0, 
+        		"IDENT");
+	    }
+
+)
+))*)
+    |((
+(
+		lv_name_121_0=	'optional-features' 
+    {
+        newLeafNode(lv_name_121_0, grammarAccess.getMetagenPropertyAccess().getNameOptionalFeaturesKeyword_21_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_121_0, "optional-features");
+	    }
+
+)
+)(this_WS_122=RULE_WS
+    { 
+    newLeafNode(this_WS_122, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_21_1()); 
+    }
+)+(
+(
+		lv_dbStatement_123_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbStatement_123_0, grammarAccess.getMetagenPropertyAccess().getDbStatementIDENTTerminalRuleCall_21_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dbStatement",
+        		lv_dbStatement_123_0, 
+        		"IDENT");
+	    }
+
+)
+)((this_WS_124=RULE_WS
+    { 
+    newLeafNode(this_WS_124, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_21_3_0()); 
+    }
+)+(
+(
+		lv_optionalFeatures_125_0=RULE_IDENT
+		{
+			newLeafNode(lv_optionalFeatures_125_0, grammarAccess.getMetagenPropertyAccess().getOptionalFeaturesIDENTTerminalRuleCall_21_3_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -5956,7 +6352,7 @@ ruleMetagenProperty returns [EObject current=null]
        		addWithLastConsumed(
        			$current, 
        			"optionalFeatures",
-        		lv_optionalFeatures_87_0, 
+        		lv_optionalFeatures_125_0, 
         		"IDENT");
 	    }
 
@@ -5964,36 +6360,36 @@ ruleMetagenProperty returns [EObject current=null]
 ))+)
     |((
 (
-		lv_name_88_0=	'active-filter' 
+		lv_name_126_0=	'active-filter' 
     {
-        newLeafNode(lv_name_88_0, grammarAccess.getMetagenPropertyAccess().getNameActiveFilterKeyword_18_0_0());
+        newLeafNode(lv_name_126_0, grammarAccess.getMetagenPropertyAccess().getNameActiveFilterKeyword_22_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_88_0, "active-filter");
+       		setWithLastConsumed($current, "name", lv_name_126_0, "active-filter");
 	    }
 
 )
-)(this_WS_89=RULE_WS
+)(this_WS_127=RULE_WS
     { 
-    newLeafNode(this_WS_89, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_18_1()); 
+    newLeafNode(this_WS_127, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_22_1()); 
     }
 )+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getActiveFilterPropertyValueParserRuleCall_18_2_0()); 
+	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getActiveFilterPropertyValueParserRuleCall_22_2_0()); 
 	    }
-		lv_activeFilter_90_0=rulePropertyValue		{
+		lv_activeFilter_128_0=rulePropertyValue		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMetagenPropertyRule());
 	        }
        		set(
        			$current, 
        			"activeFilter",
-        		lv_activeFilter_90_0, 
+        		lv_activeFilter_128_0, 
         		"PropertyValue");
 	        afterParserOrEnumRuleCall();
 	    }
