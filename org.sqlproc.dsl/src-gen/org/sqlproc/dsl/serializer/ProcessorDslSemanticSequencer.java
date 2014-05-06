@@ -1382,6 +1382,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='not-like-columns' dbTable=IDENT dbColumns+=IDENT+) | 
 	 *         name='generate-sequences' | 
 	 *         name='generate-identities' | 
+	 *         name='generate-idgenerators' | 
+	 *         name='generate-indirect-idgenerators' | 
 	 *         (name='function-result' dbFunction=IDENT type=IDENT) | 
 	 *         (name='function-result-set' dbFunction=IDENT dbTable=IDENT) | 
 	 *         (name='procedure-result-set' dbProcedure=IDENT dbTable=IDENT) | 
