@@ -13,7 +13,7 @@ public interface DbResolver {
 
     public enum DbType {
         ORACLE("Oracle"), MY_SQL("MySQL"), HSQLDB("HSQLDB"), POSTGRESQL("PostgreSQL"), INFORMIX("Informix"), DB2("DB2"), MS_SQL(
-                "MS SQL");
+                "MSSQL");
         private static Map<String, DbType> identifierMap = new HashMap<String, DbType>();
 
         static {
@@ -45,6 +45,8 @@ public interface DbResolver {
                         || info.indexOf(dbType.getValue().toUpperCase()) >= 0)
                     result.add(dbType);
                 else if (dbType == DbType.HSQLDB && info.indexOf("HSQL") >= 0)
+                    result.add(dbType);
+                else if (dbType == DbType.MS_SQL && info.indexOf("MICROSOFT") >= 0)
                     result.add(dbType);
             }
             if (!result.isEmpty())

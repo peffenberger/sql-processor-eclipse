@@ -609,12 +609,19 @@ public class DbResolverBean implements DbResolver {
         proceduresForModel = Collections.synchronizedList(new ArrayList<String>());
         procedures.put(modelDatabaseValues.dir, proceduresForModel);
         if (modelDatabaseValues.connection != null) {
+            DbType dbType = getDbType(model);
             ResultSet result = null;
             try {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
                 result = meta.getProcedures(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, null);
                 while (result.next()) {
-                    proceduresForModel.add(name(modelDatabaseValues, result.getString("PROCEDURE_NAME")));
+                    String name = result.getString("PROCEDURE_NAME");
+                    if (dbType == DbType.MS_SQL) {
+                        int ix = name.lastIndexOf(";");
+                        if (ix >= 0)
+                            name = name.substring(0, ix);
+                    }
+                    proceduresForModel.add(name(modelDatabaseValues, name));
                 }
             } catch (SQLException e) {
                 error("getProcedures error " + e, e);
@@ -651,7 +658,13 @@ public class DbResolverBean implements DbResolver {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
                 result = meta.getFunctions(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, null);
                 while (result.next()) {
-                    functionsForModel.add(name(modelDatabaseValues, result.getString("FUNCTION_NAME")));
+                    String name = result.getString("FUNCTION_NAME");
+                    if (dbType == DbType.MS_SQL) {
+                        int ix = name.lastIndexOf(";");
+                        if (ix >= 0)
+                            name = name.substring(0, ix);
+                    }
+                    functionsForModel.add(name(modelDatabaseValues, name));
                 }
             } catch (SQLException e) {
                 error("getFunctions error " + e, e);
@@ -779,13 +792,19 @@ public class DbResolverBean implements DbResolver {
         if (!doInit)
             return columnsForModel;
         if (modelDatabaseValues.connection != null) {
+            DbType dbType = getDbType(model);
             ResultSet result = null;
             try {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
                 result = meta.getProcedureColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema,
                         origName(model, modelDatabaseValues, table), null);
                 while (result.next()) {
-                    columnsForModel.add(name(modelDatabaseValues, result.getString("COLUMN_NAME")));
+                    String name = result.getString("COLUMN_NAME");
+                    if (dbType == DbType.MS_SQL) {
+                        if (name.startsWith("@"))
+                            name = name.substring(1);
+                    }
+                    columnsForModel.add(name(modelDatabaseValues, name));
                 }
             } catch (SQLException e) {
                 error("getProcColumns error " + e, e);
@@ -835,13 +854,19 @@ public class DbResolverBean implements DbResolver {
         if (!doInit)
             return columnsForModel;
         if (modelDatabaseValues.connection != null) {
+            DbType dbType = getDbType(model);
             ResultSet result = null;
             try {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
                 result = meta.getFunctionColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema,
                         origName(model, modelDatabaseValues, table), null);
                 while (result.next()) {
-                    columnsForModel.add(name(modelDatabaseValues, result.getString("COLUMN_NAME")));
+                    String name = result.getString("COLUMN_NAME");
+                    if (dbType == DbType.MS_SQL) {
+                        if (name.startsWith("@"))
+                            name = name.substring(1);
+                    }
+                    columnsForModel.add(name(modelDatabaseValues, name));
                 }
             } catch (SQLException e) {
                 error("getFunColumns error " + e, e);
@@ -1023,14 +1048,21 @@ public class DbResolverBean implements DbResolver {
         if (!doInit)
             return tablesForModel;
         if (modelDatabaseValues.connection != null) {
+            DbType dbType = getDbType(model);
             ResultSet result = null;
             try {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
                 result = meta.getProcedures(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema,
                         origName(model, modelDatabaseValues, table));
                 while (result.next()) {
+                    String name = result.getString("PROCEDURE_NAME");
+                    if (dbType == DbType.MS_SQL) {
+                        int ix = name.lastIndexOf(";");
+                        if (ix >= 0)
+                            name = name.substring(0, ix);
+                    }
                     DbTable dbTable = new DbTable();
-                    dbTable.setName(name(modelDatabaseValues, result.getString("PROCEDURE_NAME")));
+                    dbTable.setName(name(modelDatabaseValues, name));
                     dbTable.setPtype(result.getShort("PROCEDURE_TYPE"));
                     if (modelDatabaseValues.dbTakeComments)
                         dbTable.setComment(result.getString("REMARKS"));
@@ -1084,7 +1116,12 @@ public class DbResolverBean implements DbResolver {
                         origName(model, modelDatabaseValues, procedure), null);
                 while (result.next()) {
                     DbColumn dbColumn = new DbColumn();
-                    dbColumn.setName(name(modelDatabaseValues, result.getString("COLUMN_NAME")));
+                    String name = result.getString("COLUMN_NAME");
+                    if (dbType == DbType.MS_SQL) {
+                        if (name.startsWith("@"))
+                            name = name.substring(1);
+                    }
+                    dbColumn.setName(name(modelDatabaseValues, name));
                     dbColumn.setType(result.getString("TYPE_NAME"));
                     dbColumn.setColumnType(result.getShort("COLUMN_TYPE"));
                     int ix = dbColumn.getType().indexOf('(');
@@ -1164,8 +1201,14 @@ public class DbResolverBean implements DbResolver {
                 // System.out.println("" + i + ": " + rmeta.getColumnLabel(i));
                 // }
                 while (result.next()) {
+                    String name = result.getString("FUNCTION_NAME");
+                    if (dbType == DbType.MS_SQL) {
+                        int ix = name.lastIndexOf(";");
+                        if (ix >= 0)
+                            name = name.substring(0, ix);
+                    }
                     DbTable dbTable = new DbTable();
-                    dbTable.setName(name(modelDatabaseValues, result.getString("FUNCTION_NAME")));
+                    dbTable.setName(name(modelDatabaseValues, name));
                     if (dbType != DbType.DB2 && dbType != DbType.ORACLE)
                         dbTable.setFtype(result.getShort("FUNCTION_TYPE"));
                     if (modelDatabaseValues.dbTakeComments)
@@ -1223,9 +1266,13 @@ public class DbResolverBean implements DbResolver {
                 // System.out.println("" + i + ": " + rmeta.getColumnLabel(i));
                 // }
                 while (result.next()) {
+                    String name = result.getString(dbType == DbType.DB2 ? "PARAMETER_NAME" : "COLUMN_NAME");
+                    if (dbType == DbType.MS_SQL) {
+                        if (name.startsWith("@"))
+                            name = name.substring(1);
+                    }
                     DbColumn dbColumn = new DbColumn();
-                    dbColumn.setName(name(modelDatabaseValues,
-                            result.getString(dbType == DbType.DB2 ? "PARAMETER_NAME" : "COLUMN_NAME")));
+                    dbColumn.setName(name(modelDatabaseValues, name));
                     dbColumn.setType(result.getString("TYPE_NAME"));
                     dbColumn.setColumnType(result.getShort(dbType == DbType.DB2 ? "PARAMETER_TYPE" : "COLUMN_TYPE"));
                     int ix = dbColumn.getType().indexOf('(');
