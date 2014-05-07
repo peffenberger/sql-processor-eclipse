@@ -243,22 +243,57 @@ public class DbCheckConstraint {
         return null;
     }
 
+    static final Pattern MSSQL_CHECK = Pattern.compile("(?i)\\s*\\((.*)\\)\\s*");
+
+    public static DbCheckConstraint parseMssql(String name, String clause, String relTable) {
+        // PERSON CK__PERSON__GENDER__014935CB ([GENDER]='0' OR [GENDER]='F' OR [GENDER]='M')
+        // CONTACT CK__CONTACT__CTYPE__0EA330E9 ([CTYPE]=(2) OR [CTYPE]=(1) OR [CTYPE]=(0)) return null;
+        Matcher matcher = MSSQL_CHECK.matcher(clause.trim());
+        if (matcher.matches()) {
+            String[] constraintValues = matcher.group(1).trim().split("OR");
+            String relCol = null;
+            List<String> values = new ArrayList<String>();
+            for (int j = 0; j < constraintValues.length; j++) {
+                String[] values2 = constraintValues[j].trim().split("=");
+                if (relCol == null) {
+                    relCol = values2[0];
+                    if (relCol.startsWith("["))
+                        relCol = relCol.substring(1);
+                    if (relCol.endsWith("]"))
+                        relCol = relCol.substring(0, relCol.length() - 1);
+                }
+                String value = values2[1];
+                if (value.startsWith("("))
+                    value = value.substring(1);
+                if (value.endsWith(")"))
+                    value = value.substring(0, value.length() - 1);
+                if (value.startsWith("'"))
+                    value = value.substring(1);
+                if (value.endsWith("'"))
+                    value = value.substring(0, value.length() - 1);
+                values.add(value);
+            }
+            String enumName = relTable + "_" + relCol;
+            DbCheckConstraint dbCheckConstraint = new DbCheckConstraint();
+            dbCheckConstraint.setConstraintName(name);
+            dbCheckConstraint.setCheckClause(clause);
+            dbCheckConstraint.setEnumName(enumName);
+            dbCheckConstraint.setValues(values);
+            dbCheckConstraint.setTable(relTable);
+            dbCheckConstraint.setColumn(relCol);
+            return dbCheckConstraint;
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
-        Matcher matcher = DB2_CHECK.matcher("GENDER IN ('M', 'F', 'G')");
+        Matcher matcher = MSSQL_CHECK.matcher("([GENDER]='0' OR [GENDER]='F' OR [GENDER]='M')");
         if (matcher.matches()) {
             // String relCol = matcher.group(1).trim();
             // System.out.println("1 " + relCol);
-            String[] constraintValues = matcher.group(1).trim().split(",");
+            String[] constraintValues = matcher.group(1).trim().split("OR");
             List<String> values = new ArrayList<String>();
             for (int j = 0; j < constraintValues.length; j++) {
-                String value = constraintValues[j].trim();
-                int ix = value.indexOf("'");
-                if (ix >= 0)
-                    value = value.substring(ix + 1);
-                ix = value.indexOf("'");
-                if (ix >= 0)
-                    value = value.substring(0, ix);
-                values.add(value);
             }
             System.out.println("9 " + values);
         } else

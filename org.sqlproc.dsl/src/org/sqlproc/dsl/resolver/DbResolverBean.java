@@ -2029,6 +2029,16 @@ public class DbResolverBean implements DbResolver {
                 if (check != null)
                     mapOfCheckConstraints.put(constraintName, check);
             }
+        } else if (dbType == DbType.MS_SQL) {
+            String query = "select t.name, cc.name, cc.definition  from sys.tables t inner join sys.check_constraints cc on t.object_id = cc.parent_object_id where cc.type = 'C' and t.name = ?";
+            String query2 = "select t.name, cc.name, cc.definition  from sys.tables t inner join sys.check_constraints cc on t.object_id = cc.parent_object_id where cc.type = 'C'";
+            Map<String, List<String>> map = getCheckConstraints(modelDatabaseValues, table, query, query2, false);
+            for (String constraintName : map.keySet()) {
+                DbCheckConstraint check = DbCheckConstraint.parseMssql(constraintName, map.get(constraintName).get(0),
+                        map.get(constraintName).get(1));
+                if (check != null)
+                    mapOfCheckConstraints.put(constraintName, check);
+            }
         } else {
             mapOfCheckConstraints = new LinkedHashMap<String, DbCheckConstraint>();
         }
