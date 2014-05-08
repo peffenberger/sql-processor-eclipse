@@ -324,7 +324,7 @@ public class TableDaoConverter extends TableMetaConverter {
                     } else {
                         PojoAttribute returnAttribute = (attributes.containsKey(FAKE_FUN_PROC_COLUMN_NAME)) ? attributes
                                 .get(FAKE_FUN_PROC_COLUMN_NAME) : null;
-                        if (returnAttribute != null && dbType != DbType.POSTGRESQL) {
+                        if (returnAttribute != null && dbType != DbType.POSTGRESQL && dbType != DbType.MS_SQL) {
                             buffer.append("callQuery ").append(procedureName).append(" :")
                                     .append(returnAttribute.getClassName());
                         } else {

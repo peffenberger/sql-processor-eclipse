@@ -999,7 +999,7 @@ public class TableMetaConverter extends TablePojoConverter {
             } else if (resultSetAttribute != null) {
                 buffer.append(":<1(type=other) = ");
             }
-        } else if (dbType == DbType.MY_SQL || dbType == DbType.POSTGRESQL) {
+        } else if (dbType == DbType.MY_SQL || dbType == DbType.MS_SQL) {
             if (isFunction && metaFunctionsResult.containsKey(pojo)) {
                 buffer.append(":<1(type=").append(metaFunctionsResult.get(pojo)).append(") = ");
             }
