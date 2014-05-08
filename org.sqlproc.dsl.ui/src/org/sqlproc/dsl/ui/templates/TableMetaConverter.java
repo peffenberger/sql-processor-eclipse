@@ -1029,8 +1029,12 @@ public class TableMetaConverter extends TablePojoConverter {
             } else if (dbType == DbType.POSTGRESQL && attribute.getSqlType() == 1111) {
                 buffer.append("<1(type=other)");
             } else {
-                if (attribute.getFunProcColumnType() != null && attribute.getFunProcColumnType() == 4)
-                    buffer.append("<");
+                if (attribute.getFunProcColumnType() != null) {
+                    if (attribute.getFunProcColumnType() == 4)
+                        buffer.append("<");
+                    else if (attribute.getFunProcColumnType() == 2)
+                        buffer.append("=");
+                }
                 buffer.append(name);
             }
         }
