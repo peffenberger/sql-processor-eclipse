@@ -159,6 +159,19 @@ public interface SqlFeature {
      */
     public static final String DEFAULT_LIKE_STRING = "like";
     /**
+     * <code>REPLACE_LIKE_STRING</code> is the key for the special SQL Processor behavior related to the SQL command
+     * <code>like</code>. The supplied value is going to be used as the final LIKE_STRING.
+     */
+    public static final String REPLACE_LIKE_STRING = "REPLACE_LIKE_STRING";
+    /**
+     * <code>REPLACE_LIKE_CHARS</code> is the key for the special SQL Processor behavior related to the SQL command
+     * <code>like</code>. The feature pattern is <code>['c1':'r1', 'c2':'r2', ...]</code>, where <code>c1,c2,...</code>
+     * is a set of characters to be replaced with the characters <code>r1,r2,...</code>. For example to use the wildcard
+     * characters <code>*</code> and <code>?</code> instead of <code>%</code> <code>_</code>, use
+     * <code>['*':'%', '?':'_']</code>.
+     */
+    public static final String REPLACE_LIKE_CHARS = "REPLACE_LIKE_CHARS";
+    /**
      * <code>METHODS_ENUM_IN</code> lists the methods used in the translation from a Java type to a JDBC datatype for
      * enumerations based input values.
      */
@@ -312,14 +325,12 @@ public interface SqlFeature {
      * the filter value <code>INFORMIX</code> is used for the {@link SqlProcessorLoader} instance creation.
      */
     public static final String INFORMIX_DEFAULT_LIMIT_TO = "select first $M $s";
-    /*
-     * Unsupported now.
-     * 
-     * <code>MSSQL_DEFAULT_LIMIT_FROM_TO</code> is the default value related to the key <code>LIMIT_FROM_TO</code> in
-     * the case the filter value <code>MSSQL</code> is used for the {@link SqlProcessorLoader} instance creation.
+    /**
+     * Version for MS SQL Server 2012: <code>MSSQL_DEFAULT_LIMIT_FROM_TO</code> is the default value related to the key
+     * <code>LIMIT_FROM_TO</code> in the case the filter value <code>MSSQL</code> is used for the
+     * {@link SqlProcessorLoader} instance creation.
      */
-    // version for MS SQL Server 2012:
-    // public static final String MSSQL_DEFAULT_LIMIT_FROM_TO = "$S OFFSET ($F) ROWS FETCH NEXT ($M) ROWS ONLY";
+    public static final String MSSQL_DEFAULT_LIMIT_FROM_TO = "$S OFFSET ($F) ROWS FETCH NEXT ($M) ROWS ONLY";
     /**
      * <code>MSSQL_DEFAULT_LIMIT_TO</code> is the default value related to the key <code>LIMIT_TO</code> in the case the
      * filter value <code>MSSQL</code> is used for the {@link SqlProcessorLoader} instance creation.
@@ -349,15 +360,15 @@ public interface SqlFeature {
      */
     public static final String HSQLDB_DEFAULT_SEQ = "call next value for $n";
     /**
-     * <code>ORACLE_DEFAULT_SEQ</code> is the default value related to the key <code>SEQ</code> in the case the filter
-     * value <code>ORACLE</code> is used for the {@link SqlProcessorLoader} instance creation.
-     */
-    public static final String ORACLE_DEFAULT_SEQ = "select $n.nextval from dual";
-    /**
      * <code>MYSQL_DEFAULT_SEQ</code> is the default value related to the key <code>SEQ</code> in the case the filter
      * value <code>MYSQL</code> is used for the {@link SqlProcessorLoader} instance creation.
      */
     public static final String MYSQL_DEFAULT_SEQ = "select auto_increment from information_schema.tables where table_name = '$t'";
+    /**
+     * <code>ORACLE_DEFAULT_SEQ</code> is the default value related to the key <code>SEQ</code> in the case the filter
+     * value <code>ORACLE</code> is used for the {@link SqlProcessorLoader} instance creation.
+     */
+    public static final String ORACLE_DEFAULT_SEQ = "select $n.nextval from dual";
     /**
      * <code>POSTGRESQL_DEFAULT_SEQ</code> is the default value related to the key <code>SEQ</code> in the case the
      * filter value <code>POSTGRESQL</code> is used for the {@link SqlProcessorLoader} instance creation.
@@ -410,6 +421,18 @@ public interface SqlFeature {
      */
     public static final String INFORMIX_DEFAULT_IDSEL = "SELECT FIRST 1 dbinfo('bigserial') FROM systables";
     /**
+     * <code>INFORMIX_DEFAULT_IDSEL_Long</code> is the default value related to the key <code>IDSEL</code> in the case
+     * the filter value <code>INFORMIX</code> is used for the {@link SqlProcessorLoader} instance creation.
+     */
+    // public static final String INFORMIX_DEFAULT_IDSEL_Long =
+    // "select dbinfo('serial8') from informix.systables where tabid=1";
+    public static final String INFORMIX_DEFAULT_IDSEL_Long = "select dbinfo('bigserial') from informix.systables where tabid=1";
+    /**
+     * <code>INFORMIX_DEFAULT_IDSEL_Integer</code> is the default value related to the key <code>IDSEL</code> in the
+     * case the filter value <code>INFORMIX</code> is used for the {@link SqlProcessorLoader} instance creation.
+     */
+    public static final String INFORMIX_DEFAULT_IDSEL_Integer = "select dbinfo('sqlca.sqlerrd1') from informix.systables where tabid=1";
+    /**
      * <code>MSSQL_DEFAULT_IDSEL</code> is the default value related to the key <code>IDSEL</code> in the case the
      * filter value <code>MSSQL</code> is used for the {@link SqlProcessorLoader} instance creation.
      * <p/>
@@ -435,4 +458,29 @@ public interface SqlFeature {
      * has meaning for the UPDATE statements, where the standard handling is to treat any values as not empty.
      */
     public static final String EMPTY_USE_METHOD_IS_NULL = "EMPTY_USE_METHOD_IS_NULL";
+    /**
+     * <code>OPERATOR_ATTRIBUTE</code> is the operator atribute name suffix.
+     */
+    public static final String OPERATOR_ATTRIBUTE = "OPERATOR_ATTRIBUTE";
+    /**
+     * This is the default value related to the key <code>OPERATOR_ATTRIBUTE</code>.
+     */
+    public static final String DEFAULT_OPERATOR_ATTRIBUTE = "Op";
+    /**
+     * <code>OPERATOR_ATTRIBUTE_IN_MAP</code> is the map name of the operators name suffix.
+     */
+    public static final String OPERATOR_ATTRIBUTE_IN_MAP = "OPERATOR_ATTRIBUTE_IN_MAP";
+    /**
+     * This is the default value related to the key <code>OPERATOR_ATTRIBUTE_IN_MAP</code>.
+     */
+    public static final String DEFAULT_OPERATOR_ATTRIBUTE_IN_MAP = "operators";
+    /**
+     * <code>LOG_SQL_COMMAND_FOR_EXCEPTION</code> is the indicator that in the case of an SQLException the related SQL
+     * command should be logged.
+     */
+    public static final String LOG_SQL_COMMAND_FOR_EXCEPTION = "LOG_SQL_COMMAND_FOR_EXCEPTION";
+    /**
+     * This is the default value related to the key <code>LOG_SQL_COMMAND_FOR_EXCEPTION</code> .
+     */
+    public static final Boolean DEFAULT_LOG_SQL_COMMAND_FOR_EXCEPTION = Boolean.FALSE;
 }

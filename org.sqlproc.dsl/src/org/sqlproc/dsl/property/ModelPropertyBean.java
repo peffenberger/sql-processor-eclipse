@@ -914,7 +914,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.metaTablesSequence.put(property.getDbTable(),
                     new PairValues(property.getSequence(), property.getType()));
         } else if (METAGEN_GLOBAL_IDGENERATOR.equals(property.getName())) {
-            modelValues.metaGlobalIdGenerator = new PairValues(property.getSequence(), property.getType());
+            modelValues.metaGlobalIdGenerator = new PairValues(property.getIdentity(), property.getType());
             if (property.getDbTables() != null) {
                 modelValues.metaGlobalIdGeneratorForTables.addAll(property.getDbTables());
             }
@@ -922,10 +922,10 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 modelValues.metaGlobalIdGeneratorNotForTables.addAll(property.getDbNotTables());
             }
         } else if (METAGEN_TABLE_IDGENERATOR.equals(property.getName())) {
-            modelValues.metaTablesIdGenerator.put(property.getDbTable(), new PairValues(property.getSequence(),
+            modelValues.metaTablesIdGenerator.put(property.getDbTable(), new PairValues(property.getIdentity(),
                     property.getType()));
         } else if (METAGEN_GLOBAL_INDIRECT_IDGENERATOR.equals(property.getName())) {
-            modelValues.metaGlobalIndirectIdGenerator = new PairValues(property.getSequence(), property.getType());
+            modelValues.metaGlobalIndirectIdGenerator = new PairValues(property.getIdentity(), property.getType());
             if (property.getDbTables() != null) {
                 modelValues.metaGlobalIndirectIdGeneratorForTables.addAll(property.getDbTables());
             }
@@ -933,7 +933,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 modelValues.metaGlobalIndirectIdGeneratorNotForTables.addAll(property.getDbNotTables());
             }
         } else if (METAGEN_TABLE_INDIRECT_IDGENERATOR.equals(property.getName())) {
-            modelValues.metaTablesIndirectIdGenerator.put(property.getDbTable(), new PairValues(property.getSequence(),
+            modelValues.metaTablesIndirectIdGenerator.put(property.getDbTable(), new PairValues(property.getIdentity(),
                     property.getType()));
         } else if (METAGEN_COLUMN_META_TYPE.equals(property.getName())) {
             if (!modelValues.metaColumnsMetaTypes.containsKey(property.getDbTable()))

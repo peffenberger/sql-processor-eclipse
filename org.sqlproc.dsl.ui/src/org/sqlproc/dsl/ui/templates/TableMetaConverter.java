@@ -568,7 +568,7 @@ public class TableMetaConverter extends TablePojoConverter {
                     continue;
             }
             PairValues identity = getIdentity(pojo, pentry.getValue());
-            if (identity != null)
+            if (identity != null && !metaGenerateIdGenerators && !metaGenerateIndirectIdGenerators)
                 continue;
             PojoAttribute attribute = pentry.getValue();
             if (attribute.getClassName().startsWith(COLLECTION_LIST))
@@ -666,9 +666,25 @@ public class TableMetaConverter extends TablePojoConverter {
                 buffer.append("(");
                 if (attr.sequence.value2 != null)
                     buffer.append("type=").append(attr.sequence.value2).append(",");
-                buffer.append("seq");
-                if (attr.sequence.value1 != null)
-                    buffer.append("=").append(attr.sequence.value1);
+                if (metaGenerateIdGenerators) {
+                    buffer.append("idgen=");
+                    if (metaGlobalIdGenerator != null)
+                        buffer.append(metaGlobalIdGenerator.value1);
+                    else
+                        buffer.append(attr.sequence.value1);
+                    buffer.append(",id=").append(pentry.getKey());
+                } else if (metaGenerateIndirectIdGenerators) {
+                    buffer.append("idgen=");
+                    if (metaGlobalIndirectIdGenerator != null)
+                        buffer.append(metaGlobalIndirectIdGenerator.value1);
+                    else
+                        buffer.append(attr.sequence.value1);
+                    buffer.append(",id=").append(pentry.getKey());
+                } else {
+                    buffer.append("seq");
+                    if (attr.sequence.value1 != null)
+                        buffer.append("=").append(attr.sequence.value1);
+                }
             }
             if (metaTypes(buffer, attr.tableName, attr.attributeName, statementName, attr.sequence == null)
                     || attr.sequence != null)
@@ -1812,10 +1828,26 @@ public class TableMetaConverter extends TablePojoConverter {
         if (sequence != null) {
             String name = (sequenceName != null) ? sequenceName : SqlFeature.DEFAULT_SEQ_NAME;
             if (!sequences.containsKey(name)) {
-                buffer.append(name).append("(OPT");
+                if (metaGenerateIdGenerators) {
+                    buffer.append("SEQ_");
+                } else if (metaGenerateIndirectIdGenerators) {
+                    buffer.append("IDGEN_");
+                }
+                if (metaGenerateIdGenerators && metaGlobalIdGenerator != null)
+                    buffer.append(metaGlobalIdGenerator.value1);
+                else if (metaGenerateIndirectIdGenerators && metaGlobalIndirectIdGenerator != null)
+                    buffer.append(metaGlobalIndirectIdGenerator.value1);
+                else
+                    buffer.append(name);
+                buffer.append("(OPT");
                 if (metaMakeItFinal)
                     buffer.append(",final=");
-                buffer.append(")=").append(sequence).append(";\n");
+                buffer.append(")=");
+                if (metaGenerateIndirectIdGenerators)
+                    buffer.append("seq=").append(name);
+                else
+                    buffer.append(sequence);
+                buffer.append(";\n");
                 sequences.put(name, buffer);
             }
         }
