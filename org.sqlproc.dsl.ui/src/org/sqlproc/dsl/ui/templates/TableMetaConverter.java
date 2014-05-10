@@ -622,9 +622,25 @@ public class TableMetaConverter extends TablePojoConverter {
                 buffer.append("(");
                 if (identity.value2 != null)
                     buffer.append("type=").append(identity.value2).append(",");
-                buffer.append("idsel");
-                if (identity.value1 != null)
-                    buffer.append("=").append(identity.value1);
+                if (metaGenerateIdGenerators) {
+                    buffer.append("idgen=");
+                    if (metaGlobalIdGenerator != null)
+                        buffer.append(metaGlobalIdGenerator.value1);
+                    else
+                        buffer.append(identity.value1);
+                    buffer.append(",id=").append(pentry.getKey());
+                } else if (metaGenerateIndirectIdGenerators) {
+                    buffer.append("idgen=");
+                    if (metaGlobalIndirectIdGenerator != null)
+                        buffer.append(metaGlobalIndirectIdGenerator.value1);
+                    else
+                        buffer.append(identity.value1);
+                    buffer.append(",id=").append(pentry.getKey());
+                } else {
+                    buffer.append("idsel");
+                    if (identity.value1 != null)
+                        buffer.append("=").append(identity.value1);
+                }
                 buffer.append(")");
                 first = false;
                 break;
@@ -1869,10 +1885,26 @@ public class TableMetaConverter extends TablePojoConverter {
         if (identity != null) {
             String name = (identityName != null) ? identityName : SqlFeature.IDSEL;
             if (!identities.containsKey(name)) {
-                buffer.append(name).append("(OPT");
+                if (metaGenerateIdGenerators) {
+                    buffer.append("IDSEL_");
+                } else if (metaGenerateIndirectIdGenerators) {
+                    buffer.append("IDGEN_");
+                }
+                if (metaGenerateIdGenerators && metaGlobalIdGenerator != null)
+                    buffer.append(metaGlobalIdGenerator.value1);
+                else if (metaGenerateIndirectIdGenerators && metaGlobalIndirectIdGenerator != null)
+                    buffer.append(metaGlobalIndirectIdGenerator.value1);
+                else
+                    buffer.append(name);
+                buffer.append("(OPT");
                 if (metaMakeItFinal)
                     buffer.append(",final=");
-                buffer.append(")=").append(identity).append(";\n");
+                buffer.append(")=");
+                if (metaGenerateIndirectIdGenerators)
+                    buffer.append("idsel");
+                else
+                    buffer.append(identity);
+                buffer.append(";\n");
                 identities.put(name, buffer);
             }
         }
