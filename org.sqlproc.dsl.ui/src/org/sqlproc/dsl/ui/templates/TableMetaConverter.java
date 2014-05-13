@@ -1878,9 +1878,11 @@ public class TableMetaConverter extends TablePojoConverter {
         } else if (dbType == DbType.MY_SQL) {
             identity = substituteName(SqlFeature.MYSQL_DEFAULT_IDSEL, identityName);
         } else if (dbType == DbType.INFORMIX) {
-            identity = substituteName(SqlFeature.INFORMIX_DEFAULT_SEQ, identityName);
+            identity = substituteName(SqlFeature.INFORMIX_DEFAULT_IDSEL_Long, identityName);
+        } else if (dbType == DbType.MS_SQL) {
+            identity = substituteName(SqlFeature.MSSQL_DEFAULT_IDSEL, identityName);
         } else if (dbType == DbType.DB2) {
-            identity = substituteName(SqlFeature.DB2_DEFAULT_SEQ, identityName);
+            identity = substituteName(SqlFeature.DB2_DEFAULT_IDSEL, identityName);
         }
         if (identity != null) {
             String name = (identityName != null) ? identityName : SqlFeature.IDSEL;
@@ -1918,12 +1920,29 @@ public class TableMetaConverter extends TablePojoConverter {
             sequence = substituteName(SqlFeature.MYSQL_DEFAULT_SEQ, table, column);
         }
         if (sequence != null) {
-            String name = "SEQ_" + table.toUpperCase();
+            String name = table.toUpperCase();
             if (!sequences.containsKey(name)) {
-                buffer.append(name).append("(OPT");
+                if (metaGenerateIdGenerators) {
+                    buffer.append("SEQ_");
+                } else if (metaGenerateIndirectIdGenerators) {
+                    buffer.append("IDGEN_");
+                } else {
+                    buffer.append("SEQ_");
+                }
+                if (metaGenerateIdGenerators && metaGlobalIdGenerator != null)
+                    buffer.append(metaGlobalIdGenerator.value1);
+                else if (metaGenerateIndirectIdGenerators && metaGlobalIndirectIdGenerator != null)
+                    buffer.append(metaGlobalIndirectIdGenerator.value1);
+                else
+                    buffer.append("(OPT");
                 if (metaMakeItFinal)
                     buffer.append(",final=");
-                buffer.append(")=").append(sequence).append(";\n");
+                buffer.append(")=");
+                if (metaGenerateIndirectIdGenerators)
+                    buffer.append("seq=").append(name);
+                else
+                    buffer.append(sequence);
+                buffer.append(";\n");
                 sequences.put(name, buffer);
             }
         }
@@ -1937,12 +1956,30 @@ public class TableMetaConverter extends TablePojoConverter {
             identity = substituteName(SqlFeature.POSTGRESQL_DEFAULT_IDSEL, table, column);
         }
         if (identity != null) {
-            String name = "IDSEL_" + table.toUpperCase();
+            String name = table.toUpperCase();
             if (!identities.containsKey(name)) {
-                buffer.append(name).append("(OPT");
+                if (metaGenerateIdGenerators) {
+                    buffer.append("IDSEL_");
+                } else if (metaGenerateIndirectIdGenerators) {
+                    buffer.append("IDGEN_");
+                } else {
+                    buffer.append("IDSEL_");
+                }
+                if (metaGenerateIdGenerators && metaGlobalIdGenerator != null)
+                    buffer.append(metaGlobalIdGenerator.value1);
+                else if (metaGenerateIndirectIdGenerators && metaGlobalIndirectIdGenerator != null)
+                    buffer.append(metaGlobalIndirectIdGenerator.value1);
+                else
+                    buffer.append(name);
+                buffer.append("(OPT");
                 if (metaMakeItFinal)
                     buffer.append(",final=");
-                buffer.append(")=").append(identity).append(";\n");
+                buffer.append(")=");
+                if (metaGenerateIndirectIdGenerators)
+                    buffer.append("idsel");
+                else
+                    buffer.append(identity);
+                buffer.append(";\n");
                 identities.put(name, buffer);
             }
         }
