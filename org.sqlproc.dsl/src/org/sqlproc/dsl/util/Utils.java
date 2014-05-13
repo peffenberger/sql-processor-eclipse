@@ -618,11 +618,14 @@ public class Utils {
     public static String dbName(PojoEntity e) {
         String result = "";
         int last = 0;
+        boolean lastDigit = false;
         for (int i = 0, l = e.getName().length(); i < l; i++) {
-            if (Character.isUpperCase(e.getName().charAt(i))) {
+            char c = e.getName().charAt(i);
+            if (Character.isUpperCase(c) || (Character.isDigit(c) && !lastDigit)) {
                 result = result + e.getName().substring(last, i).toUpperCase() + "_";
                 last = i;
             }
+            lastDigit = Character.isDigit(c);
         }
         if (last < e.getName().length())
             result = result + e.getName().substring(last).toUpperCase();
@@ -632,11 +635,14 @@ public class Utils {
     public static String dbName(PojoMethod e) {
         String result = "";
         int last = 0;
+        boolean lastDigit = false;
         for (int i = 0, l = e.getName().length(); i < l; i++) {
-            if (Character.isUpperCase(e.getName().charAt(i))) {
+            char c = e.getName().charAt(i);
+            if (Character.isUpperCase(c) || (Character.isDigit(c) && !lastDigit)) {
                 result = result + e.getName().substring(last, i).toUpperCase() + "_";
                 last = i;
             }
+            lastDigit = Character.isDigit(c);
         }
         if (last < e.getName().length())
             result = result + e.getName().substring(last).toUpperCase();
