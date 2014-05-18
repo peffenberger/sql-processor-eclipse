@@ -637,17 +637,32 @@ public class TableMetaConverter extends TablePojoConverter {
                     buffer.append("type=").append(identity.value2).append(",");
                 if (metaGenerateIdGenerators) {
                     buffer.append("idgen=");
-                    if (metaGlobalIdGenerator != null)
-                        buffer.append(metaGlobalIdGenerator.value1);
-                    else
-                        buffer.append(identity.value1);
+                    if (metaGlobalIdGenerator != null) {
+                        if (metaGlobalIdGenerator.value1 != null && !"null".equals(metaGlobalIdGenerator.value1))
+                            buffer.append(metaGlobalIdGenerator.value1);
+                        else
+                            buffer.append("IDSEL");
+                    } else {
+                        if (identity.value1 != null && !"null".equals(identity.value1))
+                            buffer.append(identity.value1);
+                        else
+                            buffer.append("IDSEL");
+                    }
                     buffer.append(",id=").append(pentry.getKey());
                 } else if (metaGenerateIndirectIdGenerators) {
                     buffer.append("idgen=");
-                    if (metaGlobalIndirectIdGenerator != null)
-                        buffer.append(metaGlobalIndirectIdGenerator.value1);
-                    else
-                        buffer.append(identity.value1);
+                    if (metaGlobalIndirectIdGenerator != null) {
+                        if (metaGlobalIndirectIdGenerator.value1 != null
+                                && !"null".equals(metaGlobalIndirectIdGenerator.value1))
+                            buffer.append(metaGlobalIndirectIdGenerator.value1);
+                        else
+                            buffer.append("IDSEL");
+                    } else {
+                        if (identity.value1 != null && !"null".equals(identity.value1))
+                            buffer.append(identity.value1);
+                        else
+                            buffer.append("IDSEL");
+                    }
                     buffer.append(",id=").append(pentry.getKey());
                 } else {
                     buffer.append("idsel");
