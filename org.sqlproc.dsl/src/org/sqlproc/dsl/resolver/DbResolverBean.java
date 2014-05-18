@@ -1713,7 +1713,14 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getTables(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, null,
                         new String[] { "SEQUENCE" });
                 while (result.next()) {
-                    sequencesForModel.add(name(modelDatabaseValues, result.getString("TABLE_NAME")));
+                    String type = result.getString("TABLE_TYPE");
+                    if (type != null
+                            && (type.toUpperCase().indexOf("TABLE") >= 0 || type.toUpperCase().indexOf("VIEW") >= 0))
+                        continue;
+                    String name = result.getString("TABLE_NAME");
+                    if (name.startsWith(" "))
+                        continue;
+                    sequencesForModel.add(name(modelDatabaseValues, name));
                 }
             } catch (SQLException e) {
                 error("getSequences error " + e, e);
