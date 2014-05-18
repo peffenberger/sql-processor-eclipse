@@ -166,6 +166,10 @@ public class TableMetaConverter extends TablePojoConverter {
         if (metaGlobalIndirectIdGeneratorNotForTables != null) {
             this.metaGlobalIndirectIdGeneratorNotForTables.addAll(metaGlobalIndirectIdGeneratorNotForTables);
         }
+        if (this.metaGenerateIdGenerators || this.metaGenerateIndirectIdGenerators) {
+            this.metaGenerateSequences = true;
+            this.metaGenerateIdentities = true;
+        }
         if (metaGenerateSequences && dbType != null) {
             sequences = new HashMap<String, StringBuilder>();
             for (String sequence : dbSequences) {
@@ -217,6 +221,15 @@ public class TableMetaConverter extends TablePojoConverter {
             this.metaOptionalFeatures.putAll(metaOptionalFeatures);
         }
         this.metaActiveFilter = MetaFilter.parse(modelProperty.getMetaActiveFilter(artifacts));
+
+        for (String pojo : this.metaTablesIdentity.keySet()) {
+            this.metaGlobalIdentityNotForTables.add(pojo);
+            this.metaGlobalSequenceNotForTables.add(pojo);
+        }
+        for (String pojo : this.metaTablesSequence.keySet()) {
+            this.metaGlobalIdentityNotForTables.add(pojo);
+            this.metaGlobalSequenceNotForTables.add(pojo);
+        }
 
         if (debug) {
             System.out.println("finalMetas " + this.finalMetas);
