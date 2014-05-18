@@ -1873,17 +1873,36 @@ public class TableMetaConverter extends TablePojoConverter {
     StringBuilder metaIdentityDefinition(String identityName, Map<String, StringBuilder> identities) {
         StringBuilder buffer = new StringBuilder();
         String identity = null;
+        String identity2 = null;
         if (dbType == DbType.HSQLDB) {
             identity = substituteName(SqlFeature.HSQLDB_DEFAULT_IDSEL, identityName);
         } else if (dbType == DbType.MY_SQL) {
             identity = substituteName(SqlFeature.MYSQL_DEFAULT_IDSEL, identityName);
         } else if (dbType == DbType.INFORMIX) {
-            identity = substituteName(SqlFeature.INFORMIX_DEFAULT_IDSEL_Long, identityName);
+            if (metaGenerateIndirectIdGenerators) {
+                identity = substituteName(SqlFeature.INFORMIX_DEFAULT_IDSEL, identityName);
+            } else {
+                identity = substituteName(SqlFeature.INFORMIX_DEFAULT_IDSEL_Long, identityName);
+                identity2 = substituteName(SqlFeature.INFORMIX_DEFAULT_IDSEL_Integer, identityName);
+            }
         } else if (dbType == DbType.MS_SQL) {
             identity = substituteName(SqlFeature.MSSQL_DEFAULT_IDSEL, identityName);
         } else if (dbType == DbType.DB2) {
             identity = substituteName(SqlFeature.DB2_DEFAULT_IDSEL, identityName);
         }
+        String name = null;
+        if (identity2 != null) {
+            name = metaIdentityDefinition1(buffer, identityName, identity, "_Long");
+            metaIdentityDefinition1(buffer, identityName, identity2, "_Integer");
+        } else {
+            name = metaIdentityDefinition1(buffer, identityName, identity, null);
+        }
+        if (name != null)
+            identities.put(name, buffer);
+        return buffer;
+    }
+
+    String metaIdentityDefinition1(StringBuilder buffer, String identityName, String identity, String suffix) {
         if (identity != null) {
             String name = (identityName != null) ? identityName : SqlFeature.IDSEL;
             if (!identities.containsKey(name)) {
@@ -1898,6 +1917,8 @@ public class TableMetaConverter extends TablePojoConverter {
                     buffer.append(metaGlobalIndirectIdGenerator.value1);
                 else
                     buffer.append(name);
+                if (suffix != null)
+                    buffer.append(suffix);
                 buffer.append("(OPT");
                 if (metaMakeItFinal)
                     buffer.append(",final=");
@@ -1907,10 +1928,10 @@ public class TableMetaConverter extends TablePojoConverter {
                 else
                     buffer.append(identity);
                 buffer.append(";\n");
-                identities.put(name, buffer);
+                return name;
             }
         }
-        return buffer;
+        return null;
     }
 
     StringBuilder metaSequenceDefinition(String table, String column, Map<String, StringBuilder> sequences) {
