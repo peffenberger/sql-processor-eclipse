@@ -39,10 +39,10 @@ public class TableMetaConverter extends TablePojoConverter {
     protected Map<String, PairValues> metaTablesSequence = new HashMap<String, PairValues>();
     protected PairValues metaGlobalIdentity;
     protected Map<String, PairValues> metaTablesIdentity = new HashMap<String, PairValues>();
-    protected PairValues metaGlobalIdGenerator;
-    protected Map<String, PairValues> metaTablesIdGenerator = new HashMap<String, PairValues>();
-    protected PairValues metaGlobalIndirectIdGenerator;
-    protected Map<String, PairValues> metaTablesIndirectIdGenerator = new HashMap<String, PairValues>();
+    // protected PairValues metaGlobalIdGenerator;
+    // protected Map<String, PairValues> metaTablesIdGenerator = new HashMap<String, PairValues>();
+    // protected PairValues metaGlobalIndirectIdGenerator;
+    // protected Map<String, PairValues> metaTablesIndirectIdGenerator = new HashMap<String, PairValues>();
     protected Map<String, Map<String, PairValues>> metaColumnsMetaTypes = new HashMap<String, Map<String, PairValues>>();
     protected Map<String, Map<String, PairValues>> metaStatementsMetaTypes = new HashMap<String, Map<String, PairValues>>();
     protected boolean metaMakeItFinal;
@@ -55,11 +55,11 @@ public class TableMetaConverter extends TablePojoConverter {
     protected Set<String> metaGlobalIdentityForTables = new HashSet<String>();
     protected Set<String> metaGlobalIdentityNotForTables = new HashSet<String>();
     protected boolean metaGenerateIdGenerators;
-    protected Set<String> metaGlobalIdGeneratorForTables = new HashSet<String>();
-    protected Set<String> metaGlobalIdGeneratorNotForTables = new HashSet<String>();
+    // protected Set<String> metaGlobalIdGeneratorForTables = new HashSet<String>();
+    // protected Set<String> metaGlobalIdGeneratorNotForTables = new HashSet<String>();
     protected boolean metaGenerateIndirectIdGenerators;
-    protected Set<String> metaGlobalIndirectIdGeneratorForTables = new HashSet<String>();
-    protected Set<String> metaGlobalIndirectIdGeneratorNotForTables = new HashSet<String>();
+    // protected Set<String> metaGlobalIndirectIdGeneratorForTables = new HashSet<String>();
+    // protected Set<String> metaGlobalIndirectIdGeneratorNotForTables = new HashSet<String>();
     protected Map<String, StringBuilder> sequences = null;
     protected Map<String, StringBuilder> identities = null;
     protected Map<String, String> metaFunctionsResultSet = new HashMap<String, String>();
@@ -101,16 +101,17 @@ public class TableMetaConverter extends TablePojoConverter {
         if (tablesIdentity != null) {
             this.metaTablesIdentity.putAll(tablesIdentity);
         }
-        this.metaGlobalIdGenerator = modelProperty.getMetaGlobalIdGenerator(artifacts);
-        Map<String, PairValues> tablesIdGenerator = modelProperty.getMetaTablesIdGenerator(artifacts);
-        if (tablesIdGenerator != null) {
-            this.metaTablesIdGenerator.putAll(tablesIdGenerator);
-        }
-        this.metaGlobalIndirectIdGenerator = modelProperty.getMetaGlobalIndirectIdGenerator(artifacts);
-        Map<String, PairValues> tablesIndirectIdGenerator = modelProperty.getMetaTablesIndirectIdGenerator(artifacts);
-        if (tablesIndirectIdGenerator != null) {
-            this.metaTablesIndirectIdGenerator.putAll(tablesIndirectIdGenerator);
-        }
+        // this.metaGlobalIdGenerator = modelProperty.getMetaGlobalIdGenerator(artifacts);
+        // Map<String, PairValues> tablesIdGenerator = modelProperty.getMetaTablesIdGenerator(artifacts);
+        // if (tablesIdGenerator != null) {
+        // this.metaTablesIdGenerator.putAll(tablesIdGenerator);
+        // }
+        // this.metaGlobalIndirectIdGenerator = modelProperty.getMetaGlobalIndirectIdGenerator(artifacts);
+        // Map<String, PairValues> tablesIndirectIdGenerator =
+        // modelProperty.getMetaTablesIndirectIdGenerator(artifacts);
+        // if (tablesIndirectIdGenerator != null) {
+        // this.metaTablesIndirectIdGenerator.putAll(tablesIndirectIdGenerator);
+        // }
         Map<String, Map<String, PairValues>> columnsMetaTypes = modelProperty.getMetaColumnsMetaTypes(artifacts);
         if (columnsMetaTypes != null) {
             this.metaColumnsMetaTypes.putAll(columnsMetaTypes);
@@ -147,28 +148,33 @@ public class TableMetaConverter extends TablePojoConverter {
             this.metaGlobalIdentityNotForTables.addAll(metaGlobalIdentityNotForTables);
         }
         this.metaGenerateIdGenerators = modelProperty.isMetaGenerateIdGenerators(artifacts);
-        Set<String> metaGlobalIdGeneratorForTables = modelProperty.getMetaGlobalIdGeneratorForTables(artifacts);
-        if (metaGlobalIdGeneratorForTables != null) {
-            this.metaGlobalIdGeneratorForTables.addAll(metaGlobalIdGeneratorForTables);
-        }
-        Set<String> metaGlobalIdGeneratorNotForTables = modelProperty.getMetaGlobalIdGeneratorNotForTables(artifacts);
-        if (metaGlobalIdGeneratorNotForTables != null) {
-            this.metaGlobalIdGeneratorNotForTables.addAll(metaGlobalIdGeneratorNotForTables);
-        }
+        // Set<String> metaGlobalIdGeneratorForTables = modelProperty.getMetaGlobalIdGeneratorForTables(artifacts);
+        // if (metaGlobalIdGeneratorForTables != null) {
+        // this.metaGlobalIdGeneratorForTables.addAll(metaGlobalIdGeneratorForTables);
+        // }
+        // Set<String> metaGlobalIdGeneratorNotForTables =
+        // modelProperty.getMetaGlobalIdGeneratorNotForTables(artifacts);
+        // if (metaGlobalIdGeneratorNotForTables != null) {
+        // this.metaGlobalIdGeneratorNotForTables.addAll(metaGlobalIdGeneratorNotForTables);
+        // }
         this.metaGenerateIndirectIdGenerators = modelProperty.isMetaGenerateIndirectIdGenerators(artifacts);
-        Set<String> metaGlobalIndirectIdGeneratorForTables = modelProperty
-                .getMetaGlobalIndirectIdGeneratorForTables(artifacts);
-        if (metaGlobalIndirectIdGeneratorForTables != null) {
-            this.metaGlobalIndirectIdGeneratorForTables.addAll(metaGlobalIndirectIdGeneratorForTables);
-        }
-        Set<String> metaGlobalIndirectIdGeneratorNotForTables = modelProperty
-                .getMetaGlobalIndirectIdGeneratorNotForTables(artifacts);
-        if (metaGlobalIndirectIdGeneratorNotForTables != null) {
-            this.metaGlobalIndirectIdGeneratorNotForTables.addAll(metaGlobalIndirectIdGeneratorNotForTables);
-        }
+        // Set<String> metaGlobalIndirectIdGeneratorForTables = modelProperty
+        // .getMetaGlobalIndirectIdGeneratorForTables(artifacts);
+        // if (metaGlobalIndirectIdGeneratorForTables != null) {
+        // this.metaGlobalIndirectIdGeneratorForTables.addAll(metaGlobalIndirectIdGeneratorForTables);
+        // }
+        // Set<String> metaGlobalIndirectIdGeneratorNotForTables = modelProperty
+        // .getMetaGlobalIndirectIdGeneratorNotForTables(artifacts);
+        // if (metaGlobalIndirectIdGeneratorNotForTables != null) {
+        // this.metaGlobalIndirectIdGeneratorNotForTables.addAll(metaGlobalIndirectIdGeneratorNotForTables);
+        // }
         if (this.metaGenerateIdGenerators || this.metaGenerateIndirectIdGenerators) {
-            this.metaGenerateSequences = true;
-            this.metaGenerateIdentities = true;
+            if (this.metaGlobalSequence != null || !this.metaTablesSequence.isEmpty()
+                    || !this.metaGlobalSequenceForTables.isEmpty() || !this.metaGlobalSequenceNotForTables.isEmpty())
+                this.metaGenerateSequences = true;
+            if (this.metaGlobalIdentity != null || !this.metaTablesIdentity.isEmpty()
+                    || !this.metaGlobalIdentityForTables.isEmpty() || !this.metaGlobalIdentityNotForTables.isEmpty())
+                this.metaGenerateIdentities = true;
         }
         if (metaGenerateSequences && dbType != null) {
             sequences = new HashMap<String, StringBuilder>();
@@ -196,12 +202,6 @@ public class TableMetaConverter extends TablePojoConverter {
             if (identities.isEmpty()) {
                 metaIdentityDefinition(null, identities);
             }
-        }
-        if (metaGenerateIdGenerators && dbType != null) {
-            // TODO
-        }
-        if (metaGenerateIndirectIdGenerators && dbType != null) {
-            // TODO
         }
         Map<String, String> metaFunctionsResultSet = modelProperty.getMetaFunctionsResultSet(artifacts);
         if (metaFunctionsResultSet != null) {
@@ -237,10 +237,10 @@ public class TableMetaConverter extends TablePojoConverter {
             System.out.println("metaTablesSequence " + this.metaTablesSequence);
             System.out.println("metaGlobalIdentity " + this.metaGlobalIdentity);
             System.out.println("metaTablesIdentity " + this.metaTablesIdentity);
-            System.out.println("metaGlobalIdGenerator " + this.metaGlobalIdGenerator);
-            System.out.println("metaTablesIdGenerator " + this.metaTablesIdGenerator);
-            System.out.println("metaGlobalIndirectIdGenerator " + this.metaGlobalIndirectIdGenerator);
-            System.out.println("metaTablesIndirectIdGenerator " + this.metaTablesIndirectIdGenerator);
+            // System.out.println("metaGlobalIdGenerator " + this.metaGlobalIdGenerator);
+            // System.out.println("metaTablesIdGenerator " + this.metaTablesIdGenerator);
+            // System.out.println("metaGlobalIndirectIdGenerator " + this.metaGlobalIndirectIdGenerator);
+            // System.out.println("metaTablesIndirectIdGenerator " + this.metaTablesIndirectIdGenerator);
             System.out.println("metaColumnsMetaTypes " + this.metaColumnsMetaTypes);
             System.out.println("metaStatementsMetaTypes " + this.metaStatementsMetaTypes);
             System.out.println("metaMakeItFinal " + this.metaMakeItFinal);
@@ -253,12 +253,13 @@ public class TableMetaConverter extends TablePojoConverter {
             System.out.println("metaGlobalIdentityForTables " + this.metaGlobalIdentityForTables);
             System.out.println("metaGlobalIdentityNotForTables " + this.metaGlobalIdentityNotForTables);
             System.out.println("metaGenerateIdGenerators " + this.metaGenerateIdGenerators);
-            System.out.println("metaGlobalIdGeneratorForTables " + this.metaGlobalIdGeneratorForTables);
-            System.out.println("metaGlobalIdGeneratorNotForTables " + this.metaGlobalIdGeneratorNotForTables);
+            // System.out.println("metaGlobalIdGeneratorForTables " + this.metaGlobalIdGeneratorForTables);
+            // System.out.println("metaGlobalIdGeneratorNotForTables " + this.metaGlobalIdGeneratorNotForTables);
             System.out.println("metaGenerateIndirectIdGenerators " + this.metaGenerateIndirectIdGenerators);
-            System.out.println("metaGlobalIndirectIdGeneratorForTables " + this.metaGlobalIndirectIdGeneratorForTables);
-            System.out.println("metaGlobalIndirectIdGeneratorNotForTables "
-                    + this.metaGlobalIndirectIdGeneratorNotForTables);
+            // System.out.println("metaGlobalIndirectIdGeneratorForTables " +
+            // this.metaGlobalIndirectIdGeneratorForTables);
+            // System.out.println("metaGlobalIndirectIdGeneratorNotForTables "
+            // + this.metaGlobalIndirectIdGeneratorNotForTables);
             System.out.println("metaFunctionsResultSet " + this.metaFunctionsResultSet);
             System.out.println("metaProceduresResultSet " + this.metaProceduresResultSet);
             System.out.println("metaGenerateOperators " + this.metaGenerateOperators);
@@ -637,32 +638,32 @@ public class TableMetaConverter extends TablePojoConverter {
                     buffer.append("type=").append(identity.value2).append(",");
                 if (metaGenerateIdGenerators) {
                     buffer.append("idgen=");
-                    if (metaGlobalIdGenerator != null) {
-                        if (metaGlobalIdGenerator.value1 != null && !"null".equals(metaGlobalIdGenerator.value1))
-                            buffer.append(metaGlobalIdGenerator.value1);
-                        else
-                            buffer.append("IDSEL");
-                    } else {
-                        if (identity.value1 != null && !"null".equals(identity.value1))
-                            buffer.append(identity.value1);
-                        else
-                            buffer.append("IDSEL");
-                    }
+                    // if (metaGlobalIdGenerator != null) {
+                    // if (metaGlobalIdGenerator.value1 != null && !"null".equals(metaGlobalIdGenerator.value1))
+                    // buffer.append(metaGlobalIdGenerator.value1);
+                    // else
+                    // buffer.append("IDSEL");
+                    // } else {
+                    if (identity.value1 != null && !"null".equals(identity.value1))
+                        buffer.append(identity.value1);
+                    else
+                        buffer.append("IDSEL");
+                    // }
                     buffer.append(",id=").append(pentry.getKey());
                 } else if (metaGenerateIndirectIdGenerators) {
                     buffer.append("idgen=");
-                    if (metaGlobalIndirectIdGenerator != null) {
-                        if (metaGlobalIndirectIdGenerator.value1 != null
-                                && !"null".equals(metaGlobalIndirectIdGenerator.value1))
-                            buffer.append(metaGlobalIndirectIdGenerator.value1);
-                        else
-                            buffer.append("IDSEL");
-                    } else {
-                        if (identity.value1 != null && !"null".equals(identity.value1))
-                            buffer.append(identity.value1);
-                        else
-                            buffer.append("IDSEL");
-                    }
+                    // if (metaGlobalIndirectIdGenerator != null) {
+                    // if (metaGlobalIndirectIdGenerator.value1 != null
+                    // && !"null".equals(metaGlobalIndirectIdGenerator.value1))
+                    // buffer.append(metaGlobalIndirectIdGenerator.value1);
+                    // else
+                    // buffer.append("IDSEL");
+                    // } else {
+                    if (identity.value1 != null && !"null".equals(identity.value1))
+                        buffer.append(identity.value1);
+                    else
+                        buffer.append("IDSEL");
+                    // }
                     buffer.append(",id=").append(pentry.getKey());
                 } else {
                     buffer.append("idsel");
@@ -712,17 +713,17 @@ public class TableMetaConverter extends TablePojoConverter {
                     buffer.append("type=").append(attr.sequence.value2).append(",");
                 if (metaGenerateIdGenerators) {
                     buffer.append("idgen=");
-                    if (metaGlobalIdGenerator != null)
-                        buffer.append(metaGlobalIdGenerator.value1);
-                    else
-                        buffer.append(attr.sequence.value1);
+                    // if (metaGlobalIdGenerator != null)
+                    // buffer.append(metaGlobalIdGenerator.value1);
+                    // else
+                    buffer.append(attr.sequence.value1);
                     buffer.append(",id=").append(pentry.getKey());
                 } else if (metaGenerateIndirectIdGenerators) {
                     buffer.append("idgen=");
-                    if (metaGlobalIndirectIdGenerator != null)
-                        buffer.append(metaGlobalIndirectIdGenerator.value1);
-                    else
-                        buffer.append(attr.sequence.value1);
+                    // if (metaGlobalIndirectIdGenerator != null)
+                    // buffer.append(metaGlobalIndirectIdGenerator.value1);
+                    // else
+                    buffer.append(attr.sequence.value1);
                     buffer.append(",id=").append(pentry.getKey());
                 } else {
                     buffer.append("seq");
@@ -1877,12 +1878,12 @@ public class TableMetaConverter extends TablePojoConverter {
                 } else if (metaGenerateIndirectIdGenerators) {
                     buffer.append("IDGEN_");
                 }
-                if (metaGenerateIdGenerators && metaGlobalIdGenerator != null)
-                    buffer.append(metaGlobalIdGenerator.value1);
-                else if (metaGenerateIndirectIdGenerators && metaGlobalIndirectIdGenerator != null)
-                    buffer.append(metaGlobalIndirectIdGenerator.value1);
-                else
-                    buffer.append(name);
+                // if (metaGenerateIdGenerators && metaGlobalIdGenerator != null)
+                // buffer.append(metaGlobalIdGenerator.value1);
+                // else if (metaGenerateIndirectIdGenerators && metaGlobalIndirectIdGenerator != null)
+                // buffer.append(metaGlobalIndirectIdGenerator.value1);
+                // else
+                buffer.append(name);
                 buffer.append("(OPT");
                 if (metaMakeItFinal)
                     buffer.append(",final=");
@@ -1939,12 +1940,12 @@ public class TableMetaConverter extends TablePojoConverter {
                 } else if (metaGenerateIndirectIdGenerators) {
                     buffer.append("IDGEN_");
                 }
-                if (metaGenerateIdGenerators && metaGlobalIdGenerator != null)
-                    buffer.append(metaGlobalIdGenerator.value1);
-                else if (metaGenerateIndirectIdGenerators && metaGlobalIndirectIdGenerator != null)
-                    buffer.append(metaGlobalIndirectIdGenerator.value1);
-                else
-                    buffer.append(name);
+                // if (metaGenerateIdGenerators && metaGlobalIdGenerator != null)
+                // buffer.append(metaGlobalIdGenerator.value1);
+                // else if (metaGenerateIndirectIdGenerators && metaGlobalIndirectIdGenerator != null)
+                // buffer.append(metaGlobalIndirectIdGenerator.value1);
+                // else
+                buffer.append(name);
                 if (suffix != null)
                     buffer.append(suffix);
                 buffer.append("(OPT");
@@ -1978,12 +1979,13 @@ public class TableMetaConverter extends TablePojoConverter {
                 } else {
                     buffer.append("SEQ_");
                 }
-                if (metaGenerateIdGenerators && metaGlobalIdGenerator != null)
-                    buffer.append(metaGlobalIdGenerator.value1);
-                else if (metaGenerateIndirectIdGenerators && metaGlobalIndirectIdGenerator != null)
-                    buffer.append(metaGlobalIndirectIdGenerator.value1);
-                else
-                    buffer.append("(OPT");
+                // if (metaGenerateIdGenerators && metaGlobalIdGenerator != null)
+                // buffer.append(metaGlobalIdGenerator.value1);
+                // else if (metaGenerateIndirectIdGenerators && metaGlobalIndirectIdGenerator != null)
+                // buffer.append(metaGlobalIndirectIdGenerator.value1);
+                // else
+                buffer.append(name);
+                buffer.append("(OPT");
                 if (metaMakeItFinal)
                     buffer.append(",final=");
                 buffer.append(")=");
@@ -2014,12 +2016,12 @@ public class TableMetaConverter extends TablePojoConverter {
                 } else {
                     buffer.append("IDSEL_");
                 }
-                if (metaGenerateIdGenerators && metaGlobalIdGenerator != null)
-                    buffer.append(metaGlobalIdGenerator.value1);
-                else if (metaGenerateIndirectIdGenerators && metaGlobalIndirectIdGenerator != null)
-                    buffer.append(metaGlobalIndirectIdGenerator.value1);
-                else
-                    buffer.append(name);
+                // if (metaGenerateIdGenerators && metaGlobalIdGenerator != null)
+                // buffer.append(metaGlobalIdGenerator.value1);
+                // else if (metaGenerateIndirectIdGenerators && metaGlobalIndirectIdGenerator != null)
+                // buffer.append(metaGlobalIndirectIdGenerator.value1);
+                // else
+                buffer.append(name);
                 buffer.append("(OPT");
                 if (metaMakeItFinal)
                     buffer.append(",final=");
