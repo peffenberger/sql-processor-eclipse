@@ -107,10 +107,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String METAGEN_TABLE_SEQUENCE = "table-sequence";
     public static final String METAGEN_GLOBAL_IDENTITY = "global-identity";
     public static final String METAGEN_TABLE_IDENTITY = "table-identity";
-    public static final String METAGEN_GLOBAL_IDGENERATOR = "global-idgenerator";
-    public static final String METAGEN_TABLE_IDGENERATOR = "table-idgenerator";
-    public static final String METAGEN_GLOBAL_INDIRECT_IDGENERATOR = "global-indirect-idgenerator";
-    public static final String METAGEN_TABLE_INDIRECT_IDGENERATOR = "table-indirect-idgenerator";
     public static final String METAGEN_COLUMN_META_TYPE = "column-meta-type";
     public static final String METAGEN_STATEMENT_META_TYPE = "statement-meta-type";
     public static final String METAGEN_MAKE_IT_FINAL = "make-it-final";
@@ -119,7 +115,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String METAGEN_GENERATE_SEQUENCES = "generate-sequences";
     public static final String METAGEN_GENERATE_IDENTITIES = "generate-identities";
     public static final String METAGEN_GENERATE_IDGENERATORS = "generate-idgenerators";
-    public static final String METAGEN_GENERATE_INDIRECT_IDGENERATORS = "generate-indirect-idgenerators";
+    public static final String METAGEN_GENERATE_INDIRECT_IDGENERATORS = "generate-default-idgenerators";
     public static final String METAGEN_FUNCTION_RESULT = "function-result";
     public static final String METAGEN_FUNCTION_RESULT_SET = "function-result-set";
     public static final String METAGEN_PROCEDURE_RESULT_SET = "procedure-result-set";
@@ -218,10 +214,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, PairValues> metaTablesSequence;
         public PairValues metaGlobalIdentity;
         public Map<String, PairValues> metaTablesIdentity;
-        public PairValues metaGlobalIdGenerator;
-        public Map<String, PairValues> metaTablesIdGenerator;
-        public PairValues metaGlobalIndirectIdGenerator;
-        public Map<String, PairValues> metaTablesIndirectIdGenerator;
         public Map<String, Map<String, PairValues>> metaColumnsMetaTypes;
         public Map<String, Map<String, PairValues>> metaStatementsMetaTypes;
         public boolean metaMakeItFinal;
@@ -234,11 +226,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Set<String> metaGlobalIdentityForTables;
         public Set<String> metaGlobalIdentityNotForTables;
         public boolean metaGenerateIdGenerators;
-        public Set<String> metaGlobalIdGeneratorForTables;
-        public Set<String> metaGlobalIdGeneratorNotForTables;
         public boolean metaGenerateIndirectIdGenerators;
-        public Set<String> metaGlobalIndirectIdGeneratorForTables;
-        public Set<String> metaGlobalIndirectIdGeneratorNotForTables;
         public Map<String, String> metaFunctionsResult;
         public Map<String, String> metaFunctionsResultSet;
         public Map<String, String> metaProceduresResultSet;
@@ -461,10 +449,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.metaTablesSequence = new HashMap<String, PairValues>();
         modelValues.metaGlobalIdentity = null;
         modelValues.metaTablesIdentity = new HashMap<String, PairValues>();
-        modelValues.metaGlobalIdGenerator = null;
-        modelValues.metaTablesIdGenerator = new HashMap<String, PairValues>();
-        modelValues.metaGlobalIndirectIdGenerator = null;
-        modelValues.metaTablesIndirectIdGenerator = new HashMap<String, PairValues>();
         modelValues.metaColumnsMetaTypes = new HashMap<String, Map<String, PairValues>>();
         modelValues.metaStatementsMetaTypes = new HashMap<String, Map<String, PairValues>>();
         modelValues.metaMakeItFinal = false;
@@ -477,11 +461,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.metaGlobalIdentityForTables = new HashSet<String>();
         modelValues.metaGlobalIdentityNotForTables = new HashSet<String>();
         modelValues.metaGenerateIdGenerators = false;
-        modelValues.metaGlobalIdGeneratorForTables = new HashSet<String>();
-        modelValues.metaGlobalIdGeneratorNotForTables = new HashSet<String>();
         modelValues.metaGenerateIndirectIdGenerators = false;
-        modelValues.metaGlobalIndirectIdGeneratorForTables = new HashSet<String>();
-        modelValues.metaGlobalIndirectIdGeneratorNotForTables = new HashSet<String>();
         modelValues.metaFunctionsResult = new HashMap<String, String>();
         modelValues.metaFunctionsResultSet = new HashMap<String, String>();
         modelValues.metaProceduresResultSet = new HashMap<String, String>();
@@ -913,28 +893,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         } else if (METAGEN_TABLE_SEQUENCE.equals(property.getName())) {
             modelValues.metaTablesSequence.put(property.getDbTable(),
                     new PairValues(property.getSequence(), property.getType()));
-        } else if (METAGEN_GLOBAL_IDGENERATOR.equals(property.getName())) {
-            modelValues.metaGlobalIdGenerator = new PairValues(property.getIdentity(), property.getType());
-            if (property.getDbTables() != null) {
-                modelValues.metaGlobalIdGeneratorForTables.addAll(property.getDbTables());
-            }
-            if (property.getDbNotTables() != null) {
-                modelValues.metaGlobalIdGeneratorNotForTables.addAll(property.getDbNotTables());
-            }
-        } else if (METAGEN_TABLE_IDGENERATOR.equals(property.getName())) {
-            modelValues.metaTablesIdGenerator.put(property.getDbTable(), new PairValues(property.getIdentity(),
-                    property.getType()));
-        } else if (METAGEN_GLOBAL_INDIRECT_IDGENERATOR.equals(property.getName())) {
-            modelValues.metaGlobalIndirectIdGenerator = new PairValues(property.getIdentity(), property.getType());
-            if (property.getDbTables() != null) {
-                modelValues.metaGlobalIndirectIdGeneratorForTables.addAll(property.getDbTables());
-            }
-            if (property.getDbNotTables() != null) {
-                modelValues.metaGlobalIndirectIdGeneratorNotForTables.addAll(property.getDbNotTables());
-            }
-        } else if (METAGEN_TABLE_INDIRECT_IDGENERATOR.equals(property.getName())) {
-            modelValues.metaTablesIndirectIdGenerator.put(property.getDbTable(), new PairValues(property.getIdentity(),
-                    property.getType()));
         } else if (METAGEN_COLUMN_META_TYPE.equals(property.getName())) {
             if (!modelValues.metaColumnsMetaTypes.containsKey(property.getDbTable()))
                 modelValues.metaColumnsMetaTypes.put(property.getDbTable(), new HashMap<String, PairValues>());
@@ -1343,31 +1301,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public PairValues getMetaGlobalIdGenerator(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGlobalIdGenerator : null;
-    }
-
-    @Override
-    public Map<String, PairValues> getMetaTablesIdGenerator(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaTablesIdGenerator : Collections.<String, PairValues> emptyMap();
-    }
-
-    @Override
-    public PairValues getMetaGlobalIndirectIdGenerator(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGlobalIndirectIdGenerator : null;
-    }
-
-    @Override
-    public Map<String, PairValues> getMetaTablesIndirectIdGenerator(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaTablesIndirectIdGenerator : Collections
-                .<String, PairValues> emptyMap();
-    }
-
-    @Override
     public Map<String, Map<String, PairValues>> getMetaColumnsMetaTypes(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.metaColumnsMetaTypes : Collections
@@ -1442,35 +1375,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public Set<String> getMetaGlobalIdGeneratorForTables(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGlobalIdGeneratorForTables : Collections.<String> emptySet();
-    }
-
-    @Override
-    public Set<String> getMetaGlobalIdGeneratorNotForTables(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGlobalIdGeneratorNotForTables : Collections.<String> emptySet();
-    }
-
-    @Override
     public boolean isMetaGenerateIndirectIdGenerators(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.metaGenerateIndirectIdGenerators : false;
-    }
-
-    @Override
-    public Set<String> getMetaGlobalIndirectIdGeneratorForTables(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGlobalIndirectIdGeneratorForTables : Collections
-                .<String> emptySet();
-    }
-
-    @Override
-    public Set<String> getMetaGlobalIndirectIdGeneratorNotForTables(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGlobalIndirectIdGeneratorNotForTables : Collections
-                .<String> emptySet();
     }
 
     @Override

@@ -165,21 +165,5 @@ public interface ModelProperty extends Adapter {
 
     boolean isMetaGenerateIdGenerators(EObject model);
 
-    Set<String> getMetaGlobalIdGeneratorForTables(EObject model);
-
-    Set<String> getMetaGlobalIdGeneratorNotForTables(EObject model);
-
     boolean isMetaGenerateIndirectIdGenerators(EObject model);
-
-    Set<String> getMetaGlobalIndirectIdGeneratorForTables(EObject model);
-
-    Set<String> getMetaGlobalIndirectIdGeneratorNotForTables(EObject model);
-
-    PairValues getMetaGlobalIdGenerator(EObject model);
-
-    Map<String, PairValues> getMetaTablesIdGenerator(EObject model);
-
-    PairValues getMetaGlobalIndirectIdGenerator(EObject model);
-
-    Map<String, PairValues> getMetaTablesIndirectIdGenerator(EObject model);
 }
