@@ -1715,6 +1715,9 @@ public class TableMetaConverter extends TablePojoConverter {
 
     PairValues getIdentity(String pojo, PojoAttribute attribute) {
         if (attribute.isPrimaryKey()) {
+            if (metaTablesSequence.containsKey(pojo)) {
+                return null;
+            }
             if (metaTablesIdentity.containsKey(pojo)) {
                 return metaTablesIdentity.get(pojo);
             } else if (metaGlobalIdentity != null) {
@@ -1849,7 +1852,7 @@ public class TableMetaConverter extends TablePojoConverter {
         if (identity2 != null) {
             name = metaIdentityDefinition1(buffer, identityName, identity, "_Long");
             metaIdentityDefinition1(buffer, identityName, identity2, "_Integer");
-        } else {
+        } else if (identity != null) {
             name = metaIdentityDefinition1(buffer, identityName, identity, null);
         }
         if (name != null)
