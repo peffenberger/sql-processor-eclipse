@@ -173,6 +173,11 @@ public class TableDaoConverter extends TableMetaConverter {
                 }
                 oneMoreLine = true;
             }
+            if (generics != null && notGenerics != null) {
+                notGenerics.removeAll(generics);
+            }
+            System.out.println("AAAAAAA " + generics);
+            System.out.println("BBBBBBB " + notGenerics);
             if (daoToExtends != null) {
                 JvmType type = daoToExtends.getToImplement();
                 buffer.append("\n  extends ").append(type.getIdentifier());
@@ -230,18 +235,14 @@ public class TableDaoConverter extends TableMetaConverter {
                     buffer.append("final ");
                 buffer.append("dao ");
                 buffer.append(daoName);
-                if (generics != null && !generics.isEmpty()) {
-                    if (generics.contains(daoName))
-                        buffer.append(" ::: ");
-                    else
-                        buffer.append(" :: ");
-                } else if (notGenerics != null && !notGenerics.isEmpty()) {
-                    if (notGenerics.contains(daoName))
-                        buffer.append(" :: ");
-                    else
-                        buffer.append(" ::: ");
-                } else {
+                if (generics == null && notGenerics == null) {
                     buffer.append(" :: ");
+                } else if (generics != null && !generics.isEmpty() && generics.contains(daoName)) {
+                    buffer.append(" ::: ");
+                } else if (notGenerics != null && !notGenerics.isEmpty() && notGenerics.contains(daoName)) {
+                    buffer.append(" :: ");
+                } else {
+                    buffer.append(" ::: ");
                 }
                 buffer.append(tableToCamelCase(pojoName));
                 if (isSerializable || serializables.contains(pojo))
