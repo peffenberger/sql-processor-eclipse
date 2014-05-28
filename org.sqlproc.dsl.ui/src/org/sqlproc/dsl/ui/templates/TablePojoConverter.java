@@ -535,11 +535,15 @@ public class TablePojoConverter {
                 System.out.println("For the constraint " + check.getEnumName() + " there's no table or column");
                 continue;
             }
-            attribute.setDependencyClassName(tableToCamelCase(check.getEnumName()));
+            String name = check.getEnumName();
+            if (name.startsWith(check.getTable()) && tableNames.containsKey(check.getTable())) {
+                name = tableNames.get(check.getTable()) + name.substring(check.getTable().length());
+            }
+            attribute.setDependencyClassName(tableToCamelCase(name));
             attribute.setDependencyClassNameIsEnum(true);
 
             List<EnumAttribute> attrs = new ArrayList<EnumAttribute>();
-            enums.put(check.getEnumName(), attrs);
+            enums.put(name, attrs);
             EnumAttribute pattr = new EnumAttribute();
             pattr.setName("VALUE");
             pattr.setClassName(attribute.getClassName());
