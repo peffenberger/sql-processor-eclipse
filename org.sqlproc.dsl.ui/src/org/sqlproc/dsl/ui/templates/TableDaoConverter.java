@@ -176,8 +176,6 @@ public class TableDaoConverter extends TableMetaConverter {
             if (generics != null && notGenerics != null) {
                 notGenerics.removeAll(generics);
             }
-            System.out.println("AAAAAAA " + generics);
-            System.out.println("BBBBBBB " + notGenerics);
             if (daoToExtends != null) {
                 JvmType type = daoToExtends.getToImplement();
                 buffer.append("\n  extends ").append(type.getIdentifier());
@@ -320,8 +318,11 @@ public class TableDaoConverter extends TableMetaConverter {
                     String procedureName = lowerFirstChar(pojoName);
                     Map<String, PojoAttribute> attributes = procedures.get(procedure);
                     if (metaProceduresResultSet.containsKey(procedure)) {
+                        String name = metaProceduresResultSet.get(procedure);
+                        if (tableNames.containsKey(name))
+                            name = tableNames.get(name);
                         buffer.append("callQuery ").append(procedureName).append(" :java.util.List<:")
-                                .append(tableToCamelCase(metaProceduresResultSet.get(procedure))).append(">");
+                                .append(tableToCamelCase(name)).append(">");
                     } else {
                         PojoAttribute returnAttribute = (attributes.containsKey(FAKE_FUN_PROC_COLUMN_NAME)) ? attributes
                                 .get(FAKE_FUN_PROC_COLUMN_NAME) : null;
@@ -382,8 +383,11 @@ public class TableDaoConverter extends TableMetaConverter {
                     String procedureName = lowerFirstChar(pojoName);
                     Map<String, PojoAttribute> attributes = procedures.get(procedure);
                     if (metaFunctionsResultSet.containsKey(procedure)) {
+                        String name = metaFunctionsResultSet.get(procedure);
+                        if (tableNames.containsKey(name))
+                            name = tableNames.get(name);
                         buffer.append("callQueryFunction ").append(procedureName).append(" :java.util.List<:")
-                                .append(tableToCamelCase(metaFunctionsResultSet.get(procedure))).append(">");
+                                .append(tableToCamelCase(name)).append(">");
                     } else if (metaFunctionsResult.containsKey(procedure)) {
                         buffer.append("callFunction ").append(procedureName).append(" :")
                                 .append(metaType2className(metaFunctionsResult.get(procedure)));
@@ -445,8 +449,11 @@ public class TableDaoConverter extends TableMetaConverter {
                     String functionName = lowerFirstChar(pojoName);
                     Map<String, PojoAttribute> attributes = functions.get(function);
                     if (metaFunctionsResultSet.containsKey(function)) {
+                        String name = metaFunctionsResultSet.get(function);
+                        if (tableNames.containsKey(name))
+                            name = tableNames.get(name);
                         buffer.append("callQueryFunction ").append(functionName).append(" :java.util.List<:")
-                                .append(tableToCamelCase(metaFunctionsResultSet.get(function))).append(">");
+                                .append(tableToCamelCase(name)).append(">");
                     } else if (metaFunctionsResult.containsKey(function) && dbType == DbType.DB2) {
                         buffer.append("callSelectFunction ").append(functionName).append(" :")
                                 .append(metaType2className(metaFunctionsResult.get(function)));

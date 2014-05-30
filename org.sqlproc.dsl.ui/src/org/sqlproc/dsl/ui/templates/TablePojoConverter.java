@@ -793,6 +793,8 @@ public class TablePojoConverter {
     }
 
     protected String collectionName(String fkTable, String fkColumn) {
+        if (tableNames.containsKey(fkTable))
+            fkTable = tableNames.get(fkTable);
         String referName = (fkColumn == null) ? lowerFirstChar(tableToCamelCase(fkTable)) : tableToCamelCase(fkTable);
         if (!referName.endsWith("s")) {
             if (referName.endsWith("y")) {
