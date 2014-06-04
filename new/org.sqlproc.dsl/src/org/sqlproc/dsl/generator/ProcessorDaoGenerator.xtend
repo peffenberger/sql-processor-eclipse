@@ -95,14 +95,14 @@ class ProcessorDaoGenerator {
 				this.sqlSessionFactory = sqlSessionFactory;
 			}
 			
-			«FOR m:d.methods»«IF m.name == "scaffold" || m.name == "scaffold0"»«compileInsert(d, e, getParent(e), im, m.name == "scaffold")»
-			«compileGet(d, e, toInits, im, m.name == "scaffold")»
-			«compileUpdate(d, e, getParent(e), im, m.name == "scaffold")»
-			«compileDelete(d, e, getParent(e), im, m.name == "scaffold")»
-			«compileList(d, e, toInits, im, m.name == "scaffold")»
-			«compileCount(d, e, toInits, im, m.name == "scaffold")»
-			«IF !toInits.empty»«compileMoreResultClasses(d, e, toInits, im)»«ENDIF»«ELSEIF isCallUpdate(m)»
-			«compileCallUpdate(d, m, im, true)»«ELSEIF isCallFunction(m)»«compileCallFunction(d, m, im, true)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQuery(d, m, im, isCallQueryFunction(m), true)»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunction(d, m, im, true)»«ENDIF»«ENDFOR»
+		«FOR m:d.methods»«IF m.name == "scaffold" || m.name == "scaffold0"»«compileInsert(d, e, getParent(e), im, m.name == "scaffold")»
+		«compileGet(d, e, toInits, im, m.name == "scaffold")»
+		«compileUpdate(d, e, getParent(e), im, m.name == "scaffold")»
+		«compileDelete(d, e, getParent(e), im, m.name == "scaffold")»
+		«compileList(d, e, toInits, im, m.name == "scaffold")»
+		«compileCount(d, e, toInits, im, m.name == "scaffold")»
+		«IF !toInits.empty»«compileMoreResultClasses(d, e, toInits, im)»«ENDIF»«ELSEIF isCallUpdate(m)»
+		«compileCallUpdate(d, m, im, true)»«ELSEIF isCallFunction(m)»«compileCallFunction(d, m, im, true)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQuery(d, m, im, isCallQueryFunction(m), true)»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunction(d, m, im, true)»«ENDIF»«ENDFOR»
 		}
 	'''
 	

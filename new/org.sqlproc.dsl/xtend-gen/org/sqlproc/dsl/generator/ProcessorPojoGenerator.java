@@ -780,15 +780,13 @@ public class ProcessorPojoGenerator {
       };
       Iterable<PojoAnnotatedProperty> _filter_2 = IterableExtensions.<PojoAnnotatedProperty>filter(_features_12, _function_2);
       for(final PojoAnnotatedProperty f_8 : _filter_2) {
-        _builder.append("\t");
         PojoProperty _feature_9 = f_8.getFeature();
         String _operatorsSuffix = Utils.getOperatorsSuffix(e);
         CharSequence _compile = this.compile(_feature_9, f_8, im, e, ae, _operatorsSuffix);
-        _builder.append(_compile, "	");
+        _builder.append(_compile, "");
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("\t");
     {
       EList<PojoAnnotatedProperty> _features_13 = e.getFeatures();
       final Function1<PojoAnnotatedProperty,Boolean> _function_3 = new Function1<PojoAnnotatedProperty,Boolean>() {
@@ -808,9 +806,8 @@ public class ProcessorPojoGenerator {
           if (_equalsIgnoreCase) {
             PojoProperty _feature_11 = f_9.getFeature();
             CharSequence _compileHashCode = this.compileHashCode(_feature_11, f_9, im, e, ae);
-            _builder.append(_compileHashCode, "	");
+            _builder.append(_compileHashCode, "");
             _builder.newLineIfNotEmpty();
-            _builder.append("\t");
           } else {
             PojoProperty _feature_12 = f_9.getFeature();
             String _name_9 = _feature_12.getName();
@@ -818,9 +815,8 @@ public class ProcessorPojoGenerator {
             if (_equalsIgnoreCase_1) {
               PojoProperty _feature_13 = f_9.getFeature();
               CharSequence _compileEquals = this.compileEquals(_feature_13, f_9, im, e, ae);
-              _builder.append(_compileEquals, "	");
+              _builder.append(_compileEquals, "");
               _builder.newLineIfNotEmpty();
-              _builder.append("\t");
             } else {
               PojoProperty _feature_14 = f_9.getFeature();
               String _name_10 = _feature_14.getName();
@@ -828,9 +824,8 @@ public class ProcessorPojoGenerator {
               if (_equalsIgnoreCase_2) {
                 PojoProperty _feature_15 = f_9.getFeature();
                 CharSequence _compileToInit = this.compileToInit(_feature_15, f_9, im, e, ae);
-                _builder.append(_compileToInit, "	");
+                _builder.append(_compileToInit, "");
                 _builder.newLineIfNotEmpty();
-                _builder.append("\t");
               } else {
                 PojoProperty _feature_16 = f_9.getFeature();
                 String _name_11 = _feature_16.getName();
@@ -838,9 +833,8 @@ public class ProcessorPojoGenerator {
                 if (_equalsIgnoreCase_3) {
                   PojoProperty _feature_17 = f_9.getFeature();
                   CharSequence _compileEnumInit = this.compileEnumInit(_feature_17, f_9, im, e, ae);
-                  _builder.append(_compileEnumInit, "	");
+                  _builder.append(_compileEnumInit, "");
                   _builder.newLineIfNotEmpty();
-                  _builder.append("\t");
                 } else {
                   PojoProperty _feature_18 = f_9.getFeature();
                   String _name_12 = _feature_18.getName();
@@ -848,9 +842,8 @@ public class ProcessorPojoGenerator {
                   if (_equalsIgnoreCase_4) {
                     PojoProperty _feature_19 = f_9.getFeature();
                     CharSequence _compileIsDef = this.compileIsDef(_feature_19, f_9, im, e, ae);
-                    _builder.append(_compileIsDef, "	");
+                    _builder.append(_compileIsDef, "");
                     _builder.newLineIfNotEmpty();
-                    _builder.append("\t");
                   } else {
                     PojoProperty _feature_20 = f_9.getFeature();
                     String _name_13 = _feature_20.getName();
@@ -858,9 +851,8 @@ public class ProcessorPojoGenerator {
                     if (_equalsIgnoreCase_5) {
                       PojoProperty _feature_21 = f_9.getFeature();
                       CharSequence _compileEnumDef = this.compileEnumDef(_feature_21, f_9, im, e, ae);
-                      _builder.append(_compileEnumDef, "	");
+                      _builder.append(_compileEnumDef, "");
                       _builder.newLineIfNotEmpty();
-                      _builder.append("\t");
                     } else {
                       PojoProperty _feature_22 = f_9.getFeature();
                       String _name_14 = _feature_22.getName();
@@ -868,7 +860,7 @@ public class ProcessorPojoGenerator {
                       if (_equalsIgnoreCase_6) {
                         PojoProperty _feature_23 = f_9.getFeature();
                         CharSequence _compileToString = this.compileToString(_feature_23, f_9, im, e, ae);
-                        _builder.append(_compileToString, "	");
+                        _builder.append(_compileToString, "");
                       }
                     }
                   }
@@ -891,9 +883,8 @@ public class ProcessorPojoGenerator {
       }
       if (_and) {
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
         CharSequence _compileOperators = this.compileOperators(im, e, ae);
-        _builder.append(_compileOperators, "	");
+        _builder.append(_compileOperators, "");
       }
     }
     _builder.newLineIfNotEmpty();

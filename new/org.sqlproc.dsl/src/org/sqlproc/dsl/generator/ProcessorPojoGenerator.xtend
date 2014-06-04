@@ -174,17 +174,17 @@ class ProcessorPojoGenerator {
 		"»	this.«f.feature.name» = «f.feature.name»;«ENDFOR»
 		}
 		«ENDIF»
-		«FOR f:e.features.filter(x| isAttribute(x.feature))»
-			«f.feature.compile(f, im, e, ae, getOperatorsSuffix(e))»
-		«ENDFOR»
-		«FOR f:e.features.filter(x| !isAttribute(x.feature))»«IF f.feature.name.equalsIgnoreCase("hashCode")»«f.feature.compileHashCode(f, im, e, ae)»
-		«ELSEIF f.feature.name.equalsIgnoreCase("equals")»«f.feature.compileEquals(f, im, e, ae)»
-		«ELSEIF f.feature.name.equalsIgnoreCase("toInit")»«f.feature.compileToInit(f, im, e, ae)»
-		«ELSEIF f.feature.name.equalsIgnoreCase("enumInit")»«f.feature.compileEnumInit(f, im, e, ae)»
-		«ELSEIF f.feature.name.equalsIgnoreCase("isDef")»«f.feature.compileIsDef(f, im, e, ae)»
-		«ELSEIF f.feature.name.equalsIgnoreCase("enumDef")»«f.feature.compileEnumDef(f, im, e, ae)»
-		«ELSEIF f.feature.name.equalsIgnoreCase("toString")»«f.feature.compileToString(f, im, e, ae)»«ENDIF»«ENDFOR»«IF hasOperators(e) && getOperatorsSuffix(e) == null»
-		«compileOperators(im, e, ae)»«ENDIF»
+	«FOR f:e.features.filter(x| isAttribute(x.feature))»
+		«f.feature.compile(f, im, e, ae, getOperatorsSuffix(e))»
+	«ENDFOR»
+	«FOR f:e.features.filter(x| !isAttribute(x.feature))»«IF f.feature.name.equalsIgnoreCase("hashCode")»«f.feature.compileHashCode(f, im, e, ae)»
+	«ELSEIF f.feature.name.equalsIgnoreCase("equals")»«f.feature.compileEquals(f, im, e, ae)»
+	«ELSEIF f.feature.name.equalsIgnoreCase("toInit")»«f.feature.compileToInit(f, im, e, ae)»
+	«ELSEIF f.feature.name.equalsIgnoreCase("enumInit")»«f.feature.compileEnumInit(f, im, e, ae)»
+	«ELSEIF f.feature.name.equalsIgnoreCase("isDef")»«f.feature.compileIsDef(f, im, e, ae)»
+	«ELSEIF f.feature.name.equalsIgnoreCase("enumDef")»«f.feature.compileEnumDef(f, im, e, ae)»
+	«ELSEIF f.feature.name.equalsIgnoreCase("toString")»«f.feature.compileToString(f, im, e, ae)»«ENDIF»«ENDFOR»«IF hasOperators(e) && getOperatorsSuffix(e) == null»
+	«compileOperators(im, e, ae)»«ENDIF»
 	}
 	'''
 	
