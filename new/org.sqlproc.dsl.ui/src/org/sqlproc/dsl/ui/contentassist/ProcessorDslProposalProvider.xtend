@@ -170,7 +170,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
             return true
         } else {
             val entity = getPojoEntity(pojoEntity, prefix)
-            val properties = entity.getProperties(null)
+            val properties = getProperties(entity, null)
             if (properties.isEmpty()) {
                 return false
             }
@@ -309,7 +309,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
         ]
 
         val superType = Utils.getSuperType(pojoEntity)
-		return superType?.getProperties(properties)
+		return if (superType == null ) properties else superType.getProperties(properties)
     }
     
     def isPrimitive(Class<?> clazz) {

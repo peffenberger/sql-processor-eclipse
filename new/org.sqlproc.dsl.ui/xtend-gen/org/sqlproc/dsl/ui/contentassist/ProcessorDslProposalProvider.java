@@ -728,11 +728,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     };
     IterableExtensions.<PojoProperty>forEach(_map, _function_1);
     final PojoEntity superType = Utils.getSuperType(pojoEntity);
-    List<PojoProperty> _properties = null;
-    if (superType!=null) {
-      _properties=this.getProperties(superType, properties);
+    List<PojoProperty> _xifexpression = null;
+    boolean _equals_1 = Objects.equal(superType, null);
+    if (_equals_1) {
+      _xifexpression = properties;
+    } else {
+      List<PojoProperty> _properties = this.getProperties(superType, properties);
+      _xifexpression = _properties;
     }
-    return _properties;
+    return _xifexpression;
   }
   
   public boolean isPrimitive(final Class<? extends Object> clazz) {
