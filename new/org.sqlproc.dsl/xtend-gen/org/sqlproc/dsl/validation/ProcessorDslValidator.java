@@ -3,7 +3,74 @@
  */
 package org.sqlproc.dsl.validation;
 
+import com.google.common.base.Objects;
+import com.google.inject.Inject;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.sql.Blob;
+import java.sql.Clob;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
+import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.IScopeProvider;
+import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Functions.Function0;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
+import org.sqlproc.dsl.processorDsl.Artifacts;
+import org.sqlproc.dsl.processorDsl.Column;
+import org.sqlproc.dsl.processorDsl.Constant;
+import org.sqlproc.dsl.processorDsl.DatabaseColumn;
+import org.sqlproc.dsl.processorDsl.DatabaseTable;
+import org.sqlproc.dsl.processorDsl.Entity;
+import org.sqlproc.dsl.processorDsl.EnumEntity;
+import org.sqlproc.dsl.processorDsl.EnumProperty;
+import org.sqlproc.dsl.processorDsl.FunctionDefinition;
+import org.sqlproc.dsl.processorDsl.Identifier;
+import org.sqlproc.dsl.processorDsl.MappingColumn;
+import org.sqlproc.dsl.processorDsl.MappingRule;
+import org.sqlproc.dsl.processorDsl.MetaSql;
+import org.sqlproc.dsl.processorDsl.MetaStatement;
+import org.sqlproc.dsl.processorDsl.OptionalFeature;
+import org.sqlproc.dsl.processorDsl.PackageDeclaration;
+import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
+import org.sqlproc.dsl.processorDsl.PojoDao;
+import org.sqlproc.dsl.processorDsl.PojoDefinition;
+import org.sqlproc.dsl.processorDsl.PojoEntity;
+import org.sqlproc.dsl.processorDsl.PojoProperty;
+import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
+import org.sqlproc.dsl.processorDsl.ProcessorDslPackage.Literals;
+import org.sqlproc.dsl.processorDsl.Property;
+import org.sqlproc.dsl.processorDsl.TableDefinition;
+import org.sqlproc.dsl.property.ModelProperty;
+import org.sqlproc.dsl.resolver.DbResolver;
+import org.sqlproc.dsl.resolver.PojoResolver;
+import org.sqlproc.dsl.resolver.PojoResolverFactory;
+import org.sqlproc.dsl.util.Constants;
+import org.sqlproc.dsl.util.Utils;
 import org.sqlproc.dsl.validation.AbstractProcessorDslValidator;
+import org.sqlproc.dsl.validation.ValidationResult;
 
 /**
  * Custom validation rules.
@@ -12,4 +79,1961 @@ import org.sqlproc.dsl.validation.AbstractProcessorDslValidator;
  */
 @SuppressWarnings("all")
 public class ProcessorDslValidator extends AbstractProcessorDslValidator {
+  @Inject
+  private PojoResolverFactory pojoResolverFactory;
+  
+  @Inject
+  private DbResolver dbResolver;
+  
+  @Inject
+  private IScopeProvider scopeProvider;
+  
+  @Inject
+  private IQualifiedNameConverter qualifiedNameConverter;
+  
+  @Inject
+  private ModelProperty modelProperty;
+  
+  private final ArrayList<String> F_TYPES = new Function0<ArrayList<String>>() {
+    public ArrayList<String> apply() {
+      ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("set", "update", "values", "where", "columns", "set=opt", "where=opt");
+      return _newArrayList;
+    }
+  }.apply();
+  
+  @Check
+  public void checkMetaSqlFtype(final MetaSql metaSql) {
+    String _ftype = metaSql.getFtype();
+    boolean _equals = Objects.equal(_ftype, null);
+    if (_equals) {
+      return;
+    }
+    String _ftype_1 = metaSql.getFtype();
+    boolean _findInListIgnoreCase = this.findInListIgnoreCase(this.F_TYPES, _ftype_1);
+    boolean _not = (!_findInListIgnoreCase);
+    if (_not) {
+      String _ftype_2 = metaSql.getFtype();
+      String _plus = ("Invalid ftype : " + _ftype_2);
+      this.error(_plus, Literals.META_SQL__FTYPE);
+    }
+  }
+  
+  public boolean findInListIgnoreCase(final List<String> list, final String value) {
+    boolean _equals = Objects.equal(list, null);
+    if (_equals) {
+      return false;
+    }
+    for (final String item : list) {
+      boolean _equalsIgnoreCase = item.equalsIgnoreCase(value);
+      if (_equalsIgnoreCase) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  @Check
+  public void checkUniqueMetaStatement(final MetaStatement metaStatement) {
+    EObject _rootContainer = EcoreUtil.getRootContainer(metaStatement);
+    boolean _not = (!(_rootContainer instanceof Artifacts));
+    if (_not) {
+      return;
+    }
+    EObject _rootContainer_1 = EcoreUtil.getRootContainer(metaStatement);
+    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
+    EList<MetaStatement> _statements = artifacts.getStatements();
+    for (final MetaStatement metaStmt : _statements) {
+      boolean _and = false;
+      boolean _notEquals = (!Objects.equal(metaStmt, null));
+      if (!_notEquals) {
+        _and = false;
+      } else {
+        boolean _tripleNotEquals = (metaStmt != metaStatement);
+        _and = (_notEquals && _tripleNotEquals);
+      }
+      if (_and) {
+        boolean _equalsStatement = this.equalsStatement(metaStatement, metaStmt);
+        if (_equalsStatement) {
+          String _name = metaStatement.getName();
+          String _plus = ("Duplicate name : " + _name);
+          String _plus_1 = (_plus + "[");
+          String _type = metaStatement.getType();
+          String _plus_2 = (_plus_1 + _type);
+          String _plus_3 = (_plus_2 + "]");
+          this.error(_plus_3, 
+            Literals.META_STATEMENT__NAME);
+          return;
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkUniqueMappingRule(final MappingRule mappingRule) {
+    EObject _rootContainer = EcoreUtil.getRootContainer(mappingRule);
+    boolean _not = (!(_rootContainer instanceof Artifacts));
+    if (_not) {
+      return;
+    }
+    EObject _rootContainer_1 = EcoreUtil.getRootContainer(mappingRule);
+    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
+    EList<MappingRule> _mappings = artifacts.getMappings();
+    for (final MappingRule rule : _mappings) {
+      boolean _and = false;
+      boolean _notEquals = (!Objects.equal(rule, null));
+      if (!_notEquals) {
+        _and = false;
+      } else {
+        boolean _tripleNotEquals = (rule != mappingRule);
+        _and = (_notEquals && _tripleNotEquals);
+      }
+      if (_and) {
+        boolean _equalsRule = this.equalsRule(mappingRule, rule);
+        if (_equalsRule) {
+          String _name = mappingRule.getName();
+          String _plus = ("Duplicate name : " + _name);
+          String _plus_1 = (_plus + "[");
+          String _type = mappingRule.getType();
+          String _plus_2 = (_plus_1 + _type);
+          String _plus_3 = (_plus_2 + "]");
+          this.error(_plus_3, 
+            Literals.MAPPING_RULE__NAME);
+          return;
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkUniqueOptionalFeature(final OptionalFeature optionalFeature) {
+    EObject _rootContainer = EcoreUtil.getRootContainer(optionalFeature);
+    boolean _not = (!(_rootContainer instanceof Artifacts));
+    if (_not) {
+      return;
+    }
+    EObject _rootContainer_1 = EcoreUtil.getRootContainer(optionalFeature);
+    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
+    EList<OptionalFeature> _features = artifacts.getFeatures();
+    for (final OptionalFeature feature : _features) {
+      boolean _and = false;
+      boolean _notEquals = (!Objects.equal(feature, null));
+      if (!_notEquals) {
+        _and = false;
+      } else {
+        boolean _notEquals_1 = (!Objects.equal(feature, optionalFeature));
+        _and = (_notEquals && _notEquals_1);
+      }
+      if (_and) {
+        boolean _equalsFeature = this.equalsFeature(optionalFeature, feature);
+        if (_equalsFeature) {
+          String _name = optionalFeature.getName();
+          String _plus = ("Duplicate name : " + _name);
+          String _plus_1 = (_plus + "[");
+          String _type = optionalFeature.getType();
+          String _plus_2 = (_plus_1 + _type);
+          String _plus_3 = (_plus_2 + "]");
+          this.error(_plus_3, 
+            Literals.OPTIONAL_FEATURE__NAME);
+          return;
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkUniquePojoDefinition(final PojoDefinition pojoDefinition) {
+    boolean _and = false;
+    boolean _isResolvePojo = this.isResolvePojo(pojoDefinition);
+    if (!_isResolvePojo) {
+      _and = false;
+    } else {
+      String _class = this.getClass(pojoDefinition);
+      boolean _checkClass = this.checkClass(_class);
+      boolean _not = (!_checkClass);
+      _and = (_isResolvePojo && _not);
+    }
+    if (_and) {
+      String _class_1 = this.getClass(pojoDefinition);
+      String _plus = ("Class name : " + _class_1);
+      String _plus_1 = (_plus + " not exists");
+      this.error(_plus_1, 
+        Literals.POJO_DEFINITION__NAME);
+    }
+    EObject _rootContainer = EcoreUtil.getRootContainer(pojoDefinition);
+    boolean _not_1 = (!(_rootContainer instanceof Artifacts));
+    if (_not_1) {
+      return;
+    }
+    EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoDefinition);
+    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
+    EList<PojoDefinition> _pojos = artifacts.getPojos();
+    for (final PojoDefinition definition : _pojos) {
+      boolean _and_1 = false;
+      boolean _notEquals = (!Objects.equal(definition, null));
+      if (!_notEquals) {
+        _and_1 = false;
+      } else {
+        boolean _tripleNotEquals = (definition != pojoDefinition);
+        _and_1 = (_notEquals && _tripleNotEquals);
+      }
+      if (_and_1) {
+        String _name = pojoDefinition.getName();
+        String _name_1 = definition.getName();
+        boolean _equals = _name.equals(_name_1);
+        if (_equals) {
+          String _name_2 = pojoDefinition.getName();
+          String _plus_2 = ("Duplicate name : " + _name_2);
+          this.error(_plus_2, 
+            Literals.POJO_DEFINITION__NAME);
+          return;
+        }
+      }
+    }
+  }
+  
+  public boolean equalsStatement(final MetaStatement statement1, final MetaStatement statement2) {
+    boolean _and = false;
+    boolean _equals = Objects.equal(statement1, null);
+    if (!_equals) {
+      _and = false;
+    } else {
+      boolean _equals_1 = Objects.equal(statement2, null);
+      _and = (_equals && _equals_1);
+    }
+    if (_and) {
+      return true;
+    }
+    boolean _or = false;
+    boolean _equals_2 = Objects.equal(statement1, null);
+    if (_equals_2) {
+      _or = true;
+    } else {
+      String _name = statement1.getName();
+      boolean _equals_3 = Objects.equal(_name, null);
+      _or = (_equals_2 || _equals_3);
+    }
+    if (_or) {
+      return false;
+    }
+    boolean _or_1 = false;
+    boolean _equals_4 = Objects.equal(statement2, null);
+    if (_equals_4) {
+      _or_1 = true;
+    } else {
+      String _name_1 = statement2.getName();
+      boolean _equals_5 = Objects.equal(_name_1, null);
+      _or_1 = (_equals_4 || _equals_5);
+    }
+    if (_or_1) {
+      return false;
+    }
+    boolean _and_1 = false;
+    String _name_2 = statement1.getName();
+    String _name_3 = statement2.getName();
+    boolean _equals_6 = _name_2.equals(_name_3);
+    if (!_equals_6) {
+      _and_1 = false;
+    } else {
+      String _type = statement1.getType();
+      String _type_1 = statement2.getType();
+      boolean _equals_7 = _type.equals(_type_1);
+      _and_1 = (_equals_6 && _equals_7);
+    }
+    if (_and_1) {
+      EList<String> _modifiers = statement1.getModifiers();
+      EList<String> _modifiers_1 = statement2.getModifiers();
+      return this.equalsModifiers(_modifiers, _modifiers_1);
+    }
+    return false;
+  }
+  
+  public boolean equalsRule(final MappingRule rule1, final MappingRule rule2) {
+    boolean _and = false;
+    boolean _equals = Objects.equal(rule1, null);
+    if (!_equals) {
+      _and = false;
+    } else {
+      boolean _equals_1 = Objects.equal(rule2, null);
+      _and = (_equals && _equals_1);
+    }
+    if (_and) {
+      return true;
+    }
+    boolean _or = false;
+    boolean _equals_2 = Objects.equal(rule1, null);
+    if (_equals_2) {
+      _or = true;
+    } else {
+      String _name = rule1.getName();
+      boolean _equals_3 = Objects.equal(_name, null);
+      _or = (_equals_2 || _equals_3);
+    }
+    if (_or) {
+      return false;
+    }
+    boolean _or_1 = false;
+    boolean _equals_4 = Objects.equal(rule2, null);
+    if (_equals_4) {
+      _or_1 = true;
+    } else {
+      String _name_1 = rule2.getName();
+      boolean _equals_5 = Objects.equal(_name_1, null);
+      _or_1 = (_equals_4 || _equals_5);
+    }
+    if (_or_1) {
+      return false;
+    }
+    boolean _and_1 = false;
+    String _name_2 = rule1.getName();
+    String _name_3 = rule2.getName();
+    boolean _equals_6 = _name_2.equals(_name_3);
+    if (!_equals_6) {
+      _and_1 = false;
+    } else {
+      String _type = rule1.getType();
+      String _type_1 = rule2.getType();
+      boolean _equals_7 = _type.equals(_type_1);
+      _and_1 = (_equals_6 && _equals_7);
+    }
+    if (_and_1) {
+      EList<String> _modifiers = rule1.getModifiers();
+      EList<String> _modifiers_1 = rule2.getModifiers();
+      return this.equalsModifiers(_modifiers, _modifiers_1);
+    }
+    return false;
+  }
+  
+  public boolean equalsFeature(final OptionalFeature feature1, final OptionalFeature feature2) {
+    boolean _and = false;
+    boolean _equals = Objects.equal(feature1, null);
+    if (!_equals) {
+      _and = false;
+    } else {
+      boolean _equals_1 = Objects.equal(feature2, null);
+      _and = (_equals && _equals_1);
+    }
+    if (_and) {
+      return true;
+    }
+    boolean _or = false;
+    boolean _equals_2 = Objects.equal(feature1, null);
+    if (_equals_2) {
+      _or = true;
+    } else {
+      String _name = feature1.getName();
+      boolean _equals_3 = Objects.equal(_name, null);
+      _or = (_equals_2 || _equals_3);
+    }
+    if (_or) {
+      return false;
+    }
+    boolean _or_1 = false;
+    boolean _equals_4 = Objects.equal(feature2, null);
+    if (_equals_4) {
+      _or_1 = true;
+    } else {
+      String _name_1 = feature2.getName();
+      boolean _equals_5 = Objects.equal(_name_1, null);
+      _or_1 = (_equals_4 || _equals_5);
+    }
+    if (_or_1) {
+      return false;
+    }
+    boolean _and_1 = false;
+    String _name_2 = feature1.getName();
+    String _name_3 = feature2.getName();
+    boolean _equals_6 = _name_2.equals(_name_3);
+    if (!_equals_6) {
+      _and_1 = false;
+    } else {
+      String _type = feature1.getType();
+      String _type_1 = feature2.getType();
+      boolean _equals_7 = _type.equals(_type_1);
+      _and_1 = (_equals_6 && _equals_7);
+    }
+    if (_and_1) {
+      EList<String> _modifiers = feature1.getModifiers();
+      EList<String> _modifiers_1 = feature2.getModifiers();
+      return this.equalsModifiers(_modifiers, _modifiers_1);
+    }
+    return false;
+  }
+  
+  public boolean equalsModifiers(final List<String> modifiers1, final List<String> modifiers2) {
+    final List<String> filteredModifiers1 = this.filteredModifiers(modifiers1);
+    final List<String> filteredModifiers2 = this.filteredModifiers(modifiers2);
+    boolean _and = false;
+    boolean _equals = Objects.equal(filteredModifiers1, null);
+    if (!_equals) {
+      _and = false;
+    } else {
+      boolean _equals_1 = Objects.equal(filteredModifiers2, null);
+      _and = (_equals && _equals_1);
+    }
+    if (_and) {
+      return true;
+    }
+    boolean _equals_2 = Objects.equal(filteredModifiers1, null);
+    if (_equals_2) {
+      return false;
+    }
+    boolean _equals_3 = Objects.equal(filteredModifiers2, null);
+    if (_equals_3) {
+      return false;
+    }
+    boolean _and_1 = false;
+    boolean _isEmpty = filteredModifiers1.isEmpty();
+    if (!_isEmpty) {
+      _and_1 = false;
+    } else {
+      boolean _isEmpty_1 = filteredModifiers2.isEmpty();
+      _and_1 = (_isEmpty && _isEmpty_1);
+    }
+    if (_and_1) {
+      return true;
+    }
+    for (final String modifier1 : filteredModifiers1) {
+      for (final String modifier2 : filteredModifiers2) {
+        boolean _equals_4 = modifier1.equals(modifier2);
+        if (_equals_4) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  
+  public List<String> filteredModifiers(final List<String> modifiers) {
+    boolean _equals = Objects.equal(modifiers, null);
+    if (_equals) {
+      return null;
+    }
+    final ArrayList<String> filteredModifiers = CollectionLiterals.<String>newArrayList();
+    final Procedure1<String> _function = new Procedure1<String>() {
+      public void apply(final String modifier) {
+        int _indexOf = modifier.indexOf("=");
+        boolean _lessThan = (_indexOf < 0);
+        if (_lessThan) {
+          filteredModifiers.add(modifier);
+        }
+      }
+    };
+    IterableExtensions.<String>forEach(modifiers, _function);
+    return filteredModifiers;
+  }
+  
+  public boolean checkClass(final String className) {
+    boolean _or = false;
+    boolean _equals = Objects.equal(className, null);
+    if (_equals) {
+      _or = true;
+    } else {
+      PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
+      boolean _equals_1 = Objects.equal(_pojoResolver, null);
+      _or = (_equals || _equals_1);
+    }
+    if (_or) {
+      return true;
+    }
+    PojoResolver _pojoResolver_1 = this.pojoResolverFactory.getPojoResolver();
+    final Class<? extends Object> clazz = _pojoResolver_1.loadClass(className);
+    return (!Objects.equal(clazz, null));
+  }
+  
+  public boolean isResolvePojo(final EObject model) {
+    boolean _or = false;
+    PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
+    boolean _equals = Objects.equal(_pojoResolver, null);
+    if (_equals) {
+      _or = true;
+    } else {
+      PojoResolver _pojoResolver_1 = this.pojoResolverFactory.getPojoResolver();
+      boolean _isResolvePojo = _pojoResolver_1.isResolvePojo(model);
+      boolean _not = (!_isResolvePojo);
+      _or = (_equals || _not);
+    }
+    if (_or) {
+      return false;
+    }
+    return true;
+  }
+  
+  public boolean isResolveDb(final EObject model) {
+    return this.dbResolver.isResolveDb(model);
+  }
+  
+  public String getClass(final PojoDefinition pojo) {
+    JvmType _classx = pojo.getClassx();
+    boolean _notEquals = (!Objects.equal(_classx, null));
+    if (_notEquals) {
+      JvmType _classx_1 = pojo.getClassx();
+      return _classx_1.getQualifiedName();
+    }
+    return pojo.getClass_();
+  }
+  
+  @Check
+  public void checkColumn(final Column column) {
+    boolean _isResolvePojo = this.isResolvePojo(column);
+    boolean _not = (!_isResolvePojo);
+    if (_not) {
+      return;
+    }
+    final String columnName = Utils.getName(column);
+    boolean _isNumber = Utils.isNumber(columnName);
+    if (_isNumber) {
+      return;
+    }
+    final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(column, MetaStatement.class);
+    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
+    final String entityName = Utils.getTokenFromModifier(statement, Constants.COLUMN_USAGE_EXTENDED);
+    PojoEntity _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(entityName, null));
+    if (_notEquals) {
+      IScope _scope = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
+      PojoEntity _findEntity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
+      _xifexpression = _findEntity;
+    }
+    final PojoEntity entity = _xifexpression;
+    boolean _notEquals_1 = (!Objects.equal(entity, null));
+    if (_notEquals_1) {
+      ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, columnName);
+      final ValidationResult checkEntityProperty = _checkEntityProperty;
+      boolean _matched = false;
+      if (!_matched) {
+        if (Objects.equal(checkEntityProperty,ValidationResult.WARNING)) {
+          _matched=true;
+          String _plus = ("Problem property : " + columnName);
+          String _plus_1 = (_plus + "[");
+          String _name = entity.getName();
+          String _plus_2 = (_plus_1 + _name);
+          String _plus_3 = (_plus_2 + "]");
+          this.warning(_plus_3, 
+            Literals.COLUMN__COLUMNS);
+        }
+      }
+      if (!_matched) {
+        if (Objects.equal(checkEntityProperty,ValidationResult.ERROR)) {
+          _matched=true;
+          String _plus_4 = ("Cannot find property : " + columnName);
+          String _plus_5 = (_plus_4 + "[");
+          String _name_1 = entity.getName();
+          String _plus_6 = (_plus_5 + _name_1);
+          String _plus_7 = (_plus_6 + "]");
+          this.error(_plus_7, 
+            Literals.COLUMN__COLUMNS);
+        }
+      }
+      return;
+    }
+    final String pojoName = Utils.getTokenFromModifier(statement, Constants.COLUMN_USAGE);
+    PojoDefinition _xifexpression_1 = null;
+    boolean _notEquals_2 = (!Objects.equal(pojoName, null));
+    if (_notEquals_2) {
+      IScope _scope_1 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
+      PojoDefinition _findPojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
+      _xifexpression_1 = _findPojo;
+    }
+    final PojoDefinition pojo = _xifexpression_1;
+    String _xifexpression_2 = null;
+    boolean _notEquals_3 = (!Objects.equal(pojo, null));
+    if (_notEquals_3) {
+      String _class = this.getClass(pojo);
+      _xifexpression_2 = _class;
+    }
+    final String columnUsageClass = _xifexpression_2;
+    boolean _notEquals_4 = (!Objects.equal(columnUsageClass, null));
+    if (_notEquals_4) {
+      ValidationResult _checkClassProperty = this.checkClassProperty(columnUsageClass, columnName);
+      final ValidationResult checkClassProperty = _checkClassProperty;
+      boolean _matched_1 = false;
+      if (!_matched_1) {
+        if (Objects.equal(checkClassProperty,ValidationResult.WARNING)) {
+          _matched_1=true;
+          String _plus_8 = ("Problem property : " + columnName);
+          String _plus_9 = (_plus_8 + "[");
+          String _plus_10 = (_plus_9 + columnUsageClass);
+          String _plus_11 = (_plus_10 + "]");
+          this.warning(_plus_11, 
+            Literals.COLUMN__COLUMNS);
+        }
+      }
+      if (!_matched_1) {
+        if (Objects.equal(checkClassProperty,ValidationResult.ERROR)) {
+          _matched_1=true;
+          String _plus_12 = ("Cannot find property : " + columnName);
+          String _plus_13 = (_plus_12 + "[");
+          String _plus_14 = (_plus_13 + columnUsageClass);
+          String _plus_15 = (_plus_14 + "]");
+          this.error(_plus_15, 
+            Literals.COLUMN__COLUMNS);
+        }
+      }
+      return;
+    }
+    PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
+    boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
+    if (_notEquals_5) {
+      String _plus_16 = ("Cannot check result class attribute : " + columnName);
+      this.error(_plus_16, Literals.COLUMN__COLUMNS);
+    }
+  }
+  
+  @Check
+  public void checkIdentifier(final Identifier identifier) {
+    boolean _isResolvePojo = this.isResolvePojo(identifier);
+    boolean _not = (!_isResolvePojo);
+    if (_not) {
+      return;
+    }
+    final String identifierName = identifier.getName();
+    final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(identifier, MetaStatement.class);
+    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
+    final String entityName = Utils.getTokenFromModifier(statement, Constants.IDENTIFIER_USAGE_EXTENDED);
+    PojoEntity _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(entityName, null));
+    if (_notEquals) {
+      IScope _scope = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
+      PojoEntity _findEntity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
+      _xifexpression = _findEntity;
+    }
+    final PojoEntity entity = _xifexpression;
+    boolean _notEquals_1 = (!Objects.equal(entity, null));
+    if (_notEquals_1) {
+      ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, identifierName);
+      final ValidationResult checkEntityProperty = _checkEntityProperty;
+      boolean _matched = false;
+      if (!_matched) {
+        if (Objects.equal(checkEntityProperty,ValidationResult.WARNING)) {
+          _matched=true;
+          String _plus = ("Problem property : " + identifierName);
+          String _plus_1 = (_plus + "[");
+          String _name = entity.getName();
+          String _plus_2 = (_plus_1 + _name);
+          String _plus_3 = (_plus_2 + "]");
+          this.warning(_plus_3, 
+            Literals.IDENTIFIER__NAME);
+        }
+      }
+      if (!_matched) {
+        if (Objects.equal(checkEntityProperty,ValidationResult.ERROR)) {
+          _matched=true;
+          String _plus_4 = ("Cannot find property : " + identifierName);
+          String _plus_5 = (_plus_4 + "[");
+          String _name_1 = entity.getName();
+          String _plus_6 = (_plus_5 + _name_1);
+          String _plus_7 = (_plus_6 + "]");
+          this.error(_plus_7, 
+            Literals.IDENTIFIER__NAME);
+        }
+      }
+      return;
+    }
+    final String pojoName = Utils.getTokenFromModifier(statement, Constants.IDENTIFIER_USAGE);
+    PojoDefinition _xifexpression_1 = null;
+    boolean _notEquals_2 = (!Objects.equal(pojoName, null));
+    if (_notEquals_2) {
+      IScope _scope_1 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
+      PojoDefinition _findPojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
+      _xifexpression_1 = _findPojo;
+    }
+    final PojoDefinition pojo = _xifexpression_1;
+    String _xifexpression_2 = null;
+    boolean _notEquals_3 = (!Objects.equal(pojo, null));
+    if (_notEquals_3) {
+      String _class = this.getClass(pojo);
+      _xifexpression_2 = _class;
+    }
+    final String identifierUsageClass = _xifexpression_2;
+    boolean _notEquals_4 = (!Objects.equal(identifierUsageClass, null));
+    if (_notEquals_4) {
+      ValidationResult _checkClassProperty = this.checkClassProperty(identifierUsageClass, identifierName);
+      final ValidationResult checkClassProperty = _checkClassProperty;
+      boolean _matched_1 = false;
+      if (!_matched_1) {
+        if (Objects.equal(checkClassProperty,ValidationResult.WARNING)) {
+          _matched_1=true;
+          String _plus_8 = ("Problem property : " + identifierName);
+          String _plus_9 = (_plus_8 + "[");
+          String _plus_10 = (_plus_9 + identifierUsageClass);
+          String _plus_11 = (_plus_10 + "]");
+          this.warning(_plus_11, 
+            Literals.IDENTIFIER__NAME);
+        }
+      }
+      if (!_matched_1) {
+        if (Objects.equal(checkClassProperty,ValidationResult.ERROR)) {
+          _matched_1=true;
+          String _plus_12 = ("Cannot find property : " + identifierName);
+          String _plus_13 = (_plus_12 + "[");
+          String _plus_14 = (_plus_13 + identifierUsageClass);
+          String _plus_15 = (_plus_14 + "]");
+          this.error(_plus_15, 
+            Literals.IDENTIFIER__NAME);
+        }
+      }
+      return;
+    }
+    PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
+    boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
+    if (_notEquals_5) {
+      String _plus_16 = ("Cannot check input form attribute : " + identifierName);
+      this.error(_plus_16, 
+        Literals.IDENTIFIER__NAME);
+    }
+  }
+  
+  @Check
+  public void checkConstant(final Constant constant) {
+    boolean _isResolvePojo = this.isResolvePojo(constant);
+    boolean _not = (!_isResolvePojo);
+    if (_not) {
+      return;
+    }
+    final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(constant, MetaStatement.class);
+    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
+    final String entityName = Utils.getTokenFromModifier(statement, Constants.CONSTANT_USAGE_EXTENDED);
+    PojoEntity _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(entityName, null));
+    if (_notEquals) {
+      IScope _scope = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
+      PojoEntity _findEntity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
+      _xifexpression = _findEntity;
+    }
+    final PojoEntity entity = _xifexpression;
+    boolean _notEquals_1 = (!Objects.equal(entity, null));
+    if (_notEquals_1) {
+      String _name = constant.getName();
+      ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, _name);
+      final ValidationResult checkEntityProperty = _checkEntityProperty;
+      boolean _matched = false;
+      if (!_matched) {
+        if (Objects.equal(checkEntityProperty,ValidationResult.WARNING)) {
+          _matched=true;
+          String _name_1 = constant.getName();
+          String _plus = ("Problem property : " + _name_1);
+          String _plus_1 = (_plus + "[");
+          String _name_2 = entity.getName();
+          String _plus_2 = (_plus_1 + _name_2);
+          String _plus_3 = (_plus_2 + "]");
+          this.warning(_plus_3, 
+            Literals.CONSTANT__NAME);
+        }
+      }
+      if (!_matched) {
+        if (Objects.equal(checkEntityProperty,ValidationResult.ERROR)) {
+          _matched=true;
+          String _name_3 = constant.getName();
+          String _plus_4 = ("Cannot find property : " + _name_3);
+          String _plus_5 = (_plus_4 + "[");
+          String _name_4 = entity.getName();
+          String _plus_6 = (_plus_5 + _name_4);
+          String _plus_7 = (_plus_6 + "]");
+          this.error(_plus_7, 
+            Literals.CONSTANT__NAME);
+        }
+      }
+      return;
+    }
+    final String pojoName = Utils.getTokenFromModifier(statement, Constants.CONSTANT_USAGE);
+    PojoDefinition _xifexpression_1 = null;
+    boolean _notEquals_2 = (!Objects.equal(pojoName, null));
+    if (_notEquals_2) {
+      IScope _scope_1 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
+      PojoDefinition _findPojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
+      _xifexpression_1 = _findPojo;
+    }
+    final PojoDefinition pojo = _xifexpression_1;
+    String _xifexpression_2 = null;
+    boolean _notEquals_3 = (!Objects.equal(pojo, null));
+    if (_notEquals_3) {
+      String _class = this.getClass(pojo);
+      _xifexpression_2 = _class;
+    }
+    final String constantUsageClass = _xifexpression_2;
+    boolean _notEquals_4 = (!Objects.equal(constantUsageClass, null));
+    if (_notEquals_4) {
+      String _name_5 = constant.getName();
+      ValidationResult _checkClassProperty = this.checkClassProperty(constantUsageClass, _name_5);
+      final ValidationResult checkClassProperty = _checkClassProperty;
+      boolean _matched_1 = false;
+      if (!_matched_1) {
+        if (Objects.equal(checkClassProperty,ValidationResult.WARNING)) {
+          _matched_1=true;
+          String _name_6 = constant.getName();
+          String _plus_8 = ("Problem property : " + _name_6);
+          String _plus_9 = (_plus_8 + "[");
+          String _plus_10 = (_plus_9 + constantUsageClass);
+          String _plus_11 = (_plus_10 + "]");
+          this.warning(_plus_11, 
+            Literals.CONSTANT__NAME);
+        }
+      }
+      if (!_matched_1) {
+        if (Objects.equal(checkClassProperty,ValidationResult.ERROR)) {
+          _matched_1=true;
+          String _name_7 = constant.getName();
+          String _plus_12 = ("Cannot find property : " + _name_7);
+          String _plus_13 = (_plus_12 + "[");
+          String _plus_14 = (_plus_13 + constantUsageClass);
+          String _plus_15 = (_plus_14 + "]");
+          this.error(_plus_15, 
+            Literals.CONSTANT__NAME);
+        }
+      }
+      return;
+    }
+    PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
+    boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
+    if (_notEquals_5) {
+      String _name_8 = constant.getName();
+      String _plus_16 = ("Cannot check constant form attribute : " + _name_8);
+      this.error(_plus_16, 
+        Literals.CONSTANT__NAME);
+    }
+  }
+  
+  @Check
+  public void checkMappingColumn(final MappingColumn column) {
+    boolean _isResolvePojo = this.isResolvePojo(column);
+    boolean _not = (!_isResolvePojo);
+    if (_not) {
+      return;
+    }
+    final String columnName = Utils.getName(column);
+    boolean _isNumber = Utils.isNumber(columnName);
+    if (_isNumber) {
+      return;
+    }
+    final MetaStatement rule = EcoreUtil2.<MetaStatement>getContainerOfType(column, MetaStatement.class);
+    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(rule, Artifacts.class);
+    final String entityName = Utils.getTokenFromModifier(rule, Constants.MAPPING_USAGE_EXTENDED);
+    PojoEntity _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(entityName, null));
+    if (_notEquals) {
+      IScope _scope = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
+      PojoEntity _findEntity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
+      _xifexpression = _findEntity;
+    }
+    final PojoEntity entity = _xifexpression;
+    boolean _notEquals_1 = (!Objects.equal(entity, null));
+    if (_notEquals_1) {
+      ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, columnName);
+      final ValidationResult checkEntityProperty = _checkEntityProperty;
+      boolean _matched = false;
+      if (!_matched) {
+        if (Objects.equal(checkEntityProperty,ValidationResult.WARNING)) {
+          _matched=true;
+          String _plus = ("Problem property : " + columnName);
+          String _plus_1 = (_plus + "[");
+          String _name = entity.getName();
+          String _plus_2 = (_plus_1 + _name);
+          String _plus_3 = (_plus_2 + "]");
+          this.warning(_plus_3, 
+            Literals.MAPPING_COLUMN__ITEMS);
+        }
+      }
+      if (!_matched) {
+        if (Objects.equal(checkEntityProperty,ValidationResult.ERROR)) {
+          _matched=true;
+          String _plus_4 = ("Cannot find property : " + columnName);
+          String _plus_5 = (_plus_4 + "[");
+          String _name_1 = entity.getName();
+          String _plus_6 = (_plus_5 + _name_1);
+          String _plus_7 = (_plus_6 + "]");
+          this.error(_plus_7, 
+            Literals.MAPPING_COLUMN__ITEMS);
+        }
+      }
+      return;
+    }
+    final String pojoName = Utils.getTokenFromModifier(rule, Constants.MAPPING_USAGE);
+    PojoDefinition _xifexpression_1 = null;
+    boolean _notEquals_2 = (!Objects.equal(pojoName, null));
+    if (_notEquals_2) {
+      IScope _scope_1 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
+      PojoDefinition _findPojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
+      _xifexpression_1 = _findPojo;
+    }
+    final PojoDefinition pojo = _xifexpression_1;
+    String _xifexpression_2 = null;
+    boolean _notEquals_3 = (!Objects.equal(pojo, null));
+    if (_notEquals_3) {
+      String _class = this.getClass(pojo);
+      _xifexpression_2 = _class;
+    }
+    final String mappingUsageClass = _xifexpression_2;
+    boolean _notEquals_4 = (!Objects.equal(mappingUsageClass, null));
+    if (_notEquals_4) {
+      ValidationResult _checkClassProperty = this.checkClassProperty(mappingUsageClass, columnName);
+      final ValidationResult checkClassProperty = _checkClassProperty;
+      boolean _matched_1 = false;
+      if (!_matched_1) {
+        if (Objects.equal(checkClassProperty,ValidationResult.WARNING)) {
+          _matched_1=true;
+          String _plus_8 = ("Problem property : " + columnName);
+          String _plus_9 = (_plus_8 + "[");
+          String _plus_10 = (_plus_9 + mappingUsageClass);
+          String _plus_11 = (_plus_10 + "]");
+          this.warning(_plus_11, 
+            Literals.MAPPING_COLUMN__ITEMS);
+        }
+      }
+      if (!_matched_1) {
+        if (Objects.equal(checkClassProperty,ValidationResult.ERROR)) {
+          _matched_1=true;
+          String _plus_12 = ("Cannot find property : " + columnName);
+          String _plus_13 = (_plus_12 + "[");
+          String _plus_14 = (_plus_13 + mappingUsageClass);
+          String _plus_15 = (_plus_14 + "]");
+          this.error(_plus_15, 
+            Literals.MAPPING_COLUMN__ITEMS);
+        }
+      }
+      return;
+    }
+    PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
+    boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
+    if (_notEquals_5) {
+      String _plus_16 = ("Cannot check result class attribute : " + columnName);
+      this.error(_plus_16, 
+        Literals.MAPPING_COLUMN__ITEMS);
+    }
+  }
+  
+  @Check
+  public void checkMetaStatement(final MetaStatement statement) {
+    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
+    boolean _or = false;
+    EList<String> _modifiers = statement.getModifiers();
+    boolean _equals = Objects.equal(_modifiers, null);
+    if (_equals) {
+      _or = true;
+    } else {
+      EList<String> _modifiers_1 = statement.getModifiers();
+      boolean _isEmpty = _modifiers_1.isEmpty();
+      _or = (_equals || _isEmpty);
+    }
+    if (_or) {
+      return;
+    }
+    int index = 0;
+    EList<String> _modifiers_2 = statement.getModifiers();
+    for (final String modifier : _modifiers_2) {
+      {
+        int ix = modifier.indexOf("=");
+        boolean _greaterThan = (ix > 0);
+        if (_greaterThan) {
+          final String key = modifier.substring(0, ix);
+          int _plus = (ix + 1);
+          String value = modifier.substring(_plus);
+          boolean _equals_1 = Constants.IDENTIFIER_USAGE_EXTENDED.equals(key);
+          if (_equals_1) {
+            IScope _scope = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
+            final PojoEntity entity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, value);
+            boolean _equals_2 = Objects.equal(entity, null);
+            if (_equals_2) {
+              String _plus_1 = ("Cannot find entity : " + value);
+              String _plus_2 = (_plus_1 + "[");
+              String _plus_3 = (_plus_2 + Constants.IDENTIFIER_USAGE_EXTENDED);
+              String _plus_4 = (_plus_3 + "]");
+              this.error(_plus_4, 
+                Literals.META_STATEMENT__MODIFIERS, index);
+            }
+          } else {
+            boolean _equals_3 = Constants.IDENTIFIER_USAGE.equals(key);
+            if (_equals_3) {
+              IScope _scope_1 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
+              final PojoDefinition pojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, value);
+              boolean _equals_4 = Objects.equal(pojo, null);
+              if (_equals_4) {
+                String _plus_5 = ("Cannot find pojo : " + value);
+                String _plus_6 = (_plus_5 + "[");
+                String _plus_7 = (_plus_6 + Constants.IDENTIFIER_USAGE);
+                String _plus_8 = (_plus_7 + "]");
+                this.error(_plus_8, 
+                  Literals.META_STATEMENT__MODIFIERS, index);
+              }
+            } else {
+              boolean _equals_5 = Constants.COLUMN_USAGE_EXTENDED.equals(key);
+              if (_equals_5) {
+                IScope _scope_2 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
+                final PojoEntity entity_1 = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope_2, value);
+                boolean _equals_6 = Objects.equal(entity_1, null);
+                if (_equals_6) {
+                  String _plus_9 = ("Cannot find entity : " + value);
+                  String _plus_10 = (_plus_9 + "[");
+                  String _plus_11 = (_plus_10 + Constants.COLUMN_USAGE_EXTENDED);
+                  String _plus_12 = (_plus_11 + "]");
+                  this.error(_plus_12, 
+                    Literals.META_STATEMENT__MODIFIERS, index);
+                }
+              } else {
+                boolean _equals_7 = Constants.COLUMN_USAGE.equals(key);
+                if (_equals_7) {
+                  IScope _scope_3 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
+                  final PojoDefinition pojo_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_3, value);
+                  boolean _equals_8 = Objects.equal(pojo_1, null);
+                  if (_equals_8) {
+                    String _plus_13 = ("Cannot find pojo : " + value);
+                    String _plus_14 = (_plus_13 + "[");
+                    String _plus_15 = (_plus_14 + Constants.COLUMN_USAGE);
+                    String _plus_16 = (_plus_15 + "]");
+                    this.error(_plus_16, 
+                      Literals.META_STATEMENT__MODIFIERS, index);
+                  }
+                } else {
+                  boolean _equals_9 = Constants.CONSTANT_USAGE_EXTENDED.equals(key);
+                  if (_equals_9) {
+                    IScope _scope_4 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
+                    final PojoEntity entity_2 = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope_4, value);
+                    boolean _equals_10 = Objects.equal(entity_2, null);
+                    if (_equals_10) {
+                      String _plus_17 = ("Cannot find entity : " + value);
+                      String _plus_18 = (_plus_17 + "[");
+                      String _plus_19 = (_plus_18 + Constants.CONSTANT_USAGE_EXTENDED);
+                      String _plus_20 = (_plus_19 + "]");
+                      this.error(_plus_20, 
+                        Literals.META_STATEMENT__MODIFIERS, index);
+                    }
+                  } else {
+                    boolean _equals_11 = Constants.CONSTANT_USAGE.equals(key);
+                    if (_equals_11) {
+                      IScope _scope_5 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
+                      final PojoDefinition pojo_2 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_5, value);
+                      boolean _equals_12 = Objects.equal(pojo_2, null);
+                      if (_equals_12) {
+                        String _plus_21 = ("Cannot find pojo : " + value);
+                        String _plus_22 = (_plus_21 + "[");
+                        String _plus_23 = (_plus_22 + Constants.CONSTANT_USAGE);
+                        String _plus_24 = (_plus_23 + "]");
+                        this.error(_plus_24, 
+                          Literals.META_STATEMENT__MODIFIERS, index);
+                      }
+                    } else {
+                      boolean _equals_13 = Constants.TABLE_USAGE.equals(key);
+                      if (_equals_13) {
+                        int ix1 = value.indexOf("=");
+                        boolean _greaterEqualsThan = (ix1 >= 0);
+                        if (_greaterEqualsThan) {
+                          String _substring = value.substring(0, ix1);
+                          value = _substring;
+                        }
+                        IScope _scope_6 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__TABLES);
+                        final TableDefinition table = Utils.findTable(this.qualifiedNameConverter, artifacts, _scope_6, value);
+                        boolean _equals_14 = Objects.equal(table, null);
+                        if (_equals_14) {
+                          String _plus_25 = ("Cannot find table : " + value);
+                          String _plus_26 = (_plus_25 + "[");
+                          String _plus_27 = (_plus_26 + Constants.TABLE_USAGE);
+                          String _plus_28 = (_plus_27 + "]");
+                          this.error(_plus_28, 
+                            Literals.META_STATEMENT__MODIFIERS, index);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          int _plus_29 = (index + 1);
+          index = _plus_29;
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkMappingRule(final MappingRule rule) {
+    boolean _or = false;
+    EList<String> _modifiers = rule.getModifiers();
+    boolean _equals = Objects.equal(_modifiers, null);
+    if (_equals) {
+      _or = true;
+    } else {
+      EList<String> _modifiers_1 = rule.getModifiers();
+      boolean _isEmpty = _modifiers_1.isEmpty();
+      _or = (_equals || _isEmpty);
+    }
+    if (_or) {
+      return;
+    }
+    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(rule, Artifacts.class);
+    int index = 0;
+    EList<String> _modifiers_2 = rule.getModifiers();
+    for (final String modifier : _modifiers_2) {
+      {
+        int ix = modifier.indexOf("=");
+        boolean _greaterThan = (ix > 0);
+        if (_greaterThan) {
+          final String key = modifier.substring(0, ix);
+          int _plus = (ix + 1);
+          final String value = modifier.substring(_plus);
+          boolean _equals_1 = Constants.MAPPING_USAGE_EXTENDED.equals(key);
+          if (_equals_1) {
+            IScope _scope = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
+            final PojoEntity entity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, value);
+            boolean _equals_2 = Objects.equal(entity, null);
+            if (_equals_2) {
+              String _plus_1 = ("Cannot find entity : " + value);
+              String _plus_2 = (_plus_1 + "[");
+              String _plus_3 = (_plus_2 + Constants.MAPPING_USAGE_EXTENDED);
+              String _plus_4 = (_plus_3 + "]");
+              this.error(_plus_4, 
+                Literals.MAPPING_RULE__MODIFIERS, index);
+            }
+          } else {
+            boolean _equals_3 = Constants.MAPPING_USAGE.equals(key);
+            if (_equals_3) {
+              IScope _scope_1 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
+              final PojoDefinition pojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, value);
+              boolean _equals_4 = Objects.equal(pojo, null);
+              if (_equals_4) {
+                String _plus_5 = ("Cannot find pojo : " + value);
+                String _plus_6 = (_plus_5 + "[");
+                String _plus_7 = (_plus_6 + Constants.MAPPING_USAGE);
+                String _plus_8 = (_plus_7 + "]");
+                this.error(_plus_8, 
+                  Literals.MAPPING_RULE__MODIFIERS, index);
+              }
+            }
+          }
+          int _plus_9 = (index + 1);
+          index = _plus_9;
+        }
+      }
+    }
+  }
+  
+  public boolean isNumber(final String param) {
+    boolean _equals = Objects.equal(param, null);
+    if (_equals) {
+      return false;
+    }
+    int _length = param.length();
+    int i = (_length - 1);
+    boolean _greaterEqualsThan = (i >= 0);
+    boolean _while = _greaterEqualsThan;
+    while (_while) {
+      {
+        char _charAt = param.charAt(i);
+        boolean _isDigit = Character.isDigit(_charAt);
+        boolean _not = (!_isDigit);
+        if (_not) {
+          return false;
+        }
+        int _minus = (i - 1);
+        i = _minus;
+      }
+      boolean _greaterEqualsThan_1 = (i >= 0);
+      _while = _greaterEqualsThan_1;
+    }
+    return true;
+  }
+  
+  public boolean isPrimitive(final Class<? extends Object> clazz) {
+    boolean _equals = Objects.equal(clazz, null);
+    if (_equals) {
+      return true;
+    }
+    boolean _equals_1 = Objects.equal(clazz, String.class);
+    if (_equals_1) {
+      return true;
+    }
+    boolean _equals_2 = Objects.equal(clazz, Date.class);
+    if (_equals_2) {
+      return true;
+    }
+    boolean _equals_3 = Objects.equal(clazz, java.sql.Date.class);
+    if (_equals_3) {
+      return true;
+    }
+    boolean _equals_4 = Objects.equal(clazz, Time.class);
+    if (_equals_4) {
+      return true;
+    }
+    boolean _equals_5 = Objects.equal(clazz, Timestamp.class);
+    if (_equals_5) {
+      return true;
+    }
+    boolean _equals_6 = Objects.equal(clazz, Blob.class);
+    if (_equals_6) {
+      return true;
+    }
+    boolean _equals_7 = Objects.equal(clazz, Clob.class);
+    if (_equals_7) {
+      return true;
+    }
+    boolean _equals_8 = Objects.equal(clazz, BigDecimal.class);
+    if (_equals_8) {
+      return true;
+    }
+    boolean _equals_9 = Objects.equal(clazz, BigInteger.class);
+    if (_equals_9) {
+      return true;
+    }
+    return false;
+  }
+  
+  public ValidationResult checkClassProperty(final String className, final String property) {
+    boolean _or = false;
+    boolean _or_1 = false;
+    boolean _equals = Objects.equal(property, null);
+    if (_equals) {
+      _or_1 = true;
+    } else {
+      boolean _isNumber = this.isNumber(property);
+      _or_1 = (_equals || _isNumber);
+    }
+    if (_or_1) {
+      _or = true;
+    } else {
+      PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
+      boolean _equals_1 = Objects.equal(_pojoResolver, null);
+      _or = (_or_1 || _equals_1);
+    }
+    if (_or) {
+      return ValidationResult.OK;
+    }
+    boolean _equals_2 = Objects.equal(className, null);
+    if (_equals_2) {
+      return ValidationResult.ERROR;
+    }
+    PojoResolver _pojoResolver_1 = this.pojoResolverFactory.getPojoResolver();
+    PropertyDescriptor[] descriptors = _pojoResolver_1.getPropertyDescriptors(className);
+    boolean _equals_3 = Objects.equal(descriptors, null);
+    if (_equals_3) {
+      return ValidationResult.WARNING;
+    }
+    String checkProperty = property;
+    int pos1 = checkProperty.indexOf("=");
+    boolean _greaterThan = (pos1 > 0);
+    if (_greaterThan) {
+      int pos2 = checkProperty.indexOf(".", pos1);
+      boolean _greaterThan_1 = (pos2 > pos1);
+      if (_greaterThan_1) {
+        String _substring = checkProperty.substring(0, pos1);
+        String _substring_1 = checkProperty.substring(pos2);
+        String _plus = (_substring + _substring_1);
+        checkProperty = _plus;
+      }
+    }
+    String innerProperty = ((String) null);
+    int _indexOf = checkProperty.indexOf(".");
+    pos1 = _indexOf;
+    boolean _greaterThan_2 = (pos1 > 0);
+    if (_greaterThan_2) {
+      int _plus_1 = (pos1 + 1);
+      String _substring_2 = checkProperty.substring(_plus_1);
+      innerProperty = _substring_2;
+      String _substring_3 = checkProperty.substring(0, pos1);
+      checkProperty = _substring_3;
+    }
+    final String _checkProperty = checkProperty;
+    final PropertyDescriptor[] _converted_descriptors = (PropertyDescriptor[])descriptors;
+    final Function1<PropertyDescriptor,Boolean> _function = new Function1<PropertyDescriptor,Boolean>() {
+      public Boolean apply(final PropertyDescriptor descriptor) {
+        String _name = descriptor.getName();
+        boolean _equals = Objects.equal(_name, _checkProperty);
+        return Boolean.valueOf(_equals);
+      }
+    };
+    PropertyDescriptor innerDesriptor = IterableExtensions.<PropertyDescriptor>findFirst(((Iterable<PropertyDescriptor>)Conversions.doWrapArray(_converted_descriptors)), _function);
+    boolean _equals_4 = Objects.equal(innerDesriptor, null);
+    if (_equals_4) {
+      PojoResolver _pojoResolver_2 = this.pojoResolverFactory.getPojoResolver();
+      final Class<? extends Object> clazz = _pojoResolver_2.loadClass(className);
+      boolean _and = false;
+      boolean _notEquals = (!Objects.equal(clazz, null));
+      if (!_notEquals) {
+        _and = false;
+      } else {
+        int _modifiers = clazz.getModifiers();
+        boolean _isAbstract = Modifier.isAbstract(_modifiers);
+        _and = (_notEquals && _isAbstract);
+      }
+      if (_and) {
+        return ValidationResult.WARNING;
+      }
+      return ValidationResult.ERROR;
+    }
+    boolean _notEquals_1 = (!Objects.equal(innerProperty, null));
+    if (_notEquals_1) {
+      Class<? extends Object> innerClass = innerDesriptor.getPropertyType();
+      boolean _isArray = innerClass.isArray();
+      if (_isArray) {
+        Method _readMethod = innerDesriptor.getReadMethod();
+        Type _genericReturnType = _readMethod.getGenericReturnType();
+        final ParameterizedType type = ((ParameterizedType) _genericReturnType);
+        boolean _or_2 = false;
+        Type[] _actualTypeArguments = type.getActualTypeArguments();
+        boolean _equals_5 = Objects.equal(_actualTypeArguments, null);
+        if (_equals_5) {
+          _or_2 = true;
+        } else {
+          Type[] _actualTypeArguments_1 = type.getActualTypeArguments();
+          int _length = _actualTypeArguments_1.length;
+          boolean _equals_6 = (_length == 0);
+          _or_2 = (_equals_5 || _equals_6);
+        }
+        if (_or_2) {
+          return ValidationResult.WARNING;
+        }
+        Type[] _actualTypeArguments_2 = type.getActualTypeArguments();
+        Type _head = IterableExtensions.<Type>head(((Iterable<Type>)Conversions.doWrapArray(_actualTypeArguments_2)));
+        innerClass = ((Class<?>) _head);
+        boolean _isPrimitive = this.isPrimitive(innerClass);
+        if (_isPrimitive) {
+          return ValidationResult.ERROR;
+        }
+        String _name = innerClass.getName();
+        return this.checkClassProperty(_name, innerProperty);
+      } else {
+        boolean _isAssignableFrom = Collection.class.isAssignableFrom(innerClass);
+        if (_isAssignableFrom) {
+          Method _readMethod_1 = innerDesriptor.getReadMethod();
+          Type _genericReturnType_1 = _readMethod_1.getGenericReturnType();
+          final ParameterizedType type_1 = ((ParameterizedType) _genericReturnType_1);
+          boolean _or_3 = false;
+          Type[] _actualTypeArguments_3 = type_1.getActualTypeArguments();
+          boolean _equals_7 = Objects.equal(_actualTypeArguments_3, null);
+          if (_equals_7) {
+            _or_3 = true;
+          } else {
+            Type[] _actualTypeArguments_4 = type_1.getActualTypeArguments();
+            int _length_1 = _actualTypeArguments_4.length;
+            boolean _equals_8 = (_length_1 == 0);
+            _or_3 = (_equals_7 || _equals_8);
+          }
+          if (_or_3) {
+            return ValidationResult.WARNING;
+          }
+          Type[] _actualTypeArguments_5 = type_1.getActualTypeArguments();
+          Type _head_1 = IterableExtensions.<Type>head(((Iterable<Type>)Conversions.doWrapArray(_actualTypeArguments_5)));
+          innerClass = ((Class<?>) _head_1);
+          boolean _isPrimitive_1 = this.isPrimitive(innerClass);
+          if (_isPrimitive_1) {
+            return ValidationResult.ERROR;
+          }
+          String _name_1 = innerClass.getName();
+          return this.checkClassProperty(_name_1, innerProperty);
+        } else {
+          boolean _isPrimitive_2 = this.isPrimitive(innerClass);
+          if (_isPrimitive_2) {
+            return ValidationResult.ERROR;
+          }
+          String _name_2 = innerClass.getName();
+          return this.checkClassProperty(_name_2, innerProperty);
+        }
+      }
+    }
+    return ValidationResult.OK;
+  }
+  
+  public ValidationResult checkEntityProperty(final PojoEntity entity, final String property) {
+    boolean _or = false;
+    boolean _equals = Objects.equal(property, null);
+    if (_equals) {
+      _or = true;
+    } else {
+      boolean _isNumber = this.isNumber(property);
+      _or = (_equals || _isNumber);
+    }
+    if (_or) {
+      return ValidationResult.OK;
+    }
+    String checkProperty = property;
+    int pos1 = checkProperty.indexOf("=");
+    boolean _greaterThan = (pos1 > 0);
+    if (_greaterThan) {
+      int pos2 = checkProperty.indexOf(".", pos1);
+      boolean _greaterThan_1 = (pos2 > pos1);
+      if (_greaterThan_1) {
+        String _substring = checkProperty.substring(0, pos1);
+        String _substring_1 = checkProperty.substring(pos2);
+        String _plus = (_substring + _substring_1);
+        checkProperty = _plus;
+      }
+    }
+    String innerProperty = ((String) null);
+    int _indexOf = checkProperty.indexOf(".");
+    pos1 = _indexOf;
+    boolean _greaterThan_2 = (pos1 > 0);
+    if (_greaterThan_2) {
+      int _plus_1 = (pos1 + 1);
+      String _substring_2 = checkProperty.substring(_plus_1);
+      innerProperty = _substring_2;
+      String _substring_3 = checkProperty.substring(0, pos1);
+      checkProperty = _substring_3;
+    }
+    EList<PojoAnnotatedProperty> _features = entity.getFeatures();
+    for (final PojoAnnotatedProperty apojoProperty : _features) {
+      {
+        PojoProperty pojoProperty = apojoProperty.getFeature();
+        String _name = pojoProperty.getName();
+        boolean _equals_1 = _name.equals(checkProperty);
+        if (_equals_1) {
+          boolean _equals_2 = Objects.equal(innerProperty, null);
+          if (_equals_2) {
+            return ValidationResult.OK;
+          }
+          Entity _ref = pojoProperty.getRef();
+          boolean _notEquals = (!Objects.equal(_ref, null));
+          if (_notEquals) {
+            Entity _ref_1 = pojoProperty.getRef();
+            if ((_ref_1 instanceof PojoEntity)) {
+              Entity _ref_2 = pojoProperty.getRef();
+              return this.checkEntityProperty(((PojoEntity) _ref_2), innerProperty);
+            }
+            return ValidationResult.OK;
+          }
+          PojoEntity _gref = pojoProperty.getGref();
+          boolean _notEquals_1 = (!Objects.equal(_gref, null));
+          if (_notEquals_1) {
+            PojoEntity _gref_1 = pojoProperty.getGref();
+            return this.checkEntityProperty(_gref_1, innerProperty);
+          }
+          return ValidationResult.ERROR;
+        }
+      }
+    }
+    PojoEntity superType = Utils.getSuperType(entity);
+    boolean _notEquals = (!Objects.equal(superType, null));
+    if (_notEquals) {
+      ValidationResult result = this.checkEntityProperty(superType, property);
+      boolean _or_1 = false;
+      boolean _equals_1 = Objects.equal(result, ValidationResult.WARNING);
+      if (_equals_1) {
+        _or_1 = true;
+      } else {
+        boolean _equals_2 = Objects.equal(result, ValidationResult.OK);
+        _or_1 = (_equals_1 || _equals_2);
+      }
+      if (_or_1) {
+        return result;
+      }
+    }
+    boolean _isAbstract = Utils.isAbstract(entity);
+    if (_isAbstract) {
+      return ValidationResult.WARNING;
+    } else {
+      final Set<String> suppressedAbstracts = this.modelProperty.getNotAbstractTables(entity);
+      boolean _and = false;
+      boolean _notEquals_1 = (!Objects.equal(suppressedAbstracts, null));
+      if (!_notEquals_1) {
+        _and = false;
+      } else {
+        String _dbName = Utils.dbName(entity);
+        boolean _contains = suppressedAbstracts.contains(_dbName);
+        _and = (_notEquals_1 && _contains);
+      }
+      if (_and) {
+        return ValidationResult.WARNING;
+      } else {
+        return ValidationResult.ERROR;
+      }
+    }
+  }
+  
+  @Check
+  public void checkUniqueProperty(final Property property) {
+    EObject _rootContainer = EcoreUtil.getRootContainer(property);
+    boolean _not = (!(_rootContainer instanceof Artifacts));
+    if (_not) {
+      return;
+    }
+    EObject _rootContainer_1 = EcoreUtil.getRootContainer(property);
+    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
+    EList<Property> _properties = artifacts.getProperties();
+    for (final Property prop : _properties) {
+      boolean _and = false;
+      boolean _notEquals = (!Objects.equal(prop, null));
+      if (!_notEquals) {
+        _and = false;
+      } else {
+        boolean _tripleNotEquals = (prop != property);
+        _and = (_notEquals && _tripleNotEquals);
+      }
+      if (_and) {
+        boolean _and_1 = false;
+        boolean _and_2 = false;
+        boolean _and_3 = false;
+        boolean _and_4 = false;
+        boolean _and_5 = false;
+        String _name = prop.getName();
+        String _name_1 = property.getName();
+        boolean _equals = _name.equals(_name_1);
+        if (!_equals) {
+          _and_5 = false;
+        } else {
+          String _name_2 = prop.getName();
+          boolean _startsWith = _name_2.startsWith("pojogen");
+          boolean _not_1 = (!_startsWith);
+          _and_5 = (_equals && _not_1);
+        }
+        if (!_and_5) {
+          _and_4 = false;
+        } else {
+          String _name_3 = prop.getName();
+          boolean _startsWith_1 = _name_3.startsWith("database");
+          boolean _not_2 = (!_startsWith_1);
+          _and_4 = (_and_5 && _not_2);
+        }
+        if (!_and_4) {
+          _and_3 = false;
+        } else {
+          String _name_4 = prop.getName();
+          boolean _startsWith_2 = _name_4.startsWith("metagen");
+          boolean _not_3 = (!_startsWith_2);
+          _and_3 = (_and_4 && _not_3);
+        }
+        if (!_and_3) {
+          _and_2 = false;
+        } else {
+          String _name_5 = prop.getName();
+          boolean _startsWith_3 = _name_5.startsWith("daogen");
+          boolean _not_4 = (!_startsWith_3);
+          _and_2 = (_and_3 && _not_4);
+        }
+        if (!_and_2) {
+          _and_1 = false;
+        } else {
+          String _name_6 = prop.getName();
+          boolean _startsWith_4 = _name_6.startsWith("replace-all");
+          boolean _not_5 = (!_startsWith_4);
+          _and_1 = (_and_2 && _not_5);
+        }
+        if (_and_1) {
+          String _name_7 = property.getName();
+          String _plus = ("Duplicate name : " + _name_7);
+          this.error(_plus, Literals.PROPERTY__NAME);
+          return;
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkTableDefinition(final TableDefinition tableDefinition) {
+    EObject _rootContainer = EcoreUtil.getRootContainer(tableDefinition);
+    boolean _not = (!(_rootContainer instanceof Artifacts));
+    if (_not) {
+      return;
+    }
+    EObject _rootContainer_1 = EcoreUtil.getRootContainer(tableDefinition);
+    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
+    EList<TableDefinition> _tables = artifacts.getTables();
+    for (final TableDefinition table : _tables) {
+      boolean _and = false;
+      boolean _notEquals = (!Objects.equal(table, null));
+      if (!_notEquals) {
+        _and = false;
+      } else {
+        boolean _tripleNotEquals = (table != tableDefinition);
+        _and = (_notEquals && _tripleNotEquals);
+      }
+      if (_and) {
+        String _name = tableDefinition.getName();
+        String _name_1 = table.getName();
+        boolean _equals = _name.equals(_name_1);
+        if (_equals) {
+          String _name_2 = tableDefinition.getName();
+          String _plus = ("Duplicate name : " + _name_2);
+          String _plus_1 = (_plus + "[table]");
+          this.error(_plus_1, 
+            Literals.TABLE_DEFINITION__NAME);
+          return;
+        }
+      }
+    }
+    boolean _and_1 = false;
+    boolean _isResolveDb = this.isResolveDb(tableDefinition);
+    if (!_isResolveDb) {
+      _and_1 = false;
+    } else {
+      String _table = tableDefinition.getTable();
+      boolean _checkTable = this.dbResolver.checkTable(tableDefinition, _table);
+      boolean _not_1 = (!_checkTable);
+      _and_1 = (_isResolveDb && _not_1);
+    }
+    if (_and_1) {
+      String _table_1 = tableDefinition.getTable();
+      String _plus_2 = ("Cannot find table in DB : " + _table_1);
+      this.error(_plus_2, 
+        Literals.TABLE_DEFINITION__TABLE);
+    }
+  }
+  
+  @Check
+  public void checkProcedureDefinition(final ProcedureDefinition procedureDefinition) {
+    EObject _rootContainer = EcoreUtil.getRootContainer(procedureDefinition);
+    boolean _not = (!(_rootContainer instanceof Artifacts));
+    if (_not) {
+      return;
+    }
+    EObject _rootContainer_1 = EcoreUtil.getRootContainer(procedureDefinition);
+    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
+    EList<ProcedureDefinition> _procedures = artifacts.getProcedures();
+    for (final ProcedureDefinition procedure : _procedures) {
+      boolean _and = false;
+      boolean _notEquals = (!Objects.equal(procedure, null));
+      if (!_notEquals) {
+        _and = false;
+      } else {
+        boolean _tripleNotEquals = (procedure != procedureDefinition);
+        _and = (_notEquals && _tripleNotEquals);
+      }
+      if (_and) {
+        String _name = procedureDefinition.getName();
+        String _name_1 = procedure.getName();
+        boolean _equals = _name.equals(_name_1);
+        if (_equals) {
+          String _name_2 = procedureDefinition.getName();
+          String _plus = ("Duplicate name : " + _name_2);
+          String _plus_1 = (_plus + "[procedure]");
+          this.error(_plus_1, 
+            Literals.PROCEDURE_DEFINITION__NAME);
+          return;
+        }
+      }
+    }
+    boolean _and_1 = false;
+    boolean _isResolveDb = this.isResolveDb(procedureDefinition);
+    if (!_isResolveDb) {
+      _and_1 = false;
+    } else {
+      String _table = procedureDefinition.getTable();
+      boolean _checkProcedure = this.dbResolver.checkProcedure(procedureDefinition, _table);
+      boolean _not_1 = (!_checkProcedure);
+      _and_1 = (_isResolveDb && _not_1);
+    }
+    if (_and_1) {
+      String _table_1 = procedureDefinition.getTable();
+      String _plus_2 = ("Cannot find procedure in DB : " + _table_1);
+      this.error(_plus_2, 
+        Literals.PROCEDURE_DEFINITION__NAME);
+    }
+  }
+  
+  @Check
+  public void checkFunctionDefinition(final FunctionDefinition functionDefinition) {
+    EObject _rootContainer = EcoreUtil.getRootContainer(functionDefinition);
+    boolean _not = (!(_rootContainer instanceof Artifacts));
+    if (_not) {
+      return;
+    }
+    EObject _rootContainer_1 = EcoreUtil.getRootContainer(functionDefinition);
+    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
+    EList<FunctionDefinition> _functions = artifacts.getFunctions();
+    for (final FunctionDefinition function : _functions) {
+      boolean _and = false;
+      boolean _notEquals = (!Objects.equal(function, null));
+      if (!_notEquals) {
+        _and = false;
+      } else {
+        boolean _tripleNotEquals = (function != functionDefinition);
+        _and = (_notEquals && _tripleNotEquals);
+      }
+      if (_and) {
+        String _name = functionDefinition.getName();
+        String _name_1 = function.getName();
+        boolean _equals = _name.equals(_name_1);
+        if (_equals) {
+          String _name_2 = functionDefinition.getName();
+          String _plus = ("Duplicate name : " + _name_2);
+          String _plus_1 = (_plus + "[function]");
+          this.error(_plus_1, 
+            Literals.FUNCTION_DEFINITION__NAME);
+          return;
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkDatabaseColumn(final DatabaseColumn databaseColumn) {
+    boolean _isResolveDb = this.isResolveDb(databaseColumn);
+    boolean _not = (!_isResolveDb);
+    if (_not) {
+      return;
+    }
+    String prefix = databaseColumn.getName();
+    String columnName = ((String) null);
+    final int pos = prefix.indexOf(".");
+    boolean _greaterThan = (pos > 0);
+    if (_greaterThan) {
+      String _name = databaseColumn.getName();
+      String _substring = _name.substring(0, pos);
+      prefix = _substring;
+      String _name_1 = databaseColumn.getName();
+      int _plus = (pos + 1);
+      String _substring_1 = _name_1.substring(_plus);
+      columnName = _substring_1;
+    } else {
+      prefix = null;
+      String _name_2 = databaseColumn.getName();
+      columnName = _name_2;
+    }
+    final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(databaseColumn, MetaStatement.class);
+    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
+    final String value = Utils.getTokenFromModifier(statement, Constants.TABLE_USAGE, prefix);
+    TableDefinition _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(value, null));
+    if (_notEquals) {
+      IScope _scope = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__TABLES);
+      TableDefinition _findTable = Utils.findTable(this.qualifiedNameConverter, artifacts, _scope, value);
+      _xifexpression = _findTable;
+    }
+    final TableDefinition tableDefinition = _xifexpression;
+    String _xifexpression_1 = null;
+    boolean _notEquals_1 = (!Objects.equal(tableDefinition, null));
+    if (_notEquals_1) {
+      String _table = tableDefinition.getTable();
+      _xifexpression_1 = _table;
+    }
+    final String tableName = _xifexpression_1;
+    boolean _or = false;
+    boolean _equals = Objects.equal(tableName, null);
+    if (_equals) {
+      _or = true;
+    } else {
+      boolean _checkColumn = this.dbResolver.checkColumn(databaseColumn, tableName, columnName);
+      boolean _not_1 = (!_checkColumn);
+      _or = (_equals || _not_1);
+    }
+    if (_or) {
+      String _name_3 = databaseColumn.getName();
+      String _plus_1 = ("Cannot find column in DB : " + _name_3);
+      String _plus_2 = (_plus_1 + "[");
+      String _plus_3 = (_plus_2 + tableName);
+      String _plus_4 = (_plus_3 + "]");
+      this.error(_plus_4, 
+        Literals.DATABASE_COLUMN__NAME);
+    }
+  }
+  
+  @Check
+  public void checkDatabaseTable(final DatabaseTable databaseTable) {
+    boolean _isResolveDb = this.isResolveDb(databaseTable);
+    boolean _not = (!_isResolveDb);
+    if (_not) {
+      return;
+    }
+    final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(databaseTable, MetaStatement.class);
+    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
+    final String tableName = databaseTable.getName();
+    List<String> _tokensFromModifier = Utils.getTokensFromModifier(statement, Constants.TABLE_USAGE);
+    final Function1<String,TableDefinition> _function = new Function1<String,TableDefinition>() {
+      public TableDefinition apply(final String value) {
+        IScope _scope = ProcessorDslValidator.this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__TABLES);
+        TableDefinition _findTable = Utils.findTable(ProcessorDslValidator.this.qualifiedNameConverter, artifacts, _scope, value);
+        return _findTable;
+      }
+    };
+    final List<TableDefinition> tableDefinitions = ListExtensions.<String, TableDefinition>map(_tokensFromModifier, _function);
+    final Function1<TableDefinition,Boolean> _function_1 = new Function1<TableDefinition,Boolean>() {
+      public Boolean apply(final TableDefinition it) {
+        boolean _notEquals = (!Objects.equal(it, null));
+        return Boolean.valueOf(_notEquals);
+      }
+    };
+    final TableDefinition tableDefinition = IterableExtensions.<TableDefinition>findFirst(tableDefinitions, _function_1);
+    boolean _or = false;
+    boolean _equals = Objects.equal(tableDefinition, null);
+    if (_equals) {
+      _or = true;
+    } else {
+      boolean _checkTable = this.dbResolver.checkTable(databaseTable, tableName);
+      boolean _not_1 = (!_checkTable);
+      _or = (_equals || _not_1);
+    }
+    if (_or) {
+      String _plus = ("Cannot find table in DB : " + tableName);
+      this.error(_plus, Literals.DATABASE_TABLE__NAME);
+    }
+  }
+  
+  @Check
+  public void checkUniquePojoEntity(final PojoEntity pojoEntity) {
+    EObject _rootContainer = EcoreUtil.getRootContainer(pojoEntity);
+    boolean _not = (!(_rootContainer instanceof Artifacts));
+    if (_not) {
+      return;
+    }
+    EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoEntity);
+    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
+    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
+    for (final PackageDeclaration pkg : _pojoPackages) {
+      boolean _notEquals = (!Objects.equal(pkg, null));
+      if (_notEquals) {
+        EList<AbstractPojoEntity> _elements = pkg.getElements();
+        for (final AbstractPojoEntity entity : _elements) {
+          boolean _and = false;
+          boolean _notEquals_1 = (!Objects.equal(entity, null));
+          if (!_notEquals_1) {
+            _and = false;
+          } else {
+            _and = (_notEquals_1 && (entity instanceof PojoEntity));
+          }
+          if (_and) {
+            final PojoEntity pentity = ((PojoEntity) entity);
+            boolean _tripleNotEquals = (pentity != pojoEntity);
+            if (_tripleNotEquals) {
+              String _name = pojoEntity.getName();
+              String _name_1 = pentity.getName();
+              boolean _equals = _name.equals(_name_1);
+              if (_equals) {
+                String _name_2 = pojoEntity.getName();
+                String _plus = ("Duplicate name : " + _name_2);
+                this.error(_plus, Literals.ENTITY__NAME);
+                return;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkUniquePojoProperty(final PojoProperty pojoProperty) {
+    final PojoEntity entity = EcoreUtil2.<PojoEntity>getContainerOfType(pojoProperty, PojoEntity.class);
+    EList<PojoAnnotatedProperty> _features = entity.getFeatures();
+    for (final PojoAnnotatedProperty aproperty : _features) {
+      {
+        final PojoProperty property = aproperty.getFeature();
+        boolean _and = false;
+        boolean _notEquals = (!Objects.equal(property, null));
+        if (!_notEquals) {
+          _and = false;
+        } else {
+          boolean _tripleNotEquals = (property != pojoProperty);
+          _and = (_notEquals && _tripleNotEquals);
+        }
+        if (_and) {
+          String _name = pojoProperty.getName();
+          String _name_1 = property.getName();
+          boolean _equals = _name.equals(_name_1);
+          if (_equals) {
+            String _name_2 = pojoProperty.getName();
+            String _plus = ("Duplicate name : " + _name_2);
+            this.error(_plus, Literals.POJO_PROPERTY__NAME);
+            return;
+          }
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkUniqueEnumEntity(final EnumEntity enumEntity) {
+    EObject _rootContainer = EcoreUtil.getRootContainer(enumEntity);
+    boolean _not = (!(_rootContainer instanceof Artifacts));
+    if (_not) {
+      return;
+    }
+    EObject _rootContainer_1 = EcoreUtil.getRootContainer(enumEntity);
+    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
+    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
+    for (final PackageDeclaration pkg : _pojoPackages) {
+      boolean _notEquals = (!Objects.equal(pkg, null));
+      if (_notEquals) {
+        EList<AbstractPojoEntity> _elements = pkg.getElements();
+        for (final AbstractPojoEntity entity : _elements) {
+          boolean _and = false;
+          boolean _notEquals_1 = (!Objects.equal(entity, null));
+          if (!_notEquals_1) {
+            _and = false;
+          } else {
+            _and = (_notEquals_1 && (entity instanceof EnumEntity));
+          }
+          if (_and) {
+            final EnumEntity pentity = ((EnumEntity) entity);
+            boolean _notEquals_2 = (!Objects.equal(pentity, enumEntity));
+            if (_notEquals_2) {
+              String _name = enumEntity.getName();
+              String _name_1 = pentity.getName();
+              boolean _equals = _name.equals(_name_1);
+              if (_equals) {
+                String _name_2 = enumEntity.getName();
+                String _plus = ("Duplicate name : " + _name_2);
+                this.error(_plus, Literals.ENTITY__NAME);
+                return;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkUniqueEnumProperty(final EnumProperty enumProperty) {
+    final EnumEntity entity = EcoreUtil2.<EnumEntity>getContainerOfType(enumProperty, EnumEntity.class);
+    EList<EnumProperty> _features = entity.getFeatures();
+    for (final EnumProperty property : _features) {
+      boolean _and = false;
+      boolean _notEquals = (!Objects.equal(property, null));
+      if (!_notEquals) {
+        _and = false;
+      } else {
+        boolean _tripleNotEquals = (property != enumProperty);
+        _and = (_notEquals && _tripleNotEquals);
+      }
+      if (_and) {
+        String _name = enumProperty.getName();
+        String _name_1 = property.getName();
+        boolean _equals = _name.equals(_name_1);
+        if (_equals) {
+          String _name_2 = enumProperty.getName();
+          String _plus = ("Duplicate name : " + _name_2);
+          this.error(_plus, Literals.ENUM_PROPERTY__NAME);
+          return;
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkUniquePojoDao(final PojoDao pojoDao) {
+    EObject _rootContainer = EcoreUtil.getRootContainer(pojoDao);
+    boolean _not = (!(_rootContainer instanceof Artifacts));
+    if (_not) {
+      return;
+    }
+    EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoDao);
+    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
+    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
+    for (final PackageDeclaration pkg : _pojoPackages) {
+      boolean _notEquals = (!Objects.equal(pkg, null));
+      if (_notEquals) {
+        EList<AbstractPojoEntity> _elements = pkg.getElements();
+        for (final AbstractPojoEntity dao : _elements) {
+          boolean _and = false;
+          boolean _notEquals_1 = (!Objects.equal(dao, null));
+          if (!_notEquals_1) {
+            _and = false;
+          } else {
+            _and = (_notEquals_1 && (dao instanceof PojoDao));
+          }
+          if (_and) {
+            final PojoDao pdao = ((PojoDao) dao);
+            boolean _notEquals_2 = (!Objects.equal(pdao, pojoDao));
+            if (_notEquals_2) {
+              String _name = pojoDao.getName();
+              String _name_1 = pdao.getName();
+              boolean _equals = _name.equals(_name_1);
+              if (_equals) {
+                String _name_2 = pojoDao.getName();
+                String _plus = ("Duplicate name : " + _name_2);
+                this.error(_plus, Literals.POJO_DAO__NAME);
+                return;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

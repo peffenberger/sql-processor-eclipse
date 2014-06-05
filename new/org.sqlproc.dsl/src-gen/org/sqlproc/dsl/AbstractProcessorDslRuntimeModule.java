@@ -144,11 +144,6 @@ public abstract class AbstractProcessorDslRuntimeModule extends DefaultRuntimeMo
 		return org.sqlproc.dsl.formatting.ProcessorDslFormatter.class;
 	}
 
-	// contributed by org.eclipse.xtext.generator.validation.JavaValidatorFragment
-	@org.eclipse.xtext.service.SingletonBinding(eager=true)	public Class<? extends org.sqlproc.dsl.validation.ProcessorDslJavaValidator> bindProcessorDslJavaValidator() {
-		return org.sqlproc.dsl.validation.ProcessorDslJavaValidator.class;
-	}
-
 	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment
 	public java.lang.ClassLoader bindClassLoaderToInstance() {
 		return getClass().getClassLoader();

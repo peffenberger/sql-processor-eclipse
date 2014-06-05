@@ -339,29 +339,6 @@
             </attribute>
         </markerResolutionGenerator>
     </extension>
-
-    <!-- marker definitions for org.sqlproc.dsl.ProcessorDsl -->
-    <extension
-            id="processordsl.check.fast"
-            name="ProcessorDsl Problem"
-            point="org.eclipse.core.resources.markers">
-        <super type="org.eclipse.xtext.ui.check.fast"/>
-        <persistent value="true"/>
-    </extension>
-    <extension
-            id="processordsl.check.normal"
-            name="ProcessorDsl Problem"
-            point="org.eclipse.core.resources.markers">
-        <super type="org.eclipse.xtext.ui.check.normal"/>
-        <persistent value="true"/>
-    </extension>
-    <extension
-            id="processordsl.check.expensive"
-            name="ProcessorDsl Problem"
-            point="org.eclipse.core.resources.markers">
-        <super type="org.eclipse.xtext.ui.check.expensive"/>
-        <persistent value="true"/>
-    </extension>
    	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
