@@ -1020,7 +1020,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IterableExtensions.<String>forEach(_filter, _function_1);
   }
   
-  public void acceptColumns(final List<String> columns, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor, final String prefix) {
+  public void acceptColumns(final List<String> columns, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor, final String prefix, final String suffix) {
     final Procedure1<String> _function = new Procedure1<String>() {
       public void apply(final String column) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
@@ -1034,7 +1034,16 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         } else {
           _xifexpression = proposal;
         }
-        final String completion = _xifexpression;
+        String completion = _xifexpression;
+        String _xifexpression_1 = null;
+        boolean _notEquals_1 = (!Objects.equal(suffix, null));
+        if (_notEquals_1) {
+          String _plus_2 = (completion + suffix);
+          _xifexpression_1 = _plus_2;
+        } else {
+          _xifexpression_1 = completion;
+        }
+        completion = _xifexpression_1;
         ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(completion, context);
         acceptor.accept(_createCompletionProposal);
       }
@@ -1093,7 +1102,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (_and) {
       String _table_1 = tableDefinition.getTable();
       List<String> _columns = this.dbResolver.getColumns(model, _table_1);
-      this.acceptColumns(_columns, context, acceptor, prefix);
+      this.acceptColumns(_columns, context, acceptor, prefix, null);
     }
   }
   
@@ -1226,7 +1235,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (_notEquals) {
       String _dbTable_1 = prop.getDbTable();
       List<String> _columns = this.dbResolver.getColumns(model, _dbTable_1);
-      this.acceptColumns(_columns, context, acceptor, null);
+      this.acceptColumns(_columns, context, acceptor, null, null);
     }
   }
   
@@ -1250,7 +1259,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (_notEquals) {
       String _dbTable_1 = prop.getDbTable();
       List<String> _columns = this.dbResolver.getColumns(model, _dbTable_1);
-      this.acceptColumns(_columns, context, acceptor, null);
+      this.acceptColumns(_columns, context, acceptor, null, null);
     }
   }
   
@@ -1370,21 +1379,21 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (_notEquals) {
       String _dbTable_1 = prop.getDbTable();
       List<String> _columns = this.dbResolver.getColumns(model, _dbTable_1);
-      this.acceptColumns(_columns, context, acceptor, "->");
+      this.acceptColumns(_columns, context, acceptor, null, "->");
     } else {
       String _dbProcedure = prop.getDbProcedure();
       boolean _notEquals_1 = (!Objects.equal(_dbProcedure, null));
       if (_notEquals_1) {
         String _dbProcedure_1 = prop.getDbProcedure();
         List<String> _procColumns = this.dbResolver.getProcColumns(model, _dbProcedure_1);
-        this.acceptColumns(_procColumns, context, acceptor, "->");
+        this.acceptColumns(_procColumns, context, acceptor, null, "->");
       } else {
         String _dbFunction = prop.getDbFunction();
         boolean _notEquals_2 = (!Objects.equal(_dbFunction, null));
         if (_notEquals_2) {
           String _dbFunction_1 = prop.getDbFunction();
           List<String> _funColumns = this.dbResolver.getFunColumns(model, _dbFunction_1);
-          this.acceptColumns(_funColumns, context, acceptor, "->");
+          this.acceptColumns(_funColumns, context, acceptor, null, "->");
         }
       }
     }
@@ -1410,10 +1419,10 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (_notEquals) {
       String _dbTable_1 = prop.getDbTable();
       List<String> _columns = this.dbResolver.getColumns(model, _dbTable_1);
-      this.acceptColumns(_columns, context, acceptor, "->");
+      this.acceptColumns(_columns, context, acceptor, null, "->");
       String _dbTable_2 = prop.getDbTable();
       List<String> _checkColumns = this.dbResolver.getCheckColumns(model, _dbTable_2);
-      this.acceptColumns(_checkColumns, context, acceptor, "->");
+      this.acceptColumns(_checkColumns, context, acceptor, null, "->");
     }
   }
   
@@ -1518,7 +1527,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       if (_equals) {
         String _pkTable_1 = imp.getPkTable();
         List<String> _columns = this.dbResolver.getColumns(model, _pkTable_1);
-        this.acceptColumns(_columns, context, acceptor, null);
+        this.acceptColumns(_columns, context, acceptor, null, null);
       } else {
         String _dbTable_1 = prop.getDbTable();
         List<DbImport> _dbImports = this.dbResolver.getDbImports(model, _dbTable_1);
@@ -1582,7 +1591,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (_notEquals) {
       String _dbTable_1 = prop.getDbTable();
       List<String> _columns = this.dbResolver.getColumns(model, _dbTable_1);
-      this.acceptColumns(_columns, context, acceptor, "->");
+      this.acceptColumns(_columns, context, acceptor, null, "->");
     }
   }
   
@@ -1687,7 +1696,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       if (_equals) {
         String _fkTable_1 = exp.getFkTable();
         List<String> _columns = this.dbResolver.getColumns(model, _fkTable_1);
-        this.acceptColumns(_columns, context, acceptor, null);
+        this.acceptColumns(_columns, context, acceptor, null, null);
       } else {
         String _dbTable_1 = prop.getDbTable();
         List<DbExport> _dbExports = this.dbResolver.getDbExports(model, _dbTable_1);
@@ -1751,7 +1760,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (_notEquals) {
       String _dbTable_1 = prop.getDbTable();
       List<String> _columns = this.dbResolver.getColumns(model, _dbTable_1);
-      this.acceptColumns(_columns, context, acceptor, "->");
+      this.acceptColumns(_columns, context, acceptor, null, "->");
     }
   }
   
@@ -1775,7 +1784,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (_notEquals) {
       String _dbTable_1 = prop.getDbTable();
       List<String> _columns = this.dbResolver.getColumns(model, _dbTable_1);
-      this.acceptColumns(_columns, context, acceptor, "->");
+      this.acceptColumns(_columns, context, acceptor, null, "->");
     }
   }
   
@@ -1854,7 +1863,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (_notEquals) {
       String _dbTable_1 = prop.getDbTable();
       List<String> _columns = this.dbResolver.getColumns(model, _dbTable_1);
-      this.acceptColumns(_columns, context, acceptor, null);
+      this.acceptColumns(_columns, context, acceptor, null, null);
     }
   }
   
@@ -1903,21 +1912,21 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (_notEquals) {
       String _dbTable_1 = prop.getDbTable();
       List<String> _columns = this.dbResolver.getColumns(model, _dbTable_1);
-      this.acceptColumns(_columns, context, acceptor, "->");
+      this.acceptColumns(_columns, context, acceptor, null, "->");
     } else {
       String _dbProcedure = prop.getDbProcedure();
       boolean _notEquals_1 = (!Objects.equal(_dbProcedure, null));
       if (_notEquals_1) {
         String _dbProcedure_1 = prop.getDbProcedure();
         List<String> _procColumns = this.dbResolver.getProcColumns(model, _dbProcedure_1);
-        this.acceptColumns(_procColumns, context, acceptor, "->");
+        this.acceptColumns(_procColumns, context, acceptor, null, "->");
       } else {
         String _dbFunction = prop.getDbFunction();
         boolean _notEquals_2 = (!Objects.equal(_dbFunction, null));
         if (_notEquals_2) {
           String _dbFunction_1 = prop.getDbFunction();
           List<String> _funColumns = this.dbResolver.getFunColumns(model, _dbFunction_1);
-          this.acceptColumns(_funColumns, context, acceptor, "->");
+          this.acceptColumns(_funColumns, context, acceptor, null, "->");
         }
       }
     }
@@ -2265,7 +2274,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     final PojogenProperty prop = ((PojogenProperty) model);
     String _dbTable = prop.getDbTable();
     List<String> _columns = this.dbResolver.getColumns(model, _dbTable);
-    this.acceptColumns(_columns, context, acceptor, null);
+    this.acceptColumns(_columns, context, acceptor, null, null);
   }
   
   public void completeDaogenProperty_DbTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
@@ -2295,7 +2304,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     final PojogenProperty prop = ((PojogenProperty) model);
     String _dbTable = prop.getDbTable();
     List<String> _columns = this.dbResolver.getColumns(model, _dbTable);
-    this.acceptColumns(_columns, context, acceptor, null);
+    this.acceptColumns(_columns, context, acceptor, null, null);
   }
   
   public void completeDatabaseMetaInfoAssignement_DbMetaInfo(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {

@@ -1873,7 +1873,7 @@ public class DbResolverBean implements DbResolver {
                 Map<String, DbCheckConstraint> mapOfCheckConstraints = getCheckConstraints(modelDatabaseValues, null,
                         dbType);
                 for (DbCheckConstraint check : mapOfCheckConstraints.values())
-                    checkConstraintsForModel.add(check.getEnumName());
+                    checkConstraintsForModel.add(name(modelDatabaseValues, check.getEnumName()));
             } catch (SQLException e) {
                 error("getCheckConstraints error " + e, e);
             }
@@ -2195,6 +2195,7 @@ public class DbResolverBean implements DbResolver {
                 getTables(model);
                 getProcedures(model);
                 getFunctions(model);
+                getCheckConstraints(model);
             }
             ss = dbOriginalNames.get(modelDatabaseValues.dir).get(s);
         }
