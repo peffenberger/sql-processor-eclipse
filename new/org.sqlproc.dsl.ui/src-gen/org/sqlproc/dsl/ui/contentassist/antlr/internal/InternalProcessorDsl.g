@@ -549,9 +549,9 @@ ruleDebugLevelAssignement
     }
 	:
 (
-{ before(grammarAccess.getDebugLevelAssignementAccess().getDebugAssignment()); }
-(rule__DebugLevelAssignement__DebugAssignment)
-{ after(grammarAccess.getDebugLevelAssignementAccess().getDebugAssignment()); }
+{ before(grammarAccess.getDebugLevelAssignementAccess().getGroup()); }
+(rule__DebugLevelAssignement__Group__0)
+{ after(grammarAccess.getDebugLevelAssignementAccess().getGroup()); }
 )
 
 ;
@@ -9460,6 +9460,135 @@ rule__ManyToManyAssignement__Group_3__1__Impl
 { before(grammarAccess.getManyToManyAssignementAccess().getFkColumnAssignment_3_1()); }
 (rule__ManyToManyAssignement__FkColumnAssignment_3_1)
 { after(grammarAccess.getManyToManyAssignementAccess().getFkColumnAssignment_3_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
+
+
+rule__DebugLevelAssignement__Group__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__DebugLevelAssignement__Group__0__Impl
+	rule__DebugLevelAssignement__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DebugLevelAssignement__Group__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getDebugLevelAssignementAccess().getDebugAssignment_0()); }
+(rule__DebugLevelAssignement__DebugAssignment_0)
+{ after(grammarAccess.getDebugLevelAssignementAccess().getDebugAssignment_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__DebugLevelAssignement__Group__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__DebugLevelAssignement__Group__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DebugLevelAssignement__Group__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getDebugLevelAssignementAccess().getGroup_1()); }
+(rule__DebugLevelAssignement__Group_1__0)?
+{ after(grammarAccess.getDebugLevelAssignementAccess().getGroup_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
+
+
+rule__DebugLevelAssignement__Group_1__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__DebugLevelAssignement__Group_1__0__Impl
+	rule__DebugLevelAssignement__Group_1__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DebugLevelAssignement__Group_1__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+(
+{ before(grammarAccess.getDebugLevelAssignementAccess().getWSTerminalRuleCall_1_0()); }
+(	RULE_WS)
+{ after(grammarAccess.getDebugLevelAssignementAccess().getWSTerminalRuleCall_1_0()); }
+)
+(
+{ before(grammarAccess.getDebugLevelAssignementAccess().getWSTerminalRuleCall_1_0()); }
+(	RULE_WS)*
+{ after(grammarAccess.getDebugLevelAssignementAccess().getWSTerminalRuleCall_1_0()); }
+)
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__DebugLevelAssignement__Group_1__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__DebugLevelAssignement__Group_1__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DebugLevelAssignement__Group_1__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getDebugLevelAssignementAccess().getScopeAssignment_1_1()); }
+(rule__DebugLevelAssignement__ScopeAssignment_1_1)
+{ after(grammarAccess.getDebugLevelAssignementAccess().getScopeAssignment_1_1()); }
 )
 
 ;
@@ -38019,14 +38148,29 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__DebugLevelAssignement__DebugAssignment
+rule__DebugLevelAssignement__DebugAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getDebugLevelAssignementAccess().getDebugIDENTTerminalRuleCall_0()); }
-	RULE_IDENT{ after(grammarAccess.getDebugLevelAssignementAccess().getDebugIDENTTerminalRuleCall_0()); }
+{ before(grammarAccess.getDebugLevelAssignementAccess().getDebugIDENTTerminalRuleCall_0_0()); }
+	RULE_IDENT{ after(grammarAccess.getDebugLevelAssignementAccess().getDebugIDENTTerminalRuleCall_0_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DebugLevelAssignement__ScopeAssignment_1_1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getDebugLevelAssignementAccess().getScopePropertyValueParserRuleCall_1_1_0()); }
+	rulePropertyValue{ after(grammarAccess.getDebugLevelAssignementAccess().getScopePropertyValueParserRuleCall_1_1_0()); }
 )
 
 ;

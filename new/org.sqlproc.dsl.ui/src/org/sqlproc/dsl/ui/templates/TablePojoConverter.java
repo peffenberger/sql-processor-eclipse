@@ -19,7 +19,7 @@ import java.util.Stack;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.eclipse.xtext.common.types.JvmType;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.PojoType;
@@ -36,10 +36,12 @@ import org.sqlproc.dsl.resolver.DbIndex;
 import org.sqlproc.dsl.resolver.DbIndex.DbIndexDetail;
 import org.sqlproc.dsl.resolver.DbResolver.DbType;
 import org.sqlproc.dsl.resolver.DbTable;
+import org.sqlproc.dsl.util.Debug;
 
 public class TablePojoConverter {
 
-    private boolean debug = false;
+    protected Logger LOGGER = Logger.getLogger(TablePojoConverter.class);
+    private Debug debug = new Debug(LOGGER);
 
     protected enum PrimitiveType {
         BOOLEAN, BYTE, SHORT, INT, LONG, FLOAT, DOUBLE, CHAR, BYTE_ARRAY, CHAR_ARRAY;
@@ -131,12 +133,7 @@ public class TablePojoConverter {
     public TablePojoConverter(ModelProperty modelProperty, Artifacts artifacts, String suffix,
             Set<String> finalEntities, Annotations annotations, List<String> dbSequences, DbType dbType) {
 
-        if (modelProperty.getDebugLevel(artifacts) != null
-                && modelProperty.getDebugLevel(artifacts).isGreaterOrEqual(Level.DEBUG)) {
-            debug = true;
-        } else {
-            debug = false;
-        }
+        debug = new Debug(modelProperty.getDebugLevel(artifacts), modelProperty.getDebugScope(artifacts), LOGGER);
 
         this.suffix = (suffix != null) ? suffix : "";
         this.finalEntities = finalEntities;
@@ -302,7 +299,7 @@ public class TablePojoConverter {
             this.imports.add(ANNOTATION_SIZE);
         }
 
-        if (debug) {
+        if (debug.debug) {
             System.out.println("finalEntities " + this.finalEntities);
             System.out.println("annotations " + this.annotations);
             System.out.println("sqlTypes " + this.sqlTypes);
@@ -349,7 +346,7 @@ public class TablePojoConverter {
     public void addTableDefinition(String table, List<DbColumn> dbColumns, List<String> dbPrimaryKeys,
             List<DbExport> dbExports, List<DbImport> dbImports, List<DbIndex> dbIndexes,
             List<DbCheckConstraint> dbCheckConstraints, String comment) {
-        if (debug) {
+        if (debug.debug) {
             System.out.println("addTableDefinition: " + table + " dbColumns " + dbColumns);
             System.out.println("addTableDefinition: " + table + " dbPrimaryKeys " + dbPrimaryKeys);
             System.out.println("addTableDefinition: " + table + " dbExports " + dbExports);
@@ -696,7 +693,7 @@ public class TablePojoConverter {
 
     public void addProcedureDefinition(String procedure, DbTable dbProcedure, List<DbColumn> dbProcColumns,
             boolean isFunction, String comment) {
-        if (debug) {
+        if (debug.debug) {
             System.out.println("addProcedureDefinition: " + procedure + " dbProcedure " + dbProcedure);
             System.out.println("addProcedureDefinition: " + procedure + " dbProcColumns " + dbProcColumns);
         }
@@ -752,7 +749,7 @@ public class TablePojoConverter {
     }
 
     public void addFunctionDefinition(String function, DbTable dbFunction, List<DbColumn> dbFunColumns, String comment) {
-        if (debug) {
+        if (debug.debug) {
             System.out.println("addFunctionDefinition: " + function + " dbFunction " + dbFunction);
             System.out.println("addFunctionDefinition: " + function + " dbFunColumns " + dbFunColumns);
         }
@@ -851,7 +848,7 @@ public class TablePojoConverter {
 
     public String getPojoDefinitions() {
         try {
-            if (debug) {
+            if (debug.debug) {
                 System.out.println("pojos " + this.pojos);
                 System.out.println("pojoExtends " + this.pojoExtends);
                 System.out.println("pojoInheritanceDiscriminator " + this.pojoInheritanceDiscriminator);

@@ -768,13 +768,22 @@ public interface ProcessorDslPackage extends EPackage
   int DEBUG_LEVEL_ASSIGNEMENT__DEBUG = 0;
 
   /**
+   * The feature id for the '<em><b>Scope</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEBUG_LEVEL_ASSIGNEMENT__SCOPE = 1;
+
+  /**
    * The number of structural features of the '<em>Debug Level Assignement</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEBUG_LEVEL_ASSIGNEMENT_FEATURE_COUNT = 1;
+  int DEBUG_LEVEL_ASSIGNEMENT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ProcedurePojoAssignementImpl <em>Procedure Pojo Assignement</em>}' class.
@@ -5315,6 +5324,17 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getDebugLevelAssignement_Debug();
 
   /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.DebugLevelAssignement#getScope <em>Scope</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Scope</em>'.
+   * @see org.sqlproc.dsl.processorDsl.DebugLevelAssignement#getScope()
+   * @see #getDebugLevelAssignement()
+   * @generated
+   */
+  EAttribute getDebugLevelAssignement_Scope();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.ProcedurePojoAssignement <em>Procedure Pojo Assignement</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9665,6 +9685,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute DEBUG_LEVEL_ASSIGNEMENT__DEBUG = eINSTANCE.getDebugLevelAssignement_Debug();
+
+    /**
+     * The meta object literal for the '<em><b>Scope</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DEBUG_LEVEL_ASSIGNEMENT__SCOPE = eINSTANCE.getDebugLevelAssignement_Scope();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ProcedurePojoAssignementImpl <em>Procedure Pojo Assignement</em>}' class.

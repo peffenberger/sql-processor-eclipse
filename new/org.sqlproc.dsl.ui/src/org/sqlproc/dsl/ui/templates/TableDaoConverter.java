@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.sqlproc.dsl.processorDsl.Artifacts;
@@ -21,10 +21,12 @@ import org.sqlproc.dsl.property.ImplementsExtends;
 import org.sqlproc.dsl.property.ModelProperty;
 import org.sqlproc.dsl.property.PojoAttribute;
 import org.sqlproc.dsl.resolver.DbResolver.DbType;
+import org.sqlproc.dsl.util.Debug;
 
 public class TableDaoConverter extends TableMetaConverter {
 
-    private boolean debug = false;
+    protected Logger LOGGER = Logger.getLogger(TableDaoConverter.class);
+    private Debug debug = new Debug(LOGGER);
 
     protected Set<String> finalDaos;
     protected Set<String> daoIgnoreTables = new HashSet<String>();
@@ -46,12 +48,7 @@ public class TableDaoConverter extends TableMetaConverter {
             IScopeProvider scopeProvider, Set<String> finalDaos, List<String> dbSequences, DbType dbType) {
         super(modelProperty, artifacts, null, Collections.<String> emptySet(), dbSequences, dbType);
 
-        if (modelProperty.getDaoDebugLevel(artifacts) != null
-                && modelProperty.getDaoDebugLevel(artifacts).isGreaterOrEqual(Level.DEBUG)) {
-            debug = true;
-        } else {
-            debug = false;
-        }
+        debug = new Debug(modelProperty.getDaoDebugLevel(artifacts), modelProperty.getDaoDebugScope(artifacts), LOGGER);
 
         this.suffix = (suffix != null) ? suffix : "";
         this.finalDaos = finalDaos;
@@ -77,7 +74,7 @@ public class TableDaoConverter extends TableMetaConverter {
         }
         this.daoActiveFilter = Filter.parse(modelProperty.getDaoActiveFilter(artifacts));
 
-        if (debug) {
+        if (debug.debug) {
             System.out.println("finalDaos " + this.finalDaos);
             System.out.println("daoIgnoreTables " + this.daoIgnoreTables);
             System.out.println("daoOnlyTables " + this.daoOnlyTables);
@@ -91,7 +88,7 @@ public class TableDaoConverter extends TableMetaConverter {
 
     public String getDaoDefinitions() {
         try {
-            if (debug) {
+            if (debug.debug) {
                 System.out.println("pojos " + this.pojos);
                 System.out.println("pojoExtends " + this.pojoExtends);
                 System.out.println("pojoInheritanceDiscriminator " + this.pojoInheritanceDiscriminator);

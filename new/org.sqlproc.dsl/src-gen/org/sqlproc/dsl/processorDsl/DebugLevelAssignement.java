@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.DebugLevelAssignement#getDebug <em>Debug</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.DebugLevelAssignement#getScope <em>Scope</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,5 +48,31 @@ public interface DebugLevelAssignement extends EObject
    * @generated
    */
   void setDebug(String value);
+
+  /**
+   * Returns the value of the '<em><b>Scope</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Scope</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Scope</em>' attribute.
+   * @see #setScope(String)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getDebugLevelAssignement_Scope()
+   * @model
+   * @generated
+   */
+  String getScope();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.DebugLevelAssignement#getScope <em>Scope</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Scope</em>' attribute.
+   * @see #getScope()
+   * @generated
+   */
+  void setScope(String value);
 
 } // DebugLevelAssignement

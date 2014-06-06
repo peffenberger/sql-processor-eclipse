@@ -84,6 +84,7 @@
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//DebugLevelAssignement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//DebugLevelAssignement/debug"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//DebugLevelAssignement/scope"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//ProcedurePojoAssignement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//ProcedurePojoAssignement/dbProcedure"/>

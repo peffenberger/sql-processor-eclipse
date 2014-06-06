@@ -142,6 +142,8 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInheritanceAssignementAccess().getGroup_3(), "rule__InheritanceAssignement__Group_3__0");
 					put(grammarAccess.getManyToManyAssignementAccess().getGroup(), "rule__ManyToManyAssignement__Group__0");
 					put(grammarAccess.getManyToManyAssignementAccess().getGroup_3(), "rule__ManyToManyAssignement__Group_3__0");
+					put(grammarAccess.getDebugLevelAssignementAccess().getGroup(), "rule__DebugLevelAssignement__Group__0");
+					put(grammarAccess.getDebugLevelAssignementAccess().getGroup_1(), "rule__DebugLevelAssignement__Group_1__0");
 					put(grammarAccess.getProcedurePojoAssignementAccess().getGroup(), "rule__ProcedurePojoAssignement__Group__0");
 					put(grammarAccess.getFunctionPojoAssignementAccess().getGroup(), "rule__FunctionPojoAssignement__Group__0");
 					put(grammarAccess.getImplementsAssignementAccess().getGroup(), "rule__ImplementsAssignement__Group__0");
@@ -487,7 +489,8 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getManyToManyAssignementAccess().getPkColumnAssignment_0(), "rule__ManyToManyAssignement__PkColumnAssignment_0");
 					put(grammarAccess.getManyToManyAssignementAccess().getPkTableAssignment_2(), "rule__ManyToManyAssignement__PkTableAssignment_2");
 					put(grammarAccess.getManyToManyAssignementAccess().getFkColumnAssignment_3_1(), "rule__ManyToManyAssignement__FkColumnAssignment_3_1");
-					put(grammarAccess.getDebugLevelAssignementAccess().getDebugAssignment(), "rule__DebugLevelAssignement__DebugAssignment");
+					put(grammarAccess.getDebugLevelAssignementAccess().getDebugAssignment_0(), "rule__DebugLevelAssignement__DebugAssignment_0");
+					put(grammarAccess.getDebugLevelAssignementAccess().getScopeAssignment_1_1(), "rule__DebugLevelAssignement__ScopeAssignment_1_1");
 					put(grammarAccess.getProcedurePojoAssignementAccess().getDbProcedureAssignment_0(), "rule__ProcedurePojoAssignement__DbProcedureAssignment_0");
 					put(grammarAccess.getProcedurePojoAssignementAccess().getPojoAssignment_2(), "rule__ProcedurePojoAssignement__PojoAssignment_2");
 					put(grammarAccess.getFunctionPojoAssignementAccess().getDbFunctionAssignment_0(), "rule__FunctionPojoAssignement__DbFunctionAssignment_0");

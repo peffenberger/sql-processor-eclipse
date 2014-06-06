@@ -892,17 +892,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     debug=IDENT
+	 *     (debug=IDENT scope=PropertyValue?)
 	 */
 	protected void sequence_DebugLevelAssignement(EObject context, DebugLevelAssignement semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DEBUG_LEVEL_ASSIGNEMENT__DEBUG) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DEBUG_LEVEL_ASSIGNEMENT__DEBUG));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDebugLevelAssignementAccess().getDebugIDENTTerminalRuleCall_0(), semanticObject.getDebug());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

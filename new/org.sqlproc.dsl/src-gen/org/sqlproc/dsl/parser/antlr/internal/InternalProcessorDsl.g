@@ -1294,11 +1294,11 @@ ruleDebugLevelAssignement returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(
+((
 (
 		lv_debug_0_0=RULE_IDENT
 		{
-			newLeafNode(lv_debug_0_0, grammarAccess.getDebugLevelAssignementAccess().getDebugIDENTTerminalRuleCall_0()); 
+			newLeafNode(lv_debug_0_0, grammarAccess.getDebugLevelAssignementAccess().getDebugIDENTTerminalRuleCall_0_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1312,7 +1312,29 @@ ruleDebugLevelAssignement returns [EObject current=null]
 	    }
 
 )
+)((this_WS_1=RULE_WS
+    { 
+    newLeafNode(this_WS_1, grammarAccess.getDebugLevelAssignementAccess().getWSTerminalRuleCall_1_0()); 
+    }
+)+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDebugLevelAssignementAccess().getScopePropertyValueParserRuleCall_1_1_0()); 
+	    }
+		lv_scope_2_0=rulePropertyValue		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDebugLevelAssignementRule());
+	        }
+       		set(
+       			$current, 
+       			"scope",
+        		lv_scope_2_0, 
+        		"PropertyValue");
+	        afterParserOrEnumRuleCall();
+	    }
+
 )
+))?)
 ;
 
 

@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -165,7 +164,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public boolean dbSkipProcedures;
         public boolean dbSkipCheckConstraints;
         public String dbType;
-        public Level dbDebugLevel;
+        public String dbDebugLevel;
+        public String dbDebugScope;
         public boolean dbTakeComments;
         public boolean dbLowercaseNames;
         public boolean dbUppercaseNames;
@@ -204,7 +204,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public String versionColumn;
         public Map<String, Set<String>> versionColumns;
         public Map<String, Set<String>> notVersionColumns;
-        public Level debugLevel;
+        public String debugLevel;
+        public String debugScope;
         public Set<String> preserveForeignKeys;
         public Map<String, PojoType> pojosForProcedures;
         public Map<String, PojoType> pojosForFunctions;
@@ -230,7 +231,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, String> metaFunctionsResult;
         public Map<String, String> metaFunctionsResultSet;
         public Map<String, String> metaProceduresResultSet;
-        public Level metaDebugLevel;
+        public String metaDebugLevel;
+        public String metaDebugScope;
         public boolean metaGenerateOperators;
         public Set<String> metaOptimizeInsert;
         public Map<String, Set<String>> metaOptionalFeatures;
@@ -243,7 +245,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public ImplementsExtends daoToExtends;
         public boolean daoMakeItFinal;
         public Map<String, PojoType> daoFunctionsResult;
-        public Level daoDebugLevel;
+        public String daoDebugLevel;
+        public String daoDebugScope;
         public String daoActiveFilter;
     }
 
@@ -397,6 +400,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.dbSkipCheckConstraints = false;
         modelValues.dbType = null;
         modelValues.dbDebugLevel = null;
+        modelValues.dbDebugScope = null;
         modelValues.dbTakeComments = false;
         modelValues.dbLowercaseNames = false;
         modelValues.dbUppercaseNames = false;
@@ -438,6 +442,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.versionColumns = new HashMap<String, Set<String>>();
         modelValues.notVersionColumns = new HashMap<String, Set<String>>();
         modelValues.debugLevel = null;
+        modelValues.debugScope = null;
         modelValues.preserveForeignKeys = new HashSet<String>();
         modelValues.pojosForProcedures = new HashMap<String, PojoType>();
         modelValues.pojosForFunctions = new HashMap<String, PojoType>();
@@ -466,6 +471,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.metaFunctionsResultSet = new HashMap<String, String>();
         modelValues.metaProceduresResultSet = new HashMap<String, String>();
         modelValues.metaDebugLevel = null;
+        modelValues.metaDebugScope = null;
         modelValues.metaGenerateOperators = false;
         modelValues.metaOptimizeInsert = new HashSet<String>();
         modelValues.metaOptionalFeatures = new HashMap<String, Set<String>>();
@@ -481,6 +487,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.daoMakeItFinal = false;
         modelValues.daoFunctionsResult = new HashMap<String, PojoType>();
         modelValues.daoDebugLevel = null;
+        modelValues.daoDebugScope = null;
         modelValues.daoActiveFilter = null;
     }
 
@@ -545,9 +552,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 modelValues.dbType = getPropertyValue(property.getDbType().getDbType());
             else
                 modelValues.dbType = null;
-        } else if (DATABASE_DEBUG_LEVEL.equals(property.getName())) {
-            modelValues.dbDebugLevel = Level.toLevel((property.getDebug() != null) ? property.getDebug().getDebug()
-                    : null, Level.WARN);
+        } else if (DATABASE_DEBUG_LEVEL.equals(property.getName()) && property.getDebug() != null) {
+            modelValues.dbDebugLevel = property.getDebug().getDebug();
+            modelValues.dbDebugScope = property.getDebug().getScope();
         } else if (DATABASE_TAKE_COMMENTS.equals(property.getName())) {
             modelValues.dbTakeComments = true;
         } else if (DATABASE_LOWERCASE_NAMES.equals(property.getName())) {
@@ -842,9 +849,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                     modelValues.notVersionColumns.get(versionColumn).add(property.getDbNotTables().get(i));
                 }
             }
-        } else if (POJOGEN_DEBUG_LEVEL.equals(property.getName())) {
-            modelValues.debugLevel = Level.toLevel((property.getDebug() != null) ? property.getDebug().getDebug()
-                    : null, Level.WARN);
+        } else if (POJOGEN_DEBUG_LEVEL.equals(property.getName()) && property.getDebug().getDebug() != null) {
+            modelValues.debugLevel = property.getDebug().getDebug();
+            modelValues.debugScope = property.getDebug().getScope();
         } else if (POJOGEN_PRESERVE_FOREIGN_KEYS.equals(property.getName())) {
             if (property.getDbTables().isEmpty()) {
                 modelValues.preserveForeignKeys.add("_ALL_");
@@ -937,9 +944,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.metaFunctionsResultSet.put(property.getDbFunction(), property.getDbTable());
         } else if (METAGEN_PROCEDURE_RESULT_SET.equals(property.getName())) {
             modelValues.metaProceduresResultSet.put(property.getDbProcedure(), property.getDbTable());
-        } else if (METAGEN_DEBUG_LEVEL.equals(property.getName())) {
-            modelValues.metaDebugLevel = Level.toLevel((property.getDebug() != null) ? property.getDebug().getDebug()
-                    : null, Level.WARN);
+        } else if (METAGEN_DEBUG_LEVEL.equals(property.getName()) && property.getDebug() != null) {
+            modelValues.metaDebugLevel = property.getDebug().getDebug();
+            modelValues.metaDebugScope = property.getDebug().getScope();
         } else if (METAGEN_GENERATE_OPERATORS.equals(property.getName())) {
             modelValues.metaGenerateOperators = true;
         } else if (METAGEN_OPTIMIZE_INSERT.equals(property.getName())) {
@@ -996,9 +1003,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.daoMakeItFinal = true;
         } else if (DAOGEN_FUNCTION_RESULT.equals(property.getName())) {
             modelValues.daoFunctionsResult.put(property.getDbFunction(), property.getResultType());
-        } else if (DAOGEN_DEBUG_LEVEL.equals(property.getName())) {
-            modelValues.daoDebugLevel = Level.toLevel((property.getDebug() != null) ? property.getDebug().getDebug()
-                    : null, Level.WARN);
+        } else if (DAOGEN_DEBUG_LEVEL.equals(property.getName()) && property.getDebug().getDebug() != null) {
+            modelValues.daoDebugLevel = property.getDebug().getDebug();
+            modelValues.daoDebugScope = property.getDebug().getScope();
         } else if (DAOGEN_ACTIVE_FILTER.equals(property.getName())) {
             modelValues.daoActiveFilter = property.getActiveFilter();
         }
@@ -1247,9 +1254,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public Level getDebugLevel(EObject model) {
+    public String getDebugLevel(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.debugLevel : null;
+    }
+
+    @Override
+    public String getDebugScope(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.debugScope : null;
     }
 
     @Override
@@ -1399,9 +1412,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public Level getMetaDebugLevel(EObject model) {
+    public String getMetaDebugLevel(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.metaDebugLevel : null;
+    }
+
+    @Override
+    public String getMetaDebugScope(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaDebugScope : null;
     }
 
     @Override
@@ -1471,9 +1490,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public Level getDaoDebugLevel(EObject model) {
+    public String getDaoDebugLevel(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.daoDebugLevel : null;
+    }
+
+    @Override
+    public String getDaoDebugScope(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.daoDebugScope : null;
     }
 
     @Override

@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
@@ -26,10 +26,12 @@ import org.sqlproc.dsl.property.ModelPropertyBean.PairValues;
 import org.sqlproc.dsl.property.PojoAttribute;
 import org.sqlproc.dsl.resolver.DbResolver.DbType;
 import org.sqlproc.dsl.util.Constants;
+import org.sqlproc.dsl.util.Debug;
 
 public class TableMetaConverter extends TablePojoConverter {
 
-    private boolean debug = false;
+    protected Logger LOGGER = Logger.getLogger(TableMetaConverter.class);
+    private Debug debug = new Debug(LOGGER);
 
     protected Set<String> finalMetas;
     protected Artifacts artifacts;
@@ -76,12 +78,8 @@ public class TableMetaConverter extends TablePojoConverter {
         this.artifacts = artifacts;
         this.finalMetas = finalMetas;
 
-        if (modelProperty.getMetaDebugLevel(artifacts) != null
-                && modelProperty.getMetaDebugLevel(artifacts).isGreaterOrEqual(Level.DEBUG)) {
-            debug = true;
-        } else {
-            debug = false;
-        }
+        debug = new Debug(modelProperty.getMetaDebugLevel(artifacts), modelProperty.getMetaDebugScope(artifacts),
+                LOGGER);
 
         this.metaGlobalSequence = modelProperty.getMetaGlobalSequence(artifacts);
         Map<String, PairValues> tablesSequence = modelProperty.getMetaTablesSequence(artifacts);
@@ -193,7 +191,7 @@ public class TableMetaConverter extends TablePojoConverter {
             this.metaGlobalSequenceNotForTables.add(pojo);
         }
 
-        if (debug) {
+        if (debug.debug) {
             System.out.println("finalMetas " + this.finalMetas);
             System.out.println("metaGlobalSequence " + this.metaGlobalSequence);
             System.out.println("metaTablesSequence " + this.metaTablesSequence);
@@ -223,7 +221,7 @@ public class TableMetaConverter extends TablePojoConverter {
 
     public String getMetaDefinitions() {
         try {
-            if (debug) {
+            if (debug.debug) {
                 System.out.println("pojos " + this.pojos);
                 System.out.println("pojoExtends " + this.pojoExtends);
                 System.out.println("pojoInheritanceDiscriminator " + this.pojoInheritanceDiscriminator);
@@ -1227,14 +1225,14 @@ public class TableMetaConverter extends TablePojoConverter {
     }
 
     Header getStatementHeader(String pojo, StringBuilder buffer, StatementType type, String suffix) {
-        if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+        if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
             System.out.println("\n--- " + pojo + " " + suffix);
         Header header = new Header();
         Set<String> prefixes = new HashSet<String>();
         header.table.setNames(pojo);
         if (pojoDiscriminators.containsKey(header.table.tableName)) {
             header.table.realTableName = pojoExtends.get(header.table.tableName);
-            if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+            if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
                 System.out.println("000 " + pojo + " " + header.table.realTableName);
         } else if (pojoExtends.containsKey(header.table.realTableName)
                 && pojoInheritanceSimple.containsKey(pojoExtends.get(header.table.realTableName))) {
@@ -1252,12 +1250,12 @@ public class TableMetaConverter extends TablePojoConverter {
                     break outerloop;
                 }
             }
-            if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+            if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
                 System.out.println("001 " + pojo + " " + header.extendTable.realTableName);
         }
-        if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+        if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
             System.out.println("111 " + pojo + " " + header.table);
-        if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+        if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
             System.out.println("222 " + pojo + " " + header.extendTable);
         if (type == StatementType.GET || type == StatementType.SELECT) {
             for (Map.Entry<String, PojoAttribute> pentry : pojos.get(header.table.realTableName).entrySet()) {
@@ -1280,7 +1278,7 @@ public class TableMetaConverter extends TablePojoConverter {
                         header.discrTables.put(table.realTableName, table);
                     }
                     header.assocTables.put(pentry.getKey(), table);
-                    if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+                    if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
                         System.out.println("333 " + pentry.getKey() + " " + table + " " + attr);
                     if (pojoInheritanceSimple.containsKey(table.realTableName)) {
                         header.inherTables.put(pentry.getKey(), new ArrayList<Table>());
@@ -1299,7 +1297,7 @@ public class TableMetaConverter extends TablePojoConverter {
                             header.inherTables.get(pentry.getKey()).add(table2);
                         }
                     }
-                    if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+                    if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
                         System.out.println("333b " + header.inherTables);
                 } else if (attr.getOneToManyColumn() != null) {
                     PojoAttribute attr1 = pojos.get(header.table.realTableName).get(attr.getOneToManyColumn());
@@ -1320,7 +1318,7 @@ public class TableMetaConverter extends TablePojoConverter {
                         header.discrTables.put(table.realTableName, table);
                     }
                     header.assocTables.put(pentry.getKey(), table);
-                    if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+                    if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
                         System.out.println("444 " + pentry.getKey() + " " + table + " " + attr + " " + attr1);
                     if (pojoInheritanceSimple.containsKey(table.realTableName)) {
                         header.inherTables.put(pentry.getKey(), new ArrayList<Table>());
@@ -1339,7 +1337,7 @@ public class TableMetaConverter extends TablePojoConverter {
                             header.inherTables.get(pentry.getKey()).add(table2);
                         }
                     }
-                    if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+                    if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
                         System.out.println("444b " + header.inherTables);
                 } else if (attr.getManyToManyColumn() != null) {
                     PojoAttribute attr1 = pojos.get(header.table.realTableName).get(attr.getManyToManyColumn());
@@ -1373,7 +1371,7 @@ public class TableMetaConverter extends TablePojoConverter {
                     table12.attrName = null;
                     table12.oppositePrefix = table.tablePrefix;
                     header.m2mTables.put(pentry.getKey(), table12);
-                    if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+                    if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
                         System.out.println("555 " + pentry.getKey() + " " + table + " " + attr + " " + attr1 + " "
                                 + table12);
                     if (pojoInheritanceSimple.containsKey(table12.realTableName)) {
@@ -1393,7 +1391,7 @@ public class TableMetaConverter extends TablePojoConverter {
                             header.inherTables.get(pentry.getKey()).add(table2);
                         }
                     }
-                    if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+                    if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
                         System.out.println("555b " + header.inherTables);
                 }
             }
@@ -1418,7 +1416,7 @@ public class TableMetaConverter extends TablePojoConverter {
                             header.discrTables.put(table.realTableName, table);
                         }
                         header.assocTables.put(pentry.getKey(), table);
-                        if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+                        if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
                             System.out.println("666 " + pentry.getKey() + " " + table + " " + attr);
                         if (pojoInheritanceSimple.containsKey(table.realTableName)) {
                             header.inherTables.put(pentry.getKey(), new ArrayList<Table>());
@@ -1437,7 +1435,7 @@ public class TableMetaConverter extends TablePojoConverter {
                                 header.inherTables.get(pentry.getKey()).add(table2);
                             }
                         }
-                        if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+                        if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
                             System.out.println("666b " + header.inherTables);
                     } else if (attr.getOneToManyColumn() != null) {
                         PojoAttribute attr1 = pojos.get(header.extendTable.realTableName)
@@ -1459,7 +1457,7 @@ public class TableMetaConverter extends TablePojoConverter {
                             header.discrTables.put(table.realTableName, table);
                         }
                         header.assocTables.put(pentry.getKey(), table);
-                        if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+                        if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
                             System.out.println("777 " + pentry.getKey() + " " + table + " " + attr + " " + attr1);
                         if (pojoInheritanceSimple.containsKey(table.realTableName)) {
                             header.inherTables.put(pentry.getKey(), new ArrayList<Table>());
@@ -1478,7 +1476,7 @@ public class TableMetaConverter extends TablePojoConverter {
                                 header.inherTables.get(pentry.getKey()).add(table2);
                             }
                         }
-                        if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+                        if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
                             System.out.println("777b " + header.inherTables);
                     } else if (attr.getManyToManyColumn() != null) {
                         PojoAttribute attr1 = pojos.get(header.extendTable.realTableName).get(
@@ -1513,7 +1511,7 @@ public class TableMetaConverter extends TablePojoConverter {
                         table12.attrName = null;
                         table12.oppositePrefix = table.tablePrefix;
                         header.m2mTables.put(pentry.getKey(), table12);
-                        if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+                        if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
                             System.out.println("888 " + pentry.getKey() + " " + table + " " + attr + " " + attr1 + " "
                                     + table12);
                         if (pojoInheritanceSimple.containsKey(table12.realTableName)) {
@@ -1533,7 +1531,7 @@ public class TableMetaConverter extends TablePojoConverter {
                                 header.inherTables.get(pentry.getKey()).add(table2);
                             }
                         }
-                        if (debug && (type == StatementType.GET || type == StatementType.SELECT))
+                        if (debug.debug && (type == StatementType.GET || type == StatementType.SELECT))
                             System.out.println("888b " + header.inherTables);
                     }
                 }

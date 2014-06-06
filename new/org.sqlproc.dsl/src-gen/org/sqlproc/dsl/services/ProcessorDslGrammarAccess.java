@@ -713,18 +713,38 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class DebugLevelAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DebugLevelAssignement");
-		private final Assignment cDebugAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cDebugIDENTTerminalRuleCall_0 = (RuleCall)cDebugAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDebugAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cDebugIDENTTerminalRuleCall_0_0 = (RuleCall)cDebugAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cScopeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cScopePropertyValueParserRuleCall_1_1_0 = (RuleCall)cScopeAssignment_1_1.eContents().get(0);
 		
 		//DebugLevelAssignement:
-		//	debug=IDENT;
+		//	debug=IDENT (WS+ scope=PropertyValue)?;
 		public ParserRule getRule() { return rule; }
 
+		//debug=IDENT (WS+ scope=PropertyValue)?
+		public Group getGroup() { return cGroup; }
+
 		//debug=IDENT
-		public Assignment getDebugAssignment() { return cDebugAssignment; }
+		public Assignment getDebugAssignment_0() { return cDebugAssignment_0; }
 
 		//IDENT
-		public RuleCall getDebugIDENTTerminalRuleCall_0() { return cDebugIDENTTerminalRuleCall_0; }
+		public RuleCall getDebugIDENTTerminalRuleCall_0_0() { return cDebugIDENTTerminalRuleCall_0_0; }
+
+		//(WS+ scope=PropertyValue)?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+
+		//scope=PropertyValue
+		public Assignment getScopeAssignment_1_1() { return cScopeAssignment_1_1; }
+
+		//PropertyValue
+		public RuleCall getScopePropertyValueParserRuleCall_1_1_0() { return cScopePropertyValueParserRuleCall_1_1_0; }
 	}
 
 	public class ProcedurePojoAssignementElements extends AbstractParserRuleElementFinder {
@@ -9988,7 +10008,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DebugLevelAssignement:
-	//	debug=IDENT;
+	//	debug=IDENT (WS+ scope=PropertyValue)?;
 	public DebugLevelAssignementElements getDebugLevelAssignementAccess() {
 		return (pDebugLevelAssignement != null) ? pDebugLevelAssignement : (pDebugLevelAssignement = new DebugLevelAssignementElements());
 	}

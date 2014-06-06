@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Level;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
 import org.sqlproc.dsl.processorDsl.PojoType;
@@ -119,11 +118,11 @@ public interface ModelProperty extends Adapter {
 
     Map<String, PojoType> getDaoFunctionsResult(EObject model);
 
-    Level getDebugLevel(EObject model);
+    String getDebugLevel(EObject model);
 
-    Level getMetaDebugLevel(EObject model);
+    String getMetaDebugLevel(EObject model);
 
-    Level getDaoDebugLevel(EObject model);
+    String getDaoDebugLevel(EObject model);
 
     String getGenerateOperators(EObject model);
 
@@ -166,4 +165,10 @@ public interface ModelProperty extends Adapter {
     boolean isMetaGenerateIdGenerators(EObject model);
 
     boolean isMetaGenerateIndirectIdGenerators(EObject model);
+
+    String getMetaDebugScope(EObject model);
+
+    String getDaoDebugScope(EObject model);
+
+    String getDebugScope(EObject model);
 }
