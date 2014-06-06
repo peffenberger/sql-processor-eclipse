@@ -1972,6 +1972,11 @@ public class DbResolverBean implements DbResolver {
             }
         }
         debug.trace(m, "<<<", driverMethodsForModel);
+        driverMethodsForModel.add("getCatalogs");
+        driverMethodsForModel.add("getSchemas");
+        driverMethodsForModel.add("getTables");
+        driverMethodsForModel.add("getProcedures");
+        driverMethodsForModel.add("getFunctions");
         return driverMethodsForModel;
     }
 
@@ -1985,22 +1990,34 @@ public class DbResolverBean implements DbResolver {
             return null;
         }
         Object methodCallOutput = null;
-        try {
-            DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
-            Method mm = meta.getClass().getMethod(methodName, new Class[] {});
-            methodCallOutput = mm.invoke(meta, new Object[] {});
-        } catch (SQLException e) {
-            debug.error("getDriverMethodOutput error " + e, e);
-        } catch (NoSuchMethodException e) {
-            debug.error("getDriverMethodOutput error " + e, e);
-        } catch (SecurityException e) {
-            debug.error("getDriverMethodOutput error " + e, e);
-        } catch (IllegalAccessException e) {
-            debug.error("getDriverMethodOutput error " + e, e);
-        } catch (IllegalArgumentException e) {
-            debug.error("getDriverMethodOutput error " + e, e);
-        } catch (InvocationTargetException e) {
-            debug.error("getDriverMethodOutput error " + e, e);
+        if ("getCatalogs".equals(methodName)) {
+            methodCallOutput = getCatalogs(model);
+        } else if ("getSchemas".equals(methodName)) {
+            methodCallOutput = getSchemas(model);
+        } else if ("getTables".equals(methodName)) {
+            methodCallOutput = getTables(model);
+        } else if ("getProcedures".equals(methodName)) {
+            methodCallOutput = getProcedures(model);
+        } else if ("getFunctions".equals(methodName)) {
+            methodCallOutput = getFunctions(model);
+        } else {
+            try {
+                DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
+                Method mm = meta.getClass().getMethod(methodName, new Class[] {});
+                methodCallOutput = mm.invoke(meta, new Object[] {});
+            } catch (SQLException e) {
+                debug.error("getDriverMethodOutput error " + e, e);
+            } catch (NoSuchMethodException e) {
+                debug.error("getDriverMethodOutput error " + e, e);
+            } catch (SecurityException e) {
+                debug.error("getDriverMethodOutput error " + e, e);
+            } catch (IllegalAccessException e) {
+                debug.error("getDriverMethodOutput error " + e, e);
+            } catch (IllegalArgumentException e) {
+                debug.error("getDriverMethodOutput error " + e, e);
+            } catch (InvocationTargetException e) {
+                debug.error("getDriverMethodOutput error " + e, e);
+            }
         }
         debug.trace(m, "<<<", methodCallOutput);
         return methodCallOutput;
