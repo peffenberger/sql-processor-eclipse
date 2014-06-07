@@ -1061,6 +1061,26 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptTables(model, context, acceptor, "");
   }
   
+  public void completeProcedureDefinition_Table(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    boolean _isResolveDb = this.isResolveDb(model);
+    boolean _not = (!_isResolveDb);
+    if (_not) {
+      super.completeProcedureDefinition_Table(model, assignment, context, acceptor);
+      return;
+    }
+    this.acceptProcedures(model, context, acceptor);
+  }
+  
+  public void completeFunctionDefinition_Table(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    boolean _isResolveDb = this.isResolveDb(model);
+    boolean _not = (!_isResolveDb);
+    if (_not) {
+      super.completeFunctionDefinition_Table(model, assignment, context, acceptor);
+      return;
+    }
+    this.acceptFunctions(model, context, acceptor);
+  }
+  
   public void complete_DatabaseColumn(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -2301,7 +2321,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       super.completeMetagenProperty_DbColumns(model, assignment, context, acceptor);
       return;
     }
-    final PojogenProperty prop = ((PojogenProperty) model);
+    final MetagenProperty prop = ((MetagenProperty) model);
     String _dbTable = prop.getDbTable();
     List<String> _columns = this.dbResolver.getColumns(model, _dbTable);
     this.acceptColumns(_columns, context, acceptor, null, null);

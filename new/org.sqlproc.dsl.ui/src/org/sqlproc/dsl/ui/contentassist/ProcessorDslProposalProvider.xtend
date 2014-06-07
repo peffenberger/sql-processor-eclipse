@@ -441,6 +441,24 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
         acceptTables(model, context, acceptor, "")
     }
 
+    override completeProcedureDefinition_Table(EObject model, Assignment assignment, ContentAssistContext context,
+            ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completeProcedureDefinition_Table(model, assignment, context, acceptor)
+            return
+        }
+        acceptProcedures(model, context, acceptor)
+    }
+
+    override completeFunctionDefinition_Table(EObject model, Assignment assignment, ContentAssistContext context,
+            ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completeFunctionDefinition_Table(model, assignment, context, acceptor)
+            return
+        }
+        acceptFunctions(model, context, acceptor)
+    }
+
     override complete_DatabaseColumn(EObject model, RuleCall ruleCall, ContentAssistContext context,
             ICompletionProposalAcceptor acceptor) {
         if (!isResolveDb(model)) {
@@ -1081,7 +1099,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
             super.completeMetagenProperty_DbColumns(model, assignment, context, acceptor)
             return
         }
-        val prop = model as PojogenProperty
+        val prop = model as MetagenProperty
         acceptColumns(dbResolver.getColumns(model, prop.dbTable), context, acceptor, null, null)
     }
 
