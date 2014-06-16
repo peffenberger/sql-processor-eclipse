@@ -723,47 +723,43 @@ public class ProcessorPojoGenerator {
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
+        _builder.append("\t");
         {
           ArrayList<PojoAnnotatedProperty> _requiredSuperFeatures = this.requiredSuperFeatures(e);
           boolean _hasElements_6 = false;
           for(final PojoAnnotatedProperty f_6 : _requiredSuperFeatures) {
             if (!_hasElements_6) {
               _hasElements_6 = true;
-              _builder.append("\tsuper(", "	");
+              _builder.append("super(", "		");
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "		");
             }
             PojoProperty _feature_6 = f_6.getFeature();
             String _name_5 = _feature_6.getName();
-            _builder.append(_name_5, "	");
+            _builder.append(_name_5, "		");
           }
           if (_hasElements_6) {
-            _builder.append(");", "	");
+            _builder.append(");", "		");
           }
         }
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
         {
           List<PojoAnnotatedProperty> _requiredFeatures1 = this.requiredFeatures1(e);
-          boolean _hasElements_7 = false;
           for(final PojoAnnotatedProperty f_7 : _requiredFeatures1) {
-            if (!_hasElements_7) {
-              _hasElements_7 = true;
-            } else {
-              _builder.appendImmediate("\n\t\t", "	");
-            }
-            _builder.append("\tthis.");
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("this.");
             PojoProperty _feature_7 = f_7.getFeature();
             String _name_6 = _feature_7.getName();
-            _builder.append(_name_6, "	");
+            _builder.append(_name_6, "		");
             _builder.append(" = ");
             PojoProperty _feature_8 = f_7.getFeature();
             String _name_7 = _feature_8.getName();
-            _builder.append(_name_7, "	");
+            _builder.append(_name_7, "		");
             _builder.append(";");
+            _builder.newLineIfNotEmpty();
           }
         }
-        _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("}");
         _builder.newLine();

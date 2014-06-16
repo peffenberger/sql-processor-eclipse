@@ -169,9 +169,10 @@ class ProcessorPojoGenerator {
 		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
 		public «e.name»(«FOR f:e.requiredFeatures SEPARATOR ", "»«getFullName(e, f, f.feature.compileType(im), im)» «f.feature.name»«ENDFOR») {
-		«FOR f:e.requiredSuperFeatures BEFORE "	super(" SEPARATOR ", " AFTER ");"»«f.feature.name»«ENDFOR»
-		«FOR f:e.requiredFeatures1 SEPARATOR "
-		"»	this.«f.feature.name» = «f.feature.name»;«ENDFOR»
+			«FOR f:e.requiredSuperFeatures BEFORE "super(" SEPARATOR ", " AFTER ");"»«f.feature.name»«ENDFOR»
+			«FOR f:e.requiredFeatures1»
+			this.«f.feature.name» = «f.feature.name»;
+			«ENDFOR»
 		}
 		«ENDIF»
 	«FOR f:e.features.filter(x| isAttribute(x.feature))»
