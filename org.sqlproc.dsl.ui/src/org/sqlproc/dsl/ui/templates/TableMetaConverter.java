@@ -190,6 +190,20 @@ public class TableMetaConverter extends TablePojoConverter {
             this.metaGlobalIdentityNotForTables.add(pojo);
             this.metaGlobalSequenceNotForTables.add(pojo);
         }
+        if (metaGlobalIdentity != null) {
+            metaGlobalSequence = null;
+            for (String pojo : pojos.keySet()) {
+                if (!metaTablesSequence.containsKey(pojo))
+                    metaGlobalIdentityNotForTables.add(pojo);
+            }
+        }
+        if (metaGlobalSequence != null) {
+            metaGlobalIdentity = null;
+            for (String pojo : pojos.keySet()) {
+                if (!metaTablesIdentity.containsKey(pojo))
+                    metaGlobalSequenceNotForTables.add(pojo);
+            }
+        }
 
         if (debug.debug) {
             System.out.println("finalMetas " + this.finalMetas);
@@ -1713,10 +1727,15 @@ public class TableMetaConverter extends TablePojoConverter {
 
     PairValues getIdentity(String pojo, PojoAttribute attribute) {
         if (attribute.isPrimaryKey()) {
+            System.out.println("getIdentity " + pojo + " :" + metaTablesSequence + "|" + metaTablesIdentity + "|"
+                    + metaGlobalIdentity + "|" + metaGlobalIdentityForTables + "|" + metaGlobalIdentityNotForTables
+                    + "|" + identities);
             if (metaTablesSequence.containsKey(pojo)) {
+                System.out.println("a");
                 return null;
             }
             if (metaTablesIdentity.containsKey(pojo)) {
+                System.out.println("b");
                 return metaTablesIdentity.get(pojo);
             } else if (metaGlobalIdentity != null) {
                 boolean generateIdentity = true;
@@ -1724,6 +1743,7 @@ public class TableMetaConverter extends TablePojoConverter {
                     generateIdentity = false;
                 if (!metaGlobalIdentityNotForTables.isEmpty() && metaGlobalIdentityNotForTables.contains(pojo))
                     generateIdentity = false;
+                System.out.println("c");
                 return (generateIdentity) ? metaGlobalIdentity : null;
             } else if (identities != null) {
                 PairValues result = null;
@@ -1733,11 +1753,14 @@ public class TableMetaConverter extends TablePojoConverter {
                             result = new PairValues(entry.getKey(), null);
                     }
                 }
-                if (result != null)
+                if (result != null) {
+                    System.out.println("d");
                     return result;
-                for (Entry<String, StringBuilder> entry : identities.entrySet()) {
-                    return new PairValues(entry.getKey(), null);
                 }
+                // for (Entry<String, StringBuilder> entry : identities.entrySet()) {
+                // System.out.println("e");
+                // return new PairValues(entry.getKey(), null);
+                // }
             }
         }
         return null;
@@ -1745,7 +1768,10 @@ public class TableMetaConverter extends TablePojoConverter {
 
     PairValues getSequence(String pojo, PojoAttribute attribute) {
         if (attribute.isPrimaryKey()) {
+            System.out.println("getSequence " + pojo + " :" + metaTablesSequence + "|" + metaGlobalSequence + "|"
+                    + metaGlobalSequenceForTables + "|" + metaGlobalSequenceNotForTables + "|" + sequences);
             if (metaTablesSequence.containsKey(pojo)) {
+                System.out.println("j");
                 return metaTablesSequence.get(pojo);
             } else if (metaGlobalSequence != null) {
                 boolean generateSequence = true;
@@ -1753,6 +1779,7 @@ public class TableMetaConverter extends TablePojoConverter {
                     generateSequence = false;
                 if (!metaGlobalSequenceNotForTables.isEmpty() && metaGlobalSequenceNotForTables.contains(pojo))
                     generateSequence = false;
+                System.out.println("k");
                 return (generateSequence) ? metaGlobalSequence : null;
             } else if (sequences != null) {
                 PairValues result = null;
@@ -1762,11 +1789,14 @@ public class TableMetaConverter extends TablePojoConverter {
                             result = new PairValues(entry.getKey(), null);
                     }
                 }
-                if (result != null)
+                if (result != null) {
+                    System.out.println("l");
                     return result;
-                for (Entry<String, StringBuilder> entry : sequences.entrySet()) {
-                    return new PairValues(entry.getKey(), null);
                 }
+                // for (Entry<String, StringBuilder> entry : sequences.entrySet()) {
+                // System.out.println("m");
+                // return new PairValues(entry.getKey(), null);
+                // }
             }
         }
         return null;
