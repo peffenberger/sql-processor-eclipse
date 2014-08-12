@@ -10,13 +10,13 @@
 	<modules>
 		<module>../org.sqlproc.dsl</module>
 		<module>../org.sqlproc.dsl.ui</module>
-		<module>../org.sqlproc.dsl.tests</module>
+		<!-- module>../org.sqlproc.dsl.tests</module-->
 		<module>../org.sqlproc.dsl.sdk</module>
 		<module>../org.sqlproc.dsl.site</module>
 	</modules>
 
 	<properties>
-		<tycho-version>0.21.0</tycho-version>
+		<tycho-version>0.19.0</tycho-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<xtext.version>2.6.1</xtext.version>
 	</properties>
