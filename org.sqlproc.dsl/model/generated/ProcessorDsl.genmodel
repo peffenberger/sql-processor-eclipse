@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sqlproc.dsl/src-gen" editDirectory="/org.sqlproc.dsl.edit/src"
-    editorDirectory="/org.sqlproc.dsl.editor/src" modelPluginID="org.sqlproc.dsl"
-    forceOverwrite="true" modelName="ProcessorDsl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sqlproc.dsl/src-gen" editDirectory="//home/hudec/git/sql-processor-eclipse/org.sqlproc.dsl.edit/src"
+    editorDirectory="//home/hudec/git/sql-processor-eclipse/org.sqlproc.dsl.editor/src"
+    modelPluginID="org.sqlproc.dsl" forceOverwrite="true" modelName="ProcessorDsl"
+    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.sqlproc.dsl.edit"
-    editorPluginID="org.sqlproc.dsl.editor" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
+    editorPluginID="org.sqlproc.dsl.edit" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
   <genPackages prefix="ProcessorDsl" basePackage="org.sqlproc.dsl" disposableProviderFactory="true"
       fileExtensions="qry" ecorePackage="ProcessorDsl.ecore#/">
     <genClasses ecoreClass="ProcessorDsl.ecore#//Artifacts">

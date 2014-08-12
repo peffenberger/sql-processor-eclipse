@@ -3,9 +3,9 @@
 	<feature id="org.sqlproc.dsl.sdk" version="0.0.0">
 		<category name="main"/>
 	</feature>
-	<feature id="org.sqlproc.dsl.sdk.source" version="0.0.0">
+	<!--feature id="org.sqlproc.dsl.sdk.source" version="0.0.0">
 		<category name="main.source"/>
-	</feature>
+	</feature-->
    <category-def name="main" label="Dsl"/>
-   <category-def name="main.source" label="Source for Dsl"/>
+   <!--category-def name="main.source" label="Source for Dsl"/-->
 </site>
