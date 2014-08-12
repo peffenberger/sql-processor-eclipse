@@ -1778,6 +1778,7 @@ public class DbResolverBean implements DbResolver {
             return indexesForModel;
         }
         if (modelDatabaseValues.connection != null) {
+            DbType dbType = getDbType(model);
             ResultSet result = null;
             try {
                 Map<String, DbIndex> mapOfIndexes = new LinkedHashMap<String, DbIndex>();
@@ -1786,6 +1787,8 @@ public class DbResolverBean implements DbResolver {
                         origName(model, modelDatabaseValues, table), false, true);
                 short addToPosition = 0;
                 while (result.next()) {
+                    if (dbType == DbType.INFORMIX && result.getShort("ORDINAL_POSITION") == 0)
+                        continue;
                     String name = name(modelDatabaseValues, result.getString("INDEX_NAME"));
                     if (!modelDatabaseValues.indexTypes.contains(result.getShort("TYPE"))) {
                         // debug.debug("INDEX TYPE " + result.getShort("TYPE") + " for " + name);
