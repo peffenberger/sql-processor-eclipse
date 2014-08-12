@@ -9,7 +9,6 @@ import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -49,14 +48,13 @@ public class ProcessorDaoGenerator {
   
   public CharSequence compile(final PojoDao d) {
     StringConcatenation _builder = new StringConcatenation();
-    ImportManager _importManager = new ImportManager(true);
-    final ImportManager im = _importManager;
+    final ImportManager im = new ImportManager(true);
     _builder.newLineIfNotEmpty();
     this.addImplements(d, im);
     _builder.newLineIfNotEmpty();
     this.addExtends(d, im);
     _builder.newLineIfNotEmpty();
-    final Map<String,List<PojoMethodArg>> toInits = Utils.getToInits(d);
+    final Map<String, List<PojoMethodArg>> toInits = Utils.getToInits(d);
     _builder.newLineIfNotEmpty();
     PojoEntity _pojo = d.getPojo();
     final CharSequence classBody = this.compile(d, _pojo, toInits, im);
@@ -166,8 +164,8 @@ public class ProcessorDaoGenerator {
     }
     _builder.newLineIfNotEmpty();
     {
-      Set<Entry<String,List<PojoMethodArg>>> _entrySet = toInits.entrySet();
-      for(final Entry<String, List<PojoMethodArg>> f : _entrySet) {
+      Set<Map.Entry<String, List<PojoMethodArg>>> _entrySet = toInits.entrySet();
+      for(final Map.Entry<String, List<PojoMethodArg>> f : _entrySet) {
         {
           List<PojoMethodArg> _value = f.getValue();
           boolean _hasElements = false;
@@ -194,7 +192,7 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager im) {
+  public CharSequence compile(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public ");
     {
@@ -229,7 +227,7 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("private static final long serialVersionUID = ");
         String _sernum_1 = Utils.getSernum(d);
-        _builder.append(_sernum_1, "	");
+        _builder.append(_sernum_1, "\t");
         _builder.append("L;");
         _builder.newLineIfNotEmpty();
       }
@@ -249,7 +247,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_1 = d.getName();
-    _builder.append(_name_1, "	");
+    _builder.append(_name_1, "\t");
     {
       String _implPackage_1 = this.getImplPackage(d);
       boolean _notEquals_2 = (!Objects.equal(_implPackage_1, null));
@@ -267,7 +265,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_2 = d.getName();
-    _builder.append(_name_2, "	");
+    _builder.append(_name_2, "\t");
     {
       String _implPackage_2 = this.getImplPackage(d);
       boolean _notEquals_3 = (!Objects.equal(_implPackage_2, null));
@@ -288,7 +286,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_3 = d.getName();
-    _builder.append(_name_3, "	");
+    _builder.append(_name_3, "\t");
     {
       String _implPackage_3 = this.getImplPackage(d);
       boolean _notEquals_4 = (!Objects.equal(_implPackage_3, null));
@@ -321,7 +319,7 @@ public class ProcessorDaoGenerator {
           } else {
             String _name_5 = m.getName();
             boolean _equals_1 = Objects.equal(_name_5, "scaffold0");
-            _or = (_equals || _equals_1);
+            _or = _equals_1;
           }
           if (_or) {
             PojoEntity _parent = Utils.getParent(e);
@@ -383,7 +381,7 @@ public class ProcessorDaoGenerator {
                   _or_1 = true;
                 } else {
                   boolean _isCallQueryFunction = Utils.isCallQueryFunction(m);
-                  _or_1 = (_isCallQuery || _isCallQueryFunction);
+                  _or_1 = _isCallQueryFunction;
                 }
                 if (_or_1) {
                   boolean _isCallQueryFunction_1 = Utils.isCallQueryFunction(m);
@@ -415,10 +413,10 @@ public class ProcessorDaoGenerator {
     _builder.append("public ");
     PojoType _type = m.getType();
     CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-    _builder.append(_compileType, "	");
+    _builder.append(_compileType, "\t");
     _builder.append(" ");
     String _name = m.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args = m.getArgs();
@@ -427,14 +425,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type_1 = ma.getType();
         CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-        _builder.append(_compileType_1, "	");
+        _builder.append(_compileType_1, "\t");
         _builder.append(" ");
         String _name_1 = ma.getName();
-        _builder.append(_name_1, "	");
+        _builder.append(_name_1, "\t");
       }
     }
     _builder.append(", SqlControl sqlControl) {");
@@ -445,7 +443,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t\t");
     _builder.append("logger.trace(\"");
     String _name_2 = m.getName();
-    _builder.append(_name_2, "			");
+    _builder.append(_name_2, "\t\t\t");
     _builder.append(": \" + ");
     {
       EList<PojoMethodArg> _args_1 = m.getArgs();
@@ -454,10 +452,10 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_1) {
           _hasElements_1 = true;
         } else {
-          _builder.appendImmediate(" + \" \" ", "			");
+          _builder.appendImmediate(" + \" \" ", "\t\t\t");
         }
         String _name_3 = ma_1.getName();
-        _builder.append(_name_3, "			");
+        _builder.append(_name_3, "\t\t\t");
       }
     }
     _builder.append(" + \" \" + sqlControl);");
@@ -469,7 +467,7 @@ public class ProcessorDaoGenerator {
     _builder.append("SqlProcedureEngine sqlProc");
     String _name_4 = m.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name_4);
-    _builder.append(_firstUpper, "		");
+    _builder.append(_firstUpper, "\t\t");
     _builder.append(" = sqlEngineFactory.getCheckedProcedureEngine(\"");
     {
       if (isFunction) {
@@ -480,22 +478,22 @@ public class ProcessorDaoGenerator {
     }
     _builder.append("_");
     String _dbName = Utils.dbName(m);
-    _builder.append(_dbName, "		");
+    _builder.append(_dbName, "\t\t");
     _builder.append("\");");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     PojoType _type_2 = m.getType();
     CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-    _builder.append(_compileType_2, "		");
+    _builder.append(_compileType_2, "\t\t");
     _builder.append(" list = sqlProc");
     String _name_5 = m.getName();
     String _firstUpper_1 = StringExtensions.toFirstUpper(_name_5);
-    _builder.append(_firstUpper_1, "		");
+    _builder.append(_firstUpper_1, "\t\t");
     _builder.append(".callQuery(sqlSession, ");
     PojoType _type_3 = m.getType();
     PojoEntity _gref = _type_3.getGref();
     String _name_6 = _gref.getName();
-    _builder.append(_name_6, "		");
+    _builder.append(_name_6, "\t\t");
     _builder.append(".class, ");
     {
       EList<PojoMethodArg> _args_2 = m.getArgs();
@@ -504,10 +502,10 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_2) {
           _hasElements_2 = true;
         } else {
-          _builder.appendImmediate(", ", "		");
+          _builder.appendImmediate(", ", "\t\t");
         }
         String _name_7 = ma_2.getName();
-        _builder.append(_name_7, "		");
+        _builder.append(_name_7, "\t\t");
       }
     }
     _builder.append(", sqlControl);");
@@ -518,7 +516,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t\t");
     _builder.append("logger.trace(\"");
     String _name_8 = m.getName();
-    _builder.append(_name_8, "			");
+    _builder.append(_name_8, "\t\t\t");
     _builder.append(" result: \" + list);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -536,10 +534,10 @@ public class ProcessorDaoGenerator {
         _builder.append("public ");
         PojoType _type_4 = m.getType();
         CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_4, im);
-        _builder.append(_compileType_3, "	");
+        _builder.append(_compileType_3, "\t");
         _builder.append(" ");
         String _name_9 = m.getName();
-        _builder.append(_name_9, "	");
+        _builder.append(_name_9, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_3 = m.getArgs();
@@ -548,14 +546,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_3) {
               _hasElements_3 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_5 = ma_3.getType();
             CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(_type_5, im);
-            _builder.append(_compileType_4, "	");
+            _builder.append(_compileType_4, "\t");
             _builder.append(" ");
             String _name_10 = ma_3.getName();
-            _builder.append(_name_10, "	");
+            _builder.append(_name_10, "\t");
           }
         }
         _builder.append(", SqlControl sqlControl) {");
@@ -564,7 +562,7 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("return ");
         String _name_11 = m.getName();
-        _builder.append(_name_11, "		");
+        _builder.append(_name_11, "\t\t");
         _builder.append("(sqlSessionFactory.getSqlSession(), ");
         {
           EList<PojoMethodArg> _args_4 = m.getArgs();
@@ -573,10 +571,10 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_4) {
               _hasElements_4 = true;
             } else {
-              _builder.appendImmediate(", ", "		");
+              _builder.appendImmediate(", ", "\t\t");
             }
             String _name_12 = ma_4.getName();
-            _builder.append(_name_12, "		");
+            _builder.append(_name_12, "\t\t");
           }
         }
         _builder.append(", sqlControl);");
@@ -590,10 +588,10 @@ public class ProcessorDaoGenerator {
     _builder.append("public ");
     PojoType _type_6 = m.getType();
     CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(_type_6, im);
-    _builder.append(_compileType_5, "	");
+    _builder.append(_compileType_5, "\t");
     _builder.append(" ");
     String _name_13 = m.getName();
-    _builder.append(_name_13, "	");
+    _builder.append(_name_13, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args_5 = m.getArgs();
@@ -602,14 +600,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_5) {
           _hasElements_5 = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type_7 = ma_5.getType();
         CharSequence _compileType_6 = this._processorGeneratorUtils.compileType(_type_7, im);
-        _builder.append(_compileType_6, "	");
+        _builder.append(_compileType_6, "\t");
         _builder.append(" ");
         String _name_14 = ma_5.getName();
-        _builder.append(_name_14, "	");
+        _builder.append(_name_14, "\t");
       }
     }
     _builder.append(") {");
@@ -617,7 +615,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t");
     _builder.append("return ");
     String _name_15 = m.getName();
-    _builder.append(_name_15, "		");
+    _builder.append(_name_15, "\t\t");
     _builder.append("(sqlSession, ");
     {
       EList<PojoMethodArg> _args_6 = m.getArgs();
@@ -626,10 +624,10 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_6) {
           _hasElements_6 = true;
         } else {
-          _builder.appendImmediate(", ", "		");
+          _builder.appendImmediate(", ", "\t\t");
         }
         String _name_16 = ma_6.getName();
-        _builder.append(_name_16, "		");
+        _builder.append(_name_16, "\t\t");
       }
     }
     _builder.append(", null);");
@@ -643,10 +641,10 @@ public class ProcessorDaoGenerator {
         _builder.append("public ");
         PojoType _type_8 = m.getType();
         CharSequence _compileType_7 = this._processorGeneratorUtils.compileType(_type_8, im);
-        _builder.append(_compileType_7, "	");
+        _builder.append(_compileType_7, "\t");
         _builder.append(" ");
         String _name_17 = m.getName();
-        _builder.append(_name_17, "	");
+        _builder.append(_name_17, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_7 = m.getArgs();
@@ -655,14 +653,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_7) {
               _hasElements_7 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_9 = ma_7.getType();
             CharSequence _compileType_8 = this._processorGeneratorUtils.compileType(_type_9, im);
-            _builder.append(_compileType_8, "	");
+            _builder.append(_compileType_8, "\t");
             _builder.append(" ");
             String _name_18 = ma_7.getName();
-            _builder.append(_name_18, "	");
+            _builder.append(_name_18, "\t");
           }
         }
         _builder.append(") {");
@@ -671,7 +669,7 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("return ");
         String _name_19 = m.getName();
-        _builder.append(_name_19, "		");
+        _builder.append(_name_19, "\t\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_8 = m.getArgs();
@@ -680,10 +678,10 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_8) {
               _hasElements_8 = true;
             } else {
-              _builder.appendImmediate(", ", "		");
+              _builder.appendImmediate(", ", "\t\t");
             }
             String _name_20 = ma_8.getName();
-            _builder.append(_name_20, "		");
+            _builder.append(_name_20, "\t\t");
           }
         }
         _builder.append(", null);");
@@ -703,10 +701,10 @@ public class ProcessorDaoGenerator {
     _builder.append("public ");
     PojoType _type = m.getType();
     CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-    _builder.append(_compileType, "	");
+    _builder.append(_compileType, "\t");
     _builder.append(" ");
     String _name = m.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args = m.getArgs();
@@ -715,14 +713,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type_1 = ma.getType();
         CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-        _builder.append(_compileType_1, "	");
+        _builder.append(_compileType_1, "\t");
         _builder.append(" ");
         String _name_1 = ma.getName();
-        _builder.append(_name_1, "	");
+        _builder.append(_name_1, "\t");
       }
     }
     _builder.append(", SqlControl sqlControl) {");
@@ -733,7 +731,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t\t");
     _builder.append("logger.trace(\"");
     String _name_2 = m.getName();
-    _builder.append(_name_2, "			");
+    _builder.append(_name_2, "\t\t\t");
     _builder.append(": \" + ");
     {
       EList<PojoMethodArg> _args_1 = m.getArgs();
@@ -742,10 +740,10 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_1) {
           _hasElements_1 = true;
         } else {
-          _builder.appendImmediate(" + \" \" ", "			");
+          _builder.appendImmediate(" + \" \" ", "\t\t\t");
         }
         String _name_3 = ma_1.getName();
-        _builder.append(_name_3, "			");
+        _builder.append(_name_3, "\t\t\t");
       }
     }
     _builder.append(" + \" \" + sqlControl);");
@@ -757,17 +755,17 @@ public class ProcessorDaoGenerator {
     _builder.append("SqlProcedureEngine sqlFun");
     String _name_4 = m.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name_4);
-    _builder.append(_firstUpper, "		");
+    _builder.append(_firstUpper, "\t\t");
     _builder.append(" = sqlEngineFactory.getCheckedProcedureEngine(\"FUN_");
     String _dbName = Utils.dbName(m);
-    _builder.append(_dbName, "		");
+    _builder.append(_dbName, "\t\t");
     _builder.append("\");");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("Object result = sqlFun");
     String _name_5 = m.getName();
     String _firstUpper_1 = StringExtensions.toFirstUpper(_name_5);
-    _builder.append(_firstUpper_1, "		");
+    _builder.append(_firstUpper_1, "\t\t");
     _builder.append(".callFunction(sqlSession, ");
     {
       EList<PojoMethodArg> _args_2 = m.getArgs();
@@ -776,10 +774,10 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_2) {
           _hasElements_2 = true;
         } else {
-          _builder.appendImmediate(", ", "		");
+          _builder.appendImmediate(", ", "\t\t");
         }
         String _name_6 = ma_2.getName();
-        _builder.append(_name_6, "		");
+        _builder.append(_name_6, "\t\t");
       }
     }
     _builder.append(", sqlControl);");
@@ -790,7 +788,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t\t");
     _builder.append("logger.trace(\"");
     String _name_7 = m.getName();
-    _builder.append(_name_7, "			");
+    _builder.append(_name_7, "\t\t\t");
     _builder.append(" result: \" + result);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -800,7 +798,7 @@ public class ProcessorDaoGenerator {
     _builder.append("return (");
     PojoType _type_2 = m.getType();
     CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-    _builder.append(_compileType_2, "		");
+    _builder.append(_compileType_2, "\t\t");
     _builder.append(") result;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -812,10 +810,10 @@ public class ProcessorDaoGenerator {
         _builder.append("public ");
         PojoType _type_3 = m.getType();
         CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_3, im);
-        _builder.append(_compileType_3, "	");
+        _builder.append(_compileType_3, "\t");
         _builder.append(" ");
         String _name_8 = m.getName();
-        _builder.append(_name_8, "	");
+        _builder.append(_name_8, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_3 = m.getArgs();
@@ -824,14 +822,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_3) {
               _hasElements_3 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_4 = ma_3.getType();
             CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(_type_4, im);
-            _builder.append(_compileType_4, "	");
+            _builder.append(_compileType_4, "\t");
             _builder.append(" ");
             String _name_9 = ma_3.getName();
-            _builder.append(_name_9, "	");
+            _builder.append(_name_9, "\t");
           }
         }
         _builder.append(", SqlControl sqlControl) {");
@@ -840,7 +838,7 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("return ");
         String _name_10 = m.getName();
-        _builder.append(_name_10, "		");
+        _builder.append(_name_10, "\t\t");
         _builder.append("(sqlSessionFactory.getSqlSession(), ");
         {
           EList<PojoMethodArg> _args_4 = m.getArgs();
@@ -849,10 +847,10 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_4) {
               _hasElements_4 = true;
             } else {
-              _builder.appendImmediate(", ", "		");
+              _builder.appendImmediate(", ", "\t\t");
             }
             String _name_11 = ma_4.getName();
-            _builder.append(_name_11, "		");
+            _builder.append(_name_11, "\t\t");
           }
         }
         _builder.append(", sqlControl);");
@@ -866,10 +864,10 @@ public class ProcessorDaoGenerator {
     _builder.append("public ");
     PojoType _type_5 = m.getType();
     CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(_type_5, im);
-    _builder.append(_compileType_5, "	");
+    _builder.append(_compileType_5, "\t");
     _builder.append(" ");
     String _name_12 = m.getName();
-    _builder.append(_name_12, "	");
+    _builder.append(_name_12, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args_5 = m.getArgs();
@@ -878,14 +876,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_5) {
           _hasElements_5 = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type_6 = ma_5.getType();
         CharSequence _compileType_6 = this._processorGeneratorUtils.compileType(_type_6, im);
-        _builder.append(_compileType_6, "	");
+        _builder.append(_compileType_6, "\t");
         _builder.append(" ");
         String _name_13 = ma_5.getName();
-        _builder.append(_name_13, "	");
+        _builder.append(_name_13, "\t");
       }
     }
     _builder.append(") {");
@@ -893,7 +891,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t");
     _builder.append("return ");
     String _name_14 = m.getName();
-    _builder.append(_name_14, "		");
+    _builder.append(_name_14, "\t\t");
     _builder.append("(sqlSession, ");
     {
       EList<PojoMethodArg> _args_6 = m.getArgs();
@@ -902,10 +900,10 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_6) {
           _hasElements_6 = true;
         } else {
-          _builder.appendImmediate(", ", "		");
+          _builder.appendImmediate(", ", "\t\t");
         }
         String _name_15 = ma_6.getName();
-        _builder.append(_name_15, "		");
+        _builder.append(_name_15, "\t\t");
       }
     }
     _builder.append(", null);");
@@ -919,10 +917,10 @@ public class ProcessorDaoGenerator {
         _builder.append("public ");
         PojoType _type_7 = m.getType();
         CharSequence _compileType_7 = this._processorGeneratorUtils.compileType(_type_7, im);
-        _builder.append(_compileType_7, "	");
+        _builder.append(_compileType_7, "\t");
         _builder.append(" ");
         String _name_16 = m.getName();
-        _builder.append(_name_16, "	");
+        _builder.append(_name_16, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_7 = m.getArgs();
@@ -931,14 +929,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_7) {
               _hasElements_7 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_8 = ma_7.getType();
             CharSequence _compileType_8 = this._processorGeneratorUtils.compileType(_type_8, im);
-            _builder.append(_compileType_8, "	");
+            _builder.append(_compileType_8, "\t");
             _builder.append(" ");
             String _name_17 = ma_7.getName();
-            _builder.append(_name_17, "	");
+            _builder.append(_name_17, "\t");
           }
         }
         _builder.append(") {");
@@ -947,7 +945,7 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("return ");
         String _name_18 = m.getName();
-        _builder.append(_name_18, "		");
+        _builder.append(_name_18, "\t\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_8 = m.getArgs();
@@ -956,10 +954,10 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_8) {
               _hasElements_8 = true;
             } else {
-              _builder.appendImmediate(", ", "		");
+              _builder.appendImmediate(", ", "\t\t");
             }
             String _name_19 = ma_8.getName();
-            _builder.append(_name_19, "		");
+            _builder.append(_name_19, "\t\t");
           }
         }
         _builder.append(", null);");
@@ -978,7 +976,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int ");
     String _name = m.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args = m.getArgs();
@@ -987,14 +985,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type = ma.getType();
         CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-        _builder.append(_compileType, "	");
+        _builder.append(_compileType, "\t");
         _builder.append(" ");
         String _name_1 = ma.getName();
-        _builder.append(_name_1, "	");
+        _builder.append(_name_1, "\t");
       }
     }
     _builder.append(", SqlControl sqlControl) {");
@@ -1005,7 +1003,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t\t");
     _builder.append("logger.trace(\"");
     String _name_2 = m.getName();
-    _builder.append(_name_2, "			");
+    _builder.append(_name_2, "\t\t\t");
     _builder.append(": \" + ");
     {
       EList<PojoMethodArg> _args_1 = m.getArgs();
@@ -1014,10 +1012,10 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_1) {
           _hasElements_1 = true;
         } else {
-          _builder.appendImmediate(" + \" \" ", "			");
+          _builder.appendImmediate(" + \" \" ", "\t\t\t");
         }
         String _name_3 = ma_1.getName();
-        _builder.append(_name_3, "			");
+        _builder.append(_name_3, "\t\t\t");
       }
     }
     _builder.append(" + \" \" + sqlControl);");
@@ -1029,17 +1027,17 @@ public class ProcessorDaoGenerator {
     _builder.append("SqlProcedureEngine sqlProc");
     String _name_4 = m.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name_4);
-    _builder.append(_firstUpper, "		");
+    _builder.append(_firstUpper, "\t\t");
     _builder.append(" = sqlEngineFactory.getCheckedProcedureEngine(\"PROC_");
     String _dbName = Utils.dbName(m);
-    _builder.append(_dbName, "		");
+    _builder.append(_dbName, "\t\t");
     _builder.append("\");");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("int count = sqlProc");
     String _name_5 = m.getName();
     String _firstUpper_1 = StringExtensions.toFirstUpper(_name_5);
-    _builder.append(_firstUpper_1, "		");
+    _builder.append(_firstUpper_1, "\t\t");
     _builder.append(".callUpdate(sqlSession, ");
     {
       EList<PojoMethodArg> _args_2 = m.getArgs();
@@ -1048,10 +1046,10 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_2) {
           _hasElements_2 = true;
         } else {
-          _builder.appendImmediate(", ", "		");
+          _builder.appendImmediate(", ", "\t\t");
         }
         String _name_6 = ma_2.getName();
-        _builder.append(_name_6, "		");
+        _builder.append(_name_6, "\t\t");
       }
     }
     _builder.append(", sqlControl);");
@@ -1062,7 +1060,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t\t");
     _builder.append("logger.trace(\"");
     String _name_7 = m.getName();
-    _builder.append(_name_7, "			");
+    _builder.append(_name_7, "\t\t\t");
     _builder.append(" result: \" + count);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1079,7 +1077,7 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int ");
         String _name_8 = m.getName();
-        _builder.append(_name_8, "	");
+        _builder.append(_name_8, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_3 = m.getArgs();
@@ -1088,14 +1086,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_3) {
               _hasElements_3 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_1 = ma_3.getType();
             CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-            _builder.append(_compileType_1, "	");
+            _builder.append(_compileType_1, "\t");
             _builder.append(" ");
             String _name_9 = ma_3.getName();
-            _builder.append(_name_9, "	");
+            _builder.append(_name_9, "\t");
           }
         }
         _builder.append(", SqlControl sqlControl) {");
@@ -1104,7 +1102,7 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("return ");
         String _name_10 = m.getName();
-        _builder.append(_name_10, "		");
+        _builder.append(_name_10, "\t\t");
         _builder.append("(sqlSessionFactory.getSqlSession(), ");
         {
           EList<PojoMethodArg> _args_4 = m.getArgs();
@@ -1113,10 +1111,10 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_4) {
               _hasElements_4 = true;
             } else {
-              _builder.appendImmediate(", ", "		");
+              _builder.appendImmediate(", ", "\t\t");
             }
             String _name_11 = ma_4.getName();
-            _builder.append(_name_11, "		");
+            _builder.append(_name_11, "\t\t");
           }
         }
         _builder.append(", sqlControl);");
@@ -1129,7 +1127,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int ");
     String _name_12 = m.getName();
-    _builder.append(_name_12, "	");
+    _builder.append(_name_12, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args_5 = m.getArgs();
@@ -1138,14 +1136,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_5) {
           _hasElements_5 = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type_2 = ma_5.getType();
         CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-        _builder.append(_compileType_2, "	");
+        _builder.append(_compileType_2, "\t");
         _builder.append(" ");
         String _name_13 = ma_5.getName();
-        _builder.append(_name_13, "	");
+        _builder.append(_name_13, "\t");
       }
     }
     _builder.append(") {");
@@ -1153,7 +1151,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t");
     _builder.append("return ");
     String _name_14 = m.getName();
-    _builder.append(_name_14, "		");
+    _builder.append(_name_14, "\t\t");
     _builder.append("(sqlSession, ");
     {
       EList<PojoMethodArg> _args_6 = m.getArgs();
@@ -1162,10 +1160,10 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_6) {
           _hasElements_6 = true;
         } else {
-          _builder.appendImmediate(", ", "		");
+          _builder.appendImmediate(", ", "\t\t");
         }
         String _name_15 = ma_6.getName();
-        _builder.append(_name_15, "		");
+        _builder.append(_name_15, "\t\t");
       }
     }
     _builder.append(", null);");
@@ -1178,7 +1176,7 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int ");
         String _name_16 = m.getName();
-        _builder.append(_name_16, "	");
+        _builder.append(_name_16, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_7 = m.getArgs();
@@ -1187,14 +1185,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_7) {
               _hasElements_7 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_3 = ma_7.getType();
             CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_3, im);
-            _builder.append(_compileType_3, "	");
+            _builder.append(_compileType_3, "\t");
             _builder.append(" ");
             String _name_17 = ma_7.getName();
-            _builder.append(_name_17, "	");
+            _builder.append(_name_17, "\t");
           }
         }
         _builder.append(") {");
@@ -1203,7 +1201,7 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("return ");
         String _name_18 = m.getName();
-        _builder.append(_name_18, "		");
+        _builder.append(_name_18, "\t\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_8 = m.getArgs();
@@ -1212,10 +1210,10 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_8) {
               _hasElements_8 = true;
             } else {
-              _builder.appendImmediate(", ", "		");
+              _builder.appendImmediate(", ", "\t\t");
             }
             String _name_19 = ma_8.getName();
-            _builder.append(_name_19, "		");
+            _builder.append(_name_19, "\t\t");
           }
         }
         _builder.append(", null);");
@@ -1235,10 +1233,10 @@ public class ProcessorDaoGenerator {
     _builder.append("public ");
     PojoType _type = m.getType();
     CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-    _builder.append(_compileType, "	");
+    _builder.append(_compileType, "\t");
     _builder.append(" ");
     String _name = m.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args = m.getArgs();
@@ -1247,14 +1245,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type_1 = ma.getType();
         CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-        _builder.append(_compileType_1, "	");
+        _builder.append(_compileType_1, "\t");
         _builder.append(" ");
         String _name_1 = ma.getName();
-        _builder.append(_name_1, "	");
+        _builder.append(_name_1, "\t");
       }
     }
     _builder.append(", SqlControl sqlControl) {");
@@ -1265,7 +1263,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t\t");
     _builder.append("logger.trace(\"");
     String _name_2 = m.getName();
-    _builder.append(_name_2, "			");
+    _builder.append(_name_2, "\t\t\t");
     _builder.append(": \" + ");
     {
       EList<PojoMethodArg> _args_1 = m.getArgs();
@@ -1274,10 +1272,10 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_1) {
           _hasElements_1 = true;
         } else {
-          _builder.appendImmediate(" + \" \" ", "			");
+          _builder.appendImmediate(" + \" \" ", "\t\t\t");
         }
         String _name_3 = ma_1.getName();
-        _builder.append(_name_3, "			");
+        _builder.append(_name_3, "\t\t\t");
       }
     }
     _builder.append(" + \" \" + sqlControl);");
@@ -1289,10 +1287,10 @@ public class ProcessorDaoGenerator {
     _builder.append("SqlQueryEngine sqlFun");
     String _name_4 = m.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name_4);
-    _builder.append(_firstUpper, "		");
+    _builder.append(_firstUpper, "\t\t");
     _builder.append(" = sqlEngineFactory.getCheckedQueryEngine(\"FUN_");
     String _dbName = Utils.dbName(m);
-    _builder.append(_dbName, "		");
+    _builder.append(_dbName, "\t\t");
     _builder.append("\");");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1301,17 +1299,17 @@ public class ProcessorDaoGenerator {
     PojoMethodArg _get = _args_2.get(0);
     PojoType _type_2 = _get.getType();
     CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-    _builder.append(_compileType_2, "		");
+    _builder.append(_compileType_2, "\t\t");
     _builder.append("> list = sqlFun");
     String _name_5 = m.getName();
     String _firstUpper_1 = StringExtensions.toFirstUpper(_name_5);
-    _builder.append(_firstUpper_1, "		");
+    _builder.append(_firstUpper_1, "\t\t");
     _builder.append(".query(sqlSession, ");
     EList<PojoMethodArg> _args_3 = m.getArgs();
     PojoMethodArg _get_1 = _args_3.get(0);
     PojoType _type_3 = _get_1.getType();
     CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_3, im);
-    _builder.append(_compileType_3, "		");
+    _builder.append(_compileType_3, "\t\t");
     _builder.append(".class, ");
     {
       EList<PojoMethodArg> _args_4 = m.getArgs();
@@ -1320,10 +1318,10 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_2) {
           _hasElements_2 = true;
         } else {
-          _builder.appendImmediate(", ", "		");
+          _builder.appendImmediate(", ", "\t\t");
         }
         String _name_6 = ma_2.getName();
-        _builder.append(_name_6, "		");
+        _builder.append(_name_6, "\t\t");
       }
     }
     _builder.append(", sqlControl);");
@@ -1334,7 +1332,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t\t");
     _builder.append("logger.trace(\"");
     String _name_7 = m.getName();
-    _builder.append(_name_7, "			");
+    _builder.append(_name_7, "\t\t\t");
     _builder.append(" result: \" + list);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1352,10 +1350,10 @@ public class ProcessorDaoGenerator {
         _builder.append("public ");
         PojoType _type_4 = m.getType();
         CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(_type_4, im);
-        _builder.append(_compileType_4, "	");
+        _builder.append(_compileType_4, "\t");
         _builder.append(" ");
         String _name_8 = m.getName();
-        _builder.append(_name_8, "	");
+        _builder.append(_name_8, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_5 = m.getArgs();
@@ -1364,14 +1362,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_3) {
               _hasElements_3 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_5 = ma_3.getType();
             CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(_type_5, im);
-            _builder.append(_compileType_5, "	");
+            _builder.append(_compileType_5, "\t");
             _builder.append(" ");
             String _name_9 = ma_3.getName();
-            _builder.append(_name_9, "	");
+            _builder.append(_name_9, "\t");
           }
         }
         _builder.append(", SqlControl sqlControl) {");
@@ -1380,7 +1378,7 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("return ");
         String _name_10 = m.getName();
-        _builder.append(_name_10, "		");
+        _builder.append(_name_10, "\t\t");
         _builder.append("(sqlSessionFactory.getSqlSession(), ");
         {
           EList<PojoMethodArg> _args_6 = m.getArgs();
@@ -1389,10 +1387,10 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_4) {
               _hasElements_4 = true;
             } else {
-              _builder.appendImmediate(", ", "		");
+              _builder.appendImmediate(", ", "\t\t");
             }
             String _name_11 = ma_4.getName();
-            _builder.append(_name_11, "		");
+            _builder.append(_name_11, "\t\t");
           }
         }
         _builder.append(", sqlControl);");
@@ -1406,10 +1404,10 @@ public class ProcessorDaoGenerator {
     _builder.append("public ");
     PojoType _type_6 = m.getType();
     CharSequence _compileType_6 = this._processorGeneratorUtils.compileType(_type_6, im);
-    _builder.append(_compileType_6, "	");
+    _builder.append(_compileType_6, "\t");
     _builder.append(" ");
     String _name_12 = m.getName();
-    _builder.append(_name_12, "	");
+    _builder.append(_name_12, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args_7 = m.getArgs();
@@ -1418,14 +1416,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_5) {
           _hasElements_5 = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type_7 = ma_5.getType();
         CharSequence _compileType_7 = this._processorGeneratorUtils.compileType(_type_7, im);
-        _builder.append(_compileType_7, "	");
+        _builder.append(_compileType_7, "\t");
         _builder.append(" ");
         String _name_13 = ma_5.getName();
-        _builder.append(_name_13, "	");
+        _builder.append(_name_13, "\t");
       }
     }
     _builder.append(") {");
@@ -1433,7 +1431,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t");
     _builder.append("return ");
     String _name_14 = m.getName();
-    _builder.append(_name_14, "		");
+    _builder.append(_name_14, "\t\t");
     _builder.append("(sqlSession, ");
     {
       EList<PojoMethodArg> _args_8 = m.getArgs();
@@ -1442,10 +1440,10 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_6) {
           _hasElements_6 = true;
         } else {
-          _builder.appendImmediate(", ", "		");
+          _builder.appendImmediate(", ", "\t\t");
         }
         String _name_15 = ma_6.getName();
-        _builder.append(_name_15, "		");
+        _builder.append(_name_15, "\t\t");
       }
     }
     _builder.append(", null);");
@@ -1459,10 +1457,10 @@ public class ProcessorDaoGenerator {
         _builder.append("public ");
         PojoType _type_8 = m.getType();
         CharSequence _compileType_8 = this._processorGeneratorUtils.compileType(_type_8, im);
-        _builder.append(_compileType_8, "	");
+        _builder.append(_compileType_8, "\t");
         _builder.append(" ");
         String _name_16 = m.getName();
-        _builder.append(_name_16, "	");
+        _builder.append(_name_16, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_9 = m.getArgs();
@@ -1471,14 +1469,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_7) {
               _hasElements_7 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_9 = ma_7.getType();
             CharSequence _compileType_9 = this._processorGeneratorUtils.compileType(_type_9, im);
-            _builder.append(_compileType_9, "	");
+            _builder.append(_compileType_9, "\t");
             _builder.append(" ");
             String _name_17 = ma_7.getName();
-            _builder.append(_name_17, "	");
+            _builder.append(_name_17, "\t");
           }
         }
         _builder.append(") {");
@@ -1487,7 +1485,7 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("return ");
         String _name_18 = m.getName();
-        _builder.append(_name_18, "		");
+        _builder.append(_name_18, "\t\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_10 = m.getArgs();
@@ -1496,10 +1494,10 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_8) {
               _hasElements_8 = true;
             } else {
-              _builder.appendImmediate(", ", "		");
+              _builder.appendImmediate(", ", "\t\t");
             }
             String _name_19 = ma_8.getName();
-            _builder.append(_name_19, "		");
+            _builder.append(_name_19, "\t\t");
           }
         }
         _builder.append(", null);");
@@ -1518,14 +1516,14 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name = e.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append(" insert(SqlSession sqlSession, ");
     String _name_1 = e.getName();
-    _builder.append(_name_1, "	");
+    _builder.append(_name_1, "\t");
     _builder.append(" ");
     String _name_2 = e.getName();
     String _firstLower = StringExtensions.toFirstLower(_name_2);
-    _builder.append(_firstLower, "	");
+    _builder.append(_firstLower, "\t");
     _builder.append(", SqlControl sqlControl) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1535,11 +1533,11 @@ public class ProcessorDaoGenerator {
     _builder.append("logger.trace(\"insert ");
     String _name_3 = e.getName();
     String _firstLower_1 = StringExtensions.toFirstLower(_name_3);
-    _builder.append(_firstLower_1, "			");
+    _builder.append(_firstLower_1, "\t\t\t");
     _builder.append(": \" + ");
     String _name_4 = e.getName();
     String _firstLower_2 = StringExtensions.toFirstLower(_name_4);
-    _builder.append(_firstLower_2, "			");
+    _builder.append(_firstLower_2, "\t\t\t");
     _builder.append(" + \" \" + sqlControl);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1548,10 +1546,10 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t");
     _builder.append("SqlCrudEngine sqlInsert");
     String _name_5 = e.getName();
-    _builder.append(_name_5, "		");
+    _builder.append(_name_5, "\t\t");
     _builder.append(" = sqlEngineFactory.getCheckedCrudEngine(\"INSERT_");
     String _dbName = Utils.dbName(e);
-    _builder.append(_dbName, "		");
+    _builder.append(_dbName, "\t\t");
     _builder.append("\");");
     {
       boolean _notEquals = (!Objects.equal(pe, null));
@@ -1560,20 +1558,20 @@ public class ProcessorDaoGenerator {
         _builder.append("\t\t");
         _builder.append("SqlCrudEngine sqlInsert");
         String _name_6 = pe.getName();
-        _builder.append(_name_6, "		");
+        _builder.append(_name_6, "\t\t");
         _builder.append(" = sqlEngineFactory.getCheckedCrudEngine(\"INSERT_");
         String _dbName_1 = Utils.dbName(pe);
-        _builder.append(_dbName_1, "		");
+        _builder.append(_dbName_1, "\t\t");
         _builder.append("\");");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("int count = sqlInsert");
         String _name_7 = pe.getName();
-        _builder.append(_name_7, "		");
+        _builder.append(_name_7, "\t\t");
         _builder.append(".insert(sqlSession, ");
         String _name_8 = e.getName();
         String _firstLower_3 = StringExtensions.toFirstLower(_name_8);
-        _builder.append(_firstLower_3, "		");
+        _builder.append(_firstLower_3, "\t\t");
         _builder.append(", sqlControl);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
@@ -1583,11 +1581,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("sqlInsert");
         String _name_9 = e.getName();
-        _builder.append(_name_9, "			");
+        _builder.append(_name_9, "\t\t\t");
         _builder.append(".insert(sqlSession, ");
         String _name_10 = e.getName();
         String _firstLower_4 = StringExtensions.toFirstLower(_name_10);
-        _builder.append(_firstLower_4, "			");
+        _builder.append(_firstLower_4, "\t\t\t");
         _builder.append(", sqlControl);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
@@ -1597,11 +1595,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t\t");
         _builder.append("int count = sqlInsert");
         String _name_11 = e.getName();
-        _builder.append(_name_11, "		");
+        _builder.append(_name_11, "\t\t");
         _builder.append(".insert(sqlSession, ");
         String _name_12 = e.getName();
         String _firstLower_5 = StringExtensions.toFirstLower(_name_12);
-        _builder.append(_firstLower_5, "		");
+        _builder.append(_firstLower_5, "\t\t");
         _builder.append(", sqlControl);");
       }
     }
@@ -1613,11 +1611,11 @@ public class ProcessorDaoGenerator {
     _builder.append("logger.trace(\"insert ");
     String _name_13 = e.getName();
     String _firstLower_6 = StringExtensions.toFirstLower(_name_13);
-    _builder.append(_firstLower_6, "			");
+    _builder.append(_firstLower_6, "\t\t\t");
     _builder.append(" result: \" + count + \" \" + ");
     String _name_14 = e.getName();
     String _firstLower_7 = StringExtensions.toFirstLower(_name_14);
-    _builder.append(_firstLower_7, "			");
+    _builder.append(_firstLower_7, "\t\t\t");
     _builder.append(");");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1627,7 +1625,7 @@ public class ProcessorDaoGenerator {
     _builder.append("return (count > 0) ? ");
     String _name_15 = e.getName();
     String _firstLower_8 = StringExtensions.toFirstLower(_name_15);
-    _builder.append(_firstLower_8, "		");
+    _builder.append(_firstLower_8, "\t\t");
     _builder.append(" : null;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -1638,14 +1636,14 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public ");
         String _name_16 = e.getName();
-        _builder.append(_name_16, "	");
+        _builder.append(_name_16, "\t");
         _builder.append(" insert(");
         String _name_17 = e.getName();
-        _builder.append(_name_17, "	");
+        _builder.append(_name_17, "\t");
         _builder.append(" ");
         String _name_18 = e.getName();
         String _firstLower_9 = StringExtensions.toFirstLower(_name_18);
-        _builder.append(_firstLower_9, "	");
+        _builder.append(_firstLower_9, "\t");
         _builder.append(", SqlControl sqlControl) {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -1653,7 +1651,7 @@ public class ProcessorDaoGenerator {
         _builder.append("return insert(sqlSessionFactory.getSqlSession(), ");
         String _name_19 = e.getName();
         String _firstLower_10 = StringExtensions.toFirstLower(_name_19);
-        _builder.append(_firstLower_10, "		");
+        _builder.append(_firstLower_10, "\t\t");
         _builder.append(", sqlControl);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -1664,21 +1662,21 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_20 = e.getName();
-    _builder.append(_name_20, "	");
+    _builder.append(_name_20, "\t");
     _builder.append(" insert(SqlSession sqlSession, ");
     String _name_21 = e.getName();
-    _builder.append(_name_21, "	");
+    _builder.append(_name_21, "\t");
     _builder.append(" ");
     String _name_22 = e.getName();
     String _firstLower_11 = StringExtensions.toFirstLower(_name_22);
-    _builder.append(_firstLower_11, "	");
+    _builder.append(_firstLower_11, "\t");
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("return insert(sqlSession, ");
     String _name_23 = e.getName();
     String _firstLower_12 = StringExtensions.toFirstLower(_name_23);
-    _builder.append(_firstLower_12, "		");
+    _builder.append(_firstLower_12, "\t\t");
     _builder.append(", null);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -1689,14 +1687,14 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public ");
         String _name_24 = e.getName();
-        _builder.append(_name_24, "	");
+        _builder.append(_name_24, "\t");
         _builder.append(" insert(");
         String _name_25 = e.getName();
-        _builder.append(_name_25, "	");
+        _builder.append(_name_25, "\t");
         _builder.append(" ");
         String _name_26 = e.getName();
         String _firstLower_13 = StringExtensions.toFirstLower(_name_26);
-        _builder.append(_firstLower_13, "	");
+        _builder.append(_firstLower_13, "\t");
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -1704,7 +1702,7 @@ public class ProcessorDaoGenerator {
         _builder.append("return insert(");
         String _name_27 = e.getName();
         String _firstLower_14 = StringExtensions.toFirstLower(_name_27);
-        _builder.append(_firstLower_14, "		");
+        _builder.append(_firstLower_14, "\t\t");
         _builder.append(", null);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -1715,20 +1713,20 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compileGet(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager im, final boolean all) {
+  public CharSequence compileGet(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
     _builder.append("public ");
     String _name = e.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append(" get(SqlSession sqlSession, ");
     String _name_1 = e.getName();
-    _builder.append(_name_1, "	");
+    _builder.append(_name_1, "\t");
     _builder.append(" ");
     String _name_2 = e.getName();
     String _firstLower = StringExtensions.toFirstLower(_name_2);
-    _builder.append(_firstLower, "	");
+    _builder.append(_firstLower, "\t");
     _builder.append(", SqlControl sqlControl) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1738,7 +1736,7 @@ public class ProcessorDaoGenerator {
     _builder.append("logger.trace(\"get get: \" + ");
     String _name_3 = e.getName();
     String _firstLower_1 = StringExtensions.toFirstLower(_name_3);
-    _builder.append(_firstLower_1, "			");
+    _builder.append(_firstLower_1, "\t\t\t");
     _builder.append(" + \" \" + sqlControl);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1747,10 +1745,10 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t");
     _builder.append("SqlCrudEngine sqlGetEngine");
     String _name_4 = e.getName();
-    _builder.append(_name_4, "		");
+    _builder.append(_name_4, "\t\t");
     _builder.append(" = sqlEngineFactory.getCheckedCrudEngine(\"GET_");
     String _dbName = Utils.dbName(e);
-    _builder.append(_dbName, "		");
+    _builder.append(_dbName, "\t\t");
     _builder.append("\");");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1763,26 +1761,26 @@ public class ProcessorDaoGenerator {
     _builder.append("sqlControl = getMoreResultClasses(");
     String _name_5 = e.getName();
     String _firstLower_2 = StringExtensions.toFirstLower(_name_5);
-    _builder.append(_firstLower_2, "		");
+    _builder.append(_firstLower_2, "\t\t");
     _builder.append(", sqlControl);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     String _name_6 = e.getName();
-    _builder.append(_name_6, "		");
+    _builder.append(_name_6, "\t\t");
     _builder.append(" ");
     String _name_7 = e.getName();
     String _firstLower_3 = StringExtensions.toFirstLower(_name_7);
-    _builder.append(_firstLower_3, "		");
+    _builder.append(_firstLower_3, "\t\t");
     _builder.append("Got = sqlGetEngine");
     String _name_8 = e.getName();
-    _builder.append(_name_8, "		");
+    _builder.append(_name_8, "\t\t");
     _builder.append(".get(sqlSession, ");
     String _name_9 = e.getName();
-    _builder.append(_name_9, "		");
+    _builder.append(_name_9, "\t\t");
     _builder.append(".class, ");
     String _name_10 = e.getName();
     String _firstLower_4 = StringExtensions.toFirstLower(_name_10);
-    _builder.append(_firstLower_4, "		");
+    _builder.append(_firstLower_4, "\t\t");
     _builder.append(", sqlControl);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1792,11 +1790,11 @@ public class ProcessorDaoGenerator {
     _builder.append("logger.trace(\"get ");
     String _name_11 = e.getName();
     String _firstLower_5 = StringExtensions.toFirstLower(_name_11);
-    _builder.append(_firstLower_5, "			");
+    _builder.append(_firstLower_5, "\t\t\t");
     _builder.append(" result: \" + ");
     String _name_12 = e.getName();
     String _firstLower_6 = StringExtensions.toFirstLower(_name_12);
-    _builder.append(_firstLower_6, "			");
+    _builder.append(_firstLower_6, "\t\t\t");
     _builder.append("Got);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1806,7 +1804,7 @@ public class ProcessorDaoGenerator {
     _builder.append("return ");
     String _name_13 = e.getName();
     String _firstLower_7 = StringExtensions.toFirstLower(_name_13);
-    _builder.append(_firstLower_7, "		");
+    _builder.append(_firstLower_7, "\t\t");
     _builder.append("Got;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -1817,14 +1815,14 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public ");
         String _name_14 = e.getName();
-        _builder.append(_name_14, "	");
+        _builder.append(_name_14, "\t");
         _builder.append(" get(");
         String _name_15 = e.getName();
-        _builder.append(_name_15, "	");
+        _builder.append(_name_15, "\t");
         _builder.append(" ");
         String _name_16 = e.getName();
         String _firstLower_8 = StringExtensions.toFirstLower(_name_16);
-        _builder.append(_firstLower_8, "	");
+        _builder.append(_firstLower_8, "\t");
         _builder.append(", SqlControl sqlControl) {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -1832,7 +1830,7 @@ public class ProcessorDaoGenerator {
         _builder.append("return get(sqlSessionFactory.getSqlSession(), ");
         String _name_17 = e.getName();
         String _firstLower_9 = StringExtensions.toFirstLower(_name_17);
-        _builder.append(_firstLower_9, "		");
+        _builder.append(_firstLower_9, "\t\t");
         _builder.append(", sqlControl);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -1843,21 +1841,21 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_18 = e.getName();
-    _builder.append(_name_18, "	");
+    _builder.append(_name_18, "\t");
     _builder.append(" get(SqlSession sqlSession, ");
     String _name_19 = e.getName();
-    _builder.append(_name_19, "	");
+    _builder.append(_name_19, "\t");
     _builder.append(" ");
     String _name_20 = e.getName();
     String _firstLower_10 = StringExtensions.toFirstLower(_name_20);
-    _builder.append(_firstLower_10, "	");
+    _builder.append(_firstLower_10, "\t");
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("return get(sqlSession, ");
     String _name_21 = e.getName();
     String _firstLower_11 = StringExtensions.toFirstLower(_name_21);
-    _builder.append(_firstLower_11, "		");
+    _builder.append(_firstLower_11, "\t\t");
     _builder.append(", null);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -1868,14 +1866,14 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public ");
         String _name_22 = e.getName();
-        _builder.append(_name_22, "	");
+        _builder.append(_name_22, "\t");
         _builder.append(" get(");
         String _name_23 = e.getName();
-        _builder.append(_name_23, "	");
+        _builder.append(_name_23, "\t");
         _builder.append(" ");
         String _name_24 = e.getName();
         String _firstLower_12 = StringExtensions.toFirstLower(_name_24);
-        _builder.append(_firstLower_12, "	");
+        _builder.append(_firstLower_12, "\t");
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -1883,7 +1881,7 @@ public class ProcessorDaoGenerator {
         _builder.append("return get(");
         String _name_25 = e.getName();
         String _firstLower_13 = StringExtensions.toFirstLower(_name_25);
-        _builder.append(_firstLower_13, "		");
+        _builder.append(_firstLower_13, "\t\t");
         _builder.append(", null);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -1900,11 +1898,11 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int update(SqlSession sqlSession, ");
     String _name = e.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append(" ");
     String _name_1 = e.getName();
     String _firstLower = StringExtensions.toFirstLower(_name_1);
-    _builder.append(_firstLower, "	");
+    _builder.append(_firstLower, "\t");
     _builder.append(", SqlControl sqlControl) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1914,11 +1912,11 @@ public class ProcessorDaoGenerator {
     _builder.append("logger.trace(\"update ");
     String _name_2 = e.getName();
     String _firstLower_1 = StringExtensions.toFirstLower(_name_2);
-    _builder.append(_firstLower_1, "			");
+    _builder.append(_firstLower_1, "\t\t\t");
     _builder.append(": \" + ");
     String _name_3 = e.getName();
     String _firstLower_2 = StringExtensions.toFirstLower(_name_3);
-    _builder.append(_firstLower_2, "			");
+    _builder.append(_firstLower_2, "\t\t\t");
     _builder.append(" + \" \" + sqlControl);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1927,10 +1925,10 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t");
     _builder.append("SqlCrudEngine sqlUpdateEngine");
     String _name_4 = e.getName();
-    _builder.append(_name_4, "		");
+    _builder.append(_name_4, "\t\t");
     _builder.append(" = sqlEngineFactory.getCheckedCrudEngine(\"UPDATE_");
     String _dbName = Utils.dbName(e);
-    _builder.append(_dbName, "		");
+    _builder.append(_dbName, "\t\t");
     _builder.append("\");");
     {
       boolean _notEquals = (!Objects.equal(pe, null));
@@ -1939,10 +1937,10 @@ public class ProcessorDaoGenerator {
         _builder.append("\t\t");
         _builder.append("SqlCrudEngine sqlUpdate");
         String _name_5 = pe.getName();
-        _builder.append(_name_5, "		");
+        _builder.append(_name_5, "\t\t");
         _builder.append(" = sqlEngineFactory.getCheckedCrudEngine(\"UPDATE_");
         String _dbName_1 = Utils.dbName(pe);
-        _builder.append(_dbName_1, "		");
+        _builder.append(_dbName_1, "\t\t");
         _builder.append("\");");
       }
     }
@@ -1950,11 +1948,11 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t");
     _builder.append("int count = sqlUpdateEngine");
     String _name_6 = e.getName();
-    _builder.append(_name_6, "		");
+    _builder.append(_name_6, "\t\t");
     _builder.append(".update(sqlSession, ");
     String _name_7 = e.getName();
     String _firstLower_3 = StringExtensions.toFirstLower(_name_7);
-    _builder.append(_firstLower_3, "		");
+    _builder.append(_firstLower_3, "\t\t");
     _builder.append(", sqlControl);");
     {
       boolean _notEquals_1 = (!Objects.equal(pe, null));
@@ -1967,11 +1965,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("sqlUpdate");
         String _name_8 = pe.getName();
-        _builder.append(_name_8, "			");
+        _builder.append(_name_8, "\t\t\t");
         _builder.append(".update(sqlSession, ");
         String _name_9 = e.getName();
         String _firstLower_4 = StringExtensions.toFirstLower(_name_9);
-        _builder.append(_firstLower_4, "			");
+        _builder.append(_firstLower_4, "\t\t\t");
         _builder.append(", sqlControl);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
@@ -1990,19 +1988,19 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         String _name_10 = e.getName();
         String _firstLower_5 = StringExtensions.toFirstLower(_name_10);
-        _builder.append(_firstLower_5, "			");
+        _builder.append(_firstLower_5, "\t\t\t");
         _builder.append(".set");
         String _name_11 = f.getName();
         String _firstUpper = StringExtensions.toFirstUpper(_name_11);
-        _builder.append(_firstUpper, "			");
+        _builder.append(_firstUpper, "\t\t\t");
         _builder.append("(");
         String _name_12 = e.getName();
         String _firstLower_6 = StringExtensions.toFirstLower(_name_12);
-        _builder.append(_firstLower_6, "			");
+        _builder.append(_firstLower_6, "\t\t\t");
         _builder.append(".get");
         String _name_13 = f.getName();
         String _firstUpper_1 = StringExtensions.toFirstUpper(_name_13);
-        _builder.append(_firstUpper_1, "			");
+        _builder.append(_firstUpper_1, "\t\t\t");
         _builder.append("() + 1);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
@@ -2017,7 +2015,7 @@ public class ProcessorDaoGenerator {
     _builder.append("logger.trace(\"update ");
     String _name_14 = e.getName();
     String _firstLower_7 = StringExtensions.toFirstLower(_name_14);
-    _builder.append(_firstLower_7, "			");
+    _builder.append(_firstLower_7, "\t\t\t");
     _builder.append(" result count: \" + count);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2034,11 +2032,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int update(");
         String _name_15 = e.getName();
-        _builder.append(_name_15, "	");
+        _builder.append(_name_15, "\t");
         _builder.append(" ");
         String _name_16 = e.getName();
         String _firstLower_8 = StringExtensions.toFirstLower(_name_16);
-        _builder.append(_firstLower_8, "	");
+        _builder.append(_firstLower_8, "\t");
         _builder.append(", SqlControl sqlControl) {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2046,7 +2044,7 @@ public class ProcessorDaoGenerator {
         _builder.append("return update(sqlSessionFactory.getSqlSession(), ");
         String _name_17 = e.getName();
         String _firstLower_9 = StringExtensions.toFirstLower(_name_17);
-        _builder.append(_firstLower_9, "		");
+        _builder.append(_firstLower_9, "\t\t");
         _builder.append(", sqlControl);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2057,18 +2055,18 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int update(SqlSession sqlSession, ");
     String _name_18 = e.getName();
-    _builder.append(_name_18, "	");
+    _builder.append(_name_18, "\t");
     _builder.append(" ");
     String _name_19 = e.getName();
     String _firstLower_10 = StringExtensions.toFirstLower(_name_19);
-    _builder.append(_firstLower_10, "	");
+    _builder.append(_firstLower_10, "\t");
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("return update(sqlSession, ");
     String _name_20 = e.getName();
     String _firstLower_11 = StringExtensions.toFirstLower(_name_20);
-    _builder.append(_firstLower_11, "		");
+    _builder.append(_firstLower_11, "\t\t");
     _builder.append(", null);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -2079,11 +2077,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int update(");
         String _name_21 = e.getName();
-        _builder.append(_name_21, "	");
+        _builder.append(_name_21, "\t");
         _builder.append(" ");
         String _name_22 = e.getName();
         String _firstLower_12 = StringExtensions.toFirstLower(_name_22);
-        _builder.append(_firstLower_12, "	");
+        _builder.append(_firstLower_12, "\t");
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2091,7 +2089,7 @@ public class ProcessorDaoGenerator {
         _builder.append("return update(");
         String _name_23 = e.getName();
         String _firstLower_13 = StringExtensions.toFirstLower(_name_23);
-        _builder.append(_firstLower_13, "		");
+        _builder.append(_firstLower_13, "\t\t");
         _builder.append(", null);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2108,11 +2106,11 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int delete(SqlSession sqlSession, ");
     String _name = e.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append(" ");
     String _name_1 = e.getName();
     String _firstLower = StringExtensions.toFirstLower(_name_1);
-    _builder.append(_firstLower, "	");
+    _builder.append(_firstLower, "\t");
     _builder.append(", SqlControl sqlControl) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2122,11 +2120,11 @@ public class ProcessorDaoGenerator {
     _builder.append("logger.trace(\"delete ");
     String _name_2 = e.getName();
     String _firstLower_1 = StringExtensions.toFirstLower(_name_2);
-    _builder.append(_firstLower_1, "			");
+    _builder.append(_firstLower_1, "\t\t\t");
     _builder.append(": \" + ");
     String _name_3 = e.getName();
     String _firstLower_2 = StringExtensions.toFirstLower(_name_3);
-    _builder.append(_firstLower_2, "			");
+    _builder.append(_firstLower_2, "\t\t\t");
     _builder.append(" + \" \" + sqlControl);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2135,10 +2133,10 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t");
     _builder.append("SqlCrudEngine sqlDeleteEngine");
     String _name_4 = e.getName();
-    _builder.append(_name_4, "		");
+    _builder.append(_name_4, "\t\t");
     _builder.append(" = sqlEngineFactory.getCheckedCrudEngine(\"DELETE_");
     String _dbName = Utils.dbName(e);
-    _builder.append(_dbName, "		");
+    _builder.append(_dbName, "\t\t");
     _builder.append("\");");
     {
       boolean _notEquals = (!Objects.equal(pe, null));
@@ -2147,10 +2145,10 @@ public class ProcessorDaoGenerator {
         _builder.append("\t\t");
         _builder.append("SqlCrudEngine sqlDelete");
         String _name_5 = pe.getName();
-        _builder.append(_name_5, "		");
+        _builder.append(_name_5, "\t\t");
         _builder.append(" = sqlEngineFactory.getCheckedCrudEngine(\"DELETE_");
         String _dbName_1 = Utils.dbName(pe);
-        _builder.append(_dbName_1, "		");
+        _builder.append(_dbName_1, "\t\t");
         _builder.append("\");");
       }
     }
@@ -2158,11 +2156,11 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t");
     _builder.append("int count = sqlDeleteEngine");
     String _name_6 = e.getName();
-    _builder.append(_name_6, "		");
+    _builder.append(_name_6, "\t\t");
     _builder.append(".delete(sqlSession, ");
     String _name_7 = e.getName();
     String _firstLower_3 = StringExtensions.toFirstLower(_name_7);
-    _builder.append(_firstLower_3, "		");
+    _builder.append(_firstLower_3, "\t\t");
     _builder.append(", sqlControl);");
     {
       boolean _notEquals_1 = (!Objects.equal(pe, null));
@@ -2175,11 +2173,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("sqlDelete");
         String _name_8 = pe.getName();
-        _builder.append(_name_8, "			");
+        _builder.append(_name_8, "\t\t\t");
         _builder.append(".delete(sqlSession, ");
         String _name_9 = e.getName();
         String _firstLower_4 = StringExtensions.toFirstLower(_name_9);
-        _builder.append(_firstLower_4, "			");
+        _builder.append(_firstLower_4, "\t\t\t");
         _builder.append(", sqlControl);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
@@ -2198,19 +2196,19 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         String _name_10 = e.getName();
         String _firstLower_5 = StringExtensions.toFirstLower(_name_10);
-        _builder.append(_firstLower_5, "			");
+        _builder.append(_firstLower_5, "\t\t\t");
         _builder.append(".set");
         String _name_11 = f.getName();
         String _firstUpper = StringExtensions.toFirstUpper(_name_11);
-        _builder.append(_firstUpper, "			");
+        _builder.append(_firstUpper, "\t\t\t");
         _builder.append("(");
         String _name_12 = e.getName();
         String _firstLower_6 = StringExtensions.toFirstLower(_name_12);
-        _builder.append(_firstLower_6, "			");
+        _builder.append(_firstLower_6, "\t\t\t");
         _builder.append(".get");
         String _name_13 = f.getName();
         String _firstUpper_1 = StringExtensions.toFirstUpper(_name_13);
-        _builder.append(_firstUpper_1, "			");
+        _builder.append(_firstUpper_1, "\t\t\t");
         _builder.append("() + 1);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
@@ -2225,7 +2223,7 @@ public class ProcessorDaoGenerator {
     _builder.append("logger.trace(\"delete ");
     String _name_14 = e.getName();
     String _firstLower_7 = StringExtensions.toFirstLower(_name_14);
-    _builder.append(_firstLower_7, "			");
+    _builder.append(_firstLower_7, "\t\t\t");
     _builder.append(" result count: \" + count);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2242,11 +2240,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int delete(");
         String _name_15 = e.getName();
-        _builder.append(_name_15, "	");
+        _builder.append(_name_15, "\t");
         _builder.append(" ");
         String _name_16 = e.getName();
         String _firstLower_8 = StringExtensions.toFirstLower(_name_16);
-        _builder.append(_firstLower_8, "	");
+        _builder.append(_firstLower_8, "\t");
         _builder.append(", SqlControl sqlControl) {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2254,7 +2252,7 @@ public class ProcessorDaoGenerator {
         _builder.append("return delete(sqlSessionFactory.getSqlSession(), ");
         String _name_17 = e.getName();
         String _firstLower_9 = StringExtensions.toFirstLower(_name_17);
-        _builder.append(_firstLower_9, "		");
+        _builder.append(_firstLower_9, "\t\t");
         _builder.append(", sqlControl);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2265,18 +2263,18 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int delete(SqlSession sqlSession, ");
     String _name_18 = e.getName();
-    _builder.append(_name_18, "	");
+    _builder.append(_name_18, "\t");
     _builder.append(" ");
     String _name_19 = e.getName();
     String _firstLower_10 = StringExtensions.toFirstLower(_name_19);
-    _builder.append(_firstLower_10, "	");
+    _builder.append(_firstLower_10, "\t");
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("return delete(sqlSession, ");
     String _name_20 = e.getName();
     String _firstLower_11 = StringExtensions.toFirstLower(_name_20);
-    _builder.append(_firstLower_11, "		");
+    _builder.append(_firstLower_11, "\t\t");
     _builder.append(", null);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -2287,11 +2285,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int delete(");
         String _name_21 = e.getName();
-        _builder.append(_name_21, "	");
+        _builder.append(_name_21, "\t");
         _builder.append(" ");
         String _name_22 = e.getName();
         String _firstLower_12 = StringExtensions.toFirstLower(_name_22);
-        _builder.append(_firstLower_12, "	");
+        _builder.append(_firstLower_12, "\t");
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2299,7 +2297,7 @@ public class ProcessorDaoGenerator {
         _builder.append("return delete(");
         String _name_23 = e.getName();
         String _firstLower_13 = StringExtensions.toFirstLower(_name_23);
-        _builder.append(_firstLower_13, "		");
+        _builder.append(_firstLower_13, "\t\t");
         _builder.append(", null);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2310,20 +2308,20 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compileList(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager im, final boolean all) {
+  public CharSequence compileList(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
     _builder.append("public List<");
     String _name = e.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append("> list(SqlSession sqlSession, ");
     String _name_1 = e.getName();
-    _builder.append(_name_1, "	");
+    _builder.append(_name_1, "\t");
     _builder.append(" ");
     String _name_2 = e.getName();
     String _firstLower = StringExtensions.toFirstLower(_name_2);
-    _builder.append(_firstLower, "	");
+    _builder.append(_firstLower, "\t");
     _builder.append(", SqlControl sqlControl) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2333,11 +2331,11 @@ public class ProcessorDaoGenerator {
     _builder.append("logger.trace(\"list ");
     String _name_3 = e.getName();
     String _firstLower_1 = StringExtensions.toFirstLower(_name_3);
-    _builder.append(_firstLower_1, "			");
+    _builder.append(_firstLower_1, "\t\t\t");
     _builder.append(": \" + ");
     String _name_4 = e.getName();
     String _firstLower_2 = StringExtensions.toFirstLower(_name_4);
-    _builder.append(_firstLower_2, "			");
+    _builder.append(_firstLower_2, "\t\t\t");
     _builder.append(" + \" \" + sqlControl);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2346,10 +2344,10 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t");
     _builder.append("SqlQueryEngine sqlEngine");
     String _name_5 = e.getName();
-    _builder.append(_name_5, "		");
+    _builder.append(_name_5, "\t\t");
     _builder.append(" = sqlEngineFactory.getCheckedQueryEngine(\"SELECT_");
     String _dbName = Utils.dbName(e);
-    _builder.append(_dbName, "		");
+    _builder.append(_dbName, "\t\t");
     _builder.append("\");");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2362,27 +2360,27 @@ public class ProcessorDaoGenerator {
     _builder.append("sqlControl = getMoreResultClasses(");
     String _name_6 = e.getName();
     String _firstLower_3 = StringExtensions.toFirstLower(_name_6);
-    _builder.append(_firstLower_3, "		");
+    _builder.append(_firstLower_3, "\t\t");
     _builder.append(", sqlControl);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("List<");
     String _name_7 = e.getName();
-    _builder.append(_name_7, "		");
+    _builder.append(_name_7, "\t\t");
     _builder.append("> ");
     String _name_8 = e.getName();
     String _firstLower_4 = StringExtensions.toFirstLower(_name_8);
-    _builder.append(_firstLower_4, "		");
+    _builder.append(_firstLower_4, "\t\t");
     _builder.append("List = sqlEngine");
     String _name_9 = e.getName();
-    _builder.append(_name_9, "		");
+    _builder.append(_name_9, "\t\t");
     _builder.append(".query(sqlSession, ");
     String _name_10 = e.getName();
-    _builder.append(_name_10, "		");
+    _builder.append(_name_10, "\t\t");
     _builder.append(".class, ");
     String _name_11 = e.getName();
     String _firstLower_5 = StringExtensions.toFirstLower(_name_11);
-    _builder.append(_firstLower_5, "		");
+    _builder.append(_firstLower_5, "\t\t");
     _builder.append(", sqlControl);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2392,15 +2390,15 @@ public class ProcessorDaoGenerator {
     _builder.append("logger.trace(\"list ");
     String _name_12 = e.getName();
     String _firstLower_6 = StringExtensions.toFirstLower(_name_12);
-    _builder.append(_firstLower_6, "			");
+    _builder.append(_firstLower_6, "\t\t\t");
     _builder.append(" size: \" + ((");
     String _name_13 = e.getName();
     String _firstLower_7 = StringExtensions.toFirstLower(_name_13);
-    _builder.append(_firstLower_7, "			");
+    _builder.append(_firstLower_7, "\t\t\t");
     _builder.append("List != null) ? ");
     String _name_14 = e.getName();
     String _firstLower_8 = StringExtensions.toFirstLower(_name_14);
-    _builder.append(_firstLower_8, "			");
+    _builder.append(_firstLower_8, "\t\t\t");
     _builder.append("List.size() : \"null\"));");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2410,7 +2408,7 @@ public class ProcessorDaoGenerator {
     _builder.append("return ");
     String _name_15 = e.getName();
     String _firstLower_9 = StringExtensions.toFirstLower(_name_15);
-    _builder.append(_firstLower_9, "		");
+    _builder.append(_firstLower_9, "\t\t");
     _builder.append("List;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -2421,14 +2419,14 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public List<");
         String _name_16 = e.getName();
-        _builder.append(_name_16, "	");
+        _builder.append(_name_16, "\t");
         _builder.append("> list(");
         String _name_17 = e.getName();
-        _builder.append(_name_17, "	");
+        _builder.append(_name_17, "\t");
         _builder.append(" ");
         String _name_18 = e.getName();
         String _firstLower_10 = StringExtensions.toFirstLower(_name_18);
-        _builder.append(_firstLower_10, "	");
+        _builder.append(_firstLower_10, "\t");
         _builder.append(", SqlControl sqlControl) {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2436,7 +2434,7 @@ public class ProcessorDaoGenerator {
         _builder.append("return list(sqlSessionFactory.getSqlSession(), ");
         String _name_19 = e.getName();
         String _firstLower_11 = StringExtensions.toFirstLower(_name_19);
-        _builder.append(_firstLower_11, "		");
+        _builder.append(_firstLower_11, "\t\t");
         _builder.append(", sqlControl);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2447,21 +2445,21 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public List<");
     String _name_20 = e.getName();
-    _builder.append(_name_20, "	");
+    _builder.append(_name_20, "\t");
     _builder.append("> list(SqlSession sqlSession, ");
     String _name_21 = e.getName();
-    _builder.append(_name_21, "	");
+    _builder.append(_name_21, "\t");
     _builder.append(" ");
     String _name_22 = e.getName();
     String _firstLower_12 = StringExtensions.toFirstLower(_name_22);
-    _builder.append(_firstLower_12, "	");
+    _builder.append(_firstLower_12, "\t");
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("return list(sqlSession, ");
     String _name_23 = e.getName();
     String _firstLower_13 = StringExtensions.toFirstLower(_name_23);
-    _builder.append(_firstLower_13, "		");
+    _builder.append(_firstLower_13, "\t\t");
     _builder.append(", null);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -2472,14 +2470,14 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public List<");
         String _name_24 = e.getName();
-        _builder.append(_name_24, "	");
+        _builder.append(_name_24, "\t");
         _builder.append("> list(");
         String _name_25 = e.getName();
-        _builder.append(_name_25, "	");
+        _builder.append(_name_25, "\t");
         _builder.append(" ");
         String _name_26 = e.getName();
         String _firstLower_14 = StringExtensions.toFirstLower(_name_26);
-        _builder.append(_firstLower_14, "	");
+        _builder.append(_firstLower_14, "\t");
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2487,7 +2485,7 @@ public class ProcessorDaoGenerator {
         _builder.append("return list(");
         String _name_27 = e.getName();
         String _firstLower_15 = StringExtensions.toFirstLower(_name_27);
-        _builder.append(_firstLower_15, "		");
+        _builder.append(_firstLower_15, "\t\t");
         _builder.append(", null);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2498,17 +2496,17 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compileCount(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager im, final boolean all) {
+  public CharSequence compileCount(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
     _builder.append("public int count(SqlSession sqlSession, ");
     String _name = e.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append(" ");
     String _name_1 = e.getName();
     String _firstLower = StringExtensions.toFirstLower(_name_1);
-    _builder.append(_firstLower, "	");
+    _builder.append(_firstLower, "\t");
     _builder.append(", SqlControl sqlControl) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2518,11 +2516,11 @@ public class ProcessorDaoGenerator {
     _builder.append("logger.trace(\"count ");
     String _name_2 = e.getName();
     String _firstLower_1 = StringExtensions.toFirstLower(_name_2);
-    _builder.append(_firstLower_1, "			");
+    _builder.append(_firstLower_1, "\t\t\t");
     _builder.append(": \" + ");
     String _name_3 = e.getName();
     String _firstLower_2 = StringExtensions.toFirstLower(_name_3);
-    _builder.append(_firstLower_2, "			");
+    _builder.append(_firstLower_2, "\t\t\t");
     _builder.append(" + \" \" + sqlControl);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2531,10 +2529,10 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t");
     _builder.append("SqlQueryEngine sqlEngine");
     String _name_4 = e.getName();
-    _builder.append(_name_4, "		");
+    _builder.append(_name_4, "\t\t");
     _builder.append(" = sqlEngineFactory.getCheckedQueryEngine(\"SELECT_");
     String _dbName = Utils.dbName(e);
-    _builder.append(_dbName, "		");
+    _builder.append(_dbName, "\t\t");
     _builder.append("\");");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2547,17 +2545,17 @@ public class ProcessorDaoGenerator {
     _builder.append("sqlControl = getMoreResultClasses(");
     String _name_5 = e.getName();
     String _firstLower_3 = StringExtensions.toFirstLower(_name_5);
-    _builder.append(_firstLower_3, "		");
+    _builder.append(_firstLower_3, "\t\t");
     _builder.append(", sqlControl);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("int count = sqlEngine");
     String _name_6 = e.getName();
-    _builder.append(_name_6, "		");
+    _builder.append(_name_6, "\t\t");
     _builder.append(".queryCount(sqlSession, ");
     String _name_7 = e.getName();
     String _firstLower_4 = StringExtensions.toFirstLower(_name_7);
-    _builder.append(_firstLower_4, "		");
+    _builder.append(_firstLower_4, "\t\t");
     _builder.append(", sqlControl);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2580,11 +2578,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int count(");
         String _name_8 = e.getName();
-        _builder.append(_name_8, "	");
+        _builder.append(_name_8, "\t");
         _builder.append(" ");
         String _name_9 = e.getName();
         String _firstLower_5 = StringExtensions.toFirstLower(_name_9);
-        _builder.append(_firstLower_5, "	");
+        _builder.append(_firstLower_5, "\t");
         _builder.append(", SqlControl sqlControl) {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2592,7 +2590,7 @@ public class ProcessorDaoGenerator {
         _builder.append("return count(sqlSessionFactory.getSqlSession(), ");
         String _name_10 = e.getName();
         String _firstLower_6 = StringExtensions.toFirstLower(_name_10);
-        _builder.append(_firstLower_6, "		");
+        _builder.append(_firstLower_6, "\t\t");
         _builder.append(", sqlControl);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2603,18 +2601,18 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int count(SqlSession sqlSession, ");
     String _name_11 = e.getName();
-    _builder.append(_name_11, "	");
+    _builder.append(_name_11, "\t");
     _builder.append(" ");
     String _name_12 = e.getName();
     String _firstLower_7 = StringExtensions.toFirstLower(_name_12);
-    _builder.append(_firstLower_7, "	");
+    _builder.append(_firstLower_7, "\t");
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("return count(sqlSession, ");
     String _name_13 = e.getName();
     String _firstLower_8 = StringExtensions.toFirstLower(_name_13);
-    _builder.append(_firstLower_8, "		");
+    _builder.append(_firstLower_8, "\t\t");
     _builder.append(", null);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -2625,11 +2623,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int count(");
         String _name_14 = e.getName();
-        _builder.append(_name_14, "	");
+        _builder.append(_name_14, "\t");
         _builder.append(" ");
         String _name_15 = e.getName();
         String _firstLower_9 = StringExtensions.toFirstLower(_name_15);
-        _builder.append(_firstLower_9, "	");
+        _builder.append(_firstLower_9, "\t");
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2637,7 +2635,7 @@ public class ProcessorDaoGenerator {
         _builder.append("return count(");
         String _name_16 = e.getName();
         String _firstLower_10 = StringExtensions.toFirstLower(_name_16);
-        _builder.append(_firstLower_10, "		");
+        _builder.append(_firstLower_10, "\t\t");
         _builder.append(", null);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -2648,17 +2646,17 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compileMoreResultClasses(final PojoDao d, final PojoEntity e, final Map<String,List<PojoMethodArg>> toInits, final ImportManager im) {
+  public CharSequence compileMoreResultClasses(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
     _builder.append("SqlControl getMoreResultClasses(");
     String _name = e.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append(" ");
     String _name_1 = e.getName();
     String _firstLower = StringExtensions.toFirstLower(_name_1);
-    _builder.append(_firstLower, "	");
+    _builder.append(_firstLower, "\t");
     _builder.append(", SqlControl sqlControl) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2672,28 +2670,28 @@ public class ProcessorDaoGenerator {
     _builder.newLine();
     _builder.append("\t\t");
     {
-      Set<Entry<String,List<PojoMethodArg>>> _entrySet = toInits.entrySet();
+      Set<Map.Entry<String, List<PojoMethodArg>>> _entrySet = toInits.entrySet();
       boolean _hasElements = false;
-      for(final Entry<String, List<PojoMethodArg>> f : _entrySet) {
+      for(final Map.Entry<String, List<PojoMethodArg>> f : _entrySet) {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate("\n\t", "		");
+          _builder.appendImmediate("\n\t", "\t\t");
         }
         _builder.append("\t\tif (");
         String _name_2 = e.getName();
         String _firstLower_1 = StringExtensions.toFirstLower(_name_2);
-        _builder.append(_firstLower_1, "		");
+        _builder.append(_firstLower_1, "\t\t");
         _builder.append(" != null && ");
         String _name_3 = e.getName();
         String _firstLower_2 = StringExtensions.toFirstLower(_name_3);
-        _builder.append(_firstLower_2, "		");
+        _builder.append(_firstLower_2, "\t\t");
         _builder.append(".toInit(");
         String _name_4 = e.getName();
-        _builder.append(_name_4, "		");
+        _builder.append(_name_4, "\t\t");
         _builder.append(".Association.");
         String _key = f.getKey();
-        _builder.append(_key, "		");
+        _builder.append(_key, "\t\t");
         _builder.append(".name())) {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
@@ -2712,16 +2710,16 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_1) {
               _hasElements_1 = true;
             } else {
-              _builder.appendImmediate("\n\t", "		");
+              _builder.appendImmediate("\n\t", "\t\t");
             }
             _builder.append("\t\tmoreResultClasses.put(\"");
             String _name_5 = a.getName();
-            _builder.append(_name_5, "		");
+            _builder.append(_name_5, "\t\t");
             _builder.append("\", ");
             PojoType _type = a.getType();
             PojoEntity _ref = _type.getRef();
             QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_ref);
-            _builder.append(_fullyQualifiedName, "		");
+            _builder.append(_fullyQualifiedName, "\t\t");
             _builder.append(".class);");
           }
         }
@@ -2754,8 +2752,7 @@ public class ProcessorDaoGenerator {
   
   public CharSequence compileIfx(final PojoDao d) {
     StringConcatenation _builder = new StringConcatenation();
-    ImportManager _importManager = new ImportManager(true);
-    final ImportManager im = _importManager;
+    final ImportManager im = new ImportManager(true);
     _builder.newLineIfNotEmpty();
     this.addImplements(d, im);
     _builder.newLineIfNotEmpty();
@@ -2815,55 +2812,55 @@ public class ProcessorDaoGenerator {
           } else {
             String _name_2 = m.getName();
             boolean _equals_1 = Objects.equal(_name_2, "scaffold0");
-            _or = (_equals || _equals_1);
+            _or = _equals_1;
           }
           if (_or) {
             String _name_3 = m.getName();
             boolean _equals_2 = Objects.equal(_name_3, "scaffold");
             CharSequence _compileInsertIfx = this.compileInsertIfx(d, e, im, _equals_2);
-            _builder.append(_compileInsertIfx, "	");
+            _builder.append(_compileInsertIfx, "\t");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             String _name_4 = m.getName();
             boolean _equals_3 = Objects.equal(_name_4, "scaffold");
             CharSequence _compileGetIfx = this.compileGetIfx(d, e, im, _equals_3);
-            _builder.append(_compileGetIfx, "	");
+            _builder.append(_compileGetIfx, "\t");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             String _name_5 = m.getName();
             boolean _equals_4 = Objects.equal(_name_5, "scaffold");
             CharSequence _compileUpdateIfx = this.compileUpdateIfx(d, e, im, _equals_4);
-            _builder.append(_compileUpdateIfx, "	");
+            _builder.append(_compileUpdateIfx, "\t");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             String _name_6 = m.getName();
             boolean _equals_5 = Objects.equal(_name_6, "scaffold");
             CharSequence _compileDeleteIfx = this.compileDeleteIfx(d, e, im, _equals_5);
-            _builder.append(_compileDeleteIfx, "	");
+            _builder.append(_compileDeleteIfx, "\t");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             String _name_7 = m.getName();
             boolean _equals_6 = Objects.equal(_name_7, "scaffold");
             CharSequence _compileListIfx = this.compileListIfx(d, e, im, _equals_6);
-            _builder.append(_compileListIfx, "	");
+            _builder.append(_compileListIfx, "\t");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             String _name_8 = m.getName();
             boolean _equals_7 = Objects.equal(_name_8, "scaffold");
             CharSequence _compileCountIfx = this.compileCountIfx(d, e, im, _equals_7);
-            _builder.append(_compileCountIfx, "	");
+            _builder.append(_compileCountIfx, "\t");
             _builder.newLineIfNotEmpty();
           } else {
             boolean _isCallUpdate = Utils.isCallUpdate(m);
             if (_isCallUpdate) {
               _builder.append("\t");
               CharSequence _compileCallUpdateIfx = this.compileCallUpdateIfx(d, m, im, true);
-              _builder.append(_compileCallUpdateIfx, "	");
+              _builder.append(_compileCallUpdateIfx, "\t");
             } else {
               boolean _isCallFunction = Utils.isCallFunction(m);
               if (_isCallFunction) {
                 CharSequence _compileCallFunctionIfx = this.compileCallFunctionIfx(d, m, im, true);
-                _builder.append(_compileCallFunctionIfx, "	");
+                _builder.append(_compileCallFunctionIfx, "\t");
               } else {
                 boolean _or_1 = false;
                 boolean _isCallQuery = Utils.isCallQuery(m);
@@ -2871,17 +2868,17 @@ public class ProcessorDaoGenerator {
                   _or_1 = true;
                 } else {
                   boolean _isCallQueryFunction = Utils.isCallQueryFunction(m);
-                  _or_1 = (_isCallQuery || _isCallQueryFunction);
+                  _or_1 = _isCallQueryFunction;
                 }
                 if (_or_1) {
                   boolean _isCallQueryFunction_1 = Utils.isCallQueryFunction(m);
                   CharSequence _compileCallQueryIfx = this.compileCallQueryIfx(d, m, im, _isCallQueryFunction_1, true);
-                  _builder.append(_compileCallQueryIfx, "	");
+                  _builder.append(_compileCallQueryIfx, "\t");
                 } else {
                   boolean _isCallSelectFunction = Utils.isCallSelectFunction(m);
                   if (_isCallSelectFunction) {
                     CharSequence _compileCallSelectFunctionIfx = this.compileCallSelectFunctionIfx(d, m, im, true);
-                    _builder.append(_compileCallSelectFunctionIfx, "	");
+                    _builder.append(_compileCallSelectFunctionIfx, "\t");
                   }
                 }
               }
@@ -2903,10 +2900,10 @@ public class ProcessorDaoGenerator {
     _builder.append("public ");
     PojoType _type = m.getType();
     CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-    _builder.append(_compileType, "	");
+    _builder.append(_compileType, "\t");
     _builder.append(" ");
     String _name = m.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args = m.getArgs();
@@ -2915,14 +2912,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type_1 = ma.getType();
         CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-        _builder.append(_compileType_1, "	");
+        _builder.append(_compileType_1, "\t");
         _builder.append(" ");
         String _name_1 = ma.getName();
-        _builder.append(_name_1, "	");
+        _builder.append(_name_1, "\t");
       }
     }
     _builder.append(", SqlControl sqlControl);");
@@ -2933,10 +2930,10 @@ public class ProcessorDaoGenerator {
         _builder.append("public ");
         PojoType _type_2 = m.getType();
         CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-        _builder.append(_compileType_2, "	");
+        _builder.append(_compileType_2, "\t");
         _builder.append(" ");
         String _name_2 = m.getName();
-        _builder.append(_name_2, "	");
+        _builder.append(_name_2, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_1 = m.getArgs();
@@ -2945,14 +2942,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_1) {
               _hasElements_1 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_3 = ma_1.getType();
             CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_3, im);
-            _builder.append(_compileType_3, "	");
+            _builder.append(_compileType_3, "\t");
             _builder.append(" ");
             String _name_3 = ma_1.getName();
-            _builder.append(_name_3, "	");
+            _builder.append(_name_3, "\t");
           }
         }
         _builder.append(", SqlControl sqlControl);");
@@ -2963,10 +2960,10 @@ public class ProcessorDaoGenerator {
     _builder.append("public ");
     PojoType _type_4 = m.getType();
     CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(_type_4, im);
-    _builder.append(_compileType_4, "	");
+    _builder.append(_compileType_4, "\t");
     _builder.append(" ");
     String _name_4 = m.getName();
-    _builder.append(_name_4, "	");
+    _builder.append(_name_4, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args_2 = m.getArgs();
@@ -2975,14 +2972,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_2) {
           _hasElements_2 = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type_5 = ma_2.getType();
         CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(_type_5, im);
-        _builder.append(_compileType_5, "	");
+        _builder.append(_compileType_5, "\t");
         _builder.append(" ");
         String _name_5 = ma_2.getName();
-        _builder.append(_name_5, "	");
+        _builder.append(_name_5, "\t");
       }
     }
     _builder.append(");");
@@ -2993,10 +2990,10 @@ public class ProcessorDaoGenerator {
         _builder.append("public ");
         PojoType _type_6 = m.getType();
         CharSequence _compileType_6 = this._processorGeneratorUtils.compileType(_type_6, im);
-        _builder.append(_compileType_6, "	");
+        _builder.append(_compileType_6, "\t");
         _builder.append(" ");
         String _name_6 = m.getName();
-        _builder.append(_name_6, "	");
+        _builder.append(_name_6, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_3 = m.getArgs();
@@ -3005,14 +3002,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_3) {
               _hasElements_3 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_7 = ma_3.getType();
             CharSequence _compileType_7 = this._processorGeneratorUtils.compileType(_type_7, im);
-            _builder.append(_compileType_7, "	");
+            _builder.append(_compileType_7, "\t");
             _builder.append(" ");
             String _name_7 = ma_3.getName();
-            _builder.append(_name_7, "	");
+            _builder.append(_name_7, "\t");
           }
         }
         _builder.append(");");
@@ -3029,10 +3026,10 @@ public class ProcessorDaoGenerator {
     _builder.append("public ");
     PojoType _type = m.getType();
     CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-    _builder.append(_compileType, "	");
+    _builder.append(_compileType, "\t");
     _builder.append(" ");
     String _name = m.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args = m.getArgs();
@@ -3041,14 +3038,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type_1 = ma.getType();
         CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-        _builder.append(_compileType_1, "	");
+        _builder.append(_compileType_1, "\t");
         _builder.append(" ");
         String _name_1 = ma.getName();
-        _builder.append(_name_1, "	");
+        _builder.append(_name_1, "\t");
       }
     }
     _builder.append(", SqlControl sqlControl);");
@@ -3059,10 +3056,10 @@ public class ProcessorDaoGenerator {
         _builder.append("public ");
         PojoType _type_2 = m.getType();
         CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-        _builder.append(_compileType_2, "	");
+        _builder.append(_compileType_2, "\t");
         _builder.append(" ");
         String _name_2 = m.getName();
-        _builder.append(_name_2, "	");
+        _builder.append(_name_2, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_1 = m.getArgs();
@@ -3071,14 +3068,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_1) {
               _hasElements_1 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_3 = ma_1.getType();
             CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_3, im);
-            _builder.append(_compileType_3, "	");
+            _builder.append(_compileType_3, "\t");
             _builder.append(" ");
             String _name_3 = ma_1.getName();
-            _builder.append(_name_3, "	");
+            _builder.append(_name_3, "\t");
           }
         }
         _builder.append(", SqlControl sqlControl);");
@@ -3089,10 +3086,10 @@ public class ProcessorDaoGenerator {
     _builder.append("public ");
     PojoType _type_4 = m.getType();
     CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(_type_4, im);
-    _builder.append(_compileType_4, "	");
+    _builder.append(_compileType_4, "\t");
     _builder.append(" ");
     String _name_4 = m.getName();
-    _builder.append(_name_4, "	");
+    _builder.append(_name_4, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args_2 = m.getArgs();
@@ -3101,14 +3098,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_2) {
           _hasElements_2 = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type_5 = ma_2.getType();
         CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(_type_5, im);
-        _builder.append(_compileType_5, "	");
+        _builder.append(_compileType_5, "\t");
         _builder.append(" ");
         String _name_5 = ma_2.getName();
-        _builder.append(_name_5, "	");
+        _builder.append(_name_5, "\t");
       }
     }
     _builder.append(");");
@@ -3119,10 +3116,10 @@ public class ProcessorDaoGenerator {
         _builder.append("public ");
         PojoType _type_6 = m.getType();
         CharSequence _compileType_6 = this._processorGeneratorUtils.compileType(_type_6, im);
-        _builder.append(_compileType_6, "	");
+        _builder.append(_compileType_6, "\t");
         _builder.append(" ");
         String _name_6 = m.getName();
-        _builder.append(_name_6, "	");
+        _builder.append(_name_6, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_3 = m.getArgs();
@@ -3131,14 +3128,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_3) {
               _hasElements_3 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_7 = ma_3.getType();
             CharSequence _compileType_7 = this._processorGeneratorUtils.compileType(_type_7, im);
-            _builder.append(_compileType_7, "	");
+            _builder.append(_compileType_7, "\t");
             _builder.append(" ");
             String _name_7 = ma_3.getName();
-            _builder.append(_name_7, "	");
+            _builder.append(_name_7, "\t");
           }
         }
         _builder.append(");");
@@ -3154,7 +3151,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int ");
     String _name = m.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args = m.getArgs();
@@ -3163,14 +3160,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type = ma.getType();
         CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-        _builder.append(_compileType, "	");
+        _builder.append(_compileType, "\t");
         _builder.append(" ");
         String _name_1 = ma.getName();
-        _builder.append(_name_1, "	");
+        _builder.append(_name_1, "\t");
       }
     }
     _builder.append(", SqlControl sqlControl);");
@@ -3180,7 +3177,7 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int ");
         String _name_2 = m.getName();
-        _builder.append(_name_2, "	");
+        _builder.append(_name_2, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_1 = m.getArgs();
@@ -3189,14 +3186,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_1) {
               _hasElements_1 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_1 = ma_1.getType();
             CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-            _builder.append(_compileType_1, "	");
+            _builder.append(_compileType_1, "\t");
             _builder.append(" ");
             String _name_3 = ma_1.getName();
-            _builder.append(_name_3, "	");
+            _builder.append(_name_3, "\t");
           }
         }
         _builder.append(", SqlControl sqlControl);");
@@ -3206,7 +3203,7 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int ");
     String _name_4 = m.getName();
-    _builder.append(_name_4, "	");
+    _builder.append(_name_4, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args_2 = m.getArgs();
@@ -3215,14 +3212,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_2) {
           _hasElements_2 = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type_2 = ma_2.getType();
         CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-        _builder.append(_compileType_2, "	");
+        _builder.append(_compileType_2, "\t");
         _builder.append(" ");
         String _name_5 = ma_2.getName();
-        _builder.append(_name_5, "	");
+        _builder.append(_name_5, "\t");
       }
     }
     _builder.append(");");
@@ -3232,7 +3229,7 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int ");
         String _name_6 = m.getName();
-        _builder.append(_name_6, "	");
+        _builder.append(_name_6, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_3 = m.getArgs();
@@ -3241,14 +3238,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_3) {
               _hasElements_3 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_3 = ma_3.getType();
             CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_3, im);
-            _builder.append(_compileType_3, "	");
+            _builder.append(_compileType_3, "\t");
             _builder.append(" ");
             String _name_7 = ma_3.getName();
-            _builder.append(_name_7, "	");
+            _builder.append(_name_7, "\t");
           }
         }
         _builder.append(");");
@@ -3265,10 +3262,10 @@ public class ProcessorDaoGenerator {
     _builder.append("public ");
     PojoType _type = m.getType();
     CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-    _builder.append(_compileType, "	");
+    _builder.append(_compileType, "\t");
     _builder.append(" ");
     String _name = m.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args = m.getArgs();
@@ -3277,14 +3274,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type_1 = ma.getType();
         CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-        _builder.append(_compileType_1, "	");
+        _builder.append(_compileType_1, "\t");
         _builder.append(" ");
         String _name_1 = ma.getName();
-        _builder.append(_name_1, "	");
+        _builder.append(_name_1, "\t");
       }
     }
     _builder.append(", SqlControl sqlControl);");
@@ -3295,10 +3292,10 @@ public class ProcessorDaoGenerator {
         _builder.append("public ");
         PojoType _type_2 = m.getType();
         CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-        _builder.append(_compileType_2, "	");
+        _builder.append(_compileType_2, "\t");
         _builder.append(" ");
         String _name_2 = m.getName();
-        _builder.append(_name_2, "	");
+        _builder.append(_name_2, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_1 = m.getArgs();
@@ -3307,14 +3304,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_1) {
               _hasElements_1 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_3 = ma_1.getType();
             CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_3, im);
-            _builder.append(_compileType_3, "	");
+            _builder.append(_compileType_3, "\t");
             _builder.append(" ");
             String _name_3 = ma_1.getName();
-            _builder.append(_name_3, "	");
+            _builder.append(_name_3, "\t");
           }
         }
         _builder.append(", SqlControl sqlControl);");
@@ -3325,10 +3322,10 @@ public class ProcessorDaoGenerator {
     _builder.append("public ");
     PojoType _type_4 = m.getType();
     CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(_type_4, im);
-    _builder.append(_compileType_4, "	");
+    _builder.append(_compileType_4, "\t");
     _builder.append(" ");
     String _name_4 = m.getName();
-    _builder.append(_name_4, "	");
+    _builder.append(_name_4, "\t");
     _builder.append("(SqlSession sqlSession, ");
     {
       EList<PojoMethodArg> _args_2 = m.getArgs();
@@ -3337,14 +3334,14 @@ public class ProcessorDaoGenerator {
         if (!_hasElements_2) {
           _hasElements_2 = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         PojoType _type_5 = ma_2.getType();
         CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(_type_5, im);
-        _builder.append(_compileType_5, "	");
+        _builder.append(_compileType_5, "\t");
         _builder.append(" ");
         String _name_5 = ma_2.getName();
-        _builder.append(_name_5, "	");
+        _builder.append(_name_5, "\t");
       }
     }
     _builder.append(");");
@@ -3355,10 +3352,10 @@ public class ProcessorDaoGenerator {
         _builder.append("public ");
         PojoType _type_6 = m.getType();
         CharSequence _compileType_6 = this._processorGeneratorUtils.compileType(_type_6, im);
-        _builder.append(_compileType_6, "	");
+        _builder.append(_compileType_6, "\t");
         _builder.append(" ");
         String _name_6 = m.getName();
-        _builder.append(_name_6, "	");
+        _builder.append(_name_6, "\t");
         _builder.append("(");
         {
           EList<PojoMethodArg> _args_3 = m.getArgs();
@@ -3367,14 +3364,14 @@ public class ProcessorDaoGenerator {
             if (!_hasElements_3) {
               _hasElements_3 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoType _type_7 = ma_3.getType();
             CharSequence _compileType_7 = this._processorGeneratorUtils.compileType(_type_7, im);
-            _builder.append(_compileType_7, "	");
+            _builder.append(_compileType_7, "\t");
             _builder.append(" ");
             String _name_7 = ma_3.getName();
-            _builder.append(_name_7, "	");
+            _builder.append(_name_7, "\t");
           }
         }
         _builder.append(");");
@@ -3390,14 +3387,14 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name = e.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append(" insert(SqlSession sqlSession, ");
     String _name_1 = e.getName();
-    _builder.append(_name_1, "	");
+    _builder.append(_name_1, "\t");
     _builder.append(" ");
     String _name_2 = e.getName();
     String _firstLower = StringExtensions.toFirstLower(_name_2);
-    _builder.append(_firstLower, "	");
+    _builder.append(_firstLower, "\t");
     _builder.append(", SqlControl sqlControl);");
     _builder.newLineIfNotEmpty();
     {
@@ -3405,14 +3402,14 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public ");
         String _name_3 = e.getName();
-        _builder.append(_name_3, "	");
+        _builder.append(_name_3, "\t");
         _builder.append(" insert(");
         String _name_4 = e.getName();
-        _builder.append(_name_4, "	");
+        _builder.append(_name_4, "\t");
         _builder.append(" ");
         String _name_5 = e.getName();
         String _firstLower_1 = StringExtensions.toFirstLower(_name_5);
-        _builder.append(_firstLower_1, "	");
+        _builder.append(_firstLower_1, "\t");
         _builder.append(", SqlControl sqlControl);");
         _builder.newLineIfNotEmpty();
       }
@@ -3420,14 +3417,14 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_6 = e.getName();
-    _builder.append(_name_6, "	");
+    _builder.append(_name_6, "\t");
     _builder.append(" insert(SqlSession sqlSession, ");
     String _name_7 = e.getName();
-    _builder.append(_name_7, "	");
+    _builder.append(_name_7, "\t");
     _builder.append(" ");
     String _name_8 = e.getName();
     String _firstLower_2 = StringExtensions.toFirstLower(_name_8);
-    _builder.append(_firstLower_2, "	");
+    _builder.append(_firstLower_2, "\t");
     _builder.append(");");
     _builder.newLineIfNotEmpty();
     {
@@ -3435,14 +3432,14 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public ");
         String _name_9 = e.getName();
-        _builder.append(_name_9, "	");
+        _builder.append(_name_9, "\t");
         _builder.append(" insert(");
         String _name_10 = e.getName();
-        _builder.append(_name_10, "	");
+        _builder.append(_name_10, "\t");
         _builder.append(" ");
         String _name_11 = e.getName();
         String _firstLower_3 = StringExtensions.toFirstLower(_name_11);
-        _builder.append(_firstLower_3, "	");
+        _builder.append(_firstLower_3, "\t");
         _builder.append(");");
         _builder.newLineIfNotEmpty();
       }
@@ -3456,14 +3453,14 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name = e.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append(" get(SqlSession sqlSession, ");
     String _name_1 = e.getName();
-    _builder.append(_name_1, "	");
+    _builder.append(_name_1, "\t");
     _builder.append(" ");
     String _name_2 = e.getName();
     String _firstLower = StringExtensions.toFirstLower(_name_2);
-    _builder.append(_firstLower, "	");
+    _builder.append(_firstLower, "\t");
     _builder.append(", SqlControl sqlControl);");
     _builder.newLineIfNotEmpty();
     {
@@ -3471,14 +3468,14 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public ");
         String _name_3 = e.getName();
-        _builder.append(_name_3, "	");
+        _builder.append(_name_3, "\t");
         _builder.append(" get(");
         String _name_4 = e.getName();
-        _builder.append(_name_4, "	");
+        _builder.append(_name_4, "\t");
         _builder.append(" ");
         String _name_5 = e.getName();
         String _firstLower_1 = StringExtensions.toFirstLower(_name_5);
-        _builder.append(_firstLower_1, "	");
+        _builder.append(_firstLower_1, "\t");
         _builder.append(", SqlControl sqlControl);");
         _builder.newLineIfNotEmpty();
       }
@@ -3486,14 +3483,14 @@ public class ProcessorDaoGenerator {
     _builder.append("\t\t");
     _builder.append("public ");
     String _name_6 = e.getName();
-    _builder.append(_name_6, "		");
+    _builder.append(_name_6, "\t\t");
     _builder.append(" get(SqlSession sqlSession, ");
     String _name_7 = e.getName();
-    _builder.append(_name_7, "		");
+    _builder.append(_name_7, "\t\t");
     _builder.append(" ");
     String _name_8 = e.getName();
     String _firstLower_2 = StringExtensions.toFirstLower(_name_8);
-    _builder.append(_firstLower_2, "		");
+    _builder.append(_firstLower_2, "\t\t");
     _builder.append(");");
     _builder.newLineIfNotEmpty();
     {
@@ -3501,14 +3498,14 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public ");
         String _name_9 = e.getName();
-        _builder.append(_name_9, "	");
+        _builder.append(_name_9, "\t");
         _builder.append(" get(");
         String _name_10 = e.getName();
-        _builder.append(_name_10, "	");
+        _builder.append(_name_10, "\t");
         _builder.append(" ");
         String _name_11 = e.getName();
         String _firstLower_3 = StringExtensions.toFirstLower(_name_11);
-        _builder.append(_firstLower_3, "	");
+        _builder.append(_firstLower_3, "\t");
         _builder.append(");");
         _builder.newLineIfNotEmpty();
       }
@@ -3522,11 +3519,11 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int update(SqlSession sqlSession, ");
     String _name = e.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append(" ");
     String _name_1 = e.getName();
     String _firstLower = StringExtensions.toFirstLower(_name_1);
-    _builder.append(_firstLower, "	");
+    _builder.append(_firstLower, "\t");
     _builder.append(", SqlControl sqlControl);");
     _builder.newLineIfNotEmpty();
     {
@@ -3534,11 +3531,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int update(");
         String _name_2 = e.getName();
-        _builder.append(_name_2, "	");
+        _builder.append(_name_2, "\t");
         _builder.append(" ");
         String _name_3 = e.getName();
         String _firstLower_1 = StringExtensions.toFirstLower(_name_3);
-        _builder.append(_firstLower_1, "	");
+        _builder.append(_firstLower_1, "\t");
         _builder.append(", SqlControl sqlControl);");
         _builder.newLineIfNotEmpty();
       }
@@ -3546,11 +3543,11 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int update(SqlSession sqlSession, ");
     String _name_4 = e.getName();
-    _builder.append(_name_4, "	");
+    _builder.append(_name_4, "\t");
     _builder.append(" ");
     String _name_5 = e.getName();
     String _firstLower_2 = StringExtensions.toFirstLower(_name_5);
-    _builder.append(_firstLower_2, "	");
+    _builder.append(_firstLower_2, "\t");
     _builder.append(");");
     _builder.newLineIfNotEmpty();
     {
@@ -3558,11 +3555,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int update(");
         String _name_6 = e.getName();
-        _builder.append(_name_6, "	");
+        _builder.append(_name_6, "\t");
         _builder.append(" ");
         String _name_7 = e.getName();
         String _firstLower_3 = StringExtensions.toFirstLower(_name_7);
-        _builder.append(_firstLower_3, "	");
+        _builder.append(_firstLower_3, "\t");
         _builder.append(");");
         _builder.newLineIfNotEmpty();
       }
@@ -3576,11 +3573,11 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int delete(SqlSession sqlSession, ");
     String _name = e.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append(" ");
     String _name_1 = e.getName();
     String _firstLower = StringExtensions.toFirstLower(_name_1);
-    _builder.append(_firstLower, "	");
+    _builder.append(_firstLower, "\t");
     _builder.append(", SqlControl sqlControl);");
     _builder.newLineIfNotEmpty();
     {
@@ -3588,11 +3585,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int delete(");
         String _name_2 = e.getName();
-        _builder.append(_name_2, "	");
+        _builder.append(_name_2, "\t");
         _builder.append(" ");
         String _name_3 = e.getName();
         String _firstLower_1 = StringExtensions.toFirstLower(_name_3);
-        _builder.append(_firstLower_1, "	");
+        _builder.append(_firstLower_1, "\t");
         _builder.append(", SqlControl sqlControl);");
         _builder.newLineIfNotEmpty();
       }
@@ -3600,11 +3597,11 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int delete(SqlSession sqlSession, ");
     String _name_4 = e.getName();
-    _builder.append(_name_4, "	");
+    _builder.append(_name_4, "\t");
     _builder.append(" ");
     String _name_5 = e.getName();
     String _firstLower_2 = StringExtensions.toFirstLower(_name_5);
-    _builder.append(_firstLower_2, "	");
+    _builder.append(_firstLower_2, "\t");
     _builder.append(");");
     _builder.newLineIfNotEmpty();
     {
@@ -3612,11 +3609,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int delete(");
         String _name_6 = e.getName();
-        _builder.append(_name_6, "	");
+        _builder.append(_name_6, "\t");
         _builder.append(" ");
         String _name_7 = e.getName();
         String _firstLower_3 = StringExtensions.toFirstLower(_name_7);
-        _builder.append(_firstLower_3, "	");
+        _builder.append(_firstLower_3, "\t");
         _builder.append(");");
         _builder.newLineIfNotEmpty();
       }
@@ -3630,14 +3627,14 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public List<");
     String _name = e.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append("> list(SqlSession sqlSession, ");
     String _name_1 = e.getName();
-    _builder.append(_name_1, "	");
+    _builder.append(_name_1, "\t");
     _builder.append(" ");
     String _name_2 = e.getName();
     String _firstLower = StringExtensions.toFirstLower(_name_2);
-    _builder.append(_firstLower, "	");
+    _builder.append(_firstLower, "\t");
     _builder.append(", SqlControl sqlControl);");
     _builder.newLineIfNotEmpty();
     {
@@ -3645,14 +3642,14 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public List<");
         String _name_3 = e.getName();
-        _builder.append(_name_3, "	");
+        _builder.append(_name_3, "\t");
         _builder.append("> list(");
         String _name_4 = e.getName();
-        _builder.append(_name_4, "	");
+        _builder.append(_name_4, "\t");
         _builder.append(" ");
         String _name_5 = e.getName();
         String _firstLower_1 = StringExtensions.toFirstLower(_name_5);
-        _builder.append(_firstLower_1, "	");
+        _builder.append(_firstLower_1, "\t");
         _builder.append(", SqlControl sqlControl);");
         _builder.newLineIfNotEmpty();
       }
@@ -3660,14 +3657,14 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public List<");
     String _name_6 = e.getName();
-    _builder.append(_name_6, "	");
+    _builder.append(_name_6, "\t");
     _builder.append("> list(SqlSession sqlSession, ");
     String _name_7 = e.getName();
-    _builder.append(_name_7, "	");
+    _builder.append(_name_7, "\t");
     _builder.append(" ");
     String _name_8 = e.getName();
     String _firstLower_2 = StringExtensions.toFirstLower(_name_8);
-    _builder.append(_firstLower_2, "	");
+    _builder.append(_firstLower_2, "\t");
     _builder.append(");");
     _builder.newLineIfNotEmpty();
     {
@@ -3675,14 +3672,14 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public List<");
         String _name_9 = e.getName();
-        _builder.append(_name_9, "	");
+        _builder.append(_name_9, "\t");
         _builder.append("> list(");
         String _name_10 = e.getName();
-        _builder.append(_name_10, "	");
+        _builder.append(_name_10, "\t");
         _builder.append(" ");
         String _name_11 = e.getName();
         String _firstLower_3 = StringExtensions.toFirstLower(_name_11);
-        _builder.append(_firstLower_3, "	");
+        _builder.append(_firstLower_3, "\t");
         _builder.append(");");
         _builder.newLineIfNotEmpty();
       }
@@ -3696,11 +3693,11 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int count(SqlSession sqlSession, ");
     String _name = e.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     _builder.append(" ");
     String _name_1 = e.getName();
     String _firstLower = StringExtensions.toFirstLower(_name_1);
-    _builder.append(_firstLower, "	");
+    _builder.append(_firstLower, "\t");
     _builder.append(", SqlControl sqlControl);");
     _builder.newLineIfNotEmpty();
     {
@@ -3708,11 +3705,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int count(");
         String _name_2 = e.getName();
-        _builder.append(_name_2, "	");
+        _builder.append(_name_2, "\t");
         _builder.append(" ");
         String _name_3 = e.getName();
         String _firstLower_1 = StringExtensions.toFirstLower(_name_3);
-        _builder.append(_firstLower_1, "	");
+        _builder.append(_firstLower_1, "\t");
         _builder.append(", SqlControl sqlControl);");
         _builder.newLineIfNotEmpty();
       }
@@ -3720,11 +3717,11 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.append("public int count(SqlSession sqlSession, ");
     String _name_4 = e.getName();
-    _builder.append(_name_4, "	");
+    _builder.append(_name_4, "\t");
     _builder.append(" ");
     String _name_5 = e.getName();
     String _firstLower_2 = StringExtensions.toFirstLower(_name_5);
-    _builder.append(_firstLower_2, "	");
+    _builder.append(_firstLower_2, "\t");
     _builder.append(");");
     _builder.newLineIfNotEmpty();
     {
@@ -3732,11 +3729,11 @@ public class ProcessorDaoGenerator {
         _builder.append("\t");
         _builder.append("public int count(");
         String _name_6 = e.getName();
-        _builder.append(_name_6, "	");
+        _builder.append(_name_6, "\t");
         _builder.append(" ");
         String _name_7 = e.getName();
         String _firstLower_3 = StringExtensions.toFirstLower(_name_7);
-        _builder.append(_firstLower_3, "	");
+        _builder.append(_firstLower_3, "\t");
         _builder.append(");");
         _builder.newLineIfNotEmpty();
       }
@@ -3782,14 +3779,14 @@ public class ProcessorDaoGenerator {
       } else {
         String _sernum = Utils.getSernum(d);
         boolean _notEquals = (!Objects.equal(_sernum, null));
-        _or_1 = (_isImplements || _notEquals);
+        _or_1 = _notEquals;
       }
       if (_or_1) {
         _or = true;
       } else {
         String _implPackage = this.getImplPackage(d);
         boolean _notEquals_1 = (!Objects.equal(_implPackage, null));
-        _or = (_or_1 || _notEquals_1);
+        _or = _notEquals_1;
       }
       if (_or) {
         _builder.append("implements ");
@@ -3831,7 +3828,7 @@ public class ProcessorDaoGenerator {
               } else {
                 String _sernum_2 = Utils.getSernum(d);
                 boolean _notEquals_4 = (!Objects.equal(_sernum_2, null));
-                _or_2 = (_isImplements_2 || _notEquals_4);
+                _or_2 = _notEquals_4;
               }
               if (_or_2) {
                 _builder.append(", ");
@@ -4010,8 +4007,7 @@ public class ProcessorDaoGenerator {
   }
   
   public ArrayList<Implements> getImplements(final PojoDao e) {
-    ArrayList<Implements> _arrayList = new ArrayList<Implements>();
-    final ArrayList<Implements> list = _arrayList;
+    final ArrayList<Implements> list = new ArrayList<Implements>();
     EObject _eContainer = e.eContainer();
     EList<EObject> _eContents = _eContainer.eContents();
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);

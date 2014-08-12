@@ -32,7 +32,6 @@ import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
@@ -60,7 +59,7 @@ import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
-import org.sqlproc.dsl.processorDsl.ProcessorDslPackage.Literals;
+import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 import org.sqlproc.dsl.processorDsl.Property;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
 import org.sqlproc.dsl.property.ModelProperty;
@@ -94,12 +93,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
   @Inject
   private ModelProperty modelProperty;
   
-  private final ArrayList<String> F_TYPES = new Function0<ArrayList<String>>() {
-    public ArrayList<String> apply() {
-      ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("set", "update", "values", "where", "columns", "set=opt", "where=opt");
-      return _newArrayList;
-    }
-  }.apply();
+  private final ArrayList<String> F_TYPES = CollectionLiterals.<String>newArrayList("set", "update", "values", "where", "columns", "set=opt", "where=opt");
   
   @Check
   public void checkMetaSqlFtype(final MetaSql metaSql) {
@@ -114,7 +108,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     if (_not) {
       String _ftype_2 = metaSql.getFtype();
       String _plus = ("Invalid ftype : " + _ftype_2);
-      this.error(_plus, Literals.META_SQL__FTYPE);
+      this.error(_plus, ProcessorDslPackage.Literals.META_SQL__FTYPE);
     }
   }
   
@@ -135,8 +129,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
   @Check
   public void checkUniqueMetaStatement(final MetaStatement metaStatement) {
     EObject _rootContainer = EcoreUtil.getRootContainer(metaStatement);
-    boolean _not = (!(_rootContainer instanceof Artifacts));
-    if (_not) {
+    if ((!(_rootContainer instanceof Artifacts))) {
       return;
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(metaStatement);
@@ -149,7 +142,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         _and = false;
       } else {
         boolean _tripleNotEquals = (metaStmt != metaStatement);
-        _and = (_notEquals && _tripleNotEquals);
+        _and = _tripleNotEquals;
       }
       if (_and) {
         boolean _equalsStatement = this.equalsStatement(metaStatement, metaStmt);
@@ -161,7 +154,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           String _plus_2 = (_plus_1 + _type);
           String _plus_3 = (_plus_2 + "]");
           this.error(_plus_3, 
-            Literals.META_STATEMENT__NAME);
+            ProcessorDslPackage.Literals.META_STATEMENT__NAME);
           return;
         }
       }
@@ -171,8 +164,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
   @Check
   public void checkUniqueMappingRule(final MappingRule mappingRule) {
     EObject _rootContainer = EcoreUtil.getRootContainer(mappingRule);
-    boolean _not = (!(_rootContainer instanceof Artifacts));
-    if (_not) {
+    if ((!(_rootContainer instanceof Artifacts))) {
       return;
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(mappingRule);
@@ -185,7 +177,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         _and = false;
       } else {
         boolean _tripleNotEquals = (rule != mappingRule);
-        _and = (_notEquals && _tripleNotEquals);
+        _and = _tripleNotEquals;
       }
       if (_and) {
         boolean _equalsRule = this.equalsRule(mappingRule, rule);
@@ -197,7 +189,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           String _plus_2 = (_plus_1 + _type);
           String _plus_3 = (_plus_2 + "]");
           this.error(_plus_3, 
-            Literals.MAPPING_RULE__NAME);
+            ProcessorDslPackage.Literals.MAPPING_RULE__NAME);
           return;
         }
       }
@@ -207,8 +199,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
   @Check
   public void checkUniqueOptionalFeature(final OptionalFeature optionalFeature) {
     EObject _rootContainer = EcoreUtil.getRootContainer(optionalFeature);
-    boolean _not = (!(_rootContainer instanceof Artifacts));
-    if (_not) {
+    if ((!(_rootContainer instanceof Artifacts))) {
       return;
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(optionalFeature);
@@ -221,7 +212,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         _and = false;
       } else {
         boolean _notEquals_1 = (!Objects.equal(feature, optionalFeature));
-        _and = (_notEquals && _notEquals_1);
+        _and = _notEquals_1;
       }
       if (_and) {
         boolean _equalsFeature = this.equalsFeature(optionalFeature, feature);
@@ -233,7 +224,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           String _plus_2 = (_plus_1 + _type);
           String _plus_3 = (_plus_2 + "]");
           this.error(_plus_3, 
-            Literals.OPTIONAL_FEATURE__NAME);
+            ProcessorDslPackage.Literals.OPTIONAL_FEATURE__NAME);
           return;
         }
       }
@@ -250,18 +241,17 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       String _class = this.getClass(pojoDefinition);
       boolean _checkClass = this.checkClass(_class);
       boolean _not = (!_checkClass);
-      _and = (_isResolvePojo && _not);
+      _and = _not;
     }
     if (_and) {
       String _class_1 = this.getClass(pojoDefinition);
       String _plus = ("Class name : " + _class_1);
       String _plus_1 = (_plus + " not exists");
       this.error(_plus_1, 
-        Literals.POJO_DEFINITION__NAME);
+        ProcessorDslPackage.Literals.POJO_DEFINITION__NAME);
     }
     EObject _rootContainer = EcoreUtil.getRootContainer(pojoDefinition);
-    boolean _not_1 = (!(_rootContainer instanceof Artifacts));
-    if (_not_1) {
+    if ((!(_rootContainer instanceof Artifacts))) {
       return;
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoDefinition);
@@ -274,7 +264,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         _and_1 = false;
       } else {
         boolean _tripleNotEquals = (definition != pojoDefinition);
-        _and_1 = (_notEquals && _tripleNotEquals);
+        _and_1 = _tripleNotEquals;
       }
       if (_and_1) {
         String _name = pojoDefinition.getName();
@@ -284,7 +274,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           String _name_2 = pojoDefinition.getName();
           String _plus_2 = ("Duplicate name : " + _name_2);
           this.error(_plus_2, 
-            Literals.POJO_DEFINITION__NAME);
+            ProcessorDslPackage.Literals.POJO_DEFINITION__NAME);
           return;
         }
       }
@@ -298,7 +288,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       _and = false;
     } else {
       boolean _equals_1 = Objects.equal(statement2, null);
-      _and = (_equals && _equals_1);
+      _and = _equals_1;
     }
     if (_and) {
       return true;
@@ -310,7 +300,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     } else {
       String _name = statement1.getName();
       boolean _equals_3 = Objects.equal(_name, null);
-      _or = (_equals_2 || _equals_3);
+      _or = _equals_3;
     }
     if (_or) {
       return false;
@@ -322,7 +312,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     } else {
       String _name_1 = statement2.getName();
       boolean _equals_5 = Objects.equal(_name_1, null);
-      _or_1 = (_equals_4 || _equals_5);
+      _or_1 = _equals_5;
     }
     if (_or_1) {
       return false;
@@ -337,7 +327,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       String _type = statement1.getType();
       String _type_1 = statement2.getType();
       boolean _equals_7 = _type.equals(_type_1);
-      _and_1 = (_equals_6 && _equals_7);
+      _and_1 = _equals_7;
     }
     if (_and_1) {
       EList<String> _modifiers = statement1.getModifiers();
@@ -354,7 +344,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       _and = false;
     } else {
       boolean _equals_1 = Objects.equal(rule2, null);
-      _and = (_equals && _equals_1);
+      _and = _equals_1;
     }
     if (_and) {
       return true;
@@ -366,7 +356,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     } else {
       String _name = rule1.getName();
       boolean _equals_3 = Objects.equal(_name, null);
-      _or = (_equals_2 || _equals_3);
+      _or = _equals_3;
     }
     if (_or) {
       return false;
@@ -378,7 +368,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     } else {
       String _name_1 = rule2.getName();
       boolean _equals_5 = Objects.equal(_name_1, null);
-      _or_1 = (_equals_4 || _equals_5);
+      _or_1 = _equals_5;
     }
     if (_or_1) {
       return false;
@@ -393,7 +383,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       String _type = rule1.getType();
       String _type_1 = rule2.getType();
       boolean _equals_7 = _type.equals(_type_1);
-      _and_1 = (_equals_6 && _equals_7);
+      _and_1 = _equals_7;
     }
     if (_and_1) {
       EList<String> _modifiers = rule1.getModifiers();
@@ -410,7 +400,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       _and = false;
     } else {
       boolean _equals_1 = Objects.equal(feature2, null);
-      _and = (_equals && _equals_1);
+      _and = _equals_1;
     }
     if (_and) {
       return true;
@@ -422,7 +412,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     } else {
       String _name = feature1.getName();
       boolean _equals_3 = Objects.equal(_name, null);
-      _or = (_equals_2 || _equals_3);
+      _or = _equals_3;
     }
     if (_or) {
       return false;
@@ -434,7 +424,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     } else {
       String _name_1 = feature2.getName();
       boolean _equals_5 = Objects.equal(_name_1, null);
-      _or_1 = (_equals_4 || _equals_5);
+      _or_1 = _equals_5;
     }
     if (_or_1) {
       return false;
@@ -449,7 +439,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       String _type = feature1.getType();
       String _type_1 = feature2.getType();
       boolean _equals_7 = _type.equals(_type_1);
-      _and_1 = (_equals_6 && _equals_7);
+      _and_1 = _equals_7;
     }
     if (_and_1) {
       EList<String> _modifiers = feature1.getModifiers();
@@ -468,7 +458,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       _and = false;
     } else {
       boolean _equals_1 = Objects.equal(filteredModifiers2, null);
-      _and = (_equals && _equals_1);
+      _and = _equals_1;
     }
     if (_and) {
       return true;
@@ -487,7 +477,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       _and_1 = false;
     } else {
       boolean _isEmpty_1 = filteredModifiers2.isEmpty();
-      _and_1 = (_isEmpty && _isEmpty_1);
+      _and_1 = _isEmpty_1;
     }
     if (_and_1) {
       return true;
@@ -530,13 +520,13 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     } else {
       PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
       boolean _equals_1 = Objects.equal(_pojoResolver, null);
-      _or = (_equals || _equals_1);
+      _or = _equals_1;
     }
     if (_or) {
       return true;
     }
     PojoResolver _pojoResolver_1 = this.pojoResolverFactory.getPojoResolver();
-    final Class<? extends Object> clazz = _pojoResolver_1.loadClass(className);
+    final Class<?> clazz = _pojoResolver_1.loadClass(className);
     return (!Objects.equal(clazz, null));
   }
   
@@ -550,7 +540,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       PojoResolver _pojoResolver_1 = this.pojoResolverFactory.getPojoResolver();
       boolean _isResolvePojo = _pojoResolver_1.isResolvePojo(model);
       boolean _not = (!_isResolvePojo);
-      _or = (_equals || _not);
+      _or = _not;
     }
     if (_or) {
       return false;
@@ -590,38 +580,31 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoEntity _xifexpression = null;
     boolean _notEquals = (!Objects.equal(entityName, null));
     if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
-      PojoEntity _findEntity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-      _xifexpression = _findEntity;
+      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
     }
     final PojoEntity entity = _xifexpression;
     boolean _notEquals_1 = (!Objects.equal(entity, null));
     if (_notEquals_1) {
       ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, columnName);
-      final ValidationResult checkEntityProperty = _checkEntityProperty;
-      boolean _matched = false;
-      if (!_matched) {
-        if (Objects.equal(checkEntityProperty,ValidationResult.WARNING)) {
-          _matched=true;
-          String _plus = ("Problem property : " + columnName);
-          String _plus_1 = (_plus + "[");
-          String _name = entity.getName();
-          String _plus_2 = (_plus_1 + _name);
-          String _plus_3 = (_plus_2 + "]");
-          this.warning(_plus_3, 
-            Literals.COLUMN__COLUMNS);
-        }
-      }
-      if (!_matched) {
-        if (Objects.equal(checkEntityProperty,ValidationResult.ERROR)) {
-          _matched=true;
-          String _plus_4 = ("Cannot find property : " + columnName);
-          String _plus_5 = (_plus_4 + "[");
-          String _name_1 = entity.getName();
-          String _plus_6 = (_plus_5 + _name_1);
-          String _plus_7 = (_plus_6 + "]");
-          this.error(_plus_7, 
-            Literals.COLUMN__COLUMNS);
+      if (_checkEntityProperty != null) {
+        switch (_checkEntityProperty) {
+          case WARNING:
+            String _name = entity.getName();
+            String _plus = ((("Problem property : " + columnName) + "[") + _name);
+            String _plus_1 = (_plus + "]");
+            this.warning(_plus_1, 
+              ProcessorDslPackage.Literals.COLUMN__COLUMNS);
+            break;
+          case ERROR:
+            String _name_1 = entity.getName();
+            String _plus_2 = ((("Cannot find property : " + columnName) + "[") + _name_1);
+            String _plus_3 = (_plus_2 + "]");
+            this.error(_plus_3, 
+              ProcessorDslPackage.Literals.COLUMN__COLUMNS);
+            break;
+          default:
+            break;
         }
       }
       return;
@@ -630,43 +613,31 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoDefinition _xifexpression_1 = null;
     boolean _notEquals_2 = (!Objects.equal(pojoName, null));
     if (_notEquals_2) {
-      IScope _scope_1 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
-      PojoDefinition _findPojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-      _xifexpression_1 = _findPojo;
+      IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
+      _xifexpression_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
     }
     final PojoDefinition pojo = _xifexpression_1;
     String _xifexpression_2 = null;
     boolean _notEquals_3 = (!Objects.equal(pojo, null));
     if (_notEquals_3) {
-      String _class = this.getClass(pojo);
-      _xifexpression_2 = _class;
+      _xifexpression_2 = this.getClass(pojo);
     }
     final String columnUsageClass = _xifexpression_2;
     boolean _notEquals_4 = (!Objects.equal(columnUsageClass, null));
     if (_notEquals_4) {
       ValidationResult _checkClassProperty = this.checkClassProperty(columnUsageClass, columnName);
-      final ValidationResult checkClassProperty = _checkClassProperty;
-      boolean _matched_1 = false;
-      if (!_matched_1) {
-        if (Objects.equal(checkClassProperty,ValidationResult.WARNING)) {
-          _matched_1=true;
-          String _plus_8 = ("Problem property : " + columnName);
-          String _plus_9 = (_plus_8 + "[");
-          String _plus_10 = (_plus_9 + columnUsageClass);
-          String _plus_11 = (_plus_10 + "]");
-          this.warning(_plus_11, 
-            Literals.COLUMN__COLUMNS);
-        }
-      }
-      if (!_matched_1) {
-        if (Objects.equal(checkClassProperty,ValidationResult.ERROR)) {
-          _matched_1=true;
-          String _plus_12 = ("Cannot find property : " + columnName);
-          String _plus_13 = (_plus_12 + "[");
-          String _plus_14 = (_plus_13 + columnUsageClass);
-          String _plus_15 = (_plus_14 + "]");
-          this.error(_plus_15, 
-            Literals.COLUMN__COLUMNS);
+      if (_checkClassProperty != null) {
+        switch (_checkClassProperty) {
+          case WARNING:
+            this.warning((((("Problem property : " + columnName) + "[") + columnUsageClass) + "]"), 
+              ProcessorDslPackage.Literals.COLUMN__COLUMNS);
+            break;
+          case ERROR:
+            this.error((((("Cannot find property : " + columnName) + "[") + columnUsageClass) + "]"), 
+              ProcessorDslPackage.Literals.COLUMN__COLUMNS);
+            break;
+          default:
+            break;
         }
       }
       return;
@@ -674,8 +645,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
     boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
     if (_notEquals_5) {
-      String _plus_16 = ("Cannot check result class attribute : " + columnName);
-      this.error(_plus_16, Literals.COLUMN__COLUMNS);
+      this.error(("Cannot check result class attribute : " + columnName), ProcessorDslPackage.Literals.COLUMN__COLUMNS);
     }
   }
   
@@ -693,38 +663,31 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoEntity _xifexpression = null;
     boolean _notEquals = (!Objects.equal(entityName, null));
     if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
-      PojoEntity _findEntity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-      _xifexpression = _findEntity;
+      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
     }
     final PojoEntity entity = _xifexpression;
     boolean _notEquals_1 = (!Objects.equal(entity, null));
     if (_notEquals_1) {
       ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, identifierName);
-      final ValidationResult checkEntityProperty = _checkEntityProperty;
-      boolean _matched = false;
-      if (!_matched) {
-        if (Objects.equal(checkEntityProperty,ValidationResult.WARNING)) {
-          _matched=true;
-          String _plus = ("Problem property : " + identifierName);
-          String _plus_1 = (_plus + "[");
-          String _name = entity.getName();
-          String _plus_2 = (_plus_1 + _name);
-          String _plus_3 = (_plus_2 + "]");
-          this.warning(_plus_3, 
-            Literals.IDENTIFIER__NAME);
-        }
-      }
-      if (!_matched) {
-        if (Objects.equal(checkEntityProperty,ValidationResult.ERROR)) {
-          _matched=true;
-          String _plus_4 = ("Cannot find property : " + identifierName);
-          String _plus_5 = (_plus_4 + "[");
-          String _name_1 = entity.getName();
-          String _plus_6 = (_plus_5 + _name_1);
-          String _plus_7 = (_plus_6 + "]");
-          this.error(_plus_7, 
-            Literals.IDENTIFIER__NAME);
+      if (_checkEntityProperty != null) {
+        switch (_checkEntityProperty) {
+          case WARNING:
+            String _name = entity.getName();
+            String _plus = ((("Problem property : " + identifierName) + "[") + _name);
+            String _plus_1 = (_plus + "]");
+            this.warning(_plus_1, 
+              ProcessorDslPackage.Literals.IDENTIFIER__NAME);
+            break;
+          case ERROR:
+            String _name_1 = entity.getName();
+            String _plus_2 = ((("Cannot find property : " + identifierName) + "[") + _name_1);
+            String _plus_3 = (_plus_2 + "]");
+            this.error(_plus_3, 
+              ProcessorDslPackage.Literals.IDENTIFIER__NAME);
+            break;
+          default:
+            break;
         }
       }
       return;
@@ -733,43 +696,31 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoDefinition _xifexpression_1 = null;
     boolean _notEquals_2 = (!Objects.equal(pojoName, null));
     if (_notEquals_2) {
-      IScope _scope_1 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
-      PojoDefinition _findPojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-      _xifexpression_1 = _findPojo;
+      IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
+      _xifexpression_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
     }
     final PojoDefinition pojo = _xifexpression_1;
     String _xifexpression_2 = null;
     boolean _notEquals_3 = (!Objects.equal(pojo, null));
     if (_notEquals_3) {
-      String _class = this.getClass(pojo);
-      _xifexpression_2 = _class;
+      _xifexpression_2 = this.getClass(pojo);
     }
     final String identifierUsageClass = _xifexpression_2;
     boolean _notEquals_4 = (!Objects.equal(identifierUsageClass, null));
     if (_notEquals_4) {
       ValidationResult _checkClassProperty = this.checkClassProperty(identifierUsageClass, identifierName);
-      final ValidationResult checkClassProperty = _checkClassProperty;
-      boolean _matched_1 = false;
-      if (!_matched_1) {
-        if (Objects.equal(checkClassProperty,ValidationResult.WARNING)) {
-          _matched_1=true;
-          String _plus_8 = ("Problem property : " + identifierName);
-          String _plus_9 = (_plus_8 + "[");
-          String _plus_10 = (_plus_9 + identifierUsageClass);
-          String _plus_11 = (_plus_10 + "]");
-          this.warning(_plus_11, 
-            Literals.IDENTIFIER__NAME);
-        }
-      }
-      if (!_matched_1) {
-        if (Objects.equal(checkClassProperty,ValidationResult.ERROR)) {
-          _matched_1=true;
-          String _plus_12 = ("Cannot find property : " + identifierName);
-          String _plus_13 = (_plus_12 + "[");
-          String _plus_14 = (_plus_13 + identifierUsageClass);
-          String _plus_15 = (_plus_14 + "]");
-          this.error(_plus_15, 
-            Literals.IDENTIFIER__NAME);
+      if (_checkClassProperty != null) {
+        switch (_checkClassProperty) {
+          case WARNING:
+            this.warning((((("Problem property : " + identifierName) + "[") + identifierUsageClass) + "]"), 
+              ProcessorDslPackage.Literals.IDENTIFIER__NAME);
+            break;
+          case ERROR:
+            this.error((((("Cannot find property : " + identifierName) + "[") + identifierUsageClass) + "]"), 
+              ProcessorDslPackage.Literals.IDENTIFIER__NAME);
+            break;
+          default:
+            break;
         }
       }
       return;
@@ -777,9 +728,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
     boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
     if (_notEquals_5) {
-      String _plus_16 = ("Cannot check input form attribute : " + identifierName);
-      this.error(_plus_16, 
-        Literals.IDENTIFIER__NAME);
+      this.error(("Cannot check input form attribute : " + identifierName), 
+        ProcessorDslPackage.Literals.IDENTIFIER__NAME);
     }
   }
   
@@ -796,41 +746,38 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoEntity _xifexpression = null;
     boolean _notEquals = (!Objects.equal(entityName, null));
     if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
-      PojoEntity _findEntity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-      _xifexpression = _findEntity;
+      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
     }
     final PojoEntity entity = _xifexpression;
     boolean _notEquals_1 = (!Objects.equal(entity, null));
     if (_notEquals_1) {
       String _name = constant.getName();
       ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, _name);
-      final ValidationResult checkEntityProperty = _checkEntityProperty;
-      boolean _matched = false;
-      if (!_matched) {
-        if (Objects.equal(checkEntityProperty,ValidationResult.WARNING)) {
-          _matched=true;
-          String _name_1 = constant.getName();
-          String _plus = ("Problem property : " + _name_1);
-          String _plus_1 = (_plus + "[");
-          String _name_2 = entity.getName();
-          String _plus_2 = (_plus_1 + _name_2);
-          String _plus_3 = (_plus_2 + "]");
-          this.warning(_plus_3, 
-            Literals.CONSTANT__NAME);
-        }
-      }
-      if (!_matched) {
-        if (Objects.equal(checkEntityProperty,ValidationResult.ERROR)) {
-          _matched=true;
-          String _name_3 = constant.getName();
-          String _plus_4 = ("Cannot find property : " + _name_3);
-          String _plus_5 = (_plus_4 + "[");
-          String _name_4 = entity.getName();
-          String _plus_6 = (_plus_5 + _name_4);
-          String _plus_7 = (_plus_6 + "]");
-          this.error(_plus_7, 
-            Literals.CONSTANT__NAME);
+      if (_checkEntityProperty != null) {
+        switch (_checkEntityProperty) {
+          case WARNING:
+            String _name_1 = constant.getName();
+            String _plus = ("Problem property : " + _name_1);
+            String _plus_1 = (_plus + "[");
+            String _name_2 = entity.getName();
+            String _plus_2 = (_plus_1 + _name_2);
+            String _plus_3 = (_plus_2 + "]");
+            this.warning(_plus_3, 
+              ProcessorDslPackage.Literals.CONSTANT__NAME);
+            break;
+          case ERROR:
+            String _name_3 = constant.getName();
+            String _plus_4 = ("Cannot find property : " + _name_3);
+            String _plus_5 = (_plus_4 + "[");
+            String _name_4 = entity.getName();
+            String _plus_6 = (_plus_5 + _name_4);
+            String _plus_7 = (_plus_6 + "]");
+            this.error(_plus_7, 
+              ProcessorDslPackage.Literals.CONSTANT__NAME);
+            break;
+          default:
+            break;
         }
       }
       return;
@@ -839,46 +786,42 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoDefinition _xifexpression_1 = null;
     boolean _notEquals_2 = (!Objects.equal(pojoName, null));
     if (_notEquals_2) {
-      IScope _scope_1 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
-      PojoDefinition _findPojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-      _xifexpression_1 = _findPojo;
+      IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
+      _xifexpression_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
     }
     final PojoDefinition pojo = _xifexpression_1;
     String _xifexpression_2 = null;
     boolean _notEquals_3 = (!Objects.equal(pojo, null));
     if (_notEquals_3) {
-      String _class = this.getClass(pojo);
-      _xifexpression_2 = _class;
+      _xifexpression_2 = this.getClass(pojo);
     }
     final String constantUsageClass = _xifexpression_2;
     boolean _notEquals_4 = (!Objects.equal(constantUsageClass, null));
     if (_notEquals_4) {
       String _name_5 = constant.getName();
       ValidationResult _checkClassProperty = this.checkClassProperty(constantUsageClass, _name_5);
-      final ValidationResult checkClassProperty = _checkClassProperty;
-      boolean _matched_1 = false;
-      if (!_matched_1) {
-        if (Objects.equal(checkClassProperty,ValidationResult.WARNING)) {
-          _matched_1=true;
-          String _name_6 = constant.getName();
-          String _plus_8 = ("Problem property : " + _name_6);
-          String _plus_9 = (_plus_8 + "[");
-          String _plus_10 = (_plus_9 + constantUsageClass);
-          String _plus_11 = (_plus_10 + "]");
-          this.warning(_plus_11, 
-            Literals.CONSTANT__NAME);
-        }
-      }
-      if (!_matched_1) {
-        if (Objects.equal(checkClassProperty,ValidationResult.ERROR)) {
-          _matched_1=true;
-          String _name_7 = constant.getName();
-          String _plus_12 = ("Cannot find property : " + _name_7);
-          String _plus_13 = (_plus_12 + "[");
-          String _plus_14 = (_plus_13 + constantUsageClass);
-          String _plus_15 = (_plus_14 + "]");
-          this.error(_plus_15, 
-            Literals.CONSTANT__NAME);
+      if (_checkClassProperty != null) {
+        switch (_checkClassProperty) {
+          case WARNING:
+            String _name_6 = constant.getName();
+            String _plus_8 = ("Problem property : " + _name_6);
+            String _plus_9 = (_plus_8 + "[");
+            String _plus_10 = (_plus_9 + constantUsageClass);
+            String _plus_11 = (_plus_10 + "]");
+            this.warning(_plus_11, 
+              ProcessorDslPackage.Literals.CONSTANT__NAME);
+            break;
+          case ERROR:
+            String _name_7 = constant.getName();
+            String _plus_12 = ("Cannot find property : " + _name_7);
+            String _plus_13 = (_plus_12 + "[");
+            String _plus_14 = (_plus_13 + constantUsageClass);
+            String _plus_15 = (_plus_14 + "]");
+            this.error(_plus_15, 
+              ProcessorDslPackage.Literals.CONSTANT__NAME);
+            break;
+          default:
+            break;
         }
       }
       return;
@@ -889,7 +832,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       String _name_8 = constant.getName();
       String _plus_16 = ("Cannot check constant form attribute : " + _name_8);
       this.error(_plus_16, 
-        Literals.CONSTANT__NAME);
+        ProcessorDslPackage.Literals.CONSTANT__NAME);
     }
   }
   
@@ -911,38 +854,31 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoEntity _xifexpression = null;
     boolean _notEquals = (!Objects.equal(entityName, null));
     if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
-      PojoEntity _findEntity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-      _xifexpression = _findEntity;
+      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
     }
     final PojoEntity entity = _xifexpression;
     boolean _notEquals_1 = (!Objects.equal(entity, null));
     if (_notEquals_1) {
       ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, columnName);
-      final ValidationResult checkEntityProperty = _checkEntityProperty;
-      boolean _matched = false;
-      if (!_matched) {
-        if (Objects.equal(checkEntityProperty,ValidationResult.WARNING)) {
-          _matched=true;
-          String _plus = ("Problem property : " + columnName);
-          String _plus_1 = (_plus + "[");
-          String _name = entity.getName();
-          String _plus_2 = (_plus_1 + _name);
-          String _plus_3 = (_plus_2 + "]");
-          this.warning(_plus_3, 
-            Literals.MAPPING_COLUMN__ITEMS);
-        }
-      }
-      if (!_matched) {
-        if (Objects.equal(checkEntityProperty,ValidationResult.ERROR)) {
-          _matched=true;
-          String _plus_4 = ("Cannot find property : " + columnName);
-          String _plus_5 = (_plus_4 + "[");
-          String _name_1 = entity.getName();
-          String _plus_6 = (_plus_5 + _name_1);
-          String _plus_7 = (_plus_6 + "]");
-          this.error(_plus_7, 
-            Literals.MAPPING_COLUMN__ITEMS);
+      if (_checkEntityProperty != null) {
+        switch (_checkEntityProperty) {
+          case WARNING:
+            String _name = entity.getName();
+            String _plus = ((("Problem property : " + columnName) + "[") + _name);
+            String _plus_1 = (_plus + "]");
+            this.warning(_plus_1, 
+              ProcessorDslPackage.Literals.MAPPING_COLUMN__ITEMS);
+            break;
+          case ERROR:
+            String _name_1 = entity.getName();
+            String _plus_2 = ((("Cannot find property : " + columnName) + "[") + _name_1);
+            String _plus_3 = (_plus_2 + "]");
+            this.error(_plus_3, 
+              ProcessorDslPackage.Literals.MAPPING_COLUMN__ITEMS);
+            break;
+          default:
+            break;
         }
       }
       return;
@@ -951,43 +887,31 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoDefinition _xifexpression_1 = null;
     boolean _notEquals_2 = (!Objects.equal(pojoName, null));
     if (_notEquals_2) {
-      IScope _scope_1 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
-      PojoDefinition _findPojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-      _xifexpression_1 = _findPojo;
+      IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
+      _xifexpression_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
     }
     final PojoDefinition pojo = _xifexpression_1;
     String _xifexpression_2 = null;
     boolean _notEquals_3 = (!Objects.equal(pojo, null));
     if (_notEquals_3) {
-      String _class = this.getClass(pojo);
-      _xifexpression_2 = _class;
+      _xifexpression_2 = this.getClass(pojo);
     }
     final String mappingUsageClass = _xifexpression_2;
     boolean _notEquals_4 = (!Objects.equal(mappingUsageClass, null));
     if (_notEquals_4) {
       ValidationResult _checkClassProperty = this.checkClassProperty(mappingUsageClass, columnName);
-      final ValidationResult checkClassProperty = _checkClassProperty;
-      boolean _matched_1 = false;
-      if (!_matched_1) {
-        if (Objects.equal(checkClassProperty,ValidationResult.WARNING)) {
-          _matched_1=true;
-          String _plus_8 = ("Problem property : " + columnName);
-          String _plus_9 = (_plus_8 + "[");
-          String _plus_10 = (_plus_9 + mappingUsageClass);
-          String _plus_11 = (_plus_10 + "]");
-          this.warning(_plus_11, 
-            Literals.MAPPING_COLUMN__ITEMS);
-        }
-      }
-      if (!_matched_1) {
-        if (Objects.equal(checkClassProperty,ValidationResult.ERROR)) {
-          _matched_1=true;
-          String _plus_12 = ("Cannot find property : " + columnName);
-          String _plus_13 = (_plus_12 + "[");
-          String _plus_14 = (_plus_13 + mappingUsageClass);
-          String _plus_15 = (_plus_14 + "]");
-          this.error(_plus_15, 
-            Literals.MAPPING_COLUMN__ITEMS);
+      if (_checkClassProperty != null) {
+        switch (_checkClassProperty) {
+          case WARNING:
+            this.warning((((("Problem property : " + columnName) + "[") + mappingUsageClass) + "]"), 
+              ProcessorDslPackage.Literals.MAPPING_COLUMN__ITEMS);
+            break;
+          case ERROR:
+            this.error((((("Cannot find property : " + columnName) + "[") + mappingUsageClass) + "]"), 
+              ProcessorDslPackage.Literals.MAPPING_COLUMN__ITEMS);
+            break;
+          default:
+            break;
         }
       }
       return;
@@ -995,9 +919,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
     boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
     if (_notEquals_5) {
-      String _plus_16 = ("Cannot check result class attribute : " + columnName);
-      this.error(_plus_16, 
-        Literals.MAPPING_COLUMN__ITEMS);
+      this.error(("Cannot check result class attribute : " + columnName), 
+        ProcessorDslPackage.Literals.MAPPING_COLUMN__ITEMS);
     }
   }
   
@@ -1012,7 +935,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     } else {
       EList<String> _modifiers_1 = statement.getModifiers();
       boolean _isEmpty = _modifiers_1.isEmpty();
-      _or = (_equals || _isEmpty);
+      _or = _isEmpty;
     }
     if (_or) {
       return;
@@ -1022,113 +945,82 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     for (final String modifier : _modifiers_2) {
       {
         int ix = modifier.indexOf("=");
-        boolean _greaterThan = (ix > 0);
-        if (_greaterThan) {
+        if ((ix > 0)) {
           final String key = modifier.substring(0, ix);
-          int _plus = (ix + 1);
-          String value = modifier.substring(_plus);
+          String value = modifier.substring((ix + 1));
           boolean _equals_1 = Constants.IDENTIFIER_USAGE_EXTENDED.equals(key);
           if (_equals_1) {
-            IScope _scope = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
+            IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
             final PojoEntity entity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, value);
             boolean _equals_2 = Objects.equal(entity, null);
             if (_equals_2) {
-              String _plus_1 = ("Cannot find entity : " + value);
-              String _plus_2 = (_plus_1 + "[");
-              String _plus_3 = (_plus_2 + Constants.IDENTIFIER_USAGE_EXTENDED);
-              String _plus_4 = (_plus_3 + "]");
-              this.error(_plus_4, 
-                Literals.META_STATEMENT__MODIFIERS, index);
+              this.error((((("Cannot find entity : " + value) + "[") + Constants.IDENTIFIER_USAGE_EXTENDED) + "]"), 
+                ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index);
             }
           } else {
             boolean _equals_3 = Constants.IDENTIFIER_USAGE.equals(key);
             if (_equals_3) {
-              IScope _scope_1 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
+              IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
               final PojoDefinition pojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, value);
               boolean _equals_4 = Objects.equal(pojo, null);
               if (_equals_4) {
-                String _plus_5 = ("Cannot find pojo : " + value);
-                String _plus_6 = (_plus_5 + "[");
-                String _plus_7 = (_plus_6 + Constants.IDENTIFIER_USAGE);
-                String _plus_8 = (_plus_7 + "]");
-                this.error(_plus_8, 
-                  Literals.META_STATEMENT__MODIFIERS, index);
+                this.error((((("Cannot find pojo : " + value) + "[") + Constants.IDENTIFIER_USAGE) + "]"), 
+                  ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index);
               }
             } else {
               boolean _equals_5 = Constants.COLUMN_USAGE_EXTENDED.equals(key);
               if (_equals_5) {
-                IScope _scope_2 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
+                IScope _scope_2 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
                 final PojoEntity entity_1 = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope_2, value);
                 boolean _equals_6 = Objects.equal(entity_1, null);
                 if (_equals_6) {
-                  String _plus_9 = ("Cannot find entity : " + value);
-                  String _plus_10 = (_plus_9 + "[");
-                  String _plus_11 = (_plus_10 + Constants.COLUMN_USAGE_EXTENDED);
-                  String _plus_12 = (_plus_11 + "]");
-                  this.error(_plus_12, 
-                    Literals.META_STATEMENT__MODIFIERS, index);
+                  this.error((((("Cannot find entity : " + value) + "[") + Constants.COLUMN_USAGE_EXTENDED) + "]"), 
+                    ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index);
                 }
               } else {
                 boolean _equals_7 = Constants.COLUMN_USAGE.equals(key);
                 if (_equals_7) {
-                  IScope _scope_3 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
+                  IScope _scope_3 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
                   final PojoDefinition pojo_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_3, value);
                   boolean _equals_8 = Objects.equal(pojo_1, null);
                   if (_equals_8) {
-                    String _plus_13 = ("Cannot find pojo : " + value);
-                    String _plus_14 = (_plus_13 + "[");
-                    String _plus_15 = (_plus_14 + Constants.COLUMN_USAGE);
-                    String _plus_16 = (_plus_15 + "]");
-                    this.error(_plus_16, 
-                      Literals.META_STATEMENT__MODIFIERS, index);
+                    this.error((((("Cannot find pojo : " + value) + "[") + Constants.COLUMN_USAGE) + "]"), 
+                      ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index);
                   }
                 } else {
                   boolean _equals_9 = Constants.CONSTANT_USAGE_EXTENDED.equals(key);
                   if (_equals_9) {
-                    IScope _scope_4 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
+                    IScope _scope_4 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
                     final PojoEntity entity_2 = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope_4, value);
                     boolean _equals_10 = Objects.equal(entity_2, null);
                     if (_equals_10) {
-                      String _plus_17 = ("Cannot find entity : " + value);
-                      String _plus_18 = (_plus_17 + "[");
-                      String _plus_19 = (_plus_18 + Constants.CONSTANT_USAGE_EXTENDED);
-                      String _plus_20 = (_plus_19 + "]");
-                      this.error(_plus_20, 
-                        Literals.META_STATEMENT__MODIFIERS, index);
+                      this.error((((("Cannot find entity : " + value) + "[") + Constants.CONSTANT_USAGE_EXTENDED) + "]"), 
+                        ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index);
                     }
                   } else {
                     boolean _equals_11 = Constants.CONSTANT_USAGE.equals(key);
                     if (_equals_11) {
-                      IScope _scope_5 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
+                      IScope _scope_5 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
                       final PojoDefinition pojo_2 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_5, value);
                       boolean _equals_12 = Objects.equal(pojo_2, null);
                       if (_equals_12) {
-                        String _plus_21 = ("Cannot find pojo : " + value);
-                        String _plus_22 = (_plus_21 + "[");
-                        String _plus_23 = (_plus_22 + Constants.CONSTANT_USAGE);
-                        String _plus_24 = (_plus_23 + "]");
-                        this.error(_plus_24, 
-                          Literals.META_STATEMENT__MODIFIERS, index);
+                        this.error((((("Cannot find pojo : " + value) + "[") + Constants.CONSTANT_USAGE) + "]"), 
+                          ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index);
                       }
                     } else {
                       boolean _equals_13 = Constants.TABLE_USAGE.equals(key);
                       if (_equals_13) {
                         int ix1 = value.indexOf("=");
-                        boolean _greaterEqualsThan = (ix1 >= 0);
-                        if (_greaterEqualsThan) {
+                        if ((ix1 >= 0)) {
                           String _substring = value.substring(0, ix1);
                           value = _substring;
                         }
-                        IScope _scope_6 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__TABLES);
+                        IScope _scope_6 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
                         final TableDefinition table = Utils.findTable(this.qualifiedNameConverter, artifacts, _scope_6, value);
                         boolean _equals_14 = Objects.equal(table, null);
                         if (_equals_14) {
-                          String _plus_25 = ("Cannot find table : " + value);
-                          String _plus_26 = (_plus_25 + "[");
-                          String _plus_27 = (_plus_26 + Constants.TABLE_USAGE);
-                          String _plus_28 = (_plus_27 + "]");
-                          this.error(_plus_28, 
-                            Literals.META_STATEMENT__MODIFIERS, index);
+                          this.error((((("Cannot find table : " + value) + "[") + Constants.TABLE_USAGE) + "]"), 
+                            ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index);
                         }
                       }
                     }
@@ -1137,8 +1029,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
               }
             }
           }
-          int _plus_29 = (index + 1);
-          index = _plus_29;
+          index = (index + 1);
         }
       }
     }
@@ -1154,7 +1045,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     } else {
       EList<String> _modifiers_1 = rule.getModifiers();
       boolean _isEmpty = _modifiers_1.isEmpty();
-      _or = (_equals || _isEmpty);
+      _or = _isEmpty;
     }
     if (_or) {
       return;
@@ -1165,42 +1056,31 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     for (final String modifier : _modifiers_2) {
       {
         int ix = modifier.indexOf("=");
-        boolean _greaterThan = (ix > 0);
-        if (_greaterThan) {
+        if ((ix > 0)) {
           final String key = modifier.substring(0, ix);
-          int _plus = (ix + 1);
-          final String value = modifier.substring(_plus);
+          final String value = modifier.substring((ix + 1));
           boolean _equals_1 = Constants.MAPPING_USAGE_EXTENDED.equals(key);
           if (_equals_1) {
-            IScope _scope = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
+            IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
             final PojoEntity entity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, value);
             boolean _equals_2 = Objects.equal(entity, null);
             if (_equals_2) {
-              String _plus_1 = ("Cannot find entity : " + value);
-              String _plus_2 = (_plus_1 + "[");
-              String _plus_3 = (_plus_2 + Constants.MAPPING_USAGE_EXTENDED);
-              String _plus_4 = (_plus_3 + "]");
-              this.error(_plus_4, 
-                Literals.MAPPING_RULE__MODIFIERS, index);
+              this.error((((("Cannot find entity : " + value) + "[") + Constants.MAPPING_USAGE_EXTENDED) + "]"), 
+                ProcessorDslPackage.Literals.MAPPING_RULE__MODIFIERS, index);
             }
           } else {
             boolean _equals_3 = Constants.MAPPING_USAGE.equals(key);
             if (_equals_3) {
-              IScope _scope_1 = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJOS);
+              IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
               final PojoDefinition pojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, value);
               boolean _equals_4 = Objects.equal(pojo, null);
               if (_equals_4) {
-                String _plus_5 = ("Cannot find pojo : " + value);
-                String _plus_6 = (_plus_5 + "[");
-                String _plus_7 = (_plus_6 + Constants.MAPPING_USAGE);
-                String _plus_8 = (_plus_7 + "]");
-                this.error(_plus_8, 
-                  Literals.MAPPING_RULE__MODIFIERS, index);
+                this.error((((("Cannot find pojo : " + value) + "[") + Constants.MAPPING_USAGE) + "]"), 
+                  ProcessorDslPackage.Literals.MAPPING_RULE__MODIFIERS, index);
               }
             }
           }
-          int _plus_9 = (index + 1);
-          index = _plus_9;
+          index = (index + 1);
         }
       }
     }
@@ -1213,8 +1093,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     }
     int _length = param.length();
     int i = (_length - 1);
-    boolean _greaterEqualsThan = (i >= 0);
-    boolean _while = _greaterEqualsThan;
+    boolean _while = (i >= 0);
     while (_while) {
       {
         char _charAt = param.charAt(i);
@@ -1223,16 +1102,14 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         if (_not) {
           return false;
         }
-        int _minus = (i - 1);
-        i = _minus;
+        i = (i - 1);
       }
-      boolean _greaterEqualsThan_1 = (i >= 0);
-      _while = _greaterEqualsThan_1;
+      _while = (i >= 0);
     }
     return true;
   }
   
-  public boolean isPrimitive(final Class<? extends Object> clazz) {
+  public boolean isPrimitive(final Class<?> clazz) {
     boolean _equals = Objects.equal(clazz, null);
     if (_equals) {
       return true;
@@ -1284,14 +1161,14 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       _or_1 = true;
     } else {
       boolean _isNumber = this.isNumber(property);
-      _or_1 = (_equals || _isNumber);
+      _or_1 = _isNumber;
     }
     if (_or_1) {
       _or = true;
     } else {
       PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
       boolean _equals_1 = Objects.equal(_pojoResolver, null);
-      _or = (_or_1 || _equals_1);
+      _or = _equals_1;
     }
     if (_or) {
       return ValidationResult.OK;
@@ -1308,11 +1185,9 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     }
     String checkProperty = property;
     int pos1 = checkProperty.indexOf("=");
-    boolean _greaterThan = (pos1 > 0);
-    if (_greaterThan) {
+    if ((pos1 > 0)) {
       int pos2 = checkProperty.indexOf(".", pos1);
-      boolean _greaterThan_1 = (pos2 > pos1);
-      if (_greaterThan_1) {
+      if ((pos2 > pos1)) {
         String _substring = checkProperty.substring(0, pos1);
         String _substring_1 = checkProperty.substring(pos2);
         String _plus = (_substring + _substring_1);
@@ -1322,28 +1197,25 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     String innerProperty = ((String) null);
     int _indexOf = checkProperty.indexOf(".");
     pos1 = _indexOf;
-    boolean _greaterThan_2 = (pos1 > 0);
-    if (_greaterThan_2) {
-      int _plus_1 = (pos1 + 1);
-      String _substring_2 = checkProperty.substring(_plus_1);
+    if ((pos1 > 0)) {
+      String _substring_2 = checkProperty.substring((pos1 + 1));
       innerProperty = _substring_2;
       String _substring_3 = checkProperty.substring(0, pos1);
       checkProperty = _substring_3;
     }
     final String _checkProperty = checkProperty;
     final PropertyDescriptor[] _converted_descriptors = (PropertyDescriptor[])descriptors;
-    final Function1<PropertyDescriptor,Boolean> _function = new Function1<PropertyDescriptor,Boolean>() {
+    final Function1<PropertyDescriptor, Boolean> _function = new Function1<PropertyDescriptor, Boolean>() {
       public Boolean apply(final PropertyDescriptor descriptor) {
         String _name = descriptor.getName();
-        boolean _equals = Objects.equal(_name, _checkProperty);
-        return Boolean.valueOf(_equals);
+        return Boolean.valueOf(Objects.equal(_name, _checkProperty));
       }
     };
     PropertyDescriptor innerDesriptor = IterableExtensions.<PropertyDescriptor>findFirst(((Iterable<PropertyDescriptor>)Conversions.doWrapArray(_converted_descriptors)), _function);
     boolean _equals_4 = Objects.equal(innerDesriptor, null);
     if (_equals_4) {
       PojoResolver _pojoResolver_2 = this.pojoResolverFactory.getPojoResolver();
-      final Class<? extends Object> clazz = _pojoResolver_2.loadClass(className);
+      final Class<?> clazz = _pojoResolver_2.loadClass(className);
       boolean _and = false;
       boolean _notEquals = (!Objects.equal(clazz, null));
       if (!_notEquals) {
@@ -1351,7 +1223,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       } else {
         int _modifiers = clazz.getModifiers();
         boolean _isAbstract = Modifier.isAbstract(_modifiers);
-        _and = (_notEquals && _isAbstract);
+        _and = _isAbstract;
       }
       if (_and) {
         return ValidationResult.WARNING;
@@ -1360,7 +1232,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     }
     boolean _notEquals_1 = (!Objects.equal(innerProperty, null));
     if (_notEquals_1) {
-      Class<? extends Object> innerClass = innerDesriptor.getPropertyType();
+      Class<?> innerClass = innerDesriptor.getPropertyType();
       boolean _isArray = innerClass.isArray();
       if (_isArray) {
         Method _readMethod = innerDesriptor.getReadMethod();
@@ -1375,7 +1247,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           Type[] _actualTypeArguments_1 = type.getActualTypeArguments();
           int _length = _actualTypeArguments_1.length;
           boolean _equals_6 = (_length == 0);
-          _or_2 = (_equals_5 || _equals_6);
+          _or_2 = _equals_6;
         }
         if (_or_2) {
           return ValidationResult.WARNING;
@@ -1404,7 +1276,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
             Type[] _actualTypeArguments_4 = type_1.getActualTypeArguments();
             int _length_1 = _actualTypeArguments_4.length;
             boolean _equals_8 = (_length_1 == 0);
-            _or_3 = (_equals_7 || _equals_8);
+            _or_3 = _equals_8;
           }
           if (_or_3) {
             return ValidationResult.WARNING;
@@ -1438,18 +1310,16 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       _or = true;
     } else {
       boolean _isNumber = this.isNumber(property);
-      _or = (_equals || _isNumber);
+      _or = _isNumber;
     }
     if (_or) {
       return ValidationResult.OK;
     }
     String checkProperty = property;
     int pos1 = checkProperty.indexOf("=");
-    boolean _greaterThan = (pos1 > 0);
-    if (_greaterThan) {
+    if ((pos1 > 0)) {
       int pos2 = checkProperty.indexOf(".", pos1);
-      boolean _greaterThan_1 = (pos2 > pos1);
-      if (_greaterThan_1) {
+      if ((pos2 > pos1)) {
         String _substring = checkProperty.substring(0, pos1);
         String _substring_1 = checkProperty.substring(pos2);
         String _plus = (_substring + _substring_1);
@@ -1459,10 +1329,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     String innerProperty = ((String) null);
     int _indexOf = checkProperty.indexOf(".");
     pos1 = _indexOf;
-    boolean _greaterThan_2 = (pos1 > 0);
-    if (_greaterThan_2) {
-      int _plus_1 = (pos1 + 1);
-      String _substring_2 = checkProperty.substring(_plus_1);
+    if ((pos1 > 0)) {
+      String _substring_2 = checkProperty.substring((pos1 + 1));
       innerProperty = _substring_2;
       String _substring_3 = checkProperty.substring(0, pos1);
       checkProperty = _substring_3;
@@ -1508,7 +1376,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         _or_1 = true;
       } else {
         boolean _equals_2 = Objects.equal(result, ValidationResult.OK);
-        _or_1 = (_equals_1 || _equals_2);
+        _or_1 = _equals_2;
       }
       if (_or_1) {
         return result;
@@ -1526,7 +1394,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       } else {
         String _dbName = Utils.dbName(entity);
         boolean _contains = suppressedAbstracts.contains(_dbName);
-        _and = (_notEquals_1 && _contains);
+        _and = _contains;
       }
       if (_and) {
         return ValidationResult.WARNING;
@@ -1539,8 +1407,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
   @Check
   public void checkUniqueProperty(final Property property) {
     EObject _rootContainer = EcoreUtil.getRootContainer(property);
-    boolean _not = (!(_rootContainer instanceof Artifacts));
-    if (_not) {
+    if ((!(_rootContainer instanceof Artifacts))) {
       return;
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(property);
@@ -1553,7 +1420,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         _and = false;
       } else {
         boolean _tripleNotEquals = (prop != property);
-        _and = (_notEquals && _tripleNotEquals);
+        _and = _tripleNotEquals;
       }
       if (_and) {
         boolean _and_1 = false;
@@ -1569,45 +1436,45 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         } else {
           String _name_2 = prop.getName();
           boolean _startsWith = _name_2.startsWith("pojogen");
-          boolean _not_1 = (!_startsWith);
-          _and_5 = (_equals && _not_1);
+          boolean _not = (!_startsWith);
+          _and_5 = _not;
         }
         if (!_and_5) {
           _and_4 = false;
         } else {
           String _name_3 = prop.getName();
           boolean _startsWith_1 = _name_3.startsWith("database");
-          boolean _not_2 = (!_startsWith_1);
-          _and_4 = (_and_5 && _not_2);
+          boolean _not_1 = (!_startsWith_1);
+          _and_4 = _not_1;
         }
         if (!_and_4) {
           _and_3 = false;
         } else {
           String _name_4 = prop.getName();
           boolean _startsWith_2 = _name_4.startsWith("metagen");
-          boolean _not_3 = (!_startsWith_2);
-          _and_3 = (_and_4 && _not_3);
+          boolean _not_2 = (!_startsWith_2);
+          _and_3 = _not_2;
         }
         if (!_and_3) {
           _and_2 = false;
         } else {
           String _name_5 = prop.getName();
           boolean _startsWith_3 = _name_5.startsWith("daogen");
-          boolean _not_4 = (!_startsWith_3);
-          _and_2 = (_and_3 && _not_4);
+          boolean _not_3 = (!_startsWith_3);
+          _and_2 = _not_3;
         }
         if (!_and_2) {
           _and_1 = false;
         } else {
           String _name_6 = prop.getName();
           boolean _startsWith_4 = _name_6.startsWith("replace-all");
-          boolean _not_5 = (!_startsWith_4);
-          _and_1 = (_and_2 && _not_5);
+          boolean _not_4 = (!_startsWith_4);
+          _and_1 = _not_4;
         }
         if (_and_1) {
           String _name_7 = property.getName();
           String _plus = ("Duplicate name : " + _name_7);
-          this.error(_plus, Literals.PROPERTY__NAME);
+          this.error(_plus, ProcessorDslPackage.Literals.PROPERTY__NAME);
           return;
         }
       }
@@ -1617,8 +1484,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
   @Check
   public void checkTableDefinition(final TableDefinition tableDefinition) {
     EObject _rootContainer = EcoreUtil.getRootContainer(tableDefinition);
-    boolean _not = (!(_rootContainer instanceof Artifacts));
-    if (_not) {
+    if ((!(_rootContainer instanceof Artifacts))) {
       return;
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(tableDefinition);
@@ -1631,7 +1497,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         _and = false;
       } else {
         boolean _tripleNotEquals = (table != tableDefinition);
-        _and = (_notEquals && _tripleNotEquals);
+        _and = _tripleNotEquals;
       }
       if (_and) {
         String _name = tableDefinition.getName();
@@ -1642,7 +1508,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           String _plus = ("Duplicate name : " + _name_2);
           String _plus_1 = (_plus + "[table]");
           this.error(_plus_1, 
-            Literals.TABLE_DEFINITION__NAME);
+            ProcessorDslPackage.Literals.TABLE_DEFINITION__NAME);
           return;
         }
       }
@@ -1654,22 +1520,21 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     } else {
       String _table = tableDefinition.getTable();
       boolean _checkTable = this.dbResolver.checkTable(tableDefinition, _table);
-      boolean _not_1 = (!_checkTable);
-      _and_1 = (_isResolveDb && _not_1);
+      boolean _not = (!_checkTable);
+      _and_1 = _not;
     }
     if (_and_1) {
       String _table_1 = tableDefinition.getTable();
       String _plus_2 = ("Cannot find table in DB : " + _table_1);
       this.error(_plus_2, 
-        Literals.TABLE_DEFINITION__TABLE);
+        ProcessorDslPackage.Literals.TABLE_DEFINITION__TABLE);
     }
   }
   
   @Check
   public void checkProcedureDefinition(final ProcedureDefinition procedureDefinition) {
     EObject _rootContainer = EcoreUtil.getRootContainer(procedureDefinition);
-    boolean _not = (!(_rootContainer instanceof Artifacts));
-    if (_not) {
+    if ((!(_rootContainer instanceof Artifacts))) {
       return;
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(procedureDefinition);
@@ -1682,7 +1547,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         _and = false;
       } else {
         boolean _tripleNotEquals = (procedure != procedureDefinition);
-        _and = (_notEquals && _tripleNotEquals);
+        _and = _tripleNotEquals;
       }
       if (_and) {
         String _name = procedureDefinition.getName();
@@ -1693,7 +1558,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           String _plus = ("Duplicate name : " + _name_2);
           String _plus_1 = (_plus + "[procedure]");
           this.error(_plus_1, 
-            Literals.PROCEDURE_DEFINITION__NAME);
+            ProcessorDslPackage.Literals.PROCEDURE_DEFINITION__NAME);
           return;
         }
       }
@@ -1705,22 +1570,21 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     } else {
       String _table = procedureDefinition.getTable();
       boolean _checkProcedure = this.dbResolver.checkProcedure(procedureDefinition, _table);
-      boolean _not_1 = (!_checkProcedure);
-      _and_1 = (_isResolveDb && _not_1);
+      boolean _not = (!_checkProcedure);
+      _and_1 = _not;
     }
     if (_and_1) {
       String _table_1 = procedureDefinition.getTable();
       String _plus_2 = ("Cannot find procedure in DB : " + _table_1);
       this.error(_plus_2, 
-        Literals.PROCEDURE_DEFINITION__NAME);
+        ProcessorDslPackage.Literals.PROCEDURE_DEFINITION__NAME);
     }
   }
   
   @Check
   public void checkFunctionDefinition(final FunctionDefinition functionDefinition) {
     EObject _rootContainer = EcoreUtil.getRootContainer(functionDefinition);
-    boolean _not = (!(_rootContainer instanceof Artifacts));
-    if (_not) {
+    if ((!(_rootContainer instanceof Artifacts))) {
       return;
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(functionDefinition);
@@ -1733,7 +1597,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         _and = false;
       } else {
         boolean _tripleNotEquals = (function != functionDefinition);
-        _and = (_notEquals && _tripleNotEquals);
+        _and = _tripleNotEquals;
       }
       if (_and) {
         String _name = functionDefinition.getName();
@@ -1744,7 +1608,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           String _plus = ("Duplicate name : " + _name_2);
           String _plus_1 = (_plus + "[function]");
           this.error(_plus_1, 
-            Literals.FUNCTION_DEFINITION__NAME);
+            ProcessorDslPackage.Literals.FUNCTION_DEFINITION__NAME);
           return;
         }
       }
@@ -1761,14 +1625,12 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     String prefix = databaseColumn.getName();
     String columnName = ((String) null);
     final int pos = prefix.indexOf(".");
-    boolean _greaterThan = (pos > 0);
-    if (_greaterThan) {
+    if ((pos > 0)) {
       String _name = databaseColumn.getName();
       String _substring = _name.substring(0, pos);
       prefix = _substring;
       String _name_1 = databaseColumn.getName();
-      int _plus = (pos + 1);
-      String _substring_1 = _name_1.substring(_plus);
+      String _substring_1 = _name_1.substring((pos + 1));
       columnName = _substring_1;
     } else {
       prefix = null;
@@ -1781,16 +1643,14 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     TableDefinition _xifexpression = null;
     boolean _notEquals = (!Objects.equal(value, null));
     if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__TABLES);
-      TableDefinition _findTable = Utils.findTable(this.qualifiedNameConverter, artifacts, _scope, value);
-      _xifexpression = _findTable;
+      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
+      _xifexpression = Utils.findTable(this.qualifiedNameConverter, artifacts, _scope, value);
     }
     final TableDefinition tableDefinition = _xifexpression;
     String _xifexpression_1 = null;
     boolean _notEquals_1 = (!Objects.equal(tableDefinition, null));
     if (_notEquals_1) {
-      String _table = tableDefinition.getTable();
-      _xifexpression_1 = _table;
+      _xifexpression_1 = tableDefinition.getTable();
     }
     final String tableName = _xifexpression_1;
     boolean _or = false;
@@ -1800,16 +1660,16 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     } else {
       boolean _checkColumn = this.dbResolver.checkColumn(databaseColumn, tableName, columnName);
       boolean _not_1 = (!_checkColumn);
-      _or = (_equals || _not_1);
+      _or = _not_1;
     }
     if (_or) {
       String _name_3 = databaseColumn.getName();
-      String _plus_1 = ("Cannot find column in DB : " + _name_3);
-      String _plus_2 = (_plus_1 + "[");
-      String _plus_3 = (_plus_2 + tableName);
-      String _plus_4 = (_plus_3 + "]");
-      this.error(_plus_4, 
-        Literals.DATABASE_COLUMN__NAME);
+      String _plus = ("Cannot find column in DB : " + _name_3);
+      String _plus_1 = (_plus + "[");
+      String _plus_2 = (_plus_1 + tableName);
+      String _plus_3 = (_plus_2 + "]");
+      this.error(_plus_3, 
+        ProcessorDslPackage.Literals.DATABASE_COLUMN__NAME);
     }
   }
   
@@ -1824,18 +1684,16 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
     final String tableName = databaseTable.getName();
     List<String> _tokensFromModifier = Utils.getTokensFromModifier(statement, Constants.TABLE_USAGE);
-    final Function1<String,TableDefinition> _function = new Function1<String,TableDefinition>() {
+    final Function1<String, TableDefinition> _function = new Function1<String, TableDefinition>() {
       public TableDefinition apply(final String value) {
-        IScope _scope = ProcessorDslValidator.this.scopeProvider.getScope(artifacts, Literals.ARTIFACTS__TABLES);
-        TableDefinition _findTable = Utils.findTable(ProcessorDslValidator.this.qualifiedNameConverter, artifacts, _scope, value);
-        return _findTable;
+        IScope _scope = ProcessorDslValidator.this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
+        return Utils.findTable(ProcessorDslValidator.this.qualifiedNameConverter, artifacts, _scope, value);
       }
     };
     final List<TableDefinition> tableDefinitions = ListExtensions.<String, TableDefinition>map(_tokensFromModifier, _function);
-    final Function1<TableDefinition,Boolean> _function_1 = new Function1<TableDefinition,Boolean>() {
+    final Function1<TableDefinition, Boolean> _function_1 = new Function1<TableDefinition, Boolean>() {
       public Boolean apply(final TableDefinition it) {
-        boolean _notEquals = (!Objects.equal(it, null));
-        return Boolean.valueOf(_notEquals);
+        return Boolean.valueOf((!Objects.equal(it, null)));
       }
     };
     final TableDefinition tableDefinition = IterableExtensions.<TableDefinition>findFirst(tableDefinitions, _function_1);
@@ -1846,19 +1704,17 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     } else {
       boolean _checkTable = this.dbResolver.checkTable(databaseTable, tableName);
       boolean _not_1 = (!_checkTable);
-      _or = (_equals || _not_1);
+      _or = _not_1;
     }
     if (_or) {
-      String _plus = ("Cannot find table in DB : " + tableName);
-      this.error(_plus, Literals.DATABASE_TABLE__NAME);
+      this.error(("Cannot find table in DB : " + tableName), ProcessorDslPackage.Literals.DATABASE_TABLE__NAME);
     }
   }
   
   @Check
   public void checkUniquePojoEntity(final PojoEntity pojoEntity) {
     EObject _rootContainer = EcoreUtil.getRootContainer(pojoEntity);
-    boolean _not = (!(_rootContainer instanceof Artifacts));
-    if (_not) {
+    if ((!(_rootContainer instanceof Artifacts))) {
       return;
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoEntity);
@@ -1874,7 +1730,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           if (!_notEquals_1) {
             _and = false;
           } else {
-            _and = (_notEquals_1 && (entity instanceof PojoEntity));
+            _and = (entity instanceof PojoEntity);
           }
           if (_and) {
             final PojoEntity pentity = ((PojoEntity) entity);
@@ -1886,7 +1742,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
               if (_equals) {
                 String _name_2 = pojoEntity.getName();
                 String _plus = ("Duplicate name : " + _name_2);
-                this.error(_plus, Literals.ENTITY__NAME);
+                this.error(_plus, ProcessorDslPackage.Literals.ENTITY__NAME);
                 return;
               }
             }
@@ -1909,7 +1765,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           _and = false;
         } else {
           boolean _tripleNotEquals = (property != pojoProperty);
-          _and = (_notEquals && _tripleNotEquals);
+          _and = _tripleNotEquals;
         }
         if (_and) {
           String _name = pojoProperty.getName();
@@ -1918,7 +1774,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           if (_equals) {
             String _name_2 = pojoProperty.getName();
             String _plus = ("Duplicate name : " + _name_2);
-            this.error(_plus, Literals.POJO_PROPERTY__NAME);
+            this.error(_plus, ProcessorDslPackage.Literals.POJO_PROPERTY__NAME);
             return;
           }
         }
@@ -1929,8 +1785,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
   @Check
   public void checkUniqueEnumEntity(final EnumEntity enumEntity) {
     EObject _rootContainer = EcoreUtil.getRootContainer(enumEntity);
-    boolean _not = (!(_rootContainer instanceof Artifacts));
-    if (_not) {
+    if ((!(_rootContainer instanceof Artifacts))) {
       return;
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(enumEntity);
@@ -1946,7 +1801,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           if (!_notEquals_1) {
             _and = false;
           } else {
-            _and = (_notEquals_1 && (entity instanceof EnumEntity));
+            _and = (entity instanceof EnumEntity);
           }
           if (_and) {
             final EnumEntity pentity = ((EnumEntity) entity);
@@ -1958,7 +1813,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
               if (_equals) {
                 String _name_2 = enumEntity.getName();
                 String _plus = ("Duplicate name : " + _name_2);
-                this.error(_plus, Literals.ENTITY__NAME);
+                this.error(_plus, ProcessorDslPackage.Literals.ENTITY__NAME);
                 return;
               }
             }
@@ -1979,7 +1834,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         _and = false;
       } else {
         boolean _tripleNotEquals = (property != enumProperty);
-        _and = (_notEquals && _tripleNotEquals);
+        _and = _tripleNotEquals;
       }
       if (_and) {
         String _name = enumProperty.getName();
@@ -1988,7 +1843,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         if (_equals) {
           String _name_2 = enumProperty.getName();
           String _plus = ("Duplicate name : " + _name_2);
-          this.error(_plus, Literals.ENUM_PROPERTY__NAME);
+          this.error(_plus, ProcessorDslPackage.Literals.ENUM_PROPERTY__NAME);
           return;
         }
       }
@@ -1998,8 +1853,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
   @Check
   public void checkUniquePojoDao(final PojoDao pojoDao) {
     EObject _rootContainer = EcoreUtil.getRootContainer(pojoDao);
-    boolean _not = (!(_rootContainer instanceof Artifacts));
-    if (_not) {
+    if ((!(_rootContainer instanceof Artifacts))) {
       return;
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoDao);
@@ -2015,7 +1869,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           if (!_notEquals_1) {
             _and = false;
           } else {
-            _and = (_notEquals_1 && (dao instanceof PojoDao));
+            _and = (dao instanceof PojoDao);
           }
           if (_and) {
             final PojoDao pdao = ((PojoDao) dao);
@@ -2027,7 +1881,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
               if (_equals) {
                 String _name_2 = pojoDao.getName();
                 String _plus = ("Duplicate name : " + _name_2);
-                this.error(_plus, Literals.POJO_DAO__NAME);
+                this.error(_plus, ProcessorDslPackage.Literals.POJO_DAO__NAME);
                 return;
               }
             }

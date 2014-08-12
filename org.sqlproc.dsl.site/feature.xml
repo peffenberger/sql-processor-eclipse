@@ -2,7 +2,7 @@
 <feature
       id="org.sqlproc.dsl.site"
       label="SQL Processor Eclipse Plugin Feature"
-      version="1.9.0.qualifier"
+      version="1.9.2.qualifier"
       provider-name="SQL Processor Team">
 
    <url>

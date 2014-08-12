@@ -42,11 +42,9 @@ import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
@@ -73,13 +71,12 @@ import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.PojogenProperty;
-import org.sqlproc.dsl.processorDsl.ProcessorDslPackage.Literals;
+import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 import org.sqlproc.dsl.processorDsl.ShowColumnTypeAssignement;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
 import org.sqlproc.dsl.resolver.DbExport;
 import org.sqlproc.dsl.resolver.DbImport;
 import org.sqlproc.dsl.resolver.DbResolver;
-import org.sqlproc.dsl.resolver.DbResolver.DbType;
 import org.sqlproc.dsl.resolver.PojoResolver;
 import org.sqlproc.dsl.ui.contentassist.AbstractProcessorDslProposalProvider;
 import org.sqlproc.dsl.util.Constants;
@@ -99,58 +96,23 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   @Inject
   private IQualifiedNameConverter qualifiedNameConverter;
   
-  private final ArrayList<String> STATEMENT_TYPE = new Function0<ArrayList<String>>() {
-    public ArrayList<String> apply() {
-      ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("QRY", "CRUD", "CALL");
-      return _newArrayList;
-    }
-  }.apply();
+  private final ArrayList<String> STATEMENT_TYPE = CollectionLiterals.<String>newArrayList("QRY", "CRUD", "CALL");
   
-  private final ArrayList<String> MAPPING_TYPE = new Function0<ArrayList<String>>() {
-    public ArrayList<String> apply() {
-      ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("OUT");
-      return _newArrayList;
-    }
-  }.apply();
+  private final ArrayList<String> MAPPING_TYPE = CollectionLiterals.<String>newArrayList("OUT");
   
-  private final ArrayList<String> OPTION_TYPE = new Function0<ArrayList<String>>() {
-    public ArrayList<String> apply() {
-      ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("OPT", "LOPT", "IOPT", "SOPT", "BOPT", "MOPT");
-      return _newArrayList;
-    }
-  }.apply();
+  private final ArrayList<String> OPTION_TYPE = CollectionLiterals.<String>newArrayList("OPT", "LOPT", "IOPT", "SOPT", "BOPT", "MOPT");
   
-  private final ArrayList<String> TYPES = new Function0<ArrayList<String>>() {
-    public ArrayList<String> apply() {
-      ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("int", "integer", "long", "byte", "short", 
-        "float", "double", "character", "char", "string", "str", "time", "date", "datetime", "timestamp", "stamp", 
-        "bool", "boolean", "bigint", "biginteger", "bigdec", "bigdecimal", "bytearr", "bytearray", "bytes", "text", 
-        "blob", "clob", "einteger", "eint", "enumstring", "estring", "fromdate", "todate", "cursor", "other");
-      return _newArrayList;
-    }
-  }.apply();
+  private final ArrayList<String> TYPES = CollectionLiterals.<String>newArrayList("int", "integer", "long", "byte", "short", 
+    "float", "double", "character", "char", "string", "str", "time", "date", "datetime", "timestamp", "stamp", 
+    "bool", "boolean", "bigint", "biginteger", "bigdec", "bigdecimal", "bytearr", "bytearray", "bytes", "text", 
+    "blob", "clob", "einteger", "eint", "enumstring", "estring", "fromdate", "todate", "cursor", "other");
   
-  private final ArrayList<String> MODIFIERS = new Function0<ArrayList<String>>() {
-    public ArrayList<String> apply() {
-      ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("any", "null", "notnull", "seq", "seq=", 
-        "idsel", "idsel=", "id", "isDef=", "isCall=", "dtype=", "gtype=", "discr");
-      return _newArrayList;
-    }
-  }.apply();
+  private final ArrayList<String> MODIFIERS = CollectionLiterals.<String>newArrayList("any", "null", "notnull", "seq", "seq=", 
+    "idsel", "idsel=", "id", "isDef=", "isCall=", "dtype=", "gtype=", "discr");
   
-  private final ArrayList<String> F_TYPES = new Function0<ArrayList<String>>() {
-    public ArrayList<String> apply() {
-      ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("set", "update", "values", "where");
-      return _newArrayList;
-    }
-  }.apply();
+  private final ArrayList<String> F_TYPES = CollectionLiterals.<String>newArrayList("set", "update", "values", "where");
   
-  private final ArrayList<String> DEBUG_LEVELS = new Function0<ArrayList<String>>() {
-    public ArrayList<String> apply() {
-      ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("DEBUG", "INFO", "FATAL", "ERROR", "WARN", "TRACE");
-      return _newArrayList;
-    }
-  }.apply();
+  private final ArrayList<String> DEBUG_LEVELS = CollectionLiterals.<String>newArrayList("DEBUG", "INFO", "FATAL", "ERROR", "WARN", "TRACE");
   
   public void completeMetaStatement_Type(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     this.addProposalList(this.STATEMENT_TYPE, "STATEMENT_TYPE", context, acceptor, null);
@@ -173,7 +135,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
           if (prefix != null) {
             _elvis = prefix;
           } else {
-            _elvis = ObjectExtensions.<String>operator_elvis(prefix, "");
+            _elvis = "";
           }
           String _plus = (_elvis + value);
           final String proposal = _valueConverter.toString(_plus, lexerRule);
@@ -191,14 +153,13 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   public void completeExtendedColumnName_Name(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     final Column column = EcoreUtil2.<Column>getContainerOfType(model, Column.class);
-    StringBuilder _stringBuilder = new StringBuilder("");
-    final StringBuilder partialName = _stringBuilder;
+    final StringBuilder partialName = new StringBuilder("");
     EList<ExtendedColumn> _columns = null;
     if (column!=null) {
       _columns=column.getColumns();
     }
     if (_columns!=null) {
-      final Function1<ExtendedColumn,Boolean> _function = new Function1<ExtendedColumn,Boolean>() {
+      final Function1<ExtendedColumn, Boolean> _function = new Function1<ExtendedColumn, Boolean>() {
         public Boolean apply(final ExtendedColumn it) {
           boolean _xblockexpression = false;
           {
@@ -213,9 +174,9 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
             } else {
               EObject _previousModel_1 = context.getPreviousModel();
               boolean _tripleEquals = (it == _previousModel_1);
-              _and = (_notEquals && _tripleEquals);
+              _and = _tripleEquals;
             }
-            _xblockexpression = (_and);
+            _xblockexpression = _and;
           }
           return Boolean.valueOf(_xblockexpression);
         }
@@ -264,25 +225,22 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     boolean _notEquals = (!Objects.equal(entityName, null));
     if (_notEquals) {
       IScopeProvider _scopeProvider = this.getScopeProvider();
-      IScope _scope = _scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
-      PojoEntity _findEntity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-      _xifexpression = _findEntity;
+      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
     }
     final PojoEntity pojoEntity = _xifexpression;
     String _xifexpression_1 = null;
     boolean _equals = Objects.equal(pojoEntity, null);
     if (_equals) {
-      String _tokenFromModifier = Utils.getTokenFromModifier(metaStatement, usageInFilter);
-      _xifexpression_1 = _tokenFromModifier;
+      _xifexpression_1 = Utils.getTokenFromModifier(metaStatement, usageInFilter);
     }
     final String pojoName = _xifexpression_1;
     PojoDefinition _xifexpression_2 = null;
     boolean _notEquals_1 = (!Objects.equal(pojoName, null));
     if (_notEquals_1) {
       IScopeProvider _scopeProvider_1 = this.getScopeProvider();
-      IScope _scope_1 = _scopeProvider_1.getScope(artifacts, Literals.ARTIFACTS__POJOS);
-      PojoDefinition _findPojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-      _xifexpression_2 = _findPojo;
+      IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
+      _xifexpression_2 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
     }
     final PojoDefinition pojoDefinition = _xifexpression_2;
     boolean _and = false;
@@ -291,23 +249,19 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       _and = false;
     } else {
       boolean _equals_2 = Objects.equal(pojoEntity, null);
-      _and = (_equals_1 && _equals_2);
+      _and = _equals_2;
     }
     if (_and) {
       IValueConverterService _valueConverter = this.getValueConverter();
-      String _plus = ("Error: I can\'t load pojo for " + model);
-      final String proposal = _valueConverter.toString(_plus, "IDENT");
+      final String proposal = _valueConverter.toString(("Error: I can\'t load pojo for " + model), "IDENT");
       ICompletionProposal _createCompletionProposal = this.createCompletionProposal(proposal, context);
       acceptor.accept(_createCompletionProposal);
       return true;
     }
     final int pos = _prefix.lastIndexOf(".");
     String _xifexpression_3 = null;
-    boolean _greaterThan = (pos > 0);
-    if (_greaterThan) {
-      int _plus_1 = (pos + 1);
-      String _substring = _prefix.substring(0, _plus_1);
-      _xifexpression_3 = _substring;
+    if ((pos > 0)) {
+      _xifexpression_3 = _prefix.substring(0, (pos + 1));
     } else {
       _xifexpression_3 = "";
     }
@@ -325,11 +279,10 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       if (_equals_4) {
         return false;
       }
-      final Function1<PropertyDescriptor,Boolean> _function = new Function1<PropertyDescriptor,Boolean>() {
+      final Function1<PropertyDescriptor, Boolean> _function = new Function1<PropertyDescriptor, Boolean>() {
         public Boolean apply(final PropertyDescriptor it) {
           String _name = it.getName();
-          boolean _notEquals = (!Objects.equal("class", _name));
-          return Boolean.valueOf(_notEquals);
+          return Boolean.valueOf((!Objects.equal("class", _name)));
         }
       };
       Iterable<PropertyDescriptor> _filter = IterableExtensions.<PropertyDescriptor>filter(((Iterable<PropertyDescriptor>)Conversions.doWrapArray(descriptors)), _function);
@@ -342,8 +295,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
           if (cutPrefix) {
             _xifexpression = proposal;
           } else {
-            String _plus = (prefix + proposal);
-            _xifexpression = _plus;
+            _xifexpression = (prefix + proposal);
           }
           ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_xifexpression, context);
           acceptor.accept(_createCompletionProposal);
@@ -367,8 +319,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
           if (cutPrefix) {
             _xifexpression = proposal;
           } else {
-            String _plus = (prefix + proposal);
-            _xifexpression = _plus;
+            _xifexpression = (prefix + proposal);
           }
           ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_xifexpression, context);
           acceptor.accept(_createCompletionProposal);
@@ -394,25 +345,22 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     boolean _notEquals = (!Objects.equal(entityName, null));
     if (_notEquals) {
       IScopeProvider _scopeProvider = this.getScopeProvider();
-      IScope _scope = _scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
-      PojoEntity _findEntity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-      _xifexpression = _findEntity;
+      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
     }
     final PojoEntity pojoEntity = _xifexpression;
     String _xifexpression_1 = null;
     boolean _equals = Objects.equal(pojoEntity, null);
     if (_equals) {
-      String _tokenFromModifier = Utils.getTokenFromModifier(mappingRule, Constants.MAPPING_USAGE);
-      _xifexpression_1 = _tokenFromModifier;
+      _xifexpression_1 = Utils.getTokenFromModifier(mappingRule, Constants.MAPPING_USAGE);
     }
     final String pojoName = _xifexpression_1;
     PojoDefinition _xifexpression_2 = null;
     boolean _notEquals_1 = (!Objects.equal(pojoName, null));
     if (_notEquals_1) {
       IScopeProvider _scopeProvider_1 = this.getScopeProvider();
-      IScope _scope_1 = _scopeProvider_1.getScope(artifacts, Literals.ARTIFACTS__POJOS);
-      PojoDefinition _findPojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-      _xifexpression_2 = _findPojo;
+      IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
+      _xifexpression_2 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
     }
     final PojoDefinition pojoDefinition = _xifexpression_2;
     boolean _and = false;
@@ -421,29 +369,27 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       _and = false;
     } else {
       boolean _equals_2 = Objects.equal(pojoEntity, null);
-      _and = (_equals_1 && _equals_2);
+      _and = _equals_2;
     }
     if (_and) {
       IValueConverterService _valueConverter = this.getValueConverter();
-      String _plus = ("Error: I can\'t load pojo for " + model);
-      final String proposal = _valueConverter.toString(_plus, "IDENT");
+      final String proposal = _valueConverter.toString(("Error: I can\'t load pojo for " + model), "IDENT");
       ICompletionProposal _createCompletionProposal = this.createCompletionProposal(proposal, context);
       acceptor.accept(_createCompletionProposal);
     }
-    StringBuilder _stringBuilder = new StringBuilder("");
-    final StringBuilder partialName = _stringBuilder;
+    final StringBuilder partialName = new StringBuilder("");
     boolean cutPrefix = false;
     boolean _and_1 = false;
     if (!(model instanceof MappingColumn)) {
       _and_1 = false;
     } else {
       boolean _notEquals_2 = (!Objects.equal(mappingColumn, null));
-      _and_1 = ((model instanceof MappingColumn) && _notEquals_2);
+      _and_1 = _notEquals_2;
     }
     if (_and_1) {
       cutPrefix = true;
       EList<ExtendedMappingItem> _items = mappingColumn.getItems();
-      final Function1<ExtendedMappingItem,Boolean> _function = new Function1<ExtendedMappingItem,Boolean>() {
+      final Function1<ExtendedMappingItem, Boolean> _function = new Function1<ExtendedMappingItem, Boolean>() {
         public Boolean apply(final ExtendedMappingItem it) {
           boolean _xblockexpression = false;
           {
@@ -458,9 +404,9 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
             } else {
               EObject _previousModel_1 = context.getPreviousModel();
               boolean _tripleEquals = (it == _previousModel_1);
-              _and = (_notEquals && _tripleEquals);
+              _and = _tripleEquals;
             }
-            _xblockexpression = (_and);
+            _xblockexpression = _and;
           }
           return Boolean.valueOf(_xblockexpression);
         }
@@ -472,11 +418,8 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     String prefix = _append.toString();
     final int pos = prefix.lastIndexOf(".");
     String _xifexpression_3 = null;
-    boolean _greaterThan = (pos > 0);
-    if (_greaterThan) {
-      int _plus_1 = (pos + 1);
-      String _substring = prefix.substring(0, _plus_1);
-      _xifexpression_3 = _substring;
+    if ((pos > 0)) {
+      _xifexpression_3 = prefix.substring(0, (pos + 1));
     } else {
       _xifexpression_3 = "";
     }
@@ -495,11 +438,10 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       if (_equals_4) {
         super.completeMappingColumnName_Name(model, assignment, context, acceptor);
       } else {
-        final Function1<PropertyDescriptor,Boolean> _function_1 = new Function1<PropertyDescriptor,Boolean>() {
+        final Function1<PropertyDescriptor, Boolean> _function_1 = new Function1<PropertyDescriptor, Boolean>() {
           public Boolean apply(final PropertyDescriptor it) {
             String _name = it.getName();
-            boolean _notEquals = (!Objects.equal("class", _name));
-            return Boolean.valueOf(_notEquals);
+            return Boolean.valueOf((!Objects.equal("class", _name)));
           }
         };
         Iterable<PropertyDescriptor> _filter = IterableExtensions.<PropertyDescriptor>filter(((Iterable<PropertyDescriptor>)Conversions.doWrapArray(descriptors)), _function_1);
@@ -512,8 +454,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
             if (_cutPrefix) {
               _xifexpression = proposal;
             } else {
-              String _plus = (_prefix_1 + proposal);
-              _xifexpression = _plus;
+              _xifexpression = (_prefix_1 + proposal);
             }
             ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_xifexpression, context);
             acceptor.accept(_createCompletionProposal);
@@ -537,8 +478,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
           if (_cutPrefix) {
             _xifexpression = proposal;
           } else {
-            String _plus = (_prefix_1 + proposal);
-            _xifexpression = _plus;
+            _xifexpression = (_prefix_1 + proposal);
           }
           ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_xifexpression, context);
           acceptor.accept(_createCompletionProposal);
@@ -556,20 +496,17 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       if (_greaterThan) {
         sb.append(".");
       }
-      StringBuilder _append = sb.append(s);
-      _xblockexpression = (_append);
+      _xblockexpression = sb.append(s);
     }
     return _xblockexpression;
   }
   
   public boolean isResolvePojo(final EObject model) {
-    boolean _isResolvePojo = this.pojoResolver.isResolvePojo(model);
-    return _isResolvePojo;
+    return this.pojoResolver.isResolvePojo(model);
   }
   
   public boolean isResolveDb(final EObject model) {
-    boolean _isResolveDb = this.dbResolver.isResolveDb(model);
-    return _isResolveDb;
+    return this.dbResolver.isResolveDb(model);
   }
   
   public String getClass(final PojoDefinition pojo) {
@@ -578,11 +515,9 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     boolean _notEquals = (!Objects.equal(_classx, null));
     if (_notEquals) {
       JvmType _classx_1 = pojo.getClassx();
-      String _qualifiedName = _classx_1.getQualifiedName();
-      _xifexpression = _qualifiedName;
+      _xifexpression = _classx_1.getQualifiedName();
     } else {
-      String _class_ = pojo.getClass_();
-      _xifexpression = _class_;
+      _xifexpression = pojo.getClass_();
     }
     return _xifexpression;
   }
@@ -600,24 +535,21 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         _or = true;
       } else {
         boolean _equals_1 = Objects.equal(property, null);
-        _or = (_equals || _equals_1);
+        _or = _equals_1;
       }
       if (_or) {
         return baseEntity;
       }
       int _indexOf = property.indexOf(".");
-      int _minus = (-1);
-      boolean _equals_2 = (_indexOf == _minus);
+      boolean _equals_2 = (_indexOf == (-1));
       if (_equals_2) {
         return baseEntity;
       }
       String checkProperty = property;
       int pos1 = checkProperty.indexOf("=");
-      boolean _greaterThan = (pos1 > 0);
-      if (_greaterThan) {
+      if ((pos1 > 0)) {
         int pos2 = checkProperty.indexOf(".", pos1);
-        boolean _greaterThan_1 = (pos2 > pos1);
-        if (_greaterThan_1) {
+        if ((pos2 > pos1)) {
           String _substring = checkProperty.substring(0, pos1);
           String _substring_1 = checkProperty.substring(pos2);
           String _plus = (_substring + _substring_1);
@@ -627,21 +559,18 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       String innerProperty = ((String) null);
       int _indexOf_1 = checkProperty.indexOf(".");
       pos1 = _indexOf_1;
-      boolean _greaterThan_2 = (pos1 > 0);
-      if (_greaterThan_2) {
-        int _plus_1 = (pos1 + 1);
-        String _substring_2 = checkProperty.substring(_plus_1);
+      if ((pos1 > 0)) {
+        String _substring_2 = checkProperty.substring((pos1 + 1));
         innerProperty = _substring_2;
         String _substring_3 = checkProperty.substring(0, pos1);
         checkProperty = _substring_3;
       }
       final String _checkProperty = checkProperty;
       List<PojoProperty> _attributes = Utils.attributes(baseEntity);
-      final Function1<PojoProperty,Boolean> _function = new Function1<PojoProperty,Boolean>() {
+      final Function1<PojoProperty, Boolean> _function = new Function1<PojoProperty, Boolean>() {
         public Boolean apply(final PojoProperty it) {
           String _name = it.getName();
-          boolean _equals = Objects.equal(_name, _checkProperty);
-          return Boolean.valueOf(_equals);
+          return Boolean.valueOf(Objects.equal(_name, _checkProperty));
         }
       };
       PojoProperty innerPojoProperty = IterableExtensions.<PojoProperty>findFirst(_attributes, _function);
@@ -658,9 +587,9 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         } else {
           PojoEntity _gref = innerPojoProperty.getGref();
           boolean _equals_5 = Objects.equal(_gref, null);
-          _and = (_equals_4 && _equals_5);
+          _and = _equals_5;
         }
-        _or_1 = (_equals_3 || _and);
+        _or_1 = _and;
       }
       if (_or_1) {
         return null;
@@ -671,11 +600,10 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         _elvis = _ref_1;
       } else {
         PojoEntity _gref_1 = innerPojoProperty.getGref();
-        _elvis = ObjectExtensions.<Entity>operator_elvis(_ref_1, ((Entity) _gref_1));
+        _elvis = ((Entity) _gref_1);
       }
       Entity innerEntity = _elvis;
-      PojoEntity _pojoEntity = this.getPojoEntity(innerEntity, innerProperty);
-      _xblockexpression = (_pojoEntity);
+      _xblockexpression = this.getPojoEntity(innerEntity, innerProperty);
     }
     return _xblockexpression;
   }
@@ -686,7 +614,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       _elvis = inproperties;
     } else {
       ArrayList<PojoProperty> _newArrayList = CollectionLiterals.<PojoProperty>newArrayList();
-      _elvis = ObjectExtensions.<List<PojoProperty>>operator_elvis(inproperties, _newArrayList);
+      _elvis = _newArrayList;
     }
     final List<PojoProperty> properties = _elvis;
     boolean _equals = Objects.equal(pojoEntity, null);
@@ -694,10 +622,9 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       return properties;
     }
     EList<PojoAnnotatedProperty> _features = pojoEntity.getFeatures();
-    final Function1<PojoAnnotatedProperty,PojoProperty> _function = new Function1<PojoAnnotatedProperty,PojoProperty>() {
+    final Function1<PojoAnnotatedProperty, PojoProperty> _function = new Function1<PojoAnnotatedProperty, PojoProperty>() {
       public PojoProperty apply(final PojoAnnotatedProperty it) {
-        PojoProperty _feature = it.getFeature();
-        return _feature;
+        return it.getFeature();
       }
     };
     List<PojoProperty> _map = ListExtensions.<PojoAnnotatedProperty, PojoProperty>map(_features, _function);
@@ -712,14 +639,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         } else {
           Entity _ref = it.getRef();
           boolean _notEquals_1 = (!Objects.equal(_ref, null));
-          _or_1 = (_notEquals || _notEquals_1);
+          _or_1 = _notEquals_1;
         }
         if (_or_1) {
           _or = true;
         } else {
           JvmType _type = it.getType();
           boolean _notEquals_2 = (!Objects.equal(_type, null));
-          _or = (_or_1 || _notEquals_2);
+          _or = _notEquals_2;
         }
         if (_or) {
           properties.add(it);
@@ -733,13 +660,12 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (_equals_1) {
       _xifexpression = properties;
     } else {
-      List<PojoProperty> _properties = this.getProperties(superType, properties);
-      _xifexpression = _properties;
+      _xifexpression = this.getProperties(superType, properties);
     }
     return _xifexpression;
   }
   
-  public boolean isPrimitive(final Class<? extends Object> clazz) {
+  public boolean isPrimitive(final Class<?> clazz) {
     boolean _equals = Objects.equal(clazz, null);
     if (_equals) {
       return true;
@@ -790,25 +716,21 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       _or = true;
     } else {
       boolean _equals_1 = Objects.equal(property, null);
-      _or = (_equals || _equals_1);
+      _or = _equals_1;
     }
     if (_or) {
       return baseClass;
     }
     int pos1 = property.indexOf(".");
-    int _minus = (-1);
-    boolean _equals_2 = (pos1 == _minus);
-    if (_equals_2) {
+    if ((pos1 == (-1))) {
       return baseClass;
     }
     String checkProperty = property;
     int _indexOf = checkProperty.indexOf("=");
     pos1 = _indexOf;
-    boolean _greaterThan = (pos1 > 0);
-    if (_greaterThan) {
+    if ((pos1 > 0)) {
       int pos2 = checkProperty.indexOf(".", pos1);
-      boolean _greaterThan_1 = (pos2 > pos1);
-      if (_greaterThan_1) {
+      if ((pos2 > pos1)) {
         String _substring = checkProperty.substring(0, pos1);
         String _substring_1 = checkProperty.substring(pos2);
         String _plus = (_substring + _substring_1);
@@ -818,34 +740,31 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     String innerProperty = ((String) null);
     int _indexOf_1 = checkProperty.indexOf(".");
     pos1 = _indexOf_1;
-    boolean _greaterThan_2 = (pos1 > 0);
-    if (_greaterThan_2) {
-      int _plus_1 = (pos1 + 1);
-      String _substring_2 = checkProperty.substring(_plus_1);
+    if ((pos1 > 0)) {
+      String _substring_2 = checkProperty.substring((pos1 + 1));
       innerProperty = _substring_2;
       String _substring_3 = checkProperty.substring(0, pos1);
       checkProperty = _substring_3;
     }
     PropertyDescriptor[] descriptors = this.pojoResolver.getPropertyDescriptors(baseClass);
-    boolean _equals_3 = Objects.equal(descriptors, null);
-    if (_equals_3) {
+    boolean _equals_2 = Objects.equal(descriptors, null);
+    if (_equals_2) {
       return null;
     }
     final String _checkProperty = checkProperty;
     final PropertyDescriptor[] _converted_descriptors = (PropertyDescriptor[])descriptors;
-    final Function1<PropertyDescriptor,Boolean> _function = new Function1<PropertyDescriptor,Boolean>() {
+    final Function1<PropertyDescriptor, Boolean> _function = new Function1<PropertyDescriptor, Boolean>() {
       public Boolean apply(final PropertyDescriptor descriptor) {
         String _name = descriptor.getName();
-        boolean _equals = Objects.equal(_name, _checkProperty);
-        return Boolean.valueOf(_equals);
+        return Boolean.valueOf(Objects.equal(_name, _checkProperty));
       }
     };
     PropertyDescriptor innerDesriptor = IterableExtensions.<PropertyDescriptor>findFirst(((Iterable<PropertyDescriptor>)Conversions.doWrapArray(_converted_descriptors)), _function);
-    boolean _equals_4 = Objects.equal(innerDesriptor, null);
-    if (_equals_4) {
+    boolean _equals_3 = Objects.equal(innerDesriptor, null);
+    if (_equals_3) {
       return null;
     }
-    Class<? extends Object> innerClass = innerDesriptor.getPropertyType();
+    Class<?> innerClass = innerDesriptor.getPropertyType();
     boolean _isArray = innerClass.isArray();
     if (_isArray) {
       Method _readMethod = innerDesriptor.getReadMethod();
@@ -853,14 +772,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       ParameterizedType type = ((ParameterizedType) _genericReturnType);
       boolean _or_1 = false;
       Type[] _actualTypeArguments = type.getActualTypeArguments();
-      boolean _equals_5 = Objects.equal(_actualTypeArguments, null);
-      if (_equals_5) {
+      boolean _equals_4 = Objects.equal(_actualTypeArguments, null);
+      if (_equals_4) {
         _or_1 = true;
       } else {
         Type[] _actualTypeArguments_1 = type.getActualTypeArguments();
         int _length = _actualTypeArguments_1.length;
-        boolean _equals_6 = (_length == 0);
-        _or_1 = (_equals_5 || _equals_6);
+        boolean _equals_5 = (_length == 0);
+        _or_1 = _equals_5;
       }
       if (_or_1) {
         return null;
@@ -882,14 +801,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         ParameterizedType type_1 = ((ParameterizedType) _genericReturnType_1);
         boolean _or_2 = false;
         Type[] _actualTypeArguments_3 = type_1.getActualTypeArguments();
-        boolean _equals_7 = Objects.equal(_actualTypeArguments_3, null);
-        if (_equals_7) {
+        boolean _equals_6 = Objects.equal(_actualTypeArguments_3, null);
+        if (_equals_6) {
           _or_2 = true;
         } else {
           Type[] _actualTypeArguments_4 = type_1.getActualTypeArguments();
           int _length_1 = _actualTypeArguments_4.length;
-          boolean _equals_8 = (_length_1 == 0);
-          _or_2 = (_equals_7 || _equals_8);
+          boolean _equals_7 = (_length_1 == 0);
+          _or_2 = _equals_7;
         }
         if (_or_2) {
           return null;
@@ -916,11 +835,10 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   public void acceptTables(final EObject model, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor, final String suffix) {
     List<String> _tables = this.dbResolver.getTables(model);
-    final Function1<String,Boolean> _function = new Function1<String,Boolean>() {
+    final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
       public Boolean apply(final String it) {
         int _indexOf = it.indexOf("$");
-        boolean _lessThan = (_indexOf < 0);
-        return Boolean.valueOf(_lessThan);
+        return Boolean.valueOf((_indexOf < 0));
       }
     };
     Iterable<String> _filter = IterableExtensions.<String>filter(_tables, _function);
@@ -928,8 +846,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       public void apply(final String table) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         final String proposal = _valueConverter.toString(table, "IDENT");
-        String _plus = (proposal + suffix);
-        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_plus, context);
+        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal((proposal + suffix), context);
         acceptor.accept(_createCompletionProposal);
       }
     };
@@ -938,11 +855,10 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   public void acceptProcedures(final EObject model, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     List<String> _procedures = this.dbResolver.getProcedures(model);
-    final Function1<String,Boolean> _function = new Function1<String,Boolean>() {
+    final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
       public Boolean apply(final String it) {
         int _indexOf = it.indexOf("$");
-        boolean _lessThan = (_indexOf < 0);
-        return Boolean.valueOf(_lessThan);
+        return Boolean.valueOf((_indexOf < 0));
       }
     };
     Iterable<String> _filter = IterableExtensions.<String>filter(_procedures, _function);
@@ -959,11 +875,10 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   public void acceptFunctions(final EObject model, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     List<String> _functions = this.dbResolver.getFunctions(model);
-    final Function1<String,Boolean> _function = new Function1<String,Boolean>() {
+    final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
       public Boolean apply(final String it) {
         int _indexOf = it.indexOf("$");
-        boolean _lessThan = (_indexOf < 0);
-        return Boolean.valueOf(_lessThan);
+        return Boolean.valueOf((_indexOf < 0));
       }
     };
     Iterable<String> _filter = IterableExtensions.<String>filter(_functions, _function);
@@ -980,11 +895,10 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   public void acceptCheckConstraints(final EObject model, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     List<String> _checkConstraints = this.dbResolver.getCheckConstraints(model);
-    final Function1<String,Boolean> _function = new Function1<String,Boolean>() {
+    final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
       public Boolean apply(final String it) {
         int _indexOf = it.indexOf("$");
-        boolean _lessThan = (_indexOf < 0);
-        return Boolean.valueOf(_lessThan);
+        return Boolean.valueOf((_indexOf < 0));
       }
     };
     Iterable<String> _filter = IterableExtensions.<String>filter(_checkConstraints, _function);
@@ -1001,11 +915,10 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   public void acceptSequences(final EObject model, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     List<String> _sequences = this.dbResolver.getSequences(model);
-    final Function1<String,Boolean> _function = new Function1<String,Boolean>() {
+    final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
       public Boolean apply(final String it) {
         int _indexOf = it.indexOf("$");
-        boolean _lessThan = (_indexOf < 0);
-        return Boolean.valueOf(_lessThan);
+        return Boolean.valueOf((_indexOf < 0));
       }
     };
     Iterable<String> _filter = IterableExtensions.<String>filter(_sequences, _function);
@@ -1028,9 +941,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         String _xifexpression = null;
         boolean _notEquals = (!Objects.equal(prefix, null));
         if (_notEquals) {
-          String _plus = (prefix + ".");
-          String _plus_1 = (_plus + proposal);
-          _xifexpression = _plus_1;
+          _xifexpression = ((prefix + ".") + proposal);
         } else {
           _xifexpression = proposal;
         }
@@ -1038,8 +949,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         String _xifexpression_1 = null;
         boolean _notEquals_1 = (!Objects.equal(suffix, null));
         if (_notEquals_1) {
-          String _plus_2 = (completion + suffix);
-          _xifexpression_1 = _plus_2;
+          _xifexpression_1 = (completion + suffix);
         } else {
           _xifexpression_1 = completion;
         }
@@ -1091,11 +1001,9 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     String _prefix = context.getPrefix();
     final int pos = _prefix.indexOf(".");
     String _xifexpression = null;
-    boolean _greaterThan = (pos > 0);
-    if (_greaterThan) {
+    if ((pos > 0)) {
       String _prefix_1 = context.getPrefix();
-      String _substring = _prefix_1.substring(0, pos);
-      _xifexpression = _substring;
+      _xifexpression = _prefix_1.substring(0, pos);
     }
     final String prefix = _xifexpression;
     final MetaStatement metaStatement = EcoreUtil2.<MetaStatement>getContainerOfType(model, MetaStatement.class);
@@ -1105,9 +1013,8 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     boolean _notEquals = (!Objects.equal(value, null));
     if (_notEquals) {
       IScopeProvider _scopeProvider = this.getScopeProvider();
-      IScope _scope = _scopeProvider.getScope(artifacts, Literals.ARTIFACTS__TABLES);
-      TableDefinition _findTable = Utils.findTable(this.qualifiedNameConverter, artifacts, _scope, value);
-      _xifexpression_1 = _findTable;
+      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
+      _xifexpression_1 = Utils.findTable(this.qualifiedNameConverter, artifacts, _scope, value);
     }
     final TableDefinition tableDefinition = _xifexpression_1;
     boolean _and = false;
@@ -1117,7 +1024,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     } else {
       String _table = tableDefinition.getTable();
       boolean _notEquals_2 = (!Objects.equal(_table, null));
-      _and = (_notEquals_1 && _notEquals_2);
+      _and = _notEquals_2;
     }
     if (_and) {
       String _table_1 = tableDefinition.getTable();
@@ -1139,7 +1046,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     final Procedure1<String> _function = new Procedure1<String>() {
       public void apply(final String value) {
         IScopeProvider _scopeProvider = ProcessorDslProposalProvider.this.getScopeProvider();
-        IScope _scope = _scopeProvider.getScope(artifacts, Literals.ARTIFACTS__TABLES);
+        IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
         final TableDefinition tableDefinition = Utils.findTable(ProcessorDslProposalProvider.this.qualifiedNameConverter, artifacts, _scope, value);
         boolean _notEquals = (!Objects.equal(tableDefinition, null));
         if (_notEquals) {
@@ -1242,8 +1149,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof PojogenProperty));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof PojogenProperty));
     }
     if (_and) {
       super.completePojogenProperty_DbColumn(model, assignment, context, acceptor);
@@ -1266,8 +1172,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof PojogenProperty));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof PojogenProperty));
     }
     if (_and) {
       super.completePojogenProperty_DbColumns(model, assignment, context, acceptor);
@@ -1386,8 +1291,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof PojogenProperty));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof PojogenProperty));
     }
     if (_and) {
       super.completeColumnTypeAssignement_DbColumn(model, assignment, context, acceptor);
@@ -1426,8 +1330,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof PojogenProperty));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof PojogenProperty));
     }
     if (_and) {
       super.completeColumnAssignement_DbColumn(model, assignment, context, acceptor);
@@ -1453,8 +1356,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof ImportAssignement));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof ImportAssignement));
     }
     if (_and) {
       super.completeImportAssignement_PkTable(model, assignment, context, acceptor);
@@ -1470,7 +1372,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     } else {
       String _dbColumn = imp.getDbColumn();
       boolean _notEquals_1 = (!Objects.equal(_dbColumn, null));
-      _and_1 = (_notEquals && _notEquals_1);
+      _and_1 = _notEquals_1;
     }
     if (_and_1) {
       String _name = prop.getName();
@@ -1491,7 +1393,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
               String _fkColumn_1 = dbImport.getFkColumn();
               String _dbColumn = imp.getDbColumn();
               boolean _equals = _fkColumn_1.equals(_dbColumn);
-              _and = (_notEquals && _equals);
+              _and = _equals;
             }
             if (_and) {
               IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
@@ -1514,8 +1416,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof ImportAssignement));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof ImportAssignement));
     }
     if (_and) {
       super.completeImportAssignement_PkColumn(model, assignment, context, acceptor);
@@ -1532,14 +1433,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     } else {
       String _dbColumn = imp.getDbColumn();
       boolean _notEquals_1 = (!Objects.equal(_dbColumn, null));
-      _and_2 = (_notEquals && _notEquals_1);
+      _and_2 = _notEquals_1;
     }
     if (!_and_2) {
       _and_1 = false;
     } else {
       String _pkTable = imp.getPkTable();
       boolean _notEquals_2 = (!Objects.equal(_pkTable, null));
-      _and_1 = (_and_2 && _notEquals_2);
+      _and_1 = _notEquals_2;
     }
     if (_and_1) {
       String _name = prop.getName();
@@ -1562,7 +1463,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
               String _fkColumn_1 = dbImport.getFkColumn();
               String _dbColumn = imp.getDbColumn();
               boolean _equals = _fkColumn_1.equals(_dbColumn);
-              _and = (_notEquals && _equals);
+              _and = _equals;
             }
             if (_and) {
               boolean _and_1 = false;
@@ -1574,7 +1475,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
                 String _pkTable_1 = dbImport.getPkTable();
                 String _pkTable_2 = imp.getPkTable();
                 boolean _equals_1 = _pkTable_1.equals(_pkTable_2);
-                _and_1 = (_notEquals_1 && _equals_1);
+                _and_1 = _equals_1;
               }
               if (_and_1) {
                 IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
@@ -1598,8 +1499,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof PojogenProperty));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof PojogenProperty));
     }
     if (_and) {
       super.completeImportAssignement_DbColumn(model, assignment, context, acceptor);
@@ -1622,8 +1522,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof ExportAssignement));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof ExportAssignement));
     }
     if (_and) {
       super.completeExportAssignement_FkTable(model, assignment, context, acceptor);
@@ -1639,7 +1538,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     } else {
       String _dbColumn = exp.getDbColumn();
       boolean _notEquals_1 = (!Objects.equal(_dbColumn, null));
-      _and_1 = (_notEquals && _notEquals_1);
+      _and_1 = _notEquals_1;
     }
     if (_and_1) {
       String _name = prop.getName();
@@ -1660,7 +1559,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
               String _pkColumn_1 = dbExport.getPkColumn();
               String _dbColumn = exp.getDbColumn();
               boolean _equals = _pkColumn_1.equals(_dbColumn);
-              _and = (_notEquals && _equals);
+              _and = _equals;
             }
             if (_and) {
               IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
@@ -1683,8 +1582,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof ExportAssignement));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof ExportAssignement));
     }
     if (_and) {
       super.completeExportAssignement_FkColumn(model, assignment, context, acceptor);
@@ -1701,14 +1599,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     } else {
       String _dbColumn = exp.getDbColumn();
       boolean _notEquals_1 = (!Objects.equal(_dbColumn, null));
-      _and_2 = (_notEquals && _notEquals_1);
+      _and_2 = _notEquals_1;
     }
     if (!_and_2) {
       _and_1 = false;
     } else {
       String _fkTable = exp.getFkTable();
       boolean _notEquals_2 = (!Objects.equal(_fkTable, null));
-      _and_1 = (_and_2 && _notEquals_2);
+      _and_1 = _notEquals_2;
     }
     if (_and_1) {
       String _name = prop.getName();
@@ -1731,7 +1629,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
               String _pkColumn_1 = dbExport.getPkColumn();
               String _dbColumn = exp.getDbColumn();
               boolean _equals = _pkColumn_1.equals(_dbColumn);
-              _and = (_notEquals && _equals);
+              _and = _equals;
             }
             if (_and) {
               boolean _and_1 = false;
@@ -1743,7 +1641,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
                 String _fkTable_1 = dbExport.getFkTable();
                 String _fkTable_2 = exp.getFkTable();
                 boolean _equals_1 = _fkTable_1.equals(_fkTable_2);
-                _and_1 = (_notEquals_1 && _equals_1);
+                _and_1 = _equals_1;
               }
               if (_and_1) {
                 IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
@@ -1767,8 +1665,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof PojogenProperty));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof PojogenProperty));
     }
     if (_and) {
       super.completeExportAssignement_DbColumn(model, assignment, context, acceptor);
@@ -1791,8 +1688,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof PojogenProperty));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof PojogenProperty));
     }
     if (_and) {
       super.completeManyToManyAssignement_PkColumn(model, assignment, context, acceptor);
@@ -1815,8 +1711,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof ManyToManyAssignement));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof ManyToManyAssignement));
     }
     if (_and) {
       super.completeManyToManyAssignement_PkTable(model, assignment, context, acceptor);
@@ -1832,7 +1727,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     } else {
       String _pkColumn = many2.getPkColumn();
       boolean _notEquals_1 = (!Objects.equal(_pkColumn, null));
-      _and_1 = (_notEquals && _notEquals_1);
+      _and_1 = _notEquals_1;
     }
     if (_and_1) {
       String _dbTable_1 = prop.getDbTable();
@@ -1848,7 +1743,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
             String _pkColumn_1 = dbImport.getPkColumn();
             String _pkColumn_2 = many2.getPkColumn();
             boolean _equals = _pkColumn_1.equals(_pkColumn_2);
-            _and = (_notEquals && _equals);
+            _and = _equals;
           }
           if (_and) {
             IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
@@ -1870,8 +1765,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof InheritanceAssignement));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof InheritanceAssignement));
     }
     if (_and) {
       super.completeInheritanceAssignement_DbColumns(model, assignment, context, acceptor);
@@ -1887,17 +1781,11 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
-  private final ArrayList<String> methods = new Function0<ArrayList<String>>() {
-    public ArrayList<String> apply() {
-      ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", 
-        "enumInit", "index=");
-      return _newArrayList;
-    }
-  }.apply();
+  private final ArrayList<String> methods = CollectionLiterals.<String>newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", 
+    "enumInit", "index=");
   
   public void completePojogenProperty_Methods(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _not = (!(model instanceof PojogenProperty));
-    if (_not) {
+    if ((!(model instanceof PojogenProperty))) {
       super.completePojogenProperty_Methods(model, assignment, context, acceptor);
       return;
     }
@@ -1919,8 +1807,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof PojogenProperty));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof PojogenProperty));
     }
     if (_and) {
       super.completeShowColumnTypeAssignement_DbColumn(model, assignment, context, acceptor);
@@ -1959,8 +1846,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof ShowColumnTypeAssignement));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof ShowColumnTypeAssignement));
     }
     if (_and) {
       super.completeShowColumnTypeAssignement_Type(model, assignment, context, acceptor);
@@ -2029,8 +1915,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       public int compare(final PojoEntity o1, final PojoEntity o2) {
         String _name = o1.getName();
         String _name_1 = o2.getName();
-        int _compareTo = _name.compareTo(_name_1);
-        return _compareTo;
+        return _name.compareTo(_name_1);
       }
     };
     final TreeSet<PojoEntity> result = CollectionLiterals.<PojoEntity>newTreeSet(_function);
@@ -2065,8 +1950,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       public int compare(final PojoDefinition o1, final PojoDefinition o2) {
         String _name = o1.getName();
         String _name_1 = o2.getName();
-        int _compareTo = _name.compareTo(_name_1);
-        return _compareTo;
+        return _name.compareTo(_name_1);
       }
     };
     final TreeSet<PojoDefinition> result = CollectionLiterals.<PojoDefinition>newTreeSet(_function);
@@ -2088,8 +1972,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       public int compare(final TableDefinition o1, final TableDefinition o2) {
         String _name = o1.getName();
         String _name_1 = o2.getName();
-        int _compareTo = _name.compareTo(_name_1);
-        return _compareTo;
+        return _name.compareTo(_name_1);
       }
     };
     final TreeSet<TableDefinition> result = CollectionLiterals.<TableDefinition>newTreeSet(_function);
@@ -2112,24 +1995,18 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     Resource _eResource = artifacts.eResource();
     ResourceSet _resourceSet = _eResource.getResourceSet();
     IScopeProvider _scopeProvider = this.getScopeProvider();
-    IScope _scope = _scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
+    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
     final Set<PojoEntity> entities = this.listEntities(_resourceSet, _scope);
     final Procedure1<PojoEntity> _function = new Procedure1<PojoEntity>() {
       public void apply(final PojoEntity entity) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         String _name = entity.getName();
         final String proposal = _valueConverter.toString(_name, "IDENT");
-        String _plus = (Constants.CONSTANT_USAGE_EXTENDED + "=");
-        String _plus_1 = (_plus + proposal);
-        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_plus_1, context);
+        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.CONSTANT_USAGE_EXTENDED + "=") + proposal), context);
         acceptor.accept(_createCompletionProposal);
-        String _plus_2 = (Constants.IDENTIFIER_USAGE_EXTENDED + "=");
-        String _plus_3 = (_plus_2 + proposal);
-        ICompletionProposal _createCompletionProposal_1 = ProcessorDslProposalProvider.this.createCompletionProposal(_plus_3, context);
+        ICompletionProposal _createCompletionProposal_1 = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.IDENTIFIER_USAGE_EXTENDED + "=") + proposal), context);
         acceptor.accept(_createCompletionProposal_1);
-        String _plus_4 = (Constants.COLUMN_USAGE_EXTENDED + "=");
-        String _plus_5 = (_plus_4 + proposal);
-        ICompletionProposal _createCompletionProposal_2 = ProcessorDslProposalProvider.this.createCompletionProposal(_plus_5, context);
+        ICompletionProposal _createCompletionProposal_2 = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.COLUMN_USAGE_EXTENDED + "=") + proposal), context);
         acceptor.accept(_createCompletionProposal_2);
       }
     };
@@ -2137,24 +2014,18 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     Resource _eResource_1 = artifacts.eResource();
     ResourceSet _resourceSet_1 = _eResource_1.getResourceSet();
     IScopeProvider _scopeProvider_1 = this.getScopeProvider();
-    IScope _scope_1 = _scopeProvider_1.getScope(artifacts, Literals.ARTIFACTS__POJOS);
+    IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
     final Set<PojoDefinition> pojos = this.listPojos(_resourceSet_1, _scope_1);
     final Procedure1<PojoDefinition> _function_1 = new Procedure1<PojoDefinition>() {
       public void apply(final PojoDefinition pojo) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         String _name = pojo.getName();
         final String proposal = _valueConverter.toString(_name, "IDENT");
-        String _plus = (Constants.CONSTANT_USAGE + "=");
-        String _plus_1 = (_plus + proposal);
-        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_plus_1, context);
+        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.CONSTANT_USAGE + "=") + proposal), context);
         acceptor.accept(_createCompletionProposal);
-        String _plus_2 = (Constants.IDENTIFIER_USAGE + "=");
-        String _plus_3 = (_plus_2 + proposal);
-        ICompletionProposal _createCompletionProposal_1 = ProcessorDslProposalProvider.this.createCompletionProposal(_plus_3, context);
+        ICompletionProposal _createCompletionProposal_1 = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.IDENTIFIER_USAGE + "=") + proposal), context);
         acceptor.accept(_createCompletionProposal_1);
-        String _plus_4 = (Constants.COLUMN_USAGE + "=");
-        String _plus_5 = (_plus_4 + proposal);
-        ICompletionProposal _createCompletionProposal_2 = ProcessorDslProposalProvider.this.createCompletionProposal(_plus_5, context);
+        ICompletionProposal _createCompletionProposal_2 = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.COLUMN_USAGE + "=") + proposal), context);
         acceptor.accept(_createCompletionProposal_2);
       }
     };
@@ -2162,16 +2033,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     Resource _eResource_2 = artifacts.eResource();
     ResourceSet _resourceSet_2 = _eResource_2.getResourceSet();
     IScopeProvider _scopeProvider_2 = this.getScopeProvider();
-    IScope _scope_2 = _scopeProvider_2.getScope(artifacts, Literals.ARTIFACTS__TABLES);
+    IScope _scope_2 = _scopeProvider_2.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
     final Set<TableDefinition> tables = this.listTables(_resourceSet_2, _scope_2);
     final Procedure1<TableDefinition> _function_2 = new Procedure1<TableDefinition>() {
       public void apply(final TableDefinition table) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         String _name = table.getName();
         final String proposal = _valueConverter.toString(_name, "IDENT");
-        String _plus = (Constants.TABLE_USAGE + "=");
-        String _plus_1 = (_plus + proposal);
-        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_plus_1, context);
+        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.TABLE_USAGE + "=") + proposal), context);
         acceptor.accept(_createCompletionProposal);
       }
     };
@@ -2184,16 +2053,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     Resource _eResource = artifacts.eResource();
     ResourceSet _resourceSet = _eResource.getResourceSet();
     IScopeProvider _scopeProvider = this.getScopeProvider();
-    IScope _scope = _scopeProvider.getScope(artifacts, Literals.ARTIFACTS__POJO_PACKAGES);
+    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
     final Set<PojoEntity> entities = this.listEntities(_resourceSet, _scope);
     final Procedure1<PojoEntity> _function = new Procedure1<PojoEntity>() {
       public void apply(final PojoEntity entity) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         String _name = entity.getName();
         final String proposal = _valueConverter.toString(_name, "IDENT");
-        String _plus = (Constants.MAPPING_USAGE_EXTENDED + "=");
-        String _plus_1 = (_plus + proposal);
-        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_plus_1, context);
+        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.MAPPING_USAGE_EXTENDED + "=") + proposal), context);
         acceptor.accept(_createCompletionProposal);
       }
     };
@@ -2201,16 +2068,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     Resource _eResource_1 = artifacts.eResource();
     ResourceSet _resourceSet_1 = _eResource_1.getResourceSet();
     IScopeProvider _scopeProvider_1 = this.getScopeProvider();
-    IScope _scope_1 = _scopeProvider_1.getScope(artifacts, Literals.ARTIFACTS__POJOS);
+    IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
     final Set<PojoDefinition> pojos = this.listPojos(_resourceSet_1, _scope_1);
     final Procedure1<PojoDefinition> _function_1 = new Procedure1<PojoDefinition>() {
       public void apply(final PojoDefinition pojo) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         String _name = pojo.getName();
         final String proposal = _valueConverter.toString(_name, "IDENT");
-        String _plus = (Constants.MAPPING_USAGE + "=");
-        String _plus_1 = (_plus + proposal);
-        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_plus_1, context);
+        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.MAPPING_USAGE + "=") + proposal), context);
         acceptor.accept(_createCompletionProposal);
       }
     };
@@ -2284,8 +2149,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof MetagenProperty));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof MetagenProperty));
     }
     if (_and) {
       super.completeMetaTypeAssignement_DbColumn(model, assignment, context, acceptor);
@@ -2314,8 +2178,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof MetagenProperty));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof MetagenProperty));
     }
     if (_and) {
       super.completeMetagenProperty_DbColumns(model, assignment, context, acceptor);
@@ -2362,8 +2225,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof DatabaseProperty));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof DatabaseProperty));
     }
     if (_and) {
       super.completeDriverMethodOutputAssignement_DriverMethod(model, assignment, context, acceptor);
@@ -2374,8 +2236,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       public void apply(final String driverMetod) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         final String proposal = _valueConverter.toString(driverMetod, "PropertyValue");
-        String _plus = (proposal + "->");
-        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_plus, context);
+        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal((proposal + "->"), context);
         acceptor.accept(_createCompletionProposal);
       }
     };
@@ -2389,8 +2250,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (!_not) {
       _and = false;
     } else {
-      boolean _not_1 = (!(model instanceof DriverMethodOutputAssignement));
-      _and = (_not && _not_1);
+      _and = (!(model instanceof DriverMethodOutputAssignement));
     }
     if (_and) {
       super.completeDriverMethodOutputAssignement_CallOutput(model, assignment, context, acceptor);
@@ -2403,12 +2263,11 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (_driverMethodOutput != null) {
       _elvis = _driverMethodOutput;
     } else {
-      _elvis = ObjectExtensions.<Object>operator_elvis(_driverMethodOutput, "null");
+      _elvis = "null";
     }
     final Object methodCallOutput = _elvis;
     IValueConverterService _valueConverter = this.getValueConverter();
-    String _plus = ("" + methodCallOutput);
-    final String proposal = _valueConverter.toString(_plus, "PropertyValue");
+    final String proposal = _valueConverter.toString(("" + methodCallOutput), "PropertyValue");
     ICompletionProposal _createCompletionProposal = this.createCompletionProposal(proposal, context);
     acceptor.accept(_createCompletionProposal);
   }
@@ -2421,9 +2280,9 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       return;
     }
     final String dbMetaInfo = this.dbResolver.getDbMetaInfo(model);
-    DbType[] _fromDbMetaInfo = DbType.fromDbMetaInfo(dbMetaInfo);
-    final Procedure1<DbType> _function = new Procedure1<DbType>() {
-      public void apply(final DbType dbType) {
+    DbResolver.DbType[] _fromDbMetaInfo = DbResolver.DbType.fromDbMetaInfo(dbMetaInfo);
+    final Procedure1<DbResolver.DbType> _function = new Procedure1<DbResolver.DbType>() {
+      public void apply(final DbResolver.DbType dbType) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         String _value = dbType.getValue();
         final String proposal = _valueConverter.toString(_value, "PropertyValue");
@@ -2431,7 +2290,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         acceptor.accept(_createCompletionProposal);
       }
     };
-    IterableExtensions.<DbType>forEach(((Iterable<DbType>)Conversions.doWrapArray(_fromDbMetaInfo)), _function);
+    IterableExtensions.<DbResolver.DbType>forEach(((Iterable<DbResolver.DbType>)Conversions.doWrapArray(_fromDbMetaInfo)), _function);
   }
   
   public void completeDatabaseCatalogAssignement_DbCatalog(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {

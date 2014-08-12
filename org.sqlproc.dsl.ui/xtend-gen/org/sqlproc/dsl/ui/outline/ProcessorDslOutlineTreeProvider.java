@@ -63,14 +63,12 @@ public class ProcessorDslOutlineTreeProvider extends DefaultOutlineTreeProvider 
     boolean _matched = false;
     if (!_matched) {
       if (modelElement instanceof MetaStatement) {
-        final MetaStatement _metaStatement = (MetaStatement)modelElement;
         _matched=true;
         final Comparator<Identifier> _function = new Comparator<Identifier>() {
           public int compare(final Identifier a, final Identifier b) {
             String _name = a.getName();
             String _name_1 = b.getName();
-            int _compareTo = _name.compareTo(_name_1);
-            return _compareTo;
+            return _name.compareTo(_name_1);
           }
         };
         final TreeSet<Identifier> identifiers = CollectionLiterals.<Identifier>newTreeSet(_function);
@@ -78,8 +76,7 @@ public class ProcessorDslOutlineTreeProvider extends DefaultOutlineTreeProvider 
           public int compare(final Constant a, final Constant b) {
             String _name = a.getName();
             String _name_1 = b.getName();
-            int _compareTo = _name.compareTo(_name_1);
-            return _compareTo;
+            return _name.compareTo(_name_1);
           }
         };
         final TreeSet<Constant> constants = CollectionLiterals.<Constant>newTreeSet(_function_1);
@@ -87,8 +84,7 @@ public class ProcessorDslOutlineTreeProvider extends DefaultOutlineTreeProvider 
           public int compare(final Column a, final Column b) {
             String _name = Utils.getName(a);
             String _name_1 = Utils.getName(b);
-            int _compareTo = _name.compareTo(_name_1);
-            return _compareTo;
+            return _name.compareTo(_name_1);
           }
         };
         final TreeSet<Column> columns = CollectionLiterals.<Column>newTreeSet(_function_2);
@@ -96,12 +92,11 @@ public class ProcessorDslOutlineTreeProvider extends DefaultOutlineTreeProvider 
           public int compare(final DatabaseColumn a, final DatabaseColumn b) {
             String _name = a.getName();
             String _name_1 = b.getName();
-            int _compareTo = _name.compareTo(_name_1);
-            return _compareTo;
+            return _name.compareTo(_name_1);
           }
         };
         final TreeSet<DatabaseColumn> databaseColumns = CollectionLiterals.<DatabaseColumn>newTreeSet(_function_3);
-        Collector.allVariables(((MetaStatement) _metaStatement), identifiers, constants, columns, databaseColumns);
+        Collector.allVariables(((MetaStatement) modelElement), identifiers, constants, columns, databaseColumns);
         for (final Identifier identifier : identifiers) {
           this.createNode(parentNode, identifier);
         }
@@ -118,18 +113,16 @@ public class ProcessorDslOutlineTreeProvider extends DefaultOutlineTreeProvider 
     }
     if (!_matched) {
       if (modelElement instanceof MappingRule) {
-        final MappingRule _mappingRule = (MappingRule)modelElement;
         _matched=true;
         final Comparator<MappingColumn> _function = new Comparator<MappingColumn>() {
           public int compare(final MappingColumn a, final MappingColumn b) {
             String _name = Utils.getName(a);
             String _name_1 = Utils.getName(b);
-            int _compareTo = _name.compareTo(_name_1);
-            return _compareTo;
+            return _name.compareTo(_name_1);
           }
         };
         final TreeSet<MappingColumn> columns = CollectionLiterals.<MappingColumn>newTreeSet(_function);
-        Collector.allVariables(((MappingRule) _mappingRule), columns);
+        Collector.allVariables(((MappingRule) modelElement), columns);
         for (final MappingColumn column : columns) {
           this.createNode(parentNode, column);
         }

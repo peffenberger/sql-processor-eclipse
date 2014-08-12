@@ -16,7 +16,6 @@ import org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider;
 public class ProcessorDslDescriptionLabelProvider extends DefaultDescriptionLabelProvider {
   public Object text(final IEObjectDescription ele) {
     QualifiedName _name = ele.getName();
-    String _plus = ("" + _name);
-    return _plus;
+    return ("" + _name);
   }
 }

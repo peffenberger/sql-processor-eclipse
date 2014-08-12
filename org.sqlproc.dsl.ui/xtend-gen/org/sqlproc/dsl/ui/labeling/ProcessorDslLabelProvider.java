@@ -35,48 +35,39 @@ public class ProcessorDslLabelProvider extends DefaultEObjectLabelProvider {
   }
   
   public String text(final MetaStatement ele) {
-    String _name = ele.getName();
-    return _name;
+    return ele.getName();
   }
   
   public String text(final MappingRule ele) {
-    String _name = ele.getName();
-    return _name;
+    return ele.getName();
   }
   
   public String text(final OptionalFeature ele) {
-    String _name = ele.getName();
-    return _name;
+    return ele.getName();
   }
   
   public String text(final Identifier ele) {
-    String _name = ele.getName();
-    return _name;
+    return ele.getName();
   }
   
   public String text(final Constant ele) {
-    String _name = ele.getName();
-    return _name;
+    return ele.getName();
   }
   
   public String text(final Column ele) {
-    String _name = Utils.getName(ele);
-    return _name;
+    return Utils.getName(ele);
   }
   
   public String text(final MappingColumn ele) {
-    String _name = Utils.getName(ele);
-    return _name;
+    return Utils.getName(ele);
   }
   
   public String text(final DatabaseColumn ele) {
-    String _name = ele.getName();
-    return _name;
+    return ele.getName();
   }
   
   public String text(final DatabaseTable ele) {
-    String _name = ele.getName();
-    return _name;
+    return ele.getName();
   }
   
   public String image(final MetaStatement ele) {

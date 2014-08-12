@@ -71,8 +71,7 @@ public class ProcessorPojoGenerator {
   
   public CharSequence compile(final EnumEntity e) {
     StringConcatenation _builder = new StringConcatenation();
-    ImportManager _importManager = new ImportManager(true);
-    final ImportManager im = _importManager;
+    final ImportManager im = new ImportManager(true);
     _builder.newLineIfNotEmpty();
     final EnumProperty eattr = Utils.getEnumAttr(e);
     _builder.newLineIfNotEmpty();
@@ -152,11 +151,10 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     {
       EList<EnumProperty> _features = e.getFeatures();
-      final Function1<EnumProperty,Boolean> _function = new Function1<EnumProperty,Boolean>() {
+      final Function1<EnumProperty, Boolean> _function = new Function1<EnumProperty, Boolean>() {
         public Boolean apply(final EnumProperty x) {
           String _value = x.getValue();
-          boolean _notEquals = (!Objects.equal(_value, null));
-          return Boolean.valueOf(_notEquals);
+          return Boolean.valueOf((!Objects.equal(_value, null)));
         }
       };
       Iterable<EnumProperty> _filter = IterableExtensions.<EnumProperty>filter(_features, _function);
@@ -165,13 +163,13 @@ public class ProcessorPojoGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         String _name_1 = f.getName();
-        _builder.append(_name_1, "	");
+        _builder.append(_name_1, "\t");
         _builder.append("(");
         String _value = f.getValue();
-        _builder.append(_value, "	");
+        _builder.append(_value, "\t");
         _builder.append(")");
       }
     }
@@ -187,7 +185,7 @@ public class ProcessorPojoGenerator {
         _builder.append("\t");
         _builder.append("private static final long serialVersionUID = ");
         String _sernum_1 = Utils.getSernum(e);
-        _builder.append(_sernum_1, "	");
+        _builder.append(_sernum_1, "\t");
         _builder.append("L;");
         _builder.newLineIfNotEmpty();
       }
@@ -197,16 +195,16 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("private static Map<");
     CharSequence _compileType = this._processorGeneratorUtils.compileType(ea, im);
-    _builder.append(_compileType, "	");
+    _builder.append(_compileType, "\t");
     _builder.append(", ");
     String _name_2 = e.getName();
-    _builder.append(_name_2, "	");
+    _builder.append(_name_2, "\t");
     _builder.append("> identifierMap = new HashMap<");
     CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(ea, im);
-    _builder.append(_compileType_1, "	");
+    _builder.append(_compileType_1, "\t");
     _builder.append(", ");
     String _name_3 = e.getName();
-    _builder.append(_name_3, "	");
+    _builder.append(_name_3, "\t");
     _builder.append(">();");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -216,10 +214,10 @@ public class ProcessorPojoGenerator {
     _builder.append("\t\t");
     _builder.append("for (");
     String _name_4 = e.getName();
-    _builder.append(_name_4, "		");
+    _builder.append(_name_4, "\t\t");
     _builder.append(" value : ");
     String _name_5 = e.getName();
-    _builder.append(_name_5, "		");
+    _builder.append(_name_5, "\t\t");
     _builder.append(".values()) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t\t");
@@ -235,26 +233,26 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("private ");
     CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(ea, im);
-    _builder.append(_compileType_2, "	");
+    _builder.append(_compileType_2, "\t");
     _builder.append(" ");
     String _name_6 = ea.getName();
-    _builder.append(_name_6, "	");
+    _builder.append(_name_6, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("\t");
     _builder.append("private ");
     String _name_7 = e.getName();
-    _builder.append(_name_7, "	");
+    _builder.append(_name_7, "\t");
     _builder.append("(");
     CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(ea, im);
-    _builder.append(_compileType_3, "	");
+    _builder.append(_compileType_3, "\t");
     _builder.append(" value) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("this.");
     String _name_8 = ea.getName();
-    _builder.append(_name_8, "		");
+    _builder.append(_name_8, "\t\t");
     _builder.append(" = value;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -264,15 +262,15 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public static ");
     String _name_9 = e.getName();
-    _builder.append(_name_9, "	");
+    _builder.append(_name_9, "\t");
     _builder.append(" fromValue(");
     CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(ea, im);
-    _builder.append(_compileType_4, "	");
+    _builder.append(_compileType_4, "\t");
     _builder.append(" value) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     String _name_10 = e.getName();
-    _builder.append(_name_10, "		");
+    _builder.append(_name_10, "\t\t");
     _builder.append(" result = identifierMap.get(value);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -281,7 +279,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t\t\t");
     _builder.append("throw new IllegalArgumentException(\"No ");
     String _name_11 = e.getName();
-    _builder.append(_name_11, "			");
+    _builder.append(_name_11, "\t\t\t");
     _builder.append(" for value: \" + value);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -297,13 +295,13 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(ea, im);
-    _builder.append(_compileType_5, "	");
+    _builder.append(_compileType_5, "\t");
     _builder.append(" getValue() {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("return ");
     String _name_12 = ea.getName();
-    _builder.append(_name_12, "		");
+    _builder.append(_name_12, "\t\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -326,8 +324,7 @@ public class ProcessorPojoGenerator {
   
   public CharSequence compile(final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
-    ImportManager _importManager = new ImportManager(true);
-    final ImportManager im = _importManager;
+    final ImportManager im = new ImportManager(true);
     _builder.newLineIfNotEmpty();
     this.addImplements(e, im);
     _builder.newLineIfNotEmpty();
@@ -393,7 +390,7 @@ public class ProcessorPojoGenerator {
       } else {
         PojoAnnotatedProperty _hasToInit = this.hasToInit(e);
         boolean _notEquals_3 = (!Objects.equal(_hasToInit, null));
-        _or = (_notEquals_2 || _notEquals_3);
+        _or = _notEquals_3;
       }
       if (_or) {
         _builder.append("import java.util.Set;");
@@ -414,7 +411,7 @@ public class ProcessorPojoGenerator {
       } else {
         String _operatorsSuffix = Utils.getOperatorsSuffix(e);
         boolean _equals = Objects.equal(_operatorsSuffix, null);
-        _and = (_hasOperators && _equals);
+        _and = _equals;
       }
       if (_and) {
         _builder.append("import java.util.Map;");
@@ -489,19 +486,18 @@ public class ProcessorPojoGenerator {
         _builder.append("\t");
         _builder.append("private static final long serialVersionUID = ");
         String _sernum_1 = Utils.getSernum(e);
-        _builder.append(_sernum_1, "	");
+        _builder.append(_sernum_1, "\t");
         _builder.append("L;");
         _builder.newLineIfNotEmpty();
       }
     }
     {
       EList<PojoAnnotatedProperty> _features_2 = e.getFeatures();
-      final Function1<PojoAnnotatedProperty,Boolean> _function = new Function1<PojoAnnotatedProperty,Boolean>() {
+      final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
         public Boolean apply(final PojoAnnotatedProperty x) {
           PojoProperty _feature = x.getFeature();
           String _index = Utils.getIndex(_feature);
-          boolean _notEquals = (!Objects.equal(_index, null));
-          return Boolean.valueOf(_notEquals);
+          return Boolean.valueOf((!Objects.equal(_index, null)));
         }
       };
       Iterable<PojoAnnotatedProperty> _filter = IterableExtensions.<PojoAnnotatedProperty>filter(_features_2, _function);
@@ -513,7 +509,7 @@ public class ProcessorPojoGenerator {
             _builder.append("@");
             JvmType _type_1 = a_1.getType();
             CharSequence _serialize_1 = im.serialize(_type_1);
-            _builder.append(_serialize_1, "	");
+            _builder.append(_serialize_1, "\t");
             {
               EList<AnnotationProperty> _features_3 = a_1.getFeatures();
               boolean _isEmpty_1 = _features_3.isEmpty();
@@ -527,10 +523,10 @@ public class ProcessorPojoGenerator {
                     if (!_hasElements_1) {
                       _hasElements_1 = true;
                     } else {
-                      _builder.appendImmediate(", ", "	");
+                      _builder.appendImmediate(", ", "\t");
                     }
                     CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(ff, im);
-                    _builder.append(_compileAnnotationProperty_1, "	");
+                    _builder.append(_compileAnnotationProperty_1, "\t");
                   }
                 }
                 _builder.append(")");
@@ -543,23 +539,22 @@ public class ProcessorPojoGenerator {
         _builder.append("public static final int ORDER_BY_");
         PojoProperty _feature = f_1.getFeature();
         String _constName = Utils.constName(_feature);
-        _builder.append(_constName, "	");
+        _builder.append(_constName, "\t");
         _builder.append(" = ");
         PojoProperty _feature_1 = f_1.getFeature();
         String _index = Utils.getIndex(_feature_1);
-        _builder.append(_index, "	");
+        _builder.append(_index, "\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
       }
     }
     {
       EList<PojoAnnotatedProperty> _features_5 = e.getFeatures();
-      final Function1<PojoAnnotatedProperty,Boolean> _function_1 = new Function1<PojoAnnotatedProperty,Boolean>() {
+      final Function1<PojoAnnotatedProperty, Boolean> _function_1 = new Function1<PojoAnnotatedProperty, Boolean>() {
         public Boolean apply(final PojoAnnotatedProperty x) {
           PojoProperty _feature = x.getFeature();
           String _name = _feature.getName();
-          boolean _startsWith = _name.startsWith("index=");
-          return Boolean.valueOf(_startsWith);
+          return Boolean.valueOf(_name.startsWith("index="));
         }
       };
       Iterable<PojoAnnotatedProperty> _filter_1 = IterableExtensions.<PojoAnnotatedProperty>filter(_features_5, _function_1);
@@ -571,7 +566,7 @@ public class ProcessorPojoGenerator {
             _builder.append("@");
             JvmType _type_2 = a_2.getType();
             CharSequence _serialize_2 = im.serialize(_type_2);
-            _builder.append(_serialize_2, "	");
+            _builder.append(_serialize_2, "\t");
             {
               EList<AnnotationProperty> _features_6 = a_2.getFeatures();
               boolean _isEmpty_2 = _features_6.isEmpty();
@@ -585,10 +580,10 @@ public class ProcessorPojoGenerator {
                     if (!_hasElements_2) {
                       _hasElements_2 = true;
                     } else {
-                      _builder.appendImmediate(", ", "	");
+                      _builder.appendImmediate(", ", "\t");
                     }
                     CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff_1, im);
-                    _builder.append(_compileAnnotationProperty_2, "	");
+                    _builder.append(_compileAnnotationProperty_2, "\t");
                   }
                 }
                 _builder.append(")");
@@ -601,12 +596,12 @@ public class ProcessorPojoGenerator {
         _builder.append("public static final int ORDER_BY_");
         PojoProperty _feature_2 = f_2.getFeature();
         String _constName2 = Utils.constName2(_feature_2);
-        _builder.append(_constName2, "	");
+        _builder.append(_constName2, "\t");
         _builder.append(" = ");
         PojoProperty _feature_3 = f_2.getFeature();
         String _name_1 = _feature_3.getName();
         String _substring = _name_1.substring(6);
-        _builder.append(_substring, "	");
+        _builder.append(_substring, "\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
       }
@@ -620,7 +615,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_3 = a_3.getType();
         CharSequence _serialize_3 = im.serialize(_type_3);
-        _builder.append(_serialize_3, "	");
+        _builder.append(_serialize_3, "\t");
         {
           EList<AnnotationProperty> _features_8 = a_3.getFeatures();
           boolean _isEmpty_3 = _features_8.isEmpty();
@@ -634,10 +629,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_3) {
                   _hasElements_3 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(f_3, im);
-                _builder.append(_compileAnnotationProperty_3, "	");
+                _builder.append(_compileAnnotationProperty_3, "\t");
               }
             }
             _builder.append(")");
@@ -649,7 +644,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_2 = e.getName();
-    _builder.append(_name_2, "	");
+    _builder.append(_name_2, "\t");
     _builder.append("() {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -670,7 +665,7 @@ public class ProcessorPojoGenerator {
             _builder.append("@");
             JvmType _type_4 = a_4.getType();
             CharSequence _serialize_4 = im.serialize(_type_4);
-            _builder.append(_serialize_4, "	");
+            _builder.append(_serialize_4, "\t");
             {
               EList<AnnotationProperty> _features_10 = a_4.getFeatures();
               boolean _isEmpty_5 = _features_10.isEmpty();
@@ -684,10 +679,10 @@ public class ProcessorPojoGenerator {
                     if (!_hasElements_4) {
                       _hasElements_4 = true;
                     } else {
-                      _builder.appendImmediate(", ", "	");
+                      _builder.appendImmediate(", ", "\t");
                     }
                     CharSequence _compileAnnotationProperty_4 = this.compileAnnotationProperty(f_4, im);
-                    _builder.append(_compileAnnotationProperty_4, "	");
+                    _builder.append(_compileAnnotationProperty_4, "\t");
                   }
                 }
                 _builder.append(")");
@@ -699,7 +694,7 @@ public class ProcessorPojoGenerator {
         _builder.append("\t");
         _builder.append("public ");
         String _name_3 = e.getName();
-        _builder.append(_name_3, "	");
+        _builder.append(_name_3, "\t");
         _builder.append("(");
         {
           List<PojoAnnotatedProperty> _requiredFeatures_1 = this.requiredFeatures(e);
@@ -708,16 +703,16 @@ public class ProcessorPojoGenerator {
             if (!_hasElements_5) {
               _hasElements_5 = true;
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             PojoProperty _feature_4 = f_5.getFeature();
             CharSequence _compileType = this._processorGeneratorUtils.compileType(_feature_4, im);
             CharSequence _fullName = Utils.getFullName(e, f_5, _compileType, im);
-            _builder.append(_fullName, "	");
+            _builder.append(_fullName, "\t");
             _builder.append(" ");
             PojoProperty _feature_5 = f_5.getFeature();
             String _name_4 = _feature_5.getName();
-            _builder.append(_name_4, "	");
+            _builder.append(_name_4, "\t");
           }
         }
         _builder.append(") {");
@@ -730,16 +725,16 @@ public class ProcessorPojoGenerator {
           for(final PojoAnnotatedProperty f_6 : _requiredSuperFeatures) {
             if (!_hasElements_6) {
               _hasElements_6 = true;
-              _builder.append("super(", "		");
+              _builder.append("super(", "\t\t");
             } else {
-              _builder.appendImmediate(", ", "		");
+              _builder.appendImmediate(", ", "\t\t");
             }
             PojoProperty _feature_6 = f_6.getFeature();
             String _name_5 = _feature_6.getName();
-            _builder.append(_name_5, "		");
+            _builder.append(_name_5, "\t\t");
           }
           if (_hasElements_6) {
-            _builder.append(");", "		");
+            _builder.append(");", "\t\t");
           }
         }
         _builder.newLineIfNotEmpty();
@@ -751,11 +746,11 @@ public class ProcessorPojoGenerator {
             _builder.append("this.");
             PojoProperty _feature_7 = f_7.getFeature();
             String _name_6 = _feature_7.getName();
-            _builder.append(_name_6, "		");
+            _builder.append(_name_6, "\t\t");
             _builder.append(" = ");
             PojoProperty _feature_8 = f_7.getFeature();
             String _name_7 = _feature_8.getName();
-            _builder.append(_name_7, "		");
+            _builder.append(_name_7, "\t\t");
             _builder.append(";");
             _builder.newLineIfNotEmpty();
           }
@@ -767,11 +762,10 @@ public class ProcessorPojoGenerator {
     }
     {
       EList<PojoAnnotatedProperty> _features_12 = e.getFeatures();
-      final Function1<PojoAnnotatedProperty,Boolean> _function_2 = new Function1<PojoAnnotatedProperty,Boolean>() {
+      final Function1<PojoAnnotatedProperty, Boolean> _function_2 = new Function1<PojoAnnotatedProperty, Boolean>() {
         public Boolean apply(final PojoAnnotatedProperty x) {
           PojoProperty _feature = x.getFeature();
-          boolean _isAttribute = ProcessorPojoGenerator.this.isAttribute(_feature);
-          return Boolean.valueOf(_isAttribute);
+          return Boolean.valueOf(ProcessorPojoGenerator.this.isAttribute(_feature));
         }
       };
       Iterable<PojoAnnotatedProperty> _filter_2 = IterableExtensions.<PojoAnnotatedProperty>filter(_features_12, _function_2);
@@ -785,12 +779,11 @@ public class ProcessorPojoGenerator {
     }
     {
       EList<PojoAnnotatedProperty> _features_13 = e.getFeatures();
-      final Function1<PojoAnnotatedProperty,Boolean> _function_3 = new Function1<PojoAnnotatedProperty,Boolean>() {
+      final Function1<PojoAnnotatedProperty, Boolean> _function_3 = new Function1<PojoAnnotatedProperty, Boolean>() {
         public Boolean apply(final PojoAnnotatedProperty x) {
           PojoProperty _feature = x.getFeature();
           boolean _isAttribute = ProcessorPojoGenerator.this.isAttribute(_feature);
-          boolean _not = (!_isAttribute);
-          return Boolean.valueOf(_not);
+          return Boolean.valueOf((!_isAttribute));
         }
       };
       Iterable<PojoAnnotatedProperty> _filter_3 = IterableExtensions.<PojoAnnotatedProperty>filter(_features_13, _function_3);
@@ -875,7 +868,7 @@ public class ProcessorPojoGenerator {
       } else {
         String _operatorsSuffix_1 = Utils.getOperatorsSuffix(e);
         boolean _equals = Objects.equal(_operatorsSuffix_1, null);
-        _and = (_hasOperators && _equals);
+        _and = _equals;
       }
       if (_and) {
         _builder.newLineIfNotEmpty();
@@ -926,7 +919,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type = a.getType();
         CharSequence _serialize = im.serialize(_type);
-        _builder.append(_serialize, "	");
+        _builder.append(_serialize, "\t");
         {
           EList<AnnotationProperty> _features = a.getFeatures();
           boolean _isEmpty = _features.isEmpty();
@@ -940,10 +933,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements) {
                   _hasElements = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
-                _builder.append(_compileAnnotationProperty, "	");
+                _builder.append(_compileAnnotationProperty, "\t");
               }
             }
             _builder.append(")");
@@ -955,16 +948,16 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("private ");
     CharSequence _compileType = this._processorGeneratorUtils.compileType(f, im);
-    _builder.append(_compileType, "	");
+    _builder.append(_compileType, "\t");
     _builder.append(" ");
     String _name = f.getName();
-    _builder.append(_name, "	");
+    _builder.append(_name, "\t");
     {
       boolean _isList = Utils.isList(f);
       if (_isList) {
         _builder.append(" = new Array");
         CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(f, im);
-        _builder.append(_compileType_1, "	");
+        _builder.append(_compileType_1, "\t");
         _builder.append("()");
       } else {
         boolean _isOptLock = Utils.isOptLock(f);
@@ -983,7 +976,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_1 = a_1.getType();
         CharSequence _serialize_1 = im.serialize(_type_1);
-        _builder.append(_serialize_1, "	");
+        _builder.append(_serialize_1, "\t");
         {
           EList<AnnotationProperty> _features_2 = a_1.getFeatures();
           boolean _isEmpty_1 = _features_2.isEmpty();
@@ -997,10 +990,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_1) {
                   _hasElements_1 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, im);
-                _builder.append(_compileAnnotationProperty_1, "	");
+                _builder.append(_compileAnnotationProperty_1, "\t");
               }
             }
             _builder.append(")");
@@ -1012,17 +1005,17 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(f, im);
-    _builder.append(_compileType_2, "	");
+    _builder.append(_compileType_2, "\t");
     _builder.append(" get");
     String _name_1 = f.getName();
     String __toFirstUpper = Utils._toFirstUpper(_name_1);
-    _builder.append(__toFirstUpper, "	");
+    _builder.append(__toFirstUpper, "\t");
     _builder.append("() {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("return ");
     String _name_2 = f.getName();
-    _builder.append(_name_2, "		");
+    _builder.append(_name_2, "\t\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -1036,7 +1029,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_2 = a_2.getType();
         CharSequence _serialize_2 = im.serialize(_type_2);
-        _builder.append(_serialize_2, "	");
+        _builder.append(_serialize_2, "\t");
         {
           EList<AnnotationProperty> _features_4 = a_2.getFeatures();
           boolean _isEmpty_2 = _features_4.isEmpty();
@@ -1050,10 +1043,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_2) {
                   _hasElements_2 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(af_2, im);
-                _builder.append(_compileAnnotationProperty_2, "	");
+                _builder.append(_compileAnnotationProperty_2, "\t");
               }
             }
             _builder.append(")");
@@ -1066,22 +1059,22 @@ public class ProcessorPojoGenerator {
     _builder.append("public void set");
     String _name_3 = f.getName();
     String __toFirstUpper_1 = Utils._toFirstUpper(_name_3);
-    _builder.append(__toFirstUpper_1, "	");
+    _builder.append(__toFirstUpper_1, "\t");
     _builder.append("(");
     CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(f, im);
-    _builder.append(_compileType_3, "	");
+    _builder.append(_compileType_3, "\t");
     _builder.append(" ");
     String _name_4 = f.getName();
-    _builder.append(_name_4, "	");
+    _builder.append(_name_4, "\t");
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("this.");
     String _name_5 = f.getName();
-    _builder.append(_name_5, "		");
+    _builder.append(_name_5, "\t\t");
     _builder.append(" = ");
     String _name_6 = f.getName();
-    _builder.append(_name_6, "		");
+    _builder.append(_name_6, "\t\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     {
@@ -1091,21 +1084,21 @@ public class ProcessorPojoGenerator {
         _builder.append("\t\t");
         _builder.append("if (this.");
         String _name_7 = f.getName();
-        _builder.append(_name_7, "		");
+        _builder.append(_name_7, "\t\t");
         _builder.append(" != null)");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("\t");
         _builder.append("this.");
         String _updateColumn2 = Utils.getUpdateColumn2(f);
-        _builder.append(_updateColumn2, "			");
+        _builder.append(_updateColumn2, "\t\t\t");
         _builder.append(" = this.");
         String _name_8 = f.getName();
-        _builder.append(_name_8, "			");
+        _builder.append(_name_8, "\t\t\t");
         _builder.append(".get");
         String _updateColumn1_1 = Utils.getUpdateColumn1(f);
         String __toFirstUpper_2 = Utils._toFirstUpper(_updateColumn1_1);
-        _builder.append(__toFirstUpper_2, "			");
+        _builder.append(__toFirstUpper_2, "\t\t\t");
         _builder.append("();");
         _builder.newLineIfNotEmpty();
       }
@@ -1117,32 +1110,32 @@ public class ProcessorPojoGenerator {
         _builder.append("\t\t");
         _builder.append("if (this.");
         String _createColumn1_1 = Utils.getCreateColumn1(f);
-        _builder.append(_createColumn1_1, "		");
+        _builder.append(_createColumn1_1, "\t\t");
         _builder.append(" == null)");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("\t");
         _builder.append("this.");
         String _createColumn1_2 = Utils.getCreateColumn1(f);
-        _builder.append(_createColumn1_2, "			");
+        _builder.append(_createColumn1_2, "\t\t\t");
         _builder.append(" = new ");
         String _createColumn1_3 = Utils.getCreateColumn1(f);
         PojoProperty _attribute = Utils.getAttribute(e, _createColumn1_3);
         CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(_attribute, im);
-        _builder.append(_compileType_4, "			");
+        _builder.append(_compileType_4, "\t\t\t");
         _builder.append("();");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("this.");
         String _createColumn1_4 = Utils.getCreateColumn1(f);
-        _builder.append(_createColumn1_4, "		");
+        _builder.append(_createColumn1_4, "\t\t");
         _builder.append(".set");
         String _createColumn2 = Utils.getCreateColumn2(f);
         String __toFirstUpper_3 = Utils._toFirstUpper(_createColumn2);
-        _builder.append(__toFirstUpper_3, "		");
+        _builder.append(__toFirstUpper_3, "\t\t");
         _builder.append("(");
         String _name_9 = f.getName();
-        _builder.append(_name_9, "		");
+        _builder.append(_name_9, "\t\t");
         _builder.append(");");
         _builder.newLineIfNotEmpty();
       }
@@ -1154,26 +1147,26 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_10 = e.getName();
-    _builder.append(_name_10, "	");
+    _builder.append(_name_10, "\t");
     _builder.append(" _set");
     String _name_11 = f.getName();
     String __toFirstUpper_4 = Utils._toFirstUpper(_name_11);
-    _builder.append(__toFirstUpper_4, "	");
+    _builder.append(__toFirstUpper_4, "\t");
     _builder.append("(");
     CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(f, im);
-    _builder.append(_compileType_5, "	");
+    _builder.append(_compileType_5, "\t");
     _builder.append(" ");
     String _name_12 = f.getName();
-    _builder.append(_name_12, "	");
+    _builder.append(_name_12, "\t");
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("this.");
     String _name_13 = f.getName();
-    _builder.append(_name_13, "		");
+    _builder.append(_name_13, "\t\t");
     _builder.append(" = ");
     String _name_14 = f.getName();
-    _builder.append(_name_14, "		");
+    _builder.append(_name_14, "\t\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     {
@@ -1183,21 +1176,21 @@ public class ProcessorPojoGenerator {
         _builder.append("\t\t");
         _builder.append("if (this.");
         String _name_15 = f.getName();
-        _builder.append(_name_15, "		");
+        _builder.append(_name_15, "\t\t");
         _builder.append(" != null)");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("\t");
         _builder.append("this.");
         String _updateColumn2_1 = Utils.getUpdateColumn2(f);
-        _builder.append(_updateColumn2_1, "			");
+        _builder.append(_updateColumn2_1, "\t\t\t");
         _builder.append(" = this.");
         String _name_16 = f.getName();
-        _builder.append(_name_16, "			");
+        _builder.append(_name_16, "\t\t\t");
         _builder.append(".get");
         String _updateColumn1_3 = Utils.getUpdateColumn1(f);
         String __toFirstUpper_5 = Utils._toFirstUpper(_updateColumn1_3);
-        _builder.append(__toFirstUpper_5, "			");
+        _builder.append(__toFirstUpper_5, "\t\t\t");
         _builder.append("();");
         _builder.newLineIfNotEmpty();
       }
@@ -1209,32 +1202,32 @@ public class ProcessorPojoGenerator {
         _builder.append("\t\t");
         _builder.append("if (this.");
         String _createColumn1_6 = Utils.getCreateColumn1(f);
-        _builder.append(_createColumn1_6, "		");
+        _builder.append(_createColumn1_6, "\t\t");
         _builder.append(" == null)");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("\t");
         _builder.append("this.");
         String _createColumn1_7 = Utils.getCreateColumn1(f);
-        _builder.append(_createColumn1_7, "			");
+        _builder.append(_createColumn1_7, "\t\t\t");
         _builder.append(" = new ");
         String _createColumn1_8 = Utils.getCreateColumn1(f);
         PojoProperty _attribute_1 = Utils.getAttribute(e, _createColumn1_8);
         CharSequence _compileType_6 = this._processorGeneratorUtils.compileType(_attribute_1, im);
-        _builder.append(_compileType_6, "			");
+        _builder.append(_compileType_6, "\t\t\t");
         _builder.append("();");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("this.");
         String _createColumn1_9 = Utils.getCreateColumn1(f);
-        _builder.append(_createColumn1_9, "		");
+        _builder.append(_createColumn1_9, "\t\t");
         _builder.append(".set");
         String _createColumn2_1 = Utils.getCreateColumn2(f);
         String __toFirstUpper_6 = Utils._toFirstUpper(_createColumn2_1);
-        _builder.append(__toFirstUpper_6, "		");
+        _builder.append(__toFirstUpper_6, "\t\t");
         _builder.append("(");
         String _name_17 = f.getName();
-        _builder.append(_name_17, "		");
+        _builder.append(_name_17, "\t\t");
         _builder.append(");");
         _builder.newLineIfNotEmpty();
       }
@@ -1251,7 +1244,7 @@ public class ProcessorPojoGenerator {
         _and = false;
       } else {
         boolean _notEquals_4 = (!Objects.equal(operatorSuffix, null));
-        _and = (_hasOperators && _notEquals_4);
+        _and = _notEquals_4;
       }
       if (_and) {
         _builder.newLineIfNotEmpty();
@@ -1261,8 +1254,8 @@ public class ProcessorPojoGenerator {
         _builder.append("\t");
         _builder.append("private String ");
         String _name_18 = f.getName();
-        _builder.append(_name_18, "	");
-        _builder.append(operatorSuffix, "	");
+        _builder.append(_name_18, "\t");
+        _builder.append(operatorSuffix, "\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -1272,16 +1265,16 @@ public class ProcessorPojoGenerator {
         _builder.append("public String get");
         String _name_19 = f.getName();
         String __toFirstUpper_7 = Utils._toFirstUpper(_name_19);
-        _builder.append(__toFirstUpper_7, "	");
-        _builder.append(operatorSuffix, "	");
+        _builder.append(__toFirstUpper_7, "\t");
+        _builder.append(operatorSuffix, "\t");
         _builder.append("() {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("\t");
         _builder.append("return ");
         String _name_20 = f.getName();
-        _builder.append(_name_20, "		");
-        _builder.append(operatorSuffix, "		");
+        _builder.append(_name_20, "\t\t");
+        _builder.append(operatorSuffix, "\t\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -1294,24 +1287,24 @@ public class ProcessorPojoGenerator {
         _builder.append("public void set");
         String _name_21 = f.getName();
         String __toFirstUpper_8 = Utils._toFirstUpper(_name_21);
-        _builder.append(__toFirstUpper_8, "	");
-        _builder.append(operatorSuffix, "	");
+        _builder.append(__toFirstUpper_8, "\t");
+        _builder.append(operatorSuffix, "\t");
         _builder.append("(String ");
         String _name_22 = f.getName();
-        _builder.append(_name_22, "	");
-        _builder.append(operatorSuffix, "	");
+        _builder.append(_name_22, "\t");
+        _builder.append(operatorSuffix, "\t");
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("\t");
         _builder.append("this.");
         String _name_23 = f.getName();
-        _builder.append(_name_23, "		");
-        _builder.append(operatorSuffix, "		");
+        _builder.append(_name_23, "\t\t");
+        _builder.append(operatorSuffix, "\t\t");
         _builder.append(" = ");
         String _name_24 = f.getName();
-        _builder.append(_name_24, "		");
-        _builder.append(operatorSuffix, "		");
+        _builder.append(_name_24, "\t\t");
+        _builder.append(operatorSuffix, "\t\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -1323,28 +1316,28 @@ public class ProcessorPojoGenerator {
         _builder.append("\t");
         _builder.append("public ");
         String _name_25 = e.getName();
-        _builder.append(_name_25, "	");
+        _builder.append(_name_25, "\t");
         _builder.append(" _set");
         String _name_26 = f.getName();
         String __toFirstUpper_9 = Utils._toFirstUpper(_name_26);
-        _builder.append(__toFirstUpper_9, "	");
-        _builder.append(operatorSuffix, "	");
+        _builder.append(__toFirstUpper_9, "\t");
+        _builder.append(operatorSuffix, "\t");
         _builder.append("(String ");
         String _name_27 = f.getName();
-        _builder.append(_name_27, "	");
-        _builder.append(operatorSuffix, "	");
+        _builder.append(_name_27, "\t");
+        _builder.append(operatorSuffix, "\t");
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("\t");
         _builder.append("this.");
         String _name_28 = f.getName();
-        _builder.append(_name_28, "		");
-        _builder.append(operatorSuffix, "		");
+        _builder.append(_name_28, "\t\t");
+        _builder.append(operatorSuffix, "\t\t");
         _builder.append(" = ");
         String _name_29 = f.getName();
-        _builder.append(_name_29, "		");
-        _builder.append(operatorSuffix, "		");
+        _builder.append(_name_29, "\t\t");
+        _builder.append(operatorSuffix, "\t\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -1372,7 +1365,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type = a.getType();
         CharSequence _serialize = im.serialize(_type);
-        _builder.append(_serialize, "	");
+        _builder.append(_serialize, "\t");
         {
           EList<AnnotationProperty> _features = a.getFeatures();
           boolean _isEmpty = _features.isEmpty();
@@ -1386,10 +1379,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements) {
                   _hasElements = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
-                _builder.append(_compileAnnotationProperty, "	");
+                _builder.append(_compileAnnotationProperty, "\t");
               }
             }
             _builder.append(")");
@@ -1418,18 +1411,18 @@ public class ProcessorPojoGenerator {
           if (_notEquals) {
             _builder.append("(int) (");
             String _name = f2.getName();
-            _builder.append(_name, "		");
+            _builder.append(_name, "\t\t");
             _builder.append(" ^ (");
             String _name_1 = f2.getName();
-            _builder.append(_name_1, "		");
+            _builder.append(_name_1, "\t\t");
             _builder.append(" >>> 32))");
           } else {
             _builder.append("((");
             String _name_2 = f2.getName();
-            _builder.append(_name_2, "		");
+            _builder.append(_name_2, "\t\t");
             _builder.append(" != null) ? ");
             String _name_3 = f2.getName();
-            _builder.append(_name_3, "		");
+            _builder.append(_name_3, "\t\t");
             _builder.append(".hashCode() : 0)");
           }
         }
@@ -1459,7 +1452,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type = a.getType();
         CharSequence _serialize = im.serialize(_type);
-        _builder.append(_serialize, "	");
+        _builder.append(_serialize, "\t");
         {
           EList<AnnotationProperty> _features = a.getFeatures();
           boolean _isEmpty = _features.isEmpty();
@@ -1473,10 +1466,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements) {
                   _hasElements = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
-                _builder.append(_compileAnnotationProperty, "	");
+                _builder.append(_compileAnnotationProperty, "\t");
               }
             }
             _builder.append(")");
@@ -1508,10 +1501,10 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.append("\t\t");
     String _name = e.getName();
-    _builder.append(_name, "		");
+    _builder.append(_name, "\t\t");
     _builder.append(" other = (");
     String _name_1 = e.getName();
-    _builder.append(_name_1, "		");
+    _builder.append(_name_1, "\t\t");
     _builder.append(") obj;");
     _builder.newLineIfNotEmpty();
     {
@@ -1524,21 +1517,21 @@ public class ProcessorPojoGenerator {
           if (_notEquals) {
             _builder.append("if (");
             String _name_2 = f2.getName();
-            _builder.append(_name_2, "		");
+            _builder.append(_name_2, "\t\t");
             _builder.append(" != other.");
             String _name_3 = f2.getName();
-            _builder.append(_name_3, "		");
+            _builder.append(_name_3, "\t\t");
             _builder.append(")");
           } else {
             _builder.append("if (");
             String _name_4 = f2.getName();
-            _builder.append(_name_4, "		");
+            _builder.append(_name_4, "\t\t");
             _builder.append(" == null || !");
             String _name_5 = f2.getName();
-            _builder.append(_name_5, "		");
+            _builder.append(_name_5, "\t\t");
             _builder.append(".equals(other.");
             String _name_6 = f2.getName();
-            _builder.append(_name_6, "		");
+            _builder.append(_name_6, "\t\t");
             _builder.append("))");
           }
         }
@@ -1570,7 +1563,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type = a.getType();
         CharSequence _serialize = im.serialize(_type);
-        _builder.append(_serialize, "	");
+        _builder.append(_serialize, "\t");
         {
           EList<AnnotationProperty> _features = a.getFeatures();
           boolean _isEmpty = _features.isEmpty();
@@ -1584,10 +1577,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements) {
                   _hasElements = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
-                _builder.append(_compileAnnotationProperty, "	");
+                _builder.append(_compileAnnotationProperty, "\t");
               }
             }
             _builder.append(")");
@@ -1602,7 +1595,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t\t");
     _builder.append("return \"");
     String _name = e.getName();
-    _builder.append(_name, "		");
+    _builder.append(_name, "\t\t");
     _builder.append(" [");
     {
       EList<PojoProperty> _attrs = f.getAttrs();
@@ -1611,13 +1604,13 @@ public class ProcessorPojoGenerator {
         if (!_hasElements_1) {
           _hasElements_1 = true;
         } else {
-          _builder.appendImmediate(" + \", ", "		");
+          _builder.appendImmediate(" + \", ", "\t\t");
         }
         String _name_1 = f2.getName();
-        _builder.append(_name_1, "		");
+        _builder.append(_name_1, "\t\t");
         _builder.append("=\" + ");
         String _name_2 = f2.getName();
-        _builder.append(_name_2, "		");
+        _builder.append(_name_2, "\t\t");
       }
     }
     {
@@ -1640,7 +1633,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_1 = a_1.getType();
         CharSequence _serialize_1 = im.serialize(_type_1);
-        _builder.append(_serialize_1, "	");
+        _builder.append(_serialize_1, "\t");
         {
           EList<AnnotationProperty> _features_2 = a_1.getFeatures();
           boolean _isEmpty_1 = _features_2.isEmpty();
@@ -1654,10 +1647,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_2) {
                   _hasElements_2 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, im);
-                _builder.append(_compileAnnotationProperty_1, "	");
+                _builder.append(_compileAnnotationProperty_1, "\t");
               }
             }
             _builder.append(")");
@@ -1672,15 +1665,14 @@ public class ProcessorPojoGenerator {
     _builder.append("\t\t");
     _builder.append("return \"");
     String _name_3 = e.getName();
-    _builder.append(_name_3, "		");
+    _builder.append(_name_3, "\t\t");
     _builder.append(" [");
     {
       EList<PojoAnnotatedProperty> _features_4 = e.getFeatures();
-      final Function1<PojoAnnotatedProperty,Boolean> _function = new Function1<PojoAnnotatedProperty,Boolean>() {
+      final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
         public Boolean apply(final PojoAnnotatedProperty x) {
           PojoProperty _feature = x.getFeature();
-          boolean _isAttribute = ProcessorPojoGenerator.this.isAttribute(_feature);
-          return Boolean.valueOf(_isAttribute);
+          return Boolean.valueOf(ProcessorPojoGenerator.this.isAttribute(_feature));
         }
       };
       Iterable<PojoAnnotatedProperty> _filter = IterableExtensions.<PojoAnnotatedProperty>filter(_features_4, _function);
@@ -1689,15 +1681,15 @@ public class ProcessorPojoGenerator {
         if (!_hasElements_3) {
           _hasElements_3 = true;
         } else {
-          _builder.appendImmediate(" + \", ", "		");
+          _builder.appendImmediate(" + \", ", "\t\t");
         }
         PojoProperty _feature = f2_1.getFeature();
         String _name_4 = _feature.getName();
-        _builder.append(_name_4, "		");
+        _builder.append(_name_4, "\t\t");
         _builder.append("=\" + ");
         PojoProperty _feature_1 = f2_1.getFeature();
         String _name_5 = _feature_1.getName();
-        _builder.append(_name_5, "		");
+        _builder.append(_name_5, "\t\t");
       }
     }
     {
@@ -1729,10 +1721,10 @@ public class ProcessorPojoGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "		");
+          _builder.appendImmediate(", ", "\t\t");
         }
         String _name = f2.getName();
-        _builder.append(_name, "		");
+        _builder.append(_name, "\t\t");
       }
     }
     _builder.newLineIfNotEmpty();
@@ -1747,7 +1739,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type = a.getType();
         CharSequence _serialize = im.serialize(_type);
-        _builder.append(_serialize, "	");
+        _builder.append(_serialize, "\t");
         {
           EList<AnnotationProperty> _features = a.getFeatures();
           boolean _isEmpty = _features.isEmpty();
@@ -1761,10 +1753,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_1) {
                   _hasElements_1 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
-                _builder.append(_compileAnnotationProperty, "	");
+                _builder.append(_compileAnnotationProperty, "\t");
               }
             }
             _builder.append(")");
@@ -1784,7 +1776,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_1 = a_1.getType();
         CharSequence _serialize_1 = im.serialize(_type_1);
-        _builder.append(_serialize_1, "	");
+        _builder.append(_serialize_1, "\t");
         {
           EList<AnnotationProperty> _features_2 = a_1.getFeatures();
           boolean _isEmpty_1 = _features_2.isEmpty();
@@ -1798,10 +1790,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_2) {
                   _hasElements_2 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, im);
-                _builder.append(_compileAnnotationProperty_1, "	");
+                _builder.append(_compileAnnotationProperty_1, "\t");
               }
             }
             _builder.append(")");
@@ -1817,7 +1809,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_2 = a_2.getType();
         CharSequence _serialize_2 = im.serialize(_type_2);
-        _builder.append(_serialize_2, "	");
+        _builder.append(_serialize_2, "\t");
         {
           EList<AnnotationProperty> _features_4 = a_2.getFeatures();
           boolean _isEmpty_2 = _features_4.isEmpty();
@@ -1831,10 +1823,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_3) {
                   _hasElements_3 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff, im);
-                _builder.append(_compileAnnotationProperty_2, "	");
+                _builder.append(_compileAnnotationProperty_2, "\t");
               }
             }
             _builder.append(")");
@@ -1869,7 +1861,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_3 = a_3.getType();
         CharSequence _serialize_3 = im.serialize(_type_3);
-        _builder.append(_serialize_3, "	");
+        _builder.append(_serialize_3, "\t");
         {
           EList<AnnotationProperty> _features_6 = a_3.getFeatures();
           boolean _isEmpty_3 = _features_6.isEmpty();
@@ -1883,10 +1875,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_4) {
                   _hasElements_4 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(af_2, im);
-                _builder.append(_compileAnnotationProperty_3, "	");
+                _builder.append(_compileAnnotationProperty_3, "\t");
               }
             }
             _builder.append(")");
@@ -1902,7 +1894,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_4 = a_4.getType();
         CharSequence _serialize_4 = im.serialize(_type_4);
-        _builder.append(_serialize_4, "	");
+        _builder.append(_serialize_4, "\t");
         {
           EList<AnnotationProperty> _features_8 = a_4.getFeatures();
           boolean _isEmpty_4 = _features_8.isEmpty();
@@ -1916,10 +1908,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_5) {
                   _hasElements_5 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_4 = this.compileAnnotationProperty(ff_1, im);
-                _builder.append(_compileAnnotationProperty_4, "	");
+                _builder.append(_compileAnnotationProperty_4, "\t");
               }
             }
             _builder.append(")");
@@ -1931,7 +1923,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_1 = e.getName();
-    _builder.append(_name_1, "	");
+    _builder.append(_name_1, "\t");
     _builder.append(" _setNull(Attribute... attributes) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1951,7 +1943,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_5 = a_5.getType();
         CharSequence _serialize_5 = im.serialize(_type_5);
-        _builder.append(_serialize_5, "	");
+        _builder.append(_serialize_5, "\t");
         {
           EList<AnnotationProperty> _features_10 = a_5.getFeatures();
           boolean _isEmpty_5 = _features_10.isEmpty();
@@ -1965,10 +1957,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_6) {
                   _hasElements_6 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_5 = this.compileAnnotationProperty(af_3, im);
-                _builder.append(_compileAnnotationProperty_5, "	");
+                _builder.append(_compileAnnotationProperty_5, "\t");
               }
             }
             _builder.append(")");
@@ -1984,7 +1976,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_6 = a_6.getType();
         CharSequence _serialize_6 = im.serialize(_type_6);
-        _builder.append(_serialize_6, "	");
+        _builder.append(_serialize_6, "\t");
         {
           EList<AnnotationProperty> _features_12 = a_6.getFeatures();
           boolean _isEmpty_6 = _features_12.isEmpty();
@@ -1998,10 +1990,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_7) {
                   _hasElements_7 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_6 = this.compileAnnotationProperty(ff_2, im);
-                _builder.append(_compileAnnotationProperty_6, "	");
+                _builder.append(_compileAnnotationProperty_6, "\t");
               }
             }
             _builder.append(")");
@@ -2036,7 +2028,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_7 = a_7.getType();
         CharSequence _serialize_7 = im.serialize(_type_7);
-        _builder.append(_serialize_7, "	");
+        _builder.append(_serialize_7, "\t");
         {
           EList<AnnotationProperty> _features_14 = a_7.getFeatures();
           boolean _isEmpty_7 = _features_14.isEmpty();
@@ -2050,10 +2042,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_8) {
                   _hasElements_8 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_7 = this.compileAnnotationProperty(af_4, im);
-                _builder.append(_compileAnnotationProperty_7, "	");
+                _builder.append(_compileAnnotationProperty_7, "\t");
               }
             }
             _builder.append(")");
@@ -2069,7 +2061,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_8 = a_8.getType();
         CharSequence _serialize_8 = im.serialize(_type_8);
-        _builder.append(_serialize_8, "	");
+        _builder.append(_serialize_8, "\t");
         {
           EList<AnnotationProperty> _features_16 = a_8.getFeatures();
           boolean _isEmpty_8 = _features_16.isEmpty();
@@ -2083,10 +2075,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_9) {
                   _hasElements_9 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_8 = this.compileAnnotationProperty(ff_3, im);
-                _builder.append(_compileAnnotationProperty_8, "	");
+                _builder.append(_compileAnnotationProperty_8, "\t");
               }
             }
             _builder.append(")");
@@ -2098,7 +2090,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_2 = e.getName();
-    _builder.append(_name_2, "	");
+    _builder.append(_name_2, "\t");
     _builder.append(" _clearNull(Attribute... attributes) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2118,7 +2110,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_9 = a_9.getType();
         CharSequence _serialize_9 = im.serialize(_type_9);
-        _builder.append(_serialize_9, "	");
+        _builder.append(_serialize_9, "\t");
         {
           EList<AnnotationProperty> _features_18 = a_9.getFeatures();
           boolean _isEmpty_9 = _features_18.isEmpty();
@@ -2132,10 +2124,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_10) {
                   _hasElements_10 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_9 = this.compileAnnotationProperty(af_5, im);
-                _builder.append(_compileAnnotationProperty_9, "	");
+                _builder.append(_compileAnnotationProperty_9, "\t");
               }
             }
             _builder.append(")");
@@ -2170,7 +2162,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_10 = a_10.getType();
         CharSequence _serialize_10 = im.serialize(_type_10);
-        _builder.append(_serialize_10, "	");
+        _builder.append(_serialize_10, "\t");
         {
           EList<AnnotationProperty> _features_20 = a_10.getFeatures();
           boolean _isEmpty_10 = _features_20.isEmpty();
@@ -2184,10 +2176,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_11) {
                   _hasElements_11 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_10 = this.compileAnnotationProperty(af_6, im);
-                _builder.append(_compileAnnotationProperty_10, "	");
+                _builder.append(_compileAnnotationProperty_10, "\t");
               }
             }
             _builder.append(")");
@@ -2199,7 +2191,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_3 = e.getName();
-    _builder.append(_name_3, "	");
+    _builder.append(_name_3, "\t");
     _builder.append(" _setNull(String... attributes) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2219,7 +2211,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_11 = a_11.getType();
         CharSequence _serialize_11 = im.serialize(_type_11);
-        _builder.append(_serialize_11, "	");
+        _builder.append(_serialize_11, "\t");
         {
           EList<AnnotationProperty> _features_22 = a_11.getFeatures();
           boolean _isEmpty_11 = _features_22.isEmpty();
@@ -2233,10 +2225,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_12) {
                   _hasElements_12 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_11 = this.compileAnnotationProperty(af_7, im);
-                _builder.append(_compileAnnotationProperty_11, "	");
+                _builder.append(_compileAnnotationProperty_11, "\t");
               }
             }
             _builder.append(")");
@@ -2271,7 +2263,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_12 = a_12.getType();
         CharSequence _serialize_12 = im.serialize(_type_12);
-        _builder.append(_serialize_12, "	");
+        _builder.append(_serialize_12, "\t");
         {
           EList<AnnotationProperty> _features_24 = a_12.getFeatures();
           boolean _isEmpty_12 = _features_24.isEmpty();
@@ -2285,10 +2277,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_13) {
                   _hasElements_13 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_12 = this.compileAnnotationProperty(af_8, im);
-                _builder.append(_compileAnnotationProperty_12, "	");
+                _builder.append(_compileAnnotationProperty_12, "\t");
               }
             }
             _builder.append(")");
@@ -2300,7 +2292,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_4 = e.getName();
-    _builder.append(_name_4, "	");
+    _builder.append(_name_4, "\t");
     _builder.append(" _clearNull(String... attributes) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2320,7 +2312,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_13 = a_13.getType();
         CharSequence _serialize_13 = im.serialize(_type_13);
-        _builder.append(_serialize_13, "	");
+        _builder.append(_serialize_13, "\t");
         {
           EList<AnnotationProperty> _features_26 = a_13.getFeatures();
           boolean _isEmpty_13 = _features_26.isEmpty();
@@ -2334,10 +2326,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_14) {
                   _hasElements_14 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_13 = this.compileAnnotationProperty(af_9, im);
-                _builder.append(_compileAnnotationProperty_13, "	");
+                _builder.append(_compileAnnotationProperty_13, "\t");
               }
             }
             _builder.append(")");
@@ -2369,7 +2361,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_14 = a_14.getType();
         CharSequence _serialize_14 = im.serialize(_type_14);
-        _builder.append(_serialize_14, "	");
+        _builder.append(_serialize_14, "\t");
         {
           EList<AnnotationProperty> _features_28 = a_14.getFeatures();
           boolean _isEmpty_14 = _features_28.isEmpty();
@@ -2383,10 +2375,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_15) {
                   _hasElements_15 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_14 = this.compileAnnotationProperty(af_10, im);
-                _builder.append(_compileAnnotationProperty_14, "	");
+                _builder.append(_compileAnnotationProperty_14, "\t");
               }
             }
             _builder.append(")");
@@ -2402,7 +2394,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_15 = a_15.getType();
         CharSequence _serialize_15 = im.serialize(_type_15);
-        _builder.append(_serialize_15, "	");
+        _builder.append(_serialize_15, "\t");
         {
           EList<AnnotationProperty> _features_30 = a_15.getFeatures();
           boolean _isEmpty_15 = _features_30.isEmpty();
@@ -2416,10 +2408,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_16) {
                   _hasElements_16 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_15 = this.compileAnnotationProperty(ff_4, im);
-                _builder.append(_compileAnnotationProperty_15, "	");
+                _builder.append(_compileAnnotationProperty_15, "\t");
               }
             }
             _builder.append(")");
@@ -2451,7 +2443,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_16 = a_16.getType();
         CharSequence _serialize_16 = im.serialize(_type_16);
-        _builder.append(_serialize_16, "	");
+        _builder.append(_serialize_16, "\t");
         {
           EList<AnnotationProperty> _features_32 = a_16.getFeatures();
           boolean _isEmpty_16 = _features_32.isEmpty();
@@ -2465,10 +2457,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_17) {
                   _hasElements_17 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_16 = this.compileAnnotationProperty(af_11, im);
-                _builder.append(_compileAnnotationProperty_16, "	");
+                _builder.append(_compileAnnotationProperty_16, "\t");
               }
             }
             _builder.append(")");
@@ -2560,7 +2552,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_17 = a_17.getType();
         CharSequence _serialize_17 = im.serialize(_type_17);
-        _builder.append(_serialize_17, "	");
+        _builder.append(_serialize_17, "\t");
         {
           EList<AnnotationProperty> _features_34 = a_17.getFeatures();
           boolean _isEmpty_17 = _features_34.isEmpty();
@@ -2574,10 +2566,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_18) {
                   _hasElements_18 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_17 = this.compileAnnotationProperty(af_12, im);
-                _builder.append(_compileAnnotationProperty_17, "	");
+                _builder.append(_compileAnnotationProperty_17, "\t");
               }
             }
             _builder.append(")");
@@ -2612,10 +2604,10 @@ public class ProcessorPojoGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "		");
+          _builder.appendImmediate(", ", "\t\t");
         }
         String _name = f2.getName();
-        _builder.append(_name, "		");
+        _builder.append(_name, "\t\t");
       }
     }
     _builder.newLineIfNotEmpty();
@@ -2639,10 +2631,10 @@ public class ProcessorPojoGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "		");
+          _builder.appendImmediate(", ", "\t\t");
         }
         String _name = f2.getName();
-        _builder.append(_name, "		");
+        _builder.append(_name, "\t\t");
       }
     }
     _builder.newLineIfNotEmpty();
@@ -2657,7 +2649,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type = a.getType();
         CharSequence _serialize = im.serialize(_type);
-        _builder.append(_serialize, "	");
+        _builder.append(_serialize, "\t");
         {
           EList<AnnotationProperty> _features = a.getFeatures();
           boolean _isEmpty = _features.isEmpty();
@@ -2671,10 +2663,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_1) {
                   _hasElements_1 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
-                _builder.append(_compileAnnotationProperty, "	");
+                _builder.append(_compileAnnotationProperty, "\t");
               }
             }
             _builder.append(")");
@@ -2694,7 +2686,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_1 = a_1.getType();
         CharSequence _serialize_1 = im.serialize(_type_1);
-        _builder.append(_serialize_1, "	");
+        _builder.append(_serialize_1, "\t");
         {
           EList<AnnotationProperty> _features_2 = a_1.getFeatures();
           boolean _isEmpty_1 = _features_2.isEmpty();
@@ -2708,10 +2700,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_2) {
                   _hasElements_2 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, im);
-                _builder.append(_compileAnnotationProperty_1, "	");
+                _builder.append(_compileAnnotationProperty_1, "\t");
               }
             }
             _builder.append(")");
@@ -2727,7 +2719,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_2 = a_2.getType();
         CharSequence _serialize_2 = im.serialize(_type_2);
-        _builder.append(_serialize_2, "	");
+        _builder.append(_serialize_2, "\t");
         {
           EList<AnnotationProperty> _features_4 = a_2.getFeatures();
           boolean _isEmpty_2 = _features_4.isEmpty();
@@ -2741,10 +2733,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_3) {
                   _hasElements_3 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff, im);
-                _builder.append(_compileAnnotationProperty_2, "	");
+                _builder.append(_compileAnnotationProperty_2, "\t");
               }
             }
             _builder.append(")");
@@ -2780,7 +2772,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_3 = a_3.getType();
         CharSequence _serialize_3 = im.serialize(_type_3);
-        _builder.append(_serialize_3, "	");
+        _builder.append(_serialize_3, "\t");
         {
           EList<AnnotationProperty> _features_6 = a_3.getFeatures();
           boolean _isEmpty_3 = _features_6.isEmpty();
@@ -2794,10 +2786,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_4) {
                   _hasElements_4 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(af_2, im);
-                _builder.append(_compileAnnotationProperty_3, "	");
+                _builder.append(_compileAnnotationProperty_3, "\t");
               }
             }
             _builder.append(")");
@@ -2813,7 +2805,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_4 = a_4.getType();
         CharSequence _serialize_4 = im.serialize(_type_4);
-        _builder.append(_serialize_4, "	");
+        _builder.append(_serialize_4, "\t");
         {
           EList<AnnotationProperty> _features_8 = a_4.getFeatures();
           boolean _isEmpty_4 = _features_8.isEmpty();
@@ -2827,10 +2819,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_5) {
                   _hasElements_5 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_4 = this.compileAnnotationProperty(ff_1, im);
-                _builder.append(_compileAnnotationProperty_4, "	");
+                _builder.append(_compileAnnotationProperty_4, "\t");
               }
             }
             _builder.append(")");
@@ -2842,7 +2834,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_1 = e.getName();
-    _builder.append(_name_1, "	");
+    _builder.append(_name_1, "\t");
     _builder.append("\t_setInit(Association... associations) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -2862,7 +2854,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_5 = a_5.getType();
         CharSequence _serialize_5 = im.serialize(_type_5);
-        _builder.append(_serialize_5, "	");
+        _builder.append(_serialize_5, "\t");
         {
           EList<AnnotationProperty> _features_10 = a_5.getFeatures();
           boolean _isEmpty_5 = _features_10.isEmpty();
@@ -2876,10 +2868,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_6) {
                   _hasElements_6 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_5 = this.compileAnnotationProperty(af_3, im);
-                _builder.append(_compileAnnotationProperty_5, "	");
+                _builder.append(_compileAnnotationProperty_5, "\t");
               }
             }
             _builder.append(")");
@@ -2895,7 +2887,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_6 = a_6.getType();
         CharSequence _serialize_6 = im.serialize(_type_6);
-        _builder.append(_serialize_6, "	");
+        _builder.append(_serialize_6, "\t");
         {
           EList<AnnotationProperty> _features_12 = a_6.getFeatures();
           boolean _isEmpty_6 = _features_12.isEmpty();
@@ -2909,10 +2901,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_7) {
                   _hasElements_7 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_6 = this.compileAnnotationProperty(ff_2, im);
-                _builder.append(_compileAnnotationProperty_6, "	");
+                _builder.append(_compileAnnotationProperty_6, "\t");
               }
             }
             _builder.append(")");
@@ -2947,7 +2939,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_7 = a_7.getType();
         CharSequence _serialize_7 = im.serialize(_type_7);
-        _builder.append(_serialize_7, "	");
+        _builder.append(_serialize_7, "\t");
         {
           EList<AnnotationProperty> _features_14 = a_7.getFeatures();
           boolean _isEmpty_7 = _features_14.isEmpty();
@@ -2961,10 +2953,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_8) {
                   _hasElements_8 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_7 = this.compileAnnotationProperty(af_4, im);
-                _builder.append(_compileAnnotationProperty_7, "	");
+                _builder.append(_compileAnnotationProperty_7, "\t");
               }
             }
             _builder.append(")");
@@ -2980,7 +2972,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_8 = a_8.getType();
         CharSequence _serialize_8 = im.serialize(_type_8);
-        _builder.append(_serialize_8, "	");
+        _builder.append(_serialize_8, "\t");
         {
           EList<AnnotationProperty> _features_16 = a_8.getFeatures();
           boolean _isEmpty_8 = _features_16.isEmpty();
@@ -2994,10 +2986,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_9) {
                   _hasElements_9 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_8 = this.compileAnnotationProperty(ff_3, im);
-                _builder.append(_compileAnnotationProperty_8, "	");
+                _builder.append(_compileAnnotationProperty_8, "\t");
               }
             }
             _builder.append(")");
@@ -3009,7 +3001,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_2 = e.getName();
-    _builder.append(_name_2, "	");
+    _builder.append(_name_2, "\t");
     _builder.append(" _clearInit(Association... associations) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -3029,7 +3021,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_9 = a_9.getType();
         CharSequence _serialize_9 = im.serialize(_type_9);
-        _builder.append(_serialize_9, "	");
+        _builder.append(_serialize_9, "\t");
         {
           EList<AnnotationProperty> _features_18 = a_9.getFeatures();
           boolean _isEmpty_9 = _features_18.isEmpty();
@@ -3043,10 +3035,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_10) {
                   _hasElements_10 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_9 = this.compileAnnotationProperty(af_5, im);
-                _builder.append(_compileAnnotationProperty_9, "	");
+                _builder.append(_compileAnnotationProperty_9, "\t");
               }
             }
             _builder.append(")");
@@ -3081,7 +3073,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_10 = a_10.getType();
         CharSequence _serialize_10 = im.serialize(_type_10);
-        _builder.append(_serialize_10, "	");
+        _builder.append(_serialize_10, "\t");
         {
           EList<AnnotationProperty> _features_20 = a_10.getFeatures();
           boolean _isEmpty_10 = _features_20.isEmpty();
@@ -3095,10 +3087,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_11) {
                   _hasElements_11 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_10 = this.compileAnnotationProperty(af_6, im);
-                _builder.append(_compileAnnotationProperty_10, "	");
+                _builder.append(_compileAnnotationProperty_10, "\t");
               }
             }
             _builder.append(")");
@@ -3110,7 +3102,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_3 = e.getName();
-    _builder.append(_name_3, "	");
+    _builder.append(_name_3, "\t");
     _builder.append(" _setInit(String... associations) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -3130,7 +3122,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_11 = a_11.getType();
         CharSequence _serialize_11 = im.serialize(_type_11);
-        _builder.append(_serialize_11, "	");
+        _builder.append(_serialize_11, "\t");
         {
           EList<AnnotationProperty> _features_22 = a_11.getFeatures();
           boolean _isEmpty_11 = _features_22.isEmpty();
@@ -3144,10 +3136,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_12) {
                   _hasElements_12 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_11 = this.compileAnnotationProperty(af_7, im);
-                _builder.append(_compileAnnotationProperty_11, "	");
+                _builder.append(_compileAnnotationProperty_11, "\t");
               }
             }
             _builder.append(")");
@@ -3182,7 +3174,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_12 = a_12.getType();
         CharSequence _serialize_12 = im.serialize(_type_12);
-        _builder.append(_serialize_12, "	");
+        _builder.append(_serialize_12, "\t");
         {
           EList<AnnotationProperty> _features_24 = a_12.getFeatures();
           boolean _isEmpty_12 = _features_24.isEmpty();
@@ -3196,10 +3188,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_13) {
                   _hasElements_13 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_12 = this.compileAnnotationProperty(af_8, im);
-                _builder.append(_compileAnnotationProperty_12, "	");
+                _builder.append(_compileAnnotationProperty_12, "\t");
               }
             }
             _builder.append(")");
@@ -3211,7 +3203,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_4 = e.getName();
-    _builder.append(_name_4, "	");
+    _builder.append(_name_4, "\t");
     _builder.append(" _clearInit(String... associations) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -3231,7 +3223,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_13 = a_13.getType();
         CharSequence _serialize_13 = im.serialize(_type_13);
-        _builder.append(_serialize_13, "	");
+        _builder.append(_serialize_13, "\t");
         {
           EList<AnnotationProperty> _features_26 = a_13.getFeatures();
           boolean _isEmpty_13 = _features_26.isEmpty();
@@ -3245,10 +3237,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_14) {
                   _hasElements_14 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_13 = this.compileAnnotationProperty(af_9, im);
-                _builder.append(_compileAnnotationProperty_13, "	");
+                _builder.append(_compileAnnotationProperty_13, "\t");
               }
             }
             _builder.append(")");
@@ -3280,7 +3272,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_14 = a_14.getType();
         CharSequence _serialize_14 = im.serialize(_type_14);
-        _builder.append(_serialize_14, "	");
+        _builder.append(_serialize_14, "\t");
         {
           EList<AnnotationProperty> _features_28 = a_14.getFeatures();
           boolean _isEmpty_14 = _features_28.isEmpty();
@@ -3294,10 +3286,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_15) {
                   _hasElements_15 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_14 = this.compileAnnotationProperty(af_10, im);
-                _builder.append(_compileAnnotationProperty_14, "	");
+                _builder.append(_compileAnnotationProperty_14, "\t");
               }
             }
             _builder.append(")");
@@ -3332,10 +3324,10 @@ public class ProcessorPojoGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "		");
+          _builder.appendImmediate(", ", "\t\t");
         }
         String _name = f2.getName();
-        _builder.append(_name, "		");
+        _builder.append(_name, "\t\t");
       }
     }
     _builder.newLineIfNotEmpty();
@@ -3354,11 +3346,10 @@ public class ProcessorPojoGenerator {
     _builder.append("\t\t");
     {
       EList<PojoAnnotatedProperty> _features = e.getFeatures();
-      final Function1<PojoAnnotatedProperty,Boolean> _function = new Function1<PojoAnnotatedProperty,Boolean>() {
+      final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
         public Boolean apply(final PojoAnnotatedProperty x) {
           PojoProperty _feature = x.getFeature();
-          boolean _isAttribute = ProcessorPojoGenerator.this.isAttribute(_feature);
-          return Boolean.valueOf(_isAttribute);
+          return Boolean.valueOf(ProcessorPojoGenerator.this.isAttribute(_feature));
         }
       };
       Iterable<PojoAnnotatedProperty> _filter = IterableExtensions.<PojoAnnotatedProperty>filter(_features, _function);
@@ -3367,11 +3358,11 @@ public class ProcessorPojoGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "		");
+          _builder.appendImmediate(", ", "\t\t");
         }
         PojoProperty _feature = f.getFeature();
         String _name = _feature.getName();
-        _builder.append(_name, "		");
+        _builder.append(_name, "\t\t");
       }
     }
     _builder.newLineIfNotEmpty();
@@ -3386,7 +3377,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type = a.getType();
         CharSequence _serialize = im.serialize(_type);
-        _builder.append(_serialize, "	");
+        _builder.append(_serialize, "\t");
         {
           EList<AnnotationProperty> _features_1 = a.getFeatures();
           boolean _isEmpty = _features_1.isEmpty();
@@ -3400,10 +3391,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_1) {
                   _hasElements_1 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(ff, im);
-                _builder.append(_compileAnnotationProperty, "	");
+                _builder.append(_compileAnnotationProperty, "\t");
               }
             }
             _builder.append(")");
@@ -3433,7 +3424,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_1 = a_1.getType();
         CharSequence _serialize_1 = im.serialize(_type_1);
-        _builder.append(_serialize_1, "	");
+        _builder.append(_serialize_1, "\t");
         {
           EList<AnnotationProperty> _features_3 = a_1.getFeatures();
           boolean _isEmpty_1 = _features_3.isEmpty();
@@ -3447,10 +3438,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_2) {
                   _hasElements_2 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(ff_1, im);
-                _builder.append(_compileAnnotationProperty_1, "	");
+                _builder.append(_compileAnnotationProperty_1, "\t");
               }
             }
             _builder.append(")");
@@ -3485,7 +3476,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_2 = a_2.getType();
         CharSequence _serialize_2 = im.serialize(_type_2);
-        _builder.append(_serialize_2, "	");
+        _builder.append(_serialize_2, "\t");
         {
           EList<AnnotationProperty> _features_5 = a_2.getFeatures();
           boolean _isEmpty_2 = _features_5.isEmpty();
@@ -3499,10 +3490,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_3) {
                   _hasElements_3 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff_2, im);
-                _builder.append(_compileAnnotationProperty_2, "	");
+                _builder.append(_compileAnnotationProperty_2, "\t");
               }
             }
             _builder.append(")");
@@ -3514,7 +3505,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_1 = e.getName();
-    _builder.append(_name_1, "	");
+    _builder.append(_name_1, "\t");
     _builder.append(" _setOp(String operator, OpAttribute... attributes) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -3534,7 +3525,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_3 = a_3.getType();
         CharSequence _serialize_3 = im.serialize(_type_3);
-        _builder.append(_serialize_3, "	");
+        _builder.append(_serialize_3, "\t");
         {
           EList<AnnotationProperty> _features_7 = a_3.getFeatures();
           boolean _isEmpty_3 = _features_7.isEmpty();
@@ -3548,10 +3539,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_4) {
                   _hasElements_4 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(ff_3, im);
-                _builder.append(_compileAnnotationProperty_3, "	");
+                _builder.append(_compileAnnotationProperty_3, "\t");
               }
             }
             _builder.append(")");
@@ -3586,7 +3577,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_4 = a_4.getType();
         CharSequence _serialize_4 = im.serialize(_type_4);
-        _builder.append(_serialize_4, "	");
+        _builder.append(_serialize_4, "\t");
         {
           EList<AnnotationProperty> _features_9 = a_4.getFeatures();
           boolean _isEmpty_4 = _features_9.isEmpty();
@@ -3600,10 +3591,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_5) {
                   _hasElements_5 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_4 = this.compileAnnotationProperty(ff_4, im);
-                _builder.append(_compileAnnotationProperty_4, "	");
+                _builder.append(_compileAnnotationProperty_4, "\t");
               }
             }
             _builder.append(")");
@@ -3615,7 +3606,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_2 = e.getName();
-    _builder.append(_name_2, "	");
+    _builder.append(_name_2, "\t");
     _builder.append(" _clearOp(OpAttribute... attributes) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -3650,7 +3641,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_3 = e.getName();
-    _builder.append(_name_3, "	");
+    _builder.append(_name_3, "\t");
     _builder.append(" _setOp(String operator, String... attributes) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -3685,7 +3676,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_4 = e.getName();
-    _builder.append(_name_4, "	");
+    _builder.append(_name_4, "\t");
     _builder.append(" _clearOp(String... attributes) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -3705,7 +3696,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_5 = a_5.getType();
         CharSequence _serialize_5 = im.serialize(_type_5);
-        _builder.append(_serialize_5, "	");
+        _builder.append(_serialize_5, "\t");
         {
           EList<AnnotationProperty> _features_11 = a_5.getFeatures();
           boolean _isEmpty_5 = _features_11.isEmpty();
@@ -3719,10 +3710,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_6) {
                   _hasElements_6 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_5 = this.compileAnnotationProperty(ff_5, im);
-                _builder.append(_compileAnnotationProperty_5, "	");
+                _builder.append(_compileAnnotationProperty_5, "\t");
               }
             }
             _builder.append(")");
@@ -3757,7 +3748,7 @@ public class ProcessorPojoGenerator {
         _builder.append("@");
         JvmType _type_6 = a_6.getType();
         CharSequence _serialize_6 = im.serialize(_type_6);
-        _builder.append(_serialize_6, "	");
+        _builder.append(_serialize_6, "\t");
         {
           EList<AnnotationProperty> _features_13 = a_6.getFeatures();
           boolean _isEmpty_6 = _features_13.isEmpty();
@@ -3771,10 +3762,10 @@ public class ProcessorPojoGenerator {
                 if (!_hasElements_7) {
                   _hasElements_7 = true;
                 } else {
-                  _builder.appendImmediate(", ", "	");
+                  _builder.appendImmediate(", ", "\t");
                 }
                 CharSequence _compileAnnotationProperty_6 = this.compileAnnotationProperty(ff_6, im);
-                _builder.append(_compileAnnotationProperty_6, "	");
+                _builder.append(_compileAnnotationProperty_6, "\t");
               }
             }
             _builder.append(")");
@@ -3786,7 +3777,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_5 = e.getName();
-    _builder.append(_name_5, "	");
+    _builder.append(_name_5, "\t");
     _builder.append(" _setNullOp(OpAttribute... attributes) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -3821,7 +3812,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.append("public ");
     String _name_6 = e.getName();
-    _builder.append(_name_6, "	");
+    _builder.append(_name_6, "\t");
     _builder.append(" _setNullOp(String... attributes) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -3847,8 +3838,7 @@ public class ProcessorPojoGenerator {
   }
   
   public List<PojoAnnotatedProperty> listFeatures(final PojoEntity e) {
-    ArrayList<PojoAnnotatedProperty> _arrayList = new ArrayList<PojoAnnotatedProperty>();
-    final ArrayList<PojoAnnotatedProperty> list = _arrayList;
+    final ArrayList<PojoAnnotatedProperty> list = new ArrayList<PojoAnnotatedProperty>();
     PojoEntity _superType = Utils.getSuperType(e);
     boolean _notEquals = (!Objects.equal(_superType, null));
     if (_notEquals) {
@@ -3863,11 +3853,10 @@ public class ProcessorPojoGenerator {
   
   public List<PojoAnnotatedProperty> listFeatures1(final PojoEntity e) {
     EList<PojoAnnotatedProperty> _features = e.getFeatures();
-    final Function1<PojoAnnotatedProperty,Boolean> _function = new Function1<PojoAnnotatedProperty,Boolean>() {
+    final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
       public Boolean apply(final PojoAnnotatedProperty f) {
         PojoProperty _feature = f.getFeature();
-        boolean _isList = Utils.isList(_feature);
-        return Boolean.valueOf(_isList);
+        return Boolean.valueOf(Utils.isList(_feature));
       }
     };
     Iterable<PojoAnnotatedProperty> _filter = IterableExtensions.<PojoAnnotatedProperty>filter(_features, _function);
@@ -3875,8 +3864,7 @@ public class ProcessorPojoGenerator {
   }
   
   public List<PojoAnnotatedProperty> requiredFeatures(final PojoEntity e) {
-    ArrayList<PojoAnnotatedProperty> _arrayList = new ArrayList<PojoAnnotatedProperty>();
-    final ArrayList<PojoAnnotatedProperty> list = _arrayList;
+    final ArrayList<PojoAnnotatedProperty> list = new ArrayList<PojoAnnotatedProperty>();
     PojoEntity _superType = Utils.getSuperType(e);
     boolean _notEquals = (!Objects.equal(_superType, null));
     if (_notEquals) {
@@ -3890,8 +3878,7 @@ public class ProcessorPojoGenerator {
   }
   
   public ArrayList<PojoAnnotatedProperty> requiredSuperFeatures(final PojoEntity e) {
-    ArrayList<PojoAnnotatedProperty> _arrayList = new ArrayList<PojoAnnotatedProperty>();
-    final ArrayList<PojoAnnotatedProperty> list = _arrayList;
+    final ArrayList<PojoAnnotatedProperty> list = new ArrayList<PojoAnnotatedProperty>();
     PojoEntity _superType = Utils.getSuperType(e);
     boolean _notEquals = (!Objects.equal(_superType, null));
     if (_notEquals) {
@@ -3904,11 +3891,10 @@ public class ProcessorPojoGenerator {
   
   public List<PojoAnnotatedProperty> requiredFeatures1(final PojoEntity e) {
     EList<PojoAnnotatedProperty> _features = e.getFeatures();
-    final Function1<PojoAnnotatedProperty,Boolean> _function = new Function1<PojoAnnotatedProperty,Boolean>() {
+    final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
       public Boolean apply(final PojoAnnotatedProperty f) {
         PojoProperty _feature = f.getFeature();
-        boolean _isRequired = Utils.isRequired(_feature);
-        return Boolean.valueOf(_isRequired);
+        return Boolean.valueOf(Utils.isRequired(_feature));
       }
     };
     Iterable<PojoAnnotatedProperty> _filter = IterableExtensions.<PojoAnnotatedProperty>filter(_features, _function);
@@ -3917,12 +3903,11 @@ public class ProcessorPojoGenerator {
   
   public PojoAnnotatedProperty hasIsDef(final PojoEntity e) {
     EList<PojoAnnotatedProperty> _features = e.getFeatures();
-    final Function1<PojoAnnotatedProperty,Boolean> _function = new Function1<PojoAnnotatedProperty,Boolean>() {
+    final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
       public Boolean apply(final PojoAnnotatedProperty f) {
         PojoProperty _feature = f.getFeature();
         String _name = _feature.getName();
-        boolean _equals = Objects.equal(_name, "isDef");
-        return Boolean.valueOf(_equals);
+        return Boolean.valueOf(Objects.equal(_name, "isDef"));
       }
     };
     return IterableExtensions.<PojoAnnotatedProperty>findFirst(_features, _function);
@@ -3930,12 +3915,11 @@ public class ProcessorPojoGenerator {
   
   public PojoAnnotatedProperty hasToInit(final PojoEntity e) {
     EList<PojoAnnotatedProperty> _features = e.getFeatures();
-    final Function1<PojoAnnotatedProperty,Boolean> _function = new Function1<PojoAnnotatedProperty,Boolean>() {
+    final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
       public Boolean apply(final PojoAnnotatedProperty f) {
         PojoProperty _feature = f.getFeature();
         String _name = _feature.getName();
-        boolean _equals = Objects.equal(_name, "toInit");
-        return Boolean.valueOf(_equals);
+        return Boolean.valueOf(Objects.equal(_name, "toInit"));
       }
     };
     return IterableExtensions.<PojoAnnotatedProperty>findFirst(_features, _function);
@@ -3951,21 +3935,21 @@ public class ProcessorPojoGenerator {
     } else {
       Entity _ref = f.getRef();
       boolean _notEquals_1 = (!Objects.equal(_ref, null));
-      _or_1 = (_notEquals || _notEquals_1);
+      _or_1 = _notEquals_1;
     }
     if (_or_1) {
       _or = true;
     } else {
       JvmType _type = f.getType();
       boolean _notEquals_2 = (!Objects.equal(_type, null));
-      _or = (_or_1 || _notEquals_2);
+      _or = _notEquals_2;
     }
     return _or;
   }
   
   public List<PojoProperty> simplAttrs(final PojoProperty f) {
     EList<PojoProperty> _attrs = f.getAttrs();
-    final Function1<PojoProperty,Boolean> _function = new Function1<PojoProperty,Boolean>() {
+    final Function1<PojoProperty, Boolean> _function = new Function1<PojoProperty, Boolean>() {
       public Boolean apply(final PojoProperty f2) {
         boolean _or = false;
         String _native = f2.getNative();
@@ -3975,7 +3959,7 @@ public class ProcessorPojoGenerator {
         } else {
           JvmType _type = f2.getType();
           boolean _notEquals_1 = (!Objects.equal(_type, null));
-          _or = (_notEquals || _notEquals_1);
+          _or = _notEquals_1;
         }
         return Boolean.valueOf(_or);
       }
@@ -4034,7 +4018,7 @@ public class ProcessorPojoGenerator {
       } else {
         String _sernum = Utils.getSernum(e);
         boolean _notEquals = (!Objects.equal(_sernum, null));
-        _or = (_isImplements || _notEquals);
+        _or = _notEquals;
       }
       if (_or) {
         _builder.append("implements ");
@@ -4073,8 +4057,7 @@ public class ProcessorPojoGenerator {
   
   public boolean compile(final Extends e, final ImportManager im) {
     JvmType _extends = e.getExtends();
-    boolean _addImportFor = im.addImportFor(_extends);
-    return _addImportFor;
+    return im.addImportFor(_extends);
   }
   
   public void addImplements(final EnumEntity e, final ImportManager im) {
@@ -4297,8 +4280,7 @@ public class ProcessorPojoGenerator {
   }
   
   public ArrayList<Implements> getImplements(final PojoEntity e) {
-    ArrayList<Implements> _arrayList = new ArrayList<Implements>();
-    final ArrayList<Implements> list = _arrayList;
+    final ArrayList<Implements> list = new ArrayList<Implements>();
     EObject _eContainer = e.eContainer();
     EObject _eContainer_1 = _eContainer.eContainer();
     EList<EObject> _eContents = _eContainer_1.eContents();
