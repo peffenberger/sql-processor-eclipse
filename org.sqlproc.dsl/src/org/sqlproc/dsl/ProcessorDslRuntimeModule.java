@@ -4,6 +4,8 @@
 package org.sqlproc.dsl;
 
 import org.eclipse.xtext.resource.IResourceFactory;
+import org.sqlproc.dsl.generator.IGenerator2;
+import org.sqlproc.dsl.generator.ProcessorDslGenerator;
 import org.sqlproc.dsl.property.ModelProperty;
 import org.sqlproc.dsl.property.ModelPropertyBean;
 import org.sqlproc.dsl.resolver.DbResolver;
@@ -38,4 +40,7 @@ public class ProcessorDslRuntimeModule extends org.sqlproc.dsl.AbstractProcessor
         return ProcessorResourceFactory.class;
     }
 
+    public Class<? extends IGenerator2> bindIGenerator2() {
+        return ProcessorDslGenerator.class;
+    }
 }
