@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project org.sqlproc.dsl with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <target name="create_run_jar">
+        <jar destfile="/home/hudec/zzz/sqlep.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="org.sqlproc.dsl.generator.Main"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ org.eclipse.xtext_2.6.0.v201405210727.jar org.eclipse.emf.ecore.xmi_2.10.0.v20140514-1158.jar org.eclipse.emf.ecore_2.10.0.v20140514-1158.jar org.eclipse.emf.common_2.10.0.v20140514-1158.jar org.antlr.runtime_3.2.0.v201101311130.jar com.google.inject_3.0.0.v201312141243.jar org.eclipse.emf.mwe.core_1.3.3.v201406110919.jar org.apache.commons.cli_1.2.0.v201404270220.jar org.eclipse.emf.mwe2.runtime_2.6.0.v201405200714.jar org.eclipse.emf.mwe.utils_1.3.3.v201406110919.jar org.eclipse.xtext.util_2.6.0.v201405210727.jar com.google.guava_15.0.0.v201403281430.jar javax.inject_1.0.0.v20091030.jar org.eclipse.xtext.xbase_2.6.0.v201405210727.jar org.eclipse.xtext.common.types_2.6.0.v201405210727.jar org.eclipse.xtend.lib_2.6.0.v201405210727.jar org.eclipse.xtext.xbase.lib_2.6.0.v201405210727.jar org.eclipse.xtext.generator_2.6.0.v201405210727.jar org.eclipse.xtend_2.0.0.v201406030414.jar com.ibm.icu_52.1.0.v201404241930.jar org.eclipse.xpand_2.0.0.v201406030414.jar org.eclipse.xtend.typesystem.emf_2.0.0.v201406030414.jar org.eclipse.emf.codegen.ecore_2.10.0.v20140519-0339.jar org.eclipse.emf.codegen_2.10.0.v20140519-0339.jar org.eclipse.emf.mwe2.lib_2.6.0.v201405200714.jar org.apache.commons.logging_1.1.1.v201101211721.jar org.eclipse.emf.mwe2.launch_2.6.0.v201405200939.jar org.eclipse.emf.mwe2.language_2.6.0.v201405200939.jar org.objectweb.asm_5.0.1.v201404251740.jar org.apache.log4j_1.2.15.v201012070815.jar validation-api-1.1.0.Final.jar hsqldb-2.3.2.jar ojdbc6-11.2.0.3.jar ifxjdbc-4.1.jar ifxjdbcx-4.1.jar
+db2-jdbc-4-10.1.jar mysql-connector-java-5.1.21.jar postgresql-9.2-1002.jdbc4.jar sqljdbc4-3.0.jar"/>
+            </manifest>
+            <zipfileset src="jar-in-jar-loader.zip"/>
+            <fileset dir="/home/hudec/git/sql-processor-eclipse/org.sqlproc.dsl/bin"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.xtext_2.6.0.v201405210727.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.emf.ecore.xmi_2.10.0.v20140514-1158.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.emf.ecore_2.10.0.v20140514-1158.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.emf.common_2.10.0.v20140514-1158.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.antlr.runtime_3.2.0.v201101311130.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="com.google.inject_3.0.0.v201312141243.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.emf.mwe.core_1.3.3.v201406110919.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.apache.commons.cli_1.2.0.v201404270220.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.emf.mwe2.runtime_2.6.0.v201405200714.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.emf.mwe.utils_1.3.3.v201406110919.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.xtext.util_2.6.0.v201405210727.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="com.google.guava_15.0.0.v201403281430.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="javax.inject_1.0.0.v20091030.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.xtext.xbase_2.6.0.v201405210727.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.xtext.common.types_2.6.0.v201405210727.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.xtend.lib_2.6.0.v201405210727.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.xtext.xbase.lib_2.6.0.v201405210727.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.xtext.generator_2.6.0.v201405210727.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.xtend_2.0.0.v201406030414.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="com.ibm.icu_52.1.0.v201404241930.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.xpand_2.0.0.v201406030414.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.xtend.typesystem.emf_2.0.0.v201406030414.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.emf.codegen.ecore_2.10.0.v20140519-0339.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.emf.codegen_2.10.0.v20140519-0339.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.emf.mwe2.lib_2.6.0.v201405200714.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.apache.commons.logging_1.1.1.v201101211721.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.emf.mwe2.launch_2.6.0.v201405200939.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.eclipse.emf.mwe2.language_2.6.0.v201405200939.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.objectweb.asm_5.0.1.v201404251740.jar"/>
+            <zipfileset dir="/home/hudec/springsource/sts-bundle/sts-3.6.0.RELEASE/plugins" includes="org.apache.log4j_1.2.15.v201012070815.jar"/>
+            <zipfileset dir="/home/hudec/.m2/repository/javax/validation/validation-api/1.1.0.Final" includes="validation-api-1.1.0.Final.jar"/>
+            <zipfileset dir="/home/hudec/.m2/repository/org/hsqldb/hsqldb/2.3.2" includes="hsqldb-2.3.2.jar"/>
+            <zipfileset dir="/home/hudec/.m2/repository/com/oracle/ojdbc6/11.2.0.3" includes="ojdbc6-11.2.0.3.jar"/>
+            <zipfileset dir="/home/hudec/.m2/repository/com/ibm/informix/ifxjdbc/4.1" includes="ifxjdbc-4.1.jar"/>
+            <zipfileset dir="/home/hudec/.m2/repository/com/ibm/informix/ifxjdbcx/4.1" includes="ifxjdbcx-4.1.jar"/>
+            <zipfileset dir="/home/hudec/.m2/repository/com/ibm/db2/db2-jdbc-4/10.1" includes="db2-jdbc-4-10.1.jar"/>
+            <zipfileset dir="/home/hudec/.m2/repository/mysql/mysql-connector-java/5.1.21" includes="mysql-connector-java-5.1.21.jar"/>
+            <zipfileset dir="/home/hudec/.m2/repository/postgresql/postgresql/9.2-1002.jdbc4" includes="postgresql-9.2-1002.jdbc4.jar"/>
+            <zipfileset dir="/home/hudec/.m2/repository/com/microsoft/sqlserver/sqljdbc4/3.0" includes="sqljdbc4-3.0.jar"/>
+        </jar>
+    </target>
+</project>

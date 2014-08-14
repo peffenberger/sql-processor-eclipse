@@ -56,6 +56,8 @@ import org.sqlproc.dsl.processorDsl.PojoPropertyModifier;
 import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
 import org.sqlproc.dsl.processorDsl.ToInitMethod;
+import org.sqlproc.dsl.resolver.DbResolver;
+import org.sqlproc.dsl.resolver.DbResolver.DbType;
 
 public class Utils {
 
@@ -1000,5 +1002,15 @@ public class Utils {
         if (Character.isUpperCase(c))
             return name;
         return name.substring(0, 1).toUpperCase() + name.substring(1);
+    }
+
+    public static DbType getDbType(DbResolver dbResolver, Artifacts artifacts) {
+        DbType dbType = dbResolver.getDatabaseDirectives(artifacts).dbType;
+        if (dbType == null) {
+            DbType[] dbTypes = DbType.fromDbMetaInfo(dbResolver.getDbMetaInfo(artifacts));
+            if (dbTypes != null && dbTypes.length > 0)
+                dbType = dbTypes[0];
+        }
+        return dbType;
     }
 }

@@ -670,16 +670,6 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
         }
     }
 
-    private DbType getDbType(Artifacts artifacts) {
-        DbType dbType = dbResolver.getDatabaseDirectives(artifacts).dbType;
-        if (dbType == null) {
-            DbType[] dbTypes = DbType.fromDbMetaInfo(dbResolver.getDbMetaInfo(artifacts));
-            if (dbTypes != null && dbTypes.length > 0)
-                dbType = dbTypes[0];
-        }
-        return dbType;
-    }
-
     public class PojoGeneratorResolver extends SimpleTemplateVariableResolver {
 
         public static final String NAME = "pojoGenerator";
@@ -730,7 +720,7 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                 // }
                 // List<String> tables = dbResolver.getTables(artifacts);
                 List<String> dbSequences = dbResolver.getSequences(artifacts);
-                DbType dbType = getDbType(artifacts);
+                DbType dbType = Utils.getDbType(dbResolver, artifacts);
                 TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, suffix, finalEntities,
                         annotations, dbSequences, dbType);
                 if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
@@ -774,7 +764,7 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
 
                 // List<String> tables = dbResolver.getTables(artifacts);
                 List<String> dbSequences = dbResolver.getSequences(artifacts);
-                DbType dbType = getDbType(artifacts);
+                DbType dbType = Utils.getDbType(dbResolver, artifacts);
                 TableMetaGenerator generator = new TableMetaGenerator(modelProperty, artifacts, scopeProvider,
                         finalMetas, dbSequences, dbType);
                 if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
@@ -827,7 +817,7 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
 
                 // List<String> tables = dbResolver.getTables(artifacts);
                 List<String> dbSequences = dbResolver.getSequences(artifacts);
-                DbType dbType = getDbType(artifacts);
+                DbType dbType = Utils.getDbType(dbResolver, artifacts);
                 TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, suffix, scopeProvider,
                         finalDaos, dbSequences, dbType);
                 if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts)) {

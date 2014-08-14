@@ -5,18 +5,32 @@ package org.sqlproc.dsl.generator;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
+import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
+import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
+import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Artifacts;
+import org.sqlproc.dsl.processorDsl.EnumEntity;
+import org.sqlproc.dsl.processorDsl.MetaStatement;
+import org.sqlproc.dsl.processorDsl.PackageDeclaration;
+import org.sqlproc.dsl.processorDsl.PojoDao;
+import org.sqlproc.dsl.processorDsl.PojoEntity;
+import org.sqlproc.dsl.property.ModelProperty;
 import org.sqlproc.dsl.resolver.DbResolver;
+import org.sqlproc.dsl.resolver.DbResolver.DbType;
+import org.sqlproc.dsl.util.Annotations;
+import org.sqlproc.dsl.util.Utils;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -36,18 +50,18 @@ public class Main {
 
     @Inject
     private Provider<ResourceSet> resourceSetProvider;
-
     @Inject
     private IResourceValidator validator;
-
     @Inject
     private IGenerator2 generator;
-
     @Inject
     private JavaIoFileSystemAccess fileAccess;
-
     @Inject
     DbResolver dbResolver;
+    @Inject
+    IScopeProvider scopeProvider;
+    @Inject
+    ModelProperty modelProperty;
 
     protected void runGenerator(String... sResources) throws IOException {
 
@@ -82,7 +96,121 @@ public class Main {
             generator.doGenerate(set, fileAccess);
             System.out.println("Code generation finished.");
         } else {
-            System.out.println("Defintions, number of properties is " + definitions.getProperties().size());
+            String metaDefinitions = getMetaDefinitions(definitions);
+            System.out.println(metaDefinitions);
         }
+    }
+
+    protected String getPojoDefinitions(Artifacts artifacts, PackageDeclaration packagex) {
+
+        if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
+            List<PojoEntity> entitiesToRemove = new ArrayList<PojoEntity>();
+            Set<String> finalEntities = new HashSet<String>();
+            Annotations annotations = new Annotations();
+            String suffix = packagex.getSuffix();
+            for (AbstractPojoEntity ape : packagex.getElements()) {
+                if (ape instanceof AnnotatedEntity) {
+                    AnnotatedEntity apojo = (AnnotatedEntity) ape;
+                    if (apojo.getEntity() != null && apojo.getEntity() instanceof PojoEntity) {
+                        PojoEntity pojo = (PojoEntity) apojo.getEntity();
+                        Annotations.grabAnnotations(apojo, pojo, annotations);
+                        if (Utils.isFinal(pojo)) {
+                            // if (suffix != null && pojo.getName().endsWith(suffix))
+                            // finalEntities.add(pojo.getName()
+                            // .substring(0, pojo.getName().length() - suffix.length()));
+                            // else
+                            finalEntities.add(pojo.getName());
+                        } else {
+                            entitiesToRemove.add(pojo);
+                        }
+                    } else if (apojo.getEntity() != null && apojo.getEntity() instanceof EnumEntity) {
+                        EnumEntity pojo = (EnumEntity) apojo.getEntity();
+                        if (Utils.isFinal(pojo)) {
+                            // if (suffix != null && pojo.getName().endsWith(suffix))
+                            // finalEntities.add(pojo.getName()
+                            // .substring(0, pojo.getName().length() - suffix.length()));
+                            // else
+                            finalEntities.add(pojo.getName());
+                        }
+                    }
+                }
+            }
+            // for (PojoEntity pojo : entitiesToRemove) {
+            // packagex.getElements().remove(pojo);
+            // }
+            // List<String> tables = dbResolver.getTables(artifacts);
+            List<String> dbSequences = dbResolver.getSequences(artifacts);
+            DbType dbType = Utils.getDbType(dbResolver, artifacts);
+            TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, suffix, finalEntities,
+                    annotations, dbSequences, dbType);
+            if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
+                return generator.getPojoDefinitions(modelProperty, artifacts);
+        }
+        return null;
+    }
+
+    protected String getDaoDefinitions(Artifacts artifacts, PackageDeclaration packagex) {
+
+        if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
+            List<PojoDao> daosToRemove = new ArrayList<PojoDao>();
+            Set<String> finalDaos = new HashSet<String>();
+            String suffix = packagex.getSuffix();
+
+            for (AbstractPojoEntity ape : packagex.getElements()) {
+                if (ape instanceof PojoDao) {
+                    PojoDao dao = (PojoDao) ape;
+                    if (Utils.isFinal(dao)) {
+                        // if (suffix != null && dao.getName().endsWith(suffix))
+                        // finalDaos.add(dao.getName()
+                        // .substring(0, dao.getName().length() - suffix.length()));
+                        // else
+                        finalDaos.add(dao.getName());
+                    } else {
+                        daosToRemove.add(dao);
+                    }
+                }
+            }
+            // for (PojoDao dao : daosToRemove) {
+            // packagex.getElements().remove(dao);
+            // }
+
+            // List<String> tables = dbResolver.getTables(artifacts);
+            List<String> dbSequences = dbResolver.getSequences(artifacts);
+            DbType dbType = Utils.getDbType(dbResolver, artifacts);
+            TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, suffix, scopeProvider,
+                    finalDaos, dbSequences, dbType);
+            if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts)) {
+                return generator.getDaoDefinitions(modelProperty, artifacts);
+            }
+        }
+        return null;
+    }
+
+    protected String getMetaDefinitions(Artifacts artifacts) {
+
+        if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
+            List<MetaStatement> metasToRemove = new ArrayList<MetaStatement>();
+            Set<String> finalMetas = new HashSet<String>();
+
+            for (MetaStatement meta : artifacts.getStatements()) {
+                if (Utils.isFinal(meta)) {
+                    finalMetas.add(meta.getName());
+                } else {
+                    metasToRemove.add(meta);
+                }
+            }
+            // for (MetaStatement meta : metasToRemove) {
+            // artifacts.getElements().remove(meta);
+            // }
+
+            // List<String> tables = dbResolver.getTables(artifacts);
+            List<String> dbSequences = dbResolver.getSequences(artifacts);
+            DbType dbType = Utils.getDbType(dbResolver, artifacts);
+            TableMetaGenerator generator = new TableMetaGenerator(modelProperty, artifacts, scopeProvider, finalMetas,
+                    dbSequences, dbType);
+            if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
+                return generator.getMetaDefinitions(modelProperty, artifacts);
+        }
+        return null;
     }
 }
