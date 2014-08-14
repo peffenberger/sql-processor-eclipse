@@ -26,9 +26,11 @@ import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
-import org.sqlproc.dsl.property.ModelProperty;
+import org.sqlproc.dsl.property.ModelPropertyBean;
+import org.sqlproc.dsl.property.ModelPropertyBean.ModelValues;
 import org.sqlproc.dsl.resolver.DbResolver;
 import org.sqlproc.dsl.resolver.DbResolver.DbType;
+import org.sqlproc.dsl.resolver.DbResolverBean;
 import org.sqlproc.dsl.util.Annotations;
 import org.sqlproc.dsl.util.Utils;
 
@@ -38,7 +40,7 @@ import com.google.inject.Provider;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         if (args.length == 0) {
             System.err.println("Aborting: no path to EMF resource provided!");
             return;
@@ -57,15 +59,13 @@ public class Main {
     @Inject
     private JavaIoFileSystemAccess fileAccess;
     @Inject
-    DbResolver dbResolver;
-    @Inject
     IScopeProvider scopeProvider;
-    @Inject
-    ModelProperty modelProperty;
 
-    protected void runGenerator(String... sResources) throws IOException {
+    protected void runGenerator(String... sResources) throws IOException, ClassNotFoundException {
 
         Artifacts definitions = null;
+        ModelPropertyBean modelProperty = null;
+        DbResolver dbResolver = null;
 
         ResourceSet set = resourceSetProvider.get();
         List<Resource> set2 = new ArrayList<Resource>();
@@ -85,8 +85,16 @@ public class Main {
                 return;
             }
             Artifacts artifacts = (Artifacts) resource.getContents().get(0);
-            if (!artifacts.getProperties().isEmpty())
+            if (!artifacts.getProperties().isEmpty()) {
                 definitions = artifacts;
+                ModelValues modelValues = ModelPropertyBean.loadModel(null, artifacts);
+                modelProperty = new ModelPropertyBean(modelValues);
+                String sDbDriver = modelProperty.getModelValues(null).dbDriver;
+                System.out.println(sDbDriver);
+                Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
+                System.out.println(driverClass);
+                dbResolver = new DbResolverBean(modelProperty, driverClass, null, null);
+            }
         }
 
         System.out.println("Resource(s) validation finished.");
@@ -96,12 +104,13 @@ public class Main {
             generator.doGenerate(set, fileAccess);
             System.out.println("Code generation finished.");
         } else {
-            String metaDefinitions = getMetaDefinitions(definitions);
+            String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions);
             System.out.println(metaDefinitions);
         }
     }
 
-    protected String getPojoDefinitions(Artifacts artifacts, PackageDeclaration packagex) {
+    protected String getPojoDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
+            PackageDeclaration packagex) {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
             List<PojoEntity> entitiesToRemove = new ArrayList<PojoEntity>();
@@ -149,7 +158,8 @@ public class Main {
         return null;
     }
 
-    protected String getDaoDefinitions(Artifacts artifacts, PackageDeclaration packagex) {
+    protected String getDaoDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
+            PackageDeclaration packagex) {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
             List<PojoDao> daosToRemove = new ArrayList<PojoDao>();
@@ -186,7 +196,7 @@ public class Main {
         return null;
     }
 
-    protected String getMetaDefinitions(Artifacts artifacts) {
+    protected String getMetaDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts) {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
             List<MetaStatement> metasToRemove = new ArrayList<MetaStatement>();

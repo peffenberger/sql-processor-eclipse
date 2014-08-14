@@ -250,7 +250,16 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public String daoActiveFilter;
     }
 
+    private ModelValues modelValues = null;
     private Map<String, ModelValues> dirs2models = new HashMap<String, ModelValues>();
+
+    public ModelPropertyBean() {
+    }
+
+    public ModelPropertyBean(ModelValues modelValues) {
+        this.modelValues = modelValues;
+        modelValues.dir = "XXX";
+    }
 
     public void notifyChanged(Notification msg) {
         if (msg.getNotifier() == null || msg.getFeatureID(Resource.class) == Notification.NO_FEATURE_ID)
@@ -292,67 +301,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 }
 
                 Artifacts artifacts = (Artifacts) rootASTElement;
-                if (artifacts.getProperties().isEmpty())
+                if (loadModel(modelValues, artifacts) == null)
                     return;
 
-                initModel(modelValues);
-                boolean reloadDatabase = false;
-                for (Property property : artifacts.getProperties()) {
-                    if (property.getName().startsWith(DATABASE)) {
-                        reloadDatabase = true;
-                        break;
-                    }
-                }
-                if (reloadDatabase) {
-                    initDatabaseModel(modelValues);
-                }
-                boolean reloadPojogen = false;
-                for (Property property : artifacts.getProperties()) {
-                    if (property.getName().startsWith(POJOGEN)) {
-                        reloadPojogen = true;
-                        break;
-                    }
-                }
-                if (reloadPojogen) {
-                    initPojogenModel(modelValues);
-                }
-                boolean reloadMetagen = false;
-                for (Property property : artifacts.getProperties()) {
-                    if (property.getName().startsWith(METAGEN)) {
-                        reloadMetagen = true;
-                        break;
-                    }
-                }
-                if (reloadMetagen) {
-                    initMetagenModel(modelValues);
-                }
-                boolean reloadDaogen = false;
-                for (Property property : artifacts.getProperties()) {
-                    if (property.getName().startsWith(DAOGEN)) {
-                        reloadDaogen = true;
-                        break;
-                    }
-                }
-                if (reloadDaogen) {
-                    initDaogenModel(modelValues);
-                }
-                try {
-                    for (Property property : artifacts.getProperties()) {
-                        if (property.getName().startsWith(DATABASE)) {
-                            setValue(modelValues, property.getDatabase());
-                        } else if (property.getName().startsWith(POJOGEN)) {
-                            setValue(modelValues, property.getPojogen());
-                        } else if (property.getName().startsWith(METAGEN)) {
-                            setValue(modelValues, property.getMetagen());
-                        } else if (property.getName().startsWith(DAOGEN)) {
-                            setValue(modelValues, property.getDaogen());
-                        } else {
-                            setValue(modelValues, property);
-                        }
-                    }
-                } catch (RuntimeException e) {
-                    e.printStackTrace();
-                }
                 LOGGER.debug("MODEL " + modelValues.toString());
             }
             // This is obsolete, just to document the possibilities
@@ -379,12 +330,81 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         }
     }
 
-    private void initModel(ModelValues modelValues) {
+    public static ModelValues loadModel(ModelValues modelValues, Artifacts artifacts) {
+
+        if (artifacts.getProperties().isEmpty())
+            return null;
+        if (modelValues == null)
+            modelValues = new ModelValues();
+
+        initModel(modelValues);
+        boolean reloadDatabase = false;
+        for (Property property : artifacts.getProperties()) {
+            if (property.getName().startsWith(DATABASE)) {
+                reloadDatabase = true;
+                break;
+            }
+        }
+        if (reloadDatabase) {
+            initDatabaseModel(modelValues);
+        }
+        boolean reloadPojogen = false;
+        for (Property property : artifacts.getProperties()) {
+            if (property.getName().startsWith(POJOGEN)) {
+                reloadPojogen = true;
+                break;
+            }
+        }
+        if (reloadPojogen) {
+            initPojogenModel(modelValues);
+        }
+        boolean reloadMetagen = false;
+        for (Property property : artifacts.getProperties()) {
+            if (property.getName().startsWith(METAGEN)) {
+                reloadMetagen = true;
+                break;
+            }
+        }
+        if (reloadMetagen) {
+            initMetagenModel(modelValues);
+        }
+        boolean reloadDaogen = false;
+        for (Property property : artifacts.getProperties()) {
+            if (property.getName().startsWith(DAOGEN)) {
+                reloadDaogen = true;
+                break;
+            }
+        }
+        if (reloadDaogen) {
+            initDaogenModel(modelValues);
+        }
+        try {
+            for (Property property : artifacts.getProperties()) {
+                if (property.getName().startsWith(DATABASE)) {
+                    setValue(modelValues, property.getDatabase());
+                } else if (property.getName().startsWith(POJOGEN)) {
+                    setValue(modelValues, property.getPojogen());
+                } else if (property.getName().startsWith(METAGEN)) {
+                    setValue(modelValues, property.getMetagen());
+                } else if (property.getName().startsWith(DAOGEN)) {
+                    setValue(modelValues, property.getDaogen());
+                } else {
+                    setValue(modelValues, property);
+                }
+            }
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+
+        return modelValues;
+    }
+
+    private static void initModel(ModelValues modelValues) {
         modelValues.replaceAllRegex = new HashMap<String, String>();
         modelValues.replaceAllReplacement = new HashMap<String, String>();
     }
 
-    private void initDatabaseModel(ModelValues modelValues) {
+    private static void initDatabaseModel(ModelValues modelValues) {
         modelValues.doResolveDb = false;
         modelValues.dbDriver = null;
         modelValues.dbUrl = null;
@@ -406,7 +426,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.dbUppercaseNames = false;
     }
 
-    private void initPojogenModel(ModelValues modelValues) {
+    private static void initPojogenModel(ModelValues modelValues) {
         modelValues.sqlTypes = new HashMap<String, PojoAttrType>();
         modelValues.tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
         modelValues.columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
@@ -449,7 +469,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.activeFilter = null;
     }
 
-    private void initMetagenModel(ModelValues modelValues) {
+    private static void initMetagenModel(ModelValues modelValues) {
         modelValues.metaGlobalSequence = null;
         modelValues.metaTablesSequence = new HashMap<String, PairValues>();
         modelValues.metaGlobalIdentity = null;
@@ -478,7 +498,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.metaActiveFilter = null;
     }
 
-    private void initDaogenModel(ModelValues modelValues) {
+    private static void initDaogenModel(ModelValues modelValues) {
         modelValues.daoIgnoreTables = new HashSet<String>();
         modelValues.daoOnlyTables = new HashSet<String>();
         modelValues.daoImplementationPackage = null;
@@ -491,7 +511,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.daoActiveFilter = null;
     }
 
-    public void setValue(ModelValues modelValues, Property property) {
+    public static void setValue(ModelValues modelValues, Property property) {
         if (property == null)
             return;
         if (RESOLVE_POJO_ON.equals(property.getName())) {
@@ -507,7 +527,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         }
     }
 
-    public void setValue(ModelValues modelValues, DatabaseProperty property) {
+    public static void setValue(ModelValues modelValues, DatabaseProperty property) {
         if (property == null)
             return;
         if (DATABASE_IS_ONLINE.equals(property.getName())) {
@@ -564,7 +584,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         }
     }
 
-    private String getPropertyValue(String value) {
+    private static String getPropertyValue(String value) {
         if (value == null)
             return null;
         value = value.trim();
@@ -575,7 +595,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         return value;
     }
 
-    public void setValue(ModelValues modelValues, PojogenProperty property) {
+    private static void setValue(ModelValues modelValues, PojogenProperty property) {
         if (property == null)
             return;
         if (POJOGEN_TYPE_SQLTYPES.equals(property.getName())) {
@@ -875,7 +895,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         }
     }
 
-    public void setValue(ModelValues modelValues, MetagenProperty property) {
+    private static void setValue(ModelValues modelValues, MetagenProperty property) {
         if (property == null)
             return;
         if (METAGEN_GLOBAL_IDENTITY.equals(property.getName())) {
@@ -969,7 +989,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         }
     }
 
-    public void setValue(ModelValues modelValues, DaogenProperty property) {
+    private static void setValue(ModelValues modelValues, DaogenProperty property) {
         if (property == null)
             return;
         if (DAOGEN_IGNORE_TABLES.equals(property.getName())) {
@@ -1509,9 +1529,13 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 
     @Override
     public ModelValues getModelValues(EObject model) {
-        Artifacts artifacts = EcoreUtil2.getContainerOfType(model, Artifacts.class);
+        if (this.modelValues != null)
+            return this.modelValues;
+
+        EObject emodel = (EObject) model;
+        Artifacts artifacts = EcoreUtil2.getContainerOfType(emodel, Artifacts.class);
         if (artifacts == null) {
-            LOGGER.error("UKNOWN ARTIFACTS FOR " + model);
+            LOGGER.error("UKNOWN ARTIFACTS FOR " + emodel);
             return null;
         }
         if (artifacts.eResource() == null) {

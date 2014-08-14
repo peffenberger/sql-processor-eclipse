@@ -27,6 +27,7 @@ import java.util.TreeSet;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.util.StringInputStream;
 import org.sqlproc.dsl.property.ModelProperty;
 import org.sqlproc.dsl.property.ModelPropertyBean;
 import org.sqlproc.dsl.util.Debug;
@@ -84,6 +85,10 @@ public class DbResolverBean implements DbResolver {
     @Inject
     PojoResolverFactory pojoResolverFactory;
 
+    private Class<?> driverClass = null;
+    private String dbSqlsBefore = null;
+    private String dbSqlsAfter = null;
+
     private final Object sync = new Object();
 
     private final Map<String, DatabaseDirectives> connections = Collections
@@ -134,6 +139,16 @@ public class DbResolverBean implements DbResolver {
             .synchronizedMap(new HashMap<String, Map<String, List<DbCheckConstraint>>>());
     private final Map<String, Map<String, String>> dbOriginalNames = Collections
             .synchronizedMap(new HashMap<String, Map<String, String>>());
+
+    public DbResolverBean() {
+    }
+
+    public DbResolverBean(ModelProperty modelProperty, Class<?> driverClass, String dbSqlsBefore, String dbSqlsAfter) {
+        this.modelProperty = modelProperty;
+        this.driverClass = driverClass;
+        this.dbSqlsBefore = dbSqlsBefore;
+        this.dbSqlsAfter = dbSqlsAfter;
+    }
 
     private DatabaseDirectives checkReconnect(EObject model) {
         String m = "checkReconnect";
@@ -288,7 +303,8 @@ public class DbResolverBean implements DbResolver {
         debug.trace(m, "DB OPEN");
         synchronized (sync) {
             debug.trace(m, "DATA START FOR " + modelDatabaseValues.dir);
-            Class<?> driverClass = pojoResolverFactory.getPojoResolver().loadClass(modelDatabaseValues.dbDriver);
+            Class<?> driverClass = (this.driverClass != null) ? this.driverClass : pojoResolverFactory
+                    .getPojoResolver().loadClass(modelDatabaseValues.dbDriver);
             debug.trace(m, "DATA DRIVER " + driverClass);
             if (driverClass != null && Driver.class.isAssignableFrom(driverClass)) {
                 try {
@@ -302,10 +318,15 @@ public class DbResolverBean implements DbResolver {
                     debug.trace(m, "DB URL " + dbUrl);
                     debug.trace(m, "DATA CONNECTION " + modelDatabaseValues.connection);
 
-                    if (modelDatabaseValues.dbSqlsBefore != null
+                    InputStream is = null;
+                    if (this.dbSqlsBefore != null) {
+                        is = new StringInputStream(this.dbSqlsBefore);
+                    } else if (this.driverClass == null && modelDatabaseValues.dbSqlsBefore != null
                             && modelDatabaseValues.dbSqlsBefore.trim().length() > 0) {
-                        InputStream is = pojoResolverFactory.getPojoResolver().getFile(model,
+                        is = pojoResolverFactory.getPojoResolver().getFile(model,
                                 modelDatabaseValues.dbSqlsBefore.trim());
+                    }
+                    if (is != null) {
                         List<String> ddls = loadDDL(is);
                         modelDatabaseValues.ddlsBefore0 = new ArrayList<String>();
                         modelDatabaseValues.ddlsBefore1 = new ArrayList<String>();
@@ -326,9 +347,15 @@ public class DbResolverBean implements DbResolver {
                         }
                         runDDLs(modelDatabaseValues.connection, modelDatabaseValues.ddlsBefore1, "BEFORE");
                     }
-                    if (modelDatabaseValues.dbSqlsAfter != null && modelDatabaseValues.dbSqlsAfter.trim().length() > 0) {
-                        InputStream is = pojoResolverFactory.getPojoResolver().getFile(model,
+                    InputStream is2 = null;
+                    if (this.dbSqlsAfter != null) {
+                        is2 = new StringInputStream(this.dbSqlsBefore);
+                    } else if (this.driverClass == null && modelDatabaseValues.dbSqlsAfter != null
+                            && modelDatabaseValues.dbSqlsAfter.trim().length() > 0) {
+                        is2 = pojoResolverFactory.getPojoResolver().getFile(model,
                                 modelDatabaseValues.dbSqlsAfter.trim());
+                    }
+                    if (is2 != null) {
                         modelDatabaseValues.ddlsAfter = loadDDL(is);
                     }
                 } catch (InstantiationException e) {
