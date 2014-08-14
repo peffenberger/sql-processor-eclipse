@@ -1733,15 +1733,14 @@ public class TableMetaGenerator extends TablePojoGenerator {
 
     PairValues getIdentity(String pojo, PojoAttribute attribute) {
         if (attribute.isPrimaryKey()) {
-            System.out.println("getIdentity " + pojo + " :" + metaTablesSequence + "|" + metaTablesIdentity + "|"
-                    + metaGlobalIdentity + "|" + metaGlobalIdentityForTables + "|" + metaGlobalIdentityNotForTables
-                    + "|" + identities);
+            if (debug.debug)
+                System.out.println("getIdentity " + pojo + " :" + metaTablesSequence + "|" + metaTablesIdentity + "|"
+                        + metaGlobalIdentity + "|" + metaGlobalIdentityForTables + "|" + metaGlobalIdentityNotForTables
+                        + "|" + identities);
             if (metaTablesSequence.containsKey(pojo)) {
-                System.out.println("a");
                 return null;
             }
             if (metaTablesIdentity.containsKey(pojo)) {
-                System.out.println("b");
                 return metaTablesIdentity.get(pojo);
             } else if (metaGlobalIdentity != null) {
                 boolean generateIdentity = true;
@@ -1749,7 +1748,6 @@ public class TableMetaGenerator extends TablePojoGenerator {
                     generateIdentity = false;
                 if (!metaGlobalIdentityNotForTables.isEmpty() && metaGlobalIdentityNotForTables.contains(pojo))
                     generateIdentity = false;
-                System.out.println("c");
                 return (generateIdentity) ? metaGlobalIdentity : null;
             } else if (identities != null) {
                 PairValues result = null;
@@ -1760,7 +1758,6 @@ public class TableMetaGenerator extends TablePojoGenerator {
                     }
                 }
                 if (result != null) {
-                    System.out.println("d");
                     return result;
                 }
                 // for (Entry<String, StringBuilder> entry : identities.entrySet()) {
@@ -1774,10 +1771,10 @@ public class TableMetaGenerator extends TablePojoGenerator {
 
     PairValues getSequence(String pojo, PojoAttribute attribute) {
         if (attribute.isPrimaryKey()) {
-            System.out.println("getSequence " + pojo + " :" + metaTablesSequence + "|" + metaGlobalSequence + "|"
-                    + metaGlobalSequenceForTables + "|" + metaGlobalSequenceNotForTables + "|" + sequences);
+            if (debug.debug)
+                System.out.println("getSequence " + pojo + " :" + metaTablesSequence + "|" + metaGlobalSequence + "|"
+                        + metaGlobalSequenceForTables + "|" + metaGlobalSequenceNotForTables + "|" + sequences);
             if (metaTablesSequence.containsKey(pojo)) {
-                System.out.println("j");
                 return metaTablesSequence.get(pojo);
             } else if (metaGlobalSequence != null) {
                 boolean generateSequence = true;
@@ -1796,7 +1793,6 @@ public class TableMetaGenerator extends TablePojoGenerator {
                     }
                 }
                 if (result != null) {
-                    System.out.println("l");
                     return result;
                 }
                 // for (Entry<String, StringBuilder> entry : sequences.entrySet()) {

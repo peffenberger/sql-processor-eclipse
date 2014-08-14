@@ -3,6 +3,7 @@
  */
 package org.sqlproc.dsl.generator;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -34,6 +35,7 @@ import org.sqlproc.dsl.resolver.DbResolverBean;
 import org.sqlproc.dsl.util.Annotations;
 import org.sqlproc.dsl.util.Utils;
 
+import com.google.common.io.Files;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Provider;
@@ -157,14 +159,20 @@ public class Main {
         if (definitions.getProperties().isEmpty()) {
             System.err.println("No control directive.");
         }
+        fileAccess.setOutputPath(target);
         ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
         ModelPropertyBean modelProperty = new ModelPropertyBean(modelValues);
         String sDbDriver = modelProperty.getModelValues(null).dbDriver;
         Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
-        DbResolver dbResolver = new DbResolverBean(modelProperty, driverClass, null, null);
+        String dbSqlsBefore = null;
+        if (ddl != null) {
+            File file = new File(ddl);
+            dbSqlsBefore = new String(Files.toByteArray(file));
+        }
+        DbResolver dbResolver = new DbResolverBean(modelProperty, driverClass, dbSqlsBefore, null);
 
         String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions);
-        System.out.println(metaDefinitions);
+        fileAccess.generateFile(sql, metaDefinitions);
     }
 
     protected boolean isValid(Resource resource) throws IOException {

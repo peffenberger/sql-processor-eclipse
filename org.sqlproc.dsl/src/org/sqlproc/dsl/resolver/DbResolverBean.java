@@ -2319,7 +2319,7 @@ public class DbResolverBean implements DbResolver {
     private void addCheckConstraints(Map<String, List<String>> mapOfCheckConstraints, String tableName,
             String constraintName, String checkClause, boolean combine) {
         String m = "addCheckConstraints";
-        debug.info(m, tableName + " constraintName " + constraintName + ", " + " checkClause " + checkClause);
+        debug.debug(m, tableName + " constraintName " + constraintName + ", " + " checkClause " + checkClause);
         List<String> list = new ArrayList<String>();
         list.add(checkClause);
         list.add(tableName);
