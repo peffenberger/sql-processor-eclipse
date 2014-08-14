@@ -21,8 +21,10 @@ import java.util.TreeSet;
 
 import org.apache.log4j.Logger;
 import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.scoping.IScopeProvider;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.PojoType;
+import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 import org.sqlproc.dsl.property.EnumAttribute;
 import org.sqlproc.dsl.property.ImplementsExtends;
 import org.sqlproc.dsl.property.ModelProperty;
@@ -34,10 +36,12 @@ import org.sqlproc.dsl.resolver.DbExport;
 import org.sqlproc.dsl.resolver.DbImport;
 import org.sqlproc.dsl.resolver.DbIndex;
 import org.sqlproc.dsl.resolver.DbIndex.DbIndexDetail;
+import org.sqlproc.dsl.resolver.DbResolver;
 import org.sqlproc.dsl.resolver.DbResolver.DbType;
 import org.sqlproc.dsl.resolver.DbTable;
 import org.sqlproc.dsl.util.Annotations;
 import org.sqlproc.dsl.util.Debug;
+import org.sqlproc.dsl.util.Utils;
 
 public class TablePojoGenerator {
 
@@ -845,6 +849,11 @@ public class TablePojoGenerator {
                 }
             }
         }
+    }
+
+    public String getPojoDefinitions(ModelProperty modelProperty, Artifacts artifacts) {
+        String result = getPojoDefinitions();
+        return replaceAll(modelProperty, result, artifacts);
     }
 
     public String getPojoDefinitions() {
@@ -1808,5 +1817,84 @@ public class TablePojoGenerator {
         public String toString() {
             return "Filter [filters=" + filters + "]";
         }
+    }
+
+    public static boolean addDefinitions(IScopeProvider scopeProvider, DbResolver dbResolver,
+            TablePojoGenerator generator, Artifacts artifacts) {
+        try {
+            List<String> tables = Utils.findTables(null, artifacts,
+                    scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES));
+            List<String> procedures = Utils.findProcedures(null, artifacts,
+                    scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PROCEDURES));
+            List<String> functions = Utils.findFunctions(null, artifacts,
+                    scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__FUNCTIONS));
+            if (tables == null && procedures == null && functions == null)
+                return false;
+            if (tables != null) {
+                for (String table : tables) {
+                    if (table.toUpperCase().startsWith("BIN$"))
+                        continue;
+                    if (!dbResolver.checkTable(artifacts, table))
+                        continue;
+                    List<DbColumn> dbColumns = dbResolver.getDbColumns(artifacts, table);
+                    if (dbColumns.isEmpty())
+                        continue;
+                    List<String> dbPrimaryKeys = dbResolver.getDbPrimaryKeys(artifacts, table);
+                    List<DbExport> dbExports = dbResolver.getDbExports(artifacts, table);
+                    List<DbImport> dbImports = dbResolver.getDbImports(artifacts, table);
+                    List<DbIndex> dbIndexes = dbResolver.getDbIndexes(artifacts, table);
+                    List<DbTable> ltables = dbResolver.getDbTables(artifacts, table);
+                    String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
+                    List<DbCheckConstraint> dbCheckConstraints = dbResolver.getDbCheckConstraints(artifacts, table);
+                    generator.addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes,
+                            dbCheckConstraints, comment);
+                }
+                // converter.resolveReferencesOnConvention();
+                generator.resolveReferencesOnKeys();
+                generator.joinTables();
+            }
+            if (procedures != null) {
+                for (String procedure : procedures) {
+                    if (procedure.toUpperCase().startsWith("BIN$"))
+                        continue;
+                    List<DbTable> dbProcedures = dbResolver.getDbProcedures(artifacts, procedure);
+                    if (dbProcedures.isEmpty())
+                        continue;
+                    List<DbColumn> dbProcColumns = dbResolver.getDbProcColumns(artifacts, procedure);
+                    List<DbTable> ltables = dbResolver.getDbProcedures(artifacts, procedure);
+                    String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
+                    generator.addProcedureDefinition(procedure, dbProcedures.get(0), dbProcColumns,
+                            functions.contains(procedure), comment);
+                }
+            }
+            if (functions != null) {
+                for (String function : functions) {
+                    if (function.toUpperCase().startsWith("BIN$"))
+                        continue;
+                    List<DbTable> dbFunctions = dbResolver.getDbFunctions(artifacts, function);
+                    if (dbFunctions.isEmpty())
+                        continue;
+                    List<DbColumn> dbFunColumns = dbResolver.getDbFunColumns(artifacts, function);
+                    List<DbTable> ltables = dbResolver.getDbFunctions(artifacts, function);
+                    String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
+                    generator.addFunctionDefinition(function, dbFunctions.get(0), dbFunColumns, comment);
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    protected String replaceAll(ModelProperty modelProperty, String buffer, Artifacts artifacts) {
+        for (Entry<String, String> entry : modelProperty.getReplaceAll(artifacts).entrySet()) {
+            String regex = entry.getKey();
+            String replacement = entry.getValue();
+            System.out.println("REGEX " + regex);
+            System.out.println("REPLACEMENT " + replacement);
+            buffer = buffer.replaceAll(regex, replacement);
+        }
+        return buffer;
     }
 }

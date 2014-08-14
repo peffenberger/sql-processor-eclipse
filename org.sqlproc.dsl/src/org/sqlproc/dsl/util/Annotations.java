@@ -7,8 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
+import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
+import org.sqlproc.dsl.processorDsl.PojoEntity;
 
 public class Annotations {
     Map<String, List<Annotation>> entityAnnotations = new HashMap<String, List<Annotation>>();
@@ -215,6 +218,24 @@ public class Annotations {
                 if (ap.getType() != null)
                     imports.add(ap.getType().getQualifiedName());
             }
+        }
+    }
+
+    public static void grabAnnotations(AnnotatedEntity apojo, PojoEntity pojo, Annotations as) {
+        String pojoName = pojo.getName();
+        as.addEntityAnnotations(pojoName, apojo.getAnnotations());
+        as.addConstructorAnnotations(pojoName, apojo.getConstructorAnnotations());
+        as.addStaticAnnotations(pojoName, apojo.getStaticAnnotations());
+        as.addConflictAnnotations(pojoName, apojo.getConflictAnnotations());
+        for (PojoAnnotatedProperty feature : pojo.getFeatures()) {
+            if (feature.getFeature() == null)
+                continue;
+            if (feature.getAttributeAnnotations() != null)
+                as.addAttributeAnnotations(pojoName, feature.getFeature().getName(), feature.getAttributeAnnotations());
+            if (feature.getSetterAnnotations() != null)
+                as.addSetterAnnotations(pojoName, feature.getFeature().getName(), feature.getSetterAnnotations());
+            if (feature.getGetterAnnotations() != null)
+                as.addGetterAnnotations(pojoName, feature.getFeature().getName(), feature.getGetterAnnotations());
         }
     }
 

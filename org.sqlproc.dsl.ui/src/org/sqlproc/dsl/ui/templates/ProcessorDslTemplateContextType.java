@@ -25,20 +25,13 @@ import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
-import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
 import org.sqlproc.dsl.property.ModelProperty;
-import org.sqlproc.dsl.resolver.DbCheckConstraint;
-import org.sqlproc.dsl.resolver.DbColumn;
-import org.sqlproc.dsl.resolver.DbExport;
-import org.sqlproc.dsl.resolver.DbImport;
-import org.sqlproc.dsl.resolver.DbIndex;
 import org.sqlproc.dsl.resolver.DbResolver;
 import org.sqlproc.dsl.resolver.DbResolver.DbType;
-import org.sqlproc.dsl.resolver.DbTable;
 import org.sqlproc.dsl.resolver.PojoResolver;
 import org.sqlproc.dsl.util.Annotations;
 import org.sqlproc.dsl.util.Utils;
@@ -710,7 +703,7 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                         AnnotatedEntity apojo = (AnnotatedEntity) ape;
                         if (apojo.getEntity() != null && apojo.getEntity() instanceof PojoEntity) {
                             PojoEntity pojo = (PojoEntity) apojo.getEntity();
-                            grabAnnotations(apojo, pojo, annotations);
+                            Annotations.grabAnnotations(apojo, pojo, annotations);
                             if (Utils.isFinal(pojo)) {
                                 // if (suffix != null && pojo.getName().endsWith(suffix))
                                 // finalEntities.add(pojo.getName()
@@ -740,8 +733,8 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                 DbType dbType = getDbType(artifacts);
                 TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, suffix, finalEntities,
                         annotations, dbSequences, dbType);
-                if (addDefinitions(generator, artifacts))
-                    return replaceAll(generator.getPojoDefinitions(), artifacts);
+                if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
+                    return generator.getPojoDefinitions(modelProperty, artifacts);
             }
             return super.resolve(context);
         }
@@ -749,24 +742,6 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
         @Override
         protected boolean isUnambiguous(TemplateContext context) {
             return true;
-        }
-    }
-
-    private void grabAnnotations(AnnotatedEntity apojo, PojoEntity pojo, Annotations as) {
-        String pojoName = pojo.getName();
-        as.addEntityAnnotations(pojoName, apojo.getAnnotations());
-        as.addConstructorAnnotations(pojoName, apojo.getConstructorAnnotations());
-        as.addStaticAnnotations(pojoName, apojo.getStaticAnnotations());
-        as.addConflictAnnotations(pojoName, apojo.getConflictAnnotations());
-        for (PojoAnnotatedProperty feature : pojo.getFeatures()) {
-            if (feature.getFeature() == null)
-                continue;
-            if (feature.getAttributeAnnotations() != null)
-                as.addAttributeAnnotations(pojoName, feature.getFeature().getName(), feature.getAttributeAnnotations());
-            if (feature.getSetterAnnotations() != null)
-                as.addSetterAnnotations(pojoName, feature.getFeature().getName(), feature.getSetterAnnotations());
-            if (feature.getGetterAnnotations() != null)
-                as.addGetterAnnotations(pojoName, feature.getFeature().getName(), feature.getGetterAnnotations());
         }
     }
 
@@ -802,8 +777,8 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                 DbType dbType = getDbType(artifacts);
                 TableMetaGenerator generator = new TableMetaGenerator(modelProperty, artifacts, scopeProvider,
                         finalMetas, dbSequences, dbType);
-                if (addDefinitions(generator, artifacts))
-                    return replaceAll(generator.getMetaDefinitions(), artifacts);
+                if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
+                    return generator.getMetaDefinitions(modelProperty, artifacts);
             }
             return super.resolve(context);
         }
@@ -855,8 +830,8 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                 DbType dbType = getDbType(artifacts);
                 TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, suffix, scopeProvider,
                         finalDaos, dbSequences, dbType);
-                if (addDefinitions(generator, artifacts)) {
-                    return replaceAll(generator.getDaoDefinitions(), artifacts);
+                if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts)) {
+                    return generator.getDaoDefinitions(modelProperty, artifacts);
                 }
             }
             return super.resolve(context);
@@ -865,84 +840,6 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
         @Override
         protected boolean isUnambiguous(TemplateContext context) {
             return true;
-        }
-    }
-
-    private String replaceAll(String buffer, Artifacts artifacts) {
-        for (Entry<String, String> entry : modelProperty.getReplaceAll(artifacts).entrySet()) {
-            String regex = entry.getKey();
-            String replacement = entry.getValue();
-            System.out.println("REGEX " + regex);
-            System.out.println("REPLACEMENT " + replacement);
-            buffer = buffer.replaceAll(regex, replacement);
-        }
-        return buffer;
-    }
-
-    protected boolean addDefinitions(TablePojoGenerator generator, Artifacts artifacts) {
-        try {
-            List<String> tables = Utils.findTables(null, artifacts,
-                    scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES));
-            List<String> procedures = Utils.findProcedures(null, artifacts,
-                    scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PROCEDURES));
-            List<String> functions = Utils.findFunctions(null, artifacts,
-                    scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__FUNCTIONS));
-            if (tables == null && procedures == null && functions == null)
-                return false;
-            if (tables != null) {
-                for (String table : tables) {
-                    if (table.toUpperCase().startsWith("BIN$"))
-                        continue;
-                    if (!dbResolver.checkTable(artifacts, table))
-                        continue;
-                    List<DbColumn> dbColumns = dbResolver.getDbColumns(artifacts, table);
-                    if (dbColumns.isEmpty())
-                        continue;
-                    List<String> dbPrimaryKeys = dbResolver.getDbPrimaryKeys(artifacts, table);
-                    List<DbExport> dbExports = dbResolver.getDbExports(artifacts, table);
-                    List<DbImport> dbImports = dbResolver.getDbImports(artifacts, table);
-                    List<DbIndex> dbIndexes = dbResolver.getDbIndexes(artifacts, table);
-                    List<DbTable> ltables = dbResolver.getDbTables(artifacts, table);
-                    String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
-                    List<DbCheckConstraint> dbCheckConstraints = dbResolver.getDbCheckConstraints(artifacts, table);
-                    generator.addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes,
-                            dbCheckConstraints, comment);
-                }
-                // converter.resolveReferencesOnConvention();
-                generator.resolveReferencesOnKeys();
-                generator.joinTables();
-            }
-            if (procedures != null) {
-                for (String procedure : procedures) {
-                    if (procedure.toUpperCase().startsWith("BIN$"))
-                        continue;
-                    List<DbTable> dbProcedures = dbResolver.getDbProcedures(artifacts, procedure);
-                    if (dbProcedures.isEmpty())
-                        continue;
-                    List<DbColumn> dbProcColumns = dbResolver.getDbProcColumns(artifacts, procedure);
-                    List<DbTable> ltables = dbResolver.getDbProcedures(artifacts, procedure);
-                    String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
-                    generator.addProcedureDefinition(procedure, dbProcedures.get(0), dbProcColumns,
-                            functions.contains(procedure), comment);
-                }
-            }
-            if (functions != null) {
-                for (String function : functions) {
-                    if (function.toUpperCase().startsWith("BIN$"))
-                        continue;
-                    List<DbTable> dbFunctions = dbResolver.getDbFunctions(artifacts, function);
-                    if (dbFunctions.isEmpty())
-                        continue;
-                    List<DbColumn> dbFunColumns = dbResolver.getDbFunColumns(artifacts, function);
-                    List<DbTable> ltables = dbResolver.getDbFunctions(artifacts, function);
-                    String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
-                    generator.addFunctionDefinition(function, dbFunctions.get(0), dbFunColumns, comment);
-                }
-            }
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
         }
     }
 }

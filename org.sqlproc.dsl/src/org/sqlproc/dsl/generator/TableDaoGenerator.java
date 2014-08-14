@@ -86,6 +86,11 @@ public class TableDaoGenerator extends TableMetaGenerator {
         }
     }
 
+    public String getDaoDefinitions(ModelProperty modelProperty, Artifacts artifacts) {
+        String result = getDaoDefinitions();
+        return replaceAll(modelProperty, result, artifacts);
+    }
+
     public String getDaoDefinitions() {
         try {
             if (debug.debug) {

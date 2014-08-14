@@ -16,6 +16,7 @@ import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 import org.sqlproc.dsl.processorDsl.Artifacts;
+import org.sqlproc.dsl.resolver.DbResolver;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -44,6 +45,9 @@ public class Main {
 
     @Inject
     private JavaIoFileSystemAccess fileAccess;
+
+    @Inject
+    DbResolver dbResolver;
 
     protected void runGenerator(String... sResources) throws IOException {
 

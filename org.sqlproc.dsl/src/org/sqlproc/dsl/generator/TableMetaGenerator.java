@@ -234,6 +234,11 @@ public class TableMetaGenerator extends TablePojoGenerator {
         }
     }
 
+    public String getMetaDefinitions(ModelProperty modelProperty, Artifacts artifacts) {
+        String result = getMetaDefinitions();
+        return replaceAll(modelProperty, result, artifacts);
+    }
+
     public String getMetaDefinitions() {
         try {
             if (debug.debug) {
