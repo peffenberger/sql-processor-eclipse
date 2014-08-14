@@ -16,6 +16,9 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContext;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
+import org.sqlproc.dsl.generator.TableDaoGenerator;
+import org.sqlproc.dsl.generator.TableMetaGenerator;
+import org.sqlproc.dsl.generator.TablePojoGenerator;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Artifacts;
@@ -37,6 +40,7 @@ import org.sqlproc.dsl.resolver.DbResolver;
 import org.sqlproc.dsl.resolver.DbResolver.DbType;
 import org.sqlproc.dsl.resolver.DbTable;
 import org.sqlproc.dsl.resolver.PojoResolver;
+import org.sqlproc.dsl.util.Annotations;
 import org.sqlproc.dsl.util.Utils;
 
 import com.google.inject.Inject;
@@ -54,6 +58,15 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
 
     @Inject
     ModelProperty modelProperty;
+
+    // @Inject
+    // TableDaoGenerator tableDaoGenerator;
+    //
+    // @Inject
+    // TableMetaGenerator tableMetaGenerator;
+    //
+    // @Inject
+    // TablePojoGenerator tablePojoGenerator;
 
     @Override
     protected void addDefaultTemplateVariables() {
@@ -725,10 +738,10 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                 // List<String> tables = dbResolver.getTables(artifacts);
                 List<String> dbSequences = dbResolver.getSequences(artifacts);
                 DbType dbType = getDbType(artifacts);
-                TablePojoConverter converter = new TablePojoConverter(modelProperty, artifacts, suffix, finalEntities,
+                TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, suffix, finalEntities,
                         annotations, dbSequences, dbType);
-                if (addDefinitions(converter, artifacts))
-                    return replaceAll(converter.getPojoDefinitions(), artifacts);
+                if (addDefinitions(generator, artifacts))
+                    return replaceAll(generator.getPojoDefinitions(), artifacts);
             }
             return super.resolve(context);
         }
@@ -787,10 +800,10 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                 // List<String> tables = dbResolver.getTables(artifacts);
                 List<String> dbSequences = dbResolver.getSequences(artifacts);
                 DbType dbType = getDbType(artifacts);
-                TableMetaConverter converter = new TableMetaConverter(modelProperty, artifacts, scopeProvider,
+                TableMetaGenerator generator = new TableMetaGenerator(modelProperty, artifacts, scopeProvider,
                         finalMetas, dbSequences, dbType);
-                if (addDefinitions(converter, artifacts))
-                    return replaceAll(converter.getMetaDefinitions(), artifacts);
+                if (addDefinitions(generator, artifacts))
+                    return replaceAll(generator.getMetaDefinitions(), artifacts);
             }
             return super.resolve(context);
         }
@@ -840,10 +853,10 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                 // List<String> tables = dbResolver.getTables(artifacts);
                 List<String> dbSequences = dbResolver.getSequences(artifacts);
                 DbType dbType = getDbType(artifacts);
-                TableDaoConverter converter = new TableDaoConverter(modelProperty, artifacts, suffix, scopeProvider,
+                TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, suffix, scopeProvider,
                         finalDaos, dbSequences, dbType);
-                if (addDefinitions(converter, artifacts)) {
-                    return replaceAll(converter.getDaoDefinitions(), artifacts);
+                if (addDefinitions(generator, artifacts)) {
+                    return replaceAll(generator.getDaoDefinitions(), artifacts);
                 }
             }
             return super.resolve(context);
@@ -866,7 +879,7 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
         return buffer;
     }
 
-    protected boolean addDefinitions(TablePojoConverter converter, Artifacts artifacts) {
+    protected boolean addDefinitions(TablePojoGenerator generator, Artifacts artifacts) {
         try {
             List<String> tables = Utils.findTables(null, artifacts,
                     scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES));
@@ -892,12 +905,12 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                     List<DbTable> ltables = dbResolver.getDbTables(artifacts, table);
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
                     List<DbCheckConstraint> dbCheckConstraints = dbResolver.getDbCheckConstraints(artifacts, table);
-                    converter.addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes,
+                    generator.addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes,
                             dbCheckConstraints, comment);
                 }
                 // converter.resolveReferencesOnConvention();
-                converter.resolveReferencesOnKeys();
-                converter.joinTables();
+                generator.resolveReferencesOnKeys();
+                generator.joinTables();
             }
             if (procedures != null) {
                 for (String procedure : procedures) {
@@ -909,7 +922,7 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                     List<DbColumn> dbProcColumns = dbResolver.getDbProcColumns(artifacts, procedure);
                     List<DbTable> ltables = dbResolver.getDbProcedures(artifacts, procedure);
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
-                    converter.addProcedureDefinition(procedure, dbProcedures.get(0), dbProcColumns,
+                    generator.addProcedureDefinition(procedure, dbProcedures.get(0), dbProcColumns,
                             functions.contains(procedure), comment);
                 }
             }
@@ -923,7 +936,7 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                     List<DbColumn> dbFunColumns = dbResolver.getDbFunColumns(artifacts, function);
                     List<DbTable> ltables = dbResolver.getDbFunctions(artifacts, function);
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
-                    converter.addFunctionDefinition(function, dbFunctions.get(0), dbFunColumns, comment);
+                    generator.addFunctionDefinition(function, dbFunctions.get(0), dbFunColumns, comment);
                 }
             }
             return true;

@@ -1,4 +1,4 @@
-package org.sqlproc.dsl.ui.templates;
+package org.sqlproc.dsl.generator;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -23,9 +23,9 @@ import org.sqlproc.dsl.property.PojoAttribute;
 import org.sqlproc.dsl.resolver.DbResolver.DbType;
 import org.sqlproc.dsl.util.Debug;
 
-public class TableDaoConverter extends TableMetaConverter {
+public class TableDaoGenerator extends TableMetaGenerator {
 
-    protected Logger LOGGER = Logger.getLogger(TableDaoConverter.class);
+    protected Logger LOGGER = Logger.getLogger(TableDaoGenerator.class);
     private Debug debug = new Debug(LOGGER);
 
     protected Set<String> finalDaos;
@@ -40,11 +40,11 @@ public class TableDaoConverter extends TableMetaConverter {
     protected Set<String> generics;
     protected Filter daoActiveFilter = null;
 
-    public TableDaoConverter() {
+    public TableDaoGenerator() {
         super();
     }
 
-    public TableDaoConverter(ModelProperty modelProperty, Artifacts artifacts, String suffix,
+    public TableDaoGenerator(ModelProperty modelProperty, Artifacts artifacts, String suffix,
             IScopeProvider scopeProvider, Set<String> finalDaos, List<String> dbSequences, DbType dbType) {
         super(modelProperty, artifacts, null, Collections.<String> emptySet(), dbSequences, dbType);
 

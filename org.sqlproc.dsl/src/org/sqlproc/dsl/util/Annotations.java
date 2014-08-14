@@ -1,4 +1,4 @@
-package org.sqlproc.dsl.ui.templates;
+package org.sqlproc.dsl.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,27 +19,27 @@ public class Annotations {
     Map<String, Map<String, List<Annotation>>> getterAnnotations = new HashMap<String, Map<String, List<Annotation>>>();
     Map<String, Map<String, List<Annotation>>> attributeAnnotations = new HashMap<String, Map<String, List<Annotation>>>();
 
-    void addEntityAnnotations(String pojoName, List<Annotation> annotations) {
+    public void addEntityAnnotations(String pojoName, List<Annotation> annotations) {
         entityAnnotations.put(pojoName, new ArrayList<Annotation>());
         entityAnnotations.get(pojoName).addAll(annotations);
     }
 
-    void addConstructorAnnotations(String pojoName, List<Annotation> annotations) {
+    public void addConstructorAnnotations(String pojoName, List<Annotation> annotations) {
         constructorAnnotations.put(pojoName, new ArrayList<Annotation>());
         constructorAnnotations.get(pojoName).addAll(annotations);
     }
 
-    void addStaticAnnotations(String pojoName, List<Annotation> annotations) {
+    public void addStaticAnnotations(String pojoName, List<Annotation> annotations) {
         staticAnnotations.put(pojoName, new ArrayList<Annotation>());
         staticAnnotations.get(pojoName).addAll(annotations);
     }
 
-    void addConflictAnnotations(String pojoName, List<Annotation> annotations) {
+    public void addConflictAnnotations(String pojoName, List<Annotation> annotations) {
         conflictAnnotations.put(pojoName, new ArrayList<Annotation>());
         conflictAnnotations.get(pojoName).addAll(annotations);
     }
 
-    void addGetterAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
+    public void addGetterAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
         if (!getterAnnotations.containsKey(pojoName))
             getterAnnotations.put(pojoName, new HashMap<String, List<Annotation>>());
         List<Annotation> list = getterAnnotations.get(pojoName).get(featureName);
@@ -48,7 +48,7 @@ public class Annotations {
         list.addAll(annotations);
     }
 
-    void addSetterAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
+    public void addSetterAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
         if (!setterAnnotations.containsKey(pojoName))
             setterAnnotations.put(pojoName, new HashMap<String, List<Annotation>>());
         List<Annotation> list = setterAnnotations.get(pojoName).get(featureName);
@@ -57,7 +57,7 @@ public class Annotations {
         list.addAll(annotations);
     }
 
-    void addAttributeAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
+    public void addAttributeAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
         if (!attributeAnnotations.containsKey(pojoName))
             attributeAnnotations.put(pojoName, new HashMap<String, List<Annotation>>());
         List<Annotation> list = attributeAnnotations.get(pojoName).get(featureName);
@@ -66,7 +66,7 @@ public class Annotations {
         list.addAll(annotations);
     }
 
-    StringBuilder getEntityAnnotationsDefinitions(String pojoName, boolean simpleNames) {
+    public StringBuilder getEntityAnnotationsDefinitions(String pojoName, boolean simpleNames) {
         StringBuilder sb = new StringBuilder();
         if (!entityAnnotations.containsKey(pojoName))
             return sb;
@@ -76,7 +76,7 @@ public class Annotations {
         return sb;
     }
 
-    StringBuilder getConstructorAnnotationsDefinitions(String pojoName, boolean simpleNames) {
+    public StringBuilder getConstructorAnnotationsDefinitions(String pojoName, boolean simpleNames) {
         StringBuilder sb = new StringBuilder();
         if (!constructorAnnotations.containsKey(pojoName))
             return sb;
@@ -86,7 +86,7 @@ public class Annotations {
         return sb;
     }
 
-    StringBuilder getStaticAnnotationsDefinitions(String pojoName, boolean simpleNames) {
+    public StringBuilder getStaticAnnotationsDefinitions(String pojoName, boolean simpleNames) {
         StringBuilder sb = new StringBuilder();
         if (!staticAnnotations.containsKey(pojoName))
             return sb;
@@ -96,7 +96,7 @@ public class Annotations {
         return sb;
     }
 
-    StringBuilder getConflictAnnotationsDefinitions(String pojoName, boolean simpleNames) {
+    public StringBuilder getConflictAnnotationsDefinitions(String pojoName, boolean simpleNames) {
         StringBuilder sb = new StringBuilder();
         if (!conflictAnnotations.containsKey(pojoName))
             return sb;
@@ -106,7 +106,7 @@ public class Annotations {
         return sb;
     }
 
-    StringBuilder getGetterAnnotationsDefinitions(String pojoName, String featureName, boolean simpleNames) {
+    public StringBuilder getGetterAnnotationsDefinitions(String pojoName, String featureName, boolean simpleNames) {
         StringBuilder sb = new StringBuilder();
         if (!getterAnnotations.containsKey(pojoName) || !getterAnnotations.get(pojoName).containsKey(featureName))
             return sb;
@@ -116,7 +116,7 @@ public class Annotations {
         return sb;
     }
 
-    StringBuilder getSetterAnnotationsDefinitions(String pojoName, String featureName, boolean simpleNames) {
+    public StringBuilder getSetterAnnotationsDefinitions(String pojoName, String featureName, boolean simpleNames) {
         StringBuilder sb = new StringBuilder();
         if (!setterAnnotations.containsKey(pojoName) || !setterAnnotations.get(pojoName).containsKey(featureName))
             return sb;
@@ -126,7 +126,7 @@ public class Annotations {
         return sb;
     }
 
-    StringBuilder getAttributeAnnotationsDefinitions(String pojoName, String featureName, boolean simpleNames) {
+    public StringBuilder getAttributeAnnotationsDefinitions(String pojoName, String featureName, boolean simpleNames) {
         StringBuilder sb = new StringBuilder();
         if (!attributeAnnotations.containsKey(pojoName) || !attributeAnnotations.get(pojoName).containsKey(featureName))
             return sb;
@@ -136,7 +136,7 @@ public class Annotations {
         return sb;
     }
 
-    boolean hasAttributeAnnotationsDefinitions(String pojoName, String featureName, String annotationName) {
+    public boolean hasAttributeAnnotationsDefinitions(String pojoName, String featureName, String annotationName) {
         if (attributeAnnotations == null)
             return false;
         if (!attributeAnnotations.containsKey(pojoName) || !attributeAnnotations.get(pojoName).containsKey(featureName))
@@ -149,7 +149,7 @@ public class Annotations {
         return false;
     }
 
-    void getAnnotationDefinition(StringBuilder sb, Annotation a, String prefix, boolean simpleNames) {
+    public void getAnnotationDefinition(StringBuilder sb, Annotation a, String prefix, boolean simpleNames) {
         sb.append(prefix).append((simpleNames) ? a.getType().getSimpleName() : a.getType().getQualifiedName());
         if (a.getFeatures() != null && !a.getFeatures().isEmpty()) {
             sb.append(" ::: ");
@@ -164,7 +164,7 @@ public class Annotations {
         }
     }
 
-    void getAnnotationPropertyDefinition(StringBuilder sb, AnnotationProperty ap, boolean simpleNames) {
+    public void getAnnotationPropertyDefinition(StringBuilder sb, AnnotationProperty ap, boolean simpleNames) {
         sb.append(ap.getName());
         if (ap.getType() != null)
             sb.append(" :").append((simpleNames) ? ap.getType().getSimpleName() : ap.getType().getQualifiedName());
@@ -179,7 +179,7 @@ public class Annotations {
             sb.append(ap.getConstant());
     }
 
-    Set<String> getImports() {
+    public Set<String> getImports() {
         Set<String> imports = new HashSet<String>();
         for (List<Annotation> al : entityAnnotations.values())
             getImports(imports, al);
@@ -207,7 +207,7 @@ public class Annotations {
         return imports;
     }
 
-    void getImports(Set<String> imports, List<Annotation> al) {
+    public void getImports(Set<String> imports, List<Annotation> al) {
         for (Annotation a : al) {
             if (a.getType() != null)
                 imports.add(a.getType().getQualifiedName());

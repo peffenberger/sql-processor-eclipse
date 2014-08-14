@@ -1,4 +1,4 @@
-package org.sqlproc.dsl.ui.templates;
+package org.sqlproc.dsl.util;
 
 /**
  * The optional features are used to alter the behavior of the SQL Processor. They can be activated in the process of

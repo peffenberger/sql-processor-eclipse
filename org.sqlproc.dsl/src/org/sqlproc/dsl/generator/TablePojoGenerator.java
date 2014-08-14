@@ -1,4 +1,4 @@
-package org.sqlproc.dsl.ui.templates;
+package org.sqlproc.dsl.generator;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -36,11 +36,12 @@ import org.sqlproc.dsl.resolver.DbIndex;
 import org.sqlproc.dsl.resolver.DbIndex.DbIndexDetail;
 import org.sqlproc.dsl.resolver.DbResolver.DbType;
 import org.sqlproc.dsl.resolver.DbTable;
+import org.sqlproc.dsl.util.Annotations;
 import org.sqlproc.dsl.util.Debug;
 
-public class TablePojoConverter {
+public class TablePojoGenerator {
 
-    protected Logger LOGGER = Logger.getLogger(TablePojoConverter.class);
+    protected Logger LOGGER = Logger.getLogger(TablePojoGenerator.class);
     private Debug debug = new Debug(LOGGER);
 
     protected enum PrimitiveType {
@@ -127,10 +128,10 @@ public class TablePojoConverter {
 
     protected Map<String, String> metaFunctionsResult = new HashMap<String, String>();
 
-    public TablePojoConverter() {
+    public TablePojoGenerator() {
     }
 
-    public TablePojoConverter(ModelProperty modelProperty, Artifacts artifacts, String suffix,
+    public TablePojoGenerator(ModelProperty modelProperty, Artifacts artifacts, String suffix,
             Set<String> finalEntities, Annotations annotations, List<String> dbSequences, DbType dbType) {
 
         debug = new Debug(modelProperty.getDebugLevel(artifacts), modelProperty.getDebugScope(artifacts), LOGGER);

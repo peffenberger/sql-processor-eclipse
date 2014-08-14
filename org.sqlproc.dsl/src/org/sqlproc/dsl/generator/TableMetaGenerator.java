@@ -1,4 +1,4 @@
-package org.sqlproc.dsl.ui.templates;
+package org.sqlproc.dsl.generator;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -27,10 +27,11 @@ import org.sqlproc.dsl.property.PojoAttribute;
 import org.sqlproc.dsl.resolver.DbResolver.DbType;
 import org.sqlproc.dsl.util.Constants;
 import org.sqlproc.dsl.util.Debug;
+import org.sqlproc.dsl.util.SqlFeature;
 
-public class TableMetaConverter extends TablePojoConverter {
+public class TableMetaGenerator extends TablePojoGenerator {
 
-    protected Logger LOGGER = Logger.getLogger(TableMetaConverter.class);
+    protected Logger LOGGER = Logger.getLogger(TableMetaGenerator.class);
     private Debug debug = new Debug(LOGGER);
 
     protected Set<String> finalMetas;
@@ -67,11 +68,11 @@ public class TableMetaConverter extends TablePojoConverter {
         INSERT, GET, UPDATE, DELETE, SELECT
     }
 
-    public TableMetaConverter() {
+    public TableMetaGenerator() {
         super();
     }
 
-    public TableMetaConverter(ModelProperty modelProperty, Artifacts artifacts, IScopeProvider scopeProvider,
+    public TableMetaGenerator(ModelProperty modelProperty, Artifacts artifacts, IScopeProvider scopeProvider,
             Set<String> finalMetas, List<String> dbSequences, DbType dbType) {
         super(modelProperty, artifacts, null, Collections.<String> emptySet(), null, dbSequences, dbType);
         this.scopeProvider = scopeProvider;
