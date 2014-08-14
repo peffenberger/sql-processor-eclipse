@@ -179,7 +179,7 @@ public class Main {
         }
         PackageDeclaration pojoPackage = pojos.getPojoPackages().get(0);
 
-        Artifacts daos = (Artifacts) pojoResource.getContents().get(0);
+        Artifacts daos = (Artifacts) daoResource.getContents().get(0);
         if (daos.getPojoPackages().isEmpty()) {
             System.err.println("Missing DAO package.");
             return;
