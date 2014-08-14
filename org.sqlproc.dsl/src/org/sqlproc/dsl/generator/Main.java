@@ -137,27 +137,28 @@ public class Main {
 
         fileAccess.setOutputPath(target);
         generator.doGenerate(set, fileAccess);
-        System.out.println("Code generation finished.");
+        System.out.println("Java code generation finished.");
     }
 
     protected void runGenerator(String control, String pojo, String dao, String sql, String ddl, String target)
             throws IOException, ClassNotFoundException {
 
         ResourceSet set = resourceSetProvider.get();
-        Resource resControl = set.getResource(URI.createURI(control), true);
-        set.getResources().add(resControl);
-        Resource resPojo = set.getResource(URI.createURI(pojo), true);
-        set.getResources().add(resPojo);
-        Resource resDao = set.getResource(URI.createURI(dao), true);
-        set.getResources().add(resDao);
+        Resource controlResource = set.getResource(URI.createURI(control), true);
+        set.getResources().add(controlResource);
+        Resource pojoResource = set.getResource(URI.createURI(pojo), true);
+        set.getResources().add(pojoResource);
+        Resource daoResource = set.getResource(URI.createURI(dao), true);
+        set.getResources().add(daoResource);
 
-        if (!isValid(resControl) || !isValid(resPojo) || !isValid(resDao))
+        if (!isValid(controlResource) || !isValid(pojoResource) || !isValid(daoResource))
             return;
         System.out.println("Resource(s) validation finished.");
 
-        Artifacts definitions = (Artifacts) resControl.getContents().get(0);
+        Artifacts definitions = (Artifacts) controlResource.getContents().get(0);
         if (definitions.getProperties().isEmpty()) {
             System.err.println("No control directive.");
+            return;
         }
         fileAccess.setOutputPath(target);
         ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
@@ -171,8 +172,31 @@ public class Main {
         }
         DbResolver dbResolver = new DbResolverBean(modelProperty, driverClass, dbSqlsBefore, null);
 
+        Artifacts pojos = (Artifacts) pojoResource.getContents().get(0);
+        if (pojos.getPojoPackages().isEmpty()) {
+            System.err.println("Missing POJO package.");
+            return;
+        }
+        PackageDeclaration pojoPackage = pojos.getPojoPackages().get(0);
+
+        Artifacts daos = (Artifacts) pojoResource.getContents().get(0);
+        if (daos.getPojoPackages().isEmpty()) {
+            System.err.println("Missing DAO package.");
+            return;
+        }
+        PackageDeclaration daoPackage = daos.getPojoPackages().get(0);
+
+        String pojoDefinitions = getPojoDefinitions(modelProperty, dbResolver, definitions, pojoPackage);
+        fileAccess.generateFile(pojo, "package " + pojoPackage.getName() + " {\n" + pojoDefinitions + "}");
+        System.out.println(pojo + " generation finished.");
+
+        String daoDefinitions = getDaoDefinitions(modelProperty, dbResolver, definitions, daoPackage);
+        fileAccess.generateFile(dao, "package " + daoPackage.getName() + " {\n" + daoDefinitions + "}");
+        System.out.println(dao + " generation finished.");
+
         String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions);
         fileAccess.generateFile(sql, metaDefinitions);
+        System.out.println(sql + " generation finished.");
     }
 
     protected boolean isValid(Resource resource) throws IOException {
