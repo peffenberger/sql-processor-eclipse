@@ -40,16 +40,6 @@ import com.google.inject.Provider;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        if (args.length == 0) {
-            System.err.println("Aborting: no path to EMF resource provided!");
-            return;
-        }
-        Injector injector = new org.sqlproc.dsl.ProcessorDslStandaloneSetup().createInjectorAndDoEMFRegistration();
-        Main main = injector.getInstance(Main.class);
-        main.runGenerator(args);
-    }
-
     @Inject
     private Provider<ResourceSet> resourceSetProvider;
     @Inject
@@ -60,6 +50,113 @@ public class Main {
     private JavaIoFileSystemAccess fileAccess;
     @Inject
     IScopeProvider scopeProvider;
+
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        if (args.length == 0) {
+            usage();
+            return;
+        }
+        String models = null;
+        String target = null;
+        String control = null;
+        String pojo = null;
+        String dao = null;
+        String sql = null;
+        for (String arg : args) {
+            if ("-models".equals(arg))
+                models = "";
+            else if ("-models".equals(arg))
+                target = "";
+            else if ("-control".equals(arg))
+                control = "";
+            else if ("-pojo".equals(arg))
+                pojo = "";
+            else if ("-dao".equals(arg))
+                dao = "";
+            else if ("-sql".equals(arg))
+                sql = "";
+            else if ("".equals(models))
+                models = arg;
+            else if ("".equals(target))
+                target = arg;
+            else if ("".equals(control))
+                control = arg;
+            else if ("".equals(pojo))
+                pojo = arg;
+            else if ("".equals(dao))
+                dao = arg;
+            else if ("".equals(sql))
+                sql = arg;
+        }
+        if (isEmpty(models) && (isEmpty(control) || isEmpty(pojo) || isEmpty(dao) || isEmpty(sql))) {
+            usage();
+            return;
+        }
+
+        Injector injector = new org.sqlproc.dsl.ProcessorDslStandaloneSetup().createInjectorAndDoEMFRegistration();
+        Main main = injector.getInstance(Main.class);
+
+        if (!isEmpty(models)) {
+            if (isEmpty(target))
+                target = "src-gen";
+            if (!target.endsWith("/"))
+                target = target + "/";
+            main.runGenerator(models, target);
+        } else if (!isEmpty(control)) {
+            if (isEmpty(target))
+                target = ".";
+            if (!target.endsWith("/"))
+                target = target + "/";
+        }
+    }
+
+    private static void usage() {
+        System.out.println("Incorrect usage. Two modes are supported.");
+        System.out.println("Mode 1: POJO & DAO Java source files generation using model files:");
+        System.out.println("  java -jar sqlep.jar -models modelFile1,modelFile2... [-target targetDir]");
+        System.out.println("For example:");
+        System.out.println("  java -jar sqlep.jar -models pojo.qry,dao.qry -target src-gen");
+        System.out.println("Mode 2: POJO, DAO and META SQL model generation using control directives:");
+        System.out
+                .println("  java -jar sqlep.jar -colntrol controlDirectivesFile -pojo pojoModelFile -dao daoModelFile -sql metaSqlFile [-target targetDir]");
+        System.out.println("For example:");
+        System.out
+                .println("  java -jar sqlep.jar -control definitions.qry -pojo pojo.qry -dao dao.qry -sql statements.qry");
+        System.out.println("  ");
+    }
+
+    private static boolean isEmpty(String s) {
+        if (s == null || s.length() == 0)
+            return true;
+        return false;
+    }
+
+    protected void runGenerator(String models, String target) throws IOException, ClassNotFoundException {
+
+        String[] sResources = models.split(",");
+        ResourceSet set = resourceSetProvider.get();
+        List<Resource> set2 = new ArrayList<Resource>();
+        for (String sResource : sResources) {
+            Resource resource = set.getResource(URI.createURI(sResource), true);
+            set.getResources().add(resource);
+            set2.add(resource);
+        }
+
+        for (Resource resource : set2) {
+            List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
+            if (!list.isEmpty()) {
+                for (Issue issue : list) {
+                    System.err.println(issue);
+                }
+                return;
+            }
+        }
+        System.out.println("Resource(s) validation finished.");
+
+        fileAccess.setOutputPath(target);
+        generator.doGenerate(set, fileAccess);
+        System.out.println("Code generation finished.");
+    }
 
     protected void runGenerator(String... sResources) throws IOException, ClassNotFoundException {
 
