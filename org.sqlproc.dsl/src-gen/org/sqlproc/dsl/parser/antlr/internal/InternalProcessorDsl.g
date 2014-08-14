@@ -4864,6 +4864,44 @@ rulePojogenProperty returns [EObject current=null]
 	    }
 
 )
+))
+    |((
+(
+		lv_name_165_0=	'package' 
+    {
+        newLeafNode(lv_name_165_0, grammarAccess.getPojogenPropertyAccess().getNamePackageKeyword_41_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_165_0, "package");
+	    }
+
+)
+)(this_WS_166=RULE_WS
+    { 
+    newLeafNode(this_WS_166, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_41_1()); 
+    }
+)+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPojogenPropertyAccess().getPckgPropertyValueParserRuleCall_41_2_0()); 
+	    }
+		lv_pckg_167_0=rulePropertyValue		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPojogenPropertyRule());
+	        }
+       		set(
+       			$current, 
+       			"pckg",
+        		lv_pckg_167_0, 
+        		"PropertyValue");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
 )))
 ;
 
@@ -6486,6 +6524,44 @@ ruleDaogenProperty returns [EObject current=null]
        			$current, 
        			"activeFilter",
         		lv_activeFilter_32_0, 
+        		"PropertyValue");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |((
+(
+		lv_name_33_0=	'package' 
+    {
+        newLeafNode(lv_name_33_0, grammarAccess.getDaogenPropertyAccess().getNamePackageKeyword_11_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDaogenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_33_0, "package");
+	    }
+
+)
+)(this_WS_34=RULE_WS
+    { 
+    newLeafNode(this_WS_34, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_11_1()); 
+    }
+)+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDaogenPropertyAccess().getPckgPropertyValueParserRuleCall_11_2_0()); 
+	    }
+		lv_pckg_35_0=rulePropertyValue		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDaogenPropertyRule());
+	        }
+       		set(
+       			$current, 
+       			"pckg",
+        		lv_pckg_35_0, 
         		"PropertyValue");
 	        afterParserOrEnumRuleCall();
 	    }

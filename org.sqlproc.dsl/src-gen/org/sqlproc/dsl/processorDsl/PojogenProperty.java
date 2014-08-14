@@ -44,6 +44,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getProcPojos <em>Proc Pojos</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getFunPojos <em>Fun Pojos</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getActiveFilter <em>Active Filter</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getPckg <em>Pckg</em>}</li>
  * </ul>
  * </p>
  *
@@ -682,5 +683,31 @@ public interface PojogenProperty extends EObject
    * @generated
    */
   void setActiveFilter(String value);
+
+  /**
+   * Returns the value of the '<em><b>Pckg</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Pckg</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Pckg</em>' attribute.
+   * @see #setPckg(String)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojogenProperty_Pckg()
+   * @model
+   * @generated
+   */
+  String getPckg();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getPckg <em>Pckg</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Pckg</em>' attribute.
+   * @see #getPckg()
+   * @generated
+   */
+  void setPckg(String value);
 
 } // PojogenProperty

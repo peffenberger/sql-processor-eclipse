@@ -44,6 +44,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getResultType <em>Result Type</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getDebug <em>Debug</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getActiveFilter <em>Active Filter</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getPckg <em>Pckg</em>}</li>
  * </ul>
  * </p>
  *
@@ -200,6 +201,26 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * @ordered
    */
   protected String activeFilter = ACTIVE_FILTER_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getPckg() <em>Pckg</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPckg()
+   * @generated
+   * @ordered
+   */
+  protected static final String PCKG_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getPckg() <em>Pckg</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPckg()
+   * @generated
+   * @ordered
+   */
+  protected String pckg = PCKG_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -621,6 +642,29 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getPckg()
+  {
+    return pckg;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setPckg(String newPckg)
+  {
+    String oldPckg = pckg;
+    pckg = newPckg;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAOGEN_PROPERTY__PCKG, oldPckg, pckg));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -674,6 +718,8 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         return getDebug();
       case ProcessorDslPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
         return getActiveFilter();
+      case ProcessorDslPackage.DAOGEN_PROPERTY__PCKG:
+        return getPckg();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -723,6 +769,9 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
       case ProcessorDslPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
         setActiveFilter((String)newValue);
         return;
+      case ProcessorDslPackage.DAOGEN_PROPERTY__PCKG:
+        setPckg((String)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -770,6 +819,9 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
       case ProcessorDslPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
         setActiveFilter(ACTIVE_FILTER_EDEFAULT);
         return;
+      case ProcessorDslPackage.DAOGEN_PROPERTY__PCKG:
+        setPckg(PCKG_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -806,6 +858,8 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         return debug != null;
       case ProcessorDslPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
         return ACTIVE_FILTER_EDEFAULT == null ? activeFilter != null : !ACTIVE_FILTER_EDEFAULT.equals(activeFilter);
+      case ProcessorDslPackage.DAOGEN_PROPERTY__PCKG:
+        return PCKG_EDEFAULT == null ? pckg != null : !PCKG_EDEFAULT.equals(pckg);
     }
     return super.eIsSet(featureID);
   }
@@ -831,6 +885,8 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
     result.append(dbFunction);
     result.append(", activeFilter: ");
     result.append(activeFilter);
+    result.append(", pckg: ");
+    result.append(pckg);
     result.append(')');
     return result.toString();
   }

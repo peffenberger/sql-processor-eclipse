@@ -171,4 +171,8 @@ public interface ModelProperty extends Adapter {
     String getDaoDebugScope(EObject model);
 
     String getDebugScope(EObject model);
+
+    String getPackage(EObject model);
+
+    String getDaoPackage(EObject model);
 }

@@ -114,6 +114,7 @@ PojogenProperty:
 	|name='pojos-for-procedures' (WS+ procPojos+=ProcedurePojoAssignement)+
 	|name='pojos-for-functions' (WS+ funPojos+=FunctionPojoAssignement)+
 	|name='active-filter' WS+ activeFilter=PropertyValue
+	|name='package' WS+ pckg=PropertyValue
 	);
 
 MetaTypeAssignement: dbColumn=IDENT '->' type=IDENT ('->' extension=IDENT)?;
@@ -154,6 +155,7 @@ DaogenProperty:
 	|name='function-result' WS+ dbFunction=IDENT WS+ resultType=PojoType
 	|name='debug-level' WS+ debug=DebugLevelAssignement
 	|name='active-filter' WS+ activeFilter=PropertyValue
+	|name='package' WS+ pckg=PropertyValue
 	);
 
 PropertyValue:

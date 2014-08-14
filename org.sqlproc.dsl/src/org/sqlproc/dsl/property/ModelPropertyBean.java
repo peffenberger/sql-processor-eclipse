@@ -101,6 +101,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String POJOGEN_POJOS_FOR_PROCEDURES = "pojos-for-procedures";
     public static final String POJOGEN_POJOS_FOR_FUNCTIONS = "pojos-for-functions";
     public static final String POJOGEN_ACTIVE_FILTER = "active-filter";
+    public static final String POJOGEN_PACKAGE = "package";
     public static final String METAGEN = "metagen";
     public static final String METAGEN_GLOBAL_SEQUENCE = "global-sequence";
     public static final String METAGEN_TABLE_SEQUENCE = "table-sequence";
@@ -135,6 +136,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String DAOGEN_FUNCTION_RESULT = "function-result";
     public static final String DAOGEN_DEBUG_LEVEL = "debug-level";
     public static final String DAOGEN_ACTIVE_FILTER = "active-filter";
+    public static final String DAOGEN_PACKAGE = "package";
 
     public static class PairValues {
         public String value1;
@@ -210,6 +212,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, PojoType> pojosForProcedures;
         public Map<String, PojoType> pojosForFunctions;
         public String activeFilter;
+        public String pckg;
 
         public PairValues metaGlobalSequence;
         public Map<String, PairValues> metaTablesSequence;
@@ -248,6 +251,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public String daoDebugLevel;
         public String daoDebugScope;
         public String daoActiveFilter;
+        public String daoPckg;
     }
 
     private ModelValues modelValues = null;
@@ -467,6 +471,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.pojosForProcedures = new HashMap<String, PojoType>();
         modelValues.pojosForFunctions = new HashMap<String, PojoType>();
         modelValues.activeFilter = null;
+        modelValues.pckg = null;
     }
 
     private static void initMetagenModel(ModelValues modelValues) {
@@ -509,6 +514,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.daoDebugLevel = null;
         modelValues.daoDebugScope = null;
         modelValues.daoActiveFilter = null;
+        modelValues.daoPckg = null;
     }
 
     public static void setValue(ModelValues modelValues, Property property) {
@@ -892,6 +898,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             }
         } else if (POJOGEN_ACTIVE_FILTER.equals(property.getName())) {
             modelValues.activeFilter = property.getActiveFilter();
+        } else if (POJOGEN_PACKAGE.equals(property.getName())) {
+            modelValues.pckg = property.getPckg();
         }
     }
 
@@ -1028,6 +1036,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.daoDebugScope = property.getDebug().getScope();
         } else if (DAOGEN_ACTIVE_FILTER.equals(property.getName())) {
             modelValues.daoActiveFilter = property.getActiveFilter();
+        } else if (DAOGEN_PACKAGE.equals(property.getName())) {
+            modelValues.daoPckg = property.getPckg();
         }
     }
 
@@ -1316,6 +1326,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
+    public String getPackage(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.pckg : null;
+    }
+
+    @Override
     public Map<String, PairValues> getMetaTablesIdentity(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.metaTablesIdentity : Collections.<String, PairValues> emptyMap();
@@ -1525,6 +1541,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public String getDaoActiveFilter(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.daoActiveFilter : null;
+    }
+
+    @Override
+    public String getDaoPackage(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.daoPckg : null;
     }
 
     @Override

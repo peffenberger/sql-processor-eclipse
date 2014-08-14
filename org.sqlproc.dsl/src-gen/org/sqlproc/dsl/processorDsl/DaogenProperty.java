@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getResultType <em>Result Type</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getDebug <em>Debug</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getActiveFilter <em>Active Filter</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getPckg <em>Pckg</em>}</li>
  * </ul>
  * </p>
  *
@@ -309,5 +310,31 @@ public interface DaogenProperty extends EObject
    * @generated
    */
   void setActiveFilter(String value);
+
+  /**
+   * Returns the value of the '<em><b>Pckg</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Pckg</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Pckg</em>' attribute.
+   * @see #setPckg(String)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getDaogenProperty_Pckg()
+   * @model
+   * @generated
+   */
+  String getPckg();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.DaogenProperty#getPckg <em>Pckg</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Pckg</em>' attribute.
+   * @see #getPckg()
+   * @generated
+   */
+  void setPckg(String value);
 
 } // DaogenProperty

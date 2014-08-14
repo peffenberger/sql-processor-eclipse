@@ -2126,6 +2126,12 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_40_1 = (RuleCall)cGroup_40.eContents().get(1);
 		private final Assignment cActiveFilterAssignment_40_2 = (Assignment)cGroup_40.eContents().get(2);
 		private final RuleCall cActiveFilterPropertyValueParserRuleCall_40_2_0 = (RuleCall)cActiveFilterAssignment_40_2.eContents().get(0);
+		private final Group cGroup_41 = (Group)cAlternatives.eContents().get(41);
+		private final Assignment cNameAssignment_41_0 = (Assignment)cGroup_41.eContents().get(0);
+		private final Keyword cNamePackageKeyword_41_0_0 = (Keyword)cNameAssignment_41_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_41_1 = (RuleCall)cGroup_41.eContents().get(1);
+		private final Assignment cPckgAssignment_41_2 = (Assignment)cGroup_41.eContents().get(2);
+		private final RuleCall cPckgPropertyValueParserRuleCall_41_2_0 = (RuleCall)cPckgAssignment_41_2.eContents().get(0);
 		
 		//PojogenProperty:
 		//	name="types-sqltypes" (WS+ sqlTypes+=SqlTypeAssignement)+ | name="types-in-table" WS+ dbTable=IDENT (WS+
@@ -2156,7 +2162,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	(WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)? | name="debug-level" WS+
 		//	debug=DebugLevelAssignement | name="pojos-for-procedures" (WS+ procPojos+=ProcedurePojoAssignement)+ |
 		//	name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+ | name="active-filter" WS+
-		//	activeFilter=PropertyValue;
+		//	activeFilter=PropertyValue | name="package" WS+ pckg=PropertyValue;
 		public ParserRule getRule() { return rule; }
 
 		//name="types-sqltypes" (WS+ sqlTypes+=SqlTypeAssignement)+ | name="types-in-table" WS+ dbTable=IDENT (WS+
@@ -2187,7 +2193,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//(WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)? | name="debug-level" WS+
 		//debug=DebugLevelAssignement | name="pojos-for-procedures" (WS+ procPojos+=ProcedurePojoAssignement)+ |
 		//name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+ | name="active-filter" WS+
-		//activeFilter=PropertyValue
+		//activeFilter=PropertyValue | name="package" WS+ pckg=PropertyValue
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="types-sqltypes" (WS+ sqlTypes+=SqlTypeAssignement)+
@@ -3194,6 +3200,24 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//PropertyValue
 		public RuleCall getActiveFilterPropertyValueParserRuleCall_40_2_0() { return cActiveFilterPropertyValueParserRuleCall_40_2_0; }
+
+		//name="package" WS+ pckg=PropertyValue
+		public Group getGroup_41() { return cGroup_41; }
+
+		//name="package"
+		public Assignment getNameAssignment_41_0() { return cNameAssignment_41_0; }
+
+		//"package"
+		public Keyword getNamePackageKeyword_41_0_0() { return cNamePackageKeyword_41_0_0; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_41_1() { return cWSTerminalRuleCall_41_1; }
+
+		//pckg=PropertyValue
+		public Assignment getPckgAssignment_41_2() { return cPckgAssignment_41_2; }
+
+		//PropertyValue
+		public RuleCall getPckgPropertyValueParserRuleCall_41_2_0() { return cPckgPropertyValueParserRuleCall_41_2_0; }
 	}
 
 	public class MetaTypeAssignementElements extends AbstractParserRuleElementFinder {
@@ -4068,6 +4092,12 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_10_1 = (RuleCall)cGroup_10.eContents().get(1);
 		private final Assignment cActiveFilterAssignment_10_2 = (Assignment)cGroup_10.eContents().get(2);
 		private final RuleCall cActiveFilterPropertyValueParserRuleCall_10_2_0 = (RuleCall)cActiveFilterAssignment_10_2.eContents().get(0);
+		private final Group cGroup_11 = (Group)cAlternatives.eContents().get(11);
+		private final Assignment cNameAssignment_11_0 = (Assignment)cGroup_11.eContents().get(0);
+		private final Keyword cNamePackageKeyword_11_0_0 = (Keyword)cNameAssignment_11_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_11_1 = (RuleCall)cGroup_11.eContents().get(1);
+		private final Assignment cPckgAssignment_11_2 = (Assignment)cGroup_11.eContents().get(2);
+		private final RuleCall cPckgPropertyValueParserRuleCall_11_2_0 = (RuleCall)cPckgAssignment_11_2.eContents().get(0);
 		
 		//DaogenProperty:
 		//	name="ignore-tables" (WS+ dbTables+=IDENT)+ | name="only-tables" (WS+ dbTables+=IDENT)* |
@@ -4076,7 +4106,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="implements-interfaces-generics" WS+ toImplementsGenerics=ImplementsAssignementGenerics |
 		//	name="extends-class-generics" WS+ toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" |
 		//	name="function-result" WS+ dbFunction=IDENT WS+ resultType=PojoType | name="debug-level" WS+
-		//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=PropertyValue;
+		//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=PropertyValue | name="package" WS+
+		//	pckg=PropertyValue;
 		public ParserRule getRule() { return rule; }
 
 		//name="ignore-tables" (WS+ dbTables+=IDENT)+ | name="only-tables" (WS+ dbTables+=IDENT)* | name="implementation-package"
@@ -4085,7 +4116,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//toImplementsGenerics=ImplementsAssignementGenerics | name="extends-class-generics" WS+
 		//toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" | name="function-result" WS+ dbFunction=IDENT WS+
 		//resultType=PojoType | name="debug-level" WS+ debug=DebugLevelAssignement | name="active-filter" WS+
-		//activeFilter=PropertyValue
+		//activeFilter=PropertyValue | name="package" WS+ pckg=PropertyValue
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="ignore-tables" (WS+ dbTables+=IDENT)+
@@ -4288,6 +4319,24 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//PropertyValue
 		public RuleCall getActiveFilterPropertyValueParserRuleCall_10_2_0() { return cActiveFilterPropertyValueParserRuleCall_10_2_0; }
+
+		//name="package" WS+ pckg=PropertyValue
+		public Group getGroup_11() { return cGroup_11; }
+
+		//name="package"
+		public Assignment getNameAssignment_11_0() { return cNameAssignment_11_0; }
+
+		//"package"
+		public Keyword getNamePackageKeyword_11_0_0() { return cNamePackageKeyword_11_0_0; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_11_1() { return cWSTerminalRuleCall_11_1; }
+
+		//pckg=PropertyValue
+		public Assignment getPckgAssignment_11_2() { return cPckgAssignment_11_2; }
+
+		//PropertyValue
+		public RuleCall getPckgPropertyValueParserRuleCall_11_2_0() { return cPckgPropertyValueParserRuleCall_11_2_0; }
 	}
 
 	public class PropertyValueElements extends AbstractParserRuleElementFinder {
@@ -10140,7 +10189,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	(WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)? | name="debug-level" WS+
 	//	debug=DebugLevelAssignement | name="pojos-for-procedures" (WS+ procPojos+=ProcedurePojoAssignement)+ |
 	//	name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+ | name="active-filter" WS+
-	//	activeFilter=PropertyValue;
+	//	activeFilter=PropertyValue | name="package" WS+ pckg=PropertyValue;
 	public PojogenPropertyElements getPojogenPropertyAccess() {
 		return (pPojogenProperty != null) ? pPojogenProperty : (pPojogenProperty = new PojogenPropertyElements());
 	}
@@ -10188,7 +10237,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="implements-interfaces-generics" WS+ toImplementsGenerics=ImplementsAssignementGenerics |
 	//	name="extends-class-generics" WS+ toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" |
 	//	name="function-result" WS+ dbFunction=IDENT WS+ resultType=PojoType | name="debug-level" WS+
-	//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=PropertyValue;
+	//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=PropertyValue | name="package" WS+
+	//	pckg=PropertyValue;
 	public DaogenPropertyElements getDaogenPropertyAccess() {
 		return (pDaogenProperty != null) ? pDaogenProperty : (pDaogenProperty = new DaogenPropertyElements());
 	}

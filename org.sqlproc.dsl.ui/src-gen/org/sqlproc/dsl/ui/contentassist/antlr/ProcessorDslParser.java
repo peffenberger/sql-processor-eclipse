@@ -258,6 +258,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_39(), "rule__PojogenProperty__Group_39__0");
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_39_1(), "rule__PojogenProperty__Group_39_1__0");
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_40(), "rule__PojogenProperty__Group_40__0");
+					put(grammarAccess.getPojogenPropertyAccess().getGroup_41(), "rule__PojogenProperty__Group_41__0");
 					put(grammarAccess.getMetaTypeAssignementAccess().getGroup(), "rule__MetaTypeAssignement__Group__0");
 					put(grammarAccess.getMetaTypeAssignementAccess().getGroup_3(), "rule__MetaTypeAssignement__Group_3__0");
 					put(grammarAccess.getMetagenPropertyAccess().getGroup_0(), "rule__MetagenProperty__Group_0__0");
@@ -304,6 +305,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_8(), "rule__DaogenProperty__Group_8__0");
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_9(), "rule__DaogenProperty__Group_9__0");
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_10(), "rule__DaogenProperty__Group_10__0");
+					put(grammarAccess.getDaogenPropertyAccess().getGroup_11(), "rule__DaogenProperty__Group_11__0");
 					put(grammarAccess.getPropertyValueAccess().getGroup_0(), "rule__PropertyValue__Group_0__0");
 					put(grammarAccess.getPropertyValueAccess().getGroup_0_1(), "rule__PropertyValue__Group_0_1__0");
 					put(grammarAccess.getPojoDefinitionAccess().getGroup(), "rule__PojoDefinition__Group__0");
@@ -661,6 +663,8 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojogenPropertyAccess().getFunPojosAssignment_39_1_1(), "rule__PojogenProperty__FunPojosAssignment_39_1_1");
 					put(grammarAccess.getPojogenPropertyAccess().getNameAssignment_40_0(), "rule__PojogenProperty__NameAssignment_40_0");
 					put(grammarAccess.getPojogenPropertyAccess().getActiveFilterAssignment_40_2(), "rule__PojogenProperty__ActiveFilterAssignment_40_2");
+					put(grammarAccess.getPojogenPropertyAccess().getNameAssignment_41_0(), "rule__PojogenProperty__NameAssignment_41_0");
+					put(grammarAccess.getPojogenPropertyAccess().getPckgAssignment_41_2(), "rule__PojogenProperty__PckgAssignment_41_2");
 					put(grammarAccess.getMetaTypeAssignementAccess().getDbColumnAssignment_0(), "rule__MetaTypeAssignement__DbColumnAssignment_0");
 					put(grammarAccess.getMetaTypeAssignementAccess().getTypeAssignment_2(), "rule__MetaTypeAssignement__TypeAssignment_2");
 					put(grammarAccess.getMetaTypeAssignementAccess().getExtensionAssignment_3_1(), "rule__MetaTypeAssignement__ExtensionAssignment_3_1");
@@ -740,6 +744,8 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDaogenPropertyAccess().getDebugAssignment_9_2(), "rule__DaogenProperty__DebugAssignment_9_2");
 					put(grammarAccess.getDaogenPropertyAccess().getNameAssignment_10_0(), "rule__DaogenProperty__NameAssignment_10_0");
 					put(grammarAccess.getDaogenPropertyAccess().getActiveFilterAssignment_10_2(), "rule__DaogenProperty__ActiveFilterAssignment_10_2");
+					put(grammarAccess.getDaogenPropertyAccess().getNameAssignment_11_0(), "rule__DaogenProperty__NameAssignment_11_0");
+					put(grammarAccess.getDaogenPropertyAccess().getPckgAssignment_11_2(), "rule__DaogenProperty__PckgAssignment_11_2");
 					put(grammarAccess.getPojoDefinitionAccess().getNameAssignment_1(), "rule__PojoDefinition__NameAssignment_1");
 					put(grammarAccess.getPojoDefinitionAccess().getClassAssignment_2_0(), "rule__PojoDefinition__ClassAssignment_2_0");
 					put(grammarAccess.getPojoDefinitionAccess().getClassxAssignment_2_1_1(), "rule__PojoDefinition__ClassxAssignment_2_1_1");
