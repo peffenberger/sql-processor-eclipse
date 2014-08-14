@@ -52,43 +52,32 @@ public class Main {
     IScopeProvider scopeProvider;
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        if (args.length == 0) {
-            usage();
-            return;
-        }
+
         String models = null;
         String target = null;
         String control = null;
         String pojo = null;
         String dao = null;
         String sql = null;
-        for (String arg : args) {
-            if ("-models".equals(arg))
-                models = "";
-            else if ("-models".equals(arg))
-                target = "";
-            else if ("-control".equals(arg))
-                control = "";
-            else if ("-pojo".equals(arg))
-                pojo = "";
-            else if ("-dao".equals(arg))
-                dao = "";
-            else if ("-sql".equals(arg))
-                sql = "";
-            else if ("".equals(models))
-                models = arg;
-            else if ("".equals(target))
-                target = arg;
-            else if ("".equals(control))
-                control = arg;
-            else if ("".equals(pojo))
-                pojo = arg;
-            else if ("".equals(dao))
-                dao = arg;
-            else if ("".equals(sql))
-                sql = arg;
+        String ddl = null;
+        for (int i = 0; i < args.length; i++) {
+            String arg = args[i];
+            if ("-models".equals(arg) && i < args.length - 1)
+                models = args[i + 1];
+            else if ("-models".equals(arg) && i < args.length - 1)
+                target = args[i + 1];
+            else if ("-control".equals(arg) && i < args.length - 1)
+                control = args[i + 1];
+            else if ("-pojo".equals(arg) && i < args.length - 1)
+                pojo = args[i + 1];
+            else if ("-dao".equals(arg) && i < args.length - 1)
+                dao = args[i + 1];
+            else if ("-sql".equals(arg) && i < args.length - 1)
+                sql = args[i + 1];
+            else if ("-ddl".equals(arg) && i < args.length - 1)
+                ddl = args[i + 1];
         }
-        if (isEmpty(models) && (isEmpty(control) || isEmpty(pojo) || isEmpty(dao) || isEmpty(sql))) {
+        if (models == null && (control == null || pojo == null || dao == null || sql == null)) {
             usage();
             return;
         }
@@ -96,39 +85,35 @@ public class Main {
         Injector injector = new org.sqlproc.dsl.ProcessorDslStandaloneSetup().createInjectorAndDoEMFRegistration();
         Main main = injector.getInstance(Main.class);
 
-        if (!isEmpty(models)) {
-            if (isEmpty(target))
+        if (models != null) {
+            if (target == null)
                 target = "src-gen";
             if (!target.endsWith("/"))
                 target = target + "/";
             main.runGenerator(models, target);
-        } else if (!isEmpty(control)) {
-            if (isEmpty(target))
+        } else if (control != null) {
+            if (target == null)
                 target = ".";
             if (!target.endsWith("/"))
                 target = target + "/";
+            main.runGenerator(control, pojo, dao, sql, ddl, target);
         }
     }
 
     private static void usage() {
+        System.out.println();
         System.out.println("Incorrect usage. Two modes are supported.");
         System.out.println("Mode 1: POJO & DAO Java source files generation using model files:");
         System.out.println("  java -jar sqlep.jar -models modelFile1,modelFile2... [-target targetDir]");
         System.out.println("For example:");
         System.out.println("  java -jar sqlep.jar -models pojo.qry,dao.qry -target src-gen");
-        System.out.println("Mode 2: POJO, DAO and META SQL model generation using control directives:");
+        System.out.println("Mode 2: POJO, DAO and META SQL models generation using control directives:");
         System.out
-                .println("  java -jar sqlep.jar -colntrol controlDirectivesFile -pojo pojoModelFile -dao daoModelFile -sql metaSqlFile [-target targetDir]");
+                .println("  java -jar sqlep.jar -control controlDirectivesFile -pojo pojoModelFile -dao daoModelFile -sql metaSqlFile [-target targetDir]");
         System.out.println("For example:");
         System.out
                 .println("  java -jar sqlep.jar -control definitions.qry -pojo pojo.qry -dao dao.qry -sql statements.qry");
-        System.out.println("  ");
-    }
-
-    private static boolean isEmpty(String s) {
-        if (s == null || s.length() == 0)
-            return true;
-        return false;
+        System.out.println();
     }
 
     protected void runGenerator(String models, String target) throws IOException, ClassNotFoundException {
@@ -143,13 +128,8 @@ public class Main {
         }
 
         for (Resource resource : set2) {
-            List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
-            if (!list.isEmpty()) {
-                for (Issue issue : list) {
-                    System.err.println(issue);
-                }
+            if (!isValid(resource))
                 return;
-            }
         }
         System.out.println("Resource(s) validation finished.");
 
@@ -158,52 +138,45 @@ public class Main {
         System.out.println("Code generation finished.");
     }
 
-    protected void runGenerator(String... sResources) throws IOException, ClassNotFoundException {
-
-        Artifacts definitions = null;
-        ModelPropertyBean modelProperty = null;
-        DbResolver dbResolver = null;
+    protected void runGenerator(String control, String pojo, String dao, String sql, String ddl, String target)
+            throws IOException, ClassNotFoundException {
 
         ResourceSet set = resourceSetProvider.get();
-        List<Resource> set2 = new ArrayList<Resource>();
-        for (String sResource : sResources) {
-            Resource resource = set.getResource(URI.createURI(sResource), true);
-            set.getResources().add(resource);
-            set2.add(resource);
-        }
+        Resource resControl = set.getResource(URI.createURI(control), true);
+        set.getResources().add(resControl);
+        Resource resPojo = set.getResource(URI.createURI(pojo), true);
+        set.getResources().add(resPojo);
+        Resource resDao = set.getResource(URI.createURI(dao), true);
+        set.getResources().add(resDao);
 
-        for (Resource resource : set2) {
-            resource.load(null);
-            List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
-            if (!list.isEmpty()) {
-                for (Issue issue : list) {
-                    System.err.println(issue);
-                }
-                return;
-            }
-            Artifacts artifacts = (Artifacts) resource.getContents().get(0);
-            if (!artifacts.getProperties().isEmpty()) {
-                definitions = artifacts;
-                ModelValues modelValues = ModelPropertyBean.loadModel(null, artifacts);
-                modelProperty = new ModelPropertyBean(modelValues);
-                String sDbDriver = modelProperty.getModelValues(null).dbDriver;
-                System.out.println(sDbDriver);
-                Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
-                System.out.println(driverClass);
-                dbResolver = new DbResolverBean(modelProperty, driverClass, null, null);
-            }
-        }
-
+        if (!isValid(resControl) || !isValid(resPojo) || !isValid(resDao))
+            return;
         System.out.println("Resource(s) validation finished.");
 
-        if (definitions == null) {
-            fileAccess.setOutputPath("src-gen/");
-            generator.doGenerate(set, fileAccess);
-            System.out.println("Code generation finished.");
-        } else {
-            String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions);
-            System.out.println(metaDefinitions);
+        Artifacts definitions = (Artifacts) resControl.getContents().get(0);
+        if (definitions.getProperties().isEmpty()) {
+            System.err.println("No control directive.");
         }
+        ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
+        ModelPropertyBean modelProperty = new ModelPropertyBean(modelValues);
+        String sDbDriver = modelProperty.getModelValues(null).dbDriver;
+        Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
+        DbResolver dbResolver = new DbResolverBean(modelProperty, driverClass, null, null);
+
+        String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions);
+        System.out.println(metaDefinitions);
+    }
+
+    protected boolean isValid(Resource resource) throws IOException {
+        resource.load(null);
+        List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
+        if (!list.isEmpty()) {
+            for (Issue issue : list) {
+                System.err.println(issue);
+            }
+            return false;
+        }
+        return true;
     }
 
     protected String getPojoDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
