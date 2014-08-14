@@ -3,6 +3,7 @@
  */
 package org.sqlproc.dsl.generator;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
+import org.sqlproc.dsl.processorDsl.Artifacts;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -21,7 +23,7 @@ import com.google.inject.Provider;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         if (args.length == 0) {
             System.err.println("Aborting: no path to EMF resource provided!");
             return;
@@ -43,7 +45,9 @@ public class Main {
     @Inject
     private JavaIoFileSystemAccess fileAccess;
 
-    protected void runGenerator(String... sResources) {
+    protected void runGenerator(String... sResources) throws IOException {
+
+        Artifacts definitions = null;
 
         ResourceSet set = resourceSetProvider.get();
         List<Resource> set2 = new ArrayList<Resource>();
@@ -54,6 +58,7 @@ public class Main {
         }
 
         for (Resource resource : set2) {
+            resource.load(null);
             List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
             if (!list.isEmpty()) {
                 for (Issue issue : list) {
@@ -61,13 +66,19 @@ public class Main {
                 }
                 return;
             }
+            Artifacts artifacts = (Artifacts) resource.getContents().get(0);
+            if (!artifacts.getProperties().isEmpty())
+                definitions = artifacts;
         }
 
         System.out.println("Resource(s) validation finished.");
-        // configure and start the generator
-        fileAccess.setOutputPath("src-gen/");
-        generator.doGenerate(set, fileAccess);
 
-        System.out.println("Code generation finished.");
+        if (definitions == null) {
+            fileAccess.setOutputPath("src-gen/");
+            generator.doGenerate(set, fileAccess);
+            System.out.println("Code generation finished.");
+        } else {
+            System.out.println("Defintions, number of properties is " + definitions.getProperties().size());
+        }
     }
 }
