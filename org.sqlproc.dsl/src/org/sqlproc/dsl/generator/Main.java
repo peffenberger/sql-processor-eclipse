@@ -64,25 +64,35 @@ public class Main {
         String dao = null;
         String sql = null;
         String ddl = null;
+        boolean merge = true;
+        boolean generate = true;
         for (int i = 0; i < args.length; i++) {
             String arg = args[i];
             if ("-models".equals(arg) && i < args.length - 1)
-                models = args[i + 1];
+                models = args[++i];
             else if ("-models".equals(arg) && i < args.length - 1)
-                target = args[i + 1];
+                target = args[++i];
             else if ("-control".equals(arg) && i < args.length - 1)
-                control = args[i + 1];
+                control = args[++i];
             else if ("-pojo".equals(arg) && i < args.length - 1)
-                pojo = args[i + 1];
+                pojo = args[++i];
             else if ("-dao".equals(arg) && i < args.length - 1)
-                dao = args[i + 1];
+                dao = args[++i];
             else if ("-sql".equals(arg) && i < args.length - 1)
-                sql = args[i + 1];
+                sql = args[++i];
             else if ("-ddl".equals(arg) && i < args.length - 1)
-                ddl = args[i + 1];
+                ddl = args[++i];
+            else if ("-nomerge".equals(arg))
+                merge = false;
+            else if ("-verify".equals(arg))
+                generate = false;
+            else {
+                usage(arg);
+                return;
+            }
         }
         if (models == null && (control == null || pojo == null || dao == null || sql == null)) {
-            usage();
+            usage(null);
             return;
         }
 
@@ -94,33 +104,37 @@ public class Main {
                 target = "src-gen";
             if (!target.endsWith("/"))
                 target = target + "/";
-            main.runGenerator(models, target);
+            main.runGenerator(models, target, generate);
         } else if (control != null) {
             if (target == null)
                 target = ".";
             if (!target.endsWith("/"))
                 target = target + "/";
-            main.runGenerator(control, pojo, dao, sql, ddl, target);
+            main.runGenerator(control, pojo, dao, sql, ddl, target, merge);
         }
     }
 
-    private static void usage() {
+    private static void usage(String arg) {
         System.out.println();
-        System.out.println("Incorrect usage. Two modes are supported.");
+        if (arg != null)
+            System.out.println("Incorrect argument '" + arg + "'. Two modes are supported.");
+        else
+            System.out.println("Incorrect usage. Two modes are supported.");
         System.out.println("Mode 1: POJO & DAO Java source files generation using model files:");
-        System.out.println("  java -jar sqlep.jar -models modelFile1,modelFile2... [-target targetDir]");
+        System.out.println("  java -jar sqlep.jar -models modelFile1,modelFile2... [-target targetDir] [-verify]");
         System.out.println("For example:");
         System.out.println("  java -jar sqlep.jar -models pojo.qry,dao.qry -target src-gen");
         System.out.println("Mode 2: POJO, DAO and META SQL models generation using control directives:");
         System.out
-                .println("  java -jar sqlep.jar -control controlDirectivesFile -pojo pojoModelFile -dao daoModelFile -sql metaSqlFile [-target targetDir]");
+                .println("  java -jar sqlep.jar -control controlDirectivesFile -pojo pojoModelFile -dao daoModelFile -sql metaSqlFile [-target targetDir] [-nomerge]");
         System.out.println("For example:");
         System.out
                 .println("  java -jar sqlep.jar -control definitions.qry -pojo pojo.qry -dao dao.qry -sql statements.qry");
         System.out.println();
     }
 
-    protected void runGenerator(String models, String target) throws IOException, ClassNotFoundException {
+    protected void runGenerator(String models, String target, boolean generate) throws IOException,
+            ClassNotFoundException {
 
         String[] sResources = models.split(",");
         ResourceSet set = resourceSetProvider.get();
@@ -137,13 +151,15 @@ public class Main {
         }
         System.out.println("Resource(s) validation finished.");
 
-        fileAccess.setOutputPath(target);
-        generator.doGenerate(set, fileAccess);
-        System.out.println("Java code generation finished.");
+        if (generate) {
+            fileAccess.setOutputPath(target);
+            generator.doGenerate(set, fileAccess);
+            System.out.println("Java code generation finished.");
+        }
     }
 
-    protected void runGenerator(String control, String pojo, String dao, String sql, String ddl, String target)
-            throws IOException, ClassNotFoundException {
+    protected void runGenerator(String control, String pojo, String dao, String sql, String ddl, String target,
+            boolean merge) throws IOException, ClassNotFoundException {
 
         ResourceSet set = resourceSetProvider.get();
         Resource controlResource = set.getResource(URI.createURI(control), true);
@@ -192,14 +208,18 @@ public class Main {
         Artifacts pojos = null;
         PackageDeclaration pojoPackage = null;
         String pojoPackageName = null;
-        if (pojoResource != null) {
-            pojos = (Artifacts) pojoResource.getContents().get(0);
-            if (!pojos.getPojoPackages().isEmpty()) {
-                pojoPackage = pojos.getPojoPackages().get(0);
-                pojoPackageName = pojoPackage.getName();
-            }
-        } else {
+        if (!merge) {
             pojoPackageName = modelProperty.getPackage(null);
+        } else {
+            if (pojoResource != null) {
+                pojos = (Artifacts) pojoResource.getContents().get(0);
+                if (!pojos.getPojoPackages().isEmpty()) {
+                    pojoPackage = pojos.getPojoPackages().get(0);
+                    pojoPackageName = pojoPackage.getName();
+                }
+            } else {
+                pojoPackageName = modelProperty.getPackage(null);
+            }
         }
         if (pojoPackage == null && pojoPackageName == null) {
             System.err.println("Missing POJO package.");
@@ -209,14 +229,18 @@ public class Main {
         Artifacts daos = null;
         PackageDeclaration daoPackage = null;
         String daoPackageName = null;
-        if (daoResource != null) {
-            daos = (Artifacts) daoResource.getContents().get(0);
-            if (!daos.getPojoPackages().isEmpty()) {
-                daoPackage = daos.getPojoPackages().get(0);
-                daoPackageName = daoPackage.getName();
-            }
-        } else {
+        if (!merge) {
             daoPackageName = modelProperty.getDaoPackage(null);
+        } else {
+            if (daoResource != null) {
+                daos = (Artifacts) daoResource.getContents().get(0);
+                if (!daos.getPojoPackages().isEmpty()) {
+                    daoPackage = daos.getPojoPackages().get(0);
+                    daoPackageName = daoPackage.getName();
+                }
+            } else {
+                daoPackageName = modelProperty.getDaoPackage(null);
+            }
         }
         if (daoPackage == null && daoPackageName == null) {
             System.err.println("Missing DAO package.");
@@ -225,9 +249,13 @@ public class Main {
 
         Artifacts sqls = null;
         List<MetaStatement> statements = null;
-        if (sqlResource != null) {
-            sqls = (Artifacts) sqlResource.getContents().get(0);
-            statements = sqls.getStatements();
+        if (!merge) {
+            statements = new ArrayList<MetaStatement>();
+        } else {
+            if (sqlResource != null) {
+                sqls = (Artifacts) sqlResource.getContents().get(0);
+                statements = sqls.getStatements();
+            }
         }
 
         String pojoDefinitions = getPojoDefinitions(modelProperty, dbResolver, definitions, pojoPackage,
