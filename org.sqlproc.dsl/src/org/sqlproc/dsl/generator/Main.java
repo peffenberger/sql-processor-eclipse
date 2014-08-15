@@ -6,15 +6,17 @@ package org.sqlproc.dsl.generator;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
+import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
@@ -175,6 +177,10 @@ public class Main {
             System.err.println("No control directive.");
             return;
         }
+        ISerializer serializar = ((XtextResource) controlResource).getSerializer();
+        System.out.println(serializar);
+        String ss = serializar.serialize(definitions);
+        System.out.println(ss);
         fileAccess.setOutputPath(target);
         ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
         ModelPropertyBean modelProperty = new ModelPropertyBean(modelValues);
@@ -221,15 +227,18 @@ public class Main {
             return;
         }
 
-        String pojoDefinitions = getPojoDefinitions(modelProperty, dbResolver, definitions, pojoPackage);
+        String pojoDefinitions = getPojoDefinitions(modelProperty, dbResolver, definitions, pojoPackage,
+                ((XtextResource) controlResource).getSerializer());
         fileAccess.generateFile(pojo, "package " + pojoPackageName + " {\n" + pojoDefinitions + "}");
         System.out.println(pojo + " generation finished.");
 
-        String daoDefinitions = getDaoDefinitions(modelProperty, dbResolver, definitions, daoPackage);
+        String daoDefinitions = getDaoDefinitions(modelProperty, dbResolver, definitions, daoPackage,
+                ((XtextResource) daoResource).getSerializer());
         fileAccess.generateFile(dao, "package " + daoPackageName + " {\n" + daoDefinitions + "}");
         System.out.println(dao + " generation finished.");
 
-        String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions);
+        String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions,
+                ((XtextResource) sqlResource).getSerializer());
         fileAccess.generateFile(sql, metaDefinitions);
         System.out.println(sql + " generation finished.");
     }
@@ -247,10 +256,10 @@ public class Main {
     }
 
     protected String getPojoDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
-            PackageDeclaration packagex) {
+            PackageDeclaration packagex, ISerializer serializer) {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-            Set<String> finalEntities = new HashSet<String>();
+            Map<String, String> finalEntities = new HashMap<String, String>();
             Annotations annotations = new Annotations();
             String suffix = null;
             if (packagex != null) {
@@ -262,20 +271,23 @@ public class Main {
                             PojoEntity pojo = (PojoEntity) apojo.getEntity();
                             Annotations.grabAnnotations(apojo, pojo, annotations);
                             if (Utils.isFinal(pojo)) {
-                                if (suffix != null && pojo.getName().endsWith(suffix))
-                                    finalEntities.add(pojo.getName().substring(0,
-                                            pojo.getName().length() - suffix.length()));
-                                else
-                                    finalEntities.add(pojo.getName());
+                                // if (suffix != null && pojo.getName().endsWith(suffix))
+                                // finalEntities.put(
+                                // pojo.getName().substring(0, pojo.getName().length() - suffix.length()),
+                                // serializer.serialize(pojo));
+                                // else
+                                finalEntities.put(pojo.getName(), serializer.serialize(pojo));
                             }
                         } else if (apojo.getEntity() != null && apojo.getEntity() instanceof EnumEntity) {
                             EnumEntity pojo = (EnumEntity) apojo.getEntity();
                             if (Utils.isFinal(pojo)) {
-                                if (suffix != null && pojo.getName().endsWith(suffix))
-                                    finalEntities.add(pojo.getName().substring(0,
-                                            pojo.getName().length() - suffix.length()));
-                                else
-                                    finalEntities.add(pojo.getName());
+                                // if (suffix != null && pojo.getName().endsWith(suffix))
+                                // finalEntities.put(
+                                // pojo.getName().substring(0, pojo.getName().length() - suffix.length()),
+                                // serializer.serialize(pojo));
+                                // else
+                                finalEntities.put(pojo.getName(), serializer.serialize(pojo));
+                                System.out.println(serializer.serialize(pojo));
                             }
                         }
                     }
@@ -293,10 +305,10 @@ public class Main {
     }
 
     protected String getDaoDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
-            PackageDeclaration packagex) {
+            PackageDeclaration packagex, ISerializer serializer) {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-            Set<String> finalDaos = new HashSet<String>();
+            Map<String, String> finalDaos = new HashMap<String, String>();
             String suffix = null;
             if (packagex != null) {
                 suffix = packagex.getSuffix();
@@ -304,10 +316,11 @@ public class Main {
                     if (ape instanceof PojoDao) {
                         PojoDao dao = (PojoDao) ape;
                         if (Utils.isFinal(dao)) {
-                            if (suffix != null && dao.getName().endsWith(suffix))
-                                finalDaos.add(dao.getName().substring(0, dao.getName().length() - suffix.length()));
-                            else
-                                finalDaos.add(dao.getName());
+                            // if (suffix != null && dao.getName().endsWith(suffix))
+                            // finalDaos.put(dao.getName().substring(0, dao.getName().length() - suffix.length()),
+                            // serializer.serialize(dao));
+                            // else
+                            finalDaos.put(dao.getName(), serializer.serialize(dao));
                         }
                     }
                 }
@@ -324,13 +337,15 @@ public class Main {
         return null;
     }
 
-    protected String getMetaDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts) {
+    protected String getMetaDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
+            ISerializer serializer) {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-            Set<String> finalMetas = new HashSet<String>();
+            Map<String, String> finalMetas = new HashMap<String, String>();
             for (MetaStatement meta : artifacts.getStatements()) {
                 if (Utils.isFinal(meta)) {
-                    finalMetas.add(meta.getName());
+                    finalMetas.put(meta.getName(), serializer.serialize(meta));
+                    System.out.println(serializer.serialize(meta));
                 }
             }
             // List<String> tables = dbResolver.getTables(artifacts);

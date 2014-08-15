@@ -2,9 +2,10 @@ package org.sqlproc.dsl.ui.templates;
 
 import static org.sqlproc.dsl.util.Constants.TABLE_USAGE;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
@@ -13,7 +14,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.templates.SimpleTemplateVariableResolver;
 import org.eclipse.jface.text.templates.TemplateContext;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
+import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContext;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
 import org.sqlproc.dsl.generator.TableDaoGenerator;
@@ -684,8 +687,7 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
             PackageDeclaration packagex = getPackage((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
 
-                List<PojoEntity> entitiesToRemove = new ArrayList<PojoEntity>();
-                Set<String> finalEntities = new HashSet<String>();
+                Map<String, String> finalEntities = new HashMap<String, String>();
                 Annotations annotations = new Annotations();
                 String suffix = packagex.getSuffix();
                 for (AbstractPojoEntity ape : packagex.getElements()) {
@@ -699,9 +701,8 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                                 // finalEntities.add(pojo.getName()
                                 // .substring(0, pojo.getName().length() - suffix.length()));
                                 // else
-                                finalEntities.add(pojo.getName());
-                            } else {
-                                entitiesToRemove.add(pojo);
+                                ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
+                                finalEntities.put(pojo.getName(), serializer.serialize(pojo));
                             }
                         } else if (apojo.getEntity() != null && apojo.getEntity() instanceof EnumEntity) {
                             EnumEntity pojo = (EnumEntity) apojo.getEntity();
@@ -710,14 +711,13 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                                 // finalEntities.add(pojo.getName()
                                 // .substring(0, pojo.getName().length() - suffix.length()));
                                 // else
-                                finalEntities.add(pojo.getName());
+                                ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
+                                finalEntities.put(pojo.getName(), serializer.serialize(pojo));
                             }
                         }
                     }
                 }
-                // for (PojoEntity pojo : entitiesToRemove) {
-                // packagex.getElements().remove(pojo);
-                // }
+
                 // List<String> tables = dbResolver.getTables(artifacts);
                 List<String> dbSequences = dbResolver.getSequences(artifacts);
                 DbType dbType = Utils.getDbType(dbResolver, artifacts);
@@ -748,19 +748,13 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
 
-                List<MetaStatement> metasToRemove = new ArrayList<MetaStatement>();
-                Set<String> finalMetas = new HashSet<String>();
-
+                Map<String, String> finalMetas = new HashMap<String, String>();
                 for (MetaStatement meta : artifacts.getStatements()) {
                     if (Utils.isFinal(meta)) {
-                        finalMetas.add(meta.getName());
-                    } else {
-                        metasToRemove.add(meta);
+                        ISerializer serializer = ((XtextResource) meta.eResource()).getSerializer();
+                        finalMetas.put(meta.getName(), serializer.serialize(meta));
                     }
                 }
-                // for (MetaStatement meta : metasToRemove) {
-                // artifacts.getElements().remove(meta);
-                // }
 
                 // List<String> tables = dbResolver.getTables(artifacts);
                 List<String> dbSequences = dbResolver.getSequences(artifacts);
@@ -793,10 +787,8 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
             PackageDeclaration packagex = getPackage((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
 
-                List<PojoDao> daosToRemove = new ArrayList<PojoDao>();
-                Set<String> finalDaos = new HashSet<String>();
+                Map<String, String> finalDaos = new HashMap<String, String>();
                 String suffix = packagex.getSuffix();
-
                 for (AbstractPojoEntity ape : packagex.getElements()) {
                     if (ape instanceof PojoDao) {
                         PojoDao dao = (PojoDao) ape;
@@ -805,15 +797,11 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
                             // finalDaos.add(dao.getName()
                             // .substring(0, dao.getName().length() - suffix.length()));
                             // else
-                            finalDaos.add(dao.getName());
-                        } else {
-                            daosToRemove.add(dao);
+                            ISerializer serializer = ((XtextResource) dao.eResource()).getSerializer();
+                            finalDaos.put(dao.getName(), serializer.serialize(dao));
                         }
                     }
                 }
-                // for (PojoDao dao : daosToRemove) {
-                // packagex.getElements().remove(dao);
-                // }
 
                 // List<String> tables = dbResolver.getTables(artifacts);
                 List<String> dbSequences = dbResolver.getSequences(artifacts);

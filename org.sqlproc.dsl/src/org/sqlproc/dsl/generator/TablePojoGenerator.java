@@ -75,7 +75,7 @@ public class TablePojoGenerator {
     protected static final String NLINDENT = "\n  ";
 
     protected String suffix;
-    protected Set<String> finalEntities;
+    protected Map<String, String> finalEntities;
     protected Annotations annotations;
     protected Set<String> imports = new HashSet<String>();
     protected Map<String, PojoAttrType> sqlTypes = new HashMap<String, PojoAttrType>();
@@ -136,7 +136,7 @@ public class TablePojoGenerator {
     }
 
     public TablePojoGenerator(ModelProperty modelProperty, Artifacts artifacts, String suffix,
-            Set<String> finalEntities, Annotations annotations, List<String> dbSequences, DbType dbType) {
+            Map<String, String> finalEntities, Annotations annotations, List<String> dbSequences, DbType dbType) {
 
         debug = new Debug(modelProperty.getDebugLevel(artifacts), modelProperty.getDebugScope(artifacts), LOGGER);
 
@@ -982,8 +982,10 @@ public class TablePojoGenerator {
                 String pojoName = tableNames.get(pojo);
                 if (pojoName == null)
                     pojoName = pojo;
-                if (finalEntities.contains(tableToCamelCase(pojoName)))
+                if (finalEntities.containsKey(tableToCamelCase(pojoName))) {
+                    buffer.append(finalEntities.get(tableToCamelCase(pojoName)));
                     continue;
+                }
                 printComment(buffer, comments.get(pojo), INDENT);
                 buffer.append(NLINDENT);
                 if (makeItFinal)
@@ -1031,8 +1033,10 @@ public class TablePojoGenerator {
                 String pojoName = tableNames.get(pojo);
                 if (pojoName == null)
                     pojoName = pojo;
-                if (finalEntities.contains(tableToCamelCase(pojoName)))
+                if (finalEntities.containsKey(tableToCamelCase(pojoName))) {
+                    buffer.append(finalEntities.get(tableToCamelCase(pojoName)));
                     continue;
+                }
                 String realPojoName = tableToCamelCase(pojoName);
                 printComment(buffer, comments.get(pojo), INDENT);
                 if (annotations != null) {
@@ -1258,8 +1262,10 @@ public class TablePojoGenerator {
                 String pojoName = tableNames.get(pojo);
                 if (pojoName == null)
                     pojoName = pojo;
-                if (finalEntities.contains(tableToCamelCase(pojoName)))
+                if (finalEntities.containsKey(tableToCamelCase(pojoName))) {
+                    buffer.append(finalEntities.get(tableToCamelCase(pojoName)));
                     continue;
+                }
                 printComment(buffer, comments.get(pojo), INDENT);
                 buffer.append(NLINDENT);
                 if (makeItFinal)
@@ -1332,8 +1338,10 @@ public class TablePojoGenerator {
                 String pojoName = tableNames.get(pojo);
                 if (pojoName == null)
                     pojoName = pojo;
-                if (finalEntities.contains(tableToCamelCase(pojoName)))
+                if (finalEntities.containsKey(tableToCamelCase(pojoName))) {
+                    buffer.append(finalEntities.get(tableToCamelCase(pojoName)));
                     continue;
+                }
                 printComment(buffer, comments.get(pojo), INDENT);
                 buffer.append(NLINDENT);
                 if (makeItFinal)

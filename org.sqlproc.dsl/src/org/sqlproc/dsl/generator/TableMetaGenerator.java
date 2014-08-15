@@ -34,7 +34,7 @@ public class TableMetaGenerator extends TablePojoGenerator {
     protected Logger LOGGER = Logger.getLogger(TableMetaGenerator.class);
     private Debug debug = new Debug(LOGGER);
 
-    protected Set<String> finalMetas;
+    protected Map<String, String> finalMetas;
     protected Artifacts artifacts;
     protected IScopeProvider scopeProvider;
 
@@ -73,8 +73,8 @@ public class TableMetaGenerator extends TablePojoGenerator {
     }
 
     public TableMetaGenerator(ModelProperty modelProperty, Artifacts artifacts, IScopeProvider scopeProvider,
-            Set<String> finalMetas, List<String> dbSequences, DbType dbType) {
-        super(modelProperty, artifacts, null, Collections.<String> emptySet(), null, dbSequences, dbType);
+            Map<String, String> finalMetas, List<String> dbSequences, DbType dbType) {
+        super(modelProperty, artifacts, null, Collections.<String, String> emptyMap(), null, dbSequences, dbType);
         this.scopeProvider = scopeProvider;
         this.artifacts = artifacts;
         this.finalMetas = finalMetas;
@@ -1571,8 +1571,10 @@ public class TableMetaGenerator extends TablePojoGenerator {
         if (suffix != null) {
             header.statementName = header.statementName + "_" + suffix;
         }
-        if (finalMetas.contains(header.statementName))
+        if (finalMetas.containsKey(header.statementName)) {
+            buffer.append(finalMetas.get(header.statementName));
             return null;
+        }
         buffer.append("\n").append(header.statementName);
         if (type == StatementType.SELECT)
             buffer.append("(QRY,");

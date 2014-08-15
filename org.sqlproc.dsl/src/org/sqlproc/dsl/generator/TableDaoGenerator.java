@@ -28,7 +28,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
     protected Logger LOGGER = Logger.getLogger(TableDaoGenerator.class);
     private Debug debug = new Debug(LOGGER);
 
-    protected Set<String> finalDaos;
+    protected Map<String, String> finalDaos;
     protected Set<String> daoIgnoreTables = new HashSet<String>();
     protected Set<String> daoOnlyTables = new HashSet<String>();
     protected String daoImplementationPackage;
@@ -45,8 +45,8 @@ public class TableDaoGenerator extends TableMetaGenerator {
     }
 
     public TableDaoGenerator(ModelProperty modelProperty, Artifacts artifacts, String suffix,
-            IScopeProvider scopeProvider, Set<String> finalDaos, List<String> dbSequences, DbType dbType) {
-        super(modelProperty, artifacts, null, Collections.<String> emptySet(), dbSequences, dbType);
+            IScopeProvider scopeProvider, Map<String, String> finalDaos, List<String> dbSequences, DbType dbType) {
+        super(modelProperty, artifacts, null, Collections.<String, String> emptyMap(), dbSequences, dbType);
 
         debug = new Debug(modelProperty.getDaoDebugLevel(artifacts), modelProperty.getDaoDebugScope(artifacts), LOGGER);
 
@@ -224,8 +224,10 @@ public class TableDaoGenerator extends TableMetaGenerator {
                 if (pojoName == null)
                     pojoName = pojo;
                 String daoName = tableToCamelCase(pojoName) + "Dao";
-                if (finalDaos.contains(daoName))
+                if (finalDaos.containsKey(daoName)) {
+                    buffer.append(finalDaos.get(daoName));
                     continue;
+                }
                 if (pojoInheritanceDiscriminator.containsKey(pojo) || pojoInheritanceSimple.containsKey(pojo)) {
                     if (!notAbstractTables.contains(pojo))
                         continue;
@@ -295,7 +297,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                     break;
                 }
             }
-            if (hasProcedures && !finalDaos.contains("ProceduresDao")) {
+            if (hasProcedures && !finalDaos.containsKey("ProceduresDao")) {
                 buffer.append("\n  ");
                 if (daoMakeItFinal)
                     buffer.append("final ");
@@ -344,6 +346,8 @@ public class TableDaoGenerator extends TableMetaGenerator {
                             .append((dispName != null) ? dispName : pojoName);
                 }
                 buffer.append("\n  }\n");
+            } else if (hasProcedures) {
+                buffer.append(finalDaos.get("ProceduresDao"));
             }
             boolean hasFunctions = false;
             for (String pojo : procedures.keySet()) {
@@ -360,7 +364,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                     break;
                 }
             }
-            if (hasFunctions && !finalDaos.contains("FunctionsDao")) {
+            if (hasFunctions && !finalDaos.containsKey("FunctionsDao")) {
                 buffer.append("\n  ");
                 if (daoMakeItFinal)
                     buffer.append("final ");
@@ -412,6 +416,8 @@ public class TableDaoGenerator extends TableMetaGenerator {
                             .append((dispName != null) ? dispName : pojoName);
                 }
                 buffer.append("\n  }\n");
+            } else if (hasFunctions) {
+                buffer.append(finalDaos.get("FunctionsDao"));
             }
             hasFunctions = false;
             for (String pojo : functions.keySet()) {
@@ -426,7 +432,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                     break;
                 }
             }
-            if (hasFunctions && !finalDaos.contains("FunctionsDao")) {
+            if (hasFunctions && !finalDaos.containsKey("FunctionsDao")) {
                 buffer.append("\n  ");
                 if (daoMakeItFinal)
                     buffer.append("final ");
@@ -481,6 +487,8 @@ public class TableDaoGenerator extends TableMetaGenerator {
                             .append((dispName != null) ? dispName : pojoName);
                 }
                 buffer.append("\n  }\n");
+            } else if (hasFunctions) {
+                buffer.append(finalDaos.get("FunctionsDao"));
             }
             return buffer.toString();
         } catch (RuntimeException ex) {
