@@ -225,7 +225,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                     pojoName = pojo;
                 String daoName = tableToCamelCase(pojoName) + "Dao";
                 if (finalDaos.containsKey(daoName)) {
-                    buffer.append(finalDaos.get(daoName));
+                    buffer.append(getFinalContent(finalDaos.get(daoName)));
                     continue;
                 }
                 if (pojoInheritanceDiscriminator.containsKey(pojo) || pojoInheritanceSimple.containsKey(pojo)) {
@@ -347,7 +347,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                 }
                 buffer.append("\n  }\n");
             } else if (hasProcedures) {
-                buffer.append(finalDaos.get("ProceduresDao"));
+                buffer.append(getFinalContent(finalDaos.get("ProceduresDao")));
             }
             boolean hasFunctions = false;
             for (String pojo : procedures.keySet()) {
@@ -417,7 +417,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                 }
                 buffer.append("\n  }\n");
             } else if (hasFunctions) {
-                buffer.append(finalDaos.get("FunctionsDao"));
+                buffer.append(getFinalContent(finalDaos.get("FunctionsDao")));
             }
             hasFunctions = false;
             for (String pojo : functions.keySet()) {
@@ -488,7 +488,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                 }
                 buffer.append("\n  }\n");
             } else if (hasFunctions) {
-                buffer.append(finalDaos.get("FunctionsDao"));
+                buffer.append(getFinalContent(finalDaos.get("FunctionsDao")));
             }
             return buffer.toString();
         } catch (RuntimeException ex) {

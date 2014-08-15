@@ -1572,7 +1572,7 @@ public class TableMetaGenerator extends TablePojoGenerator {
             header.statementName = header.statementName + "_" + suffix;
         }
         if (finalMetas.containsKey(header.statementName)) {
-            buffer.append(finalMetas.get(header.statementName));
+            buffer.append("\n").append(getFinalContent(finalMetas.get(header.statementName)));
             return null;
         }
         buffer.append("\n").append(header.statementName);

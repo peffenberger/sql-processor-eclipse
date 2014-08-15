@@ -177,10 +177,6 @@ public class Main {
             System.err.println("No control directive.");
             return;
         }
-        ISerializer serializar = ((XtextResource) controlResource).getSerializer();
-        System.out.println(serializar);
-        String ss = serializar.serialize(definitions);
-        System.out.println(ss);
         fileAccess.setOutputPath(target);
         ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
         ModelPropertyBean modelProperty = new ModelPropertyBean(modelValues);
@@ -227,6 +223,13 @@ public class Main {
             return;
         }
 
+        Artifacts sqls = null;
+        List<MetaStatement> statements = null;
+        if (sqlResource != null) {
+            sqls = (Artifacts) sqlResource.getContents().get(0);
+            statements = sqls.getStatements();
+        }
+
         String pojoDefinitions = getPojoDefinitions(modelProperty, dbResolver, definitions, pojoPackage,
                 ((XtextResource) controlResource).getSerializer());
         fileAccess.generateFile(pojo, "package " + pojoPackageName + " {\n" + pojoDefinitions + "}");
@@ -237,7 +240,7 @@ public class Main {
         fileAccess.generateFile(dao, "package " + daoPackageName + " {\n" + daoDefinitions + "}");
         System.out.println(dao + " generation finished.");
 
-        String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions,
+        String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions, statements,
                 ((XtextResource) sqlResource).getSerializer());
         fileAccess.generateFile(sql, metaDefinitions);
         System.out.println(sql + " generation finished.");
@@ -287,7 +290,6 @@ public class Main {
                                 // serializer.serialize(pojo));
                                 // else
                                 finalEntities.put(pojo.getName(), serializer.serialize(pojo));
-                                System.out.println(serializer.serialize(pojo));
                             }
                         }
                     }
@@ -338,14 +340,13 @@ public class Main {
     }
 
     protected String getMetaDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
-            ISerializer serializer) {
+            List<MetaStatement> statements, ISerializer serializer) {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
             Map<String, String> finalMetas = new HashMap<String, String>();
-            for (MetaStatement meta : artifacts.getStatements()) {
+            for (MetaStatement meta : statements) {
                 if (Utils.isFinal(meta)) {
                     finalMetas.put(meta.getName(), serializer.serialize(meta));
-                    System.out.println(serializer.serialize(meta));
                 }
             }
             // List<String> tables = dbResolver.getTables(artifacts);

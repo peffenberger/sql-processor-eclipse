@@ -983,7 +983,7 @@ public class TablePojoGenerator {
                 if (pojoName == null)
                     pojoName = pojo;
                 if (finalEntities.containsKey(tableToCamelCase(pojoName))) {
-                    buffer.append(finalEntities.get(tableToCamelCase(pojoName)));
+                    buffer.append(getFinalContent(finalEntities.get(tableToCamelCase(pojoName))));
                     continue;
                 }
                 printComment(buffer, comments.get(pojo), INDENT);
@@ -1034,7 +1034,7 @@ public class TablePojoGenerator {
                 if (pojoName == null)
                     pojoName = pojo;
                 if (finalEntities.containsKey(tableToCamelCase(pojoName))) {
-                    buffer.append(finalEntities.get(tableToCamelCase(pojoName)));
+                    buffer.append(getFinalContent(finalEntities.get(tableToCamelCase(pojoName))));
                     continue;
                 }
                 String realPojoName = tableToCamelCase(pojoName);
@@ -1263,7 +1263,7 @@ public class TablePojoGenerator {
                 if (pojoName == null)
                     pojoName = pojo;
                 if (finalEntities.containsKey(tableToCamelCase(pojoName))) {
-                    buffer.append(finalEntities.get(tableToCamelCase(pojoName)));
+                    buffer.append(getFinalContent(finalEntities.get(tableToCamelCase(pojoName))));
                     continue;
                 }
                 printComment(buffer, comments.get(pojo), INDENT);
@@ -1339,7 +1339,7 @@ public class TablePojoGenerator {
                 if (pojoName == null)
                     pojoName = pojo;
                 if (finalEntities.containsKey(tableToCamelCase(pojoName))) {
-                    buffer.append(finalEntities.get(tableToCamelCase(pojoName)));
+                    buffer.append(getFinalContent(finalEntities.get(tableToCamelCase(pojoName))));
                     continue;
                 }
                 printComment(buffer, comments.get(pojo), INDENT);
@@ -1904,5 +1904,13 @@ public class TablePojoGenerator {
             buffer = buffer.replaceAll(regex, replacement);
         }
         return buffer;
+    }
+
+    protected String getFinalContent(String s) {
+        if (s == null)
+            return null;
+        if (s.startsWith("\n"))
+            s = s.substring(1);
+        return s + "\n";
     }
 }
