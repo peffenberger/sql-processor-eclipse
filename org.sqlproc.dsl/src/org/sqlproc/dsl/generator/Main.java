@@ -146,12 +146,21 @@ public class Main {
         ResourceSet set = resourceSetProvider.get();
         Resource controlResource = set.getResource(URI.createURI(control), true);
         set.getResources().add(controlResource);
-        Resource pojoResource = set.getResource(URI.createURI(pojo), true);
-        set.getResources().add(pojoResource);
-        Resource daoResource = set.getResource(URI.createURI(dao), true);
-        set.getResources().add(daoResource);
+        Resource pojoResource = null;
+        File pojoFile = new File(URI.createURI(pojo).toFileString());
+        if (pojoFile.canRead()) {
+            pojoResource = set.getResource(URI.createURI(pojo), true);
+            set.getResources().add(pojoResource);
+        }
+        Resource daoResource = null;
+        File daoFile = new File(URI.createURI(dao).toFileString());
+        if (daoFile.canRead()) {
+            daoResource = set.getResource(URI.createURI(dao), true);
+            set.getResources().add(daoResource);
+        }
 
-        if (!isValid(controlResource) || !isValid(pojoResource) || !isValid(daoResource))
+        if (!isValid(controlResource) || (pojoResource != null && !isValid(pojoResource))
+                || (daoResource != null && !isValid(daoResource)))
             return;
         System.out.println("Resource(s) validation finished.");
 
@@ -172,26 +181,46 @@ public class Main {
         }
         DbResolver dbResolver = new DbResolverBean(modelProperty, driverClass, dbSqlsBefore, null);
 
-        Artifacts pojos = (Artifacts) pojoResource.getContents().get(0);
-        if (pojos.getPojoPackages().isEmpty()) {
+        Artifacts pojos = null;
+        PackageDeclaration pojoPackage = null;
+        String pojoPackageName = null;
+        if (pojoResource != null) {
+            pojos = (Artifacts) pojoResource.getContents().get(0);
+            if (!pojos.getPojoPackages().isEmpty()) {
+                pojoPackage = pojos.getPojoPackages().get(0);
+                pojoPackageName = pojoPackage.getName();
+            }
+        } else {
+            pojoPackageName = modelProperty.getPackage(null);
+        }
+        if (pojoPackage == null && pojoPackageName == null) {
             System.err.println("Missing POJO package.");
             return;
         }
-        PackageDeclaration pojoPackage = pojos.getPojoPackages().get(0);
 
-        Artifacts daos = (Artifacts) daoResource.getContents().get(0);
-        if (daos.getPojoPackages().isEmpty()) {
+        Artifacts daos = null;
+        PackageDeclaration daoPackage = null;
+        String daoPackageName = null;
+        if (daoResource != null) {
+            daos = (Artifacts) pojoResource.getContents().get(0);
+            if (!daos.getPojoPackages().isEmpty()) {
+                daoPackage = daos.getPojoPackages().get(0);
+                daoPackageName = daoPackage.getName();
+            }
+        } else {
+            daoPackageName = modelProperty.getDaoPackage(null);
+        }
+        if (daoPackage == null && daoPackageName == null) {
             System.err.println("Missing DAO package.");
             return;
         }
-        PackageDeclaration daoPackage = daos.getPojoPackages().get(0);
 
         String pojoDefinitions = getPojoDefinitions(modelProperty, dbResolver, definitions, pojoPackage);
-        fileAccess.generateFile(pojo, "package " + pojoPackage.getName() + " {\n" + pojoDefinitions + "}");
+        fileAccess.generateFile(pojo, "package " + pojoPackageName + " {\n" + pojoDefinitions + "}");
         System.out.println(pojo + " generation finished.");
 
         String daoDefinitions = getDaoDefinitions(modelProperty, dbResolver, definitions, daoPackage);
-        fileAccess.generateFile(dao, "package " + daoPackage.getName() + " {\n" + daoDefinitions + "}");
+        fileAccess.generateFile(dao, "package " + daoPackageName + " {\n" + daoDefinitions + "}");
         System.out.println(dao + " generation finished.");
 
         String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions);
@@ -218,37 +247,40 @@ public class Main {
             List<PojoEntity> entitiesToRemove = new ArrayList<PojoEntity>();
             Set<String> finalEntities = new HashSet<String>();
             Annotations annotations = new Annotations();
-            String suffix = packagex.getSuffix();
-            for (AbstractPojoEntity ape : packagex.getElements()) {
-                if (ape instanceof AnnotatedEntity) {
-                    AnnotatedEntity apojo = (AnnotatedEntity) ape;
-                    if (apojo.getEntity() != null && apojo.getEntity() instanceof PojoEntity) {
-                        PojoEntity pojo = (PojoEntity) apojo.getEntity();
-                        Annotations.grabAnnotations(apojo, pojo, annotations);
-                        if (Utils.isFinal(pojo)) {
-                            // if (suffix != null && pojo.getName().endsWith(suffix))
-                            // finalEntities.add(pojo.getName()
-                            // .substring(0, pojo.getName().length() - suffix.length()));
-                            // else
-                            finalEntities.add(pojo.getName());
-                        } else {
-                            entitiesToRemove.add(pojo);
-                        }
-                    } else if (apojo.getEntity() != null && apojo.getEntity() instanceof EnumEntity) {
-                        EnumEntity pojo = (EnumEntity) apojo.getEntity();
-                        if (Utils.isFinal(pojo)) {
-                            // if (suffix != null && pojo.getName().endsWith(suffix))
-                            // finalEntities.add(pojo.getName()
-                            // .substring(0, pojo.getName().length() - suffix.length()));
-                            // else
-                            finalEntities.add(pojo.getName());
+            String suffix = null;
+            if (packagex != null) {
+                suffix = packagex.getSuffix();
+                for (AbstractPojoEntity ape : packagex.getElements()) {
+                    if (ape instanceof AnnotatedEntity) {
+                        AnnotatedEntity apojo = (AnnotatedEntity) ape;
+                        if (apojo.getEntity() != null && apojo.getEntity() instanceof PojoEntity) {
+                            PojoEntity pojo = (PojoEntity) apojo.getEntity();
+                            Annotations.grabAnnotations(apojo, pojo, annotations);
+                            if (Utils.isFinal(pojo)) {
+                                // if (suffix != null && pojo.getName().endsWith(suffix))
+                                // finalEntities.add(pojo.getName()
+                                // .substring(0, pojo.getName().length() - suffix.length()));
+                                // else
+                                finalEntities.add(pojo.getName());
+                            } else {
+                                entitiesToRemove.add(pojo);
+                            }
+                        } else if (apojo.getEntity() != null && apojo.getEntity() instanceof EnumEntity) {
+                            EnumEntity pojo = (EnumEntity) apojo.getEntity();
+                            if (Utils.isFinal(pojo)) {
+                                // if (suffix != null && pojo.getName().endsWith(suffix))
+                                // finalEntities.add(pojo.getName()
+                                // .substring(0, pojo.getName().length() - suffix.length()));
+                                // else
+                                finalEntities.add(pojo.getName());
+                            }
                         }
                     }
                 }
+                // for (PojoEntity pojo : entitiesToRemove) {
+                // packagex.getElements().remove(pojo);
+                // }
             }
-            // for (PojoEntity pojo : entitiesToRemove) {
-            // packagex.getElements().remove(pojo);
-            // }
             // List<String> tables = dbResolver.getTables(artifacts);
             List<String> dbSequences = dbResolver.getSequences(artifacts);
             DbType dbType = Utils.getDbType(dbResolver, artifacts);
@@ -266,26 +298,28 @@ public class Main {
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
             List<PojoDao> daosToRemove = new ArrayList<PojoDao>();
             Set<String> finalDaos = new HashSet<String>();
-            String suffix = packagex.getSuffix();
+            String suffix = null;
+            if (packagex != null) {
+                suffix = packagex.getSuffix();
 
-            for (AbstractPojoEntity ape : packagex.getElements()) {
-                if (ape instanceof PojoDao) {
-                    PojoDao dao = (PojoDao) ape;
-                    if (Utils.isFinal(dao)) {
-                        // if (suffix != null && dao.getName().endsWith(suffix))
-                        // finalDaos.add(dao.getName()
-                        // .substring(0, dao.getName().length() - suffix.length()));
-                        // else
-                        finalDaos.add(dao.getName());
-                    } else {
-                        daosToRemove.add(dao);
+                for (AbstractPojoEntity ape : packagex.getElements()) {
+                    if (ape instanceof PojoDao) {
+                        PojoDao dao = (PojoDao) ape;
+                        if (Utils.isFinal(dao)) {
+                            // if (suffix != null && dao.getName().endsWith(suffix))
+                            // finalDaos.add(dao.getName()
+                            // .substring(0, dao.getName().length() - suffix.length()));
+                            // else
+                            finalDaos.add(dao.getName());
+                        } else {
+                            daosToRemove.add(dao);
+                        }
                     }
                 }
+                // for (PojoDao dao : daosToRemove) {
+                // packagex.getElements().remove(dao);
+                // }
             }
-            // for (PojoDao dao : daosToRemove) {
-            // packagex.getElements().remove(dao);
-            // }
-
             // List<String> tables = dbResolver.getTables(artifacts);
             List<String> dbSequences = dbResolver.getSequences(artifacts);
             DbType dbType = Utils.getDbType(dbResolver, artifacts);
