@@ -158,9 +158,15 @@ public class Main {
             daoResource = set.getResource(URI.createURI(dao), true);
             set.getResources().add(daoResource);
         }
+        Resource sqlResource = null;
+        File sqlFile = new File(URI.createURI(sql).toFileString());
+        if (sqlFile.canRead()) {
+            sqlResource = set.getResource(URI.createURI(sql), true);
+            set.getResources().add(sqlResource);
+        }
 
         if (!isValid(controlResource) || (pojoResource != null && !isValid(pojoResource))
-                || (daoResource != null && !isValid(daoResource)))
+                || (daoResource != null && !isValid(daoResource)) || (sqlResource != null && !isValid(sqlResource)))
             return;
         System.out.println("Resource(s) validation finished.");
 
@@ -202,7 +208,7 @@ public class Main {
         PackageDeclaration daoPackage = null;
         String daoPackageName = null;
         if (daoResource != null) {
-            daos = (Artifacts) pojoResource.getContents().get(0);
+            daos = (Artifacts) daoResource.getContents().get(0);
             if (!daos.getPojoPackages().isEmpty()) {
                 daoPackage = daos.getPojoPackages().get(0);
                 daoPackageName = daoPackage.getName();
@@ -244,7 +250,6 @@ public class Main {
             PackageDeclaration packagex) {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-            List<PojoEntity> entitiesToRemove = new ArrayList<PojoEntity>();
             Set<String> finalEntities = new HashSet<String>();
             Annotations annotations = new Annotations();
             String suffix = null;
@@ -257,29 +262,24 @@ public class Main {
                             PojoEntity pojo = (PojoEntity) apojo.getEntity();
                             Annotations.grabAnnotations(apojo, pojo, annotations);
                             if (Utils.isFinal(pojo)) {
-                                // if (suffix != null && pojo.getName().endsWith(suffix))
-                                // finalEntities.add(pojo.getName()
-                                // .substring(0, pojo.getName().length() - suffix.length()));
-                                // else
-                                finalEntities.add(pojo.getName());
-                            } else {
-                                entitiesToRemove.add(pojo);
+                                if (suffix != null && pojo.getName().endsWith(suffix))
+                                    finalEntities.add(pojo.getName().substring(0,
+                                            pojo.getName().length() - suffix.length()));
+                                else
+                                    finalEntities.add(pojo.getName());
                             }
                         } else if (apojo.getEntity() != null && apojo.getEntity() instanceof EnumEntity) {
                             EnumEntity pojo = (EnumEntity) apojo.getEntity();
                             if (Utils.isFinal(pojo)) {
-                                // if (suffix != null && pojo.getName().endsWith(suffix))
-                                // finalEntities.add(pojo.getName()
-                                // .substring(0, pojo.getName().length() - suffix.length()));
-                                // else
-                                finalEntities.add(pojo.getName());
+                                if (suffix != null && pojo.getName().endsWith(suffix))
+                                    finalEntities.add(pojo.getName().substring(0,
+                                            pojo.getName().length() - suffix.length()));
+                                else
+                                    finalEntities.add(pojo.getName());
                             }
                         }
                     }
                 }
-                // for (PojoEntity pojo : entitiesToRemove) {
-                // packagex.getElements().remove(pojo);
-                // }
             }
             // List<String> tables = dbResolver.getTables(artifacts);
             List<String> dbSequences = dbResolver.getSequences(artifacts);
@@ -296,29 +296,21 @@ public class Main {
             PackageDeclaration packagex) {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-            List<PojoDao> daosToRemove = new ArrayList<PojoDao>();
             Set<String> finalDaos = new HashSet<String>();
             String suffix = null;
             if (packagex != null) {
                 suffix = packagex.getSuffix();
-
                 for (AbstractPojoEntity ape : packagex.getElements()) {
                     if (ape instanceof PojoDao) {
                         PojoDao dao = (PojoDao) ape;
                         if (Utils.isFinal(dao)) {
-                            // if (suffix != null && dao.getName().endsWith(suffix))
-                            // finalDaos.add(dao.getName()
-                            // .substring(0, dao.getName().length() - suffix.length()));
-                            // else
-                            finalDaos.add(dao.getName());
-                        } else {
-                            daosToRemove.add(dao);
+                            if (suffix != null && dao.getName().endsWith(suffix))
+                                finalDaos.add(dao.getName().substring(0, dao.getName().length() - suffix.length()));
+                            else
+                                finalDaos.add(dao.getName());
                         }
                     }
                 }
-                // for (PojoDao dao : daosToRemove) {
-                // packagex.getElements().remove(dao);
-                // }
             }
             // List<String> tables = dbResolver.getTables(artifacts);
             List<String> dbSequences = dbResolver.getSequences(artifacts);
@@ -335,20 +327,12 @@ public class Main {
     protected String getMetaDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts) {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-            List<MetaStatement> metasToRemove = new ArrayList<MetaStatement>();
             Set<String> finalMetas = new HashSet<String>();
-
             for (MetaStatement meta : artifacts.getStatements()) {
                 if (Utils.isFinal(meta)) {
                     finalMetas.add(meta.getName());
-                } else {
-                    metasToRemove.add(meta);
                 }
             }
-            // for (MetaStatement meta : metasToRemove) {
-            // artifacts.getElements().remove(meta);
-            // }
-
             // List<String> tables = dbResolver.getTables(artifacts);
             List<String> dbSequences = dbResolver.getSequences(artifacts);
             DbType dbType = Utils.getDbType(dbResolver, artifacts);
