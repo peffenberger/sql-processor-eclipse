@@ -59,6 +59,7 @@ public class Main {
 
         String models = null;
         String target = null;
+        String source = null;
         String control = null;
         String pojo = null;
         String dao = null;
@@ -70,8 +71,10 @@ public class Main {
             String arg = args[i];
             if ("-models".equals(arg) && i < args.length - 1)
                 models = args[++i];
-            else if ("-models".equals(arg) && i < args.length - 1)
+            else if ("-target".equals(arg) && i < args.length - 1)
                 target = args[++i];
+            else if ("-source".equals(arg) && i < args.length - 1)
+                source = args[++i];
             else if ("-control".equals(arg) && i < args.length - 1)
                 control = args[++i];
             else if ("-pojo".equals(arg) && i < args.length - 1)
@@ -99,18 +102,19 @@ public class Main {
         Injector injector = new org.sqlproc.dsl.ProcessorDslStandaloneSetup().createInjectorAndDoEMFRegistration();
         Main main = injector.getInstance(Main.class);
 
+        if (target == null)
+            target = (models != null) ? "src-gen/" : "./";
+        else if (!target.endsWith("/"))
+            target = target + "/";
+        if (source == null)
+            source = "";
+        else if (!source.endsWith("/"))
+            source = source + "/";
+
         if (models != null) {
-            if (target == null)
-                target = "src-gen";
-            if (!target.endsWith("/"))
-                target = target + "/";
-            main.runGenerator(models, target, generate);
+            main.runGenerator(models, source, target, generate);
         } else if (control != null) {
-            if (target == null)
-                target = ".";
-            if (!target.endsWith("/"))
-                target = target + "/";
-            main.runGenerator(control, pojo, dao, sql, ddl, target, merge);
+            main.runGenerator(control, pojo, dao, sql, ddl, source, target, merge);
         }
     }
 
@@ -121,26 +125,27 @@ public class Main {
         else
             System.out.println("Incorrect usage. Two modes are supported.");
         System.out.println("Mode 1: POJO & DAO Java source files generation using model files:");
-        System.out.println("  java -jar sqlep.jar -models modelFile1,modelFile2... [-target targetDir] [-verify]");
+        System.out
+                .println("  java -jar sqlep.jar -models modelFile1,modelFile2... [-source sourceDir] [-target targetDir] [-verify]");
         System.out.println("For example:");
         System.out.println("  java -jar sqlep.jar -models pojo.qry,dao.qry -target src-gen");
         System.out.println("Mode 2: POJO, DAO and META SQL models generation using control directives:");
         System.out
-                .println("  java -jar sqlep.jar -control controlDirectivesFile -pojo pojoModelFile -dao daoModelFile -sql metaSqlFile [-target targetDir] [-nomerge]");
+                .println("  java -jar sqlep.jar -control controlDirectivesFile -pojo pojoModelFile -dao daoModelFile -sql metaSqlFile [-source sourceDir] [-target targetDir] [-nomerge]");
         System.out.println("For example:");
         System.out
                 .println("  java -jar sqlep.jar -control definitions.qry -pojo pojo.qry -dao dao.qry -sql statements.qry");
         System.out.println();
     }
 
-    protected void runGenerator(String models, String target, boolean generate) throws IOException,
+    protected void runGenerator(String models, String source, String target, boolean generate) throws IOException,
             ClassNotFoundException {
 
         String[] sResources = models.split(",");
         ResourceSet set = resourceSetProvider.get();
         List<Resource> set2 = new ArrayList<Resource>();
         for (String sResource : sResources) {
-            Resource resource = set.getResource(URI.createURI(sResource), true);
+            Resource resource = set.getResource(URI.createURI(source + sResource), true);
             set.getResources().add(resource);
             set2.add(resource);
         }
@@ -158,28 +163,28 @@ public class Main {
         }
     }
 
-    protected void runGenerator(String control, String pojo, String dao, String sql, String ddl, String target,
-            boolean merge) throws IOException, ClassNotFoundException {
+    protected void runGenerator(String control, String pojo, String dao, String sql, String ddl, String source,
+            String target, boolean merge) throws IOException, ClassNotFoundException {
 
         ResourceSet set = resourceSetProvider.get();
-        Resource controlResource = set.getResource(URI.createURI(control), true);
+        Resource controlResource = set.getResource(URI.createURI(source + control), true);
         set.getResources().add(controlResource);
         Resource pojoResource = null;
-        File pojoFile = new File(URI.createURI(pojo).toFileString());
+        File pojoFile = new File(URI.createURI(source + pojo).toFileString());
         if (pojoFile.canRead()) {
-            pojoResource = set.getResource(URI.createURI(pojo), true);
+            pojoResource = set.getResource(URI.createURI(source + pojo), true);
             set.getResources().add(pojoResource);
         }
         Resource daoResource = null;
-        File daoFile = new File(URI.createURI(dao).toFileString());
+        File daoFile = new File(URI.createURI(source + dao).toFileString());
         if (daoFile.canRead()) {
-            daoResource = set.getResource(URI.createURI(dao), true);
+            daoResource = set.getResource(URI.createURI(source + dao), true);
             set.getResources().add(daoResource);
         }
         Resource sqlResource = null;
-        File sqlFile = new File(URI.createURI(sql).toFileString());
+        File sqlFile = new File(URI.createURI(source + sql).toFileString());
         if (sqlFile.canRead()) {
-            sqlResource = set.getResource(URI.createURI(sql), true);
+            sqlResource = set.getResource(URI.createURI(source + sql), true);
             set.getResources().add(sqlResource);
         }
 
@@ -264,12 +269,12 @@ public class Main {
         System.out.println(pojo + " generation finished.");
 
         String daoDefinitions = getDaoDefinitions(modelProperty, dbResolver, definitions, daoPackage,
-                ((XtextResource) daoResource).getSerializer());
+                ((XtextResource) controlResource).getSerializer());
         fileAccess.generateFile(dao, "package " + daoPackageName + " {\n" + daoDefinitions + "}");
         System.out.println(dao + " generation finished.");
 
         String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions, statements,
-                ((XtextResource) sqlResource).getSerializer());
+                ((XtextResource) controlResource).getSerializer());
         fileAccess.generateFile(sql, metaDefinitions);
         System.out.println(sql + " generation finished.");
     }
