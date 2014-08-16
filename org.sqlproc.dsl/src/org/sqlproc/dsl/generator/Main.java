@@ -188,8 +188,9 @@ public class Main {
             set.getResources().add(sqlResource);
         }
 
-        if (!isValid(controlResource) || (pojoResource != null && !isValid(pojoResource))
-                || (daoResource != null && !isValid(daoResource)) || (sqlResource != null && !isValid(sqlResource)))
+        if (!isValid(controlResource) || (merge && pojoResource != null && !isValid(pojoResource))
+                || (merge && daoResource != null && !isValid(daoResource))
+                || (merge && sqlResource != null && !isValid(sqlResource)))
             return;
         System.out.println("Resource(s) validation finished.");
 
@@ -200,6 +201,7 @@ public class Main {
         }
         fileAccess.setOutputPath(target);
         ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
+        modelValues.doResolveDb = true;
         ModelPropertyBean modelProperty = new ModelPropertyBean(modelValues);
         String sDbDriver = modelProperty.getModelValues(null).dbDriver;
         Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
