@@ -126,15 +126,28 @@ public class Main {
             System.out.println("Incorrect usage. Two modes are supported.");
         System.out.println("Mode 1: POJO & DAO Java source files generation using model files:");
         System.out
-                .println("  java -jar sqlep.jar -models modelFile1,modelFile2... [-source sourceDir] [-target targetDir] [-verify]");
+                .println("  java -jar sqlep.jar -models modelsFile1,modelsFile2... [-source sourceDir] [-target targetDir] [-verify]");
         System.out.println("For example:");
         System.out.println("  java -jar sqlep.jar -models pojo.qry,dao.qry -target src-gen");
         System.out.println("Mode 2: POJO, DAO and META SQL models generation using control directives:");
         System.out
-                .println("  java -jar sqlep.jar -control controlDirectivesFile -pojo pojoModelFile -dao daoModelFile -sql metaSqlFile [-source sourceDir] [-target targetDir] [-nomerge]");
+                .println("  java -jar sqlep.jar -control controlDirectivesFile -pojo pojoModelsFile -dao daoModelsFile -sql metaSqlsFile [-ddl ddlsFile] [-source sourceDir] [-target targetDir] [-nomerge]");
         System.out.println("For example:");
         System.out
                 .println("  java -jar sqlep.jar -control definitions.qry -pojo pojo.qry -dao dao.qry -sql statements.qry");
+        System.out.println();
+        System.out.println("Arguments:");
+        System.out
+                .println("  -models filename[.filename] - comma separated list of model files names (eg. pojo.qry,dao.qry)");
+        System.out.println("  -target dirname - a target directory (eg. src-gen)");
+        System.out.println("  -source dirname - a source directory (eg. src/main/resources)");
+        System.out.println("  -control filename - a control directives file name");
+        System.out.println("  -pojo filename - a POJO models file name");
+        System.out.println("  -dao filename - a DAO models file name");
+        System.out.println("  -sql filename - a META SQLs file name");
+        System.out.println("  -ddl filename - a DDLs file name");
+        System.out.println("  -nomerge - do not merge generated artefacts with existing ones");
+        System.out.println("  -verify - do not generate Java source files, only verify models files");
         System.out.println();
     }
 
