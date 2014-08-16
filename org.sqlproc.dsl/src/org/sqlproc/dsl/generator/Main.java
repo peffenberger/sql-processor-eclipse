@@ -145,7 +145,7 @@ public class Main {
         ResourceSet set = resourceSetProvider.get();
         List<Resource> set2 = new ArrayList<Resource>();
         for (String sResource : sResources) {
-            Resource resource = set.getResource(URI.createURI(source + sResource), true);
+            Resource resource = set.getResource(URI.createURI(getFile(source, sResource)), true);
             set.getResources().add(resource);
             set2.add(resource);
         }
@@ -167,24 +167,24 @@ public class Main {
             String target, boolean merge) throws IOException, ClassNotFoundException {
 
         ResourceSet set = resourceSetProvider.get();
-        Resource controlResource = set.getResource(URI.createURI(source + control), true);
+        Resource controlResource = set.getResource(URI.createURI(getFile(source, control)), true);
         set.getResources().add(controlResource);
         Resource pojoResource = null;
-        File pojoFile = new File(URI.createURI(source + pojo).toFileString());
+        File pojoFile = new File(URI.createURI(getFile(source, pojo)).toFileString());
         if (pojoFile.canRead()) {
-            pojoResource = set.getResource(URI.createURI(source + pojo), true);
+            pojoResource = set.getResource(URI.createURI(getFile(source, pojo)), true);
             set.getResources().add(pojoResource);
         }
         Resource daoResource = null;
-        File daoFile = new File(URI.createURI(source + dao).toFileString());
+        File daoFile = new File(URI.createURI(getFile(source, dao)).toFileString());
         if (daoFile.canRead()) {
-            daoResource = set.getResource(URI.createURI(source + dao), true);
+            daoResource = set.getResource(URI.createURI(getFile(source, dao)), true);
             set.getResources().add(daoResource);
         }
         Resource sqlResource = null;
-        File sqlFile = new File(URI.createURI(source + sql).toFileString());
+        File sqlFile = new File(URI.createURI(getFile(source, sql)).toFileString());
         if (sqlFile.canRead()) {
-            sqlResource = set.getResource(URI.createURI(source + sql), true);
+            sqlResource = set.getResource(URI.createURI(getFile(source, sql)), true);
             set.getResources().add(sqlResource);
         }
 
@@ -205,7 +205,7 @@ public class Main {
         Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
         String dbSqlsBefore = null;
         if (ddl != null) {
-            File file = new File(ddl);
+            File file = new File(getFile(source, ddl));
             dbSqlsBefore = new String(Files.toByteArray(file));
         }
         DbResolver dbResolver = new DbResolverBean(modelProperty, driverClass, dbSqlsBefore, null);
@@ -277,6 +277,12 @@ public class Main {
                 ((XtextResource) controlResource).getSerializer());
         fileAccess.generateFile(sql, metaDefinitions);
         System.out.println(sql + " generation finished.");
+    }
+
+    protected String getFile(String source, String file) {
+        if (file.startsWith("/"))
+            return file;
+        return source + file;
     }
 
     protected boolean isValid(Resource resource) throws IOException {
