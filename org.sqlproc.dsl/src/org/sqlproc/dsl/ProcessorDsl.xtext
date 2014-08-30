@@ -127,8 +127,8 @@ MetagenProperty:
 	|name='column-meta-type' WS+ dbTable=IDENT (WS+ metaTypes+=MetaTypeAssignement)+
 	|name='statement-meta-type' WS+ dbStatement=IDENT (WS+ metaTypes+=MetaTypeAssignement)+
 	|name='make-it-final'
-	|name='like-columns' WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+
-	|name='not-like-columns' WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+
+	|name='like-columns' (WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+)?
+	|name='not-like-columns' (WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+)?
 	|name='generate-sequences'
 	|name='generate-identities'
 	|name='generate-idgenerators'

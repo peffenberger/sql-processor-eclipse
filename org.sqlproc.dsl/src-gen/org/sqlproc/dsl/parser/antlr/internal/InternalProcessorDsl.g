@@ -5553,15 +5553,15 @@ ruleMetagenProperty returns [EObject current=null]
 	    }
 
 )
-)(this_WS_50=RULE_WS
+)((this_WS_50=RULE_WS
     { 
-    newLeafNode(this_WS_50, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_7_1()); 
+    newLeafNode(this_WS_50, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_7_1_0()); 
     }
 )+(
 (
 		lv_dbTable_51_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbTable_51_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_7_2_0()); 
+			newLeafNode(lv_dbTable_51_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_7_1_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -5577,13 +5577,13 @@ ruleMetagenProperty returns [EObject current=null]
 )
 )((this_WS_52=RULE_WS
     { 
-    newLeafNode(this_WS_52, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_7_3_0()); 
+    newLeafNode(this_WS_52, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_7_1_2_0()); 
     }
 )+(
 (
 		lv_dbColumns_53_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbColumns_53_0, grammarAccess.getMetagenPropertyAccess().getDbColumnsIDENTTerminalRuleCall_7_3_1_0()); 
+			newLeafNode(lv_dbColumns_53_0, grammarAccess.getMetagenPropertyAccess().getDbColumnsIDENTTerminalRuleCall_7_1_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -5597,7 +5597,7 @@ ruleMetagenProperty returns [EObject current=null]
 	    }
 
 )
-))+)
+))+)?)
     |((
 (
 		lv_name_54_0=	'not-like-columns' 
@@ -5613,15 +5613,15 @@ ruleMetagenProperty returns [EObject current=null]
 	    }
 
 )
-)(this_WS_55=RULE_WS
+)((this_WS_55=RULE_WS
     { 
-    newLeafNode(this_WS_55, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_8_1()); 
+    newLeafNode(this_WS_55, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_8_1_0()); 
     }
 )+(
 (
 		lv_dbTable_56_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbTable_56_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_8_2_0()); 
+			newLeafNode(lv_dbTable_56_0, grammarAccess.getMetagenPropertyAccess().getDbTableIDENTTerminalRuleCall_8_1_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -5637,13 +5637,13 @@ ruleMetagenProperty returns [EObject current=null]
 )
 )((this_WS_57=RULE_WS
     { 
-    newLeafNode(this_WS_57, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_8_3_0()); 
+    newLeafNode(this_WS_57, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_8_1_2_0()); 
     }
 )+(
 (
 		lv_dbColumns_58_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbColumns_58_0, grammarAccess.getMetagenPropertyAccess().getDbColumnsIDENTTerminalRuleCall_8_3_1_0()); 
+			newLeafNode(lv_dbColumns_58_0, grammarAccess.getMetagenPropertyAccess().getDbColumnsIDENTTerminalRuleCall_8_1_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -5657,7 +5657,7 @@ ruleMetagenProperty returns [EObject current=null]
 	    }
 
 )
-))+)
+))+)?)
     |(
 (
 		lv_name_59_0=	'generate-sequences' 

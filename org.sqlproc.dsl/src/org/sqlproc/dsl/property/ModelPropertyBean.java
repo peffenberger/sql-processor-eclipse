@@ -138,6 +138,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String DAOGEN_ACTIVE_FILTER = "active-filter";
     public static final String DAOGEN_PACKAGE = "package";
 
+    public static final String GLOBAL = "___GLOBAL";
+
     public static class PairValues {
         public String value1;
         public String value2;
@@ -947,16 +949,24 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         } else if (METAGEN_MAKE_IT_FINAL.equals(property.getName())) {
             modelValues.metaMakeItFinal = true;
         } else if (METAGEN_LIKE_COLUMNS.equals(property.getName())) {
-            if (!modelValues.metaLikeColumns.containsKey(property.getDbTable()))
-                modelValues.metaLikeColumns.put(property.getDbTable(), new HashSet<String>());
-            for (int i = 0, m = property.getDbColumns().size(); i < m; i++) {
-                modelValues.metaLikeColumns.get(property.getDbTable()).add(property.getDbColumns().get(i));
+            if (property.getDbTable() == null) {
+                modelValues.metaLikeColumns.put(GLOBAL, new HashSet<String>());
+            } else {
+                if (!modelValues.metaLikeColumns.containsKey(property.getDbTable()))
+                    modelValues.metaLikeColumns.put(property.getDbTable(), new HashSet<String>());
+                for (int i = 0, m = property.getDbColumns().size(); i < m; i++) {
+                    modelValues.metaLikeColumns.get(property.getDbTable()).add(property.getDbColumns().get(i));
+                }
             }
         } else if (METAGEN_NOT_LIKE_COLUMNS.equals(property.getName())) {
-            if (!modelValues.metaNotLikeColumns.containsKey(property.getDbTable()))
-                modelValues.metaNotLikeColumns.put(property.getDbTable(), new HashSet<String>());
-            for (int i = 0, m = property.getDbColumns().size(); i < m; i++) {
-                modelValues.metaNotLikeColumns.get(property.getDbTable()).add(property.getDbColumns().get(i));
+            if (property.getDbTable() == null) {
+                modelValues.metaNotLikeColumns.put(GLOBAL, new HashSet<String>());
+            } else {
+                if (!modelValues.metaNotLikeColumns.containsKey(property.getDbTable()))
+                    modelValues.metaNotLikeColumns.put(property.getDbTable(), new HashSet<String>());
+                for (int i = 0, m = property.getDbColumns().size(); i < m; i++) {
+                    modelValues.metaNotLikeColumns.get(property.getDbTable()).add(property.getDbColumns().get(i));
+                }
             }
         } else if (METAGEN_GENERATE_SEQUENCES.equals(property.getName())) {
             modelValues.metaGenerateSequences = true;

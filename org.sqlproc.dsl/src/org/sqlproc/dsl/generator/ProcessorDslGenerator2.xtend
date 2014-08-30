@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet
  * 
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
-class ProcessorDslGenerator implements IGenerator2 {
+class ProcessorDslGenerator2 implements IGenerator2 {
 
 	@Inject extension IQualifiedNameProvider
 	@Inject extension ProcessorPojoGenerator
