@@ -6,7 +6,7 @@
 		<relativePath>../pom.xml</relativePath>
 		<groupId>org.sqlproc.dsl</groupId>
 		<artifactId>dsl-parent</artifactId>
-		<version>1.9.3-SNAPSHOT</version>
+		<version>1.9.3</version>
 	</parent>
 
 	<artifactId>org.sqlproc.dsl</artifactId>
