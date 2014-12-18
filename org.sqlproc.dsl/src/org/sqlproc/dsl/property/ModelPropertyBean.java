@@ -102,6 +102,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String POJOGEN_POJOS_FOR_FUNCTIONS = "pojos-for-functions";
     public static final String POJOGEN_ACTIVE_FILTER = "active-filter";
     public static final String POJOGEN_PACKAGE = "package";
+    public static final String POJOGEN_ENUM_FOR_CHECK_CONSTRAINTS = "enum-for-check-constraints";
     public static final String METAGEN = "metagen";
     public static final String METAGEN_GLOBAL_SEQUENCE = "global-sequence";
     public static final String METAGEN_TABLE_SEQUENCE = "table-sequence";
@@ -215,6 +216,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, PojoType> pojosForFunctions;
         public String activeFilter;
         public String pckg;
+        public Map<String, String> enumForCheckConstraints;
 
         public PairValues metaGlobalSequence;
         public Map<String, PairValues> metaTablesSequence;
@@ -474,6 +476,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.pojosForFunctions = new HashMap<String, PojoType>();
         modelValues.activeFilter = null;
         modelValues.pckg = null;
+        modelValues.enumForCheckConstraints = new HashMap<String, String>();
     }
 
     private static void initMetagenModel(ModelValues modelValues) {
@@ -902,6 +905,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.activeFilter = property.getActiveFilter();
         } else if (POJOGEN_PACKAGE.equals(property.getName())) {
             modelValues.pckg = property.getPckg();
+        } else if (POJOGEN_ENUM_FOR_CHECK_CONSTRAINTS.equals(property.getName())) {
+            for (int i = 0, m = property.getDbCheckConstraints().size(); i < m; i++) {
+                modelValues.enumForCheckConstraints
+                        .put(property.getDbCheckConstraints().get(i), property.getEnumName());
+            }
         }
     }
 
@@ -1339,6 +1347,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public String getPackage(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.pckg : null;
+    }
+
+    @Override
+    public Map<String, String> getEnumForCheckConstraints(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.enumForCheckConstraints : Collections.<String, String> emptyMap();
     }
 
     @Override

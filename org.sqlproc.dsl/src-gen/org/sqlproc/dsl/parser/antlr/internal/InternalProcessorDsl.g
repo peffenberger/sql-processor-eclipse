@@ -4902,7 +4902,67 @@ rulePojogenProperty returns [EObject current=null]
 	    }
 
 )
-)))
+))
+    |((
+(
+		lv_name_168_0=	'enum-for-check-constraints' 
+    {
+        newLeafNode(lv_name_168_0, grammarAccess.getPojogenPropertyAccess().getNameEnumForCheckConstraintsKeyword_42_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_168_0, "enum-for-check-constraints");
+	    }
+
+)
+)(this_WS_169=RULE_WS
+    { 
+    newLeafNode(this_WS_169, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_42_1()); 
+    }
+)+(
+(
+		lv_enumName_170_0=RULE_IDENT
+		{
+			newLeafNode(lv_enumName_170_0, grammarAccess.getPojogenPropertyAccess().getEnumNameIDENTTerminalRuleCall_42_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"enumName",
+        		lv_enumName_170_0, 
+        		"IDENT");
+	    }
+
+)
+)((this_WS_171=RULE_WS
+    { 
+    newLeafNode(this_WS_171, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_42_3_0()); 
+    }
+)+(
+(
+		lv_dbCheckConstraints_172_0=RULE_IDENT
+		{
+			newLeafNode(lv_dbCheckConstraints_172_0, grammarAccess.getPojogenPropertyAccess().getDbCheckConstraintsIDENTTerminalRuleCall_42_3_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"dbCheckConstraints",
+        		lv_dbCheckConstraints_172_0, 
+        		"IDENT");
+	    }
+
+)
+))+))
 ;
 
 

@@ -77,6 +77,8 @@ import org.sqlproc.dsl.processorDsl.TableAssignement;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getFunPojos <em>Fun Pojos</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getActiveFilter <em>Active Filter</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getPckg <em>Pckg</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getEnumName <em>Enum Name</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getDbCheckConstraints <em>Db Check Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -493,6 +495,36 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected String pckg = PCKG_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getEnumName() <em>Enum Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEnumName()
+   * @generated
+   * @ordered
+   */
+  protected static final String ENUM_NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getEnumName() <em>Enum Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEnumName()
+   * @generated
+   * @ordered
+   */
+  protected String enumName = ENUM_NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getDbCheckConstraints() <em>Db Check Constraints</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDbCheckConstraints()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> dbCheckConstraints;
 
   /**
    * <!-- begin-user-doc -->
@@ -1248,6 +1280,43 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getEnumName()
+  {
+    return enumName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setEnumName(String newEnumName)
+  {
+    String oldEnumName = enumName;
+    enumName = newEnumName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJOGEN_PROPERTY__ENUM_NAME, oldEnumName, enumName));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<String> getDbCheckConstraints()
+  {
+    if (dbCheckConstraints == null)
+    {
+      dbCheckConstraints = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.POJOGEN_PROPERTY__DB_CHECK_CONSTRAINTS);
+    }
+    return dbCheckConstraints;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -1363,6 +1432,10 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return getActiveFilter();
       case ProcessorDslPackage.POJOGEN_PROPERTY__PCKG:
         return getPckg();
+      case ProcessorDslPackage.POJOGEN_PROPERTY__ENUM_NAME:
+        return getEnumName();
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_CHECK_CONSTRAINTS:
+        return getDbCheckConstraints();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -1486,6 +1559,13 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJOGEN_PROPERTY__PCKG:
         setPckg((String)newValue);
         return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__ENUM_NAME:
+        setEnumName((String)newValue);
+        return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_CHECK_CONSTRAINTS:
+        getDbCheckConstraints().clear();
+        getDbCheckConstraints().addAll((Collection<? extends String>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -1593,6 +1673,12 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJOGEN_PROPERTY__PCKG:
         setPckg(PCKG_EDEFAULT);
         return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__ENUM_NAME:
+        setEnumName(ENUM_NAME_EDEFAULT);
+        return;
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_CHECK_CONSTRAINTS:
+        getDbCheckConstraints().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -1669,6 +1755,10 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return ACTIVE_FILTER_EDEFAULT == null ? activeFilter != null : !ACTIVE_FILTER_EDEFAULT.equals(activeFilter);
       case ProcessorDslPackage.POJOGEN_PROPERTY__PCKG:
         return PCKG_EDEFAULT == null ? pckg != null : !PCKG_EDEFAULT.equals(pckg);
+      case ProcessorDslPackage.POJOGEN_PROPERTY__ENUM_NAME:
+        return ENUM_NAME_EDEFAULT == null ? enumName != null : !ENUM_NAME_EDEFAULT.equals(enumName);
+      case ProcessorDslPackage.POJOGEN_PROPERTY__DB_CHECK_CONSTRAINTS:
+        return dbCheckConstraints != null && !dbCheckConstraints.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -1712,6 +1802,10 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
     result.append(activeFilter);
     result.append(", pckg: ");
     result.append(pckg);
+    result.append(", enumName: ");
+    result.append(enumName);
+    result.append(", dbCheckConstraints: ");
+    result.append(dbCheckConstraints);
     result.append(')');
     return result.toString();
   }

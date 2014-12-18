@@ -116,6 +116,7 @@ public class TablePojoGenerator {
     protected Map<String, PojoType> pojosForProcedures = new HashMap<String, PojoType>();
     protected Map<String, PojoType> pojosForFunctions = new HashMap<String, PojoType>();
     protected Filter activeFilter = null;
+    protected Map<String, String> enumForCheckConstraints = new HashMap<String, String>();
 
     protected Map<String, Map<String, PojoAttribute>> pojos = new TreeMap<String, Map<String, PojoAttribute>>();
     protected Map<String, Map<String, PojoAttribute>> procedures = new TreeMap<String, Map<String, PojoAttribute>>();
@@ -274,6 +275,10 @@ public class TablePojoGenerator {
             this.pojosForFunctions.putAll(pojosForFunctions);
         }
         this.activeFilter = Filter.parse(modelProperty.getActiveFilter(artifacts));
+        Map<String, String> enumForCheckConstraints = modelProperty.getEnumForCheckConstraints(artifacts);
+        if (enumForCheckConstraints != null) {
+            this.enumForCheckConstraints.putAll(enumForCheckConstraints);
+        }
 
         for (Map.Entry<String, Map<String, Map<String, String>>> inheritImport : this.inheritImports.entrySet()) {
             for (Map.Entry<String, Map<String, String>> inherit : inheritImport.getValue().entrySet()) {
@@ -345,6 +350,7 @@ public class TablePojoGenerator {
             System.out.println("versionColumns " + this.versionColumns);
             System.out.println("notVersionColumns " + this.notVersionColumns);
             System.out.println("activeFilter " + this.activeFilter);
+            System.out.println("enumForCheckConstraints " + this.enumForCheckConstraints);
         }
     }
 

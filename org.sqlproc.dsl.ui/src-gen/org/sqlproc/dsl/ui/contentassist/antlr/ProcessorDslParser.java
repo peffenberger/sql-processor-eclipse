@@ -259,6 +259,8 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_39_1(), "rule__PojogenProperty__Group_39_1__0");
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_40(), "rule__PojogenProperty__Group_40__0");
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_41(), "rule__PojogenProperty__Group_41__0");
+					put(grammarAccess.getPojogenPropertyAccess().getGroup_42(), "rule__PojogenProperty__Group_42__0");
+					put(grammarAccess.getPojogenPropertyAccess().getGroup_42_3(), "rule__PojogenProperty__Group_42_3__0");
 					put(grammarAccess.getMetaTypeAssignementAccess().getGroup(), "rule__MetaTypeAssignement__Group__0");
 					put(grammarAccess.getMetaTypeAssignementAccess().getGroup_3(), "rule__MetaTypeAssignement__Group_3__0");
 					put(grammarAccess.getMetagenPropertyAccess().getGroup_0(), "rule__MetagenProperty__Group_0__0");
@@ -667,6 +669,9 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojogenPropertyAccess().getActiveFilterAssignment_40_2(), "rule__PojogenProperty__ActiveFilterAssignment_40_2");
 					put(grammarAccess.getPojogenPropertyAccess().getNameAssignment_41_0(), "rule__PojogenProperty__NameAssignment_41_0");
 					put(grammarAccess.getPojogenPropertyAccess().getPckgAssignment_41_2(), "rule__PojogenProperty__PckgAssignment_41_2");
+					put(grammarAccess.getPojogenPropertyAccess().getNameAssignment_42_0(), "rule__PojogenProperty__NameAssignment_42_0");
+					put(grammarAccess.getPojogenPropertyAccess().getEnumNameAssignment_42_2(), "rule__PojogenProperty__EnumNameAssignment_42_2");
+					put(grammarAccess.getPojogenPropertyAccess().getDbCheckConstraintsAssignment_42_3_1(), "rule__PojogenProperty__DbCheckConstraintsAssignment_42_3_1");
 					put(grammarAccess.getMetaTypeAssignementAccess().getDbColumnAssignment_0(), "rule__MetaTypeAssignement__DbColumnAssignment_0");
 					put(grammarAccess.getMetaTypeAssignementAccess().getTypeAssignment_2(), "rule__MetaTypeAssignement__TypeAssignment_2");
 					put(grammarAccess.getMetaTypeAssignementAccess().getExtensionAssignment_3_1(), "rule__MetaTypeAssignement__ExtensionAssignment_3_1");

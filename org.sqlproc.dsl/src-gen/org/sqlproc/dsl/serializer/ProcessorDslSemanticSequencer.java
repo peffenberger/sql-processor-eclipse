@@ -1646,7 +1646,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='pojos-for-procedures' procPojos+=ProcedurePojoAssignement+) | 
 	 *         (name='pojos-for-functions' funPojos+=FunctionPojoAssignement+) | 
 	 *         (name='active-filter' activeFilter=PropertyValue) | 
-	 *         (name='package' pckg=PropertyValue)
+	 *         (name='package' pckg=PropertyValue) | 
+	 *         (name='enum-for-check-constraints' enumName=IDENT dbCheckConstraints+=IDENT+)
 	 *     )
 	 */
 	protected void sequence_PojogenProperty(EObject context, PojogenProperty semanticObject) {

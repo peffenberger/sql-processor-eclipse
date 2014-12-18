@@ -115,6 +115,7 @@ PojogenProperty:
 	|name='pojos-for-functions' (WS+ funPojos+=FunctionPojoAssignement)+
 	|name='active-filter' WS+ activeFilter=PropertyValue
 	|name='package' WS+ pckg=PropertyValue
+	|name='enum-for-check-constraints' WS+ enumName=IDENT (WS+ dbCheckConstraints+=IDENT)+
 	);
 
 MetaTypeAssignement: dbColumn=IDENT '->' type=IDENT ('->' extension=IDENT)?;

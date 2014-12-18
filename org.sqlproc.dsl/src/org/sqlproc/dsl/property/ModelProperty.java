@@ -175,4 +175,6 @@ public interface ModelProperty extends Adapter {
     String getPackage(EObject model);
 
     String getDaoPackage(EObject model);
+
+    Map<String, String> getEnumForCheckConstraints(EObject model);
 }

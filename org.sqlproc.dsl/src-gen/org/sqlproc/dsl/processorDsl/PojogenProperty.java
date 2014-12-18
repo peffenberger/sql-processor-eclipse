@@ -45,6 +45,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getFunPojos <em>Fun Pojos</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getActiveFilter <em>Active Filter</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getPckg <em>Pckg</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getEnumName <em>Enum Name</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDbCheckConstraints <em>Db Check Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -709,5 +711,47 @@ public interface PojogenProperty extends EObject
    * @generated
    */
   void setPckg(String value);
+
+  /**
+   * Returns the value of the '<em><b>Enum Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Enum Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Enum Name</em>' attribute.
+   * @see #setEnumName(String)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojogenProperty_EnumName()
+   * @model
+   * @generated
+   */
+  String getEnumName();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getEnumName <em>Enum Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Enum Name</em>' attribute.
+   * @see #getEnumName()
+   * @generated
+   */
+  void setEnumName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Db Check Constraints</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Db Check Constraints</em>' attribute list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Db Check Constraints</em>' attribute list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojogenProperty_DbCheckConstraints()
+   * @model unique="false"
+   * @generated
+   */
+  EList<String> getDbCheckConstraints();
 
 } // PojogenProperty
