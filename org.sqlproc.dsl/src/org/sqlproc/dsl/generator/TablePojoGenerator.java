@@ -535,6 +535,7 @@ public class TablePojoGenerator {
             }
         }
 
+        Set<String> enumsForChecks = new HashSet<String>();
         for (int i = 0, l = dbCheckConstraints.size(); i < l; i++) {
             DbCheckConstraint check = dbCheckConstraints.get(i);
             PojoAttribute attribute = (pojos.containsKey(check.getTable()) && pojos.get(check.getTable()).containsKey(
@@ -547,8 +548,20 @@ public class TablePojoGenerator {
             if (name.startsWith(check.getTable()) && tableNames.containsKey(check.getTable())) {
                 name = tableNames.get(check.getTable()) + name.substring(check.getTable().length());
             }
-            attribute.setDependencyClassName(tableToCamelCase(name));
+            boolean skipCheckConstraint = false;
+            if (enumForCheckConstraints.containsKey(name)) {
+                String enumName = enumForCheckConstraints.get(name);
+                attribute.setDependencyClassName(enumName);
+                if (enumsForChecks.contains(enumName))
+                    skipCheckConstraint = true;
+                else
+                    enumsForChecks.add(enumName);
+            } else
+                attribute.setDependencyClassName(tableToCamelCase(name));
             attribute.setDependencyClassNameIsEnum(true);
+
+            if (skipCheckConstraint)
+                continue;
 
             List<EnumAttribute> attrs = new ArrayList<EnumAttribute>();
             enums.put(name, attrs);
@@ -997,7 +1010,10 @@ public class TablePojoGenerator {
                 if (makeItFinal)
                     buffer.append("final ");
                 buffer.append("enum ");
-                buffer.append(tableToCamelCase(pojoName));
+                if (enumForCheckConstraints.containsKey(pojoName))
+                    buffer.append(enumForCheckConstraints.get(pojoName));
+                else
+                    buffer.append(tableToCamelCase(pojoName));
                 if (pojoExtends.containsKey(pojo))
                     buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
                 if (pojoDiscriminators.containsKey(pojo))
