@@ -907,6 +907,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.pckg = property.getPckg();
         } else if (POJOGEN_ENUM_FOR_CHECK_CONSTRAINTS.equals(property.getName())) {
             for (int i = 0, m = property.getDbCheckConstraints().size(); i < m; i++) {
+                if (i == 0)
+                    modelValues.enumForCheckConstraints.put(property.getEnumName(), property.getDbCheckConstraints()
+                            .get(i));
                 modelValues.enumForCheckConstraints
                         .put(property.getDbCheckConstraints().get(i), property.getEnumName());
             }

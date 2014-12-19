@@ -535,7 +535,6 @@ public class TablePojoGenerator {
             }
         }
 
-        Set<String> enumsForChecks = new HashSet<String>();
         for (int i = 0, l = dbCheckConstraints.size(); i < l; i++) {
             DbCheckConstraint check = dbCheckConstraints.get(i);
             PojoAttribute attribute = (pojos.containsKey(check.getTable()) && pojos.get(check.getTable()).containsKey(
@@ -548,19 +547,19 @@ public class TablePojoGenerator {
             if (name.startsWith(check.getTable()) && tableNames.containsKey(check.getTable())) {
                 name = tableNames.get(check.getTable()) + name.substring(check.getTable().length());
             }
-            boolean skipCheckConstraint = false;
+            boolean firstCheckConstraint = false;
             if (enumForCheckConstraints.containsKey(name)) {
                 String enumName = enumForCheckConstraints.get(name);
                 attribute.setDependencyClassName(enumName);
-                if (enumsForChecks.contains(enumName))
-                    skipCheckConstraint = true;
-                else
-                    enumsForChecks.add(enumName);
-            } else
+                if (enumForCheckConstraints.get(enumName).equals(name))
+                    firstCheckConstraint = true;
+            } else {
                 attribute.setDependencyClassName(tableToCamelCase(name));
+                firstCheckConstraint = true;
+            }
             attribute.setDependencyClassNameIsEnum(true);
 
-            if (skipCheckConstraint)
+            if (!firstCheckConstraint)
                 continue;
 
             List<EnumAttribute> attrs = new ArrayList<EnumAttribute>();
