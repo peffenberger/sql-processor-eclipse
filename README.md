@@ -3,17 +3,16 @@ sql-processor-eclipse
 
 The SQL Processor Eclipse Plugin (SQLEP).
 
-To import this plugin into IDE the STS 3.2.0 plus Xtext 2.3 are required.
+To import this plugin into IDE the STS 3.6.0 plus Xtext 2.6 are required.
 
 The minimum installation is the next one:
-- spring-tool-suite-3.2.0.RELEASE-e4.2.2-linux-gtk-installer.sh
+- spring-tool-suite-3.6.0.RELEASE-e4.4-linux-gtk-x86_64.tar.gz
 and the plugins:
- - Ecore Tools SDK 1.1.0
- - EMF - Eclipse Modeling Framework SDK 2.8.3
- - MWE 2 language SDK 2.3.0 (do not update to 2.4.0 *)
- - MWE 2 runtime SDK 2.3.0 (do not update to 2.4.0 *)
- - Xpand SDK 1.2.1 (updated to 1.3.0)
- - Xtext SDK 2.3.1 (do not update to 2.4.0 *)
+ - Xtext SDK 2.6.0
+ - MWE 2 language SDK 2.6.0
+ - MWE 2 runtime SDK 2.6.0
+ - EMF Eclipse Modeling Framework SDK 2.10.0
+and finally Java 7.
 
 To install SQLEP, the next P2 repos can be used
  - http://sql-processor.org/plugins/milestones/
@@ -29,12 +28,12 @@ or simple (using Eclipse P2 repositories)
     mvn clean install
 
 To install this plugin from the build, copy the next jars into eclipse/dropins directory:
- - ./org.sqlproc.dsl/target/org.sqlproc.dsl-1.5.0-SNAPSHOT.jar
- - ./org.sqlproc.dsl.ui/target/org.sqlproc.dsl.ui-1.5.0-SNAPSHOT.jar
+ - ./org.sqlproc.dsl/target/org.sqlproc.dsl-1.9.3-SNAPSHOT.jar
+ - ./org.sqlproc.dsl.ui/target/org.sqlproc.dsl.ui-1.9.3-SNAPSHOT.jar
 
 For example
 
-    cp ./org.sqlproc.dsl/target/org.sqlproc.dsl-1.5.0-SNAPSHOT.jar ~/springsource/sts-3.2.0.RELEASE/dropins/
-    cp ./org.sqlproc.dsl.ui/target/org.sqlproc.dsl.ui-1.5.0-SNAPSHOT.jar ~/springsource/sts-3.2.0.RELEASE/dropins/
+    cp ./org.sqlproc.dsl/target/org.sqlproc.dsl-1.9.3-SNAPSHOT.jar ~/springsource/sts-3.6.0.RELEASE/dropins/
+    cp ./org.sqlproc.dsl.ui/target/org.sqlproc.dsl.ui-1.9.3-SNAPSHOT.jar ~/springsource/sts-3.6.0.RELEASE/dropins/
 
 
