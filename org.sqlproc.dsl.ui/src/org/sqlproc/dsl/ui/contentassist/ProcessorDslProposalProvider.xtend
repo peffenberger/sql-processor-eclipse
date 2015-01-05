@@ -18,7 +18,6 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
-import org.sqlproc.dsl.processorDsl.AnnotatedEntity
 import org.sqlproc.dsl.processorDsl.Artifacts
 import org.sqlproc.dsl.processorDsl.Column
 import org.sqlproc.dsl.processorDsl.DatabaseProperty
@@ -292,9 +291,9 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
         }
         val _checkProperty = checkProperty
         var innerPojoProperty = Utils.attributes(baseEntity).findFirst[name == _checkProperty]
-        if (innerPojoProperty == null || (innerPojoProperty.getRef() == null && innerPojoProperty.getGref() == null))
+        if (innerPojoProperty == null || innerPojoProperty.type.ref == null && innerPojoProperty.type.gref== null)
             return null
-        var innerEntity = innerPojoProperty.ref ?: innerPojoProperty.gref as Entity
+        var innerEntity = innerPojoProperty.type.ref ?: innerPojoProperty.type.gref as Entity
 		getPojoEntity(innerEntity, innerProperty)
     }
 
@@ -303,13 +302,13 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
         if (pojoEntity == null)
             return properties
 
-		pojoEntity.features.map[feature].forEach[
-            if (native!= null || ref != null || type != null)
+		pojoEntity.features.map[it].forEach[
+            if (type.ref != null || type.type != null)
                 properties.add(it)
         ]
 
         val superType = Utils.getSuperType(pojoEntity)
-		return if (superType == null ) properties else superType.getProperties(properties)
+		return if (superType == null || !(superType instanceof PojoEntity)) properties else (superType as PojoEntity).getProperties(properties)
     }
     
     def isPrimitive(Class<?> clazz) {
@@ -943,10 +942,8 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
         scope.getAllElements().forEach[description |
             val packageDeclaration = resourceSet.getEObject(description.getEObjectURI(), true) as PackageDeclaration
             packageDeclaration.getElements().forEach[aEntity |
-                if (aEntity instanceof AnnotatedEntity) {
-                    var ae = aEntity as AnnotatedEntity
-                    if (ae.getEntity() instanceof PojoEntity)
-                        result.add(ae.getEntity() as PojoEntity)
+                if (aEntity instanceof PojoEntity) {
+                	result.add(aEntity as PojoEntity)
                 }
             ]
         ]

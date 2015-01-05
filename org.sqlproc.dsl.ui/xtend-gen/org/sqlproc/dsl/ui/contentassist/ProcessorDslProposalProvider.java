@@ -46,8 +46,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
-import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
-import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
+import org.sqlproc.dsl.processorDsl.AbstractEntity;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.DatabaseProperty;
@@ -66,10 +65,10 @@ import org.sqlproc.dsl.processorDsl.MappingRule;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.MetagenProperty;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
-import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
+import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.PojogenProperty;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 import org.sqlproc.dsl.processorDsl.ShowColumnTypeAssignement;
@@ -580,12 +579,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         _or_1 = true;
       } else {
         boolean _and = false;
-        Entity _ref = innerPojoProperty.getRef();
+        PojoType _type = innerPojoProperty.getType();
+        Entity _ref = _type.getRef();
         boolean _equals_4 = Objects.equal(_ref, null);
         if (!_equals_4) {
           _and = false;
         } else {
-          PojoEntity _gref = innerPojoProperty.getGref();
+          PojoType _type_1 = innerPojoProperty.getType();
+          Entity _gref = _type_1.getGref();
           boolean _equals_5 = Objects.equal(_gref, null);
           _and = _equals_5;
         }
@@ -595,11 +596,13 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         return null;
       }
       Entity _elvis = null;
-      Entity _ref_1 = innerPojoProperty.getRef();
+      PojoType _type_2 = innerPojoProperty.getType();
+      Entity _ref_1 = _type_2.getRef();
       if (_ref_1 != null) {
         _elvis = _ref_1;
       } else {
-        PojoEntity _gref_1 = innerPojoProperty.getGref();
+        PojoType _type_3 = innerPojoProperty.getType();
+        Entity _gref_1 = _type_3.getGref();
         _elvis = ((Entity) _gref_1);
       }
       Entity innerEntity = _elvis;
@@ -621,32 +624,26 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     if (_equals) {
       return properties;
     }
-    EList<PojoAnnotatedProperty> _features = pojoEntity.getFeatures();
-    final Function1<PojoAnnotatedProperty, PojoProperty> _function = new Function1<PojoAnnotatedProperty, PojoProperty>() {
-      public PojoProperty apply(final PojoAnnotatedProperty it) {
-        return it.getFeature();
+    EList<PojoProperty> _features = pojoEntity.getFeatures();
+    final Function1<PojoProperty, PojoProperty> _function = new Function1<PojoProperty, PojoProperty>() {
+      public PojoProperty apply(final PojoProperty it) {
+        return it;
       }
     };
-    List<PojoProperty> _map = ListExtensions.<PojoAnnotatedProperty, PojoProperty>map(_features, _function);
+    List<PojoProperty> _map = ListExtensions.<PojoProperty, PojoProperty>map(_features, _function);
     final Procedure1<PojoProperty> _function_1 = new Procedure1<PojoProperty>() {
       public void apply(final PojoProperty it) {
         boolean _or = false;
-        boolean _or_1 = false;
-        String _native = it.getNative();
-        boolean _notEquals = (!Objects.equal(_native, null));
+        PojoType _type = it.getType();
+        Entity _ref = _type.getRef();
+        boolean _notEquals = (!Objects.equal(_ref, null));
         if (_notEquals) {
-          _or_1 = true;
-        } else {
-          Entity _ref = it.getRef();
-          boolean _notEquals_1 = (!Objects.equal(_ref, null));
-          _or_1 = _notEquals_1;
-        }
-        if (_or_1) {
           _or = true;
         } else {
-          JvmType _type = it.getType();
-          boolean _notEquals_2 = (!Objects.equal(_type, null));
-          _or = _notEquals_2;
+          PojoType _type_1 = it.getType();
+          JvmType _type_2 = _type_1.getType();
+          boolean _notEquals_1 = (!Objects.equal(_type_2, null));
+          _or = _notEquals_1;
         }
         if (_or) {
           properties.add(it);
@@ -654,13 +651,19 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       }
     };
     IterableExtensions.<PojoProperty>forEach(_map, _function_1);
-    final PojoEntity superType = Utils.getSuperType(pojoEntity);
+    final PojoType superType = Utils.getSuperType(pojoEntity);
     List<PojoProperty> _xifexpression = null;
+    boolean _or = false;
     boolean _equals_1 = Objects.equal(superType, null);
     if (_equals_1) {
+      _or = true;
+    } else {
+      _or = (!(superType instanceof PojoEntity));
+    }
+    if (_or) {
       _xifexpression = properties;
     } else {
-      _xifexpression = this.getProperties(superType, properties);
+      _xifexpression = this.getProperties(((PojoEntity) superType), properties);
     }
     return _xifexpression;
   }
@@ -1925,20 +1928,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         URI _eObjectURI = description.getEObjectURI();
         EObject _eObject = resourceSet.getEObject(_eObjectURI, true);
         final PackageDeclaration packageDeclaration = ((PackageDeclaration) _eObject);
-        EList<AbstractPojoEntity> _elements = packageDeclaration.getElements();
-        final Procedure1<AbstractPojoEntity> _function = new Procedure1<AbstractPojoEntity>() {
-          public void apply(final AbstractPojoEntity aEntity) {
-            if ((aEntity instanceof AnnotatedEntity)) {
-              AnnotatedEntity ae = ((AnnotatedEntity) aEntity);
-              Entity _entity = ae.getEntity();
-              if ((_entity instanceof PojoEntity)) {
-                Entity _entity_1 = ae.getEntity();
-                result.add(((PojoEntity) _entity_1));
-              }
+        EList<AbstractEntity> _elements = packageDeclaration.getElements();
+        final Procedure1<AbstractEntity> _function = new Procedure1<AbstractEntity>() {
+          public void apply(final AbstractEntity aEntity) {
+            if ((aEntity instanceof PojoEntity)) {
+              result.add(((PojoEntity) aEntity));
             }
           }
         };
-        IterableExtensions.<AbstractPojoEntity>forEach(_elements, _function);
+        IterableExtensions.<AbstractEntity>forEach(_elements, _function);
       }
     };
     IterableExtensions.<IEObjectDescription>forEach(_allElements, _function_1);

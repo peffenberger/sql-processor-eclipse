@@ -123,7 +123,7 @@ public class ProcessorTemplateProposalProvider extends DefaultTemplateProposalPr
             acceptor.accept(tp);
         }
 
-        if (templateContext.getContextType().getId().equals(helper.getId(ga.getAbstractPojoEntityRule()))) {
+        if (templateContext.getContextType().getId().equals(helper.getId(ga.getAbstractEntityRule()))) {
 
             Template template = new Template("pojogen", "Pojo generator", "pojogenTemplateID", "${pojoGenerator}",
                     false);// auto-insertable?
@@ -132,7 +132,7 @@ public class ProcessorTemplateProposalProvider extends DefaultTemplateProposalPr
             acceptor.accept(tp);
         }
 
-        if (templateContext.getContextType().getId().equals(helper.getId(ga.getAbstractPojoEntityRule()))) {
+        if (templateContext.getContextType().getId().equals(helper.getId(ga.getAbstractEntityRule()))) {
 
             Template template = new Template("daogen", "DAO generator", "daogenTemplateID", "${daoGenerator}", false);// auto-insertable?
             TemplateProposal tp = createProposal(template, templateContext, context, getImage(template),

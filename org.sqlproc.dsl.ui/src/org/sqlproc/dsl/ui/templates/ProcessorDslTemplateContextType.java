@@ -22,8 +22,7 @@ import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
 import org.sqlproc.dsl.generator.TableDaoGenerator;
 import org.sqlproc.dsl.generator.TableMetaGenerator;
 import org.sqlproc.dsl.generator.TablePojoGenerator;
-import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
-import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
+import org.sqlproc.dsl.processorDsl.AbstractEntity;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
@@ -689,31 +688,29 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
 
                 Map<String, String> finalEntities = new HashMap<String, String>();
                 Annotations annotations = new Annotations();
-                String suffix = packagex.getSuffix();
-                for (AbstractPojoEntity ape : packagex.getElements()) {
-                    if (ape instanceof AnnotatedEntity) {
-                        AnnotatedEntity apojo = (AnnotatedEntity) ape;
-                        if (apojo.getEntity() != null && apojo.getEntity() instanceof PojoEntity) {
-                            PojoEntity pojo = (PojoEntity) apojo.getEntity();
-                            Annotations.grabAnnotations(apojo, pojo, annotations);
-                            if (Utils.isFinal(pojo)) {
-                                // if (suffix != null && pojo.getName().endsWith(suffix))
-                                // finalEntities.add(pojo.getName()
-                                // .substring(0, pojo.getName().length() - suffix.length()));
-                                // else
-                                ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
-                                finalEntities.put(pojo.getName(), serializer.serialize(pojo));
-                            }
-                        } else if (apojo.getEntity() != null && apojo.getEntity() instanceof EnumEntity) {
-                            EnumEntity pojo = (EnumEntity) apojo.getEntity();
-                            if (Utils.isFinal(pojo)) {
-                                // if (suffix != null && pojo.getName().endsWith(suffix))
-                                // finalEntities.add(pojo.getName()
-                                // .substring(0, pojo.getName().length() - suffix.length()));
-                                // else
-                                ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
-                                finalEntities.put(pojo.getName(), serializer.serialize(pojo));
-                            }
+                String suffix = Utils.getSuffix(packagex);
+                for (AbstractEntity ae : packagex.getElements()) {
+                    if (ae instanceof PojoEntity) {
+                        PojoEntity pojo = (PojoEntity) ae;
+                        Annotations.grabAnnotations(pojo.getAnnotations(), pojo.getName(), annotations);
+                        if (Utils.isFinal(pojo)) {
+                            // if (suffix != null && pojo.getName().endsWith(suffix))
+                            // finalEntities.add(pojo.getName()
+                            // .substring(0, pojo.getName().length() - suffix.length()));
+                            // else
+                            ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
+                            finalEntities.put(pojo.getName(), serializer.serialize(pojo));
+                        }
+                    } else if (ae instanceof EnumEntity) {
+                        EnumEntity pojo = (EnumEntity) ae;
+                        Annotations.grabAnnotations(pojo.getAnnotations(), pojo.getName(), annotations);
+                        if (Utils.isFinal(pojo)) {
+                            // if (suffix != null && pojo.getName().endsWith(suffix))
+                            // finalEntities.add(pojo.getName()
+                            // .substring(0, pojo.getName().length() - suffix.length()));
+                            // else
+                            ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
+                            finalEntities.put(pojo.getName(), serializer.serialize(pojo));
                         }
                     }
                 }
@@ -788,10 +785,10 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
 
                 Map<String, String> finalDaos = new HashMap<String, String>();
-                String suffix = packagex.getSuffix();
-                for (AbstractPojoEntity ape : packagex.getElements()) {
-                    if (ape instanceof PojoDao) {
-                        PojoDao dao = (PojoDao) ape;
+                String suffix = Utils.getSuffix(packagex);
+                for (AbstractEntity ae : packagex.getElements()) {
+                    if (ae instanceof PojoDao) {
+                        PojoDao dao = (PojoDao) ae;
                         if (Utils.isFinal(dao)) {
                             // if (suffix != null && dao.getName().endsWith(suffix))
                             // finalDaos.add(dao.getName()
