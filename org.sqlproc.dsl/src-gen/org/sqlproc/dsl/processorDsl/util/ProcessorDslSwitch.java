@@ -811,11 +811,27 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorDslPackage.POJO_DIRECTIVE_ENUM_INIT:
+      {
+        PojoDirectiveEnumInit pojoDirectiveEnumInit = (PojoDirectiveEnumInit)theEObject;
+        T result = casePojoDirectiveEnumInit(pojoDirectiveEnumInit);
+        if (result == null) result = casePojoDirective(pojoDirectiveEnumInit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorDslPackage.POJO_DIRECTIVE_IS_DEF:
       {
         PojoDirectiveIsDef pojoDirectiveIsDef = (PojoDirectiveIsDef)theEObject;
         T result = casePojoDirectiveIsDef(pojoDirectiveIsDef);
         if (result == null) result = casePojoDirective(pojoDirectiveIsDef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_ENUM_DEF:
+      {
+        PojoDirectiveEnumDef pojoDirectiveEnumDef = (PojoDirectiveEnumDef)theEObject;
+        T result = casePojoDirectiveEnumDef(pojoDirectiveEnumDef);
+        if (result == null) result = casePojoDirective(pojoDirectiveEnumDef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2664,6 +2680,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Enum Init</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Enum Init</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveEnumInit(PojoDirectiveEnumInit object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Is Def</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2675,6 +2707,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePojoDirectiveIsDef(PojoDirectiveIsDef object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Enum Def</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Enum Def</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveEnumDef(PojoDirectiveEnumDef object)
   {
     return null;
   }

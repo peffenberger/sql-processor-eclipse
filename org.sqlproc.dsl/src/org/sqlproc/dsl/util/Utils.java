@@ -1018,4 +1018,10 @@ public class Utils {
         }
         return null;
     }
+
+    public static String getSimpleName(PojoType pojo) {
+        if (pojo.getType() != null)
+            return pojo.getType().getSimpleName();
+        return pojo.getRef().getName();
+    }
 }

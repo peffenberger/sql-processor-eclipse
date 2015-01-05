@@ -585,9 +585,19 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createPojoDirectiveToInitAdapter();
       }
       @Override
+      public Adapter casePojoDirectiveEnumInit(PojoDirectiveEnumInit object)
+      {
+        return createPojoDirectiveEnumInitAdapter();
+      }
+      @Override
       public Adapter casePojoDirectiveIsDef(PojoDirectiveIsDef object)
       {
         return createPojoDirectiveIsDefAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveEnumDef(PojoDirectiveEnumDef object)
+      {
+        return createPojoDirectiveEnumDefAdapter();
       }
       @Override
       public Adapter casePojoDirectiveToString(PojoDirectiveToString object)
@@ -2272,6 +2282,21 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveEnumInit <em>Pojo Directive Enum Init</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveEnumInit
+   * @generated
+   */
+  public Adapter createPojoDirectiveEnumInitAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveIsDef <em>Pojo Directive Is Def</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -2282,6 +2307,21 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPojoDirectiveIsDefAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveEnumDef <em>Pojo Directive Enum Def</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveEnumDef
+   * @generated
+   */
+  public Adapter createPojoDirectiveEnumDefAdapter()
   {
     return null;
   }

@@ -430,6 +430,8 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoDirectiveAccess().getGroup_9(), "rule__PojoDirective__Group_9__0");
 					put(grammarAccess.getPojoDirectiveAccess().getGroup_10(), "rule__PojoDirective__Group_10__0");
 					put(grammarAccess.getPojoDirectiveAccess().getGroup_11(), "rule__PojoDirective__Group_11__0");
+					put(grammarAccess.getPojoDirectiveAccess().getGroup_12(), "rule__PojoDirective__Group_12__0");
+					put(grammarAccess.getPojoDirectiveAccess().getGroup_13(), "rule__PojoDirective__Group_13__0");
 					put(grammarAccess.getPojoEntityAccess().getGroup(), "rule__PojoEntity__Group__0");
 					put(grammarAccess.getPojoPropertyAnnotationAccess().getGroup(), "rule__PojoPropertyAnnotation__Group__0");
 					put(grammarAccess.getPojoPropertyAnnotationAccess().getGroup_1_0(), "rule__PojoPropertyAnnotation__Group_1_0__0");
@@ -930,8 +932,10 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoDirectiveAccess().getProplistAssignment_8_3(), "rule__PojoDirective__ProplistAssignment_8_3");
 					put(grammarAccess.getPojoDirectiveAccess().getProplistAssignment_9_3(), "rule__PojoDirective__ProplistAssignment_9_3");
 					put(grammarAccess.getPojoDirectiveAccess().getProplistAssignment_10_3(), "rule__PojoDirective__ProplistAssignment_10_3");
-					put(grammarAccess.getPojoDirectiveAccess().getIndexAssignment_11_3(), "rule__PojoDirective__IndexAssignment_11_3");
-					put(grammarAccess.getPojoDirectiveAccess().getProplistAssignment_11_5(), "rule__PojoDirective__ProplistAssignment_11_5");
+					put(grammarAccess.getPojoDirectiveAccess().getProplistAssignment_11_3(), "rule__PojoDirective__ProplistAssignment_11_3");
+					put(grammarAccess.getPojoDirectiveAccess().getProplistAssignment_12_3(), "rule__PojoDirective__ProplistAssignment_12_3");
+					put(grammarAccess.getPojoDirectiveAccess().getIndexAssignment_13_3(), "rule__PojoDirective__IndexAssignment_13_3");
+					put(grammarAccess.getPojoDirectiveAccess().getProplistAssignment_13_5(), "rule__PojoDirective__ProplistAssignment_13_5");
 					put(grammarAccess.getPojoEntityAccess().getAnnotationsAssignment_0(), "rule__PojoEntity__AnnotationsAssignment_0");
 					put(grammarAccess.getPojoEntityAccess().getDirectivesAssignment_1(), "rule__PojoEntity__DirectivesAssignment_1");
 					put(grammarAccess.getPojoEntityAccess().getNameAssignment_3(), "rule__PojoEntity__NameAssignment_3");

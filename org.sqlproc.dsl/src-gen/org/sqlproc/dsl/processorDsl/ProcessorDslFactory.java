@@ -941,6 +941,15 @@ public interface ProcessorDslFactory extends EFactory
   PojoDirectiveToInit createPojoDirectiveToInit();
 
   /**
+   * Returns a new object of class '<em>Pojo Directive Enum Init</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Enum Init</em>'.
+   * @generated
+   */
+  PojoDirectiveEnumInit createPojoDirectiveEnumInit();
+
+  /**
    * Returns a new object of class '<em>Pojo Directive Is Def</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -948,6 +957,15 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   PojoDirectiveIsDef createPojoDirectiveIsDef();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Enum Def</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Enum Def</em>'.
+   * @generated
+   */
+  PojoDirectiveEnumDef createPojoDirectiveEnumDef();
 
   /**
    * Returns a new object of class '<em>Pojo Directive To String</em>'.
