@@ -18,13 +18,13 @@ class ProcessorGeneratorUtils {
 	@Inject extension IQualifiedNameProvider
 	
 	def compileType(EnumProperty f, ImportManager im) '''
-	  «IF f.type.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getType != null»«im.serialize(f.getType)»«ENDIF»'''
+	  «im.serialize(f.getType)»'''
 	  
 	def compileType(PojoProperty f, ImportManager im) '''
-	  «IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getRef != null»«f.getRef.fullyQualifiedName»«ELSEIF f.getType != null»«im.serialize(f.getType)»«ENDIF»«IF f.getGtype != null»<«im.serialize(f.getGtype)»>«ENDIF»«IF f.getGref != null»<«f.getGref.fullyQualifiedName»>«ENDIF»«IF f.array»[]«ENDIF»'''
+	  «im.serialize(f.getType)»'''
 	  
 	def compileType(PojoType f, ImportManager im) '''
-	  «IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getRef != null»«im.serialize(pojoMethod2jvmType(f.getRef))»«ELSEIF f.getType != null»«im.serialize(f.getType)»«ENDIF»«IF f.getGtype != null»<«im.serialize(f.getGtype)»>«ENDIF»«IF f.getGref != null»<«im.serialize(pojoMethod2jvmType(f.getGref))»>«ENDIF»«IF f.array»[]«ENDIF»'''
+	  «im.serialize(f.getType)»'''
 
 	def completeName(PojoEntity e) {
 		return getPackage(e)+"."+e.name;

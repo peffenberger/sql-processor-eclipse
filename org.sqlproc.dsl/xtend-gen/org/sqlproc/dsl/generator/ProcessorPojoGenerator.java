@@ -14,16 +14,26 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.sqlproc.dsl.ImportManager;
 import org.sqlproc.dsl.generator.ProcessorGeneratorUtils;
 import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
+import org.sqlproc.dsl.processorDsl.Entity;
+import org.sqlproc.dsl.processorDsl.EnumDirective;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
+import org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues;
+import org.sqlproc.dsl.processorDsl.EnumPropertyValue;
 import org.sqlproc.dsl.processorDsl.Extends;
 import org.sqlproc.dsl.processorDsl.Implements;
+import org.sqlproc.dsl.processorDsl.PojoDirective;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveIsDef;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveToInit;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
+import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.util.Utils;
 
 /**
@@ -40,6 +50,23 @@ public class ProcessorPojoGenerator {
   @Inject
   @Extension
   private ProcessorGeneratorUtils _processorGeneratorUtils;
+  
+  public CharSequence compile(final Entity e) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if ((e instanceof EnumEntity)) {
+        CharSequence _compile = this.compile(((EnumEntity) e));
+        _builder.append(_compile, "");
+      } else {
+        if ((e instanceof PojoEntity)) {
+          CharSequence _compile_1 = this.compile(((PojoEntity) e));
+          _builder.append(_compile_1, "");
+        }
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
   
   public CharSequence compile(final EnumEntity e) {
     StringConcatenation _builder = new StringConcatenation();
@@ -110,10 +137,198 @@ public class ProcessorPojoGenerator {
   }
   
   public CharSequence compile(final EnumEntity e, final ImportManager im, final EnumProperty ea) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method value is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method value is undefined for the type ProcessorPojoGenerator"
-      + "\n!= cannot be resolved");
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public enum ");
+    String _name = e.getName();
+    _builder.append(_name, "");
+    _builder.append(" ");
+    CharSequence _compileImplements = this.compileImplements(e);
+    _builder.append(_compileImplements, "");
+    _builder.append("{");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("\t");
+    {
+      EList<EnumDirective> _directives = e.getDirectives();
+      final Function1<EnumDirective, Boolean> _function = new Function1<EnumDirective, Boolean>() {
+        public Boolean apply(final EnumDirective x) {
+          return Boolean.valueOf((x instanceof EnumPropertyDirectiveValues));
+        }
+      };
+      Iterable<EnumDirective> _filter = IterableExtensions.<EnumDirective>filter(_directives, _function);
+      boolean _hasElements = false;
+      for(final EnumDirective f : _filter) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(", ", "\t");
+        }
+        {
+          EList<EnumPropertyValue> _values = ((EnumPropertyDirectiveValues) f).getValues();
+          boolean _hasElements_1 = false;
+          for(final EnumPropertyValue v : _values) {
+            if (!_hasElements_1) {
+              _hasElements_1 = true;
+            } else {
+              _builder.appendImmediate(", ", "\t");
+            }
+            String _name_1 = v.getName();
+            _builder.append(_name_1, "\t");
+            _builder.append("(");
+            String _value = v.getValue();
+            _builder.append(_value, "\t");
+            _builder.append(")");
+          }
+        }
+      }
+    }
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    {
+      String _sernum = Utils.getSernum(e);
+      boolean _notEquals = (!Objects.equal(_sernum, null));
+      if (_notEquals) {
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("private static final long serialVersionUID = ");
+        String _sernum_1 = Utils.getSernum(e);
+        _builder.append(_sernum_1, "\t");
+        _builder.append("L;");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private static Map<");
+    CharSequence _compileType = this._processorGeneratorUtils.compileType(ea, im);
+    _builder.append(_compileType, "\t");
+    _builder.append(", ");
+    String _name_2 = e.getName();
+    _builder.append(_name_2, "\t");
+    _builder.append("> identifierMap = new HashMap<");
+    CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(ea, im);
+    _builder.append(_compileType_1, "\t");
+    _builder.append(", ");
+    String _name_3 = e.getName();
+    _builder.append(_name_3, "\t");
+    _builder.append(">();");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("static {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("for (");
+    String _name_4 = e.getName();
+    _builder.append(_name_4, "\t\t");
+    _builder.append(" value : ");
+    String _name_5 = e.getName();
+    _builder.append(_name_5, "\t\t");
+    _builder.append(".values()) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    _builder.append("identifierMap.put(value.getValue(), value);");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private ");
+    CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(ea, im);
+    _builder.append(_compileType_2, "\t");
+    _builder.append(" ");
+    String _name_6 = ea.getName();
+    _builder.append(_name_6, "\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private ");
+    String _name_7 = e.getName();
+    _builder.append(_name_7, "\t");
+    _builder.append("(");
+    CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(ea, im);
+    _builder.append(_compileType_3, "\t");
+    _builder.append(" value) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("this.");
+    String _name_8 = ea.getName();
+    _builder.append(_name_8, "\t\t");
+    _builder.append(" = value;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public static ");
+    String _name_9 = e.getName();
+    _builder.append(_name_9, "\t");
+    _builder.append(" fromValue(");
+    CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(ea, im);
+    _builder.append(_compileType_4, "\t");
+    _builder.append(" value) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    String _name_10 = e.getName();
+    _builder.append(_name_10, "\t\t");
+    _builder.append(" result = identifierMap.get(value);");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("if (result == null) {");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("throw new IllegalArgumentException(\"No ");
+    String _name_11 = e.getName();
+    _builder.append(_name_11, "\t\t\t");
+    _builder.append(" for value: \" + value);");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return result;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public ");
+    CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(ea, im);
+    _builder.append(_compileType_5, "\t");
+    _builder.append(" getValue() {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("return ");
+    String _name_12 = ea.getName();
+    _builder.append(_name_12, "\t\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public String getName() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return name();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
   }
   
   public CharSequence compile(final PojoEntity e) {
@@ -167,7 +382,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      List<PojoAnnotatedProperty> _listFeatures = this.listFeatures(e);
+      List<PojoProperty> _listFeatures = this.listFeatures(e);
       boolean _isEmpty_1 = _listFeatures.isEmpty();
       boolean _not_1 = (!_isEmpty_1);
       if (_not_1) {
@@ -177,12 +392,12 @@ public class ProcessorPojoGenerator {
     }
     {
       boolean _or = false;
-      PojoProperty _hasIsDef = this.hasIsDef(e);
+      PojoDirective _hasIsDef = this.hasIsDef(e);
       boolean _notEquals_2 = (!Objects.equal(_hasIsDef, null));
       if (_notEquals_2) {
         _or = true;
       } else {
-        PojoProperty _hasToInit = this.hasToInit(e);
+        PojoDirective _hasToInit = this.hasToInit(e);
         boolean _notEquals_3 = (!Objects.equal(_hasToInit, null));
         _or = _notEquals_3;
       }
@@ -222,23 +437,6 @@ public class ProcessorPojoGenerator {
   
   public CharSequence compile(final PojoEntity e, final ImportManager im) {
     throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field ae is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method or field ae is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method or field ae is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method constName2 is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method or field ae is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method or field ae is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method or field ae is undefined for the type ProcessorPojoGenerator"
       + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
       + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
       + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
@@ -262,50 +460,6 @@ public class ProcessorPojoGenerator {
       + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
       + "\nThe method or field ae is undefined for the type ProcessorPojoGenerator"
       + "\nThe method or field ae is undefined for the type ProcessorPojoGenerator"
-      + "\nannotations cannot be resolved"
-      + "\ngetType cannot be resolved"
-      + "\nfeatures cannot be resolved"
-      + "\nisEmpty cannot be resolved"
-      + "\n! cannot be resolved"
-      + "\nfeatures cannot be resolved"
-      + "\nstaticAnnotations cannot be resolved"
-      + "\ngetType cannot be resolved"
-      + "\nfeatures cannot be resolved"
-      + "\nisEmpty cannot be resolved"
-      + "\n! cannot be resolved"
-      + "\nfeatures cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\nstartsWith cannot be resolved"
-      + "\nstaticAnnotations cannot be resolved"
-      + "\ngetType cannot be resolved"
-      + "\nfeatures cannot be resolved"
-      + "\nisEmpty cannot be resolved"
-      + "\n! cannot be resolved"
-      + "\nfeatures cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\nsubstring cannot be resolved"
-      + "\nconstructorAnnotations cannot be resolved"
-      + "\ngetType cannot be resolved"
-      + "\nfeatures cannot be resolved"
-      + "\nisEmpty cannot be resolved"
-      + "\n! cannot be resolved"
-      + "\nfeatures cannot be resolved"
-      + "\nconstructorAnnotations cannot be resolved"
-      + "\ngetType cannot be resolved"
-      + "\nfeatures cannot be resolved"
-      + "\nisEmpty cannot be resolved"
-      + "\n! cannot be resolved"
-      + "\nfeatures cannot be resolved"
-      + "\nfeature cannot be resolved"
-      + "\ncompileType cannot be resolved"
-      + "\nfeature cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\nfeature cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\ncompile cannot be resolved"
-      + "\n! cannot be resolved"
       + "\nname cannot be resolved"
       + "\nequalsIgnoreCase cannot be resolved"
       + "\ncompileHashCode cannot be resolved"
@@ -330,17 +484,23 @@ public class ProcessorPojoGenerator {
   }
   
   public CharSequence compileAnnotationProperty(final AnnotationProperty f, final ImportManager im) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getRef is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method getRef is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method getAnnotationValue is undefined for the type ProcessorPojoGenerator"
-      + "\nType mismatch: cannot convert from PojoType to JvmType"
-      + "\n!= cannot be resolved"
-      + "\nfullyQualifiedName cannot be resolved");
+    StringConcatenation _builder = new StringConcatenation();
+    String _name = f.getName();
+    _builder.append(_name, "");
+    _builder.append(" = ");
+    PojoType _type = f.getType();
+    CharSequence _serialize = im.serialize(_type);
+    _builder.append(_serialize, "");
+    String _annotationValue = Utils.getAnnotationValue(f);
+    _builder.append(_annotationValue, "");
+    return _builder;
   }
   
-  public CharSequence compile(final PojoProperty f, final /* PojoAnnotatedProperty */Object aaf, final ImportManager im, final PojoEntity e, final /* AnnotatedEntity */Object ae, final String operatorSuffix) {
+  public CharSequence compile(final PojoProperty f, final ImportManager im, final PojoEntity e, final String operatorSuffix) {
     throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field aaf is undefined for the type ProcessorPojoGenerator"
+      + "\nThe method or field aaf is undefined for the type ProcessorPojoGenerator"
+      + "\nThe method or field aaf is undefined for the type ProcessorPojoGenerator"
       + "\nattributeAnnotations cannot be resolved"
       + "\ngetType cannot be resolved"
       + "\nfeatures cannot be resolved"
@@ -691,69 +851,106 @@ public class ProcessorPojoGenerator {
       + "\nfeatures cannot be resolved");
   }
   
-  public /* List<PojoAnnotatedProperty> */Object listFeatures(final PojoEntity e) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nPojoAnnotatedProperty cannot be resolved to a type."
-      + "\nType mismatch: cannot convert from PojoType to PojoEntity");
+  public List<PojoProperty> listFeatures(final PojoEntity e) {
+    final ArrayList<PojoProperty> list = new ArrayList<PojoProperty>();
+    final PojoType se = Utils.getSuperType(e);
+    boolean _and = false;
+    boolean _notEquals = (!Objects.equal(se, null));
+    if (!_notEquals) {
+      _and = false;
+    } else {
+      _and = (se instanceof PojoEntity);
+    }
+    if (_and) {
+      List<PojoProperty> _listFeatures = this.listFeatures(((PojoEntity) se));
+      list.addAll(_listFeatures);
+    }
+    List<PojoProperty> _listFeatures1 = this.listFeatures1(e);
+    list.addAll(_listFeatures1);
+    return list;
   }
   
   public List<PojoProperty> listFeatures1(final PojoEntity e) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method feature is undefined for the type ProcessorPojoGenerator");
+    EList<PojoProperty> _features = e.getFeatures();
+    final Function1<PojoProperty, Boolean> _function = new Function1<PojoProperty, Boolean>() {
+      public Boolean apply(final PojoProperty f) {
+        return Boolean.valueOf(Utils.isList(f));
+      }
+    };
+    Iterable<PojoProperty> _filter = IterableExtensions.<PojoProperty>filter(_features, _function);
+    return IterableExtensions.<PojoProperty>toList(_filter);
   }
   
-  public /* List<PojoAnnotatedProperty> */Object requiredFeatures(final PojoEntity e) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nPojoAnnotatedProperty cannot be resolved to a type."
-      + "\nType mismatch: cannot convert from PojoType to PojoEntity");
+  public List<PojoProperty> requiredFeatures(final PojoEntity e) {
+    final ArrayList<PojoProperty> list = new ArrayList<PojoProperty>();
+    final PojoType se = Utils.getSuperType(e);
+    boolean _and = false;
+    boolean _notEquals = (!Objects.equal(se, null));
+    if (!_notEquals) {
+      _and = false;
+    } else {
+      _and = (se instanceof PojoEntity);
+    }
+    if (_and) {
+      List<PojoProperty> _requiredFeatures = this.requiredFeatures(((PojoEntity) se));
+      list.addAll(_requiredFeatures);
+    }
+    List<PojoProperty> _requiredFeatures1 = this.requiredFeatures1(e);
+    list.addAll(_requiredFeatures1);
+    return list;
   }
   
-  public /* ArrayList<PojoAnnotatedProperty> */Object requiredSuperFeatures(final PojoEntity e) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nPojoAnnotatedProperty cannot be resolved to a type."
-      + "\nType mismatch: cannot convert from PojoType to PojoEntity");
+  public ArrayList<PojoProperty> requiredSuperFeatures(final PojoEntity e) {
+    final ArrayList<PojoProperty> list = new ArrayList<PojoProperty>();
+    final PojoType se = Utils.getSuperType(e);
+    boolean _and = false;
+    boolean _notEquals = (!Objects.equal(se, null));
+    if (!_notEquals) {
+      _and = false;
+    } else {
+      _and = (se instanceof PojoEntity);
+    }
+    if (_and) {
+      List<PojoProperty> _requiredFeatures = this.requiredFeatures(((PojoEntity) se));
+      list.addAll(_requiredFeatures);
+    }
+    return list;
   }
   
   public List<PojoProperty> requiredFeatures1(final PojoEntity e) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method feature is undefined for the type ProcessorPojoGenerator");
+    EList<PojoProperty> _features = e.getFeatures();
+    final Function1<PojoProperty, Boolean> _function = new Function1<PojoProperty, Boolean>() {
+      public Boolean apply(final PojoProperty f) {
+        return Boolean.valueOf(Utils.isRequired(f));
+      }
+    };
+    Iterable<PojoProperty> _filter = IterableExtensions.<PojoProperty>filter(_features, _function);
+    return IterableExtensions.<PojoProperty>toList(_filter);
   }
   
-  public PojoProperty hasIsDef(final PojoEntity e) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
-      + "\nname cannot be resolved"
-      + "\n== cannot be resolved");
+  public PojoDirective hasIsDef(final PojoEntity e) {
+    EList<PojoDirective> _directives = e.getDirectives();
+    final Function1<PojoDirective, Boolean> _function = new Function1<PojoDirective, Boolean>() {
+      public Boolean apply(final PojoDirective f) {
+        return Boolean.valueOf((f instanceof PojoDirectiveIsDef));
+      }
+    };
+    return IterableExtensions.<PojoDirective>findFirst(_directives, _function);
   }
   
-  public PojoProperty hasToInit(final PojoEntity e) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method feature is undefined for the type ProcessorPojoGenerator"
-      + "\nname cannot be resolved"
-      + "\n== cannot be resolved");
+  public PojoDirective hasToInit(final PojoEntity e) {
+    EList<PojoDirective> _directives = e.getDirectives();
+    final Function1<PojoDirective, Boolean> _function = new Function1<PojoDirective, Boolean>() {
+      public Boolean apply(final PojoDirective f) {
+        return Boolean.valueOf((f instanceof PojoDirectiveToInit));
+      }
+    };
+    return IterableExtensions.<PojoDirective>findFirst(_directives, _function);
   }
   
-  public Object isAttribute(final PojoProperty f) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getNative is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method getRef is undefined for the type ProcessorPojoGenerator"
-      + "\n!= cannot be resolved"
-      + "\n|| cannot be resolved"
-      + "\n!= cannot be resolved"
-      + "\n|| cannot be resolved");
-  }
-  
-  public Object simplAttrs(final PojoProperty f) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method attrs is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method getNative is undefined for the type ProcessorPojoGenerator"
-      + "\nThe method getType is undefined for the type ProcessorPojoGenerator"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
-      + "\nfilter cannot be resolved"
-      + "\n!= cannot be resolved"
-      + "\n|| cannot be resolved"
-      + "\n!= cannot be resolved"
-      + "\ntoList cannot be resolved");
+  public boolean isAttribute(final PojoProperty f) {
+    PojoType _type = f.getType();
+    return (!Objects.equal(_type, null));
   }
   
   public CharSequence compileImplements(final EnumEntity e) {
@@ -781,33 +978,59 @@ public class ProcessorPojoGenerator {
   }
   
   public boolean compile(final Extends e, final ImportManager im) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from PojoType to JvmType");
+    PojoType _extends = e.getExtends();
+    return im.addImportFor(_extends);
   }
   
   public void addImplements(final EnumEntity e, final ImportManager im) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from PojoType to JvmType");
+    EObject _eContainer = e.eContainer();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
+    Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
+    for (final Implements impl : _filter) {
+      PojoType _implements = impl.getImplements();
+      im.addImportFor(_implements);
+    }
   }
   
   public void addExtends(final EnumEntity e, final ImportManager im) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from PojoType to JvmType");
+    EObject _eContainer = e.eContainer();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
+    Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
+    for (final Extends ext : _filter) {
+      PojoType _extends = ext.getExtends();
+      im.addImportFor(_extends);
+    }
   }
   
   public void addImplements(final PojoEntity e, final ImportManager im) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from PojoType to JvmType");
+    EObject _eContainer = e.eContainer();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
+    Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
+    for (final Implements impl : _filter) {
+      PojoType _implements = impl.getImplements();
+      im.addImportFor(_implements);
+    }
   }
   
   public void addExtends(final PojoEntity e, final ImportManager im) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from PojoType to JvmType");
+    EObject _eContainer = e.eContainer();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    EList<EObject> _eContents = _eContainer_1.eContents();
+    Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
+    for (final Extends ext : _filter) {
+      PojoType _extends = ext.getExtends();
+      im.addImportFor(_extends);
+    }
   }
   
   public void addAnnotations(final List<Annotation> annotations, final ImportManager im) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from PojoType to JvmType");
+    for (final Annotation a : annotations) {
+      PojoType _type = a.getType();
+      im.serialize(_type);
+    }
   }
   
   public Object getExtends(final EnumEntity e) {

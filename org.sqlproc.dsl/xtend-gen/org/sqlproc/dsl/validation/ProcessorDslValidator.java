@@ -42,6 +42,7 @@ import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.Constant;
 import org.sqlproc.dsl.processorDsl.DatabaseColumn;
 import org.sqlproc.dsl.processorDsl.DatabaseTable;
+import org.sqlproc.dsl.processorDsl.Entity;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
@@ -1342,38 +1343,46 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           return ValidationResult.OK;
         }
         PojoType _type = pojoProperty.getType();
-        PojoEntity _ref = _type.getRef();
+        Entity _ref = _type.getRef();
         boolean _notEquals = (!Objects.equal(_ref, null));
         if (_notEquals) {
           PojoType _type_1 = pojoProperty.getType();
-          PojoEntity _ref_1 = _type_1.getRef();
+          Entity _ref_1 = _type_1.getRef();
           if ((_ref_1 instanceof PojoEntity)) {
             PojoType _type_2 = pojoProperty.getType();
-            PojoEntity _ref_2 = _type_2.getRef();
+            Entity _ref_2 = _type_2.getRef();
             return this.checkEntityProperty(((PojoEntity) _ref_2), innerProperty);
           }
           return ValidationResult.OK;
         }
+        boolean _and = false;
         PojoType _type_3 = pojoProperty.getType();
-        PojoEntity _gref = _type_3.getGref();
+        Entity _gref = _type_3.getGref();
         boolean _notEquals_1 = (!Objects.equal(_gref, null));
-        if (_notEquals_1) {
+        if (!_notEquals_1) {
+          _and = false;
+        } else {
           PojoType _type_4 = pojoProperty.getType();
-          PojoEntity _gref_1 = _type_4.getGref();
-          return this.checkEntityProperty(_gref_1, innerProperty);
+          Entity _gref_1 = _type_4.getGref();
+          _and = (_gref_1 instanceof PojoEntity);
+        }
+        if (_and) {
+          PojoType _type_5 = pojoProperty.getType();
+          Entity _gref_2 = _type_5.getGref();
+          return this.checkEntityProperty(((PojoEntity) _gref_2), innerProperty);
         }
         return ValidationResult.ERROR;
       }
     }
     PojoType superType = Utils.getSuperType(entity);
-    boolean _and = false;
+    boolean _and_1 = false;
     boolean _notEquals_2 = (!Objects.equal(superType, null));
     if (!_notEquals_2) {
-      _and = false;
+      _and_1 = false;
     } else {
-      _and = (superType instanceof PojoEntity);
+      _and_1 = (superType instanceof PojoEntity);
     }
-    if (_and) {
+    if (_and_1) {
       ValidationResult result = this.checkEntityProperty(((PojoEntity) superType), property);
       boolean _or_1 = false;
       boolean _equals_3 = Objects.equal(result, ValidationResult.WARNING);
@@ -1392,16 +1401,16 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       return ValidationResult.WARNING;
     } else {
       final Set<String> suppressedAbstracts = this.modelProperty.getNotAbstractTables(entity);
-      boolean _and_1 = false;
+      boolean _and_2 = false;
       boolean _notEquals_3 = (!Objects.equal(suppressedAbstracts, null));
       if (!_notEquals_3) {
-        _and_1 = false;
+        _and_2 = false;
       } else {
         String _dbName = Utils.dbName(entity);
         boolean _contains = suppressedAbstracts.contains(_dbName);
-        _and_1 = _contains;
+        _and_2 = _contains;
       }
-      if (_and_1) {
+      if (_and_2) {
         return ValidationResult.WARNING;
       } else {
         return ValidationResult.ERROR;
@@ -1747,7 +1756,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
               if (_equals) {
                 String _name_2 = pojoEntity.getName();
                 String _plus = ("Duplicate name : " + _name_2);
-                this.error(_plus, ProcessorDslPackage.Literals.POJO_ENTITY__NAME);
+                this.error(_plus, ProcessorDslPackage.Literals.ENTITY__NAME);
                 return;
               }
             }
@@ -1815,7 +1824,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
               if (_equals) {
                 String _name_2 = enumEntity.getName();
                 String _plus = ("Duplicate name : " + _name_2);
-                this.error(_plus, ProcessorDslPackage.Literals.ENUM_ENTITY__NAME);
+                this.error(_plus, ProcessorDslPackage.Literals.ENTITY__NAME);
                 return;
               }
             }

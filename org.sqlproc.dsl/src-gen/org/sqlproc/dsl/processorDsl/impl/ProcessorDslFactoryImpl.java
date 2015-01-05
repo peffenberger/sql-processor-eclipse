@@ -125,11 +125,12 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.EXTENDED_MAPPING_ITEM: return createExtendedMappingItem();
       case ProcessorDslPackage.MAPPING_COLUMN_NAME: return createMappingColumnName();
       case ProcessorDslPackage.OPTIONAL_FEATURE: return createOptionalFeature();
-      case ProcessorDslPackage.POJO_TYPE: return createPojoType();
-      case ProcessorDslPackage.DAO_TYPE: return createDaoType();
       case ProcessorDslPackage.PACKAGE_DIRECTIVE: return createPackageDirective();
       case ProcessorDslPackage.PACKAGE_DECLARATION: return createPackageDeclaration();
+      case ProcessorDslPackage.ENTITY: return createEntity();
       case ProcessorDslPackage.ABSTRACT_ENTITY: return createAbstractEntity();
+      case ProcessorDslPackage.POJO_TYPE: return createPojoType();
+      case ProcessorDslPackage.DAO_TYPE: return createDaoType();
       case ProcessorDslPackage.IMPORT: return createImport();
       case ProcessorDslPackage.IMPLEMENTS: return createImplements();
       case ProcessorDslPackage.EXTENDS: return createExtends();
@@ -145,15 +146,16 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.POJO_PROPERTY: return createPojoProperty();
       case ProcessorDslPackage.ENUM_DIRECTIVE: return createEnumDirective();
       case ProcessorDslPackage.ENUM_ENTITY: return createEnumEntity();
+      case ProcessorDslPackage.ENUM_PROPERTY_VALUE: return createEnumPropertyValue();
       case ProcessorDslPackage.ENUM_PROPERTY_DIRECTIVE: return createEnumPropertyDirective();
       case ProcessorDslPackage.ENUM_PROPERTY: return createEnumProperty();
       case ProcessorDslPackage.DIRECTIVE_PARAMETERS: return createDirectiveParameters();
       case ProcessorDslPackage.DAO_DIRECTIVE: return createDaoDirective();
       case ProcessorDslPackage.POJO_DAO: return createPojoDao();
       case ProcessorDslPackage.PACKAGE_DIRECTIVE_SUFFIX: return createPackageDirectiveSuffix();
-      case ProcessorDslPackage.CONFLICT_ANNOTATIONS: return createConflictAnnotations();
-      case ProcessorDslPackage.STATIC_ANNOTATIONS: return createStaticAnnotations();
-      case ProcessorDslPackage.CONSTRUCTOR_ANNOTATIONS: return createConstructorAnnotations();
+      case ProcessorDslPackage.CONFLICT_ANNOTATION: return createConflictAnnotation();
+      case ProcessorDslPackage.STATIC_ANNOTATION: return createStaticAnnotation();
+      case ProcessorDslPackage.CONSTRUCTOR_ANNOTATION: return createConstructorAnnotation();
       case ProcessorDslPackage.STANDARD_ANNOTATION: return createStandardAnnotation();
       case ProcessorDslPackage.POJO_DIRECTIVE_FINAL: return createPojoDirectiveFinal();
       case ProcessorDslPackage.POJO_DIRECTIVE_ABSTRACT: return createPojoDirectiveAbstract();
@@ -166,9 +168,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.POJO_DIRECTIVE_TO_INIT: return createPojoDirectiveToInit();
       case ProcessorDslPackage.POJO_DIRECTIVE_IS_DEF: return createPojoDirectiveIsDef();
       case ProcessorDslPackage.POJO_DIRECTIVE_TO_STRING: return createPojoDirectiveToString();
-      case ProcessorDslPackage.SETTER_ANNOTATIONS: return createSetterAnnotations();
-      case ProcessorDslPackage.GETTER_ANNOTATIONS: return createGetterAnnotations();
-      case ProcessorDslPackage.ATTRIBUTE_ANNOTATIONS: return createAttributeAnnotations();
+      case ProcessorDslPackage.POJO_DIRECTIVE_INDEX: return createPojoDirectiveIndex();
+      case ProcessorDslPackage.SETTER_ANNOTATION: return createSetterAnnotation();
+      case ProcessorDslPackage.GETTER_ANNOTATION: return createGetterAnnotation();
+      case ProcessorDslPackage.ATTRIBUTE_ANNOTATION: return createAttributeAnnotation();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_REQUIRED: return createPojoPropertyDirectiveRequired();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY: return createPojoPropertyDirectivePrimaryKey();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR: return createPojoPropertyDirectiveDiscriminator();
@@ -871,28 +874,6 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoType createPojoType()
-  {
-    PojoTypeImpl pojoType = new PojoTypeImpl();
-    return pojoType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public DaoType createDaoType()
-  {
-    DaoTypeImpl daoType = new DaoTypeImpl();
-    return daoType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public PackageDirective createPackageDirective()
   {
     PackageDirectiveImpl packageDirective = new PackageDirectiveImpl();
@@ -915,10 +896,43 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public Entity createEntity()
+  {
+    EntityImpl entity = new EntityImpl();
+    return entity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public AbstractEntity createAbstractEntity()
   {
     AbstractEntityImpl abstractEntity = new AbstractEntityImpl();
     return abstractEntity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoType createPojoType()
+  {
+    PojoTypeImpl pojoType = new PojoTypeImpl();
+    return pojoType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DaoType createDaoType()
+  {
+    DaoTypeImpl daoType = new DaoTypeImpl();
+    return daoType;
   }
 
   /**
@@ -1091,6 +1105,17 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EnumPropertyValue createEnumPropertyValue()
+  {
+    EnumPropertyValueImpl enumPropertyValue = new EnumPropertyValueImpl();
+    return enumPropertyValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EnumPropertyDirective createEnumPropertyDirective()
   {
     EnumPropertyDirectiveImpl enumPropertyDirective = new EnumPropertyDirectiveImpl();
@@ -1157,10 +1182,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public ConflictAnnotations createConflictAnnotations()
+  public ConflictAnnotation createConflictAnnotation()
   {
-    ConflictAnnotationsImpl conflictAnnotations = new ConflictAnnotationsImpl();
-    return conflictAnnotations;
+    ConflictAnnotationImpl conflictAnnotation = new ConflictAnnotationImpl();
+    return conflictAnnotation;
   }
 
   /**
@@ -1168,10 +1193,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public StaticAnnotations createStaticAnnotations()
+  public StaticAnnotation createStaticAnnotation()
   {
-    StaticAnnotationsImpl staticAnnotations = new StaticAnnotationsImpl();
-    return staticAnnotations;
+    StaticAnnotationImpl staticAnnotation = new StaticAnnotationImpl();
+    return staticAnnotation;
   }
 
   /**
@@ -1179,10 +1204,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public ConstructorAnnotations createConstructorAnnotations()
+  public ConstructorAnnotation createConstructorAnnotation()
   {
-    ConstructorAnnotationsImpl constructorAnnotations = new ConstructorAnnotationsImpl();
-    return constructorAnnotations;
+    ConstructorAnnotationImpl constructorAnnotation = new ConstructorAnnotationImpl();
+    return constructorAnnotation;
   }
 
   /**
@@ -1322,10 +1347,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public SetterAnnotations createSetterAnnotations()
+  public PojoDirectiveIndex createPojoDirectiveIndex()
   {
-    SetterAnnotationsImpl setterAnnotations = new SetterAnnotationsImpl();
-    return setterAnnotations;
+    PojoDirectiveIndexImpl pojoDirectiveIndex = new PojoDirectiveIndexImpl();
+    return pojoDirectiveIndex;
   }
 
   /**
@@ -1333,10 +1358,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public GetterAnnotations createGetterAnnotations()
+  public SetterAnnotation createSetterAnnotation()
   {
-    GetterAnnotationsImpl getterAnnotations = new GetterAnnotationsImpl();
-    return getterAnnotations;
+    SetterAnnotationImpl setterAnnotation = new SetterAnnotationImpl();
+    return setterAnnotation;
   }
 
   /**
@@ -1344,10 +1369,21 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public AttributeAnnotations createAttributeAnnotations()
+  public GetterAnnotation createGetterAnnotation()
   {
-    AttributeAnnotationsImpl attributeAnnotations = new AttributeAnnotationsImpl();
-    return attributeAnnotations;
+    GetterAnnotationImpl getterAnnotation = new GetterAnnotationImpl();
+    return getterAnnotation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AttributeAnnotation createAttributeAnnotation()
+  {
+    AttributeAnnotationImpl attributeAnnotation = new AttributeAnnotationImpl();
+    return attributeAnnotation;
   }
 
   /**

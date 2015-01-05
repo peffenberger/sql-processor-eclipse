@@ -63,12 +63,12 @@ public interface PojoType extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Ref</em>' reference.
-   * @see #setRef(PojoEntity)
+   * @see #setRef(Entity)
    * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoType_Ref()
    * @model
    * @generated
    */
-  PojoEntity getRef();
+  Entity getRef();
 
   /**
    * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoType#getRef <em>Ref</em>}' reference.
@@ -78,7 +78,7 @@ public interface PojoType extends EObject
    * @see #getRef()
    * @generated
    */
-  void setRef(PojoEntity value);
+  void setRef(Entity value);
 
   /**
    * Returns the value of the '<em><b>Gtype</b></em>' reference.
@@ -115,12 +115,12 @@ public interface PojoType extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Gref</em>' reference.
-   * @see #setGref(PojoEntity)
+   * @see #setGref(Entity)
    * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoType_Gref()
    * @model
    * @generated
    */
-  PojoEntity getGref();
+  Entity getGref();
 
   /**
    * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoType#getGref <em>Gref</em>}' reference.
@@ -130,7 +130,7 @@ public interface PojoType extends EObject
    * @see #getGref()
    * @generated
    */
-  void setGref(PojoEntity value);
+  void setGref(Entity value);
 
   /**
    * Returns the value of the '<em><b>Array</b></em>' attribute.

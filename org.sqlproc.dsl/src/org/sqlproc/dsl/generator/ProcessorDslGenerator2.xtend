@@ -9,6 +9,7 @@ import org.sqlproc.dsl.processorDsl.PojoDao
 import com.google.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.emf.ecore.resource.ResourceSet
+import org.sqlproc.dsl.processorDsl.Entity
 
 /**
  * Generates code from your model files on save.
@@ -22,7 +23,7 @@ class ProcessorDslGenerator2 implements IGenerator2 {
 	@Inject extension ProcessorDaoGenerator
 
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-		for(e: resource.allContents.toIterable.filter(typeof(AnnotatedEntity))) {
+		for(e: resource.allContents.toIterable.filter(typeof(Entity))) {
 			fsa.generateFile(e.eContainer.fullyQualifiedName.toString("/") + "/"+
 				e.fullyQualifiedName + ".java",e.compile
 			)
@@ -45,7 +46,7 @@ class ProcessorDslGenerator2 implements IGenerator2 {
 	}
 
 	override void doGenerate(ResourceSet resource, IFileSystemAccess fsa) {
-		for(e: resource.allContents.toIterable.filter(typeof(AnnotatedEntity))) {
+		for(e: resource.allContents.toIterable.filter(typeof(Entity))) {
 			fsa.generateFile(e.eContainer.fullyQualifiedName.toString("/") + "/"+
 				e.fullyQualifiedName + ".java",e.compile
 			)

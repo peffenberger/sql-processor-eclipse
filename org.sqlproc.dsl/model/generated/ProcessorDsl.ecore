@@ -470,19 +470,6 @@
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="option" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//PojoEntity"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="gtype" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="gref" eType="#//PojoEntity"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="array" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DaoType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//PojoDao"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="gtype" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="gref" eType="#//PojoDao"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PackageDeclaration" eSuperTypes="#//AbstractEntity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="directives" upperBound="-1"
@@ -491,7 +478,25 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//AbstractEntity" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entity" eSuperTypes="#//AbstractEntity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"
+        eType="#//EntityAnnotation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractEntity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gtype" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gref" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="array" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DaoType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//PojoDao"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gtype" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gref" eType="#//PojoDao"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Import" eSuperTypes="#//AbstractEntity">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedNamespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -543,16 +548,13 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DirectiveProperties">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
-        eType="#//PojogenProperty" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+        eType="#//PojoProperty" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoDirective"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoEntity" eSuperTypes="#//AbstractEntity">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"
-        eType="#//EntityAnnotation" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoEntity" eSuperTypes="#//Entity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="directives" upperBound="-1"
         eType="#//PojoDirective" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
         eType="#//PojoProperty" containment="true"/>
   </eClassifiers>
@@ -571,14 +573,15 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumDirective"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EnumEntity" eSuperTypes="#//AbstractEntity">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"
-        eType="#//EntityAnnotation" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumEntity" eSuperTypes="#//Entity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="directives" upperBound="-1"
         eType="#//EnumDirective" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
         eType="#//EnumProperty" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumPropertyValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumPropertyDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="EnumProperty">
@@ -603,9 +606,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="PackageDirectiveSuffix" eSuperTypes="#//PackageDirective">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="suffix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConflictAnnotations" eSuperTypes="#//EntityAnnotation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="StaticAnnotations" eSuperTypes="#//EntityAnnotation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ConstructorAnnotations" eSuperTypes="#//EntityAnnotation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConflictAnnotation" eSuperTypes="#//EntityAnnotation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticAnnotation" eSuperTypes="#//EntityAnnotation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstructorAnnotation" eSuperTypes="#//EntityAnnotation"/>
   <eClassifiers xsi:type="ecore:EClass" name="StandardAnnotation" eSuperTypes="#//EntityAnnotation"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveFinal" eSuperTypes="#//PojoDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveAbstract" eSuperTypes="#//PojoDirective"/>
@@ -642,9 +645,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="proplist" eType="#//DirectiveProperties"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SetterAnnotations" eSuperTypes="#//PojoPropertyAnnotation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="GetterAnnotations" eSuperTypes="#//PojoPropertyAnnotation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeAnnotations" eSuperTypes="#//PojoPropertyAnnotation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveIndex" eSuperTypes="#//PojoDirective">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="proplist" eType="#//DirectiveProperties"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SetterAnnotation" eSuperTypes="#//PojoPropertyAnnotation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GetterAnnotation" eSuperTypes="#//PojoPropertyAnnotation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeAnnotation" eSuperTypes="#//PojoPropertyAnnotation"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveRequired" eSuperTypes="#//PojoPropertyDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectivePrimaryKey" eSuperTypes="#//PojoPropertyDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveDiscriminator"
@@ -672,8 +680,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sernum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumPropertyDirectiveValues" eSuperTypes="#//EnumPropertyDirective">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//EnumPropertyValue" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveFinal" eSuperTypes="#//DaoDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveAbstract" eSuperTypes="#//DaoDirective"/>

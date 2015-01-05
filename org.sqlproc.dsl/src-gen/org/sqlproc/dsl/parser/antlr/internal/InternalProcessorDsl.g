@@ -12595,231 +12595,6 @@ ruleFeatureValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
 
 
 
-// Entry rule entryRulePojoType
-entryRulePojoType returns [EObject current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
-	}
-	:
-	{ newCompositeNode(grammarAccess.getPojoTypeRule()); }
-	 iv_rulePojoType=rulePojoType 
-	 { $current=$iv_rulePojoType.current; } 
-	 EOF 
-;
-finally {
-	myHiddenTokenState.restore();
-}
-
-// Rule PojoType
-rulePojoType returns [EObject current=null] 
-    @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
-    }
-    @after { leaveRule(); }:
-(((this_COLON_0=RULE_COLON
-    { 
-    newLeafNode(this_COLON_0, grammarAccess.getPojoTypeAccess().getCOLONTerminalRuleCall_0_0_0()); 
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoTypeRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getPojoTypeAccess().getTypeJvmTypeCrossReference_0_0_1_0()); 
-	    }
-		ruleQualifiedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-    |(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoTypeRule());
-	        }
-        }
-	otherlv_2=RULE_IDENT
-	{
-		newLeafNode(otherlv_2, grammarAccess.getPojoTypeAccess().getRefPojoEntityCrossReference_0_1_0()); 
-	}
-
-)
-))(this_LESS_THAN_3=RULE_LESS_THAN
-    { 
-    newLeafNode(this_LESS_THAN_3, grammarAccess.getPojoTypeAccess().getLESS_THANTerminalRuleCall_1_0()); 
-    }
-((this_COLON_4=RULE_COLON
-    { 
-    newLeafNode(this_COLON_4, grammarAccess.getPojoTypeAccess().getCOLONTerminalRuleCall_1_1_0_0()); 
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoTypeRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getPojoTypeAccess().getGtypeJvmTypeCrossReference_1_1_0_1_0()); 
-	    }
-		ruleQualifiedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-    |(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoTypeRule());
-	        }
-        }
-	otherlv_6=RULE_IDENT
-	{
-		newLeafNode(otherlv_6, grammarAccess.getPojoTypeAccess().getGrefPojoEntityCrossReference_1_1_1_0()); 
-	}
-
-)
-))this_MORE_THAN_7=RULE_MORE_THAN
-    { 
-    newLeafNode(this_MORE_THAN_7, grammarAccess.getPojoTypeAccess().getMORE_THANTerminalRuleCall_1_2()); 
-    }
-)?(
-(
-		lv_array_8_0=	'[]' 
-    {
-        newLeafNode(lv_array_8_0, grammarAccess.getPojoTypeAccess().getArrayLeftSquareBracketRightSquareBracketKeyword_2_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoTypeRule());
-	        }
-       		setWithLastConsumed($current, "array", true, "[]");
-	    }
-
-)
-)?)
-;
-finally {
-	myHiddenTokenState.restore();
-}
-
-
-
-
-
-// Entry rule entryRuleDaoType
-entryRuleDaoType returns [EObject current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
-	}
-	:
-	{ newCompositeNode(grammarAccess.getDaoTypeRule()); }
-	 iv_ruleDaoType=ruleDaoType 
-	 { $current=$iv_ruleDaoType.current; } 
-	 EOF 
-;
-finally {
-	myHiddenTokenState.restore();
-}
-
-// Rule DaoType
-ruleDaoType returns [EObject current=null] 
-    @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
-    }
-    @after { leaveRule(); }:
-(((this_COLON_0=RULE_COLON
-    { 
-    newLeafNode(this_COLON_0, grammarAccess.getDaoTypeAccess().getCOLONTerminalRuleCall_0_0_0()); 
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getDaoTypeRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getDaoTypeAccess().getTypeJvmTypeCrossReference_0_0_1_0()); 
-	    }
-		ruleQualifiedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-    |(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getDaoTypeRule());
-	        }
-        }
-	otherlv_2=RULE_IDENT
-	{
-		newLeafNode(otherlv_2, grammarAccess.getDaoTypeAccess().getRefPojoDaoCrossReference_0_1_0()); 
-	}
-
-)
-))(this_LESS_THAN_3=RULE_LESS_THAN
-    { 
-    newLeafNode(this_LESS_THAN_3, grammarAccess.getDaoTypeAccess().getLESS_THANTerminalRuleCall_1_0()); 
-    }
-((this_COLON_4=RULE_COLON
-    { 
-    newLeafNode(this_COLON_4, grammarAccess.getDaoTypeAccess().getCOLONTerminalRuleCall_1_1_0_0()); 
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getDaoTypeRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getDaoTypeAccess().getGtypeJvmTypeCrossReference_1_1_0_1_0()); 
-	    }
-		ruleQualifiedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-    |(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getDaoTypeRule());
-	        }
-        }
-	otherlv_6=RULE_IDENT
-	{
-		newLeafNode(otherlv_6, grammarAccess.getDaoTypeAccess().getGrefPojoDaoCrossReference_1_1_1_0()); 
-	}
-
-)
-))this_MORE_THAN_7=RULE_MORE_THAN
-    { 
-    newLeafNode(this_MORE_THAN_7, grammarAccess.getDaoTypeAccess().getMORE_THANTerminalRuleCall_1_2()); 
-    }
-)?)
-;
-finally {
-	myHiddenTokenState.restore();
-}
-
-
-
-
-
 // Entry rule entryRulePackageDirective
 entryRulePackageDirective returns [EObject current=null] 
 	@init { 
@@ -13016,6 +12791,46 @@ finally {
 
 
 
+// Entry rule entryRuleEntity
+entryRuleEntity returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getEntityRule()); }
+	 iv_ruleEntity=ruleEntity 
+	 { $current=$iv_ruleEntity.current; } 
+	 EOF 
+;
+
+// Rule Entity
+ruleEntity returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getEntityAccess().getPojoEntityParserRuleCall_0()); 
+    }
+    this_PojoEntity_0=rulePojoEntity
+    { 
+        $current = $this_PojoEntity_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getEntityAccess().getEnumEntityParserRuleCall_1()); 
+    }
+    this_EnumEntity_1=ruleEnumEntity
+    { 
+        $current = $this_EnumEntity_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
 // Entry rule entryRuleAbstractEntity
 entryRuleAbstractEntity returns [EObject current=null] 
 	@init { 
@@ -13049,74 +12864,289 @@ ruleAbstractEntity returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getAbstractEntityAccess().getPojoEntityParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getAbstractEntityAccess().getEntityParserRuleCall_1()); 
     }
-    this_PojoEntity_1=rulePojoEntity
+    this_Entity_1=ruleEntity
     { 
-        $current = $this_PojoEntity_1.current; 
+        $current = $this_Entity_1.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getAbstractEntityAccess().getEnumEntityParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getAbstractEntityAccess().getImportParserRuleCall_2()); 
     }
-    this_EnumEntity_2=ruleEnumEntity
+    this_Import_2=ruleImport
     { 
-        $current = $this_EnumEntity_2.current; 
+        $current = $this_Import_2.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getAbstractEntityAccess().getImportParserRuleCall_3()); 
+        newCompositeNode(grammarAccess.getAbstractEntityAccess().getImplementsParserRuleCall_3()); 
     }
-    this_Import_3=ruleImport
+    this_Implements_3=ruleImplements
     { 
-        $current = $this_Import_3.current; 
+        $current = $this_Implements_3.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getAbstractEntityAccess().getImplementsParserRuleCall_4()); 
+        newCompositeNode(grammarAccess.getAbstractEntityAccess().getExtendsParserRuleCall_4()); 
     }
-    this_Implements_4=ruleImplements
+    this_Extends_4=ruleExtends
     { 
-        $current = $this_Implements_4.current; 
+        $current = $this_Extends_4.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getAbstractEntityAccess().getExtendsParserRuleCall_5()); 
+        newCompositeNode(grammarAccess.getAbstractEntityAccess().getImplPackageParserRuleCall_5()); 
     }
-    this_Extends_5=ruleExtends
+    this_ImplPackage_5=ruleImplPackage
     { 
-        $current = $this_Extends_5.current; 
+        $current = $this_ImplPackage_5.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getAbstractEntityAccess().getImplPackageParserRuleCall_6()); 
+        newCompositeNode(grammarAccess.getAbstractEntityAccess().getPojoDaoParserRuleCall_6()); 
     }
-    this_ImplPackage_6=ruleImplPackage
+    this_PojoDao_6=rulePojoDao
     { 
-        $current = $this_ImplPackage_6.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getAbstractEntityAccess().getPojoDaoParserRuleCall_7()); 
-    }
-    this_PojoDao_7=rulePojoDao
-    { 
-        $current = $this_PojoDao_7.current; 
+        $current = $this_PojoDao_6.current; 
         afterParserOrEnumRuleCall();
     }
 )
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+
+
+
+
+// Entry rule entryRulePojoType
+entryRulePojoType returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
+	}
+	:
+	{ newCompositeNode(grammarAccess.getPojoTypeRule()); }
+	 iv_rulePojoType=rulePojoType 
+	 { $current=$iv_rulePojoType.current; } 
+	 EOF 
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+// Rule PojoType
+rulePojoType returns [EObject current=null] 
+    @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
+    }
+    @after { leaveRule(); }:
+(((this_COLON_0=RULE_COLON
+    { 
+    newLeafNode(this_COLON_0, grammarAccess.getPojoTypeAccess().getCOLONTerminalRuleCall_0_0_0()); 
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoTypeRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPojoTypeAccess().getTypeJvmTypeCrossReference_0_0_1_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoTypeRule());
+	        }
+        }
+	otherlv_2=RULE_IDENT
+	{
+		newLeafNode(otherlv_2, grammarAccess.getPojoTypeAccess().getRefEntityCrossReference_0_1_0()); 
+	}
+
+)
+))(this_LESS_THAN_3=RULE_LESS_THAN
+    { 
+    newLeafNode(this_LESS_THAN_3, grammarAccess.getPojoTypeAccess().getLESS_THANTerminalRuleCall_1_0()); 
+    }
+((this_COLON_4=RULE_COLON
+    { 
+    newLeafNode(this_COLON_4, grammarAccess.getPojoTypeAccess().getCOLONTerminalRuleCall_1_1_0_0()); 
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoTypeRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPojoTypeAccess().getGtypeJvmTypeCrossReference_1_1_0_1_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoTypeRule());
+	        }
+        }
+	otherlv_6=RULE_IDENT
+	{
+		newLeafNode(otherlv_6, grammarAccess.getPojoTypeAccess().getGrefEntityCrossReference_1_1_1_0()); 
+	}
+
+)
+))this_MORE_THAN_7=RULE_MORE_THAN
+    { 
+    newLeafNode(this_MORE_THAN_7, grammarAccess.getPojoTypeAccess().getMORE_THANTerminalRuleCall_1_2()); 
+    }
+)?(
+(
+		lv_array_8_0=	'[]' 
+    {
+        newLeafNode(lv_array_8_0, grammarAccess.getPojoTypeAccess().getArrayLeftSquareBracketRightSquareBracketKeyword_2_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoTypeRule());
+	        }
+       		setWithLastConsumed($current, "array", true, "[]");
+	    }
+
+)
+)?)
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+
+
+
+
+// Entry rule entryRuleDaoType
+entryRuleDaoType returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
+	}
+	:
+	{ newCompositeNode(grammarAccess.getDaoTypeRule()); }
+	 iv_ruleDaoType=ruleDaoType 
+	 { $current=$iv_ruleDaoType.current; } 
+	 EOF 
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+// Rule DaoType
+ruleDaoType returns [EObject current=null] 
+    @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
+    }
+    @after { leaveRule(); }:
+(((this_COLON_0=RULE_COLON
+    { 
+    newLeafNode(this_COLON_0, grammarAccess.getDaoTypeAccess().getCOLONTerminalRuleCall_0_0_0()); 
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDaoTypeRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getDaoTypeAccess().getTypeJvmTypeCrossReference_0_0_1_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDaoTypeRule());
+	        }
+        }
+	otherlv_2=RULE_IDENT
+	{
+		newLeafNode(otherlv_2, grammarAccess.getDaoTypeAccess().getRefPojoDaoCrossReference_0_1_0()); 
+	}
+
+)
+))(this_LESS_THAN_3=RULE_LESS_THAN
+    { 
+    newLeafNode(this_LESS_THAN_3, grammarAccess.getDaoTypeAccess().getLESS_THANTerminalRuleCall_1_0()); 
+    }
+((this_COLON_4=RULE_COLON
+    { 
+    newLeafNode(this_COLON_4, grammarAccess.getDaoTypeAccess().getCOLONTerminalRuleCall_1_1_0_0()); 
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDaoTypeRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getDaoTypeAccess().getGtypeJvmTypeCrossReference_1_1_0_1_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDaoTypeRule());
+	        }
+        }
+	otherlv_6=RULE_IDENT
+	{
+		newLeafNode(otherlv_6, grammarAccess.getDaoTypeAccess().getGrefPojoDaoCrossReference_1_1_1_0()); 
+	}
+
+)
+))this_MORE_THAN_7=RULE_MORE_THAN
+    { 
+    newLeafNode(this_MORE_THAN_7, grammarAccess.getDaoTypeAccess().getMORE_THANTerminalRuleCall_1_2()); 
+    }
+)?)
 ;
 finally {
 	myHiddenTokenState.restore();
@@ -13791,7 +13821,7 @@ ruleEntityAnnotation returns [EObject current=null]
 )(
     {
         $current = forceCreateModelElement(
-            grammarAccess.getEntityAnnotationAccess().getConflictAnnotationsAction_1_0_1_0_1_0_1(),
+            grammarAccess.getEntityAnnotationAccess().getConflictAnnotationAction_1_0_1_0_1_0_1(),
             $current);
     }
 )(
@@ -13816,7 +13846,7 @@ ruleEntityAnnotation returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getEntityAnnotationAccess().getStaticAnnotationsAction_1_0_1_0_1_1_0(),
+            grammarAccess.getEntityAnnotationAccess().getStaticAnnotationAction_1_0_1_0_1_1_0(),
             $current);
     }
 )(
@@ -13841,7 +13871,7 @@ ruleEntityAnnotation returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getEntityAnnotationAccess().getConstructorAnnotationsAction_1_0_1_1_0(),
+            grammarAccess.getEntityAnnotationAccess().getConstructorAnnotationAction_1_0_1_1_0(),
             $current);
     }
 )(
@@ -13918,55 +13948,47 @@ ruleDirectiveProperties returns [EObject current=null]
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
     }
     @after { leaveRule(); }:
-(this_LPAREN_0=RULE_LPAREN
-    { 
-    newLeafNode(this_LPAREN_0, grammarAccess.getDirectivePropertiesAccess().getLPARENTerminalRuleCall_0()); 
-    }
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDirectivePropertiesAccess().getPropertiesPojogenPropertyParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getDirectivePropertiesAccess().getFeaturesPojoPropertyParserRuleCall_0_0()); 
 	    }
-		lv_properties_1_0=rulePojogenProperty		{
+		lv_features_0_0=rulePojoProperty		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDirectivePropertiesRule());
 	        }
        		add(
        			$current, 
-       			"properties",
-        		lv_properties_1_0, 
-        		"PojogenProperty");
+       			"features",
+        		lv_features_0_0, 
+        		"PojoProperty");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(this_COMMA_2=RULE_COMMA
+)(this_COMMA_1=RULE_COMMA
     { 
-    newLeafNode(this_COMMA_2, grammarAccess.getDirectivePropertiesAccess().getCOMMATerminalRuleCall_2_0()); 
+    newLeafNode(this_COMMA_1, grammarAccess.getDirectivePropertiesAccess().getCOMMATerminalRuleCall_1_0()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDirectivePropertiesAccess().getPropertiesPojogenPropertyParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getDirectivePropertiesAccess().getFeaturesPojoPropertyParserRuleCall_1_1_0()); 
 	    }
-		lv_properties_3_0=rulePojogenProperty		{
+		lv_features_2_0=rulePojoProperty		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDirectivePropertiesRule());
 	        }
        		add(
        			$current, 
-       			"properties",
-        		lv_properties_3_0, 
-        		"PojogenProperty");
+       			"features",
+        		lv_features_2_0, 
+        		"PojoProperty");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))*this_RPAREN_4=RULE_RPAREN
-    { 
-    newLeafNode(this_RPAREN_4, grammarAccess.getDirectivePropertiesAccess().getRPARENTerminalRuleCall_3()); 
-    }
-)
+))*)
 ;
 finally {
 	myHiddenTokenState.restore();
@@ -14195,68 +14217,51 @@ this_LPAREN_21=RULE_LPAREN
     {
     	newLeafNode(otherlv_25, grammarAccess.getPojoDirectiveAccess().getEqualsKeyword_6_1());
     }
+this_LPAREN_26=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_26, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_6_2()); 
+    }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_6_2_0()); 
+	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_6_3_0()); 
 	    }
-		lv_proplist_26_0=ruleDirectiveProperties		{
+		lv_proplist_27_0=ruleDirectiveProperties		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPojoDirectiveRule());
 	        }
        		set(
        			$current, 
        			"proplist",
-        		lv_proplist_26_0, 
+        		lv_proplist_27_0, 
         		"DirectiveProperties");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?)
+)this_RPAREN_28=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_28, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_6_4()); 
+    }
+)
     |((
     {
         $current = forceCreateModelElement(
             grammarAccess.getPojoDirectiveAccess().getPojoDirectiveHashCodeAction_7_0(),
             $current);
     }
-)	otherlv_28='#HashCode' 
+)	otherlv_30='#HashCode' 
     {
-    	newLeafNode(otherlv_28, grammarAccess.getPojoDirectiveAccess().getHashCodeKeyword_7_1());
+    	newLeafNode(otherlv_30, grammarAccess.getPojoDirectiveAccess().getHashCodeKeyword_7_1());
+    }
+this_LPAREN_31=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_31, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_7_2()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_7_2_0()); 
-	    }
-		lv_proplist_29_0=ruleDirectiveProperties		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPojoDirectiveRule());
-	        }
-       		set(
-       			$current, 
-       			"proplist",
-        		lv_proplist_29_0, 
-        		"DirectiveProperties");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)?)
-    |((
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveToInitAction_8_0(),
-            $current);
-    }
-)	otherlv_31='#ToInit' 
-    {
-    	newLeafNode(otherlv_31, grammarAccess.getPojoDirectiveAccess().getToInitKeyword_8_1());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_8_2_0()); 
+	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_7_3_0()); 
 	    }
 		lv_proplist_32_0=ruleDirectiveProperties		{
 	        if ($current==null) {
@@ -14271,65 +14276,181 @@ this_LPAREN_21=RULE_LPAREN
 	    }
 
 )
-)?)
+)this_RPAREN_33=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_33, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_7_4()); 
+    }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveToInitAction_8_0(),
+            $current);
+    }
+)	otherlv_35='#ToInit' 
+    {
+    	newLeafNode(otherlv_35, grammarAccess.getPojoDirectiveAccess().getToInitKeyword_8_1());
+    }
+this_LPAREN_36=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_36, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_8_2()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_8_3_0()); 
+	    }
+		lv_proplist_37_0=ruleDirectiveProperties		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPojoDirectiveRule());
+	        }
+       		set(
+       			$current, 
+       			"proplist",
+        		lv_proplist_37_0, 
+        		"DirectiveProperties");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)this_RPAREN_38=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_38, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_8_4()); 
+    }
+)
     |((
     {
         $current = forceCreateModelElement(
             grammarAccess.getPojoDirectiveAccess().getPojoDirectiveIsDefAction_9_0(),
             $current);
     }
-)	otherlv_34='#IsDef' 
+)	otherlv_40='#IsDef' 
     {
-    	newLeafNode(otherlv_34, grammarAccess.getPojoDirectiveAccess().getIsDefKeyword_9_1());
+    	newLeafNode(otherlv_40, grammarAccess.getPojoDirectiveAccess().getIsDefKeyword_9_1());
+    }
+this_LPAREN_41=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_41, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_9_2()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_9_2_0()); 
+	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_9_3_0()); 
 	    }
-		lv_proplist_35_0=ruleDirectiveProperties		{
+		lv_proplist_42_0=ruleDirectiveProperties		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPojoDirectiveRule());
 	        }
        		set(
        			$current, 
        			"proplist",
-        		lv_proplist_35_0, 
+        		lv_proplist_42_0, 
         		"DirectiveProperties");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?)
+)this_RPAREN_43=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_43, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_9_4()); 
+    }
+)
     |((
     {
         $current = forceCreateModelElement(
             grammarAccess.getPojoDirectiveAccess().getPojoDirectiveToStringAction_10_0(),
             $current);
     }
-)	otherlv_37='#ToString' 
+)	otherlv_45='#ToString' 
     {
-    	newLeafNode(otherlv_37, grammarAccess.getPojoDirectiveAccess().getToStringKeyword_10_1());
+    	newLeafNode(otherlv_45, grammarAccess.getPojoDirectiveAccess().getToStringKeyword_10_1());
+    }
+this_LPAREN_46=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_46, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_10_2()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_10_2_0()); 
+	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_10_3_0()); 
 	    }
-		lv_proplist_38_0=ruleDirectiveProperties		{
+		lv_proplist_47_0=ruleDirectiveProperties		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPojoDirectiveRule());
 	        }
        		set(
        			$current, 
        			"proplist",
-        		lv_proplist_38_0, 
+        		lv_proplist_47_0, 
         		"DirectiveProperties");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?))
+)this_RPAREN_48=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_48, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_10_4()); 
+    }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveIndexAction_11_0(),
+            $current);
+    }
+)	otherlv_50='#Index' 
+    {
+    	newLeafNode(otherlv_50, grammarAccess.getPojoDirectiveAccess().getIndexKeyword_11_1());
+    }
+this_LPAREN_51=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_51, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_11_2()); 
+    }
+(
+(
+		lv_index_52_0=RULE_NUMBER
+		{
+			newLeafNode(lv_index_52_0, grammarAccess.getPojoDirectiveAccess().getIndexNUMBERTerminalRuleCall_11_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoDirectiveRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"index",
+        		lv_index_52_0, 
+        		"NUMBER");
+	    }
+
+)
+)this_COMMA_53=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_53, grammarAccess.getPojoDirectiveAccess().getCOMMATerminalRuleCall_11_4()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_11_5_0()); 
+	    }
+		lv_proplist_54_0=ruleDirectiveProperties		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPojoDirectiveRule());
+	        }
+       		set(
+       			$current, 
+       			"proplist",
+        		lv_proplist_54_0, 
+        		"DirectiveProperties");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)this_RPAREN_55=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_55, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_11_6()); 
+    }
+))
 ;
 finally {
 	myHiddenTokenState.restore();
@@ -14490,7 +14611,7 @@ rulePojoPropertyAnnotation returns [EObject current=null]
 )(
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoPropertyAnnotationAccess().getSetterAnnotationsAction_1_0_1_0_1(),
+            grammarAccess.getPojoPropertyAnnotationAccess().getSetterAnnotationAction_1_0_1_0_1(),
             $current);
     }
 )(
@@ -14515,7 +14636,7 @@ rulePojoPropertyAnnotation returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoPropertyAnnotationAccess().getGetterAnnotationsAction_1_0_1_1_0(),
+            grammarAccess.getPojoPropertyAnnotationAccess().getGetterAnnotationAction_1_0_1_1_0(),
             $current);
     }
 )(
@@ -14540,7 +14661,7 @@ rulePojoPropertyAnnotation returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoPropertyAnnotationAccess().getAttributeAnnotationsAction_1_1_0(),
+            grammarAccess.getPojoPropertyAnnotationAccess().getAttributeAnnotationAction_1_1_0(),
             $current);
     }
 )(
@@ -15177,6 +15298,85 @@ finally {
 
 
 
+// Entry rule entryRuleEnumPropertyValue
+entryRuleEnumPropertyValue returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getEnumPropertyValueRule()); }
+	 iv_ruleEnumPropertyValue=ruleEnumPropertyValue 
+	 { $current=$iv_ruleEnumPropertyValue.current; } 
+	 EOF 
+;
+
+// Rule EnumPropertyValue
+ruleEnumPropertyValue returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		lv_name_0_0=RULE_IDENT
+		{
+			newLeafNode(lv_name_0_0, grammarAccess.getEnumPropertyValueAccess().getNameIDENTTerminalRuleCall_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEnumPropertyValueRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_0_0, 
+        		"IDENT");
+	    }
+
+)
+)this_EQUALS_1=RULE_EQUALS
+    { 
+    newLeafNode(this_EQUALS_1, grammarAccess.getEnumPropertyValueAccess().getEQUALSTerminalRuleCall_1()); 
+    }
+(
+(
+(
+		lv_value_2_1=RULE_NUMBER
+		{
+			newLeafNode(lv_value_2_1, grammarAccess.getEnumPropertyValueAccess().getValueNUMBERTerminalRuleCall_2_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEnumPropertyValueRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_2_1, 
+        		"NUMBER");
+	    }
+
+    |		lv_value_2_2=RULE_STRING_VALUE
+		{
+			newLeafNode(lv_value_2_2, grammarAccess.getEnumPropertyValueAccess().getValueSTRING_VALUETerminalRuleCall_2_0_1()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEnumPropertyValueRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_2_2, 
+        		"STRING_VALUE");
+	    }
+
+)
+
+)
+))
+;
+
+
+
+
+
 // Entry rule entryRuleEnumPropertyDirective
 entryRuleEnumPropertyDirective returns [EObject current=null] 
 	@init { 
@@ -15214,43 +15414,47 @@ this_LPAREN_2=RULE_LPAREN
     }
 (
 (
-(
-		lv_values_3_1=RULE_NUMBER
-		{
-			newLeafNode(lv_values_3_1, grammarAccess.getEnumPropertyDirectiveAccess().getValuesNUMBERTerminalRuleCall_3_0_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getEnumPropertyDirectiveRule());
-	        }
-       		addWithLastConsumed(
-       			$current, 
-       			"values",
-        		lv_values_3_1, 
-        		"NUMBER");
+		{ 
+	        newCompositeNode(grammarAccess.getEnumPropertyDirectiveAccess().getValuesEnumPropertyValueParserRuleCall_3_0()); 
 	    }
-
-    |		lv_values_3_2=RULE_STRING_VALUE
-		{
-			newLeafNode(lv_values_3_2, grammarAccess.getEnumPropertyDirectiveAccess().getValuesSTRING_VALUETerminalRuleCall_3_0_1()); 
-		}
-		{
+		lv_values_3_0=ruleEnumPropertyValue		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getEnumPropertyDirectiveRule());
+	            $current = createModelElementForParent(grammarAccess.getEnumPropertyDirectiveRule());
 	        }
-       		addWithLastConsumed(
+       		add(
        			$current, 
        			"values",
-        		lv_values_3_2, 
-        		"STRING_VALUE");
+        		lv_values_3_0, 
+        		"EnumPropertyValue");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-
-)
-)this_RPAREN_4=RULE_RPAREN
+)(this_COMMA_4=RULE_COMMA
     { 
-    newLeafNode(this_RPAREN_4, grammarAccess.getEnumPropertyDirectiveAccess().getRPARENTerminalRuleCall_4()); 
+    newLeafNode(this_COMMA_4, grammarAccess.getEnumPropertyDirectiveAccess().getCOMMATerminalRuleCall_4_0()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getEnumPropertyDirectiveAccess().getValuesEnumPropertyValueParserRuleCall_4_1_0()); 
+	    }
+		lv_values_5_0=ruleEnumPropertyValue		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getEnumPropertyDirectiveRule());
+	        }
+       		add(
+       			$current, 
+       			"values",
+        		lv_values_5_0, 
+        		"EnumPropertyValue");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?this_RPAREN_6=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_6, grammarAccess.getEnumPropertyDirectiveAccess().getRPARENTerminalRuleCall_5()); 
     }
 )
 ;

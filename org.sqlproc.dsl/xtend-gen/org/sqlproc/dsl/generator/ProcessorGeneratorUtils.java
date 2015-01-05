@@ -4,6 +4,8 @@
 package org.sqlproc.dsl.generator;
 
 import com.google.inject.Inject;
+import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.sqlproc.dsl.ImportManager;
@@ -20,41 +22,27 @@ public class ProcessorGeneratorUtils {
   private IQualifiedNameProvider _iQualifiedNameProvider;
   
   public CharSequence compileType(final EnumProperty f, final ImportManager im) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getNative is undefined for the type ProcessorGeneratorUtils"
-      + "\nThe method getNative is undefined for the type ProcessorGeneratorUtils"
-      + "\nType mismatch: cannot convert from PojoType to JvmType"
-      + "\n!= cannot be resolved"
-      + "\nsubstring cannot be resolved");
+    StringConcatenation _builder = new StringConcatenation();
+    PojoType _type = f.getType();
+    CharSequence _serialize = im.serialize(_type);
+    _builder.append(_serialize, "");
+    return _builder;
   }
   
   public CharSequence compileType(final PojoProperty f, final ImportManager im) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getNative is undefined for the type ProcessorGeneratorUtils"
-      + "\nThe method getNative is undefined for the type ProcessorGeneratorUtils"
-      + "\nThe method getRef is undefined for the type ProcessorGeneratorUtils"
-      + "\nThe method getRef is undefined for the type ProcessorGeneratorUtils"
-      + "\nThe method getGtype is undefined for the type ProcessorGeneratorUtils"
-      + "\nThe method getGtype is undefined for the type ProcessorGeneratorUtils"
-      + "\nThe method getGref is undefined for the type ProcessorGeneratorUtils"
-      + "\nThe method getGref is undefined for the type ProcessorGeneratorUtils"
-      + "\nThe method array is undefined for the type ProcessorGeneratorUtils"
-      + "\nType mismatch: cannot convert from PojoType to JvmType"
-      + "\n!= cannot be resolved"
-      + "\nsubstring cannot be resolved"
-      + "\n!= cannot be resolved"
-      + "\nfullyQualifiedName cannot be resolved"
-      + "\n!= cannot be resolved"
-      + "\n!= cannot be resolved"
-      + "\nfullyQualifiedName cannot be resolved");
+    StringConcatenation _builder = new StringConcatenation();
+    PojoType _type = f.getType();
+    CharSequence _serialize = im.serialize(_type);
+    _builder.append(_serialize, "");
+    return _builder;
   }
   
   public CharSequence compileType(final PojoType f, final ImportManager im) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getNative is undefined for the type ProcessorGeneratorUtils"
-      + "\nThe method getNative is undefined for the type ProcessorGeneratorUtils"
-      + "\n!= cannot be resolved"
-      + "\nsubstring cannot be resolved");
+    StringConcatenation _builder = new StringConcatenation();
+    JvmType _type = f.getType();
+    CharSequence _serialize = im.serialize(_type);
+    _builder.append(_serialize, "");
+    return _builder;
   }
   
   public String completeName(final PojoEntity e) {

@@ -23,6 +23,7 @@ import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
+import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.util.Utils;
 
 /**
@@ -1970,13 +1971,23 @@ public class ProcessorDaoGenerator {
   }
   
   public void addImplements(final PojoDao e, final ImportManager im) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from PojoType to JvmType");
+    EObject _eContainer = e.eContainer();
+    EList<EObject> _eContents = _eContainer.eContents();
+    Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
+    for (final Implements impl : _filter) {
+      PojoType _implements = impl.getImplements();
+      im.addImportFor(_implements);
+    }
   }
   
   public void addExtends(final PojoDao e, final ImportManager im) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from PojoType to JvmType");
+    EObject _eContainer = e.eContainer();
+    EList<EObject> _eContents = _eContainer.eContents();
+    Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
+    for (final Extends ext : _filter) {
+      PojoType _extends = ext.getExtends();
+      im.addImportFor(_extends);
+    }
   }
   
   public boolean isExtends(final PojoDao e) {

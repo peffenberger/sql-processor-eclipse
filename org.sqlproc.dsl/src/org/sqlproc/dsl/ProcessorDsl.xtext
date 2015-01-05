@@ -357,18 +357,6 @@ FeatureValue:
   (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)+
 ;
 
-
-PojoType hidden(ML_COMMENT, SL_COMMENT, WS):
-	(COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoEntity|IDENT])
-	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|IDENT]) MORE_THAN)?
-	(array ?= '[]')?
-;
-
-DaoType hidden(ML_COMMENT, SL_COMMENT, WS):
-	(COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoDao|IDENT])
-	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoDao|IDENT]) MORE_THAN)?
-;
-
 PackageDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	{PackageDirectiveSuffix} '#Suffix' LPAREN suffix=(IDENT|NUMBER) RPAREN
 ;
@@ -379,8 +367,21 @@ PackageDeclaration hidden(ML_COMMENT, SL_COMMENT, WS):
 	RBRACE
 ;
 
+Entity : PojoEntity | EnumEntity;
+
 AbstractEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-	PackageDeclaration | PojoEntity | EnumEntity | Import | Implements | Extends | ImplPackage | PojoDao;
+	PackageDeclaration | Entity | Import | Implements | Extends | ImplPackage | PojoDao;
+
+PojoType hidden(ML_COMMENT, SL_COMMENT, WS):
+	(COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[Entity|IDENT])
+	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[Entity|IDENT]) MORE_THAN)?
+	(array ?= '[]')?
+;
+
+DaoType hidden(ML_COMMENT, SL_COMMENT, WS):
+	(COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoDao|IDENT])
+	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoDao|IDENT]) MORE_THAN)?
+;
 
 Import hidden(ML_COMMENT, SL_COMMENT, WS):
 	'import' importedNamespace = QualifiedNameWithWildcard;
@@ -413,14 +414,14 @@ Annotation hidden(ML_COMMENT, SL_COMMENT, WS):
 ;
 
 EntityAnnotation hidden(ML_COMMENT, SL_COMMENT, WS):
-	 AT (=> AT (=> AT (=> AT {ConflictAnnotations} annotation=Annotation 
-	| {StaticAnnotations} annotation=Annotation) 
-	| {ConstructorAnnotations} annotation=Annotation) 
+	 AT (=> AT (=> AT (=> AT {ConflictAnnotation} annotation=Annotation 
+	| {StaticAnnotation} annotation=Annotation) 
+	| {ConstructorAnnotation} annotation=Annotation) 
 	| {StandardAnnotation} annotation=Annotation)
 ;
 
 DirectiveProperties hidden(ML_COMMENT, SL_COMMENT, WS):
-	LPAREN properties+=PojogenProperty (COMMA properties+=PojogenProperty)* RPAREN
+	features+=PojoProperty (COMMA features+=PojoProperty)*
 ;
 
 PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
@@ -430,11 +431,12 @@ PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {PojoDirectiveDiscriminator} '#Discriminator' LPAREN discriminator=(IDENT|NUMBER) RPAREN
 	| {PojoDirectiveOperators} '#Operators' (LPAREN operatorsSuffix=IDENT RPAREN)?
 	| {PojoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
-	| {PojoDirectiveEquals} '#Equals' (proplist=DirectiveProperties)?
-	| {PojoDirectiveHashCode} '#HashCode' (proplist=DirectiveProperties)?
-	| {PojoDirectiveToInit} '#ToInit' (proplist=DirectiveProperties)?
-	| {PojoDirectiveIsDef} '#IsDef' (proplist=DirectiveProperties)?
-	| {PojoDirectiveToString} '#ToString' (proplist=DirectiveProperties)?
+	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveToInit} '#ToInit' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveIsDef} '#IsDef' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveToString} '#ToString' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveIndex} '#Index' LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN
 	;
 
 PojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
@@ -444,9 +446,9 @@ PojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 	RBRACE;
 
 PojoPropertyAnnotation hidden(ML_COMMENT, SL_COMMENT, WS):
-	AT (=> AT (=> AT {SetterAnnotations} annotation=Annotation 
-	| {GetterAnnotations} annotation=Annotation) 
-	| {AttributeAnnotations} annotation=Annotation)
+	AT (=> AT (=> AT {SetterAnnotation} annotation=Annotation 
+	| {GetterAnnotation} annotation=Annotation) 
+	| {AttributeAnnotation} annotation=Annotation)
 ;
 
 PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
@@ -475,8 +477,10 @@ EnumEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 		features+=EnumProperty*
 	RBRACE;
 
+EnumPropertyValue: name=IDENT EQUALS value=(NUMBER|STRING_VALUE);
+
 EnumPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
-	{EnumPropertyDirectiveValues} '#Values' LPAREN values+=(NUMBER|STRING_VALUE) RPAREN
+	{EnumPropertyDirectiveValues} '#Values' LPAREN values+=EnumPropertyValue (COMMA values+=EnumPropertyValue)? RPAREN
 	;
 
 EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):

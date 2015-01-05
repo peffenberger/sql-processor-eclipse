@@ -667,8 +667,8 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
                     }
                     return ValidationResult.OK
                 }
-                if (pojoProperty.getType().getGref() != null)
-                    return checkEntityProperty(pojoProperty.getType().getGref(), innerProperty)
+                if (pojoProperty.getType().getGref() != null && pojoProperty.getType().getGref() instanceof PojoEntity)
+                    return checkEntityProperty(pojoProperty.getType().getGref() as PojoEntity, innerProperty)
                 return ValidationResult.ERROR
             }
         }
@@ -823,7 +823,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
 		                val pentity = entity as PojoEntity
 		                if (pentity !== pojoEntity) {
 			                if (pojoEntity.getName().equals(pentity.getName())) {
-			                    error("Duplicate name : " + pojoEntity.getName(), ProcessorDslPackage.Literals.POJO_ENTITY__NAME)
+			                    error("Duplicate name : " + pojoEntity.getName(), ProcessorDslPackage.Literals.ENTITY__NAME)
 			                    return
 			                }
 		                }
@@ -858,7 +858,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
 		                val pentity = entity as EnumEntity
 		                if (pentity != enumEntity) {
 			                if (enumEntity.getName().equals(pentity.getName())) {
-			                    error("Duplicate name : " + enumEntity.getName(), ProcessorDslPackage.Literals.ENUM_ENTITY__NAME)
+			                    error("Duplicate name : " + enumEntity.getName(), ProcessorDslPackage.Literals.ENTITY__NAME)
 			                    return
 			                }
 						}

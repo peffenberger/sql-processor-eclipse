@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sqlproc.dsl.processorDsl.DirectiveProperties;
-import org.sqlproc.dsl.processorDsl.PojogenProperty;
+import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
 /**
@@ -27,7 +27,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DirectivePropertiesImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DirectivePropertiesImpl#getFeatures <em>Features</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,14 +36,14 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 public class DirectivePropertiesImpl extends MinimalEObjectImpl.Container implements DirectiveProperties
 {
   /**
-   * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
+   * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getProperties()
+   * @see #getFeatures()
    * @generated
    * @ordered
    */
-  protected EList<PojogenProperty> properties;
+  protected EList<PojoProperty> features;
 
   /**
    * <!-- begin-user-doc -->
@@ -71,13 +71,13 @@ public class DirectivePropertiesImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojogenProperty> getProperties()
+  public EList<PojoProperty> getFeatures()
   {
-    if (properties == null)
+    if (features == null)
     {
-      properties = new EObjectContainmentEList<PojogenProperty>(PojogenProperty.class, this, ProcessorDslPackage.DIRECTIVE_PROPERTIES__PROPERTIES);
+      features = new EObjectContainmentEList<PojoProperty>(PojoProperty.class, this, ProcessorDslPackage.DIRECTIVE_PROPERTIES__FEATURES);
     }
-    return properties;
+    return features;
   }
 
   /**
@@ -90,8 +90,8 @@ public class DirectivePropertiesImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.DIRECTIVE_PROPERTIES__PROPERTIES:
-        return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
+      case ProcessorDslPackage.DIRECTIVE_PROPERTIES__FEATURES:
+        return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -106,8 +106,8 @@ public class DirectivePropertiesImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.DIRECTIVE_PROPERTIES__PROPERTIES:
-        return getProperties();
+      case ProcessorDslPackage.DIRECTIVE_PROPERTIES__FEATURES:
+        return getFeatures();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -123,9 +123,9 @@ public class DirectivePropertiesImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.DIRECTIVE_PROPERTIES__PROPERTIES:
-        getProperties().clear();
-        getProperties().addAll((Collection<? extends PojogenProperty>)newValue);
+      case ProcessorDslPackage.DIRECTIVE_PROPERTIES__FEATURES:
+        getFeatures().clear();
+        getFeatures().addAll((Collection<? extends PojoProperty>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -141,8 +141,8 @@ public class DirectivePropertiesImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.DIRECTIVE_PROPERTIES__PROPERTIES:
-        getProperties().clear();
+      case ProcessorDslPackage.DIRECTIVE_PROPERTIES__FEATURES:
+        getFeatures().clear();
         return;
     }
     super.eUnset(featureID);
@@ -158,8 +158,8 @@ public class DirectivePropertiesImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.DIRECTIVE_PROPERTIES__PROPERTIES:
-        return properties != null && !properties.isEmpty();
+      case ProcessorDslPackage.DIRECTIVE_PROPERTIES__FEATURES:
+        return features != null && !features.isEmpty();
     }
     return super.eIsSet(featureID);
   }

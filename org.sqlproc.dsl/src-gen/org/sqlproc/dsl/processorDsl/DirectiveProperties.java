@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.DirectiveProperties#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.DirectiveProperties#getFeatures <em>Features</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,19 +25,19 @@ import org.eclipse.emf.ecore.EObject;
 public interface DirectiveProperties extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PojogenProperty}.
+   * Returns the value of the '<em><b>Features</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PojoProperty}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Properties</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Features</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Properties</em>' containment reference list.
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getDirectiveProperties_Properties()
+   * @return the value of the '<em>Features</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getDirectiveProperties_Features()
    * @model containment="true"
    * @generated
    */
-  EList<PojogenProperty> getProperties();
+  EList<PojoProperty> getFeatures();
 
 } // DirectiveProperties

@@ -18,6 +18,14 @@ import org.sqlproc.dsl.processorDsl.EnumEntity
 import org.sqlproc.dsl.processorDsl.EnumProperty
 import org.sqlproc.dsl.processorDsl.Annotation
 import org.sqlproc.dsl.processorDsl.AnnotationProperty
+import org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues
+import org.sqlproc.dsl.processorDsl.PojoDirectiveIsDef
+import org.sqlproc.dsl.processorDsl.PojoDirectiveToInit
+import org.sqlproc.dsl.processorDsl.Entity
+import org.sqlproc.dsl.processorDsl.StandardAnnotation
+import org.sqlproc.dsl.processorDsl.StaticAnnotation
+import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex
+import org.sqlproc.dsl.processorDsl.ConstructorAnnotation
 
 //import static extension org.sqlproc.dsl.generator.ProcessorGeneratorUtils.*
 
@@ -31,6 +39,10 @@ class ProcessorPojoGenerator {
 	@Inject extension IQualifiedNameProvider
 	@Inject extension ProcessorGeneratorUtils
 	
+	def compile(Entity e) '''
+		«IF e instanceof EnumEntity»«(e as EnumEntity).compile»«ELSEIF e instanceof PojoEntity»«compile(e as PojoEntity)»«ENDIF»
+	'''
+
 	def compile(EnumEntity e) '''
 	«val im = new ImportManager(true)»
 	«val eattr = getEnumAttr(e)»
@@ -59,7 +71,7 @@ class ProcessorPojoGenerator {
 	def compile(EnumEntity e, ImportManager im, EnumProperty ea) '''
 	public enum «e.name» «compileImplements(e)»{
 	
-		«FOR f:e.features.filter(x| x.value!=null) SEPARATOR ", "»«f.name»(«f.value»)«ENDFOR»;
+		«FOR f:e.directives.filter(x| x instanceof EnumPropertyDirectiveValues) SEPARATOR ", "»«FOR v:(f as EnumPropertyDirectiveValues).values SEPARATOR ", "»«v.name»(«v.value»)«ENDFOR»«ENDFOR»;
 		«IF getSernum(e) != null»
 			
 		private static final long serialVersionUID = «getSernum(e)»L;
@@ -131,46 +143,46 @@ class ProcessorPojoGenerator {
 	'''
 	
 	def compile(PojoEntity e, ImportManager im) '''
-	«FOR a:ae.annotations»
-	@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, im)»«ENDFOR»)«ENDIF»
+	«FOR a:e.annotations.filter(x|x instanceof StandardAnnotation)»
+	@«im.serialize(a.annotation.getType)»«IF !a.annotation.features.isEmpty»(«FOR f:a.annotation.features SEPARATOR ", "»«compileAnnotationProperty(f, im)»«ENDFOR»)«ENDIF»
 	«ENDFOR»
 	public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e, im)»«compileImplements(e)»{
 		«IF getSernum(e) != null»
 		
 		private static final long serialVersionUID = «getSernum(e)»L;
 		«ENDIF»
-		«FOR f:e.features.filter(x| getIndex(x.feature)!=null)»
-		«FOR a:ae.staticAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
+		«FOR f:e.features.filter(x| getIndex(x)!=null)»
+		«FOR a:e.annotations.filter(x|x instanceof StaticAnnotation)»
+		@«im.serialize(a.annotation.getType)»«IF !a.annotation.features.isEmpty»(«FOR ff:a.annotation.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
-		public static final int ORDER_BY_«constName(f.feature)» = «getIndex(f.feature)»;
+		public static final int ORDER_BY_«constName(f)» = «getIndex(f)»;
 		«ENDFOR»
-		«FOR f:e.features.filter(x| x.feature.name.startsWith("index="))»
-		«FOR a:ae.staticAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
+		«FOR f:e.directives.filter(x| x instanceof PojoDirectiveIndex)»
+		«FOR a:e.annotations.filter(x|x instanceof StaticAnnotation)»
+		@«im.serialize(a.annotation.getType)»«IF !a.annotation.features.isEmpty»(«FOR ff:a.annotation.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
-		public static final int ORDER_BY_«constName2(f.feature)» = «f.feature.name.substring(6)»;
+		public static final int ORDER_BY_«constName(f as PojoDirectiveIndex)» = «(f as PojoDirectiveIndex).index»;
 		«ENDFOR»
 		
-		«FOR a:ae.constructorAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, im)»«ENDFOR»)«ENDIF»
+		«FOR a:e.annotations.filter(x|x instanceof ConstructorAnnotation)»
+		@«im.serialize(a.annotation.getType)»«IF !a.annotation.features.isEmpty»(«FOR ff:a.annotation.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
 		public «e.name»() {
 		}
 		«IF !e.requiredFeatures.empty»
 			
-		«FOR a:ae.constructorAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, im)»«ENDFOR»)«ENDIF»
+		«FOR a:e.annotations.filter(x|x instanceof ConstructorAnnotation)»
+		@«im.serialize(a.annotation.getType)»«IF !a.annotation.features.isEmpty»(«FOR ff:a.annotation.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
-		public «e.name»(«FOR f:e.requiredFeatures SEPARATOR ", "»«getFullName(e, f, f.feature.compileType(im), im)» «f.feature.name»«ENDFOR») {
-			«FOR f:e.requiredSuperFeatures BEFORE "super(" SEPARATOR ", " AFTER ");"»«f.feature.name»«ENDFOR»
+		public «e.name»(«FOR f:e.requiredFeatures SEPARATOR ", "»«getFullName(e, f, f.compileType(im), im)» «f.name»«ENDFOR») {
+			«FOR f:e.requiredSuperFeatures BEFORE "super(" SEPARATOR ", " AFTER ");"»«f.name»«ENDFOR»
 			«FOR f:e.requiredFeatures1»
-			this.«f.feature.name» = «f.feature.name»;
+			this.«f.name» = «f.name»;
 			«ENDFOR»
 		}
 		«ENDIF»
-	«FOR f:e.features.filter(x| isAttribute(x.feature))»
-		«f.feature.compile(f, im, e, ae, getOperatorsSuffix(e))»
+	«FOR f:e.features.filter(x| isAttribute(x))»
+		«f.compile(im, e, getOperatorsSuffix(e))»
 	«ENDFOR»
 	«FOR f:e.features.filter(x| !isAttribute(x.feature))»«IF f.feature.name.equalsIgnoreCase("hashCode")»«f.feature.compileHashCode(f, im, e, ae)»
 	«ELSEIF f.feature.name.equalsIgnoreCase("equals")»«f.feature.compileEquals(f, im, e, ae)»
@@ -184,9 +196,9 @@ class ProcessorPojoGenerator {
 	'''
 	
 	def compileAnnotationProperty(AnnotationProperty f, ImportManager im) '''
-		«f.name» = «IF f.getType != null»«im.serialize(f.getType)»«ELSEIF f.getRef != null»«f.getRef.fullyQualifiedName»«ENDIF»«getAnnotationValue(f)»'''
+		«f.name» = «im.serialize(f.getType)»«getAnnotationValue(f)»'''
 	
-	def compile(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae, String operatorSuffix) '''
+	def compile(PojoProperty f, ImportManager im, PojoEntity e, String operatorSuffix) '''
 	
 		«FOR a:aaf.attributeAnnotations»
 		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
@@ -691,55 +703,55 @@ class ProcessorPojoGenerator {
 		}
 	'''
 	
-	def List<PojoAnnotatedProperty> listFeatures(PojoEntity e) {
-		
-	 	val list = new ArrayList<PojoAnnotatedProperty>()
-		if (getSuperType(e) != null)
-			list.addAll(getSuperType(e).listFeatures)
+	def List<PojoProperty> listFeatures(PojoEntity e) {
+	 	val list = new ArrayList<PojoProperty>()
+	 	val se = getSuperType(e)
+		if (se != null && se instanceof PojoEntity)
+			list.addAll((se as PojoEntity).listFeatures)
 		list.addAll(e.listFeatures1)
 		return list
 	}
 	
 	def listFeatures1(PojoEntity e) {
-		return e.features.filter(f|isList(f.feature)).toList
+		return e.features.filter(f|isList(f)).toList
 	}
 		
-	def List<PojoAnnotatedProperty> requiredFeatures(PojoEntity e) {
-		
-	 	val list = new ArrayList<PojoAnnotatedProperty>()
-		if (getSuperType(e) != null)
-			list.addAll(getSuperType(e).requiredFeatures)
+	def List<PojoProperty> requiredFeatures(PojoEntity e) {
+	 	val list = new ArrayList<PojoProperty>()
+	 	val se = getSuperType(e)
+		if (se != null && se instanceof PojoEntity)
+			list.addAll((se as PojoEntity).requiredFeatures)
 		list.addAll(e.requiredFeatures1)
 		return list
 	}
 	
 	def requiredSuperFeatures(PojoEntity e) {
-		
-	 	val list = new ArrayList<PojoAnnotatedProperty>()
-		if (getSuperType(e) != null)
-			list.addAll(getSuperType(e).requiredFeatures)
+	 	val list = new ArrayList<PojoProperty>()
+	 	val se = getSuperType(e)
+		if (se != null && se instanceof PojoEntity)
+			list.addAll((se as PojoEntity).requiredFeatures)
 		return list
 	}
 	
 	def requiredFeatures1(PojoEntity e) {
-		return e.features.filter(f|isRequired(f.feature)).toList
+		return e.features.filter(f|isRequired(f)).toList
 	}
 	
 	def hasIsDef(PojoEntity e) {
-		return e.features.findFirst(f|f.feature.name == "isDef")
+		return e.directives.findFirst(f|f instanceof PojoDirectiveIsDef)
 	}
 	
 	def hasToInit(PojoEntity e) {
-		return e.features.findFirst(f|f.feature.name == "toInit")
+		return e.directives.findFirst(f|f instanceof PojoDirectiveToInit)
 	}
 	
 	def isAttribute(PojoProperty f) {
-		return f.getNative != null || f.getRef != null || f.getType != null
+		return f.getType != null
 	}
 	
-	def simplAttrs(PojoProperty f) {
-		return f.attrs.filter(f2|f2.getNative != null || f2.getType != null).toList
-	}
+//	def simplAttrs(PojoProperty f) {
+//		return f.attrs.filter(f2|f2.getNative != null || f2.getType != null).toList
+//	}
 	
 	def compileImplements(EnumEntity e) '''
 		«IF getSernum(e) != null»implements Serializable«ENDIF» '''

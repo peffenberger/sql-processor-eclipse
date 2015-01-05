@@ -499,20 +499,6 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.POJO_TYPE:
-      {
-        PojoType pojoType = (PojoType)theEObject;
-        T result = casePojoType(pojoType);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.DAO_TYPE:
-      {
-        DaoType daoType = (DaoType)theEObject;
-        T result = caseDaoType(daoType);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case ProcessorDslPackage.PACKAGE_DIRECTIVE:
       {
         PackageDirective packageDirective = (PackageDirective)theEObject;
@@ -528,10 +514,32 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorDslPackage.ENTITY:
+      {
+        Entity entity = (Entity)theEObject;
+        T result = caseEntity(entity);
+        if (result == null) result = caseAbstractEntity(entity);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorDslPackage.ABSTRACT_ENTITY:
       {
         AbstractEntity abstractEntity = (AbstractEntity)theEObject;
         T result = caseAbstractEntity(abstractEntity);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_TYPE:
+      {
+        PojoType pojoType = (PojoType)theEObject;
+        T result = casePojoType(pojoType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.DAO_TYPE:
+      {
+        DaoType daoType = (DaoType)theEObject;
+        T result = caseDaoType(daoType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -606,6 +614,7 @@ public class ProcessorDslSwitch<T> extends Switch<T>
       {
         PojoEntity pojoEntity = (PojoEntity)theEObject;
         T result = casePojoEntity(pojoEntity);
+        if (result == null) result = caseEntity(pojoEntity);
         if (result == null) result = caseAbstractEntity(pojoEntity);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -642,7 +651,15 @@ public class ProcessorDslSwitch<T> extends Switch<T>
       {
         EnumEntity enumEntity = (EnumEntity)theEObject;
         T result = caseEnumEntity(enumEntity);
+        if (result == null) result = caseEntity(enumEntity);
         if (result == null) result = caseAbstractEntity(enumEntity);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ENUM_PROPERTY_VALUE:
+      {
+        EnumPropertyValue enumPropertyValue = (EnumPropertyValue)theEObject;
+        T result = caseEnumPropertyValue(enumPropertyValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -690,27 +707,27 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.CONFLICT_ANNOTATIONS:
+      case ProcessorDslPackage.CONFLICT_ANNOTATION:
       {
-        ConflictAnnotations conflictAnnotations = (ConflictAnnotations)theEObject;
-        T result = caseConflictAnnotations(conflictAnnotations);
-        if (result == null) result = caseEntityAnnotation(conflictAnnotations);
+        ConflictAnnotation conflictAnnotation = (ConflictAnnotation)theEObject;
+        T result = caseConflictAnnotation(conflictAnnotation);
+        if (result == null) result = caseEntityAnnotation(conflictAnnotation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.STATIC_ANNOTATIONS:
+      case ProcessorDslPackage.STATIC_ANNOTATION:
       {
-        StaticAnnotations staticAnnotations = (StaticAnnotations)theEObject;
-        T result = caseStaticAnnotations(staticAnnotations);
-        if (result == null) result = caseEntityAnnotation(staticAnnotations);
+        StaticAnnotation staticAnnotation = (StaticAnnotation)theEObject;
+        T result = caseStaticAnnotation(staticAnnotation);
+        if (result == null) result = caseEntityAnnotation(staticAnnotation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.CONSTRUCTOR_ANNOTATIONS:
+      case ProcessorDslPackage.CONSTRUCTOR_ANNOTATION:
       {
-        ConstructorAnnotations constructorAnnotations = (ConstructorAnnotations)theEObject;
-        T result = caseConstructorAnnotations(constructorAnnotations);
-        if (result == null) result = caseEntityAnnotation(constructorAnnotations);
+        ConstructorAnnotation constructorAnnotation = (ConstructorAnnotation)theEObject;
+        T result = caseConstructorAnnotation(constructorAnnotation);
+        if (result == null) result = caseEntityAnnotation(constructorAnnotation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -810,27 +827,35 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.SETTER_ANNOTATIONS:
+      case ProcessorDslPackage.POJO_DIRECTIVE_INDEX:
       {
-        SetterAnnotations setterAnnotations = (SetterAnnotations)theEObject;
-        T result = caseSetterAnnotations(setterAnnotations);
-        if (result == null) result = casePojoPropertyAnnotation(setterAnnotations);
+        PojoDirectiveIndex pojoDirectiveIndex = (PojoDirectiveIndex)theEObject;
+        T result = casePojoDirectiveIndex(pojoDirectiveIndex);
+        if (result == null) result = casePojoDirective(pojoDirectiveIndex);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.GETTER_ANNOTATIONS:
+      case ProcessorDslPackage.SETTER_ANNOTATION:
       {
-        GetterAnnotations getterAnnotations = (GetterAnnotations)theEObject;
-        T result = caseGetterAnnotations(getterAnnotations);
-        if (result == null) result = casePojoPropertyAnnotation(getterAnnotations);
+        SetterAnnotation setterAnnotation = (SetterAnnotation)theEObject;
+        T result = caseSetterAnnotation(setterAnnotation);
+        if (result == null) result = casePojoPropertyAnnotation(setterAnnotation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.ATTRIBUTE_ANNOTATIONS:
+      case ProcessorDslPackage.GETTER_ANNOTATION:
       {
-        AttributeAnnotations attributeAnnotations = (AttributeAnnotations)theEObject;
-        T result = caseAttributeAnnotations(attributeAnnotations);
-        if (result == null) result = casePojoPropertyAnnotation(attributeAnnotations);
+        GetterAnnotation getterAnnotation = (GetterAnnotation)theEObject;
+        T result = caseGetterAnnotation(getterAnnotation);
+        if (result == null) result = casePojoPropertyAnnotation(getterAnnotation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ATTRIBUTE_ANNOTATION:
+      {
+        AttributeAnnotation attributeAnnotation = (AttributeAnnotation)theEObject;
+        T result = caseAttributeAnnotation(attributeAnnotation);
+        if (result == null) result = casePojoPropertyAnnotation(attributeAnnotation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1983,38 +2008,6 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePojoType(PojoType object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Dao Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Dao Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDaoType(DaoType object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Package Directive</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2047,6 +2040,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Entity</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Entity</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEntity(Entity object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Abstract Entity</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2058,6 +2067,38 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseAbstractEntity(AbstractEntity object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoType(PojoType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoType(DaoType object)
   {
     return null;
   }
@@ -2303,6 +2344,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Property Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Property Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumPropertyValue(EnumPropertyValue object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Enum Property Directive</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2399,49 +2456,49 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Conflict Annotations</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Conflict Annotation</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Conflict Annotations</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Conflict Annotation</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseConflictAnnotations(ConflictAnnotations object)
+  public T caseConflictAnnotation(ConflictAnnotation object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Static Annotations</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Static Annotation</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Static Annotations</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Static Annotation</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseStaticAnnotations(StaticAnnotations object)
+  public T caseStaticAnnotation(StaticAnnotation object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Constructor Annotations</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Constructor Annotation</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Constructor Annotations</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Constructor Annotation</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseConstructorAnnotations(ConstructorAnnotations object)
+  public T caseConstructorAnnotation(ConstructorAnnotation object)
   {
     return null;
   }
@@ -2639,49 +2696,65 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Setter Annotations</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Index</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Setter Annotations</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Index</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseSetterAnnotations(SetterAnnotations object)
+  public T casePojoDirectiveIndex(PojoDirectiveIndex object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Getter Annotations</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Setter Annotation</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Getter Annotations</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Setter Annotation</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGetterAnnotations(GetterAnnotations object)
+  public T caseSetterAnnotation(SetterAnnotation object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Attribute Annotations</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Getter Annotation</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Attribute Annotations</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Getter Annotation</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseAttributeAnnotations(AttributeAnnotations object)
+  public T caseGetterAnnotation(GetterAnnotation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Attribute Annotation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Attribute Annotation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAttributeAnnotation(AttributeAnnotation object)
   {
     return null;
   }

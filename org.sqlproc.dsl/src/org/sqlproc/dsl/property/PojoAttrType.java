@@ -3,6 +3,7 @@ package org.sqlproc.dsl.property;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
+import org.sqlproc.dsl.processorDsl.Entity;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoType;
 
@@ -13,8 +14,8 @@ public class PojoAttrType {
     JvmType type;
     JvmType gtype;
     boolean array;
-    PojoEntity ref;
-    PojoEntity gref;
+    Entity ref;
+    Entity gref;
     String text;
 
     public PojoAttrType(String typeName, String size, PojoType pojoType) {
@@ -96,7 +97,7 @@ public class PojoAttrType {
         this.array = array;
     }
 
-    public PojoEntity getRef() {
+    public Entity getRef() {
         return ref;
     }
 
@@ -120,7 +121,7 @@ public class PojoAttrType {
         this.gtype = gtype;
     }
 
-    public PojoEntity getGref() {
+    public Entity getGref() {
         return gref;
     }
 

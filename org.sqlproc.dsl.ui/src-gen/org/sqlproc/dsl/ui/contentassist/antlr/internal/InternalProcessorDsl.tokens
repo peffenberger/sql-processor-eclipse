@@ -8,14 +8,14 @@
 '#Function'=78
 '#Generics'=76
 '#HashCode'=63
-'#Index'=69
+'#Index'=67
 '#IsDef'=65
 '#List'=80
 '#Operators'=60
 '#Pojo'=75
-'#PrimaryKey'=68
+'#PrimaryKey'=69
 '#Procedure'=77
-'#Required'=67
+'#Required'=68
 '#Serializable'=61
 '#Suffix'=46
 '#ToInit'=64

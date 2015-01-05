@@ -9,15 +9,15 @@ import java.util.Set;
 
 import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
-import org.sqlproc.dsl.processorDsl.AttributeAnnotations;
-import org.sqlproc.dsl.processorDsl.ConflictAnnotations;
-import org.sqlproc.dsl.processorDsl.ConstructorAnnotations;
+import org.sqlproc.dsl.processorDsl.AttributeAnnotation;
+import org.sqlproc.dsl.processorDsl.ConflictAnnotation;
+import org.sqlproc.dsl.processorDsl.ConstructorAnnotation;
 import org.sqlproc.dsl.processorDsl.EntityAnnotation;
-import org.sqlproc.dsl.processorDsl.GetterAnnotations;
+import org.sqlproc.dsl.processorDsl.GetterAnnotation;
 import org.sqlproc.dsl.processorDsl.PojoPropertyAnnotation;
-import org.sqlproc.dsl.processorDsl.SetterAnnotations;
+import org.sqlproc.dsl.processorDsl.SetterAnnotation;
 import org.sqlproc.dsl.processorDsl.StandardAnnotation;
-import org.sqlproc.dsl.processorDsl.StaticAnnotations;
+import org.sqlproc.dsl.processorDsl.StaticAnnotation;
 
 public class Annotations {
     Map<String, List<Annotation>> entityAnnotations = new HashMap<String, List<Annotation>>();
@@ -33,15 +33,15 @@ public class Annotations {
             if (!entityAnnotations.containsKey(entityName))
                 entityAnnotations.put(entityName, new ArrayList<Annotation>());
             entityAnnotations.get(entityName).add(annotation.getAnnotation());
-        } else if (annotation instanceof ConstructorAnnotations) {
+        } else if (annotation instanceof ConstructorAnnotation) {
             if (!constructorAnnotations.containsKey(entityName))
                 constructorAnnotations.put(entityName, new ArrayList<Annotation>());
             constructorAnnotations.get(entityName).add(annotation.getAnnotation());
-        } else if (annotation instanceof StaticAnnotations) {
+        } else if (annotation instanceof StaticAnnotation) {
             if (!staticAnnotations.containsKey(entityName))
                 staticAnnotations.put(entityName, new ArrayList<Annotation>());
             staticAnnotations.get(entityName).add(annotation.getAnnotation());
-        } else if (annotation instanceof ConflictAnnotations) {
+        } else if (annotation instanceof ConflictAnnotation) {
             if (!conflictAnnotations.containsKey(entityName))
                 conflictAnnotations.put(entityName, new ArrayList<Annotation>());
             conflictAnnotations.get(entityName).add(annotation.getAnnotation());
@@ -49,21 +49,21 @@ public class Annotations {
     }
 
     public void addAnnotation(String entityName, String featureName, PojoPropertyAnnotation annotation) {
-        if (annotation instanceof SetterAnnotations) {
+        if (annotation instanceof SetterAnnotation) {
             if (!setterAnnotations.containsKey(entityName))
                 setterAnnotations.put(entityName, new HashMap<String, List<Annotation>>());
             List<Annotation> list = setterAnnotations.get(entityName).get(featureName);
             if (list == null)
                 setterAnnotations.get(entityName).put(featureName, list = new ArrayList<Annotation>());
             list.add(annotation.getAnnotation());
-        } else if (annotation instanceof GetterAnnotations) {
+        } else if (annotation instanceof GetterAnnotation) {
             if (!getterAnnotations.containsKey(entityName))
                 getterAnnotations.put(entityName, new HashMap<String, List<Annotation>>());
             List<Annotation> list = getterAnnotations.get(entityName).get(featureName);
             if (list == null)
                 getterAnnotations.get(entityName).put(featureName, list = new ArrayList<Annotation>());
             list.add(annotation.getAnnotation());
-        } else if (annotation instanceof AttributeAnnotations) {
+        } else if (annotation instanceof AttributeAnnotation) {
             if (!attributeAnnotations.containsKey(entityName))
                 attributeAnnotations.put(entityName, new HashMap<String, List<Annotation>>());
             List<Annotation> list = attributeAnnotations.get(entityName).get(featureName);

@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.xtext.common.types.JvmType;
 
-import org.sqlproc.dsl.processorDsl.PojoEntity;
+import org.sqlproc.dsl.processorDsl.Entity;
 import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
@@ -53,7 +53,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * @generated
    * @ordered
    */
-  protected PojoEntity ref;
+  protected Entity ref;
 
   /**
    * The cached value of the '{@link #getGtype() <em>Gtype</em>}' reference.
@@ -73,7 +73,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * @generated
    * @ordered
    */
-  protected PojoEntity gref;
+  protected Entity gref;
 
   /**
    * The default value of the '{@link #isArray() <em>Array</em>}' attribute.
@@ -164,12 +164,12 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoEntity getRef()
+  public Entity getRef()
   {
     if (ref != null && ref.eIsProxy())
     {
       InternalEObject oldRef = (InternalEObject)ref;
-      ref = (PojoEntity)eResolveProxy(oldRef);
+      ref = (Entity)eResolveProxy(oldRef);
       if (ref != oldRef)
       {
         if (eNotificationRequired())
@@ -184,7 +184,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoEntity basicGetRef()
+  public Entity basicGetRef()
   {
     return ref;
   }
@@ -194,9 +194,9 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRef(PojoEntity newRef)
+  public void setRef(Entity newRef)
   {
-    PojoEntity oldRef = ref;
+    Entity oldRef = ref;
     ref = newRef;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_TYPE__REF, oldRef, ref));
@@ -250,12 +250,12 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoEntity getGref()
+  public Entity getGref()
   {
     if (gref != null && gref.eIsProxy())
     {
       InternalEObject oldGref = (InternalEObject)gref;
-      gref = (PojoEntity)eResolveProxy(oldGref);
+      gref = (Entity)eResolveProxy(oldGref);
       if (gref != oldGref)
       {
         if (eNotificationRequired())
@@ -270,7 +270,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoEntity basicGetGref()
+  public Entity basicGetGref()
   {
     return gref;
   }
@@ -280,9 +280,9 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setGref(PojoEntity newGref)
+  public void setGref(Entity newGref)
   {
-    PojoEntity oldGref = gref;
+    Entity oldGref = gref;
     gref = newGref;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_TYPE__GREF, oldGref, gref));
@@ -353,13 +353,13 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
         setType((JvmType)newValue);
         return;
       case ProcessorDslPackage.POJO_TYPE__REF:
-        setRef((PojoEntity)newValue);
+        setRef((Entity)newValue);
         return;
       case ProcessorDslPackage.POJO_TYPE__GTYPE:
         setGtype((JvmType)newValue);
         return;
       case ProcessorDslPackage.POJO_TYPE__GREF:
-        setGref((PojoEntity)newValue);
+        setGref((Entity)newValue);
         return;
       case ProcessorDslPackage.POJO_TYPE__ARRAY:
         setArray((Boolean)newValue);
@@ -382,13 +382,13 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
         setType((JvmType)null);
         return;
       case ProcessorDslPackage.POJO_TYPE__REF:
-        setRef((PojoEntity)null);
+        setRef((Entity)null);
         return;
       case ProcessorDslPackage.POJO_TYPE__GTYPE:
         setGtype((JvmType)null);
         return;
       case ProcessorDslPackage.POJO_TYPE__GREF:
-        setGref((PojoEntity)null);
+        setGref((Entity)null);
         return;
       case ProcessorDslPackage.POJO_TYPE__ARRAY:
         setArray(ARRAY_EDEFAULT);

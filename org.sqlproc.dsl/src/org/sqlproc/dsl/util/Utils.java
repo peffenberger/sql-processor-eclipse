@@ -23,6 +23,7 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.sqlproc.dsl.ImportManager;
 import org.sqlproc.dsl.processorDsl.AbstractEntity;
+import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.DaoDirective;
@@ -53,6 +54,7 @@ import org.sqlproc.dsl.processorDsl.PojoDirectiveAbstract;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveExtends;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveFinal;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveOperators;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
@@ -85,20 +87,20 @@ public class Utils {
     // return null;
     // }
     //
-    // public static String getAnnotationValue(AnnotationProperty a) {
-    // String value = a.getNumber();
-    // if (value != null)
-    // return value;
-    // value = a.getValue();
-    // if (value != null)
-    // return value;
-    // value = a.getConstant();
-    // if (value != null)
-    // value = value.replaceAll("___", ".");
-    // if (a.getType() != null || a.getRef() != null)
-    // return "." + value;
-    // return value;
-    // }
+    public static String getAnnotationValue(AnnotationProperty a) {
+        String value = a.getNumber();
+        if (value != null)
+            return value;
+        value = a.getValue();
+        if (value != null)
+            return value;
+        value = a.getConstant();
+        if (value != null)
+            value = value.replaceAll("___", ".");
+        if (a.getType() != null)
+            return "." + value;
+        return value;
+    }
 
     public static String resourceDir(Resource resource) {
         String uri = (resource.getURI() != null) ? resource.getURI().toString() : null;
@@ -584,18 +586,18 @@ public class Utils {
         return constName(f.getName());
     }
 
-    // public static String constName2(PojoProperty f) {
-    // StringBuilder result = new StringBuilder("");
-    // boolean first = true;
-    // for (PojoProperty p : f.getAttrs()) {
-    // if (first)
-    // first = false;
-    // else
-    // result.append("_");
-    // result.append(constName(p.getName()));
-    // }
-    // return result.toString();
-    // }
+    public static String constName(PojoDirectiveIndex f) {
+        StringBuilder result = new StringBuilder("");
+        boolean first = true;
+        for (PojoProperty p : f.getProplist().getFeatures()) {
+            if (first)
+                first = false;
+            else
+                result.append("_");
+            result.append(constName(p.getName()));
+        }
+        return result.toString();
+    }
 
     public static String constName(String name) {
         String result = "";
