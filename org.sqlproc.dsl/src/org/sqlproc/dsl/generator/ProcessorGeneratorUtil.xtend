@@ -18,7 +18,7 @@ class ProcessorGeneratorUtils {
 	@Inject extension IQualifiedNameProvider
 	
 	def compileType(EnumProperty f, ImportManager im) '''
-	  «IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getType != null»«im.serialize(f.getType)»«ENDIF»'''
+	  «IF f.type.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getType != null»«im.serialize(f.getType)»«ENDIF»'''
 	  
 	def compileType(PojoProperty f, ImportManager im) '''
 	  «IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getRef != null»«f.getRef.fullyQualifiedName»«ELSEIF f.getType != null»«im.serialize(f.getType)»«ENDIF»«IF f.getGtype != null»<«im.serialize(f.getGtype)»>«ENDIF»«IF f.getGref != null»<«f.getGref.fullyQualifiedName»>«ENDIF»«IF f.array»[]«ENDIF»'''

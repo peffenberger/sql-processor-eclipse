@@ -16,8 +16,6 @@ import org.sqlproc.dsl.processorDsl.Extends
 import java.util.List
 import org.sqlproc.dsl.processorDsl.EnumEntity
 import org.sqlproc.dsl.processorDsl.EnumProperty
-import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty
-import org.sqlproc.dsl.processorDsl.AnnotatedEntity
 import org.sqlproc.dsl.processorDsl.Annotation
 import org.sqlproc.dsl.processorDsl.AnnotationProperty
 
@@ -32,10 +30,6 @@ class ProcessorPojoGenerator {
 	
 	@Inject extension IQualifiedNameProvider
 	@Inject extension ProcessorGeneratorUtils
-	
-	def compile(AnnotatedEntity e) '''
-	«IF e.entity instanceof EnumEntity»«enumEntity(e).compile»«ENDIF»«IF e.entity instanceof PojoEntity»«compile(pojoEntity(e), e)»«ENDIF»
-	'''
 	
 	def compile(EnumEntity e) '''
 	«val im = new ImportManager(true)»
@@ -103,11 +97,11 @@ class ProcessorPojoGenerator {
 	}
 	'''
 	
-	def compile(PojoEntity e, AnnotatedEntity ae) '''
+	def compile(PojoEntity e) '''
 	«val im = new ImportManager(true)»
 	«addImplements(e, im)»
 	«addExtends(e, im)»
-	«val classBody = compile(e, ae, im)»
+	«val classBody = compile(e, im)»
 	«IF e.eContainer != null»package «e.eContainer.eContainer.fullyQualifiedName»;«ENDIF»
 	«IF !im.imports.empty»
 		
@@ -136,7 +130,7 @@ class ProcessorPojoGenerator {
 	«classBody»
 	'''
 	
-	def compile(PojoEntity e, AnnotatedEntity ae, ImportManager im) '''
+	def compile(PojoEntity e, ImportManager im) '''
 	«FOR a:ae.annotations»
 	@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, im)»«ENDFOR»)«ENDIF»
 	«ENDFOR»

@@ -24,7 +24,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *
  * @generated
  */
-public class ImportImpl extends AbstractPojoEntityImpl implements Import
+public class ImportImpl extends AbstractEntityImpl implements Import
 {
   /**
    * The default value of the '{@link #getImportedNamespace() <em>Imported Namespace</em>}' attribute.

@@ -24,7 +24,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *
  * @generated
  */
-public class ImplPackageImpl extends AbstractPojoEntityImpl implements ImplPackage
+public class ImplPackageImpl extends AbstractEntityImpl implements ImplPackage
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.

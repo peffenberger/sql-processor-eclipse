@@ -5,6 +5,7 @@ package org.sqlproc.dsl.processorDsl.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -15,11 +16,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import org.eclipse.xtext.common.types.JvmType;
-
 import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
+import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
 /**
@@ -40,17 +40,17 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *
  * @generated
  */
-public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
+public class ImplementsImpl extends AbstractEntityImpl implements Implements
 {
   /**
-   * The cached value of the '{@link #getImplements() <em>Implements</em>}' reference.
+   * The cached value of the '{@link #getImplements() <em>Implements</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getImplements()
    * @generated
    * @ordered
    */
-  protected JvmType implements_;
+  protected PojoType implements_;
 
   /**
    * The default value of the '{@link #isGenerics() <em>Generics</em>}' attribute.
@@ -138,27 +138,7 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmType getImplements()
-  {
-    if (implements_ != null && implements_.eIsProxy())
-    {
-      InternalEObject oldImplements = (InternalEObject)implements_;
-      implements_ = (JvmType)eResolveProxy(oldImplements);
-      if (implements_ != oldImplements)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.IMPLEMENTS__IMPLEMENTS, oldImplements, implements_));
-      }
-    }
-    return implements_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JvmType basicGetImplements()
+  public PojoType getImplements()
   {
     return implements_;
   }
@@ -168,12 +148,37 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setImplements(JvmType newImplements)
+  public NotificationChain basicSetImplements(PojoType newImplements, NotificationChain msgs)
   {
-    JvmType oldImplements = implements_;
+    PojoType oldImplements = implements_;
     implements_ = newImplements;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.IMPLEMENTS__IMPLEMENTS, oldImplements, implements_));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.IMPLEMENTS__IMPLEMENTS, oldImplements, newImplements);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setImplements(PojoType newImplements)
+  {
+    if (newImplements != implements_)
+    {
+      NotificationChain msgs = null;
+      if (implements_ != null)
+        msgs = ((InternalEObject)implements_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.IMPLEMENTS__IMPLEMENTS, null, msgs);
+      if (newImplements != null)
+        msgs = ((InternalEObject)newImplements).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.IMPLEMENTS__IMPLEMENTS, null, msgs);
+      msgs = basicSetImplements(newImplements, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.IMPLEMENTS__IMPLEMENTS, newImplements, newImplements));
   }
 
   /**
@@ -261,13 +266,28 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
    * @generated
    */
   @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ProcessorDslPackage.IMPLEMENTS__IMPLEMENTS:
+        return basicSetImplements(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case ProcessorDslPackage.IMPLEMENTS__IMPLEMENTS:
-        if (resolve) return getImplements();
-        return basicGetImplements();
+        return getImplements();
       case ProcessorDslPackage.IMPLEMENTS__GENERICS:
         return isGenerics();
       case ProcessorDslPackage.IMPLEMENTS__ONLY_POJOS:
@@ -294,7 +314,7 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
     switch (featureID)
     {
       case ProcessorDslPackage.IMPLEMENTS__IMPLEMENTS:
-        setImplements((JvmType)newValue);
+        setImplements((PojoType)newValue);
         return;
       case ProcessorDslPackage.IMPLEMENTS__GENERICS:
         setGenerics((Boolean)newValue);
@@ -330,7 +350,7 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
     switch (featureID)
     {
       case ProcessorDslPackage.IMPLEMENTS__IMPLEMENTS:
-        setImplements((JvmType)null);
+        setImplements((PojoType)null);
         return;
       case ProcessorDslPackage.IMPLEMENTS__GENERICS:
         setGenerics(GENERICS_EDEFAULT);

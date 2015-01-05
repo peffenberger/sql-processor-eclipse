@@ -18,10 +18,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.xtext.common.types.JvmType;
-
 import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
+import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
 /**
@@ -41,14 +40,14 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 public class AnnotationImpl extends MinimalEObjectImpl.Container implements Annotation
 {
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected JvmType type;
+  protected PojoType type;
 
   /**
    * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
@@ -86,27 +85,7 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmType getType()
-  {
-    if (type != null && type.eIsProxy())
-    {
-      InternalEObject oldType = (InternalEObject)type;
-      type = (JvmType)eResolveProxy(oldType);
-      if (type != oldType)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.ANNOTATION__TYPE, oldType, type));
-      }
-    }
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JvmType basicGetType()
+  public PojoType getType()
   {
     return type;
   }
@@ -116,12 +95,37 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(JvmType newType)
+  public NotificationChain basicSetType(PojoType newType, NotificationChain msgs)
   {
-    JvmType oldType = type;
+    PojoType oldType = type;
     type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ANNOTATION__TYPE, oldType, type));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ANNOTATION__TYPE, oldType, newType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(PojoType newType)
+  {
+    if (newType != type)
+    {
+      NotificationChain msgs = null;
+      if (type != null)
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.ANNOTATION__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.ANNOTATION__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ANNOTATION__TYPE, newType, newType));
   }
 
   /**
@@ -148,6 +152,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.ANNOTATION__TYPE:
+        return basicSetType(null, msgs);
       case ProcessorDslPackage.ANNOTATION__FEATURES:
         return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
     }
@@ -165,8 +171,7 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
     switch (featureID)
     {
       case ProcessorDslPackage.ANNOTATION__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
+        return getType();
       case ProcessorDslPackage.ANNOTATION__FEATURES:
         return getFeatures();
     }
@@ -185,7 +190,7 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
     switch (featureID)
     {
       case ProcessorDslPackage.ANNOTATION__TYPE:
-        setType((JvmType)newValue);
+        setType((PojoType)newValue);
         return;
       case ProcessorDslPackage.ANNOTATION__FEATURES:
         getFeatures().clear();
@@ -206,7 +211,7 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
     switch (featureID)
     {
       case ProcessorDslPackage.ANNOTATION__TYPE:
-        setType((JvmType)null);
+        setType((PojoType)null);
         return;
       case ProcessorDslPackage.ANNOTATION__FEATURES:
         getFeatures().clear();

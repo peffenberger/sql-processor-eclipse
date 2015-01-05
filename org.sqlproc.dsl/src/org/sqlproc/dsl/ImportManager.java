@@ -20,9 +20,9 @@ import org.eclipse.xtext.common.types.JvmTypeParameter;
 import org.eclipse.xtext.common.types.JvmVoid;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
-import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
+import org.sqlproc.dsl.processorDsl.PojoProperty;
 
 public class ImportManager {
 
@@ -154,7 +154,7 @@ public class ImportManager {
         return false;
     }
 
-    public boolean addImportFor(PojoAnnotatedProperty type, String name) {
+    public boolean addImportFor(PojoProperty type, String name) {
         final PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(type, PackageDeclaration.class);
         final String simpleName = name;
         final String qualifiedName = packageDeclaration.getName() + "." + simpleName;

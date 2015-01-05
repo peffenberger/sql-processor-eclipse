@@ -5,6 +5,7 @@ package org.sqlproc.dsl.processorDsl.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -15,11 +16,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import org.eclipse.xtext.common.types.JvmType;
-
 import org.sqlproc.dsl.processorDsl.Extends;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
+import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
 /**
@@ -40,17 +40,17 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *
  * @generated
  */
-public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
+public class ExtendsImpl extends AbstractEntityImpl implements Extends
 {
   /**
-   * The cached value of the '{@link #getExtends() <em>Extends</em>}' reference.
+   * The cached value of the '{@link #getExtends() <em>Extends</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getExtends()
    * @generated
    * @ordered
    */
-  protected JvmType extends_;
+  protected PojoType extends_;
 
   /**
    * The default value of the '{@link #isGenerics() <em>Generics</em>}' attribute.
@@ -138,27 +138,7 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmType getExtends()
-  {
-    if (extends_ != null && extends_.eIsProxy())
-    {
-      InternalEObject oldExtends = (InternalEObject)extends_;
-      extends_ = (JvmType)eResolveProxy(oldExtends);
-      if (extends_ != oldExtends)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.EXTENDS__EXTENDS, oldExtends, extends_));
-      }
-    }
-    return extends_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JvmType basicGetExtends()
+  public PojoType getExtends()
   {
     return extends_;
   }
@@ -168,12 +148,37 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExtends(JvmType newExtends)
+  public NotificationChain basicSetExtends(PojoType newExtends, NotificationChain msgs)
   {
-    JvmType oldExtends = extends_;
+    PojoType oldExtends = extends_;
     extends_ = newExtends;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.EXTENDS__EXTENDS, oldExtends, extends_));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.EXTENDS__EXTENDS, oldExtends, newExtends);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setExtends(PojoType newExtends)
+  {
+    if (newExtends != extends_)
+    {
+      NotificationChain msgs = null;
+      if (extends_ != null)
+        msgs = ((InternalEObject)extends_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.EXTENDS__EXTENDS, null, msgs);
+      if (newExtends != null)
+        msgs = ((InternalEObject)newExtends).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.EXTENDS__EXTENDS, null, msgs);
+      msgs = basicSetExtends(newExtends, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.EXTENDS__EXTENDS, newExtends, newExtends));
   }
 
   /**
@@ -261,13 +266,28 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
    * @generated
    */
   @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ProcessorDslPackage.EXTENDS__EXTENDS:
+        return basicSetExtends(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case ProcessorDslPackage.EXTENDS__EXTENDS:
-        if (resolve) return getExtends();
-        return basicGetExtends();
+        return getExtends();
       case ProcessorDslPackage.EXTENDS__GENERICS:
         return isGenerics();
       case ProcessorDslPackage.EXTENDS__ONLY_POJOS:
@@ -294,7 +314,7 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
     switch (featureID)
     {
       case ProcessorDslPackage.EXTENDS__EXTENDS:
-        setExtends((JvmType)newValue);
+        setExtends((PojoType)newValue);
         return;
       case ProcessorDslPackage.EXTENDS__GENERICS:
         setGenerics((Boolean)newValue);
@@ -330,7 +350,7 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
     switch (featureID)
     {
       case ProcessorDslPackage.EXTENDS__EXTENDS:
-        setExtends((JvmType)null);
+        setExtends((PojoType)null);
         return;
       case ProcessorDslPackage.EXTENDS__GENERICS:
         setGenerics(GENERICS_EDEFAULT);

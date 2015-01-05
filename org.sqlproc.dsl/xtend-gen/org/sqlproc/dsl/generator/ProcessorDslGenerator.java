@@ -17,8 +17,9 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.sqlproc.dsl.generator.ProcessorDaoGenerator;
 import org.sqlproc.dsl.generator.ProcessorPojoGenerator;
-import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
+import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.PojoDao;
+import org.sqlproc.dsl.processorDsl.PojoEntity;
 
 /**
  * Generates code from your model files on save.
@@ -42,8 +43,8 @@ public class ProcessorDslGenerator implements IGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
     TreeIterator<EObject> _allContents = resource.getAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
-    Iterable<AnnotatedEntity> _filter = Iterables.<AnnotatedEntity>filter(_iterable, AnnotatedEntity.class);
-    for (final AnnotatedEntity e : _filter) {
+    Iterable<PojoEntity> _filter = Iterables.<PojoEntity>filter(_iterable, PojoEntity.class);
+    for (final PojoEntity e : _filter) {
       EObject _eContainer = e.eContainer();
       QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer);
       String _string = _fullyQualifiedName.toString("/");
@@ -56,42 +57,56 @@ public class ProcessorDslGenerator implements IGenerator {
     }
     TreeIterator<EObject> _allContents_1 = resource.getAllContents();
     Iterable<EObject> _iterable_1 = IteratorExtensions.<EObject>toIterable(_allContents_1);
-    Iterable<PojoDao> _filter_1 = Iterables.<PojoDao>filter(_iterable_1, PojoDao.class);
-    for (final PojoDao d : _filter_1) {
+    Iterable<EnumEntity> _filter_1 = Iterables.<EnumEntity>filter(_iterable_1, EnumEntity.class);
+    for (final EnumEntity e_1 : _filter_1) {
+      EObject _eContainer_1 = e_1.eContainer();
+      QualifiedName _fullyQualifiedName_2 = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_1);
+      String _string_1 = _fullyQualifiedName_2.toString("/");
+      String _plus_3 = (_string_1 + "/");
+      QualifiedName _fullyQualifiedName_3 = this._iQualifiedNameProvider.getFullyQualifiedName(e_1);
+      String _plus_4 = (_plus_3 + _fullyQualifiedName_3);
+      String _plus_5 = (_plus_4 + ".java");
+      CharSequence _compile_1 = this._processorPojoGenerator.compile(e_1);
+      fsa.generateFile(_plus_5, _compile_1);
+    }
+    TreeIterator<EObject> _allContents_2 = resource.getAllContents();
+    Iterable<EObject> _iterable_2 = IteratorExtensions.<EObject>toIterable(_allContents_2);
+    Iterable<PojoDao> _filter_2 = Iterables.<PojoDao>filter(_iterable_2, PojoDao.class);
+    for (final PojoDao d : _filter_2) {
       String _implPackage = this._processorDaoGenerator.getImplPackage(d);
       boolean _notEquals = (!Objects.equal(_implPackage, null));
       if (_notEquals) {
-        EObject _eContainer_1 = d.eContainer();
-        QualifiedName _fullyQualifiedName_2 = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_1);
-        String _string_1 = _fullyQualifiedName_2.toString("/");
-        String _plus_3 = (_string_1 + "/");
-        QualifiedName _fullyQualifiedName_3 = this._iQualifiedNameProvider.getFullyQualifiedName(d);
-        String _plus_4 = (_plus_3 + _fullyQualifiedName_3);
-        String _plus_5 = (_plus_4 + ".java");
-        CharSequence _compileIfx = this._processorDaoGenerator.compileIfx(d);
-        fsa.generateFile(_plus_5, _compileIfx);
         EObject _eContainer_2 = d.eContainer();
         QualifiedName _fullyQualifiedName_4 = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_2);
         String _string_2 = _fullyQualifiedName_4.toString("/");
         String _plus_6 = (_string_2 + "/");
-        String _implPackage_1 = this._processorDaoGenerator.getImplPackage(d);
-        String _plus_7 = (_plus_6 + _implPackage_1);
-        String _plus_8 = (_plus_7 + "/");
         QualifiedName _fullyQualifiedName_5 = this._iQualifiedNameProvider.getFullyQualifiedName(d);
-        String _plus_9 = (_plus_8 + _fullyQualifiedName_5);
-        String _plus_10 = (_plus_9 + "Impl.java");
-        CharSequence _compile_1 = this._processorDaoGenerator.compile(d);
-        fsa.generateFile(_plus_10, _compile_1);
-      } else {
+        String _plus_7 = (_plus_6 + _fullyQualifiedName_5);
+        String _plus_8 = (_plus_7 + ".java");
+        CharSequence _compileIfx = this._processorDaoGenerator.compileIfx(d);
+        fsa.generateFile(_plus_8, _compileIfx);
         EObject _eContainer_3 = d.eContainer();
         QualifiedName _fullyQualifiedName_6 = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_3);
         String _string_3 = _fullyQualifiedName_6.toString("/");
-        String _plus_11 = (_string_3 + "/");
+        String _plus_9 = (_string_3 + "/");
+        String _implPackage_1 = this._processorDaoGenerator.getImplPackage(d);
+        String _plus_10 = (_plus_9 + _implPackage_1);
+        String _plus_11 = (_plus_10 + "/");
         QualifiedName _fullyQualifiedName_7 = this._iQualifiedNameProvider.getFullyQualifiedName(d);
         String _plus_12 = (_plus_11 + _fullyQualifiedName_7);
-        String _plus_13 = (_plus_12 + ".java");
+        String _plus_13 = (_plus_12 + "Impl.java");
         CharSequence _compile_2 = this._processorDaoGenerator.compile(d);
         fsa.generateFile(_plus_13, _compile_2);
+      } else {
+        EObject _eContainer_4 = d.eContainer();
+        QualifiedName _fullyQualifiedName_8 = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_4);
+        String _string_4 = _fullyQualifiedName_8.toString("/");
+        String _plus_14 = (_string_4 + "/");
+        QualifiedName _fullyQualifiedName_9 = this._iQualifiedNameProvider.getFullyQualifiedName(d);
+        String _plus_15 = (_plus_14 + _fullyQualifiedName_9);
+        String _plus_16 = (_plus_15 + ".java");
+        CharSequence _compile_3 = this._processorDaoGenerator.compile(d);
+        fsa.generateFile(_plus_16, _compile_3);
       }
     }
   }

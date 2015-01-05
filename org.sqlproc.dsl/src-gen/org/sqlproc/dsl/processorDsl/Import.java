@@ -19,7 +19,7 @@ package org.sqlproc.dsl.processorDsl;
  * @model
  * @generated
  */
-public interface Import extends AbstractPojoEntity
+public interface Import extends AbstractEntity
 {
   /**
    * Returns the value of the '<em><b>Imported Namespace</b></em>' attribute.

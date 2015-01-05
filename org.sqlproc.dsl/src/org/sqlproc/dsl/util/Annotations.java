@@ -7,11 +7,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
-import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
-import org.sqlproc.dsl.processorDsl.PojoEntity;
+import org.sqlproc.dsl.processorDsl.AttributeAnnotations;
+import org.sqlproc.dsl.processorDsl.ConflictAnnotations;
+import org.sqlproc.dsl.processorDsl.ConstructorAnnotations;
+import org.sqlproc.dsl.processorDsl.EntityAnnotation;
+import org.sqlproc.dsl.processorDsl.GetterAnnotations;
+import org.sqlproc.dsl.processorDsl.PojoPropertyAnnotation;
+import org.sqlproc.dsl.processorDsl.SetterAnnotations;
+import org.sqlproc.dsl.processorDsl.StandardAnnotation;
+import org.sqlproc.dsl.processorDsl.StaticAnnotations;
 
 public class Annotations {
     Map<String, List<Annotation>> entityAnnotations = new HashMap<String, List<Annotation>>();
@@ -22,51 +28,49 @@ public class Annotations {
     Map<String, Map<String, List<Annotation>>> getterAnnotations = new HashMap<String, Map<String, List<Annotation>>>();
     Map<String, Map<String, List<Annotation>>> attributeAnnotations = new HashMap<String, Map<String, List<Annotation>>>();
 
-    public void addEntityAnnotations(String pojoName, List<Annotation> annotations) {
-        entityAnnotations.put(pojoName, new ArrayList<Annotation>());
-        entityAnnotations.get(pojoName).addAll(annotations);
+    public void addAnnotation(String entityName, EntityAnnotation annotation) {
+        if (annotation instanceof StandardAnnotation) {
+            if (!entityAnnotations.containsKey(entityName))
+                entityAnnotations.put(entityName, new ArrayList<Annotation>());
+            entityAnnotations.get(entityName).add(annotation.getAnnotation());
+        } else if (annotation instanceof ConstructorAnnotations) {
+            if (!constructorAnnotations.containsKey(entityName))
+                constructorAnnotations.put(entityName, new ArrayList<Annotation>());
+            constructorAnnotations.get(entityName).add(annotation.getAnnotation());
+        } else if (annotation instanceof StaticAnnotations) {
+            if (!staticAnnotations.containsKey(entityName))
+                staticAnnotations.put(entityName, new ArrayList<Annotation>());
+            staticAnnotations.get(entityName).add(annotation.getAnnotation());
+        } else if (annotation instanceof ConflictAnnotations) {
+            if (!conflictAnnotations.containsKey(entityName))
+                conflictAnnotations.put(entityName, new ArrayList<Annotation>());
+            conflictAnnotations.get(entityName).add(annotation.getAnnotation());
+        }
     }
 
-    public void addConstructorAnnotations(String pojoName, List<Annotation> annotations) {
-        constructorAnnotations.put(pojoName, new ArrayList<Annotation>());
-        constructorAnnotations.get(pojoName).addAll(annotations);
-    }
-
-    public void addStaticAnnotations(String pojoName, List<Annotation> annotations) {
-        staticAnnotations.put(pojoName, new ArrayList<Annotation>());
-        staticAnnotations.get(pojoName).addAll(annotations);
-    }
-
-    public void addConflictAnnotations(String pojoName, List<Annotation> annotations) {
-        conflictAnnotations.put(pojoName, new ArrayList<Annotation>());
-        conflictAnnotations.get(pojoName).addAll(annotations);
-    }
-
-    public void addGetterAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
-        if (!getterAnnotations.containsKey(pojoName))
-            getterAnnotations.put(pojoName, new HashMap<String, List<Annotation>>());
-        List<Annotation> list = getterAnnotations.get(pojoName).get(featureName);
-        if (list == null)
-            getterAnnotations.get(pojoName).put(featureName, list = new ArrayList<Annotation>());
-        list.addAll(annotations);
-    }
-
-    public void addSetterAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
-        if (!setterAnnotations.containsKey(pojoName))
-            setterAnnotations.put(pojoName, new HashMap<String, List<Annotation>>());
-        List<Annotation> list = setterAnnotations.get(pojoName).get(featureName);
-        if (list == null)
-            setterAnnotations.get(pojoName).put(featureName, list = new ArrayList<Annotation>());
-        list.addAll(annotations);
-    }
-
-    public void addAttributeAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
-        if (!attributeAnnotations.containsKey(pojoName))
-            attributeAnnotations.put(pojoName, new HashMap<String, List<Annotation>>());
-        List<Annotation> list = attributeAnnotations.get(pojoName).get(featureName);
-        if (list == null)
-            attributeAnnotations.get(pojoName).put(featureName, list = new ArrayList<Annotation>());
-        list.addAll(annotations);
+    public void addAnnotation(String entityName, String featureName, PojoPropertyAnnotation annotation) {
+        if (annotation instanceof SetterAnnotations) {
+            if (!setterAnnotations.containsKey(entityName))
+                setterAnnotations.put(entityName, new HashMap<String, List<Annotation>>());
+            List<Annotation> list = setterAnnotations.get(entityName).get(featureName);
+            if (list == null)
+                setterAnnotations.get(entityName).put(featureName, list = new ArrayList<Annotation>());
+            list.add(annotation.getAnnotation());
+        } else if (annotation instanceof GetterAnnotations) {
+            if (!getterAnnotations.containsKey(entityName))
+                getterAnnotations.put(entityName, new HashMap<String, List<Annotation>>());
+            List<Annotation> list = getterAnnotations.get(entityName).get(featureName);
+            if (list == null)
+                getterAnnotations.get(entityName).put(featureName, list = new ArrayList<Annotation>());
+            list.add(annotation.getAnnotation());
+        } else if (annotation instanceof AttributeAnnotations) {
+            if (!attributeAnnotations.containsKey(entityName))
+                attributeAnnotations.put(entityName, new HashMap<String, List<Annotation>>());
+            List<Annotation> list = attributeAnnotations.get(entityName).get(featureName);
+            if (list == null)
+                attributeAnnotations.get(entityName).put(featureName, list = new ArrayList<Annotation>());
+            list.add(annotation.getAnnotation());
+        }
     }
 
     public StringBuilder getEntityAnnotationsDefinitions(String pojoName, boolean simpleNames) {
@@ -145,41 +149,44 @@ public class Annotations {
         if (!attributeAnnotations.containsKey(pojoName) || !attributeAnnotations.get(pojoName).containsKey(featureName))
             return false;
         for (Annotation a : attributeAnnotations.get(pojoName).get(featureName)) {
-            String aName = a.getType().getQualifiedName();
+            String aName = (a.getType().getType() != null) ? a.getType().getType().getQualifiedName() : null;
             if (annotationName.equals(aName))
                 return true;
         }
         return false;
     }
 
+    // TODO
     public void getAnnotationDefinition(StringBuilder sb, Annotation a, String prefix, boolean simpleNames) {
-        sb.append(prefix).append((simpleNames) ? a.getType().getSimpleName() : a.getType().getQualifiedName());
-        if (a.getFeatures() != null && !a.getFeatures().isEmpty()) {
-            sb.append(" ::: ");
-            boolean first = true;
-            for (AnnotationProperty ap : a.getFeatures()) {
-                if (first)
-                    first = false;
-                else
-                    sb.append(", ");
-                getAnnotationPropertyDefinition(sb, ap, simpleNames);
-            }
-        }
+        // sb.append(prefix).append(
+        // (simpleNames) ? a.getType().getType().getSimpleName() : a.getType().getType().getQualifiedName());
+        // if (a.getFeatures() != null && !a.getFeatures().isEmpty()) {
+        // sb.append(" ::: ");
+        // boolean first = true;
+        // for (AnnotationProperty ap : a.getFeatures()) {
+        // if (first)
+        // first = false;
+        // else
+        // sb.append(", ");
+        // getAnnotationPropertyDefinition(sb, ap, simpleNames);
+        // }
+        // }
     }
 
+    // TODO
     public void getAnnotationPropertyDefinition(StringBuilder sb, AnnotationProperty ap, boolean simpleNames) {
-        sb.append(ap.getName());
-        if (ap.getType() != null)
-            sb.append(" :").append((simpleNames) ? ap.getType().getSimpleName() : ap.getType().getQualifiedName());
-        else if (ap.getRef() != null)
-            sb.append(" ::").append(ap.getRef().getName());
-        sb.append(" ");
-        if (ap.getValue() != null)
-            sb.append(ap.getValue());
-        else if (ap.getNumber() != null)
-            sb.append(ap.getNumber());
-        else
-            sb.append(ap.getConstant());
+        // sb.append(ap.getName());
+        // if (ap.getType() != null)
+        // sb.append(" :").append((simpleNames) ? ap.getType().getSimpleName() : ap.getType().getQualifiedName());
+        // else if (ap.getRef() != null)
+        // sb.append(" ::").append(ap.getRef().getName());
+        // sb.append(" ");
+        // if (ap.getValue() != null)
+        // sb.append(ap.getValue());
+        // else if (ap.getNumber() != null)
+        // sb.append(ap.getNumber());
+        // else
+        // sb.append(ap.getConstant());
     }
 
     public Set<String> getImports() {
@@ -212,31 +219,29 @@ public class Annotations {
 
     public void getImports(Set<String> imports, List<Annotation> al) {
         for (Annotation a : al) {
-            if (a.getType() != null)
-                imports.add(a.getType().getQualifiedName());
+            if (a.getType() != null && a.getType().getType() != null)
+                imports.add(a.getType().getType().getQualifiedName());
             for (AnnotationProperty ap : a.getFeatures()) {
-                if (ap.getType() != null)
-                    imports.add(ap.getType().getQualifiedName());
+                if (ap.getType() != null && ap.getType().getType() != null)
+                    imports.add(ap.getType().getType().getQualifiedName());
             }
         }
     }
 
-    public static void grabAnnotations(AnnotatedEntity apojo, PojoEntity pojo, Annotations as) {
-        String pojoName = pojo.getName();
-        as.addEntityAnnotations(pojoName, apojo.getAnnotations());
-        as.addConstructorAnnotations(pojoName, apojo.getConstructorAnnotations());
-        as.addStaticAnnotations(pojoName, apojo.getStaticAnnotations());
-        as.addConflictAnnotations(pojoName, apojo.getConflictAnnotations());
-        for (PojoAnnotatedProperty feature : pojo.getFeatures()) {
-            if (feature.getFeature() == null)
-                continue;
-            if (feature.getAttributeAnnotations() != null)
-                as.addAttributeAnnotations(pojoName, feature.getFeature().getName(), feature.getAttributeAnnotations());
-            if (feature.getSetterAnnotations() != null)
-                as.addSetterAnnotations(pojoName, feature.getFeature().getName(), feature.getSetterAnnotations());
-            if (feature.getGetterAnnotations() != null)
-                as.addGetterAnnotations(pojoName, feature.getFeature().getName(), feature.getGetterAnnotations());
-        }
+    public static void grabAnnotations(List<EntityAnnotation> annotations, String entityName,
+            Annotations resultAnnotations) {
+        if (annotations != null)
+            for (EntityAnnotation an : annotations) {
+                resultAnnotations.addAnnotation(entityName, an);
+            }
+    }
+
+    public static void grabAnnotations(List<PojoPropertyAnnotation> annotations, String entityName, String featureName,
+            Annotations resultAnnotations) {
+        if (annotations != null)
+            for (PojoPropertyAnnotation an : annotations) {
+                resultAnnotations.addAnnotation(entityName, featureName, an);
+            }
     }
 
     @Override

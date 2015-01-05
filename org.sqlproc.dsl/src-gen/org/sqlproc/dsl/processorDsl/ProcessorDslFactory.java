@@ -581,6 +581,24 @@ public interface ProcessorDslFactory extends EFactory
   PojoType createPojoType();
 
   /**
+   * Returns a new object of class '<em>Dao Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Type</em>'.
+   * @generated
+   */
+  DaoType createDaoType();
+
+  /**
+   * Returns a new object of class '<em>Package Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Package Directive</em>'.
+   * @generated
+   */
+  PackageDirective createPackageDirective();
+
+  /**
    * Returns a new object of class '<em>Package Declaration</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -590,49 +608,13 @@ public interface ProcessorDslFactory extends EFactory
   PackageDeclaration createPackageDeclaration();
 
   /**
-   * Returns a new object of class '<em>Annotation</em>'.
+   * Returns a new object of class '<em>Abstract Entity</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotation</em>'.
+   * @return a new object of class '<em>Abstract Entity</em>'.
    * @generated
    */
-  Annotation createAnnotation();
-
-  /**
-   * Returns a new object of class '<em>Annotation Property</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotation Property</em>'.
-   * @generated
-   */
-  AnnotationProperty createAnnotationProperty();
-
-  /**
-   * Returns a new object of class '<em>Entity</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Entity</em>'.
-   * @generated
-   */
-  Entity createEntity();
-
-  /**
-   * Returns a new object of class '<em>Annotated Entity</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotated Entity</em>'.
-   * @generated
-   */
-  AnnotatedEntity createAnnotatedEntity();
-
-  /**
-   * Returns a new object of class '<em>Abstract Pojo Entity</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Abstract Pojo Entity</em>'.
-   * @generated
-   */
-  AbstractPojoEntity createAbstractPojoEntity();
+  AbstractEntity createAbstractEntity();
 
   /**
    * Returns a new object of class '<em>Import</em>'.
@@ -671,22 +653,49 @@ public interface ProcessorDslFactory extends EFactory
   ImplPackage createImplPackage();
 
   /**
-   * Returns a new object of class '<em>Pojo Entity Modifier1</em>'.
+   * Returns a new object of class '<em>Annotation Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Entity Modifier1</em>'.
+   * @return a new object of class '<em>Annotation Property</em>'.
    * @generated
    */
-  PojoEntityModifier1 createPojoEntityModifier1();
+  AnnotationProperty createAnnotationProperty();
 
   /**
-   * Returns a new object of class '<em>Pojo Entity Modifier2</em>'.
+   * Returns a new object of class '<em>Annotation</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Entity Modifier2</em>'.
+   * @return a new object of class '<em>Annotation</em>'.
    * @generated
    */
-  PojoEntityModifier2 createPojoEntityModifier2();
+  Annotation createAnnotation();
+
+  /**
+   * Returns a new object of class '<em>Entity Annotation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Entity Annotation</em>'.
+   * @generated
+   */
+  EntityAnnotation createEntityAnnotation();
+
+  /**
+   * Returns a new object of class '<em>Directive Properties</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Directive Properties</em>'.
+   * @generated
+   */
+  DirectiveProperties createDirectiveProperties();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive</em>'.
+   * @generated
+   */
+  PojoDirective createPojoDirective();
 
   /**
    * Returns a new object of class '<em>Pojo Entity</em>'.
@@ -698,22 +707,22 @@ public interface ProcessorDslFactory extends EFactory
   PojoEntity createPojoEntity();
 
   /**
-   * Returns a new object of class '<em>Pojo Annotated Property</em>'.
+   * Returns a new object of class '<em>Pojo Property Annotation</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Annotated Property</em>'.
+   * @return a new object of class '<em>Pojo Property Annotation</em>'.
    * @generated
    */
-  PojoAnnotatedProperty createPojoAnnotatedProperty();
+  PojoPropertyAnnotation createPojoPropertyAnnotation();
 
   /**
-   * Returns a new object of class '<em>Pojo Property Modifier</em>'.
+   * Returns a new object of class '<em>Pojo Property Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property Modifier</em>'.
+   * @return a new object of class '<em>Pojo Property Directive</em>'.
    * @generated
    */
-  PojoPropertyModifier createPojoPropertyModifier();
+  PojoPropertyDirective createPojoPropertyDirective();
 
   /**
    * Returns a new object of class '<em>Pojo Property</em>'.
@@ -725,22 +734,13 @@ public interface ProcessorDslFactory extends EFactory
   PojoProperty createPojoProperty();
 
   /**
-   * Returns a new object of class '<em>Enum Entity Modifier1</em>'.
+   * Returns a new object of class '<em>Enum Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Enum Entity Modifier1</em>'.
+   * @return a new object of class '<em>Enum Directive</em>'.
    * @generated
    */
-  EnumEntityModifier1 createEnumEntityModifier1();
-
-  /**
-   * Returns a new object of class '<em>Enum Entity Modifier2</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Enum Entity Modifier2</em>'.
-   * @generated
-   */
-  EnumEntityModifier2 createEnumEntityModifier2();
+  EnumDirective createEnumDirective();
 
   /**
    * Returns a new object of class '<em>Enum Entity</em>'.
@@ -752,6 +752,15 @@ public interface ProcessorDslFactory extends EFactory
   EnumEntity createEnumEntity();
 
   /**
+   * Returns a new object of class '<em>Enum Property Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Property Directive</em>'.
+   * @generated
+   */
+  EnumPropertyDirective createEnumPropertyDirective();
+
+  /**
    * Returns a new object of class '<em>Enum Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -761,13 +770,22 @@ public interface ProcessorDslFactory extends EFactory
   EnumProperty createEnumProperty();
 
   /**
-   * Returns a new object of class '<em>Pojo Dao Modifier</em>'.
+   * Returns a new object of class '<em>Directive Parameters</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Dao Modifier</em>'.
+   * @return a new object of class '<em>Directive Parameters</em>'.
    * @generated
    */
-  PojoDaoModifier createPojoDaoModifier();
+  DirectiveParameters createDirectiveParameters();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive</em>'.
+   * @generated
+   */
+  DaoDirective createDaoDirective();
 
   /**
    * Returns a new object of class '<em>Pojo Dao</em>'.
@@ -779,40 +797,364 @@ public interface ProcessorDslFactory extends EFactory
   PojoDao createPojoDao();
 
   /**
-   * Returns a new object of class '<em>Pojo Method Modifier</em>'.
+   * Returns a new object of class '<em>Package Directive Suffix</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Method Modifier</em>'.
+   * @return a new object of class '<em>Package Directive Suffix</em>'.
    * @generated
    */
-  PojoMethodModifier createPojoMethodModifier();
+  PackageDirectiveSuffix createPackageDirectiveSuffix();
 
   /**
-   * Returns a new object of class '<em>Pojo Method</em>'.
+   * Returns a new object of class '<em>Conflict Annotations</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Method</em>'.
+   * @return a new object of class '<em>Conflict Annotations</em>'.
    * @generated
    */
-  PojoMethod createPojoMethod();
+  ConflictAnnotations createConflictAnnotations();
 
   /**
-   * Returns a new object of class '<em>To Init Method</em>'.
+   * Returns a new object of class '<em>Static Annotations</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>To Init Method</em>'.
+   * @return a new object of class '<em>Static Annotations</em>'.
    * @generated
    */
-  ToInitMethod createToInitMethod();
+  StaticAnnotations createStaticAnnotations();
 
   /**
-   * Returns a new object of class '<em>Pojo Method Arg</em>'.
+   * Returns a new object of class '<em>Constructor Annotations</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Method Arg</em>'.
+   * @return a new object of class '<em>Constructor Annotations</em>'.
    * @generated
    */
-  PojoMethodArg createPojoMethodArg();
+  ConstructorAnnotations createConstructorAnnotations();
+
+  /**
+   * Returns a new object of class '<em>Standard Annotation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Standard Annotation</em>'.
+   * @generated
+   */
+  StandardAnnotation createStandardAnnotation();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Final</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Final</em>'.
+   * @generated
+   */
+  PojoDirectiveFinal createPojoDirectiveFinal();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Abstract</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Abstract</em>'.
+   * @generated
+   */
+  PojoDirectiveAbstract createPojoDirectiveAbstract();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Extends</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Extends</em>'.
+   * @generated
+   */
+  PojoDirectiveExtends createPojoDirectiveExtends();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Discriminator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Discriminator</em>'.
+   * @generated
+   */
+  PojoDirectiveDiscriminator createPojoDirectiveDiscriminator();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Operators</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Operators</em>'.
+   * @generated
+   */
+  PojoDirectiveOperators createPojoDirectiveOperators();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Serializable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Serializable</em>'.
+   * @generated
+   */
+  PojoDirectiveSerializable createPojoDirectiveSerializable();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Equals</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Equals</em>'.
+   * @generated
+   */
+  PojoDirectiveEquals createPojoDirectiveEquals();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Hash Code</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Hash Code</em>'.
+   * @generated
+   */
+  PojoDirectiveHashCode createPojoDirectiveHashCode();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive To Init</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive To Init</em>'.
+   * @generated
+   */
+  PojoDirectiveToInit createPojoDirectiveToInit();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Is Def</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Is Def</em>'.
+   * @generated
+   */
+  PojoDirectiveIsDef createPojoDirectiveIsDef();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive To String</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive To String</em>'.
+   * @generated
+   */
+  PojoDirectiveToString createPojoDirectiveToString();
+
+  /**
+   * Returns a new object of class '<em>Setter Annotations</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Setter Annotations</em>'.
+   * @generated
+   */
+  SetterAnnotations createSetterAnnotations();
+
+  /**
+   * Returns a new object of class '<em>Getter Annotations</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Getter Annotations</em>'.
+   * @generated
+   */
+  GetterAnnotations createGetterAnnotations();
+
+  /**
+   * Returns a new object of class '<em>Attribute Annotations</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute Annotations</em>'.
+   * @generated
+   */
+  AttributeAnnotations createAttributeAnnotations();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Required</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Required</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveRequired createPojoPropertyDirectiveRequired();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Primary Key</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Primary Key</em>'.
+   * @generated
+   */
+  PojoPropertyDirectivePrimaryKey createPojoPropertyDirectivePrimaryKey();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Discriminator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Discriminator</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveDiscriminator createPojoPropertyDirectiveDiscriminator();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Index</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Index</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveIndex createPojoPropertyDirectiveIndex();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Version</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Version</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveVersion createPojoPropertyDirectiveVersion();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Update Col</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Update Col</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveUpdateCol createPojoPropertyDirectiveUpdateCol();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Create Col</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Create Col</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveCreateCol createPojoPropertyDirectiveCreateCol();
+
+  /**
+   * Returns a new object of class '<em>Enum Directive Final</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Directive Final</em>'.
+   * @generated
+   */
+  EnumDirectiveFinal createEnumDirectiveFinal();
+
+  /**
+   * Returns a new object of class '<em>Enum Directive Extends</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Directive Extends</em>'.
+   * @generated
+   */
+  EnumDirectiveExtends createEnumDirectiveExtends();
+
+  /**
+   * Returns a new object of class '<em>Enum Directive Serializable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Directive Serializable</em>'.
+   * @generated
+   */
+  EnumDirectiveSerializable createEnumDirectiveSerializable();
+
+  /**
+   * Returns a new object of class '<em>Enum Property Directive Values</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Property Directive Values</em>'.
+   * @generated
+   */
+  EnumPropertyDirectiveValues createEnumPropertyDirectiveValues();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Final</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Final</em>'.
+   * @generated
+   */
+  DaoDirectiveFinal createDaoDirectiveFinal();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Abstract</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Abstract</em>'.
+   * @generated
+   */
+  DaoDirectiveAbstract createDaoDirectiveAbstract();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Extends</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Extends</em>'.
+   * @generated
+   */
+  DaoDirectiveExtends createDaoDirectiveExtends();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Discriminator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Discriminator</em>'.
+   * @generated
+   */
+  DaoDirectiveDiscriminator createDaoDirectiveDiscriminator();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Serializable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Serializable</em>'.
+   * @generated
+   */
+  DaoDirectiveSerializable createDaoDirectiveSerializable();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Pojo</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Pojo</em>'.
+   * @generated
+   */
+  DaoDirectivePojo createDaoDirectivePojo();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Generics</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Generics</em>'.
+   * @generated
+   */
+  DaoDirectiveGenerics createDaoDirectiveGenerics();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Procedure</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Procedure</em>'.
+   * @generated
+   */
+  DaoDirectiveProcedure createDaoDirectiveProcedure();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Function</em>'.
+   * @generated
+   */
+  DaoDirectiveFunction createDaoDirectiveFunction();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Update</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Update</em>'.
+   * @generated
+   */
+  DaoDirectiveUpdate createDaoDirectiveUpdate();
 
   /**
    * Returns the package supported by this factory.

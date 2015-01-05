@@ -21,14 +21,14 @@ import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
-import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
-import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
+import org.sqlproc.dsl.processorDsl.AbstractEntity;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
+import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.property.ModelPropertyBean;
 import org.sqlproc.dsl.property.ModelPropertyBean.ModelValues;
 import org.sqlproc.dsl.resolver.DbResolver;
@@ -320,31 +320,32 @@ public class Main {
             Annotations annotations = new Annotations();
             String suffix = null;
             if (packagex != null) {
-                suffix = packagex.getSuffix();
-                for (AbstractPojoEntity ape : packagex.getElements()) {
-                    if (ape instanceof AnnotatedEntity) {
-                        AnnotatedEntity apojo = (AnnotatedEntity) ape;
-                        if (apojo.getEntity() != null && apojo.getEntity() instanceof PojoEntity) {
-                            PojoEntity pojo = (PojoEntity) apojo.getEntity();
-                            Annotations.grabAnnotations(apojo, pojo, annotations);
-                            if (Utils.isFinal(pojo)) {
-                                // if (suffix != null && pojo.getName().endsWith(suffix))
-                                // finalEntities.put(
-                                // pojo.getName().substring(0, pojo.getName().length() - suffix.length()),
-                                // serializer.serialize(pojo));
-                                // else
-                                finalEntities.put(pojo.getName(), serializer.serialize(pojo));
-                            }
-                        } else if (apojo.getEntity() != null && apojo.getEntity() instanceof EnumEntity) {
-                            EnumEntity pojo = (EnumEntity) apojo.getEntity();
-                            if (Utils.isFinal(pojo)) {
-                                // if (suffix != null && pojo.getName().endsWith(suffix))
-                                // finalEntities.put(
-                                // pojo.getName().substring(0, pojo.getName().length() - suffix.length()),
-                                // serializer.serialize(pojo));
-                                // else
-                                finalEntities.put(pojo.getName(), serializer.serialize(pojo));
-                            }
+                suffix = Utils.getSuffix(packagex);
+                for (AbstractEntity ae : packagex.getElements()) {
+                    if (ae instanceof PojoEntity) {
+                        PojoEntity pojo = (PojoEntity) ae;
+                        Annotations.grabAnnotations(pojo.getAnnotations(), pojo.getName(), annotations);
+                        for (PojoProperty feature : pojo.getFeatures())
+                            Annotations.grabAnnotations(feature.getAnnotations(), pojo.getName(), feature.getName(),
+                                    annotations);
+                        if (Utils.isFinal(pojo)) {
+                            // if (suffix != null && pojo.getName().endsWith(suffix))
+                            // finalEntities.put(
+                            // pojo.getName().substring(0, pojo.getName().length() - suffix.length()),
+                            // serializer.serialize(pojo));
+                            // else
+                            finalEntities.put(pojo.getName(), serializer.serialize(pojo));
+                        }
+                    } else if (ae instanceof EnumEntity) {
+                        EnumEntity pojo = (EnumEntity) ae;
+                        Annotations.grabAnnotations(pojo.getAnnotations(), pojo.getName(), annotations);
+                        if (Utils.isFinal(pojo)) {
+                            // if (suffix != null && pojo.getName().endsWith(suffix))
+                            // finalEntities.put(
+                            // pojo.getName().substring(0, pojo.getName().length() - suffix.length()),
+                            // serializer.serialize(pojo));
+                            // else
+                            finalEntities.put(pojo.getName(), serializer.serialize(pojo));
                         }
                     }
                 }
@@ -367,8 +368,8 @@ public class Main {
             Map<String, String> finalDaos = new HashMap<String, String>();
             String suffix = null;
             if (packagex != null) {
-                suffix = packagex.getSuffix();
-                for (AbstractPojoEntity ape : packagex.getElements()) {
+                suffix = Utils.getSuffix(packagex);
+                for (AbstractEntity ape : packagex.getElements()) {
                     if (ape instanceof PojoDao) {
                         PojoDao dao = (PojoDao) ape;
                         if (Utils.isFinal(dao)) {

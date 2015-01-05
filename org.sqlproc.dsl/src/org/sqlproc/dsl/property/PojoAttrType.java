@@ -18,8 +18,13 @@ public class PojoAttrType {
     String text;
 
     public PojoAttrType(String typeName, String size, PojoType pojoType) {
-        this.nativeType = pojoType.getNative();
         this.type = pojoType.getType();
+        if (type != null) {
+            String name = type.getSimpleName();
+            if (name.equals("void") || name.equals("byte") || name.equals("char") || name.equals("short")
+                    || name.equals("int") || name.equals("long"))
+                this.nativeType = name;
+        }
         this.ref = pojoType.getRef();
         this.array = pojoType.isArray();
         this.gtype = pojoType.getGtype();

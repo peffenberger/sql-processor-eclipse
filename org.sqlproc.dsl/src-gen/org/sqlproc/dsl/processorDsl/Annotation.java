@@ -6,8 +6,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.xtext.common.types.JvmType;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Annotation</b></em>'.
@@ -28,30 +26,30 @@ import org.eclipse.xtext.common.types.JvmType;
 public interface Annotation extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Type</b></em>' reference.
+   * Returns the value of the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type</em>' reference isn't clear,
+   * If the meaning of the '<em>Type</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(JvmType)
+   * @return the value of the '<em>Type</em>' containment reference.
+   * @see #setType(PojoType)
    * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getAnnotation_Type()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  JvmType getType();
+  PojoType getType();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.Annotation#getType <em>Type</em>}' reference.
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.Annotation#getType <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' reference.
+   * @param value the new value of the '<em>Type</em>' containment reference.
    * @see #getType()
    * @generated
    */
-  void setType(JvmType value);
+  void setType(PojoType value);
 
   /**
    * Returns the value of the '<em><b>Features</b></em>' containment reference list.

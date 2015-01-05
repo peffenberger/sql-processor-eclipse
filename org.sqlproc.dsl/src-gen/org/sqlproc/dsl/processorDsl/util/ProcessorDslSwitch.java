@@ -506,18 +506,64 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorDslPackage.DAO_TYPE:
+      {
+        DaoType daoType = (DaoType)theEObject;
+        T result = caseDaoType(daoType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.PACKAGE_DIRECTIVE:
+      {
+        PackageDirective packageDirective = (PackageDirective)theEObject;
+        T result = casePackageDirective(packageDirective);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorDslPackage.PACKAGE_DECLARATION:
       {
         PackageDeclaration packageDeclaration = (PackageDeclaration)theEObject;
         T result = casePackageDeclaration(packageDeclaration);
-        if (result == null) result = caseAbstractPojoEntity(packageDeclaration);
+        if (result == null) result = caseAbstractEntity(packageDeclaration);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.ANNOTATION:
+      case ProcessorDslPackage.ABSTRACT_ENTITY:
       {
-        Annotation annotation = (Annotation)theEObject;
-        T result = caseAnnotation(annotation);
+        AbstractEntity abstractEntity = (AbstractEntity)theEObject;
+        T result = caseAbstractEntity(abstractEntity);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.IMPORT:
+      {
+        Import import_ = (Import)theEObject;
+        T result = caseImport(import_);
+        if (result == null) result = caseAbstractEntity(import_);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.IMPLEMENTS:
+      {
+        Implements implements_ = (Implements)theEObject;
+        T result = caseImplements(implements_);
+        if (result == null) result = caseAbstractEntity(implements_);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.EXTENDS:
+      {
+        Extends extends_ = (Extends)theEObject;
+        T result = caseExtends(extends_);
+        if (result == null) result = caseAbstractEntity(extends_);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.IMPL_PACKAGE:
+      {
+        ImplPackage implPackage = (ImplPackage)theEObject;
+        T result = caseImplPackage(implPackage);
+        if (result == null) result = caseAbstractEntity(implPackage);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -528,71 +574,31 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.ENTITY:
+      case ProcessorDslPackage.ANNOTATION:
       {
-        Entity entity = (Entity)theEObject;
-        T result = caseEntity(entity);
+        Annotation annotation = (Annotation)theEObject;
+        T result = caseAnnotation(annotation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.ANNOTATED_ENTITY:
+      case ProcessorDslPackage.ENTITY_ANNOTATION:
       {
-        AnnotatedEntity annotatedEntity = (AnnotatedEntity)theEObject;
-        T result = caseAnnotatedEntity(annotatedEntity);
-        if (result == null) result = caseAbstractPojoEntity(annotatedEntity);
+        EntityAnnotation entityAnnotation = (EntityAnnotation)theEObject;
+        T result = caseEntityAnnotation(entityAnnotation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.ABSTRACT_POJO_ENTITY:
+      case ProcessorDslPackage.DIRECTIVE_PROPERTIES:
       {
-        AbstractPojoEntity abstractPojoEntity = (AbstractPojoEntity)theEObject;
-        T result = caseAbstractPojoEntity(abstractPojoEntity);
+        DirectiveProperties directiveProperties = (DirectiveProperties)theEObject;
+        T result = caseDirectiveProperties(directiveProperties);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.IMPORT:
+      case ProcessorDslPackage.POJO_DIRECTIVE:
       {
-        Import import_ = (Import)theEObject;
-        T result = caseImport(import_);
-        if (result == null) result = caseAbstractPojoEntity(import_);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.IMPLEMENTS:
-      {
-        Implements implements_ = (Implements)theEObject;
-        T result = caseImplements(implements_);
-        if (result == null) result = caseAbstractPojoEntity(implements_);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.EXTENDS:
-      {
-        Extends extends_ = (Extends)theEObject;
-        T result = caseExtends(extends_);
-        if (result == null) result = caseAbstractPojoEntity(extends_);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.IMPL_PACKAGE:
-      {
-        ImplPackage implPackage = (ImplPackage)theEObject;
-        T result = caseImplPackage(implPackage);
-        if (result == null) result = caseAbstractPojoEntity(implPackage);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.POJO_ENTITY_MODIFIER1:
-      {
-        PojoEntityModifier1 pojoEntityModifier1 = (PojoEntityModifier1)theEObject;
-        T result = casePojoEntityModifier1(pojoEntityModifier1);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.POJO_ENTITY_MODIFIER2:
-      {
-        PojoEntityModifier2 pojoEntityModifier2 = (PojoEntityModifier2)theEObject;
-        T result = casePojoEntityModifier2(pojoEntityModifier2);
+        PojoDirective pojoDirective = (PojoDirective)theEObject;
+        T result = casePojoDirective(pojoDirective);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -600,21 +606,21 @@ public class ProcessorDslSwitch<T> extends Switch<T>
       {
         PojoEntity pojoEntity = (PojoEntity)theEObject;
         T result = casePojoEntity(pojoEntity);
-        if (result == null) result = caseEntity(pojoEntity);
+        if (result == null) result = caseAbstractEntity(pojoEntity);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.POJO_ANNOTATED_PROPERTY:
+      case ProcessorDslPackage.POJO_PROPERTY_ANNOTATION:
       {
-        PojoAnnotatedProperty pojoAnnotatedProperty = (PojoAnnotatedProperty)theEObject;
-        T result = casePojoAnnotatedProperty(pojoAnnotatedProperty);
+        PojoPropertyAnnotation pojoPropertyAnnotation = (PojoPropertyAnnotation)theEObject;
+        T result = casePojoPropertyAnnotation(pojoPropertyAnnotation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.POJO_PROPERTY_MODIFIER:
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE:
       {
-        PojoPropertyModifier pojoPropertyModifier = (PojoPropertyModifier)theEObject;
-        T result = casePojoPropertyModifier(pojoPropertyModifier);
+        PojoPropertyDirective pojoPropertyDirective = (PojoPropertyDirective)theEObject;
+        T result = casePojoPropertyDirective(pojoPropertyDirective);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -625,17 +631,10 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.ENUM_ENTITY_MODIFIER1:
+      case ProcessorDslPackage.ENUM_DIRECTIVE:
       {
-        EnumEntityModifier1 enumEntityModifier1 = (EnumEntityModifier1)theEObject;
-        T result = caseEnumEntityModifier1(enumEntityModifier1);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.ENUM_ENTITY_MODIFIER2:
-      {
-        EnumEntityModifier2 enumEntityModifier2 = (EnumEntityModifier2)theEObject;
-        T result = caseEnumEntityModifier2(enumEntityModifier2);
+        EnumDirective enumDirective = (EnumDirective)theEObject;
+        T result = caseEnumDirective(enumDirective);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -643,7 +642,14 @@ public class ProcessorDslSwitch<T> extends Switch<T>
       {
         EnumEntity enumEntity = (EnumEntity)theEObject;
         T result = caseEnumEntity(enumEntity);
-        if (result == null) result = caseEntity(enumEntity);
+        if (result == null) result = caseAbstractEntity(enumEntity);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ENUM_PROPERTY_DIRECTIVE:
+      {
+        EnumPropertyDirective enumPropertyDirective = (EnumPropertyDirective)theEObject;
+        T result = caseEnumPropertyDirective(enumPropertyDirective);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -654,10 +660,17 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.POJO_DAO_MODIFIER:
+      case ProcessorDslPackage.DIRECTIVE_PARAMETERS:
       {
-        PojoDaoModifier pojoDaoModifier = (PojoDaoModifier)theEObject;
-        T result = casePojoDaoModifier(pojoDaoModifier);
+        DirectiveParameters directiveParameters = (DirectiveParameters)theEObject;
+        T result = caseDirectiveParameters(directiveParameters);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.DAO_DIRECTIVE:
+      {
+        DaoDirective daoDirective = (DaoDirective)theEObject;
+        T result = caseDaoDirective(daoDirective);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -665,35 +678,327 @@ public class ProcessorDslSwitch<T> extends Switch<T>
       {
         PojoDao pojoDao = (PojoDao)theEObject;
         T result = casePojoDao(pojoDao);
-        if (result == null) result = caseAbstractPojoEntity(pojoDao);
+        if (result == null) result = caseAbstractEntity(pojoDao);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.POJO_METHOD_MODIFIER:
+      case ProcessorDslPackage.PACKAGE_DIRECTIVE_SUFFIX:
       {
-        PojoMethodModifier pojoMethodModifier = (PojoMethodModifier)theEObject;
-        T result = casePojoMethodModifier(pojoMethodModifier);
+        PackageDirectiveSuffix packageDirectiveSuffix = (PackageDirectiveSuffix)theEObject;
+        T result = casePackageDirectiveSuffix(packageDirectiveSuffix);
+        if (result == null) result = casePackageDirective(packageDirectiveSuffix);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.POJO_METHOD:
+      case ProcessorDslPackage.CONFLICT_ANNOTATIONS:
       {
-        PojoMethod pojoMethod = (PojoMethod)theEObject;
-        T result = casePojoMethod(pojoMethod);
+        ConflictAnnotations conflictAnnotations = (ConflictAnnotations)theEObject;
+        T result = caseConflictAnnotations(conflictAnnotations);
+        if (result == null) result = caseEntityAnnotation(conflictAnnotations);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.TO_INIT_METHOD:
+      case ProcessorDslPackage.STATIC_ANNOTATIONS:
       {
-        ToInitMethod toInitMethod = (ToInitMethod)theEObject;
-        T result = caseToInitMethod(toInitMethod);
+        StaticAnnotations staticAnnotations = (StaticAnnotations)theEObject;
+        T result = caseStaticAnnotations(staticAnnotations);
+        if (result == null) result = caseEntityAnnotation(staticAnnotations);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.POJO_METHOD_ARG:
+      case ProcessorDslPackage.CONSTRUCTOR_ANNOTATIONS:
       {
-        PojoMethodArg pojoMethodArg = (PojoMethodArg)theEObject;
-        T result = casePojoMethodArg(pojoMethodArg);
+        ConstructorAnnotations constructorAnnotations = (ConstructorAnnotations)theEObject;
+        T result = caseConstructorAnnotations(constructorAnnotations);
+        if (result == null) result = caseEntityAnnotation(constructorAnnotations);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.STANDARD_ANNOTATION:
+      {
+        StandardAnnotation standardAnnotation = (StandardAnnotation)theEObject;
+        T result = caseStandardAnnotation(standardAnnotation);
+        if (result == null) result = caseEntityAnnotation(standardAnnotation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_FINAL:
+      {
+        PojoDirectiveFinal pojoDirectiveFinal = (PojoDirectiveFinal)theEObject;
+        T result = casePojoDirectiveFinal(pojoDirectiveFinal);
+        if (result == null) result = casePojoDirective(pojoDirectiveFinal);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_ABSTRACT:
+      {
+        PojoDirectiveAbstract pojoDirectiveAbstract = (PojoDirectiveAbstract)theEObject;
+        T result = casePojoDirectiveAbstract(pojoDirectiveAbstract);
+        if (result == null) result = casePojoDirective(pojoDirectiveAbstract);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_EXTENDS:
+      {
+        PojoDirectiveExtends pojoDirectiveExtends = (PojoDirectiveExtends)theEObject;
+        T result = casePojoDirectiveExtends(pojoDirectiveExtends);
+        if (result == null) result = casePojoDirective(pojoDirectiveExtends);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_DISCRIMINATOR:
+      {
+        PojoDirectiveDiscriminator pojoDirectiveDiscriminator = (PojoDirectiveDiscriminator)theEObject;
+        T result = casePojoDirectiveDiscriminator(pojoDirectiveDiscriminator);
+        if (result == null) result = casePojoDirective(pojoDirectiveDiscriminator);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_OPERATORS:
+      {
+        PojoDirectiveOperators pojoDirectiveOperators = (PojoDirectiveOperators)theEObject;
+        T result = casePojoDirectiveOperators(pojoDirectiveOperators);
+        if (result == null) result = casePojoDirective(pojoDirectiveOperators);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_SERIALIZABLE:
+      {
+        PojoDirectiveSerializable pojoDirectiveSerializable = (PojoDirectiveSerializable)theEObject;
+        T result = casePojoDirectiveSerializable(pojoDirectiveSerializable);
+        if (result == null) result = casePojoDirective(pojoDirectiveSerializable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_EQUALS:
+      {
+        PojoDirectiveEquals pojoDirectiveEquals = (PojoDirectiveEquals)theEObject;
+        T result = casePojoDirectiveEquals(pojoDirectiveEquals);
+        if (result == null) result = casePojoDirective(pojoDirectiveEquals);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_HASH_CODE:
+      {
+        PojoDirectiveHashCode pojoDirectiveHashCode = (PojoDirectiveHashCode)theEObject;
+        T result = casePojoDirectiveHashCode(pojoDirectiveHashCode);
+        if (result == null) result = casePojoDirective(pojoDirectiveHashCode);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_TO_INIT:
+      {
+        PojoDirectiveToInit pojoDirectiveToInit = (PojoDirectiveToInit)theEObject;
+        T result = casePojoDirectiveToInit(pojoDirectiveToInit);
+        if (result == null) result = casePojoDirective(pojoDirectiveToInit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_IS_DEF:
+      {
+        PojoDirectiveIsDef pojoDirectiveIsDef = (PojoDirectiveIsDef)theEObject;
+        T result = casePojoDirectiveIsDef(pojoDirectiveIsDef);
+        if (result == null) result = casePojoDirective(pojoDirectiveIsDef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_TO_STRING:
+      {
+        PojoDirectiveToString pojoDirectiveToString = (PojoDirectiveToString)theEObject;
+        T result = casePojoDirectiveToString(pojoDirectiveToString);
+        if (result == null) result = casePojoDirective(pojoDirectiveToString);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.SETTER_ANNOTATIONS:
+      {
+        SetterAnnotations setterAnnotations = (SetterAnnotations)theEObject;
+        T result = caseSetterAnnotations(setterAnnotations);
+        if (result == null) result = casePojoPropertyAnnotation(setterAnnotations);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.GETTER_ANNOTATIONS:
+      {
+        GetterAnnotations getterAnnotations = (GetterAnnotations)theEObject;
+        T result = caseGetterAnnotations(getterAnnotations);
+        if (result == null) result = casePojoPropertyAnnotation(getterAnnotations);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ATTRIBUTE_ANNOTATIONS:
+      {
+        AttributeAnnotations attributeAnnotations = (AttributeAnnotations)theEObject;
+        T result = caseAttributeAnnotations(attributeAnnotations);
+        if (result == null) result = casePojoPropertyAnnotation(attributeAnnotations);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_REQUIRED:
+      {
+        PojoPropertyDirectiveRequired pojoPropertyDirectiveRequired = (PojoPropertyDirectiveRequired)theEObject;
+        T result = casePojoPropertyDirectiveRequired(pojoPropertyDirectiveRequired);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveRequired);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY:
+      {
+        PojoPropertyDirectivePrimaryKey pojoPropertyDirectivePrimaryKey = (PojoPropertyDirectivePrimaryKey)theEObject;
+        T result = casePojoPropertyDirectivePrimaryKey(pojoPropertyDirectivePrimaryKey);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectivePrimaryKey);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR:
+      {
+        PojoPropertyDirectiveDiscriminator pojoPropertyDirectiveDiscriminator = (PojoPropertyDirectiveDiscriminator)theEObject;
+        T result = casePojoPropertyDirectiveDiscriminator(pojoPropertyDirectiveDiscriminator);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveDiscriminator);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_INDEX:
+      {
+        PojoPropertyDirectiveIndex pojoPropertyDirectiveIndex = (PojoPropertyDirectiveIndex)theEObject;
+        T result = casePojoPropertyDirectiveIndex(pojoPropertyDirectiveIndex);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveIndex);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_VERSION:
+      {
+        PojoPropertyDirectiveVersion pojoPropertyDirectiveVersion = (PojoPropertyDirectiveVersion)theEObject;
+        T result = casePojoPropertyDirectiveVersion(pojoPropertyDirectiveVersion);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveVersion);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_UPDATE_COL:
+      {
+        PojoPropertyDirectiveUpdateCol pojoPropertyDirectiveUpdateCol = (PojoPropertyDirectiveUpdateCol)theEObject;
+        T result = casePojoPropertyDirectiveUpdateCol(pojoPropertyDirectiveUpdateCol);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveUpdateCol);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_CREATE_COL:
+      {
+        PojoPropertyDirectiveCreateCol pojoPropertyDirectiveCreateCol = (PojoPropertyDirectiveCreateCol)theEObject;
+        T result = casePojoPropertyDirectiveCreateCol(pojoPropertyDirectiveCreateCol);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveCreateCol);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ENUM_DIRECTIVE_FINAL:
+      {
+        EnumDirectiveFinal enumDirectiveFinal = (EnumDirectiveFinal)theEObject;
+        T result = caseEnumDirectiveFinal(enumDirectiveFinal);
+        if (result == null) result = caseEnumDirective(enumDirectiveFinal);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ENUM_DIRECTIVE_EXTENDS:
+      {
+        EnumDirectiveExtends enumDirectiveExtends = (EnumDirectiveExtends)theEObject;
+        T result = caseEnumDirectiveExtends(enumDirectiveExtends);
+        if (result == null) result = caseEnumDirective(enumDirectiveExtends);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ENUM_DIRECTIVE_SERIALIZABLE:
+      {
+        EnumDirectiveSerializable enumDirectiveSerializable = (EnumDirectiveSerializable)theEObject;
+        T result = caseEnumDirectiveSerializable(enumDirectiveSerializable);
+        if (result == null) result = caseEnumDirective(enumDirectiveSerializable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ENUM_PROPERTY_DIRECTIVE_VALUES:
+      {
+        EnumPropertyDirectiveValues enumPropertyDirectiveValues = (EnumPropertyDirectiveValues)theEObject;
+        T result = caseEnumPropertyDirectiveValues(enumPropertyDirectiveValues);
+        if (result == null) result = caseEnumPropertyDirective(enumPropertyDirectiveValues);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.DAO_DIRECTIVE_FINAL:
+      {
+        DaoDirectiveFinal daoDirectiveFinal = (DaoDirectiveFinal)theEObject;
+        T result = caseDaoDirectiveFinal(daoDirectiveFinal);
+        if (result == null) result = caseDaoDirective(daoDirectiveFinal);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.DAO_DIRECTIVE_ABSTRACT:
+      {
+        DaoDirectiveAbstract daoDirectiveAbstract = (DaoDirectiveAbstract)theEObject;
+        T result = caseDaoDirectiveAbstract(daoDirectiveAbstract);
+        if (result == null) result = caseDaoDirective(daoDirectiveAbstract);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.DAO_DIRECTIVE_EXTENDS:
+      {
+        DaoDirectiveExtends daoDirectiveExtends = (DaoDirectiveExtends)theEObject;
+        T result = caseDaoDirectiveExtends(daoDirectiveExtends);
+        if (result == null) result = caseDaoDirective(daoDirectiveExtends);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR:
+      {
+        DaoDirectiveDiscriminator daoDirectiveDiscriminator = (DaoDirectiveDiscriminator)theEObject;
+        T result = caseDaoDirectiveDiscriminator(daoDirectiveDiscriminator);
+        if (result == null) result = caseDaoDirective(daoDirectiveDiscriminator);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.DAO_DIRECTIVE_SERIALIZABLE:
+      {
+        DaoDirectiveSerializable daoDirectiveSerializable = (DaoDirectiveSerializable)theEObject;
+        T result = caseDaoDirectiveSerializable(daoDirectiveSerializable);
+        if (result == null) result = caseDaoDirective(daoDirectiveSerializable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.DAO_DIRECTIVE_POJO:
+      {
+        DaoDirectivePojo daoDirectivePojo = (DaoDirectivePojo)theEObject;
+        T result = caseDaoDirectivePojo(daoDirectivePojo);
+        if (result == null) result = caseDaoDirective(daoDirectivePojo);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.DAO_DIRECTIVE_GENERICS:
+      {
+        DaoDirectiveGenerics daoDirectiveGenerics = (DaoDirectiveGenerics)theEObject;
+        T result = caseDaoDirectiveGenerics(daoDirectiveGenerics);
+        if (result == null) result = caseDaoDirective(daoDirectiveGenerics);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.DAO_DIRECTIVE_PROCEDURE:
+      {
+        DaoDirectiveProcedure daoDirectiveProcedure = (DaoDirectiveProcedure)theEObject;
+        T result = caseDaoDirectiveProcedure(daoDirectiveProcedure);
+        if (result == null) result = caseDaoDirective(daoDirectiveProcedure);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.DAO_DIRECTIVE_FUNCTION:
+      {
+        DaoDirectiveFunction daoDirectiveFunction = (DaoDirectiveFunction)theEObject;
+        T result = caseDaoDirectiveFunction(daoDirectiveFunction);
+        if (result == null) result = caseDaoDirective(daoDirectiveFunction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.DAO_DIRECTIVE_UPDATE:
+      {
+        DaoDirectiveUpdate daoDirectiveUpdate = (DaoDirectiveUpdate)theEObject;
+        T result = caseDaoDirectiveUpdate(daoDirectiveUpdate);
+        if (result == null) result = caseDaoDirective(daoDirectiveUpdate);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1694,6 +1999,38 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoType(DaoType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Package Directive</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Package Directive</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePackageDirective(PackageDirective object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Package Declaration</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1710,81 +2047,17 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Entity</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Annotation</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Entity</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseAnnotation(Annotation object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Annotation Property</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Annotation Property</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAnnotationProperty(AnnotationProperty object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Entity</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Entity</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseEntity(Entity object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Annotated Entity</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Annotated Entity</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAnnotatedEntity(AnnotatedEntity object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Abstract Pojo Entity</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Abstract Pojo Entity</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAbstractPojoEntity(AbstractPojoEntity object)
+  public T caseAbstractEntity(AbstractEntity object)
   {
     return null;
   }
@@ -1854,33 +2127,81 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Entity Modifier1</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Annotation Property</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Entity Modifier1</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Annotation Property</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePojoEntityModifier1(PojoEntityModifier1 object)
+  public T caseAnnotationProperty(AnnotationProperty object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Entity Modifier2</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Entity Modifier2</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Annotation</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePojoEntityModifier2(PojoEntityModifier2 object)
+  public T caseAnnotation(Annotation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Entity Annotation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Entity Annotation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEntityAnnotation(EntityAnnotation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Directive Properties</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Directive Properties</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDirectiveProperties(DirectiveProperties object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirective(PojoDirective object)
   {
     return null;
   }
@@ -1902,33 +2223,33 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Annotated Property</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Annotation</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Annotated Property</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Annotation</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePojoAnnotatedProperty(PojoAnnotatedProperty object)
+  public T casePojoPropertyAnnotation(PojoPropertyAnnotation object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Modifier</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Property Modifier</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePojoPropertyModifier(PojoPropertyModifier object)
+  public T casePojoPropertyDirective(PojoPropertyDirective object)
   {
     return null;
   }
@@ -1950,33 +2271,17 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Enum Entity Modifier1</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Enum Directive</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Enum Entity Modifier1</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Enum Directive</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseEnumEntityModifier1(EnumEntityModifier1 object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Enum Entity Modifier2</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Enum Entity Modifier2</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseEnumEntityModifier2(EnumEntityModifier2 object)
+  public T caseEnumDirective(EnumDirective object)
   {
     return null;
   }
@@ -1998,6 +2303,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Property Directive</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Property Directive</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumPropertyDirective(EnumPropertyDirective object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Enum Property</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2014,17 +2335,33 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Dao Modifier</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Directive Parameters</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Dao Modifier</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Directive Parameters</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePojoDaoModifier(PojoDaoModifier object)
+  public T caseDirectiveParameters(DirectiveParameters object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoDirective(DaoDirective object)
   {
     return null;
   }
@@ -2046,65 +2383,641 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Method Modifier</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Package Directive Suffix</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Method Modifier</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Package Directive Suffix</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePojoMethodModifier(PojoMethodModifier object)
+  public T casePackageDirectiveSuffix(PackageDirectiveSuffix object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Method</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Conflict Annotations</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Method</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Conflict Annotations</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePojoMethod(PojoMethod object)
+  public T caseConflictAnnotations(ConflictAnnotations object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>To Init Method</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Static Annotations</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>To Init Method</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Static Annotations</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseToInitMethod(ToInitMethod object)
+  public T caseStaticAnnotations(StaticAnnotations object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Method Arg</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Constructor Annotations</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Method Arg</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Constructor Annotations</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePojoMethodArg(PojoMethodArg object)
+  public T caseConstructorAnnotations(ConstructorAnnotations object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Standard Annotation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Standard Annotation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStandardAnnotation(StandardAnnotation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Final</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Final</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveFinal(PojoDirectiveFinal object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Abstract</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Abstract</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveAbstract(PojoDirectiveAbstract object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Extends</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Extends</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveExtends(PojoDirectiveExtends object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Discriminator</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Discriminator</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveDiscriminator(PojoDirectiveDiscriminator object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Operators</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Operators</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveOperators(PojoDirectiveOperators object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Serializable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Serializable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveSerializable(PojoDirectiveSerializable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Equals</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Equals</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveEquals(PojoDirectiveEquals object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Hash Code</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Hash Code</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveHashCode(PojoDirectiveHashCode object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive To Init</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive To Init</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveToInit(PojoDirectiveToInit object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Is Def</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Is Def</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveIsDef(PojoDirectiveIsDef object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive To String</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive To String</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveToString(PojoDirectiveToString object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Setter Annotations</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Setter Annotations</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSetterAnnotations(SetterAnnotations object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Getter Annotations</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Getter Annotations</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGetterAnnotations(GetterAnnotations object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Attribute Annotations</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Attribute Annotations</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAttributeAnnotations(AttributeAnnotations object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Required</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Required</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveRequired(PojoPropertyDirectiveRequired object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Primary Key</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Primary Key</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectivePrimaryKey(PojoPropertyDirectivePrimaryKey object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Discriminator</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Discriminator</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveDiscriminator(PojoPropertyDirectiveDiscriminator object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Index</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Index</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveIndex(PojoPropertyDirectiveIndex object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Version</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Version</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveVersion(PojoPropertyDirectiveVersion object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Update Col</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Update Col</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveUpdateCol(PojoPropertyDirectiveUpdateCol object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Create Col</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Create Col</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveCreateCol(PojoPropertyDirectiveCreateCol object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Directive Final</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Directive Final</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumDirectiveFinal(EnumDirectiveFinal object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Directive Extends</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Directive Extends</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumDirectiveExtends(EnumDirectiveExtends object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Directive Serializable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Directive Serializable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumDirectiveSerializable(EnumDirectiveSerializable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Property Directive Values</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Property Directive Values</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumPropertyDirectiveValues(EnumPropertyDirectiveValues object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Final</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Final</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoDirectiveFinal(DaoDirectiveFinal object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Abstract</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Abstract</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoDirectiveAbstract(DaoDirectiveAbstract object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Extends</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Extends</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoDirectiveExtends(DaoDirectiveExtends object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Discriminator</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Discriminator</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoDirectiveDiscriminator(DaoDirectiveDiscriminator object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Serializable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Serializable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoDirectiveSerializable(DaoDirectiveSerializable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Pojo</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Pojo</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoDirectivePojo(DaoDirectivePojo object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Generics</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Generics</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoDirectiveGenerics(DaoDirectiveGenerics object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Procedure</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Procedure</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoDirectiveProcedure(DaoDirectiveProcedure object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Function</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Function</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoDirectiveFunction(DaoDirectiveFunction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Update</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Update</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoDirectiveUpdate(DaoDirectiveUpdate object)
   {
     return null;
   }

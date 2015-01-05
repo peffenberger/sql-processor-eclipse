@@ -23,11 +23,10 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoTypeImpl#getNative <em>Native</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoTypeImpl#getRef <em>Ref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoTypeImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoTypeImpl#getGref <em>Gref</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoTypeImpl#getRef <em>Ref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoTypeImpl#getGtype <em>Gtype</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoTypeImpl#getGref <em>Gref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoTypeImpl#isArray <em>Array</em>}</li>
  * </ul>
  * </p>
@@ -37,24 +36,14 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoType
 {
   /**
-   * The default value of the '{@link #getNative() <em>Native</em>}' attribute.
+   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getNative()
+   * @see #getType()
    * @generated
    * @ordered
    */
-  protected static final String NATIVE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getNative() <em>Native</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNative()
-   * @generated
-   * @ordered
-   */
-  protected String native_ = NATIVE_EDEFAULT;
+  protected JvmType type;
 
   /**
    * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.
@@ -67,14 +56,14 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   protected PojoEntity ref;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * The cached value of the '{@link #getGtype() <em>Gtype</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getGtype()
    * @generated
    * @ordered
    */
-  protected JvmType type;
+  protected JvmType gtype;
 
   /**
    * The cached value of the '{@link #getGref() <em>Gref</em>}' reference.
@@ -85,16 +74,6 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * @ordered
    */
   protected PojoEntity gref;
-
-  /**
-   * The cached value of the '{@link #getGtype() <em>Gtype</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getGtype()
-   * @generated
-   * @ordered
-   */
-  protected JvmType gtype;
 
   /**
    * The default value of the '{@link #isArray() <em>Array</em>}' attribute.
@@ -135,72 +114,6 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   protected EClass eStaticClass()
   {
     return ProcessorDslPackage.Literals.POJO_TYPE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getNative()
-  {
-    return native_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setNative(String newNative)
-  {
-    String oldNative = native_;
-    native_ = newNative;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_TYPE__NATIVE, oldNative, native_));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoEntity getRef()
-  {
-    if (ref != null && ref.eIsProxy())
-    {
-      InternalEObject oldRef = (InternalEObject)ref;
-      ref = (PojoEntity)eResolveProxy(oldRef);
-      if (ref != oldRef)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.POJO_TYPE__REF, oldRef, ref));
-      }
-    }
-    return ref;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoEntity basicGetRef()
-  {
-    return ref;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setRef(PojoEntity newRef)
-  {
-    PojoEntity oldRef = ref;
-    ref = newRef;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_TYPE__REF, oldRef, ref));
   }
 
   /**
@@ -251,19 +164,19 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoEntity getGref()
+  public PojoEntity getRef()
   {
-    if (gref != null && gref.eIsProxy())
+    if (ref != null && ref.eIsProxy())
     {
-      InternalEObject oldGref = (InternalEObject)gref;
-      gref = (PojoEntity)eResolveProxy(oldGref);
-      if (gref != oldGref)
+      InternalEObject oldRef = (InternalEObject)ref;
+      ref = (PojoEntity)eResolveProxy(oldRef);
+      if (ref != oldRef)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.POJO_TYPE__GREF, oldGref, gref));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.POJO_TYPE__REF, oldRef, ref));
       }
     }
-    return gref;
+    return ref;
   }
 
   /**
@@ -271,9 +184,9 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoEntity basicGetGref()
+  public PojoEntity basicGetRef()
   {
-    return gref;
+    return ref;
   }
 
   /**
@@ -281,12 +194,12 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setGref(PojoEntity newGref)
+  public void setRef(PojoEntity newRef)
   {
-    PojoEntity oldGref = gref;
-    gref = newGref;
+    PojoEntity oldRef = ref;
+    ref = newRef;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_TYPE__GREF, oldGref, gref));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_TYPE__REF, oldRef, ref));
   }
 
   /**
@@ -337,6 +250,49 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
+  public PojoEntity getGref()
+  {
+    if (gref != null && gref.eIsProxy())
+    {
+      InternalEObject oldGref = (InternalEObject)gref;
+      gref = (PojoEntity)eResolveProxy(oldGref);
+      if (gref != oldGref)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.POJO_TYPE__GREF, oldGref, gref));
+      }
+    }
+    return gref;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoEntity basicGetGref()
+  {
+    return gref;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setGref(PojoEntity newGref)
+  {
+    PojoEntity oldGref = gref;
+    gref = newGref;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_TYPE__GREF, oldGref, gref));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public boolean isArray()
   {
     return array;
@@ -365,20 +321,18 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.POJO_TYPE__NATIVE:
-        return getNative();
-      case ProcessorDslPackage.POJO_TYPE__REF:
-        if (resolve) return getRef();
-        return basicGetRef();
       case ProcessorDslPackage.POJO_TYPE__TYPE:
         if (resolve) return getType();
         return basicGetType();
-      case ProcessorDslPackage.POJO_TYPE__GREF:
-        if (resolve) return getGref();
-        return basicGetGref();
+      case ProcessorDslPackage.POJO_TYPE__REF:
+        if (resolve) return getRef();
+        return basicGetRef();
       case ProcessorDslPackage.POJO_TYPE__GTYPE:
         if (resolve) return getGtype();
         return basicGetGtype();
+      case ProcessorDslPackage.POJO_TYPE__GREF:
+        if (resolve) return getGref();
+        return basicGetGref();
       case ProcessorDslPackage.POJO_TYPE__ARRAY:
         return isArray();
     }
@@ -395,20 +349,17 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.POJO_TYPE__NATIVE:
-        setNative((String)newValue);
+      case ProcessorDslPackage.POJO_TYPE__TYPE:
+        setType((JvmType)newValue);
         return;
       case ProcessorDslPackage.POJO_TYPE__REF:
         setRef((PojoEntity)newValue);
         return;
-      case ProcessorDslPackage.POJO_TYPE__TYPE:
-        setType((JvmType)newValue);
+      case ProcessorDslPackage.POJO_TYPE__GTYPE:
+        setGtype((JvmType)newValue);
         return;
       case ProcessorDslPackage.POJO_TYPE__GREF:
         setGref((PojoEntity)newValue);
-        return;
-      case ProcessorDslPackage.POJO_TYPE__GTYPE:
-        setGtype((JvmType)newValue);
         return;
       case ProcessorDslPackage.POJO_TYPE__ARRAY:
         setArray((Boolean)newValue);
@@ -427,20 +378,17 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.POJO_TYPE__NATIVE:
-        setNative(NATIVE_EDEFAULT);
+      case ProcessorDslPackage.POJO_TYPE__TYPE:
+        setType((JvmType)null);
         return;
       case ProcessorDslPackage.POJO_TYPE__REF:
         setRef((PojoEntity)null);
         return;
-      case ProcessorDslPackage.POJO_TYPE__TYPE:
-        setType((JvmType)null);
+      case ProcessorDslPackage.POJO_TYPE__GTYPE:
+        setGtype((JvmType)null);
         return;
       case ProcessorDslPackage.POJO_TYPE__GREF:
         setGref((PojoEntity)null);
-        return;
-      case ProcessorDslPackage.POJO_TYPE__GTYPE:
-        setGtype((JvmType)null);
         return;
       case ProcessorDslPackage.POJO_TYPE__ARRAY:
         setArray(ARRAY_EDEFAULT);
@@ -459,16 +407,14 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.POJO_TYPE__NATIVE:
-        return NATIVE_EDEFAULT == null ? native_ != null : !NATIVE_EDEFAULT.equals(native_);
-      case ProcessorDslPackage.POJO_TYPE__REF:
-        return ref != null;
       case ProcessorDslPackage.POJO_TYPE__TYPE:
         return type != null;
-      case ProcessorDslPackage.POJO_TYPE__GREF:
-        return gref != null;
+      case ProcessorDslPackage.POJO_TYPE__REF:
+        return ref != null;
       case ProcessorDslPackage.POJO_TYPE__GTYPE:
         return gtype != null;
+      case ProcessorDslPackage.POJO_TYPE__GREF:
+        return gref != null;
       case ProcessorDslPackage.POJO_TYPE__ARRAY:
         return array != ARRAY_EDEFAULT;
     }
@@ -486,9 +432,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (native: ");
-    result.append(native_);
-    result.append(", array: ");
+    result.append(" (array: ");
     result.append(array);
     result.append(')');
     return result.toString();

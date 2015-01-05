@@ -12,8 +12,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PackageDeclaration#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PackageDeclaration#getName <em>Name</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.PackageDeclaration#getSuffix <em>Suffix</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PackageDeclaration#getElements <em>Elements</em>}</li>
  * </ul>
  * </p>
@@ -22,8 +22,24 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface PackageDeclaration extends AbstractPojoEntity
+public interface PackageDeclaration extends AbstractEntity
 {
+  /**
+   * Returns the value of the '<em><b>Directives</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PackageDirective}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Directives</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Directives</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPackageDeclaration_Directives()
+   * @model containment="true"
+   * @generated
+   */
+  EList<PackageDirective> getDirectives();
+
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
@@ -51,34 +67,8 @@ public interface PackageDeclaration extends AbstractPojoEntity
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Suffix</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Suffix</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Suffix</em>' attribute.
-   * @see #setSuffix(String)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPackageDeclaration_Suffix()
-   * @model
-   * @generated
-   */
-  String getSuffix();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PackageDeclaration#getSuffix <em>Suffix</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Suffix</em>' attribute.
-   * @see #getSuffix()
-   * @generated
-   */
-  void setSuffix(String value);
-
-  /**
    * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.AbstractPojoEntity}.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.AbstractEntity}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Elements</em>' containment reference list isn't clear,
@@ -90,6 +80,6 @@ public interface PackageDeclaration extends AbstractPojoEntity
    * @model containment="true"
    * @generated
    */
-  EList<AbstractPojoEntity> getElements();
+  EList<AbstractEntity> getElements();
 
 } // PackageDeclaration

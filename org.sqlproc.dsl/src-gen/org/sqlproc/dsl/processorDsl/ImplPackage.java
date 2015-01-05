@@ -19,7 +19,7 @@ package org.sqlproc.dsl.processorDsl;
  * @model
  * @generated
  */
-public interface ImplPackage extends AbstractPojoEntity
+public interface ImplPackage extends AbstractEntity
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

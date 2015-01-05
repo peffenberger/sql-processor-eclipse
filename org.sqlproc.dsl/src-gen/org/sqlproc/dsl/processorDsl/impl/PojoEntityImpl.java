@@ -4,6 +4,7 @@ package org.sqlproc.dsl.processorDsl.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -11,13 +12,15 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
+import org.sqlproc.dsl.processorDsl.EntityAnnotation;
+import org.sqlproc.dsl.processorDsl.PojoDirective;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
-import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
-import org.sqlproc.dsl.processorDsl.PojoEntityModifier2;
+import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
 /**
@@ -27,35 +30,56 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl#getModifiers1 <em>Modifiers1</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl#getModifiers2 <em>Modifiers2</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl#getAnnotations <em>Annotations</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl#getDirectives <em>Directives</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl#getFeatures <em>Features</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class PojoEntityImpl extends EntityImpl implements PojoEntity
+public class PojoEntityImpl extends AbstractEntityImpl implements PojoEntity
 {
   /**
-   * The cached value of the '{@link #getModifiers1() <em>Modifiers1</em>}' containment reference list.
+   * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getModifiers1()
+   * @see #getAnnotations()
    * @generated
    * @ordered
    */
-  protected EList<PojoEntityModifier1> modifiers1;
+  protected EList<EntityAnnotation> annotations;
 
   /**
-   * The cached value of the '{@link #getModifiers2() <em>Modifiers2</em>}' containment reference list.
+   * The cached value of the '{@link #getDirectives() <em>Directives</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getModifiers2()
+   * @see #getDirectives()
    * @generated
    * @ordered
    */
-  protected EList<PojoEntityModifier2> modifiers2;
+  protected EList<PojoDirective> directives;
+
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
@@ -65,7 +89,7 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
    * @generated
    * @ordered
    */
-  protected EList<PojoAnnotatedProperty> features;
+  protected EList<PojoProperty> features;
 
   /**
    * <!-- begin-user-doc -->
@@ -93,13 +117,13 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoEntityModifier1> getModifiers1()
+  public EList<EntityAnnotation> getAnnotations()
   {
-    if (modifiers1 == null)
+    if (annotations == null)
     {
-      modifiers1 = new EObjectContainmentEList<PojoEntityModifier1>(PojoEntityModifier1.class, this, ProcessorDslPackage.POJO_ENTITY__MODIFIERS1);
+      annotations = new EObjectContainmentEList<EntityAnnotation>(EntityAnnotation.class, this, ProcessorDslPackage.POJO_ENTITY__ANNOTATIONS);
     }
-    return modifiers1;
+    return annotations;
   }
 
   /**
@@ -107,13 +131,13 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoEntityModifier2> getModifiers2()
+  public EList<PojoDirective> getDirectives()
   {
-    if (modifiers2 == null)
+    if (directives == null)
     {
-      modifiers2 = new EObjectContainmentEList<PojoEntityModifier2>(PojoEntityModifier2.class, this, ProcessorDslPackage.POJO_ENTITY__MODIFIERS2);
+      directives = new EObjectContainmentEList<PojoDirective>(PojoDirective.class, this, ProcessorDslPackage.POJO_ENTITY__DIRECTIVES);
     }
-    return modifiers2;
+    return directives;
   }
 
   /**
@@ -121,11 +145,34 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoAnnotatedProperty> getFeatures()
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_ENTITY__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<PojoProperty> getFeatures()
   {
     if (features == null)
     {
-      features = new EObjectContainmentEList<PojoAnnotatedProperty>(PojoAnnotatedProperty.class, this, ProcessorDslPackage.POJO_ENTITY__FEATURES);
+      features = new EObjectContainmentEList<PojoProperty>(PojoProperty.class, this, ProcessorDslPackage.POJO_ENTITY__FEATURES);
     }
     return features;
   }
@@ -140,10 +187,10 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.POJO_ENTITY__MODIFIERS1:
-        return ((InternalEList<?>)getModifiers1()).basicRemove(otherEnd, msgs);
-      case ProcessorDslPackage.POJO_ENTITY__MODIFIERS2:
-        return ((InternalEList<?>)getModifiers2()).basicRemove(otherEnd, msgs);
+      case ProcessorDslPackage.POJO_ENTITY__ANNOTATIONS:
+        return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
+      case ProcessorDslPackage.POJO_ENTITY__DIRECTIVES:
+        return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
       case ProcessorDslPackage.POJO_ENTITY__FEATURES:
         return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
     }
@@ -160,10 +207,12 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.POJO_ENTITY__MODIFIERS1:
-        return getModifiers1();
-      case ProcessorDslPackage.POJO_ENTITY__MODIFIERS2:
-        return getModifiers2();
+      case ProcessorDslPackage.POJO_ENTITY__ANNOTATIONS:
+        return getAnnotations();
+      case ProcessorDslPackage.POJO_ENTITY__DIRECTIVES:
+        return getDirectives();
+      case ProcessorDslPackage.POJO_ENTITY__NAME:
+        return getName();
       case ProcessorDslPackage.POJO_ENTITY__FEATURES:
         return getFeatures();
     }
@@ -181,17 +230,20 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.POJO_ENTITY__MODIFIERS1:
-        getModifiers1().clear();
-        getModifiers1().addAll((Collection<? extends PojoEntityModifier1>)newValue);
+      case ProcessorDslPackage.POJO_ENTITY__ANNOTATIONS:
+        getAnnotations().clear();
+        getAnnotations().addAll((Collection<? extends EntityAnnotation>)newValue);
         return;
-      case ProcessorDslPackage.POJO_ENTITY__MODIFIERS2:
-        getModifiers2().clear();
-        getModifiers2().addAll((Collection<? extends PojoEntityModifier2>)newValue);
+      case ProcessorDslPackage.POJO_ENTITY__DIRECTIVES:
+        getDirectives().clear();
+        getDirectives().addAll((Collection<? extends PojoDirective>)newValue);
+        return;
+      case ProcessorDslPackage.POJO_ENTITY__NAME:
+        setName((String)newValue);
         return;
       case ProcessorDslPackage.POJO_ENTITY__FEATURES:
         getFeatures().clear();
-        getFeatures().addAll((Collection<? extends PojoAnnotatedProperty>)newValue);
+        getFeatures().addAll((Collection<? extends PojoProperty>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -207,11 +259,14 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.POJO_ENTITY__MODIFIERS1:
-        getModifiers1().clear();
+      case ProcessorDslPackage.POJO_ENTITY__ANNOTATIONS:
+        getAnnotations().clear();
         return;
-      case ProcessorDslPackage.POJO_ENTITY__MODIFIERS2:
-        getModifiers2().clear();
+      case ProcessorDslPackage.POJO_ENTITY__DIRECTIVES:
+        getDirectives().clear();
+        return;
+      case ProcessorDslPackage.POJO_ENTITY__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case ProcessorDslPackage.POJO_ENTITY__FEATURES:
         getFeatures().clear();
@@ -230,14 +285,33 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.POJO_ENTITY__MODIFIERS1:
-        return modifiers1 != null && !modifiers1.isEmpty();
-      case ProcessorDslPackage.POJO_ENTITY__MODIFIERS2:
-        return modifiers2 != null && !modifiers2.isEmpty();
+      case ProcessorDslPackage.POJO_ENTITY__ANNOTATIONS:
+        return annotations != null && !annotations.isEmpty();
+      case ProcessorDslPackage.POJO_ENTITY__DIRECTIVES:
+        return directives != null && !directives.isEmpty();
+      case ProcessorDslPackage.POJO_ENTITY__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ProcessorDslPackage.POJO_ENTITY__FEATURES:
         return features != null && !features.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
   }
 
 } //PojoEntityImpl

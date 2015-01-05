@@ -4,8 +4,6 @@ package org.sqlproc.dsl.processorDsl;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.xtext.common.types.JvmType;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Extends</b></em>'.
@@ -27,33 +25,33 @@ import org.eclipse.xtext.common.types.JvmType;
  * @model
  * @generated
  */
-public interface Extends extends AbstractPojoEntity
+public interface Extends extends AbstractEntity
 {
   /**
-   * Returns the value of the '<em><b>Extends</b></em>' reference.
+   * Returns the value of the '<em><b>Extends</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Extends</em>' reference isn't clear,
+   * If the meaning of the '<em>Extends</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Extends</em>' reference.
-   * @see #setExtends(JvmType)
+   * @return the value of the '<em>Extends</em>' containment reference.
+   * @see #setExtends(PojoType)
    * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getExtends_Extends()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  JvmType getExtends();
+  PojoType getExtends();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.Extends#getExtends <em>Extends</em>}' reference.
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.Extends#getExtends <em>Extends</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Extends</em>' reference.
+   * @param value the new value of the '<em>Extends</em>' containment reference.
    * @see #getExtends()
    * @generated
    */
-  void setExtends(JvmType value);
+  void setExtends(PojoType value);
 
   /**
    * Returns the value of the '<em><b>Generics</b></em>' attribute.

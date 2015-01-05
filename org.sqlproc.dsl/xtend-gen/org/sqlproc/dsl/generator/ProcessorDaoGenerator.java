@@ -9,13 +9,10 @@ import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.sqlproc.dsl.ImportManager;
@@ -25,10 +22,7 @@ import org.sqlproc.dsl.processorDsl.ImplPackage;
 import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
-import org.sqlproc.dsl.processorDsl.PojoMethod;
-import org.sqlproc.dsl.processorDsl.PojoMethodArg;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
-import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.util.Utils;
 
 /**
@@ -47,1467 +41,261 @@ public class ProcessorDaoGenerator {
   private ProcessorGeneratorUtils _processorGeneratorUtils;
   
   public CharSequence compile(final PojoDao d) {
-    StringConcatenation _builder = new StringConcatenation();
-    final ImportManager im = new ImportManager(true);
-    _builder.newLineIfNotEmpty();
-    this.addImplements(d, im);
-    _builder.newLineIfNotEmpty();
-    this.addExtends(d, im);
-    _builder.newLineIfNotEmpty();
-    final Map<String, List<PojoMethodArg>> toInits = Utils.getToInits(d);
-    _builder.newLineIfNotEmpty();
-    PojoEntity _pojo = d.getPojo();
-    final CharSequence classBody = this.compile(d, _pojo, toInits, im);
-    _builder.newLineIfNotEmpty();
-    {
-      EObject _eContainer = d.eContainer();
-      boolean _notEquals = (!Objects.equal(_eContainer, null));
-      if (_notEquals) {
-        _builder.append("package ");
-        EObject _eContainer_1 = d.eContainer();
-        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_1);
-        _builder.append(_fullyQualifiedName, "");
-        {
-          String _implPackage = this.getImplPackage(d);
-          boolean _notEquals_1 = (!Objects.equal(_implPackage, null));
-          if (_notEquals_1) {
-            _builder.append(".");
-            String _implPackage_1 = this.getImplPackage(d);
-            _builder.append(_implPackage_1, "");
-          }
-        }
-        _builder.append(";");
-      }
-    }
-    _builder.newLineIfNotEmpty();
-    {
-      String _implPackage_2 = this.getImplPackage(d);
-      boolean _notEquals_2 = (!Objects.equal(_implPackage_2, null));
-      if (_notEquals_2) {
-        _builder.newLine();
-        _builder.append("import ");
-        EObject _eContainer_2 = d.eContainer();
-        QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_2);
-        _builder.append(_fullyQualifiedName_1, "");
-        _builder.append(".");
-        String _name = d.getName();
-        _builder.append(_name, "");
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      List<String> _imports = im.getImports();
-      boolean _isEmpty = _imports.isEmpty();
-      boolean _not = (!_isEmpty);
-      if (_not) {
-        _builder.append("\t");
-        _builder.newLine();
-        {
-          List<String> _imports_1 = im.getImports();
-          for(final String i : _imports_1) {
-            _builder.append("import ");
-            _builder.append(i, "");
-            _builder.append(";");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
-    {
-      String _sernum = Utils.getSernum(d);
-      boolean _notEquals_3 = (!Objects.equal(_sernum, null));
-      if (_notEquals_3) {
-        _builder.newLine();
-        _builder.append("import java.io.Serializable;");
-        _builder.newLine();
-      }
-    }
-    _builder.newLine();
-    _builder.append("import java.util.HashMap;");
-    _builder.newLine();
-    _builder.append("import java.util.List;");
-    _builder.newLine();
-    _builder.append("import java.util.Map;");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("import org.slf4j.Logger;");
-    _builder.newLine();
-    _builder.append("import org.slf4j.LoggerFactory;");
-    _builder.newLine();
-    _builder.append("import org.sqlproc.engine.SqlControl;");
-    _builder.newLine();
-    _builder.append("import org.sqlproc.engine.SqlCrudEngine;");
-    _builder.newLine();
-    _builder.append("import org.sqlproc.engine.SqlEngineFactory;");
-    _builder.newLine();
-    _builder.append("import org.sqlproc.engine.SqlQueryEngine;");
-    _builder.newLine();
-    _builder.append("import org.sqlproc.engine.SqlProcedureEngine;");
-    _builder.newLine();
-    _builder.append("import org.sqlproc.engine.SqlSession;");
-    _builder.newLine();
-    _builder.append("import org.sqlproc.engine.SqlSessionFactory;");
-    _builder.newLine();
-    _builder.append("import org.sqlproc.engine.impl.SqlStandardControl;");
-    _builder.newLine();
-    {
-      PojoEntity _pojo_1 = d.getPojo();
-      boolean _notEquals_4 = (!Objects.equal(_pojo_1, null));
-      if (_notEquals_4) {
-        _builder.append("import ");
-        PojoEntity _pojo_2 = d.getPojo();
-        String _completeName = this._processorGeneratorUtils.completeName(_pojo_2);
-        _builder.append(_completeName, "");
-        _builder.append(";");
-      }
-    }
-    _builder.newLineIfNotEmpty();
-    {
-      Set<Map.Entry<String, List<PojoMethodArg>>> _entrySet = toInits.entrySet();
-      for(final Map.Entry<String, List<PojoMethodArg>> f : _entrySet) {
-        {
-          List<PojoMethodArg> _value = f.getValue();
-          boolean _hasElements = false;
-          for(final PojoMethodArg a : _value) {
-            if (!_hasElements) {
-              _hasElements = true;
-            } else {
-              _builder.appendImmediate("\n\t\t", "");
-            }
-            _builder.append("import ");
-            PojoType _type = a.getType();
-            PojoEntity _ref = _type.getRef();
-            String _completeName_1 = this._processorGeneratorUtils.completeName(_ref);
-            _builder.append(_completeName_1, "");
-            _builder.append(";");
-          }
-        }
-      }
-    }
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    _builder.append(classBody, "");
-    _builder.newLineIfNotEmpty();
-    return _builder;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method getToInits is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method pojo is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method pojo is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method pojo is undefined for the type ProcessorDaoGenerator"
+      + "\n!= cannot be resolved"
+      + "\ncompleteName cannot be resolved"
+      + "\nentrySet cannot be resolved"
+      + "\nvalue cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\nref cannot be resolved"
+      + "\ncompleteName cannot be resolved");
   }
   
-  public CharSequence compile(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("public ");
-    {
-      boolean _isAbstract = Utils.isAbstract(d);
-      if (_isAbstract) {
-        _builder.append("abstract ");
-      }
-    }
-    _builder.append("class ");
-    String _name = d.getName();
-    _builder.append(_name, "");
-    {
-      String _implPackage = this.getImplPackage(d);
-      boolean _notEquals = (!Objects.equal(_implPackage, null));
-      if (_notEquals) {
-        _builder.append("Impl");
-      }
-    }
-    _builder.append(" ");
-    CharSequence _compileExtends = this.compileExtends(d, im);
-    _builder.append(_compileExtends, "");
-    CharSequence _compileImplements = this.compileImplements(d);
-    _builder.append(_compileImplements, "");
-    _builder.append("{");
-    _builder.newLineIfNotEmpty();
-    {
-      String _sernum = Utils.getSernum(d);
-      boolean _notEquals_1 = (!Objects.equal(_sernum, null));
-      if (_notEquals_1) {
-        _builder.append("\t");
-        _builder.newLine();
-        _builder.append("\t");
-        _builder.append("private static final long serialVersionUID = ");
-        String _sernum_1 = Utils.getSernum(d);
-        _builder.append(_sernum_1, "\t");
-        _builder.append("L;");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t");
-    _builder.append("protected final Logger logger = LoggerFactory.getLogger(getClass());");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("protected SqlEngineFactory sqlEngineFactory;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("protected SqlSessionFactory sqlSessionFactory;");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public ");
-    String _name_1 = d.getName();
-    _builder.append(_name_1, "\t");
-    {
-      String _implPackage_1 = this.getImplPackage(d);
-      boolean _notEquals_2 = (!Objects.equal(_implPackage_1, null));
-      if (_notEquals_2) {
-        _builder.append("Impl");
-      }
-    }
-    _builder.append("() {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public ");
-    String _name_2 = d.getName();
-    _builder.append(_name_2, "\t");
-    {
-      String _implPackage_2 = this.getImplPackage(d);
-      boolean _notEquals_3 = (!Objects.equal(_implPackage_2, null));
-      if (_notEquals_3) {
-        _builder.append("Impl");
-      }
-    }
-    _builder.append("(SqlEngineFactory sqlEngineFactory) {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("this.sqlEngineFactory = sqlEngineFactory;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public ");
-    String _name_3 = d.getName();
-    _builder.append(_name_3, "\t");
-    {
-      String _implPackage_3 = this.getImplPackage(d);
-      boolean _notEquals_4 = (!Objects.equal(_implPackage_3, null));
-      if (_notEquals_4) {
-        _builder.append("Impl");
-      }
-    }
-    _builder.append("(SqlEngineFactory sqlEngineFactory, SqlSessionFactory sqlSessionFactory) {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("this.sqlEngineFactory = sqlEngineFactory;");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("this.sqlSessionFactory = sqlSessionFactory;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    {
-      EList<PojoMethod> _methods = d.getMethods();
-      for(final PojoMethod m : _methods) {
-        {
-          boolean _or = false;
-          String _name_4 = m.getName();
-          boolean _equals = Objects.equal(_name_4, "scaffold");
-          if (_equals) {
-            _or = true;
-          } else {
-            String _name_5 = m.getName();
-            boolean _equals_1 = Objects.equal(_name_5, "scaffold0");
-            _or = _equals_1;
-          }
-          if (_or) {
-            PojoEntity _parent = Utils.getParent(e);
-            String _name_6 = m.getName();
-            boolean _equals_2 = Objects.equal(_name_6, "scaffold");
-            CharSequence _compileInsert = this.compileInsert(d, e, _parent, im, _equals_2);
-            _builder.append(_compileInsert, "");
-            _builder.newLineIfNotEmpty();
-            String _name_7 = m.getName();
-            boolean _equals_3 = Objects.equal(_name_7, "scaffold");
-            CharSequence _compileGet = this.compileGet(d, e, toInits, im, _equals_3);
-            _builder.append(_compileGet, "");
-            _builder.newLineIfNotEmpty();
-            PojoEntity _parent_1 = Utils.getParent(e);
-            String _name_8 = m.getName();
-            boolean _equals_4 = Objects.equal(_name_8, "scaffold");
-            CharSequence _compileUpdate = this.compileUpdate(d, e, _parent_1, im, _equals_4);
-            _builder.append(_compileUpdate, "");
-            _builder.newLineIfNotEmpty();
-            PojoEntity _parent_2 = Utils.getParent(e);
-            String _name_9 = m.getName();
-            boolean _equals_5 = Objects.equal(_name_9, "scaffold");
-            CharSequence _compileDelete = this.compileDelete(d, e, _parent_2, im, _equals_5);
-            _builder.append(_compileDelete, "");
-            _builder.newLineIfNotEmpty();
-            String _name_10 = m.getName();
-            boolean _equals_6 = Objects.equal(_name_10, "scaffold");
-            CharSequence _compileList = this.compileList(d, e, toInits, im, _equals_6);
-            _builder.append(_compileList, "");
-            _builder.newLineIfNotEmpty();
-            String _name_11 = m.getName();
-            boolean _equals_7 = Objects.equal(_name_11, "scaffold");
-            CharSequence _compileCount = this.compileCount(d, e, toInits, im, _equals_7);
-            _builder.append(_compileCount, "");
-            _builder.newLineIfNotEmpty();
-            {
-              boolean _isEmpty = toInits.isEmpty();
-              boolean _not = (!_isEmpty);
-              if (_not) {
-                CharSequence _compileMoreResultClasses = this.compileMoreResultClasses(d, e, toInits, im);
-                _builder.append(_compileMoreResultClasses, "");
-              }
-            }
-          } else {
-            boolean _isCallUpdate = Utils.isCallUpdate(m);
-            if (_isCallUpdate) {
-              _builder.newLineIfNotEmpty();
-              CharSequence _compileCallUpdate = this.compileCallUpdate(d, m, im, true);
-              _builder.append(_compileCallUpdate, "");
-            } else {
-              boolean _isCallFunction = Utils.isCallFunction(m);
-              if (_isCallFunction) {
-                CharSequence _compileCallFunction = this.compileCallFunction(d, m, im, true);
-                _builder.append(_compileCallFunction, "");
-              } else {
-                boolean _or_1 = false;
-                boolean _isCallQuery = Utils.isCallQuery(m);
-                if (_isCallQuery) {
-                  _or_1 = true;
-                } else {
-                  boolean _isCallQueryFunction = Utils.isCallQueryFunction(m);
-                  _or_1 = _isCallQueryFunction;
-                }
-                if (_or_1) {
-                  boolean _isCallQueryFunction_1 = Utils.isCallQueryFunction(m);
-                  CharSequence _compileCallQuery = this.compileCallQuery(d, m, im, _isCallQueryFunction_1, true);
-                  _builder.append(_compileCallQuery, "");
-                } else {
-                  boolean _isCallSelectFunction = Utils.isCallSelectFunction(m);
-                  if (_isCallSelectFunction) {
-                    CharSequence _compileCallSelectFunction = this.compileCallSelectFunction(d, m, im, true);
-                    _builder.append(_compileCallSelectFunction, "");
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    _builder.newLineIfNotEmpty();
-    _builder.append("}");
-    _builder.newLine();
-    return _builder;
+  public CharSequence compile(final PojoDao d, final PojoEntity e, final /* Map<String, List<PojoMethodArg>> */Object toInits, final ImportManager im) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method methods is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method isCallUpdate is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method isCallFunction is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method isCallQuery is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method isCallQueryFunction is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method isCallQueryFunction is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method isCallSelectFunction is undefined for the type ProcessorDaoGenerator"
+      + "\nType mismatch: cannot convert from PojoType to PojoEntity"
+      + "\nType mismatch: cannot convert from PojoType to PojoEntity"
+      + "\nType mismatch: cannot convert from PojoType to PojoEntity"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\n|| cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\n|| cannot be resolved");
   }
   
-  public CharSequence compileCallQuery(final PojoDao d, final PojoMethod m, final ImportManager im, final boolean isFunction, final boolean all) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public ");
-    PojoType _type = m.getType();
-    CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-    _builder.append(_compileType, "\t");
-    _builder.append(" ");
-    String _name = m.getName();
-    _builder.append(_name, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args = m.getArgs();
-      boolean _hasElements = false;
-      for(final PojoMethodArg ma : _args) {
-        if (!_hasElements) {
-          _hasElements = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type_1 = ma.getType();
-        CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-        _builder.append(_compileType_1, "\t");
-        _builder.append(" ");
-        String _name_1 = ma.getName();
-        _builder.append(_name_1, "\t");
-      }
-    }
-    _builder.append(", SqlControl sqlControl) {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("if (logger.isTraceEnabled()) {");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("logger.trace(\"");
-    String _name_2 = m.getName();
-    _builder.append(_name_2, "\t\t\t");
-    _builder.append(": \" + ");
-    {
-      EList<PojoMethodArg> _args_1 = m.getArgs();
-      boolean _hasElements_1 = false;
-      for(final PojoMethodArg ma_1 : _args_1) {
-        if (!_hasElements_1) {
-          _hasElements_1 = true;
-        } else {
-          _builder.appendImmediate(" + \" \" ", "\t\t\t");
-        }
-        String _name_3 = ma_1.getName();
-        _builder.append(_name_3, "\t\t\t");
-      }
-    }
-    _builder.append(" + \" \" + sqlControl);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("SqlProcedureEngine sqlProc");
-    String _name_4 = m.getName();
-    String _firstUpper = StringExtensions.toFirstUpper(_name_4);
-    _builder.append(_firstUpper, "\t\t");
-    _builder.append(" = sqlEngineFactory.getCheckedProcedureEngine(\"");
-    {
-      if (isFunction) {
-        _builder.append("FUN");
-      } else {
-        _builder.append("PROC");
-      }
-    }
-    _builder.append("_");
-    String _dbName = Utils.dbName(m);
-    _builder.append(_dbName, "\t\t");
-    _builder.append("\");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    PojoType _type_2 = m.getType();
-    CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-    _builder.append(_compileType_2, "\t\t");
-    _builder.append(" list = sqlProc");
-    String _name_5 = m.getName();
-    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_5);
-    _builder.append(_firstUpper_1, "\t\t");
-    _builder.append(".callQuery(sqlSession, ");
-    PojoType _type_3 = m.getType();
-    PojoEntity _gref = _type_3.getGref();
-    String _name_6 = _gref.getName();
-    _builder.append(_name_6, "\t\t");
-    _builder.append(".class, ");
-    {
-      EList<PojoMethodArg> _args_2 = m.getArgs();
-      boolean _hasElements_2 = false;
-      for(final PojoMethodArg ma_2 : _args_2) {
-        if (!_hasElements_2) {
-          _hasElements_2 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t\t");
-        }
-        String _name_7 = ma_2.getName();
-        _builder.append(_name_7, "\t\t");
-      }
-    }
-    _builder.append(", sqlControl);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("if (logger.isTraceEnabled()) {");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("logger.trace(\"");
-    String _name_8 = m.getName();
-    _builder.append(_name_8, "\t\t\t");
-    _builder.append(" result: \" + list);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("return list;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public ");
-        PojoType _type_4 = m.getType();
-        CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_4, im);
-        _builder.append(_compileType_3, "\t");
-        _builder.append(" ");
-        String _name_9 = m.getName();
-        _builder.append(_name_9, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_3 = m.getArgs();
-          boolean _hasElements_3 = false;
-          for(final PojoMethodArg ma_3 : _args_3) {
-            if (!_hasElements_3) {
-              _hasElements_3 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_5 = ma_3.getType();
-            CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(_type_5, im);
-            _builder.append(_compileType_4, "\t");
-            _builder.append(" ");
-            String _name_10 = ma_3.getName();
-            _builder.append(_name_10, "\t");
-          }
-        }
-        _builder.append(", SqlControl sqlControl) {");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("\t");
-        _builder.append("return ");
-        String _name_11 = m.getName();
-        _builder.append(_name_11, "\t\t");
-        _builder.append("(sqlSessionFactory.getSqlSession(), ");
-        {
-          EList<PojoMethodArg> _args_4 = m.getArgs();
-          boolean _hasElements_4 = false;
-          for(final PojoMethodArg ma_4 : _args_4) {
-            if (!_hasElements_4) {
-              _hasElements_4 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t\t");
-            }
-            String _name_12 = ma_4.getName();
-            _builder.append(_name_12, "\t\t");
-          }
-        }
-        _builder.append(", sqlControl);");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("}");
-        _builder.newLine();
-      }
-    }
-    _builder.append("\t");
-    _builder.append("public ");
-    PojoType _type_6 = m.getType();
-    CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(_type_6, im);
-    _builder.append(_compileType_5, "\t");
-    _builder.append(" ");
-    String _name_13 = m.getName();
-    _builder.append(_name_13, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args_5 = m.getArgs();
-      boolean _hasElements_5 = false;
-      for(final PojoMethodArg ma_5 : _args_5) {
-        if (!_hasElements_5) {
-          _hasElements_5 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type_7 = ma_5.getType();
-        CharSequence _compileType_6 = this._processorGeneratorUtils.compileType(_type_7, im);
-        _builder.append(_compileType_6, "\t");
-        _builder.append(" ");
-        String _name_14 = ma_5.getName();
-        _builder.append(_name_14, "\t");
-      }
-    }
-    _builder.append(") {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("return ");
-    String _name_15 = m.getName();
-    _builder.append(_name_15, "\t\t");
-    _builder.append("(sqlSession, ");
-    {
-      EList<PojoMethodArg> _args_6 = m.getArgs();
-      boolean _hasElements_6 = false;
-      for(final PojoMethodArg ma_6 : _args_6) {
-        if (!_hasElements_6) {
-          _hasElements_6 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t\t");
-        }
-        String _name_16 = ma_6.getName();
-        _builder.append(_name_16, "\t\t");
-      }
-    }
-    _builder.append(", null);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public ");
-        PojoType _type_8 = m.getType();
-        CharSequence _compileType_7 = this._processorGeneratorUtils.compileType(_type_8, im);
-        _builder.append(_compileType_7, "\t");
-        _builder.append(" ");
-        String _name_17 = m.getName();
-        _builder.append(_name_17, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_7 = m.getArgs();
-          boolean _hasElements_7 = false;
-          for(final PojoMethodArg ma_7 : _args_7) {
-            if (!_hasElements_7) {
-              _hasElements_7 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_9 = ma_7.getType();
-            CharSequence _compileType_8 = this._processorGeneratorUtils.compileType(_type_9, im);
-            _builder.append(_compileType_8, "\t");
-            _builder.append(" ");
-            String _name_18 = ma_7.getName();
-            _builder.append(_name_18, "\t");
-          }
-        }
-        _builder.append(") {");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("\t");
-        _builder.append("return ");
-        String _name_19 = m.getName();
-        _builder.append(_name_19, "\t\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_8 = m.getArgs();
-          boolean _hasElements_8 = false;
-          for(final PojoMethodArg ma_8 : _args_8) {
-            if (!_hasElements_8) {
-              _hasElements_8 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t\t");
-            }
-            String _name_20 = ma_8.getName();
-            _builder.append(_name_20, "\t\t");
-          }
-        }
-        _builder.append(", null);");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("}");
-        _builder.newLine();
-      }
-    }
-    return _builder;
+  public CharSequence compileCallQuery(final PojoDao d, final /* PojoMethod */Object m, final ImportManager im, final boolean isFunction, final boolean all) {
+    throw new Error("Unresolved compilation problems:"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntoFirstUpper cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntoFirstUpper cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ngref cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved");
   }
   
-  public CharSequence compileCallFunction(final PojoDao d, final PojoMethod m, final ImportManager im, final boolean all) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public ");
-    PojoType _type = m.getType();
-    CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-    _builder.append(_compileType, "\t");
-    _builder.append(" ");
-    String _name = m.getName();
-    _builder.append(_name, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args = m.getArgs();
-      boolean _hasElements = false;
-      for(final PojoMethodArg ma : _args) {
-        if (!_hasElements) {
-          _hasElements = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type_1 = ma.getType();
-        CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-        _builder.append(_compileType_1, "\t");
-        _builder.append(" ");
-        String _name_1 = ma.getName();
-        _builder.append(_name_1, "\t");
-      }
-    }
-    _builder.append(", SqlControl sqlControl) {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("if (logger.isTraceEnabled()) {");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("logger.trace(\"");
-    String _name_2 = m.getName();
-    _builder.append(_name_2, "\t\t\t");
-    _builder.append(": \" + ");
-    {
-      EList<PojoMethodArg> _args_1 = m.getArgs();
-      boolean _hasElements_1 = false;
-      for(final PojoMethodArg ma_1 : _args_1) {
-        if (!_hasElements_1) {
-          _hasElements_1 = true;
-        } else {
-          _builder.appendImmediate(" + \" \" ", "\t\t\t");
-        }
-        String _name_3 = ma_1.getName();
-        _builder.append(_name_3, "\t\t\t");
-      }
-    }
-    _builder.append(" + \" \" + sqlControl);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("SqlProcedureEngine sqlFun");
-    String _name_4 = m.getName();
-    String _firstUpper = StringExtensions.toFirstUpper(_name_4);
-    _builder.append(_firstUpper, "\t\t");
-    _builder.append(" = sqlEngineFactory.getCheckedProcedureEngine(\"FUN_");
-    String _dbName = Utils.dbName(m);
-    _builder.append(_dbName, "\t\t");
-    _builder.append("\");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("Object result = sqlFun");
-    String _name_5 = m.getName();
-    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_5);
-    _builder.append(_firstUpper_1, "\t\t");
-    _builder.append(".callFunction(sqlSession, ");
-    {
-      EList<PojoMethodArg> _args_2 = m.getArgs();
-      boolean _hasElements_2 = false;
-      for(final PojoMethodArg ma_2 : _args_2) {
-        if (!_hasElements_2) {
-          _hasElements_2 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t\t");
-        }
-        String _name_6 = ma_2.getName();
-        _builder.append(_name_6, "\t\t");
-      }
-    }
-    _builder.append(", sqlControl);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("if (logger.isTraceEnabled()) {");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("logger.trace(\"");
-    String _name_7 = m.getName();
-    _builder.append(_name_7, "\t\t\t");
-    _builder.append(" result: \" + result);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("return (");
-    PojoType _type_2 = m.getType();
-    CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-    _builder.append(_compileType_2, "\t\t");
-    _builder.append(") result;");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public ");
-        PojoType _type_3 = m.getType();
-        CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_3, im);
-        _builder.append(_compileType_3, "\t");
-        _builder.append(" ");
-        String _name_8 = m.getName();
-        _builder.append(_name_8, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_3 = m.getArgs();
-          boolean _hasElements_3 = false;
-          for(final PojoMethodArg ma_3 : _args_3) {
-            if (!_hasElements_3) {
-              _hasElements_3 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_4 = ma_3.getType();
-            CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(_type_4, im);
-            _builder.append(_compileType_4, "\t");
-            _builder.append(" ");
-            String _name_9 = ma_3.getName();
-            _builder.append(_name_9, "\t");
-          }
-        }
-        _builder.append(", SqlControl sqlControl) {");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("\t");
-        _builder.append("return ");
-        String _name_10 = m.getName();
-        _builder.append(_name_10, "\t\t");
-        _builder.append("(sqlSessionFactory.getSqlSession(), ");
-        {
-          EList<PojoMethodArg> _args_4 = m.getArgs();
-          boolean _hasElements_4 = false;
-          for(final PojoMethodArg ma_4 : _args_4) {
-            if (!_hasElements_4) {
-              _hasElements_4 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t\t");
-            }
-            String _name_11 = ma_4.getName();
-            _builder.append(_name_11, "\t\t");
-          }
-        }
-        _builder.append(", sqlControl);");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("}");
-        _builder.newLine();
-      }
-    }
-    _builder.append("\t");
-    _builder.append("public ");
-    PojoType _type_5 = m.getType();
-    CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(_type_5, im);
-    _builder.append(_compileType_5, "\t");
-    _builder.append(" ");
-    String _name_12 = m.getName();
-    _builder.append(_name_12, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args_5 = m.getArgs();
-      boolean _hasElements_5 = false;
-      for(final PojoMethodArg ma_5 : _args_5) {
-        if (!_hasElements_5) {
-          _hasElements_5 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type_6 = ma_5.getType();
-        CharSequence _compileType_6 = this._processorGeneratorUtils.compileType(_type_6, im);
-        _builder.append(_compileType_6, "\t");
-        _builder.append(" ");
-        String _name_13 = ma_5.getName();
-        _builder.append(_name_13, "\t");
-      }
-    }
-    _builder.append(") {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("return ");
-    String _name_14 = m.getName();
-    _builder.append(_name_14, "\t\t");
-    _builder.append("(sqlSession, ");
-    {
-      EList<PojoMethodArg> _args_6 = m.getArgs();
-      boolean _hasElements_6 = false;
-      for(final PojoMethodArg ma_6 : _args_6) {
-        if (!_hasElements_6) {
-          _hasElements_6 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t\t");
-        }
-        String _name_15 = ma_6.getName();
-        _builder.append(_name_15, "\t\t");
-      }
-    }
-    _builder.append(", null);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public ");
-        PojoType _type_7 = m.getType();
-        CharSequence _compileType_7 = this._processorGeneratorUtils.compileType(_type_7, im);
-        _builder.append(_compileType_7, "\t");
-        _builder.append(" ");
-        String _name_16 = m.getName();
-        _builder.append(_name_16, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_7 = m.getArgs();
-          boolean _hasElements_7 = false;
-          for(final PojoMethodArg ma_7 : _args_7) {
-            if (!_hasElements_7) {
-              _hasElements_7 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_8 = ma_7.getType();
-            CharSequence _compileType_8 = this._processorGeneratorUtils.compileType(_type_8, im);
-            _builder.append(_compileType_8, "\t");
-            _builder.append(" ");
-            String _name_17 = ma_7.getName();
-            _builder.append(_name_17, "\t");
-          }
-        }
-        _builder.append(") {");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("\t");
-        _builder.append("return ");
-        String _name_18 = m.getName();
-        _builder.append(_name_18, "\t\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_8 = m.getArgs();
-          boolean _hasElements_8 = false;
-          for(final PojoMethodArg ma_8 : _args_8) {
-            if (!_hasElements_8) {
-              _hasElements_8 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t\t");
-            }
-            String _name_19 = ma_8.getName();
-            _builder.append(_name_19, "\t\t");
-          }
-        }
-        _builder.append(", null);");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("}");
-        _builder.newLine();
-      }
-    }
-    return _builder;
+  public CharSequence compileCallFunction(final PojoDao d, final /* PojoMethod */Object m, final ImportManager im, final boolean all) {
+    throw new Error("Unresolved compilation problems:"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntoFirstUpper cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntoFirstUpper cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved");
   }
   
-  public CharSequence compileCallUpdate(final PojoDao d, final PojoMethod m, final ImportManager im, final boolean all) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public int ");
-    String _name = m.getName();
-    _builder.append(_name, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args = m.getArgs();
-      boolean _hasElements = false;
-      for(final PojoMethodArg ma : _args) {
-        if (!_hasElements) {
-          _hasElements = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type = ma.getType();
-        CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-        _builder.append(_compileType, "\t");
-        _builder.append(" ");
-        String _name_1 = ma.getName();
-        _builder.append(_name_1, "\t");
-      }
-    }
-    _builder.append(", SqlControl sqlControl) {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("if (logger.isTraceEnabled()) {");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("logger.trace(\"");
-    String _name_2 = m.getName();
-    _builder.append(_name_2, "\t\t\t");
-    _builder.append(": \" + ");
-    {
-      EList<PojoMethodArg> _args_1 = m.getArgs();
-      boolean _hasElements_1 = false;
-      for(final PojoMethodArg ma_1 : _args_1) {
-        if (!_hasElements_1) {
-          _hasElements_1 = true;
-        } else {
-          _builder.appendImmediate(" + \" \" ", "\t\t\t");
-        }
-        String _name_3 = ma_1.getName();
-        _builder.append(_name_3, "\t\t\t");
-      }
-    }
-    _builder.append(" + \" \" + sqlControl);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("SqlProcedureEngine sqlProc");
-    String _name_4 = m.getName();
-    String _firstUpper = StringExtensions.toFirstUpper(_name_4);
-    _builder.append(_firstUpper, "\t\t");
-    _builder.append(" = sqlEngineFactory.getCheckedProcedureEngine(\"PROC_");
-    String _dbName = Utils.dbName(m);
-    _builder.append(_dbName, "\t\t");
-    _builder.append("\");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("int count = sqlProc");
-    String _name_5 = m.getName();
-    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_5);
-    _builder.append(_firstUpper_1, "\t\t");
-    _builder.append(".callUpdate(sqlSession, ");
-    {
-      EList<PojoMethodArg> _args_2 = m.getArgs();
-      boolean _hasElements_2 = false;
-      for(final PojoMethodArg ma_2 : _args_2) {
-        if (!_hasElements_2) {
-          _hasElements_2 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t\t");
-        }
-        String _name_6 = ma_2.getName();
-        _builder.append(_name_6, "\t\t");
-      }
-    }
-    _builder.append(", sqlControl);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("if (logger.isTraceEnabled()) {");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("logger.trace(\"");
-    String _name_7 = m.getName();
-    _builder.append(_name_7, "\t\t\t");
-    _builder.append(" result: \" + count);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("return count;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public int ");
-        String _name_8 = m.getName();
-        _builder.append(_name_8, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_3 = m.getArgs();
-          boolean _hasElements_3 = false;
-          for(final PojoMethodArg ma_3 : _args_3) {
-            if (!_hasElements_3) {
-              _hasElements_3 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_1 = ma_3.getType();
-            CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-            _builder.append(_compileType_1, "\t");
-            _builder.append(" ");
-            String _name_9 = ma_3.getName();
-            _builder.append(_name_9, "\t");
-          }
-        }
-        _builder.append(", SqlControl sqlControl) {");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("\t");
-        _builder.append("return ");
-        String _name_10 = m.getName();
-        _builder.append(_name_10, "\t\t");
-        _builder.append("(sqlSessionFactory.getSqlSession(), ");
-        {
-          EList<PojoMethodArg> _args_4 = m.getArgs();
-          boolean _hasElements_4 = false;
-          for(final PojoMethodArg ma_4 : _args_4) {
-            if (!_hasElements_4) {
-              _hasElements_4 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t\t");
-            }
-            String _name_11 = ma_4.getName();
-            _builder.append(_name_11, "\t\t");
-          }
-        }
-        _builder.append(", sqlControl);");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("}");
-        _builder.newLine();
-      }
-    }
-    _builder.append("\t");
-    _builder.append("public int ");
-    String _name_12 = m.getName();
-    _builder.append(_name_12, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args_5 = m.getArgs();
-      boolean _hasElements_5 = false;
-      for(final PojoMethodArg ma_5 : _args_5) {
-        if (!_hasElements_5) {
-          _hasElements_5 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type_2 = ma_5.getType();
-        CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-        _builder.append(_compileType_2, "\t");
-        _builder.append(" ");
-        String _name_13 = ma_5.getName();
-        _builder.append(_name_13, "\t");
-      }
-    }
-    _builder.append(") {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("return ");
-    String _name_14 = m.getName();
-    _builder.append(_name_14, "\t\t");
-    _builder.append("(sqlSession, ");
-    {
-      EList<PojoMethodArg> _args_6 = m.getArgs();
-      boolean _hasElements_6 = false;
-      for(final PojoMethodArg ma_6 : _args_6) {
-        if (!_hasElements_6) {
-          _hasElements_6 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t\t");
-        }
-        String _name_15 = ma_6.getName();
-        _builder.append(_name_15, "\t\t");
-      }
-    }
-    _builder.append(", null);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public int ");
-        String _name_16 = m.getName();
-        _builder.append(_name_16, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_7 = m.getArgs();
-          boolean _hasElements_7 = false;
-          for(final PojoMethodArg ma_7 : _args_7) {
-            if (!_hasElements_7) {
-              _hasElements_7 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_3 = ma_7.getType();
-            CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_3, im);
-            _builder.append(_compileType_3, "\t");
-            _builder.append(" ");
-            String _name_17 = ma_7.getName();
-            _builder.append(_name_17, "\t");
-          }
-        }
-        _builder.append(") {");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("\t");
-        _builder.append("return ");
-        String _name_18 = m.getName();
-        _builder.append(_name_18, "\t\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_8 = m.getArgs();
-          boolean _hasElements_8 = false;
-          for(final PojoMethodArg ma_8 : _args_8) {
-            if (!_hasElements_8) {
-              _hasElements_8 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t\t");
-            }
-            String _name_19 = ma_8.getName();
-            _builder.append(_name_19, "\t\t");
-          }
-        }
-        _builder.append(", null);");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("}");
-        _builder.newLine();
-      }
-    }
-    return _builder;
+  public CharSequence compileCallUpdate(final PojoDao d, final /* PojoMethod */Object m, final ImportManager im, final boolean all) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntoFirstUpper cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntoFirstUpper cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved");
   }
   
-  public CharSequence compileCallSelectFunction(final PojoDao d, final PojoMethod m, final ImportManager im, final boolean all) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public ");
-    PojoType _type = m.getType();
-    CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-    _builder.append(_compileType, "\t");
-    _builder.append(" ");
-    String _name = m.getName();
-    _builder.append(_name, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args = m.getArgs();
-      boolean _hasElements = false;
-      for(final PojoMethodArg ma : _args) {
-        if (!_hasElements) {
-          _hasElements = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type_1 = ma.getType();
-        CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-        _builder.append(_compileType_1, "\t");
-        _builder.append(" ");
-        String _name_1 = ma.getName();
-        _builder.append(_name_1, "\t");
-      }
-    }
-    _builder.append(", SqlControl sqlControl) {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("if (logger.isTraceEnabled()) {");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("logger.trace(\"");
-    String _name_2 = m.getName();
-    _builder.append(_name_2, "\t\t\t");
-    _builder.append(": \" + ");
-    {
-      EList<PojoMethodArg> _args_1 = m.getArgs();
-      boolean _hasElements_1 = false;
-      for(final PojoMethodArg ma_1 : _args_1) {
-        if (!_hasElements_1) {
-          _hasElements_1 = true;
-        } else {
-          _builder.appendImmediate(" + \" \" ", "\t\t\t");
-        }
-        String _name_3 = ma_1.getName();
-        _builder.append(_name_3, "\t\t\t");
-      }
-    }
-    _builder.append(" + \" \" + sqlControl);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("SqlQueryEngine sqlFun");
-    String _name_4 = m.getName();
-    String _firstUpper = StringExtensions.toFirstUpper(_name_4);
-    _builder.append(_firstUpper, "\t\t");
-    _builder.append(" = sqlEngineFactory.getCheckedQueryEngine(\"FUN_");
-    String _dbName = Utils.dbName(m);
-    _builder.append(_dbName, "\t\t");
-    _builder.append("\");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("java.util.List<");
-    EList<PojoMethodArg> _args_2 = m.getArgs();
-    PojoMethodArg _get = _args_2.get(0);
-    PojoType _type_2 = _get.getType();
-    CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-    _builder.append(_compileType_2, "\t\t");
-    _builder.append("> list = sqlFun");
-    String _name_5 = m.getName();
-    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_5);
-    _builder.append(_firstUpper_1, "\t\t");
-    _builder.append(".query(sqlSession, ");
-    EList<PojoMethodArg> _args_3 = m.getArgs();
-    PojoMethodArg _get_1 = _args_3.get(0);
-    PojoType _type_3 = _get_1.getType();
-    CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_3, im);
-    _builder.append(_compileType_3, "\t\t");
-    _builder.append(".class, ");
-    {
-      EList<PojoMethodArg> _args_4 = m.getArgs();
-      boolean _hasElements_2 = false;
-      for(final PojoMethodArg ma_2 : _args_4) {
-        if (!_hasElements_2) {
-          _hasElements_2 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t\t");
-        }
-        String _name_6 = ma_2.getName();
-        _builder.append(_name_6, "\t\t");
-      }
-    }
-    _builder.append(", sqlControl);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("if (logger.isTraceEnabled()) {");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("logger.trace(\"");
-    String _name_7 = m.getName();
-    _builder.append(_name_7, "\t\t\t");
-    _builder.append(" result: \" + list);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("return (list != null && !list.isEmpty()) ? list.get(0).getResult() : null;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public ");
-        PojoType _type_4 = m.getType();
-        CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(_type_4, im);
-        _builder.append(_compileType_4, "\t");
-        _builder.append(" ");
-        String _name_8 = m.getName();
-        _builder.append(_name_8, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_5 = m.getArgs();
-          boolean _hasElements_3 = false;
-          for(final PojoMethodArg ma_3 : _args_5) {
-            if (!_hasElements_3) {
-              _hasElements_3 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_5 = ma_3.getType();
-            CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(_type_5, im);
-            _builder.append(_compileType_5, "\t");
-            _builder.append(" ");
-            String _name_9 = ma_3.getName();
-            _builder.append(_name_9, "\t");
-          }
-        }
-        _builder.append(", SqlControl sqlControl) {");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("\t");
-        _builder.append("return ");
-        String _name_10 = m.getName();
-        _builder.append(_name_10, "\t\t");
-        _builder.append("(sqlSessionFactory.getSqlSession(), ");
-        {
-          EList<PojoMethodArg> _args_6 = m.getArgs();
-          boolean _hasElements_4 = false;
-          for(final PojoMethodArg ma_4 : _args_6) {
-            if (!_hasElements_4) {
-              _hasElements_4 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t\t");
-            }
-            String _name_11 = ma_4.getName();
-            _builder.append(_name_11, "\t\t");
-          }
-        }
-        _builder.append(", sqlControl);");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("}");
-        _builder.newLine();
-      }
-    }
-    _builder.append("\t");
-    _builder.append("public ");
-    PojoType _type_6 = m.getType();
-    CharSequence _compileType_6 = this._processorGeneratorUtils.compileType(_type_6, im);
-    _builder.append(_compileType_6, "\t");
-    _builder.append(" ");
-    String _name_12 = m.getName();
-    _builder.append(_name_12, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args_7 = m.getArgs();
-      boolean _hasElements_5 = false;
-      for(final PojoMethodArg ma_5 : _args_7) {
-        if (!_hasElements_5) {
-          _hasElements_5 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type_7 = ma_5.getType();
-        CharSequence _compileType_7 = this._processorGeneratorUtils.compileType(_type_7, im);
-        _builder.append(_compileType_7, "\t");
-        _builder.append(" ");
-        String _name_13 = ma_5.getName();
-        _builder.append(_name_13, "\t");
-      }
-    }
-    _builder.append(") {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("return ");
-    String _name_14 = m.getName();
-    _builder.append(_name_14, "\t\t");
-    _builder.append("(sqlSession, ");
-    {
-      EList<PojoMethodArg> _args_8 = m.getArgs();
-      boolean _hasElements_6 = false;
-      for(final PojoMethodArg ma_6 : _args_8) {
-        if (!_hasElements_6) {
-          _hasElements_6 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t\t");
-        }
-        String _name_15 = ma_6.getName();
-        _builder.append(_name_15, "\t\t");
-      }
-    }
-    _builder.append(", null);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public ");
-        PojoType _type_8 = m.getType();
-        CharSequence _compileType_8 = this._processorGeneratorUtils.compileType(_type_8, im);
-        _builder.append(_compileType_8, "\t");
-        _builder.append(" ");
-        String _name_16 = m.getName();
-        _builder.append(_name_16, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_9 = m.getArgs();
-          boolean _hasElements_7 = false;
-          for(final PojoMethodArg ma_7 : _args_9) {
-            if (!_hasElements_7) {
-              _hasElements_7 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_9 = ma_7.getType();
-            CharSequence _compileType_9 = this._processorGeneratorUtils.compileType(_type_9, im);
-            _builder.append(_compileType_9, "\t");
-            _builder.append(" ");
-            String _name_17 = ma_7.getName();
-            _builder.append(_name_17, "\t");
-          }
-        }
-        _builder.append(") {");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("\t");
-        _builder.append("return ");
-        String _name_18 = m.getName();
-        _builder.append(_name_18, "\t\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_10 = m.getArgs();
-          boolean _hasElements_8 = false;
-          for(final PojoMethodArg ma_8 : _args_10) {
-            if (!_hasElements_8) {
-              _hasElements_8 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t\t");
-            }
-            String _name_19 = ma_8.getName();
-            _builder.append(_name_19, "\t\t");
-          }
-        }
-        _builder.append(", null);");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("}");
-        _builder.newLine();
-      }
-    }
-    return _builder;
+  public CharSequence compileCallSelectFunction(final PojoDao d, final /* PojoMethod */Object m, final ImportManager im, final boolean all) {
+    throw new Error("Unresolved compilation problems:"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntoFirstUpper cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntoFirstUpper cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\nname cannot be resolved");
   }
   
   public CharSequence compileInsert(final PojoDao d, final PojoEntity e, final PojoEntity pe, final ImportManager im, final boolean all) {
@@ -1713,7 +501,7 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compileGet(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im, final boolean all) {
+  public CharSequence compileGet(final PojoDao d, final PojoEntity e, final /* Map<String, List<PojoMethodArg>> */Object toInits, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
@@ -2308,7 +1096,7 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compileList(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im, final boolean all) {
+  public CharSequence compileList(final PojoDao d, final PojoEntity e, final /* Map<String, List<PojoMethodArg>> */Object toInits, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
@@ -2496,7 +1284,7 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compileCount(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im, final boolean all) {
+  public CharSequence compileCount(final PojoDao d, final PojoEntity e, final /* Map<String, List<PojoMethodArg>> */Object toInits, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
@@ -2646,739 +1434,168 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compileMoreResultClasses(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("SqlControl getMoreResultClasses(");
-    String _name = e.getName();
-    _builder.append(_name, "\t");
-    _builder.append(" ");
-    String _name_1 = e.getName();
-    String _firstLower = StringExtensions.toFirstLower(_name_1);
-    _builder.append(_firstLower, "\t");
-    _builder.append(", SqlControl sqlControl) {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("if (sqlControl != null && sqlControl.getMoreResultClasses() != null)");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("return sqlControl;");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("Map<String, Class<?>> moreResultClasses = null;");
-    _builder.newLine();
-    _builder.append("\t\t");
-    {
-      Set<Map.Entry<String, List<PojoMethodArg>>> _entrySet = toInits.entrySet();
-      boolean _hasElements = false;
-      for(final Map.Entry<String, List<PojoMethodArg>> f : _entrySet) {
-        if (!_hasElements) {
-          _hasElements = true;
-        } else {
-          _builder.appendImmediate("\n\t", "\t\t");
-        }
-        _builder.append("\t\tif (");
-        String _name_2 = e.getName();
-        String _firstLower_1 = StringExtensions.toFirstLower(_name_2);
-        _builder.append(_firstLower_1, "\t\t");
-        _builder.append(" != null && ");
-        String _name_3 = e.getName();
-        String _firstLower_2 = StringExtensions.toFirstLower(_name_3);
-        _builder.append(_firstLower_2, "\t\t");
-        _builder.append(".toInit(");
-        String _name_4 = e.getName();
-        _builder.append(_name_4, "\t\t");
-        _builder.append(".Association.");
-        String _key = f.getKey();
-        _builder.append(_key, "\t\t");
-        _builder.append(".name())) {");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t\t");
-        _builder.append("\t");
-        _builder.append("if (moreResultClasses == null)");
-        _builder.newLine();
-        _builder.append("\t\t");
-        _builder.append("\t\t");
-        _builder.append("moreResultClasses = new HashMap<String, Class<?>>();");
-        _builder.newLine();
-        _builder.append("\t\t");
-        {
-          List<PojoMethodArg> _value = f.getValue();
-          boolean _hasElements_1 = false;
-          for(final PojoMethodArg a : _value) {
-            if (!_hasElements_1) {
-              _hasElements_1 = true;
-            } else {
-              _builder.appendImmediate("\n\t", "\t\t");
-            }
-            _builder.append("\t\tmoreResultClasses.put(\"");
-            String _name_5 = a.getName();
-            _builder.append(_name_5, "\t\t");
-            _builder.append("\", ");
-            PojoType _type = a.getType();
-            PojoEntity _ref = _type.getRef();
-            QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_ref);
-            _builder.append(_fullyQualifiedName, "\t\t");
-            _builder.append(".class);");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t\t");
-        _builder.append("}");
-        _builder.newLine();
-      }
-    }
-    _builder.append("\t\t");
-    _builder.append("if (moreResultClasses != null) {");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("sqlControl = new SqlStandardControl(sqlControl);");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("((SqlStandardControl) sqlControl).setMoreResultClasses(moreResultClasses);");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("return sqlControl;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    return _builder;
+  public CharSequence compileMoreResultClasses(final PojoDao d, final PojoEntity e, final /* Map<String, List<PojoMethodArg>> */Object toInits, final ImportManager im) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\nref cannot be resolved"
+      + "\nfullyQualifiedName cannot be resolved");
   }
   
   public CharSequence compileIfx(final PojoDao d) {
-    StringConcatenation _builder = new StringConcatenation();
-    final ImportManager im = new ImportManager(true);
-    _builder.newLineIfNotEmpty();
-    this.addImplements(d, im);
-    _builder.newLineIfNotEmpty();
-    this.addExtends(d, im);
-    _builder.newLineIfNotEmpty();
-    PojoEntity _pojo = d.getPojo();
-    final CharSequence classBody = this.compileIfx(d, _pojo, im);
-    _builder.newLineIfNotEmpty();
-    {
-      EObject _eContainer = d.eContainer();
-      boolean _notEquals = (!Objects.equal(_eContainer, null));
-      if (_notEquals) {
-        _builder.append("package ");
-        EObject _eContainer_1 = d.eContainer();
-        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_1);
-        _builder.append(_fullyQualifiedName, "");
-        _builder.append(";");
-      }
-    }
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    _builder.append("import java.util.List;");
-    _builder.newLine();
-    _builder.append("import org.sqlproc.engine.SqlSession;");
-    _builder.newLine();
-    _builder.append("import org.sqlproc.engine.SqlControl;");
-    _builder.newLine();
-    _builder.append("import ");
-    PojoEntity _pojo_1 = d.getPojo();
-    String _completeName = this._processorGeneratorUtils.completeName(_pojo_1);
-    _builder.append(_completeName, "");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    _builder.append(classBody, "");
-    _builder.newLineIfNotEmpty();
-    return _builder;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method pojo is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method pojo is undefined for the type ProcessorDaoGenerator"
+      + "\ncompleteName cannot be resolved");
   }
   
   public CharSequence compileIfx(final PojoDao d, final PojoEntity e, final ImportManager im) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("public interface ");
-    String _name = d.getName();
-    _builder.append(_name, "");
-    _builder.append(" {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    {
-      EList<PojoMethod> _methods = d.getMethods();
-      for(final PojoMethod m : _methods) {
-        {
-          boolean _or = false;
-          String _name_1 = m.getName();
-          boolean _equals = Objects.equal(_name_1, "scaffold");
-          if (_equals) {
-            _or = true;
-          } else {
-            String _name_2 = m.getName();
-            boolean _equals_1 = Objects.equal(_name_2, "scaffold0");
-            _or = _equals_1;
-          }
-          if (_or) {
-            String _name_3 = m.getName();
-            boolean _equals_2 = Objects.equal(_name_3, "scaffold");
-            CharSequence _compileInsertIfx = this.compileInsertIfx(d, e, im, _equals_2);
-            _builder.append(_compileInsertIfx, "\t");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            String _name_4 = m.getName();
-            boolean _equals_3 = Objects.equal(_name_4, "scaffold");
-            CharSequence _compileGetIfx = this.compileGetIfx(d, e, im, _equals_3);
-            _builder.append(_compileGetIfx, "\t");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            String _name_5 = m.getName();
-            boolean _equals_4 = Objects.equal(_name_5, "scaffold");
-            CharSequence _compileUpdateIfx = this.compileUpdateIfx(d, e, im, _equals_4);
-            _builder.append(_compileUpdateIfx, "\t");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            String _name_6 = m.getName();
-            boolean _equals_5 = Objects.equal(_name_6, "scaffold");
-            CharSequence _compileDeleteIfx = this.compileDeleteIfx(d, e, im, _equals_5);
-            _builder.append(_compileDeleteIfx, "\t");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            String _name_7 = m.getName();
-            boolean _equals_6 = Objects.equal(_name_7, "scaffold");
-            CharSequence _compileListIfx = this.compileListIfx(d, e, im, _equals_6);
-            _builder.append(_compileListIfx, "\t");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            String _name_8 = m.getName();
-            boolean _equals_7 = Objects.equal(_name_8, "scaffold");
-            CharSequence _compileCountIfx = this.compileCountIfx(d, e, im, _equals_7);
-            _builder.append(_compileCountIfx, "\t");
-            _builder.newLineIfNotEmpty();
-          } else {
-            boolean _isCallUpdate = Utils.isCallUpdate(m);
-            if (_isCallUpdate) {
-              _builder.append("\t");
-              CharSequence _compileCallUpdateIfx = this.compileCallUpdateIfx(d, m, im, true);
-              _builder.append(_compileCallUpdateIfx, "\t");
-            } else {
-              boolean _isCallFunction = Utils.isCallFunction(m);
-              if (_isCallFunction) {
-                CharSequence _compileCallFunctionIfx = this.compileCallFunctionIfx(d, m, im, true);
-                _builder.append(_compileCallFunctionIfx, "\t");
-              } else {
-                boolean _or_1 = false;
-                boolean _isCallQuery = Utils.isCallQuery(m);
-                if (_isCallQuery) {
-                  _or_1 = true;
-                } else {
-                  boolean _isCallQueryFunction = Utils.isCallQueryFunction(m);
-                  _or_1 = _isCallQueryFunction;
-                }
-                if (_or_1) {
-                  boolean _isCallQueryFunction_1 = Utils.isCallQueryFunction(m);
-                  CharSequence _compileCallQueryIfx = this.compileCallQueryIfx(d, m, im, _isCallQueryFunction_1, true);
-                  _builder.append(_compileCallQueryIfx, "\t");
-                } else {
-                  boolean _isCallSelectFunction = Utils.isCallSelectFunction(m);
-                  if (_isCallSelectFunction) {
-                    CharSequence _compileCallSelectFunctionIfx = this.compileCallSelectFunctionIfx(d, m, im, true);
-                    _builder.append(_compileCallSelectFunctionIfx, "\t");
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    _builder.newLineIfNotEmpty();
-    _builder.append("}");
-    _builder.newLine();
-    return _builder;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method methods is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method isCallUpdate is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method isCallFunction is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method isCallQuery is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method isCallQueryFunction is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method isCallQueryFunction is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method isCallSelectFunction is undefined for the type ProcessorDaoGenerator"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\n|| cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\n|| cannot be resolved");
   }
   
-  public CharSequence compileCallQueryIfx(final PojoDao d, final PojoMethod m, final ImportManager im, final boolean isFunction, final boolean all) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public ");
-    PojoType _type = m.getType();
-    CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-    _builder.append(_compileType, "\t");
-    _builder.append(" ");
-    String _name = m.getName();
-    _builder.append(_name, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args = m.getArgs();
-      boolean _hasElements = false;
-      for(final PojoMethodArg ma : _args) {
-        if (!_hasElements) {
-          _hasElements = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type_1 = ma.getType();
-        CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-        _builder.append(_compileType_1, "\t");
-        _builder.append(" ");
-        String _name_1 = ma.getName();
-        _builder.append(_name_1, "\t");
-      }
-    }
-    _builder.append(", SqlControl sqlControl);");
-    _builder.newLineIfNotEmpty();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public ");
-        PojoType _type_2 = m.getType();
-        CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-        _builder.append(_compileType_2, "\t");
-        _builder.append(" ");
-        String _name_2 = m.getName();
-        _builder.append(_name_2, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_1 = m.getArgs();
-          boolean _hasElements_1 = false;
-          for(final PojoMethodArg ma_1 : _args_1) {
-            if (!_hasElements_1) {
-              _hasElements_1 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_3 = ma_1.getType();
-            CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_3, im);
-            _builder.append(_compileType_3, "\t");
-            _builder.append(" ");
-            String _name_3 = ma_1.getName();
-            _builder.append(_name_3, "\t");
-          }
-        }
-        _builder.append(", SqlControl sqlControl);");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t");
-    _builder.append("public ");
-    PojoType _type_4 = m.getType();
-    CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(_type_4, im);
-    _builder.append(_compileType_4, "\t");
-    _builder.append(" ");
-    String _name_4 = m.getName();
-    _builder.append(_name_4, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args_2 = m.getArgs();
-      boolean _hasElements_2 = false;
-      for(final PojoMethodArg ma_2 : _args_2) {
-        if (!_hasElements_2) {
-          _hasElements_2 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type_5 = ma_2.getType();
-        CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(_type_5, im);
-        _builder.append(_compileType_5, "\t");
-        _builder.append(" ");
-        String _name_5 = ma_2.getName();
-        _builder.append(_name_5, "\t");
-      }
-    }
-    _builder.append(");");
-    _builder.newLineIfNotEmpty();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public ");
-        PojoType _type_6 = m.getType();
-        CharSequence _compileType_6 = this._processorGeneratorUtils.compileType(_type_6, im);
-        _builder.append(_compileType_6, "\t");
-        _builder.append(" ");
-        String _name_6 = m.getName();
-        _builder.append(_name_6, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_3 = m.getArgs();
-          boolean _hasElements_3 = false;
-          for(final PojoMethodArg ma_3 : _args_3) {
-            if (!_hasElements_3) {
-              _hasElements_3 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_7 = ma_3.getType();
-            CharSequence _compileType_7 = this._processorGeneratorUtils.compileType(_type_7, im);
-            _builder.append(_compileType_7, "\t");
-            _builder.append(" ");
-            String _name_7 = ma_3.getName();
-            _builder.append(_name_7, "\t");
-          }
-        }
-        _builder.append(");");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    return _builder;
+  public CharSequence compileCallQueryIfx(final PojoDao d, final /* PojoMethod */Object m, final ImportManager im, final boolean isFunction, final boolean all) {
+    throw new Error("Unresolved compilation problems:"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved");
   }
   
-  public CharSequence compileCallFunctionIfx(final PojoDao d, final PojoMethod m, final ImportManager im, final boolean all) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public ");
-    PojoType _type = m.getType();
-    CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-    _builder.append(_compileType, "\t");
-    _builder.append(" ");
-    String _name = m.getName();
-    _builder.append(_name, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args = m.getArgs();
-      boolean _hasElements = false;
-      for(final PojoMethodArg ma : _args) {
-        if (!_hasElements) {
-          _hasElements = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type_1 = ma.getType();
-        CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-        _builder.append(_compileType_1, "\t");
-        _builder.append(" ");
-        String _name_1 = ma.getName();
-        _builder.append(_name_1, "\t");
-      }
-    }
-    _builder.append(", SqlControl sqlControl);");
-    _builder.newLineIfNotEmpty();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public ");
-        PojoType _type_2 = m.getType();
-        CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-        _builder.append(_compileType_2, "\t");
-        _builder.append(" ");
-        String _name_2 = m.getName();
-        _builder.append(_name_2, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_1 = m.getArgs();
-          boolean _hasElements_1 = false;
-          for(final PojoMethodArg ma_1 : _args_1) {
-            if (!_hasElements_1) {
-              _hasElements_1 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_3 = ma_1.getType();
-            CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_3, im);
-            _builder.append(_compileType_3, "\t");
-            _builder.append(" ");
-            String _name_3 = ma_1.getName();
-            _builder.append(_name_3, "\t");
-          }
-        }
-        _builder.append(", SqlControl sqlControl);");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t");
-    _builder.append("public ");
-    PojoType _type_4 = m.getType();
-    CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(_type_4, im);
-    _builder.append(_compileType_4, "\t");
-    _builder.append(" ");
-    String _name_4 = m.getName();
-    _builder.append(_name_4, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args_2 = m.getArgs();
-      boolean _hasElements_2 = false;
-      for(final PojoMethodArg ma_2 : _args_2) {
-        if (!_hasElements_2) {
-          _hasElements_2 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type_5 = ma_2.getType();
-        CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(_type_5, im);
-        _builder.append(_compileType_5, "\t");
-        _builder.append(" ");
-        String _name_5 = ma_2.getName();
-        _builder.append(_name_5, "\t");
-      }
-    }
-    _builder.append(");");
-    _builder.newLineIfNotEmpty();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public ");
-        PojoType _type_6 = m.getType();
-        CharSequence _compileType_6 = this._processorGeneratorUtils.compileType(_type_6, im);
-        _builder.append(_compileType_6, "\t");
-        _builder.append(" ");
-        String _name_6 = m.getName();
-        _builder.append(_name_6, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_3 = m.getArgs();
-          boolean _hasElements_3 = false;
-          for(final PojoMethodArg ma_3 : _args_3) {
-            if (!_hasElements_3) {
-              _hasElements_3 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_7 = ma_3.getType();
-            CharSequence _compileType_7 = this._processorGeneratorUtils.compileType(_type_7, im);
-            _builder.append(_compileType_7, "\t");
-            _builder.append(" ");
-            String _name_7 = ma_3.getName();
-            _builder.append(_name_7, "\t");
-          }
-        }
-        _builder.append(");");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    return _builder;
+  public CharSequence compileCallFunctionIfx(final PojoDao d, final /* PojoMethod */Object m, final ImportManager im, final boolean all) {
+    throw new Error("Unresolved compilation problems:"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved");
   }
   
-  public CharSequence compileCallUpdateIfx(final PojoDao d, final PojoMethod m, final ImportManager im, final boolean all) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public int ");
-    String _name = m.getName();
-    _builder.append(_name, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args = m.getArgs();
-      boolean _hasElements = false;
-      for(final PojoMethodArg ma : _args) {
-        if (!_hasElements) {
-          _hasElements = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type = ma.getType();
-        CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-        _builder.append(_compileType, "\t");
-        _builder.append(" ");
-        String _name_1 = ma.getName();
-        _builder.append(_name_1, "\t");
-      }
-    }
-    _builder.append(", SqlControl sqlControl);");
-    _builder.newLineIfNotEmpty();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public int ");
-        String _name_2 = m.getName();
-        _builder.append(_name_2, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_1 = m.getArgs();
-          boolean _hasElements_1 = false;
-          for(final PojoMethodArg ma_1 : _args_1) {
-            if (!_hasElements_1) {
-              _hasElements_1 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_1 = ma_1.getType();
-            CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-            _builder.append(_compileType_1, "\t");
-            _builder.append(" ");
-            String _name_3 = ma_1.getName();
-            _builder.append(_name_3, "\t");
-          }
-        }
-        _builder.append(", SqlControl sqlControl);");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t");
-    _builder.append("public int ");
-    String _name_4 = m.getName();
-    _builder.append(_name_4, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args_2 = m.getArgs();
-      boolean _hasElements_2 = false;
-      for(final PojoMethodArg ma_2 : _args_2) {
-        if (!_hasElements_2) {
-          _hasElements_2 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type_2 = ma_2.getType();
-        CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-        _builder.append(_compileType_2, "\t");
-        _builder.append(" ");
-        String _name_5 = ma_2.getName();
-        _builder.append(_name_5, "\t");
-      }
-    }
-    _builder.append(");");
-    _builder.newLineIfNotEmpty();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public int ");
-        String _name_6 = m.getName();
-        _builder.append(_name_6, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_3 = m.getArgs();
-          boolean _hasElements_3 = false;
-          for(final PojoMethodArg ma_3 : _args_3) {
-            if (!_hasElements_3) {
-              _hasElements_3 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_3 = ma_3.getType();
-            CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_3, im);
-            _builder.append(_compileType_3, "\t");
-            _builder.append(" ");
-            String _name_7 = ma_3.getName();
-            _builder.append(_name_7, "\t");
-          }
-        }
-        _builder.append(");");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    return _builder;
+  public CharSequence compileCallUpdateIfx(final PojoDao d, final /* PojoMethod */Object m, final ImportManager im, final boolean all) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved");
   }
   
-  public CharSequence compileCallSelectFunctionIfx(final PojoDao d, final PojoMethod m, final ImportManager im, final boolean all) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public ");
-    PojoType _type = m.getType();
-    CharSequence _compileType = this._processorGeneratorUtils.compileType(_type, im);
-    _builder.append(_compileType, "\t");
-    _builder.append(" ");
-    String _name = m.getName();
-    _builder.append(_name, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args = m.getArgs();
-      boolean _hasElements = false;
-      for(final PojoMethodArg ma : _args) {
-        if (!_hasElements) {
-          _hasElements = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type_1 = ma.getType();
-        CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(_type_1, im);
-        _builder.append(_compileType_1, "\t");
-        _builder.append(" ");
-        String _name_1 = ma.getName();
-        _builder.append(_name_1, "\t");
-      }
-    }
-    _builder.append(", SqlControl sqlControl);");
-    _builder.newLineIfNotEmpty();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public ");
-        PojoType _type_2 = m.getType();
-        CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_type_2, im);
-        _builder.append(_compileType_2, "\t");
-        _builder.append(" ");
-        String _name_2 = m.getName();
-        _builder.append(_name_2, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_1 = m.getArgs();
-          boolean _hasElements_1 = false;
-          for(final PojoMethodArg ma_1 : _args_1) {
-            if (!_hasElements_1) {
-              _hasElements_1 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_3 = ma_1.getType();
-            CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_type_3, im);
-            _builder.append(_compileType_3, "\t");
-            _builder.append(" ");
-            String _name_3 = ma_1.getName();
-            _builder.append(_name_3, "\t");
-          }
-        }
-        _builder.append(", SqlControl sqlControl);");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t");
-    _builder.append("public ");
-    PojoType _type_4 = m.getType();
-    CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(_type_4, im);
-    _builder.append(_compileType_4, "\t");
-    _builder.append(" ");
-    String _name_4 = m.getName();
-    _builder.append(_name_4, "\t");
-    _builder.append("(SqlSession sqlSession, ");
-    {
-      EList<PojoMethodArg> _args_2 = m.getArgs();
-      boolean _hasElements_2 = false;
-      for(final PojoMethodArg ma_2 : _args_2) {
-        if (!_hasElements_2) {
-          _hasElements_2 = true;
-        } else {
-          _builder.appendImmediate(", ", "\t");
-        }
-        PojoType _type_5 = ma_2.getType();
-        CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(_type_5, im);
-        _builder.append(_compileType_5, "\t");
-        _builder.append(" ");
-        String _name_5 = ma_2.getName();
-        _builder.append(_name_5, "\t");
-      }
-    }
-    _builder.append(");");
-    _builder.newLineIfNotEmpty();
-    {
-      if (all) {
-        _builder.append("\t");
-        _builder.append("public ");
-        PojoType _type_6 = m.getType();
-        CharSequence _compileType_6 = this._processorGeneratorUtils.compileType(_type_6, im);
-        _builder.append(_compileType_6, "\t");
-        _builder.append(" ");
-        String _name_6 = m.getName();
-        _builder.append(_name_6, "\t");
-        _builder.append("(");
-        {
-          EList<PojoMethodArg> _args_3 = m.getArgs();
-          boolean _hasElements_3 = false;
-          for(final PojoMethodArg ma_3 : _args_3) {
-            if (!_hasElements_3) {
-              _hasElements_3 = true;
-            } else {
-              _builder.appendImmediate(", ", "\t");
-            }
-            PojoType _type_7 = ma_3.getType();
-            CharSequence _compileType_7 = this._processorGeneratorUtils.compileType(_type_7, im);
-            _builder.append(_compileType_7, "\t");
-            _builder.append(" ");
-            String _name_7 = ma_3.getName();
-            _builder.append(_name_7, "\t");
-          }
-        }
-        _builder.append(");");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    return _builder;
+  public CharSequence compileCallSelectFunctionIfx(final PojoDao d, final /* PojoMethod */Object m, final ImportManager im, final boolean all) {
+    throw new Error("Unresolved compilation problems:"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nargs cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\ncompileType cannot be resolved"
+      + "\nname cannot be resolved");
   }
   
   public CharSequence compileInsertIfx(final PojoDao d, final PojoEntity e, final ImportManager im, final boolean all) {
@@ -3742,126 +1959,24 @@ public class ProcessorDaoGenerator {
   }
   
   public CharSequence compileExtends(final PojoDao e, final ImportManager im) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      PojoDao _superType = Utils.getSuperType(e);
-      boolean _notEquals = (!Objects.equal(_superType, null));
-      if (_notEquals) {
-        _builder.append("extends ");
-        PojoDao _superType_1 = Utils.getSuperType(e);
-        PojoDao _superType_2 = Utils.getSuperType(e);
-        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_2);
-        String _fullName = Utils.getFullName(e, _superType_1, _fullyQualifiedName, im);
-        _builder.append(_fullName, "");
-        _builder.append(" ");
-      } else {
-        String _extends = this.getExtends(e);
-        boolean _notEquals_1 = (!Objects.equal(_extends, ""));
-        if (_notEquals_1) {
-          _builder.append("extends ");
-          String _extends_1 = this.getExtends(e);
-          _builder.append(_extends_1, "");
-          _builder.append(" ");
-        }
-      }
-    }
-    return _builder;
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from DaoType to PojoDao"
+      + "\n!= cannot be resolved");
   }
   
   public CharSequence compileImplements(final PojoDao d) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      boolean _or = false;
-      boolean _or_1 = false;
-      boolean _isImplements = this.isImplements(d);
-      if (_isImplements) {
-        _or_1 = true;
-      } else {
-        String _sernum = Utils.getSernum(d);
-        boolean _notEquals = (!Objects.equal(_sernum, null));
-        _or_1 = _notEquals;
-      }
-      if (_or_1) {
-        _or = true;
-      } else {
-        String _implPackage = this.getImplPackage(d);
-        boolean _notEquals_1 = (!Objects.equal(_implPackage, null));
-        _or = _notEquals_1;
-      }
-      if (_or) {
-        _builder.append("implements ");
-        {
-          ArrayList<Implements> _implements = this.getImplements(d);
-          boolean _hasElements = false;
-          for(final Implements f : _implements) {
-            if (!_hasElements) {
-              _hasElements = true;
-            } else {
-              _builder.appendImmediate(", ", "");
-            }
-            String _daoImplements = Utils.getDaoImplements(d, f);
-            _builder.append(_daoImplements, "");
-          }
-        }
-        {
-          String _sernum_1 = Utils.getSernum(d);
-          boolean _notEquals_2 = (!Objects.equal(_sernum_1, null));
-          if (_notEquals_2) {
-            {
-              boolean _isImplements_1 = this.isImplements(d);
-              if (_isImplements_1) {
-                _builder.append(", ");
-              }
-            }
-            _builder.append("Serializable");
-          }
-        }
-        {
-          String _implPackage_1 = this.getImplPackage(d);
-          boolean _notEquals_3 = (!Objects.equal(_implPackage_1, null));
-          if (_notEquals_3) {
-            {
-              boolean _or_2 = false;
-              boolean _isImplements_2 = this.isImplements(d);
-              if (_isImplements_2) {
-                _or_2 = true;
-              } else {
-                String _sernum_2 = Utils.getSernum(d);
-                boolean _notEquals_4 = (!Objects.equal(_sernum_2, null));
-                _or_2 = _notEquals_4;
-              }
-              if (_or_2) {
-                _builder.append(", ");
-              }
-            }
-            String _name = d.getName();
-            _builder.append(_name, "");
-          }
-        }
-        _builder.append(" ");
-      }
-    }
-    return _builder;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method getDaoImplements is undefined for the type ProcessorDaoGenerator");
   }
   
   public void addImplements(final PojoDao e, final ImportManager im) {
-    EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
-    Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
-    for (final Implements impl : _filter) {
-      JvmType _implements = impl.getImplements();
-      im.addImportFor(_implements);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from PojoType to JvmType");
   }
   
   public void addExtends(final PojoDao e, final ImportManager im) {
-    EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
-    Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
-    for (final Extends ext : _filter) {
-      JvmType _extends = ext.getExtends();
-      im.addImportFor(_extends);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from PojoType to JvmType");
   }
   
   public boolean isExtends(final PojoDao e) {
@@ -3928,18 +2043,9 @@ public class ProcessorDaoGenerator {
     return true;
   }
   
-  public String getExtends(final PojoDao e) {
-    EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
-    Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
-    for (final Extends ext : _filter) {
-      boolean _isExtends = this.isExtends(e, ext);
-      if (_isExtends) {
-        JvmType _extends = ext.getExtends();
-        return _extends.getSimpleName();
-      }
-    }
-    return "";
+  public Object getExtends(final PojoDao e) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method simpleName is undefined for the type ProcessorDaoGenerator");
   }
   
   public boolean isImplements(final PojoDao e) {

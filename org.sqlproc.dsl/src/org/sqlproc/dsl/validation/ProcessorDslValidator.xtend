@@ -14,7 +14,6 @@ import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.scoping.IScopeProvider
-import org.sqlproc.dsl.processorDsl.AbstractPojoEntity
 import org.sqlproc.dsl.processorDsl.Artifacts
 import org.sqlproc.dsl.processorDsl.Column
 import org.sqlproc.dsl.processorDsl.Constant
@@ -30,7 +29,6 @@ import org.sqlproc.dsl.processorDsl.MetaSql
 import org.sqlproc.dsl.processorDsl.MetaStatement
 import org.sqlproc.dsl.processorDsl.OptionalFeature
 import org.sqlproc.dsl.processorDsl.PackageDeclaration
-import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty
 import org.sqlproc.dsl.processorDsl.PojoDao
 import org.sqlproc.dsl.processorDsl.PojoDefinition
 import org.sqlproc.dsl.processorDsl.PojoEntity
@@ -48,6 +46,7 @@ import com.google.inject.Inject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
+import org.sqlproc.dsl.processorDsl.AbstractEntity
 
 enum ValidationResult {
 	OK, WARNING, ERROR
@@ -658,25 +657,24 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
             checkProperty = checkProperty.substring(0, pos1)
         }
 
-        for (PojoAnnotatedProperty apojoProperty : entity.getFeatures()) {
-            var pojoProperty = apojoProperty.getFeature()
+        for (PojoProperty pojoProperty : entity.getFeatures()) {
             if (pojoProperty.getName().equals(checkProperty)) {
                 if (innerProperty == null)
                     return ValidationResult.OK
-                if (pojoProperty.getRef() != null) {
-                    if (pojoProperty.getRef() instanceof PojoEntity) {
-                        return checkEntityProperty(pojoProperty.getRef() as PojoEntity, innerProperty)
+                if (pojoProperty.getType().getRef() != null) {
+                    if (pojoProperty.getType().getRef() instanceof PojoEntity) {
+                        return checkEntityProperty(pojoProperty.getType().getRef() as PojoEntity, innerProperty)
                     }
                     return ValidationResult.OK
                 }
-                if (pojoProperty.getGref() != null)
-                    return checkEntityProperty(pojoProperty.getGref(), innerProperty)
+                if (pojoProperty.getType().getGref() != null)
+                    return checkEntityProperty(pojoProperty.getType().getGref(), innerProperty)
                 return ValidationResult.ERROR
             }
         }
         var superType = Utils.getSuperType(entity)
-        if (superType != null) {
-            var result = checkEntityProperty(superType, property)
+        if (superType != null && superType instanceof PojoEntity) {
+            var result = checkEntityProperty(superType as PojoEntity, property)
             if (result == ValidationResult.WARNING || result == ValidationResult.OK)
                 return result
         }
@@ -820,12 +818,12 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
         val artifacts = pojoEntity.rootContainer as Artifacts
         for (PackageDeclaration pkg : artifacts.getPojoPackages()) {
             if (pkg != null) {
-	            for (AbstractPojoEntity entity : pkg.getElements()) {
+	            for (AbstractEntity entity : pkg.getElements()) {
 	                if (entity != null && (entity instanceof PojoEntity)) {
 		                val pentity = entity as PojoEntity
 		                if (pentity !== pojoEntity) {
 			                if (pojoEntity.getName().equals(pentity.getName())) {
-			                    error("Duplicate name : " + pojoEntity.getName(), ProcessorDslPackage.Literals.ENTITY__NAME)
+			                    error("Duplicate name : " + pojoEntity.getName(), ProcessorDslPackage.Literals.POJO_ENTITY__NAME)
 			                    return
 			                }
 		                }
@@ -838,8 +836,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
     @Check
     def checkUniquePojoProperty(PojoProperty pojoProperty) {
         val entity = pojoProperty.getContainerOfType(typeof(PojoEntity))
-        for (PojoAnnotatedProperty aproperty : entity.getFeatures()) {
-            val property = aproperty.getFeature()
+        for (PojoProperty property : entity.getFeatures()) {
             if (property != null && property !== pojoProperty) {
 	            if (pojoProperty.getName().equals(property.getName())) {
 	                error("Duplicate name : " + pojoProperty.getName(), ProcessorDslPackage.Literals.POJO_PROPERTY__NAME)
@@ -856,12 +853,12 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
         val artifacts = enumEntity.rootContainer as Artifacts
         for (PackageDeclaration pkg : artifacts.getPojoPackages()) {
             if (pkg != null) {
-	            for (AbstractPojoEntity entity : pkg.getElements()) {
+	            for (AbstractEntity entity : pkg.getElements()) {
 	                if (entity != null && (entity instanceof EnumEntity)) {
 		                val pentity = entity as EnumEntity
 		                if (pentity != enumEntity) {
 			                if (enumEntity.getName().equals(pentity.getName())) {
-			                    error("Duplicate name : " + enumEntity.getName(), ProcessorDslPackage.Literals.ENTITY__NAME)
+			                    error("Duplicate name : " + enumEntity.getName(), ProcessorDslPackage.Literals.ENUM_ENTITY__NAME)
 			                    return
 			                }
 						}
@@ -891,7 +888,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
         val artifacts = pojoDao.rootContainer as Artifacts
         for (PackageDeclaration pkg : artifacts.getPojoPackages()) {
             if (pkg != null) {
-	            for (AbstractPojoEntity dao : pkg.getElements()) {
+	            for (AbstractEntity dao : pkg.getElements()) {
 	                if (dao != null && (dao instanceof PojoDao)) {
 		                val pdao = dao as PojoDao
 		                if (pdao != pojoDao) {

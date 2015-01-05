@@ -14,10 +14,8 @@ import org.sqlproc.dsl.processorDsl.Implements
 import org.sqlproc.dsl.processorDsl.Extends
 import org.sqlproc.dsl.processorDsl.PojoDao
 import java.util.List
-import org.sqlproc.dsl.processorDsl.PojoMethodArg
 import java.util.Map
 import org.sqlproc.dsl.processorDsl.ImplPackage
-import org.sqlproc.dsl.processorDsl.PojoMethod
 
 /**
  * Generates code from your model files on save.

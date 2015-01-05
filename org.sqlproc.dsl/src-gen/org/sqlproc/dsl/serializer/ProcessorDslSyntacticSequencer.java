@@ -7,6 +7,7 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -17,7 +18,6 @@ import org.sqlproc.dsl.services.ProcessorDslGrammarAccess;
 public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected ProcessorDslGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_AnnotationProperty_COMMATerminalRuleCall_0_q;
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_1_a;
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_0_1_a;
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_1_1_a;
@@ -28,6 +28,7 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_6_1_a;
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_7_1_a;
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_8_1_a;
+	protected AbstractElementAlias match_DaoDirective_CallKeyword_11_1_or_ListKeyword_10_1_or_UpdateKeyword_9_1;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_0_1_0_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_10_1_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_11_1_p;
@@ -195,7 +196,6 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (ProcessorDslGrammarAccess) access;
-		match_AnnotationProperty_COMMATerminalRuleCall_0_q = new TokenAlias(false, true, grammarAccess.getAnnotationPropertyAccess().getCOMMATerminalRuleCall_0());
 		match_Artifacts_WSTerminalRuleCall_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_1());
 		match_Artifacts_WSTerminalRuleCall_2_0_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_0_1());
 		match_Artifacts_WSTerminalRuleCall_2_1_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_1_1());
@@ -206,6 +206,7 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_Artifacts_WSTerminalRuleCall_2_6_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_6_1());
 		match_Artifacts_WSTerminalRuleCall_2_7_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_7_1());
 		match_Artifacts_WSTerminalRuleCall_2_8_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_8_1());
+		match_DaoDirective_CallKeyword_11_1_or_ListKeyword_10_1_or_UpdateKeyword_9_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getDaoDirectiveAccess().getCallKeyword_11_1()), new TokenAlias(false, false, grammarAccess.getDaoDirectiveAccess().getListKeyword_10_1()), new TokenAlias(false, false, grammarAccess.getDaoDirectiveAccess().getUpdateKeyword_9_1()));
 		match_DaogenProperty_WSTerminalRuleCall_0_1_0_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_0_1_0());
 		match_DaogenProperty_WSTerminalRuleCall_10_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_10_1());
 		match_DaogenProperty_WSTerminalRuleCall_11_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_11_1());
@@ -591,9 +592,7 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if(match_AnnotationProperty_COMMATerminalRuleCall_0_q.equals(syntax))
-				emit_AnnotationProperty_COMMATerminalRuleCall_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Artifacts_WSTerminalRuleCall_1_a.equals(syntax))
+			if(match_Artifacts_WSTerminalRuleCall_1_a.equals(syntax))
 				emit_Artifacts_WSTerminalRuleCall_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Artifacts_WSTerminalRuleCall_2_0_1_a.equals(syntax))
 				emit_Artifacts_WSTerminalRuleCall_2_0_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -613,6 +612,8 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Artifacts_WSTerminalRuleCall_2_7_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Artifacts_WSTerminalRuleCall_2_8_1_a.equals(syntax))
 				emit_Artifacts_WSTerminalRuleCall_2_8_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_DaoDirective_CallKeyword_11_1_or_ListKeyword_10_1_or_UpdateKeyword_9_1.equals(syntax))
+				emit_DaoDirective_CallKeyword_11_1_or_ListKeyword_10_1_or_UpdateKeyword_9_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DaogenProperty_WSTerminalRuleCall_0_1_0_p.equals(syntax))
 				emit_DaogenProperty_WSTerminalRuleCall_0_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DaogenProperty_WSTerminalRuleCall_10_1_p.equals(syntax))
@@ -945,14 +946,6 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	/**
 	 * Syntax:
-	 *     COMMA?
-	 */
-	protected void emit_AnnotationProperty_COMMATerminalRuleCall_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
 	 *     WS*
 	 */
 	protected void emit_Artifacts_WSTerminalRuleCall_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1028,6 +1021,14 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     WS*
 	 */
 	protected void emit_Artifacts_WSTerminalRuleCall_2_8_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     '#Update' | '#List' | '#Call'
+	 */
+	protected void emit_DaoDirective_CallKeyword_11_1_or_ListKeyword_10_1_or_UpdateKeyword_9_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -5,7 +5,6 @@ package org.sqlproc.dsl.generator
 
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.sqlproc.dsl.processorDsl.AnnotatedEntity
 import org.sqlproc.dsl.processorDsl.PojoDao
 import com.google.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameProvider

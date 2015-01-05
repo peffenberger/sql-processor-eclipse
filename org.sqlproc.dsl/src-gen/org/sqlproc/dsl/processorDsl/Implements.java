@@ -4,8 +4,6 @@ package org.sqlproc.dsl.processorDsl;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.xtext.common.types.JvmType;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Implements</b></em>'.
@@ -27,33 +25,33 @@ import org.eclipse.xtext.common.types.JvmType;
  * @model
  * @generated
  */
-public interface Implements extends AbstractPojoEntity
+public interface Implements extends AbstractEntity
 {
   /**
-   * Returns the value of the '<em><b>Implements</b></em>' reference.
+   * Returns the value of the '<em><b>Implements</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Implements</em>' reference isn't clear,
+   * If the meaning of the '<em>Implements</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Implements</em>' reference.
-   * @see #setImplements(JvmType)
+   * @return the value of the '<em>Implements</em>' containment reference.
+   * @see #setImplements(PojoType)
    * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getImplements_Implements()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  JvmType getImplements();
+  PojoType getImplements();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.Implements#getImplements <em>Implements</em>}' reference.
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.Implements#getImplements <em>Implements</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Implements</em>' reference.
+   * @param value the new value of the '<em>Implements</em>' containment reference.
    * @see #getImplements()
    * @generated
    */
-  void setImplements(JvmType value);
+  void setImplements(PojoType value);
 
   /**
    * Returns the value of the '<em><b>Generics</b></em>' attribute.

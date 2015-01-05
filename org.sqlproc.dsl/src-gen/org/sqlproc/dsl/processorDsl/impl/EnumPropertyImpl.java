@@ -2,7 +2,12 @@
  */
 package org.sqlproc.dsl.processorDsl.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -10,9 +15,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sqlproc.dsl.processorDsl.EnumProperty;
+import org.sqlproc.dsl.processorDsl.EnumPropertyDirective;
+import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
 /**
@@ -22,9 +30,8 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl#getNative <em>Native</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -33,6 +40,16 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  */
 public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements EnumProperty
 {
+  /**
+   * The cached value of the '{@link #getDirectives() <em>Directives</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDirectives()
+   * @generated
+   * @ordered
+   */
+  protected EList<EnumPropertyDirective> directives;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -54,54 +71,14 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getNative() <em>Native</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNative()
-   * @generated
-   * @ordered
-   */
-  protected static final String NATIVE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getNative() <em>Native</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNative()
-   * @generated
-   * @ordered
-   */
-  protected String native_ = NATIVE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected static final String VALUE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected String value = VALUE_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected JvmType type;
+  protected PojoType type;
 
   /**
    * <!-- begin-user-doc -->
@@ -122,6 +99,20 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
   protected EClass eStaticClass()
   {
     return ProcessorDslPackage.Literals.ENUM_PROPERTY;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<EnumPropertyDirective> getDirectives()
+  {
+    if (directives == null)
+    {
+      directives = new EObjectContainmentEList<EnumPropertyDirective>(EnumPropertyDirective.class, this, ProcessorDslPackage.ENUM_PROPERTY__DIRECTIVES);
+    }
+    return directives;
   }
 
   /**
@@ -152,73 +143,7 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getNative()
-  {
-    return native_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setNative(String newNative)
-  {
-    String oldNative = native_;
-    native_ = newNative;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ENUM_PROPERTY__NATIVE, oldNative, native_));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getValue()
-  {
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setValue(String newValue)
-  {
-    String oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ENUM_PROPERTY__VALUE, oldValue, value));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JvmType getType()
-  {
-    if (type != null && type.eIsProxy())
-    {
-      InternalEObject oldType = (InternalEObject)type;
-      type = (JvmType)eResolveProxy(oldType);
-      if (type != oldType)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.ENUM_PROPERTY__TYPE, oldType, type));
-      }
-    }
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JvmType basicGetType()
+  public PojoType getType()
   {
     return type;
   }
@@ -228,12 +153,55 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(JvmType newType)
+  public NotificationChain basicSetType(PojoType newType, NotificationChain msgs)
   {
-    JvmType oldType = type;
+    PojoType oldType = type;
     type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ENUM_PROPERTY__TYPE, oldType, type));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ENUM_PROPERTY__TYPE, oldType, newType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(PojoType newType)
+  {
+    if (newType != type)
+    {
+      NotificationChain msgs = null;
+      if (type != null)
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.ENUM_PROPERTY__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.ENUM_PROPERTY__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ENUM_PROPERTY__TYPE, newType, newType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ProcessorDslPackage.ENUM_PROPERTY__DIRECTIVES:
+        return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
+      case ProcessorDslPackage.ENUM_PROPERTY__TYPE:
+        return basicSetType(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -246,15 +214,12 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.ENUM_PROPERTY__DIRECTIVES:
+        return getDirectives();
       case ProcessorDslPackage.ENUM_PROPERTY__NAME:
         return getName();
-      case ProcessorDslPackage.ENUM_PROPERTY__NATIVE:
-        return getNative();
-      case ProcessorDslPackage.ENUM_PROPERTY__VALUE:
-        return getValue();
       case ProcessorDslPackage.ENUM_PROPERTY__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
+        return getType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -264,22 +229,21 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.ENUM_PROPERTY__DIRECTIVES:
+        getDirectives().clear();
+        getDirectives().addAll((Collection<? extends EnumPropertyDirective>)newValue);
+        return;
       case ProcessorDslPackage.ENUM_PROPERTY__NAME:
         setName((String)newValue);
         return;
-      case ProcessorDslPackage.ENUM_PROPERTY__NATIVE:
-        setNative((String)newValue);
-        return;
-      case ProcessorDslPackage.ENUM_PROPERTY__VALUE:
-        setValue((String)newValue);
-        return;
       case ProcessorDslPackage.ENUM_PROPERTY__TYPE:
-        setType((JvmType)newValue);
+        setType((PojoType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -295,17 +259,14 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.ENUM_PROPERTY__DIRECTIVES:
+        getDirectives().clear();
+        return;
       case ProcessorDslPackage.ENUM_PROPERTY__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ProcessorDslPackage.ENUM_PROPERTY__NATIVE:
-        setNative(NATIVE_EDEFAULT);
-        return;
-      case ProcessorDslPackage.ENUM_PROPERTY__VALUE:
-        setValue(VALUE_EDEFAULT);
-        return;
       case ProcessorDslPackage.ENUM_PROPERTY__TYPE:
-        setType((JvmType)null);
+        setType((PojoType)null);
         return;
     }
     super.eUnset(featureID);
@@ -321,12 +282,10 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.ENUM_PROPERTY__DIRECTIVES:
+        return directives != null && !directives.isEmpty();
       case ProcessorDslPackage.ENUM_PROPERTY__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ProcessorDslPackage.ENUM_PROPERTY__NATIVE:
-        return NATIVE_EDEFAULT == null ? native_ != null : !NATIVE_EDEFAULT.equals(native_);
-      case ProcessorDslPackage.ENUM_PROPERTY__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
       case ProcessorDslPackage.ENUM_PROPERTY__TYPE:
         return type != null;
     }
@@ -346,10 +305,6 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", native: ");
-    result.append(native_);
-    result.append(", value: ");
-    result.append(value);
     result.append(')');
     return result.toString();
   }
