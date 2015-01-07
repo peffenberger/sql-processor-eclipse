@@ -64,7 +64,7 @@ public class EnumDirectiveSerializableImpl extends EnumDirectiveImpl implements 
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ENUM_DIRECTIVE_SERIALIZABLE;
+    return ProcessorDslPackage.eINSTANCE.getEnumDirectiveSerializable();
   }
 
   /**

@@ -86,7 +86,7 @@ public class FunctionDefinitionImpl extends MinimalEObjectImpl.Container impleme
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.FUNCTION_DEFINITION;
+    return ProcessorDslPackage.eINSTANCE.getFunctionDefinition();
   }
 
   /**

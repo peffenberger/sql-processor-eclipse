@@ -64,7 +64,7 @@ public class PojoDirectiveOperatorsImpl extends PojoDirectiveImpl implements Poj
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_DIRECTIVE_OPERATORS;
+    return ProcessorDslPackage.eINSTANCE.getPojoDirectiveOperators();
   }
 
   /**

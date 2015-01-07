@@ -64,7 +64,7 @@ public class PojoDirectiveSerializableImpl extends PojoDirectiveImpl implements 
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_DIRECTIVE_SERIALIZABLE;
+    return ProcessorDslPackage.eINSTANCE.getPojoDirectiveSerializable();
   }
 
   /**

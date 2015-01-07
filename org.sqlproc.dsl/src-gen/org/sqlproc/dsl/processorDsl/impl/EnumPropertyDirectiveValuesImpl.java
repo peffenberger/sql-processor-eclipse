@@ -61,7 +61,7 @@ public class EnumPropertyDirectiveValuesImpl extends EnumPropertyDirectiveImpl i
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ENUM_PROPERTY_DIRECTIVE_VALUES;
+    return ProcessorDslPackage.eINSTANCE.getEnumPropertyDirectiveValues();
   }
 
   /**

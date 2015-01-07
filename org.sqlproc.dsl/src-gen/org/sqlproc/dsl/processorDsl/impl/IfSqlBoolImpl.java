@@ -103,7 +103,7 @@ public class IfSqlBoolImpl extends MinimalEObjectImpl.Container implements IfSql
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.IF_SQL_BOOL;
+    return ProcessorDslPackage.eINSTANCE.getIfSqlBool();
   }
 
   /**

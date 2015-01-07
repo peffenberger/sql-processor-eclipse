@@ -82,7 +82,7 @@ public class JoinTableAssignementImpl extends MinimalEObjectImpl.Container imple
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.JOIN_TABLE_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getJoinTableAssignement();
   }
 
   /**

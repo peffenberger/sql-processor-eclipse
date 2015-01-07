@@ -311,7 +311,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.METAGEN_PROPERTY;
+    return ProcessorDslPackage.eINSTANCE.getMetagenProperty();
   }
 
   /**

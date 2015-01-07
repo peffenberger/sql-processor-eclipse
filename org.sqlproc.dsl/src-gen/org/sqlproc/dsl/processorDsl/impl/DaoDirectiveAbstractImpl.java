@@ -36,7 +36,7 @@ public class DaoDirectiveAbstractImpl extends DaoDirectiveImpl implements DaoDir
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DAO_DIRECTIVE_ABSTRACT;
+    return ProcessorDslPackage.eINSTANCE.getDaoDirectiveAbstract();
   }
 
 } //DaoDirectiveAbstractImpl

@@ -75,7 +75,7 @@ public class ExtendedColumnImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.EXTENDED_COLUMN;
+    return ProcessorDslPackage.eINSTANCE.getExtendedColumn();
   }
 
   /**

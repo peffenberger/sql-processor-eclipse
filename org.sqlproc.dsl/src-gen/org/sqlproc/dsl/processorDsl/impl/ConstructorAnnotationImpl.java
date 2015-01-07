@@ -36,7 +36,7 @@ public class ConstructorAnnotationImpl extends EntityAnnotationImpl implements C
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.CONSTRUCTOR_ANNOTATION;
+    return ProcessorDslPackage.eINSTANCE.getConstructorAnnotation();
   }
 
 } //ConstructorAnnotationImpl

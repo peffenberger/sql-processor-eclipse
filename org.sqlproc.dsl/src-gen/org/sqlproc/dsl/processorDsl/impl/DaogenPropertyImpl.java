@@ -240,7 +240,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DAOGEN_PROPERTY;
+    return ProcessorDslPackage.eINSTANCE.getDaogenProperty();
   }
 
   /**

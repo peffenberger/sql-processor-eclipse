@@ -30,6 +30,7 @@ import org.sqlproc.dsl.processorDsl.DaoDirectiveExtends;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveFinal;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveFunction;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveGenerics;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters;
 import org.sqlproc.dsl.processorDsl.DaoDirectivePojo;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveSerializable;
@@ -44,7 +45,7 @@ import org.sqlproc.dsl.processorDsl.DatabaseSchemaAssignement;
 import org.sqlproc.dsl.processorDsl.DatabaseTable;
 import org.sqlproc.dsl.processorDsl.DatabaseTypeAssignement;
 import org.sqlproc.dsl.processorDsl.DebugLevelAssignement;
-import org.sqlproc.dsl.processorDsl.DirectiveParameters;
+import org.sqlproc.dsl.processorDsl.DescendantAssignment;
 import org.sqlproc.dsl.processorDsl.DirectiveProperties;
 import org.sqlproc.dsl.processorDsl.DriverMetaInfoAssignement;
 import org.sqlproc.dsl.processorDsl.DriverMethodOutputAssignement;
@@ -247,6 +248,12 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
+			case ProcessorDslPackage.DAO_DIRECTIVE_PARAMETERS:
+				if(context == grammarAccess.getDaoDirectiveParametersRule()) {
+					sequence_DaoDirectiveParameters(context, (DaoDirectiveParameters) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorDslPackage.DAO_DIRECTIVE_POJO:
 				if(context == grammarAccess.getDaoDirectiveRule()) {
 					sequence_DaoDirective(context, (DaoDirectivePojo) semanticObject); 
@@ -331,9 +338,9 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
-			case ProcessorDslPackage.DIRECTIVE_PARAMETERS:
-				if(context == grammarAccess.getDirectiveParametersRule()) {
-					sequence_DirectiveParameters(context, (DirectiveParameters) semanticObject); 
+			case ProcessorDslPackage.DESCENDANT_ASSIGNMENT:
+				if(context == grammarAccess.getDescendantAssignmentRule()) {
+					sequence_DescendantAssignment(context, (DescendantAssignment) semanticObject); 
 					return; 
 				}
 				else break;
@@ -930,10 +937,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_ColumnAssignement(EObject context, ColumnAssignement semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.COLUMN_ASSIGNEMENT__DB_COLUMN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.COLUMN_ASSIGNEMENT__DB_COLUMN));
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.COLUMN_ASSIGNEMENT__NEW_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.COLUMN_ASSIGNEMENT__NEW_NAME));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getColumnAssignement_DbColumn()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getColumnAssignement_DbColumn()));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getColumnAssignement_NewName()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getColumnAssignement_NewName()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -949,10 +956,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_ColumnTypeAssignement(EObject context, ColumnTypeAssignement semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.COLUMN_TYPE_ASSIGNEMENT__DB_COLUMN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.COLUMN_TYPE_ASSIGNEMENT__DB_COLUMN));
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.COLUMN_TYPE_ASSIGNEMENT__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.COLUMN_TYPE_ASSIGNEMENT__TYPE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getColumnTypeAssignement_DbColumn()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getColumnTypeAssignement_DbColumn()));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getColumnTypeAssignement_Type()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getColumnTypeAssignement_Type()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -991,6 +998,15 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
+	 *     (in=PojoType out=PojoType?)
+	 */
+	protected void sequence_DaoDirectiveParameters(EObject context, DaoDirectiveParameters semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     {DaoDirectiveAbstract}
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveAbstract semanticObject) {
@@ -1000,7 +1016,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (discriminator=IDENT | discriminator=NUMBER)
+	 *     (ancestor=PojoProperty descendants+=DescendantAssignment descendants+=DescendantAssignment*)
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveDiscriminator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1013,8 +1029,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveExtends semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_EXTENDS__SUPER_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_EXTENDS__SUPER_TYPE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getDaoDirectiveExtends_SuperType()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getDaoDirectiveExtends_SuperType()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1038,8 +1054,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveFunction semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_FUNCTION__POJO) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_FUNCTION__POJO));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getDaoDirectiveFunction_Pojo()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getDaoDirectiveFunction_Pojo()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1054,8 +1070,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveGenerics semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_GENERICS__GENERICS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_GENERICS__GENERICS));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getDaoDirectiveGenerics_Generics()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getDaoDirectiveGenerics_Generics()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1070,8 +1086,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectivePojo semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_POJO__POJO) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_POJO__POJO));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getDaoDirectivePojo_Pojo()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getDaoDirectivePojo_Pojo()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1086,8 +1102,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveProcedure semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_PROCEDURE__POJO) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_PROCEDURE__POJO));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getDaoDirectiveProcedure_Pojo()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getDaoDirectiveProcedure_Pojo()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1102,19 +1118,19 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveSerializable semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_SERIALIZABLE__SERNUM) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_SERIALIZABLE__SERNUM));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getDaoDirectiveSerializable_Sernum()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getDaoDirectiveSerializable_Sernum()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDaoDirectiveAccess().getSernumNUMBERTerminalRuleCall_4_3_0(), semanticObject.getSernum());
+		feeder.accept(grammarAccess.getDaoDirectiveAccess().getSernumNUMBERTerminalRuleCall_3_3_0(), semanticObject.getSernum());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     ((paramlist=DirectiveParameters?) | (paramlist=DirectiveParameters?) | (paramlist=DirectiveParameters?))
+	 *     ((paramlist=DaoDirectiveParameters?) | (paramlist=DaoDirectiveParameters?) | (paramlist=DaoDirectiveParameters?))
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveUpdate semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1158,8 +1174,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_DatabaseCatalogAssignement(EObject context, DatabaseCatalogAssignement semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getDatabaseCatalogAssignement_DbCatalog()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getDatabaseCatalogAssignement_DbCatalog()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1183,8 +1199,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_DatabaseMetaInfoAssignement(EObject context, DatabaseMetaInfoAssignement semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getDatabaseMetaInfoAssignement_DbMetaInfo()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getDatabaseMetaInfoAssignement_DbMetaInfo()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1231,8 +1247,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_DatabaseSchemaAssignement(EObject context, DatabaseSchemaAssignement semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getDatabaseSchemaAssignement_DbSchema()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getDatabaseSchemaAssignement_DbSchema()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1256,8 +1272,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_DatabaseTypeAssignement(EObject context, DatabaseTypeAssignement semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DATABASE_TYPE_ASSIGNEMENT__DB_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DATABASE_TYPE_ASSIGNEMENT__DB_TYPE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getDatabaseTypeAssignement_DbType()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getDatabaseTypeAssignement_DbType()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1277,9 +1293,9 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (in=PojoType out=PojoType?)
+	 *     ((value=NUMBER | value=STRING) descendant=PojoType)
 	 */
-	protected void sequence_DirectiveParameters(EObject context, DirectiveParameters semanticObject) {
+	protected void sequence_DescendantAssignment(EObject context, DescendantAssignment semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1299,8 +1315,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_DriverMetaInfoAssignement(EObject context, DriverMetaInfoAssignement semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getDriverMetaInfoAssignement_DbDriverInfo()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getDriverMetaInfoAssignement_DbDriverInfo()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1315,10 +1331,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_DriverMethodOutputAssignement(EObject context, DriverMethodOutputAssignement semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__DRIVER_METHOD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__DRIVER_METHOD));
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getDriverMethodOutputAssignement_DriverMethod()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getDriverMethodOutputAssignement_DriverMethod()));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getDriverMethodOutputAssignement_CallOutput()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getDriverMethodOutputAssignement_CallOutput()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1334,8 +1350,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_EntityAnnotation(EObject context, ConflictAnnotation semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.ENTITY_ANNOTATION__ANNOTATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.ENTITY_ANNOTATION__ANNOTATION));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getEntityAnnotation_Annotation()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getEntityAnnotation_Annotation()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1350,8 +1366,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_EntityAnnotation(EObject context, ConstructorAnnotation semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.ENTITY_ANNOTATION__ANNOTATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.ENTITY_ANNOTATION__ANNOTATION));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getEntityAnnotation_Annotation()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getEntityAnnotation_Annotation()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1366,8 +1382,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_EntityAnnotation(EObject context, StandardAnnotation semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.ENTITY_ANNOTATION__ANNOTATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.ENTITY_ANNOTATION__ANNOTATION));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getEntityAnnotation_Annotation()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getEntityAnnotation_Annotation()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1382,8 +1398,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_EntityAnnotation(EObject context, StaticAnnotation semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.ENTITY_ANNOTATION__ANNOTATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.ENTITY_ANNOTATION__ANNOTATION));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getEntityAnnotation_Annotation()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getEntityAnnotation_Annotation()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1398,8 +1414,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_EnumDirective(EObject context, EnumDirectiveExtends semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.ENUM_DIRECTIVE_EXTENDS__SUPER_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.ENUM_DIRECTIVE_EXTENDS__SUPER_TYPE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getEnumDirectiveExtends_SuperType()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getEnumDirectiveExtends_SuperType()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1423,8 +1439,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_EnumDirective(EObject context, EnumDirectiveSerializable semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.ENUM_DIRECTIVE_SERIALIZABLE__SERNUM) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.ENUM_DIRECTIVE_SERIALIZABLE__SERNUM));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getEnumDirectiveSerializable_Sernum()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getEnumDirectiveSerializable_Sernum()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1545,10 +1561,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_FunctionDefinition(EObject context, FunctionDefinition semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.FUNCTION_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.FUNCTION_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.FUNCTION_DEFINITION__TABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.FUNCTION_DEFINITION__TABLE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getFunctionDefinition_Name()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getFunctionDefinition_Name()));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getFunctionDefinition_Table()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getFunctionDefinition_Table()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1564,10 +1580,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_FunctionPojoAssignement(EObject context, FunctionPojoAssignement semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.FUNCTION_POJO_ASSIGNEMENT__DB_FUNCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.FUNCTION_POJO_ASSIGNEMENT__DB_FUNCTION));
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.FUNCTION_POJO_ASSIGNEMENT__POJO) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.FUNCTION_POJO_ASSIGNEMENT__POJO));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getFunctionPojoAssignement_DbFunction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getFunctionPojoAssignement_DbFunction()));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getFunctionPojoAssignement_Pojo()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getFunctionPojoAssignement_Pojo()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1718,8 +1734,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_Import(EObject context, Import semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.IMPORT__IMPORTED_NAMESPACE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.IMPORT__IMPORTED_NAMESPACE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getImport_ImportedNamespace()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getImport_ImportedNamespace()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1952,8 +1968,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoDirective(EObject context, PojoDirectiveEnumDef semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_ENUM_DEF__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_ENUM_DEF__PROPLIST));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveEnumDef_Proplist()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveEnumDef_Proplist()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1968,8 +1984,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoDirective(EObject context, PojoDirectiveEnumInit semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_ENUM_INIT__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_ENUM_INIT__PROPLIST));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveEnumInit_Proplist()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveEnumInit_Proplist()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -1984,8 +2000,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoDirective(EObject context, PojoDirectiveEquals semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_EQUALS__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_EQUALS__PROPLIST));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveEquals_Proplist()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveEquals_Proplist()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2000,8 +2016,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoDirective(EObject context, PojoDirectiveExtends semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_EXTENDS__SUPER_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_EXTENDS__SUPER_TYPE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveExtends_SuperType()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveExtends_SuperType()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2025,8 +2041,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoDirective(EObject context, PojoDirectiveHashCode semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_HASH_CODE__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_HASH_CODE__PROPLIST));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveHashCode_Proplist()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveHashCode_Proplist()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2041,10 +2057,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoDirective(EObject context, PojoDirectiveIndex semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_INDEX__INDEX) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_INDEX__INDEX));
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_INDEX__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_INDEX__PROPLIST));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveIndex_Index()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveIndex_Index()));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveIndex_Proplist()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveIndex_Proplist()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2060,8 +2076,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoDirective(EObject context, PojoDirectiveIsDef semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_IS_DEF__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_IS_DEF__PROPLIST));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveIsDef_Proplist()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveIsDef_Proplist()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2085,8 +2101,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoDirective(EObject context, PojoDirectiveSerializable semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_SERIALIZABLE__SERNUM) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_SERIALIZABLE__SERNUM));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveSerializable_Sernum()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveSerializable_Sernum()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2101,8 +2117,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoDirective(EObject context, PojoDirectiveToInit semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_TO_INIT__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_TO_INIT__PROPLIST));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveToInit_Proplist()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveToInit_Proplist()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2117,8 +2133,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoDirective(EObject context, PojoDirectiveToString semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_TO_STRING__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_TO_STRING__PROPLIST));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveToString_Proplist()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoDirectiveToString_Proplist()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2142,8 +2158,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoPropertyAnnotation(EObject context, AttributeAnnotation semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_ANNOTATION__ANNOTATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_ANNOTATION__ANNOTATION));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyAnnotation_Annotation()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyAnnotation_Annotation()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2158,8 +2174,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoPropertyAnnotation(EObject context, GetterAnnotation semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_ANNOTATION__ANNOTATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_ANNOTATION__ANNOTATION));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyAnnotation_Annotation()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyAnnotation_Annotation()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2174,8 +2190,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoPropertyAnnotation(EObject context, SetterAnnotation semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_ANNOTATION__ANNOTATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_ANNOTATION__ANNOTATION));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyAnnotation_Annotation()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyAnnotation_Annotation()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2190,10 +2206,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoPropertyDirective(EObject context, PojoPropertyDirectiveCreateCol semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN1) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN1));
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN2) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN2));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveCreateCol_CreateColumn1()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveCreateCol_CreateColumn1()));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveCreateCol_CreateColumn2()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveCreateCol_CreateColumn2()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2218,8 +2234,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoPropertyDirective(EObject context, PojoPropertyDirectiveIndex semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_INDEX__INDEX) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_INDEX__INDEX));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveIndex_Index()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveIndex_Index()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2252,10 +2268,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_PojoPropertyDirective(EObject context, PojoPropertyDirectiveUpdateCol semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1));
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveUpdateCol_UpdateColumn1()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveUpdateCol_UpdateColumn1()));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveUpdateCol_UpdateColumn2()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveUpdateCol_UpdateColumn2()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2351,10 +2367,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_ProcedureDefinition(EObject context, ProcedureDefinition semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.PROCEDURE_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.PROCEDURE_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.PROCEDURE_DEFINITION__TABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.PROCEDURE_DEFINITION__TABLE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getProcedureDefinition_Name()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getProcedureDefinition_Name()));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getProcedureDefinition_Table()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getProcedureDefinition_Table()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2370,10 +2386,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_ProcedurePojoAssignement(EObject context, ProcedurePojoAssignement semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.PROCEDURE_POJO_ASSIGNEMENT__DB_PROCEDURE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.PROCEDURE_POJO_ASSIGNEMENT__DB_PROCEDURE));
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.PROCEDURE_POJO_ASSIGNEMENT__POJO) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.PROCEDURE_POJO_ASSIGNEMENT__POJO));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getProcedurePojoAssignement_DbProcedure()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getProcedurePojoAssignement_DbProcedure()));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getProcedurePojoAssignement_Pojo()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getProcedurePojoAssignement_Pojo()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2407,10 +2423,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_ShowColumnTypeAssignement(EObject context, ShowColumnTypeAssignement semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.SHOW_COLUMN_TYPE_ASSIGNEMENT__DB_COLUMN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.SHOW_COLUMN_TYPE_ASSIGNEMENT__DB_COLUMN));
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.SHOW_COLUMN_TYPE_ASSIGNEMENT__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.SHOW_COLUMN_TYPE_ASSIGNEMENT__TYPE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getShowColumnTypeAssignement_DbColumn()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getShowColumnTypeAssignement_DbColumn()));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getShowColumnTypeAssignement_Type()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getShowColumnTypeAssignement_Type()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2463,10 +2479,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_TableAssignement(EObject context, TableAssignement semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.TABLE_ASSIGNEMENT__DB_TABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.TABLE_ASSIGNEMENT__DB_TABLE));
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.TABLE_ASSIGNEMENT__NEW_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.TABLE_ASSIGNEMENT__NEW_NAME));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getTableAssignement_DbTable()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getTableAssignement_DbTable()));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getTableAssignement_NewName()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getTableAssignement_NewName()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2482,10 +2498,10 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 */
 	protected void sequence_TableDefinition(EObject context, TableDefinition semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.TABLE_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.TABLE_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.TABLE_DEFINITION__TABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.TABLE_DEFINITION__TABLE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getTableDefinition_Name()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getTableDefinition_Name()));
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.eINSTANCE.getTableDefinition_Table()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.eINSTANCE.getTableDefinition_Table()));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);

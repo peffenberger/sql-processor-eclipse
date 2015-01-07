@@ -36,7 +36,7 @@ public class PojoDirectiveFinalImpl extends PojoDirectiveImpl implements PojoDir
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_DIRECTIVE_FINAL;
+    return ProcessorDslPackage.eINSTANCE.getPojoDirectiveFinal();
   }
 
 } //PojoDirectiveFinalImpl

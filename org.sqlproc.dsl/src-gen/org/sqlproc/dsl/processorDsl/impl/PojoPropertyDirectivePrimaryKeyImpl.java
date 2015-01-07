@@ -36,7 +36,7 @@ public class PojoPropertyDirectivePrimaryKeyImpl extends PojoPropertyDirectiveIm
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY;
+    return ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectivePrimaryKey();
   }
 
 } //PojoPropertyDirectivePrimaryKeyImpl

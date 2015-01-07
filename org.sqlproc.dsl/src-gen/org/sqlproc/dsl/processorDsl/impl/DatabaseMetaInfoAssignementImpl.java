@@ -65,7 +65,7 @@ public class DatabaseMetaInfoAssignementImpl extends MinimalEObjectImpl.Containe
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DATABASE_META_INFO_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getDatabaseMetaInfoAssignement();
   }
 
   /**

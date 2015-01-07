@@ -591,10 +591,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PojoType"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DirectiveParameters">
+  <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveParameters">
     <eStructuralFeatures xsi:type="ecore:EReference" name="in" eType="#//PojoType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="out" eType="#//PojoType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DescendantAssignment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descendant" eType="#//PojoType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DaoDirective"/>
@@ -697,11 +702,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="superType" eType="#//DaoType"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveDiscriminator" eSuperTypes="#//DaoDirective">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="discriminator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveSerializable" eSuperTypes="#//DaoDirective">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sernum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveDiscriminator" eSuperTypes="#//DaoDirective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ancestor" eType="#//PojoProperty"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descendants" upperBound="-1"
+        eType="#//DescendantAssignment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DaoDirectivePojo" eSuperTypes="#//DaoDirective">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="#//PojoType"
@@ -720,7 +728,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveUpdate" eSuperTypes="#//DaoDirective">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="paramlist" eType="#//DirectiveParameters"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paramlist" eType="#//DaoDirectiveParameters"
         containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

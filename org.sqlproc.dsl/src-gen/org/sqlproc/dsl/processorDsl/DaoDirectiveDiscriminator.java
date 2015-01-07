@@ -2,6 +2,7 @@
  */
 package org.sqlproc.dsl.processorDsl;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -11,7 +12,8 @@ package org.sqlproc.dsl.processorDsl;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getDiscriminator <em>Discriminator</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getAncestor <em>Ancestor</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getDescendants <em>Descendants</em>}</li>
  * </ul>
  * </p>
  *
@@ -22,29 +24,45 @@ package org.sqlproc.dsl.processorDsl;
 public interface DaoDirectiveDiscriminator extends DaoDirective
 {
   /**
-   * Returns the value of the '<em><b>Discriminator</b></em>' attribute.
+   * Returns the value of the '<em><b>Ancestor</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Discriminator</em>' attribute isn't clear,
+   * If the meaning of the '<em>Ancestor</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Discriminator</em>' attribute.
-   * @see #setDiscriminator(String)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getDaoDirectiveDiscriminator_Discriminator()
-   * @model
+   * @return the value of the '<em>Ancestor</em>' containment reference.
+   * @see #setAncestor(PojoProperty)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getDaoDirectiveDiscriminator_Ancestor()
+   * @model containment="true"
    * @generated
    */
-  String getDiscriminator();
+  PojoProperty getAncestor();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getDiscriminator <em>Discriminator</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getAncestor <em>Ancestor</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Discriminator</em>' attribute.
-   * @see #getDiscriminator()
+   * @param value the new value of the '<em>Ancestor</em>' containment reference.
+   * @see #getAncestor()
    * @generated
    */
-  void setDiscriminator(String value);
+  void setAncestor(PojoProperty value);
+
+  /**
+   * Returns the value of the '<em><b>Descendants</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.DescendantAssignment}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Descendants</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Descendants</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getDaoDirectiveDiscriminator_Descendants()
+   * @model containment="true"
+   * @generated
+   */
+  EList<DescendantAssignment> getDescendants();
 
 } // DaoDirectiveDiscriminator

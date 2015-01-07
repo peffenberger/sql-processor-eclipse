@@ -65,7 +65,7 @@ public class DatabaseSchemaAssignementImpl extends MinimalEObjectImpl.Container 
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DATABASE_SCHEMA_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getDatabaseSchemaAssignement();
   }
 
   /**

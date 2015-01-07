@@ -163,7 +163,7 @@ public class IfSqlFragmentImpl extends MinimalEObjectImpl.Container implements I
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.IF_SQL_FRAGMENT;
+    return ProcessorDslPackage.eINSTANCE.getIfSqlFragment();
   }
 
   /**

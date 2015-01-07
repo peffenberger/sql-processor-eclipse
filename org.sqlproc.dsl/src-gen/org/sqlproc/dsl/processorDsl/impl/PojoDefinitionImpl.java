@@ -100,7 +100,7 @@ public class PojoDefinitionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_DEFINITION;
+    return ProcessorDslPackage.eINSTANCE.getPojoDefinition();
   }
 
   /**

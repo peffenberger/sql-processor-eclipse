@@ -79,7 +79,7 @@ public class ProcedurePojoAssignementImpl extends MinimalEObjectImpl.Container i
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.PROCEDURE_POJO_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getProcedurePojoAssignement();
   }
 
   /**

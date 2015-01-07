@@ -85,7 +85,7 @@ public class EntityImpl extends AbstractEntityImpl implements Entity
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ENTITY;
+    return ProcessorDslPackage.eINSTANCE.getEntity();
   }
 
   /**

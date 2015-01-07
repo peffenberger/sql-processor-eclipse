@@ -57,7 +57,7 @@ public class DaoDirectivePojoImpl extends DaoDirectiveImpl implements DaoDirecti
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DAO_DIRECTIVE_POJO;
+    return ProcessorDslPackage.eINSTANCE.getDaoDirectivePojo();
   }
 
   /**

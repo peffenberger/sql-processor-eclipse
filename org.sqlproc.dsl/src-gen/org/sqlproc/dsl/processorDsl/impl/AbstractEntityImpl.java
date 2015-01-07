@@ -38,7 +38,7 @@ public class AbstractEntityImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ABSTRACT_ENTITY;
+    return ProcessorDslPackage.eINSTANCE.getAbstractEntity();
   }
 
 } //AbstractEntityImpl

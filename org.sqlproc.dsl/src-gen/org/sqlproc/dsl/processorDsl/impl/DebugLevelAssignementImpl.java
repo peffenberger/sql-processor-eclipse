@@ -86,7 +86,7 @@ public class DebugLevelAssignementImpl extends MinimalEObjectImpl.Container impl
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DEBUG_LEVEL_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getDebugLevelAssignement();
   }
 
   /**

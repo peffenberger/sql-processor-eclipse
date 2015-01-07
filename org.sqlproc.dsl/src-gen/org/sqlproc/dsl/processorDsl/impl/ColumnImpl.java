@@ -63,7 +63,7 @@ public class ColumnImpl extends MinimalEObjectImpl.Container implements Column
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.COLUMN;
+    return ProcessorDslPackage.eINSTANCE.getColumn();
   }
 
   /**

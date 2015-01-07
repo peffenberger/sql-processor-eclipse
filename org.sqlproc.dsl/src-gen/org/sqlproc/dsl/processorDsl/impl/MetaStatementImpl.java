@@ -117,7 +117,7 @@ public class MetaStatementImpl extends MinimalEObjectImpl.Container implements M
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.META_STATEMENT;
+    return ProcessorDslPackage.eINSTANCE.getMetaStatement();
   }
 
   /**

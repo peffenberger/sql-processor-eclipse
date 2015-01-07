@@ -489,23 +489,27 @@ EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=EnumPropertyDirective name=IDENT type=PojoType
 ;
 
-DirectiveParameters hidden(ML_COMMENT, SL_COMMENT, WS):
-	LPAREN in=PojoType (COMMA out=PojoType)? LPAREN
+DaoDirectiveParameters hidden(ML_COMMENT, SL_COMMENT, WS):
+	in=PojoType (COMMA out=PojoType)?
+;
+
+DescendantAssignment hidden(ML_COMMENT, SL_COMMENT, WS):
+	value=(NUMBER|STRING) EQUALS descendant=PojoType
 ;
 
 DaoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	{DaoDirectiveFinal} '#Final'
 	| {DaoDirectiveAbstract} '#Abstract'
 	| {DaoDirectiveExtends} '#Extends' LPAREN superType=DaoType RPAREN
-	| {DaoDirectiveDiscriminator} '#Discriminator' LPAREN discriminator=(IDENT|NUMBER) RPAREN
 	| {DaoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
+	| {DaoDirectiveDiscriminator} '#Discriminator' LPAREN ancestor=PojoProperty descendants+=DescendantAssignment (COMMA descendants+=DescendantAssignment)* RPAREN
 	| {DaoDirectivePojo} '#Pojo' LPAREN pojo=PojoType RPAREN
 	| {DaoDirectiveGenerics} '#Generics' LPAREN generics=PojoType RPAREN
 	| {DaoDirectiveProcedure} '#Procedure' LPAREN pojo=PojoType RPAREN
 	| {DaoDirectiveFunction} '#Function' LPAREN pojo=PojoType RPAREN
-	| {DaoDirectiveUpdate} '#Update' (paramlist=DirectiveParameters)?
-	| {DaoDirectiveUpdate} '#List' (paramlist=DirectiveParameters)?
-	| {DaoDirectiveUpdate} '#Call' (paramlist=DirectiveParameters)?
+	| {DaoDirectiveUpdate} '#Update' (LPAREN paramlist=DaoDirectiveParameters RPAREN)?
+	| {DaoDirectiveUpdate} '#List' (LPAREN paramlist=DaoDirectiveParameters RPAREN)?
+	| {DaoDirectiveUpdate} '#Call' (LPAREN paramlist=DaoDirectiveParameters RPAREN)?
 	;
 
 PojoDao hidden(ML_COMMENT, SL_COMMENT, WS):

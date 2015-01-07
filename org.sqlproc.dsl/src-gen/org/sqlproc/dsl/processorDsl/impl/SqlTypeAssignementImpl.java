@@ -100,7 +100,7 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.SQL_TYPE_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getSqlTypeAssignement();
   }
 
   /**

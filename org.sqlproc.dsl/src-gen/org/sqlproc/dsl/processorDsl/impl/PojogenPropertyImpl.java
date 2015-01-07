@@ -544,7 +544,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJOGEN_PROPERTY;
+    return ProcessorDslPackage.eINSTANCE.getPojogenProperty();
   }
 
   /**

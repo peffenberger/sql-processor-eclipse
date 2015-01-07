@@ -85,7 +85,7 @@ public class PojoDaoImpl extends AbstractEntityImpl implements PojoDao
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_DAO;
+    return ProcessorDslPackage.eINSTANCE.getPojoDao();
   }
 
   /**

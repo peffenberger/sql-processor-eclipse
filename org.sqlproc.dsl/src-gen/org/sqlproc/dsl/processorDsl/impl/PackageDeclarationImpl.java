@@ -97,7 +97,7 @@ public class PackageDeclarationImpl extends AbstractEntityImpl implements Packag
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.PACKAGE_DECLARATION;
+    return ProcessorDslPackage.eINSTANCE.getPackageDeclaration();
   }
 
   /**

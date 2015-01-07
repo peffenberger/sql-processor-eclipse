@@ -130,7 +130,7 @@ public class ExtendsImpl extends AbstractEntityImpl implements Extends
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.EXTENDS;
+    return ProcessorDslPackage.eINSTANCE.getExtends();
   }
 
   /**

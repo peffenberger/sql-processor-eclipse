@@ -77,7 +77,7 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ANNOTATION;
+    return ProcessorDslPackage.eINSTANCE.getAnnotation();
   }
 
   /**

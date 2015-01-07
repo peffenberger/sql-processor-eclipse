@@ -98,7 +98,7 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ENUM_PROPERTY;
+    return ProcessorDslPackage.eINSTANCE.getEnumProperty();
   }
 
   /**

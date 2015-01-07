@@ -130,7 +130,7 @@ public class ImplementsImpl extends AbstractEntityImpl implements Implements
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.IMPLEMENTS;
+    return ProcessorDslPackage.eINSTANCE.getImplements();
   }
 
   /**

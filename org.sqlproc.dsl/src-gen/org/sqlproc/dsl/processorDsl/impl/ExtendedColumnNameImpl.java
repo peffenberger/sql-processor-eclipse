@@ -65,7 +65,7 @@ public class ExtendedColumnNameImpl extends MinimalEObjectImpl.Container impleme
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.EXTENDED_COLUMN_NAME;
+    return ProcessorDslPackage.eINSTANCE.getExtendedColumnName();
   }
 
   /**

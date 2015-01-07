@@ -86,7 +86,7 @@ public class ShowColumnTypeAssignementImpl extends MinimalEObjectImpl.Container 
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.SHOW_COLUMN_TYPE_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getShowColumnTypeAssignement();
   }
 
   /**

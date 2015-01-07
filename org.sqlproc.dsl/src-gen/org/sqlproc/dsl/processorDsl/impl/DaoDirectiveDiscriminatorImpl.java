@@ -2,13 +2,24 @@
  */
 package org.sqlproc.dsl.processorDsl.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.DescendantAssignment;
+import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
 /**
@@ -18,7 +29,8 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveDiscriminatorImpl#getDiscriminator <em>Discriminator</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveDiscriminatorImpl#getAncestor <em>Ancestor</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveDiscriminatorImpl#getDescendants <em>Descendants</em>}</li>
  * </ul>
  * </p>
  *
@@ -27,24 +39,24 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements DaoDirectiveDiscriminator
 {
   /**
-   * The default value of the '{@link #getDiscriminator() <em>Discriminator</em>}' attribute.
+   * The cached value of the '{@link #getAncestor() <em>Ancestor</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDiscriminator()
+   * @see #getAncestor()
    * @generated
    * @ordered
    */
-  protected static final String DISCRIMINATOR_EDEFAULT = null;
+  protected PojoProperty ancestor;
 
   /**
-   * The cached value of the '{@link #getDiscriminator() <em>Discriminator</em>}' attribute.
+   * The cached value of the '{@link #getDescendants() <em>Descendants</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDiscriminator()
+   * @see #getDescendants()
    * @generated
    * @ordered
    */
-  protected String discriminator = DISCRIMINATOR_EDEFAULT;
+  protected EList<DescendantAssignment> descendants;
 
   /**
    * <!-- begin-user-doc -->
@@ -64,7 +76,7 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DAO_DIRECTIVE_DISCRIMINATOR;
+    return ProcessorDslPackage.eINSTANCE.getDaoDirectiveDiscriminator();
   }
 
   /**
@@ -72,9 +84,9 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getDiscriminator()
+  public PojoProperty getAncestor()
   {
-    return discriminator;
+    return ancestor;
   }
 
   /**
@@ -82,12 +94,69 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDiscriminator(String newDiscriminator)
+  public NotificationChain basicSetAncestor(PojoProperty newAncestor, NotificationChain msgs)
   {
-    String oldDiscriminator = discriminator;
-    discriminator = newDiscriminator;
+    PojoProperty oldAncestor = ancestor;
+    ancestor = newAncestor;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR, oldDiscriminator, discriminator));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR, oldAncestor, newAncestor);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setAncestor(PojoProperty newAncestor)
+  {
+    if (newAncestor != ancestor)
+    {
+      NotificationChain msgs = null;
+      if (ancestor != null)
+        msgs = ((InternalEObject)ancestor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR, null, msgs);
+      if (newAncestor != null)
+        msgs = ((InternalEObject)newAncestor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR, null, msgs);
+      msgs = basicSetAncestor(newAncestor, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR, newAncestor, newAncestor));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<DescendantAssignment> getDescendants()
+  {
+    if (descendants == null)
+    {
+      descendants = new EObjectContainmentEList<DescendantAssignment>(DescendantAssignment.class, this, ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__DESCENDANTS);
+    }
+    return descendants;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR:
+        return basicSetAncestor(null, msgs);
+      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__DESCENDANTS:
+        return ((InternalEList<?>)getDescendants()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -100,8 +169,10 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR:
-        return getDiscriminator();
+      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR:
+        return getAncestor();
+      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__DESCENDANTS:
+        return getDescendants();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -111,13 +182,18 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR:
-        setDiscriminator((String)newValue);
+      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR:
+        setAncestor((PojoProperty)newValue);
+        return;
+      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__DESCENDANTS:
+        getDescendants().clear();
+        getDescendants().addAll((Collection<? extends DescendantAssignment>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -133,8 +209,11 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR:
-        setDiscriminator(DISCRIMINATOR_EDEFAULT);
+      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR:
+        setAncestor((PojoProperty)null);
+        return;
+      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__DESCENDANTS:
+        getDescendants().clear();
         return;
     }
     super.eUnset(featureID);
@@ -150,27 +229,12 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR:
-        return DISCRIMINATOR_EDEFAULT == null ? discriminator != null : !DISCRIMINATOR_EDEFAULT.equals(discriminator);
+      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR:
+        return ancestor != null;
+      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__DESCENDANTS:
+        return descendants != null && !descendants.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (discriminator: ");
-    result.append(discriminator);
-    result.append(')');
-    return result.toString();
   }
 
 } //DaoDirectiveDiscriminatorImpl

@@ -57,7 +57,7 @@ public class PojoDirectiveIsDefImpl extends PojoDirectiveImpl implements PojoDir
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_DIRECTIVE_IS_DEF;
+    return ProcessorDslPackage.eINSTANCE.getPojoDirectiveIsDef();
   }
 
   /**

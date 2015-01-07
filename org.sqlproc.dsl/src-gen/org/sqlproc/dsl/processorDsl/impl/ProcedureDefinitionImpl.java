@@ -86,7 +86,7 @@ public class ProcedureDefinitionImpl extends MinimalEObjectImpl.Container implem
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.PROCEDURE_DEFINITION;
+    return ProcessorDslPackage.eINSTANCE.getProcedureDefinition();
   }
 
   /**

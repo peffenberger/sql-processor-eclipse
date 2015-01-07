@@ -36,7 +36,7 @@ public class EnumDirectiveFinalImpl extends EnumDirectiveImpl implements EnumDir
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ENUM_DIRECTIVE_FINAL;
+    return ProcessorDslPackage.eINSTANCE.getEnumDirectiveFinal();
   }
 
 } //EnumDirectiveFinalImpl

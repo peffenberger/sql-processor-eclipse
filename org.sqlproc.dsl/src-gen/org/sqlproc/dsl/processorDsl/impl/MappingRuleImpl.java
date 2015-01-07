@@ -117,7 +117,7 @@ public class MappingRuleImpl extends MinimalEObjectImpl.Container implements Map
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.MAPPING_RULE;
+    return ProcessorDslPackage.eINSTANCE.getMappingRule();
   }
 
   /**

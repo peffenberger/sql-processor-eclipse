@@ -85,7 +85,7 @@ public class PojoPropertyDirectiveUpdateColImpl extends PojoPropertyDirectiveImp
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_UPDATE_COL;
+    return ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveUpdateCol();
   }
 
   /**

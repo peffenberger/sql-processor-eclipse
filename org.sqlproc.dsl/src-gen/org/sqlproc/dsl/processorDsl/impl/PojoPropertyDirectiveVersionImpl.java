@@ -36,7 +36,7 @@ public class PojoPropertyDirectiveVersionImpl extends PojoPropertyDirectiveImpl 
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_VERSION;
+    return ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveVersion();
   }
 
 } //PojoPropertyDirectiveVersionImpl

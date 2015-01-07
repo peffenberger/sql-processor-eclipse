@@ -86,7 +86,7 @@ public class ImplementsAssignementGenericsImpl extends MinimalEObjectImpl.Contai
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.IMPLEMENTS_ASSIGNEMENT_GENERICS;
+    return ProcessorDslPackage.eINSTANCE.getImplementsAssignementGenerics();
   }
 
   /**

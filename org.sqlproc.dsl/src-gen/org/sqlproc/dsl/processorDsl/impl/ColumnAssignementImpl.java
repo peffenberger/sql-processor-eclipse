@@ -86,7 +86,7 @@ public class ColumnAssignementImpl extends MinimalEObjectImpl.Container implemen
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.COLUMN_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getColumnAssignement();
   }
 
   /**

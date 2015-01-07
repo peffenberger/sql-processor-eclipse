@@ -107,7 +107,7 @@ public class ImportAssignementImpl extends MinimalEObjectImpl.Container implemen
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.IMPORT_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getImportAssignement();
   }
 
   /**

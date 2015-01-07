@@ -36,7 +36,7 @@ public class PojoPropertyDirectiveRequiredImpl extends PojoPropertyDirectiveImpl
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_REQUIRED;
+    return ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveRequired();
   }
 
 } //PojoPropertyDirectiveRequiredImpl

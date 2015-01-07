@@ -500,9 +500,14 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createEnumPropertyAdapter();
       }
       @Override
-      public Adapter caseDirectiveParameters(DirectiveParameters object)
+      public Adapter caseDaoDirectiveParameters(DaoDirectiveParameters object)
       {
-        return createDirectiveParametersAdapter();
+        return createDaoDirectiveParametersAdapter();
+      }
+      @Override
+      public Adapter caseDescendantAssignment(DescendantAssignment object)
+      {
+        return createDescendantAssignmentAdapter();
       }
       @Override
       public Adapter caseDaoDirective(DaoDirective object)
@@ -695,14 +700,14 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createDaoDirectiveExtendsAdapter();
       }
       @Override
-      public Adapter caseDaoDirectiveDiscriminator(DaoDirectiveDiscriminator object)
-      {
-        return createDaoDirectiveDiscriminatorAdapter();
-      }
-      @Override
       public Adapter caseDaoDirectiveSerializable(DaoDirectiveSerializable object)
       {
         return createDaoDirectiveSerializableAdapter();
+      }
+      @Override
+      public Adapter caseDaoDirectiveDiscriminator(DaoDirectiveDiscriminator object)
+      {
+        return createDaoDirectiveDiscriminatorAdapter();
       }
       @Override
       public Adapter caseDaoDirectivePojo(DaoDirectivePojo object)
@@ -2027,16 +2032,31 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DirectiveParameters <em>Directive Parameters</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveParameters <em>Dao Directive Parameters</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.DirectiveParameters
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveParameters
    * @generated
    */
-  public Adapter createDirectiveParametersAdapter()
+  public Adapter createDaoDirectiveParametersAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DescendantAssignment <em>Descendant Assignment</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.DescendantAssignment
+   * @generated
+   */
+  public Adapter createDescendantAssignmentAdapter()
   {
     return null;
   }
@@ -2612,21 +2632,6 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator <em>Dao Directive Discriminator</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator
-   * @generated
-   */
-  public Adapter createDaoDirectiveDiscriminatorAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveSerializable <em>Dao Directive Serializable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -2637,6 +2642,21 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDaoDirectiveSerializableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator <em>Dao Directive Discriminator</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator
+   * @generated
+   */
+  public Adapter createDaoDirectiveDiscriminatorAdapter()
   {
     return null;
   }

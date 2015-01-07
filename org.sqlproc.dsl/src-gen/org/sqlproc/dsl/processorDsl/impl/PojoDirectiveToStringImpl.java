@@ -57,7 +57,7 @@ public class PojoDirectiveToStringImpl extends PojoDirectiveImpl implements Pojo
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_DIRECTIVE_TO_STRING;
+    return ProcessorDslPackage.eINSTANCE.getPojoDirectiveToString();
   }
 
   /**

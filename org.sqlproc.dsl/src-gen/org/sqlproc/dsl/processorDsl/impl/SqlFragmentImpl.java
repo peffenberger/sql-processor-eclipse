@@ -163,7 +163,7 @@ public class SqlFragmentImpl extends MinimalEObjectImpl.Container implements Sql
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.SQL_FRAGMENT;
+    return ProcessorDslPackage.eINSTANCE.getSqlFragment();
   }
 
   /**

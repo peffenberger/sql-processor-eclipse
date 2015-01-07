@@ -107,7 +107,7 @@ public class ExportAssignementImpl extends MinimalEObjectImpl.Container implemen
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.EXPORT_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getExportAssignement();
   }
 
   /**

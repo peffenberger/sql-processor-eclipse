@@ -65,7 +65,7 @@ public class ConstantOperatorImpl extends MinimalEObjectImpl.Container implement
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.CONSTANT_OPERATOR;
+    return ProcessorDslPackage.eINSTANCE.getConstantOperator();
   }
 
   /**

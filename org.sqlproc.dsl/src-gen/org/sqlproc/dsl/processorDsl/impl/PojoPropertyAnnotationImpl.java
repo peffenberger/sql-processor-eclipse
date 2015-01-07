@@ -58,7 +58,7 @@ public class PojoPropertyAnnotationImpl extends MinimalEObjectImpl.Container imp
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_PROPERTY_ANNOTATION;
+    return ProcessorDslPackage.eINSTANCE.getPojoPropertyAnnotation();
   }
 
   /**

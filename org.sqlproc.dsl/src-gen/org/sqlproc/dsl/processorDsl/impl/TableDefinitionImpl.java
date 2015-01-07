@@ -86,7 +86,7 @@ public class TableDefinitionImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.TABLE_DEFINITION;
+    return ProcessorDslPackage.eINSTANCE.getTableDefinition();
   }
 
   /**

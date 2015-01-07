@@ -65,7 +65,7 @@ public class IdentifierOperatorImpl extends MinimalEObjectImpl.Container impleme
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.IDENTIFIER_OPERATOR;
+    return ProcessorDslPackage.eINSTANCE.getIdentifierOperator();
   }
 
   /**

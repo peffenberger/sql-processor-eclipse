@@ -36,7 +36,7 @@ public class AttributeAnnotationImpl extends PojoPropertyAnnotationImpl implemen
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ATTRIBUTE_ANNOTATION;
+    return ProcessorDslPackage.eINSTANCE.getAttributeAnnotation();
   }
 
 } //AttributeAnnotationImpl

@@ -58,7 +58,7 @@ public class EntityAnnotationImpl extends MinimalEObjectImpl.Container implement
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ENTITY_ANNOTATION;
+    return ProcessorDslPackage.eINSTANCE.getEntityAnnotation();
   }
 
   /**

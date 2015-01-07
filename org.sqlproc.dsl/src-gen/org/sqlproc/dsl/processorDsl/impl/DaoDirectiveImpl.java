@@ -38,7 +38,7 @@ public class DaoDirectiveImpl extends MinimalEObjectImpl.Container implements Da
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DAO_DIRECTIVE;
+    return ProcessorDslPackage.eINSTANCE.getDaoDirective();
   }
 
 } //DaoDirectiveImpl

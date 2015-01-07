@@ -107,7 +107,7 @@ public class MetaTypeAssignementImpl extends MinimalEObjectImpl.Container implem
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.META_TYPE_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getMetaTypeAssignement();
   }
 
   /**

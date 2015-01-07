@@ -124,7 +124,7 @@ public class IdentifierImpl extends MinimalEObjectImpl.Container implements Iden
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.IDENTIFIER;
+    return ProcessorDslPackage.eINSTANCE.getIdentifier();
   }
 
   /**

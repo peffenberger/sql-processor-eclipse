@@ -73,7 +73,7 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ENUM_ENTITY;
+    return ProcessorDslPackage.eINSTANCE.getEnumEntity();
   }
 
   /**

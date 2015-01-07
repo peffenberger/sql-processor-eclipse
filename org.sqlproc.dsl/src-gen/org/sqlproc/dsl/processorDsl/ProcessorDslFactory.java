@@ -788,13 +788,22 @@ public interface ProcessorDslFactory extends EFactory
   EnumProperty createEnumProperty();
 
   /**
-   * Returns a new object of class '<em>Directive Parameters</em>'.
+   * Returns a new object of class '<em>Dao Directive Parameters</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Directive Parameters</em>'.
+   * @return a new object of class '<em>Dao Directive Parameters</em>'.
    * @generated
    */
-  DirectiveParameters createDirectiveParameters();
+  DaoDirectiveParameters createDaoDirectiveParameters();
+
+  /**
+   * Returns a new object of class '<em>Descendant Assignment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Descendant Assignment</em>'.
+   * @generated
+   */
+  DescendantAssignment createDescendantAssignment();
 
   /**
    * Returns a new object of class '<em>Dao Directive</em>'.
@@ -1139,15 +1148,6 @@ public interface ProcessorDslFactory extends EFactory
   DaoDirectiveExtends createDaoDirectiveExtends();
 
   /**
-   * Returns a new object of class '<em>Dao Directive Discriminator</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Dao Directive Discriminator</em>'.
-   * @generated
-   */
-  DaoDirectiveDiscriminator createDaoDirectiveDiscriminator();
-
-  /**
    * Returns a new object of class '<em>Dao Directive Serializable</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1155,6 +1155,15 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   DaoDirectiveSerializable createDaoDirectiveSerializable();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Discriminator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Discriminator</em>'.
+   * @generated
+   */
+  DaoDirectiveDiscriminator createDaoDirectiveDiscriminator();
 
   /**
    * Returns a new object of class '<em>Dao Directive Pojo</em>'.

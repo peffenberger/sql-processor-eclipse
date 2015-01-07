@@ -149,7 +149,8 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.ENUM_PROPERTY_VALUE: return createEnumPropertyValue();
       case ProcessorDslPackage.ENUM_PROPERTY_DIRECTIVE: return createEnumPropertyDirective();
       case ProcessorDslPackage.ENUM_PROPERTY: return createEnumProperty();
-      case ProcessorDslPackage.DIRECTIVE_PARAMETERS: return createDirectiveParameters();
+      case ProcessorDslPackage.DAO_DIRECTIVE_PARAMETERS: return createDaoDirectiveParameters();
+      case ProcessorDslPackage.DESCENDANT_ASSIGNMENT: return createDescendantAssignment();
       case ProcessorDslPackage.DAO_DIRECTIVE: return createDaoDirective();
       case ProcessorDslPackage.POJO_DAO: return createPojoDao();
       case ProcessorDslPackage.PACKAGE_DIRECTIVE_SUFFIX: return createPackageDirectiveSuffix();
@@ -188,8 +189,8 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.DAO_DIRECTIVE_FINAL: return createDaoDirectiveFinal();
       case ProcessorDslPackage.DAO_DIRECTIVE_ABSTRACT: return createDaoDirectiveAbstract();
       case ProcessorDslPackage.DAO_DIRECTIVE_EXTENDS: return createDaoDirectiveExtends();
-      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR: return createDaoDirectiveDiscriminator();
       case ProcessorDslPackage.DAO_DIRECTIVE_SERIALIZABLE: return createDaoDirectiveSerializable();
+      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR: return createDaoDirectiveDiscriminator();
       case ProcessorDslPackage.DAO_DIRECTIVE_POJO: return createDaoDirectivePojo();
       case ProcessorDslPackage.DAO_DIRECTIVE_GENERICS: return createDaoDirectiveGenerics();
       case ProcessorDslPackage.DAO_DIRECTIVE_PROCEDURE: return createDaoDirectiveProcedure();
@@ -1140,10 +1141,21 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public DirectiveParameters createDirectiveParameters()
+  public DaoDirectiveParameters createDaoDirectiveParameters()
   {
-    DirectiveParametersImpl directiveParameters = new DirectiveParametersImpl();
-    return directiveParameters;
+    DaoDirectiveParametersImpl daoDirectiveParameters = new DaoDirectiveParametersImpl();
+    return daoDirectiveParameters;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DescendantAssignment createDescendantAssignment()
+  {
+    DescendantAssignmentImpl descendantAssignment = new DescendantAssignmentImpl();
+    return descendantAssignment;
   }
 
   /**
@@ -1569,10 +1581,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public DaoDirectiveDiscriminator createDaoDirectiveDiscriminator()
+  public DaoDirectiveSerializable createDaoDirectiveSerializable()
   {
-    DaoDirectiveDiscriminatorImpl daoDirectiveDiscriminator = new DaoDirectiveDiscriminatorImpl();
-    return daoDirectiveDiscriminator;
+    DaoDirectiveSerializableImpl daoDirectiveSerializable = new DaoDirectiveSerializableImpl();
+    return daoDirectiveSerializable;
   }
 
   /**
@@ -1580,10 +1592,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public DaoDirectiveSerializable createDaoDirectiveSerializable()
+  public DaoDirectiveDiscriminator createDaoDirectiveDiscriminator()
   {
-    DaoDirectiveSerializableImpl daoDirectiveSerializable = new DaoDirectiveSerializableImpl();
-    return daoDirectiveSerializable;
+    DaoDirectiveDiscriminatorImpl daoDirectiveDiscriminator = new DaoDirectiveDiscriminatorImpl();
+    return daoDirectiveDiscriminator;
   }
 
   /**

@@ -142,7 +142,7 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ANNOTATION_PROPERTY;
+    return ProcessorDslPackage.eINSTANCE.getAnnotationProperty();
   }
 
   /**

@@ -131,7 +131,7 @@ public class MetaSqlImpl extends MinimalEObjectImpl.Container implements MetaSql
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.META_SQL;
+    return ProcessorDslPackage.eINSTANCE.getMetaSql();
   }
 
   /**

@@ -38,7 +38,7 @@ public class PackageDirectiveImpl extends MinimalEObjectImpl.Container implement
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.PACKAGE_DIRECTIVE;
+    return ProcessorDslPackage.eINSTANCE.getPackageDirective();
   }
 
 } //PackageDirectiveImpl

@@ -2,8 +2,12 @@ package org.sqlproc.dsl.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -28,10 +32,13 @@ import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.DaoDirective;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveAbstract;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveExtends;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveFinal;
+import org.sqlproc.dsl.processorDsl.DaoDirectivePojo;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveSerializable;
 import org.sqlproc.dsl.processorDsl.DaoType;
+import org.sqlproc.dsl.processorDsl.DescendantAssignment;
 import org.sqlproc.dsl.processorDsl.EnumDirective;
 import org.sqlproc.dsl.processorDsl.EnumDirectiveExtends;
 import org.sqlproc.dsl.processorDsl.EnumDirectiveFinal;
@@ -711,18 +718,40 @@ public class Utils {
         return qn2;
     }
 
-    // public static Map<String, List<PojoMethodArg>> getToInits(PojoDao d) {
-    // Map<String, List<PojoMethodArg>> result = new LinkedHashMap<String, List<PojoMethodArg>>();
-    // for (ToInitMethod m : d.getToInits()) {
-    // if (m.getArgs() != null && !m.getArgs().isEmpty()) {
-    // result.put(m.getName(), new ArrayList<PojoMethodArg>());
-    // for (PojoMethodArg a : m.getArgs()) {
-    // result.get(m.getName()).add(a);
-    // }
-    // }
-    // }
-    // return result;
-    // }
+    public static Map<String, List<DescendantAssignment>> getToInits(PojoDao d) {
+        Map<String, List<DescendantAssignment>> result = new LinkedHashMap<String, List<DescendantAssignment>>();
+        if (d.getDirectives() == null || d.getDirectives().isEmpty())
+            return result;
+        for (DaoDirective directive : d.getDirectives()) {
+            if (directive instanceof DaoDirectiveDiscriminator) {
+                DaoDirectiveDiscriminator discr = (DaoDirectiveDiscriminator) directive;
+                String name = discr.getAncestor().getName();
+                List<DescendantAssignment> list = result.get(name);
+                if (list == null)
+                    result.put(name, list = new ArrayList<DescendantAssignment>());
+                for (DescendantAssignment descendant : discr.getDescendants()) {
+                    list.add(descendant);
+                }
+            }
+        }
+        return result;
+    }
+
+    public static List<PojoType> getPojos(PojoDao d) {
+        List<PojoType> result = new ArrayList<PojoType>();
+        Set<String> ids = new HashSet<String>();
+        if (d.getDirectives() == null || d.getDirectives().isEmpty())
+            return result;
+        for (DaoDirective directive : d.getDirectives()) {
+            PojoType pojo = null;
+            if (directive instanceof DaoDirectivePojo) {
+                pojo = ((DaoDirectivePojo) directive).getPojo();
+            }
+            if (pojo != null && !ids.contains(null))
+                result.add(pojo);
+        }
+        return result;
+    }
 
     public static PojoType getParent(PojoEntity e) {
         if (getDiscriminator(e) != null)

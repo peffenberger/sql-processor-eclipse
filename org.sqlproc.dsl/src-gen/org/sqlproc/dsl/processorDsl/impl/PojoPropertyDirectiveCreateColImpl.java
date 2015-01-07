@@ -85,7 +85,7 @@ public class PojoPropertyDirectiveCreateColImpl extends PojoPropertyDirectiveImp
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_CREATE_COL;
+    return ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveCreateCol();
   }
 
   /**

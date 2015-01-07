@@ -36,7 +36,7 @@ public class StandardAnnotationImpl extends EntityAnnotationImpl implements Stan
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.STANDARD_ANNOTATION;
+    return ProcessorDslPackage.eINSTANCE.getStandardAnnotation();
   }
 
 } //StandardAnnotationImpl

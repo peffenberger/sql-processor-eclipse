@@ -65,7 +65,7 @@ public class DatabaseTypeAssignementImpl extends MinimalEObjectImpl.Container im
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DATABASE_TYPE_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getDatabaseTypeAssignement();
   }
 
   /**

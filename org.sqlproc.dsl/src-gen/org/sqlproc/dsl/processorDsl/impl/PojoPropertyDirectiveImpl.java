@@ -38,7 +38,7 @@ public class PojoPropertyDirectiveImpl extends MinimalEObjectImpl.Container impl
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE;
+    return ProcessorDslPackage.eINSTANCE.getPojoPropertyDirective();
   }
 
 } //PojoPropertyDirectiveImpl

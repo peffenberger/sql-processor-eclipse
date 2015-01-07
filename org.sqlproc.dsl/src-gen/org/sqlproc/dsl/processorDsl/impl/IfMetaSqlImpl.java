@@ -98,7 +98,7 @@ public class IfMetaSqlImpl extends MinimalEObjectImpl.Container implements IfMet
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.IF_META_SQL;
+    return ProcessorDslPackage.eINSTANCE.getIfMetaSql();
   }
 
   /**

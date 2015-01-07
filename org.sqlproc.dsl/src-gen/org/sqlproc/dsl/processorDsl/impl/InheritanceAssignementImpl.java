@@ -103,7 +103,7 @@ public class InheritanceAssignementImpl extends MinimalEObjectImpl.Container imp
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.INHERITANCE_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getInheritanceAssignement();
   }
 
   /**

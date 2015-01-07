@@ -63,7 +63,7 @@ public class DirectivePropertiesImpl extends MinimalEObjectImpl.Container implem
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DIRECTIVE_PROPERTIES;
+    return ProcessorDslPackage.eINSTANCE.getDirectiveProperties();
   }
 
   /**

@@ -36,7 +36,7 @@ public class SetterAnnotationImpl extends PojoPropertyAnnotationImpl implements 
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.SETTER_ANNOTATION;
+    return ProcessorDslPackage.eINSTANCE.getSetterAnnotation();
   }
 
 } //SetterAnnotationImpl

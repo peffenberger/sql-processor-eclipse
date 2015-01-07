@@ -65,7 +65,7 @@ public class DatabaseCatalogAssignementImpl extends MinimalEObjectImpl.Container
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DATABASE_CATALOG_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getDatabaseCatalogAssignement();
   }
 
   /**

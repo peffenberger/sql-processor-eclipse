@@ -65,7 +65,7 @@ public class DatabaseTableImpl extends MinimalEObjectImpl.Container implements D
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DATABASE_TABLE;
+    return ProcessorDslPackage.eINSTANCE.getDatabaseTable();
   }
 
   /**

@@ -57,7 +57,7 @@ public class DaoDirectiveProcedureImpl extends DaoDirectiveImpl implements DaoDi
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DAO_DIRECTIVE_PROCEDURE;
+    return ProcessorDslPackage.eINSTANCE.getDaoDirectiveProcedure();
   }
 
   /**

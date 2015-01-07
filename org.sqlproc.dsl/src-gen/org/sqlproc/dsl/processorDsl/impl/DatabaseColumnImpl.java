@@ -65,7 +65,7 @@ public class DatabaseColumnImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DATABASE_COLUMN;
+    return ProcessorDslPackage.eINSTANCE.getDatabaseColumn();
   }
 
   /**

@@ -113,7 +113,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_TYPE;
+    return ProcessorDslPackage.eINSTANCE.getPojoType();
   }
 
   /**

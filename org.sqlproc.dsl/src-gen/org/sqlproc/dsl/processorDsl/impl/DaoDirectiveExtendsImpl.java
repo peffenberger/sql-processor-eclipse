@@ -57,7 +57,7 @@ public class DaoDirectiveExtendsImpl extends DaoDirectiveImpl implements DaoDire
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DAO_DIRECTIVE_EXTENDS;
+    return ProcessorDslPackage.eINSTANCE.getDaoDirectiveExtends();
   }
 
   /**

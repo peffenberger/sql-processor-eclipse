@@ -92,7 +92,7 @@ public class DaoTypeImpl extends MinimalEObjectImpl.Container implements DaoType
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DAO_TYPE;
+    return ProcessorDslPackage.eINSTANCE.getDaoType();
   }
 
   /**

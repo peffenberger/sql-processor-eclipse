@@ -57,7 +57,7 @@ public class PojoDirectiveEqualsImpl extends PojoDirectiveImpl implements PojoDi
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_DIRECTIVE_EQUALS;
+    return ProcessorDslPackage.eINSTANCE.getPojoDirectiveEquals();
   }
 
   /**

@@ -64,7 +64,7 @@ public class ImplPackageImpl extends AbstractEntityImpl implements ImplPackage
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.IMPL_PACKAGE;
+    return ProcessorDslPackage.eINSTANCE.getImplPackage();
   }
 
   /**

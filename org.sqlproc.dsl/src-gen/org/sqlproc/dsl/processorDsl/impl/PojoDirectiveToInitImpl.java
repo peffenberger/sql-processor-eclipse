@@ -57,7 +57,7 @@ public class PojoDirectiveToInitImpl extends PojoDirectiveImpl implements PojoDi
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_DIRECTIVE_TO_INIT;
+    return ProcessorDslPackage.eINSTANCE.getPojoDirectiveToInit();
   }
 
   /**

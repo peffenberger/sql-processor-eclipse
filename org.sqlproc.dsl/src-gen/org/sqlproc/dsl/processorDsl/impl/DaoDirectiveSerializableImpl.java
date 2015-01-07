@@ -64,7 +64,7 @@ public class DaoDirectiveSerializableImpl extends DaoDirectiveImpl implements Da
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DAO_DIRECTIVE_SERIALIZABLE;
+    return ProcessorDslPackage.eINSTANCE.getDaoDirectiveSerializable();
   }
 
   /**

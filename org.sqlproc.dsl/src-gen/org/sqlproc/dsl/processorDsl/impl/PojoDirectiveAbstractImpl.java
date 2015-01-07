@@ -36,7 +36,7 @@ public class PojoDirectiveAbstractImpl extends PojoDirectiveImpl implements Pojo
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_DIRECTIVE_ABSTRACT;
+    return ProcessorDslPackage.eINSTANCE.getPojoDirectiveAbstract();
   }
 
 } //PojoDirectiveAbstractImpl

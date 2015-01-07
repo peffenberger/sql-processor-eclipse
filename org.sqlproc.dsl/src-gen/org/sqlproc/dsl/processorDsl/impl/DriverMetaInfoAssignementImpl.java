@@ -65,7 +65,7 @@ public class DriverMetaInfoAssignementImpl extends MinimalEObjectImpl.Container 
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DRIVER_META_INFO_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getDriverMetaInfoAssignement();
   }
 
   /**

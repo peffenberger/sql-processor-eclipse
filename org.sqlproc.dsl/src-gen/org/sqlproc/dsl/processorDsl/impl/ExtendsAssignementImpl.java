@@ -86,7 +86,7 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.EXTENDS_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getExtendsAssignement();
   }
 
   /**

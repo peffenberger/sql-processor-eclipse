@@ -124,7 +124,7 @@ public class OptionalFeatureImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.OPTIONAL_FEATURE;
+    return ProcessorDslPackage.eINSTANCE.getOptionalFeature();
   }
 
   /**

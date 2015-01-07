@@ -103,7 +103,7 @@ public class ConstantImpl extends MinimalEObjectImpl.Container implements Consta
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.CONSTANT;
+    return ProcessorDslPackage.eINSTANCE.getConstant();
   }
 
   /**

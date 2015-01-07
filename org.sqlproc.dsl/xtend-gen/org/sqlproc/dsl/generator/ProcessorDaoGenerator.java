@@ -9,14 +9,18 @@ import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.sqlproc.dsl.ImportManager;
 import org.sqlproc.dsl.generator.ProcessorGeneratorUtils;
+import org.sqlproc.dsl.processorDsl.DescendantAssignment;
+import org.sqlproc.dsl.processorDsl.Entity;
 import org.sqlproc.dsl.processorDsl.Extends;
 import org.sqlproc.dsl.processorDsl.ImplPackage;
 import org.sqlproc.dsl.processorDsl.Implements;
@@ -43,20 +47,15 @@ public class ProcessorDaoGenerator {
   
   public CharSequence compile(final PojoDao d) {
     throw new Error("Unresolved compilation problems:"
-      + "\nThe method getToInits is undefined for the type ProcessorDaoGenerator"
       + "\nThe method pojo is undefined for the type ProcessorDaoGenerator"
       + "\nThe method pojo is undefined for the type ProcessorDaoGenerator"
       + "\nThe method pojo is undefined for the type ProcessorDaoGenerator"
+      + "\nType mismatch: cannot convert from Entity to PojoEntity"
       + "\n!= cannot be resolved"
-      + "\ncompleteName cannot be resolved"
-      + "\nentrySet cannot be resolved"
-      + "\nvalue cannot be resolved"
-      + "\ntype cannot be resolved"
-      + "\nref cannot be resolved"
       + "\ncompleteName cannot be resolved");
   }
   
-  public CharSequence compile(final PojoDao d, final PojoEntity e, final /* Map<String, List<PojoMethodArg>> */Object toInits, final ImportManager im) {
+  public CharSequence compile(final PojoDao d, final PojoEntity e, final Map<String, List<DescendantAssignment>> toInits, final ImportManager im) {
     throw new Error("Unresolved compilation problems:"
       + "\nThe method methods is undefined for the type ProcessorDaoGenerator"
       + "\nThe method isCallUpdate is undefined for the type ProcessorDaoGenerator"
@@ -1435,12 +1434,108 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compileMoreResultClasses(final PojoDao d, final PojoEntity e, final /* Map<String, List<PojoMethodArg>> */Object toInits, final ImportManager im) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nname cannot be resolved"
-      + "\ntype cannot be resolved"
-      + "\nref cannot be resolved"
-      + "\nfullyQualifiedName cannot be resolved");
+  public CharSequence compileMoreResultClasses(final PojoDao d, final PojoEntity e, final Map<String, List<DescendantAssignment>> toInits, final ImportManager im) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("SqlControl getMoreResultClasses(");
+    String _name = e.getName();
+    _builder.append(_name, "\t");
+    _builder.append(" ");
+    String _name_1 = e.getName();
+    String _firstLower = StringExtensions.toFirstLower(_name_1);
+    _builder.append(_firstLower, "\t");
+    _builder.append(", SqlControl sqlControl) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("if (sqlControl != null && sqlControl.getMoreResultClasses() != null)");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("return sqlControl;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("Map<String, Class<?>> moreResultClasses = null;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    {
+      Set<Map.Entry<String, List<DescendantAssignment>>> _entrySet = toInits.entrySet();
+      boolean _hasElements = false;
+      for(final Map.Entry<String, List<DescendantAssignment>> f : _entrySet) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate("\n\t", "\t\t");
+        }
+        _builder.append("\t\tif (");
+        String _name_2 = e.getName();
+        String _firstLower_1 = StringExtensions.toFirstLower(_name_2);
+        _builder.append(_firstLower_1, "\t\t");
+        _builder.append(" != null && ");
+        String _name_3 = e.getName();
+        String _firstLower_2 = StringExtensions.toFirstLower(_name_3);
+        _builder.append(_firstLower_2, "\t\t");
+        _builder.append(".toInit(");
+        String _name_4 = e.getName();
+        _builder.append(_name_4, "\t\t");
+        _builder.append(".Association.");
+        String _key = f.getKey();
+        _builder.append(_key, "\t\t");
+        _builder.append(".name())) {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t");
+        _builder.append("\t");
+        _builder.append("if (moreResultClasses == null)");
+        _builder.newLine();
+        _builder.append("\t\t");
+        _builder.append("\t\t");
+        _builder.append("moreResultClasses = new HashMap<String, Class<?>>();");
+        _builder.newLine();
+        _builder.append("\t\t");
+        {
+          List<DescendantAssignment> _value = f.getValue();
+          boolean _hasElements_1 = false;
+          for(final DescendantAssignment a : _value) {
+            if (!_hasElements_1) {
+              _hasElements_1 = true;
+            } else {
+              _builder.appendImmediate("\n\t", "\t\t");
+            }
+            _builder.append("\t\tmoreResultClasses.put(\"");
+            String _value_1 = a.getValue();
+            _builder.append(_value_1, "\t\t");
+            _builder.append("\", ");
+            PojoType _descendant = a.getDescendant();
+            Entity _ref = _descendant.getRef();
+            QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_ref);
+            _builder.append(_fullyQualifiedName, "\t\t");
+            _builder.append(".class);");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.append("\t\t");
+    _builder.append("if (moreResultClasses != null) {");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("sqlControl = new SqlStandardControl(sqlControl);");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("((SqlStandardControl) sqlControl).setMoreResultClasses(moreResultClasses);");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return sqlControl;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
   }
   
   public CharSequence compileIfx(final PojoDao d) {

@@ -36,7 +36,7 @@ public class StaticAnnotationImpl extends EntityAnnotationImpl implements Static
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.STATIC_ANNOTATION;
+    return ProcessorDslPackage.eINSTANCE.getStaticAnnotation();
   }
 
 } //StaticAnnotationImpl

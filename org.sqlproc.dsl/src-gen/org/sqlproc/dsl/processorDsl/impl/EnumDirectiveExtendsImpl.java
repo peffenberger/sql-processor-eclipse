@@ -57,7 +57,7 @@ public class EnumDirectiveExtendsImpl extends EnumDirectiveImpl implements EnumD
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ENUM_DIRECTIVE_EXTENDS;
+    return ProcessorDslPackage.eINSTANCE.getEnumDirectiveExtends();
   }
 
   /**

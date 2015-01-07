@@ -318,7 +318,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DATABASE_PROPERTY;
+    return ProcessorDslPackage.eINSTANCE.getDatabaseProperty();
   }
 
   /**

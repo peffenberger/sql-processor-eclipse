@@ -78,7 +78,7 @@ public class PojoDirectiveIndexImpl extends PojoDirectiveImpl implements PojoDir
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_DIRECTIVE_INDEX;
+    return ProcessorDslPackage.eINSTANCE.getPojoDirectiveIndex();
   }
 
   /**

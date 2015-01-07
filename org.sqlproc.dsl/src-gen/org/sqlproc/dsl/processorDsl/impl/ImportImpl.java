@@ -64,7 +64,7 @@ public class ImportImpl extends AbstractEntityImpl implements Import
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.IMPORT;
+    return ProcessorDslPackage.eINSTANCE.getImport();
   }
 
   /**

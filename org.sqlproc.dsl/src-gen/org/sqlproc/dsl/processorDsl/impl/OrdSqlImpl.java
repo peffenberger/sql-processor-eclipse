@@ -63,7 +63,7 @@ public class OrdSqlImpl extends MinimalEObjectImpl.Container implements OrdSql
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ORD_SQL;
+    return ProcessorDslPackage.eINSTANCE.getOrdSql();
   }
 
   /**

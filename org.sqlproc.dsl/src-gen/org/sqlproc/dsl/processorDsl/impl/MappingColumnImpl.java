@@ -63,7 +63,7 @@ public class MappingColumnImpl extends MinimalEObjectImpl.Container implements M
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.MAPPING_COLUMN;
+    return ProcessorDslPackage.eINSTANCE.getMappingColumn();
   }
 
   /**

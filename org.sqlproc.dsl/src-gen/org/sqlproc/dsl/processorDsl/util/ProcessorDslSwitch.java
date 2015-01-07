@@ -677,10 +677,17 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.DIRECTIVE_PARAMETERS:
+      case ProcessorDslPackage.DAO_DIRECTIVE_PARAMETERS:
       {
-        DirectiveParameters directiveParameters = (DirectiveParameters)theEObject;
-        T result = caseDirectiveParameters(directiveParameters);
+        DaoDirectiveParameters daoDirectiveParameters = (DaoDirectiveParameters)theEObject;
+        T result = caseDaoDirectiveParameters(daoDirectiveParameters);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.DESCENDANT_ASSIGNMENT:
+      {
+        DescendantAssignment descendantAssignment = (DescendantAssignment)theEObject;
+        T result = caseDescendantAssignment(descendantAssignment);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -987,19 +994,19 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR:
-      {
-        DaoDirectiveDiscriminator daoDirectiveDiscriminator = (DaoDirectiveDiscriminator)theEObject;
-        T result = caseDaoDirectiveDiscriminator(daoDirectiveDiscriminator);
-        if (result == null) result = caseDaoDirective(daoDirectiveDiscriminator);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case ProcessorDslPackage.DAO_DIRECTIVE_SERIALIZABLE:
       {
         DaoDirectiveSerializable daoDirectiveSerializable = (DaoDirectiveSerializable)theEObject;
         T result = caseDaoDirectiveSerializable(daoDirectiveSerializable);
         if (result == null) result = caseDaoDirective(daoDirectiveSerializable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR:
+      {
+        DaoDirectiveDiscriminator daoDirectiveDiscriminator = (DaoDirectiveDiscriminator)theEObject;
+        T result = caseDaoDirectiveDiscriminator(daoDirectiveDiscriminator);
+        if (result == null) result = caseDaoDirective(daoDirectiveDiscriminator);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2408,17 +2415,33 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Directive Parameters</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Parameters</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Directive Parameters</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Parameters</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDirectiveParameters(DirectiveParameters object)
+  public T caseDaoDirectiveParameters(DaoDirectiveParameters object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Descendant Assignment</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Descendant Assignment</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDescendantAssignment(DescendantAssignment object)
   {
     return null;
   }
@@ -3032,22 +3055,6 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Discriminator</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Dao Directive Discriminator</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDaoDirectiveDiscriminator(DaoDirectiveDiscriminator object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Dao Directive Serializable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -3059,6 +3066,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDaoDirectiveSerializable(DaoDirectiveSerializable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Discriminator</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Discriminator</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoDirectiveDiscriminator(DaoDirectiveDiscriminator object)
   {
     return null;
   }

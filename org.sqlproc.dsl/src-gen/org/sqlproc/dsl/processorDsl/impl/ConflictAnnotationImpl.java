@@ -36,7 +36,7 @@ public class ConflictAnnotationImpl extends EntityAnnotationImpl implements Conf
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.CONFLICT_ANNOTATION;
+    return ProcessorDslPackage.eINSTANCE.getConflictAnnotation();
   }
 
 } //ConflictAnnotationImpl

@@ -63,7 +63,7 @@ public class IfSqlImpl extends MinimalEObjectImpl.Container implements IfSql
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.IF_SQL;
+    return ProcessorDslPackage.eINSTANCE.getIfSql();
   }
 
   /**

@@ -57,7 +57,7 @@ public class PojoDirectiveHashCodeImpl extends PojoDirectiveImpl implements Pojo
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_DIRECTIVE_HASH_CODE;
+    return ProcessorDslPackage.eINSTANCE.getPojoDirectiveHashCode();
   }
 
   /**

@@ -75,7 +75,7 @@ public class ExtendedMappingItemImpl extends MinimalEObjectImpl.Container implem
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.EXTENDED_MAPPING_ITEM;
+    return ProcessorDslPackage.eINSTANCE.getExtendedMappingItem();
   }
 
   /**

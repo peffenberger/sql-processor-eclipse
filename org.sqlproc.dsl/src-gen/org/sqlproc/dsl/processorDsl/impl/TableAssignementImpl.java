@@ -86,7 +86,7 @@ public class TableAssignementImpl extends MinimalEObjectImpl.Container implement
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.TABLE_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getTableAssignement();
   }
 
   /**

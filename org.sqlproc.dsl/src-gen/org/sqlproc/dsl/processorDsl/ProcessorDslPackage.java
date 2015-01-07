@@ -4228,14 +4228,14 @@ public interface ProcessorDslPackage extends EPackage
   int ENUM_PROPERTY_FEATURE_COUNT = 3;
 
   /**
-   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DirectiveParametersImpl <em>Directive Parameters</em>}' class.
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveParametersImpl <em>Dao Directive Parameters</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.sqlproc.dsl.processorDsl.impl.DirectiveParametersImpl
-   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDirectiveParameters()
+   * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveParametersImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveParameters()
    * @generated
    */
-  int DIRECTIVE_PARAMETERS = 85;
+  int DAO_DIRECTIVE_PARAMETERS = 85;
 
   /**
    * The feature id for the '<em><b>In</b></em>' containment reference.
@@ -4244,7 +4244,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DIRECTIVE_PARAMETERS__IN = 0;
+  int DAO_DIRECTIVE_PARAMETERS__IN = 0;
 
   /**
    * The feature id for the '<em><b>Out</b></em>' containment reference.
@@ -4253,16 +4253,53 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DIRECTIVE_PARAMETERS__OUT = 1;
+  int DAO_DIRECTIVE_PARAMETERS__OUT = 1;
 
   /**
-   * The number of structural features of the '<em>Directive Parameters</em>' class.
+   * The number of structural features of the '<em>Dao Directive Parameters</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DIRECTIVE_PARAMETERS_FEATURE_COUNT = 2;
+  int DAO_DIRECTIVE_PARAMETERS_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DescendantAssignmentImpl <em>Descendant Assignment</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.DescendantAssignmentImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDescendantAssignment()
+   * @generated
+   */
+  int DESCENDANT_ASSIGNMENT = 86;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DESCENDANT_ASSIGNMENT__VALUE = 0;
+
+  /**
+   * The feature id for the '<em><b>Descendant</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DESCENDANT_ASSIGNMENT__DESCENDANT = 1;
+
+  /**
+   * The number of structural features of the '<em>Descendant Assignment</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DESCENDANT_ASSIGNMENT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveImpl <em>Dao Directive</em>}' class.
@@ -4272,7 +4309,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirective()
    * @generated
    */
-  int DAO_DIRECTIVE = 86;
+  int DAO_DIRECTIVE = 87;
 
   /**
    * The number of structural features of the '<em>Dao Directive</em>' class.
@@ -4291,7 +4328,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDao()
    * @generated
    */
-  int POJO_DAO = 87;
+  int POJO_DAO = 88;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -4328,7 +4365,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPackageDirectiveSuffix()
    * @generated
    */
-  int PACKAGE_DIRECTIVE_SUFFIX = 88;
+  int PACKAGE_DIRECTIVE_SUFFIX = 89;
 
   /**
    * The feature id for the '<em><b>Suffix</b></em>' attribute.
@@ -4356,7 +4393,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getConflictAnnotation()
    * @generated
    */
-  int CONFLICT_ANNOTATION = 89;
+  int CONFLICT_ANNOTATION = 90;
 
   /**
    * The feature id for the '<em><b>Annotation</b></em>' containment reference.
@@ -4384,7 +4421,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getStaticAnnotation()
    * @generated
    */
-  int STATIC_ANNOTATION = 90;
+  int STATIC_ANNOTATION = 91;
 
   /**
    * The feature id for the '<em><b>Annotation</b></em>' containment reference.
@@ -4412,7 +4449,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getConstructorAnnotation()
    * @generated
    */
-  int CONSTRUCTOR_ANNOTATION = 91;
+  int CONSTRUCTOR_ANNOTATION = 92;
 
   /**
    * The feature id for the '<em><b>Annotation</b></em>' containment reference.
@@ -4440,7 +4477,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getStandardAnnotation()
    * @generated
    */
-  int STANDARD_ANNOTATION = 92;
+  int STANDARD_ANNOTATION = 93;
 
   /**
    * The feature id for the '<em><b>Annotation</b></em>' containment reference.
@@ -4468,7 +4505,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveFinal()
    * @generated
    */
-  int POJO_DIRECTIVE_FINAL = 93;
+  int POJO_DIRECTIVE_FINAL = 94;
 
   /**
    * The number of structural features of the '<em>Pojo Directive Final</em>' class.
@@ -4487,7 +4524,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveAbstract()
    * @generated
    */
-  int POJO_DIRECTIVE_ABSTRACT = 94;
+  int POJO_DIRECTIVE_ABSTRACT = 95;
 
   /**
    * The number of structural features of the '<em>Pojo Directive Abstract</em>' class.
@@ -4506,7 +4543,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveExtends()
    * @generated
    */
-  int POJO_DIRECTIVE_EXTENDS = 95;
+  int POJO_DIRECTIVE_EXTENDS = 96;
 
   /**
    * The feature id for the '<em><b>Super Type</b></em>' containment reference.
@@ -4534,7 +4571,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveDiscriminator()
    * @generated
    */
-  int POJO_DIRECTIVE_DISCRIMINATOR = 96;
+  int POJO_DIRECTIVE_DISCRIMINATOR = 97;
 
   /**
    * The feature id for the '<em><b>Discriminator</b></em>' attribute.
@@ -4562,7 +4599,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveOperators()
    * @generated
    */
-  int POJO_DIRECTIVE_OPERATORS = 97;
+  int POJO_DIRECTIVE_OPERATORS = 98;
 
   /**
    * The feature id for the '<em><b>Operators Suffix</b></em>' attribute.
@@ -4590,7 +4627,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveSerializable()
    * @generated
    */
-  int POJO_DIRECTIVE_SERIALIZABLE = 98;
+  int POJO_DIRECTIVE_SERIALIZABLE = 99;
 
   /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
@@ -4618,7 +4655,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEquals()
    * @generated
    */
-  int POJO_DIRECTIVE_EQUALS = 99;
+  int POJO_DIRECTIVE_EQUALS = 100;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4646,7 +4683,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveHashCode()
    * @generated
    */
-  int POJO_DIRECTIVE_HASH_CODE = 100;
+  int POJO_DIRECTIVE_HASH_CODE = 101;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4674,7 +4711,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveToInit()
    * @generated
    */
-  int POJO_DIRECTIVE_TO_INIT = 101;
+  int POJO_DIRECTIVE_TO_INIT = 102;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4702,7 +4739,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEnumInit()
    * @generated
    */
-  int POJO_DIRECTIVE_ENUM_INIT = 102;
+  int POJO_DIRECTIVE_ENUM_INIT = 103;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4730,7 +4767,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveIsDef()
    * @generated
    */
-  int POJO_DIRECTIVE_IS_DEF = 103;
+  int POJO_DIRECTIVE_IS_DEF = 104;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4758,7 +4795,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEnumDef()
    * @generated
    */
-  int POJO_DIRECTIVE_ENUM_DEF = 104;
+  int POJO_DIRECTIVE_ENUM_DEF = 105;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4786,7 +4823,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveToString()
    * @generated
    */
-  int POJO_DIRECTIVE_TO_STRING = 105;
+  int POJO_DIRECTIVE_TO_STRING = 106;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4814,7 +4851,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveIndex()
    * @generated
    */
-  int POJO_DIRECTIVE_INDEX = 106;
+  int POJO_DIRECTIVE_INDEX = 107;
 
   /**
    * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -4851,7 +4888,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getSetterAnnotation()
    * @generated
    */
-  int SETTER_ANNOTATION = 107;
+  int SETTER_ANNOTATION = 108;
 
   /**
    * The feature id for the '<em><b>Annotation</b></em>' containment reference.
@@ -4879,7 +4916,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getGetterAnnotation()
    * @generated
    */
-  int GETTER_ANNOTATION = 108;
+  int GETTER_ANNOTATION = 109;
 
   /**
    * The feature id for the '<em><b>Annotation</b></em>' containment reference.
@@ -4907,7 +4944,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAttributeAnnotation()
    * @generated
    */
-  int ATTRIBUTE_ANNOTATION = 109;
+  int ATTRIBUTE_ANNOTATION = 110;
 
   /**
    * The feature id for the '<em><b>Annotation</b></em>' containment reference.
@@ -4935,7 +4972,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveRequired()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_REQUIRED = 110;
+  int POJO_PROPERTY_DIRECTIVE_REQUIRED = 111;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Required</em>' class.
@@ -4954,7 +4991,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectivePrimaryKey()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = 111;
+  int POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = 112;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Primary Key</em>' class.
@@ -4973,7 +5010,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveDiscriminator()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = 112;
+  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = 113;
 
   /**
    * The feature id for the '<em><b>Discriminator</b></em>' attribute.
@@ -5001,7 +5038,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveIndex()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_INDEX = 113;
+  int POJO_PROPERTY_DIRECTIVE_INDEX = 114;
 
   /**
    * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -5029,7 +5066,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveVersion()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_VERSION = 114;
+  int POJO_PROPERTY_DIRECTIVE_VERSION = 115;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Version</em>' class.
@@ -5048,7 +5085,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveUpdateCol()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL = 115;
+  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL = 116;
 
   /**
    * The feature id for the '<em><b>Update Column1</b></em>' attribute.
@@ -5085,7 +5122,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveCreateCol()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_CREATE_COL = 116;
+  int POJO_PROPERTY_DIRECTIVE_CREATE_COL = 117;
 
   /**
    * The feature id for the '<em><b>Create Column1</b></em>' attribute.
@@ -5122,7 +5159,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumDirectiveFinal()
    * @generated
    */
-  int ENUM_DIRECTIVE_FINAL = 117;
+  int ENUM_DIRECTIVE_FINAL = 118;
 
   /**
    * The number of structural features of the '<em>Enum Directive Final</em>' class.
@@ -5141,7 +5178,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumDirectiveExtends()
    * @generated
    */
-  int ENUM_DIRECTIVE_EXTENDS = 118;
+  int ENUM_DIRECTIVE_EXTENDS = 119;
 
   /**
    * The feature id for the '<em><b>Super Type</b></em>' containment reference.
@@ -5169,7 +5206,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumDirectiveSerializable()
    * @generated
    */
-  int ENUM_DIRECTIVE_SERIALIZABLE = 119;
+  int ENUM_DIRECTIVE_SERIALIZABLE = 120;
 
   /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
@@ -5197,7 +5234,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumPropertyDirectiveValues()
    * @generated
    */
-  int ENUM_PROPERTY_DIRECTIVE_VALUES = 120;
+  int ENUM_PROPERTY_DIRECTIVE_VALUES = 121;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' containment reference list.
@@ -5225,7 +5262,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveFinal()
    * @generated
    */
-  int DAO_DIRECTIVE_FINAL = 121;
+  int DAO_DIRECTIVE_FINAL = 122;
 
   /**
    * The number of structural features of the '<em>Dao Directive Final</em>' class.
@@ -5244,7 +5281,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveAbstract()
    * @generated
    */
-  int DAO_DIRECTIVE_ABSTRACT = 122;
+  int DAO_DIRECTIVE_ABSTRACT = 123;
 
   /**
    * The number of structural features of the '<em>Dao Directive Abstract</em>' class.
@@ -5263,7 +5300,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveExtends()
    * @generated
    */
-  int DAO_DIRECTIVE_EXTENDS = 123;
+  int DAO_DIRECTIVE_EXTENDS = 124;
 
   /**
    * The feature id for the '<em><b>Super Type</b></em>' containment reference.
@@ -5282,34 +5319,6 @@ public interface ProcessorDslPackage extends EPackage
    * @ordered
    */
   int DAO_DIRECTIVE_EXTENDS_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveDiscriminatorImpl <em>Dao Directive Discriminator</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveDiscriminatorImpl
-   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveDiscriminator()
-   * @generated
-   */
-  int DAO_DIRECTIVE_DISCRIMINATOR = 124;
-
-  /**
-   * The feature id for the '<em><b>Discriminator</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DAO_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR = DAO_DIRECTIVE_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Dao Directive Discriminator</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DAO_DIRECTIVE_DISCRIMINATOR_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveSerializableImpl <em>Dao Directive Serializable</em>}' class.
@@ -5340,6 +5349,43 @@ public interface ProcessorDslPackage extends EPackage
   int DAO_DIRECTIVE_SERIALIZABLE_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveDiscriminatorImpl <em>Dao Directive Discriminator</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveDiscriminatorImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveDiscriminator()
+   * @generated
+   */
+  int DAO_DIRECTIVE_DISCRIMINATOR = 126;
+
+  /**
+   * The feature id for the '<em><b>Ancestor</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR = DAO_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Descendants</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DAO_DIRECTIVE_DISCRIMINATOR__DESCENDANTS = DAO_DIRECTIVE_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Dao Directive Discriminator</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DAO_DIRECTIVE_DISCRIMINATOR_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectivePojoImpl <em>Dao Directive Pojo</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5347,7 +5393,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectivePojo()
    * @generated
    */
-  int DAO_DIRECTIVE_POJO = 126;
+  int DAO_DIRECTIVE_POJO = 127;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' containment reference.
@@ -5375,7 +5421,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveGenerics()
    * @generated
    */
-  int DAO_DIRECTIVE_GENERICS = 127;
+  int DAO_DIRECTIVE_GENERICS = 128;
 
   /**
    * The feature id for the '<em><b>Generics</b></em>' containment reference.
@@ -5403,7 +5449,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveProcedure()
    * @generated
    */
-  int DAO_DIRECTIVE_PROCEDURE = 128;
+  int DAO_DIRECTIVE_PROCEDURE = 129;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' containment reference.
@@ -5431,7 +5477,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveFunction()
    * @generated
    */
-  int DAO_DIRECTIVE_FUNCTION = 129;
+  int DAO_DIRECTIVE_FUNCTION = 130;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' containment reference.
@@ -5459,7 +5505,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveUpdate()
    * @generated
    */
-  int DAO_DIRECTIVE_UPDATE = 130;
+  int DAO_DIRECTIVE_UPDATE = 131;
 
   /**
    * The feature id for the '<em><b>Paramlist</b></em>' containment reference.
@@ -9411,36 +9457,68 @@ public interface ProcessorDslPackage extends EPackage
   EReference getEnumProperty_Type();
 
   /**
-   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DirectiveParameters <em>Directive Parameters</em>}'.
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveParameters <em>Dao Directive Parameters</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Directive Parameters</em>'.
-   * @see org.sqlproc.dsl.processorDsl.DirectiveParameters
+   * @return the meta object for class '<em>Dao Directive Parameters</em>'.
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveParameters
    * @generated
    */
-  EClass getDirectiveParameters();
+  EClass getDaoDirectiveParameters();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.DirectiveParameters#getIn <em>In</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveParameters#getIn <em>In</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>In</em>'.
-   * @see org.sqlproc.dsl.processorDsl.DirectiveParameters#getIn()
-   * @see #getDirectiveParameters()
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveParameters#getIn()
+   * @see #getDaoDirectiveParameters()
    * @generated
    */
-  EReference getDirectiveParameters_In();
+  EReference getDaoDirectiveParameters_In();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.DirectiveParameters#getOut <em>Out</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveParameters#getOut <em>Out</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Out</em>'.
-   * @see org.sqlproc.dsl.processorDsl.DirectiveParameters#getOut()
-   * @see #getDirectiveParameters()
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveParameters#getOut()
+   * @see #getDaoDirectiveParameters()
    * @generated
    */
-  EReference getDirectiveParameters_Out();
+  EReference getDaoDirectiveParameters_Out();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DescendantAssignment <em>Descendant Assignment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Descendant Assignment</em>'.
+   * @see org.sqlproc.dsl.processorDsl.DescendantAssignment
+   * @generated
+   */
+  EClass getDescendantAssignment();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.DescendantAssignment#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.sqlproc.dsl.processorDsl.DescendantAssignment#getValue()
+   * @see #getDescendantAssignment()
+   * @generated
+   */
+  EAttribute getDescendantAssignment_Value();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.DescendantAssignment#getDescendant <em>Descendant</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Descendant</em>'.
+   * @see org.sqlproc.dsl.processorDsl.DescendantAssignment#getDescendant()
+   * @see #getDescendantAssignment()
+   * @generated
+   */
+  EReference getDescendantAssignment_Descendant();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DaoDirective <em>Dao Directive</em>}'.
@@ -10109,27 +10187,6 @@ public interface ProcessorDslPackage extends EPackage
   EReference getDaoDirectiveExtends_SuperType();
 
   /**
-   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator <em>Dao Directive Discriminator</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Dao Directive Discriminator</em>'.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator
-   * @generated
-   */
-  EClass getDaoDirectiveDiscriminator();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getDiscriminator <em>Discriminator</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Discriminator</em>'.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getDiscriminator()
-   * @see #getDaoDirectiveDiscriminator()
-   * @generated
-   */
-  EAttribute getDaoDirectiveDiscriminator_Discriminator();
-
-  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveSerializable <em>Dao Directive Serializable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -10149,6 +10206,38 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EAttribute getDaoDirectiveSerializable_Sernum();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator <em>Dao Directive Discriminator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Dao Directive Discriminator</em>'.
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator
+   * @generated
+   */
+  EClass getDaoDirectiveDiscriminator();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getAncestor <em>Ancestor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Ancestor</em>'.
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getAncestor()
+   * @see #getDaoDirectiveDiscriminator()
+   * @generated
+   */
+  EReference getDaoDirectiveDiscriminator_Ancestor();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getDescendants <em>Descendants</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Descendants</em>'.
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getDescendants()
+   * @see #getDaoDirectiveDiscriminator()
+   * @generated
+   */
+  EReference getDaoDirectiveDiscriminator_Descendants();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DaoDirectivePojo <em>Dao Directive Pojo</em>}'.
@@ -10263,3851 +10352,5 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   ProcessorDslFactory getProcessorDslFactory();
-
-  /**
-   * <!-- begin-user-doc -->
-   * Defines literals for the meta objects that represent
-   * <ul>
-   *   <li>each class,</li>
-   *   <li>each feature of each class,</li>
-   *   <li>each enum,</li>
-   *   <li>and each data type</li>
-   * </ul>
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  interface Literals
-  {
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ArtifactsImpl <em>Artifacts</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ArtifactsImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getArtifacts()
-     * @generated
-     */
-    EClass ARTIFACTS = eINSTANCE.getArtifacts();
-
-    /**
-     * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ARTIFACTS__PROPERTIES = eINSTANCE.getArtifacts_Properties();
-
-    /**
-     * The meta object literal for the '<em><b>Pojos</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ARTIFACTS__POJOS = eINSTANCE.getArtifacts_Pojos();
-
-    /**
-     * The meta object literal for the '<em><b>Tables</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ARTIFACTS__TABLES = eINSTANCE.getArtifacts_Tables();
-
-    /**
-     * The meta object literal for the '<em><b>Procedures</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ARTIFACTS__PROCEDURES = eINSTANCE.getArtifacts_Procedures();
-
-    /**
-     * The meta object literal for the '<em><b>Functions</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ARTIFACTS__FUNCTIONS = eINSTANCE.getArtifacts_Functions();
-
-    /**
-     * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ARTIFACTS__STATEMENTS = eINSTANCE.getArtifacts_Statements();
-
-    /**
-     * The meta object literal for the '<em><b>Mappings</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ARTIFACTS__MAPPINGS = eINSTANCE.getArtifacts_Mappings();
-
-    /**
-     * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ARTIFACTS__FEATURES = eINSTANCE.getArtifacts_Features();
-
-    /**
-     * The meta object literal for the '<em><b>Pojo Packages</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ARTIFACTS__POJO_PACKAGES = eINSTANCE.getArtifacts_PojoPackages();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DatabaseCatalogAssignementImpl <em>Database Catalog Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DatabaseCatalogAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDatabaseCatalogAssignement()
-     * @generated
-     */
-    EClass DATABASE_CATALOG_ASSIGNEMENT = eINSTANCE.getDatabaseCatalogAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Catalog</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG = eINSTANCE.getDatabaseCatalogAssignement_DbCatalog();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DatabaseSchemaAssignementImpl <em>Database Schema Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DatabaseSchemaAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDatabaseSchemaAssignement()
-     * @generated
-     */
-    EClass DATABASE_SCHEMA_ASSIGNEMENT = eINSTANCE.getDatabaseSchemaAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Schema</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA = eINSTANCE.getDatabaseSchemaAssignement_DbSchema();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DatabaseTypeAssignementImpl <em>Database Type Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DatabaseTypeAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDatabaseTypeAssignement()
-     * @generated
-     */
-    EClass DATABASE_TYPE_ASSIGNEMENT = eINSTANCE.getDatabaseTypeAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DATABASE_TYPE_ASSIGNEMENT__DB_TYPE = eINSTANCE.getDatabaseTypeAssignement_DbType();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DatabaseMetaInfoAssignementImpl <em>Database Meta Info Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DatabaseMetaInfoAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDatabaseMetaInfoAssignement()
-     * @generated
-     */
-    EClass DATABASE_META_INFO_ASSIGNEMENT = eINSTANCE.getDatabaseMetaInfoAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Meta Info</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO = eINSTANCE.getDatabaseMetaInfoAssignement_DbMetaInfo();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DriverMetaInfoAssignementImpl <em>Driver Meta Info Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DriverMetaInfoAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDriverMetaInfoAssignement()
-     * @generated
-     */
-    EClass DRIVER_META_INFO_ASSIGNEMENT = eINSTANCE.getDriverMetaInfoAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Driver Info</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO = eINSTANCE.getDriverMetaInfoAssignement_DbDriverInfo();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DriverMethodOutputAssignementImpl <em>Driver Method Output Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DriverMethodOutputAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDriverMethodOutputAssignement()
-     * @generated
-     */
-    EClass DRIVER_METHOD_OUTPUT_ASSIGNEMENT = eINSTANCE.getDriverMethodOutputAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Driver Method</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DRIVER_METHOD_OUTPUT_ASSIGNEMENT__DRIVER_METHOD = eINSTANCE.getDriverMethodOutputAssignement_DriverMethod();
-
-    /**
-     * The meta object literal for the '<em><b>Call Output</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT = eINSTANCE.getDriverMethodOutputAssignement_CallOutput();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.SqlTypeAssignementImpl <em>Sql Type Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.SqlTypeAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getSqlTypeAssignement()
-     * @generated
-     */
-    EClass SQL_TYPE_ASSIGNEMENT = eINSTANCE.getSqlTypeAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Type Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SQL_TYPE_ASSIGNEMENT__TYPE_NAME = eINSTANCE.getSqlTypeAssignement_TypeName();
-
-    /**
-     * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SQL_TYPE_ASSIGNEMENT__SIZE = eINSTANCE.getSqlTypeAssignement_Size();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SQL_TYPE_ASSIGNEMENT__TYPE = eINSTANCE.getSqlTypeAssignement_Type();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ColumnTypeAssignementImpl <em>Column Type Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ColumnTypeAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getColumnTypeAssignement()
-     * @generated
-     */
-    EClass COLUMN_TYPE_ASSIGNEMENT = eINSTANCE.getColumnTypeAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Column</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute COLUMN_TYPE_ASSIGNEMENT__DB_COLUMN = eINSTANCE.getColumnTypeAssignement_DbColumn();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference COLUMN_TYPE_ASSIGNEMENT__TYPE = eINSTANCE.getColumnTypeAssignement_Type();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ShowColumnTypeAssignementImpl <em>Show Column Type Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ShowColumnTypeAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getShowColumnTypeAssignement()
-     * @generated
-     */
-    EClass SHOW_COLUMN_TYPE_ASSIGNEMENT = eINSTANCE.getShowColumnTypeAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Column</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SHOW_COLUMN_TYPE_ASSIGNEMENT__DB_COLUMN = eINSTANCE.getShowColumnTypeAssignement_DbColumn();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SHOW_COLUMN_TYPE_ASSIGNEMENT__TYPE = eINSTANCE.getShowColumnTypeAssignement_Type();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.TableAssignementImpl <em>Table Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.TableAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getTableAssignement()
-     * @generated
-     */
-    EClass TABLE_ASSIGNEMENT = eINSTANCE.getTableAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Table</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TABLE_ASSIGNEMENT__DB_TABLE = eINSTANCE.getTableAssignement_DbTable();
-
-    /**
-     * The meta object literal for the '<em><b>New Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TABLE_ASSIGNEMENT__NEW_NAME = eINSTANCE.getTableAssignement_NewName();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.JoinTableAssignementImpl <em>Join Table Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.JoinTableAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getJoinTableAssignement()
-     * @generated
-     */
-    EClass JOIN_TABLE_ASSIGNEMENT = eINSTANCE.getJoinTableAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Table</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute JOIN_TABLE_ASSIGNEMENT__DB_TABLE = eINSTANCE.getJoinTableAssignement_DbTable();
-
-    /**
-     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute JOIN_TABLE_ASSIGNEMENT__DB_TABLES = eINSTANCE.getJoinTableAssignement_DbTables();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ColumnAssignementImpl <em>Column Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ColumnAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getColumnAssignement()
-     * @generated
-     */
-    EClass COLUMN_ASSIGNEMENT = eINSTANCE.getColumnAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Column</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute COLUMN_ASSIGNEMENT__DB_COLUMN = eINSTANCE.getColumnAssignement_DbColumn();
-
-    /**
-     * The meta object literal for the '<em><b>New Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute COLUMN_ASSIGNEMENT__NEW_NAME = eINSTANCE.getColumnAssignement_NewName();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ImportAssignementImpl <em>Import Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ImportAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getImportAssignement()
-     * @generated
-     */
-    EClass IMPORT_ASSIGNEMENT = eINSTANCE.getImportAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Column</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IMPORT_ASSIGNEMENT__DB_COLUMN = eINSTANCE.getImportAssignement_DbColumn();
-
-    /**
-     * The meta object literal for the '<em><b>Pk Table</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IMPORT_ASSIGNEMENT__PK_TABLE = eINSTANCE.getImportAssignement_PkTable();
-
-    /**
-     * The meta object literal for the '<em><b>Pk Column</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IMPORT_ASSIGNEMENT__PK_COLUMN = eINSTANCE.getImportAssignement_PkColumn();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ExportAssignementImpl <em>Export Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ExportAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getExportAssignement()
-     * @generated
-     */
-    EClass EXPORT_ASSIGNEMENT = eINSTANCE.getExportAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Column</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXPORT_ASSIGNEMENT__DB_COLUMN = eINSTANCE.getExportAssignement_DbColumn();
-
-    /**
-     * The meta object literal for the '<em><b>Fk Table</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXPORT_ASSIGNEMENT__FK_TABLE = eINSTANCE.getExportAssignement_FkTable();
-
-    /**
-     * The meta object literal for the '<em><b>Fk Column</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXPORT_ASSIGNEMENT__FK_COLUMN = eINSTANCE.getExportAssignement_FkColumn();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.InheritanceAssignementImpl <em>Inheritance Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.InheritanceAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getInheritanceAssignement()
-     * @generated
-     */
-    EClass INHERITANCE_ASSIGNEMENT = eINSTANCE.getInheritanceAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Discriminator</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute INHERITANCE_ASSIGNEMENT__DISCRIMINATOR = eINSTANCE.getInheritanceAssignement_Discriminator();
-
-    /**
-     * The meta object literal for the '<em><b>Db Table</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute INHERITANCE_ASSIGNEMENT__DB_TABLE = eINSTANCE.getInheritanceAssignement_DbTable();
-
-    /**
-     * The meta object literal for the '<em><b>Db Columns</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute INHERITANCE_ASSIGNEMENT__DB_COLUMNS = eINSTANCE.getInheritanceAssignement_DbColumns();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ManyToManyAssignementImpl <em>Many To Many Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ManyToManyAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getManyToManyAssignement()
-     * @generated
-     */
-    EClass MANY_TO_MANY_ASSIGNEMENT = eINSTANCE.getManyToManyAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Pk Column</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MANY_TO_MANY_ASSIGNEMENT__PK_COLUMN = eINSTANCE.getManyToManyAssignement_PkColumn();
-
-    /**
-     * The meta object literal for the '<em><b>Pk Table</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MANY_TO_MANY_ASSIGNEMENT__PK_TABLE = eINSTANCE.getManyToManyAssignement_PkTable();
-
-    /**
-     * The meta object literal for the '<em><b>Fk Column</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MANY_TO_MANY_ASSIGNEMENT__FK_COLUMN = eINSTANCE.getManyToManyAssignement_FkColumn();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DebugLevelAssignementImpl <em>Debug Level Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DebugLevelAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDebugLevelAssignement()
-     * @generated
-     */
-    EClass DEBUG_LEVEL_ASSIGNEMENT = eINSTANCE.getDebugLevelAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Debug</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DEBUG_LEVEL_ASSIGNEMENT__DEBUG = eINSTANCE.getDebugLevelAssignement_Debug();
-
-    /**
-     * The meta object literal for the '<em><b>Scope</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DEBUG_LEVEL_ASSIGNEMENT__SCOPE = eINSTANCE.getDebugLevelAssignement_Scope();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ProcedurePojoAssignementImpl <em>Procedure Pojo Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcedurePojoAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getProcedurePojoAssignement()
-     * @generated
-     */
-    EClass PROCEDURE_POJO_ASSIGNEMENT = eINSTANCE.getProcedurePojoAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Procedure</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROCEDURE_POJO_ASSIGNEMENT__DB_PROCEDURE = eINSTANCE.getProcedurePojoAssignement_DbProcedure();
-
-    /**
-     * The meta object literal for the '<em><b>Pojo</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PROCEDURE_POJO_ASSIGNEMENT__POJO = eINSTANCE.getProcedurePojoAssignement_Pojo();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.FunctionPojoAssignementImpl <em>Function Pojo Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.FunctionPojoAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionPojoAssignement()
-     * @generated
-     */
-    EClass FUNCTION_POJO_ASSIGNEMENT = eINSTANCE.getFunctionPojoAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Function</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FUNCTION_POJO_ASSIGNEMENT__DB_FUNCTION = eINSTANCE.getFunctionPojoAssignement_DbFunction();
-
-    /**
-     * The meta object literal for the '<em><b>Pojo</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FUNCTION_POJO_ASSIGNEMENT__POJO = eINSTANCE.getFunctionPojoAssignement_Pojo();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ImplementsAssignementImpl <em>Implements Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ImplementsAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getImplementsAssignement()
-     * @generated
-     */
-    EClass IMPLEMENTS_ASSIGNEMENT = eINSTANCE.getImplementsAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>To Implement</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IMPLEMENTS_ASSIGNEMENT__TO_IMPLEMENT = eINSTANCE.getImplementsAssignement_ToImplement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IMPLEMENTS_ASSIGNEMENT__DB_TABLES = eINSTANCE.getImplementsAssignement_DbTables();
-
-    /**
-     * The meta object literal for the '<em><b>Db Not Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IMPLEMENTS_ASSIGNEMENT__DB_NOT_TABLES = eINSTANCE.getImplementsAssignement_DbNotTables();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementImpl <em>Extends Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getExtendsAssignement()
-     * @generated
-     */
-    EClass EXTENDS_ASSIGNEMENT = eINSTANCE.getExtendsAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>To Extends</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXTENDS_ASSIGNEMENT__TO_EXTENDS = eINSTANCE.getExtendsAssignement_ToExtends();
-
-    /**
-     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXTENDS_ASSIGNEMENT__DB_TABLES = eINSTANCE.getExtendsAssignement_DbTables();
-
-    /**
-     * The meta object literal for the '<em><b>Db Not Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXTENDS_ASSIGNEMENT__DB_NOT_TABLES = eINSTANCE.getExtendsAssignement_DbNotTables();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ImplementsAssignementGenericsImpl <em>Implements Assignement Generics</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ImplementsAssignementGenericsImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getImplementsAssignementGenerics()
-     * @generated
-     */
-    EClass IMPLEMENTS_ASSIGNEMENT_GENERICS = eINSTANCE.getImplementsAssignementGenerics();
-
-    /**
-     * The meta object literal for the '<em><b>To Implement</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT = eINSTANCE.getImplementsAssignementGenerics_ToImplement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_TABLES = eINSTANCE.getImplementsAssignementGenerics_DbTables();
-
-    /**
-     * The meta object literal for the '<em><b>Db Not Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_NOT_TABLES = eINSTANCE.getImplementsAssignementGenerics_DbNotTables();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementGenericsImpl <em>Extends Assignement Generics</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ExtendsAssignementGenericsImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getExtendsAssignementGenerics()
-     * @generated
-     */
-    EClass EXTENDS_ASSIGNEMENT_GENERICS = eINSTANCE.getExtendsAssignementGenerics();
-
-    /**
-     * The meta object literal for the '<em><b>To Extends</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXTENDS_ASSIGNEMENT_GENERICS__TO_EXTENDS = eINSTANCE.getExtendsAssignementGenerics_ToExtends();
-
-    /**
-     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXTENDS_ASSIGNEMENT_GENERICS__DB_TABLES = eINSTANCE.getExtendsAssignementGenerics_DbTables();
-
-    /**
-     * The meta object literal for the '<em><b>Db Not Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXTENDS_ASSIGNEMENT_GENERICS__DB_NOT_TABLES = eINSTANCE.getExtendsAssignementGenerics_DbNotTables();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PropertyImpl <em>Property</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PropertyImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getProperty()
-     * @generated
-     */
-    EClass PROPERTY = eINSTANCE.getProperty();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROPERTY__NAME = eINSTANCE.getProperty_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Database</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PROPERTY__DATABASE = eINSTANCE.getProperty_Database();
-
-    /**
-     * The meta object literal for the '<em><b>Pojogen</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PROPERTY__POJOGEN = eINSTANCE.getProperty_Pojogen();
-
-    /**
-     * The meta object literal for the '<em><b>Metagen</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PROPERTY__METAGEN = eINSTANCE.getProperty_Metagen();
-
-    /**
-     * The meta object literal for the '<em><b>Daogen</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PROPERTY__DAOGEN = eINSTANCE.getProperty_Daogen();
-
-    /**
-     * The meta object literal for the '<em><b>Replace Id</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROPERTY__REPLACE_ID = eINSTANCE.getProperty_ReplaceId();
-
-    /**
-     * The meta object literal for the '<em><b>Regex</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROPERTY__REGEX = eINSTANCE.getProperty_Regex();
-
-    /**
-     * The meta object literal for the '<em><b>Replacement</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROPERTY__REPLACEMENT = eINSTANCE.getProperty_Replacement();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DatabasePropertyImpl <em>Database Property</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DatabasePropertyImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDatabaseProperty()
-     * @generated
-     */
-    EClass DATABASE_PROPERTY = eINSTANCE.getDatabaseProperty();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DATABASE_PROPERTY__NAME = eINSTANCE.getDatabaseProperty_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Db Url</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DATABASE_PROPERTY__DB_URL = eINSTANCE.getDatabaseProperty_DbUrl();
-
-    /**
-     * The meta object literal for the '<em><b>Db Username</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DATABASE_PROPERTY__DB_USERNAME = eINSTANCE.getDatabaseProperty_DbUsername();
-
-    /**
-     * The meta object literal for the '<em><b>Db Password</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DATABASE_PROPERTY__DB_PASSWORD = eINSTANCE.getDatabaseProperty_DbPassword();
-
-    /**
-     * The meta object literal for the '<em><b>Db Catalog</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATABASE_PROPERTY__DB_CATALOG = eINSTANCE.getDatabaseProperty_DbCatalog();
-
-    /**
-     * The meta object literal for the '<em><b>Db Schema</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATABASE_PROPERTY__DB_SCHEMA = eINSTANCE.getDatabaseProperty_DbSchema();
-
-    /**
-     * The meta object literal for the '<em><b>Db Driverx</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATABASE_PROPERTY__DB_DRIVERX = eINSTANCE.getDatabaseProperty_DbDriverx();
-
-    /**
-     * The meta object literal for the '<em><b>Db Driver</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DATABASE_PROPERTY__DB_DRIVER = eINSTANCE.getDatabaseProperty_DbDriver();
-
-    /**
-     * The meta object literal for the '<em><b>Db Execute Before</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DATABASE_PROPERTY__DB_EXECUTE_BEFORE = eINSTANCE.getDatabaseProperty_DbExecuteBefore();
-
-    /**
-     * The meta object literal for the '<em><b>Db Execute After</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DATABASE_PROPERTY__DB_EXECUTE_AFTER = eINSTANCE.getDatabaseProperty_DbExecuteAfter();
-
-    /**
-     * The meta object literal for the '<em><b>Db Index Types</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DATABASE_PROPERTY__DB_INDEX_TYPES = eINSTANCE.getDatabaseProperty_DbIndexTypes();
-
-    /**
-     * The meta object literal for the '<em><b>Db Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATABASE_PROPERTY__DB_TYPE = eINSTANCE.getDatabaseProperty_DbType();
-
-    /**
-     * The meta object literal for the '<em><b>Db Meta Info</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATABASE_PROPERTY__DB_META_INFO = eINSTANCE.getDatabaseProperty_DbMetaInfo();
-
-    /**
-     * The meta object literal for the '<em><b>Db Driver Info</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATABASE_PROPERTY__DB_DRIVER_INFO = eINSTANCE.getDatabaseProperty_DbDriverInfo();
-
-    /**
-     * The meta object literal for the '<em><b>Db Methods Calls</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATABASE_PROPERTY__DB_METHODS_CALLS = eINSTANCE.getDatabaseProperty_DbMethodsCalls();
-
-    /**
-     * The meta object literal for the '<em><b>Debug</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATABASE_PROPERTY__DEBUG = eINSTANCE.getDatabaseProperty_Debug();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl <em>Pojogen Property</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojogenProperty()
-     * @generated
-     */
-    EClass POJOGEN_PROPERTY = eINSTANCE.getPojogenProperty();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__NAME = eINSTANCE.getPojogenProperty_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Sql Types</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__SQL_TYPES = eINSTANCE.getPojogenProperty_SqlTypes();
-
-    /**
-     * The meta object literal for the '<em><b>Db Table</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__DB_TABLE = eINSTANCE.getPojogenProperty_DbTable();
-
-    /**
-     * The meta object literal for the '<em><b>Column Types</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__COLUMN_TYPES = eINSTANCE.getPojogenProperty_ColumnTypes();
-
-    /**
-     * The meta object literal for the '<em><b>Db Procedure</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__DB_PROCEDURE = eINSTANCE.getPojogenProperty_DbProcedure();
-
-    /**
-     * The meta object literal for the '<em><b>Db Function</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__DB_FUNCTION = eINSTANCE.getPojogenProperty_DbFunction();
-
-    /**
-     * The meta object literal for the '<em><b>Column Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__COLUMN_TYPE = eINSTANCE.getPojogenProperty_ColumnType();
-
-    /**
-     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__DB_TABLES = eINSTANCE.getPojogenProperty_DbTables();
-
-    /**
-     * The meta object literal for the '<em><b>Join Tables</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__JOIN_TABLES = eINSTANCE.getPojogenProperty_JoinTables();
-
-    /**
-     * The meta object literal for the '<em><b>Db Columns</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__DB_COLUMNS = eINSTANCE.getPojogenProperty_DbColumns();
-
-    /**
-     * The meta object literal for the '<em><b>Tables</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__TABLES = eINSTANCE.getPojogenProperty_Tables();
-
-    /**
-     * The meta object literal for the '<em><b>Columns</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__COLUMNS = eINSTANCE.getPojogenProperty_Columns();
-
-    /**
-     * The meta object literal for the '<em><b>Exports</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__EXPORTS = eINSTANCE.getPojogenProperty_Exports();
-
-    /**
-     * The meta object literal for the '<em><b>Imports</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__IMPORTS = eINSTANCE.getPojogenProperty_Imports();
-
-    /**
-     * The meta object literal for the '<em><b>Many2s</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__MANY2S = eINSTANCE.getPojogenProperty_Many2s();
-
-    /**
-     * The meta object literal for the '<em><b>Db Column</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__DB_COLUMN = eINSTANCE.getPojogenProperty_DbColumn();
-
-    /**
-     * The meta object literal for the '<em><b>Inheritance</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__INHERITANCE = eINSTANCE.getPojogenProperty_Inheritance();
-
-    /**
-     * The meta object literal for the '<em><b>Methods</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__METHODS = eINSTANCE.getPojogenProperty_Methods();
-
-    /**
-     * The meta object literal for the '<em><b>Operators Suffix</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__OPERATORS_SUFFIX = eINSTANCE.getPojogenProperty_OperatorsSuffix();
-
-    /**
-     * The meta object literal for the '<em><b>To Implements</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__TO_IMPLEMENTS = eINSTANCE.getPojogenProperty_ToImplements();
-
-    /**
-     * The meta object literal for the '<em><b>To Extends</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__TO_EXTENDS = eINSTANCE.getPojogenProperty_ToExtends();
-
-    /**
-     * The meta object literal for the '<em><b>To Implements Generics</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS = eINSTANCE.getPojogenProperty_ToImplementsGenerics();
-
-    /**
-     * The meta object literal for the '<em><b>To Extends Generics</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__TO_EXTENDS_GENERICS = eINSTANCE.getPojogenProperty_ToExtendsGenerics();
-
-    /**
-     * The meta object literal for the '<em><b>Impl Package</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__IMPL_PACKAGE = eINSTANCE.getPojogenProperty_ImplPackage();
-
-    /**
-     * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__VERSION = eINSTANCE.getPojogenProperty_Version();
-
-    /**
-     * The meta object literal for the '<em><b>Db Not Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__DB_NOT_TABLES = eINSTANCE.getPojogenProperty_DbNotTables();
-
-    /**
-     * The meta object literal for the '<em><b>Debug</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__DEBUG = eINSTANCE.getPojogenProperty_Debug();
-
-    /**
-     * The meta object literal for the '<em><b>Proc Pojos</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__PROC_POJOS = eINSTANCE.getPojogenProperty_ProcPojos();
-
-    /**
-     * The meta object literal for the '<em><b>Fun Pojos</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJOGEN_PROPERTY__FUN_POJOS = eINSTANCE.getPojogenProperty_FunPojos();
-
-    /**
-     * The meta object literal for the '<em><b>Active Filter</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__ACTIVE_FILTER = eINSTANCE.getPojogenProperty_ActiveFilter();
-
-    /**
-     * The meta object literal for the '<em><b>Pckg</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__PCKG = eINSTANCE.getPojogenProperty_Pckg();
-
-    /**
-     * The meta object literal for the '<em><b>Enum Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__ENUM_NAME = eINSTANCE.getPojogenProperty_EnumName();
-
-    /**
-     * The meta object literal for the '<em><b>Db Check Constraints</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__DB_CHECK_CONSTRAINTS = eINSTANCE.getPojogenProperty_DbCheckConstraints();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.MetaTypeAssignementImpl <em>Meta Type Assignement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.MetaTypeAssignementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getMetaTypeAssignement()
-     * @generated
-     */
-    EClass META_TYPE_ASSIGNEMENT = eINSTANCE.getMetaTypeAssignement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Column</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute META_TYPE_ASSIGNEMENT__DB_COLUMN = eINSTANCE.getMetaTypeAssignement_DbColumn();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute META_TYPE_ASSIGNEMENT__TYPE = eINSTANCE.getMetaTypeAssignement_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Extension</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute META_TYPE_ASSIGNEMENT__EXTENSION = eINSTANCE.getMetaTypeAssignement_Extension();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl <em>Metagen Property</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.MetagenPropertyImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getMetagenProperty()
-     * @generated
-     */
-    EClass METAGEN_PROPERTY = eINSTANCE.getMetagenProperty();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__NAME = eINSTANCE.getMetagenProperty_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Sequence</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__SEQUENCE = eINSTANCE.getMetagenProperty_Sequence();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__TYPE = eINSTANCE.getMetagenProperty_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__DB_TABLES = eINSTANCE.getMetagenProperty_DbTables();
-
-    /**
-     * The meta object literal for the '<em><b>Db Not Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__DB_NOT_TABLES = eINSTANCE.getMetagenProperty_DbNotTables();
-
-    /**
-     * The meta object literal for the '<em><b>Db Table</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__DB_TABLE = eINSTANCE.getMetagenProperty_DbTable();
-
-    /**
-     * The meta object literal for the '<em><b>Identity</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__IDENTITY = eINSTANCE.getMetagenProperty_Identity();
-
-    /**
-     * The meta object literal for the '<em><b>Meta Types</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference METAGEN_PROPERTY__META_TYPES = eINSTANCE.getMetagenProperty_MetaTypes();
-
-    /**
-     * The meta object literal for the '<em><b>Db Statement</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__DB_STATEMENT = eINSTANCE.getMetagenProperty_DbStatement();
-
-    /**
-     * The meta object literal for the '<em><b>Db Columns</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__DB_COLUMNS = eINSTANCE.getMetagenProperty_DbColumns();
-
-    /**
-     * The meta object literal for the '<em><b>Db Function</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__DB_FUNCTION = eINSTANCE.getMetagenProperty_DbFunction();
-
-    /**
-     * The meta object literal for the '<em><b>Db Procedure</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__DB_PROCEDURE = eINSTANCE.getMetagenProperty_DbProcedure();
-
-    /**
-     * The meta object literal for the '<em><b>Debug</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference METAGEN_PROPERTY__DEBUG = eINSTANCE.getMetagenProperty_Debug();
-
-    /**
-     * The meta object literal for the '<em><b>Optional Features</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__OPTIONAL_FEATURES = eINSTANCE.getMetagenProperty_OptionalFeatures();
-
-    /**
-     * The meta object literal for the '<em><b>Active Filter</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METAGEN_PROPERTY__ACTIVE_FILTER = eINSTANCE.getMetagenProperty_ActiveFilter();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl <em>Daogen Property</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaogenProperty()
-     * @generated
-     */
-    EClass DAOGEN_PROPERTY = eINSTANCE.getDaogenProperty();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DAOGEN_PROPERTY__NAME = eINSTANCE.getDaogenProperty_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Db Tables</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DAOGEN_PROPERTY__DB_TABLES = eINSTANCE.getDaogenProperty_DbTables();
-
-    /**
-     * The meta object literal for the '<em><b>Impl Package</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DAOGEN_PROPERTY__IMPL_PACKAGE = eINSTANCE.getDaogenProperty_ImplPackage();
-
-    /**
-     * The meta object literal for the '<em><b>To Implements</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAOGEN_PROPERTY__TO_IMPLEMENTS = eINSTANCE.getDaogenProperty_ToImplements();
-
-    /**
-     * The meta object literal for the '<em><b>To Extends</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAOGEN_PROPERTY__TO_EXTENDS = eINSTANCE.getDaogenProperty_ToExtends();
-
-    /**
-     * The meta object literal for the '<em><b>To Implements Generics</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS = eINSTANCE.getDaogenProperty_ToImplementsGenerics();
-
-    /**
-     * The meta object literal for the '<em><b>To Extends Generics</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAOGEN_PROPERTY__TO_EXTENDS_GENERICS = eINSTANCE.getDaogenProperty_ToExtendsGenerics();
-
-    /**
-     * The meta object literal for the '<em><b>Db Function</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DAOGEN_PROPERTY__DB_FUNCTION = eINSTANCE.getDaogenProperty_DbFunction();
-
-    /**
-     * The meta object literal for the '<em><b>Result Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAOGEN_PROPERTY__RESULT_TYPE = eINSTANCE.getDaogenProperty_ResultType();
-
-    /**
-     * The meta object literal for the '<em><b>Debug</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAOGEN_PROPERTY__DEBUG = eINSTANCE.getDaogenProperty_Debug();
-
-    /**
-     * The meta object literal for the '<em><b>Active Filter</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DAOGEN_PROPERTY__ACTIVE_FILTER = eINSTANCE.getDaogenProperty_ActiveFilter();
-
-    /**
-     * The meta object literal for the '<em><b>Pckg</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DAOGEN_PROPERTY__PCKG = eINSTANCE.getDaogenProperty_Pckg();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDefinitionImpl <em>Pojo Definition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDefinitionImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDefinition()
-     * @generated
-     */
-    EClass POJO_DEFINITION = eINSTANCE.getPojoDefinition();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_DEFINITION__NAME = eINSTANCE.getPojoDefinition_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Class</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_DEFINITION__CLASS = eINSTANCE.getPojoDefinition_Class();
-
-    /**
-     * The meta object literal for the '<em><b>Classx</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_DEFINITION__CLASSX = eINSTANCE.getPojoDefinition_Classx();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.TableDefinitionImpl <em>Table Definition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.TableDefinitionImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getTableDefinition()
-     * @generated
-     */
-    EClass TABLE_DEFINITION = eINSTANCE.getTableDefinition();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TABLE_DEFINITION__NAME = eINSTANCE.getTableDefinition_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TABLE_DEFINITION__TABLE = eINSTANCE.getTableDefinition_Table();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ProcedureDefinitionImpl <em>Procedure Definition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcedureDefinitionImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getProcedureDefinition()
-     * @generated
-     */
-    EClass PROCEDURE_DEFINITION = eINSTANCE.getProcedureDefinition();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROCEDURE_DEFINITION__NAME = eINSTANCE.getProcedureDefinition_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROCEDURE_DEFINITION__TABLE = eINSTANCE.getProcedureDefinition_Table();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.FunctionDefinitionImpl <em>Function Definition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.FunctionDefinitionImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionDefinition()
-     * @generated
-     */
-    EClass FUNCTION_DEFINITION = eINSTANCE.getFunctionDefinition();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FUNCTION_DEFINITION__NAME = eINSTANCE.getFunctionDefinition_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FUNCTION_DEFINITION__TABLE = eINSTANCE.getFunctionDefinition_Table();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.MetaStatementImpl <em>Meta Statement</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.MetaStatementImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getMetaStatement()
-     * @generated
-     */
-    EClass META_STATEMENT = eINSTANCE.getMetaStatement();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute META_STATEMENT__NAME = eINSTANCE.getMetaStatement_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute META_STATEMENT__TYPE = eINSTANCE.getMetaStatement_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Modifiers</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute META_STATEMENT__MODIFIERS = eINSTANCE.getMetaStatement_Modifiers();
-
-    /**
-     * The meta object literal for the '<em><b>Statement</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference META_STATEMENT__STATEMENT = eINSTANCE.getMetaStatement_Statement();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.SqlImpl <em>Sql</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.SqlImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getSql()
-     * @generated
-     */
-    EClass SQL = eINSTANCE.getSql();
-
-    /**
-     * The meta object literal for the '<em><b>Sqls</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SQL__SQLS = eINSTANCE.getSql_Sqls();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.SqlFragmentImpl <em>Sql Fragment</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.SqlFragmentImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getSqlFragment()
-     * @generated
-     */
-    EClass SQL_FRAGMENT = eINSTANCE.getSqlFragment();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SQL_FRAGMENT__VALUE = eINSTANCE.getSqlFragment_Value();
-
-    /**
-     * The meta object literal for the '<em><b>Col</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SQL_FRAGMENT__COL = eINSTANCE.getSqlFragment_Col();
-
-    /**
-     * The meta object literal for the '<em><b>Cnst</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SQL_FRAGMENT__CNST = eINSTANCE.getSqlFragment_Cnst();
-
-    /**
-     * The meta object literal for the '<em><b>Ident</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SQL_FRAGMENT__IDENT = eINSTANCE.getSqlFragment_Ident();
-
-    /**
-     * The meta object literal for the '<em><b>Cnst Oper</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SQL_FRAGMENT__CNST_OPER = eINSTANCE.getSqlFragment_CnstOper();
-
-    /**
-     * The meta object literal for the '<em><b>Ident Oper</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SQL_FRAGMENT__IDENT_OPER = eINSTANCE.getSqlFragment_IdentOper();
-
-    /**
-     * The meta object literal for the '<em><b>Meta</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SQL_FRAGMENT__META = eINSTANCE.getSqlFragment_Meta();
-
-    /**
-     * The meta object literal for the '<em><b>Dbtab</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SQL_FRAGMENT__DBTAB = eINSTANCE.getSqlFragment_Dbtab();
-
-    /**
-     * The meta object literal for the '<em><b>Dbcol</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SQL_FRAGMENT__DBCOL = eINSTANCE.getSqlFragment_Dbcol();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.MetaSqlImpl <em>Meta Sql</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.MetaSqlImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getMetaSql()
-     * @generated
-     */
-    EClass META_SQL = eINSTANCE.getMetaSql();
-
-    /**
-     * The meta object literal for the '<em><b>Ifs</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference META_SQL__IFS = eINSTANCE.getMetaSql_Ifs();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute META_SQL__TYPE = eINSTANCE.getMetaSql_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Cond</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference META_SQL__COND = eINSTANCE.getMetaSql_Cond();
-
-    /**
-     * The meta object literal for the '<em><b>Ftype</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute META_SQL__FTYPE = eINSTANCE.getMetaSql_Ftype();
-
-    /**
-     * The meta object literal for the '<em><b>Ord</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference META_SQL__ORD = eINSTANCE.getMetaSql_Ord();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.IfSqlImpl <em>If Sql</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.IfSqlImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getIfSql()
-     * @generated
-     */
-    EClass IF_SQL = eINSTANCE.getIfSql();
-
-    /**
-     * The meta object literal for the '<em><b>Sqls</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_SQL__SQLS = eINSTANCE.getIfSql_Sqls();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.IfSqlFragmentImpl <em>If Sql Fragment</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.IfSqlFragmentImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getIfSqlFragment()
-     * @generated
-     */
-    EClass IF_SQL_FRAGMENT = eINSTANCE.getIfSqlFragment();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IF_SQL_FRAGMENT__VALUE = eINSTANCE.getIfSqlFragment_Value();
-
-    /**
-     * The meta object literal for the '<em><b>Col</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_SQL_FRAGMENT__COL = eINSTANCE.getIfSqlFragment_Col();
-
-    /**
-     * The meta object literal for the '<em><b>Cnst</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_SQL_FRAGMENT__CNST = eINSTANCE.getIfSqlFragment_Cnst();
-
-    /**
-     * The meta object literal for the '<em><b>Ident</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_SQL_FRAGMENT__IDENT = eINSTANCE.getIfSqlFragment_Ident();
-
-    /**
-     * The meta object literal for the '<em><b>Cnst Oper</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_SQL_FRAGMENT__CNST_OPER = eINSTANCE.getIfSqlFragment_CnstOper();
-
-    /**
-     * The meta object literal for the '<em><b>Ident Oper</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_SQL_FRAGMENT__IDENT_OPER = eINSTANCE.getIfSqlFragment_IdentOper();
-
-    /**
-     * The meta object literal for the '<em><b>Dbtab</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_SQL_FRAGMENT__DBTAB = eINSTANCE.getIfSqlFragment_Dbtab();
-
-    /**
-     * The meta object literal for the '<em><b>Dbcol</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_SQL_FRAGMENT__DBCOL = eINSTANCE.getIfSqlFragment_Dbcol();
-
-    /**
-     * The meta object literal for the '<em><b>Meta</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_SQL_FRAGMENT__META = eINSTANCE.getIfSqlFragment_Meta();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.IfMetaSqlImpl <em>If Meta Sql</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.IfMetaSqlImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getIfMetaSql()
-     * @generated
-     */
-    EClass IF_META_SQL = eINSTANCE.getIfMetaSql();
-
-    /**
-     * The meta object literal for the '<em><b>Ifs</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_META_SQL__IFS = eINSTANCE.getIfMetaSql_Ifs();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IF_META_SQL__TYPE = eINSTANCE.getIfMetaSql_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Cond</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_META_SQL__COND = eINSTANCE.getIfMetaSql_Cond();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.IfSqlCondImpl <em>If Sql Cond</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.IfSqlCondImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getIfSqlCond()
-     * @generated
-     */
-    EClass IF_SQL_COND = eINSTANCE.getIfSqlCond();
-
-    /**
-     * The meta object literal for the '<em><b>Bool1</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_SQL_COND__BOOL1 = eINSTANCE.getIfSqlCond_Bool1();
-
-    /**
-     * The meta object literal for the '<em><b>Oper</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IF_SQL_COND__OPER = eINSTANCE.getIfSqlCond_Oper();
-
-    /**
-     * The meta object literal for the '<em><b>Bool2</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_SQL_COND__BOOL2 = eINSTANCE.getIfSqlCond_Bool2();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.IfSqlBoolImpl <em>If Sql Bool</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.IfSqlBoolImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getIfSqlBool()
-     * @generated
-     */
-    EClass IF_SQL_BOOL = eINSTANCE.getIfSqlBool();
-
-    /**
-     * The meta object literal for the '<em><b>Not</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IF_SQL_BOOL__NOT = eINSTANCE.getIfSqlBool_Not();
-
-    /**
-     * The meta object literal for the '<em><b>Cnst</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_SQL_BOOL__CNST = eINSTANCE.getIfSqlBool_Cnst();
-
-    /**
-     * The meta object literal for the '<em><b>Ident</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_SQL_BOOL__IDENT = eINSTANCE.getIfSqlBool_Ident();
-
-    /**
-     * The meta object literal for the '<em><b>Cond</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IF_SQL_BOOL__COND = eINSTANCE.getIfSqlBool_Cond();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.OrdSqlImpl <em>Ord Sql</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.OrdSqlImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getOrdSql()
-     * @generated
-     */
-    EClass ORD_SQL = eINSTANCE.getOrdSql();
-
-    /**
-     * The meta object literal for the '<em><b>Sqls</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ORD_SQL__SQLS = eINSTANCE.getOrdSql_Sqls();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.OrdSql2Impl <em>Ord Sql2</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.OrdSql2Impl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getOrdSql2()
-     * @generated
-     */
-    EClass ORD_SQL2 = eINSTANCE.getOrdSql2();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ORD_SQL2__VALUE = eINSTANCE.getOrdSql2_Value();
-
-    /**
-     * The meta object literal for the '<em><b>Cnst</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ORD_SQL2__CNST = eINSTANCE.getOrdSql2_Cnst();
-
-    /**
-     * The meta object literal for the '<em><b>Ident</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ORD_SQL2__IDENT = eINSTANCE.getOrdSql2_Ident();
-
-    /**
-     * The meta object literal for the '<em><b>Dbcol</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ORD_SQL2__DBCOL = eINSTANCE.getOrdSql2_Dbcol();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ColumnImpl <em>Column</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ColumnImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getColumn()
-     * @generated
-     */
-    EClass COLUMN = eINSTANCE.getColumn();
-
-    /**
-     * The meta object literal for the '<em><b>Columns</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference COLUMN__COLUMNS = eINSTANCE.getColumn_Columns();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendedColumnImpl <em>Extended Column</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ExtendedColumnImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getExtendedColumn()
-     * @generated
-     */
-    EClass EXTENDED_COLUMN = eINSTANCE.getExtendedColumn();
-
-    /**
-     * The meta object literal for the '<em><b>Col</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXTENDED_COLUMN__COL = eINSTANCE.getExtendedColumn_Col();
-
-    /**
-     * The meta object literal for the '<em><b>Modifiers</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXTENDED_COLUMN__MODIFIERS = eINSTANCE.getExtendedColumn_Modifiers();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendedColumnNameImpl <em>Extended Column Name</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ExtendedColumnNameImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getExtendedColumnName()
-     * @generated
-     */
-    EClass EXTENDED_COLUMN_NAME = eINSTANCE.getExtendedColumnName();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXTENDED_COLUMN_NAME__NAME = eINSTANCE.getExtendedColumnName_Name();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ConstantImpl <em>Constant</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ConstantImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getConstant()
-     * @generated
-     */
-    EClass CONSTANT = eINSTANCE.getConstant();
-
-    /**
-     * The meta object literal for the '<em><b>Case</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONSTANT__CASE = eINSTANCE.getConstant_Case();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONSTANT__NAME = eINSTANCE.getConstant_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Modifiers</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONSTANT__MODIFIERS = eINSTANCE.getConstant_Modifiers();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.IdentifierImpl <em>Identifier</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.IdentifierImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getIdentifier()
-     * @generated
-     */
-    EClass IDENTIFIER = eINSTANCE.getIdentifier();
-
-    /**
-     * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IDENTIFIER__MODE = eINSTANCE.getIdentifier_Mode();
-
-    /**
-     * The meta object literal for the '<em><b>Case</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IDENTIFIER__CASE = eINSTANCE.getIdentifier_Case();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IDENTIFIER__NAME = eINSTANCE.getIdentifier_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Modifiers</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IDENTIFIER__MODIFIERS = eINSTANCE.getIdentifier_Modifiers();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ConstantOperatorImpl <em>Constant Operator</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ConstantOperatorImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getConstantOperator()
-     * @generated
-     */
-    EClass CONSTANT_OPERATOR = eINSTANCE.getConstantOperator();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONSTANT_OPERATOR__NAME = eINSTANCE.getConstantOperator_Name();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.IdentifierOperatorImpl <em>Identifier Operator</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.IdentifierOperatorImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getIdentifierOperator()
-     * @generated
-     */
-    EClass IDENTIFIER_OPERATOR = eINSTANCE.getIdentifierOperator();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IDENTIFIER_OPERATOR__NAME = eINSTANCE.getIdentifierOperator_Name();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DatabaseColumnImpl <em>Database Column</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DatabaseColumnImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDatabaseColumn()
-     * @generated
-     */
-    EClass DATABASE_COLUMN = eINSTANCE.getDatabaseColumn();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DATABASE_COLUMN__NAME = eINSTANCE.getDatabaseColumn_Name();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DatabaseTableImpl <em>Database Table</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DatabaseTableImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDatabaseTable()
-     * @generated
-     */
-    EClass DATABASE_TABLE = eINSTANCE.getDatabaseTable();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DATABASE_TABLE__NAME = eINSTANCE.getDatabaseTable_Name();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.MappingRuleImpl <em>Mapping Rule</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.MappingRuleImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getMappingRule()
-     * @generated
-     */
-    EClass MAPPING_RULE = eINSTANCE.getMappingRule();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MAPPING_RULE__NAME = eINSTANCE.getMappingRule_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MAPPING_RULE__TYPE = eINSTANCE.getMappingRule_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Modifiers</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MAPPING_RULE__MODIFIERS = eINSTANCE.getMappingRule_Modifiers();
-
-    /**
-     * The meta object literal for the '<em><b>Mapping</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MAPPING_RULE__MAPPING = eINSTANCE.getMappingRule_Mapping();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.MappingImpl <em>Mapping</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.MappingImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getMapping()
-     * @generated
-     */
-    EClass MAPPING = eINSTANCE.getMapping();
-
-    /**
-     * The meta object literal for the '<em><b>Mapping Items</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MAPPING__MAPPING_ITEMS = eINSTANCE.getMapping_MappingItems();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.MappingItemImpl <em>Mapping Item</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.MappingItemImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getMappingItem()
-     * @generated
-     */
-    EClass MAPPING_ITEM = eINSTANCE.getMappingItem();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MAPPING_ITEM__NAME = eINSTANCE.getMappingItem_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Attr</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MAPPING_ITEM__ATTR = eINSTANCE.getMappingItem_Attr();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.MappingColumnImpl <em>Mapping Column</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.MappingColumnImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getMappingColumn()
-     * @generated
-     */
-    EClass MAPPING_COLUMN = eINSTANCE.getMappingColumn();
-
-    /**
-     * The meta object literal for the '<em><b>Items</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MAPPING_COLUMN__ITEMS = eINSTANCE.getMappingColumn_Items();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendedMappingItemImpl <em>Extended Mapping Item</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ExtendedMappingItemImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getExtendedMappingItem()
-     * @generated
-     */
-    EClass EXTENDED_MAPPING_ITEM = eINSTANCE.getExtendedMappingItem();
-
-    /**
-     * The meta object literal for the '<em><b>Attr</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXTENDED_MAPPING_ITEM__ATTR = eINSTANCE.getExtendedMappingItem_Attr();
-
-    /**
-     * The meta object literal for the '<em><b>Modifiers</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXTENDED_MAPPING_ITEM__MODIFIERS = eINSTANCE.getExtendedMappingItem_Modifiers();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.MappingColumnNameImpl <em>Mapping Column Name</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.MappingColumnNameImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getMappingColumnName()
-     * @generated
-     */
-    EClass MAPPING_COLUMN_NAME = eINSTANCE.getMappingColumnName();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MAPPING_COLUMN_NAME__NAME = eINSTANCE.getMappingColumnName_Name();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.OptionalFeatureImpl <em>Optional Feature</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.OptionalFeatureImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getOptionalFeature()
-     * @generated
-     */
-    EClass OPTIONAL_FEATURE = eINSTANCE.getOptionalFeature();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OPTIONAL_FEATURE__NAME = eINSTANCE.getOptionalFeature_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OPTIONAL_FEATURE__TYPE = eINSTANCE.getOptionalFeature_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Modifiers</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OPTIONAL_FEATURE__MODIFIERS = eINSTANCE.getOptionalFeature_Modifiers();
-
-    /**
-     * The meta object literal for the '<em><b>Option</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OPTIONAL_FEATURE__OPTION = eINSTANCE.getOptionalFeature_Option();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PackageDirectiveImpl <em>Package Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PackageDirectiveImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPackageDirective()
-     * @generated
-     */
-    EClass PACKAGE_DIRECTIVE = eINSTANCE.getPackageDirective();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PackageDeclarationImpl <em>Package Declaration</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PackageDeclarationImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPackageDeclaration()
-     * @generated
-     */
-    EClass PACKAGE_DECLARATION = eINSTANCE.getPackageDeclaration();
-
-    /**
-     * The meta object literal for the '<em><b>Directives</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PACKAGE_DECLARATION__DIRECTIVES = eINSTANCE.getPackageDeclaration_Directives();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PACKAGE_DECLARATION__NAME = eINSTANCE.getPackageDeclaration_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PACKAGE_DECLARATION__ELEMENTS = eINSTANCE.getPackageDeclaration_Elements();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EntityImpl <em>Entity</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.EntityImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEntity()
-     * @generated
-     */
-    EClass ENTITY = eINSTANCE.getEntity();
-
-    /**
-     * The meta object literal for the '<em><b>Annotations</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ENTITY__ANNOTATIONS = eINSTANCE.getEntity_Annotations();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ENTITY__NAME = eINSTANCE.getEntity_Name();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.AbstractEntityImpl <em>Abstract Entity</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.AbstractEntityImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAbstractEntity()
-     * @generated
-     */
-    EClass ABSTRACT_ENTITY = eINSTANCE.getAbstractEntity();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoTypeImpl <em>Pojo Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoTypeImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoType()
-     * @generated
-     */
-    EClass POJO_TYPE = eINSTANCE.getPojoType();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_TYPE__TYPE = eINSTANCE.getPojoType_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_TYPE__REF = eINSTANCE.getPojoType_Ref();
-
-    /**
-     * The meta object literal for the '<em><b>Gtype</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_TYPE__GTYPE = eINSTANCE.getPojoType_Gtype();
-
-    /**
-     * The meta object literal for the '<em><b>Gref</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_TYPE__GREF = eINSTANCE.getPojoType_Gref();
-
-    /**
-     * The meta object literal for the '<em><b>Array</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_TYPE__ARRAY = eINSTANCE.getPojoType_Array();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoTypeImpl <em>Dao Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoTypeImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoType()
-     * @generated
-     */
-    EClass DAO_TYPE = eINSTANCE.getDaoType();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAO_TYPE__TYPE = eINSTANCE.getDaoType_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAO_TYPE__REF = eINSTANCE.getDaoType_Ref();
-
-    /**
-     * The meta object literal for the '<em><b>Gtype</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAO_TYPE__GTYPE = eINSTANCE.getDaoType_Gtype();
-
-    /**
-     * The meta object literal for the '<em><b>Gref</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAO_TYPE__GREF = eINSTANCE.getDaoType_Gref();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ImportImpl <em>Import</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ImportImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getImport()
-     * @generated
-     */
-    EClass IMPORT = eINSTANCE.getImport();
-
-    /**
-     * The meta object literal for the '<em><b>Imported Namespace</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IMPORT__IMPORTED_NAMESPACE = eINSTANCE.getImport_ImportedNamespace();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ImplementsImpl <em>Implements</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ImplementsImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getImplements()
-     * @generated
-     */
-    EClass IMPLEMENTS = eINSTANCE.getImplements();
-
-    /**
-     * The meta object literal for the '<em><b>Implements</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IMPLEMENTS__IMPLEMENTS = eINSTANCE.getImplements_Implements();
-
-    /**
-     * The meta object literal for the '<em><b>Generics</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IMPLEMENTS__GENERICS = eINSTANCE.getImplements_Generics();
-
-    /**
-     * The meta object literal for the '<em><b>Only Pojos</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IMPLEMENTS__ONLY_POJOS = eINSTANCE.getImplements_OnlyPojos();
-
-    /**
-     * The meta object literal for the '<em><b>Only Daos</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IMPLEMENTS__ONLY_DAOS = eINSTANCE.getImplements_OnlyDaos();
-
-    /**
-     * The meta object literal for the '<em><b>Except Pojos</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IMPLEMENTS__EXCEPT_POJOS = eINSTANCE.getImplements_ExceptPojos();
-
-    /**
-     * The meta object literal for the '<em><b>Except Daos</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IMPLEMENTS__EXCEPT_DAOS = eINSTANCE.getImplements_ExceptDaos();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl <em>Extends</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ExtendsImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getExtends()
-     * @generated
-     */
-    EClass EXTENDS = eINSTANCE.getExtends();
-
-    /**
-     * The meta object literal for the '<em><b>Extends</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXTENDS__EXTENDS = eINSTANCE.getExtends_Extends();
-
-    /**
-     * The meta object literal for the '<em><b>Generics</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXTENDS__GENERICS = eINSTANCE.getExtends_Generics();
-
-    /**
-     * The meta object literal for the '<em><b>Only Pojos</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXTENDS__ONLY_POJOS = eINSTANCE.getExtends_OnlyPojos();
-
-    /**
-     * The meta object literal for the '<em><b>Only Daos</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXTENDS__ONLY_DAOS = eINSTANCE.getExtends_OnlyDaos();
-
-    /**
-     * The meta object literal for the '<em><b>Except Pojos</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXTENDS__EXCEPT_POJOS = eINSTANCE.getExtends_ExceptPojos();
-
-    /**
-     * The meta object literal for the '<em><b>Except Daos</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXTENDS__EXCEPT_DAOS = eINSTANCE.getExtends_ExceptDaos();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ImplPackageImpl <em>Impl Package</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ImplPackageImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getImplPackage()
-     * @generated
-     */
-    EClass IMPL_PACKAGE = eINSTANCE.getImplPackage();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IMPL_PACKAGE__NAME = eINSTANCE.getImplPackage_Name();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl <em>Annotation Property</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotationProperty()
-     * @generated
-     */
-    EClass ANNOTATION_PROPERTY = eINSTANCE.getAnnotationProperty();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ANNOTATION_PROPERTY__NAME = eINSTANCE.getAnnotationProperty_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ANNOTATION_PROPERTY__TYPE = eINSTANCE.getAnnotationProperty_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Number</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ANNOTATION_PROPERTY__NUMBER = eINSTANCE.getAnnotationProperty_Number();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ANNOTATION_PROPERTY__VALUE = eINSTANCE.getAnnotationProperty_Value();
-
-    /**
-     * The meta object literal for the '<em><b>Constant</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ANNOTATION_PROPERTY__CONSTANT = eINSTANCE.getAnnotationProperty_Constant();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationImpl <em>Annotation</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.AnnotationImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotation()
-     * @generated
-     */
-    EClass ANNOTATION = eINSTANCE.getAnnotation();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ANNOTATION__TYPE = eINSTANCE.getAnnotation_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ANNOTATION__FEATURES = eINSTANCE.getAnnotation_Features();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EntityAnnotationImpl <em>Entity Annotation</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.EntityAnnotationImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEntityAnnotation()
-     * @generated
-     */
-    EClass ENTITY_ANNOTATION = eINSTANCE.getEntityAnnotation();
-
-    /**
-     * The meta object literal for the '<em><b>Annotation</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ENTITY_ANNOTATION__ANNOTATION = eINSTANCE.getEntityAnnotation_Annotation();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DirectivePropertiesImpl <em>Directive Properties</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DirectivePropertiesImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDirectiveProperties()
-     * @generated
-     */
-    EClass DIRECTIVE_PROPERTIES = eINSTANCE.getDirectiveProperties();
-
-    /**
-     * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DIRECTIVE_PROPERTIES__FEATURES = eINSTANCE.getDirectiveProperties_Features();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveImpl <em>Pojo Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirective()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE = eINSTANCE.getPojoDirective();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl <em>Pojo Entity</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoEntity()
-     * @generated
-     */
-    EClass POJO_ENTITY = eINSTANCE.getPojoEntity();
-
-    /**
-     * The meta object literal for the '<em><b>Directives</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_ENTITY__DIRECTIVES = eINSTANCE.getPojoEntity_Directives();
-
-    /**
-     * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_ENTITY__FEATURES = eINSTANCE.getPojoEntity_Features();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyAnnotationImpl <em>Pojo Property Annotation</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyAnnotationImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyAnnotation()
-     * @generated
-     */
-    EClass POJO_PROPERTY_ANNOTATION = eINSTANCE.getPojoPropertyAnnotation();
-
-    /**
-     * The meta object literal for the '<em><b>Annotation</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_PROPERTY_ANNOTATION__ANNOTATION = eINSTANCE.getPojoPropertyAnnotation_Annotation();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveImpl <em>Pojo Property Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirective()
-     * @generated
-     */
-    EClass POJO_PROPERTY_DIRECTIVE = eINSTANCE.getPojoPropertyDirective();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl <em>Pojo Property</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoProperty()
-     * @generated
-     */
-    EClass POJO_PROPERTY = eINSTANCE.getPojoProperty();
-
-    /**
-     * The meta object literal for the '<em><b>Annotations</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_PROPERTY__ANNOTATIONS = eINSTANCE.getPojoProperty_Annotations();
-
-    /**
-     * The meta object literal for the '<em><b>Directives</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_PROPERTY__DIRECTIVES = eINSTANCE.getPojoProperty_Directives();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY__NAME = eINSTANCE.getPojoProperty_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_PROPERTY__TYPE = eINSTANCE.getPojoProperty_Type();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumDirectiveImpl <em>Enum Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.EnumDirectiveImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumDirective()
-     * @generated
-     */
-    EClass ENUM_DIRECTIVE = eINSTANCE.getEnumDirective();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumEntityImpl <em>Enum Entity</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.EnumEntityImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumEntity()
-     * @generated
-     */
-    EClass ENUM_ENTITY = eINSTANCE.getEnumEntity();
-
-    /**
-     * The meta object literal for the '<em><b>Directives</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ENUM_ENTITY__DIRECTIVES = eINSTANCE.getEnumEntity_Directives();
-
-    /**
-     * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ENUM_ENTITY__FEATURES = eINSTANCE.getEnumEntity_Features();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyValueImpl <em>Enum Property Value</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.EnumPropertyValueImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumPropertyValue()
-     * @generated
-     */
-    EClass ENUM_PROPERTY_VALUE = eINSTANCE.getEnumPropertyValue();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ENUM_PROPERTY_VALUE__NAME = eINSTANCE.getEnumPropertyValue_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ENUM_PROPERTY_VALUE__VALUE = eINSTANCE.getEnumPropertyValue_Value();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyDirectiveImpl <em>Enum Property Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.EnumPropertyDirectiveImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumPropertyDirective()
-     * @generated
-     */
-    EClass ENUM_PROPERTY_DIRECTIVE = eINSTANCE.getEnumPropertyDirective();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl <em>Enum Property</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumProperty()
-     * @generated
-     */
-    EClass ENUM_PROPERTY = eINSTANCE.getEnumProperty();
-
-    /**
-     * The meta object literal for the '<em><b>Directives</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ENUM_PROPERTY__DIRECTIVES = eINSTANCE.getEnumProperty_Directives();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ENUM_PROPERTY__NAME = eINSTANCE.getEnumProperty_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ENUM_PROPERTY__TYPE = eINSTANCE.getEnumProperty_Type();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DirectiveParametersImpl <em>Directive Parameters</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DirectiveParametersImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDirectiveParameters()
-     * @generated
-     */
-    EClass DIRECTIVE_PARAMETERS = eINSTANCE.getDirectiveParameters();
-
-    /**
-     * The meta object literal for the '<em><b>In</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DIRECTIVE_PARAMETERS__IN = eINSTANCE.getDirectiveParameters_In();
-
-    /**
-     * The meta object literal for the '<em><b>Out</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DIRECTIVE_PARAMETERS__OUT = eINSTANCE.getDirectiveParameters_Out();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveImpl <em>Dao Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirective()
-     * @generated
-     */
-    EClass DAO_DIRECTIVE = eINSTANCE.getDaoDirective();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl <em>Pojo Dao</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDao()
-     * @generated
-     */
-    EClass POJO_DAO = eINSTANCE.getPojoDao();
-
-    /**
-     * The meta object literal for the '<em><b>Directives</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_DAO__DIRECTIVES = eINSTANCE.getPojoDao_Directives();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_DAO__NAME = eINSTANCE.getPojoDao_Name();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PackageDirectiveSuffixImpl <em>Package Directive Suffix</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PackageDirectiveSuffixImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPackageDirectiveSuffix()
-     * @generated
-     */
-    EClass PACKAGE_DIRECTIVE_SUFFIX = eINSTANCE.getPackageDirectiveSuffix();
-
-    /**
-     * The meta object literal for the '<em><b>Suffix</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PACKAGE_DIRECTIVE_SUFFIX__SUFFIX = eINSTANCE.getPackageDirectiveSuffix_Suffix();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ConflictAnnotationImpl <em>Conflict Annotation</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ConflictAnnotationImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getConflictAnnotation()
-     * @generated
-     */
-    EClass CONFLICT_ANNOTATION = eINSTANCE.getConflictAnnotation();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.StaticAnnotationImpl <em>Static Annotation</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.StaticAnnotationImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getStaticAnnotation()
-     * @generated
-     */
-    EClass STATIC_ANNOTATION = eINSTANCE.getStaticAnnotation();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ConstructorAnnotationImpl <em>Constructor Annotation</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ConstructorAnnotationImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getConstructorAnnotation()
-     * @generated
-     */
-    EClass CONSTRUCTOR_ANNOTATION = eINSTANCE.getConstructorAnnotation();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.StandardAnnotationImpl <em>Standard Annotation</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.StandardAnnotationImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getStandardAnnotation()
-     * @generated
-     */
-    EClass STANDARD_ANNOTATION = eINSTANCE.getStandardAnnotation();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveFinalImpl <em>Pojo Directive Final</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveFinalImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveFinal()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE_FINAL = eINSTANCE.getPojoDirectiveFinal();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveAbstractImpl <em>Pojo Directive Abstract</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveAbstractImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveAbstract()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE_ABSTRACT = eINSTANCE.getPojoDirectiveAbstract();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveExtendsImpl <em>Pojo Directive Extends</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveExtendsImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveExtends()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE_EXTENDS = eINSTANCE.getPojoDirectiveExtends();
-
-    /**
-     * The meta object literal for the '<em><b>Super Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_DIRECTIVE_EXTENDS__SUPER_TYPE = eINSTANCE.getPojoDirectiveExtends_SuperType();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveDiscriminatorImpl <em>Pojo Directive Discriminator</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveDiscriminatorImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveDiscriminator()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE_DISCRIMINATOR = eINSTANCE.getPojoDirectiveDiscriminator();
-
-    /**
-     * The meta object literal for the '<em><b>Discriminator</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR = eINSTANCE.getPojoDirectiveDiscriminator_Discriminator();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveOperatorsImpl <em>Pojo Directive Operators</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveOperatorsImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveOperators()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE_OPERATORS = eINSTANCE.getPojoDirectiveOperators();
-
-    /**
-     * The meta object literal for the '<em><b>Operators Suffix</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_DIRECTIVE_OPERATORS__OPERATORS_SUFFIX = eINSTANCE.getPojoDirectiveOperators_OperatorsSuffix();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveSerializableImpl <em>Pojo Directive Serializable</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveSerializableImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveSerializable()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE_SERIALIZABLE = eINSTANCE.getPojoDirectiveSerializable();
-
-    /**
-     * The meta object literal for the '<em><b>Sernum</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_DIRECTIVE_SERIALIZABLE__SERNUM = eINSTANCE.getPojoDirectiveSerializable_Sernum();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveEqualsImpl <em>Pojo Directive Equals</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveEqualsImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEquals()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE_EQUALS = eINSTANCE.getPojoDirectiveEquals();
-
-    /**
-     * The meta object literal for the '<em><b>Proplist</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_DIRECTIVE_EQUALS__PROPLIST = eINSTANCE.getPojoDirectiveEquals_Proplist();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveHashCodeImpl <em>Pojo Directive Hash Code</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveHashCodeImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveHashCode()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE_HASH_CODE = eINSTANCE.getPojoDirectiveHashCode();
-
-    /**
-     * The meta object literal for the '<em><b>Proplist</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_DIRECTIVE_HASH_CODE__PROPLIST = eINSTANCE.getPojoDirectiveHashCode_Proplist();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveToInitImpl <em>Pojo Directive To Init</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveToInitImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveToInit()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE_TO_INIT = eINSTANCE.getPojoDirectiveToInit();
-
-    /**
-     * The meta object literal for the '<em><b>Proplist</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_DIRECTIVE_TO_INIT__PROPLIST = eINSTANCE.getPojoDirectiveToInit_Proplist();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveEnumInitImpl <em>Pojo Directive Enum Init</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveEnumInitImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEnumInit()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE_ENUM_INIT = eINSTANCE.getPojoDirectiveEnumInit();
-
-    /**
-     * The meta object literal for the '<em><b>Proplist</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_DIRECTIVE_ENUM_INIT__PROPLIST = eINSTANCE.getPojoDirectiveEnumInit_Proplist();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveIsDefImpl <em>Pojo Directive Is Def</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveIsDefImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveIsDef()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE_IS_DEF = eINSTANCE.getPojoDirectiveIsDef();
-
-    /**
-     * The meta object literal for the '<em><b>Proplist</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_DIRECTIVE_IS_DEF__PROPLIST = eINSTANCE.getPojoDirectiveIsDef_Proplist();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveEnumDefImpl <em>Pojo Directive Enum Def</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveEnumDefImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEnumDef()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE_ENUM_DEF = eINSTANCE.getPojoDirectiveEnumDef();
-
-    /**
-     * The meta object literal for the '<em><b>Proplist</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_DIRECTIVE_ENUM_DEF__PROPLIST = eINSTANCE.getPojoDirectiveEnumDef_Proplist();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveToStringImpl <em>Pojo Directive To String</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveToStringImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveToString()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE_TO_STRING = eINSTANCE.getPojoDirectiveToString();
-
-    /**
-     * The meta object literal for the '<em><b>Proplist</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_DIRECTIVE_TO_STRING__PROPLIST = eINSTANCE.getPojoDirectiveToString_Proplist();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveIndexImpl <em>Pojo Directive Index</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveIndexImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveIndex()
-     * @generated
-     */
-    EClass POJO_DIRECTIVE_INDEX = eINSTANCE.getPojoDirectiveIndex();
-
-    /**
-     * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_DIRECTIVE_INDEX__INDEX = eINSTANCE.getPojoDirectiveIndex_Index();
-
-    /**
-     * The meta object literal for the '<em><b>Proplist</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_DIRECTIVE_INDEX__PROPLIST = eINSTANCE.getPojoDirectiveIndex_Proplist();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.SetterAnnotationImpl <em>Setter Annotation</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.SetterAnnotationImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getSetterAnnotation()
-     * @generated
-     */
-    EClass SETTER_ANNOTATION = eINSTANCE.getSetterAnnotation();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.GetterAnnotationImpl <em>Getter Annotation</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.GetterAnnotationImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getGetterAnnotation()
-     * @generated
-     */
-    EClass GETTER_ANNOTATION = eINSTANCE.getGetterAnnotation();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.AttributeAnnotationImpl <em>Attribute Annotation</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.AttributeAnnotationImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAttributeAnnotation()
-     * @generated
-     */
-    EClass ATTRIBUTE_ANNOTATION = eINSTANCE.getAttributeAnnotation();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveRequiredImpl <em>Pojo Property Directive Required</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveRequiredImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveRequired()
-     * @generated
-     */
-    EClass POJO_PROPERTY_DIRECTIVE_REQUIRED = eINSTANCE.getPojoPropertyDirectiveRequired();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectivePrimaryKeyImpl <em>Pojo Property Directive Primary Key</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectivePrimaryKeyImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectivePrimaryKey()
-     * @generated
-     */
-    EClass POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = eINSTANCE.getPojoPropertyDirectivePrimaryKey();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveDiscriminatorImpl <em>Pojo Property Directive Discriminator</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveDiscriminatorImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveDiscriminator()
-     * @generated
-     */
-    EClass POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = eINSTANCE.getPojoPropertyDirectiveDiscriminator();
-
-    /**
-     * The meta object literal for the '<em><b>Discriminator</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR = eINSTANCE.getPojoPropertyDirectiveDiscriminator_Discriminator();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveIndexImpl <em>Pojo Property Directive Index</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveIndexImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveIndex()
-     * @generated
-     */
-    EClass POJO_PROPERTY_DIRECTIVE_INDEX = eINSTANCE.getPojoPropertyDirectiveIndex();
-
-    /**
-     * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_DIRECTIVE_INDEX__INDEX = eINSTANCE.getPojoPropertyDirectiveIndex_Index();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveVersionImpl <em>Pojo Property Directive Version</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveVersionImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveVersion()
-     * @generated
-     */
-    EClass POJO_PROPERTY_DIRECTIVE_VERSION = eINSTANCE.getPojoPropertyDirectiveVersion();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveUpdateColImpl <em>Pojo Property Directive Update Col</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveUpdateColImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveUpdateCol()
-     * @generated
-     */
-    EClass POJO_PROPERTY_DIRECTIVE_UPDATE_COL = eINSTANCE.getPojoPropertyDirectiveUpdateCol();
-
-    /**
-     * The meta object literal for the '<em><b>Update Column1</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1 = eINSTANCE.getPojoPropertyDirectiveUpdateCol_UpdateColumn1();
-
-    /**
-     * The meta object literal for the '<em><b>Update Column2</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2 = eINSTANCE.getPojoPropertyDirectiveUpdateCol_UpdateColumn2();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveCreateColImpl <em>Pojo Property Directive Create Col</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveCreateColImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveCreateCol()
-     * @generated
-     */
-    EClass POJO_PROPERTY_DIRECTIVE_CREATE_COL = eINSTANCE.getPojoPropertyDirectiveCreateCol();
-
-    /**
-     * The meta object literal for the '<em><b>Create Column1</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN1 = eINSTANCE.getPojoPropertyDirectiveCreateCol_CreateColumn1();
-
-    /**
-     * The meta object literal for the '<em><b>Create Column2</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN2 = eINSTANCE.getPojoPropertyDirectiveCreateCol_CreateColumn2();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumDirectiveFinalImpl <em>Enum Directive Final</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.EnumDirectiveFinalImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumDirectiveFinal()
-     * @generated
-     */
-    EClass ENUM_DIRECTIVE_FINAL = eINSTANCE.getEnumDirectiveFinal();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumDirectiveExtendsImpl <em>Enum Directive Extends</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.EnumDirectiveExtendsImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumDirectiveExtends()
-     * @generated
-     */
-    EClass ENUM_DIRECTIVE_EXTENDS = eINSTANCE.getEnumDirectiveExtends();
-
-    /**
-     * The meta object literal for the '<em><b>Super Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ENUM_DIRECTIVE_EXTENDS__SUPER_TYPE = eINSTANCE.getEnumDirectiveExtends_SuperType();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumDirectiveSerializableImpl <em>Enum Directive Serializable</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.EnumDirectiveSerializableImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumDirectiveSerializable()
-     * @generated
-     */
-    EClass ENUM_DIRECTIVE_SERIALIZABLE = eINSTANCE.getEnumDirectiveSerializable();
-
-    /**
-     * The meta object literal for the '<em><b>Sernum</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ENUM_DIRECTIVE_SERIALIZABLE__SERNUM = eINSTANCE.getEnumDirectiveSerializable_Sernum();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyDirectiveValuesImpl <em>Enum Property Directive Values</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.EnumPropertyDirectiveValuesImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumPropertyDirectiveValues()
-     * @generated
-     */
-    EClass ENUM_PROPERTY_DIRECTIVE_VALUES = eINSTANCE.getEnumPropertyDirectiveValues();
-
-    /**
-     * The meta object literal for the '<em><b>Values</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ENUM_PROPERTY_DIRECTIVE_VALUES__VALUES = eINSTANCE.getEnumPropertyDirectiveValues_Values();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveFinalImpl <em>Dao Directive Final</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveFinalImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveFinal()
-     * @generated
-     */
-    EClass DAO_DIRECTIVE_FINAL = eINSTANCE.getDaoDirectiveFinal();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveAbstractImpl <em>Dao Directive Abstract</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveAbstractImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveAbstract()
-     * @generated
-     */
-    EClass DAO_DIRECTIVE_ABSTRACT = eINSTANCE.getDaoDirectiveAbstract();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveExtendsImpl <em>Dao Directive Extends</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveExtendsImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveExtends()
-     * @generated
-     */
-    EClass DAO_DIRECTIVE_EXTENDS = eINSTANCE.getDaoDirectiveExtends();
-
-    /**
-     * The meta object literal for the '<em><b>Super Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAO_DIRECTIVE_EXTENDS__SUPER_TYPE = eINSTANCE.getDaoDirectiveExtends_SuperType();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveDiscriminatorImpl <em>Dao Directive Discriminator</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveDiscriminatorImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveDiscriminator()
-     * @generated
-     */
-    EClass DAO_DIRECTIVE_DISCRIMINATOR = eINSTANCE.getDaoDirectiveDiscriminator();
-
-    /**
-     * The meta object literal for the '<em><b>Discriminator</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DAO_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR = eINSTANCE.getDaoDirectiveDiscriminator_Discriminator();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveSerializableImpl <em>Dao Directive Serializable</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveSerializableImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveSerializable()
-     * @generated
-     */
-    EClass DAO_DIRECTIVE_SERIALIZABLE = eINSTANCE.getDaoDirectiveSerializable();
-
-    /**
-     * The meta object literal for the '<em><b>Sernum</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DAO_DIRECTIVE_SERIALIZABLE__SERNUM = eINSTANCE.getDaoDirectiveSerializable_Sernum();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectivePojoImpl <em>Dao Directive Pojo</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectivePojoImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectivePojo()
-     * @generated
-     */
-    EClass DAO_DIRECTIVE_POJO = eINSTANCE.getDaoDirectivePojo();
-
-    /**
-     * The meta object literal for the '<em><b>Pojo</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAO_DIRECTIVE_POJO__POJO = eINSTANCE.getDaoDirectivePojo_Pojo();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveGenericsImpl <em>Dao Directive Generics</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveGenericsImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveGenerics()
-     * @generated
-     */
-    EClass DAO_DIRECTIVE_GENERICS = eINSTANCE.getDaoDirectiveGenerics();
-
-    /**
-     * The meta object literal for the '<em><b>Generics</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAO_DIRECTIVE_GENERICS__GENERICS = eINSTANCE.getDaoDirectiveGenerics_Generics();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveProcedureImpl <em>Dao Directive Procedure</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveProcedureImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveProcedure()
-     * @generated
-     */
-    EClass DAO_DIRECTIVE_PROCEDURE = eINSTANCE.getDaoDirectiveProcedure();
-
-    /**
-     * The meta object literal for the '<em><b>Pojo</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAO_DIRECTIVE_PROCEDURE__POJO = eINSTANCE.getDaoDirectiveProcedure_Pojo();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveFunctionImpl <em>Dao Directive Function</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveFunctionImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveFunction()
-     * @generated
-     */
-    EClass DAO_DIRECTIVE_FUNCTION = eINSTANCE.getDaoDirectiveFunction();
-
-    /**
-     * The meta object literal for the '<em><b>Pojo</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAO_DIRECTIVE_FUNCTION__POJO = eINSTANCE.getDaoDirectiveFunction_Pojo();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveUpdateImpl <em>Dao Directive Update</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveUpdateImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveUpdate()
-     * @generated
-     */
-    EClass DAO_DIRECTIVE_UPDATE = eINSTANCE.getDaoDirectiveUpdate();
-
-    /**
-     * The meta object literal for the '<em><b>Paramlist</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAO_DIRECTIVE_UPDATE__PARAMLIST = eINSTANCE.getDaoDirectiveUpdate_Paramlist();
-
-  }
 
 } //ProcessorDslPackage

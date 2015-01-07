@@ -73,7 +73,7 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_ENTITY;
+    return ProcessorDslPackage.eINSTANCE.getPojoEntity();
   }
 
   /**

@@ -79,7 +79,7 @@ public class FunctionPojoAssignementImpl extends MinimalEObjectImpl.Container im
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.FUNCTION_POJO_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getFunctionPojoAssignement();
   }
 
   /**

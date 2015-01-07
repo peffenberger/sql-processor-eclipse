@@ -107,7 +107,7 @@ public class ManyToManyAssignementImpl extends MinimalEObjectImpl.Container impl
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.MANY_TO_MANY_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getManyToManyAssignement();
   }
 
   /**

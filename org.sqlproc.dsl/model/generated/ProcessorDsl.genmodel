@@ -6,7 +6,7 @@
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.sqlproc.dsl.edit"
     editorPluginID="org.sqlproc.dsl.editor" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
   <genPackages prefix="ProcessorDsl" basePackage="org.sqlproc.dsl" disposableProviderFactory="true"
-      fileExtensions="qry" ecorePackage="ProcessorDsl.ecore#/">
+      loadInitialization="true" literalsInterface="false" fileExtensions="qry" ecorePackage="ProcessorDsl.ecore#/">
     <genClasses ecoreClass="ProcessorDsl.ecore#//Artifacts">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//Artifacts/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//Artifacts/pojos"/>
@@ -451,9 +451,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//EnumProperty/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//EnumProperty/type"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorDsl.ecore#//DirectiveParameters">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DirectiveParameters/in"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DirectiveParameters/out"/>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectiveParameters">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectiveParameters/in"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectiveParameters/out"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//DescendantAssignment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//DescendantAssignment/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DescendantAssignment/descendant"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirective"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDao">
@@ -541,11 +545,12 @@
     <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectiveExtends">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectiveExtends/superType"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectiveDiscriminator">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//DaoDirectiveDiscriminator/discriminator"/>
-    </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectiveSerializable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//DaoDirectiveSerializable/sernum"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectiveDiscriminator">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectiveDiscriminator/ancestor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectiveDiscriminator/descendants"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectivePojo">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectivePojo/pojo"/>

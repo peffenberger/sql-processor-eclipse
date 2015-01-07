@@ -86,7 +86,7 @@ public class DriverMethodOutputAssignementImpl extends MinimalEObjectImpl.Contai
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DRIVER_METHOD_OUTPUT_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getDriverMethodOutputAssignement();
   }
 
   /**

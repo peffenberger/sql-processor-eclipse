@@ -64,7 +64,7 @@ public class PackageDirectiveSuffixImpl extends PackageDirectiveImpl implements 
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.PACKAGE_DIRECTIVE_SUFFIX;
+    return ProcessorDslPackage.eINSTANCE.getPackageDirectiveSuffix();
   }
 
   /**

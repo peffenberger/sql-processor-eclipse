@@ -79,7 +79,7 @@ public class MappingItemImpl extends MinimalEObjectImpl.Container implements Map
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.MAPPING_ITEM;
+    return ProcessorDslPackage.eINSTANCE.getMappingItem();
   }
 
   /**

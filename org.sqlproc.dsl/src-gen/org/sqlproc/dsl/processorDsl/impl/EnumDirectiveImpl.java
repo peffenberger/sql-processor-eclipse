@@ -38,7 +38,7 @@ public class EnumDirectiveImpl extends MinimalEObjectImpl.Container implements E
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ENUM_DIRECTIVE;
+    return ProcessorDslPackage.eINSTANCE.getEnumDirective();
   }
 
 } //EnumDirectiveImpl

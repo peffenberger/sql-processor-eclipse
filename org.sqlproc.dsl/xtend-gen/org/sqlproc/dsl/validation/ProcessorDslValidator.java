@@ -23,21 +23,15 @@ import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
-import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
-import org.sqlproc.dsl.processorDsl.AbstractEntity;
-import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.Constant;
 import org.sqlproc.dsl.processorDsl.DatabaseColumn;
@@ -52,21 +46,18 @@ import org.sqlproc.dsl.processorDsl.MappingRule;
 import org.sqlproc.dsl.processorDsl.MetaSql;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.OptionalFeature;
-import org.sqlproc.dsl.processorDsl.PackageDeclaration;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
-import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 import org.sqlproc.dsl.processorDsl.Property;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
 import org.sqlproc.dsl.property.ModelProperty;
 import org.sqlproc.dsl.resolver.DbResolver;
 import org.sqlproc.dsl.resolver.PojoResolver;
 import org.sqlproc.dsl.resolver.PojoResolverFactory;
-import org.sqlproc.dsl.util.Constants;
 import org.sqlproc.dsl.util.Utils;
 import org.sqlproc.dsl.validation.AbstractProcessorDslValidator;
 import org.sqlproc.dsl.validation.ValidationResult;
@@ -97,19 +88,9 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
   
   @Check
   public void checkMetaSqlFtype(final MetaSql metaSql) {
-    String _ftype = metaSql.getFtype();
-    boolean _equals = Objects.equal(_ftype, null);
-    if (_equals) {
-      return;
-    }
-    String _ftype_1 = metaSql.getFtype();
-    boolean _findInListIgnoreCase = this.findInListIgnoreCase(this.F_TYPES, _ftype_1);
-    boolean _not = (!_findInListIgnoreCase);
-    if (_not) {
-      String _ftype_2 = metaSql.getFtype();
-      String _plus = ("Invalid ftype : " + _ftype_2);
-      this.error(_plus, ProcessorDslPackage.Literals.META_SQL__FTYPE);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nMETA_SQL__FTYPE cannot be resolved");
   }
   
   public boolean findInListIgnoreCase(final List<String> list, final String value) {
@@ -128,157 +109,32 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
   
   @Check
   public void checkUniqueMetaStatement(final MetaStatement metaStatement) {
-    EObject _rootContainer = EcoreUtil.getRootContainer(metaStatement);
-    if ((!(_rootContainer instanceof Artifacts))) {
-      return;
-    }
-    EObject _rootContainer_1 = EcoreUtil.getRootContainer(metaStatement);
-    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<MetaStatement> _statements = artifacts.getStatements();
-    for (final MetaStatement metaStmt : _statements) {
-      boolean _and = false;
-      boolean _notEquals = (!Objects.equal(metaStmt, null));
-      if (!_notEquals) {
-        _and = false;
-      } else {
-        boolean _tripleNotEquals = (metaStmt != metaStatement);
-        _and = _tripleNotEquals;
-      }
-      if (_and) {
-        boolean _equalsStatement = this.equalsStatement(metaStatement, metaStmt);
-        if (_equalsStatement) {
-          String _name = metaStatement.getName();
-          String _plus = ("Duplicate name : " + _name);
-          String _plus_1 = (_plus + "[");
-          String _type = metaStatement.getType();
-          String _plus_2 = (_plus_1 + _type);
-          String _plus_3 = (_plus_2 + "]");
-          this.error(_plus_3, 
-            ProcessorDslPackage.Literals.META_STATEMENT__NAME);
-          return;
-        }
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nMETA_STATEMENT__NAME cannot be resolved");
   }
   
   @Check
   public void checkUniqueMappingRule(final MappingRule mappingRule) {
-    EObject _rootContainer = EcoreUtil.getRootContainer(mappingRule);
-    if ((!(_rootContainer instanceof Artifacts))) {
-      return;
-    }
-    EObject _rootContainer_1 = EcoreUtil.getRootContainer(mappingRule);
-    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<MappingRule> _mappings = artifacts.getMappings();
-    for (final MappingRule rule : _mappings) {
-      boolean _and = false;
-      boolean _notEquals = (!Objects.equal(rule, null));
-      if (!_notEquals) {
-        _and = false;
-      } else {
-        boolean _tripleNotEquals = (rule != mappingRule);
-        _and = _tripleNotEquals;
-      }
-      if (_and) {
-        boolean _equalsRule = this.equalsRule(mappingRule, rule);
-        if (_equalsRule) {
-          String _name = mappingRule.getName();
-          String _plus = ("Duplicate name : " + _name);
-          String _plus_1 = (_plus + "[");
-          String _type = mappingRule.getType();
-          String _plus_2 = (_plus_1 + _type);
-          String _plus_3 = (_plus_2 + "]");
-          this.error(_plus_3, 
-            ProcessorDslPackage.Literals.MAPPING_RULE__NAME);
-          return;
-        }
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nMAPPING_RULE__NAME cannot be resolved");
   }
   
   @Check
   public void checkUniqueOptionalFeature(final OptionalFeature optionalFeature) {
-    EObject _rootContainer = EcoreUtil.getRootContainer(optionalFeature);
-    if ((!(_rootContainer instanceof Artifacts))) {
-      return;
-    }
-    EObject _rootContainer_1 = EcoreUtil.getRootContainer(optionalFeature);
-    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<OptionalFeature> _features = artifacts.getFeatures();
-    for (final OptionalFeature feature : _features) {
-      boolean _and = false;
-      boolean _notEquals = (!Objects.equal(feature, null));
-      if (!_notEquals) {
-        _and = false;
-      } else {
-        boolean _notEquals_1 = (!Objects.equal(feature, optionalFeature));
-        _and = _notEquals_1;
-      }
-      if (_and) {
-        boolean _equalsFeature = this.equalsFeature(optionalFeature, feature);
-        if (_equalsFeature) {
-          String _name = optionalFeature.getName();
-          String _plus = ("Duplicate name : " + _name);
-          String _plus_1 = (_plus + "[");
-          String _type = optionalFeature.getType();
-          String _plus_2 = (_plus_1 + _type);
-          String _plus_3 = (_plus_2 + "]");
-          this.error(_plus_3, 
-            ProcessorDslPackage.Literals.OPTIONAL_FEATURE__NAME);
-          return;
-        }
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nOPTIONAL_FEATURE__NAME cannot be resolved");
   }
   
   @Check
   public void checkUniquePojoDefinition(final PojoDefinition pojoDefinition) {
-    boolean _and = false;
-    boolean _isResolvePojo = this.isResolvePojo(pojoDefinition);
-    if (!_isResolvePojo) {
-      _and = false;
-    } else {
-      String _class = this.getClass(pojoDefinition);
-      boolean _checkClass = this.checkClass(_class);
-      boolean _not = (!_checkClass);
-      _and = _not;
-    }
-    if (_and) {
-      String _class_1 = this.getClass(pojoDefinition);
-      String _plus = ("Class name : " + _class_1);
-      String _plus_1 = (_plus + " not exists");
-      this.error(_plus_1, 
-        ProcessorDslPackage.Literals.POJO_DEFINITION__NAME);
-    }
-    EObject _rootContainer = EcoreUtil.getRootContainer(pojoDefinition);
-    if ((!(_rootContainer instanceof Artifacts))) {
-      return;
-    }
-    EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoDefinition);
-    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<PojoDefinition> _pojos = artifacts.getPojos();
-    for (final PojoDefinition definition : _pojos) {
-      boolean _and_1 = false;
-      boolean _notEquals = (!Objects.equal(definition, null));
-      if (!_notEquals) {
-        _and_1 = false;
-      } else {
-        boolean _tripleNotEquals = (definition != pojoDefinition);
-        _and_1 = _tripleNotEquals;
-      }
-      if (_and_1) {
-        String _name = pojoDefinition.getName();
-        String _name_1 = definition.getName();
-        boolean _equals = _name.equals(_name_1);
-        if (_equals) {
-          String _name_2 = pojoDefinition.getName();
-          String _plus_2 = ("Duplicate name : " + _name_2);
-          this.error(_plus_2, 
-            ProcessorDslPackage.Literals.POJO_DEFINITION__NAME);
-          return;
-        }
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nPOJO_DEFINITION__NAME cannot be resolved"
+      + "\nPOJO_DEFINITION__NAME cannot be resolved");
   }
   
   public boolean equalsStatement(final MetaStatement statement1, final MetaStatement statement2) {
@@ -564,526 +420,124 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
   
   @Check
   public void checkColumn(final Column column) {
-    boolean _isResolvePojo = this.isResolvePojo(column);
-    boolean _not = (!_isResolvePojo);
-    if (_not) {
-      return;
-    }
-    final String columnName = Utils.getName(column);
-    boolean _isNumber = Utils.isNumber(columnName);
-    if (_isNumber) {
-      return;
-    }
-    final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(column, MetaStatement.class);
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
-    final String entityName = Utils.getTokenFromModifier(statement, Constants.COLUMN_USAGE_EXTENDED);
-    PojoEntity _xifexpression = null;
-    boolean _notEquals = (!Objects.equal(entityName, null));
-    if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-    }
-    final PojoEntity entity = _xifexpression;
-    boolean _notEquals_1 = (!Objects.equal(entity, null));
-    if (_notEquals_1) {
-      ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, columnName);
-      if (_checkEntityProperty != null) {
-        switch (_checkEntityProperty) {
-          case WARNING:
-            String _name = entity.getName();
-            String _plus = ((("Problem property : " + columnName) + "[") + _name);
-            String _plus_1 = (_plus + "]");
-            this.warning(_plus_1, 
-              ProcessorDslPackage.Literals.COLUMN__COLUMNS);
-            break;
-          case ERROR:
-            String _name_1 = entity.getName();
-            String _plus_2 = ((("Cannot find property : " + columnName) + "[") + _name_1);
-            String _plus_3 = (_plus_2 + "]");
-            this.error(_plus_3, 
-              ProcessorDslPackage.Literals.COLUMN__COLUMNS);
-            break;
-          default:
-            break;
-        }
-      }
-      return;
-    }
-    final String pojoName = Utils.getTokenFromModifier(statement, Constants.COLUMN_USAGE);
-    PojoDefinition _xifexpression_1 = null;
-    boolean _notEquals_2 = (!Objects.equal(pojoName, null));
-    if (_notEquals_2) {
-      IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
-      _xifexpression_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-    }
-    final PojoDefinition pojo = _xifexpression_1;
-    String _xifexpression_2 = null;
-    boolean _notEquals_3 = (!Objects.equal(pojo, null));
-    if (_notEquals_3) {
-      _xifexpression_2 = this.getClass(pojo);
-    }
-    final String columnUsageClass = _xifexpression_2;
-    boolean _notEquals_4 = (!Objects.equal(columnUsageClass, null));
-    if (_notEquals_4) {
-      ValidationResult _checkClassProperty = this.checkClassProperty(columnUsageClass, columnName);
-      if (_checkClassProperty != null) {
-        switch (_checkClassProperty) {
-          case WARNING:
-            this.warning((((("Problem property : " + columnName) + "[") + columnUsageClass) + "]"), 
-              ProcessorDslPackage.Literals.COLUMN__COLUMNS);
-            break;
-          case ERROR:
-            this.error((((("Cannot find property : " + columnName) + "[") + columnUsageClass) + "]"), 
-              ProcessorDslPackage.Literals.COLUMN__COLUMNS);
-            break;
-          default:
-            break;
-        }
-      }
-      return;
-    }
-    PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
-    boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
-    if (_notEquals_5) {
-      this.error(("Cannot check result class attribute : " + columnName), ProcessorDslPackage.Literals.COLUMN__COLUMNS);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nARTIFACTS__POJO_PACKAGES cannot be resolved"
+      + "\nCOLUMN__COLUMNS cannot be resolved"
+      + "\nCOLUMN__COLUMNS cannot be resolved"
+      + "\nARTIFACTS__POJOS cannot be resolved"
+      + "\nCOLUMN__COLUMNS cannot be resolved"
+      + "\nCOLUMN__COLUMNS cannot be resolved"
+      + "\nCOLUMN__COLUMNS cannot be resolved");
   }
   
   @Check
   public void checkIdentifier(final Identifier identifier) {
-    boolean _isResolvePojo = this.isResolvePojo(identifier);
-    boolean _not = (!_isResolvePojo);
-    if (_not) {
-      return;
-    }
-    final String identifierName = identifier.getName();
-    final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(identifier, MetaStatement.class);
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
-    final String entityName = Utils.getTokenFromModifier(statement, Constants.IDENTIFIER_USAGE_EXTENDED);
-    PojoEntity _xifexpression = null;
-    boolean _notEquals = (!Objects.equal(entityName, null));
-    if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-    }
-    final PojoEntity entity = _xifexpression;
-    boolean _notEquals_1 = (!Objects.equal(entity, null));
-    if (_notEquals_1) {
-      ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, identifierName);
-      if (_checkEntityProperty != null) {
-        switch (_checkEntityProperty) {
-          case WARNING:
-            String _name = entity.getName();
-            String _plus = ((("Problem property : " + identifierName) + "[") + _name);
-            String _plus_1 = (_plus + "]");
-            this.warning(_plus_1, 
-              ProcessorDslPackage.Literals.IDENTIFIER__NAME);
-            break;
-          case ERROR:
-            String _name_1 = entity.getName();
-            String _plus_2 = ((("Cannot find property : " + identifierName) + "[") + _name_1);
-            String _plus_3 = (_plus_2 + "]");
-            this.error(_plus_3, 
-              ProcessorDslPackage.Literals.IDENTIFIER__NAME);
-            break;
-          default:
-            break;
-        }
-      }
-      return;
-    }
-    final String pojoName = Utils.getTokenFromModifier(statement, Constants.IDENTIFIER_USAGE);
-    PojoDefinition _xifexpression_1 = null;
-    boolean _notEquals_2 = (!Objects.equal(pojoName, null));
-    if (_notEquals_2) {
-      IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
-      _xifexpression_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-    }
-    final PojoDefinition pojo = _xifexpression_1;
-    String _xifexpression_2 = null;
-    boolean _notEquals_3 = (!Objects.equal(pojo, null));
-    if (_notEquals_3) {
-      _xifexpression_2 = this.getClass(pojo);
-    }
-    final String identifierUsageClass = _xifexpression_2;
-    boolean _notEquals_4 = (!Objects.equal(identifierUsageClass, null));
-    if (_notEquals_4) {
-      ValidationResult _checkClassProperty = this.checkClassProperty(identifierUsageClass, identifierName);
-      if (_checkClassProperty != null) {
-        switch (_checkClassProperty) {
-          case WARNING:
-            this.warning((((("Problem property : " + identifierName) + "[") + identifierUsageClass) + "]"), 
-              ProcessorDslPackage.Literals.IDENTIFIER__NAME);
-            break;
-          case ERROR:
-            this.error((((("Cannot find property : " + identifierName) + "[") + identifierUsageClass) + "]"), 
-              ProcessorDslPackage.Literals.IDENTIFIER__NAME);
-            break;
-          default:
-            break;
-        }
-      }
-      return;
-    }
-    PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
-    boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
-    if (_notEquals_5) {
-      this.error(("Cannot check input form attribute : " + identifierName), 
-        ProcessorDslPackage.Literals.IDENTIFIER__NAME);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nARTIFACTS__POJO_PACKAGES cannot be resolved"
+      + "\nIDENTIFIER__NAME cannot be resolved"
+      + "\nIDENTIFIER__NAME cannot be resolved"
+      + "\nARTIFACTS__POJOS cannot be resolved"
+      + "\nIDENTIFIER__NAME cannot be resolved"
+      + "\nIDENTIFIER__NAME cannot be resolved"
+      + "\nIDENTIFIER__NAME cannot be resolved");
   }
   
   @Check
   public void checkConstant(final Constant constant) {
-    boolean _isResolvePojo = this.isResolvePojo(constant);
-    boolean _not = (!_isResolvePojo);
-    if (_not) {
-      return;
-    }
-    final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(constant, MetaStatement.class);
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
-    final String entityName = Utils.getTokenFromModifier(statement, Constants.CONSTANT_USAGE_EXTENDED);
-    PojoEntity _xifexpression = null;
-    boolean _notEquals = (!Objects.equal(entityName, null));
-    if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-    }
-    final PojoEntity entity = _xifexpression;
-    boolean _notEquals_1 = (!Objects.equal(entity, null));
-    if (_notEquals_1) {
-      String _name = constant.getName();
-      ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, _name);
-      if (_checkEntityProperty != null) {
-        switch (_checkEntityProperty) {
-          case WARNING:
-            String _name_1 = constant.getName();
-            String _plus = ("Problem property : " + _name_1);
-            String _plus_1 = (_plus + "[");
-            String _name_2 = entity.getName();
-            String _plus_2 = (_plus_1 + _name_2);
-            String _plus_3 = (_plus_2 + "]");
-            this.warning(_plus_3, 
-              ProcessorDslPackage.Literals.CONSTANT__NAME);
-            break;
-          case ERROR:
-            String _name_3 = constant.getName();
-            String _plus_4 = ("Cannot find property : " + _name_3);
-            String _plus_5 = (_plus_4 + "[");
-            String _name_4 = entity.getName();
-            String _plus_6 = (_plus_5 + _name_4);
-            String _plus_7 = (_plus_6 + "]");
-            this.error(_plus_7, 
-              ProcessorDslPackage.Literals.CONSTANT__NAME);
-            break;
-          default:
-            break;
-        }
-      }
-      return;
-    }
-    final String pojoName = Utils.getTokenFromModifier(statement, Constants.CONSTANT_USAGE);
-    PojoDefinition _xifexpression_1 = null;
-    boolean _notEquals_2 = (!Objects.equal(pojoName, null));
-    if (_notEquals_2) {
-      IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
-      _xifexpression_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-    }
-    final PojoDefinition pojo = _xifexpression_1;
-    String _xifexpression_2 = null;
-    boolean _notEquals_3 = (!Objects.equal(pojo, null));
-    if (_notEquals_3) {
-      _xifexpression_2 = this.getClass(pojo);
-    }
-    final String constantUsageClass = _xifexpression_2;
-    boolean _notEquals_4 = (!Objects.equal(constantUsageClass, null));
-    if (_notEquals_4) {
-      String _name_5 = constant.getName();
-      ValidationResult _checkClassProperty = this.checkClassProperty(constantUsageClass, _name_5);
-      if (_checkClassProperty != null) {
-        switch (_checkClassProperty) {
-          case WARNING:
-            String _name_6 = constant.getName();
-            String _plus_8 = ("Problem property : " + _name_6);
-            String _plus_9 = (_plus_8 + "[");
-            String _plus_10 = (_plus_9 + constantUsageClass);
-            String _plus_11 = (_plus_10 + "]");
-            this.warning(_plus_11, 
-              ProcessorDslPackage.Literals.CONSTANT__NAME);
-            break;
-          case ERROR:
-            String _name_7 = constant.getName();
-            String _plus_12 = ("Cannot find property : " + _name_7);
-            String _plus_13 = (_plus_12 + "[");
-            String _plus_14 = (_plus_13 + constantUsageClass);
-            String _plus_15 = (_plus_14 + "]");
-            this.error(_plus_15, 
-              ProcessorDslPackage.Literals.CONSTANT__NAME);
-            break;
-          default:
-            break;
-        }
-      }
-      return;
-    }
-    PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
-    boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
-    if (_notEquals_5) {
-      String _name_8 = constant.getName();
-      String _plus_16 = ("Cannot check constant form attribute : " + _name_8);
-      this.error(_plus_16, 
-        ProcessorDslPackage.Literals.CONSTANT__NAME);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nARTIFACTS__POJO_PACKAGES cannot be resolved"
+      + "\nCONSTANT__NAME cannot be resolved"
+      + "\nCONSTANT__NAME cannot be resolved"
+      + "\nARTIFACTS__POJOS cannot be resolved"
+      + "\nCONSTANT__NAME cannot be resolved"
+      + "\nCONSTANT__NAME cannot be resolved"
+      + "\nCONSTANT__NAME cannot be resolved");
   }
   
   @Check
   public void checkMappingColumn(final MappingColumn column) {
-    boolean _isResolvePojo = this.isResolvePojo(column);
-    boolean _not = (!_isResolvePojo);
-    if (_not) {
-      return;
-    }
-    final String columnName = Utils.getName(column);
-    boolean _isNumber = Utils.isNumber(columnName);
-    if (_isNumber) {
-      return;
-    }
-    final MetaStatement rule = EcoreUtil2.<MetaStatement>getContainerOfType(column, MetaStatement.class);
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(rule, Artifacts.class);
-    final String entityName = Utils.getTokenFromModifier(rule, Constants.MAPPING_USAGE_EXTENDED);
-    PojoEntity _xifexpression = null;
-    boolean _notEquals = (!Objects.equal(entityName, null));
-    if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-    }
-    final PojoEntity entity = _xifexpression;
-    boolean _notEquals_1 = (!Objects.equal(entity, null));
-    if (_notEquals_1) {
-      ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, columnName);
-      if (_checkEntityProperty != null) {
-        switch (_checkEntityProperty) {
-          case WARNING:
-            String _name = entity.getName();
-            String _plus = ((("Problem property : " + columnName) + "[") + _name);
-            String _plus_1 = (_plus + "]");
-            this.warning(_plus_1, 
-              ProcessorDslPackage.Literals.MAPPING_COLUMN__ITEMS);
-            break;
-          case ERROR:
-            String _name_1 = entity.getName();
-            String _plus_2 = ((("Cannot find property : " + columnName) + "[") + _name_1);
-            String _plus_3 = (_plus_2 + "]");
-            this.error(_plus_3, 
-              ProcessorDslPackage.Literals.MAPPING_COLUMN__ITEMS);
-            break;
-          default:
-            break;
-        }
-      }
-      return;
-    }
-    final String pojoName = Utils.getTokenFromModifier(rule, Constants.MAPPING_USAGE);
-    PojoDefinition _xifexpression_1 = null;
-    boolean _notEquals_2 = (!Objects.equal(pojoName, null));
-    if (_notEquals_2) {
-      IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
-      _xifexpression_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-    }
-    final PojoDefinition pojo = _xifexpression_1;
-    String _xifexpression_2 = null;
-    boolean _notEquals_3 = (!Objects.equal(pojo, null));
-    if (_notEquals_3) {
-      _xifexpression_2 = this.getClass(pojo);
-    }
-    final String mappingUsageClass = _xifexpression_2;
-    boolean _notEquals_4 = (!Objects.equal(mappingUsageClass, null));
-    if (_notEquals_4) {
-      ValidationResult _checkClassProperty = this.checkClassProperty(mappingUsageClass, columnName);
-      if (_checkClassProperty != null) {
-        switch (_checkClassProperty) {
-          case WARNING:
-            this.warning((((("Problem property : " + columnName) + "[") + mappingUsageClass) + "]"), 
-              ProcessorDslPackage.Literals.MAPPING_COLUMN__ITEMS);
-            break;
-          case ERROR:
-            this.error((((("Cannot find property : " + columnName) + "[") + mappingUsageClass) + "]"), 
-              ProcessorDslPackage.Literals.MAPPING_COLUMN__ITEMS);
-            break;
-          default:
-            break;
-        }
-      }
-      return;
-    }
-    PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
-    boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
-    if (_notEquals_5) {
-      this.error(("Cannot check result class attribute : " + columnName), 
-        ProcessorDslPackage.Literals.MAPPING_COLUMN__ITEMS);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nARTIFACTS__POJO_PACKAGES cannot be resolved"
+      + "\nMAPPING_COLUMN__ITEMS cannot be resolved"
+      + "\nMAPPING_COLUMN__ITEMS cannot be resolved"
+      + "\nARTIFACTS__POJOS cannot be resolved"
+      + "\nMAPPING_COLUMN__ITEMS cannot be resolved"
+      + "\nMAPPING_COLUMN__ITEMS cannot be resolved"
+      + "\nMAPPING_COLUMN__ITEMS cannot be resolved");
   }
   
   @Check
   public void checkMetaStatement(final MetaStatement statement) {
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
-    boolean _or = false;
-    EList<String> _modifiers = statement.getModifiers();
-    boolean _equals = Objects.equal(_modifiers, null);
-    if (_equals) {
-      _or = true;
-    } else {
-      EList<String> _modifiers_1 = statement.getModifiers();
-      boolean _isEmpty = _modifiers_1.isEmpty();
-      _or = _isEmpty;
-    }
-    if (_or) {
-      return;
-    }
-    int index = 0;
-    EList<String> _modifiers_2 = statement.getModifiers();
-    for (final String modifier : _modifiers_2) {
-      {
-        int ix = modifier.indexOf("=");
-        if ((ix > 0)) {
-          final String key = modifier.substring(0, ix);
-          String value = modifier.substring((ix + 1));
-          boolean _equals_1 = Constants.IDENTIFIER_USAGE_EXTENDED.equals(key);
-          if (_equals_1) {
-            IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-            final PojoEntity entity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, value);
-            boolean _equals_2 = Objects.equal(entity, null);
-            if (_equals_2) {
-              this.error((((("Cannot find entity : " + value) + "[") + Constants.IDENTIFIER_USAGE_EXTENDED) + "]"), 
-                ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index);
-            }
-          } else {
-            boolean _equals_3 = Constants.IDENTIFIER_USAGE.equals(key);
-            if (_equals_3) {
-              IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
-              final PojoDefinition pojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, value);
-              boolean _equals_4 = Objects.equal(pojo, null);
-              if (_equals_4) {
-                this.error((((("Cannot find pojo : " + value) + "[") + Constants.IDENTIFIER_USAGE) + "]"), 
-                  ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index);
-              }
-            } else {
-              boolean _equals_5 = Constants.COLUMN_USAGE_EXTENDED.equals(key);
-              if (_equals_5) {
-                IScope _scope_2 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-                final PojoEntity entity_1 = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope_2, value);
-                boolean _equals_6 = Objects.equal(entity_1, null);
-                if (_equals_6) {
-                  this.error((((("Cannot find entity : " + value) + "[") + Constants.COLUMN_USAGE_EXTENDED) + "]"), 
-                    ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index);
-                }
-              } else {
-                boolean _equals_7 = Constants.COLUMN_USAGE.equals(key);
-                if (_equals_7) {
-                  IScope _scope_3 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
-                  final PojoDefinition pojo_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_3, value);
-                  boolean _equals_8 = Objects.equal(pojo_1, null);
-                  if (_equals_8) {
-                    this.error((((("Cannot find pojo : " + value) + "[") + Constants.COLUMN_USAGE) + "]"), 
-                      ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index);
-                  }
-                } else {
-                  boolean _equals_9 = Constants.CONSTANT_USAGE_EXTENDED.equals(key);
-                  if (_equals_9) {
-                    IScope _scope_4 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-                    final PojoEntity entity_2 = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope_4, value);
-                    boolean _equals_10 = Objects.equal(entity_2, null);
-                    if (_equals_10) {
-                      this.error((((("Cannot find entity : " + value) + "[") + Constants.CONSTANT_USAGE_EXTENDED) + "]"), 
-                        ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index);
-                    }
-                  } else {
-                    boolean _equals_11 = Constants.CONSTANT_USAGE.equals(key);
-                    if (_equals_11) {
-                      IScope _scope_5 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
-                      final PojoDefinition pojo_2 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_5, value);
-                      boolean _equals_12 = Objects.equal(pojo_2, null);
-                      if (_equals_12) {
-                        this.error((((("Cannot find pojo : " + value) + "[") + Constants.CONSTANT_USAGE) + "]"), 
-                          ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index);
-                      }
-                    } else {
-                      boolean _equals_13 = Constants.TABLE_USAGE.equals(key);
-                      if (_equals_13) {
-                        int ix1 = value.indexOf("=");
-                        if ((ix1 >= 0)) {
-                          String _substring = value.substring(0, ix1);
-                          value = _substring;
-                        }
-                        IScope _scope_6 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
-                        final TableDefinition table = Utils.findTable(this.qualifiedNameConverter, artifacts, _scope_6, value);
-                        boolean _equals_14 = Objects.equal(table, null);
-                        if (_equals_14) {
-                          this.error((((("Cannot find table : " + value) + "[") + Constants.TABLE_USAGE) + "]"), 
-                            ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index);
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-          index = (index + 1);
-        }
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nARTIFACTS__POJO_PACKAGES cannot be resolved"
+      + "\nMETA_STATEMENT__MODIFIERS cannot be resolved"
+      + "\nARTIFACTS__POJOS cannot be resolved"
+      + "\nMETA_STATEMENT__MODIFIERS cannot be resolved"
+      + "\nARTIFACTS__POJO_PACKAGES cannot be resolved"
+      + "\nMETA_STATEMENT__MODIFIERS cannot be resolved"
+      + "\nARTIFACTS__POJOS cannot be resolved"
+      + "\nMETA_STATEMENT__MODIFIERS cannot be resolved"
+      + "\nARTIFACTS__POJO_PACKAGES cannot be resolved"
+      + "\nMETA_STATEMENT__MODIFIERS cannot be resolved"
+      + "\nARTIFACTS__POJOS cannot be resolved"
+      + "\nMETA_STATEMENT__MODIFIERS cannot be resolved"
+      + "\nARTIFACTS__TABLES cannot be resolved"
+      + "\nMETA_STATEMENT__MODIFIERS cannot be resolved");
   }
   
   @Check
   public void checkMappingRule(final MappingRule rule) {
-    boolean _or = false;
-    EList<String> _modifiers = rule.getModifiers();
-    boolean _equals = Objects.equal(_modifiers, null);
-    if (_equals) {
-      _or = true;
-    } else {
-      EList<String> _modifiers_1 = rule.getModifiers();
-      boolean _isEmpty = _modifiers_1.isEmpty();
-      _or = _isEmpty;
-    }
-    if (_or) {
-      return;
-    }
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(rule, Artifacts.class);
-    int index = 0;
-    EList<String> _modifiers_2 = rule.getModifiers();
-    for (final String modifier : _modifiers_2) {
-      {
-        int ix = modifier.indexOf("=");
-        if ((ix > 0)) {
-          final String key = modifier.substring(0, ix);
-          final String value = modifier.substring((ix + 1));
-          boolean _equals_1 = Constants.MAPPING_USAGE_EXTENDED.equals(key);
-          if (_equals_1) {
-            IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-            final PojoEntity entity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, value);
-            boolean _equals_2 = Objects.equal(entity, null);
-            if (_equals_2) {
-              this.error((((("Cannot find entity : " + value) + "[") + Constants.MAPPING_USAGE_EXTENDED) + "]"), 
-                ProcessorDslPackage.Literals.MAPPING_RULE__MODIFIERS, index);
-            }
-          } else {
-            boolean _equals_3 = Constants.MAPPING_USAGE.equals(key);
-            if (_equals_3) {
-              IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
-              final PojoDefinition pojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, value);
-              boolean _equals_4 = Objects.equal(pojo, null);
-              if (_equals_4) {
-                this.error((((("Cannot find pojo : " + value) + "[") + Constants.MAPPING_USAGE) + "]"), 
-                  ProcessorDslPackage.Literals.MAPPING_RULE__MODIFIERS, index);
-              }
-            }
-          }
-          index = (index + 1);
-        }
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nARTIFACTS__POJO_PACKAGES cannot be resolved"
+      + "\nMAPPING_RULE__MODIFIERS cannot be resolved"
+      + "\nARTIFACTS__POJOS cannot be resolved"
+      + "\nMAPPING_RULE__MODIFIERS cannot be resolved");
   }
   
   public boolean isNumber(final String param) {
@@ -1420,485 +874,86 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
   
   @Check
   public void checkUniqueProperty(final Property property) {
-    EObject _rootContainer = EcoreUtil.getRootContainer(property);
-    if ((!(_rootContainer instanceof Artifacts))) {
-      return;
-    }
-    EObject _rootContainer_1 = EcoreUtil.getRootContainer(property);
-    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<Property> _properties = artifacts.getProperties();
-    for (final Property prop : _properties) {
-      boolean _and = false;
-      boolean _notEquals = (!Objects.equal(prop, null));
-      if (!_notEquals) {
-        _and = false;
-      } else {
-        boolean _tripleNotEquals = (prop != property);
-        _and = _tripleNotEquals;
-      }
-      if (_and) {
-        boolean _and_1 = false;
-        boolean _and_2 = false;
-        boolean _and_3 = false;
-        boolean _and_4 = false;
-        boolean _and_5 = false;
-        String _name = prop.getName();
-        String _name_1 = property.getName();
-        boolean _equals = _name.equals(_name_1);
-        if (!_equals) {
-          _and_5 = false;
-        } else {
-          String _name_2 = prop.getName();
-          boolean _startsWith = _name_2.startsWith("pojogen");
-          boolean _not = (!_startsWith);
-          _and_5 = _not;
-        }
-        if (!_and_5) {
-          _and_4 = false;
-        } else {
-          String _name_3 = prop.getName();
-          boolean _startsWith_1 = _name_3.startsWith("database");
-          boolean _not_1 = (!_startsWith_1);
-          _and_4 = _not_1;
-        }
-        if (!_and_4) {
-          _and_3 = false;
-        } else {
-          String _name_4 = prop.getName();
-          boolean _startsWith_2 = _name_4.startsWith("metagen");
-          boolean _not_2 = (!_startsWith_2);
-          _and_3 = _not_2;
-        }
-        if (!_and_3) {
-          _and_2 = false;
-        } else {
-          String _name_5 = prop.getName();
-          boolean _startsWith_3 = _name_5.startsWith("daogen");
-          boolean _not_3 = (!_startsWith_3);
-          _and_2 = _not_3;
-        }
-        if (!_and_2) {
-          _and_1 = false;
-        } else {
-          String _name_6 = prop.getName();
-          boolean _startsWith_4 = _name_6.startsWith("replace-all");
-          boolean _not_4 = (!_startsWith_4);
-          _and_1 = _not_4;
-        }
-        if (_and_1) {
-          String _name_7 = property.getName();
-          String _plus = ("Duplicate name : " + _name_7);
-          this.error(_plus, ProcessorDslPackage.Literals.PROPERTY__NAME);
-          return;
-        }
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nPROPERTY__NAME cannot be resolved");
   }
   
   @Check
   public void checkTableDefinition(final TableDefinition tableDefinition) {
-    EObject _rootContainer = EcoreUtil.getRootContainer(tableDefinition);
-    if ((!(_rootContainer instanceof Artifacts))) {
-      return;
-    }
-    EObject _rootContainer_1 = EcoreUtil.getRootContainer(tableDefinition);
-    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<TableDefinition> _tables = artifacts.getTables();
-    for (final TableDefinition table : _tables) {
-      boolean _and = false;
-      boolean _notEquals = (!Objects.equal(table, null));
-      if (!_notEquals) {
-        _and = false;
-      } else {
-        boolean _tripleNotEquals = (table != tableDefinition);
-        _and = _tripleNotEquals;
-      }
-      if (_and) {
-        String _name = tableDefinition.getName();
-        String _name_1 = table.getName();
-        boolean _equals = _name.equals(_name_1);
-        if (_equals) {
-          String _name_2 = tableDefinition.getName();
-          String _plus = ("Duplicate name : " + _name_2);
-          String _plus_1 = (_plus + "[table]");
-          this.error(_plus_1, 
-            ProcessorDslPackage.Literals.TABLE_DEFINITION__NAME);
-          return;
-        }
-      }
-    }
-    boolean _and_1 = false;
-    boolean _isResolveDb = this.isResolveDb(tableDefinition);
-    if (!_isResolveDb) {
-      _and_1 = false;
-    } else {
-      String _table = tableDefinition.getTable();
-      boolean _checkTable = this.dbResolver.checkTable(tableDefinition, _table);
-      boolean _not = (!_checkTable);
-      _and_1 = _not;
-    }
-    if (_and_1) {
-      String _table_1 = tableDefinition.getTable();
-      String _plus_2 = ("Cannot find table in DB : " + _table_1);
-      this.error(_plus_2, 
-        ProcessorDslPackage.Literals.TABLE_DEFINITION__TABLE);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nTABLE_DEFINITION__NAME cannot be resolved"
+      + "\nTABLE_DEFINITION__TABLE cannot be resolved");
   }
   
   @Check
   public void checkProcedureDefinition(final ProcedureDefinition procedureDefinition) {
-    EObject _rootContainer = EcoreUtil.getRootContainer(procedureDefinition);
-    if ((!(_rootContainer instanceof Artifacts))) {
-      return;
-    }
-    EObject _rootContainer_1 = EcoreUtil.getRootContainer(procedureDefinition);
-    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<ProcedureDefinition> _procedures = artifacts.getProcedures();
-    for (final ProcedureDefinition procedure : _procedures) {
-      boolean _and = false;
-      boolean _notEquals = (!Objects.equal(procedure, null));
-      if (!_notEquals) {
-        _and = false;
-      } else {
-        boolean _tripleNotEquals = (procedure != procedureDefinition);
-        _and = _tripleNotEquals;
-      }
-      if (_and) {
-        String _name = procedureDefinition.getName();
-        String _name_1 = procedure.getName();
-        boolean _equals = _name.equals(_name_1);
-        if (_equals) {
-          String _name_2 = procedureDefinition.getName();
-          String _plus = ("Duplicate name : " + _name_2);
-          String _plus_1 = (_plus + "[procedure]");
-          this.error(_plus_1, 
-            ProcessorDslPackage.Literals.PROCEDURE_DEFINITION__NAME);
-          return;
-        }
-      }
-    }
-    boolean _and_1 = false;
-    boolean _isResolveDb = this.isResolveDb(procedureDefinition);
-    if (!_isResolveDb) {
-      _and_1 = false;
-    } else {
-      String _table = procedureDefinition.getTable();
-      boolean _checkProcedure = this.dbResolver.checkProcedure(procedureDefinition, _table);
-      boolean _not = (!_checkProcedure);
-      _and_1 = _not;
-    }
-    if (_and_1) {
-      String _table_1 = procedureDefinition.getTable();
-      String _plus_2 = ("Cannot find procedure in DB : " + _table_1);
-      this.error(_plus_2, 
-        ProcessorDslPackage.Literals.PROCEDURE_DEFINITION__NAME);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nPROCEDURE_DEFINITION__NAME cannot be resolved"
+      + "\nPROCEDURE_DEFINITION__NAME cannot be resolved");
   }
   
   @Check
   public void checkFunctionDefinition(final FunctionDefinition functionDefinition) {
-    EObject _rootContainer = EcoreUtil.getRootContainer(functionDefinition);
-    if ((!(_rootContainer instanceof Artifacts))) {
-      return;
-    }
-    EObject _rootContainer_1 = EcoreUtil.getRootContainer(functionDefinition);
-    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<FunctionDefinition> _functions = artifacts.getFunctions();
-    for (final FunctionDefinition function : _functions) {
-      boolean _and = false;
-      boolean _notEquals = (!Objects.equal(function, null));
-      if (!_notEquals) {
-        _and = false;
-      } else {
-        boolean _tripleNotEquals = (function != functionDefinition);
-        _and = _tripleNotEquals;
-      }
-      if (_and) {
-        String _name = functionDefinition.getName();
-        String _name_1 = function.getName();
-        boolean _equals = _name.equals(_name_1);
-        if (_equals) {
-          String _name_2 = functionDefinition.getName();
-          String _plus = ("Duplicate name : " + _name_2);
-          String _plus_1 = (_plus + "[function]");
-          this.error(_plus_1, 
-            ProcessorDslPackage.Literals.FUNCTION_DEFINITION__NAME);
-          return;
-        }
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nFUNCTION_DEFINITION__NAME cannot be resolved");
   }
   
   @Check
   public void checkDatabaseColumn(final DatabaseColumn databaseColumn) {
-    boolean _isResolveDb = this.isResolveDb(databaseColumn);
-    boolean _not = (!_isResolveDb);
-    if (_not) {
-      return;
-    }
-    String prefix = databaseColumn.getName();
-    String columnName = ((String) null);
-    final int pos = prefix.indexOf(".");
-    if ((pos > 0)) {
-      String _name = databaseColumn.getName();
-      String _substring = _name.substring(0, pos);
-      prefix = _substring;
-      String _name_1 = databaseColumn.getName();
-      String _substring_1 = _name_1.substring((pos + 1));
-      columnName = _substring_1;
-    } else {
-      prefix = null;
-      String _name_2 = databaseColumn.getName();
-      columnName = _name_2;
-    }
-    final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(databaseColumn, MetaStatement.class);
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
-    final String value = Utils.getTokenFromModifier(statement, Constants.TABLE_USAGE, prefix);
-    TableDefinition _xifexpression = null;
-    boolean _notEquals = (!Objects.equal(value, null));
-    if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
-      _xifexpression = Utils.findTable(this.qualifiedNameConverter, artifacts, _scope, value);
-    }
-    final TableDefinition tableDefinition = _xifexpression;
-    String _xifexpression_1 = null;
-    boolean _notEquals_1 = (!Objects.equal(tableDefinition, null));
-    if (_notEquals_1) {
-      _xifexpression_1 = tableDefinition.getTable();
-    }
-    final String tableName = _xifexpression_1;
-    boolean _or = false;
-    boolean _equals = Objects.equal(tableName, null);
-    if (_equals) {
-      _or = true;
-    } else {
-      boolean _checkColumn = this.dbResolver.checkColumn(databaseColumn, tableName, columnName);
-      boolean _not_1 = (!_checkColumn);
-      _or = _not_1;
-    }
-    if (_or) {
-      String _name_3 = databaseColumn.getName();
-      String _plus = ("Cannot find column in DB : " + _name_3);
-      String _plus_1 = (_plus + "[");
-      String _plus_2 = (_plus_1 + tableName);
-      String _plus_3 = (_plus_2 + "]");
-      this.error(_plus_3, 
-        ProcessorDslPackage.Literals.DATABASE_COLUMN__NAME);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nARTIFACTS__TABLES cannot be resolved"
+      + "\nDATABASE_COLUMN__NAME cannot be resolved");
   }
   
   @Check
   public void checkDatabaseTable(final DatabaseTable databaseTable) {
-    boolean _isResolveDb = this.isResolveDb(databaseTable);
-    boolean _not = (!_isResolveDb);
-    if (_not) {
-      return;
-    }
-    final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(databaseTable, MetaStatement.class);
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
-    final String tableName = databaseTable.getName();
-    List<String> _tokensFromModifier = Utils.getTokensFromModifier(statement, Constants.TABLE_USAGE);
-    final Function1<String, TableDefinition> _function = new Function1<String, TableDefinition>() {
-      public TableDefinition apply(final String value) {
-        IScope _scope = ProcessorDslValidator.this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
-        return Utils.findTable(ProcessorDslValidator.this.qualifiedNameConverter, artifacts, _scope, value);
-      }
-    };
-    final List<TableDefinition> tableDefinitions = ListExtensions.<String, TableDefinition>map(_tokensFromModifier, _function);
-    final Function1<TableDefinition, Boolean> _function_1 = new Function1<TableDefinition, Boolean>() {
-      public Boolean apply(final TableDefinition it) {
-        return Boolean.valueOf((!Objects.equal(it, null)));
-      }
-    };
-    final TableDefinition tableDefinition = IterableExtensions.<TableDefinition>findFirst(tableDefinitions, _function_1);
-    boolean _or = false;
-    boolean _equals = Objects.equal(tableDefinition, null);
-    if (_equals) {
-      _or = true;
-    } else {
-      boolean _checkTable = this.dbResolver.checkTable(databaseTable, tableName);
-      boolean _not_1 = (!_checkTable);
-      _or = _not_1;
-    }
-    if (_or) {
-      this.error(("Cannot find table in DB : " + tableName), ProcessorDslPackage.Literals.DATABASE_TABLE__NAME);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nARTIFACTS__TABLES cannot be resolved"
+      + "\nDATABASE_TABLE__NAME cannot be resolved");
   }
   
   @Check
   public void checkUniquePojoEntity(final PojoEntity pojoEntity) {
-    EObject _rootContainer = EcoreUtil.getRootContainer(pojoEntity);
-    if ((!(_rootContainer instanceof Artifacts))) {
-      return;
-    }
-    EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoEntity);
-    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
-    for (final PackageDeclaration pkg : _pojoPackages) {
-      boolean _notEquals = (!Objects.equal(pkg, null));
-      if (_notEquals) {
-        EList<AbstractEntity> _elements = pkg.getElements();
-        for (final AbstractEntity entity : _elements) {
-          boolean _and = false;
-          boolean _notEquals_1 = (!Objects.equal(entity, null));
-          if (!_notEquals_1) {
-            _and = false;
-          } else {
-            _and = (entity instanceof PojoEntity);
-          }
-          if (_and) {
-            final PojoEntity pentity = ((PojoEntity) entity);
-            boolean _tripleNotEquals = (pentity != pojoEntity);
-            if (_tripleNotEquals) {
-              String _name = pojoEntity.getName();
-              String _name_1 = pentity.getName();
-              boolean _equals = _name.equals(_name_1);
-              if (_equals) {
-                String _name_2 = pojoEntity.getName();
-                String _plus = ("Duplicate name : " + _name_2);
-                this.error(_plus, ProcessorDslPackage.Literals.ENTITY__NAME);
-                return;
-              }
-            }
-          }
-        }
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nENTITY__NAME cannot be resolved");
   }
   
   @Check
   public void checkUniquePojoProperty(final PojoProperty pojoProperty) {
-    final PojoEntity entity = EcoreUtil2.<PojoEntity>getContainerOfType(pojoProperty, PojoEntity.class);
-    EList<PojoProperty> _features = entity.getFeatures();
-    for (final PojoProperty property : _features) {
-      boolean _and = false;
-      boolean _notEquals = (!Objects.equal(property, null));
-      if (!_notEquals) {
-        _and = false;
-      } else {
-        boolean _tripleNotEquals = (property != pojoProperty);
-        _and = _tripleNotEquals;
-      }
-      if (_and) {
-        String _name = pojoProperty.getName();
-        String _name_1 = property.getName();
-        boolean _equals = _name.equals(_name_1);
-        if (_equals) {
-          String _name_2 = pojoProperty.getName();
-          String _plus = ("Duplicate name : " + _name_2);
-          this.error(_plus, ProcessorDslPackage.Literals.POJO_PROPERTY__NAME);
-          return;
-        }
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nPOJO_PROPERTY__NAME cannot be resolved");
   }
   
   @Check
   public void checkUniqueEnumEntity(final EnumEntity enumEntity) {
-    EObject _rootContainer = EcoreUtil.getRootContainer(enumEntity);
-    if ((!(_rootContainer instanceof Artifacts))) {
-      return;
-    }
-    EObject _rootContainer_1 = EcoreUtil.getRootContainer(enumEntity);
-    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
-    for (final PackageDeclaration pkg : _pojoPackages) {
-      boolean _notEquals = (!Objects.equal(pkg, null));
-      if (_notEquals) {
-        EList<AbstractEntity> _elements = pkg.getElements();
-        for (final AbstractEntity entity : _elements) {
-          boolean _and = false;
-          boolean _notEquals_1 = (!Objects.equal(entity, null));
-          if (!_notEquals_1) {
-            _and = false;
-          } else {
-            _and = (entity instanceof EnumEntity);
-          }
-          if (_and) {
-            final EnumEntity pentity = ((EnumEntity) entity);
-            boolean _notEquals_2 = (!Objects.equal(pentity, enumEntity));
-            if (_notEquals_2) {
-              String _name = enumEntity.getName();
-              String _name_1 = pentity.getName();
-              boolean _equals = _name.equals(_name_1);
-              if (_equals) {
-                String _name_2 = enumEntity.getName();
-                String _plus = ("Duplicate name : " + _name_2);
-                this.error(_plus, ProcessorDslPackage.Literals.ENTITY__NAME);
-                return;
-              }
-            }
-          }
-        }
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nENTITY__NAME cannot be resolved");
   }
   
   @Check
   public void checkUniqueEnumProperty(final EnumProperty enumProperty) {
-    final EnumEntity entity = EcoreUtil2.<EnumEntity>getContainerOfType(enumProperty, EnumEntity.class);
-    EList<EnumProperty> _features = entity.getFeatures();
-    for (final EnumProperty property : _features) {
-      boolean _and = false;
-      boolean _notEquals = (!Objects.equal(property, null));
-      if (!_notEquals) {
-        _and = false;
-      } else {
-        boolean _tripleNotEquals = (property != enumProperty);
-        _and = _tripleNotEquals;
-      }
-      if (_and) {
-        String _name = enumProperty.getName();
-        String _name_1 = property.getName();
-        boolean _equals = _name.equals(_name_1);
-        if (_equals) {
-          String _name_2 = enumProperty.getName();
-          String _plus = ("Duplicate name : " + _name_2);
-          this.error(_plus, ProcessorDslPackage.Literals.ENUM_PROPERTY__NAME);
-          return;
-        }
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nENUM_PROPERTY__NAME cannot be resolved");
   }
   
   @Check
   public void checkUniquePojoDao(final PojoDao pojoDao) {
-    EObject _rootContainer = EcoreUtil.getRootContainer(pojoDao);
-    if ((!(_rootContainer instanceof Artifacts))) {
-      return;
-    }
-    EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoDao);
-    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
-    for (final PackageDeclaration pkg : _pojoPackages) {
-      boolean _notEquals = (!Objects.equal(pkg, null));
-      if (_notEquals) {
-        EList<AbstractEntity> _elements = pkg.getElements();
-        for (final AbstractEntity dao : _elements) {
-          boolean _and = false;
-          boolean _notEquals_1 = (!Objects.equal(dao, null));
-          if (!_notEquals_1) {
-            _and = false;
-          } else {
-            _and = (dao instanceof PojoDao);
-          }
-          if (_and) {
-            final PojoDao pdao = ((PojoDao) dao);
-            boolean _notEquals_2 = (!Objects.equal(pdao, pojoDao));
-            if (_notEquals_2) {
-              String _name = pojoDao.getName();
-              String _name_1 = pdao.getName();
-              boolean _equals = _name.equals(_name_1);
-              if (_equals) {
-                String _name_2 = pojoDao.getName();
-                String _plus = ("Duplicate name : " + _name_2);
-                this.error(_plus, ProcessorDslPackage.Literals.POJO_DAO__NAME);
-                return;
-              }
-            }
-          }
-        }
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslValidator"
+      + "\nPOJO_DAO__NAME cannot be resolved");
   }
 }

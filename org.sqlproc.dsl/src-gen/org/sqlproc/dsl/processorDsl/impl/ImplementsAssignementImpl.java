@@ -86,7 +86,7 @@ public class ImplementsAssignementImpl extends MinimalEObjectImpl.Container impl
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.IMPLEMENTS_ASSIGNEMENT;
+    return ProcessorDslPackage.eINSTANCE.getImplementsAssignement();
   }
 
   /**

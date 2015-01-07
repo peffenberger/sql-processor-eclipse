@@ -38,7 +38,7 @@ public class EnumPropertyDirectiveImpl extends MinimalEObjectImpl.Container impl
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ENUM_PROPERTY_DIRECTIVE;
+    return ProcessorDslPackage.eINSTANCE.getEnumPropertyDirective();
   }
 
 } //EnumPropertyDirectiveImpl

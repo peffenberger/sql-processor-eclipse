@@ -159,7 +159,7 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.ARTIFACTS;
+    return ProcessorDslPackage.eINSTANCE.getArtifacts();
   }
 
   /**

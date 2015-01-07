@@ -10,8 +10,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveUpdate;
-import org.sqlproc.dsl.processorDsl.DirectiveParameters;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
 /**
@@ -37,7 +37,7 @@ public class DaoDirectiveUpdateImpl extends DaoDirectiveImpl implements DaoDirec
    * @generated
    * @ordered
    */
-  protected DirectiveParameters paramlist;
+  protected DaoDirectiveParameters paramlist;
 
   /**
    * <!-- begin-user-doc -->
@@ -57,7 +57,7 @@ public class DaoDirectiveUpdateImpl extends DaoDirectiveImpl implements DaoDirec
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.DAO_DIRECTIVE_UPDATE;
+    return ProcessorDslPackage.eINSTANCE.getDaoDirectiveUpdate();
   }
 
   /**
@@ -65,7 +65,7 @@ public class DaoDirectiveUpdateImpl extends DaoDirectiveImpl implements DaoDirec
    * <!-- end-user-doc -->
    * @generated
    */
-  public DirectiveParameters getParamlist()
+  public DaoDirectiveParameters getParamlist()
   {
     return paramlist;
   }
@@ -75,9 +75,9 @@ public class DaoDirectiveUpdateImpl extends DaoDirectiveImpl implements DaoDirec
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetParamlist(DirectiveParameters newParamlist, NotificationChain msgs)
+  public NotificationChain basicSetParamlist(DaoDirectiveParameters newParamlist, NotificationChain msgs)
   {
-    DirectiveParameters oldParamlist = paramlist;
+    DaoDirectiveParameters oldParamlist = paramlist;
     paramlist = newParamlist;
     if (eNotificationRequired())
     {
@@ -92,7 +92,7 @@ public class DaoDirectiveUpdateImpl extends DaoDirectiveImpl implements DaoDirec
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setParamlist(DirectiveParameters newParamlist)
+  public void setParamlist(DaoDirectiveParameters newParamlist)
   {
     if (newParamlist != paramlist)
     {
@@ -151,7 +151,7 @@ public class DaoDirectiveUpdateImpl extends DaoDirectiveImpl implements DaoDirec
     switch (featureID)
     {
       case ProcessorDslPackage.DAO_DIRECTIVE_UPDATE__PARAMLIST:
-        setParamlist((DirectiveParameters)newValue);
+        setParamlist((DaoDirectiveParameters)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -168,7 +168,7 @@ public class DaoDirectiveUpdateImpl extends DaoDirectiveImpl implements DaoDirec
     switch (featureID)
     {
       case ProcessorDslPackage.DAO_DIRECTIVE_UPDATE__PARAMLIST:
-        setParamlist((DirectiveParameters)null);
+        setParamlist((DaoDirectiveParameters)null);
         return;
     }
     super.eUnset(featureID);

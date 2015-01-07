@@ -64,7 +64,7 @@ public class PojoPropertyDirectiveDiscriminatorImpl extends PojoPropertyDirectiv
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR;
+    return ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveDiscriminator();
   }
 
   /**

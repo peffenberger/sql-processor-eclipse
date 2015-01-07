@@ -64,7 +64,7 @@ public class PojoPropertyDirectiveIndexImpl extends PojoPropertyDirectiveImpl im
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_PROPERTY_DIRECTIVE_INDEX;
+    return ProcessorDslPackage.eINSTANCE.getPojoPropertyDirectiveIndex();
   }
 
   /**

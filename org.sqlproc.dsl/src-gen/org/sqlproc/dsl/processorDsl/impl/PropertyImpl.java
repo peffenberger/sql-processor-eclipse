@@ -178,7 +178,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.PROPERTY;
+    return ProcessorDslPackage.eINSTANCE.getProperty();
   }
 
   /**

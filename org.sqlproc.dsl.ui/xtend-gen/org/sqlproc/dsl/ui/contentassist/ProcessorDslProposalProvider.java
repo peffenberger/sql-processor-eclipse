@@ -26,7 +26,6 @@ import java.util.TreeSet;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.xtext.Assignment;
@@ -37,7 +36,6 @@ import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
@@ -47,7 +45,6 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.sqlproc.dsl.processorDsl.AbstractEntity;
-import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.DatabaseProperty;
 import org.sqlproc.dsl.processorDsl.DriverMethodOutputAssignement;
@@ -55,14 +52,9 @@ import org.sqlproc.dsl.processorDsl.Entity;
 import org.sqlproc.dsl.processorDsl.ExportAssignement;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
 import org.sqlproc.dsl.processorDsl.ExtendedColumnName;
-import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
 import org.sqlproc.dsl.processorDsl.ImportAssignement;
 import org.sqlproc.dsl.processorDsl.InheritanceAssignement;
 import org.sqlproc.dsl.processorDsl.ManyToManyAssignement;
-import org.sqlproc.dsl.processorDsl.MappingColumn;
-import org.sqlproc.dsl.processorDsl.MappingColumnName;
-import org.sqlproc.dsl.processorDsl.MappingRule;
-import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.MetagenProperty;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
@@ -70,7 +62,6 @@ import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.PojogenProperty;
-import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 import org.sqlproc.dsl.processorDsl.ShowColumnTypeAssignement;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
 import org.sqlproc.dsl.resolver.DbExport;
@@ -212,279 +203,19 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public boolean completeUsage(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor, final String usageInFilter, final String usageInFilterExt, final String _prefix, final boolean cutPrefix) {
-    boolean _isResolvePojo = this.isResolvePojo(model);
-    boolean _not = (!_isResolvePojo);
-    if (_not) {
-      return false;
-    }
-    final MetaStatement metaStatement = EcoreUtil2.<MetaStatement>getContainerOfType(model, MetaStatement.class);
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(model, Artifacts.class);
-    final String entityName = Utils.getTokenFromModifier(metaStatement, usageInFilterExt);
-    PojoEntity _xifexpression = null;
-    boolean _notEquals = (!Objects.equal(entityName, null));
-    if (_notEquals) {
-      IScopeProvider _scopeProvider = this.getScopeProvider();
-      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-    }
-    final PojoEntity pojoEntity = _xifexpression;
-    String _xifexpression_1 = null;
-    boolean _equals = Objects.equal(pojoEntity, null);
-    if (_equals) {
-      _xifexpression_1 = Utils.getTokenFromModifier(metaStatement, usageInFilter);
-    }
-    final String pojoName = _xifexpression_1;
-    PojoDefinition _xifexpression_2 = null;
-    boolean _notEquals_1 = (!Objects.equal(pojoName, null));
-    if (_notEquals_1) {
-      IScopeProvider _scopeProvider_1 = this.getScopeProvider();
-      IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
-      _xifexpression_2 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-    }
-    final PojoDefinition pojoDefinition = _xifexpression_2;
-    boolean _and = false;
-    boolean _equals_1 = Objects.equal(pojoDefinition, null);
-    if (!_equals_1) {
-      _and = false;
-    } else {
-      boolean _equals_2 = Objects.equal(pojoEntity, null);
-      _and = _equals_2;
-    }
-    if (_and) {
-      IValueConverterService _valueConverter = this.getValueConverter();
-      final String proposal = _valueConverter.toString(("Error: I can\'t load pojo for " + model), "IDENT");
-      ICompletionProposal _createCompletionProposal = this.createCompletionProposal(proposal, context);
-      acceptor.accept(_createCompletionProposal);
-      return true;
-    }
-    final int pos = _prefix.lastIndexOf(".");
-    String _xifexpression_3 = null;
-    if ((pos > 0)) {
-      _xifexpression_3 = _prefix.substring(0, (pos + 1));
-    } else {
-      _xifexpression_3 = "";
-    }
-    final String prefix = _xifexpression_3;
-    boolean _notEquals_2 = (!Objects.equal(pojoDefinition, null));
-    if (_notEquals_2) {
-      String _class = this.getClass(pojoDefinition);
-      final String clazz = this.getClassName(_class, prefix);
-      boolean _equals_3 = Objects.equal(clazz, null);
-      if (_equals_3) {
-        return false;
-      }
-      final PropertyDescriptor[] descriptors = this.pojoResolver.getPropertyDescriptors(clazz);
-      boolean _equals_4 = Objects.equal(descriptors, null);
-      if (_equals_4) {
-        return false;
-      }
-      final Function1<PropertyDescriptor, Boolean> _function = new Function1<PropertyDescriptor, Boolean>() {
-        public Boolean apply(final PropertyDescriptor it) {
-          String _name = it.getName();
-          return Boolean.valueOf((!Objects.equal("class", _name)));
-        }
-      };
-      Iterable<PropertyDescriptor> _filter = IterableExtensions.<PropertyDescriptor>filter(((Iterable<PropertyDescriptor>)Conversions.doWrapArray(descriptors)), _function);
-      final Procedure1<PropertyDescriptor> _function_1 = new Procedure1<PropertyDescriptor>() {
-        public void apply(final PropertyDescriptor descriptor) {
-          IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
-          String _name = descriptor.getName();
-          final String proposal = _valueConverter.toString(_name, "IDENT");
-          String _xifexpression = null;
-          if (cutPrefix) {
-            _xifexpression = proposal;
-          } else {
-            _xifexpression = (prefix + proposal);
-          }
-          ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_xifexpression, context);
-          acceptor.accept(_createCompletionProposal);
-        }
-      };
-      IterableExtensions.<PropertyDescriptor>forEach(_filter, _function_1);
-      return true;
-    } else {
-      final PojoEntity entity = this.getPojoEntity(pojoEntity, prefix);
-      final List<PojoProperty> properties = this.getProperties(entity, null);
-      boolean _isEmpty = properties.isEmpty();
-      if (_isEmpty) {
-        return false;
-      }
-      final Procedure1<PojoProperty> _function_2 = new Procedure1<PojoProperty>() {
-        public void apply(final PojoProperty pojoProperty) {
-          IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
-          String _name = pojoProperty.getName();
-          String proposal = _valueConverter.toString(_name, "IDENT");
-          String _xifexpression = null;
-          if (cutPrefix) {
-            _xifexpression = proposal;
-          } else {
-            _xifexpression = (prefix + proposal);
-          }
-          ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_xifexpression, context);
-          acceptor.accept(_createCompletionProposal);
-        }
-      };
-      IterableExtensions.<PojoProperty>forEach(properties, _function_2);
-      return true;
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslProposalProvider"
+      + "\nThe method Literals is undefined for the type ProcessorDslProposalProvider"
+      + "\nARTIFACTS__POJO_PACKAGES cannot be resolved"
+      + "\nARTIFACTS__POJOS cannot be resolved");
   }
   
   public void completeMappingColumnName_Name(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _isResolvePojo = this.isResolvePojo(model);
-    boolean _not = (!_isResolvePojo);
-    if (_not) {
-      super.completeMappingColumnName_Name(model, assignment, context, acceptor);
-      return;
-    }
-    final MappingColumn mappingColumn = EcoreUtil2.<MappingColumn>getContainerOfType(model, MappingColumn.class);
-    final MappingRule mappingRule = EcoreUtil2.<MappingRule>getContainerOfType(model, MappingRule.class);
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(model, Artifacts.class);
-    final String entityName = Utils.getTokenFromModifier(mappingRule, Constants.MAPPING_USAGE_EXTENDED);
-    PojoEntity _xifexpression = null;
-    boolean _notEquals = (!Objects.equal(entityName, null));
-    if (_notEquals) {
-      IScopeProvider _scopeProvider = this.getScopeProvider();
-      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-    }
-    final PojoEntity pojoEntity = _xifexpression;
-    String _xifexpression_1 = null;
-    boolean _equals = Objects.equal(pojoEntity, null);
-    if (_equals) {
-      _xifexpression_1 = Utils.getTokenFromModifier(mappingRule, Constants.MAPPING_USAGE);
-    }
-    final String pojoName = _xifexpression_1;
-    PojoDefinition _xifexpression_2 = null;
-    boolean _notEquals_1 = (!Objects.equal(pojoName, null));
-    if (_notEquals_1) {
-      IScopeProvider _scopeProvider_1 = this.getScopeProvider();
-      IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
-      _xifexpression_2 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-    }
-    final PojoDefinition pojoDefinition = _xifexpression_2;
-    boolean _and = false;
-    boolean _equals_1 = Objects.equal(pojoDefinition, null);
-    if (!_equals_1) {
-      _and = false;
-    } else {
-      boolean _equals_2 = Objects.equal(pojoEntity, null);
-      _and = _equals_2;
-    }
-    if (_and) {
-      IValueConverterService _valueConverter = this.getValueConverter();
-      final String proposal = _valueConverter.toString(("Error: I can\'t load pojo for " + model), "IDENT");
-      ICompletionProposal _createCompletionProposal = this.createCompletionProposal(proposal, context);
-      acceptor.accept(_createCompletionProposal);
-    }
-    final StringBuilder partialName = new StringBuilder("");
-    boolean cutPrefix = false;
-    boolean _and_1 = false;
-    if (!(model instanceof MappingColumn)) {
-      _and_1 = false;
-    } else {
-      boolean _notEquals_2 = (!Objects.equal(mappingColumn, null));
-      _and_1 = _notEquals_2;
-    }
-    if (_and_1) {
-      cutPrefix = true;
-      EList<ExtendedMappingItem> _items = mappingColumn.getItems();
-      final Function1<ExtendedMappingItem, Boolean> _function = new Function1<ExtendedMappingItem, Boolean>() {
-        public Boolean apply(final ExtendedMappingItem it) {
-          boolean _xblockexpression = false;
-          {
-            MappingColumnName _attr = it.getAttr();
-            String _name = _attr.getName();
-            ProcessorDslProposalProvider.this.append(partialName, _name);
-            boolean _and = false;
-            EObject _previousModel = context.getPreviousModel();
-            boolean _notEquals = (!Objects.equal(_previousModel, null));
-            if (!_notEquals) {
-              _and = false;
-            } else {
-              EObject _previousModel_1 = context.getPreviousModel();
-              boolean _tripleEquals = (it == _previousModel_1);
-              _and = _tripleEquals;
-            }
-            _xblockexpression = _and;
-          }
-          return Boolean.valueOf(_xblockexpression);
-        }
-      };
-      IterableExtensions.<ExtendedMappingItem>findFirst(_items, _function);
-    }
-    String _prefix = context.getPrefix();
-    StringBuilder _append = this.append(partialName, _prefix);
-    String prefix = _append.toString();
-    final int pos = prefix.lastIndexOf(".");
-    String _xifexpression_3 = null;
-    if ((pos > 0)) {
-      _xifexpression_3 = prefix.substring(0, (pos + 1));
-    } else {
-      _xifexpression_3 = "";
-    }
-    final String _prefix_1 = _xifexpression_3;
-    final boolean _cutPrefix = cutPrefix;
-    boolean _notEquals_3 = (!Objects.equal(pojoDefinition, null));
-    if (_notEquals_3) {
-      String _class = this.getClass(pojoDefinition);
-      final String clazz = this.getClassName(_class, prefix);
-      boolean _equals_3 = Objects.equal(clazz, null);
-      if (_equals_3) {
-        return;
-      }
-      final PropertyDescriptor[] descriptors = this.pojoResolver.getPropertyDescriptors(clazz);
-      boolean _equals_4 = Objects.equal(descriptors, null);
-      if (_equals_4) {
-        super.completeMappingColumnName_Name(model, assignment, context, acceptor);
-      } else {
-        final Function1<PropertyDescriptor, Boolean> _function_1 = new Function1<PropertyDescriptor, Boolean>() {
-          public Boolean apply(final PropertyDescriptor it) {
-            String _name = it.getName();
-            return Boolean.valueOf((!Objects.equal("class", _name)));
-          }
-        };
-        Iterable<PropertyDescriptor> _filter = IterableExtensions.<PropertyDescriptor>filter(((Iterable<PropertyDescriptor>)Conversions.doWrapArray(descriptors)), _function_1);
-        final Procedure1<PropertyDescriptor> _function_2 = new Procedure1<PropertyDescriptor>() {
-          public void apply(final PropertyDescriptor descriptor) {
-            IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
-            String _name = descriptor.getName();
-            final String proposal = _valueConverter.toString(_name, "IDENT");
-            String _xifexpression = null;
-            if (_cutPrefix) {
-              _xifexpression = proposal;
-            } else {
-              _xifexpression = (_prefix_1 + proposal);
-            }
-            ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_xifexpression, context);
-            acceptor.accept(_createCompletionProposal);
-          }
-        };
-        IterableExtensions.<PropertyDescriptor>forEach(_filter, _function_2);
-      }
-    } else {
-      final PojoEntity entity = this.getPojoEntity(pojoEntity, prefix);
-      final List<PojoProperty> properties = this.getProperties(entity, null);
-      boolean _isEmpty = properties.isEmpty();
-      if (_isEmpty) {
-        return;
-      }
-      final Procedure1<PojoProperty> _function_3 = new Procedure1<PojoProperty>() {
-        public void apply(final PojoProperty property) {
-          IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
-          String _name = property.getName();
-          final String proposal = _valueConverter.toString(_name, "IDENT");
-          String _xifexpression = null;
-          if (_cutPrefix) {
-            _xifexpression = proposal;
-          } else {
-            _xifexpression = (_prefix_1 + proposal);
-          }
-          ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(_xifexpression, context);
-          acceptor.accept(_createCompletionProposal);
-        }
-      };
-      IterableExtensions.<PojoProperty>forEach(properties, _function_3);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslProposalProvider"
+      + "\nThe method Literals is undefined for the type ProcessorDslProposalProvider"
+      + "\nARTIFACTS__POJO_PACKAGES cannot be resolved"
+      + "\nARTIFACTS__POJOS cannot be resolved");
   }
   
   public StringBuilder append(final StringBuilder sb, final String s) {
@@ -995,73 +726,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void complete_DatabaseColumn(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _isResolveDb = this.isResolveDb(model);
-    boolean _not = (!_isResolveDb);
-    if (_not) {
-      super.complete_DatabaseColumn(model, ruleCall, context, acceptor);
-      return;
-    }
-    String _prefix = context.getPrefix();
-    final int pos = _prefix.indexOf(".");
-    String _xifexpression = null;
-    if ((pos > 0)) {
-      String _prefix_1 = context.getPrefix();
-      _xifexpression = _prefix_1.substring(0, pos);
-    }
-    final String prefix = _xifexpression;
-    final MetaStatement metaStatement = EcoreUtil2.<MetaStatement>getContainerOfType(model, MetaStatement.class);
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(model, Artifacts.class);
-    final String value = Utils.getTokenFromModifier(metaStatement, Constants.TABLE_USAGE, prefix);
-    TableDefinition _xifexpression_1 = null;
-    boolean _notEquals = (!Objects.equal(value, null));
-    if (_notEquals) {
-      IScopeProvider _scopeProvider = this.getScopeProvider();
-      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
-      _xifexpression_1 = Utils.findTable(this.qualifiedNameConverter, artifacts, _scope, value);
-    }
-    final TableDefinition tableDefinition = _xifexpression_1;
-    boolean _and = false;
-    boolean _notEquals_1 = (!Objects.equal(tableDefinition, null));
-    if (!_notEquals_1) {
-      _and = false;
-    } else {
-      String _table = tableDefinition.getTable();
-      boolean _notEquals_2 = (!Objects.equal(_table, null));
-      _and = _notEquals_2;
-    }
-    if (_and) {
-      String _table_1 = tableDefinition.getTable();
-      List<String> _columns = this.dbResolver.getColumns(model, _table_1);
-      this.acceptColumns(_columns, context, acceptor, prefix, null);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslProposalProvider"
+      + "\nARTIFACTS__TABLES cannot be resolved");
   }
   
   public void complete_DatabaseTable(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _isResolveDb = this.isResolveDb(model);
-    boolean _not = (!_isResolveDb);
-    if (_not) {
-      super.complete_DatabaseTable(model, ruleCall, context, acceptor);
-      return;
-    }
-    final MetaStatement metaStatement = EcoreUtil2.<MetaStatement>getContainerOfType(model, MetaStatement.class);
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(model, Artifacts.class);
-    List<String> _tokensFromModifier = Utils.getTokensFromModifier(metaStatement, Constants.TABLE_USAGE);
-    final Procedure1<String> _function = new Procedure1<String>() {
-      public void apply(final String value) {
-        IScopeProvider _scopeProvider = ProcessorDslProposalProvider.this.getScopeProvider();
-        IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
-        final TableDefinition tableDefinition = Utils.findTable(ProcessorDslProposalProvider.this.qualifiedNameConverter, artifacts, _scope, value);
-        boolean _notEquals = (!Objects.equal(tableDefinition, null));
-        if (_notEquals) {
-          IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
-          String _table = tableDefinition.getTable();
-          final String proposal = _valueConverter.toString(_table, "IDENT");
-          ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(proposal, context);
-          acceptor.accept(_createCompletionProposal);
-        }
-      }
-    };
-    IterableExtensions.<String>forEach(_tokensFromModifier, _function);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslProposalProvider"
+      + "\nARTIFACTS__TABLES cannot be resolved");
   }
   
   public void completePojogenProperty_DbTable(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
@@ -1988,96 +1661,21 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void complete_StatementModifier(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    final MetaStatement metaStatement = EcoreUtil2.<MetaStatement>getContainerOfType(model, MetaStatement.class);
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(metaStatement, Artifacts.class);
-    Resource _eResource = artifacts.eResource();
-    ResourceSet _resourceSet = _eResource.getResourceSet();
-    IScopeProvider _scopeProvider = this.getScopeProvider();
-    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-    final Set<PojoEntity> entities = this.listEntities(_resourceSet, _scope);
-    final Procedure1<PojoEntity> _function = new Procedure1<PojoEntity>() {
-      public void apply(final PojoEntity entity) {
-        IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
-        String _name = entity.getName();
-        final String proposal = _valueConverter.toString(_name, "IDENT");
-        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.CONSTANT_USAGE_EXTENDED + "=") + proposal), context);
-        acceptor.accept(_createCompletionProposal);
-        ICompletionProposal _createCompletionProposal_1 = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.IDENTIFIER_USAGE_EXTENDED + "=") + proposal), context);
-        acceptor.accept(_createCompletionProposal_1);
-        ICompletionProposal _createCompletionProposal_2 = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.COLUMN_USAGE_EXTENDED + "=") + proposal), context);
-        acceptor.accept(_createCompletionProposal_2);
-      }
-    };
-    IterableExtensions.<PojoEntity>forEach(entities, _function);
-    Resource _eResource_1 = artifacts.eResource();
-    ResourceSet _resourceSet_1 = _eResource_1.getResourceSet();
-    IScopeProvider _scopeProvider_1 = this.getScopeProvider();
-    IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
-    final Set<PojoDefinition> pojos = this.listPojos(_resourceSet_1, _scope_1);
-    final Procedure1<PojoDefinition> _function_1 = new Procedure1<PojoDefinition>() {
-      public void apply(final PojoDefinition pojo) {
-        IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
-        String _name = pojo.getName();
-        final String proposal = _valueConverter.toString(_name, "IDENT");
-        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.CONSTANT_USAGE + "=") + proposal), context);
-        acceptor.accept(_createCompletionProposal);
-        ICompletionProposal _createCompletionProposal_1 = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.IDENTIFIER_USAGE + "=") + proposal), context);
-        acceptor.accept(_createCompletionProposal_1);
-        ICompletionProposal _createCompletionProposal_2 = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.COLUMN_USAGE + "=") + proposal), context);
-        acceptor.accept(_createCompletionProposal_2);
-      }
-    };
-    IterableExtensions.<PojoDefinition>forEach(pojos, _function_1);
-    Resource _eResource_2 = artifacts.eResource();
-    ResourceSet _resourceSet_2 = _eResource_2.getResourceSet();
-    IScopeProvider _scopeProvider_2 = this.getScopeProvider();
-    IScope _scope_2 = _scopeProvider_2.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
-    final Set<TableDefinition> tables = this.listTables(_resourceSet_2, _scope_2);
-    final Procedure1<TableDefinition> _function_2 = new Procedure1<TableDefinition>() {
-      public void apply(final TableDefinition table) {
-        IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
-        String _name = table.getName();
-        final String proposal = _valueConverter.toString(_name, "IDENT");
-        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.TABLE_USAGE + "=") + proposal), context);
-        acceptor.accept(_createCompletionProposal);
-      }
-    };
-    IterableExtensions.<TableDefinition>forEach(tables, _function_2);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslProposalProvider"
+      + "\nThe method Literals is undefined for the type ProcessorDslProposalProvider"
+      + "\nThe method Literals is undefined for the type ProcessorDslProposalProvider"
+      + "\nARTIFACTS__POJO_PACKAGES cannot be resolved"
+      + "\nARTIFACTS__POJOS cannot be resolved"
+      + "\nARTIFACTS__TABLES cannot be resolved");
   }
   
   public void complete_MappingRuleModifier(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    final MappingRule mappingRule = EcoreUtil2.<MappingRule>getContainerOfType(model, MappingRule.class);
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(mappingRule, Artifacts.class);
-    Resource _eResource = artifacts.eResource();
-    ResourceSet _resourceSet = _eResource.getResourceSet();
-    IScopeProvider _scopeProvider = this.getScopeProvider();
-    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-    final Set<PojoEntity> entities = this.listEntities(_resourceSet, _scope);
-    final Procedure1<PojoEntity> _function = new Procedure1<PojoEntity>() {
-      public void apply(final PojoEntity entity) {
-        IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
-        String _name = entity.getName();
-        final String proposal = _valueConverter.toString(_name, "IDENT");
-        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.MAPPING_USAGE_EXTENDED + "=") + proposal), context);
-        acceptor.accept(_createCompletionProposal);
-      }
-    };
-    IterableExtensions.<PojoEntity>forEach(entities, _function);
-    Resource _eResource_1 = artifacts.eResource();
-    ResourceSet _resourceSet_1 = _eResource_1.getResourceSet();
-    IScopeProvider _scopeProvider_1 = this.getScopeProvider();
-    IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
-    final Set<PojoDefinition> pojos = this.listPojos(_resourceSet_1, _scope_1);
-    final Procedure1<PojoDefinition> _function_1 = new Procedure1<PojoDefinition>() {
-      public void apply(final PojoDefinition pojo) {
-        IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
-        String _name = pojo.getName();
-        final String proposal = _valueConverter.toString(_name, "IDENT");
-        ICompletionProposal _createCompletionProposal = ProcessorDslProposalProvider.this.createCompletionProposal(((Constants.MAPPING_USAGE + "=") + proposal), context);
-        acceptor.accept(_createCompletionProposal);
-      }
-    };
-    IterableExtensions.<PojoDefinition>forEach(pojos, _function_1);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method Literals is undefined for the type ProcessorDslProposalProvider"
+      + "\nThe method Literals is undefined for the type ProcessorDslProposalProvider"
+      + "\nARTIFACTS__POJO_PACKAGES cannot be resolved"
+      + "\nARTIFACTS__POJOS cannot be resolved");
   }
   
   public void complete_Modifier(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {

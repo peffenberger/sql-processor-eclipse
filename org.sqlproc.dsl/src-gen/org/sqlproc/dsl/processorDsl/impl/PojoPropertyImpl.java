@@ -110,7 +110,7 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_PROPERTY;
+    return ProcessorDslPackage.eINSTANCE.getPojoProperty();
   }
 
   /**

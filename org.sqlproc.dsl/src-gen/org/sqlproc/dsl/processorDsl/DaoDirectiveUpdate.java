@@ -30,12 +30,12 @@ public interface DaoDirectiveUpdate extends DaoDirective
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Paramlist</em>' containment reference.
-   * @see #setParamlist(DirectiveParameters)
+   * @see #setParamlist(DaoDirectiveParameters)
    * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getDaoDirectiveUpdate_Paramlist()
    * @model containment="true"
    * @generated
    */
-  DirectiveParameters getParamlist();
+  DaoDirectiveParameters getParamlist();
 
   /**
    * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveUpdate#getParamlist <em>Paramlist</em>}' containment reference.
@@ -45,6 +45,6 @@ public interface DaoDirectiveUpdate extends DaoDirective
    * @see #getParamlist()
    * @generated
    */
-  void setParamlist(DirectiveParameters value);
+  void setParamlist(DaoDirectiveParameters value);
 
 } // DaoDirectiveUpdate

@@ -65,7 +65,7 @@ public class MappingColumnNameImpl extends MinimalEObjectImpl.Container implemen
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.MAPPING_COLUMN_NAME;
+    return ProcessorDslPackage.eINSTANCE.getMappingColumnName();
   }
 
   /**

@@ -57,7 +57,7 @@ public class PojoDirectiveEnumDefImpl extends PojoDirectiveImpl implements PojoD
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorDslPackage.Literals.POJO_DIRECTIVE_ENUM_DEF;
+    return ProcessorDslPackage.eINSTANCE.getPojoDirectiveEnumDef();
   }
 
   /**
