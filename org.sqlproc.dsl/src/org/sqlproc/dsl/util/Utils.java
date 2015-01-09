@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -45,6 +46,11 @@ import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
+import org.sqlproc.dsl.processorDsl.PojoDirective;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveOperators;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier2;
@@ -215,21 +221,21 @@ public class Utils {
     }
 
     public static boolean hasOperators(PojoEntity e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
+        if (e.getDirectives() == null || e.getDirectives().isEmpty())
             return false;
-        for (PojoEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getOperators() != null)
+        for (PojoDirective directive : e.getDirectives()) {
+            if (directive instanceof PojoDirectiveOperators)
                 return true;
         }
         return false;
     }
 
     public static String getOperatorsSuffix(PojoEntity e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
+        if (e.getDirectives() == null || e.getDirectives().isEmpty())
             return null;
-        for (PojoEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getOperatorsSuffix() != null)
-                return modifier.getOperatorsSuffix();
+        for (PojoDirective directive : e.getDirectives()) {
+            if (directive instanceof PojoDirectiveOperators)
+                return ((PojoDirectiveOperators) directive).getOperatorsSuffix();
         }
         return null;
     }
@@ -324,11 +330,11 @@ public class Utils {
     }
 
     public static String getDiscriminator(PojoEntity e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
+        if (e.getDirectives() == null || e.getDirectives().isEmpty())
             return null;
-        for (PojoEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getDiscriminator() != null)
-                return modifier.getDiscriminator();
+        for (PojoDirective directive : e.getDirectives()) {
+            if (directive instanceof PojoDirectiveDiscriminator)
+                return ((PojoDirectiveDiscriminator) directive).getDiscriminator();
         }
         return null;
     }
@@ -344,13 +350,26 @@ public class Utils {
     }
 
     public static String getSernum(PojoEntity e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
+        if (e.getDirectives() == null || e.getDirectives().isEmpty())
             return null;
-        for (PojoEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getSernum() != null)
-                return modifier.getSernum();
+        for (PojoDirective directive : e.getDirectives()) {
+            if (directive instanceof PojoDirectiveSerializable)
+                return ((PojoDirectiveSerializable) directive).getSernum();
         }
         return null;
+    }
+
+    public static Map<String, List<PojoProperty>> getIndex(PojoEntity e) {
+        Map<String, List<PojoProperty>> result = new TreeMap<String, List<PojoProperty>>();
+        if (e.getDirectives() == null || e.getDirectives().isEmpty())
+            return result;
+        for (PojoDirective directive : e.getDirectives()) {
+            if (directive instanceof PojoDirectiveIndex) {
+                PojoDirectiveIndex pdi = (PojoDirectiveIndex) directive;
+                result.put(pdi.getIndex(), pdi.getProplist().getFeatures());
+            }
+        }
+        return result;
     }
 
     public static String getSernum(PojoDao e) {
@@ -590,10 +609,10 @@ public class Utils {
         return constName(f.getName());
     }
 
-    public static String constName2(PojoProperty f) {
+    public static String constName(List<PojoProperty> l) {
         StringBuilder result = new StringBuilder("");
         boolean first = true;
-        for (PojoProperty p : f.getAttrs()) {
+        for (PojoProperty p : l) {
             if (first)
                 first = false;
             else

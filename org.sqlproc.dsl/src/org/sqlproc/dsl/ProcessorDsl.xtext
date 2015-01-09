@@ -400,9 +400,20 @@ ImplPackage hidden(ML_COMMENT, SL_COMMENT, WS):
 
 PojoEntityModifier1: ((final?='final') | (abstract?='abstract'));
 
-PojoEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('discriminator' discriminator=(IDENT|NUMBER)) | (operators='operators' (operatorsSuffix=IDENT)?)| ('serializable' sernum=NUMBER));
+DirectiveProperties hidden(ML_COMMENT, SL_COMMENT, WS):
+	features+=PojoProperty (COMMA features+=PojoProperty)*
+;
+PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+	{PojoDirectiveDiscriminator} '#Discriminator' LPAREN discriminator=(IDENT|NUMBER) RPAREN
+	| {PojoDirectiveOperators} '#Operators' (LPAREN operatorsSuffix=IDENT RPAREN)?
+	| {PojoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
+	| {PojoDirectiveIndex} '#Index' LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN
+;
+//PojoEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('discriminator' discriminator=(IDENT|NUMBER)) | (operators='operators' (operatorsSuffix=IDENT)?)| ('serializable' sernum=NUMBER));
+PojoEntityModifier2: ('extends' superType=[PojoEntity|IDENT]);
 
 PojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
+	directives+=PojoDirective*
 	(modifiers1+=PojoEntityModifier1)* 'pojo' name=IDENT (modifiers2+=PojoEntityModifier2)* 
 	LBRACE
 		features+=PojoAnnotatedProperty*

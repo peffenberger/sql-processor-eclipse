@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
+import org.sqlproc.dsl.processorDsl.PojoDirective;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier2;
@@ -27,6 +28,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl#getModifiers1 <em>Modifiers1</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl#getModifiers2 <em>Modifiers2</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoEntityImpl#getFeatures <em>Features</em>}</li>
@@ -37,6 +39,16 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  */
 public class PojoEntityImpl extends EntityImpl implements PojoEntity
 {
+  /**
+   * The cached value of the '{@link #getDirectives() <em>Directives</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDirectives()
+   * @generated
+   * @ordered
+   */
+  protected EList<PojoDirective> directives;
+
   /**
    * The cached value of the '{@link #getModifiers1() <em>Modifiers1</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -93,6 +105,20 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<PojoDirective> getDirectives()
+  {
+    if (directives == null)
+    {
+      directives = new EObjectContainmentEList<PojoDirective>(PojoDirective.class, this, ProcessorDslPackage.POJO_ENTITY__DIRECTIVES);
+    }
+    return directives;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<PojoEntityModifier1> getModifiers1()
   {
     if (modifiers1 == null)
@@ -140,6 +166,8 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_ENTITY__DIRECTIVES:
+        return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS1:
         return ((InternalEList<?>)getModifiers1()).basicRemove(otherEnd, msgs);
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS2:
@@ -160,6 +188,8 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_ENTITY__DIRECTIVES:
+        return getDirectives();
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS1:
         return getModifiers1();
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS2:
@@ -181,6 +211,10 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_ENTITY__DIRECTIVES:
+        getDirectives().clear();
+        getDirectives().addAll((Collection<? extends PojoDirective>)newValue);
+        return;
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS1:
         getModifiers1().clear();
         getModifiers1().addAll((Collection<? extends PojoEntityModifier1>)newValue);
@@ -207,6 +241,9 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_ENTITY__DIRECTIVES:
+        getDirectives().clear();
+        return;
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS1:
         getModifiers1().clear();
         return;
@@ -230,6 +267,8 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_ENTITY__DIRECTIVES:
+        return directives != null && !directives.isEmpty();
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS1:
         return modifiers1 != null && !modifiers1.isEmpty();
       case ProcessorDslPackage.POJO_ENTITY__MODIFIERS2:

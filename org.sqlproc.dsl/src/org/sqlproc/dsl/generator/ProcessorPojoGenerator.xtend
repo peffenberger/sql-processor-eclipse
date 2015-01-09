@@ -151,11 +151,11 @@ class ProcessorPojoGenerator {
 		«ENDFOR»
 		public static final int ORDER_BY_«constName(f.feature)» = «getIndex(f.feature)»;
 		«ENDFOR»
-		«FOR f:e.features.filter(x| x.feature.name.startsWith("index="))»
+		«FOR f:getIndex(e).entrySet»
 		«FOR a:ae.staticAnnotations»
 		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
-		public static final int ORDER_BY_«constName2(f.feature)» = «f.feature.name.substring(6)»;
+		public static final int ORDER_BY_«constName(f.value)» = «f.key»;
 		«ENDFOR»
 		
 		«FOR a:ae.constructorAnnotations»

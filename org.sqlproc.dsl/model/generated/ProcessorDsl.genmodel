@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sqlproc.dsl/src-gen" editDirectory="//home/hudec/git/sql-processor-eclipse/org.sqlproc.dsl.edit/src"
-    editorDirectory="//home/hudec/git/sql-processor-eclipse/org.sqlproc.dsl.editor/src"
-    modelPluginID="org.sqlproc.dsl" forceOverwrite="true" modelName="ProcessorDsl"
-    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sqlproc.dsl/src-gen" editDirectory="/org.sqlproc.dsl.edit/src"
+    editorDirectory="/org.sqlproc.dsl.editor/src" modelPluginID="org.sqlproc.dsl"
+    forceOverwrite="true" modelName="ProcessorDsl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.sqlproc.dsl.edit"
-    editorPluginID="org.sqlproc.dsl.edit" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
+    editorPluginID="org.sqlproc.dsl.editor" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
   <genPackages prefix="ProcessorDsl" basePackage="org.sqlproc.dsl" disposableProviderFactory="true"
       fileExtensions="qry" ecorePackage="ProcessorDsl.ecore#/">
     <genClasses ecoreClass="ProcessorDsl.ecore#//Artifacts">
@@ -421,14 +420,15 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoEntityModifier1/final"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoEntityModifier1/abstract"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//DirectiveProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DirectiveProperties/features"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirective"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoEntityModifier2">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntityModifier2/superType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoEntityModifier2/discriminator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoEntityModifier2/operators"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoEntityModifier2/operatorsSuffix"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoEntityModifier2/sernum"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoEntity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntity/directives"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntity/modifiers1"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntity/modifiers2"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntity/features"/>
@@ -512,6 +512,19 @@
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoMethodArg">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoMethodArg/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoMethodArg/type"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveDiscriminator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoDirectiveDiscriminator/discriminator"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveOperators">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoDirectiveOperators/operatorsSuffix"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveSerializable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoDirectiveSerializable/sernum"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveIndex">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoDirectiveIndex/index"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveIndex/proplist"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

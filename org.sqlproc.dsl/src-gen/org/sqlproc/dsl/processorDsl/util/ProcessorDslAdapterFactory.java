@@ -440,6 +440,16 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createPojoEntityModifier1Adapter();
       }
       @Override
+      public Adapter caseDirectiveProperties(DirectiveProperties object)
+      {
+        return createDirectivePropertiesAdapter();
+      }
+      @Override
+      public Adapter casePojoDirective(PojoDirective object)
+      {
+        return createPojoDirectiveAdapter();
+      }
+      @Override
       public Adapter casePojoEntityModifier2(PojoEntityModifier2 object)
       {
         return createPojoEntityModifier2Adapter();
@@ -513,6 +523,26 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
       public Adapter casePojoMethodArg(PojoMethodArg object)
       {
         return createPojoMethodArgAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveDiscriminator(PojoDirectiveDiscriminator object)
+      {
+        return createPojoDirectiveDiscriminatorAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveOperators(PojoDirectiveOperators object)
+      {
+        return createPojoDirectiveOperatorsAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveSerializable(PojoDirectiveSerializable object)
+      {
+        return createPojoDirectiveSerializableAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveIndex(PojoDirectiveIndex object)
+      {
+        return createPojoDirectiveIndexAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -1632,6 +1662,36 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DirectiveProperties <em>Directive Properties</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.DirectiveProperties
+   * @generated
+   */
+  public Adapter createDirectivePropertiesAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirective <em>Pojo Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirective
+   * @generated
+   */
+  public Adapter createPojoDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoEntityModifier2 <em>Pojo Entity Modifier2</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1852,6 +1912,66 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPojoMethodArgAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator <em>Pojo Directive Discriminator</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator
+   * @generated
+   */
+  public Adapter createPojoDirectiveDiscriminatorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveOperators <em>Pojo Directive Operators</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveOperators
+   * @generated
+   */
+  public Adapter createPojoDirectiveOperatorsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable <em>Pojo Directive Serializable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable
+   * @generated
+   */
+  public Adapter createPojoDirectiveSerializableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveIndex <em>Pojo Directive Index</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveIndex
+   * @generated
+   */
+  public Adapter createPojoDirectiveIndexAdapter()
   {
     return null;
   }

@@ -680,6 +680,24 @@ public interface ProcessorDslFactory extends EFactory
   PojoEntityModifier1 createPojoEntityModifier1();
 
   /**
+   * Returns a new object of class '<em>Directive Properties</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Directive Properties</em>'.
+   * @generated
+   */
+  DirectiveProperties createDirectiveProperties();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive</em>'.
+   * @generated
+   */
+  PojoDirective createPojoDirective();
+
+  /**
    * Returns a new object of class '<em>Pojo Entity Modifier2</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -813,6 +831,42 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   PojoMethodArg createPojoMethodArg();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Discriminator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Discriminator</em>'.
+   * @generated
+   */
+  PojoDirectiveDiscriminator createPojoDirectiveDiscriminator();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Operators</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Operators</em>'.
+   * @generated
+   */
+  PojoDirectiveOperators createPojoDirectiveOperators();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Serializable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Serializable</em>'.
+   * @generated
+   */
+  PojoDirectiveSerializable createPojoDirectiveSerializable();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Index</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Index</em>'.
+   * @generated
+   */
+  PojoDirectiveIndex createPojoDirectiveIndex();
 
   /**
    * Returns the package supported by this factory.

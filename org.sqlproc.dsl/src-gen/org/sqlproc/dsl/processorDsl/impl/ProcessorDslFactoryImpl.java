@@ -137,6 +137,8 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.EXTENDS: return createExtends();
       case ProcessorDslPackage.IMPL_PACKAGE: return createImplPackage();
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER1: return createPojoEntityModifier1();
+      case ProcessorDslPackage.DIRECTIVE_PROPERTIES: return createDirectiveProperties();
+      case ProcessorDslPackage.POJO_DIRECTIVE: return createPojoDirective();
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER2: return createPojoEntityModifier2();
       case ProcessorDslPackage.POJO_ENTITY: return createPojoEntity();
       case ProcessorDslPackage.POJO_ANNOTATED_PROPERTY: return createPojoAnnotatedProperty();
@@ -152,6 +154,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.POJO_METHOD: return createPojoMethod();
       case ProcessorDslPackage.TO_INIT_METHOD: return createToInitMethod();
       case ProcessorDslPackage.POJO_METHOD_ARG: return createPojoMethodArg();
+      case ProcessorDslPackage.POJO_DIRECTIVE_DISCRIMINATOR: return createPojoDirectiveDiscriminator();
+      case ProcessorDslPackage.POJO_DIRECTIVE_OPERATORS: return createPojoDirectiveOperators();
+      case ProcessorDslPackage.POJO_DIRECTIVE_SERIALIZABLE: return createPojoDirectiveSerializable();
+      case ProcessorDslPackage.POJO_DIRECTIVE_INDEX: return createPojoDirectiveIndex();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -965,6 +971,28 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public DirectiveProperties createDirectiveProperties()
+  {
+    DirectivePropertiesImpl directiveProperties = new DirectivePropertiesImpl();
+    return directiveProperties;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoDirective createPojoDirective()
+  {
+    PojoDirectiveImpl pojoDirective = new PojoDirectiveImpl();
+    return pojoDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PojoEntityModifier2 createPojoEntityModifier2()
   {
     PojoEntityModifier2Impl pojoEntityModifier2 = new PojoEntityModifier2Impl();
@@ -1123,6 +1151,50 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     PojoMethodArgImpl pojoMethodArg = new PojoMethodArgImpl();
     return pojoMethodArg;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoDirectiveDiscriminator createPojoDirectiveDiscriminator()
+  {
+    PojoDirectiveDiscriminatorImpl pojoDirectiveDiscriminator = new PojoDirectiveDiscriminatorImpl();
+    return pojoDirectiveDiscriminator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoDirectiveOperators createPojoDirectiveOperators()
+  {
+    PojoDirectiveOperatorsImpl pojoDirectiveOperators = new PojoDirectiveOperatorsImpl();
+    return pojoDirectiveOperators;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoDirectiveSerializable createPojoDirectiveSerializable()
+  {
+    PojoDirectiveSerializableImpl pojoDirectiveSerializable = new PojoDirectiveSerializableImpl();
+    return pojoDirectiveSerializable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoDirectiveIndex createPojoDirectiveIndex()
+  {
+    PojoDirectiveIndexImpl pojoDirectiveIndex = new PojoDirectiveIndexImpl();
+    return pojoDirectiveIndex;
   }
 
   /**
