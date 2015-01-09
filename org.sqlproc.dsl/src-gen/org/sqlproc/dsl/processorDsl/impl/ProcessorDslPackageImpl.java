@@ -3965,9 +3965,19 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getEntity_Directives()
+  {
+    return (EReference)entityEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getEntity_Name()
   {
-    return (EAttribute)entityEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)entityEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4315,7 +4325,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoEntity_Directives()
+  public EReference getPojoEntity_Modifiers1()
   {
     return (EReference)pojoEntityEClass.getEStructuralFeatures().get(0);
   }
@@ -4325,7 +4335,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoEntity_Modifiers1()
+  public EReference getPojoEntity_Modifiers2()
   {
     return (EReference)pojoEntityEClass.getEStructuralFeatures().get(1);
   }
@@ -4335,19 +4345,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoEntity_Modifiers2()
-  {
-    return (EReference)pojoEntityEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getPojoEntity_Features()
   {
-    return (EReference)pojoEntityEClass.getEStructuralFeatures().get(3);
+    return (EReference)pojoEntityEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -4638,16 +4638,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
   public EReference getEnumEntityModifier2_SuperType()
   {
     return (EReference)enumEntityModifier2EClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getEnumEntityModifier2_Sernum()
-  {
-    return (EAttribute)enumEntityModifier2EClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -5517,6 +5507,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEAttribute(annotationPropertyEClass, ANNOTATION_PROPERTY__CONSTANT);
 
     entityEClass = createEClass(ENTITY);
+    createEReference(entityEClass, ENTITY__DIRECTIVES);
     createEAttribute(entityEClass, ENTITY__NAME);
 
     annotatedEntityEClass = createEClass(ANNOTATED_ENTITY);
@@ -5563,7 +5554,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEReference(pojoEntityModifier2EClass, POJO_ENTITY_MODIFIER2__SUPER_TYPE);
 
     pojoEntityEClass = createEClass(POJO_ENTITY);
-    createEReference(pojoEntityEClass, POJO_ENTITY__DIRECTIVES);
     createEReference(pojoEntityEClass, POJO_ENTITY__MODIFIERS1);
     createEReference(pojoEntityEClass, POJO_ENTITY__MODIFIERS2);
     createEReference(pojoEntityEClass, POJO_ENTITY__FEATURES);
@@ -5601,7 +5591,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
 
     enumEntityModifier2EClass = createEClass(ENUM_ENTITY_MODIFIER2);
     createEReference(enumEntityModifier2EClass, ENUM_ENTITY_MODIFIER2__SUPER_TYPE);
-    createEAttribute(enumEntityModifier2EClass, ENUM_ENTITY_MODIFIER2__SERNUM);
 
     enumEntityEClass = createEClass(ENUM_ENTITY);
     createEReference(enumEntityEClass, ENUM_ENTITY__MODIFIERS1);
@@ -6086,6 +6075,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEAttribute(getAnnotationProperty_Constant(), ecorePackage.getEString(), "constant", null, 0, 1, AnnotationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEntity_Directives(), this.getPojoDirective(), null, "directives", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEntity_Name(), ecorePackage.getEString(), "name", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(annotatedEntityEClass, AnnotatedEntity.class, "AnnotatedEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -6132,7 +6122,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEReference(getPojoEntityModifier2_SuperType(), this.getPojoEntity(), null, "superType", null, 0, 1, PojoEntityModifier2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoEntityEClass, PojoEntity.class, "PojoEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPojoEntity_Directives(), this.getPojoDirective(), null, "directives", null, 0, -1, PojoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoEntity_Modifiers1(), this.getPojoEntityModifier1(), null, "modifiers1", null, 0, -1, PojoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoEntity_Modifiers2(), this.getPojoEntityModifier2(), null, "modifiers2", null, 0, -1, PojoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoEntity_Features(), this.getPojoAnnotatedProperty(), null, "features", null, 0, -1, PojoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -6170,7 +6159,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
 
     initEClass(enumEntityModifier2EClass, EnumEntityModifier2.class, "EnumEntityModifier2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEnumEntityModifier2_SuperType(), this.getPojoEntity(), null, "superType", null, 0, 1, EnumEntityModifier2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEnumEntityModifier2_Sernum(), ecorePackage.getEString(), "sernum", null, 0, 1, EnumEntityModifier2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enumEntityEClass, EnumEntity.class, "EnumEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEnumEntity_Modifiers1(), this.getEnumEntityModifier1(), null, "modifiers1", null, 0, -1, EnumEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

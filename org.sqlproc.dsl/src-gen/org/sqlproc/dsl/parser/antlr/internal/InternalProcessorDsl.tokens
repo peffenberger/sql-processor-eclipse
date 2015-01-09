@@ -35,7 +35,7 @@
 'ddl-drop'=59
 'debug-level'=68
 'discriminator'=161
-'enum'=168
+'enum'=167
 'enum-for-check-constraints'=113
 'exceptDaos'=152
 'exceptPojos'=151
@@ -108,7 +108,7 @@
 'required-columns'=85
 'resolve-pojo-off'=43
 'resolve-pojo-on'=42
-'serializable'=167
+'serializable'=168
 'show-database-info'=65
 'show-driver-info'=66
 'show-driver-output'=67

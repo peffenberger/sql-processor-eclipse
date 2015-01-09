@@ -22,7 +22,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.EnumEntityModifier2Impl#getSuperType <em>Super Type</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.EnumEntityModifier2Impl#getSernum <em>Sernum</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,26 +38,6 @@ public class EnumEntityModifier2Impl extends MinimalEObjectImpl.Container implem
    * @ordered
    */
   protected PojoEntity superType;
-
-  /**
-   * The default value of the '{@link #getSernum() <em>Sernum</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSernum()
-   * @generated
-   * @ordered
-   */
-  protected static final String SERNUM_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getSernum() <em>Sernum</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSernum()
-   * @generated
-   * @ordered
-   */
-  protected String sernum = SERNUM_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -129,29 +108,6 @@ public class EnumEntityModifier2Impl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getSernum()
-  {
-    return sernum;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setSernum(String newSernum)
-  {
-    String oldSernum = sernum;
-    sernum = newSernum;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ENUM_ENTITY_MODIFIER2__SERNUM, oldSernum, sernum));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -160,8 +116,6 @@ public class EnumEntityModifier2Impl extends MinimalEObjectImpl.Container implem
       case ProcessorDslPackage.ENUM_ENTITY_MODIFIER2__SUPER_TYPE:
         if (resolve) return getSuperType();
         return basicGetSuperType();
-      case ProcessorDslPackage.ENUM_ENTITY_MODIFIER2__SERNUM:
-        return getSernum();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -178,9 +132,6 @@ public class EnumEntityModifier2Impl extends MinimalEObjectImpl.Container implem
     {
       case ProcessorDslPackage.ENUM_ENTITY_MODIFIER2__SUPER_TYPE:
         setSuperType((PojoEntity)newValue);
-        return;
-      case ProcessorDslPackage.ENUM_ENTITY_MODIFIER2__SERNUM:
-        setSernum((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -199,9 +150,6 @@ public class EnumEntityModifier2Impl extends MinimalEObjectImpl.Container implem
       case ProcessorDslPackage.ENUM_ENTITY_MODIFIER2__SUPER_TYPE:
         setSuperType((PojoEntity)null);
         return;
-      case ProcessorDslPackage.ENUM_ENTITY_MODIFIER2__SERNUM:
-        setSernum(SERNUM_EDEFAULT);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -218,27 +166,8 @@ public class EnumEntityModifier2Impl extends MinimalEObjectImpl.Container implem
     {
       case ProcessorDslPackage.ENUM_ENTITY_MODIFIER2__SUPER_TYPE:
         return superType != null;
-      case ProcessorDslPackage.ENUM_ENTITY_MODIFIER2__SERNUM:
-        return SERNUM_EDEFAULT == null ? sernum != null : !SERNUM_EDEFAULT.equals(sernum);
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (sernum: ");
-    result.append(sernum);
-    result.append(')');
-    return result.toString();
   }
 
 } //EnumEntityModifier2Impl

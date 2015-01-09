@@ -1005,6 +1005,8 @@ public class TablePojoGenerator {
                     continue;
                 }
                 printComment(buffer, comments.get(pojo), INDENT);
+                if (isSerializable || serializables.contains(pojo))
+                    buffer.append(NLINDENT).append("#Serializable(1)");
                 buffer.append(NLINDENT);
                 if (makeItFinal)
                     buffer.append("final ");
@@ -1015,10 +1017,6 @@ public class TablePojoGenerator {
                     buffer.append(tableToCamelCase(pojoName));
                 if (pojoExtends.containsKey(pojo))
                     buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
-                if (pojoDiscriminators.containsKey(pojo))
-                    buffer.append(" discriminator ").append(pojoDiscriminators.get(pojo));
-                if (isSerializable || serializables.contains(pojo))
-                    buffer.append(" serializable 1 ");
                 buffer.append(" {");
                 for (EnumAttribute attribute : pentry.getValue()) {
                     // System.out.println("  RRR " + attribute.getName());
@@ -1066,6 +1064,35 @@ public class TablePojoGenerator {
                     buffer.append(annotations.getStaticAnnotationsDefinitions(realPojoName, true));
                     buffer.append(annotations.getConflictAnnotationsDefinitions(realPojoName, true));
                 }
+                if (pojoDiscriminators.containsKey(pojo))
+                    buffer.append(NLINDENT).append("#Discriminator(").append(pojoDiscriminators.get(pojo)).append(")");
+                if (generateOperators != null) {
+                    buffer.append(NLINDENT).append("#Operators");
+                    if (!"operators".equals(generateOperators))
+                        buffer.append("(").append(generateOperators).append(")");
+                }
+                if (isSerializable || serializables.contains(pojo))
+                    buffer.append(NLINDENT).append("#Serializable(1)");
+                if (generateMethods.contains(METHOD_INDEX) && indexes.containsKey(pojo)) {
+                    List<Map<PojoAttribute, Boolean>> mainList = indexes.get(pojo);
+                    for (int i = 0, l = mainList.size(); i < l; i++) {
+                        if (annotations != null) {
+                            buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_INDEX,
+                                    true));
+                        }
+                        buffer.append(NLINDENT).append("#Index(").append(i + 1).append(",");
+                        for (PojoAttribute attr : mainList.get(i).keySet()) {
+                            String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(attr.getName())
+                                    : null;
+                            if (name == null)
+                                name = attr.getName();
+                            else
+                                name = columnToCamelCase(name);
+                            buffer.append(",").append(name);
+                        }
+                        buffer.append(")");
+                    }
+                }
                 buffer.append(NLINDENT);
                 if (makeItFinal)
                     buffer.append("final ");
@@ -1077,15 +1104,6 @@ public class TablePojoGenerator {
                 buffer.append(realPojoName);
                 if (pojoExtends.containsKey(pojo))
                     buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
-                if (pojoDiscriminators.containsKey(pojo))
-                    buffer.append(" discriminator ").append(pojoDiscriminators.get(pojo));
-                if (isSerializable || serializables.contains(pojo))
-                    buffer.append(" serializable 1");
-                if (generateOperators != null) {
-                    buffer.append(" operators");
-                    if (!"operators".equals(generateOperators))
-                        buffer.append(" ").append(generateOperators);
-                }
                 buffer.append(" {");
                 Set<String> pkeys = new HashSet<String>();
                 Set<String> toStr = new HashSet<String>();
@@ -1250,25 +1268,6 @@ public class TablePojoGenerator {
                         buffer.append(" ").append(name);
                     }
                 }
-                if (generateMethods.contains(METHOD_INDEX) && indexes.containsKey(pojo)) {
-                    List<Map<PojoAttribute, Boolean>> mainList = indexes.get(pojo);
-                    for (int i = 0, l = mainList.size(); i < l; i++) {
-                        if (annotations != null) {
-                            buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_INDEX,
-                                    true));
-                        }
-                        buffer.append(NLINDENT).append(INDENT).append(METHOD_INDEX).append(i + 1).append(" :::");
-                        for (PojoAttribute attr : mainList.get(i).keySet()) {
-                            String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(attr.getName())
-                                    : null;
-                            if (name == null)
-                                name = attr.getName();
-                            else
-                                name = columnToCamelCase(name);
-                            buffer.append(" ").append(name);
-                        }
-                    }
-                }
                 buffer.append(NLINDENT).append("}\n");
             }
             for (String pojo : procedures.keySet()) {
@@ -1288,6 +1287,8 @@ public class TablePojoGenerator {
                     continue;
                 }
                 printComment(buffer, comments.get(pojo), INDENT);
+                if (isSerializable || serializables.contains(pojo))
+                    buffer.append(NLINDENT).append("#Serializable(1)");
                 buffer.append(NLINDENT);
                 if (makeItFinal)
                     buffer.append("final ");
@@ -1295,8 +1296,6 @@ public class TablePojoGenerator {
                 buffer.append(tableToCamelCase(pojoName));
                 if (pojoExtends.containsKey(pojo))
                     buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
-                if (isSerializable || serializables.contains(pojo))
-                    buffer.append(" serializable 1 ");
                 buffer.append(" { // ");
                 if (isFunction)
                     buffer.append("function");
@@ -1364,6 +1363,8 @@ public class TablePojoGenerator {
                     continue;
                 }
                 printComment(buffer, comments.get(pojo), INDENT);
+                if (isSerializable || serializables.contains(pojo))
+                    buffer.append(NLINDENT).append("#Serializable(1)");
                 buffer.append(NLINDENT);
                 if (makeItFinal)
                     buffer.append("final ");
@@ -1371,8 +1372,6 @@ public class TablePojoGenerator {
                 buffer.append(tableToCamelCase(pojoName));
                 if (pojoExtends.containsKey(pojo))
                     buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
-                if (isSerializable || serializables.contains(pojo))
-                    buffer.append(" serializable 1 ");
                 buffer.append(" { // function");
                 Set<String> toStr = new HashSet<String>();
                 for (Map.Entry<String, PojoAttribute> pentry : functions.get(pojo).entrySet()) {

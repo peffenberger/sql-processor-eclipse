@@ -434,9 +434,11 @@ PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 
 EnumEntityModifier1: ((final?='final'));
 
-EnumEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('serializable' sernum=NUMBER));
+//EnumEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('serializable' sernum=NUMBER));
+EnumEntityModifier2: ('extends' superType=[PojoEntity|IDENT]);
 
 EnumEntity hidden(ML_COMMENT, SL_COMMENT, WS):
+	directives+=PojoDirective*
 	(modifiers1+=EnumEntityModifier1)* 'enum' name=IDENT (modifiers2+=EnumEntityModifier2)* 
 	LBRACE
 		features+=EnumProperty*

@@ -384,6 +384,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//AnnotationProperty/constant"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//Entity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//Entity/directives"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//Entity/name"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//AnnotatedEntity">
@@ -428,7 +429,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntityModifier2/superType"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoEntity">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntity/directives"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntity/modifiers1"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntity/modifiers2"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntity/features"/>
@@ -466,7 +466,6 @@
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//EnumEntityModifier2">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//EnumEntityModifier2/superType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//EnumEntityModifier2/sernum"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//EnumEntity">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//EnumEntity/modifiers1"/>

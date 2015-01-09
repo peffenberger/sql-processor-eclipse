@@ -3535,13 +3535,22 @@ public interface ProcessorDslPackage extends EPackage
   int ENTITY = 65;
 
   /**
+   * The feature id for the '<em><b>Directives</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY__DIRECTIVES = 0;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENTITY__NAME = 0;
+  int ENTITY__NAME = 1;
 
   /**
    * The number of structural features of the '<em>Entity</em>' class.
@@ -3550,7 +3559,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY_FEATURE_COUNT = 1;
+  int ENTITY_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotatedEntityImpl <em>Annotated Entity</em>}' class.
@@ -3941,6 +3950,15 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_ENTITY = 76;
 
   /**
+   * The feature id for the '<em><b>Directives</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_ENTITY__DIRECTIVES = ENTITY__DIRECTIVES;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3950,22 +3968,13 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_ENTITY__NAME = ENTITY__NAME;
 
   /**
-   * The feature id for the '<em><b>Directives</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_ENTITY__DIRECTIVES = ENTITY_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Modifiers1</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_ENTITY__MODIFIERS1 = ENTITY_FEATURE_COUNT + 1;
+  int POJO_ENTITY__MODIFIERS1 = ENTITY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Modifiers2</b></em>' containment reference list.
@@ -3974,7 +3983,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_ENTITY__MODIFIERS2 = ENTITY_FEATURE_COUNT + 2;
+  int POJO_ENTITY__MODIFIERS2 = ENTITY_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -3983,7 +3992,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_ENTITY__FEATURES = ENTITY_FEATURE_COUNT + 3;
+  int POJO_ENTITY__FEATURES = ENTITY_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Pojo Entity</em>' class.
@@ -3992,7 +4001,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_ENTITY_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 4;
+  int POJO_ENTITY_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoAnnotatedPropertyImpl <em>Pojo Annotated Property</em>}' class.
@@ -4297,22 +4306,13 @@ public interface ProcessorDslPackage extends EPackage
   int ENUM_ENTITY_MODIFIER2__SUPER_TYPE = 0;
 
   /**
-   * The feature id for the '<em><b>Sernum</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ENUM_ENTITY_MODIFIER2__SERNUM = 1;
-
-  /**
    * The number of structural features of the '<em>Enum Entity Modifier2</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENUM_ENTITY_MODIFIER2_FEATURE_COUNT = 2;
+  int ENUM_ENTITY_MODIFIER2_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumEntityImpl <em>Enum Entity</em>}' class.
@@ -4323,6 +4323,15 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   int ENUM_ENTITY = 82;
+
+  /**
+   * The feature id for the '<em><b>Directives</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_ENTITY__DIRECTIVES = ENTITY__DIRECTIVES;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -8225,6 +8234,17 @@ public interface ProcessorDslPackage extends EPackage
   EClass getEntity();
 
   /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.Entity#getDirectives <em>Directives</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Directives</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Entity#getDirectives()
+   * @see #getEntity()
+   * @generated
+   */
+  EReference getEntity_Directives();
+
+  /**
    * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.Entity#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8599,17 +8619,6 @@ public interface ProcessorDslPackage extends EPackage
   EClass getPojoEntity();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.PojoEntity#getDirectives <em>Directives</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Directives</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoEntity#getDirectives()
-   * @see #getPojoEntity()
-   * @generated
-   */
-  EReference getPojoEntity_Directives();
-
-  /**
    * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.PojoEntity#getModifiers1 <em>Modifiers1</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8955,17 +8964,6 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EReference getEnumEntityModifier2_SuperType();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.EnumEntityModifier2#getSernum <em>Sernum</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Sernum</em>'.
-   * @see org.sqlproc.dsl.processorDsl.EnumEntityModifier2#getSernum()
-   * @see #getEnumEntityModifier2()
-   * @generated
-   */
-  EAttribute getEnumEntityModifier2_Sernum();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.EnumEntity <em>Enum Entity</em>}'.
@@ -12113,6 +12111,14 @@ public interface ProcessorDslPackage extends EPackage
     EClass ENTITY = eINSTANCE.getEntity();
 
     /**
+     * The meta object literal for the '<em><b>Directives</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENTITY__DIRECTIVES = eINSTANCE.getEntity_Directives();
+
+    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12415,14 +12421,6 @@ public interface ProcessorDslPackage extends EPackage
     EClass POJO_ENTITY = eINSTANCE.getPojoEntity();
 
     /**
-     * The meta object literal for the '<em><b>Directives</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_ENTITY__DIRECTIVES = eINSTANCE.getPojoEntity_Directives();
-
-    /**
      * The meta object literal for the '<em><b>Modifiers1</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12687,14 +12685,6 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference ENUM_ENTITY_MODIFIER2__SUPER_TYPE = eINSTANCE.getEnumEntityModifier2_SuperType();
-
-    /**
-     * The meta object literal for the '<em><b>Sernum</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ENUM_ENTITY_MODIFIER2__SERNUM = eINSTANCE.getEnumEntityModifier2_Sernum();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumEntityImpl <em>Enum Entity</em>}' class.

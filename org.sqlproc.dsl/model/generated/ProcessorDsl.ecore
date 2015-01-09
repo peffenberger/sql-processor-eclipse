@@ -498,6 +498,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constant" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Entity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="directives" upperBound="-1"
+        eType="#//PojoDirective" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnnotatedEntity" eSuperTypes="#//AbstractPojoEntity">
@@ -556,8 +558,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="superType" eType="#//PojoEntity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoEntity" eSuperTypes="#//Entity">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="directives" upperBound="-1"
-        eType="#//PojoDirective" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers1" upperBound="-1"
         eType="#//PojoEntityModifier1" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers2" upperBound="-1"
@@ -604,7 +604,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumEntityModifier2">
     <eStructuralFeatures xsi:type="ecore:EReference" name="superType" eType="#//PojoEntity"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sernum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumEntity" eSuperTypes="#//Entity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers1" upperBound="-1"

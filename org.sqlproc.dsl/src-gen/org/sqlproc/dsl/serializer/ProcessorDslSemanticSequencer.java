@@ -997,16 +997,23 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (superType=[PojoEntity|IDENT] | sernum=NUMBER)
+	 *     superType=[PojoEntity|IDENT]
 	 */
 	protected void sequence_EnumEntityModifier2(EObject context, EnumEntityModifier2 semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.ENUM_ENTITY_MODIFIER2__SUPER_TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.ENUM_ENTITY_MODIFIER2__SUPER_TYPE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getEnumEntityModifier2Access().getSuperTypePojoEntityIDENTTerminalRuleCall_1_0_1(), semanticObject.getSuperType());
+		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (modifiers1+=EnumEntityModifier1* name=IDENT modifiers2+=EnumEntityModifier2* features+=EnumProperty*)
+	 *     (directives+=PojoDirective* modifiers1+=EnumEntityModifier1* name=IDENT modifiers2+=EnumEntityModifier2* features+=EnumProperty*)
 	 */
 	protected void sequence_EnumEntity(EObject context, EnumEntity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

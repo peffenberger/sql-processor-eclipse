@@ -14970,9 +14970,9 @@ ruleEnumEntityModifier2 returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((	otherlv_0='extends' 
+(	otherlv_0='extends' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getEnumEntityModifier2Access().getExtendsKeyword_0_0());
+    	newLeafNode(otherlv_0, grammarAccess.getEnumEntityModifier2Access().getExtendsKeyword_0());
     }
 (
 (
@@ -14983,34 +14983,11 @@ ruleEnumEntityModifier2 returns [EObject current=null]
         }
 	otherlv_1=RULE_IDENT
 	{
-		newLeafNode(otherlv_1, grammarAccess.getEnumEntityModifier2Access().getSuperTypePojoEntityCrossReference_0_1_0()); 
+		newLeafNode(otherlv_1, grammarAccess.getEnumEntityModifier2Access().getSuperTypePojoEntityCrossReference_1_0()); 
 	}
 
 )
 ))
-    |(	otherlv_2='serializable' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getEnumEntityModifier2Access().getSerializableKeyword_1_0());
-    }
-(
-(
-		lv_sernum_3_0=RULE_NUMBER
-		{
-			newLeafNode(lv_sernum_3_0, grammarAccess.getEnumEntityModifier2Access().getSernumNUMBERTerminalRuleCall_1_1_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getEnumEntityModifier2Rule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"sernum",
-        		lv_sernum_3_0, 
-        		"NUMBER");
-	    }
-
-)
-)))
 ;
 
 
@@ -15041,30 +15018,48 @@ ruleEnumEntity returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEnumEntityAccess().getModifiers1EnumEntityModifier1ParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getEnumEntityAccess().getDirectivesPojoDirectiveParserRuleCall_0_0()); 
 	    }
-		lv_modifiers1_0_0=ruleEnumEntityModifier1		{
+		lv_directives_0_0=rulePojoDirective		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getEnumEntityRule());
+	        }
+       		add(
+       			$current, 
+       			"directives",
+        		lv_directives_0_0, 
+        		"PojoDirective");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getEnumEntityAccess().getModifiers1EnumEntityModifier1ParserRuleCall_1_0()); 
+	    }
+		lv_modifiers1_1_0=ruleEnumEntityModifier1		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getEnumEntityRule());
 	        }
        		add(
        			$current, 
        			"modifiers1",
-        		lv_modifiers1_0_0, 
+        		lv_modifiers1_1_0, 
         		"EnumEntityModifier1");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*	otherlv_1='enum' 
+)*	otherlv_2='enum' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getEnumEntityAccess().getEnumKeyword_1());
+    	newLeafNode(otherlv_2, grammarAccess.getEnumEntityAccess().getEnumKeyword_2());
     }
 (
 (
-		lv_name_2_0=RULE_IDENT
+		lv_name_3_0=RULE_IDENT
 		{
-			newLeafNode(lv_name_2_0, grammarAccess.getEnumEntityAccess().getNameIDENTTerminalRuleCall_2_0()); 
+			newLeafNode(lv_name_3_0, grammarAccess.getEnumEntityAccess().getNameIDENTTerminalRuleCall_3_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -15073,7 +15068,7 @@ ruleEnumEntity returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"name",
-        		lv_name_2_0, 
+        		lv_name_3_0, 
         		"IDENT");
 	    }
 
@@ -15081,46 +15076,46 @@ ruleEnumEntity returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEnumEntityAccess().getModifiers2EnumEntityModifier2ParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getEnumEntityAccess().getModifiers2EnumEntityModifier2ParserRuleCall_4_0()); 
 	    }
-		lv_modifiers2_3_0=ruleEnumEntityModifier2		{
+		lv_modifiers2_4_0=ruleEnumEntityModifier2		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getEnumEntityRule());
 	        }
        		add(
        			$current, 
        			"modifiers2",
-        		lv_modifiers2_3_0, 
+        		lv_modifiers2_4_0, 
         		"EnumEntityModifier2");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*this_LBRACE_4=RULE_LBRACE
+)*this_LBRACE_5=RULE_LBRACE
     { 
-    newLeafNode(this_LBRACE_4, grammarAccess.getEnumEntityAccess().getLBRACETerminalRuleCall_4()); 
+    newLeafNode(this_LBRACE_5, grammarAccess.getEnumEntityAccess().getLBRACETerminalRuleCall_5()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEnumEntityAccess().getFeaturesEnumPropertyParserRuleCall_5_0()); 
+	        newCompositeNode(grammarAccess.getEnumEntityAccess().getFeaturesEnumPropertyParserRuleCall_6_0()); 
 	    }
-		lv_features_5_0=ruleEnumProperty		{
+		lv_features_6_0=ruleEnumProperty		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getEnumEntityRule());
 	        }
        		add(
        			$current, 
        			"features",
-        		lv_features_5_0, 
+        		lv_features_6_0, 
         		"EnumProperty");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*this_RBRACE_6=RULE_RBRACE
+)*this_RBRACE_7=RULE_RBRACE
     { 
-    newLeafNode(this_RBRACE_6, grammarAccess.getEnumEntityAccess().getRBRACETerminalRuleCall_6()); 
+    newLeafNode(this_RBRACE_7, grammarAccess.getEnumEntityAccess().getRBRACETerminalRuleCall_7()); 
     }
 )
 ;

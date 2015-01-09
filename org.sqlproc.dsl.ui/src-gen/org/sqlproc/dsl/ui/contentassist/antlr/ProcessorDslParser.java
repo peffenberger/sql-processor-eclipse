@@ -107,7 +107,6 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoPropertyAccess().getAlternatives_1_1_0_1(), "rule__PojoProperty__Alternatives_1_1_0_1");
 					put(grammarAccess.getPojoPropertyAccess().getAlternatives_1_1_0_1_0_1(), "rule__PojoProperty__Alternatives_1_1_0_1_0_1");
 					put(grammarAccess.getPojoPropertyAccess().getAlternatives_1_1_1_1(), "rule__PojoProperty__Alternatives_1_1_1_1");
-					put(grammarAccess.getEnumEntityModifier2Access().getAlternatives(), "rule__EnumEntityModifier2__Alternatives");
 					put(grammarAccess.getEnumPropertyAccess().getAlternatives_1(), "rule__EnumProperty__Alternatives_1");
 					put(grammarAccess.getEnumPropertyAccess().getNativeAlternatives_1_0_0(), "rule__EnumProperty__NativeAlternatives_1_0_0");
 					put(grammarAccess.getEnumPropertyAccess().getAlternatives_1_1_1(), "rule__EnumProperty__Alternatives_1_1_1");
@@ -443,8 +442,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoPropertyAccess().getGroup_1_1_0_1_0_1_0(), "rule__PojoProperty__Group_1_1_0_1_0_1_0__0");
 					put(grammarAccess.getPojoPropertyAccess().getGroup_1_1_1(), "rule__PojoProperty__Group_1_1_1__0");
 					put(grammarAccess.getPojoPropertyAccess().getGroup_1_1_1_1_0(), "rule__PojoProperty__Group_1_1_1_1_0__0");
-					put(grammarAccess.getEnumEntityModifier2Access().getGroup_0(), "rule__EnumEntityModifier2__Group_0__0");
-					put(grammarAccess.getEnumEntityModifier2Access().getGroup_1(), "rule__EnumEntityModifier2__Group_1__0");
+					put(grammarAccess.getEnumEntityModifier2Access().getGroup(), "rule__EnumEntityModifier2__Group__0");
 					put(grammarAccess.getEnumEntityAccess().getGroup(), "rule__EnumEntity__Group__0");
 					put(grammarAccess.getEnumPropertyAccess().getGroup(), "rule__EnumProperty__Group__0");
 					put(grammarAccess.getEnumPropertyAccess().getGroup_1_1(), "rule__EnumProperty__Group_1_1__0");
@@ -944,12 +942,12 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoPropertyAccess().getArrayAssignment_2(), "rule__PojoProperty__ArrayAssignment_2");
 					put(grammarAccess.getPojoPropertyAccess().getModifiersAssignment_3(), "rule__PojoProperty__ModifiersAssignment_3");
 					put(grammarAccess.getEnumEntityModifier1Access().getFinalAssignment(), "rule__EnumEntityModifier1__FinalAssignment");
-					put(grammarAccess.getEnumEntityModifier2Access().getSuperTypeAssignment_0_1(), "rule__EnumEntityModifier2__SuperTypeAssignment_0_1");
-					put(grammarAccess.getEnumEntityModifier2Access().getSernumAssignment_1_1(), "rule__EnumEntityModifier2__SernumAssignment_1_1");
-					put(grammarAccess.getEnumEntityAccess().getModifiers1Assignment_0(), "rule__EnumEntity__Modifiers1Assignment_0");
-					put(grammarAccess.getEnumEntityAccess().getNameAssignment_2(), "rule__EnumEntity__NameAssignment_2");
-					put(grammarAccess.getEnumEntityAccess().getModifiers2Assignment_3(), "rule__EnumEntity__Modifiers2Assignment_3");
-					put(grammarAccess.getEnumEntityAccess().getFeaturesAssignment_5(), "rule__EnumEntity__FeaturesAssignment_5");
+					put(grammarAccess.getEnumEntityModifier2Access().getSuperTypeAssignment_1(), "rule__EnumEntityModifier2__SuperTypeAssignment_1");
+					put(grammarAccess.getEnumEntityAccess().getDirectivesAssignment_0(), "rule__EnumEntity__DirectivesAssignment_0");
+					put(grammarAccess.getEnumEntityAccess().getModifiers1Assignment_1(), "rule__EnumEntity__Modifiers1Assignment_1");
+					put(grammarAccess.getEnumEntityAccess().getNameAssignment_3(), "rule__EnumEntity__NameAssignment_3");
+					put(grammarAccess.getEnumEntityAccess().getModifiers2Assignment_4(), "rule__EnumEntity__Modifiers2Assignment_4");
+					put(grammarAccess.getEnumEntityAccess().getFeaturesAssignment_6(), "rule__EnumEntity__FeaturesAssignment_6");
 					put(grammarAccess.getEnumPropertyAccess().getNameAssignment_0(), "rule__EnumProperty__NameAssignment_0");
 					put(grammarAccess.getEnumPropertyAccess().getNativeAssignment_1_0(), "rule__EnumProperty__NativeAssignment_1_0");
 					put(grammarAccess.getEnumPropertyAccess().getValueAssignment_1_1_1_0_2(), "rule__EnumProperty__ValueAssignment_1_1_1_0_2");

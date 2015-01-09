@@ -340,11 +340,11 @@ public class Utils {
     }
 
     public static String getSernum(EnumEntity e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
+        if (e.getDirectives() == null || e.getDirectives().isEmpty())
             return null;
-        for (EnumEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getSernum() != null)
-                return modifier.getSernum();
+        for (PojoDirective directive : e.getDirectives()) {
+            if (directive instanceof PojoDirectiveSerializable)
+                return ((PojoDirectiveSerializable) directive).getSernum();
         }
         return null;
     }

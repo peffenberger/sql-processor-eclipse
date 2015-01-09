@@ -9303,108 +9303,97 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class EnumEntityModifier2Elements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumEntityModifier2");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Keyword cExtendsKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Assignment cSuperTypeAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final CrossReference cSuperTypePojoEntityCrossReference_0_1_0 = (CrossReference)cSuperTypeAssignment_0_1.eContents().get(0);
-		private final RuleCall cSuperTypePojoEntityIDENTTerminalRuleCall_0_1_0_1 = (RuleCall)cSuperTypePojoEntityCrossReference_0_1_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cSerializableKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cSernumAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cSernumNUMBERTerminalRuleCall_1_1_0 = (RuleCall)cSernumAssignment_1_1.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cExtendsKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cSuperTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cSuperTypePojoEntityCrossReference_1_0 = (CrossReference)cSuperTypeAssignment_1.eContents().get(0);
+		private final RuleCall cSuperTypePojoEntityIDENTTerminalRuleCall_1_0_1 = (RuleCall)cSuperTypePojoEntityCrossReference_1_0.eContents().get(1);
 		
+		////EnumEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('serializable' sernum=NUMBER));
 		//EnumEntityModifier2:
-		//	"extends" superType=[PojoEntity|IDENT] | "serializable" sernum=NUMBER;
+		//	"extends" superType=[PojoEntity|IDENT];
 		public ParserRule getRule() { return rule; }
 
-		//"extends" superType=[PojoEntity|IDENT] | "serializable" sernum=NUMBER
-		public Alternatives getAlternatives() { return cAlternatives; }
-
 		//"extends" superType=[PojoEntity|IDENT]
-		public Group getGroup_0() { return cGroup_0; }
+		public Group getGroup() { return cGroup; }
 
 		//"extends"
-		public Keyword getExtendsKeyword_0_0() { return cExtendsKeyword_0_0; }
+		public Keyword getExtendsKeyword_0() { return cExtendsKeyword_0; }
 
 		//superType=[PojoEntity|IDENT]
-		public Assignment getSuperTypeAssignment_0_1() { return cSuperTypeAssignment_0_1; }
+		public Assignment getSuperTypeAssignment_1() { return cSuperTypeAssignment_1; }
 
 		//[PojoEntity|IDENT]
-		public CrossReference getSuperTypePojoEntityCrossReference_0_1_0() { return cSuperTypePojoEntityCrossReference_0_1_0; }
+		public CrossReference getSuperTypePojoEntityCrossReference_1_0() { return cSuperTypePojoEntityCrossReference_1_0; }
 
 		//IDENT
-		public RuleCall getSuperTypePojoEntityIDENTTerminalRuleCall_0_1_0_1() { return cSuperTypePojoEntityIDENTTerminalRuleCall_0_1_0_1; }
-
-		//"serializable" sernum=NUMBER
-		public Group getGroup_1() { return cGroup_1; }
-
-		//"serializable"
-		public Keyword getSerializableKeyword_1_0() { return cSerializableKeyword_1_0; }
-
-		//sernum=NUMBER
-		public Assignment getSernumAssignment_1_1() { return cSernumAssignment_1_1; }
-
-		//NUMBER
-		public RuleCall getSernumNUMBERTerminalRuleCall_1_1_0() { return cSernumNUMBERTerminalRuleCall_1_1_0; }
+		public RuleCall getSuperTypePojoEntityIDENTTerminalRuleCall_1_0_1() { return cSuperTypePojoEntityIDENTTerminalRuleCall_1_0_1; }
 	}
 
 	public class EnumEntityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumEntity");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cModifiers1Assignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cModifiers1EnumEntityModifier1ParserRuleCall_0_0 = (RuleCall)cModifiers1Assignment_0.eContents().get(0);
-		private final Keyword cEnumKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameIDENTTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Assignment cModifiers2Assignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cModifiers2EnumEntityModifier2ParserRuleCall_3_0 = (RuleCall)cModifiers2Assignment_3.eContents().get(0);
-		private final RuleCall cLBRACETerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final Assignment cFeaturesAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cFeaturesEnumPropertyParserRuleCall_5_0 = (RuleCall)cFeaturesAssignment_5.eContents().get(0);
-		private final RuleCall cRBRACETerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cDirectivesAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cDirectivesPojoDirectiveParserRuleCall_0_0 = (RuleCall)cDirectivesAssignment_0.eContents().get(0);
+		private final Assignment cModifiers1Assignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cModifiers1EnumEntityModifier1ParserRuleCall_1_0 = (RuleCall)cModifiers1Assignment_1.eContents().get(0);
+		private final Keyword cEnumKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cNameIDENTTerminalRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
+		private final Assignment cModifiers2Assignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cModifiers2EnumEntityModifier2ParserRuleCall_4_0 = (RuleCall)cModifiers2Assignment_4.eContents().get(0);
+		private final RuleCall cLBRACETerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final Assignment cFeaturesAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cFeaturesEnumPropertyParserRuleCall_6_0 = (RuleCall)cFeaturesAssignment_6.eContents().get(0);
+		private final RuleCall cRBRACETerminalRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
 		
 		//EnumEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-		//	modifiers1+=EnumEntityModifier1* "enum" name=IDENT modifiers2+=EnumEntityModifier2* LBRACE features+=EnumProperty*
-		//	RBRACE;
+		//	directives+=PojoDirective* modifiers1+=EnumEntityModifier1* "enum" name=IDENT modifiers2+=EnumEntityModifier2* LBRACE
+		//	features+=EnumProperty* RBRACE;
 		public ParserRule getRule() { return rule; }
 
-		//modifiers1+=EnumEntityModifier1* "enum" name=IDENT modifiers2+=EnumEntityModifier2* LBRACE features+=EnumProperty*
-		//RBRACE
+		//directives+=PojoDirective* modifiers1+=EnumEntityModifier1* "enum" name=IDENT modifiers2+=EnumEntityModifier2* LBRACE
+		//features+=EnumProperty* RBRACE
 		public Group getGroup() { return cGroup; }
 
+		//directives+=PojoDirective*
+		public Assignment getDirectivesAssignment_0() { return cDirectivesAssignment_0; }
+
+		//PojoDirective
+		public RuleCall getDirectivesPojoDirectiveParserRuleCall_0_0() { return cDirectivesPojoDirectiveParserRuleCall_0_0; }
+
 		//modifiers1+=EnumEntityModifier1*
-		public Assignment getModifiers1Assignment_0() { return cModifiers1Assignment_0; }
+		public Assignment getModifiers1Assignment_1() { return cModifiers1Assignment_1; }
 
 		//EnumEntityModifier1
-		public RuleCall getModifiers1EnumEntityModifier1ParserRuleCall_0_0() { return cModifiers1EnumEntityModifier1ParserRuleCall_0_0; }
+		public RuleCall getModifiers1EnumEntityModifier1ParserRuleCall_1_0() { return cModifiers1EnumEntityModifier1ParserRuleCall_1_0; }
 
 		//"enum"
-		public Keyword getEnumKeyword_1() { return cEnumKeyword_1; }
+		public Keyword getEnumKeyword_2() { return cEnumKeyword_2; }
 
 		//name=IDENT
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		public Assignment getNameAssignment_3() { return cNameAssignment_3; }
 
 		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_2_0() { return cNameIDENTTerminalRuleCall_2_0; }
+		public RuleCall getNameIDENTTerminalRuleCall_3_0() { return cNameIDENTTerminalRuleCall_3_0; }
 
 		//modifiers2+=EnumEntityModifier2*
-		public Assignment getModifiers2Assignment_3() { return cModifiers2Assignment_3; }
+		public Assignment getModifiers2Assignment_4() { return cModifiers2Assignment_4; }
 
 		//EnumEntityModifier2
-		public RuleCall getModifiers2EnumEntityModifier2ParserRuleCall_3_0() { return cModifiers2EnumEntityModifier2ParserRuleCall_3_0; }
+		public RuleCall getModifiers2EnumEntityModifier2ParserRuleCall_4_0() { return cModifiers2EnumEntityModifier2ParserRuleCall_4_0; }
 
 		//LBRACE
-		public RuleCall getLBRACETerminalRuleCall_4() { return cLBRACETerminalRuleCall_4; }
+		public RuleCall getLBRACETerminalRuleCall_5() { return cLBRACETerminalRuleCall_5; }
 
 		//features+=EnumProperty*
-		public Assignment getFeaturesAssignment_5() { return cFeaturesAssignment_5; }
+		public Assignment getFeaturesAssignment_6() { return cFeaturesAssignment_6; }
 
 		//EnumProperty
-		public RuleCall getFeaturesEnumPropertyParserRuleCall_5_0() { return cFeaturesEnumPropertyParserRuleCall_5_0; }
+		public RuleCall getFeaturesEnumPropertyParserRuleCall_6_0() { return cFeaturesEnumPropertyParserRuleCall_6_0; }
 
 		//RBRACE
-		public RuleCall getRBRACETerminalRuleCall_6() { return cRBRACETerminalRuleCall_6; }
+		public RuleCall getRBRACETerminalRuleCall_7() { return cRBRACETerminalRuleCall_7; }
 	}
 
 	public class EnumPropertyElements extends AbstractParserRuleElementFinder {
@@ -11456,8 +11445,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getEnumEntityModifier1Access().getRule();
 	}
 
+	////EnumEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('serializable' sernum=NUMBER));
 	//EnumEntityModifier2:
-	//	"extends" superType=[PojoEntity|IDENT] | "serializable" sernum=NUMBER;
+	//	"extends" superType=[PojoEntity|IDENT];
 	public EnumEntityModifier2Elements getEnumEntityModifier2Access() {
 		return pEnumEntityModifier2;
 	}
@@ -11467,8 +11457,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EnumEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-	//	modifiers1+=EnumEntityModifier1* "enum" name=IDENT modifiers2+=EnumEntityModifier2* LBRACE features+=EnumProperty*
-	//	RBRACE;
+	//	directives+=PojoDirective* modifiers1+=EnumEntityModifier1* "enum" name=IDENT modifiers2+=EnumEntityModifier2* LBRACE
+	//	features+=EnumProperty* RBRACE;
 	public EnumEntityElements getEnumEntityAccess() {
 		return pEnumEntity;
 	}
