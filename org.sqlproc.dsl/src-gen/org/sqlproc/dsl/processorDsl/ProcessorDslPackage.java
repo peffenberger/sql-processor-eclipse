@@ -4059,104 +4059,23 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_ANNOTATED_PROPERTY_FEATURE_COUNT = 4;
 
   /**
-   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyModifierImpl <em>Pojo Property Modifier</em>}' class.
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveImpl <em>Pojo Property Directive</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyModifierImpl
-   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyModifier()
+   * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirective()
    * @generated
    */
-  int POJO_PROPERTY_MODIFIER = 78;
+  int POJO_PROPERTY_DIRECTIVE = 78;
 
   /**
-   * The feature id for the '<em><b>Required</b></em>' attribute.
+   * The number of structural features of the '<em>Pojo Property Directive</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY_MODIFIER__REQUIRED = 0;
-
-  /**
-   * The feature id for the '<em><b>Discriminator</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_PROPERTY_MODIFIER__DISCRIMINATOR = 1;
-
-  /**
-   * The feature id for the '<em><b>Primary Key</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_PROPERTY_MODIFIER__PRIMARY_KEY = 2;
-
-  /**
-   * The feature id for the '<em><b>Index</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_PROPERTY_MODIFIER__INDEX = 3;
-
-  /**
-   * The feature id for the '<em><b>Version</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_PROPERTY_MODIFIER__VERSION = 4;
-
-  /**
-   * The feature id for the '<em><b>Update Column1</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_PROPERTY_MODIFIER__UPDATE_COLUMN1 = 5;
-
-  /**
-   * The feature id for the '<em><b>Update Column2</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_PROPERTY_MODIFIER__UPDATE_COLUMN2 = 6;
-
-  /**
-   * The feature id for the '<em><b>Create Column1</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_PROPERTY_MODIFIER__CREATE_COLUMN1 = 7;
-
-  /**
-   * The feature id for the '<em><b>Create Column2</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_PROPERTY_MODIFIER__CREATE_COLUMN2 = 8;
-
-  /**
-   * The number of structural features of the '<em>Pojo Property Modifier</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_PROPERTY_MODIFIER_FEATURE_COUNT = 9;
+  int POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl <em>Pojo Property</em>}' class.
@@ -4169,13 +4088,22 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_PROPERTY = 79;
 
   /**
+   * The feature id for the '<em><b>Directives</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY__DIRECTIVES = 0;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__NAME = 0;
+  int POJO_PROPERTY__NAME = 1;
 
   /**
    * The feature id for the '<em><b>Native</b></em>' attribute.
@@ -4184,7 +4112,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__NATIVE = 1;
+  int POJO_PROPERTY__NATIVE = 2;
 
   /**
    * The feature id for the '<em><b>Attrs</b></em>' reference list.
@@ -4193,7 +4121,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__ATTRS = 2;
+  int POJO_PROPERTY__ATTRS = 3;
 
   /**
    * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -4202,7 +4130,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__REF = 3;
+  int POJO_PROPERTY__REF = 4;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -4211,7 +4139,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__TYPE = 4;
+  int POJO_PROPERTY__TYPE = 5;
 
   /**
    * The feature id for the '<em><b>Gref</b></em>' reference.
@@ -4220,7 +4148,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__GREF = 5;
+  int POJO_PROPERTY__GREF = 6;
 
   /**
    * The feature id for the '<em><b>Gtype</b></em>' reference.
@@ -4229,7 +4157,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__GTYPE = 6;
+  int POJO_PROPERTY__GTYPE = 7;
 
   /**
    * The feature id for the '<em><b>Array</b></em>' attribute.
@@ -4238,16 +4166,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__ARRAY = 7;
-
-  /**
-   * The feature id for the '<em><b>Modifiers</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_PROPERTY__MODIFIERS = 8;
+  int POJO_PROPERTY__ARRAY = 8;
 
   /**
    * The number of structural features of the '<em>Pojo Property</em>' class.
@@ -4865,6 +4784,193 @@ public interface ProcessorDslPackage extends EPackage
    * @ordered
    */
   int POJO_DIRECTIVE_INDEX_FEATURE_COUNT = POJO_DIRECTIVE_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveRequiredImpl <em>Pojo Property Directive Required</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveRequiredImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveRequired()
+   * @generated
+   */
+  int POJO_PROPERTY_DIRECTIVE_REQUIRED = 94;
+
+  /**
+   * The number of structural features of the '<em>Pojo Property Directive Required</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_DIRECTIVE_REQUIRED_FEATURE_COUNT = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectivePrimaryKeyImpl <em>Pojo Property Directive Primary Key</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectivePrimaryKeyImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectivePrimaryKey()
+   * @generated
+   */
+  int POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = 95;
+
+  /**
+   * The number of structural features of the '<em>Pojo Property Directive Primary Key</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY_FEATURE_COUNT = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveDiscriminatorImpl <em>Pojo Property Directive Discriminator</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveDiscriminatorImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveDiscriminator()
+   * @generated
+   */
+  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = 96;
+
+  /**
+   * The feature id for the '<em><b>Discriminator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Pojo Property Directive Discriminator</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR_FEATURE_COUNT = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveIndexImpl <em>Pojo Property Directive Index</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveIndexImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveIndex()
+   * @generated
+   */
+  int POJO_PROPERTY_DIRECTIVE_INDEX = 97;
+
+  /**
+   * The feature id for the '<em><b>Index</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_DIRECTIVE_INDEX__INDEX = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Pojo Property Directive Index</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_DIRECTIVE_INDEX_FEATURE_COUNT = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveVersionImpl <em>Pojo Property Directive Version</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveVersionImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveVersion()
+   * @generated
+   */
+  int POJO_PROPERTY_DIRECTIVE_VERSION = 98;
+
+  /**
+   * The number of structural features of the '<em>Pojo Property Directive Version</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_DIRECTIVE_VERSION_FEATURE_COUNT = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveUpdateColImpl <em>Pojo Property Directive Update Col</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveUpdateColImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveUpdateCol()
+   * @generated
+   */
+  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL = 99;
+
+  /**
+   * The feature id for the '<em><b>Update Column1</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1 = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Update Column2</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2 = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Pojo Property Directive Update Col</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL_FEATURE_COUNT = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveCreateColImpl <em>Pojo Property Directive Create Col</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveCreateColImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveCreateCol()
+   * @generated
+   */
+  int POJO_PROPERTY_DIRECTIVE_CREATE_COL = 100;
+
+  /**
+   * The feature id for the '<em><b>Create Column1</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN1 = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Create Column2</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN2 = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Pojo Property Directive Create Col</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY_DIRECTIVE_CREATE_COL_FEATURE_COUNT = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 2;
 
 
   /**
@@ -8706,113 +8812,14 @@ public interface ProcessorDslPackage extends EPackage
   EReference getPojoAnnotatedProperty_Feature();
 
   /**
-   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier <em>Pojo Property Modifier</em>}'.
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirective <em>Pojo Property Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Pojo Property Modifier</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier
+   * @return the meta object for class '<em>Pojo Property Directive</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirective
    * @generated
    */
-  EClass getPojoPropertyModifier();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier#isRequired <em>Required</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Required</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier#isRequired()
-   * @see #getPojoPropertyModifier()
-   * @generated
-   */
-  EAttribute getPojoPropertyModifier_Required();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier#isDiscriminator <em>Discriminator</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Discriminator</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier#isDiscriminator()
-   * @see #getPojoPropertyModifier()
-   * @generated
-   */
-  EAttribute getPojoPropertyModifier_Discriminator();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier#isPrimaryKey <em>Primary Key</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Primary Key</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier#isPrimaryKey()
-   * @see #getPojoPropertyModifier()
-   * @generated
-   */
-  EAttribute getPojoPropertyModifier_PrimaryKey();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getIndex <em>Index</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Index</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getIndex()
-   * @see #getPojoPropertyModifier()
-   * @generated
-   */
-  EAttribute getPojoPropertyModifier_Index();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier#isVersion <em>Version</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Version</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier#isVersion()
-   * @see #getPojoPropertyModifier()
-   * @generated
-   */
-  EAttribute getPojoPropertyModifier_Version();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getUpdateColumn1 <em>Update Column1</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Update Column1</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getUpdateColumn1()
-   * @see #getPojoPropertyModifier()
-   * @generated
-   */
-  EAttribute getPojoPropertyModifier_UpdateColumn1();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getUpdateColumn2 <em>Update Column2</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Update Column2</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getUpdateColumn2()
-   * @see #getPojoPropertyModifier()
-   * @generated
-   */
-  EAttribute getPojoPropertyModifier_UpdateColumn2();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getCreateColumn1 <em>Create Column1</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Create Column1</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getCreateColumn1()
-   * @see #getPojoPropertyModifier()
-   * @generated
-   */
-  EAttribute getPojoPropertyModifier_CreateColumn1();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getCreateColumn2 <em>Create Column2</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Create Column2</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier#getCreateColumn2()
-   * @see #getPojoPropertyModifier()
-   * @generated
-   */
-  EAttribute getPojoPropertyModifier_CreateColumn2();
+  EClass getPojoPropertyDirective();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoProperty <em>Pojo Property</em>}'.
@@ -8823,6 +8830,17 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EClass getPojoProperty();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getDirectives <em>Directives</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Directives</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoProperty#getDirectives()
+   * @see #getPojoProperty()
+   * @generated
+   */
+  EReference getPojoProperty_Directives();
 
   /**
    * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getName <em>Name</em>}'.
@@ -8911,17 +8929,6 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EAttribute getPojoProperty_Array();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getModifiers <em>Modifiers</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Modifiers</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoProperty#getModifiers()
-   * @see #getPojoProperty()
-   * @generated
-   */
-  EReference getPojoProperty_Modifiers();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.EnumEntityModifier1 <em>Enum Entity Modifier1</em>}'.
@@ -9458,6 +9465,142 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EReference getPojoDirectiveIndex_Proplist();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired <em>Pojo Property Directive Required</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pojo Property Directive Required</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired
+   * @generated
+   */
+  EClass getPojoPropertyDirectiveRequired();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectivePrimaryKey <em>Pojo Property Directive Primary Key</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pojo Property Directive Primary Key</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectivePrimaryKey
+   * @generated
+   */
+  EClass getPojoPropertyDirectivePrimaryKey();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator <em>Pojo Property Directive Discriminator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pojo Property Directive Discriminator</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator
+   * @generated
+   */
+  EClass getPojoPropertyDirectiveDiscriminator();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator#getDiscriminator <em>Discriminator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Discriminator</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator#getDiscriminator()
+   * @see #getPojoPropertyDirectiveDiscriminator()
+   * @generated
+   */
+  EAttribute getPojoPropertyDirectiveDiscriminator_Discriminator();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex <em>Pojo Property Directive Index</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pojo Property Directive Index</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex
+   * @generated
+   */
+  EClass getPojoPropertyDirectiveIndex();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex#getIndex <em>Index</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Index</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex#getIndex()
+   * @see #getPojoPropertyDirectiveIndex()
+   * @generated
+   */
+  EAttribute getPojoPropertyDirectiveIndex_Index();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveVersion <em>Pojo Property Directive Version</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pojo Property Directive Version</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveVersion
+   * @generated
+   */
+  EClass getPojoPropertyDirectiveVersion();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol <em>Pojo Property Directive Update Col</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pojo Property Directive Update Col</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol
+   * @generated
+   */
+  EClass getPojoPropertyDirectiveUpdateCol();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol#getUpdateColumn1 <em>Update Column1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Update Column1</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol#getUpdateColumn1()
+   * @see #getPojoPropertyDirectiveUpdateCol()
+   * @generated
+   */
+  EAttribute getPojoPropertyDirectiveUpdateCol_UpdateColumn1();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol#getUpdateColumn2 <em>Update Column2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Update Column2</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol#getUpdateColumn2()
+   * @see #getPojoPropertyDirectiveUpdateCol()
+   * @generated
+   */
+  EAttribute getPojoPropertyDirectiveUpdateCol_UpdateColumn2();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol <em>Pojo Property Directive Create Col</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pojo Property Directive Create Col</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol
+   * @generated
+   */
+  EClass getPojoPropertyDirectiveCreateCol();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol#getCreateColumn1 <em>Create Column1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Create Column1</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol#getCreateColumn1()
+   * @see #getPojoPropertyDirectiveCreateCol()
+   * @generated
+   */
+  EAttribute getPojoPropertyDirectiveCreateCol_CreateColumn1();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol#getCreateColumn2 <em>Create Column2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Create Column2</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol#getCreateColumn2()
+   * @see #getPojoPropertyDirectiveCreateCol()
+   * @generated
+   */
+  EAttribute getPojoPropertyDirectiveCreateCol_CreateColumn2();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -12487,86 +12630,14 @@ public interface ProcessorDslPackage extends EPackage
     EReference POJO_ANNOTATED_PROPERTY__FEATURE = eINSTANCE.getPojoAnnotatedProperty_Feature();
 
     /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyModifierImpl <em>Pojo Property Modifier</em>}' class.
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveImpl <em>Pojo Property Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyModifierImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyModifier()
+     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirective()
      * @generated
      */
-    EClass POJO_PROPERTY_MODIFIER = eINSTANCE.getPojoPropertyModifier();
-
-    /**
-     * The meta object literal for the '<em><b>Required</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_MODIFIER__REQUIRED = eINSTANCE.getPojoPropertyModifier_Required();
-
-    /**
-     * The meta object literal for the '<em><b>Discriminator</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_MODIFIER__DISCRIMINATOR = eINSTANCE.getPojoPropertyModifier_Discriminator();
-
-    /**
-     * The meta object literal for the '<em><b>Primary Key</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_MODIFIER__PRIMARY_KEY = eINSTANCE.getPojoPropertyModifier_PrimaryKey();
-
-    /**
-     * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_MODIFIER__INDEX = eINSTANCE.getPojoPropertyModifier_Index();
-
-    /**
-     * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_MODIFIER__VERSION = eINSTANCE.getPojoPropertyModifier_Version();
-
-    /**
-     * The meta object literal for the '<em><b>Update Column1</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_MODIFIER__UPDATE_COLUMN1 = eINSTANCE.getPojoPropertyModifier_UpdateColumn1();
-
-    /**
-     * The meta object literal for the '<em><b>Update Column2</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_MODIFIER__UPDATE_COLUMN2 = eINSTANCE.getPojoPropertyModifier_UpdateColumn2();
-
-    /**
-     * The meta object literal for the '<em><b>Create Column1</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_MODIFIER__CREATE_COLUMN1 = eINSTANCE.getPojoPropertyModifier_CreateColumn1();
-
-    /**
-     * The meta object literal for the '<em><b>Create Column2</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_MODIFIER__CREATE_COLUMN2 = eINSTANCE.getPojoPropertyModifier_CreateColumn2();
+    EClass POJO_PROPERTY_DIRECTIVE = eINSTANCE.getPojoPropertyDirective();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl <em>Pojo Property</em>}' class.
@@ -12577,6 +12648,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EClass POJO_PROPERTY = eINSTANCE.getPojoProperty();
+
+    /**
+     * The meta object literal for the '<em><b>Directives</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_PROPERTY__DIRECTIVES = eINSTANCE.getPojoProperty_Directives();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -12641,14 +12720,6 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute POJO_PROPERTY__ARRAY = eINSTANCE.getPojoProperty_Array();
-
-    /**
-     * The meta object literal for the '<em><b>Modifiers</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_PROPERTY__MODIFIERS = eINSTANCE.getPojoProperty_Modifiers();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumEntityModifier1Impl <em>Enum Entity Modifier1</em>}' class.
@@ -13077,6 +13148,124 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference POJO_DIRECTIVE_INDEX__PROPLIST = eINSTANCE.getPojoDirectiveIndex_Proplist();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveRequiredImpl <em>Pojo Property Directive Required</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveRequiredImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveRequired()
+     * @generated
+     */
+    EClass POJO_PROPERTY_DIRECTIVE_REQUIRED = eINSTANCE.getPojoPropertyDirectiveRequired();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectivePrimaryKeyImpl <em>Pojo Property Directive Primary Key</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectivePrimaryKeyImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectivePrimaryKey()
+     * @generated
+     */
+    EClass POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = eINSTANCE.getPojoPropertyDirectivePrimaryKey();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveDiscriminatorImpl <em>Pojo Property Directive Discriminator</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveDiscriminatorImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveDiscriminator()
+     * @generated
+     */
+    EClass POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = eINSTANCE.getPojoPropertyDirectiveDiscriminator();
+
+    /**
+     * The meta object literal for the '<em><b>Discriminator</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR = eINSTANCE.getPojoPropertyDirectiveDiscriminator_Discriminator();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveIndexImpl <em>Pojo Property Directive Index</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveIndexImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveIndex()
+     * @generated
+     */
+    EClass POJO_PROPERTY_DIRECTIVE_INDEX = eINSTANCE.getPojoPropertyDirectiveIndex();
+
+    /**
+     * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_PROPERTY_DIRECTIVE_INDEX__INDEX = eINSTANCE.getPojoPropertyDirectiveIndex_Index();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveVersionImpl <em>Pojo Property Directive Version</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveVersionImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveVersion()
+     * @generated
+     */
+    EClass POJO_PROPERTY_DIRECTIVE_VERSION = eINSTANCE.getPojoPropertyDirectiveVersion();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveUpdateColImpl <em>Pojo Property Directive Update Col</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveUpdateColImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveUpdateCol()
+     * @generated
+     */
+    EClass POJO_PROPERTY_DIRECTIVE_UPDATE_COL = eINSTANCE.getPojoPropertyDirectiveUpdateCol();
+
+    /**
+     * The meta object literal for the '<em><b>Update Column1</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1 = eINSTANCE.getPojoPropertyDirectiveUpdateCol_UpdateColumn1();
+
+    /**
+     * The meta object literal for the '<em><b>Update Column2</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2 = eINSTANCE.getPojoPropertyDirectiveUpdateCol_UpdateColumn2();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveCreateColImpl <em>Pojo Property Directive Create Col</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveCreateColImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveCreateCol()
+     * @generated
+     */
+    EClass POJO_PROPERTY_DIRECTIVE_CREATE_COL = eINSTANCE.getPojoPropertyDirectiveCreateCol();
+
+    /**
+     * The meta object literal for the '<em><b>Create Column1</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN1 = eINSTANCE.getPojoPropertyDirectiveCreateCol_CreateColumn1();
+
+    /**
+     * The meta object literal for the '<em><b>Create Column2</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN2 = eINSTANCE.getPojoPropertyDirectiveCreateCol_CreateColumn2();
 
   }
 

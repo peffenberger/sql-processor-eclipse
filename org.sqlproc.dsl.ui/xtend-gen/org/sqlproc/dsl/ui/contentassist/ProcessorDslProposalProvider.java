@@ -42,10 +42,12 @@ import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.sqlproc.dsl.generator.ProcessorGeneratorUtils;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Artifacts;
@@ -95,6 +97,10 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   @Inject
   private IQualifiedNameConverter qualifiedNameConverter;
+  
+  @Inject
+  @Extension
+  private ProcessorGeneratorUtils _processorGeneratorUtils;
   
   private final ArrayList<String> STATEMENT_TYPE = CollectionLiterals.<String>newArrayList("QRY", "CRUD", "CALL");
   
@@ -566,7 +572,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         checkProperty = _substring_3;
       }
       final String _checkProperty = checkProperty;
-      List<PojoProperty> _attributes = Utils.attributes(baseEntity);
+      List<PojoProperty> _attributes = this._processorGeneratorUtils.attributes(baseEntity);
       final Function1<PojoProperty, Boolean> _function = new Function1<PojoProperty, Boolean>() {
         public Boolean apply(final PojoProperty it) {
           String _name = it.getName();
@@ -654,7 +660,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       }
     };
     IterableExtensions.<PojoProperty>forEach(_map, _function_1);
-    final PojoEntity superType = Utils.getSuperType(pojoEntity);
+    final PojoEntity superType = this._processorGeneratorUtils.getSuperType(pojoEntity);
     List<PojoProperty> _xifexpression = null;
     boolean _equals_1 = Objects.equal(superType, null);
     if (_equals_1) {

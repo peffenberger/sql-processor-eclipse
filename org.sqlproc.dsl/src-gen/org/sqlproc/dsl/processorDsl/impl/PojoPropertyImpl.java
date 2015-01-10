@@ -24,7 +24,7 @@ import org.eclipse.xtext.common.types.JvmType;
 import org.sqlproc.dsl.processorDsl.Entity;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
-import org.sqlproc.dsl.processorDsl.PojoPropertyModifier;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirective;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
 /**
@@ -34,6 +34,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getNative <em>Native</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getAttrs <em>Attrs</em>}</li>
@@ -42,7 +43,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getGref <em>Gref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getGtype <em>Gtype</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#isArray <em>Array</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getModifiers <em>Modifiers</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,6 +50,16 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  */
 public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements PojoProperty
 {
+  /**
+   * The cached value of the '{@link #getDirectives() <em>Directives</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDirectives()
+   * @generated
+   * @ordered
+   */
+  protected EList<PojoPropertyDirective> directives;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -161,16 +171,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
   protected boolean array = ARRAY_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getModifiers()
-   * @generated
-   * @ordered
-   */
-  protected EList<PojoPropertyModifier> modifiers;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -189,6 +189,20 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
   protected EClass eStaticClass()
   {
     return ProcessorDslPackage.Literals.POJO_PROPERTY;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<PojoPropertyDirective> getDirectives()
+  {
+    if (directives == null)
+    {
+      directives = new EObjectContainmentEList<PojoPropertyDirective>(PojoPropertyDirective.class, this, ProcessorDslPackage.POJO_PROPERTY__DIRECTIVES);
+    }
+    return directives;
   }
 
   /**
@@ -451,27 +465,13 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoPropertyModifier> getModifiers()
-  {
-    if (modifiers == null)
-    {
-      modifiers = new EObjectContainmentEList<PojoPropertyModifier>(PojoPropertyModifier.class, this, ProcessorDslPackage.POJO_PROPERTY__MODIFIERS);
-    }
-    return modifiers;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.POJO_PROPERTY__MODIFIERS:
-        return ((InternalEList<?>)getModifiers()).basicRemove(otherEnd, msgs);
+      case ProcessorDslPackage.POJO_PROPERTY__DIRECTIVES:
+        return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -486,6 +486,8 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_PROPERTY__DIRECTIVES:
+        return getDirectives();
       case ProcessorDslPackage.POJO_PROPERTY__NAME:
         return getName();
       case ProcessorDslPackage.POJO_PROPERTY__NATIVE:
@@ -506,8 +508,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
         return basicGetGtype();
       case ProcessorDslPackage.POJO_PROPERTY__ARRAY:
         return isArray();
-      case ProcessorDslPackage.POJO_PROPERTY__MODIFIERS:
-        return getModifiers();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -523,6 +523,10 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_PROPERTY__DIRECTIVES:
+        getDirectives().clear();
+        getDirectives().addAll((Collection<? extends PojoPropertyDirective>)newValue);
+        return;
       case ProcessorDslPackage.POJO_PROPERTY__NAME:
         setName((String)newValue);
         return;
@@ -548,10 +552,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
       case ProcessorDslPackage.POJO_PROPERTY__ARRAY:
         setArray((Boolean)newValue);
         return;
-      case ProcessorDslPackage.POJO_PROPERTY__MODIFIERS:
-        getModifiers().clear();
-        getModifiers().addAll((Collection<? extends PojoPropertyModifier>)newValue);
-        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -566,6 +566,9 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_PROPERTY__DIRECTIVES:
+        getDirectives().clear();
+        return;
       case ProcessorDslPackage.POJO_PROPERTY__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -590,9 +593,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
       case ProcessorDslPackage.POJO_PROPERTY__ARRAY:
         setArray(ARRAY_EDEFAULT);
         return;
-      case ProcessorDslPackage.POJO_PROPERTY__MODIFIERS:
-        getModifiers().clear();
-        return;
     }
     super.eUnset(featureID);
   }
@@ -607,6 +607,8 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_PROPERTY__DIRECTIVES:
+        return directives != null && !directives.isEmpty();
       case ProcessorDslPackage.POJO_PROPERTY__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ProcessorDslPackage.POJO_PROPERTY__NATIVE:
@@ -623,8 +625,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
         return gtype != null;
       case ProcessorDslPackage.POJO_PROPERTY__ARRAY:
         return array != ARRAY_EDEFAULT;
-      case ProcessorDslPackage.POJO_PROPERTY__MODIFIERS:
-        return modifiers != null && !modifiers.isEmpty();
     }
     return super.eIsSet(featureID);
   }

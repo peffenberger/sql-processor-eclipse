@@ -421,15 +421,26 @@ PojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 
 PojoAnnotatedProperty: (=> AT (=> AT (=> AT setterAnnotations+=Annotation | getterAnnotations+=Annotation) | attributeAnnotations+=Annotation))* feature=PojoProperty;
 
-PojoPropertyModifier: ((required?='required') | (discriminator?='discriminator') | (primaryKey?='primaryKey') | ('index' index=NUMBER) | (version?='optLock') | 
-	                   ('updateCol' updateColumn1=IDENT '->' updateColumn2=IDENT) | ('createCol' createColumn1=IDENT '->' createColumn2=IDENT) 
-);
+//PojoPropertyModifier: ((required?='required') | (discriminator?='discriminator') | (primaryKey?='primaryKey') | ('index' index=NUMBER) | (version?='optLock') | 
+//	                   ('updateCol' updateColumn1=IDENT '->' updateColumn2=IDENT) | ('createCol' createColumn1=IDENT '->' createColumn2=IDENT) 
+//);
+
+PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+	{PojoPropertyDirectiveRequired} '#Required'
+	| {PojoPropertyDirectivePrimaryKey} '#PrimaryKey'
+	| {PojoPropertyDirectiveDiscriminator} '#Discriminator' LPAREN discriminator=(IDENT|NUMBER) RPAREN
+	| {PojoPropertyDirectiveIndex} '#Index' LPAREN index=NUMBER RPAREN
+	| {PojoPropertyDirectiveVersion} '#Version'
+	| {PojoPropertyDirectiveUpdateCol} '#UpdateCol' LPAREN updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN
+	| {PojoPropertyDirectiveCreateCol} '#CreateCol' LPAREN createColumn1=IDENT COMMA createColumn2=IDENT RPAREN
+;
 
 PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
+	directives+=PojoPropertyDirective*
 	name=IDENT (native = ('_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 
 	(COLON (COLON (COLON (attrs+=[PojoProperty|IDENT])* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
 	(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) (array ?= '[]')?
-	(modifiers+=PojoPropertyModifier)*
+	//(modifiers+=PojoPropertyModifier)*
 ;
 
 EnumEntityModifier1: ((final?='final'));

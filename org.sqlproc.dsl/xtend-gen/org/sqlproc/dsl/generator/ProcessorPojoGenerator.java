@@ -407,11 +407,11 @@ public class ProcessorPojoGenerator {
     }
     {
       boolean _and = false;
-      boolean _hasOperators = Utils.hasOperators(e);
+      boolean _hasOperators = this._processorGeneratorUtils.hasOperators(e);
       if (!_hasOperators) {
         _and = false;
       } else {
-        String _operatorsSuffix = Utils.getOperatorsSuffix(e);
+        String _operatorsSuffix = this._processorGeneratorUtils.getOperatorsSuffix(e);
         boolean _equals = Objects.equal(_operatorsSuffix, null);
         _and = _equals;
       }
@@ -464,7 +464,7 @@ public class ProcessorPojoGenerator {
     }
     _builder.append("public ");
     {
-      boolean _isAbstract = Utils.isAbstract(e);
+      boolean _isAbstract = this._processorGeneratorUtils.isAbstract(e);
       if (_isAbstract) {
         _builder.append("abstract ");
       }
@@ -498,7 +498,7 @@ public class ProcessorPojoGenerator {
       final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
         public Boolean apply(final PojoAnnotatedProperty x) {
           PojoProperty _feature = x.getFeature();
-          String _index = Utils.getIndex(_feature);
+          String _index = ProcessorPojoGenerator.this._processorGeneratorUtils.getIndex(_feature);
           return Boolean.valueOf((!Objects.equal(_index, null)));
         }
       };
@@ -544,7 +544,7 @@ public class ProcessorPojoGenerator {
         _builder.append(_constName, "\t");
         _builder.append(" = ");
         PojoProperty _feature_1 = f_1.getFeature();
-        String _index = Utils.getIndex(_feature_1);
+        String _index = this._processorGeneratorUtils.getIndex(_feature_1);
         _builder.append(_index, "\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
@@ -764,7 +764,7 @@ public class ProcessorPojoGenerator {
       Iterable<PojoAnnotatedProperty> _filter_1 = IterableExtensions.<PojoAnnotatedProperty>filter(_features_11, _function_1);
       for(final PojoAnnotatedProperty f_8 : _filter_1) {
         PojoProperty _feature_7 = f_8.getFeature();
-        String _operatorsSuffix = Utils.getOperatorsSuffix(e);
+        String _operatorsSuffix = this._processorGeneratorUtils.getOperatorsSuffix(e);
         CharSequence _compile = this.compile(_feature_7, f_8, im, e, ae, _operatorsSuffix);
         _builder.append(_compile, "");
         _builder.newLineIfNotEmpty();
@@ -855,11 +855,11 @@ public class ProcessorPojoGenerator {
     }
     {
       boolean _and = false;
-      boolean _hasOperators = Utils.hasOperators(e);
+      boolean _hasOperators = this._processorGeneratorUtils.hasOperators(e);
       if (!_hasOperators) {
         _and = false;
       } else {
-        String _operatorsSuffix_1 = Utils.getOperatorsSuffix(e);
+        String _operatorsSuffix_1 = this._processorGeneratorUtils.getOperatorsSuffix(e);
         boolean _equals = Objects.equal(_operatorsSuffix_1, null);
         _and = _equals;
       }
@@ -946,14 +946,14 @@ public class ProcessorPojoGenerator {
     String _name = f.getName();
     _builder.append(_name, "\t");
     {
-      boolean _isList = Utils.isList(f);
+      boolean _isList = this._processorGeneratorUtils.isList(f);
       if (_isList) {
         _builder.append(" = new Array");
         CharSequence _compileType_1 = this._processorGeneratorUtils.compileType(f, im);
         _builder.append(_compileType_1, "\t");
         _builder.append("()");
       } else {
-        boolean _isOptLock = Utils.isOptLock(f);
+        boolean _isOptLock = this._processorGeneratorUtils.isOptLock(f);
         if (_isOptLock) {
           _builder.append(" = 0");
         }
@@ -1071,7 +1071,7 @@ public class ProcessorPojoGenerator {
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     {
-      String _updateColumn1 = Utils.getUpdateColumn1(f);
+      String _updateColumn1 = this._processorGeneratorUtils.getUpdateColumn1(f);
       boolean _notEquals = (!Objects.equal(_updateColumn1, null));
       if (_notEquals) {
         _builder.append("\t\t");
@@ -1083,13 +1083,13 @@ public class ProcessorPojoGenerator {
         _builder.append("\t\t");
         _builder.append("\t");
         _builder.append("this.");
-        String _updateColumn2 = Utils.getUpdateColumn2(f);
+        String _updateColumn2 = this._processorGeneratorUtils.getUpdateColumn2(f);
         _builder.append(_updateColumn2, "\t\t\t");
         _builder.append(" = this.");
         String _name_8 = f.getName();
         _builder.append(_name_8, "\t\t\t");
         _builder.append(".get");
-        String _updateColumn1_1 = Utils.getUpdateColumn1(f);
+        String _updateColumn1_1 = this._processorGeneratorUtils.getUpdateColumn1(f);
         String __toFirstUpper_2 = Utils._toFirstUpper(_updateColumn1_1);
         _builder.append(__toFirstUpper_2, "\t\t\t");
         _builder.append("();");
@@ -1097,33 +1097,33 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      String _createColumn1 = Utils.getCreateColumn1(f);
+      String _createColumn1 = this._processorGeneratorUtils.getCreateColumn1(f);
       boolean _notEquals_1 = (!Objects.equal(_createColumn1, null));
       if (_notEquals_1) {
         _builder.append("\t\t");
         _builder.append("if (this.");
-        String _createColumn1_1 = Utils.getCreateColumn1(f);
+        String _createColumn1_1 = this._processorGeneratorUtils.getCreateColumn1(f);
         _builder.append(_createColumn1_1, "\t\t");
         _builder.append(" == null)");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("\t");
         _builder.append("this.");
-        String _createColumn1_2 = Utils.getCreateColumn1(f);
+        String _createColumn1_2 = this._processorGeneratorUtils.getCreateColumn1(f);
         _builder.append(_createColumn1_2, "\t\t\t");
         _builder.append(" = new ");
-        String _createColumn1_3 = Utils.getCreateColumn1(f);
-        PojoProperty _attribute = Utils.getAttribute(e, _createColumn1_3);
+        String _createColumn1_3 = this._processorGeneratorUtils.getCreateColumn1(f);
+        PojoProperty _attribute = this._processorGeneratorUtils.getAttribute(e, _createColumn1_3);
         CharSequence _compileType_4 = this._processorGeneratorUtils.compileType(_attribute, im);
         _builder.append(_compileType_4, "\t\t\t");
         _builder.append("();");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("this.");
-        String _createColumn1_4 = Utils.getCreateColumn1(f);
+        String _createColumn1_4 = this._processorGeneratorUtils.getCreateColumn1(f);
         _builder.append(_createColumn1_4, "\t\t");
         _builder.append(".set");
-        String _createColumn2 = Utils.getCreateColumn2(f);
+        String _createColumn2 = this._processorGeneratorUtils.getCreateColumn2(f);
         String __toFirstUpper_3 = Utils._toFirstUpper(_createColumn2);
         _builder.append(__toFirstUpper_3, "\t\t");
         _builder.append("(");
@@ -1163,7 +1163,7 @@ public class ProcessorPojoGenerator {
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     {
-      String _updateColumn1_2 = Utils.getUpdateColumn1(f);
+      String _updateColumn1_2 = this._processorGeneratorUtils.getUpdateColumn1(f);
       boolean _notEquals_2 = (!Objects.equal(_updateColumn1_2, null));
       if (_notEquals_2) {
         _builder.append("\t\t");
@@ -1175,13 +1175,13 @@ public class ProcessorPojoGenerator {
         _builder.append("\t\t");
         _builder.append("\t");
         _builder.append("this.");
-        String _updateColumn2_1 = Utils.getUpdateColumn2(f);
+        String _updateColumn2_1 = this._processorGeneratorUtils.getUpdateColumn2(f);
         _builder.append(_updateColumn2_1, "\t\t\t");
         _builder.append(" = this.");
         String _name_16 = f.getName();
         _builder.append(_name_16, "\t\t\t");
         _builder.append(".get");
-        String _updateColumn1_3 = Utils.getUpdateColumn1(f);
+        String _updateColumn1_3 = this._processorGeneratorUtils.getUpdateColumn1(f);
         String __toFirstUpper_5 = Utils._toFirstUpper(_updateColumn1_3);
         _builder.append(__toFirstUpper_5, "\t\t\t");
         _builder.append("();");
@@ -1189,33 +1189,33 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      String _createColumn1_5 = Utils.getCreateColumn1(f);
+      String _createColumn1_5 = this._processorGeneratorUtils.getCreateColumn1(f);
       boolean _notEquals_3 = (!Objects.equal(_createColumn1_5, null));
       if (_notEquals_3) {
         _builder.append("\t\t");
         _builder.append("if (this.");
-        String _createColumn1_6 = Utils.getCreateColumn1(f);
+        String _createColumn1_6 = this._processorGeneratorUtils.getCreateColumn1(f);
         _builder.append(_createColumn1_6, "\t\t");
         _builder.append(" == null)");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("\t");
         _builder.append("this.");
-        String _createColumn1_7 = Utils.getCreateColumn1(f);
+        String _createColumn1_7 = this._processorGeneratorUtils.getCreateColumn1(f);
         _builder.append(_createColumn1_7, "\t\t\t");
         _builder.append(" = new ");
-        String _createColumn1_8 = Utils.getCreateColumn1(f);
-        PojoProperty _attribute_1 = Utils.getAttribute(e, _createColumn1_8);
+        String _createColumn1_8 = this._processorGeneratorUtils.getCreateColumn1(f);
+        PojoProperty _attribute_1 = this._processorGeneratorUtils.getAttribute(e, _createColumn1_8);
         CharSequence _compileType_6 = this._processorGeneratorUtils.compileType(_attribute_1, im);
         _builder.append(_compileType_6, "\t\t\t");
         _builder.append("();");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("this.");
-        String _createColumn1_9 = Utils.getCreateColumn1(f);
+        String _createColumn1_9 = this._processorGeneratorUtils.getCreateColumn1(f);
         _builder.append(_createColumn1_9, "\t\t");
         _builder.append(".set");
-        String _createColumn2_1 = Utils.getCreateColumn2(f);
+        String _createColumn2_1 = this._processorGeneratorUtils.getCreateColumn2(f);
         String __toFirstUpper_6 = Utils._toFirstUpper(_createColumn2_1);
         _builder.append(__toFirstUpper_6, "\t\t");
         _builder.append("(");
@@ -1232,7 +1232,7 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     {
       boolean _and = false;
-      boolean _hasOperators = Utils.hasOperators(e);
+      boolean _hasOperators = this._processorGeneratorUtils.hasOperators(e);
       if (!_hasOperators) {
         _and = false;
       } else {
@@ -1607,7 +1607,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      PojoEntity _superType = Utils.getSuperType(e);
+      PojoEntity _superType = this._processorGeneratorUtils.getSuperType(e);
       boolean _notEquals = (!Objects.equal(_superType, null));
       if (_notEquals) {
         _builder.append(" + super.toString()");
@@ -1686,7 +1686,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      PojoEntity _superType_1 = Utils.getSuperType(e);
+      PojoEntity _superType_1 = this._processorGeneratorUtils.getSuperType(e);
       boolean _notEquals_1 = (!Objects.equal(_superType_1, null));
       if (_notEquals_1) {
         _builder.append(" + super.toString()");
@@ -3832,10 +3832,10 @@ public class ProcessorPojoGenerator {
   
   public List<PojoAnnotatedProperty> listFeatures(final PojoEntity e) {
     final ArrayList<PojoAnnotatedProperty> list = new ArrayList<PojoAnnotatedProperty>();
-    PojoEntity _superType = Utils.getSuperType(e);
+    PojoEntity _superType = this._processorGeneratorUtils.getSuperType(e);
     boolean _notEquals = (!Objects.equal(_superType, null));
     if (_notEquals) {
-      PojoEntity _superType_1 = Utils.getSuperType(e);
+      PojoEntity _superType_1 = this._processorGeneratorUtils.getSuperType(e);
       List<PojoAnnotatedProperty> _listFeatures = this.listFeatures(_superType_1);
       list.addAll(_listFeatures);
     }
@@ -3849,7 +3849,7 @@ public class ProcessorPojoGenerator {
     final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
       public Boolean apply(final PojoAnnotatedProperty f) {
         PojoProperty _feature = f.getFeature();
-        return Boolean.valueOf(Utils.isList(_feature));
+        return Boolean.valueOf(ProcessorPojoGenerator.this._processorGeneratorUtils.isList(_feature));
       }
     };
     Iterable<PojoAnnotatedProperty> _filter = IterableExtensions.<PojoAnnotatedProperty>filter(_features, _function);
@@ -3858,10 +3858,10 @@ public class ProcessorPojoGenerator {
   
   public List<PojoAnnotatedProperty> requiredFeatures(final PojoEntity e) {
     final ArrayList<PojoAnnotatedProperty> list = new ArrayList<PojoAnnotatedProperty>();
-    PojoEntity _superType = Utils.getSuperType(e);
+    PojoEntity _superType = this._processorGeneratorUtils.getSuperType(e);
     boolean _notEquals = (!Objects.equal(_superType, null));
     if (_notEquals) {
-      PojoEntity _superType_1 = Utils.getSuperType(e);
+      PojoEntity _superType_1 = this._processorGeneratorUtils.getSuperType(e);
       List<PojoAnnotatedProperty> _requiredFeatures = this.requiredFeatures(_superType_1);
       list.addAll(_requiredFeatures);
     }
@@ -3872,10 +3872,10 @@ public class ProcessorPojoGenerator {
   
   public ArrayList<PojoAnnotatedProperty> requiredSuperFeatures(final PojoEntity e) {
     final ArrayList<PojoAnnotatedProperty> list = new ArrayList<PojoAnnotatedProperty>();
-    PojoEntity _superType = Utils.getSuperType(e);
+    PojoEntity _superType = this._processorGeneratorUtils.getSuperType(e);
     boolean _notEquals = (!Objects.equal(_superType, null));
     if (_notEquals) {
-      PojoEntity _superType_1 = Utils.getSuperType(e);
+      PojoEntity _superType_1 = this._processorGeneratorUtils.getSuperType(e);
       List<PojoAnnotatedProperty> _requiredFeatures = this.requiredFeatures(_superType_1);
       list.addAll(_requiredFeatures);
     }
@@ -3887,7 +3887,7 @@ public class ProcessorPojoGenerator {
     final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
       public Boolean apply(final PojoAnnotatedProperty f) {
         PojoProperty _feature = f.getFeature();
-        return Boolean.valueOf(Utils.isRequired(_feature));
+        return Boolean.valueOf(ProcessorPojoGenerator.this._processorGeneratorUtils.isRequired(_feature));
       }
     };
     Iterable<PojoAnnotatedProperty> _filter = IterableExtensions.<PojoAnnotatedProperty>filter(_features, _function);
@@ -3977,12 +3977,12 @@ public class ProcessorPojoGenerator {
   public CharSequence compileExtends(final PojoEntity e, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      PojoEntity _superType = Utils.getSuperType(e);
+      PojoEntity _superType = this._processorGeneratorUtils.getSuperType(e);
       boolean _notEquals = (!Objects.equal(_superType, null));
       if (_notEquals) {
         _builder.append("extends ");
-        PojoEntity _superType_1 = Utils.getSuperType(e);
-        PojoEntity _superType_2 = Utils.getSuperType(e);
+        PojoEntity _superType_1 = this._processorGeneratorUtils.getSuperType(e);
+        PojoEntity _superType_2 = this._processorGeneratorUtils.getSuperType(e);
         QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_2);
         String _fullName = Utils.getFullName(e, _superType_1, _fullyQualifiedName, im);
         _builder.append(_fullName, "");

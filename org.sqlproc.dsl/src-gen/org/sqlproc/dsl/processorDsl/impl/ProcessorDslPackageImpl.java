@@ -92,7 +92,14 @@ import org.sqlproc.dsl.processorDsl.PojoMethod;
 import org.sqlproc.dsl.processorDsl.PojoMethodArg;
 import org.sqlproc.dsl.processorDsl.PojoMethodModifier;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
-import org.sqlproc.dsl.processorDsl.PojoPropertyModifier;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirective;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectivePrimaryKey;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveVersion;
 import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.PojogenProperty;
 import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
@@ -667,7 +674,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass pojoPropertyModifierEClass = null;
+  private EClass pojoPropertyDirectiveEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -773,6 +780,55 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * @generated
    */
   private EClass pojoDirectiveIndexEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pojoPropertyDirectiveRequiredEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pojoPropertyDirectivePrimaryKeyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pojoPropertyDirectiveDiscriminatorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pojoPropertyDirectiveIndexEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pojoPropertyDirectiveVersionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pojoPropertyDirectiveUpdateColEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pojoPropertyDirectiveCreateColEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -4405,99 +4461,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getPojoPropertyModifier()
+  public EClass getPojoPropertyDirective()
   {
-    return pojoPropertyModifierEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoPropertyModifier_Required()
-  {
-    return (EAttribute)pojoPropertyModifierEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoPropertyModifier_Discriminator()
-  {
-    return (EAttribute)pojoPropertyModifierEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoPropertyModifier_PrimaryKey()
-  {
-    return (EAttribute)pojoPropertyModifierEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoPropertyModifier_Index()
-  {
-    return (EAttribute)pojoPropertyModifierEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoPropertyModifier_Version()
-  {
-    return (EAttribute)pojoPropertyModifierEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoPropertyModifier_UpdateColumn1()
-  {
-    return (EAttribute)pojoPropertyModifierEClass.getEStructuralFeatures().get(5);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoPropertyModifier_UpdateColumn2()
-  {
-    return (EAttribute)pojoPropertyModifierEClass.getEStructuralFeatures().get(6);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoPropertyModifier_CreateColumn1()
-  {
-    return (EAttribute)pojoPropertyModifierEClass.getEStructuralFeatures().get(7);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoPropertyModifier_CreateColumn2()
-  {
-    return (EAttribute)pojoPropertyModifierEClass.getEStructuralFeatures().get(8);
+    return pojoPropertyDirectiveEClass;
   }
 
   /**
@@ -4515,9 +4481,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoProperty_Name()
+  public EReference getPojoProperty_Directives()
   {
-    return (EAttribute)pojoPropertyEClass.getEStructuralFeatures().get(0);
+    return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -4525,7 +4491,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoProperty_Native()
+  public EAttribute getPojoProperty_Name()
   {
     return (EAttribute)pojoPropertyEClass.getEStructuralFeatures().get(1);
   }
@@ -4535,9 +4501,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoProperty_Attrs()
+  public EAttribute getPojoProperty_Native()
   {
-    return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)pojoPropertyEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -4545,7 +4511,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoProperty_Ref()
+  public EReference getPojoProperty_Attrs()
   {
     return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(3);
   }
@@ -4555,7 +4521,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoProperty_Type()
+  public EReference getPojoProperty_Ref()
   {
     return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(4);
   }
@@ -4565,7 +4531,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoProperty_Gref()
+  public EReference getPojoProperty_Type()
   {
     return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(5);
   }
@@ -4575,7 +4541,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoProperty_Gtype()
+  public EReference getPojoProperty_Gref()
   {
     return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(6);
   }
@@ -4585,9 +4551,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoProperty_Array()
+  public EReference getPojoProperty_Gtype()
   {
-    return (EAttribute)pojoPropertyEClass.getEStructuralFeatures().get(7);
+    return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -4595,9 +4561,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoProperty_Modifiers()
+  public EAttribute getPojoProperty_Array()
   {
-    return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(8);
+    return (EAttribute)pojoPropertyEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -5105,6 +5071,136 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getPojoPropertyDirectiveRequired()
+  {
+    return pojoPropertyDirectiveRequiredEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPojoPropertyDirectivePrimaryKey()
+  {
+    return pojoPropertyDirectivePrimaryKeyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPojoPropertyDirectiveDiscriminator()
+  {
+    return pojoPropertyDirectiveDiscriminatorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPojoPropertyDirectiveDiscriminator_Discriminator()
+  {
+    return (EAttribute)pojoPropertyDirectiveDiscriminatorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPojoPropertyDirectiveIndex()
+  {
+    return pojoPropertyDirectiveIndexEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPojoPropertyDirectiveIndex_Index()
+  {
+    return (EAttribute)pojoPropertyDirectiveIndexEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPojoPropertyDirectiveVersion()
+  {
+    return pojoPropertyDirectiveVersionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPojoPropertyDirectiveUpdateCol()
+  {
+    return pojoPropertyDirectiveUpdateColEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPojoPropertyDirectiveUpdateCol_UpdateColumn1()
+  {
+    return (EAttribute)pojoPropertyDirectiveUpdateColEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPojoPropertyDirectiveUpdateCol_UpdateColumn2()
+  {
+    return (EAttribute)pojoPropertyDirectiveUpdateColEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPojoPropertyDirectiveCreateCol()
+  {
+    return pojoPropertyDirectiveCreateColEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPojoPropertyDirectiveCreateCol_CreateColumn1()
+  {
+    return (EAttribute)pojoPropertyDirectiveCreateColEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPojoPropertyDirectiveCreateCol_CreateColumn2()
+  {
+    return (EAttribute)pojoPropertyDirectiveCreateColEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ProcessorDslFactory getProcessorDslFactory()
   {
     return (ProcessorDslFactory)getEFactoryInstance();
@@ -5564,18 +5660,10 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEReference(pojoAnnotatedPropertyEClass, POJO_ANNOTATED_PROPERTY__ATTRIBUTE_ANNOTATIONS);
     createEReference(pojoAnnotatedPropertyEClass, POJO_ANNOTATED_PROPERTY__FEATURE);
 
-    pojoPropertyModifierEClass = createEClass(POJO_PROPERTY_MODIFIER);
-    createEAttribute(pojoPropertyModifierEClass, POJO_PROPERTY_MODIFIER__REQUIRED);
-    createEAttribute(pojoPropertyModifierEClass, POJO_PROPERTY_MODIFIER__DISCRIMINATOR);
-    createEAttribute(pojoPropertyModifierEClass, POJO_PROPERTY_MODIFIER__PRIMARY_KEY);
-    createEAttribute(pojoPropertyModifierEClass, POJO_PROPERTY_MODIFIER__INDEX);
-    createEAttribute(pojoPropertyModifierEClass, POJO_PROPERTY_MODIFIER__VERSION);
-    createEAttribute(pojoPropertyModifierEClass, POJO_PROPERTY_MODIFIER__UPDATE_COLUMN1);
-    createEAttribute(pojoPropertyModifierEClass, POJO_PROPERTY_MODIFIER__UPDATE_COLUMN2);
-    createEAttribute(pojoPropertyModifierEClass, POJO_PROPERTY_MODIFIER__CREATE_COLUMN1);
-    createEAttribute(pojoPropertyModifierEClass, POJO_PROPERTY_MODIFIER__CREATE_COLUMN2);
+    pojoPropertyDirectiveEClass = createEClass(POJO_PROPERTY_DIRECTIVE);
 
     pojoPropertyEClass = createEClass(POJO_PROPERTY);
+    createEReference(pojoPropertyEClass, POJO_PROPERTY__DIRECTIVES);
     createEAttribute(pojoPropertyEClass, POJO_PROPERTY__NAME);
     createEAttribute(pojoPropertyEClass, POJO_PROPERTY__NATIVE);
     createEReference(pojoPropertyEClass, POJO_PROPERTY__ATTRS);
@@ -5584,7 +5672,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEReference(pojoPropertyEClass, POJO_PROPERTY__GREF);
     createEReference(pojoPropertyEClass, POJO_PROPERTY__GTYPE);
     createEAttribute(pojoPropertyEClass, POJO_PROPERTY__ARRAY);
-    createEReference(pojoPropertyEClass, POJO_PROPERTY__MODIFIERS);
 
     enumEntityModifier1EClass = createEClass(ENUM_ENTITY_MODIFIER1);
     createEAttribute(enumEntityModifier1EClass, ENUM_ENTITY_MODIFIER1__FINAL);
@@ -5649,6 +5736,26 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     pojoDirectiveIndexEClass = createEClass(POJO_DIRECTIVE_INDEX);
     createEAttribute(pojoDirectiveIndexEClass, POJO_DIRECTIVE_INDEX__INDEX);
     createEReference(pojoDirectiveIndexEClass, POJO_DIRECTIVE_INDEX__PROPLIST);
+
+    pojoPropertyDirectiveRequiredEClass = createEClass(POJO_PROPERTY_DIRECTIVE_REQUIRED);
+
+    pojoPropertyDirectivePrimaryKeyEClass = createEClass(POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY);
+
+    pojoPropertyDirectiveDiscriminatorEClass = createEClass(POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR);
+    createEAttribute(pojoPropertyDirectiveDiscriminatorEClass, POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR);
+
+    pojoPropertyDirectiveIndexEClass = createEClass(POJO_PROPERTY_DIRECTIVE_INDEX);
+    createEAttribute(pojoPropertyDirectiveIndexEClass, POJO_PROPERTY_DIRECTIVE_INDEX__INDEX);
+
+    pojoPropertyDirectiveVersionEClass = createEClass(POJO_PROPERTY_DIRECTIVE_VERSION);
+
+    pojoPropertyDirectiveUpdateColEClass = createEClass(POJO_PROPERTY_DIRECTIVE_UPDATE_COL);
+    createEAttribute(pojoPropertyDirectiveUpdateColEClass, POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1);
+    createEAttribute(pojoPropertyDirectiveUpdateColEClass, POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2);
+
+    pojoPropertyDirectiveCreateColEClass = createEClass(POJO_PROPERTY_DIRECTIVE_CREATE_COL);
+    createEAttribute(pojoPropertyDirectiveCreateColEClass, POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN1);
+    createEAttribute(pojoPropertyDirectiveCreateColEClass, POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN2);
   }
 
   /**
@@ -5696,6 +5803,13 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     pojoDirectiveOperatorsEClass.getESuperTypes().add(this.getPojoDirective());
     pojoDirectiveSerializableEClass.getESuperTypes().add(this.getPojoDirective());
     pojoDirectiveIndexEClass.getESuperTypes().add(this.getPojoDirective());
+    pojoPropertyDirectiveRequiredEClass.getESuperTypes().add(this.getPojoPropertyDirective());
+    pojoPropertyDirectivePrimaryKeyEClass.getESuperTypes().add(this.getPojoPropertyDirective());
+    pojoPropertyDirectiveDiscriminatorEClass.getESuperTypes().add(this.getPojoPropertyDirective());
+    pojoPropertyDirectiveIndexEClass.getESuperTypes().add(this.getPojoPropertyDirective());
+    pojoPropertyDirectiveVersionEClass.getESuperTypes().add(this.getPojoPropertyDirective());
+    pojoPropertyDirectiveUpdateColEClass.getESuperTypes().add(this.getPojoPropertyDirective());
+    pojoPropertyDirectiveCreateColEClass.getESuperTypes().add(this.getPojoPropertyDirective());
 
     // Initialize classes and features; add operations and parameters
     initEClass(artifactsEClass, Artifacts.class, "Artifacts", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -6132,18 +6246,10 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEReference(getPojoAnnotatedProperty_AttributeAnnotations(), this.getAnnotation(), null, "attributeAnnotations", null, 0, -1, PojoAnnotatedProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoAnnotatedProperty_Feature(), this.getPojoProperty(), null, "feature", null, 0, 1, PojoAnnotatedProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(pojoPropertyModifierEClass, PojoPropertyModifier.class, "PojoPropertyModifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPojoPropertyModifier_Required(), ecorePackage.getEBoolean(), "required", null, 0, 1, PojoPropertyModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoPropertyModifier_Discriminator(), ecorePackage.getEBoolean(), "discriminator", null, 0, 1, PojoPropertyModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoPropertyModifier_PrimaryKey(), ecorePackage.getEBoolean(), "primaryKey", null, 0, 1, PojoPropertyModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoPropertyModifier_Index(), ecorePackage.getEString(), "index", null, 0, 1, PojoPropertyModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoPropertyModifier_Version(), ecorePackage.getEBoolean(), "version", null, 0, 1, PojoPropertyModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoPropertyModifier_UpdateColumn1(), ecorePackage.getEString(), "updateColumn1", null, 0, 1, PojoPropertyModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoPropertyModifier_UpdateColumn2(), ecorePackage.getEString(), "updateColumn2", null, 0, 1, PojoPropertyModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoPropertyModifier_CreateColumn1(), ecorePackage.getEString(), "createColumn1", null, 0, 1, PojoPropertyModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoPropertyModifier_CreateColumn2(), ecorePackage.getEString(), "createColumn2", null, 0, 1, PojoPropertyModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(pojoPropertyDirectiveEClass, PojoPropertyDirective.class, "PojoPropertyDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(pojoPropertyEClass, PojoProperty.class, "PojoProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPojoProperty_Directives(), this.getPojoPropertyDirective(), null, "directives", null, 0, -1, PojoProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojoProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, PojoProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojoProperty_Native(), ecorePackage.getEString(), "native", null, 0, 1, PojoProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoProperty_Attrs(), this.getPojoProperty(), null, "attrs", null, 0, -1, PojoProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -6152,7 +6258,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEReference(getPojoProperty_Gref(), this.getPojoEntity(), null, "gref", null, 0, 1, PojoProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoProperty_Gtype(), theTypesPackage.getJvmType(), null, "gtype", null, 0, 1, PojoProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojoProperty_Array(), ecorePackage.getEBoolean(), "array", null, 0, 1, PojoProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoProperty_Modifiers(), this.getPojoPropertyModifier(), null, "modifiers", null, 0, -1, PojoProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enumEntityModifier1EClass, EnumEntityModifier1.class, "EnumEntityModifier1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEnumEntityModifier1_Final(), ecorePackage.getEBoolean(), "final", null, 0, 1, EnumEntityModifier1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -6217,6 +6322,26 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEClass(pojoDirectiveIndexEClass, PojoDirectiveIndex.class, "PojoDirectiveIndex", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPojoDirectiveIndex_Index(), ecorePackage.getEString(), "index", null, 0, 1, PojoDirectiveIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoDirectiveIndex_Proplist(), this.getDirectiveProperties(), null, "proplist", null, 0, 1, PojoDirectiveIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(pojoPropertyDirectiveRequiredEClass, PojoPropertyDirectiveRequired.class, "PojoPropertyDirectiveRequired", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(pojoPropertyDirectivePrimaryKeyEClass, PojoPropertyDirectivePrimaryKey.class, "PojoPropertyDirectivePrimaryKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(pojoPropertyDirectiveDiscriminatorEClass, PojoPropertyDirectiveDiscriminator.class, "PojoPropertyDirectiveDiscriminator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPojoPropertyDirectiveDiscriminator_Discriminator(), ecorePackage.getEString(), "discriminator", null, 0, 1, PojoPropertyDirectiveDiscriminator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(pojoPropertyDirectiveIndexEClass, PojoPropertyDirectiveIndex.class, "PojoPropertyDirectiveIndex", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPojoPropertyDirectiveIndex_Index(), ecorePackage.getEString(), "index", null, 0, 1, PojoPropertyDirectiveIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(pojoPropertyDirectiveVersionEClass, PojoPropertyDirectiveVersion.class, "PojoPropertyDirectiveVersion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(pojoPropertyDirectiveUpdateColEClass, PojoPropertyDirectiveUpdateCol.class, "PojoPropertyDirectiveUpdateCol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPojoPropertyDirectiveUpdateCol_UpdateColumn1(), ecorePackage.getEString(), "updateColumn1", null, 0, 1, PojoPropertyDirectiveUpdateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPojoPropertyDirectiveUpdateCol_UpdateColumn2(), ecorePackage.getEString(), "updateColumn2", null, 0, 1, PojoPropertyDirectiveUpdateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(pojoPropertyDirectiveCreateColEClass, PojoPropertyDirectiveCreateCol.class, "PojoPropertyDirectiveCreateCol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPojoPropertyDirectiveCreateCol_CreateColumn1(), ecorePackage.getEString(), "createColumn1", null, 0, 1, PojoPropertyDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPojoPropertyDirectiveCreateCol_CreateColumn2(), ecorePackage.getEString(), "createColumn2", null, 0, 1, PojoPropertyDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

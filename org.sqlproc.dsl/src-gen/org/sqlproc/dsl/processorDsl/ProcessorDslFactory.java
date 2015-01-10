@@ -725,13 +725,13 @@ public interface ProcessorDslFactory extends EFactory
   PojoAnnotatedProperty createPojoAnnotatedProperty();
 
   /**
-   * Returns a new object of class '<em>Pojo Property Modifier</em>'.
+   * Returns a new object of class '<em>Pojo Property Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property Modifier</em>'.
+   * @return a new object of class '<em>Pojo Property Directive</em>'.
    * @generated
    */
-  PojoPropertyModifier createPojoPropertyModifier();
+  PojoPropertyDirective createPojoPropertyDirective();
 
   /**
    * Returns a new object of class '<em>Pojo Property</em>'.
@@ -867,6 +867,69 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   PojoDirectiveIndex createPojoDirectiveIndex();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Required</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Required</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveRequired createPojoPropertyDirectiveRequired();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Primary Key</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Primary Key</em>'.
+   * @generated
+   */
+  PojoPropertyDirectivePrimaryKey createPojoPropertyDirectivePrimaryKey();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Discriminator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Discriminator</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveDiscriminator createPojoPropertyDirectiveDiscriminator();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Index</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Index</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveIndex createPojoPropertyDirectiveIndex();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Version</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Version</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveVersion createPojoPropertyDirectiveVersion();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Update Col</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Update Col</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveUpdateCol createPojoPropertyDirectiveUpdateCol();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Create Col</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Create Col</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveCreateCol createPojoPropertyDirectiveCreateCol();
 
   /**
    * Returns the package supported by this factory.

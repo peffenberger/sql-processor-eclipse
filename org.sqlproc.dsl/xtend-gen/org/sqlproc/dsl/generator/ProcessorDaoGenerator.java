@@ -196,7 +196,7 @@ public class ProcessorDaoGenerator {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public ");
     {
-      boolean _isAbstract = Utils.isAbstract(d);
+      boolean _isAbstract = this._processorGeneratorUtils.isAbstract(d);
       if (_isAbstract) {
         _builder.append("abstract ");
       }
@@ -322,7 +322,7 @@ public class ProcessorDaoGenerator {
             _or = _equals_1;
           }
           if (_or) {
-            PojoEntity _parent = Utils.getParent(e);
+            PojoEntity _parent = this._processorGeneratorUtils.getParent(e);
             String _name_6 = m.getName();
             boolean _equals_2 = Objects.equal(_name_6, "scaffold");
             CharSequence _compileInsert = this.compileInsert(d, e, _parent, im, _equals_2);
@@ -333,13 +333,13 @@ public class ProcessorDaoGenerator {
             CharSequence _compileGet = this.compileGet(d, e, toInits, im, _equals_3);
             _builder.append(_compileGet, "");
             _builder.newLineIfNotEmpty();
-            PojoEntity _parent_1 = Utils.getParent(e);
+            PojoEntity _parent_1 = this._processorGeneratorUtils.getParent(e);
             String _name_8 = m.getName();
             boolean _equals_4 = Objects.equal(_name_8, "scaffold");
             CharSequence _compileUpdate = this.compileUpdate(d, e, _parent_1, im, _equals_4);
             _builder.append(_compileUpdate, "");
             _builder.newLineIfNotEmpty();
-            PojoEntity _parent_2 = Utils.getParent(e);
+            PojoEntity _parent_2 = this._processorGeneratorUtils.getParent(e);
             String _name_9 = m.getName();
             boolean _equals_5 = Objects.equal(_name_9, "scaffold");
             CharSequence _compileDelete = this.compileDelete(d, e, _parent_2, im, _equals_5);
@@ -1976,7 +1976,7 @@ public class ProcessorDaoGenerator {
         _builder.append("}");
       }
     }
-    final PojoProperty f = Utils.getOptLock(e);
+    final PojoProperty f = this._processorGeneratorUtils.getOptLock(e);
     {
       boolean _notEquals_2 = (!Objects.equal(f, null));
       if (_notEquals_2) {
@@ -2184,7 +2184,7 @@ public class ProcessorDaoGenerator {
         _builder.append("}");
       }
     }
-    final PojoProperty f = Utils.getOptLock(e);
+    final PojoProperty f = this._processorGeneratorUtils.getOptLock(e);
     {
       boolean _notEquals_2 = (!Objects.equal(f, null));
       if (_notEquals_2) {

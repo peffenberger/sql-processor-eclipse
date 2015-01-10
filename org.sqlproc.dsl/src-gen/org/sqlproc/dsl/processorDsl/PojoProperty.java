@@ -16,6 +16,7 @@ import org.eclipse.xtext.common.types.JvmType;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojoProperty#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoProperty#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoProperty#getNative <em>Native</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoProperty#getAttrs <em>Attrs</em>}</li>
@@ -24,7 +25,6 @@ import org.eclipse.xtext.common.types.JvmType;
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoProperty#getGref <em>Gref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoProperty#getGtype <em>Gtype</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoProperty#isArray <em>Array</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.PojoProperty#getModifiers <em>Modifiers</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,6 +34,22 @@ import org.eclipse.xtext.common.types.JvmType;
  */
 public interface PojoProperty extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Directives</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PojoPropertyDirective}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Directives</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Directives</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoProperty_Directives()
+   * @model containment="true"
+   * @generated
+   */
+  EList<PojoPropertyDirective> getDirectives();
+
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
@@ -231,21 +247,5 @@ public interface PojoProperty extends EObject
    * @generated
    */
   void setArray(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Modifiers</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Modifiers</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Modifiers</em>' containment reference list.
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoProperty_Modifiers()
-   * @model containment="true"
-   * @generated
-   */
-  EList<PojoPropertyModifier> getModifiers();
 
 } // PojoProperty

@@ -31,8 +31,6 @@ import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
-import org.sqlproc.dsl.processorDsl.EnumEntityModifier1;
-import org.sqlproc.dsl.processorDsl.EnumEntityModifier2;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
 import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
@@ -49,16 +47,12 @@ import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoDirective;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveOperators;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
-import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
-import org.sqlproc.dsl.processorDsl.PojoEntityModifier2;
 import org.sqlproc.dsl.processorDsl.PojoMethod;
 import org.sqlproc.dsl.processorDsl.PojoMethodArg;
 import org.sqlproc.dsl.processorDsl.PojoMethodModifier;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
-import org.sqlproc.dsl.processorDsl.PojoPropertyModifier;
 import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
 import org.sqlproc.dsl.processorDsl.ToInitMethod;
@@ -114,201 +108,6 @@ public class Utils {
                 dir = uri.substring(0, ix);
         }
         return dir;
-    }
-
-    public static boolean isList(PojoProperty f) {
-        if (f.getType() == null)
-            return false;
-        if (f.getType().getSimpleName().equals("List"))
-            return true;
-        return false;
-    }
-
-    public static boolean isRequired(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return false;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.isRequired())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isAttribute(PojoProperty f) {
-        if (f.getAttrs() == null || f.getAttrs().isEmpty())
-            return true;
-        return false;
-    }
-
-    public static String getIndex(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return null;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.getIndex() != null)
-                return modifier.getIndex();
-        }
-        return null;
-    }
-
-    public static String getUpdateColumn1(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return null;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.getUpdateColumn1() != null)
-                return modifier.getUpdateColumn1();
-        }
-        return null;
-    }
-
-    public static String getUpdateColumn2(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return null;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.getUpdateColumn2() != null)
-                return modifier.getUpdateColumn2();
-        }
-        return null;
-    }
-
-    public static String getCreateColumn1(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return null;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.getCreateColumn1() != null)
-                return modifier.getCreateColumn1();
-        }
-        return null;
-    }
-
-    public static String getCreateColumn2(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return null;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.getCreateColumn2() != null)
-                return modifier.getCreateColumn2();
-        }
-        return null;
-    }
-
-    public static boolean isDiscriminator(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return false;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.isDiscriminator())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isPrimaryKey(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return false;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.isPrimaryKey())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isAbstract(PojoEntity e) {
-        if (e.getModifiers1() == null || e.getModifiers1().isEmpty())
-            return false;
-        for (PojoEntityModifier1 modifier : e.getModifiers1()) {
-            if (modifier.isAbstract())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean hasOperators(PojoEntity e) {
-        if (e.getDirectives() == null || e.getDirectives().isEmpty())
-            return false;
-        for (PojoDirective directive : e.getDirectives()) {
-            if (directive instanceof PojoDirectiveOperators)
-                return true;
-        }
-        return false;
-    }
-
-    public static String getOperatorsSuffix(PojoEntity e) {
-        if (e.getDirectives() == null || e.getDirectives().isEmpty())
-            return null;
-        for (PojoDirective directive : e.getDirectives()) {
-            if (directive instanceof PojoDirectiveOperators)
-                return ((PojoDirectiveOperators) directive).getOperatorsSuffix();
-        }
-        return null;
-    }
-
-    public static boolean isOptLock(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return false;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.isVersion())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isAbstract(PojoDao e) {
-        if (e.getModifiers1() == null || e.getModifiers1().isEmpty())
-            return false;
-        for (PojoEntityModifier1 modifier : e.getModifiers1()) {
-            if (modifier.isAbstract())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isFinal(PojoEntity e) {
-        if (e.getModifiers1() == null || e.getModifiers1().isEmpty())
-            return false;
-        for (PojoEntityModifier1 modifier : e.getModifiers1()) {
-            if (modifier.isFinal())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isFinal(EnumEntity e) {
-        if (e.getModifiers1() == null || e.getModifiers1().isEmpty())
-            return false;
-        for (EnumEntityModifier1 modifier : e.getModifiers1()) {
-            if (modifier.isFinal())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isFinal(PojoDao d) {
-        if (d.getModifiers1() == null || d.getModifiers1().isEmpty())
-            return false;
-        for (PojoEntityModifier1 modifier : d.getModifiers1()) {
-            if (modifier.isFinal())
-                return true;
-        }
-        return false;
-    }
-
-    public static PojoEntity getSuperType(EnumEntity e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
-            return null;
-        for (EnumEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getSuperType() != null)
-                return modifier.getSuperType();
-        }
-        return null;
-    }
-
-    public static PojoEntity getSuperType(PojoEntity e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
-            return null;
-        for (PojoEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getSuperType() != null) {
-                return modifier.getSuperType();
-            }
-        }
-        return null;
     }
 
     public static String getDaoImplements(PojoDao dao, Implements impl) {
@@ -380,52 +179,6 @@ public class Utils {
                 return modifier.getSernum();
         }
         return null;
-    }
-
-    public static List<PojoProperty> requiredFeatures(PojoEntity e) {
-        List<PojoProperty> features = new ArrayList<PojoProperty>();
-        if (e == null || e.getFeatures() == null)
-            return features;
-        for (PojoAnnotatedProperty af : e.getFeatures()) {
-            PojoProperty f = af.getFeature();
-            if (isRequired(f))
-                features.add(f);
-        }
-        PojoEntity s = getSuperType(e);
-        if (s == null)
-            return features;
-        features.addAll(requiredFeatures(s));
-        return features;
-    }
-
-    public static List<PojoProperty> attributes(PojoEntity e) {
-        List<PojoProperty> features = new ArrayList<PojoProperty>();
-        if (e == null || e.getFeatures() == null)
-            return features;
-        for (PojoAnnotatedProperty af : e.getFeatures()) {
-            PojoProperty f = af.getFeature();
-            if (isAttribute(f))
-                features.add(f);
-        }
-        PojoEntity s = getSuperType(e);
-        if (s == null)
-            return features;
-        features.addAll(attributes(s));
-        return features;
-    }
-
-    public static PojoProperty getAttribute(PojoEntity e, String name) {
-        if (e == null || e.getFeatures() == null)
-            return null;
-        for (PojoAnnotatedProperty af : e.getFeatures()) {
-            PojoProperty f = af.getFeature();
-            if (isAttribute(f) && f.getName().equals(name))
-                return f;
-        }
-        PojoEntity s = getSuperType(e);
-        if (s == null)
-            return null;
-        return getAttribute(s, name);
     }
 
     public static boolean hasName(PojoProperty f, String name) {
@@ -747,32 +500,11 @@ public class Utils {
         return result;
     }
 
-    public static PojoEntity getParent(PojoEntity e) {
-        if (getDiscriminator(e) != null)
-            return null;
-        PojoEntity e2 = getSuperType(e);
-        return e2;
-    }
-
     public static boolean isFinal(MetaStatement m) {
         String finalToken = getTokenFromModifier(m, "final");
         if (finalToken != null)
             return true;
         return false;
-    }
-
-    public static PojoProperty getOptLock(PojoEntity e) {
-        if (e == null || e.getFeatures() == null)
-            return null;
-        for (PojoAnnotatedProperty af : e.getFeatures()) {
-            PojoProperty f = af.getFeature();
-            if (isOptLock(f))
-                return f;
-        }
-        PojoEntity s = getSuperType(e);
-        if (s == null)
-            return null;
-        return getOptLock(s);
     }
 
     // public static String getName(Identifier identifier) {

@@ -48,6 +48,7 @@ import org.sqlproc.dsl.util.Utils
 import com.google.inject.Inject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
+import org.sqlproc.dsl.generator.ProcessorGeneratorUtils
 
 /**
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
@@ -62,6 +63,8 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	@Inject
 	IQualifiedNameConverter qualifiedNameConverter
+
+	@Inject extension ProcessorGeneratorUtils
 
 	val STATEMENT_TYPE = <String>newArrayList("QRY", "CRUD", "CALL")
 	val MAPPING_TYPE = <String>newArrayList("OUT")
@@ -291,7 +294,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
             checkProperty = checkProperty.substring(0, pos1)
         }
         val _checkProperty = checkProperty
-        var innerPojoProperty = Utils.attributes(baseEntity).findFirst[name == _checkProperty]
+        var innerPojoProperty = attributes(baseEntity).findFirst[name == _checkProperty]
         if (innerPojoProperty == null || (innerPojoProperty.getRef() == null && innerPojoProperty.getGref() == null))
             return null
         var innerEntity = innerPojoProperty.ref ?: innerPojoProperty.gref as Entity
@@ -308,7 +311,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
                 properties.add(it)
         ]
 
-        val superType = Utils.getSuperType(pojoEntity)
+        val superType = getSuperType(pojoEntity)
 		return if (superType == null ) properties else superType.getProperties(properties)
     }
     

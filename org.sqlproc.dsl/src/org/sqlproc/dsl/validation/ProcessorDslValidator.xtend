@@ -48,6 +48,7 @@ import com.google.inject.Inject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
+import org.sqlproc.dsl.generator.ProcessorGeneratorUtils
 
 enum ValidationResult {
 	OK, WARNING, ERROR
@@ -75,6 +76,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
     @Inject
     ModelProperty modelProperty
 
+	@Inject extension ProcessorGeneratorUtils
 
     val F_TYPES = <String>newArrayList("set", "update", "values", "where", "columns", "set=opt", "where=opt")
 
@@ -674,13 +676,13 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
                 return ValidationResult.ERROR
             }
         }
-        var superType = Utils.getSuperType(entity)
+        var superType = getSuperType(entity)
         if (superType != null) {
             var result = checkEntityProperty(superType, property)
             if (result == ValidationResult.WARNING || result == ValidationResult.OK)
                 return result
         }
-        if (Utils.isAbstract(entity)) {
+        if (isAbstract(entity)) {
             return ValidationResult.WARNING
         }
         else {

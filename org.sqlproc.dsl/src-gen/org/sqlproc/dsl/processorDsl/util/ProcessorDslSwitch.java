@@ -625,10 +625,10 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.POJO_PROPERTY_MODIFIER:
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE:
       {
-        PojoPropertyModifier pojoPropertyModifier = (PojoPropertyModifier)theEObject;
-        T result = casePojoPropertyModifier(pojoPropertyModifier);
+        PojoPropertyDirective pojoPropertyDirective = (PojoPropertyDirective)theEObject;
+        T result = casePojoPropertyDirective(pojoPropertyDirective);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -740,6 +740,62 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         PojoDirectiveIndex pojoDirectiveIndex = (PojoDirectiveIndex)theEObject;
         T result = casePojoDirectiveIndex(pojoDirectiveIndex);
         if (result == null) result = casePojoDirective(pojoDirectiveIndex);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_REQUIRED:
+      {
+        PojoPropertyDirectiveRequired pojoPropertyDirectiveRequired = (PojoPropertyDirectiveRequired)theEObject;
+        T result = casePojoPropertyDirectiveRequired(pojoPropertyDirectiveRequired);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveRequired);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY:
+      {
+        PojoPropertyDirectivePrimaryKey pojoPropertyDirectivePrimaryKey = (PojoPropertyDirectivePrimaryKey)theEObject;
+        T result = casePojoPropertyDirectivePrimaryKey(pojoPropertyDirectivePrimaryKey);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectivePrimaryKey);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR:
+      {
+        PojoPropertyDirectiveDiscriminator pojoPropertyDirectiveDiscriminator = (PojoPropertyDirectiveDiscriminator)theEObject;
+        T result = casePojoPropertyDirectiveDiscriminator(pojoPropertyDirectiveDiscriminator);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveDiscriminator);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_INDEX:
+      {
+        PojoPropertyDirectiveIndex pojoPropertyDirectiveIndex = (PojoPropertyDirectiveIndex)theEObject;
+        T result = casePojoPropertyDirectiveIndex(pojoPropertyDirectiveIndex);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveIndex);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_VERSION:
+      {
+        PojoPropertyDirectiveVersion pojoPropertyDirectiveVersion = (PojoPropertyDirectiveVersion)theEObject;
+        T result = casePojoPropertyDirectiveVersion(pojoPropertyDirectiveVersion);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveVersion);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_UPDATE_COL:
+      {
+        PojoPropertyDirectiveUpdateCol pojoPropertyDirectiveUpdateCol = (PojoPropertyDirectiveUpdateCol)theEObject;
+        T result = casePojoPropertyDirectiveUpdateCol(pojoPropertyDirectiveUpdateCol);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveUpdateCol);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_CREATE_COL:
+      {
+        PojoPropertyDirectiveCreateCol pojoPropertyDirectiveCreateCol = (PojoPropertyDirectiveCreateCol)theEObject;
+        T result = casePojoPropertyDirectiveCreateCol(pojoPropertyDirectiveCreateCol);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveCreateCol);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1996,17 +2052,17 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Modifier</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Property Modifier</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePojoPropertyModifier(PojoPropertyModifier object)
+  public T casePojoPropertyDirective(PojoPropertyDirective object)
   {
     return null;
   }
@@ -2247,6 +2303,118 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePojoDirectiveIndex(PojoDirectiveIndex object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Required</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Required</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveRequired(PojoPropertyDirectiveRequired object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Primary Key</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Primary Key</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectivePrimaryKey(PojoPropertyDirectivePrimaryKey object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Discriminator</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Discriminator</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveDiscriminator(PojoPropertyDirectiveDiscriminator object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Index</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Index</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveIndex(PojoPropertyDirectiveIndex object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Version</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Version</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveVersion(PojoPropertyDirectiveVersion object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Update Col</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Update Col</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveUpdateCol(PojoPropertyDirectiveUpdateCol object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Create Col</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Create Col</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveCreateCol(PojoPropertyDirectiveCreateCol object)
   {
     return null;
   }

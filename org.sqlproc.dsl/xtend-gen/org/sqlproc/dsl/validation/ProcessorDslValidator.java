@@ -32,10 +32,12 @@ import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.sqlproc.dsl.generator.ProcessorGeneratorUtils;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
@@ -92,6 +94,10 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
   
   @Inject
   private ModelProperty modelProperty;
+  
+  @Inject
+  @Extension
+  private ProcessorGeneratorUtils _processorGeneratorUtils;
   
   private final ArrayList<String> F_TYPES = CollectionLiterals.<String>newArrayList("set", "update", "values", "where", "columns", "set=opt", "where=opt");
   
@@ -1364,7 +1370,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         }
       }
     }
-    PojoEntity superType = Utils.getSuperType(entity);
+    PojoEntity superType = this._processorGeneratorUtils.getSuperType(entity);
     boolean _notEquals = (!Objects.equal(superType, null));
     if (_notEquals) {
       ValidationResult result = this.checkEntityProperty(superType, property);
@@ -1380,7 +1386,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         return result;
       }
     }
-    boolean _isAbstract = Utils.isAbstract(entity);
+    boolean _isAbstract = this._processorGeneratorUtils.isAbstract(entity);
     if (_isAbstract) {
       return ValidationResult.WARNING;
     } else {
