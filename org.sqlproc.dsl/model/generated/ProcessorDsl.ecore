@@ -669,9 +669,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveRequired" eSuperTypes="#//PojoPropertyDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectivePrimaryKey" eSuperTypes="#//PojoPropertyDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveDiscriminator"
-      eSuperTypes="#//PojoPropertyDirective">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="discriminator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
+      eSuperTypes="#//PojoPropertyDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveIndex" eSuperTypes="#//PojoPropertyDirective">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

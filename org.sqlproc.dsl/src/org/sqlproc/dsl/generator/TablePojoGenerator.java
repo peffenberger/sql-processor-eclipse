@@ -1148,18 +1148,46 @@ public class TablePojoGenerator {
                             }
                         }
                     }
+                    if (attribute.isDef())
+                        isDef.add(name);
+                    if (attribute.toInit())
+                        toInit.add(name);
+                    if (inheritanceColumns.containsKey(pojo) && pentry.getKey().equals(inheritanceColumns.get(pojo))) {
+                        buffer.append(NLINDENT).append(INDENT).append("#Discriminator");
+                    }
+                    if (attribute.isVersion()) {
+                        buffer.append(NLINDENT).append(INDENT).append("#Version");
+                    }
+                    if (!attribute.isVersion()
+                            && ((requiredColumns.containsKey(pojo) && requiredColumns.get(pojo).contains(
+                                    pentry.getKey())) || (attribute.isRequired() && !attribute.isPrimaryKey()))) {
+                        if (!notRequiredColumns.containsKey(pojo)
+                                || !notRequiredColumns.get(pojo).contains(pentry.getKey()))
+                            buffer.append(NLINDENT).append(INDENT).append("#Required");
+                    }
+                    if (attribute.isPrimaryKey()) {
+                        buffer.append(NLINDENT).append(INDENT).append("#PrimaryKey");
+                        pkeys.add(name);
+                    }
+                    if (!generateMethods.contains(METHOD_INDEX) && attribute.getIndex() != null) {
+                        buffer.append(NLINDENT).append(INDENT).append("#Index(").append(attribute.getIndex())
+                                .append(")");
+                    }
+                    if (attribute.getDependencyClassName() != null) {
+                        if (preserveForeignKeys.contains(pojo) || preserveForeignKeys.contains("_ALL_")) {
+                            if (attribute.getPkTable() != null) {
+                                addedAttributes.put(name, pentry.getValue());
+                                buffer.append(NLINDENT).append(INDENT).append("#UpdateCol(")
+                                        .append(columnToCamelCase(attribute.getPkColumn())).append(",")
+                                        .append(columnToCamelCase(attribute.getDbName())).append(")");
+                            }
+                        }
+                    }
                     buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
                     if (attribute.getDependencyClassName() != null) {
                         buffer.append(":: ").append(attribute.getDependencyClassName());
                         if (attribute.isDependencyClassNameIsEnum())
                             toStr.add(name);
-                        if (preserveForeignKeys.contains(pojo) || preserveForeignKeys.contains("_ALL_")) {
-                            if (attribute.getPkTable() != null) {
-                                addedAttributes.put(name, pentry.getValue());
-                                buffer.append(" updateCol ").append(columnToCamelCase(attribute.getPkColumn()))
-                                        .append("->").append(columnToCamelCase(attribute.getDbName()));
-                            }
-                        }
                     } else if (attribute.isPrimitive()) {
                         buffer.append('_').append(attribute.getClassName());
                         toStr.add(name);
@@ -1168,40 +1196,16 @@ public class TablePojoGenerator {
                         if (!attribute.getClassName().startsWith(COLLECTION_LIST))
                             toStr.add(name);
                     }
-                    if (attribute.isDef())
-                        isDef.add(name);
-                    if (attribute.toInit())
-                        toInit.add(name);
-                    if (inheritanceColumns.containsKey(pojo) && pentry.getKey().equals(inheritanceColumns.get(pojo))) {
-                        buffer.append(" discriminator");
-                    }
-                    if (attribute.isVersion()) {
-                        buffer.append(" optLock");
-                    }
-                    if (!attribute.isVersion()
-                            && ((requiredColumns.containsKey(pojo) && requiredColumns.get(pojo).contains(
-                                    pentry.getKey())) || (attribute.isRequired() && !attribute.isPrimaryKey()))) {
-                        if (!notRequiredColumns.containsKey(pojo)
-                                || !notRequiredColumns.get(pojo).contains(pentry.getKey()))
-                            buffer.append(" required");
-                    }
-                    if (attribute.isPrimaryKey()) {
-                        buffer.append(" primaryKey");
-                        pkeys.add(name);
-                    }
-                    if (!generateMethods.contains(METHOD_INDEX) && attribute.getIndex() != null) {
-                        buffer.append(" index ").append(attribute.getIndex());
-                    }
                 }
                 if (pojoExtends.containsKey(pojo)) {
                     getParentAttrs(pojoExtends.get(pojo), isDef, toInit);
                 }
                 for (Map.Entry<String, PojoAttribute> pentry : addedAttributes.entrySet()) {
                     PojoAttribute attribute = pentry.getValue();
+                    buffer.append(NLINDENT).append(INDENT).append("#CreateCol(").append(pentry.getKey()).append(",")
+                            .append(columnToCamelCase(attribute.getPkColumn())).append(")");
                     buffer.append(NLINDENT).append(INDENT).append(columnToCamelCase(attribute.getDbName())).append(' ');
                     buffer.append(": ").append(attribute.getClassName());
-                    buffer.append(" createCol ").append(pentry.getKey()).append("->")
-                            .append(columnToCamelCase(attribute.getPkColumn()));
                     toStr.add(columnToCamelCase(attribute.getDbName()));
                 }
                 if (generateMethods.contains(METHOD_EQUALS) && !pkeys.isEmpty()) {

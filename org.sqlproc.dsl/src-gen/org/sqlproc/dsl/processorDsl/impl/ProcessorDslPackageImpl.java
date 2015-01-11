@@ -5101,16 +5101,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoPropertyDirectiveDiscriminator_Discriminator()
-  {
-    return (EAttribute)pojoPropertyDirectiveDiscriminatorEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getPojoPropertyDirectiveIndex()
   {
     return pojoPropertyDirectiveIndexEClass;
@@ -5742,7 +5732,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     pojoPropertyDirectivePrimaryKeyEClass = createEClass(POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY);
 
     pojoPropertyDirectiveDiscriminatorEClass = createEClass(POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR);
-    createEAttribute(pojoPropertyDirectiveDiscriminatorEClass, POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR);
 
     pojoPropertyDirectiveIndexEClass = createEClass(POJO_PROPERTY_DIRECTIVE_INDEX);
     createEAttribute(pojoPropertyDirectiveIndexEClass, POJO_PROPERTY_DIRECTIVE_INDEX__INDEX);
@@ -6328,7 +6317,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEClass(pojoPropertyDirectivePrimaryKeyEClass, PojoPropertyDirectivePrimaryKey.class, "PojoPropertyDirectivePrimaryKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(pojoPropertyDirectiveDiscriminatorEClass, PojoPropertyDirectiveDiscriminator.class, "PojoPropertyDirectiveDiscriminator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPojoPropertyDirectiveDiscriminator_Discriminator(), ecorePackage.getEString(), "discriminator", null, 0, 1, PojoPropertyDirectiveDiscriminator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoPropertyDirectiveIndexEClass, PojoPropertyDirectiveIndex.class, "PojoPropertyDirectiveIndex", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPojoPropertyDirectiveIndex_Index(), ecorePackage.getEString(), "index", null, 0, 1, PojoPropertyDirectiveIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

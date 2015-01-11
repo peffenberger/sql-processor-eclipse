@@ -428,7 +428,7 @@ PojoAnnotatedProperty: (=> AT (=> AT (=> AT setterAnnotations+=Annotation | gett
 PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
 	{PojoPropertyDirectiveRequired} '#Required'
 	| {PojoPropertyDirectivePrimaryKey} '#PrimaryKey'
-	| {PojoPropertyDirectiveDiscriminator} '#Discriminator' LPAREN discriminator=(IDENT|NUMBER) RPAREN
+	| {PojoPropertyDirectiveDiscriminator} '#Discriminator'
 	| {PojoPropertyDirectiveIndex} '#Index' LPAREN index=NUMBER RPAREN
 	| {PojoPropertyDirectiveVersion} '#Version'
 	| {PojoPropertyDirectiveUpdateCol} '#UpdateCol' LPAREN updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN

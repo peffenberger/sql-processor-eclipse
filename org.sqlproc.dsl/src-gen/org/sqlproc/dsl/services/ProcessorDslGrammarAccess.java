@@ -8968,12 +8968,6 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
 		private final Action cPojoPropertyDirectiveDiscriminatorAction_2_0 = (Action)cGroup_2.eContents().get(0);
 		private final Keyword cDiscriminatorKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final RuleCall cLPARENTerminalRuleCall_2_2 = (RuleCall)cGroup_2.eContents().get(2);
-		private final Assignment cDiscriminatorAssignment_2_3 = (Assignment)cGroup_2.eContents().get(3);
-		private final Alternatives cDiscriminatorAlternatives_2_3_0 = (Alternatives)cDiscriminatorAssignment_2_3.eContents().get(0);
-		private final RuleCall cDiscriminatorIDENTTerminalRuleCall_2_3_0_0 = (RuleCall)cDiscriminatorAlternatives_2_3_0.eContents().get(0);
-		private final RuleCall cDiscriminatorNUMBERTerminalRuleCall_2_3_0_1 = (RuleCall)cDiscriminatorAlternatives_2_3_0.eContents().get(1);
-		private final RuleCall cRPARENTerminalRuleCall_2_4 = (RuleCall)cGroup_2.eContents().get(4);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
 		private final Action cPojoPropertyDirectiveIndexAction_3_0 = (Action)cGroup_3.eContents().get(0);
 		private final Keyword cIndexKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
@@ -9010,17 +9004,17 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		////);
 		//PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 		//	{PojoPropertyDirectiveRequired} "#Required" | {PojoPropertyDirectivePrimaryKey} "#PrimaryKey" |
-		//	{PojoPropertyDirectiveDiscriminator} "#Discriminator" LPAREN discriminator=(IDENT | NUMBER) RPAREN |
-		//	{PojoPropertyDirectiveIndex} "#Index" LPAREN index=NUMBER RPAREN | {PojoPropertyDirectiveVersion} "#Version" |
-		//	{PojoPropertyDirectiveUpdateCol} "#UpdateCol" LPAREN updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN |
-		//	{PojoPropertyDirectiveCreateCol} "#CreateCol" LPAREN createColumn1=IDENT COMMA createColumn2=IDENT RPAREN;
+		//	{PojoPropertyDirectiveDiscriminator} "#Discriminator" | {PojoPropertyDirectiveIndex} "#Index" LPAREN index=NUMBER
+		//	RPAREN | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateCol" LPAREN
+		//	updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN | {PojoPropertyDirectiveCreateCol} "#CreateCol" LPAREN
+		//	createColumn1=IDENT COMMA createColumn2=IDENT RPAREN;
 		public ParserRule getRule() { return rule; }
 
 		//{PojoPropertyDirectiveRequired} "#Required" | {PojoPropertyDirectivePrimaryKey} "#PrimaryKey" |
-		//{PojoPropertyDirectiveDiscriminator} "#Discriminator" LPAREN discriminator=(IDENT | NUMBER) RPAREN |
-		//{PojoPropertyDirectiveIndex} "#Index" LPAREN index=NUMBER RPAREN | {PojoPropertyDirectiveVersion} "#Version" |
-		//{PojoPropertyDirectiveUpdateCol} "#UpdateCol" LPAREN updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN |
-		//{PojoPropertyDirectiveCreateCol} "#CreateCol" LPAREN createColumn1=IDENT COMMA createColumn2=IDENT RPAREN
+		//{PojoPropertyDirectiveDiscriminator} "#Discriminator" | {PojoPropertyDirectiveIndex} "#Index" LPAREN index=NUMBER
+		//RPAREN | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateCol" LPAREN
+		//updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN | {PojoPropertyDirectiveCreateCol} "#CreateCol" LPAREN
+		//createColumn1=IDENT COMMA createColumn2=IDENT RPAREN
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//{PojoPropertyDirectiveRequired} "#Required"
@@ -9041,7 +9035,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"#PrimaryKey"
 		public Keyword getPrimaryKeyKeyword_1_1() { return cPrimaryKeyKeyword_1_1; }
 
-		//{PojoPropertyDirectiveDiscriminator} "#Discriminator" LPAREN discriminator=(IDENT | NUMBER) RPAREN
+		//{PojoPropertyDirectiveDiscriminator} "#Discriminator"
 		public Group getGroup_2() { return cGroup_2; }
 
 		//{PojoPropertyDirectiveDiscriminator}
@@ -9049,24 +9043,6 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"#Discriminator"
 		public Keyword getDiscriminatorKeyword_2_1() { return cDiscriminatorKeyword_2_1; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_2_2() { return cLPARENTerminalRuleCall_2_2; }
-
-		//discriminator=(IDENT | NUMBER)
-		public Assignment getDiscriminatorAssignment_2_3() { return cDiscriminatorAssignment_2_3; }
-
-		//IDENT | NUMBER
-		public Alternatives getDiscriminatorAlternatives_2_3_0() { return cDiscriminatorAlternatives_2_3_0; }
-
-		//IDENT
-		public RuleCall getDiscriminatorIDENTTerminalRuleCall_2_3_0_0() { return cDiscriminatorIDENTTerminalRuleCall_2_3_0_0; }
-
-		//NUMBER
-		public RuleCall getDiscriminatorNUMBERTerminalRuleCall_2_3_0_1() { return cDiscriminatorNUMBERTerminalRuleCall_2_3_0_1; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_2_4() { return cRPARENTerminalRuleCall_2_4; }
 
 		//{PojoPropertyDirectiveIndex} "#Index" LPAREN index=NUMBER RPAREN
 		public Group getGroup_3() { return cGroup_3; }
@@ -11499,10 +11475,10 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	////);
 	//PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	{PojoPropertyDirectiveRequired} "#Required" | {PojoPropertyDirectivePrimaryKey} "#PrimaryKey" |
-	//	{PojoPropertyDirectiveDiscriminator} "#Discriminator" LPAREN discriminator=(IDENT | NUMBER) RPAREN |
-	//	{PojoPropertyDirectiveIndex} "#Index" LPAREN index=NUMBER RPAREN | {PojoPropertyDirectiveVersion} "#Version" |
-	//	{PojoPropertyDirectiveUpdateCol} "#UpdateCol" LPAREN updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN |
-	//	{PojoPropertyDirectiveCreateCol} "#CreateCol" LPAREN createColumn1=IDENT COMMA createColumn2=IDENT RPAREN;
+	//	{PojoPropertyDirectiveDiscriminator} "#Discriminator" | {PojoPropertyDirectiveIndex} "#Index" LPAREN index=NUMBER
+	//	RPAREN | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateCol" LPAREN
+	//	updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN | {PojoPropertyDirectiveCreateCol} "#CreateCol" LPAREN
+	//	createColumn1=IDENT COMMA createColumn2=IDENT RPAREN;
 	public PojoPropertyDirectiveElements getPojoPropertyDirectiveAccess() {
 		return pPojoPropertyDirective;
 	}

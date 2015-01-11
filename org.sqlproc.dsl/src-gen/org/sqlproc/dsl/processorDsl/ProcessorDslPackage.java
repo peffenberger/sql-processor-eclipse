@@ -4834,22 +4834,13 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = 96;
 
   /**
-   * The feature id for the '<em><b>Discriminator</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 0;
-
-  /**
    * The number of structural features of the '<em>Pojo Property Directive Discriminator</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR_FEATURE_COUNT = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 1;
+  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR_FEATURE_COUNT = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveIndexImpl <em>Pojo Property Directive Index</em>}' class.
@@ -9497,17 +9488,6 @@ public interface ProcessorDslPackage extends EPackage
   EClass getPojoPropertyDirectiveDiscriminator();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator#getDiscriminator <em>Discriminator</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Discriminator</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator#getDiscriminator()
-   * @see #getPojoPropertyDirectiveDiscriminator()
-   * @generated
-   */
-  EAttribute getPojoPropertyDirectiveDiscriminator_Discriminator();
-
-  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex <em>Pojo Property Directive Index</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -13178,14 +13158,6 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EClass POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = eINSTANCE.getPojoPropertyDirectiveDiscriminator();
-
-    /**
-     * The meta object literal for the '<em><b>Discriminator</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR = eINSTANCE.getPojoPropertyDirectiveDiscriminator_Discriminator();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveIndexImpl <em>Pojo Property Directive Index</em>}' class.

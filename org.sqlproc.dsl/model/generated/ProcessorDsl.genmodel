@@ -517,9 +517,7 @@
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectiveRequired"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectivePrimaryKey"/>
-    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectiveDiscriminator">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoPropertyDirectiveDiscriminator/discriminator"/>
-    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectiveDiscriminator"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectiveIndex">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoPropertyDirectiveIndex/index"/>
     </genClasses>

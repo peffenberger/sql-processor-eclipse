@@ -1712,7 +1712,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (discriminator=IDENT | discriminator=NUMBER)
+	 *     {PojoPropertyDirectiveDiscriminator}
 	 */
 	protected void sequence_PojoPropertyDirective(EObject context, PojoPropertyDirectiveDiscriminator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

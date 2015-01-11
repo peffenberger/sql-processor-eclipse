@@ -239,6 +239,8 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
         Iterator<INode> iterator = new NodeTreeIterator(node);
         while (iterator.hasNext()) {
             INode inode = iterator.next();
+            if (inode.getText() == null || inode.getText().trim().length() == 0)
+                continue;
             if (pojo != null && pojo.contains(inode.getText())) {
                 acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.PACKAGE_NAME);
                 return;
@@ -253,6 +255,8 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
         Iterator<INode> iterator = new NodeTreeIterator(node);
         while (iterator.hasNext()) {
             INode inode = iterator.next();
+            if (inode.getText() == null || inode.getText().trim().length() == 0)
+                continue;
             if (pojo != null && pojo.contains(inode.getText())) {
                 acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.ENTITY_NAME);
                 return;
@@ -267,6 +271,8 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
         Iterator<INode> iterator = new NodeTreeIterator(node);
         while (iterator.hasNext()) {
             INode inode = iterator.next();
+            if (inode.getText() == null || inode.getText().trim().length() == 0)
+                continue;
             if (pojo != null && pojo.contains(inode.getText())) {
                 acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.PROPERTY_NAME);
                 return;
@@ -281,6 +287,8 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
         Iterator<INode> iterator = new NodeTreeIterator(node);
         while (iterator.hasNext()) {
             INode inode = iterator.next();
+            if (inode.getText() == null || inode.getText().trim().length() == 0)
+                continue;
             if (pojo != null && pojo.contains(inode.getText())) {
                 acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.ENTITY_NAME);
                 return;
@@ -295,6 +303,8 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
         Iterator<INode> iterator = new NodeTreeIterator(node);
         while (iterator.hasNext()) {
             INode inode = iterator.next();
+            if (inode.getText() == null || inode.getText().trim().length() == 0)
+                continue;
             if (pojo != null && pojo.contains(inode.getText())) {
                 acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.PROPERTY_NAME);
                 return;
@@ -308,6 +318,8 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
         Iterator<INode> iterator = new NodeTreeIterator(node);
         while (iterator.hasNext()) {
             INode inode = iterator.next();
+            if (inode.getText() == null || inode.getText().trim().length() == 0)
+                continue;
             if (dao != null && dao.contains(inode.getText())) {
                 acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.DAO_NAME);
                 return;

@@ -102,7 +102,6 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoAnnotatedPropertyAccess().getAlternatives_0_1(), "rule__PojoAnnotatedProperty__Alternatives_0_1");
 					put(grammarAccess.getPojoAnnotatedPropertyAccess().getAlternatives_0_1_0_1(), "rule__PojoAnnotatedProperty__Alternatives_0_1_0_1");
 					put(grammarAccess.getPojoPropertyDirectiveAccess().getAlternatives(), "rule__PojoPropertyDirective__Alternatives");
-					put(grammarAccess.getPojoPropertyDirectiveAccess().getDiscriminatorAlternatives_2_3_0(), "rule__PojoPropertyDirective__DiscriminatorAlternatives_2_3_0");
 					put(grammarAccess.getPojoPropertyAccess().getAlternatives_2(), "rule__PojoProperty__Alternatives_2");
 					put(grammarAccess.getPojoPropertyAccess().getNativeAlternatives_2_0_0(), "rule__PojoProperty__NativeAlternatives_2_0_0");
 					put(grammarAccess.getPojoPropertyAccess().getAlternatives_2_1_0_1(), "rule__PojoProperty__Alternatives_2_1_0_1");
@@ -928,7 +927,6 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoAnnotatedPropertyAccess().getGetterAnnotationsAssignment_0_1_0_1_1(), "rule__PojoAnnotatedProperty__GetterAnnotationsAssignment_0_1_0_1_1");
 					put(grammarAccess.getPojoAnnotatedPropertyAccess().getAttributeAnnotationsAssignment_0_1_1(), "rule__PojoAnnotatedProperty__AttributeAnnotationsAssignment_0_1_1");
 					put(grammarAccess.getPojoAnnotatedPropertyAccess().getFeatureAssignment_1(), "rule__PojoAnnotatedProperty__FeatureAssignment_1");
-					put(grammarAccess.getPojoPropertyDirectiveAccess().getDiscriminatorAssignment_2_3(), "rule__PojoPropertyDirective__DiscriminatorAssignment_2_3");
 					put(grammarAccess.getPojoPropertyDirectiveAccess().getIndexAssignment_3_3(), "rule__PojoPropertyDirective__IndexAssignment_3_3");
 					put(grammarAccess.getPojoPropertyDirectiveAccess().getUpdateColumn1Assignment_5_3(), "rule__PojoPropertyDirective__UpdateColumn1Assignment_5_3");
 					put(grammarAccess.getPojoPropertyDirectiveAccess().getUpdateColumn2Assignment_5_5(), "rule__PojoPropertyDirective__UpdateColumn2Assignment_5_5");

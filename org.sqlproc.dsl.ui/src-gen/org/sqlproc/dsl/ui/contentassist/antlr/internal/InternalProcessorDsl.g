@@ -6940,28 +6940,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__PojoPropertyDirective__DiscriminatorAlternatives_2_3_0
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getPojoPropertyDirectiveAccess().getDiscriminatorIDENTTerminalRuleCall_2_3_0_0()); }
-	RULE_IDENT
-{ after(grammarAccess.getPojoPropertyDirectiveAccess().getDiscriminatorIDENTTerminalRuleCall_2_3_0_0()); }
-)
-
-    |(
-{ before(grammarAccess.getPojoPropertyDirectiveAccess().getDiscriminatorNUMBERTerminalRuleCall_2_3_0_1()); }
-	RULE_NUMBER
-{ after(grammarAccess.getPojoPropertyDirectiveAccess().getDiscriminatorNUMBERTerminalRuleCall_2_3_0_1()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 rule__PojoProperty__Alternatives_2
     @init {
 		int stackSize = keepStackSize();
@@ -36488,7 +36466,6 @@ rule__PojoPropertyDirective__Group_2__1
     }
 :
 	rule__PojoPropertyDirective__Group_2__1__Impl
-	rule__PojoPropertyDirective__Group_2__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -36511,98 +36488,6 @@ rule__PojoPropertyDirective__Group_2__1__Impl
 finally {
 	restoreStackSize(stackSize);
 }
-
-
-rule__PojoPropertyDirective__Group_2__2
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__PojoPropertyDirective__Group_2__2__Impl
-	rule__PojoPropertyDirective__Group_2__3
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__PojoPropertyDirective__Group_2__2__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getPojoPropertyDirectiveAccess().getLPARENTerminalRuleCall_2_2()); }
-	RULE_LPAREN
-{ after(grammarAccess.getPojoPropertyDirectiveAccess().getLPARENTerminalRuleCall_2_2()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__PojoPropertyDirective__Group_2__3
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__PojoPropertyDirective__Group_2__3__Impl
-	rule__PojoPropertyDirective__Group_2__4
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__PojoPropertyDirective__Group_2__3__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getPojoPropertyDirectiveAccess().getDiscriminatorAssignment_2_3()); }
-(rule__PojoPropertyDirective__DiscriminatorAssignment_2_3)
-{ after(grammarAccess.getPojoPropertyDirectiveAccess().getDiscriminatorAssignment_2_3()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__PojoPropertyDirective__Group_2__4
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__PojoPropertyDirective__Group_2__4__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__PojoPropertyDirective__Group_2__4__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getPojoPropertyDirectiveAccess().getRPARENTerminalRuleCall_2_4()); }
-	RULE_RPAREN
-{ after(grammarAccess.getPojoPropertyDirectiveAccess().getRPARENTerminalRuleCall_2_4()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
-
-
-
 
 
 
@@ -47387,22 +47272,6 @@ rule__PojoAnnotatedProperty__FeatureAssignment_1
 (
 { before(grammarAccess.getPojoAnnotatedPropertyAccess().getFeaturePojoPropertyParserRuleCall_1_0()); }
 	rulePojoProperty{ after(grammarAccess.getPojoAnnotatedPropertyAccess().getFeaturePojoPropertyParserRuleCall_1_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__PojoPropertyDirective__DiscriminatorAssignment_2_3
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getPojoPropertyDirectiveAccess().getDiscriminatorAlternatives_2_3_0()); }
-(rule__PojoPropertyDirective__DiscriminatorAlternatives_2_3_0)
-{ after(grammarAccess.getPojoPropertyDirectiveAccess().getDiscriminatorAlternatives_2_3_0()); }
 )
 
 ;
