@@ -408,6 +408,13 @@ PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {PojoDirectiveOperators} '#Operators' (LPAREN operatorsSuffix=IDENT RPAREN)?
 	| {PojoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
 	| {PojoDirectiveIndex} '#Index' LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveToInit} '#ToInit' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveEnumInit} '#EnumInit' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveIsDef} '#IsDef' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveEnumDef} '#EnumDef' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveToString} '#ToString' LPAREN proplist=DirectiveProperties RPAREN
 ;
 //PojoEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('discriminator' discriminator=(IDENT|NUMBER)) | (operators='operators' (operatorsSuffix=IDENT)?)| ('serializable' sernum=NUMBER));
 PojoEntityModifier2: ('extends' superType=[PojoEntity|IDENT]);
@@ -460,9 +467,31 @@ EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 	(COLON (COLON COLON value=(NUMBER|STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName])))
 ;
 
-PojoDaoModifier: (('extends' superType=[PojoDao|IDENT]) | ('serializable' sernum=NUMBER));
+DaoDirectiveParameters hidden(ML_COMMENT, SL_COMMENT, WS):
+	in=PojoType (COMMA out=PojoType)?
+;
+
+DescendantAssignment hidden(ML_COMMENT, SL_COMMENT, WS):
+	value=(NUMBER|STRING) EQUALS descendant=PojoType
+;
+
+DaoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
+{DaoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
+	| {DaoDirectiveDiscriminator} '#Discriminator' LPAREN ancestor=PojoProperty descendants+=DescendantAssignment (COMMA descendants+=DescendantAssignment)* RPAREN
+	| {DaoDirectivePojo} '#Pojo' LPAREN pojo=PojoType RPAREN
+	| {DaoDirectiveGenerics} '#Generics' LPAREN generics=PojoType RPAREN
+	| {DaoDirectiveProcedure} '#Procedure' LPAREN pojo=PojoType RPAREN
+	| {DaoDirectiveFunction} '#Function' LPAREN pojo=PojoType RPAREN
+	| {DaoDirectiveUpdate} '#Update' (LPAREN paramlist=DaoDirectiveParameters RPAREN)?
+	| {DaoDirectiveUpdate} '#List' (LPAREN paramlist=DaoDirectiveParameters RPAREN)?
+	| {DaoDirectiveUpdate} '#Call' (LPAREN paramlist=DaoDirectiveParameters RPAREN)?
+	;
+
+//PojoDaoModifier: (('extends' superType=[PojoDao|IDENT]) | ('serializable' sernum=NUMBER));
+PojoDaoModifier: ('extends' superType=[PojoDao|IDENT]);
 
 PojoDao hidden(ML_COMMENT, SL_COMMENT, WS):
+	directives+=DaoDirective*
 	(modifiers1+=PojoEntityModifier1)* 'dao' name=IDENT (COLON COLON ((pojoGenerics ?= COLON)?) pojo=[PojoEntity|IDENT])?
 	  (modifiers2+=PojoDaoModifier)* 
 	LBRACE

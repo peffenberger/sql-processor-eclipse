@@ -12,6 +12,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojoDao#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoDao#getModifiers1 <em>Modifiers1</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoDao#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoDao#isPojoGenerics <em>Pojo Generics</em>}</li>
@@ -28,6 +29,22 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface PojoDao extends AbstractPojoEntity
 {
+  /**
+   * Returns the value of the '<em><b>Directives</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.DaoDirective}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Directives</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Directives</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoDao_Directives()
+   * @model containment="true"
+   * @generated
+   */
+  EList<DaoDirective> getDirectives();
+
   /**
    * Returns the value of the '<em><b>Modifiers1</b></em>' containment reference list.
    * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PojoEntityModifier1}.

@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sqlproc.dsl.processorDsl.DaoDirective;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
@@ -32,6 +33,7 @@ import org.sqlproc.dsl.processorDsl.ToInitMethod;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getModifiers1 <em>Modifiers1</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#isPojoGenerics <em>Pojo Generics</em>}</li>
@@ -46,6 +48,16 @@ import org.sqlproc.dsl.processorDsl.ToInitMethod;
  */
 public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
 {
+  /**
+   * The cached value of the '{@link #getDirectives() <em>Directives</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDirectives()
+   * @generated
+   * @ordered
+   */
+  protected EList<DaoDirective> directives;
+
   /**
    * The cached value of the '{@link #getModifiers1() <em>Modifiers1</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -155,6 +167,20 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
   protected EClass eStaticClass()
   {
     return ProcessorDslPackage.Literals.POJO_DAO;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<DaoDirective> getDirectives()
+  {
+    if (directives == null)
+    {
+      directives = new EObjectContainmentEList<DaoDirective>(DaoDirective.class, this, ProcessorDslPackage.POJO_DAO__DIRECTIVES);
+    }
+    return directives;
   }
 
   /**
@@ -312,6 +338,8 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_DAO__DIRECTIVES:
+        return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
       case ProcessorDslPackage.POJO_DAO__MODIFIERS1:
         return ((InternalEList<?>)getModifiers1()).basicRemove(otherEnd, msgs);
       case ProcessorDslPackage.POJO_DAO__MODIFIERS2:
@@ -334,6 +362,8 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_DAO__DIRECTIVES:
+        return getDirectives();
       case ProcessorDslPackage.POJO_DAO__MODIFIERS1:
         return getModifiers1();
       case ProcessorDslPackage.POJO_DAO__NAME:
@@ -364,6 +394,10 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_DAO__DIRECTIVES:
+        getDirectives().clear();
+        getDirectives().addAll((Collection<? extends DaoDirective>)newValue);
+        return;
       case ProcessorDslPackage.POJO_DAO__MODIFIERS1:
         getModifiers1().clear();
         getModifiers1().addAll((Collection<? extends PojoEntityModifier1>)newValue);
@@ -403,6 +437,9 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_DAO__DIRECTIVES:
+        getDirectives().clear();
+        return;
       case ProcessorDslPackage.POJO_DAO__MODIFIERS1:
         getModifiers1().clear();
         return;
@@ -438,6 +475,8 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_DAO__DIRECTIVES:
+        return directives != null && !directives.isEmpty();
       case ProcessorDslPackage.POJO_DAO__MODIFIERS1:
         return modifiers1 != null && !modifiers1.isEmpty();
       case ProcessorDslPackage.POJO_DAO__NAME:

@@ -468,11 +468,20 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//EnumProperty/value"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//EnumProperty/type"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectiveParameters">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectiveParameters/in"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectiveParameters/out"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//DescendantAssignment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//DescendantAssignment/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DescendantAssignment/descendant"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirective"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDaoModifier">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDaoModifier/superType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoDaoModifier/sernum"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDao">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDao/directives"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDao/modifiers1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoDao/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoDao/pojoGenerics"/>
@@ -515,6 +524,27 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoDirectiveIndex/index"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveIndex/proplist"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveEquals">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveEquals/proplist"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveHashCode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveHashCode/proplist"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveToInit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveToInit/proplist"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveEnumInit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveEnumInit/proplist"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveIsDef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveIsDef/proplist"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveEnumDef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveEnumDef/proplist"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveToString">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveToString/proplist"/>
+    </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectiveRequired"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectivePrimaryKey"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectiveDiscriminator"/>
@@ -529,6 +559,28 @@
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectiveCreateCol">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoPropertyDirectiveCreateCol/createColumn1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoPropertyDirectiveCreateCol/createColumn2"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectiveSerializable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//DaoDirectiveSerializable/sernum"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectiveDiscriminator">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectiveDiscriminator/ancestor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectiveDiscriminator/descendants"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectivePojo">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectivePojo/pojo"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectiveGenerics">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectiveGenerics/generics"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectiveProcedure">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectiveProcedure/pojo"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectiveFunction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectiveFunction/pojo"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectiveUpdate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//DaoDirectiveUpdate/paramlist"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

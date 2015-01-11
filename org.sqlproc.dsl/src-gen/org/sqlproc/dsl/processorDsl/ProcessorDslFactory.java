@@ -779,6 +779,33 @@ public interface ProcessorDslFactory extends EFactory
   EnumProperty createEnumProperty();
 
   /**
+   * Returns a new object of class '<em>Dao Directive Parameters</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Parameters</em>'.
+   * @generated
+   */
+  DaoDirectiveParameters createDaoDirectiveParameters();
+
+  /**
+   * Returns a new object of class '<em>Descendant Assignment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Descendant Assignment</em>'.
+   * @generated
+   */
+  DescendantAssignment createDescendantAssignment();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive</em>'.
+   * @generated
+   */
+  DaoDirective createDaoDirective();
+
+  /**
    * Returns a new object of class '<em>Pojo Dao Modifier</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -869,6 +896,69 @@ public interface ProcessorDslFactory extends EFactory
   PojoDirectiveIndex createPojoDirectiveIndex();
 
   /**
+   * Returns a new object of class '<em>Pojo Directive Equals</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Equals</em>'.
+   * @generated
+   */
+  PojoDirectiveEquals createPojoDirectiveEquals();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Hash Code</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Hash Code</em>'.
+   * @generated
+   */
+  PojoDirectiveHashCode createPojoDirectiveHashCode();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive To Init</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive To Init</em>'.
+   * @generated
+   */
+  PojoDirectiveToInit createPojoDirectiveToInit();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Enum Init</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Enum Init</em>'.
+   * @generated
+   */
+  PojoDirectiveEnumInit createPojoDirectiveEnumInit();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Is Def</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Is Def</em>'.
+   * @generated
+   */
+  PojoDirectiveIsDef createPojoDirectiveIsDef();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Enum Def</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Enum Def</em>'.
+   * @generated
+   */
+  PojoDirectiveEnumDef createPojoDirectiveEnumDef();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive To String</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive To String</em>'.
+   * @generated
+   */
+  PojoDirectiveToString createPojoDirectiveToString();
+
+  /**
    * Returns a new object of class '<em>Pojo Property Directive Required</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -930,6 +1020,69 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   PojoPropertyDirectiveCreateCol createPojoPropertyDirectiveCreateCol();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Serializable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Serializable</em>'.
+   * @generated
+   */
+  DaoDirectiveSerializable createDaoDirectiveSerializable();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Discriminator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Discriminator</em>'.
+   * @generated
+   */
+  DaoDirectiveDiscriminator createDaoDirectiveDiscriminator();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Pojo</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Pojo</em>'.
+   * @generated
+   */
+  DaoDirectivePojo createDaoDirectivePojo();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Generics</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Generics</em>'.
+   * @generated
+   */
+  DaoDirectiveGenerics createDaoDirectiveGenerics();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Procedure</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Procedure</em>'.
+   * @generated
+   */
+  DaoDirectiveProcedure createDaoDirectiveProcedure();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Function</em>'.
+   * @generated
+   */
+  DaoDirectiveFunction createDaoDirectiveFunction();
+
+  /**
+   * Returns a new object of class '<em>Dao Directive Update</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Update</em>'.
+   * @generated
+   */
+  DaoDirectiveUpdate createDaoDirectiveUpdate();
 
   /**
    * Returns the package supported by this factory.

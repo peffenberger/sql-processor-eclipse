@@ -115,7 +115,7 @@ public class ProcessorDaoGenerator {
       }
     }
     {
-      String _sernum = Utils.getSernum(d);
+      String _sernum = this._processorGeneratorUtils.getSernum(d);
       boolean _notEquals_3 = (!Objects.equal(_sernum, null));
       if (_notEquals_3) {
         _builder.newLine();
@@ -219,14 +219,14 @@ public class ProcessorDaoGenerator {
     _builder.append("{");
     _builder.newLineIfNotEmpty();
     {
-      String _sernum = Utils.getSernum(d);
+      String _sernum = this._processorGeneratorUtils.getSernum(d);
       boolean _notEquals_1 = (!Objects.equal(_sernum, null));
       if (_notEquals_1) {
         _builder.append("\t");
         _builder.newLine();
         _builder.append("\t");
         _builder.append("private static final long serialVersionUID = ");
-        String _sernum_1 = Utils.getSernum(d);
+        String _sernum_1 = this._processorGeneratorUtils.getSernum(d);
         _builder.append(_sernum_1, "\t");
         _builder.append("L;");
         _builder.newLineIfNotEmpty();
@@ -3744,12 +3744,12 @@ public class ProcessorDaoGenerator {
   public CharSequence compileExtends(final PojoDao e, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      PojoDao _superType = Utils.getSuperType(e);
+      PojoDao _superType = this._processorGeneratorUtils.getSuperType(e);
       boolean _notEquals = (!Objects.equal(_superType, null));
       if (_notEquals) {
         _builder.append("extends ");
-        PojoDao _superType_1 = Utils.getSuperType(e);
-        PojoDao _superType_2 = Utils.getSuperType(e);
+        PojoDao _superType_1 = this._processorGeneratorUtils.getSuperType(e);
+        PojoDao _superType_2 = this._processorGeneratorUtils.getSuperType(e);
         QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_superType_2);
         String _fullName = Utils.getFullName(e, _superType_1, _fullyQualifiedName, im);
         _builder.append(_fullName, "");
@@ -3777,7 +3777,7 @@ public class ProcessorDaoGenerator {
       if (_isImplements) {
         _or_1 = true;
       } else {
-        String _sernum = Utils.getSernum(d);
+        String _sernum = this._processorGeneratorUtils.getSernum(d);
         boolean _notEquals = (!Objects.equal(_sernum, null));
         _or_1 = _notEquals;
       }
@@ -3804,7 +3804,7 @@ public class ProcessorDaoGenerator {
           }
         }
         {
-          String _sernum_1 = Utils.getSernum(d);
+          String _sernum_1 = this._processorGeneratorUtils.getSernum(d);
           boolean _notEquals_2 = (!Objects.equal(_sernum_1, null));
           if (_notEquals_2) {
             {
@@ -3826,7 +3826,7 @@ public class ProcessorDaoGenerator {
               if (_isImplements_2) {
                 _or_2 = true;
               } else {
-                String _sernum_2 = Utils.getSernum(d);
+                String _sernum_2 = this._processorGeneratorUtils.getSernum(d);
                 boolean _notEquals_4 = (!Objects.equal(_sernum_2, null));
                 _or_2 = _notEquals_4;
               }

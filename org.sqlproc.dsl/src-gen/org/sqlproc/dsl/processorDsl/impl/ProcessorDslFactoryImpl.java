@@ -148,6 +148,9 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.ENUM_ENTITY_MODIFIER2: return createEnumEntityModifier2();
       case ProcessorDslPackage.ENUM_ENTITY: return createEnumEntity();
       case ProcessorDslPackage.ENUM_PROPERTY: return createEnumProperty();
+      case ProcessorDslPackage.DAO_DIRECTIVE_PARAMETERS: return createDaoDirectiveParameters();
+      case ProcessorDslPackage.DESCENDANT_ASSIGNMENT: return createDescendantAssignment();
+      case ProcessorDslPackage.DAO_DIRECTIVE: return createDaoDirective();
       case ProcessorDslPackage.POJO_DAO_MODIFIER: return createPojoDaoModifier();
       case ProcessorDslPackage.POJO_DAO: return createPojoDao();
       case ProcessorDslPackage.POJO_METHOD_MODIFIER: return createPojoMethodModifier();
@@ -158,6 +161,13 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.POJO_DIRECTIVE_OPERATORS: return createPojoDirectiveOperators();
       case ProcessorDslPackage.POJO_DIRECTIVE_SERIALIZABLE: return createPojoDirectiveSerializable();
       case ProcessorDslPackage.POJO_DIRECTIVE_INDEX: return createPojoDirectiveIndex();
+      case ProcessorDslPackage.POJO_DIRECTIVE_EQUALS: return createPojoDirectiveEquals();
+      case ProcessorDslPackage.POJO_DIRECTIVE_HASH_CODE: return createPojoDirectiveHashCode();
+      case ProcessorDslPackage.POJO_DIRECTIVE_TO_INIT: return createPojoDirectiveToInit();
+      case ProcessorDslPackage.POJO_DIRECTIVE_ENUM_INIT: return createPojoDirectiveEnumInit();
+      case ProcessorDslPackage.POJO_DIRECTIVE_IS_DEF: return createPojoDirectiveIsDef();
+      case ProcessorDslPackage.POJO_DIRECTIVE_ENUM_DEF: return createPojoDirectiveEnumDef();
+      case ProcessorDslPackage.POJO_DIRECTIVE_TO_STRING: return createPojoDirectiveToString();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_REQUIRED: return createPojoPropertyDirectiveRequired();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY: return createPojoPropertyDirectivePrimaryKey();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR: return createPojoPropertyDirectiveDiscriminator();
@@ -165,6 +175,13 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_VERSION: return createPojoPropertyDirectiveVersion();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_UPDATE_COL: return createPojoPropertyDirectiveUpdateCol();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_CREATE_COL: return createPojoPropertyDirectiveCreateCol();
+      case ProcessorDslPackage.DAO_DIRECTIVE_SERIALIZABLE: return createDaoDirectiveSerializable();
+      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR: return createDaoDirectiveDiscriminator();
+      case ProcessorDslPackage.DAO_DIRECTIVE_POJO: return createDaoDirectivePojo();
+      case ProcessorDslPackage.DAO_DIRECTIVE_GENERICS: return createDaoDirectiveGenerics();
+      case ProcessorDslPackage.DAO_DIRECTIVE_PROCEDURE: return createDaoDirectiveProcedure();
+      case ProcessorDslPackage.DAO_DIRECTIVE_FUNCTION: return createDaoDirectiveFunction();
+      case ProcessorDslPackage.DAO_DIRECTIVE_UPDATE: return createDaoDirectiveUpdate();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -1099,6 +1116,39 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public DaoDirectiveParameters createDaoDirectiveParameters()
+  {
+    DaoDirectiveParametersImpl daoDirectiveParameters = new DaoDirectiveParametersImpl();
+    return daoDirectiveParameters;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DescendantAssignment createDescendantAssignment()
+  {
+    DescendantAssignmentImpl descendantAssignment = new DescendantAssignmentImpl();
+    return descendantAssignment;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DaoDirective createDaoDirective()
+  {
+    DaoDirectiveImpl daoDirective = new DaoDirectiveImpl();
+    return daoDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PojoDaoModifier createPojoDaoModifier()
   {
     PojoDaoModifierImpl pojoDaoModifier = new PojoDaoModifierImpl();
@@ -1209,6 +1259,83 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public PojoDirectiveEquals createPojoDirectiveEquals()
+  {
+    PojoDirectiveEqualsImpl pojoDirectiveEquals = new PojoDirectiveEqualsImpl();
+    return pojoDirectiveEquals;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoDirectiveHashCode createPojoDirectiveHashCode()
+  {
+    PojoDirectiveHashCodeImpl pojoDirectiveHashCode = new PojoDirectiveHashCodeImpl();
+    return pojoDirectiveHashCode;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoDirectiveToInit createPojoDirectiveToInit()
+  {
+    PojoDirectiveToInitImpl pojoDirectiveToInit = new PojoDirectiveToInitImpl();
+    return pojoDirectiveToInit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoDirectiveEnumInit createPojoDirectiveEnumInit()
+  {
+    PojoDirectiveEnumInitImpl pojoDirectiveEnumInit = new PojoDirectiveEnumInitImpl();
+    return pojoDirectiveEnumInit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoDirectiveIsDef createPojoDirectiveIsDef()
+  {
+    PojoDirectiveIsDefImpl pojoDirectiveIsDef = new PojoDirectiveIsDefImpl();
+    return pojoDirectiveIsDef;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoDirectiveEnumDef createPojoDirectiveEnumDef()
+  {
+    PojoDirectiveEnumDefImpl pojoDirectiveEnumDef = new PojoDirectiveEnumDefImpl();
+    return pojoDirectiveEnumDef;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoDirectiveToString createPojoDirectiveToString()
+  {
+    PojoDirectiveToStringImpl pojoDirectiveToString = new PojoDirectiveToStringImpl();
+    return pojoDirectiveToString;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PojoPropertyDirectiveRequired createPojoPropertyDirectiveRequired()
   {
     PojoPropertyDirectiveRequiredImpl pojoPropertyDirectiveRequired = new PojoPropertyDirectiveRequiredImpl();
@@ -1279,6 +1406,83 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     PojoPropertyDirectiveCreateColImpl pojoPropertyDirectiveCreateCol = new PojoPropertyDirectiveCreateColImpl();
     return pojoPropertyDirectiveCreateCol;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DaoDirectiveSerializable createDaoDirectiveSerializable()
+  {
+    DaoDirectiveSerializableImpl daoDirectiveSerializable = new DaoDirectiveSerializableImpl();
+    return daoDirectiveSerializable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DaoDirectiveDiscriminator createDaoDirectiveDiscriminator()
+  {
+    DaoDirectiveDiscriminatorImpl daoDirectiveDiscriminator = new DaoDirectiveDiscriminatorImpl();
+    return daoDirectiveDiscriminator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DaoDirectivePojo createDaoDirectivePojo()
+  {
+    DaoDirectivePojoImpl daoDirectivePojo = new DaoDirectivePojoImpl();
+    return daoDirectivePojo;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DaoDirectiveGenerics createDaoDirectiveGenerics()
+  {
+    DaoDirectiveGenericsImpl daoDirectiveGenerics = new DaoDirectiveGenericsImpl();
+    return daoDirectiveGenerics;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DaoDirectiveProcedure createDaoDirectiveProcedure()
+  {
+    DaoDirectiveProcedureImpl daoDirectiveProcedure = new DaoDirectiveProcedureImpl();
+    return daoDirectiveProcedure;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DaoDirectiveFunction createDaoDirectiveFunction()
+  {
+    DaoDirectiveFunctionImpl daoDirectiveFunction = new DaoDirectiveFunctionImpl();
+    return daoDirectiveFunction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DaoDirectiveUpdate createDaoDirectiveUpdate()
+  {
+    DaoDirectiveUpdateImpl daoDirectiveUpdate = new DaoDirectiveUpdateImpl();
+    return daoDirectiveUpdate;
   }
 
   /**

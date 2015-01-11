@@ -232,7 +232,9 @@ public class TableDaoGenerator extends TableMetaGenerator {
                     if (!notAbstractTables.contains(pojo))
                         continue;
                 }
-                buffer.append("\n  ");
+                if (isSerializable || serializables.contains(pojo))
+                    buffer.append(NLINDENT).append("#Serializable(1)");
+                buffer.append(NLINDENT);
                 if (daoMakeItFinal)
                     buffer.append("final ");
                 buffer.append("dao ");
@@ -255,7 +257,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                     Map<String, String> toInit = new LinkedHashMap<String, String>();
                     toInits(pojo, toInit);
                     for (Entry<String, String> entry : toInit.entrySet()) {
-                        buffer.append("\n    ").append(entry.getKey()).append(" :::");
+                        buffer.append(NLINDENT).append(INDENT).append(entry.getKey()).append(" :::");
                         // pojoExtends {BANK_ACCOUNT=BILLING_DETAILS, MOVIE=MEDIA, CREDIT_CARD=BILLING_DETAILS,
                         // BOOK=MEDIA}
                         // pojoInheritanceDiscriminator {BILLING_DETAILS=[BANK_ACCOUNT, CREDIT_CARD]}
@@ -298,7 +300,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                 }
             }
             if (hasProcedures && !finalDaos.containsKey("ProceduresDao")) {
-                buffer.append("\n  ");
+                buffer.append(NLINDENT);
                 if (daoMakeItFinal)
                     buffer.append("final ");
                 buffer.append("dao ProceduresDao");
@@ -314,7 +316,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                     boolean isFunction = functions.containsKey(procedure);
                     if (isFunction)
                         continue;
-                    buffer.append("\n    ");
+                    buffer.append(NLINDENT).append(INDENT);
                     String pojoName = tableNames.get(procedure);
                     if (pojoName == null)
                         pojoName = procedure;
@@ -365,7 +367,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                 }
             }
             if (hasFunctions && !finalDaos.containsKey("FunctionsDao")) {
-                buffer.append("\n  ");
+                buffer.append(NLINDENT);
                 if (daoMakeItFinal)
                     buffer.append("final ");
                 buffer.append("dao FunctionsDao");
@@ -381,7 +383,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                     boolean isFunction = functions.containsKey(procedure);
                     if (!isFunction)
                         continue;
-                    buffer.append("\n    ");
+                    buffer.append(NLINDENT).append(INDENT);
                     String pojoName = tableNames.get(procedure);
                     if (pojoName == null)
                         pojoName = procedure;
@@ -433,7 +435,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                 }
             }
             if (hasFunctions && !finalDaos.containsKey("FunctionsDao")) {
-                buffer.append("\n  ");
+                buffer.append(NLINDENT);
                 if (daoMakeItFinal)
                     buffer.append("final ");
                 buffer.append("dao FunctionsDao");
@@ -449,7 +451,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                     boolean isProcedure = procedures.containsKey(function);
                     if (isProcedure)
                         continue;
-                    buffer.append("\n    ");
+                    buffer.append(NLINDENT).append(INDENT);
                     String pojoName = tableNames.get(function);
                     if (pojoName == null)
                         pojoName = function;

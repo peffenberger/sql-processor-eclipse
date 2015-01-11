@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -42,12 +41,7 @@ import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.PackageDeclaration;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
-import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
-import org.sqlproc.dsl.processorDsl.PojoDirective;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoMethod;
 import org.sqlproc.dsl.processorDsl.PojoMethodArg;
@@ -116,69 +110,6 @@ public class Utils {
         if (dao.isPojoGenerics() && impl.isGenerics())
             sb.append("<").append(dao.getPojo().getName()).append(">");
         return sb.toString();
-    }
-
-    public static PojoDao getSuperType(PojoDao e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
-            return null;
-        for (PojoDaoModifier modifier : e.getModifiers2()) {
-            if (modifier.getSuperType() != null)
-                return modifier.getSuperType();
-        }
-        return null;
-    }
-
-    public static String getDiscriminator(PojoEntity e) {
-        if (e.getDirectives() == null || e.getDirectives().isEmpty())
-            return null;
-        for (PojoDirective directive : e.getDirectives()) {
-            if (directive instanceof PojoDirectiveDiscriminator)
-                return ((PojoDirectiveDiscriminator) directive).getDiscriminator();
-        }
-        return null;
-    }
-
-    public static String getSernum(EnumEntity e) {
-        if (e.getDirectives() == null || e.getDirectives().isEmpty())
-            return null;
-        for (PojoDirective directive : e.getDirectives()) {
-            if (directive instanceof PojoDirectiveSerializable)
-                return ((PojoDirectiveSerializable) directive).getSernum();
-        }
-        return null;
-    }
-
-    public static String getSernum(PojoEntity e) {
-        if (e.getDirectives() == null || e.getDirectives().isEmpty())
-            return null;
-        for (PojoDirective directive : e.getDirectives()) {
-            if (directive instanceof PojoDirectiveSerializable)
-                return ((PojoDirectiveSerializable) directive).getSernum();
-        }
-        return null;
-    }
-
-    public static Map<String, List<PojoProperty>> getIndex(PojoEntity e) {
-        Map<String, List<PojoProperty>> result = new TreeMap<String, List<PojoProperty>>();
-        if (e.getDirectives() == null || e.getDirectives().isEmpty())
-            return result;
-        for (PojoDirective directive : e.getDirectives()) {
-            if (directive instanceof PojoDirectiveIndex) {
-                PojoDirectiveIndex pdi = (PojoDirectiveIndex) directive;
-                result.put(pdi.getIndex(), pdi.getProplist().getFeatures());
-            }
-        }
-        return result;
-    }
-
-    public static String getSernum(PojoDao e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
-            return null;
-        for (PojoDaoModifier modifier : e.getModifiers2()) {
-            if (modifier.getSernum() != null)
-                return modifier.getSernum();
-        }
-        return null;
     }
 
     public static boolean hasName(PojoProperty f, String name) {

@@ -114,7 +114,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      String _sernum = Utils.getSernum(e);
+      String _sernum = this._processorGeneratorUtils.getSernum(e);
       boolean _notEquals_1 = (!Objects.equal(_sernum, null));
       if (_notEquals_1) {
         _builder.newLine();
@@ -178,7 +178,7 @@ public class ProcessorPojoGenerator {
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     {
-      String _sernum = Utils.getSernum(e);
+      String _sernum = this._processorGeneratorUtils.getSernum(e);
       boolean _notEquals = (!Objects.equal(_sernum, null));
       if (_notEquals) {
         _builder.append("\t");
@@ -186,7 +186,7 @@ public class ProcessorPojoGenerator {
         _builder.newLine();
         _builder.append("\t");
         _builder.append("private static final long serialVersionUID = ");
-        String _sernum_1 = Utils.getSernum(e);
+        String _sernum_1 = this._processorGeneratorUtils.getSernum(e);
         _builder.append(_sernum_1, "\t");
         _builder.append("L;");
         _builder.newLineIfNotEmpty();
@@ -366,7 +366,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      String _sernum = Utils.getSernum(e);
+      String _sernum = this._processorGeneratorUtils.getSernum(e);
       boolean _notEquals_1 = (!Objects.equal(_sernum, null));
       if (_notEquals_1) {
         _builder.newLine();
@@ -480,14 +480,14 @@ public class ProcessorPojoGenerator {
     _builder.append("{");
     _builder.newLineIfNotEmpty();
     {
-      String _sernum = Utils.getSernum(e);
+      String _sernum = this._processorGeneratorUtils.getSernum(e);
       boolean _notEquals = (!Objects.equal(_sernum, null));
       if (_notEquals) {
         _builder.append("\t");
         _builder.newLine();
         _builder.append("\t");
         _builder.append("private static final long serialVersionUID = ");
-        String _sernum_1 = Utils.getSernum(e);
+        String _sernum_1 = this._processorGeneratorUtils.getSernum(e);
         _builder.append(_sernum_1, "\t");
         _builder.append("L;");
         _builder.newLineIfNotEmpty();
@@ -551,7 +551,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      Map<String, List<PojoProperty>> _index_1 = Utils.getIndex(e);
+      Map<String, List<PojoProperty>> _index_1 = this._processorGeneratorUtils.getIndex(e);
       Set<Map.Entry<String, List<PojoProperty>>> _entrySet = _index_1.entrySet();
       for(final Map.Entry<String, List<PojoProperty>> f_2 : _entrySet) {
         {
@@ -3964,7 +3964,7 @@ public class ProcessorPojoGenerator {
   public CharSequence compileImplements(final EnumEntity e) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      String _sernum = Utils.getSernum(e);
+      String _sernum = this._processorGeneratorUtils.getSernum(e);
       boolean _notEquals = (!Objects.equal(_sernum, null));
       if (_notEquals) {
         _builder.append("implements Serializable");
@@ -4009,7 +4009,7 @@ public class ProcessorPojoGenerator {
       if (_isImplements) {
         _or = true;
       } else {
-        String _sernum = Utils.getSernum(e);
+        String _sernum = this._processorGeneratorUtils.getSernum(e);
         boolean _notEquals = (!Objects.equal(_sernum, null));
         _or = _notEquals;
       }
@@ -4030,7 +4030,7 @@ public class ProcessorPojoGenerator {
           }
         }
         {
-          String _sernum_1 = Utils.getSernum(e);
+          String _sernum_1 = this._processorGeneratorUtils.getSernum(e);
           boolean _notEquals_1 = (!Objects.equal(_sernum_1, null));
           if (_notEquals_1) {
             {
