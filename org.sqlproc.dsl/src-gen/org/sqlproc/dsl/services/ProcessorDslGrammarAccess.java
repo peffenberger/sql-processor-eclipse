@@ -8668,75 +8668,19 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cProplistAssignment_3_5 = (Assignment)cGroup_3.eContents().get(5);
 		private final RuleCall cProplistDirectivePropertiesParserRuleCall_3_5_0 = (RuleCall)cProplistAssignment_3_5.eContents().get(0);
 		private final RuleCall cRPARENTerminalRuleCall_3_6 = (RuleCall)cGroup_3.eContents().get(6);
-		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final Action cPojoDirectiveEqualsAction_4_0 = (Action)cGroup_4.eContents().get(0);
-		private final Keyword cEqualsKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
-		private final RuleCall cLPARENTerminalRuleCall_4_2 = (RuleCall)cGroup_4.eContents().get(2);
-		private final Assignment cProplistAssignment_4_3 = (Assignment)cGroup_4.eContents().get(3);
-		private final RuleCall cProplistDirectivePropertiesParserRuleCall_4_3_0 = (RuleCall)cProplistAssignment_4_3.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_4_4 = (RuleCall)cGroup_4.eContents().get(4);
-		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
-		private final Action cPojoDirectiveHashCodeAction_5_0 = (Action)cGroup_5.eContents().get(0);
-		private final Keyword cHashCodeKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
-		private final RuleCall cLPARENTerminalRuleCall_5_2 = (RuleCall)cGroup_5.eContents().get(2);
-		private final Assignment cProplistAssignment_5_3 = (Assignment)cGroup_5.eContents().get(3);
-		private final RuleCall cProplistDirectivePropertiesParserRuleCall_5_3_0 = (RuleCall)cProplistAssignment_5_3.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_5_4 = (RuleCall)cGroup_5.eContents().get(4);
-		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
-		private final Action cPojoDirectiveToInitAction_6_0 = (Action)cGroup_6.eContents().get(0);
-		private final Keyword cToInitKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
-		private final RuleCall cLPARENTerminalRuleCall_6_2 = (RuleCall)cGroup_6.eContents().get(2);
-		private final Assignment cProplistAssignment_6_3 = (Assignment)cGroup_6.eContents().get(3);
-		private final RuleCall cProplistDirectivePropertiesParserRuleCall_6_3_0 = (RuleCall)cProplistAssignment_6_3.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_6_4 = (RuleCall)cGroup_6.eContents().get(4);
-		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
-		private final Action cPojoDirectiveEnumInitAction_7_0 = (Action)cGroup_7.eContents().get(0);
-		private final Keyword cEnumInitKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
-		private final RuleCall cLPARENTerminalRuleCall_7_2 = (RuleCall)cGroup_7.eContents().get(2);
-		private final Assignment cProplistAssignment_7_3 = (Assignment)cGroup_7.eContents().get(3);
-		private final RuleCall cProplistDirectivePropertiesParserRuleCall_7_3_0 = (RuleCall)cProplistAssignment_7_3.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_7_4 = (RuleCall)cGroup_7.eContents().get(4);
-		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
-		private final Action cPojoDirectiveIsDefAction_8_0 = (Action)cGroup_8.eContents().get(0);
-		private final Keyword cIsDefKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
-		private final RuleCall cLPARENTerminalRuleCall_8_2 = (RuleCall)cGroup_8.eContents().get(2);
-		private final Assignment cProplistAssignment_8_3 = (Assignment)cGroup_8.eContents().get(3);
-		private final RuleCall cProplistDirectivePropertiesParserRuleCall_8_3_0 = (RuleCall)cProplistAssignment_8_3.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_8_4 = (RuleCall)cGroup_8.eContents().get(4);
-		private final Group cGroup_9 = (Group)cAlternatives.eContents().get(9);
-		private final Action cPojoDirectiveEnumDefAction_9_0 = (Action)cGroup_9.eContents().get(0);
-		private final Keyword cEnumDefKeyword_9_1 = (Keyword)cGroup_9.eContents().get(1);
-		private final RuleCall cLPARENTerminalRuleCall_9_2 = (RuleCall)cGroup_9.eContents().get(2);
-		private final Assignment cProplistAssignment_9_3 = (Assignment)cGroup_9.eContents().get(3);
-		private final RuleCall cProplistDirectivePropertiesParserRuleCall_9_3_0 = (RuleCall)cProplistAssignment_9_3.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_9_4 = (RuleCall)cGroup_9.eContents().get(4);
-		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
-		private final Action cPojoDirectiveToStringAction_10_0 = (Action)cGroup_10.eContents().get(0);
-		private final Keyword cToStringKeyword_10_1 = (Keyword)cGroup_10.eContents().get(1);
-		private final RuleCall cLPARENTerminalRuleCall_10_2 = (RuleCall)cGroup_10.eContents().get(2);
-		private final Assignment cProplistAssignment_10_3 = (Assignment)cGroup_10.eContents().get(3);
-		private final RuleCall cProplistDirectivePropertiesParserRuleCall_10_3_0 = (RuleCall)cProplistAssignment_10_3.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_10_4 = (RuleCall)cGroup_10.eContents().get(4);
 		
+		////	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
+		////	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
+		////	| {PojoDirectiveToString} '#ToString' LPAREN proplist=DirectiveProperties RPAREN
 		//PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 		//	{PojoDirectiveDiscriminator} "#Discriminator" LPAREN discriminator=(IDENT | NUMBER) RPAREN | {PojoDirectiveOperators}
 		//	"#Operators" (LPAREN operatorsSuffix=IDENT RPAREN)? | {PojoDirectiveSerializable} "#Serializable" LPAREN sernum=NUMBER
-		//	RPAREN | {PojoDirectiveIndex} "#Index" LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN |
-		//	{PojoDirectiveEquals} "#Equals" LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveHashCode} "#HashCode"
-		//	LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveToInit} "#ToInit" LPAREN proplist=DirectiveProperties
-		//	RPAREN | {PojoDirectiveEnumInit} "#EnumInit" LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveIsDef}
-		//	"#IsDef" LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveEnumDef} "#EnumDef" LPAREN
-		//	proplist=DirectiveProperties RPAREN | {PojoDirectiveToString} "#ToString" LPAREN proplist=DirectiveProperties RPAREN;
+		//	RPAREN | {PojoDirectiveIndex} "#Index" LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN;
 		public ParserRule getRule() { return rule; }
 
 		//{PojoDirectiveDiscriminator} "#Discriminator" LPAREN discriminator=(IDENT | NUMBER) RPAREN | {PojoDirectiveOperators}
 		//"#Operators" (LPAREN operatorsSuffix=IDENT RPAREN)? | {PojoDirectiveSerializable} "#Serializable" LPAREN sernum=NUMBER
-		//RPAREN | {PojoDirectiveIndex} "#Index" LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN |
-		//{PojoDirectiveEquals} "#Equals" LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveHashCode} "#HashCode" LPAREN
-		//proplist=DirectiveProperties RPAREN | {PojoDirectiveToInit} "#ToInit" LPAREN proplist=DirectiveProperties RPAREN |
-		//{PojoDirectiveEnumInit} "#EnumInit" LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveIsDef} "#IsDef" LPAREN
-		//proplist=DirectiveProperties RPAREN | {PojoDirectiveEnumDef} "#EnumDef" LPAREN proplist=DirectiveProperties RPAREN |
-		//{PojoDirectiveToString} "#ToString" LPAREN proplist=DirectiveProperties RPAREN
+		//RPAREN | {PojoDirectiveIndex} "#Index" LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//{PojoDirectiveDiscriminator} "#Discriminator" LPAREN discriminator=(IDENT | NUMBER) RPAREN
@@ -8840,153 +8784,6 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//RPAREN
 		public RuleCall getRPARENTerminalRuleCall_3_6() { return cRPARENTerminalRuleCall_3_6; }
-
-		//{PojoDirectiveEquals} "#Equals" LPAREN proplist=DirectiveProperties RPAREN
-		public Group getGroup_4() { return cGroup_4; }
-
-		//{PojoDirectiveEquals}
-		public Action getPojoDirectiveEqualsAction_4_0() { return cPojoDirectiveEqualsAction_4_0; }
-
-		//"#Equals"
-		public Keyword getEqualsKeyword_4_1() { return cEqualsKeyword_4_1; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_4_2() { return cLPARENTerminalRuleCall_4_2; }
-
-		//proplist=DirectiveProperties
-		public Assignment getProplistAssignment_4_3() { return cProplistAssignment_4_3; }
-
-		//DirectiveProperties
-		public RuleCall getProplistDirectivePropertiesParserRuleCall_4_3_0() { return cProplistDirectivePropertiesParserRuleCall_4_3_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_4_4() { return cRPARENTerminalRuleCall_4_4; }
-
-		//{PojoDirectiveHashCode} "#HashCode" LPAREN proplist=DirectiveProperties RPAREN
-		public Group getGroup_5() { return cGroup_5; }
-
-		//{PojoDirectiveHashCode}
-		public Action getPojoDirectiveHashCodeAction_5_0() { return cPojoDirectiveHashCodeAction_5_0; }
-
-		//"#HashCode"
-		public Keyword getHashCodeKeyword_5_1() { return cHashCodeKeyword_5_1; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_5_2() { return cLPARENTerminalRuleCall_5_2; }
-
-		//proplist=DirectiveProperties
-		public Assignment getProplistAssignment_5_3() { return cProplistAssignment_5_3; }
-
-		//DirectiveProperties
-		public RuleCall getProplistDirectivePropertiesParserRuleCall_5_3_0() { return cProplistDirectivePropertiesParserRuleCall_5_3_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_5_4() { return cRPARENTerminalRuleCall_5_4; }
-
-		//{PojoDirectiveToInit} "#ToInit" LPAREN proplist=DirectiveProperties RPAREN
-		public Group getGroup_6() { return cGroup_6; }
-
-		//{PojoDirectiveToInit}
-		public Action getPojoDirectiveToInitAction_6_0() { return cPojoDirectiveToInitAction_6_0; }
-
-		//"#ToInit"
-		public Keyword getToInitKeyword_6_1() { return cToInitKeyword_6_1; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_6_2() { return cLPARENTerminalRuleCall_6_2; }
-
-		//proplist=DirectiveProperties
-		public Assignment getProplistAssignment_6_3() { return cProplistAssignment_6_3; }
-
-		//DirectiveProperties
-		public RuleCall getProplistDirectivePropertiesParserRuleCall_6_3_0() { return cProplistDirectivePropertiesParserRuleCall_6_3_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_6_4() { return cRPARENTerminalRuleCall_6_4; }
-
-		//{PojoDirectiveEnumInit} "#EnumInit" LPAREN proplist=DirectiveProperties RPAREN
-		public Group getGroup_7() { return cGroup_7; }
-
-		//{PojoDirectiveEnumInit}
-		public Action getPojoDirectiveEnumInitAction_7_0() { return cPojoDirectiveEnumInitAction_7_0; }
-
-		//"#EnumInit"
-		public Keyword getEnumInitKeyword_7_1() { return cEnumInitKeyword_7_1; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_7_2() { return cLPARENTerminalRuleCall_7_2; }
-
-		//proplist=DirectiveProperties
-		public Assignment getProplistAssignment_7_3() { return cProplistAssignment_7_3; }
-
-		//DirectiveProperties
-		public RuleCall getProplistDirectivePropertiesParserRuleCall_7_3_0() { return cProplistDirectivePropertiesParserRuleCall_7_3_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_7_4() { return cRPARENTerminalRuleCall_7_4; }
-
-		//{PojoDirectiveIsDef} "#IsDef" LPAREN proplist=DirectiveProperties RPAREN
-		public Group getGroup_8() { return cGroup_8; }
-
-		//{PojoDirectiveIsDef}
-		public Action getPojoDirectiveIsDefAction_8_0() { return cPojoDirectiveIsDefAction_8_0; }
-
-		//"#IsDef"
-		public Keyword getIsDefKeyword_8_1() { return cIsDefKeyword_8_1; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_8_2() { return cLPARENTerminalRuleCall_8_2; }
-
-		//proplist=DirectiveProperties
-		public Assignment getProplistAssignment_8_3() { return cProplistAssignment_8_3; }
-
-		//DirectiveProperties
-		public RuleCall getProplistDirectivePropertiesParserRuleCall_8_3_0() { return cProplistDirectivePropertiesParserRuleCall_8_3_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_8_4() { return cRPARENTerminalRuleCall_8_4; }
-
-		//{PojoDirectiveEnumDef} "#EnumDef" LPAREN proplist=DirectiveProperties RPAREN
-		public Group getGroup_9() { return cGroup_9; }
-
-		//{PojoDirectiveEnumDef}
-		public Action getPojoDirectiveEnumDefAction_9_0() { return cPojoDirectiveEnumDefAction_9_0; }
-
-		//"#EnumDef"
-		public Keyword getEnumDefKeyword_9_1() { return cEnumDefKeyword_9_1; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_9_2() { return cLPARENTerminalRuleCall_9_2; }
-
-		//proplist=DirectiveProperties
-		public Assignment getProplistAssignment_9_3() { return cProplistAssignment_9_3; }
-
-		//DirectiveProperties
-		public RuleCall getProplistDirectivePropertiesParserRuleCall_9_3_0() { return cProplistDirectivePropertiesParserRuleCall_9_3_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_9_4() { return cRPARENTerminalRuleCall_9_4; }
-
-		//{PojoDirectiveToString} "#ToString" LPAREN proplist=DirectiveProperties RPAREN
-		public Group getGroup_10() { return cGroup_10; }
-
-		//{PojoDirectiveToString}
-		public Action getPojoDirectiveToStringAction_10_0() { return cPojoDirectiveToStringAction_10_0; }
-
-		//"#ToString"
-		public Keyword getToStringKeyword_10_1() { return cToStringKeyword_10_1; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_10_2() { return cLPARENTerminalRuleCall_10_2; }
-
-		//proplist=DirectiveProperties
-		public Assignment getProplistAssignment_10_3() { return cProplistAssignment_10_3; }
-
-		//DirectiveProperties
-		public RuleCall getProplistDirectivePropertiesParserRuleCall_10_3_0() { return cProplistDirectivePropertiesParserRuleCall_10_3_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_10_4() { return cRPARENTerminalRuleCall_10_4; }
 	}
 
 	public class PojoEntityModifier2Elements extends AbstractParserRuleElementFinder {
@@ -9186,7 +8983,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cVersionKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
 		private final Action cPojoPropertyDirectiveUpdateColAction_5_0 = (Action)cGroup_5.eContents().get(0);
-		private final Keyword cUpdateColKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
+		private final Keyword cUpdateColumnKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
 		private final RuleCall cLPARENTerminalRuleCall_5_2 = (RuleCall)cGroup_5.eContents().get(2);
 		private final Assignment cUpdateColumn1Assignment_5_3 = (Assignment)cGroup_5.eContents().get(3);
 		private final RuleCall cUpdateColumn1IDENTTerminalRuleCall_5_3_0 = (RuleCall)cUpdateColumn1Assignment_5_3.eContents().get(0);
@@ -9196,7 +8993,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRPARENTerminalRuleCall_5_6 = (RuleCall)cGroup_5.eContents().get(6);
 		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
 		private final Action cPojoPropertyDirectiveCreateColAction_6_0 = (Action)cGroup_6.eContents().get(0);
-		private final Keyword cCreateColKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
+		private final Keyword cCreateColumnKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
 		private final RuleCall cLPARENTerminalRuleCall_6_2 = (RuleCall)cGroup_6.eContents().get(2);
 		private final Assignment cCreateColumn1Assignment_6_3 = (Assignment)cGroup_6.eContents().get(3);
 		private final RuleCall cCreateColumn1IDENTTerminalRuleCall_6_3_0 = (RuleCall)cCreateColumn1Assignment_6_3.eContents().get(0);
@@ -9204,6 +9001,18 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cCreateColumn2Assignment_6_5 = (Assignment)cGroup_6.eContents().get(5);
 		private final RuleCall cCreateColumn2IDENTTerminalRuleCall_6_5_0 = (RuleCall)cCreateColumn2Assignment_6_5.eContents().get(0);
 		private final RuleCall cRPARENTerminalRuleCall_6_6 = (RuleCall)cGroup_6.eContents().get(6);
+		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
+		private final Action cPojoPropertyDirectiveToInitAction_7_0 = (Action)cGroup_7.eContents().get(0);
+		private final Keyword cToInitKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
+		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
+		private final Action cPojoPropertyDirectiveEnumInitAction_8_0 = (Action)cGroup_8.eContents().get(0);
+		private final Keyword cEnumInitKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
+		private final Group cGroup_9 = (Group)cAlternatives.eContents().get(9);
+		private final Action cPojoPropertyDirectiveIsDefAction_9_0 = (Action)cGroup_9.eContents().get(0);
+		private final Keyword cIsDefKeyword_9_1 = (Keyword)cGroup_9.eContents().get(1);
+		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
+		private final Action cPojoPropertyDirectiveEnumDefAction_10_0 = (Action)cGroup_10.eContents().get(0);
+		private final Keyword cEnumDefKeyword_10_1 = (Keyword)cGroup_10.eContents().get(1);
 		
 		////PojoPropertyModifier: ((required?='required') | (discriminator?='discriminator') | (primaryKey?='primaryKey') | ('index' index=NUMBER) | (version?='optLock') | 
 		////	                   ('updateCol' updateColumn1=IDENT '->' updateColumn2=IDENT) | ('createCol' createColumn1=IDENT '->' createColumn2=IDENT) 
@@ -9211,16 +9020,20 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 		//	{PojoPropertyDirectiveRequired} "#Required" | {PojoPropertyDirectivePrimaryKey} "#PrimaryKey" |
 		//	{PojoPropertyDirectiveDiscriminator} "#Discriminator" | {PojoPropertyDirectiveIndex} "#Index" LPAREN index=NUMBER
-		//	RPAREN | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateCol" LPAREN
-		//	updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN | {PojoPropertyDirectiveCreateCol} "#CreateCol" LPAREN
-		//	createColumn1=IDENT COMMA createColumn2=IDENT RPAREN;
+		//	RPAREN | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateColumn" LPAREN
+		//	updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN | {PojoPropertyDirectiveCreateCol} "#CreateColumn" LPAREN
+		//	createColumn1=IDENT COMMA createColumn2=IDENT RPAREN | {PojoPropertyDirectiveToInit} "#ToInit" |
+		//	{PojoPropertyDirectiveEnumInit} "#EnumInit" | {PojoPropertyDirectiveIsDef} "#IsDef" | {PojoPropertyDirectiveEnumDef}
+		//	"#EnumDef";
 		public ParserRule getRule() { return rule; }
 
 		//{PojoPropertyDirectiveRequired} "#Required" | {PojoPropertyDirectivePrimaryKey} "#PrimaryKey" |
 		//{PojoPropertyDirectiveDiscriminator} "#Discriminator" | {PojoPropertyDirectiveIndex} "#Index" LPAREN index=NUMBER
-		//RPAREN | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateCol" LPAREN
-		//updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN | {PojoPropertyDirectiveCreateCol} "#CreateCol" LPAREN
-		//createColumn1=IDENT COMMA createColumn2=IDENT RPAREN
+		//RPAREN | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateColumn" LPAREN
+		//updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN | {PojoPropertyDirectiveCreateCol} "#CreateColumn" LPAREN
+		//createColumn1=IDENT COMMA createColumn2=IDENT RPAREN | {PojoPropertyDirectiveToInit} "#ToInit" |
+		//{PojoPropertyDirectiveEnumInit} "#EnumInit" | {PojoPropertyDirectiveIsDef} "#IsDef" | {PojoPropertyDirectiveEnumDef}
+		//"#EnumDef"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//{PojoPropertyDirectiveRequired} "#Required"
@@ -9280,14 +9093,14 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"#Version"
 		public Keyword getVersionKeyword_4_1() { return cVersionKeyword_4_1; }
 
-		//{PojoPropertyDirectiveUpdateCol} "#UpdateCol" LPAREN updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN
+		//{PojoPropertyDirectiveUpdateCol} "#UpdateColumn" LPAREN updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN
 		public Group getGroup_5() { return cGroup_5; }
 
 		//{PojoPropertyDirectiveUpdateCol}
 		public Action getPojoPropertyDirectiveUpdateColAction_5_0() { return cPojoPropertyDirectiveUpdateColAction_5_0; }
 
-		//"#UpdateCol"
-		public Keyword getUpdateColKeyword_5_1() { return cUpdateColKeyword_5_1; }
+		//"#UpdateColumn"
+		public Keyword getUpdateColumnKeyword_5_1() { return cUpdateColumnKeyword_5_1; }
 
 		//LPAREN
 		public RuleCall getLPARENTerminalRuleCall_5_2() { return cLPARENTerminalRuleCall_5_2; }
@@ -9310,14 +9123,14 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//RPAREN
 		public RuleCall getRPARENTerminalRuleCall_5_6() { return cRPARENTerminalRuleCall_5_6; }
 
-		//{PojoPropertyDirectiveCreateCol} "#CreateCol" LPAREN createColumn1=IDENT COMMA createColumn2=IDENT RPAREN
+		//{PojoPropertyDirectiveCreateCol} "#CreateColumn" LPAREN createColumn1=IDENT COMMA createColumn2=IDENT RPAREN
 		public Group getGroup_6() { return cGroup_6; }
 
 		//{PojoPropertyDirectiveCreateCol}
 		public Action getPojoPropertyDirectiveCreateColAction_6_0() { return cPojoPropertyDirectiveCreateColAction_6_0; }
 
-		//"#CreateCol"
-		public Keyword getCreateColKeyword_6_1() { return cCreateColKeyword_6_1; }
+		//"#CreateColumn"
+		public Keyword getCreateColumnKeyword_6_1() { return cCreateColumnKeyword_6_1; }
 
 		//LPAREN
 		public RuleCall getLPARENTerminalRuleCall_6_2() { return cLPARENTerminalRuleCall_6_2; }
@@ -9339,6 +9152,42 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//RPAREN
 		public RuleCall getRPARENTerminalRuleCall_6_6() { return cRPARENTerminalRuleCall_6_6; }
+
+		//{PojoPropertyDirectiveToInit} "#ToInit"
+		public Group getGroup_7() { return cGroup_7; }
+
+		//{PojoPropertyDirectiveToInit}
+		public Action getPojoPropertyDirectiveToInitAction_7_0() { return cPojoPropertyDirectiveToInitAction_7_0; }
+
+		//"#ToInit"
+		public Keyword getToInitKeyword_7_1() { return cToInitKeyword_7_1; }
+
+		//{PojoPropertyDirectiveEnumInit} "#EnumInit"
+		public Group getGroup_8() { return cGroup_8; }
+
+		//{PojoPropertyDirectiveEnumInit}
+		public Action getPojoPropertyDirectiveEnumInitAction_8_0() { return cPojoPropertyDirectiveEnumInitAction_8_0; }
+
+		//"#EnumInit"
+		public Keyword getEnumInitKeyword_8_1() { return cEnumInitKeyword_8_1; }
+
+		//{PojoPropertyDirectiveIsDef} "#IsDef"
+		public Group getGroup_9() { return cGroup_9; }
+
+		//{PojoPropertyDirectiveIsDef}
+		public Action getPojoPropertyDirectiveIsDefAction_9_0() { return cPojoPropertyDirectiveIsDefAction_9_0; }
+
+		//"#IsDef"
+		public Keyword getIsDefKeyword_9_1() { return cIsDefKeyword_9_1; }
+
+		//{PojoPropertyDirectiveEnumDef} "#EnumDef"
+		public Group getGroup_10() { return cGroup_10; }
+
+		//{PojoPropertyDirectiveEnumDef}
+		public Action getPojoPropertyDirectiveEnumDefAction_10_0() { return cPojoPropertyDirectiveEnumDefAction_10_0; }
+
+		//"#EnumDef"
+		public Keyword getEnumDefKeyword_10_1() { return cEnumDefKeyword_10_1; }
 	}
 
 	public class PojoPropertyElements extends AbstractParserRuleElementFinder {
@@ -9365,15 +9214,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_2_1_0_1 = (Alternatives)cGroup_2_1_0.eContents().get(1);
 		private final Group cGroup_2_1_0_1_0 = (Group)cAlternatives_2_1_0_1.eContents().get(0);
 		private final RuleCall cCOLONTerminalRuleCall_2_1_0_1_0_0 = (RuleCall)cGroup_2_1_0_1_0.eContents().get(0);
-		private final Alternatives cAlternatives_2_1_0_1_0_1 = (Alternatives)cGroup_2_1_0_1_0.eContents().get(1);
-		private final Group cGroup_2_1_0_1_0_1_0 = (Group)cAlternatives_2_1_0_1_0_1.eContents().get(0);
-		private final RuleCall cCOLONTerminalRuleCall_2_1_0_1_0_1_0_0 = (RuleCall)cGroup_2_1_0_1_0_1_0.eContents().get(0);
-		private final Assignment cAttrsAssignment_2_1_0_1_0_1_0_1 = (Assignment)cGroup_2_1_0_1_0_1_0.eContents().get(1);
-		private final CrossReference cAttrsPojoPropertyCrossReference_2_1_0_1_0_1_0_1_0 = (CrossReference)cAttrsAssignment_2_1_0_1_0_1_0_1.eContents().get(0);
-		private final RuleCall cAttrsPojoPropertyIDENTTerminalRuleCall_2_1_0_1_0_1_0_1_0_1 = (RuleCall)cAttrsPojoPropertyCrossReference_2_1_0_1_0_1_0_1_0.eContents().get(1);
-		private final Assignment cRefAssignment_2_1_0_1_0_1_1 = (Assignment)cAlternatives_2_1_0_1_0_1.eContents().get(1);
-		private final CrossReference cRefEntityCrossReference_2_1_0_1_0_1_1_0 = (CrossReference)cRefAssignment_2_1_0_1_0_1_1.eContents().get(0);
-		private final RuleCall cRefEntityIDENTTerminalRuleCall_2_1_0_1_0_1_1_0_1 = (RuleCall)cRefEntityCrossReference_2_1_0_1_0_1_1_0.eContents().get(1);
+		private final Assignment cRefAssignment_2_1_0_1_0_1 = (Assignment)cGroup_2_1_0_1_0.eContents().get(1);
+		private final CrossReference cRefEntityCrossReference_2_1_0_1_0_1_0 = (CrossReference)cRefAssignment_2_1_0_1_0_1.eContents().get(0);
+		private final RuleCall cRefEntityIDENTTerminalRuleCall_2_1_0_1_0_1_0_1 = (RuleCall)cRefEntityCrossReference_2_1_0_1_0_1_0.eContents().get(1);
 		private final Assignment cTypeAssignment_2_1_0_1_1 = (Assignment)cAlternatives_2_1_0_1.eContents().get(1);
 		private final CrossReference cTypeJvmTypeCrossReference_2_1_0_1_1_0 = (CrossReference)cTypeAssignment_2_1_0_1_1.eContents().get(0);
 		private final RuleCall cTypeJvmTypeQualifiedNameParserRuleCall_2_1_0_1_1_0_1 = (RuleCall)cTypeJvmTypeCrossReference_2_1_0_1_1_0.eContents().get(1);
@@ -9395,15 +9238,13 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		////(modifiers+=PojoPropertyModifier)*
 		//PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 		//	directives+=PojoPropertyDirective* name=IDENT (native=("_char" | "_byte" | "_short" | "_int" | "_long" | "_float" |
-		//	"_double" | "_boolean") | (COLON (COLON (COLON attrs+=[PojoProperty|IDENT]* | ref=[Entity|IDENT]) |
-		//	type=[jvmTypes::JvmType|QualifiedName])) (LESS_THAN (COLON gref=[PojoEntity|IDENT] |
-		//	gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) array?="[]"?;
+		//	"_double" | "_boolean") | (COLON (COLON ref=[Entity|IDENT] | type=[jvmTypes::JvmType|QualifiedName])) //	(COLON (COLON (COLON (attrs+=[PojoProperty|IDENT])* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
+		//	(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) array?="[]"?;
 		public ParserRule getRule() { return rule; }
 
 		//directives+=PojoPropertyDirective* name=IDENT (native=("_char" | "_byte" | "_short" | "_int" | "_long" | "_float" |
-		//"_double" | "_boolean") | (COLON (COLON (COLON attrs+=[PojoProperty|IDENT]* | ref=[Entity|IDENT]) |
-		//type=[jvmTypes::JvmType|QualifiedName])) (LESS_THAN (COLON gref=[PojoEntity|IDENT] |
-		//gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) array?="[]"?
+		//"_double" | "_boolean") | (COLON (COLON ref=[Entity|IDENT] | type=[jvmTypes::JvmType|QualifiedName])) //	(COLON (COLON (COLON (attrs+=[PojoProperty|IDENT])* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
+		//(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) array?="[]"?
 		public Group getGroup() { return cGroup; }
 
 		//directives+=PojoPropertyDirective*
@@ -9418,9 +9259,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getNameIDENTTerminalRuleCall_1_0() { return cNameIDENTTerminalRuleCall_1_0; }
 
-		//native=("_char" | "_byte" | "_short" | "_int" | "_long" | "_float" | "_double" | "_boolean") | (COLON (COLON (COLON
-		//attrs+=[PojoProperty|IDENT]* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName])) (LESS_THAN (COLON
-		//gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?
+		//native=("_char" | "_byte" | "_short" | "_int" | "_long" | "_float" | "_double" | "_boolean") | (COLON (COLON
+		//ref=[Entity|IDENT] | type=[jvmTypes::JvmType|QualifiedName])) //	(COLON (COLON (COLON (attrs+=[PojoProperty|IDENT])* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
+		//(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//native=("_char" | "_byte" | "_short" | "_int" | "_long" | "_float" | "_double" | "_boolean")
@@ -9453,51 +9294,33 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"_boolean"
 		public Keyword getNative_booleanKeyword_2_0_0_7() { return cNative_booleanKeyword_2_0_0_7; }
 
-		//(COLON (COLON (COLON attrs+=[PojoProperty|IDENT]* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
+		//(COLON (COLON ref=[Entity|IDENT] | type=[jvmTypes::JvmType|QualifiedName])) //	(COLON (COLON (COLON (attrs+=[PojoProperty|IDENT])* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
 		//(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?
 		public Group getGroup_2_1() { return cGroup_2_1; }
 
-		//COLON (COLON (COLON attrs+=[PojoProperty|IDENT]* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName])
+		//COLON (COLON ref=[Entity|IDENT] | type=[jvmTypes::JvmType|QualifiedName])
 		public Group getGroup_2_1_0() { return cGroup_2_1_0; }
 
 		//COLON
 		public RuleCall getCOLONTerminalRuleCall_2_1_0_0() { return cCOLONTerminalRuleCall_2_1_0_0; }
 
-		//COLON (COLON attrs+=[PojoProperty|IDENT]* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]
+		//COLON ref=[Entity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]
 		public Alternatives getAlternatives_2_1_0_1() { return cAlternatives_2_1_0_1; }
 
-		//COLON (COLON attrs+=[PojoProperty|IDENT]* | ref=[Entity|IDENT])
+		//COLON ref=[Entity|IDENT]
 		public Group getGroup_2_1_0_1_0() { return cGroup_2_1_0_1_0; }
 
 		//COLON
 		public RuleCall getCOLONTerminalRuleCall_2_1_0_1_0_0() { return cCOLONTerminalRuleCall_2_1_0_1_0_0; }
 
-		//COLON attrs+=[PojoProperty|IDENT]* | ref=[Entity|IDENT]
-		public Alternatives getAlternatives_2_1_0_1_0_1() { return cAlternatives_2_1_0_1_0_1; }
-
-		//COLON attrs+=[PojoProperty|IDENT]*
-		public Group getGroup_2_1_0_1_0_1_0() { return cGroup_2_1_0_1_0_1_0; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_2_1_0_1_0_1_0_0() { return cCOLONTerminalRuleCall_2_1_0_1_0_1_0_0; }
-
-		//attrs+=[PojoProperty|IDENT]*
-		public Assignment getAttrsAssignment_2_1_0_1_0_1_0_1() { return cAttrsAssignment_2_1_0_1_0_1_0_1; }
-
-		//[PojoProperty|IDENT]
-		public CrossReference getAttrsPojoPropertyCrossReference_2_1_0_1_0_1_0_1_0() { return cAttrsPojoPropertyCrossReference_2_1_0_1_0_1_0_1_0; }
-
-		//IDENT
-		public RuleCall getAttrsPojoPropertyIDENTTerminalRuleCall_2_1_0_1_0_1_0_1_0_1() { return cAttrsPojoPropertyIDENTTerminalRuleCall_2_1_0_1_0_1_0_1_0_1; }
-
 		//ref=[Entity|IDENT]
-		public Assignment getRefAssignment_2_1_0_1_0_1_1() { return cRefAssignment_2_1_0_1_0_1_1; }
+		public Assignment getRefAssignment_2_1_0_1_0_1() { return cRefAssignment_2_1_0_1_0_1; }
 
 		//[Entity|IDENT]
-		public CrossReference getRefEntityCrossReference_2_1_0_1_0_1_1_0() { return cRefEntityCrossReference_2_1_0_1_0_1_1_0; }
+		public CrossReference getRefEntityCrossReference_2_1_0_1_0_1_0() { return cRefEntityCrossReference_2_1_0_1_0_1_0; }
 
 		//IDENT
-		public RuleCall getRefEntityIDENTTerminalRuleCall_2_1_0_1_0_1_1_0_1() { return cRefEntityIDENTTerminalRuleCall_2_1_0_1_0_1_1_0_1; }
+		public RuleCall getRefEntityIDENTTerminalRuleCall_2_1_0_1_0_1_0_1() { return cRefEntityIDENTTerminalRuleCall_2_1_0_1_0_1_0_1; }
 
 		//type=[jvmTypes::JvmType|QualifiedName]
 		public Assignment getTypeAssignment_2_1_0_1_1() { return cTypeAssignment_2_1_0_1_1; }
@@ -12015,15 +11838,13 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getDirectivePropertiesAccess().getRule();
 	}
 
+	////	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
+	////	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
+	////	| {PojoDirectiveToString} '#ToString' LPAREN proplist=DirectiveProperties RPAREN
 	//PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	{PojoDirectiveDiscriminator} "#Discriminator" LPAREN discriminator=(IDENT | NUMBER) RPAREN | {PojoDirectiveOperators}
 	//	"#Operators" (LPAREN operatorsSuffix=IDENT RPAREN)? | {PojoDirectiveSerializable} "#Serializable" LPAREN sernum=NUMBER
-	//	RPAREN | {PojoDirectiveIndex} "#Index" LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN |
-	//	{PojoDirectiveEquals} "#Equals" LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveHashCode} "#HashCode"
-	//	LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveToInit} "#ToInit" LPAREN proplist=DirectiveProperties
-	//	RPAREN | {PojoDirectiveEnumInit} "#EnumInit" LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveIsDef}
-	//	"#IsDef" LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveEnumDef} "#EnumDef" LPAREN
-	//	proplist=DirectiveProperties RPAREN | {PojoDirectiveToString} "#ToString" LPAREN proplist=DirectiveProperties RPAREN;
+	//	RPAREN | {PojoDirectiveIndex} "#Index" LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN;
 	public PojoDirectiveElements getPojoDirectiveAccess() {
 		return pPojoDirective;
 	}
@@ -12071,9 +11892,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	{PojoPropertyDirectiveRequired} "#Required" | {PojoPropertyDirectivePrimaryKey} "#PrimaryKey" |
 	//	{PojoPropertyDirectiveDiscriminator} "#Discriminator" | {PojoPropertyDirectiveIndex} "#Index" LPAREN index=NUMBER
-	//	RPAREN | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateCol" LPAREN
-	//	updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN | {PojoPropertyDirectiveCreateCol} "#CreateCol" LPAREN
-	//	createColumn1=IDENT COMMA createColumn2=IDENT RPAREN;
+	//	RPAREN | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateColumn" LPAREN
+	//	updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN | {PojoPropertyDirectiveCreateCol} "#CreateColumn" LPAREN
+	//	createColumn1=IDENT COMMA createColumn2=IDENT RPAREN | {PojoPropertyDirectiveToInit} "#ToInit" |
+	//	{PojoPropertyDirectiveEnumInit} "#EnumInit" | {PojoPropertyDirectiveIsDef} "#IsDef" | {PojoPropertyDirectiveEnumDef}
+	//	"#EnumDef";
 	public PojoPropertyDirectiveElements getPojoPropertyDirectiveAccess() {
 		return pPojoPropertyDirective;
 	}
@@ -12085,9 +11908,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	////(modifiers+=PojoPropertyModifier)*
 	//PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	directives+=PojoPropertyDirective* name=IDENT (native=("_char" | "_byte" | "_short" | "_int" | "_long" | "_float" |
-	//	"_double" | "_boolean") | (COLON (COLON (COLON attrs+=[PojoProperty|IDENT]* | ref=[Entity|IDENT]) |
-	//	type=[jvmTypes::JvmType|QualifiedName])) (LESS_THAN (COLON gref=[PojoEntity|IDENT] |
-	//	gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) array?="[]"?;
+	//	"_double" | "_boolean") | (COLON (COLON ref=[Entity|IDENT] | type=[jvmTypes::JvmType|QualifiedName])) //	(COLON (COLON (COLON (attrs+=[PojoProperty|IDENT])* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
+	//	(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) array?="[]"?;
 	public PojoPropertyElements getPojoPropertyAccess() {
 		return pPojoProperty;
 	}

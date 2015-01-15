@@ -28,6 +28,10 @@ import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator
 import java.util.Map
 import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex
 import java.util.TreeMap
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIsDef
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumInit
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumDef
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveToInit
 
 class ProcessorGeneratorUtils {
 
@@ -96,13 +100,29 @@ class ProcessorGeneratorUtils {
 		return if(d != null) true else false
 	}
 
-	def isAttribute(PojoProperty f) {
-		return if(f.attrs == null || f.attrs.isEmpty()) true else false
-	}
-
 	def isList(PojoProperty f) {
 		val name = f?.type?.simpleName
 		return "List" == name
+	}
+
+	def isIsDef(PojoProperty f) {
+		val d = f.directives?.findFirst[x|x instanceof PojoPropertyDirectiveIsDef]
+		return if(d != null) true else false
+	}
+
+	def isEnumDef(PojoProperty f) {
+		val d = f.directives?.findFirst[x|x instanceof PojoPropertyDirectiveEnumDef]
+		return if(d != null) true else false
+	}
+
+	def isToInit(PojoProperty f) {
+		val d = f.directives?.findFirst[x|x instanceof PojoPropertyDirectiveToInit]
+		return if(d != null) true else false
+	}
+
+	def isEnumInit(PojoProperty f) {
+		val d = f.directives?.findFirst[x|x instanceof PojoPropertyDirectiveEnumInit]
+		return if(d != null) true else false
 	}
 
 	// PojoEntity
@@ -176,7 +196,7 @@ class ProcessorGeneratorUtils {
 	def List<PojoProperty> attributes(PojoEntity pojo) {
 		if (pojo == null)
 			return newArrayList()
-		val features = pojo.features.filter[x|x.feature.isAttribute].map[feature].toList
+		val features = pojo.features.map[feature].toList
 		val se = pojo.superType
 		if (se == null)
 			return features
@@ -187,9 +207,53 @@ class ProcessorGeneratorUtils {
     def PojoProperty getAttribute(PojoEntity pojo, String name) {
 		if (pojo == null)
 			return null
-		val feature = pojo.features.findFirst[x|x.feature.isAttribute && x.feature.name == name].feature
+		val feature = pojo.features.findFirst[x|x.feature.name == name].feature
 		return feature ?: pojo.superType?.getAttribute(name)
     }
+
+	def Map<String, List<PojoProperty>> opFeatures(PojoEntity pojo) {
+		if (pojo == null)
+			return newArrayList()
+		val features = pojo.features.filter[x|x.feature.isIsDef].map[feature].toList
+		val se = pojo.superType
+		if (se == null)
+			return features
+		features.addAll(se.isDefFeatures)
+		return features
+	}
+
+	def List<PojoProperty> isEnumDefFeatures(PojoEntity pojo) {
+		if (pojo == null)
+			return newArrayList()
+		val features = pojo.features.filter[x|x.feature.isEnumDef].map[feature].toList
+		val se = pojo.superType
+		if (se == null)
+			return features
+		features.addAll(se.isEnumDefFeatures)
+		return features
+	}
+
+	def List<PojoProperty> isToInitFeatures(PojoEntity pojo) {
+		if (pojo == null)
+			return newArrayList()
+		val features = pojo.features.filter[x|x.feature.isToInit].map[feature].toList
+		val se = pojo.superType
+		if (se == null)
+			return features
+		features.addAll(se.isToInitFeatures)
+		return features
+	}
+
+	def List<PojoProperty> isEnumInitFeatures(PojoEntity pojo) {
+		if (pojo == null)
+			return newArrayList()
+		val features = pojo.features.filter[x|x.feature.isEnumInit].map[feature].toList
+		val se = pojo.superType
+		if (se == null)
+			return features
+		features.addAll(se.isEnumInitFeatures)
+		return features
+	}
 
 	// EnumEntity
     def isFinal(EnumEntity ^enum) {

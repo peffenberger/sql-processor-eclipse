@@ -1177,7 +1177,7 @@ public class TablePojoGenerator {
                         if (preserveForeignKeys.contains(pojo) || preserveForeignKeys.contains("_ALL_")) {
                             if (attribute.getPkTable() != null) {
                                 addedAttributes.put(name, pentry.getValue());
-                                buffer.append(NLINDENT).append(INDENT).append("#UpdateCol(")
+                                buffer.append(NLINDENT).append(INDENT).append("#UpdateColumn(")
                                         .append(columnToCamelCase(attribute.getPkColumn())).append(",")
                                         .append(columnToCamelCase(attribute.getDbName())).append(")");
                             }
@@ -1202,7 +1202,7 @@ public class TablePojoGenerator {
                 }
                 for (Map.Entry<String, PojoAttribute> pentry : addedAttributes.entrySet()) {
                     PojoAttribute attribute = pentry.getValue();
-                    buffer.append(NLINDENT).append(INDENT).append("#CreateCol(").append(pentry.getKey()).append(",")
+                    buffer.append(NLINDENT).append(INDENT).append("#CreateColumn(").append(pentry.getKey()).append(",")
                             .append(columnToCamelCase(attribute.getPkColumn())).append(")");
                     buffer.append(NLINDENT).append(INDENT).append(columnToCamelCase(attribute.getDbName())).append(' ');
                     buffer.append(": ").append(attribute.getClassName());

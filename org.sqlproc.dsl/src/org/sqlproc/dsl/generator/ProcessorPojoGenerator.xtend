@@ -178,6 +178,7 @@ class ProcessorPojoGenerator {
 	«FOR f:e.features.filter(x| isAttribute(x.feature))»
 		«f.feature.compile(f, im, e, ae, getOperatorsSuffix(e))»
 	«ENDFOR»
+	«val toInitFeatures = e.toInitFeatures»«IF !toInitFeatures.empty»«e.compileToInit(toInitFeatures, im, e, ae)»«ENDIF»
 	«FOR f:e.features.filter(x| !isAttribute(x.feature))»«IF f.feature.name.equalsIgnoreCase("hashCode")»«f.feature.compileHashCode(f, im, e, ae)»
 	«ELSEIF f.feature.name.equalsIgnoreCase("equals")»«f.feature.compileEquals(f, im, e, ae)»
 	«ELSEIF f.feature.name.equalsIgnoreCase("toInit")»«f.feature.compileToInit(f, im, e, ae)»
@@ -468,10 +469,10 @@ class ProcessorPojoGenerator {
 		}
 	'''
 	
-	def compileToInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
+	def compileToInit(List<PojoProperty> attrs, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 	
 		public enum Association {
-			«FOR f2:f.attrs SEPARATOR ", "»«f2.name»«ENDFOR»
+			«FOR f2:attrs SEPARATOR ", "»«f2.name»«ENDFOR»
 		}
 	
 		«FOR a:aaf.attributeAnnotations»

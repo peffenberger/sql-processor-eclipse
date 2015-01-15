@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.common.types.JvmType;
@@ -37,7 +36,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getNative <em>Native</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getAttrs <em>Attrs</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getRef <em>Ref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getGref <em>Gref</em>}</li>
@@ -99,16 +97,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
    * @ordered
    */
   protected String native_ = NATIVE_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getAttrs() <em>Attrs</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAttrs()
-   * @generated
-   * @ordered
-   */
-  protected EList<PojoProperty> attrs;
 
   /**
    * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.
@@ -249,20 +237,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
     native_ = newNative;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_PROPERTY__NATIVE, oldNative, native_));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<PojoProperty> getAttrs()
-  {
-    if (attrs == null)
-    {
-      attrs = new EObjectResolvingEList<PojoProperty>(PojoProperty.class, this, ProcessorDslPackage.POJO_PROPERTY__ATTRS);
-    }
-    return attrs;
   }
 
   /**
@@ -492,8 +466,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
         return getName();
       case ProcessorDslPackage.POJO_PROPERTY__NATIVE:
         return getNative();
-      case ProcessorDslPackage.POJO_PROPERTY__ATTRS:
-        return getAttrs();
       case ProcessorDslPackage.POJO_PROPERTY__REF:
         if (resolve) return getRef();
         return basicGetRef();
@@ -533,10 +505,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
       case ProcessorDslPackage.POJO_PROPERTY__NATIVE:
         setNative((String)newValue);
         return;
-      case ProcessorDslPackage.POJO_PROPERTY__ATTRS:
-        getAttrs().clear();
-        getAttrs().addAll((Collection<? extends PojoProperty>)newValue);
-        return;
       case ProcessorDslPackage.POJO_PROPERTY__REF:
         setRef((Entity)newValue);
         return;
@@ -575,9 +543,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
       case ProcessorDslPackage.POJO_PROPERTY__NATIVE:
         setNative(NATIVE_EDEFAULT);
         return;
-      case ProcessorDslPackage.POJO_PROPERTY__ATTRS:
-        getAttrs().clear();
-        return;
       case ProcessorDslPackage.POJO_PROPERTY__REF:
         setRef((Entity)null);
         return;
@@ -613,8 +578,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ProcessorDslPackage.POJO_PROPERTY__NATIVE:
         return NATIVE_EDEFAULT == null ? native_ != null : !NATIVE_EDEFAULT.equals(native_);
-      case ProcessorDslPackage.POJO_PROPERTY__ATTRS:
-        return attrs != null && !attrs.isEmpty();
       case ProcessorDslPackage.POJO_PROPERTY__REF:
         return ref != null;
       case ProcessorDslPackage.POJO_PROPERTY__TYPE:

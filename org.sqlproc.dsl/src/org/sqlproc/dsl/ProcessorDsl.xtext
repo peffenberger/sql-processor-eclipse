@@ -408,13 +408,9 @@ PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {PojoDirectiveOperators} '#Operators' (LPAREN operatorsSuffix=IDENT RPAREN)?
 	| {PojoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
 	| {PojoDirectiveIndex} '#Index' LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveToInit} '#ToInit' LPAREN proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveEnumInit} '#EnumInit' LPAREN proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveIsDef} '#IsDef' LPAREN proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveEnumDef} '#EnumDef' LPAREN proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveToString} '#ToString' LPAREN proplist=DirectiveProperties RPAREN
+//	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
+//	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
+//	| {PojoDirectiveToString} '#ToString' LPAREN proplist=DirectiveProperties RPAREN
 ;
 //PojoEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('discriminator' discriminator=(IDENT|NUMBER)) | (operators='operators' (operatorsSuffix=IDENT)?)| ('serializable' sernum=NUMBER));
 PojoEntityModifier2: ('extends' superType=[PojoEntity|IDENT]);
@@ -438,14 +434,19 @@ PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {PojoPropertyDirectiveDiscriminator} '#Discriminator'
 	| {PojoPropertyDirectiveIndex} '#Index' LPAREN index=NUMBER RPAREN
 	| {PojoPropertyDirectiveVersion} '#Version'
-	| {PojoPropertyDirectiveUpdateCol} '#UpdateCol' LPAREN updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN
-	| {PojoPropertyDirectiveCreateCol} '#CreateCol' LPAREN createColumn1=IDENT COMMA createColumn2=IDENT RPAREN
+	| {PojoPropertyDirectiveUpdateCol} '#UpdateColumn' LPAREN updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN
+	| {PojoPropertyDirectiveCreateCol} '#CreateColumn' LPAREN createColumn1=IDENT COMMA createColumn2=IDENT RPAREN
+	| {PojoPropertyDirectiveToInit} '#ToInit'
+	| {PojoPropertyDirectiveEnumInit} '#EnumInit'
+	| {PojoPropertyDirectiveIsDef} '#IsDef'
+	| {PojoPropertyDirectiveEnumDef} '#EnumDef'
 ;
 
 PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=PojoPropertyDirective*
 	name=IDENT (native = ('_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 
-	(COLON (COLON (COLON (attrs+=[PojoProperty|IDENT])* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
+//	(COLON (COLON (COLON (attrs+=[PojoProperty|IDENT])* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
+	(COLON (COLON (ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
 	(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) (array ?= '[]')?
 	//(modifiers+=PojoPropertyModifier)*
 ;
