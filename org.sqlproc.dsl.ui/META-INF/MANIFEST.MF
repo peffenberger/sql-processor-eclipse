@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SQL Processor Eclipse Plugin UI
 Bundle-Vendor: SQL Processor Team
-Bundle-Version: 1.9.4.qualifier
+Bundle-Version: 1.9.5.qualifier
 Bundle-SymbolicName: org.sqlproc.dsl.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.sqlproc.dsl;visibility:=reexport,
@@ -22,8 +22,7 @@ Import-Package: org.apache.log4j,
  org.eclipse.jdt.launching,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.sqlproc.dsl.ui.quickfix,
- org.sqlproc.dsl.ui.contentassist,
- org.sqlproc.dsl.ui.contentassist.antlr,
- org.sqlproc.dsl.ui.internal
+Export-Package: org.sqlproc.dsl.ui.quickfix,org.sqlproc.dsl.ui.content
+ assist,org.sqlproc.dsl.ui.contentassist.antlr,org.sqlproc.dsl.ui.inte
+ rnal
 Bundle-Activator: org.sqlproc.dsl.ui.internal.ProcessorDslActivator
