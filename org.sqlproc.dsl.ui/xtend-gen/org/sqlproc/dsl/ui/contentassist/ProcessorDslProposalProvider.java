@@ -108,13 +108,46 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   private final ArrayList<String> OPTION_TYPE = CollectionLiterals.<String>newArrayList("OPT", "LOPT", "IOPT", "SOPT", "BOPT", "MOPT");
   
-  private final ArrayList<String> TYPES = CollectionLiterals.<String>newArrayList("int", "integer", "long", "byte", "short", 
-    "float", "double", "character", "char", "string", "str", "time", "date", "datetime", "timestamp", "stamp", 
-    "bool", "boolean", "bigint", "biginteger", "bigdec", "bigdecimal", "bytearr", "bytearray", "bytes", "text", 
-    "blob", "clob", "einteger", "eint", "enumstring", "estring", "fromdate", "todate", "cursor", "other");
+  private final ArrayList<String> TYPES = CollectionLiterals.<String>newArrayList(
+    "int", 
+    "integer", 
+    "long", 
+    "byte", 
+    "short", 
+    "float", 
+    "double", 
+    "character", 
+    "char", 
+    "string", 
+    "str", 
+    "time", 
+    "date", 
+    "datetime", 
+    "timestamp", 
+    "stamp", 
+    "bool", 
+    "boolean", 
+    "bigint", 
+    "biginteger", 
+    "bigdec", 
+    "bigdecimal", 
+    "bytearr", 
+    "bytearray", 
+    "bytes", 
+    "text", 
+    "blob", 
+    "clob", 
+    "einteger", 
+    "eint", 
+    "enumstring", 
+    "estring", 
+    "fromdate", 
+    "todate", 
+    "cursor", 
+    "other");
   
-  private final ArrayList<String> MODIFIERS = CollectionLiterals.<String>newArrayList("any", "null", "notnull", "seq", "seq=", 
-    "idsel", "idsel=", "id", "isDef=", "isCall=", "dtype=", "gtype=", "discr");
+  private final ArrayList<String> MODIFIERS = CollectionLiterals.<String>newArrayList("any", "null", "notnull", "seq", "seq=", "idsel", "idsel=", "id", "isDef=", 
+    "isCall=", "dtype=", "gtype=", "discr");
   
   private final ArrayList<String> F_TYPES = CollectionLiterals.<String>newArrayList("set", "update", "values", "where");
   
@@ -201,7 +234,8 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   public void completeConstant_Name(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     String _prefix = context.getPrefix();
-    boolean _completeUsage = this.completeUsage(model, assignment, context, acceptor, Constants.CONSTANT_USAGE, Constants.CONSTANT_USAGE_EXTENDED, _prefix, false);
+    boolean _completeUsage = this.completeUsage(model, assignment, context, acceptor, Constants.CONSTANT_USAGE, Constants.CONSTANT_USAGE_EXTENDED, _prefix, 
+      false);
     boolean _not = (!_completeUsage);
     if (_not) {
       super.completeConstant_Name(model, assignment, context, acceptor);
@@ -210,8 +244,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   public void completeIdentifier_Name(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     String _prefix = context.getPrefix();
-    boolean _completeUsage = this.completeUsage(model, assignment, context, acceptor, Constants.IDENTIFIER_USAGE, Constants.IDENTIFIER_USAGE_EXTENDED, _prefix, 
-      false);
+    boolean _completeUsage = this.completeUsage(model, assignment, context, acceptor, Constants.IDENTIFIER_USAGE, Constants.IDENTIFIER_USAGE_EXTENDED, _prefix, false);
     boolean _not = (!_completeUsage);
     if (_not) {
       super.completeIdentifier_Name(model, assignment, context, acceptor);
@@ -1787,8 +1820,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
-  private final ArrayList<String> methods = CollectionLiterals.<String>newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", 
-    "enumInit", "index=");
+  private final ArrayList<String> methods = CollectionLiterals.<String>newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", "enumInit", "index=");
   
   public void completePojogenProperty_Methods(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     if ((!(model instanceof PojogenProperty))) {
@@ -2359,6 +2391,16 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       return;
     }
     this.acceptFunctions(model, context, acceptor);
+  }
+  
+  public void completePojogenProperty_DbCheckConstraints(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    boolean _isResolveDb = this.isResolveDb(model);
+    boolean _not = (!_isResolveDb);
+    if (_not) {
+      super.completePojogenProperty_DbCheckConstraints(model, assignment, context, acceptor);
+      return;
+    }
+    this.acceptCheckConstraints(model, context, acceptor);
   }
   
   public PojoEntity getPojoEntity(final Entity baseEntity, final String property) {
