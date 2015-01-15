@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.sqlproc.dsl</groupId>
 	<artifactId>dsl-parent</artifactId>
-	<version>1.9.4-SNAPSHOT</version>
+	<version>1.9.5-SNAPSHOT-SNAPSHOT</version>
 	<packaging>pom</packaging>
     <name>SQL Processor DSL Parent</name>
     
