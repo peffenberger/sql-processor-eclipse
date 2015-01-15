@@ -9766,149 +9766,286 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
-	private ArtifactsElements pArtifacts;
-	private DatabaseCatalogAssignementElements pDatabaseCatalogAssignement;
-	private DatabaseSchemaAssignementElements pDatabaseSchemaAssignement;
-	private DatabaseTypeAssignementElements pDatabaseTypeAssignement;
-	private DatabaseMetaInfoAssignementElements pDatabaseMetaInfoAssignement;
-	private DriverMetaInfoAssignementElements pDriverMetaInfoAssignement;
-	private DriverMethodOutputAssignementElements pDriverMethodOutputAssignement;
-	private SqlTypeAssignementElements pSqlTypeAssignement;
-	private ColumnTypeAssignementElements pColumnTypeAssignement;
-	private ShowColumnTypeAssignementElements pShowColumnTypeAssignement;
-	private TableAssignementElements pTableAssignement;
-	private JoinTableAssignementElements pJoinTableAssignement;
-	private ColumnAssignementElements pColumnAssignement;
-	private ImportAssignementElements pImportAssignement;
-	private ExportAssignementElements pExportAssignement;
-	private InheritanceAssignementElements pInheritanceAssignement;
-	private ManyToManyAssignementElements pManyToManyAssignement;
-	private DebugLevelAssignementElements pDebugLevelAssignement;
-	private ProcedurePojoAssignementElements pProcedurePojoAssignement;
-	private FunctionPojoAssignementElements pFunctionPojoAssignement;
-	private ImplementsAssignementElements pImplementsAssignement;
-	private ExtendsAssignementElements pExtendsAssignement;
-	private ImplementsAssignementGenericsElements pImplementsAssignementGenerics;
-	private ExtendsAssignementGenericsElements pExtendsAssignementGenerics;
-	private PropertyElements pProperty;
-	private DatabasePropertyElements pDatabaseProperty;
-	private PojogenPropertyElements pPojogenProperty;
-	private MetaTypeAssignementElements pMetaTypeAssignement;
-	private MetagenPropertyElements pMetagenProperty;
-	private DaogenPropertyElements pDaogenProperty;
-	private PropertyValueElements pPropertyValue;
-	private PojoDefinitionElements pPojoDefinition;
-	private TableDefinitionElements pTableDefinition;
-	private ProcedureDefinitionElements pProcedureDefinition;
-	private FunctionDefinitionElements pFunctionDefinition;
-	private MetaStatementElements pMetaStatement;
-	private SqlElements pSql;
-	private SqlFragmentElements pSqlFragment;
-	private SqlValueElements pSqlValue;
-	private MetaSqlElements pMetaSql;
-	private IfSqlElements pIfSql;
-	private IfSqlFragmentElements pIfSqlFragment;
-	private IfSqlValueElements pIfSqlValue;
-	private IfMetaSqlElements pIfMetaSql;
-	private IfSqlCondElements pIfSqlCond;
-	private IfSqlBoolElements pIfSqlBool;
-	private OrdSqlElements pOrdSql;
-	private OrdSql2Elements pOrdSql2;
-	private OrdSqlValueElements pOrdSqlValue;
-	private ColumnElements pColumn;
-	private ExtendedColumnElements pExtendedColumn;
-	private ExtendedColumnNameElements pExtendedColumnName;
-	private ConstantElements pConstant;
-	private IdentifierElements pIdentifier;
-	private ConstantOperatorElements pConstantOperator;
-	private IdentifierOperatorElements pIdentifierOperator;
-	private DatabaseColumnElements pDatabaseColumn;
-	private DatabaseTableElements pDatabaseTable;
-	private MappingRuleElements pMappingRule;
-	private MappingElements pMapping;
-	private MappingItemElements pMappingItem;
-	private MappingColumnElements pMappingColumn;
-	private ExtendedMappingItemElements pExtendedMappingItem;
-	private MappingColumnNameElements pMappingColumnName;
-	private OptionalFeatureElements pOptionalFeature;
-	private StatementModifierElements pStatementModifier;
-	private MappingRuleModifierElements pMappingRuleModifier;
-	private MappingItemModifierElements pMappingItemModifier;
-	private OptionalFeatureModifierElements pOptionalFeatureModifier;
-	private ModifierElements pModifier;
-	private TerminalRule tON_OFF;
-	private TerminalRule tSTATEMENT_TYPE;
-	private TerminalRule tMAPPING_TYPE;
-	private TerminalRule tOPTION_TYPE;
-	private TerminalRule tIDENT_DOT;
-	private TerminalRule tIDENT;
-	private TerminalRule tNUMBER;
-	private TerminalRule tESC_CHAR;
-	private TerminalRule tML_COMMENT;
-	private TerminalRule tSL_COMMENT;
-	private TerminalRule tWS;
-	private TerminalRule tAND;
-	private TerminalRule tOR;
-	private TerminalRule tCOLON;
-	private TerminalRule tSEMICOLON;
-	private TerminalRule tSTRING;
-	private TerminalRule tCOMMA;
-	private TerminalRule tMINUS;
-	private TerminalRule tPLUS;
-	private TerminalRule tLPAREN;
-	private TerminalRule tRPAREN;
-	private TerminalRule tLBRACE;
-	private TerminalRule tRBRACE;
-	private TerminalRule tQUESTI;
-	private TerminalRule tNOT;
-	private TerminalRule tBAND;
-	private TerminalRule tBOR;
-	private TerminalRule tHASH;
-	private TerminalRule tAT;
-	private TerminalRule tCARET;
-	private TerminalRule tEQUALS;
-	private TerminalRule tLESS_THAN;
-	private TerminalRule tMORE_THAN;
-	private TerminalRule tPERCENT;
-	private TerminalRule tDOT;
-	private TerminalRule tREST;
-	private TerminalRule tSTRING_VALUE;
-	private FeatureValueElements pFeatureValue;
-	private PojoTypeElements pPojoType;
-	private PackageDeclarationElements pPackageDeclaration;
-	private AnnotationElements pAnnotation;
-	private AnnotationPropertyElements pAnnotationProperty;
-	private EntityElements pEntity;
-	private AnnotatedEntityElements pAnnotatedEntity;
-	private AbstractPojoEntityElements pAbstractPojoEntity;
-	private ImportElements pImport;
-	private ImplementsElements pImplements;
-	private ExtendsElements pExtends;
-	private ImplPackageElements pImplPackage;
-	private PojoEntityModifier1Elements pPojoEntityModifier1;
-	private PojoEntityModifier2Elements pPojoEntityModifier2;
-	private PojoEntityElements pPojoEntity;
-	private PojoAnnotatedPropertyElements pPojoAnnotatedProperty;
-	private PojoPropertyModifierElements pPojoPropertyModifier;
-	private PojoPropertyElements pPojoProperty;
-	private EnumEntityModifier1Elements pEnumEntityModifier1;
-	private EnumEntityModifier2Elements pEnumEntityModifier2;
-	private EnumEntityElements pEnumEntity;
-	private EnumPropertyElements pEnumProperty;
-	private PojoDaoModifierElements pPojoDaoModifier;
-	private PojoDaoElements pPojoDao;
-	private PojoMethodModifierElements pPojoMethodModifier;
-	private PojoMethodElements pPojoMethod;
-	private ToInitMethodElements pToInitMethod;
-	private PojoMethodArgElements pPojoMethodArg;
-	private QualifiedNameWithWildcardElements pQualifiedNameWithWildcard;
-	private QualifiedNameElements pQualifiedName;
+	private final ArtifactsElements pArtifacts;
+	private final DatabaseCatalogAssignementElements pDatabaseCatalogAssignement;
+	private final DatabaseSchemaAssignementElements pDatabaseSchemaAssignement;
+	private final DatabaseTypeAssignementElements pDatabaseTypeAssignement;
+	private final DatabaseMetaInfoAssignementElements pDatabaseMetaInfoAssignement;
+	private final DriverMetaInfoAssignementElements pDriverMetaInfoAssignement;
+	private final DriverMethodOutputAssignementElements pDriverMethodOutputAssignement;
+	private final SqlTypeAssignementElements pSqlTypeAssignement;
+	private final ColumnTypeAssignementElements pColumnTypeAssignement;
+	private final ShowColumnTypeAssignementElements pShowColumnTypeAssignement;
+	private final TableAssignementElements pTableAssignement;
+	private final JoinTableAssignementElements pJoinTableAssignement;
+	private final ColumnAssignementElements pColumnAssignement;
+	private final ImportAssignementElements pImportAssignement;
+	private final ExportAssignementElements pExportAssignement;
+	private final InheritanceAssignementElements pInheritanceAssignement;
+	private final ManyToManyAssignementElements pManyToManyAssignement;
+	private final DebugLevelAssignementElements pDebugLevelAssignement;
+	private final ProcedurePojoAssignementElements pProcedurePojoAssignement;
+	private final FunctionPojoAssignementElements pFunctionPojoAssignement;
+	private final ImplementsAssignementElements pImplementsAssignement;
+	private final ExtendsAssignementElements pExtendsAssignement;
+	private final ImplementsAssignementGenericsElements pImplementsAssignementGenerics;
+	private final ExtendsAssignementGenericsElements pExtendsAssignementGenerics;
+	private final PropertyElements pProperty;
+	private final DatabasePropertyElements pDatabaseProperty;
+	private final PojogenPropertyElements pPojogenProperty;
+	private final MetaTypeAssignementElements pMetaTypeAssignement;
+	private final MetagenPropertyElements pMetagenProperty;
+	private final DaogenPropertyElements pDaogenProperty;
+	private final PropertyValueElements pPropertyValue;
+	private final PojoDefinitionElements pPojoDefinition;
+	private final TableDefinitionElements pTableDefinition;
+	private final ProcedureDefinitionElements pProcedureDefinition;
+	private final FunctionDefinitionElements pFunctionDefinition;
+	private final MetaStatementElements pMetaStatement;
+	private final SqlElements pSql;
+	private final SqlFragmentElements pSqlFragment;
+	private final SqlValueElements pSqlValue;
+	private final MetaSqlElements pMetaSql;
+	private final IfSqlElements pIfSql;
+	private final IfSqlFragmentElements pIfSqlFragment;
+	private final IfSqlValueElements pIfSqlValue;
+	private final IfMetaSqlElements pIfMetaSql;
+	private final IfSqlCondElements pIfSqlCond;
+	private final IfSqlBoolElements pIfSqlBool;
+	private final OrdSqlElements pOrdSql;
+	private final OrdSql2Elements pOrdSql2;
+	private final OrdSqlValueElements pOrdSqlValue;
+	private final ColumnElements pColumn;
+	private final ExtendedColumnElements pExtendedColumn;
+	private final ExtendedColumnNameElements pExtendedColumnName;
+	private final ConstantElements pConstant;
+	private final IdentifierElements pIdentifier;
+	private final ConstantOperatorElements pConstantOperator;
+	private final IdentifierOperatorElements pIdentifierOperator;
+	private final DatabaseColumnElements pDatabaseColumn;
+	private final DatabaseTableElements pDatabaseTable;
+	private final MappingRuleElements pMappingRule;
+	private final MappingElements pMapping;
+	private final MappingItemElements pMappingItem;
+	private final MappingColumnElements pMappingColumn;
+	private final ExtendedMappingItemElements pExtendedMappingItem;
+	private final MappingColumnNameElements pMappingColumnName;
+	private final OptionalFeatureElements pOptionalFeature;
+	private final StatementModifierElements pStatementModifier;
+	private final MappingRuleModifierElements pMappingRuleModifier;
+	private final MappingItemModifierElements pMappingItemModifier;
+	private final OptionalFeatureModifierElements pOptionalFeatureModifier;
+	private final ModifierElements pModifier;
+	private final TerminalRule tON_OFF;
+	private final TerminalRule tSTATEMENT_TYPE;
+	private final TerminalRule tMAPPING_TYPE;
+	private final TerminalRule tOPTION_TYPE;
+	private final TerminalRule tIDENT_DOT;
+	private final TerminalRule tIDENT;
+	private final TerminalRule tNUMBER;
+	private final TerminalRule tESC_CHAR;
+	private final TerminalRule tML_COMMENT;
+	private final TerminalRule tSL_COMMENT;
+	private final TerminalRule tWS;
+	private final TerminalRule tAND;
+	private final TerminalRule tOR;
+	private final TerminalRule tCOLON;
+	private final TerminalRule tSEMICOLON;
+	private final TerminalRule tSTRING;
+	private final TerminalRule tCOMMA;
+	private final TerminalRule tMINUS;
+	private final TerminalRule tPLUS;
+	private final TerminalRule tLPAREN;
+	private final TerminalRule tRPAREN;
+	private final TerminalRule tLBRACE;
+	private final TerminalRule tRBRACE;
+	private final TerminalRule tQUESTI;
+	private final TerminalRule tNOT;
+	private final TerminalRule tBAND;
+	private final TerminalRule tBOR;
+	private final TerminalRule tHASH;
+	private final TerminalRule tAT;
+	private final TerminalRule tCARET;
+	private final TerminalRule tEQUALS;
+	private final TerminalRule tLESS_THAN;
+	private final TerminalRule tMORE_THAN;
+	private final TerminalRule tPERCENT;
+	private final TerminalRule tDOT;
+	private final TerminalRule tREST;
+	private final TerminalRule tSTRING_VALUE;
+	private final FeatureValueElements pFeatureValue;
+	private final PojoTypeElements pPojoType;
+	private final PackageDeclarationElements pPackageDeclaration;
+	private final AnnotationElements pAnnotation;
+	private final AnnotationPropertyElements pAnnotationProperty;
+	private final EntityElements pEntity;
+	private final AnnotatedEntityElements pAnnotatedEntity;
+	private final AbstractPojoEntityElements pAbstractPojoEntity;
+	private final ImportElements pImport;
+	private final ImplementsElements pImplements;
+	private final ExtendsElements pExtends;
+	private final ImplPackageElements pImplPackage;
+	private final PojoEntityModifier1Elements pPojoEntityModifier1;
+	private final PojoEntityModifier2Elements pPojoEntityModifier2;
+	private final PojoEntityElements pPojoEntity;
+	private final PojoAnnotatedPropertyElements pPojoAnnotatedProperty;
+	private final PojoPropertyModifierElements pPojoPropertyModifier;
+	private final PojoPropertyElements pPojoProperty;
+	private final EnumEntityModifier1Elements pEnumEntityModifier1;
+	private final EnumEntityModifier2Elements pEnumEntityModifier2;
+	private final EnumEntityElements pEnumEntity;
+	private final EnumPropertyElements pEnumProperty;
+	private final PojoDaoModifierElements pPojoDaoModifier;
+	private final PojoDaoElements pPojoDao;
+	private final PojoMethodModifierElements pPojoMethodModifier;
+	private final PojoMethodElements pPojoMethod;
+	private final ToInitMethodElements pToInitMethod;
+	private final PojoMethodArgElements pPojoMethodArg;
+	private final QualifiedNameWithWildcardElements pQualifiedNameWithWildcard;
+	private final QualifiedNameElements pQualifiedName;
 	
 	private final Grammar grammar;
 
 	@Inject
 	public ProcessorDslGrammarAccess(GrammarProvider grammarProvider) {
 		this.grammar = internalFindGrammar(grammarProvider);
+		this.pArtifacts = new ArtifactsElements();
+		this.pDatabaseCatalogAssignement = new DatabaseCatalogAssignementElements();
+		this.pDatabaseSchemaAssignement = new DatabaseSchemaAssignementElements();
+		this.pDatabaseTypeAssignement = new DatabaseTypeAssignementElements();
+		this.pDatabaseMetaInfoAssignement = new DatabaseMetaInfoAssignementElements();
+		this.pDriverMetaInfoAssignement = new DriverMetaInfoAssignementElements();
+		this.pDriverMethodOutputAssignement = new DriverMethodOutputAssignementElements();
+		this.pSqlTypeAssignement = new SqlTypeAssignementElements();
+		this.pColumnTypeAssignement = new ColumnTypeAssignementElements();
+		this.pShowColumnTypeAssignement = new ShowColumnTypeAssignementElements();
+		this.pTableAssignement = new TableAssignementElements();
+		this.pJoinTableAssignement = new JoinTableAssignementElements();
+		this.pColumnAssignement = new ColumnAssignementElements();
+		this.pImportAssignement = new ImportAssignementElements();
+		this.pExportAssignement = new ExportAssignementElements();
+		this.pInheritanceAssignement = new InheritanceAssignementElements();
+		this.pManyToManyAssignement = new ManyToManyAssignementElements();
+		this.pDebugLevelAssignement = new DebugLevelAssignementElements();
+		this.pProcedurePojoAssignement = new ProcedurePojoAssignementElements();
+		this.pFunctionPojoAssignement = new FunctionPojoAssignementElements();
+		this.pImplementsAssignement = new ImplementsAssignementElements();
+		this.pExtendsAssignement = new ExtendsAssignementElements();
+		this.pImplementsAssignementGenerics = new ImplementsAssignementGenericsElements();
+		this.pExtendsAssignementGenerics = new ExtendsAssignementGenericsElements();
+		this.pProperty = new PropertyElements();
+		this.pDatabaseProperty = new DatabasePropertyElements();
+		this.pPojogenProperty = new PojogenPropertyElements();
+		this.pMetaTypeAssignement = new MetaTypeAssignementElements();
+		this.pMetagenProperty = new MetagenPropertyElements();
+		this.pDaogenProperty = new DaogenPropertyElements();
+		this.pPropertyValue = new PropertyValueElements();
+		this.pPojoDefinition = new PojoDefinitionElements();
+		this.pTableDefinition = new TableDefinitionElements();
+		this.pProcedureDefinition = new ProcedureDefinitionElements();
+		this.pFunctionDefinition = new FunctionDefinitionElements();
+		this.pMetaStatement = new MetaStatementElements();
+		this.pSql = new SqlElements();
+		this.pSqlFragment = new SqlFragmentElements();
+		this.pSqlValue = new SqlValueElements();
+		this.pMetaSql = new MetaSqlElements();
+		this.pIfSql = new IfSqlElements();
+		this.pIfSqlFragment = new IfSqlFragmentElements();
+		this.pIfSqlValue = new IfSqlValueElements();
+		this.pIfMetaSql = new IfMetaSqlElements();
+		this.pIfSqlCond = new IfSqlCondElements();
+		this.pIfSqlBool = new IfSqlBoolElements();
+		this.pOrdSql = new OrdSqlElements();
+		this.pOrdSql2 = new OrdSql2Elements();
+		this.pOrdSqlValue = new OrdSqlValueElements();
+		this.pColumn = new ColumnElements();
+		this.pExtendedColumn = new ExtendedColumnElements();
+		this.pExtendedColumnName = new ExtendedColumnNameElements();
+		this.pConstant = new ConstantElements();
+		this.pIdentifier = new IdentifierElements();
+		this.pConstantOperator = new ConstantOperatorElements();
+		this.pIdentifierOperator = new IdentifierOperatorElements();
+		this.pDatabaseColumn = new DatabaseColumnElements();
+		this.pDatabaseTable = new DatabaseTableElements();
+		this.pMappingRule = new MappingRuleElements();
+		this.pMapping = new MappingElements();
+		this.pMappingItem = new MappingItemElements();
+		this.pMappingColumn = new MappingColumnElements();
+		this.pExtendedMappingItem = new ExtendedMappingItemElements();
+		this.pMappingColumnName = new MappingColumnNameElements();
+		this.pOptionalFeature = new OptionalFeatureElements();
+		this.pStatementModifier = new StatementModifierElements();
+		this.pMappingRuleModifier = new MappingRuleModifierElements();
+		this.pMappingItemModifier = new MappingItemModifierElements();
+		this.pOptionalFeatureModifier = new OptionalFeatureModifierElements();
+		this.pModifier = new ModifierElements();
+		this.tON_OFF = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ON_OFF");
+		this.tSTATEMENT_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STATEMENT_TYPE");
+		this.tMAPPING_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MAPPING_TYPE");
+		this.tOPTION_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OPTION_TYPE");
+		this.tIDENT_DOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENT_DOT");
+		this.tIDENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENT");
+		this.tNUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NUMBER");
+		this.tESC_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESC_CHAR");
+		this.tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT");
+		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT");
+		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS");
+		this.tAND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "AND");
+		this.tOR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OR");
+		this.tCOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COLON");
+		this.tSEMICOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SEMICOLON");
+		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING");
+		this.tCOMMA = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COMMA");
+		this.tMINUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MINUS");
+		this.tPLUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PLUS");
+		this.tLPAREN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LPAREN");
+		this.tRPAREN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "RPAREN");
+		this.tLBRACE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LBRACE");
+		this.tRBRACE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "RBRACE");
+		this.tQUESTI = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "QUESTI");
+		this.tNOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NOT");
+		this.tBAND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BAND");
+		this.tBOR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BOR");
+		this.tHASH = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HASH");
+		this.tAT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "AT");
+		this.tCARET = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "CARET");
+		this.tEQUALS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "EQUALS");
+		this.tLESS_THAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LESS_THAN");
+		this.tMORE_THAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MORE_THAN");
+		this.tPERCENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PERCENT");
+		this.tDOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOT");
+		this.tREST = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "REST");
+		this.tSTRING_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING_VALUE");
+		this.pFeatureValue = new FeatureValueElements();
+		this.pPojoType = new PojoTypeElements();
+		this.pPackageDeclaration = new PackageDeclarationElements();
+		this.pAnnotation = new AnnotationElements();
+		this.pAnnotationProperty = new AnnotationPropertyElements();
+		this.pEntity = new EntityElements();
+		this.pAnnotatedEntity = new AnnotatedEntityElements();
+		this.pAbstractPojoEntity = new AbstractPojoEntityElements();
+		this.pImport = new ImportElements();
+		this.pImplements = new ImplementsElements();
+		this.pExtends = new ExtendsElements();
+		this.pImplPackage = new ImplPackageElements();
+		this.pPojoEntityModifier1 = new PojoEntityModifier1Elements();
+		this.pPojoEntityModifier2 = new PojoEntityModifier2Elements();
+		this.pPojoEntity = new PojoEntityElements();
+		this.pPojoAnnotatedProperty = new PojoAnnotatedPropertyElements();
+		this.pPojoPropertyModifier = new PojoPropertyModifierElements();
+		this.pPojoProperty = new PojoPropertyElements();
+		this.pEnumEntityModifier1 = new EnumEntityModifier1Elements();
+		this.pEnumEntityModifier2 = new EnumEntityModifier2Elements();
+		this.pEnumEntity = new EnumEntityElements();
+		this.pEnumProperty = new EnumPropertyElements();
+		this.pPojoDaoModifier = new PojoDaoModifierElements();
+		this.pPojoDao = new PojoDaoElements();
+		this.pPojoMethodModifier = new PojoMethodModifierElements();
+		this.pPojoMethod = new PojoMethodElements();
+		this.pToInitMethod = new ToInitMethodElements();
+		this.pPojoMethodArg = new PojoMethodArgElements();
+		this.pQualifiedNameWithWildcard = new QualifiedNameWithWildcardElements();
+		this.pQualifiedName = new QualifiedNameElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -9939,7 +10076,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	procedures+=ProcedureDefinition WS* | functions+=FunctionDefinition WS* | statements+=MetaStatement WS* |
 	//	mappings+=MappingRule WS* | features+=OptionalFeature WS* | pojoPackages+=PackageDeclaration WS*)*;
 	public ArtifactsElements getArtifactsAccess() {
-		return (pArtifacts != null) ? pArtifacts : (pArtifacts = new ArtifactsElements());
+		return pArtifacts;
 	}
 	
 	public ParserRule getArtifactsRule() {
@@ -9949,7 +10086,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//DatabaseCatalogAssignement:
 	//	dbCatalog=PropertyValue;
 	public DatabaseCatalogAssignementElements getDatabaseCatalogAssignementAccess() {
-		return (pDatabaseCatalogAssignement != null) ? pDatabaseCatalogAssignement : (pDatabaseCatalogAssignement = new DatabaseCatalogAssignementElements());
+		return pDatabaseCatalogAssignement;
 	}
 	
 	public ParserRule getDatabaseCatalogAssignementRule() {
@@ -9959,7 +10096,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//DatabaseSchemaAssignement:
 	//	dbSchema=PropertyValue;
 	public DatabaseSchemaAssignementElements getDatabaseSchemaAssignementAccess() {
-		return (pDatabaseSchemaAssignement != null) ? pDatabaseSchemaAssignement : (pDatabaseSchemaAssignement = new DatabaseSchemaAssignementElements());
+		return pDatabaseSchemaAssignement;
 	}
 	
 	public ParserRule getDatabaseSchemaAssignementRule() {
@@ -9969,7 +10106,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//DatabaseTypeAssignement:
 	//	dbType=IDENT;
 	public DatabaseTypeAssignementElements getDatabaseTypeAssignementAccess() {
-		return (pDatabaseTypeAssignement != null) ? pDatabaseTypeAssignement : (pDatabaseTypeAssignement = new DatabaseTypeAssignementElements());
+		return pDatabaseTypeAssignement;
 	}
 	
 	public ParserRule getDatabaseTypeAssignementRule() {
@@ -9979,7 +10116,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//DatabaseMetaInfoAssignement:
 	//	dbMetaInfo=PropertyValue;
 	public DatabaseMetaInfoAssignementElements getDatabaseMetaInfoAssignementAccess() {
-		return (pDatabaseMetaInfoAssignement != null) ? pDatabaseMetaInfoAssignement : (pDatabaseMetaInfoAssignement = new DatabaseMetaInfoAssignementElements());
+		return pDatabaseMetaInfoAssignement;
 	}
 	
 	public ParserRule getDatabaseMetaInfoAssignementRule() {
@@ -9989,7 +10126,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//DriverMetaInfoAssignement:
 	//	dbDriverInfo=PropertyValue;
 	public DriverMetaInfoAssignementElements getDriverMetaInfoAssignementAccess() {
-		return (pDriverMetaInfoAssignement != null) ? pDriverMetaInfoAssignement : (pDriverMetaInfoAssignement = new DriverMetaInfoAssignementElements());
+		return pDriverMetaInfoAssignement;
 	}
 	
 	public ParserRule getDriverMetaInfoAssignementRule() {
@@ -9999,7 +10136,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//DriverMethodOutputAssignement:
 	//	driverMethod=IDENT "->" callOutput=PropertyValue;
 	public DriverMethodOutputAssignementElements getDriverMethodOutputAssignementAccess() {
-		return (pDriverMethodOutputAssignement != null) ? pDriverMethodOutputAssignement : (pDriverMethodOutputAssignement = new DriverMethodOutputAssignementElements());
+		return pDriverMethodOutputAssignement;
 	}
 	
 	public ParserRule getDriverMethodOutputAssignementRule() {
@@ -10009,7 +10146,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//SqlTypeAssignement:
 	//	typeName=IDENT (LPAREN size=NUMBER RPAREN)? "->" type=PojoType;
 	public SqlTypeAssignementElements getSqlTypeAssignementAccess() {
-		return (pSqlTypeAssignement != null) ? pSqlTypeAssignement : (pSqlTypeAssignement = new SqlTypeAssignementElements());
+		return pSqlTypeAssignement;
 	}
 	
 	public ParserRule getSqlTypeAssignementRule() {
@@ -10019,7 +10156,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ColumnTypeAssignement:
 	//	dbColumn=IDENT "->" type=PojoType;
 	public ColumnTypeAssignementElements getColumnTypeAssignementAccess() {
-		return (pColumnTypeAssignement != null) ? pColumnTypeAssignement : (pColumnTypeAssignement = new ColumnTypeAssignementElements());
+		return pColumnTypeAssignement;
 	}
 	
 	public ParserRule getColumnTypeAssignementRule() {
@@ -10029,7 +10166,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ShowColumnTypeAssignement:
 	//	dbColumn=IDENT "->" type=PropertyValue;
 	public ShowColumnTypeAssignementElements getShowColumnTypeAssignementAccess() {
-		return (pShowColumnTypeAssignement != null) ? pShowColumnTypeAssignement : (pShowColumnTypeAssignement = new ShowColumnTypeAssignementElements());
+		return pShowColumnTypeAssignement;
 	}
 	
 	public ParserRule getShowColumnTypeAssignementRule() {
@@ -10039,7 +10176,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//TableAssignement:
 	//	dbTable=IDENT "->" newName=IDENT;
 	public TableAssignementElements getTableAssignementAccess() {
-		return (pTableAssignement != null) ? pTableAssignement : (pTableAssignement = new TableAssignementElements());
+		return pTableAssignement;
 	}
 	
 	public ParserRule getTableAssignementRule() {
@@ -10049,7 +10186,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//JoinTableAssignement:
 	//	dbTable=IDENT ("->" dbTables+=IDENT)+;
 	public JoinTableAssignementElements getJoinTableAssignementAccess() {
-		return (pJoinTableAssignement != null) ? pJoinTableAssignement : (pJoinTableAssignement = new JoinTableAssignementElements());
+		return pJoinTableAssignement;
 	}
 	
 	public ParserRule getJoinTableAssignementRule() {
@@ -10059,7 +10196,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ColumnAssignement:
 	//	dbColumn=IDENT "->" newName=IDENT;
 	public ColumnAssignementElements getColumnAssignementAccess() {
-		return (pColumnAssignement != null) ? pColumnAssignement : (pColumnAssignement = new ColumnAssignementElements());
+		return pColumnAssignement;
 	}
 	
 	public ParserRule getColumnAssignementRule() {
@@ -10069,7 +10206,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ImportAssignement:
 	//	dbColumn=IDENT "->" pkTable=IDENT ("->" pkColumn=IDENT)?;
 	public ImportAssignementElements getImportAssignementAccess() {
-		return (pImportAssignement != null) ? pImportAssignement : (pImportAssignement = new ImportAssignementElements());
+		return pImportAssignement;
 	}
 	
 	public ParserRule getImportAssignementRule() {
@@ -10079,7 +10216,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ExportAssignement:
 	//	dbColumn=IDENT "->" fkTable=IDENT ("->" fkColumn=IDENT)?;
 	public ExportAssignementElements getExportAssignementAccess() {
-		return (pExportAssignement != null) ? pExportAssignement : (pExportAssignement = new ExportAssignementElements());
+		return pExportAssignement;
 	}
 	
 	public ParserRule getExportAssignementRule() {
@@ -10089,7 +10226,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//InheritanceAssignement:
 	//	discriminator=IDENT "->" dbTable=IDENT ("->" dbColumns+=IDENT)+;
 	public InheritanceAssignementElements getInheritanceAssignementAccess() {
-		return (pInheritanceAssignement != null) ? pInheritanceAssignement : (pInheritanceAssignement = new InheritanceAssignementElements());
+		return pInheritanceAssignement;
 	}
 	
 	public ParserRule getInheritanceAssignementRule() {
@@ -10099,7 +10236,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ManyToManyAssignement:
 	//	pkColumn=IDENT "->" pkTable=IDENT ("->" fkColumn=IDENT)?;
 	public ManyToManyAssignementElements getManyToManyAssignementAccess() {
-		return (pManyToManyAssignement != null) ? pManyToManyAssignement : (pManyToManyAssignement = new ManyToManyAssignementElements());
+		return pManyToManyAssignement;
 	}
 	
 	public ParserRule getManyToManyAssignementRule() {
@@ -10109,7 +10246,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//DebugLevelAssignement:
 	//	debug=IDENT (WS+ scope=PropertyValue)?;
 	public DebugLevelAssignementElements getDebugLevelAssignementAccess() {
-		return (pDebugLevelAssignement != null) ? pDebugLevelAssignement : (pDebugLevelAssignement = new DebugLevelAssignementElements());
+		return pDebugLevelAssignement;
 	}
 	
 	public ParserRule getDebugLevelAssignementRule() {
@@ -10119,7 +10256,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ProcedurePojoAssignement:
 	//	dbProcedure=IDENT "->" pojo=PojoType;
 	public ProcedurePojoAssignementElements getProcedurePojoAssignementAccess() {
-		return (pProcedurePojoAssignement != null) ? pProcedurePojoAssignement : (pProcedurePojoAssignement = new ProcedurePojoAssignementElements());
+		return pProcedurePojoAssignement;
 	}
 	
 	public ParserRule getProcedurePojoAssignementRule() {
@@ -10129,7 +10266,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//FunctionPojoAssignement:
 	//	dbFunction=IDENT "->" pojo=PojoType;
 	public FunctionPojoAssignementElements getFunctionPojoAssignementAccess() {
-		return (pFunctionPojoAssignement != null) ? pFunctionPojoAssignement : (pFunctionPojoAssignement = new FunctionPojoAssignementElements());
+		return pFunctionPojoAssignement;
 	}
 	
 	public ParserRule getFunctionPojoAssignementRule() {
@@ -10140,7 +10277,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
 	//	dbNotTables+=IDENT)+)?;
 	public ImplementsAssignementElements getImplementsAssignementAccess() {
-		return (pImplementsAssignement != null) ? pImplementsAssignement : (pImplementsAssignement = new ImplementsAssignementElements());
+		return pImplementsAssignement;
 	}
 	
 	public ParserRule getImplementsAssignementRule() {
@@ -10150,7 +10287,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ExtendsAssignement:
 	//	toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 	public ExtendsAssignementElements getExtendsAssignementAccess() {
-		return (pExtendsAssignement != null) ? pExtendsAssignement : (pExtendsAssignement = new ExtendsAssignementElements());
+		return pExtendsAssignement;
 	}
 	
 	public ParserRule getExtendsAssignementRule() {
@@ -10161,7 +10298,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
 	//	dbNotTables+=IDENT)+)?;
 	public ImplementsAssignementGenericsElements getImplementsAssignementGenericsAccess() {
-		return (pImplementsAssignementGenerics != null) ? pImplementsAssignementGenerics : (pImplementsAssignementGenerics = new ImplementsAssignementGenericsElements());
+		return pImplementsAssignementGenerics;
 	}
 	
 	public ParserRule getImplementsAssignementGenericsRule() {
@@ -10171,7 +10308,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ExtendsAssignementGenerics:
 	//	toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 	public ExtendsAssignementGenericsElements getExtendsAssignementGenericsAccess() {
-		return (pExtendsAssignementGenerics != null) ? pExtendsAssignementGenerics : (pExtendsAssignementGenerics = new ExtendsAssignementGenericsElements());
+		return pExtendsAssignementGenerics;
 	}
 	
 	public ParserRule getExtendsAssignementGenericsRule() {
@@ -10184,7 +10321,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue | name="replace-all-replacement" WS+
 	//	replaceId=IDENT WS+ replacement=PropertyValue) SEMICOLON;
 	public PropertyElements getPropertyAccess() {
-		return (pProperty != null) ? pProperty : (pProperty = new PropertyElements());
+		return pProperty;
 	}
 	
 	public ParserRule getPropertyRule() {
@@ -10203,7 +10340,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
 	//	debug=DebugLevelAssignement | name="take-comments" | name="lowercase-names" | name="uppercase-names";
 	public DatabasePropertyElements getDatabasePropertyAccess() {
-		return (pDatabaseProperty != null) ? pDatabaseProperty : (pDatabaseProperty = new DatabasePropertyElements());
+		return pDatabaseProperty;
 	}
 	
 	public ParserRule getDatabasePropertyRule() {
@@ -10242,7 +10379,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	activeFilter=PropertyValue | name="package" WS+ pckg=PropertyValue | name="enum-for-check-constraints" WS+
 	//	enumName=IDENT (WS+ dbCheckConstraints+=IDENT)+;
 	public PojogenPropertyElements getPojogenPropertyAccess() {
-		return (pPojogenProperty != null) ? pPojogenProperty : (pPojogenProperty = new PojogenPropertyElements());
+		return pPojogenProperty;
 	}
 	
 	public ParserRule getPojogenPropertyRule() {
@@ -10252,7 +10389,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//MetaTypeAssignement:
 	//	dbColumn=IDENT "->" type=IDENT ("->" extension=IDENT)?;
 	public MetaTypeAssignementElements getMetaTypeAssignementAccess() {
-		return (pMetaTypeAssignement != null) ? pMetaTypeAssignement : (pMetaTypeAssignement = new MetaTypeAssignementElements());
+		return pMetaTypeAssignement;
 	}
 	
 	public ParserRule getMetaTypeAssignementRule() {
@@ -10274,7 +10411,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="optimize-insert" (WS+ dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+
 	//	optionalFeatures+=IDENT)+ | name="active-filter" WS+ activeFilter=PropertyValue;
 	public MetagenPropertyElements getMetagenPropertyAccess() {
-		return (pMetagenProperty != null) ? pMetagenProperty : (pMetagenProperty = new MetagenPropertyElements());
+		return pMetagenProperty;
 	}
 	
 	public ParserRule getMetagenPropertyRule() {
@@ -10291,7 +10428,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=PropertyValue | name="package" WS+
 	//	pckg=PropertyValue;
 	public DaogenPropertyElements getDaogenPropertyAccess() {
-		return (pDaogenProperty != null) ? pDaogenProperty : (pDaogenProperty = new DaogenPropertyElements());
+		return pDaogenProperty;
 	}
 	
 	public ParserRule getDaogenPropertyRule() {
@@ -10306,7 +10443,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)* |
 	//	STRING_VALUE;
 	public PropertyValueElements getPropertyValueAccess() {
-		return (pPropertyValue != null) ? pPropertyValue : (pPropertyValue = new PropertyValueElements());
+		return pPropertyValue;
 	}
 	
 	public ParserRule getPropertyValueRule() {
@@ -10316,7 +10453,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//PojoDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"pojo" name=IDENT (class=(IDENT | IDENT_DOT) | COLON classx=[jvmTypes::JvmType|QualifiedName]) SEMICOLON;
 	public PojoDefinitionElements getPojoDefinitionAccess() {
-		return (pPojoDefinition != null) ? pPojoDefinition : (pPojoDefinition = new PojoDefinitionElements());
+		return pPojoDefinition;
 	}
 	
 	public ParserRule getPojoDefinitionRule() {
@@ -10326,7 +10463,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//TableDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"table" name=IDENT table=IDENT SEMICOLON;
 	public TableDefinitionElements getTableDefinitionAccess() {
-		return (pTableDefinition != null) ? pTableDefinition : (pTableDefinition = new TableDefinitionElements());
+		return pTableDefinition;
 	}
 	
 	public ParserRule getTableDefinitionRule() {
@@ -10336,7 +10473,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ProcedureDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"procedure" name=IDENT table=IDENT SEMICOLON;
 	public ProcedureDefinitionElements getProcedureDefinitionAccess() {
-		return (pProcedureDefinition != null) ? pProcedureDefinition : (pProcedureDefinition = new ProcedureDefinitionElements());
+		return pProcedureDefinition;
 	}
 	
 	public ParserRule getProcedureDefinitionRule() {
@@ -10346,7 +10483,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//FunctionDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"function" name=IDENT table=IDENT SEMICOLON;
 	public FunctionDefinitionElements getFunctionDefinitionAccess() {
-		return (pFunctionDefinition != null) ? pFunctionDefinition : (pFunctionDefinition = new FunctionDefinitionElements());
+		return pFunctionDefinition;
 	}
 	
 	public ParserRule getFunctionDefinitionRule() {
@@ -10356,7 +10493,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//MetaStatement:
 	//	name=IDENT LPAREN type=STATEMENT_TYPE (COMMA modifiers+=StatementModifier)* RPAREN EQUALS statement=Sql SEMICOLON;
 	public MetaStatementElements getMetaStatementAccess() {
-		return (pMetaStatement != null) ? pMetaStatement : (pMetaStatement = new MetaStatementElements());
+		return pMetaStatement;
 	}
 	
 	public ParserRule getMetaStatementRule() {
@@ -10366,7 +10503,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//Sql:
 	//	sqls+=SqlFragment+;
 	public SqlElements getSqlAccess() {
-		return (pSql != null) ? pSql : (pSql = new SqlElements());
+		return pSql;
 	}
 	
 	public ParserRule getSqlRule() {
@@ -10378,7 +10515,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT
 	//	dbtab=DatabaseTable | dbcol=DatabaseColumn);
 	public SqlFragmentElements getSqlFragmentAccess() {
-		return (pSqlFragment != null) ? pSqlFragment : (pSqlFragment = new SqlFragmentElements());
+		return pSqlFragment;
 	}
 	
 	public ParserRule getSqlFragmentRule() {
@@ -10393,7 +10530,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	NOT | BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
 	//	| MAPPING_TYPE | OPTION_TYPE)*;
 	public SqlValueElements getSqlValueAccess() {
-		return (pSqlValue != null) ? pSqlValue : (pSqlValue = new SqlValueElements());
+		return pSqlValue;
 	}
 	
 	public ParserRule getSqlValueRule() {
@@ -10405,7 +10542,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH NUMBER
 	//	ord=OrdSql;
 	public MetaSqlElements getMetaSqlAccess() {
-		return (pMetaSql != null) ? pMetaSql : (pMetaSql = new MetaSqlElements());
+		return pMetaSql;
 	}
 	
 	public ParserRule getMetaSqlRule() {
@@ -10415,7 +10552,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//IfSql:
 	//	sqls+=IfSqlFragment+;
 	public IfSqlElements getIfSqlAccess() {
-		return (pIfSql != null) ? pIfSql : (pIfSql = new IfSqlElements());
+		return pIfSql;
 	}
 	
 	public ParserRule getIfSqlRule() {
@@ -10427,7 +10564,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | PERCENT (PERCENT dbtab=DatabaseTable |
 	//	dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE;
 	public IfSqlFragmentElements getIfSqlFragmentAccess() {
-		return (pIfSqlFragment != null) ? pIfSqlFragment : (pIfSqlFragment = new IfSqlFragmentElements());
+		return pIfSqlFragment;
 	}
 	
 	public ParserRule getIfSqlFragmentRule() {
@@ -10442,7 +10579,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	| NOT | BAND | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
 	//	MAPPING_TYPE | OPTION_TYPE)*;
 	public IfSqlValueElements getIfSqlValueAccess() {
-		return (pIfSqlValue != null) ? pIfSqlValue : (pIfSqlValue = new IfSqlValueElements());
+		return pIfSqlValue;
 	}
 	
 	public ParserRule getIfSqlValueRule() {
@@ -10453,7 +10590,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
 	//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)*;
 	public IfMetaSqlElements getIfMetaSqlAccess() {
-		return (pIfMetaSql != null) ? pIfMetaSql : (pIfMetaSql = new IfMetaSqlElements());
+		return pIfMetaSql;
 	}
 	
 	public ParserRule getIfMetaSqlRule() {
@@ -10463,7 +10600,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//IfSqlCond:
 	//	WS* bool1=IfSqlBool WS* (oper+=(AND | OR) WS* bool2+=IfSqlBool WS*)*;
 	public IfSqlCondElements getIfSqlCondAccess() {
-		return (pIfSqlCond != null) ? pIfSqlCond : (pIfSqlCond = new IfSqlCondElements());
+		return pIfSqlCond;
 	}
 	
 	public ParserRule getIfSqlCondRule() {
@@ -10473,7 +10610,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//IfSqlBool:
 	//	not?=NOT? STRING cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN;
 	public IfSqlBoolElements getIfSqlBoolAccess() {
-		return (pIfSqlBool != null) ? pIfSqlBool : (pIfSqlBool = new IfSqlBoolElements());
+		return pIfSqlBool;
 	}
 	
 	public ParserRule getIfSqlBoolRule() {
@@ -10483,7 +10620,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//OrdSql:
 	//	sqls+=OrdSql2+;
 	public OrdSqlElements getOrdSqlAccess() {
-		return (pOrdSql != null) ? pOrdSql : (pOrdSql = new OrdSqlElements());
+		return pOrdSql;
 	}
 	
 	public ParserRule getOrdSqlRule() {
@@ -10493,7 +10630,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//OrdSql2:
 	//	value=OrdSqlValue | STRING cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn;
 	public OrdSql2Elements getOrdSql2Access() {
-		return (pOrdSql2 != null) ? pOrdSql2 : (pOrdSql2 = new OrdSql2Elements());
+		return pOrdSql2;
 	}
 	
 	public ParserRule getOrdSql2Rule() {
@@ -10508,7 +10645,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	RPAREN | LBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR |
 	//	ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*;
 	public OrdSqlValueElements getOrdSqlValueAccess() {
-		return (pOrdSqlValue != null) ? pOrdSqlValue : (pOrdSqlValue = new OrdSqlValueElements());
+		return pOrdSqlValue;
 	}
 	
 	public ParserRule getOrdSqlValueRule() {
@@ -10518,7 +10655,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//Column:
 	//	columns+=ExtendedColumn => columns+=ExtendedColumn*;
 	public ColumnElements getColumnAccess() {
-		return (pColumn != null) ? pColumn : (pColumn = new ColumnElements());
+		return pColumn;
 	}
 	
 	public ParserRule getColumnRule() {
@@ -10528,7 +10665,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ExtendedColumn:
 	//	col=ExtendedColumnName (LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
 	public ExtendedColumnElements getExtendedColumnAccess() {
-		return (pExtendedColumn != null) ? pExtendedColumn : (pExtendedColumn = new ExtendedColumnElements());
+		return pExtendedColumn;
 	}
 	
 	public ParserRule getExtendedColumnRule() {
@@ -10538,7 +10675,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ExtendedColumnName:
 	//	name=(IDENT | NUMBER | IDENT_DOT);
 	public ExtendedColumnNameElements getExtendedColumnNameAccess() {
-		return (pExtendedColumnName != null) ? pExtendedColumnName : (pExtendedColumnName = new ExtendedColumnNameElements());
+		return pExtendedColumnName;
 	}
 	
 	public ParserRule getExtendedColumnNameRule() {
@@ -10548,7 +10685,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//Constant:
 	//	case=(PLUS | MINUS)? name=(IDENT | IDENT_DOT) (LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
 	public ConstantElements getConstantAccess() {
-		return (pConstant != null) ? pConstant : (pConstant = new ConstantElements());
+		return pConstant;
 	}
 	
 	public ParserRule getConstantRule() {
@@ -10559,7 +10696,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | NUMBER | IDENT_DOT) (LPAREN
 	//	modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
 	public IdentifierElements getIdentifierAccess() {
-		return (pIdentifier != null) ? pIdentifier : (pIdentifier = new IdentifierElements());
+		return pIdentifier;
 	}
 	
 	public ParserRule getIdentifierRule() {
@@ -10569,7 +10706,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ConstantOperator:
 	//	name=(IDENT | EQUALS);
 	public ConstantOperatorElements getConstantOperatorAccess() {
-		return (pConstantOperator != null) ? pConstantOperator : (pConstantOperator = new ConstantOperatorElements());
+		return pConstantOperator;
 	}
 	
 	public ParserRule getConstantOperatorRule() {
@@ -10579,7 +10716,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//IdentifierOperator:
 	//	name=(IDENT | EQUALS);
 	public IdentifierOperatorElements getIdentifierOperatorAccess() {
-		return (pIdentifierOperator != null) ? pIdentifierOperator : (pIdentifierOperator = new IdentifierOperatorElements());
+		return pIdentifierOperator;
 	}
 	
 	public ParserRule getIdentifierOperatorRule() {
@@ -10589,7 +10726,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//DatabaseColumn:
 	//	name=(IDENT | IDENT_DOT);
 	public DatabaseColumnElements getDatabaseColumnAccess() {
-		return (pDatabaseColumn != null) ? pDatabaseColumn : (pDatabaseColumn = new DatabaseColumnElements());
+		return pDatabaseColumn;
 	}
 	
 	public ParserRule getDatabaseColumnRule() {
@@ -10599,7 +10736,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//DatabaseTable:
 	//	name=(IDENT | IDENT_DOT);
 	public DatabaseTableElements getDatabaseTableAccess() {
-		return (pDatabaseTable != null) ? pDatabaseTable : (pDatabaseTable = new DatabaseTableElements());
+		return pDatabaseTable;
 	}
 	
 	public ParserRule getDatabaseTableRule() {
@@ -10609,7 +10746,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//MappingRule:
 	//	name=IDENT LPAREN type=MAPPING_TYPE (COMMA modifiers+=MappingRuleModifier)* RPAREN EQUALS mapping=Mapping SEMICOLON;
 	public MappingRuleElements getMappingRuleAccess() {
-		return (pMappingRule != null) ? pMappingRule : (pMappingRule = new MappingRuleElements());
+		return pMappingRule;
 	}
 	
 	public ParserRule getMappingRuleRule() {
@@ -10619,7 +10756,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//Mapping:
 	//	WS* mappingItems+=MappingItem (WS+ mappingItems+=MappingItem)* WS*;
 	public MappingElements getMappingAccess() {
-		return (pMapping != null) ? pMapping : (pMapping = new MappingElements());
+		return pMapping;
 	}
 	
 	public ParserRule getMappingRule() {
@@ -10629,7 +10766,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//MappingItem:
 	//	name=(IDENT | NUMBER) (STRING attr=MappingColumn)?;
 	public MappingItemElements getMappingItemAccess() {
-		return (pMappingItem != null) ? pMappingItem : (pMappingItem = new MappingItemElements());
+		return pMappingItem;
 	}
 	
 	public ParserRule getMappingItemRule() {
@@ -10639,7 +10776,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//MappingColumn:
 	//	items+=ExtendedMappingItem => items+=ExtendedMappingItem*;
 	public MappingColumnElements getMappingColumnAccess() {
-		return (pMappingColumn != null) ? pMappingColumn : (pMappingColumn = new MappingColumnElements());
+		return pMappingColumn;
 	}
 	
 	public ParserRule getMappingColumnRule() {
@@ -10649,7 +10786,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ExtendedMappingItem:
 	//	attr=MappingColumnName (LPAREN modifiers+=MappingItemModifier (COMMA modifiers+=MappingItemModifier)* RPAREN)?;
 	public ExtendedMappingItemElements getExtendedMappingItemAccess() {
-		return (pExtendedMappingItem != null) ? pExtendedMappingItem : (pExtendedMappingItem = new ExtendedMappingItemElements());
+		return pExtendedMappingItem;
 	}
 	
 	public ParserRule getExtendedMappingItemRule() {
@@ -10659,7 +10796,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//MappingColumnName:
 	//	name=(IDENT | IDENT_DOT | NUMBER);
 	public MappingColumnNameElements getMappingColumnNameAccess() {
-		return (pMappingColumnName != null) ? pMappingColumnName : (pMappingColumnName = new MappingColumnNameElements());
+		return pMappingColumnName;
 	}
 	
 	public ParserRule getMappingColumnNameRule() {
@@ -10670,7 +10807,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	name=IDENT LPAREN type=OPTION_TYPE (COMMA modifiers+=OptionalFeatureModifier)* RPAREN EQUALS option=FeatureValue
 	//	SEMICOLON;
 	public OptionalFeatureElements getOptionalFeatureAccess() {
-		return (pOptionalFeature != null) ? pOptionalFeature : (pOptionalFeature = new OptionalFeatureElements());
+		return pOptionalFeature;
 	}
 	
 	public ParserRule getOptionalFeatureRule() {
@@ -10680,7 +10817,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//StatementModifier:
 	//	IDENT | NUMBER;
 	public StatementModifierElements getStatementModifierAccess() {
-		return (pStatementModifier != null) ? pStatementModifier : (pStatementModifier = new StatementModifierElements());
+		return pStatementModifier;
 	}
 	
 	public ParserRule getStatementModifierRule() {
@@ -10690,7 +10827,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//MappingRuleModifier:
 	//	IDENT | NUMBER;
 	public MappingRuleModifierElements getMappingRuleModifierAccess() {
-		return (pMappingRuleModifier != null) ? pMappingRuleModifier : (pMappingRuleModifier = new MappingRuleModifierElements());
+		return pMappingRuleModifier;
 	}
 	
 	public ParserRule getMappingRuleModifierRule() {
@@ -10700,7 +10837,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//MappingItemModifier:
 	//	IDENT | NUMBER;
 	public MappingItemModifierElements getMappingItemModifierAccess() {
-		return (pMappingItemModifier != null) ? pMappingItemModifier : (pMappingItemModifier = new MappingItemModifierElements());
+		return pMappingItemModifier;
 	}
 	
 	public ParserRule getMappingItemModifierRule() {
@@ -10710,7 +10847,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//OptionalFeatureModifier:
 	//	IDENT | NUMBER;
 	public OptionalFeatureModifierElements getOptionalFeatureModifierAccess() {
-		return (pOptionalFeatureModifier != null) ? pOptionalFeatureModifier : (pOptionalFeatureModifier = new OptionalFeatureModifierElements());
+		return pOptionalFeatureModifier;
 	}
 	
 	public ParserRule getOptionalFeatureModifierRule() {
@@ -10720,7 +10857,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//Modifier:
 	//	NOT? (IDENT | NUMBER);
 	public ModifierElements getModifierAccess() {
-		return (pModifier != null) ? pModifier : (pModifier = new ModifierElements());
+		return pModifier;
 	}
 	
 	public ParserRule getModifierRule() {
@@ -10730,225 +10867,225 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//terminal ON_OFF:
 	//	"ON" | "OFF";
 	public TerminalRule getON_OFFRule() {
-		return (tON_OFF != null) ? tON_OFF : (tON_OFF = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ON_OFF"));
+		return tON_OFF;
 	} 
 
 	//terminal STATEMENT_TYPE:
 	//	"QRY" | "CRUD" | "CALL";
 	public TerminalRule getSTATEMENT_TYPERule() {
-		return (tSTATEMENT_TYPE != null) ? tSTATEMENT_TYPE : (tSTATEMENT_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STATEMENT_TYPE"));
+		return tSTATEMENT_TYPE;
 	} 
 
 	//terminal MAPPING_TYPE:
 	//	"OUT";
 	public TerminalRule getMAPPING_TYPERule() {
-		return (tMAPPING_TYPE != null) ? tMAPPING_TYPE : (tMAPPING_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MAPPING_TYPE"));
+		return tMAPPING_TYPE;
 	} 
 
 	//terminal OPTION_TYPE:
 	//	"OPT" | "LOPT" | "IOPT" | "SOPT" | "BOPT" | "MOPT";
 	public TerminalRule getOPTION_TYPERule() {
-		return (tOPTION_TYPE != null) ? tOPTION_TYPE : (tOPTION_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OPTION_TYPE"));
+		return tOPTION_TYPE;
 	} 
 
 	////terminal IDENT_TYPE: IDENT LPAREN NUMBER (COMMA NUMBER)? RPAREN;
 	//terminal IDENT_DOT:
 	//	IDENT (DOT IDENT)+;
 	public TerminalRule getIDENT_DOTRule() {
-		return (tIDENT_DOT != null) ? tIDENT_DOT : (tIDENT_DOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENT_DOT"));
+		return tIDENT_DOT;
 	} 
 
 	//terminal IDENT:
 	//	("a".."z" | "A".."Z") ("a".."z" | "A".."Z" | "0".."9" | "_" | "=")*;
 	public TerminalRule getIDENTRule() {
-		return (tIDENT != null) ? tIDENT : (tIDENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENT"));
+		return tIDENT;
 	} 
 
 	//terminal NUMBER:
 	//	"0".."9"+;
 	public TerminalRule getNUMBERRule() {
-		return (tNUMBER != null) ? tNUMBER : (tNUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NUMBER"));
+		return tNUMBER;
 	} 
 
 	////terminal NEGATIVE_NUMBER: '-'('0'..'9')+;
 	//terminal ESC_CHAR:
 	//	"\\" (COLON | SEMICOLON | STRING | LBRACE | RBRACE | BOR | HASH | AT | PERCENT | DOT | "/");
 	public TerminalRule getESC_CHARRule() {
-		return (tESC_CHAR != null) ? tESC_CHAR : (tESC_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESC_CHAR"));
+		return tESC_CHAR;
 	} 
 
 	//terminal ML_COMMENT:
 	//	"/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
-		return (tML_COMMENT != null) ? tML_COMMENT : (tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT"));
+		return tML_COMMENT;
 	} 
 
 	//terminal SL_COMMENT:
 	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
-		return (tSL_COMMENT != null) ? tSL_COMMENT : (tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT"));
+		return tSL_COMMENT;
 	} 
 
 	//terminal WS:
 	//	(" " | "\t" | "\n" | "\r")+;
 	public TerminalRule getWSRule() {
-		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
+		return tWS;
 	} 
 
 	//terminal AND:
 	//	"&" "&";
 	public TerminalRule getANDRule() {
-		return (tAND != null) ? tAND : (tAND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "AND"));
+		return tAND;
 	} 
 
 	//terminal OR:
 	//	"|" "|";
 	public TerminalRule getORRule() {
-		return (tOR != null) ? tOR : (tOR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OR"));
+		return tOR;
 	} 
 
 	//terminal COLON:
 	//	":";
 	public TerminalRule getCOLONRule() {
-		return (tCOLON != null) ? tCOLON : (tCOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COLON"));
+		return tCOLON;
 	} 
 
 	//terminal SEMICOLON:
 	//	";";
 	public TerminalRule getSEMICOLONRule() {
-		return (tSEMICOLON != null) ? tSEMICOLON : (tSEMICOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SEMICOLON"));
+		return tSEMICOLON;
 	} 
 
 	//terminal STRING:
 	//	"$";
 	public TerminalRule getSTRINGRule() {
-		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
+		return tSTRING;
 	} 
 
 	//terminal COMMA:
 	//	",";
 	public TerminalRule getCOMMARule() {
-		return (tCOMMA != null) ? tCOMMA : (tCOMMA = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COMMA"));
+		return tCOMMA;
 	} 
 
 	//terminal MINUS:
 	//	"-";
 	public TerminalRule getMINUSRule() {
-		return (tMINUS != null) ? tMINUS : (tMINUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MINUS"));
+		return tMINUS;
 	} 
 
 	//terminal PLUS:
 	//	"+";
 	public TerminalRule getPLUSRule() {
-		return (tPLUS != null) ? tPLUS : (tPLUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PLUS"));
+		return tPLUS;
 	} 
 
 	//terminal LPAREN:
 	//	"(";
 	public TerminalRule getLPARENRule() {
-		return (tLPAREN != null) ? tLPAREN : (tLPAREN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LPAREN"));
+		return tLPAREN;
 	} 
 
 	//terminal RPAREN:
 	//	")";
 	public TerminalRule getRPARENRule() {
-		return (tRPAREN != null) ? tRPAREN : (tRPAREN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "RPAREN"));
+		return tRPAREN;
 	} 
 
 	//terminal LBRACE:
 	//	"{";
 	public TerminalRule getLBRACERule() {
-		return (tLBRACE != null) ? tLBRACE : (tLBRACE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LBRACE"));
+		return tLBRACE;
 	} 
 
 	//terminal RBRACE:
 	//	"}";
 	public TerminalRule getRBRACERule() {
-		return (tRBRACE != null) ? tRBRACE : (tRBRACE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "RBRACE"));
+		return tRBRACE;
 	} 
 
 	//terminal QUESTI:
 	//	"?";
 	public TerminalRule getQUESTIRule() {
-		return (tQUESTI != null) ? tQUESTI : (tQUESTI = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "QUESTI"));
+		return tQUESTI;
 	} 
 
 	//terminal NOT:
 	//	"!";
 	public TerminalRule getNOTRule() {
-		return (tNOT != null) ? tNOT : (tNOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NOT"));
+		return tNOT;
 	} 
 
 	//terminal BAND:
 	//	"&";
 	public TerminalRule getBANDRule() {
-		return (tBAND != null) ? tBAND : (tBAND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BAND"));
+		return tBAND;
 	} 
 
 	//terminal BOR:
 	//	"|";
 	public TerminalRule getBORRule() {
-		return (tBOR != null) ? tBOR : (tBOR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BOR"));
+		return tBOR;
 	} 
 
 	//terminal HASH:
 	//	"#";
 	public TerminalRule getHASHRule() {
-		return (tHASH != null) ? tHASH : (tHASH = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HASH"));
+		return tHASH;
 	} 
 
 	//terminal AT:
 	//	"@";
 	public TerminalRule getATRule() {
-		return (tAT != null) ? tAT : (tAT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "AT"));
+		return tAT;
 	} 
 
 	//terminal CARET:
 	//	"^";
 	public TerminalRule getCARETRule() {
-		return (tCARET != null) ? tCARET : (tCARET = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "CARET"));
+		return tCARET;
 	} 
 
 	//terminal EQUALS:
 	//	"=";
 	public TerminalRule getEQUALSRule() {
-		return (tEQUALS != null) ? tEQUALS : (tEQUALS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "EQUALS"));
+		return tEQUALS;
 	} 
 
 	//terminal LESS_THAN:
 	//	"<";
 	public TerminalRule getLESS_THANRule() {
-		return (tLESS_THAN != null) ? tLESS_THAN : (tLESS_THAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LESS_THAN"));
+		return tLESS_THAN;
 	} 
 
 	//terminal MORE_THAN:
 	//	">";
 	public TerminalRule getMORE_THANRule() {
-		return (tMORE_THAN != null) ? tMORE_THAN : (tMORE_THAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MORE_THAN"));
+		return tMORE_THAN;
 	} 
 
 	//terminal PERCENT:
 	//	"%";
 	public TerminalRule getPERCENTRule() {
-		return (tPERCENT != null) ? tPERCENT : (tPERCENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PERCENT"));
+		return tPERCENT;
 	} 
 
 	//terminal DOT:
 	//	".";
 	public TerminalRule getDOTRule() {
-		return (tDOT != null) ? tDOT : (tDOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOT"));
+		return tDOT;
 	} 
 
 	//terminal REST:
 	//	!SEMICOLON;
 	public TerminalRule getRESTRule() {
-		return (tREST != null) ? tREST : (tREST = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "REST"));
+		return tREST;
 	} 
 
 	//terminal STRING_VALUE:
 	//	"\""->"\"";
 	public TerminalRule getSTRING_VALUERule() {
-		return (tSTRING_VALUE != null) ? tSTRING_VALUE : (tSTRING_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING_VALUE"));
+		return tSTRING_VALUE;
 	} 
 
 	//FeatureValue:
@@ -10956,7 +11093,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | AND | OR | ESC_CHAR |
 	//	ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)+;
 	public FeatureValueElements getFeatureValueAccess() {
-		return (pFeatureValue != null) ? pFeatureValue : (pFeatureValue = new FeatureValueElements());
+		return pFeatureValue;
 	}
 	
 	public ParserRule getFeatureValueRule() {
@@ -10971,7 +11108,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	(COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName])) (LESS_THAN (COLON gref=[PojoEntity|IDENT] |
 	//	gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) array?="[]"?;
 	public PojoTypeElements getPojoTypeAccess() {
-		return (pPojoType != null) ? pPojoType : (pPojoType = new PojoTypeElements());
+		return pPojoType;
 	}
 	
 	public ParserRule getPojoTypeRule() {
@@ -10981,7 +11118,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//PackageDeclaration hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"package" name=(IDENT | IDENT_DOT) ("suffix" suffix=(IDENT | NUMBER))? LBRACE elements+=AbstractPojoEntity* RBRACE;
 	public PackageDeclarationElements getPackageDeclarationAccess() {
-		return (pPackageDeclaration != null) ? pPackageDeclaration : (pPackageDeclaration = new PackageDeclarationElements());
+		return pPackageDeclaration;
 	}
 	
 	public ParserRule getPackageDeclarationRule() {
@@ -10991,7 +11128,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//Annotation:
 	//	type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?;
 	public AnnotationElements getAnnotationAccess() {
-		return (pAnnotation != null) ? pAnnotation : (pAnnotation = new AnnotationElements());
+		return pAnnotation;
 	}
 	
 	public ParserRule getAnnotationRule() {
@@ -11002,7 +11139,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	COMMA? name=IDENT (COLON (COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]))? (number=NUMBER |
 	//	value=STRING_VALUE | constant=IDENT);
 	public AnnotationPropertyElements getAnnotationPropertyAccess() {
-		return (pAnnotationProperty != null) ? pAnnotationProperty : (pAnnotationProperty = new AnnotationPropertyElements());
+		return pAnnotationProperty;
 	}
 	
 	public ParserRule getAnnotationPropertyRule() {
@@ -11012,7 +11149,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//Entity:
 	//	PojoEntity | EnumEntity;
 	public EntityElements getEntityAccess() {
-		return (pEntity != null) ? pEntity : (pEntity = new EntityElements());
+		return pEntity;
 	}
 	
 	public ParserRule getEntityRule() {
@@ -11023,7 +11160,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	(AT (AT (AT (AT conflictAnnotations+=Annotation | staticAnnotations+=Annotation) | constructorAnnotations+=Annotation)
 	//	| annotations+=Annotation))* entity=Entity;
 	public AnnotatedEntityElements getAnnotatedEntityAccess() {
-		return (pAnnotatedEntity != null) ? pAnnotatedEntity : (pAnnotatedEntity = new AnnotatedEntityElements());
+		return pAnnotatedEntity;
 	}
 	
 	public ParserRule getAnnotatedEntityRule() {
@@ -11033,7 +11170,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	PackageDeclaration | AnnotatedEntity | Import | Implements | Extends | ImplPackage | PojoDao;
 	public AbstractPojoEntityElements getAbstractPojoEntityAccess() {
-		return (pAbstractPojoEntity != null) ? pAbstractPojoEntity : (pAbstractPojoEntity = new AbstractPojoEntityElements());
+		return pAbstractPojoEntity;
 	}
 	
 	public ParserRule getAbstractPojoEntityRule() {
@@ -11043,7 +11180,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//Import hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"import" importedNamespace=QualifiedNameWithWildcard;
 	public ImportElements getImportAccess() {
-		return (pImport != null) ? pImport : (pImport = new ImportElements());
+		return pImport;
 	}
 	
 	public ParserRule getImportRule() {
@@ -11055,7 +11192,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	onlyPojos+=[PojoEntity|IDENT]*)? ("onlyDaos" onlyDaos+=[PojoDao|IDENT]*)? ("exceptPojos"
 	//	exceptPojos+=[PojoEntity|IDENT]*)? ("exceptDaos" exceptDaos+=[PojoDao|IDENT]*)?;
 	public ImplementsElements getImplementsAccess() {
-		return (pImplements != null) ? pImplements : (pImplements = new ImplementsElements());
+		return pImplements;
 	}
 	
 	public ParserRule getImplementsRule() {
@@ -11067,7 +11204,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	("onlyDaos" onlyDaos+=[PojoDao|IDENT]*)? ("exceptPojos" exceptPojos+=[PojoEntity|IDENT]*)? ("exceptDaos"
 	//	exceptDaos+=[PojoDao|IDENT]*)?;
 	public ExtendsElements getExtendsAccess() {
-		return (pExtends != null) ? pExtends : (pExtends = new ExtendsElements());
+		return pExtends;
 	}
 	
 	public ParserRule getExtendsRule() {
@@ -11077,7 +11214,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ImplPackage hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"implementation-package" name=(IDENT | IDENT_DOT);
 	public ImplPackageElements getImplPackageAccess() {
-		return (pImplPackage != null) ? pImplPackage : (pImplPackage = new ImplPackageElements());
+		return pImplPackage;
 	}
 	
 	public ParserRule getImplPackageRule() {
@@ -11087,7 +11224,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//PojoEntityModifier1:
 	//	final?="final" | abstract?="abstract";
 	public PojoEntityModifier1Elements getPojoEntityModifier1Access() {
-		return (pPojoEntityModifier1 != null) ? pPojoEntityModifier1 : (pPojoEntityModifier1 = new PojoEntityModifier1Elements());
+		return pPojoEntityModifier1;
 	}
 	
 	public ParserRule getPojoEntityModifier1Rule() {
@@ -11098,7 +11235,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	"extends" superType=[PojoEntity|IDENT] | "discriminator" discriminator=(IDENT | NUMBER) | operators="operators"
 	//	operatorsSuffix=IDENT? | "serializable" sernum=NUMBER;
 	public PojoEntityModifier2Elements getPojoEntityModifier2Access() {
-		return (pPojoEntityModifier2 != null) ? pPojoEntityModifier2 : (pPojoEntityModifier2 = new PojoEntityModifier2Elements());
+		return pPojoEntityModifier2;
 	}
 	
 	public ParserRule getPojoEntityModifier2Rule() {
@@ -11109,7 +11246,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	modifiers1+=PojoEntityModifier1* "pojo" name=IDENT modifiers2+=PojoEntityModifier2* LBRACE
 	//	features+=PojoAnnotatedProperty* RBRACE;
 	public PojoEntityElements getPojoEntityAccess() {
-		return (pPojoEntity != null) ? pPojoEntity : (pPojoEntity = new PojoEntityElements());
+		return pPojoEntity;
 	}
 	
 	public ParserRule getPojoEntityRule() {
@@ -11120,7 +11257,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	(AT (AT (AT setterAnnotations+=Annotation | getterAnnotations+=Annotation) | attributeAnnotations+=Annotation))*
 	//	feature=PojoProperty;
 	public PojoAnnotatedPropertyElements getPojoAnnotatedPropertyAccess() {
-		return (pPojoAnnotatedProperty != null) ? pPojoAnnotatedProperty : (pPojoAnnotatedProperty = new PojoAnnotatedPropertyElements());
+		return pPojoAnnotatedProperty;
 	}
 	
 	public ParserRule getPojoAnnotatedPropertyRule() {
@@ -11132,7 +11269,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	version?="optLock" | "updateCol" updateColumn1=IDENT "->" updateColumn2=IDENT | "createCol" createColumn1=IDENT "->"
 	//	createColumn2=IDENT;
 	public PojoPropertyModifierElements getPojoPropertyModifierAccess() {
-		return (pPojoPropertyModifier != null) ? pPojoPropertyModifier : (pPojoPropertyModifier = new PojoPropertyModifierElements());
+		return pPojoPropertyModifier;
 	}
 	
 	public ParserRule getPojoPropertyModifierRule() {
@@ -11145,7 +11282,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	(COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) array?="[]"?
 	//	modifiers+=PojoPropertyModifier*;
 	public PojoPropertyElements getPojoPropertyAccess() {
-		return (pPojoProperty != null) ? pPojoProperty : (pPojoProperty = new PojoPropertyElements());
+		return pPojoProperty;
 	}
 	
 	public ParserRule getPojoPropertyRule() {
@@ -11155,7 +11292,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//EnumEntityModifier1:
 	//	final?="final";
 	public EnumEntityModifier1Elements getEnumEntityModifier1Access() {
-		return (pEnumEntityModifier1 != null) ? pEnumEntityModifier1 : (pEnumEntityModifier1 = new EnumEntityModifier1Elements());
+		return pEnumEntityModifier1;
 	}
 	
 	public ParserRule getEnumEntityModifier1Rule() {
@@ -11165,7 +11302,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//EnumEntityModifier2:
 	//	"extends" superType=[PojoEntity|IDENT] | "serializable" sernum=NUMBER;
 	public EnumEntityModifier2Elements getEnumEntityModifier2Access() {
-		return (pEnumEntityModifier2 != null) ? pEnumEntityModifier2 : (pEnumEntityModifier2 = new EnumEntityModifier2Elements());
+		return pEnumEntityModifier2;
 	}
 	
 	public ParserRule getEnumEntityModifier2Rule() {
@@ -11176,7 +11313,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	modifiers1+=EnumEntityModifier1* "enum" name=IDENT modifiers2+=EnumEntityModifier2* LBRACE features+=EnumProperty*
 	//	RBRACE;
 	public EnumEntityElements getEnumEntityAccess() {
-		return (pEnumEntity != null) ? pEnumEntity : (pEnumEntity = new EnumEntityElements());
+		return pEnumEntity;
 	}
 	
 	public ParserRule getEnumEntityRule() {
@@ -11187,7 +11324,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	name=IDENT (native=("_char" | "_byte" | "_short" | "_int" | "_long" | "_float" | "_double" | "_boolean") | COLON
 	//	(COLON COLON value=(NUMBER | STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName]));
 	public EnumPropertyElements getEnumPropertyAccess() {
-		return (pEnumProperty != null) ? pEnumProperty : (pEnumProperty = new EnumPropertyElements());
+		return pEnumProperty;
 	}
 	
 	public ParserRule getEnumPropertyRule() {
@@ -11197,7 +11334,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//PojoDaoModifier:
 	//	"extends" superType=[PojoDao|IDENT] | "serializable" sernum=NUMBER;
 	public PojoDaoModifierElements getPojoDaoModifierAccess() {
-		return (pPojoDaoModifier != null) ? pPojoDaoModifier : (pPojoDaoModifier = new PojoDaoModifierElements());
+		return pPojoDaoModifier;
 	}
 	
 	public ParserRule getPojoDaoModifierRule() {
@@ -11208,7 +11345,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	modifiers1+=PojoEntityModifier1* "dao" name=IDENT (COLON COLON pojoGenerics?=COLON? pojo=[PojoEntity|IDENT])?
 	//	modifiers2+=PojoDaoModifier* LBRACE methods+=PojoMethod* toInits+=ToInitMethod* RBRACE;
 	public PojoDaoElements getPojoDaoAccess() {
-		return (pPojoDao != null) ? pPojoDao : (pPojoDao = new PojoDaoElements());
+		return pPojoDao;
 	}
 	
 	public ParserRule getPojoDaoRule() {
@@ -11219,7 +11356,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	callFunction?="callFunction" | callUpdate?="callUpdate" | callQuery?="callQuery" |
 	//	callQueryFunction?="callQueryFunction" | callSelectFunction?="callSelectFunction";
 	public PojoMethodModifierElements getPojoMethodModifierAccess() {
-		return (pPojoMethodModifier != null) ? pPojoMethodModifier : (pPojoMethodModifier = new PojoMethodModifierElements());
+		return pPojoMethodModifier;
 	}
 	
 	public ParserRule getPojoMethodModifierRule() {
@@ -11229,7 +11366,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//PojoMethod hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	modifiers1+=PojoMethodModifier* name=IDENT (type=PojoType COLON COLON COLON args+=PojoMethodArg+)?;
 	public PojoMethodElements getPojoMethodAccess() {
-		return (pPojoMethod != null) ? pPojoMethod : (pPojoMethod = new PojoMethodElements());
+		return pPojoMethod;
 	}
 	
 	public ParserRule getPojoMethodRule() {
@@ -11239,7 +11376,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//ToInitMethod hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	name=IDENT COLON COLON COLON args+=PojoMethodArg+;
 	public ToInitMethodElements getToInitMethodAccess() {
-		return (pToInitMethod != null) ? pToInitMethod : (pToInitMethod = new ToInitMethodElements());
+		return pToInitMethod;
 	}
 	
 	public ParserRule getToInitMethodRule() {
@@ -11249,7 +11386,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//PojoMethodArg hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	name=IDENT type=PojoType;
 	public PojoMethodArgElements getPojoMethodArgAccess() {
-		return (pPojoMethodArg != null) ? pPojoMethodArg : (pPojoMethodArg = new PojoMethodArgElements());
+		return pPojoMethodArg;
 	}
 	
 	public ParserRule getPojoMethodArgRule() {
@@ -11259,7 +11396,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//QualifiedNameWithWildcard:
 	//	QualifiedName ".*"?;
 	public QualifiedNameWithWildcardElements getQualifiedNameWithWildcardAccess() {
-		return (pQualifiedNameWithWildcard != null) ? pQualifiedNameWithWildcard : (pQualifiedNameWithWildcard = new QualifiedNameWithWildcardElements());
+		return pQualifiedNameWithWildcard;
 	}
 	
 	public ParserRule getQualifiedNameWithWildcardRule() {
@@ -11270,7 +11407,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//QualifiedName:
 	//	IDENT | IDENT_DOT;
 	public QualifiedNameElements getQualifiedNameAccess() {
-		return (pQualifiedName != null) ? pQualifiedName : (pQualifiedName = new QualifiedNameElements());
+		return pQualifiedName;
 	}
 	
 	public ParserRule getQualifiedNameRule() {

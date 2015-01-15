@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SQL Processor Eclipse Plugin JUnit
 Bundle-Vendor: SQL Processor Team
-Bundle-Version: 1.9.5.qualifier
+Bundle-Version: 1.9.4
 Bundle-SymbolicName: org.sqlproc.dsl.tests; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.sqlproc.dsl,
