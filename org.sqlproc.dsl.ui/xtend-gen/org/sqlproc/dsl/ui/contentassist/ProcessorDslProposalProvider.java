@@ -2355,6 +2355,16 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptFunctions(model, context, acceptor);
   }
   
+  public void completePojogenProperty_DbCheckConstraints(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    boolean _isResolveDb = this.isResolveDb(model);
+    boolean _not = (!_isResolveDb);
+    if (_not) {
+      super.completePojogenProperty_DbCheckConstraints(model, assignment, context, acceptor);
+      return;
+    }
+    this.acceptCheckConstraints(model, context, acceptor);
+  }
+  
   public PojoEntity getPojoEntity(final Entity baseEntity, final String property) {
     if (baseEntity instanceof PojoEntity) {
       return _getPojoEntity((PojoEntity)baseEntity, property);

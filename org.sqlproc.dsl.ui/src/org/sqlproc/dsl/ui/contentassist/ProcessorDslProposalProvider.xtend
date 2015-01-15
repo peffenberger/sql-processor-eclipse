@@ -1208,4 +1208,13 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
         }
 		acceptFunctions(model, context, acceptor)
     }
+
+    override completePojogenProperty_DbCheckConstraints(EObject model, Assignment assignment, ContentAssistContext context,
+            ICompletionProposalAcceptor acceptor) {
+        if (!isResolveDb(model)) {
+            super.completePojogenProperty_DbCheckConstraints(model, assignment, context, acceptor)
+            return
+        }
+        acceptCheckConstraints(model, context, acceptor)
+    }
 }
