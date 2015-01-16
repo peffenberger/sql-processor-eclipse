@@ -1080,7 +1080,7 @@ public class TablePojoGenerator {
                             buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_INDEX,
                                     true));
                         }
-                        buffer.append(NLINDENT).append("#Index(").append(i + 1).append(",");
+                        buffer.append(NLINDENT).append("#Index(").append(i + 1);
                         for (PojoAttribute attr : mainList.get(i).keySet()) {
                             String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(attr.getName())
                                     : null;

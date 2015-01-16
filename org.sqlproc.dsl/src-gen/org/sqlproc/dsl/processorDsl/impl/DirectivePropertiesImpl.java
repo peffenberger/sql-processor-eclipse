@@ -4,17 +4,13 @@ package org.sqlproc.dsl.processorDsl.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.sqlproc.dsl.processorDsl.DirectiveProperties;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
@@ -36,7 +32,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 public class DirectivePropertiesImpl extends MinimalEObjectImpl.Container implements DirectiveProperties
 {
   /**
-   * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
+   * The cached value of the '{@link #getFeatures() <em>Features</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getFeatures()
@@ -75,25 +71,9 @@ public class DirectivePropertiesImpl extends MinimalEObjectImpl.Container implem
   {
     if (features == null)
     {
-      features = new EObjectContainmentEList<PojoProperty>(PojoProperty.class, this, ProcessorDslPackage.DIRECTIVE_PROPERTIES__FEATURES);
+      features = new EObjectResolvingEList<PojoProperty>(PojoProperty.class, this, ProcessorDslPackage.DIRECTIVE_PROPERTIES__FEATURES);
     }
     return features;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ProcessorDslPackage.DIRECTIVE_PROPERTIES__FEATURES:
-        return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**

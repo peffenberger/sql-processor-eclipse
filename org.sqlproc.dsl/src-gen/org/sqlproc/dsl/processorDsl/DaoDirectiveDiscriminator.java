@@ -24,26 +24,26 @@ import org.eclipse.emf.common.util.EList;
 public interface DaoDirectiveDiscriminator extends DaoDirective
 {
   /**
-   * Returns the value of the '<em><b>Ancestor</b></em>' containment reference.
+   * Returns the value of the '<em><b>Ancestor</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Ancestor</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Ancestor</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Ancestor</em>' containment reference.
+   * @return the value of the '<em>Ancestor</em>' reference.
    * @see #setAncestor(PojoProperty)
    * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getDaoDirectiveDiscriminator_Ancestor()
-   * @model containment="true"
+   * @model
    * @generated
    */
   PojoProperty getAncestor();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getAncestor <em>Ancestor</em>}' containment reference.
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getAncestor <em>Ancestor</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ancestor</em>' containment reference.
+   * @param value the new value of the '<em>Ancestor</em>' reference.
    * @see #getAncestor()
    * @generated
    */

@@ -20,6 +20,8 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.sqlproc.dsl.ImportManager;
 import org.sqlproc.dsl.processorDsl.DaoDirective;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.DescendantAssignment;
 import org.sqlproc.dsl.processorDsl.DirectiveProperties;
 import org.sqlproc.dsl.processorDsl.Entity;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
@@ -872,5 +874,39 @@ public class ProcessorGeneratorUtils {
       _superType=m.getSuperType();
     }
     return _superType;
+  }
+  
+  public Map<String, Map<String, PojoType>> getMoreResultClasses(final PojoDao dao) {
+    final Map<String, Map<String, PojoType>> result = new TreeMap<String, Map<String, PojoType>>();
+    EList<DaoDirective> _directives = null;
+    if (dao!=null) {
+      _directives=dao.getDirectives();
+    }
+    final Function1<DaoDirective, Boolean> _function = new Function1<DaoDirective, Boolean>() {
+      public Boolean apply(final DaoDirective x) {
+        return Boolean.valueOf((x instanceof DaoDirectiveDiscriminator));
+      }
+    };
+    Iterable<DaoDirective> _filter = IterableExtensions.<DaoDirective>filter(_directives, _function);
+    final Procedure1<DaoDirective> _function_1 = new Procedure1<DaoDirective>() {
+      public void apply(final DaoDirective it) {
+        final DaoDirectiveDiscriminator d = ((DaoDirectiveDiscriminator) it);
+        final Map<String, PojoType> map = new TreeMap<String, PojoType>();
+        EList<DescendantAssignment> _descendants = d.getDescendants();
+        final Procedure1<DescendantAssignment> _function = new Procedure1<DescendantAssignment>() {
+          public void apply(final DescendantAssignment dd) {
+            String _value = Utils.getValue(dd);
+            PojoType _descendant = dd.getDescendant();
+            map.put(_value, _descendant);
+          }
+        };
+        IterableExtensions.<DescendantAssignment>forEach(_descendants, _function);
+        PojoProperty _ancestor = d.getAncestor();
+        String _name = _ancestor.getName();
+        result.put(_name, map);
+      }
+    };
+    IterableExtensions.<DaoDirective>forEach(_filter, _function_1);
+    return result;
   }
 }

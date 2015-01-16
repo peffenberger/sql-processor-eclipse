@@ -3875,7 +3875,7 @@ public interface ProcessorDslPackage extends EPackage
   int DIRECTIVE_PROPERTIES = 73;
 
   /**
-   * The feature id for the '<em><b>Features</b></em>' containment reference list.
+   * The feature id for the '<em><b>Features</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -4547,22 +4547,13 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_DAO__METHODS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 6;
 
   /**
-   * The feature id for the '<em><b>To Inits</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_DAO__TO_INITS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 7;
-
-  /**
    * The number of structural features of the '<em>Pojo Dao</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_DAO_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 8;
+  int POJO_DAO_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 7;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoMethodModifierImpl <em>Pojo Method Modifier</em>}' class.
@@ -5291,7 +5282,7 @@ public interface ProcessorDslPackage extends EPackage
   int DAO_DIRECTIVE_DISCRIMINATOR = 112;
 
   /**
-   * The feature id for the '<em><b>Ancestor</b></em>' containment reference.
+   * The feature id for the '<em><b>Ancestor</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -9158,10 +9149,10 @@ public interface ProcessorDslPackage extends EPackage
   EClass getDirectiveProperties();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.DirectiveProperties#getFeatures <em>Features</em>}'.
+   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.DirectiveProperties#getFeatures <em>Features</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Features</em>'.
+   * @return the meta object for the reference list '<em>Features</em>'.
    * @see org.sqlproc.dsl.processorDsl.DirectiveProperties#getFeatures()
    * @see #getDirectiveProperties()
    * @generated
@@ -9735,17 +9726,6 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EReference getPojoDao_Methods();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.PojoDao#getToInits <em>To Inits</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>To Inits</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoDao#getToInits()
-   * @see #getPojoDao()
-   * @generated
-   */
-  EReference getPojoDao_ToInits();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoMethodModifier <em>Pojo Method Modifier</em>}'.
@@ -10329,10 +10309,10 @@ public interface ProcessorDslPackage extends EPackage
   EClass getDaoDirectiveDiscriminator();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getAncestor <em>Ancestor</em>}'.
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getAncestor <em>Ancestor</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Ancestor</em>'.
+   * @return the meta object for the reference '<em>Ancestor</em>'.
    * @see org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator#getAncestor()
    * @see #getDaoDirectiveDiscriminator()
    * @generated
@@ -13371,7 +13351,7 @@ public interface ProcessorDslPackage extends EPackage
     EClass DIRECTIVE_PROPERTIES = eINSTANCE.getDirectiveProperties();
 
     /**
-     * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Features</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -13831,14 +13811,6 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference POJO_DAO__METHODS = eINSTANCE.getPojoDao_Methods();
-
-    /**
-     * The meta object literal for the '<em><b>To Inits</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_DAO__TO_INITS = eINSTANCE.getPojoDao_ToInits();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoMethodModifierImpl <em>Pojo Method Modifier</em>}' class.
@@ -14329,7 +14301,7 @@ public interface ProcessorDslPackage extends EPackage
     EClass DAO_DIRECTIVE_DISCRIMINATOR = eINSTANCE.getDaoDirectiveDiscriminator();
 
     /**
-     * The meta object literal for the '<em><b>Ancestor</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Ancestor</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

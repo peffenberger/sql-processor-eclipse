@@ -401,7 +401,7 @@ ImplPackage hidden(ML_COMMENT, SL_COMMENT, WS):
 PojoEntityModifier1: ((final?='final') | (abstract?='abstract'));
 
 DirectiveProperties hidden(ML_COMMENT, SL_COMMENT, WS):
-	features+=PojoProperty (COMMA features+=PojoProperty)*
+	features+=[PojoProperty|IDENT] (COMMA features+=[PojoProperty|IDENT])*
 ;
 PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
 	{PojoDirectiveDiscriminator} '#Discriminator' LPAREN discriminator=(IDENT|NUMBER) RPAREN
@@ -472,12 +472,12 @@ DaoDirectiveParameters hidden(ML_COMMENT, SL_COMMENT, WS):
 ;
 
 DescendantAssignment hidden(ML_COMMENT, SL_COMMENT, WS):
-	value=(NUMBER|STRING) EQUALS descendant=PojoType
+	value=(NUMBER|STRING_VALUE) EQUALS descendant=PojoType
 ;
 
 DaoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 {DaoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
-	| {DaoDirectiveDiscriminator} '#Discriminator' LPAREN ancestor=PojoProperty descendants+=DescendantAssignment (COMMA descendants+=DescendantAssignment)* RPAREN
+	| {DaoDirectiveDiscriminator} '#Discriminator' LPAREN ancestor=[PojoProperty|IDENT] (COMMA descendants+=DescendantAssignment)+ RPAREN
 	| {DaoDirectivePojo} '#Pojo' LPAREN pojo=PojoType RPAREN
 	| {DaoDirectiveGenerics} '#Generics' LPAREN generics=PojoType RPAREN
 	| {DaoDirectiveProcedure} '#Procedure' LPAREN pojo=PojoType RPAREN
@@ -496,7 +496,7 @@ PojoDao hidden(ML_COMMENT, SL_COMMENT, WS):
 	  (modifiers2+=PojoDaoModifier)* 
 	LBRACE
 		methods+=PojoMethod*
-		toInits+=ToInitMethod*
+		//toInits+=ToInitMethod*
 	RBRACE;
 
 PojoMethodModifier: ((callFunction?='callFunction') | (callUpdate?='callUpdate') | (callQuery?='callQuery') | (callQueryFunction?='callQueryFunction') | (callSelectFunction?='callSelectFunction'));

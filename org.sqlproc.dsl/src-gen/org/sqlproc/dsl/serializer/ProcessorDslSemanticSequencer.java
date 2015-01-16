@@ -955,7 +955,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (ancestor=PojoProperty descendants+=DescendantAssignment descendants+=DescendantAssignment*)
+	 *     (ancestor=[PojoProperty|IDENT] descendants+=DescendantAssignment+)
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveDiscriminator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1198,7 +1198,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     ((value=NUMBER | value=STRING) descendant=PojoType)
+	 *     ((value=NUMBER | value=STRING_VALUE) descendant=PojoType)
 	 */
 	protected void sequence_DescendantAssignment(EObject context, DescendantAssignment semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1207,7 +1207,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (features+=PojoProperty features+=PojoProperty*)
+	 *     (features+=[PojoProperty|IDENT] features+=[PojoProperty|IDENT]*)
 	 */
 	protected void sequence_DirectiveProperties(EObject context, DirectiveProperties semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1779,8 +1779,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         name=IDENT 
 	 *         (pojoGenerics?=COLON? pojo=[PojoEntity|IDENT])? 
 	 *         modifiers2+=PojoDaoModifier* 
-	 *         methods+=PojoMethod* 
-	 *         toInits+=ToInitMethod*
+	 *         methods+=PojoMethod*
 	 *     )
 	 */
 	protected void sequence_PojoDao(EObject context, PojoDao semanticObject) {

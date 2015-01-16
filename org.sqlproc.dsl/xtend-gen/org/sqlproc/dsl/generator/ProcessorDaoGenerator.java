@@ -7,6 +7,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -54,10 +55,10 @@ public class ProcessorDaoGenerator {
     _builder.newLineIfNotEmpty();
     this.addExtends(d, im);
     _builder.newLineIfNotEmpty();
-    final Map<String, List<PojoMethodArg>> toInits = Utils.getToInits(d);
+    final Map<String, Map<String, PojoType>> moreResultClasses = this._processorGeneratorUtils.getMoreResultClasses(d);
     _builder.newLineIfNotEmpty();
     PojoEntity _pojo = d.getPojo();
-    final CharSequence classBody = this.compile(d, _pojo, toInits, im);
+    final CharSequence classBody = this.compile(d, _pojo, moreResultClasses, im);
     _builder.newLineIfNotEmpty();
     {
       EObject _eContainer = d.eContainer();
@@ -164,20 +165,20 @@ public class ProcessorDaoGenerator {
     }
     _builder.newLineIfNotEmpty();
     {
-      Set<Map.Entry<String, List<PojoMethodArg>>> _entrySet = toInits.entrySet();
-      for(final Map.Entry<String, List<PojoMethodArg>> f : _entrySet) {
+      Set<Map.Entry<String, Map<String, PojoType>>> _entrySet = moreResultClasses.entrySet();
+      for(final Map.Entry<String, Map<String, PojoType>> f : _entrySet) {
         {
-          List<PojoMethodArg> _value = f.getValue();
+          Map<String, PojoType> _value = f.getValue();
+          Collection<PojoType> _values = _value.values();
           boolean _hasElements = false;
-          for(final PojoMethodArg a : _value) {
+          for(final PojoType a : _values) {
             if (!_hasElements) {
               _hasElements = true;
             } else {
               _builder.appendImmediate("\n\t\t", "");
             }
             _builder.append("import ");
-            PojoType _type = a.getType();
-            PojoEntity _ref = _type.getRef();
+            PojoEntity _ref = a.getRef();
             String _completeName_1 = this._processorGeneratorUtils.completeName(_ref);
             _builder.append(_completeName_1, "");
             _builder.append(";");
@@ -192,7 +193,7 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im) {
+  public CharSequence compile(final PojoDao d, final PojoEntity e, final Map<String, Map<String, PojoType>> moreResultClasses, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public ");
     {
@@ -330,7 +331,7 @@ public class ProcessorDaoGenerator {
             _builder.newLineIfNotEmpty();
             String _name_7 = m.getName();
             boolean _equals_3 = Objects.equal(_name_7, "scaffold");
-            CharSequence _compileGet = this.compileGet(d, e, toInits, im, _equals_3);
+            CharSequence _compileGet = this.compileGet(d, e, moreResultClasses, im, _equals_3);
             _builder.append(_compileGet, "");
             _builder.newLineIfNotEmpty();
             PojoEntity _parent_1 = this._processorGeneratorUtils.getParent(e);
@@ -347,19 +348,19 @@ public class ProcessorDaoGenerator {
             _builder.newLineIfNotEmpty();
             String _name_10 = m.getName();
             boolean _equals_6 = Objects.equal(_name_10, "scaffold");
-            CharSequence _compileList = this.compileList(d, e, toInits, im, _equals_6);
+            CharSequence _compileList = this.compileList(d, e, moreResultClasses, im, _equals_6);
             _builder.append(_compileList, "");
             _builder.newLineIfNotEmpty();
             String _name_11 = m.getName();
             boolean _equals_7 = Objects.equal(_name_11, "scaffold");
-            CharSequence _compileCount = this.compileCount(d, e, toInits, im, _equals_7);
+            CharSequence _compileCount = this.compileCount(d, e, moreResultClasses, im, _equals_7);
             _builder.append(_compileCount, "");
             _builder.newLineIfNotEmpty();
             {
-              boolean _isEmpty = toInits.isEmpty();
+              boolean _isEmpty = moreResultClasses.isEmpty();
               boolean _not = (!_isEmpty);
               if (_not) {
-                CharSequence _compileMoreResultClasses = this.compileMoreResultClasses(d, e, toInits, im);
+                CharSequence _compileMoreResultClasses = this.compileMoreResultClasses(d, e, moreResultClasses, im);
                 _builder.append(_compileMoreResultClasses, "");
               }
             }
@@ -1713,7 +1714,7 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compileGet(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im, final boolean all) {
+  public CharSequence compileGet(final PojoDao d, final PojoEntity e, final Map<String, Map<String, PojoType>> moreResultClasses, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
@@ -1753,7 +1754,7 @@ public class ProcessorDaoGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     {
-      boolean _isEmpty = toInits.isEmpty();
+      boolean _isEmpty = moreResultClasses.isEmpty();
       if (_isEmpty) {
         _builder.append("//");
       }
@@ -2308,7 +2309,7 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compileList(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im, final boolean all) {
+  public CharSequence compileList(final PojoDao d, final PojoEntity e, final Map<String, Map<String, PojoType>> moreResultClasses, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
@@ -2352,7 +2353,7 @@ public class ProcessorDaoGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     {
-      boolean _isEmpty = toInits.isEmpty();
+      boolean _isEmpty = moreResultClasses.isEmpty();
       if (_isEmpty) {
         _builder.append("//");
       }
@@ -2496,7 +2497,7 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compileCount(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im, final boolean all) {
+  public CharSequence compileCount(final PojoDao d, final PojoEntity e, final Map<String, Map<String, PojoType>> moreResultClasses, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
@@ -2537,7 +2538,7 @@ public class ProcessorDaoGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     {
-      boolean _isEmpty = toInits.isEmpty();
+      boolean _isEmpty = moreResultClasses.isEmpty();
       if (_isEmpty) {
         _builder.append("//");
       }
@@ -2646,7 +2647,7 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compileMoreResultClasses(final PojoDao d, final PojoEntity e, final Map<String, List<PojoMethodArg>> toInits, final ImportManager im) {
+  public CharSequence compileMoreResultClasses(final PojoDao d, final PojoEntity e, final Map<String, Map<String, PojoType>> moreResultClasses, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
@@ -2670,9 +2671,9 @@ public class ProcessorDaoGenerator {
     _builder.newLine();
     _builder.append("\t\t");
     {
-      Set<Map.Entry<String, List<PojoMethodArg>>> _entrySet = toInits.entrySet();
+      Set<Map.Entry<String, Map<String, PojoType>>> _entrySet = moreResultClasses.entrySet();
       boolean _hasElements = false;
-      for(final Map.Entry<String, List<PojoMethodArg>> f : _entrySet) {
+      for(final Map.Entry<String, Map<String, PojoType>> f : _entrySet) {
         if (!_hasElements) {
           _hasElements = true;
         } else {
@@ -2704,20 +2705,21 @@ public class ProcessorDaoGenerator {
         _builder.newLine();
         _builder.append("\t\t");
         {
-          List<PojoMethodArg> _value = f.getValue();
+          Map<String, PojoType> _value = f.getValue();
+          Set<Map.Entry<String, PojoType>> _entrySet_1 = _value.entrySet();
           boolean _hasElements_1 = false;
-          for(final PojoMethodArg a : _value) {
+          for(final Map.Entry<String, PojoType> a : _entrySet_1) {
             if (!_hasElements_1) {
               _hasElements_1 = true;
             } else {
               _builder.appendImmediate("\n\t", "\t\t");
             }
             _builder.append("\t\tmoreResultClasses.put(\"");
-            String _name_5 = a.getName();
-            _builder.append(_name_5, "\t\t");
+            String _key_1 = a.getKey();
+            _builder.append(_key_1, "\t\t");
             _builder.append("\", ");
-            PojoType _type = a.getType();
-            PojoEntity _ref = _type.getRef();
+            PojoType _value_1 = a.getValue();
+            PojoEntity _ref = _value_1.getRef();
             QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_ref);
             _builder.append(_fullyQualifiedName, "\t\t");
             _builder.append(".class);");

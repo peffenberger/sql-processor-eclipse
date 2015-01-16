@@ -13,11 +13,10 @@ import java.util.ArrayList
 import org.sqlproc.dsl.processorDsl.Implements
 import org.sqlproc.dsl.processorDsl.Extends
 import org.sqlproc.dsl.processorDsl.PojoDao
-import java.util.List
-import org.sqlproc.dsl.processorDsl.PojoMethodArg
 import java.util.Map
 import org.sqlproc.dsl.processorDsl.ImplPackage
 import org.sqlproc.dsl.processorDsl.PojoMethod
+import org.sqlproc.dsl.processorDsl.PojoType
 
 /**
  * Generates code from your model files on save.
@@ -33,8 +32,8 @@ class ProcessorDaoGenerator {
 		«val im = new ImportManager(true)»
 		«addImplements(d, im)»
 		«addExtends(d, im)»
-		«val toInits = getToInits(d)»
-		«val classBody = compile(d, d.pojo, toInits, im)»
+		«val moreResultClasses = getMoreResultClasses(d)»
+		«val classBody = compile(d, d.pojo, moreResultClasses, im)»
 		«IF d.eContainer != null»package «d.eContainer.fullyQualifiedName»«IF d.implPackage != null».«d.implPackage»«ENDIF»;«ENDIF»
 		«IF d.implPackage != null»
 		
@@ -66,13 +65,13 @@ class ProcessorDaoGenerator {
 		import org.sqlproc.engine.SqlSessionFactory;
 		import org.sqlproc.engine.impl.SqlStandardControl;
 		«IF d.pojo != null»import «d.pojo.completeName»;«ENDIF»
-		«FOR f:toInits.entrySet»«FOR a:f.value SEPARATOR "
-		"»import «a.type.ref.completeName»;«ENDFOR»«ENDFOR»
+		«FOR f:moreResultClasses.entrySet»«FOR a:f.value.values SEPARATOR "
+		"»import «a.ref.completeName»;«ENDFOR»«ENDFOR»
 		
 		«classBody»
 	'''
 	
-	def compile(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im) '''
+	def compile(PojoDao d, PojoEntity e, Map<String, Map<String, PojoType>> moreResultClasses, ImportManager im) '''
 		public «IF isAbstract(d)»abstract «ENDIF»class «d.name»«IF d.implPackage != null»Impl«ENDIF» «compileExtends(d, im)»«compileImplements(d)»{
 			«IF getSernum(d) != null»
 			
@@ -96,12 +95,12 @@ class ProcessorDaoGenerator {
 			}
 			
 		«FOR m:d.methods»«IF m.name == "scaffold" || m.name == "scaffold0"»«compileInsert(d, e, getParent(e), im, m.name == "scaffold")»
-		«compileGet(d, e, toInits, im, m.name == "scaffold")»
+		«compileGet(d, e, moreResultClasses, im, m.name == "scaffold")»
 		«compileUpdate(d, e, getParent(e), im, m.name == "scaffold")»
 		«compileDelete(d, e, getParent(e), im, m.name == "scaffold")»
-		«compileList(d, e, toInits, im, m.name == "scaffold")»
-		«compileCount(d, e, toInits, im, m.name == "scaffold")»
-		«IF !toInits.empty»«compileMoreResultClasses(d, e, toInits, im)»«ENDIF»«ELSEIF isCallUpdate(m)»
+		«compileList(d, e, moreResultClasses, im, m.name == "scaffold")»
+		«compileCount(d, e, moreResultClasses, im, m.name == "scaffold")»
+		«IF !moreResultClasses.empty»«compileMoreResultClasses(d, e, moreResultClasses, im)»«ENDIF»«ELSEIF isCallUpdate(m)»
 		«compileCallUpdate(d, m, im, true)»«ELSEIF isCallFunction(m)»«compileCallFunction(d, m, im, true)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQuery(d, m, im, isCallQueryFunction(m), true)»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunction(d, m, im, true)»«ENDIF»«ENDFOR»
 		}
 	'''
@@ -250,14 +249,14 @@ class ProcessorDaoGenerator {
 		}
 		«ENDIF»
 	'''	
-	def compileGet(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im, boolean all) '''
+	def compileGet(PojoDao d, PojoEntity e, Map<String, Map<String, PojoType>> moreResultClasses, ImportManager im, boolean all) '''
 	
 		public «e.name» get(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("get get: " + «e.name.toFirstLower» + " " + sqlControl);
 			}
 			SqlCrudEngine sqlGetEngine«e.name» = sqlEngineFactory.getCheckedCrudEngine("GET_«dbName(e)»");
-			«IF toInits.empty»//«ENDIF»sqlControl = getMoreResultClasses(«e.name.toFirstLower», sqlControl);
+			«IF moreResultClasses.empty»//«ENDIF»sqlControl = getMoreResultClasses(«e.name.toFirstLower», sqlControl);
 			«e.name» «e.name.toFirstLower»Got = sqlGetEngine«e.name».get(sqlSession, «e.name».class, «e.name.toFirstLower», sqlControl);
 			if (logger.isTraceEnabled()) {
 				logger.trace("get «e.name.toFirstLower» result: " + «e.name.toFirstLower»Got);
@@ -348,14 +347,14 @@ class ProcessorDaoGenerator {
 		«ENDIF»
 	'''
 	
-	def compileList(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im, boolean all) '''
+	def compileList(PojoDao d, PojoEntity e, Map<String, Map<String, PojoType>> moreResultClasses, ImportManager im, boolean all) '''
 	
 		public List<«e.name»> list(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("list «e.name.toFirstLower»: " + «e.name.toFirstLower» + " " + sqlControl);
 			}
 			SqlQueryEngine sqlEngine«e.name» = sqlEngineFactory.getCheckedQueryEngine("SELECT_«dbName(e)»");
-			«IF toInits.empty»//«ENDIF»sqlControl = getMoreResultClasses(«e.name.toFirstLower», sqlControl);
+			«IF moreResultClasses.empty»//«ENDIF»sqlControl = getMoreResultClasses(«e.name.toFirstLower», sqlControl);
 			List<«e.name»> «e.name.toFirstLower»List = sqlEngine«e.name».query(sqlSession, «e.name».class, «e.name.toFirstLower», sqlControl);
 			if (logger.isTraceEnabled()) {
 				logger.trace("list «e.name.toFirstLower» size: " + ((«e.name.toFirstLower»List != null) ? «e.name.toFirstLower»List.size() : "null"));
@@ -377,14 +376,14 @@ class ProcessorDaoGenerator {
 		«ENDIF»
 	'''
 	
-	def compileCount(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im, boolean all) '''
+	def compileCount(PojoDao d, PojoEntity e, Map<String, Map<String, PojoType>> moreResultClasses, ImportManager im, boolean all) '''
 	
 		public int count(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("count «e.name.toFirstLower»: " + «e.name.toFirstLower» + " " + sqlControl);
 			}
 			SqlQueryEngine sqlEngine«e.name» = sqlEngineFactory.getCheckedQueryEngine("SELECT_«dbName(e)»");
-			«IF toInits.empty»//«ENDIF»sqlControl = getMoreResultClasses(«e.name.toFirstLower», sqlControl);
+			«IF moreResultClasses.empty»//«ENDIF»sqlControl = getMoreResultClasses(«e.name.toFirstLower», sqlControl);
 			int count = sqlEngine«e.name».queryCount(sqlSession, «e.name.toFirstLower», sqlControl);
 			if (logger.isTraceEnabled()) {
 				logger.trace("count: " + count);
@@ -406,18 +405,18 @@ class ProcessorDaoGenerator {
 		«ENDIF»
 	'''
 	
-	def compileMoreResultClasses(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im) '''
+	def compileMoreResultClasses(PojoDao d, PojoEntity e, Map<String, Map<String, PojoType>> moreResultClasses, ImportManager im) '''
 	
 		SqlControl getMoreResultClasses(«e.name» «e.name.toFirstLower», SqlControl sqlControl) {
 			if (sqlControl != null && sqlControl.getMoreResultClasses() != null)
 				return sqlControl;
 			Map<String, Class<?>> moreResultClasses = null;
-			«FOR f:toInits.entrySet SEPARATOR "
+			«FOR f:moreResultClasses.entrySet SEPARATOR "
 	"»		if («e.name.toFirstLower» != null && «e.name.toFirstLower».toInit(«e.name».Association.«f.key».name())) {
 				if (moreResultClasses == null)
 					moreResultClasses = new HashMap<String, Class<?>>();
-			«FOR a:f.value SEPARATOR "
-	"»		moreResultClasses.put("«a.name»", «a.type.ref.fullyQualifiedName».class);«ENDFOR»
+			«FOR a:f.value.entrySet SEPARATOR "
+	"»		moreResultClasses.put("«a.key»", «a.value.ref.fullyQualifiedName».class);«ENDFOR»
 			}
 			«ENDFOR»
 			if (moreResultClasses != null) {

@@ -39,7 +39,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements DaoDirectiveDiscriminator
 {
   /**
-   * The cached value of the '{@link #getAncestor() <em>Ancestor</em>}' containment reference.
+   * The cached value of the '{@link #getAncestor() <em>Ancestor</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getAncestor()
@@ -86,6 +86,16 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
    */
   public PojoProperty getAncestor()
   {
+    if (ancestor != null && ancestor.eIsProxy())
+    {
+      InternalEObject oldAncestor = (InternalEObject)ancestor;
+      ancestor = (PojoProperty)eResolveProxy(oldAncestor);
+      if (ancestor != oldAncestor)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR, oldAncestor, ancestor));
+      }
+    }
     return ancestor;
   }
 
@@ -94,16 +104,9 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAncestor(PojoProperty newAncestor, NotificationChain msgs)
+  public PojoProperty basicGetAncestor()
   {
-    PojoProperty oldAncestor = ancestor;
-    ancestor = newAncestor;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR, oldAncestor, newAncestor);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+    return ancestor;
   }
 
   /**
@@ -113,18 +116,10 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
    */
   public void setAncestor(PojoProperty newAncestor)
   {
-    if (newAncestor != ancestor)
-    {
-      NotificationChain msgs = null;
-      if (ancestor != null)
-        msgs = ((InternalEObject)ancestor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR, null, msgs);
-      if (newAncestor != null)
-        msgs = ((InternalEObject)newAncestor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR, null, msgs);
-      msgs = basicSetAncestor(newAncestor, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR, newAncestor, newAncestor));
+    PojoProperty oldAncestor = ancestor;
+    ancestor = newAncestor;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR, oldAncestor, ancestor));
   }
 
   /**
@@ -151,8 +146,6 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR:
-        return basicSetAncestor(null, msgs);
       case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__DESCENDANTS:
         return ((InternalEList<?>)getDescendants()).basicRemove(otherEnd, msgs);
     }
@@ -170,7 +163,8 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
     switch (featureID)
     {
       case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR:
-        return getAncestor();
+        if (resolve) return getAncestor();
+        return basicGetAncestor();
       case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR__DESCENDANTS:
         return getDescendants();
     }

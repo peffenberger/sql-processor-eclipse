@@ -28,6 +28,7 @@ import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator
 import java.util.Map
 import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex
 import java.util.TreeMap
+import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator
 
 class ProcessorGeneratorUtils {
 
@@ -226,5 +227,18 @@ class ProcessorGeneratorUtils {
     def PojoDao getSuperType(PojoDao dao) {
 		val m = dao.modifiers2?.findFirst[x|x.superType != null]
 		return m?.superType
+    }
+
+    def Map<String, Map<String, PojoType>> getMoreResultClasses(PojoDao dao) {
+        val Map<String, Map<String, PojoType>> result = new TreeMap()
+		dao?.directives.filter[x|x instanceof DaoDirectiveDiscriminator].forEach[
+			val d = it as DaoDirectiveDiscriminator
+			val Map<String, PojoType> map = new TreeMap()
+			d.descendants.forEach[dd|
+				map.put(getValue(dd), dd.descendant)
+			]
+			result.put(d.ancestor.name, map)
+		]
+        return result
     }
 }

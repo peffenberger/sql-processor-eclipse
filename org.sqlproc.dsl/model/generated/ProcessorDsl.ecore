@@ -550,8 +550,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DirectiveProperties">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
-        eType="#//PojoProperty" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" unique="false"
+        upperBound="-1" eType="#//PojoProperty"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoEntityModifier2">
@@ -636,8 +636,6 @@
         eType="#//PojoDaoModifier" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
         eType="#//PojoMethod" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="toInits" upperBound="-1"
-        eType="#//ToInitMethod" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoMethodModifier">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="callFunction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -727,8 +725,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sernum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveDiscriminator" eSuperTypes="#//DaoDirective">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ancestor" eType="#//PojoProperty"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ancestor" eType="#//PojoProperty"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="descendants" upperBound="-1"
         eType="#//DescendantAssignment" containment="true"/>
   </eClassifiers>

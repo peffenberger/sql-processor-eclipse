@@ -3,9 +3,7 @@ package org.sqlproc.dsl.util;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -29,6 +27,7 @@ import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
+import org.sqlproc.dsl.processorDsl.DescendantAssignment;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
@@ -44,12 +43,10 @@ import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoMethod;
-import org.sqlproc.dsl.processorDsl.PojoMethodArg;
 import org.sqlproc.dsl.processorDsl.PojoMethodModifier;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
-import org.sqlproc.dsl.processorDsl.ToInitMethod;
 import org.sqlproc.dsl.resolver.DbResolver;
 import org.sqlproc.dsl.resolver.DbResolver.DbType;
 
@@ -418,18 +415,18 @@ public class Utils {
         return qn2;
     }
 
-    public static Map<String, List<PojoMethodArg>> getToInits(PojoDao d) {
-        Map<String, List<PojoMethodArg>> result = new LinkedHashMap<String, List<PojoMethodArg>>();
-        for (ToInitMethod m : d.getToInits()) {
-            if (m.getArgs() != null && !m.getArgs().isEmpty()) {
-                result.put(m.getName(), new ArrayList<PojoMethodArg>());
-                for (PojoMethodArg a : m.getArgs()) {
-                    result.get(m.getName()).add(a);
-                }
-            }
-        }
-        return result;
-    }
+    // public static Map<String, List<PojoMethodArg>> getToInits(PojoDao d) {
+    // Map<String, List<PojoMethodArg>> result = new LinkedHashMap<String, List<PojoMethodArg>>();
+    // for (ToInitMethod m : d.getToInits()) {
+    // if (m.getArgs() != null && !m.getArgs().isEmpty()) {
+    // result.put(m.getName(), new ArrayList<PojoMethodArg>());
+    // for (PojoMethodArg a : m.getArgs()) {
+    // result.get(m.getName()).add(a);
+    // }
+    // }
+    // }
+    // return result;
+    // }
 
     public static boolean isFinal(MetaStatement m) {
         String finalToken = getTokenFromModifier(m, "final");
@@ -551,6 +548,12 @@ public class Utils {
         if (p.getValue() == null)
             return null;
         return p.getValue().replaceAll("'", "\"");
+    }
+
+    public static String getValue(DescendantAssignment p) {
+        if (p.getValue() == null)
+            return null;
+        return p.getValue().replaceAll("\"", "");
     }
 
     public static JvmType pojoMethod2jvmType(final PojoEntity e) {
