@@ -42,7 +42,6 @@ import org.sqlproc.dsl.processorDsl.PojoEntityModifier2;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirective;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol;
-import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectivePrimaryKey;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired;
@@ -319,28 +318,6 @@ public class ProcessorGeneratorUtils {
       _createColumn2=d.getCreateColumn2();
     }
     return _createColumn2;
-  }
-  
-  public boolean isDiscriminator(final PojoProperty f) {
-    EList<PojoPropertyDirective> _directives = f.getDirectives();
-    PojoPropertyDirective _findFirst = null;
-    if (_directives!=null) {
-      final Function1<PojoPropertyDirective, Boolean> _function = new Function1<PojoPropertyDirective, Boolean>() {
-        public Boolean apply(final PojoPropertyDirective x) {
-          return Boolean.valueOf((x instanceof PojoPropertyDirectiveDiscriminator));
-        }
-      };
-      _findFirst=IterableExtensions.<PojoPropertyDirective>findFirst(_directives, _function);
-    }
-    final PojoPropertyDirective d = _findFirst;
-    boolean _xifexpression = false;
-    boolean _notEquals = (!Objects.equal(d, null));
-    if (_notEquals) {
-      _xifexpression = true;
-    } else {
-      _xifexpression = false;
-    }
-    return _xifexpression;
   }
   
   public boolean isPrimaryKey(final PojoProperty f) {

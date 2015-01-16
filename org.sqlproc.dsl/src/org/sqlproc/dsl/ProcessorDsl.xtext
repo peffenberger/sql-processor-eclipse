@@ -404,17 +404,18 @@ DirectiveProperties hidden(ML_COMMENT, SL_COMMENT, WS):
 	features+=[PojoProperty|IDENT] (COMMA features+=[PojoProperty|IDENT])*
 ;
 PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
-	{PojoDirectiveDiscriminator} '#Discriminator' LPAREN discriminator=(IDENT|NUMBER) RPAREN
+	{PojoDirectiveToString} '#ToString' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveIndex} '#Index' LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN
 	| {PojoDirectiveOperators} '#Operators' (LPAREN operatorsSuffix=IDENT RPAREN)?
 	| {PojoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
-	| {PojoDirectiveIndex} '#Index' LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveDiscriminator} '#Discriminator' LPAREN discriminator=(IDENT|NUMBER) RPAREN
 	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
 	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
 	| {PojoDirectiveToInit} '#ToInit' LPAREN proplist=DirectiveProperties RPAREN
 	| {PojoDirectiveEnumInit} '#EnumInit' LPAREN proplist=DirectiveProperties RPAREN
 	| {PojoDirectiveIsDef} '#IsDef' LPAREN proplist=DirectiveProperties RPAREN
 	| {PojoDirectiveEnumDef} '#EnumDef' LPAREN proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveToString} '#ToString' LPAREN proplist=DirectiveProperties RPAREN
+	
 ;
 //PojoEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('discriminator' discriminator=(IDENT|NUMBER)) | (operators='operators' (operatorsSuffix=IDENT)?)| ('serializable' sernum=NUMBER));
 PojoEntityModifier2: ('extends' superType=[PojoEntity|IDENT]);
@@ -476,7 +477,7 @@ DescendantAssignment hidden(ML_COMMENT, SL_COMMENT, WS):
 ;
 
 DaoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
-{DaoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
+	{DaoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
 	| {DaoDirectiveDiscriminator} '#Discriminator' LPAREN ancestor=[PojoProperty|IDENT] (COMMA descendants+=DescendantAssignment)+ RPAREN
 	| {DaoDirectivePojo} '#Pojo' LPAREN pojo=PojoType RPAREN
 	| {DaoDirectiveGenerics} '#Generics' LPAREN generics=PojoType RPAREN

@@ -14,7 +14,6 @@ import org.sqlproc.dsl.processorDsl.PojoEntity
 import com.google.inject.Inject
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol
-import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectivePrimaryKey
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex
@@ -24,11 +23,11 @@ import java.util.List
 import org.sqlproc.dsl.processorDsl.PojoDirectiveOperators
 import org.sqlproc.dsl.processorDsl.PojoDao
 import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable
-import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator
 import java.util.Map
 import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex
 import java.util.TreeMap
 import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator
+import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator
 
 class ProcessorGeneratorUtils {
 
@@ -82,10 +81,10 @@ class ProcessorGeneratorUtils {
 		return d?.createColumn2
 	}
 
-	def isDiscriminator(PojoProperty f) {
-		val d = f.directives?.findFirst[x|x instanceof PojoPropertyDirectiveDiscriminator]
-		return if(d != null) true else false
-	}
+//	def isDiscriminator(PojoProperty f) {
+//		val d = f.directives?.findFirst[x|x instanceof PojoPropertyDirectiveDiscriminator]
+//		return if(d != null) true else false
+//	}
 
 	def isPrimaryKey(PojoProperty f) {
 		val d = f.directives?.findFirst[x|x instanceof PojoPropertyDirectivePrimaryKey]

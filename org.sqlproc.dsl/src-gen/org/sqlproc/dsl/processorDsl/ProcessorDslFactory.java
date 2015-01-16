@@ -860,13 +860,22 @@ public interface ProcessorDslFactory extends EFactory
   PojoMethodArg createPojoMethodArg();
 
   /**
-   * Returns a new object of class '<em>Pojo Directive Discriminator</em>'.
+   * Returns a new object of class '<em>Pojo Directive To String</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Directive Discriminator</em>'.
+   * @return a new object of class '<em>Pojo Directive To String</em>'.
    * @generated
    */
-  PojoDirectiveDiscriminator createPojoDirectiveDiscriminator();
+  PojoDirectiveToString createPojoDirectiveToString();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Index</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Index</em>'.
+   * @generated
+   */
+  PojoDirectiveIndex createPojoDirectiveIndex();
 
   /**
    * Returns a new object of class '<em>Pojo Directive Operators</em>'.
@@ -887,13 +896,13 @@ public interface ProcessorDslFactory extends EFactory
   PojoDirectiveSerializable createPojoDirectiveSerializable();
 
   /**
-   * Returns a new object of class '<em>Pojo Directive Index</em>'.
+   * Returns a new object of class '<em>Pojo Directive Discriminator</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Directive Index</em>'.
+   * @return a new object of class '<em>Pojo Directive Discriminator</em>'.
    * @generated
    */
-  PojoDirectiveIndex createPojoDirectiveIndex();
+  PojoDirectiveDiscriminator createPojoDirectiveDiscriminator();
 
   /**
    * Returns a new object of class '<em>Pojo Directive Equals</em>'.
@@ -948,15 +957,6 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   PojoDirectiveEnumDef createPojoDirectiveEnumDef();
-
-  /**
-   * Returns a new object of class '<em>Pojo Directive To String</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Directive To String</em>'.
-   * @generated
-   */
-  PojoDirectiveToString createPojoDirectiveToString();
 
   /**
    * Returns a new object of class '<em>Pojo Property Directive Required</em>'.

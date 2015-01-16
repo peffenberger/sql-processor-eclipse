@@ -732,11 +732,19 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.POJO_DIRECTIVE_DISCRIMINATOR:
+      case ProcessorDslPackage.POJO_DIRECTIVE_TO_STRING:
       {
-        PojoDirectiveDiscriminator pojoDirectiveDiscriminator = (PojoDirectiveDiscriminator)theEObject;
-        T result = casePojoDirectiveDiscriminator(pojoDirectiveDiscriminator);
-        if (result == null) result = casePojoDirective(pojoDirectiveDiscriminator);
+        PojoDirectiveToString pojoDirectiveToString = (PojoDirectiveToString)theEObject;
+        T result = casePojoDirectiveToString(pojoDirectiveToString);
+        if (result == null) result = casePojoDirective(pojoDirectiveToString);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_INDEX:
+      {
+        PojoDirectiveIndex pojoDirectiveIndex = (PojoDirectiveIndex)theEObject;
+        T result = casePojoDirectiveIndex(pojoDirectiveIndex);
+        if (result == null) result = casePojoDirective(pojoDirectiveIndex);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -756,11 +764,11 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.POJO_DIRECTIVE_INDEX:
+      case ProcessorDslPackage.POJO_DIRECTIVE_DISCRIMINATOR:
       {
-        PojoDirectiveIndex pojoDirectiveIndex = (PojoDirectiveIndex)theEObject;
-        T result = casePojoDirectiveIndex(pojoDirectiveIndex);
-        if (result == null) result = casePojoDirective(pojoDirectiveIndex);
+        PojoDirectiveDiscriminator pojoDirectiveDiscriminator = (PojoDirectiveDiscriminator)theEObject;
+        T result = casePojoDirectiveDiscriminator(pojoDirectiveDiscriminator);
+        if (result == null) result = casePojoDirective(pojoDirectiveDiscriminator);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -809,14 +817,6 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         PojoDirectiveEnumDef pojoDirectiveEnumDef = (PojoDirectiveEnumDef)theEObject;
         T result = casePojoDirectiveEnumDef(pojoDirectiveEnumDef);
         if (result == null) result = casePojoDirective(pojoDirectiveEnumDef);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.POJO_DIRECTIVE_TO_STRING:
-      {
-        PojoDirectiveToString pojoDirectiveToString = (PojoDirectiveToString)theEObject;
-        T result = casePojoDirectiveToString(pojoDirectiveToString);
-        if (result == null) result = casePojoDirective(pojoDirectiveToString);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2425,17 +2425,33 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Discriminator</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive To String</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Discriminator</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive To String</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePojoDirectiveDiscriminator(PojoDirectiveDiscriminator object)
+  public T casePojoDirectiveToString(PojoDirectiveToString object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Index</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Index</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveIndex(PojoDirectiveIndex object)
   {
     return null;
   }
@@ -2473,17 +2489,17 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Index</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Discriminator</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Index</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Discriminator</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePojoDirectiveIndex(PojoDirectiveIndex object)
+  public T casePojoDirectiveDiscriminator(PojoDirectiveDiscriminator object)
   {
     return null;
   }
@@ -2580,22 +2596,6 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePojoDirectiveEnumDef(PojoDirectiveEnumDef object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive To String</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Directive To String</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePojoDirectiveToString(PojoDirectiveToString object)
   {
     return null;
   }

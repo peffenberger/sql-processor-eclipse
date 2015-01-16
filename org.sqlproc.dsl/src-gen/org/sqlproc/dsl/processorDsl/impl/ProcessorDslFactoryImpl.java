@@ -157,17 +157,17 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.POJO_METHOD: return createPojoMethod();
       case ProcessorDslPackage.TO_INIT_METHOD: return createToInitMethod();
       case ProcessorDslPackage.POJO_METHOD_ARG: return createPojoMethodArg();
-      case ProcessorDslPackage.POJO_DIRECTIVE_DISCRIMINATOR: return createPojoDirectiveDiscriminator();
+      case ProcessorDslPackage.POJO_DIRECTIVE_TO_STRING: return createPojoDirectiveToString();
+      case ProcessorDslPackage.POJO_DIRECTIVE_INDEX: return createPojoDirectiveIndex();
       case ProcessorDslPackage.POJO_DIRECTIVE_OPERATORS: return createPojoDirectiveOperators();
       case ProcessorDslPackage.POJO_DIRECTIVE_SERIALIZABLE: return createPojoDirectiveSerializable();
-      case ProcessorDslPackage.POJO_DIRECTIVE_INDEX: return createPojoDirectiveIndex();
+      case ProcessorDslPackage.POJO_DIRECTIVE_DISCRIMINATOR: return createPojoDirectiveDiscriminator();
       case ProcessorDslPackage.POJO_DIRECTIVE_EQUALS: return createPojoDirectiveEquals();
       case ProcessorDslPackage.POJO_DIRECTIVE_HASH_CODE: return createPojoDirectiveHashCode();
       case ProcessorDslPackage.POJO_DIRECTIVE_TO_INIT: return createPojoDirectiveToInit();
       case ProcessorDslPackage.POJO_DIRECTIVE_ENUM_INIT: return createPojoDirectiveEnumInit();
       case ProcessorDslPackage.POJO_DIRECTIVE_IS_DEF: return createPojoDirectiveIsDef();
       case ProcessorDslPackage.POJO_DIRECTIVE_ENUM_DEF: return createPojoDirectiveEnumDef();
-      case ProcessorDslPackage.POJO_DIRECTIVE_TO_STRING: return createPojoDirectiveToString();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_REQUIRED: return createPojoPropertyDirectiveRequired();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY: return createPojoPropertyDirectivePrimaryKey();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR: return createPojoPropertyDirectiveDiscriminator();
@@ -1215,10 +1215,21 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDirectiveDiscriminator createPojoDirectiveDiscriminator()
+  public PojoDirectiveToString createPojoDirectiveToString()
   {
-    PojoDirectiveDiscriminatorImpl pojoDirectiveDiscriminator = new PojoDirectiveDiscriminatorImpl();
-    return pojoDirectiveDiscriminator;
+    PojoDirectiveToStringImpl pojoDirectiveToString = new PojoDirectiveToStringImpl();
+    return pojoDirectiveToString;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoDirectiveIndex createPojoDirectiveIndex()
+  {
+    PojoDirectiveIndexImpl pojoDirectiveIndex = new PojoDirectiveIndexImpl();
+    return pojoDirectiveIndex;
   }
 
   /**
@@ -1248,10 +1259,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDirectiveIndex createPojoDirectiveIndex()
+  public PojoDirectiveDiscriminator createPojoDirectiveDiscriminator()
   {
-    PojoDirectiveIndexImpl pojoDirectiveIndex = new PojoDirectiveIndexImpl();
-    return pojoDirectiveIndex;
+    PojoDirectiveDiscriminatorImpl pojoDirectiveDiscriminator = new PojoDirectiveDiscriminatorImpl();
+    return pojoDirectiveDiscriminator;
   }
 
   /**
@@ -1318,17 +1329,6 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     PojoDirectiveEnumDefImpl pojoDirectiveEnumDef = new PojoDirectiveEnumDefImpl();
     return pojoDirectiveEnumDef;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoDirectiveToString createPojoDirectiveToString()
-  {
-    PojoDirectiveToStringImpl pojoDirectiveToString = new PojoDirectiveToStringImpl();
-    return pojoDirectiveToString;
   }
 
   /**

@@ -13960,12 +13960,12 @@ rulePojoDirective returns [EObject current=null]
 (((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveDiscriminatorAction_0_0(),
+            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveToStringAction_0_0(),
             $current);
     }
-)	otherlv_1='#Discriminator' 
+)	otherlv_1='#ToString' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getPojoDirectiveAccess().getDiscriminatorKeyword_0_1());
+    	newLeafNode(otherlv_1, grammarAccess.getPojoDirectiveAccess().getToStringKeyword_0_1());
     }
 this_LPAREN_2=RULE_LPAREN
     { 
@@ -13973,38 +13973,20 @@ this_LPAREN_2=RULE_LPAREN
     }
 (
 (
-(
-		lv_discriminator_3_1=RULE_IDENT
-		{
-			newLeafNode(lv_discriminator_3_1, grammarAccess.getPojoDirectiveAccess().getDiscriminatorIDENTTerminalRuleCall_0_3_0_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoDirectiveRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"discriminator",
-        		lv_discriminator_3_1, 
-        		"IDENT");
+		{ 
+	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_0_3_0()); 
 	    }
-
-    |		lv_discriminator_3_2=RULE_NUMBER
-		{
-			newLeafNode(lv_discriminator_3_2, grammarAccess.getPojoDirectiveAccess().getDiscriminatorNUMBERTerminalRuleCall_0_3_0_1()); 
-		}
-		{
+		lv_proplist_3_0=ruleDirectiveProperties		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoDirectiveRule());
+	            $current = createModelElementForParent(grammarAccess.getPojoDirectiveRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
-       			"discriminator",
-        		lv_discriminator_3_2, 
-        		"NUMBER");
+       			"proplist",
+        		lv_proplist_3_0, 
+        		"DirectiveProperties");
+	        afterParserOrEnumRuleCall();
 	    }
-
-)
 
 )
 )this_RPAREN_4=RULE_RPAREN
@@ -14015,96 +13997,22 @@ this_LPAREN_2=RULE_LPAREN
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveOperatorsAction_1_0(),
+            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveIndexAction_1_0(),
             $current);
     }
-)	otherlv_6='#Operators' 
+)	otherlv_6='#Index' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getPojoDirectiveAccess().getOperatorsKeyword_1_1());
+    	newLeafNode(otherlv_6, grammarAccess.getPojoDirectiveAccess().getIndexKeyword_1_1());
     }
-(this_LPAREN_7=RULE_LPAREN
+this_LPAREN_7=RULE_LPAREN
     { 
-    newLeafNode(this_LPAREN_7, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_1_2_0()); 
+    newLeafNode(this_LPAREN_7, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_1_2()); 
     }
 (
 (
-		lv_operatorsSuffix_8_0=RULE_IDENT
+		lv_index_8_0=RULE_NUMBER
 		{
-			newLeafNode(lv_operatorsSuffix_8_0, grammarAccess.getPojoDirectiveAccess().getOperatorsSuffixIDENTTerminalRuleCall_1_2_1_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoDirectiveRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"operatorsSuffix",
-        		lv_operatorsSuffix_8_0, 
-        		"IDENT");
-	    }
-
-)
-)this_RPAREN_9=RULE_RPAREN
-    { 
-    newLeafNode(this_RPAREN_9, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_1_2_2()); 
-    }
-)?)
-    |((
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveSerializableAction_2_0(),
-            $current);
-    }
-)	otherlv_11='#Serializable' 
-    {
-    	newLeafNode(otherlv_11, grammarAccess.getPojoDirectiveAccess().getSerializableKeyword_2_1());
-    }
-this_LPAREN_12=RULE_LPAREN
-    { 
-    newLeafNode(this_LPAREN_12, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_2_2()); 
-    }
-(
-(
-		lv_sernum_13_0=RULE_NUMBER
-		{
-			newLeafNode(lv_sernum_13_0, grammarAccess.getPojoDirectiveAccess().getSernumNUMBERTerminalRuleCall_2_3_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoDirectiveRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"sernum",
-        		lv_sernum_13_0, 
-        		"NUMBER");
-	    }
-
-)
-)this_RPAREN_14=RULE_RPAREN
-    { 
-    newLeafNode(this_RPAREN_14, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_2_4()); 
-    }
-)
-    |((
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveIndexAction_3_0(),
-            $current);
-    }
-)	otherlv_16='#Index' 
-    {
-    	newLeafNode(otherlv_16, grammarAccess.getPojoDirectiveAccess().getIndexKeyword_3_1());
-    }
-this_LPAREN_17=RULE_LPAREN
-    { 
-    newLeafNode(this_LPAREN_17, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_3_2()); 
-    }
-(
-(
-		lv_index_18_0=RULE_NUMBER
-		{
-			newLeafNode(lv_index_18_0, grammarAccess.getPojoDirectiveAccess().getIndexNUMBERTerminalRuleCall_3_3_0()); 
+			newLeafNode(lv_index_8_0, grammarAccess.getPojoDirectiveAccess().getIndexNUMBERTerminalRuleCall_1_3_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -14113,47 +14021,121 @@ this_LPAREN_17=RULE_LPAREN
        		setWithLastConsumed(
        			$current, 
        			"index",
-        		lv_index_18_0, 
+        		lv_index_8_0, 
         		"NUMBER");
 	    }
 
 )
-)this_COMMA_19=RULE_COMMA
+)this_COMMA_9=RULE_COMMA
     { 
-    newLeafNode(this_COMMA_19, grammarAccess.getPojoDirectiveAccess().getCOMMATerminalRuleCall_3_4()); 
+    newLeafNode(this_COMMA_9, grammarAccess.getPojoDirectiveAccess().getCOMMATerminalRuleCall_1_4()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_3_5_0()); 
+	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_1_5_0()); 
 	    }
-		lv_proplist_20_0=ruleDirectiveProperties		{
+		lv_proplist_10_0=ruleDirectiveProperties		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPojoDirectiveRule());
 	        }
        		set(
        			$current, 
        			"proplist",
-        		lv_proplist_20_0, 
+        		lv_proplist_10_0, 
         		"DirectiveProperties");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)this_RPAREN_21=RULE_RPAREN
+)this_RPAREN_11=RULE_RPAREN
     { 
-    newLeafNode(this_RPAREN_21, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_3_6()); 
+    newLeafNode(this_RPAREN_11, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_1_6()); 
     }
 )
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveEqualsAction_4_0(),
+            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveOperatorsAction_2_0(),
             $current);
     }
-)	otherlv_23='#Equals' 
+)	otherlv_13='#Operators' 
     {
-    	newLeafNode(otherlv_23, grammarAccess.getPojoDirectiveAccess().getEqualsKeyword_4_1());
+    	newLeafNode(otherlv_13, grammarAccess.getPojoDirectiveAccess().getOperatorsKeyword_2_1());
+    }
+(this_LPAREN_14=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_14, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_2_2_0()); 
+    }
+(
+(
+		lv_operatorsSuffix_15_0=RULE_IDENT
+		{
+			newLeafNode(lv_operatorsSuffix_15_0, grammarAccess.getPojoDirectiveAccess().getOperatorsSuffixIDENTTerminalRuleCall_2_2_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoDirectiveRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"operatorsSuffix",
+        		lv_operatorsSuffix_15_0, 
+        		"IDENT");
+	    }
+
+)
+)this_RPAREN_16=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_16, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_2_2_2()); 
+    }
+)?)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveSerializableAction_3_0(),
+            $current);
+    }
+)	otherlv_18='#Serializable' 
+    {
+    	newLeafNode(otherlv_18, grammarAccess.getPojoDirectiveAccess().getSerializableKeyword_3_1());
+    }
+this_LPAREN_19=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_19, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_3_2()); 
+    }
+(
+(
+		lv_sernum_20_0=RULE_NUMBER
+		{
+			newLeafNode(lv_sernum_20_0, grammarAccess.getPojoDirectiveAccess().getSernumNUMBERTerminalRuleCall_3_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoDirectiveRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"sernum",
+        		lv_sernum_20_0, 
+        		"NUMBER");
+	    }
+
+)
+)this_RPAREN_21=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_21, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_3_4()); 
+    }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveDiscriminatorAction_4_0(),
+            $current);
+    }
+)	otherlv_23='#Discriminator' 
+    {
+    	newLeafNode(otherlv_23, grammarAccess.getPojoDirectiveAccess().getDiscriminatorKeyword_4_1());
     }
 this_LPAREN_24=RULE_LPAREN
     { 
@@ -14161,20 +14143,38 @@ this_LPAREN_24=RULE_LPAREN
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_4_3_0()); 
-	    }
-		lv_proplist_25_0=ruleDirectiveProperties		{
+(
+		lv_discriminator_25_1=RULE_IDENT
+		{
+			newLeafNode(lv_discriminator_25_1, grammarAccess.getPojoDirectiveAccess().getDiscriminatorIDENTTerminalRuleCall_4_3_0_0()); 
+		}
+		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPojoDirectiveRule());
+	            $current = createModelElement(grammarAccess.getPojoDirectiveRule());
 	        }
-       		set(
+       		setWithLastConsumed(
        			$current, 
-       			"proplist",
-        		lv_proplist_25_0, 
-        		"DirectiveProperties");
-	        afterParserOrEnumRuleCall();
+       			"discriminator",
+        		lv_discriminator_25_1, 
+        		"IDENT");
 	    }
+
+    |		lv_discriminator_25_2=RULE_NUMBER
+		{
+			newLeafNode(lv_discriminator_25_2, grammarAccess.getPojoDirectiveAccess().getDiscriminatorNUMBERTerminalRuleCall_4_3_0_1()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoDirectiveRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"discriminator",
+        		lv_discriminator_25_2, 
+        		"NUMBER");
+	    }
+
+)
 
 )
 )this_RPAREN_26=RULE_RPAREN
@@ -14185,12 +14185,12 @@ this_LPAREN_24=RULE_LPAREN
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveHashCodeAction_5_0(),
+            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveEqualsAction_5_0(),
             $current);
     }
-)	otherlv_28='#HashCode' 
+)	otherlv_28='#Equals' 
     {
-    	newLeafNode(otherlv_28, grammarAccess.getPojoDirectiveAccess().getHashCodeKeyword_5_1());
+    	newLeafNode(otherlv_28, grammarAccess.getPojoDirectiveAccess().getEqualsKeyword_5_1());
     }
 this_LPAREN_29=RULE_LPAREN
     { 
@@ -14222,12 +14222,12 @@ this_LPAREN_29=RULE_LPAREN
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveToInitAction_6_0(),
+            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveHashCodeAction_6_0(),
             $current);
     }
-)	otherlv_33='#ToInit' 
+)	otherlv_33='#HashCode' 
     {
-    	newLeafNode(otherlv_33, grammarAccess.getPojoDirectiveAccess().getToInitKeyword_6_1());
+    	newLeafNode(otherlv_33, grammarAccess.getPojoDirectiveAccess().getHashCodeKeyword_6_1());
     }
 this_LPAREN_34=RULE_LPAREN
     { 
@@ -14259,12 +14259,12 @@ this_LPAREN_34=RULE_LPAREN
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveEnumInitAction_7_0(),
+            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveToInitAction_7_0(),
             $current);
     }
-)	otherlv_38='#EnumInit' 
+)	otherlv_38='#ToInit' 
     {
-    	newLeafNode(otherlv_38, grammarAccess.getPojoDirectiveAccess().getEnumInitKeyword_7_1());
+    	newLeafNode(otherlv_38, grammarAccess.getPojoDirectiveAccess().getToInitKeyword_7_1());
     }
 this_LPAREN_39=RULE_LPAREN
     { 
@@ -14296,12 +14296,12 @@ this_LPAREN_39=RULE_LPAREN
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveIsDefAction_8_0(),
+            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveEnumInitAction_8_0(),
             $current);
     }
-)	otherlv_43='#IsDef' 
+)	otherlv_43='#EnumInit' 
     {
-    	newLeafNode(otherlv_43, grammarAccess.getPojoDirectiveAccess().getIsDefKeyword_8_1());
+    	newLeafNode(otherlv_43, grammarAccess.getPojoDirectiveAccess().getEnumInitKeyword_8_1());
     }
 this_LPAREN_44=RULE_LPAREN
     { 
@@ -14333,12 +14333,12 @@ this_LPAREN_44=RULE_LPAREN
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveEnumDefAction_9_0(),
+            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveIsDefAction_9_0(),
             $current);
     }
-)	otherlv_48='#EnumDef' 
+)	otherlv_48='#IsDef' 
     {
-    	newLeafNode(otherlv_48, grammarAccess.getPojoDirectiveAccess().getEnumDefKeyword_9_1());
+    	newLeafNode(otherlv_48, grammarAccess.getPojoDirectiveAccess().getIsDefKeyword_9_1());
     }
 this_LPAREN_49=RULE_LPAREN
     { 
@@ -14370,12 +14370,12 @@ this_LPAREN_49=RULE_LPAREN
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveToStringAction_10_0(),
+            grammarAccess.getPojoDirectiveAccess().getPojoDirectiveEnumDefAction_10_0(),
             $current);
     }
-)	otherlv_53='#ToString' 
+)	otherlv_53='#EnumDef' 
     {
-    	newLeafNode(otherlv_53, grammarAccess.getPojoDirectiveAccess().getToStringKeyword_10_1());
+    	newLeafNode(otherlv_53, grammarAccess.getPojoDirectiveAccess().getEnumDefKeyword_10_1());
     }
 this_LPAREN_54=RULE_LPAREN
     { 

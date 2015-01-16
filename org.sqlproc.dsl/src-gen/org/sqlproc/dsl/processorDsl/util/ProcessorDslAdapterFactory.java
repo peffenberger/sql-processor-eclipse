@@ -540,9 +540,14 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createPojoMethodArgAdapter();
       }
       @Override
-      public Adapter casePojoDirectiveDiscriminator(PojoDirectiveDiscriminator object)
+      public Adapter casePojoDirectiveToString(PojoDirectiveToString object)
       {
-        return createPojoDirectiveDiscriminatorAdapter();
+        return createPojoDirectiveToStringAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveIndex(PojoDirectiveIndex object)
+      {
+        return createPojoDirectiveIndexAdapter();
       }
       @Override
       public Adapter casePojoDirectiveOperators(PojoDirectiveOperators object)
@@ -555,9 +560,9 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createPojoDirectiveSerializableAdapter();
       }
       @Override
-      public Adapter casePojoDirectiveIndex(PojoDirectiveIndex object)
+      public Adapter casePojoDirectiveDiscriminator(PojoDirectiveDiscriminator object)
       {
-        return createPojoDirectiveIndexAdapter();
+        return createPojoDirectiveDiscriminatorAdapter();
       }
       @Override
       public Adapter casePojoDirectiveEquals(PojoDirectiveEquals object)
@@ -588,11 +593,6 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
       public Adapter casePojoDirectiveEnumDef(PojoDirectiveEnumDef object)
       {
         return createPojoDirectiveEnumDefAdapter();
-      }
-      @Override
-      public Adapter casePojoDirectiveToString(PojoDirectiveToString object)
-      {
-        return createPojoDirectiveToStringAdapter();
       }
       @Override
       public Adapter casePojoPropertyDirectiveRequired(PojoPropertyDirectiveRequired object)
@@ -2082,16 +2082,31 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator <em>Pojo Directive Discriminator</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveToString <em>Pojo Directive To String</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveToString
    * @generated
    */
-  public Adapter createPojoDirectiveDiscriminatorAdapter()
+  public Adapter createPojoDirectiveToStringAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveIndex <em>Pojo Directive Index</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveIndex
+   * @generated
+   */
+  public Adapter createPojoDirectiveIndexAdapter()
   {
     return null;
   }
@@ -2127,16 +2142,16 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveIndex <em>Pojo Directive Index</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator <em>Pojo Directive Discriminator</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveIndex
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator
    * @generated
    */
-  public Adapter createPojoDirectiveIndexAdapter()
+  public Adapter createPojoDirectiveDiscriminatorAdapter()
   {
     return null;
   }
@@ -2227,21 +2242,6 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPojoDirectiveEnumDefAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveToString <em>Pojo Directive To String</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveToString
-   * @generated
-   */
-  public Adapter createPojoDirectiveToStringAdapter()
   {
     return null;
   }
