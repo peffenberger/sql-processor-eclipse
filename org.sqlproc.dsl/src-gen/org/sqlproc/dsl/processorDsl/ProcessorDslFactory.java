@@ -797,6 +797,15 @@ public interface ProcessorDslFactory extends EFactory
   DescendantAssignment createDescendantAssignment();
 
   /**
+   * Returns a new object of class '<em>Fun Proc Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Fun Proc Type</em>'.
+   * @generated
+   */
+  FunProcType createFunProcType();
+
+  /**
    * Returns a new object of class '<em>Dao Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -822,42 +831,6 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   PojoDao createPojoDao();
-
-  /**
-   * Returns a new object of class '<em>Pojo Method Modifier</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Method Modifier</em>'.
-   * @generated
-   */
-  PojoMethodModifier createPojoMethodModifier();
-
-  /**
-   * Returns a new object of class '<em>Pojo Method</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Method</em>'.
-   * @generated
-   */
-  PojoMethod createPojoMethod();
-
-  /**
-   * Returns a new object of class '<em>To Init Method</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>To Init Method</em>'.
-   * @generated
-   */
-  ToInitMethod createToInitMethod();
-
-  /**
-   * Returns a new object of class '<em>Pojo Method Arg</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Method Arg</em>'.
-   * @generated
-   */
-  PojoMethodArg createPojoMethodArg();
 
   /**
    * Returns a new object of class '<em>Pojo Directive To String</em>'.
@@ -1022,6 +995,51 @@ public interface ProcessorDslFactory extends EFactory
   PojoPropertyDirectiveCreateCol createPojoPropertyDirectiveCreateCol();
 
   /**
+   * Returns a new object of class '<em>Function Call Query</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function Call Query</em>'.
+   * @generated
+   */
+  FunctionCallQuery createFunctionCallQuery();
+
+  /**
+   * Returns a new object of class '<em>Procedure Call Query</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Procedure Call Query</em>'.
+   * @generated
+   */
+  ProcedureCallQuery createProcedureCallQuery();
+
+  /**
+   * Returns a new object of class '<em>Function Call</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function Call</em>'.
+   * @generated
+   */
+  FunctionCall createFunctionCall();
+
+  /**
+   * Returns a new object of class '<em>Procedure Update</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Procedure Update</em>'.
+   * @generated
+   */
+  ProcedureUpdate createProcedureUpdate();
+
+  /**
+   * Returns a new object of class '<em>Function Query</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function Query</em>'.
+   * @generated
+   */
+  FunctionQuery createFunctionQuery();
+
+  /**
    * Returns a new object of class '<em>Dao Directive Serializable</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1058,31 +1076,13 @@ public interface ProcessorDslFactory extends EFactory
   DaoDirectiveQuery createDaoDirectiveQuery();
 
   /**
-   * Returns a new object of class '<em>Dao Directive Procedure</em>'.
+   * Returns a new object of class '<em>Fun Proc Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Dao Directive Procedure</em>'.
+   * @return a new object of class '<em>Fun Proc Directive</em>'.
    * @generated
    */
-  DaoDirectiveProcedure createDaoDirectiveProcedure();
-
-  /**
-   * Returns a new object of class '<em>Dao Directive Function</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Dao Directive Function</em>'.
-   * @generated
-   */
-  DaoDirectiveFunction createDaoDirectiveFunction();
-
-  /**
-   * Returns a new object of class '<em>Dao Directive Update</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Dao Directive Update</em>'.
-   * @generated
-   */
-  DaoDirectiveUpdate createDaoDirectiveUpdate();
+  FunProcDirective createFunProcDirective();
 
   /**
    * Returns the package supported by this factory.

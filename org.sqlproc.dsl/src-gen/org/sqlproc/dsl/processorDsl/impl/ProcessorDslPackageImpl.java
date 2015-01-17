@@ -24,12 +24,9 @@ import org.sqlproc.dsl.processorDsl.ConstantOperator;
 import org.sqlproc.dsl.processorDsl.DaoDirective;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveCrud;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator;
-import org.sqlproc.dsl.processorDsl.DaoDirectiveFunction;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters;
-import org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveQuery;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveSerializable;
-import org.sqlproc.dsl.processorDsl.DaoDirectiveUpdate;
 import org.sqlproc.dsl.processorDsl.DaogenProperty;
 import org.sqlproc.dsl.processorDsl.DatabaseCatalogAssignement;
 import org.sqlproc.dsl.processorDsl.DatabaseColumn;
@@ -55,8 +52,13 @@ import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
 import org.sqlproc.dsl.processorDsl.Extends;
 import org.sqlproc.dsl.processorDsl.ExtendsAssignement;
 import org.sqlproc.dsl.processorDsl.ExtendsAssignementGenerics;
+import org.sqlproc.dsl.processorDsl.FunProcDirective;
+import org.sqlproc.dsl.processorDsl.FunProcType;
+import org.sqlproc.dsl.processorDsl.FunctionCall;
+import org.sqlproc.dsl.processorDsl.FunctionCallQuery;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
 import org.sqlproc.dsl.processorDsl.FunctionPojoAssignement;
+import org.sqlproc.dsl.processorDsl.FunctionQuery;
 import org.sqlproc.dsl.processorDsl.Identifier;
 import org.sqlproc.dsl.processorDsl.IdentifierOperator;
 import org.sqlproc.dsl.processorDsl.IfMetaSql;
@@ -105,9 +107,6 @@ import org.sqlproc.dsl.processorDsl.PojoDirectiveToString;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier2;
-import org.sqlproc.dsl.processorDsl.PojoMethod;
-import org.sqlproc.dsl.processorDsl.PojoMethodArg;
-import org.sqlproc.dsl.processorDsl.PojoMethodModifier;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirective;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol;
@@ -119,8 +118,10 @@ import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveVersion;
 import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.PojogenProperty;
+import org.sqlproc.dsl.processorDsl.ProcedureCallQuery;
 import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
 import org.sqlproc.dsl.processorDsl.ProcedurePojoAssignement;
+import org.sqlproc.dsl.processorDsl.ProcedureUpdate;
 import org.sqlproc.dsl.processorDsl.ProcessorDslFactory;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 import org.sqlproc.dsl.processorDsl.Property;
@@ -130,7 +131,6 @@ import org.sqlproc.dsl.processorDsl.SqlFragment;
 import org.sqlproc.dsl.processorDsl.SqlTypeAssignement;
 import org.sqlproc.dsl.processorDsl.TableAssignement;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
-import org.sqlproc.dsl.processorDsl.ToInitMethod;
 
 /**
  * <!-- begin-user-doc -->
@@ -747,6 +747,13 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass funProcTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass daoDirectiveEClass = null;
 
   /**
@@ -762,34 +769,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * @generated
    */
   private EClass pojoDaoEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass pojoMethodModifierEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass pojoMethodEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass toInitMethodEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass pojoMethodArgEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -922,6 +901,41 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass functionCallQueryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass procedureCallQueryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass functionCallEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass procedureUpdateEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass functionQueryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass daoDirectiveSerializableEClass = null;
 
   /**
@@ -950,21 +964,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass daoDirectiveProcedureEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass daoDirectiveFunctionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass daoDirectiveUpdateEClass = null;
+  private EClass funProcDirectiveEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -4847,7 +4847,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDaoDirectiveParameters_In()
+  public EReference getDaoDirectiveParameters_Out()
   {
     return (EReference)daoDirectiveParametersEClass.getEStructuralFeatures().get(0);
   }
@@ -4857,7 +4857,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDaoDirectiveParameters_Out()
+  public EReference getDaoDirectiveParameters_Ins()
   {
     return (EReference)daoDirectiveParametersEClass.getEStructuralFeatures().get(1);
   }
@@ -4890,6 +4890,16 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
   public EReference getDescendantAssignment_Descendant()
   {
     return (EReference)descendantAssignmentEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFunProcType()
+  {
+    return funProcTypeEClass;
   }
 
   /**
@@ -4970,176 +4980,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
   public EReference getPojoDao_Modifiers2()
   {
     return (EReference)pojoDaoEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getPojoMethodModifier()
-  {
-    return pojoMethodModifierEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoMethodModifier_CallFunction()
-  {
-    return (EAttribute)pojoMethodModifierEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoMethodModifier_CallUpdate()
-  {
-    return (EAttribute)pojoMethodModifierEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoMethodModifier_CallQuery()
-  {
-    return (EAttribute)pojoMethodModifierEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoMethodModifier_CallQueryFunction()
-  {
-    return (EAttribute)pojoMethodModifierEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoMethodModifier_CallSelectFunction()
-  {
-    return (EAttribute)pojoMethodModifierEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getPojoMethod()
-  {
-    return pojoMethodEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoMethod_Modifiers1()
-  {
-    return (EReference)pojoMethodEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoMethod_Name()
-  {
-    return (EAttribute)pojoMethodEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoMethod_Type()
-  {
-    return (EReference)pojoMethodEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoMethod_Args()
-  {
-    return (EReference)pojoMethodEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getToInitMethod()
-  {
-    return toInitMethodEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getToInitMethod_Name()
-  {
-    return (EAttribute)toInitMethodEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getToInitMethod_Args()
-  {
-    return (EReference)toInitMethodEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getPojoMethodArg()
-  {
-    return pojoMethodArgEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoMethodArg_Name()
-  {
-    return (EAttribute)pojoMethodArgEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoMethodArg_Type()
-  {
-    return (EReference)pojoMethodArgEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -5497,6 +5337,56 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getFunctionCallQuery()
+  {
+    return functionCallQueryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getProcedureCallQuery()
+  {
+    return procedureCallQueryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFunctionCall()
+  {
+    return functionCallEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getProcedureUpdate()
+  {
+    return procedureUpdateEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFunctionQuery()
+  {
+    return functionQueryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getDaoDirectiveSerializable()
   {
     return daoDirectiveSerializableEClass;
@@ -5587,9 +5477,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDaoDirectiveProcedure()
+  public EClass getFunProcDirective()
   {
-    return daoDirectiveProcedureEClass;
+    return funProcDirectiveEClass;
   }
 
   /**
@@ -5597,9 +5487,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDaoDirectiveProcedure_Pojo()
+  public EReference getFunProcDirective_Type()
   {
-    return (EReference)daoDirectiveProcedureEClass.getEStructuralFeatures().get(0);
+    return (EReference)funProcDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -5607,9 +5497,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDaoDirectiveFunction()
+  public EReference getFunProcDirective_Pojo()
   {
-    return daoDirectiveFunctionEClass;
+    return (EReference)funProcDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -5617,29 +5507,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDaoDirectiveFunction_Pojo()
+  public EReference getFunProcDirective_Paramlist()
   {
-    return (EReference)daoDirectiveFunctionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getDaoDirectiveUpdate()
-  {
-    return daoDirectiveUpdateEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getDaoDirectiveUpdate_Paramlist()
-  {
-    return (EReference)daoDirectiveUpdateEClass.getEStructuralFeatures().get(0);
+    return (EReference)funProcDirectiveEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -6137,12 +6007,14 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEReference(enumPropertyEClass, ENUM_PROPERTY__TYPE);
 
     daoDirectiveParametersEClass = createEClass(DAO_DIRECTIVE_PARAMETERS);
-    createEReference(daoDirectiveParametersEClass, DAO_DIRECTIVE_PARAMETERS__IN);
     createEReference(daoDirectiveParametersEClass, DAO_DIRECTIVE_PARAMETERS__OUT);
+    createEReference(daoDirectiveParametersEClass, DAO_DIRECTIVE_PARAMETERS__INS);
 
     descendantAssignmentEClass = createEClass(DESCENDANT_ASSIGNMENT);
     createEAttribute(descendantAssignmentEClass, DESCENDANT_ASSIGNMENT__VALUE);
     createEReference(descendantAssignmentEClass, DESCENDANT_ASSIGNMENT__DESCENDANT);
+
+    funProcTypeEClass = createEClass(FUN_PROC_TYPE);
 
     daoDirectiveEClass = createEClass(DAO_DIRECTIVE);
 
@@ -6154,27 +6026,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEReference(pojoDaoEClass, POJO_DAO__MODIFIERS1);
     createEAttribute(pojoDaoEClass, POJO_DAO__NAME);
     createEReference(pojoDaoEClass, POJO_DAO__MODIFIERS2);
-
-    pojoMethodModifierEClass = createEClass(POJO_METHOD_MODIFIER);
-    createEAttribute(pojoMethodModifierEClass, POJO_METHOD_MODIFIER__CALL_FUNCTION);
-    createEAttribute(pojoMethodModifierEClass, POJO_METHOD_MODIFIER__CALL_UPDATE);
-    createEAttribute(pojoMethodModifierEClass, POJO_METHOD_MODIFIER__CALL_QUERY);
-    createEAttribute(pojoMethodModifierEClass, POJO_METHOD_MODIFIER__CALL_QUERY_FUNCTION);
-    createEAttribute(pojoMethodModifierEClass, POJO_METHOD_MODIFIER__CALL_SELECT_FUNCTION);
-
-    pojoMethodEClass = createEClass(POJO_METHOD);
-    createEReference(pojoMethodEClass, POJO_METHOD__MODIFIERS1);
-    createEAttribute(pojoMethodEClass, POJO_METHOD__NAME);
-    createEReference(pojoMethodEClass, POJO_METHOD__TYPE);
-    createEReference(pojoMethodEClass, POJO_METHOD__ARGS);
-
-    toInitMethodEClass = createEClass(TO_INIT_METHOD);
-    createEAttribute(toInitMethodEClass, TO_INIT_METHOD__NAME);
-    createEReference(toInitMethodEClass, TO_INIT_METHOD__ARGS);
-
-    pojoMethodArgEClass = createEClass(POJO_METHOD_ARG);
-    createEAttribute(pojoMethodArgEClass, POJO_METHOD_ARG__NAME);
-    createEReference(pojoMethodArgEClass, POJO_METHOD_ARG__TYPE);
 
     pojoDirectiveToStringEClass = createEClass(POJO_DIRECTIVE_TO_STRING);
     createEReference(pojoDirectiveToStringEClass, POJO_DIRECTIVE_TO_STRING__PROPLIST);
@@ -6229,6 +6080,16 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEAttribute(pojoPropertyDirectiveCreateColEClass, POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN1);
     createEAttribute(pojoPropertyDirectiveCreateColEClass, POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN2);
 
+    functionCallQueryEClass = createEClass(FUNCTION_CALL_QUERY);
+
+    procedureCallQueryEClass = createEClass(PROCEDURE_CALL_QUERY);
+
+    functionCallEClass = createEClass(FUNCTION_CALL);
+
+    procedureUpdateEClass = createEClass(PROCEDURE_UPDATE);
+
+    functionQueryEClass = createEClass(FUNCTION_QUERY);
+
     daoDirectiveSerializableEClass = createEClass(DAO_DIRECTIVE_SERIALIZABLE);
     createEAttribute(daoDirectiveSerializableEClass, DAO_DIRECTIVE_SERIALIZABLE__SERNUM);
 
@@ -6242,14 +6103,10 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     daoDirectiveQueryEClass = createEClass(DAO_DIRECTIVE_QUERY);
     createEReference(daoDirectiveQueryEClass, DAO_DIRECTIVE_QUERY__POJO);
 
-    daoDirectiveProcedureEClass = createEClass(DAO_DIRECTIVE_PROCEDURE);
-    createEReference(daoDirectiveProcedureEClass, DAO_DIRECTIVE_PROCEDURE__POJO);
-
-    daoDirectiveFunctionEClass = createEClass(DAO_DIRECTIVE_FUNCTION);
-    createEReference(daoDirectiveFunctionEClass, DAO_DIRECTIVE_FUNCTION__POJO);
-
-    daoDirectiveUpdateEClass = createEClass(DAO_DIRECTIVE_UPDATE);
-    createEReference(daoDirectiveUpdateEClass, DAO_DIRECTIVE_UPDATE__PARAMLIST);
+    funProcDirectiveEClass = createEClass(FUN_PROC_DIRECTIVE);
+    createEReference(funProcDirectiveEClass, FUN_PROC_DIRECTIVE__TYPE);
+    createEReference(funProcDirectiveEClass, FUN_PROC_DIRECTIVE__POJO);
+    createEReference(funProcDirectiveEClass, FUN_PROC_DIRECTIVE__PARAMLIST);
   }
 
   /**
@@ -6311,13 +6168,16 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     pojoPropertyDirectiveVersionEClass.getESuperTypes().add(this.getPojoPropertyDirective());
     pojoPropertyDirectiveUpdateColEClass.getESuperTypes().add(this.getPojoPropertyDirective());
     pojoPropertyDirectiveCreateColEClass.getESuperTypes().add(this.getPojoPropertyDirective());
+    functionCallQueryEClass.getESuperTypes().add(this.getFunProcType());
+    procedureCallQueryEClass.getESuperTypes().add(this.getFunProcType());
+    functionCallEClass.getESuperTypes().add(this.getFunProcType());
+    procedureUpdateEClass.getESuperTypes().add(this.getFunProcType());
+    functionQueryEClass.getESuperTypes().add(this.getFunProcType());
     daoDirectiveSerializableEClass.getESuperTypes().add(this.getDaoDirective());
     daoDirectiveDiscriminatorEClass.getESuperTypes().add(this.getDaoDirective());
     daoDirectiveCrudEClass.getESuperTypes().add(this.getDaoDirective());
     daoDirectiveQueryEClass.getESuperTypes().add(this.getDaoDirective());
-    daoDirectiveProcedureEClass.getESuperTypes().add(this.getDaoDirective());
-    daoDirectiveFunctionEClass.getESuperTypes().add(this.getDaoDirective());
-    daoDirectiveUpdateEClass.getESuperTypes().add(this.getDaoDirective());
+    funProcDirectiveEClass.getESuperTypes().add(this.getDaoDirective());
 
     // Initialize classes and features; add operations and parameters
     initEClass(artifactsEClass, Artifacts.class, "Artifacts", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -6785,12 +6645,14 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEReference(getEnumProperty_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, EnumProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(daoDirectiveParametersEClass, DaoDirectiveParameters.class, "DaoDirectiveParameters", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDaoDirectiveParameters_In(), this.getPojoType(), null, "in", null, 0, 1, DaoDirectiveParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDaoDirectiveParameters_Out(), this.getPojoType(), null, "out", null, 0, 1, DaoDirectiveParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDaoDirectiveParameters_Ins(), this.getPojoType(), null, "ins", null, 0, -1, DaoDirectiveParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(descendantAssignmentEClass, DescendantAssignment.class, "DescendantAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDescendantAssignment_Value(), ecorePackage.getEString(), "value", null, 0, 1, DescendantAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDescendantAssignment_Descendant(), this.getPojoType(), null, "descendant", null, 0, 1, DescendantAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(funProcTypeEClass, FunProcType.class, "FunProcType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(daoDirectiveEClass, DaoDirective.class, "DaoDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -6802,27 +6664,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEReference(getPojoDao_Modifiers1(), this.getPojoEntityModifier1(), null, "modifiers1", null, 0, -1, PojoDao.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojoDao_Name(), ecorePackage.getEString(), "name", null, 0, 1, PojoDao.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoDao_Modifiers2(), this.getPojoDaoModifier(), null, "modifiers2", null, 0, -1, PojoDao.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(pojoMethodModifierEClass, PojoMethodModifier.class, "PojoMethodModifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPojoMethodModifier_CallFunction(), ecorePackage.getEBoolean(), "callFunction", null, 0, 1, PojoMethodModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoMethodModifier_CallUpdate(), ecorePackage.getEBoolean(), "callUpdate", null, 0, 1, PojoMethodModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoMethodModifier_CallQuery(), ecorePackage.getEBoolean(), "callQuery", null, 0, 1, PojoMethodModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoMethodModifier_CallQueryFunction(), ecorePackage.getEBoolean(), "callQueryFunction", null, 0, 1, PojoMethodModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoMethodModifier_CallSelectFunction(), ecorePackage.getEBoolean(), "callSelectFunction", null, 0, 1, PojoMethodModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(pojoMethodEClass, PojoMethod.class, "PojoMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPojoMethod_Modifiers1(), this.getPojoMethodModifier(), null, "modifiers1", null, 0, -1, PojoMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoMethod_Name(), ecorePackage.getEString(), "name", null, 0, 1, PojoMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoMethod_Type(), this.getPojoType(), null, "type", null, 0, 1, PojoMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoMethod_Args(), this.getPojoMethodArg(), null, "args", null, 0, -1, PojoMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(toInitMethodEClass, ToInitMethod.class, "ToInitMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getToInitMethod_Name(), ecorePackage.getEString(), "name", null, 0, 1, ToInitMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getToInitMethod_Args(), this.getPojoMethodArg(), null, "args", null, 0, -1, ToInitMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(pojoMethodArgEClass, PojoMethodArg.class, "PojoMethodArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPojoMethodArg_Name(), ecorePackage.getEString(), "name", null, 0, 1, PojoMethodArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoMethodArg_Type(), this.getPojoType(), null, "type", null, 0, 1, PojoMethodArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoDirectiveToStringEClass, PojoDirectiveToString.class, "PojoDirectiveToString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPojoDirectiveToString_Proplist(), this.getDirectiveProperties(), null, "proplist", null, 0, 1, PojoDirectiveToString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -6877,6 +6718,16 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEAttribute(getPojoPropertyDirectiveCreateCol_CreateColumn1(), ecorePackage.getEString(), "createColumn1", null, 0, 1, PojoPropertyDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojoPropertyDirectiveCreateCol_CreateColumn2(), ecorePackage.getEString(), "createColumn2", null, 0, 1, PojoPropertyDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(functionCallQueryEClass, FunctionCallQuery.class, "FunctionCallQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(procedureCallQueryEClass, ProcedureCallQuery.class, "ProcedureCallQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(procedureUpdateEClass, ProcedureUpdate.class, "ProcedureUpdate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(functionQueryEClass, FunctionQuery.class, "FunctionQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(daoDirectiveSerializableEClass, DaoDirectiveSerializable.class, "DaoDirectiveSerializable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDaoDirectiveSerializable_Sernum(), ecorePackage.getEString(), "sernum", null, 0, 1, DaoDirectiveSerializable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -6890,14 +6741,10 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEClass(daoDirectiveQueryEClass, DaoDirectiveQuery.class, "DaoDirectiveQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDaoDirectiveQuery_Pojo(), this.getPojoType(), null, "pojo", null, 0, 1, DaoDirectiveQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(daoDirectiveProcedureEClass, DaoDirectiveProcedure.class, "DaoDirectiveProcedure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDaoDirectiveProcedure_Pojo(), this.getPojoType(), null, "pojo", null, 0, 1, DaoDirectiveProcedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(daoDirectiveFunctionEClass, DaoDirectiveFunction.class, "DaoDirectiveFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDaoDirectiveFunction_Pojo(), this.getPojoType(), null, "pojo", null, 0, 1, DaoDirectiveFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(daoDirectiveUpdateEClass, DaoDirectiveUpdate.class, "DaoDirectiveUpdate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDaoDirectiveUpdate_Paramlist(), this.getDaoDirectiveParameters(), null, "paramlist", null, 0, 1, DaoDirectiveUpdate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(funProcDirectiveEClass, FunProcDirective.class, "FunProcDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFunProcDirective_Type(), this.getFunProcType(), null, "type", null, 0, 1, FunProcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunProcDirective_Pojo(), this.getPojoType(), null, "pojo", null, 0, 1, FunProcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunProcDirective_Paramlist(), this.getDaoDirectiveParameters(), null, "paramlist", null, 0, 1, FunProcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

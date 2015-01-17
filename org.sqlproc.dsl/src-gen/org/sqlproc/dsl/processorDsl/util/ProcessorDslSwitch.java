@@ -682,6 +682,13 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorDslPackage.FUN_PROC_TYPE:
+      {
+        FunProcType funProcType = (FunProcType)theEObject;
+        T result = caseFunProcType(funProcType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorDslPackage.DAO_DIRECTIVE:
       {
         DaoDirective daoDirective = (DaoDirective)theEObject;
@@ -701,34 +708,6 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         PojoDao pojoDao = (PojoDao)theEObject;
         T result = casePojoDao(pojoDao);
         if (result == null) result = caseAbstractPojoEntity(pojoDao);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.POJO_METHOD_MODIFIER:
-      {
-        PojoMethodModifier pojoMethodModifier = (PojoMethodModifier)theEObject;
-        T result = casePojoMethodModifier(pojoMethodModifier);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.POJO_METHOD:
-      {
-        PojoMethod pojoMethod = (PojoMethod)theEObject;
-        T result = casePojoMethod(pojoMethod);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.TO_INIT_METHOD:
-      {
-        ToInitMethod toInitMethod = (ToInitMethod)theEObject;
-        T result = caseToInitMethod(toInitMethod);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.POJO_METHOD_ARG:
-      {
-        PojoMethodArg pojoMethodArg = (PojoMethodArg)theEObject;
-        T result = casePojoMethodArg(pojoMethodArg);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -876,6 +855,46 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorDslPackage.FUNCTION_CALL_QUERY:
+      {
+        FunctionCallQuery functionCallQuery = (FunctionCallQuery)theEObject;
+        T result = caseFunctionCallQuery(functionCallQuery);
+        if (result == null) result = caseFunProcType(functionCallQuery);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.PROCEDURE_CALL_QUERY:
+      {
+        ProcedureCallQuery procedureCallQuery = (ProcedureCallQuery)theEObject;
+        T result = caseProcedureCallQuery(procedureCallQuery);
+        if (result == null) result = caseFunProcType(procedureCallQuery);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.FUNCTION_CALL:
+      {
+        FunctionCall functionCall = (FunctionCall)theEObject;
+        T result = caseFunctionCall(functionCall);
+        if (result == null) result = caseFunProcType(functionCall);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.PROCEDURE_UPDATE:
+      {
+        ProcedureUpdate procedureUpdate = (ProcedureUpdate)theEObject;
+        T result = caseProcedureUpdate(procedureUpdate);
+        if (result == null) result = caseFunProcType(procedureUpdate);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.FUNCTION_QUERY:
+      {
+        FunctionQuery functionQuery = (FunctionQuery)theEObject;
+        T result = caseFunctionQuery(functionQuery);
+        if (result == null) result = caseFunProcType(functionQuery);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorDslPackage.DAO_DIRECTIVE_SERIALIZABLE:
       {
         DaoDirectiveSerializable daoDirectiveSerializable = (DaoDirectiveSerializable)theEObject;
@@ -908,27 +927,11 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.DAO_DIRECTIVE_PROCEDURE:
+      case ProcessorDslPackage.FUN_PROC_DIRECTIVE:
       {
-        DaoDirectiveProcedure daoDirectiveProcedure = (DaoDirectiveProcedure)theEObject;
-        T result = caseDaoDirectiveProcedure(daoDirectiveProcedure);
-        if (result == null) result = caseDaoDirective(daoDirectiveProcedure);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.DAO_DIRECTIVE_FUNCTION:
-      {
-        DaoDirectiveFunction daoDirectiveFunction = (DaoDirectiveFunction)theEObject;
-        T result = caseDaoDirectiveFunction(daoDirectiveFunction);
-        if (result == null) result = caseDaoDirective(daoDirectiveFunction);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.DAO_DIRECTIVE_UPDATE:
-      {
-        DaoDirectiveUpdate daoDirectiveUpdate = (DaoDirectiveUpdate)theEObject;
-        T result = caseDaoDirectiveUpdate(daoDirectiveUpdate);
-        if (result == null) result = caseDaoDirective(daoDirectiveUpdate);
+        FunProcDirective funProcDirective = (FunProcDirective)theEObject;
+        T result = caseFunProcDirective(funProcDirective);
+        if (result == null) result = caseDaoDirective(funProcDirective);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2313,6 +2316,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Fun Proc Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Fun Proc Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFunProcType(FunProcType object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Dao Directive</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2356,70 +2375,6 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePojoDao(PojoDao object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Method Modifier</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Method Modifier</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePojoMethodModifier(PojoMethodModifier object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Method</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Method</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePojoMethod(PojoMethod object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>To Init Method</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>To Init Method</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseToInitMethod(ToInitMethod object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Method Arg</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Method Arg</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePojoMethodArg(PojoMethodArg object)
   {
     return null;
   }
@@ -2713,6 +2668,86 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Function Call Query</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Function Call Query</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFunctionCallQuery(FunctionCallQuery object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Procedure Call Query</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Procedure Call Query</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseProcedureCallQuery(ProcedureCallQuery object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Function Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Function Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFunctionCall(FunctionCall object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Procedure Update</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Procedure Update</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseProcedureUpdate(ProcedureUpdate object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Function Query</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Function Query</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFunctionQuery(FunctionQuery object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Dao Directive Serializable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2777,49 +2812,17 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Procedure</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Fun Proc Directive</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Dao Directive Procedure</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Fun Proc Directive</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDaoDirectiveProcedure(DaoDirectiveProcedure object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Function</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Dao Directive Function</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDaoDirectiveFunction(DaoDirectiveFunction object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Update</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Dao Directive Update</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDaoDirectiveUpdate(DaoDirectiveUpdate object)
+  public T caseFunProcDirective(FunProcDirective object)
   {
     return null;
   }

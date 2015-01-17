@@ -22,13 +22,12 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.sqlproc.dsl.ImportManager;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.DaoDirective;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveCrud;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator;
-import org.sqlproc.dsl.processorDsl.DaoDirectiveFunction;
-import org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveQuery;
 import org.sqlproc.dsl.processorDsl.DescendantAssignment;
 import org.sqlproc.dsl.processorDsl.DirectiveProperties;
@@ -37,6 +36,7 @@ import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.EnumEntityModifier1;
 import org.sqlproc.dsl.processorDsl.EnumEntityModifier2;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
+import org.sqlproc.dsl.processorDsl.FunProcDirective;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
@@ -911,11 +911,11 @@ public class ProcessorGeneratorUtils {
     final Function1<DaoDirective, Boolean> _function = new Function1<DaoDirective, Boolean>() {
       public Boolean apply(final DaoDirective x) {
         boolean _or = false;
-        if ((((x instanceof DaoDirectiveCrud) || 
-          (x instanceof DaoDirectiveQuery)) || (x instanceof DaoDirectiveFunction))) {
+        if (((x instanceof DaoDirectiveCrud) || 
+          (x instanceof DaoDirectiveQuery))) {
           _or = true;
         } else {
-          _or = (x instanceof DaoDirectiveProcedure);
+          _or = (x instanceof FunProcDirective);
         }
         return Boolean.valueOf(_or);
       }
@@ -942,15 +942,9 @@ public class ProcessorGeneratorUtils {
         }
       }
       if (!_matched) {
-        if (Objects.equal(pojoDirective, DaoDirectiveProcedure.class)) {
+        if (Objects.equal(pojoDirective, FunProcDirective.class)) {
           _matched=true;
-          _switchResult = ((DaoDirectiveProcedure) pojoDirective).getPojo();
-        }
-      }
-      if (!_matched) {
-        if (Objects.equal(pojoDirective, DaoDirectiveFunction.class)) {
-          _matched=true;
-          _switchResult = ((DaoDirectiveFunction) pojoDirective).getPojo();
+          _switchResult = ((FunProcDirective) pojoDirective).getPojo();
         }
       }
       _xifexpression = _switchResult;
@@ -1028,5 +1022,39 @@ public class ProcessorGeneratorUtils {
       _xifexpression = false;
     }
     return _xifexpression;
+  }
+  
+  public List<FunProcDirective> listFunctionsDirectives(final PojoDao dao) {
+    final List<FunProcDirective> result = CollectionLiterals.<FunProcDirective>newArrayList();
+    EList<DaoDirective> _directives = dao.getDirectives();
+    Iterable<DaoDirective> _filter = null;
+    if (_directives!=null) {
+      final Function1<DaoDirective, Boolean> _function = new Function1<DaoDirective, Boolean>() {
+        public Boolean apply(final DaoDirective x) {
+          return Boolean.valueOf((x instanceof FunProcDirective));
+        }
+      };
+      _filter=IterableExtensions.<DaoDirective>filter(_directives, _function);
+    }
+    final Procedure1<DaoDirective> _function_1 = new Procedure1<DaoDirective>() {
+      public void apply(final DaoDirective it) {
+        result.add(((FunProcDirective) it));
+      }
+    };
+    IterableExtensions.<DaoDirective>forEach(_filter, _function_1);
+    return result;
+  }
+  
+  public String getParamName(final PojoType pojo) {
+    PojoEntity _ref = pojo.getRef();
+    boolean _notEquals = (!Objects.equal(_ref, null));
+    if (_notEquals) {
+      PojoEntity _ref_1 = pojo.getRef();
+      String _name = _ref_1.getName();
+      return StringExtensions.toFirstLower(_name);
+    }
+    JvmType _type = pojo.getType();
+    String _simpleName = _type.getSimpleName();
+    return StringExtensions.toFirstLower(_simpleName);
   }
 }

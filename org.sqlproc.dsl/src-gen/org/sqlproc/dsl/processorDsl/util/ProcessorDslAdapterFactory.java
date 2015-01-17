@@ -505,6 +505,11 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createDescendantAssignmentAdapter();
       }
       @Override
+      public Adapter caseFunProcType(FunProcType object)
+      {
+        return createFunProcTypeAdapter();
+      }
+      @Override
       public Adapter caseDaoDirective(DaoDirective object)
       {
         return createDaoDirectiveAdapter();
@@ -518,26 +523,6 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
       public Adapter casePojoDao(PojoDao object)
       {
         return createPojoDaoAdapter();
-      }
-      @Override
-      public Adapter casePojoMethodModifier(PojoMethodModifier object)
-      {
-        return createPojoMethodModifierAdapter();
-      }
-      @Override
-      public Adapter casePojoMethod(PojoMethod object)
-      {
-        return createPojoMethodAdapter();
-      }
-      @Override
-      public Adapter caseToInitMethod(ToInitMethod object)
-      {
-        return createToInitMethodAdapter();
-      }
-      @Override
-      public Adapter casePojoMethodArg(PojoMethodArg object)
-      {
-        return createPojoMethodArgAdapter();
       }
       @Override
       public Adapter casePojoDirectiveToString(PojoDirectiveToString object)
@@ -630,6 +615,31 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createPojoPropertyDirectiveCreateColAdapter();
       }
       @Override
+      public Adapter caseFunctionCallQuery(FunctionCallQuery object)
+      {
+        return createFunctionCallQueryAdapter();
+      }
+      @Override
+      public Adapter caseProcedureCallQuery(ProcedureCallQuery object)
+      {
+        return createProcedureCallQueryAdapter();
+      }
+      @Override
+      public Adapter caseFunctionCall(FunctionCall object)
+      {
+        return createFunctionCallAdapter();
+      }
+      @Override
+      public Adapter caseProcedureUpdate(ProcedureUpdate object)
+      {
+        return createProcedureUpdateAdapter();
+      }
+      @Override
+      public Adapter caseFunctionQuery(FunctionQuery object)
+      {
+        return createFunctionQueryAdapter();
+      }
+      @Override
       public Adapter caseDaoDirectiveSerializable(DaoDirectiveSerializable object)
       {
         return createDaoDirectiveSerializableAdapter();
@@ -650,19 +660,9 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createDaoDirectiveQueryAdapter();
       }
       @Override
-      public Adapter caseDaoDirectiveProcedure(DaoDirectiveProcedure object)
+      public Adapter caseFunProcDirective(FunProcDirective object)
       {
-        return createDaoDirectiveProcedureAdapter();
-      }
-      @Override
-      public Adapter caseDaoDirectiveFunction(DaoDirectiveFunction object)
-      {
-        return createDaoDirectiveFunctionAdapter();
-      }
-      @Override
-      public Adapter caseDaoDirectiveUpdate(DaoDirectiveUpdate object)
-      {
-        return createDaoDirectiveUpdateAdapter();
+        return createFunProcDirectiveAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -1977,6 +1977,21 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.FunProcType <em>Fun Proc Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.FunProcType
+   * @generated
+   */
+  public Adapter createFunProcTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirective <em>Dao Directive</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -2017,66 +2032,6 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPojoDaoAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoMethodModifier <em>Pojo Method Modifier</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethodModifier
-   * @generated
-   */
-  public Adapter createPojoMethodModifierAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoMethod <em>Pojo Method</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethod
-   * @generated
-   */
-  public Adapter createPojoMethodAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.ToInitMethod <em>To Init Method</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.ToInitMethod
-   * @generated
-   */
-  public Adapter createToInitMethodAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoMethodArg <em>Pojo Method Arg</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethodArg
-   * @generated
-   */
-  public Adapter createPojoMethodArgAdapter()
   {
     return null;
   }
@@ -2352,6 +2307,81 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.FunctionCallQuery <em>Function Call Query</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.FunctionCallQuery
+   * @generated
+   */
+  public Adapter createFunctionCallQueryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.ProcedureCallQuery <em>Procedure Call Query</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.ProcedureCallQuery
+   * @generated
+   */
+  public Adapter createProcedureCallQueryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.FunctionCall <em>Function Call</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.FunctionCall
+   * @generated
+   */
+  public Adapter createFunctionCallAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.ProcedureUpdate <em>Procedure Update</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.ProcedureUpdate
+   * @generated
+   */
+  public Adapter createProcedureUpdateAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.FunctionQuery <em>Function Query</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.FunctionQuery
+   * @generated
+   */
+  public Adapter createFunctionQueryAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveSerializable <em>Dao Directive Serializable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -2412,46 +2442,16 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure <em>Dao Directive Procedure</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.FunProcDirective <em>Fun Proc Directive</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure
+   * @see org.sqlproc.dsl.processorDsl.FunProcDirective
    * @generated
    */
-  public Adapter createDaoDirectiveProcedureAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveFunction <em>Dao Directive Function</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveFunction
-   * @generated
-   */
-  public Adapter createDaoDirectiveFunctionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveUpdate <em>Dao Directive Update</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveUpdate
-   * @generated
-   */
-  public Adapter createDaoDirectiveUpdateAdapter()
+  public Adapter createFunProcDirectiveAdapter()
   {
     return null;
   }

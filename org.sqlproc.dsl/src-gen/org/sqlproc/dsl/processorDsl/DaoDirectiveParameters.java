@@ -2,6 +2,8 @@
  */
 package org.sqlproc.dsl.processorDsl;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -12,8 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.DaoDirectiveParameters#getIn <em>In</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.DaoDirectiveParameters#getOut <em>Out</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.DaoDirectiveParameters#getIns <em>Ins</em>}</li>
  * </ul>
  * </p>
  *
@@ -23,32 +25,6 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface DaoDirectiveParameters extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>In</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>In</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>In</em>' containment reference.
-   * @see #setIn(PojoType)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getDaoDirectiveParameters_In()
-   * @model containment="true"
-   * @generated
-   */
-  PojoType getIn();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveParameters#getIn <em>In</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>In</em>' containment reference.
-   * @see #getIn()
-   * @generated
-   */
-  void setIn(PojoType value);
-
   /**
    * Returns the value of the '<em><b>Out</b></em>' containment reference.
    * <!-- begin-user-doc -->
@@ -74,5 +50,21 @@ public interface DaoDirectiveParameters extends EObject
    * @generated
    */
   void setOut(PojoType value);
+
+  /**
+   * Returns the value of the '<em><b>Ins</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.PojoType}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Ins</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ins</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getDaoDirectiveParameters_Ins()
+   * @model containment="true"
+   * @generated
+   */
+  EList<PojoType> getIns();
 
 } // DaoDirectiveParameters

@@ -469,25 +469,27 @@ EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 ;
 
 DaoDirectiveParameters hidden(ML_COMMENT, SL_COMMENT, WS):
-	in=PojoType (COMMA out=PojoType)?
+	COMMA out=PojoType (COMMA ins+=PojoType)*
 ;
 
 DescendantAssignment hidden(ML_COMMENT, SL_COMMENT, WS):
 	value=(NUMBER|STRING_VALUE) EQUALS descendant=PojoType
 ;
 
+FunProcType  hidden(ML_COMMENT, SL_COMMENT, WS):
+	{FunctionCallQuery} "#FunctionCallQuery" | 
+	{ProcedureCallQuery} "#ProcedureCallQuery" | 
+	{FunctionCall} "#FunctionCall" | 
+	{ProcedureUpdate} "#ProcedureUpdate" | 
+	{FunctionQuery} "#FunctionQuery"
+	;
+
 DaoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	{DaoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
 	| {DaoDirectiveDiscriminator} '#InheritanceHandler' LPAREN ancestor=[PojoProperty|IDENT] (COMMA descendants+=DescendantAssignment)+ RPAREN
-	//| {DaoDirectivePojo} '#Pojo' LPAREN pojo=PojoType RPAREN
-	| {DaoDirectiveCrud} '#CRUD' (LPAREN pojo=PojoType RPAREN)?
-	| {DaoDirectiveQuery} '#Query' (LPAREN pojo=PojoType RPAREN)?
-	//| {DaoDirectiveGenerics} '#Generics' LPAREN generics=PojoType RPAREN
-	| {DaoDirectiveProcedure} '#Procedure' (LPAREN pojo=PojoType RPAREN)?
-	| {DaoDirectiveFunction} '#Function' (LPAREN pojo=PojoType RPAREN)?
-	| {DaoDirectiveUpdate} '#Update' (LPAREN paramlist=DaoDirectiveParameters RPAREN)?
-	| {DaoDirectiveUpdate} '#List' (LPAREN paramlist=DaoDirectiveParameters RPAREN)?
-	| {DaoDirectiveUpdate} '#Call' (LPAREN paramlist=DaoDirectiveParameters RPAREN)?
+	| {DaoDirectiveCrud} '#CRUD' (=> LPAREN pojo=PojoType RPAREN)?
+	| {DaoDirectiveQuery} '#Query' (=> LPAREN pojo=PojoType RPAREN)?
+	| {FunProcDirective} type=FunProcType (=> LPAREN pojo=PojoType paramlist=DaoDirectiveParameters RPAREN)?
 	;
 
 //PojoDaoModifier: (('extends' superType=[PojoDao|IDENT]) | ('serializable' sernum=NUMBER));

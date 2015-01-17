@@ -4363,22 +4363,22 @@ public interface ProcessorDslPackage extends EPackage
   int DAO_DIRECTIVE_PARAMETERS = 84;
 
   /**
-   * The feature id for the '<em><b>In</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DAO_DIRECTIVE_PARAMETERS__IN = 0;
-
-  /**
    * The feature id for the '<em><b>Out</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DAO_DIRECTIVE_PARAMETERS__OUT = 1;
+  int DAO_DIRECTIVE_PARAMETERS__OUT = 0;
+
+  /**
+   * The feature id for the '<em><b>Ins</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DAO_DIRECTIVE_PARAMETERS__INS = 1;
 
   /**
    * The number of structural features of the '<em>Dao Directive Parameters</em>' class.
@@ -4427,6 +4427,25 @@ public interface ProcessorDslPackage extends EPackage
   int DESCENDANT_ASSIGNMENT_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.FunProcTypeImpl <em>Fun Proc Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.FunProcTypeImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunProcType()
+   * @generated
+   */
+  int FUN_PROC_TYPE = 86;
+
+  /**
+   * The number of structural features of the '<em>Fun Proc Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUN_PROC_TYPE_FEATURE_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveImpl <em>Dao Directive</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4434,7 +4453,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirective()
    * @generated
    */
-  int DAO_DIRECTIVE = 86;
+  int DAO_DIRECTIVE = 87;
 
   /**
    * The number of structural features of the '<em>Dao Directive</em>' class.
@@ -4453,7 +4472,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDaoModifier()
    * @generated
    */
-  int POJO_DAO_MODIFIER = 87;
+  int POJO_DAO_MODIFIER = 88;
 
   /**
    * The feature id for the '<em><b>Super Type</b></em>' reference.
@@ -4481,7 +4500,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDao()
    * @generated
    */
-  int POJO_DAO = 88;
+  int POJO_DAO = 89;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -4529,199 +4548,6 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_DAO_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
 
   /**
-   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoMethodModifierImpl <em>Pojo Method Modifier</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.sqlproc.dsl.processorDsl.impl.PojoMethodModifierImpl
-   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoMethodModifier()
-   * @generated
-   */
-  int POJO_METHOD_MODIFIER = 89;
-
-  /**
-   * The feature id for the '<em><b>Call Function</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_METHOD_MODIFIER__CALL_FUNCTION = 0;
-
-  /**
-   * The feature id for the '<em><b>Call Update</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_METHOD_MODIFIER__CALL_UPDATE = 1;
-
-  /**
-   * The feature id for the '<em><b>Call Query</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_METHOD_MODIFIER__CALL_QUERY = 2;
-
-  /**
-   * The feature id for the '<em><b>Call Query Function</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_METHOD_MODIFIER__CALL_QUERY_FUNCTION = 3;
-
-  /**
-   * The feature id for the '<em><b>Call Select Function</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_METHOD_MODIFIER__CALL_SELECT_FUNCTION = 4;
-
-  /**
-   * The number of structural features of the '<em>Pojo Method Modifier</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_METHOD_MODIFIER_FEATURE_COUNT = 5;
-
-  /**
-   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoMethodImpl <em>Pojo Method</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.sqlproc.dsl.processorDsl.impl.PojoMethodImpl
-   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoMethod()
-   * @generated
-   */
-  int POJO_METHOD = 90;
-
-  /**
-   * The feature id for the '<em><b>Modifiers1</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_METHOD__MODIFIERS1 = 0;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_METHOD__NAME = 1;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_METHOD__TYPE = 2;
-
-  /**
-   * The feature id for the '<em><b>Args</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_METHOD__ARGS = 3;
-
-  /**
-   * The number of structural features of the '<em>Pojo Method</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_METHOD_FEATURE_COUNT = 4;
-
-  /**
-   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ToInitMethodImpl <em>To Init Method</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.sqlproc.dsl.processorDsl.impl.ToInitMethodImpl
-   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getToInitMethod()
-   * @generated
-   */
-  int TO_INIT_METHOD = 91;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TO_INIT_METHOD__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Args</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TO_INIT_METHOD__ARGS = 1;
-
-  /**
-   * The number of structural features of the '<em>To Init Method</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TO_INIT_METHOD_FEATURE_COUNT = 2;
-
-  /**
-   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoMethodArgImpl <em>Pojo Method Arg</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.sqlproc.dsl.processorDsl.impl.PojoMethodArgImpl
-   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoMethodArg()
-   * @generated
-   */
-  int POJO_METHOD_ARG = 92;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_METHOD_ARG__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_METHOD_ARG__TYPE = 1;
-
-  /**
-   * The number of structural features of the '<em>Pojo Method Arg</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_METHOD_ARG_FEATURE_COUNT = 2;
-
-  /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveToStringImpl <em>Pojo Directive To String</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4729,7 +4555,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveToString()
    * @generated
    */
-  int POJO_DIRECTIVE_TO_STRING = 93;
+  int POJO_DIRECTIVE_TO_STRING = 90;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4757,7 +4583,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveIndex()
    * @generated
    */
-  int POJO_DIRECTIVE_INDEX = 94;
+  int POJO_DIRECTIVE_INDEX = 91;
 
   /**
    * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -4794,7 +4620,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveOperators()
    * @generated
    */
-  int POJO_DIRECTIVE_OPERATORS = 95;
+  int POJO_DIRECTIVE_OPERATORS = 92;
 
   /**
    * The feature id for the '<em><b>Operators Suffix</b></em>' attribute.
@@ -4822,7 +4648,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveSerializable()
    * @generated
    */
-  int POJO_DIRECTIVE_SERIALIZABLE = 96;
+  int POJO_DIRECTIVE_SERIALIZABLE = 93;
 
   /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
@@ -4850,7 +4676,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveDiscriminator()
    * @generated
    */
-  int POJO_DIRECTIVE_DISCRIMINATOR = 97;
+  int POJO_DIRECTIVE_DISCRIMINATOR = 94;
 
   /**
    * The feature id for the '<em><b>Discriminator</b></em>' attribute.
@@ -4878,7 +4704,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEquals()
    * @generated
    */
-  int POJO_DIRECTIVE_EQUALS = 98;
+  int POJO_DIRECTIVE_EQUALS = 95;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4906,7 +4732,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveHashCode()
    * @generated
    */
-  int POJO_DIRECTIVE_HASH_CODE = 99;
+  int POJO_DIRECTIVE_HASH_CODE = 96;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4934,7 +4760,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveToInit()
    * @generated
    */
-  int POJO_DIRECTIVE_TO_INIT = 100;
+  int POJO_DIRECTIVE_TO_INIT = 97;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4962,7 +4788,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEnumInit()
    * @generated
    */
-  int POJO_DIRECTIVE_ENUM_INIT = 101;
+  int POJO_DIRECTIVE_ENUM_INIT = 98;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4990,7 +4816,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveIsDef()
    * @generated
    */
-  int POJO_DIRECTIVE_IS_DEF = 102;
+  int POJO_DIRECTIVE_IS_DEF = 99;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -5018,7 +4844,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEnumDef()
    * @generated
    */
-  int POJO_DIRECTIVE_ENUM_DEF = 103;
+  int POJO_DIRECTIVE_ENUM_DEF = 100;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -5046,7 +4872,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveRequired()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_REQUIRED = 104;
+  int POJO_PROPERTY_DIRECTIVE_REQUIRED = 101;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Required</em>' class.
@@ -5065,7 +4891,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectivePrimaryKey()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = 105;
+  int POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = 102;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Primary Key</em>' class.
@@ -5084,7 +4910,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveDiscriminator()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = 106;
+  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = 103;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Discriminator</em>' class.
@@ -5103,7 +4929,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveIndex()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_INDEX = 107;
+  int POJO_PROPERTY_DIRECTIVE_INDEX = 104;
 
   /**
    * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -5131,7 +4957,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveVersion()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_VERSION = 108;
+  int POJO_PROPERTY_DIRECTIVE_VERSION = 105;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Version</em>' class.
@@ -5150,7 +4976,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveUpdateCol()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL = 109;
+  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL = 106;
 
   /**
    * The feature id for the '<em><b>Update Column1</b></em>' attribute.
@@ -5187,7 +5013,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveCreateCol()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_CREATE_COL = 110;
+  int POJO_PROPERTY_DIRECTIVE_CREATE_COL = 107;
 
   /**
    * The feature id for the '<em><b>Create Column1</b></em>' attribute.
@@ -5217,6 +5043,101 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_PROPERTY_DIRECTIVE_CREATE_COL_FEATURE_COUNT = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.FunctionCallQueryImpl <em>Function Call Query</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.FunctionCallQueryImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionCallQuery()
+   * @generated
+   */
+  int FUNCTION_CALL_QUERY = 108;
+
+  /**
+   * The number of structural features of the '<em>Function Call Query</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_CALL_QUERY_FEATURE_COUNT = FUN_PROC_TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ProcedureCallQueryImpl <em>Procedure Call Query</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcedureCallQueryImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getProcedureCallQuery()
+   * @generated
+   */
+  int PROCEDURE_CALL_QUERY = 109;
+
+  /**
+   * The number of structural features of the '<em>Procedure Call Query</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROCEDURE_CALL_QUERY_FEATURE_COUNT = FUN_PROC_TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.FunctionCallImpl <em>Function Call</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.FunctionCallImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionCall()
+   * @generated
+   */
+  int FUNCTION_CALL = 110;
+
+  /**
+   * The number of structural features of the '<em>Function Call</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_CALL_FEATURE_COUNT = FUN_PROC_TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ProcedureUpdateImpl <em>Procedure Update</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcedureUpdateImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getProcedureUpdate()
+   * @generated
+   */
+  int PROCEDURE_UPDATE = 111;
+
+  /**
+   * The number of structural features of the '<em>Procedure Update</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROCEDURE_UPDATE_FEATURE_COUNT = FUN_PROC_TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.FunctionQueryImpl <em>Function Query</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.FunctionQueryImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionQuery()
+   * @generated
+   */
+  int FUNCTION_QUERY = 112;
+
+  /**
+   * The number of structural features of the '<em>Function Query</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_QUERY_FEATURE_COUNT = FUN_PROC_TYPE_FEATURE_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveSerializableImpl <em>Dao Directive Serializable</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5224,7 +5145,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveSerializable()
    * @generated
    */
-  int DAO_DIRECTIVE_SERIALIZABLE = 111;
+  int DAO_DIRECTIVE_SERIALIZABLE = 113;
 
   /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
@@ -5252,7 +5173,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveDiscriminator()
    * @generated
    */
-  int DAO_DIRECTIVE_DISCRIMINATOR = 112;
+  int DAO_DIRECTIVE_DISCRIMINATOR = 114;
 
   /**
    * The feature id for the '<em><b>Ancestor</b></em>' reference.
@@ -5289,7 +5210,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveCrud()
    * @generated
    */
-  int DAO_DIRECTIVE_CRUD = 113;
+  int DAO_DIRECTIVE_CRUD = 115;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' containment reference.
@@ -5317,7 +5238,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveQuery()
    * @generated
    */
-  int DAO_DIRECTIVE_QUERY = 114;
+  int DAO_DIRECTIVE_QUERY = 116;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' containment reference.
@@ -5338,14 +5259,23 @@ public interface ProcessorDslPackage extends EPackage
   int DAO_DIRECTIVE_QUERY_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveProcedureImpl <em>Dao Directive Procedure</em>}' class.
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.FunProcDirectiveImpl <em>Fun Proc Directive</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveProcedureImpl
-   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveProcedure()
+   * @see org.sqlproc.dsl.processorDsl.impl.FunProcDirectiveImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunProcDirective()
    * @generated
    */
-  int DAO_DIRECTIVE_PROCEDURE = 115;
+  int FUN_PROC_DIRECTIVE = 117;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUN_PROC_DIRECTIVE__TYPE = DAO_DIRECTIVE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' containment reference.
@@ -5354,54 +5284,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DAO_DIRECTIVE_PROCEDURE__POJO = DAO_DIRECTIVE_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Dao Directive Procedure</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DAO_DIRECTIVE_PROCEDURE_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveFunctionImpl <em>Dao Directive Function</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveFunctionImpl
-   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveFunction()
-   * @generated
-   */
-  int DAO_DIRECTIVE_FUNCTION = 116;
-
-  /**
-   * The feature id for the '<em><b>Pojo</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DAO_DIRECTIVE_FUNCTION__POJO = DAO_DIRECTIVE_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Dao Directive Function</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DAO_DIRECTIVE_FUNCTION_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveUpdateImpl <em>Dao Directive Update</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveUpdateImpl
-   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveUpdate()
-   * @generated
-   */
-  int DAO_DIRECTIVE_UPDATE = 117;
+  int FUN_PROC_DIRECTIVE__POJO = DAO_DIRECTIVE_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Paramlist</b></em>' containment reference.
@@ -5410,16 +5293,16 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DAO_DIRECTIVE_UPDATE__PARAMLIST = DAO_DIRECTIVE_FEATURE_COUNT + 0;
+  int FUN_PROC_DIRECTIVE__PARAMLIST = DAO_DIRECTIVE_FEATURE_COUNT + 2;
 
   /**
-   * The number of structural features of the '<em>Dao Directive Update</em>' class.
+   * The number of structural features of the '<em>Fun Proc Directive</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DAO_DIRECTIVE_UPDATE_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 1;
+  int FUN_PROC_DIRECTIVE_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 3;
 
 
   /**
@@ -9529,17 +9412,6 @@ public interface ProcessorDslPackage extends EPackage
   EClass getDaoDirectiveParameters();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveParameters#getIn <em>In</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>In</em>'.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveParameters#getIn()
-   * @see #getDaoDirectiveParameters()
-   * @generated
-   */
-  EReference getDaoDirectiveParameters_In();
-
-  /**
    * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveParameters#getOut <em>Out</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9549,6 +9421,17 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EReference getDaoDirectiveParameters_Out();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveParameters#getIns <em>Ins</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Ins</em>'.
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveParameters#getIns()
+   * @see #getDaoDirectiveParameters()
+   * @generated
+   */
+  EReference getDaoDirectiveParameters_Ins();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DescendantAssignment <em>Descendant Assignment</em>}'.
@@ -9581,6 +9464,16 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EReference getDescendantAssignment_Descendant();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.FunProcType <em>Fun Proc Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Fun Proc Type</em>'.
+   * @see org.sqlproc.dsl.processorDsl.FunProcType
+   * @generated
+   */
+  EClass getFunProcType();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DaoDirective <em>Dao Directive</em>}'.
@@ -9666,189 +9559,6 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EReference getPojoDao_Modifiers2();
-
-  /**
-   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoMethodModifier <em>Pojo Method Modifier</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Pojo Method Modifier</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethodModifier
-   * @generated
-   */
-  EClass getPojoMethodModifier();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoMethodModifier#isCallFunction <em>Call Function</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Call Function</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethodModifier#isCallFunction()
-   * @see #getPojoMethodModifier()
-   * @generated
-   */
-  EAttribute getPojoMethodModifier_CallFunction();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoMethodModifier#isCallUpdate <em>Call Update</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Call Update</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethodModifier#isCallUpdate()
-   * @see #getPojoMethodModifier()
-   * @generated
-   */
-  EAttribute getPojoMethodModifier_CallUpdate();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoMethodModifier#isCallQuery <em>Call Query</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Call Query</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethodModifier#isCallQuery()
-   * @see #getPojoMethodModifier()
-   * @generated
-   */
-  EAttribute getPojoMethodModifier_CallQuery();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoMethodModifier#isCallQueryFunction <em>Call Query Function</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Call Query Function</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethodModifier#isCallQueryFunction()
-   * @see #getPojoMethodModifier()
-   * @generated
-   */
-  EAttribute getPojoMethodModifier_CallQueryFunction();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoMethodModifier#isCallSelectFunction <em>Call Select Function</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Call Select Function</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethodModifier#isCallSelectFunction()
-   * @see #getPojoMethodModifier()
-   * @generated
-   */
-  EAttribute getPojoMethodModifier_CallSelectFunction();
-
-  /**
-   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoMethod <em>Pojo Method</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Pojo Method</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethod
-   * @generated
-   */
-  EClass getPojoMethod();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.PojoMethod#getModifiers1 <em>Modifiers1</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Modifiers1</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethod#getModifiers1()
-   * @see #getPojoMethod()
-   * @generated
-   */
-  EReference getPojoMethod_Modifiers1();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoMethod#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethod#getName()
-   * @see #getPojoMethod()
-   * @generated
-   */
-  EAttribute getPojoMethod_Name();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.PojoMethod#getType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Type</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethod#getType()
-   * @see #getPojoMethod()
-   * @generated
-   */
-  EReference getPojoMethod_Type();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.PojoMethod#getArgs <em>Args</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Args</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethod#getArgs()
-   * @see #getPojoMethod()
-   * @generated
-   */
-  EReference getPojoMethod_Args();
-
-  /**
-   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.ToInitMethod <em>To Init Method</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>To Init Method</em>'.
-   * @see org.sqlproc.dsl.processorDsl.ToInitMethod
-   * @generated
-   */
-  EClass getToInitMethod();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.ToInitMethod#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.sqlproc.dsl.processorDsl.ToInitMethod#getName()
-   * @see #getToInitMethod()
-   * @generated
-   */
-  EAttribute getToInitMethod_Name();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.ToInitMethod#getArgs <em>Args</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Args</em>'.
-   * @see org.sqlproc.dsl.processorDsl.ToInitMethod#getArgs()
-   * @see #getToInitMethod()
-   * @generated
-   */
-  EReference getToInitMethod_Args();
-
-  /**
-   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoMethodArg <em>Pojo Method Arg</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Pojo Method Arg</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethodArg
-   * @generated
-   */
-  EClass getPojoMethodArg();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoMethodArg#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethodArg#getName()
-   * @see #getPojoMethodArg()
-   * @generated
-   */
-  EAttribute getPojoMethodArg_Name();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.PojoMethodArg#getType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Type</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethodArg#getType()
-   * @see #getPojoMethodArg()
-   * @generated
-   */
-  EReference getPojoMethodArg_Type();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveToString <em>Pojo Directive To String</em>}'.
@@ -10218,6 +9928,56 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getPojoPropertyDirectiveCreateCol_CreateColumn2();
 
   /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.FunctionCallQuery <em>Function Call Query</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Function Call Query</em>'.
+   * @see org.sqlproc.dsl.processorDsl.FunctionCallQuery
+   * @generated
+   */
+  EClass getFunctionCallQuery();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.ProcedureCallQuery <em>Procedure Call Query</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Procedure Call Query</em>'.
+   * @see org.sqlproc.dsl.processorDsl.ProcedureCallQuery
+   * @generated
+   */
+  EClass getProcedureCallQuery();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.FunctionCall <em>Function Call</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Function Call</em>'.
+   * @see org.sqlproc.dsl.processorDsl.FunctionCall
+   * @generated
+   */
+  EClass getFunctionCall();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.ProcedureUpdate <em>Procedure Update</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Procedure Update</em>'.
+   * @see org.sqlproc.dsl.processorDsl.ProcedureUpdate
+   * @generated
+   */
+  EClass getProcedureUpdate();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.FunctionQuery <em>Function Query</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Function Query</em>'.
+   * @see org.sqlproc.dsl.processorDsl.FunctionQuery
+   * @generated
+   */
+  EClass getFunctionQuery();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveSerializable <em>Dao Directive Serializable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -10313,67 +10073,47 @@ public interface ProcessorDslPackage extends EPackage
   EReference getDaoDirectiveQuery_Pojo();
 
   /**
-   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure <em>Dao Directive Procedure</em>}'.
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.FunProcDirective <em>Fun Proc Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Dao Directive Procedure</em>'.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure
+   * @return the meta object for class '<em>Fun Proc Directive</em>'.
+   * @see org.sqlproc.dsl.processorDsl.FunProcDirective
    * @generated
    */
-  EClass getDaoDirectiveProcedure();
+  EClass getFunProcDirective();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure#getPojo <em>Pojo</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.FunProcDirective#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Pojo</em>'.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure#getPojo()
-   * @see #getDaoDirectiveProcedure()
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see org.sqlproc.dsl.processorDsl.FunProcDirective#getType()
+   * @see #getFunProcDirective()
    * @generated
    */
-  EReference getDaoDirectiveProcedure_Pojo();
+  EReference getFunProcDirective_Type();
 
   /**
-   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveFunction <em>Dao Directive Function</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Dao Directive Function</em>'.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveFunction
-   * @generated
-   */
-  EClass getDaoDirectiveFunction();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveFunction#getPojo <em>Pojo</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.FunProcDirective#getPojo <em>Pojo</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Pojo</em>'.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveFunction#getPojo()
-   * @see #getDaoDirectiveFunction()
+   * @see org.sqlproc.dsl.processorDsl.FunProcDirective#getPojo()
+   * @see #getFunProcDirective()
    * @generated
    */
-  EReference getDaoDirectiveFunction_Pojo();
+  EReference getFunProcDirective_Pojo();
 
   /**
-   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveUpdate <em>Dao Directive Update</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Dao Directive Update</em>'.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveUpdate
-   * @generated
-   */
-  EClass getDaoDirectiveUpdate();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveUpdate#getParamlist <em>Paramlist</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.FunProcDirective#getParamlist <em>Paramlist</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Paramlist</em>'.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveUpdate#getParamlist()
-   * @see #getDaoDirectiveUpdate()
+   * @see org.sqlproc.dsl.processorDsl.FunProcDirective#getParamlist()
+   * @see #getFunProcDirective()
    * @generated
    */
-  EReference getDaoDirectiveUpdate_Paramlist();
+  EReference getFunProcDirective_Paramlist();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -13617,20 +13357,20 @@ public interface ProcessorDslPackage extends EPackage
     EClass DAO_DIRECTIVE_PARAMETERS = eINSTANCE.getDaoDirectiveParameters();
 
     /**
-     * The meta object literal for the '<em><b>In</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAO_DIRECTIVE_PARAMETERS__IN = eINSTANCE.getDaoDirectiveParameters_In();
-
-    /**
      * The meta object literal for the '<em><b>Out</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference DAO_DIRECTIVE_PARAMETERS__OUT = eINSTANCE.getDaoDirectiveParameters_Out();
+
+    /**
+     * The meta object literal for the '<em><b>Ins</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DAO_DIRECTIVE_PARAMETERS__INS = eINSTANCE.getDaoDirectiveParameters_Ins();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DescendantAssignmentImpl <em>Descendant Assignment</em>}' class.
@@ -13657,6 +13397,16 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference DESCENDANT_ASSIGNMENT__DESCENDANT = eINSTANCE.getDescendantAssignment_Descendant();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.FunProcTypeImpl <em>Fun Proc Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.FunProcTypeImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunProcType()
+     * @generated
+     */
+    EClass FUN_PROC_TYPE = eINSTANCE.getFunProcType();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveImpl <em>Dao Directive</em>}' class.
@@ -13727,150 +13477,6 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference POJO_DAO__MODIFIERS2 = eINSTANCE.getPojoDao_Modifiers2();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoMethodModifierImpl <em>Pojo Method Modifier</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoMethodModifierImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoMethodModifier()
-     * @generated
-     */
-    EClass POJO_METHOD_MODIFIER = eINSTANCE.getPojoMethodModifier();
-
-    /**
-     * The meta object literal for the '<em><b>Call Function</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_METHOD_MODIFIER__CALL_FUNCTION = eINSTANCE.getPojoMethodModifier_CallFunction();
-
-    /**
-     * The meta object literal for the '<em><b>Call Update</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_METHOD_MODIFIER__CALL_UPDATE = eINSTANCE.getPojoMethodModifier_CallUpdate();
-
-    /**
-     * The meta object literal for the '<em><b>Call Query</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_METHOD_MODIFIER__CALL_QUERY = eINSTANCE.getPojoMethodModifier_CallQuery();
-
-    /**
-     * The meta object literal for the '<em><b>Call Query Function</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_METHOD_MODIFIER__CALL_QUERY_FUNCTION = eINSTANCE.getPojoMethodModifier_CallQueryFunction();
-
-    /**
-     * The meta object literal for the '<em><b>Call Select Function</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_METHOD_MODIFIER__CALL_SELECT_FUNCTION = eINSTANCE.getPojoMethodModifier_CallSelectFunction();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoMethodImpl <em>Pojo Method</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoMethodImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoMethod()
-     * @generated
-     */
-    EClass POJO_METHOD = eINSTANCE.getPojoMethod();
-
-    /**
-     * The meta object literal for the '<em><b>Modifiers1</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_METHOD__MODIFIERS1 = eINSTANCE.getPojoMethod_Modifiers1();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_METHOD__NAME = eINSTANCE.getPojoMethod_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_METHOD__TYPE = eINSTANCE.getPojoMethod_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_METHOD__ARGS = eINSTANCE.getPojoMethod_Args();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ToInitMethodImpl <em>To Init Method</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.ToInitMethodImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getToInitMethod()
-     * @generated
-     */
-    EClass TO_INIT_METHOD = eINSTANCE.getToInitMethod();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TO_INIT_METHOD__NAME = eINSTANCE.getToInitMethod_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference TO_INIT_METHOD__ARGS = eINSTANCE.getToInitMethod_Args();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoMethodArgImpl <em>Pojo Method Arg</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.PojoMethodArgImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoMethodArg()
-     * @generated
-     */
-    EClass POJO_METHOD_ARG = eINSTANCE.getPojoMethodArg();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_METHOD_ARG__NAME = eINSTANCE.getPojoMethodArg_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_METHOD_ARG__TYPE = eINSTANCE.getPojoMethodArg_Type();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveToStringImpl <em>Pojo Directive To String</em>}' class.
@@ -14189,6 +13795,56 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN2 = eINSTANCE.getPojoPropertyDirectiveCreateCol_CreateColumn2();
 
     /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.FunctionCallQueryImpl <em>Function Call Query</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.FunctionCallQueryImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionCallQuery()
+     * @generated
+     */
+    EClass FUNCTION_CALL_QUERY = eINSTANCE.getFunctionCallQuery();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ProcedureCallQueryImpl <em>Procedure Call Query</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcedureCallQueryImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getProcedureCallQuery()
+     * @generated
+     */
+    EClass PROCEDURE_CALL_QUERY = eINSTANCE.getProcedureCallQuery();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.FunctionCallImpl <em>Function Call</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.FunctionCallImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionCall()
+     * @generated
+     */
+    EClass FUNCTION_CALL = eINSTANCE.getFunctionCall();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ProcedureUpdateImpl <em>Procedure Update</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcedureUpdateImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getProcedureUpdate()
+     * @generated
+     */
+    EClass PROCEDURE_UPDATE = eINSTANCE.getProcedureUpdate();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.FunctionQueryImpl <em>Function Query</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.FunctionQueryImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionQuery()
+     * @generated
+     */
+    EClass FUNCTION_QUERY = eINSTANCE.getFunctionQuery();
+
+    /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveSerializableImpl <em>Dao Directive Serializable</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -14269,14 +13925,22 @@ public interface ProcessorDslPackage extends EPackage
     EReference DAO_DIRECTIVE_QUERY__POJO = eINSTANCE.getDaoDirectiveQuery_Pojo();
 
     /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveProcedureImpl <em>Dao Directive Procedure</em>}' class.
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.FunProcDirectiveImpl <em>Fun Proc Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveProcedureImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveProcedure()
+     * @see org.sqlproc.dsl.processorDsl.impl.FunProcDirectiveImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunProcDirective()
      * @generated
      */
-    EClass DAO_DIRECTIVE_PROCEDURE = eINSTANCE.getDaoDirectiveProcedure();
+    EClass FUN_PROC_DIRECTIVE = eINSTANCE.getFunProcDirective();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUN_PROC_DIRECTIVE__TYPE = eINSTANCE.getFunProcDirective_Type();
 
     /**
      * The meta object literal for the '<em><b>Pojo</b></em>' containment reference feature.
@@ -14284,35 +13948,7 @@ public interface ProcessorDslPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DAO_DIRECTIVE_PROCEDURE__POJO = eINSTANCE.getDaoDirectiveProcedure_Pojo();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveFunctionImpl <em>Dao Directive Function</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveFunctionImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveFunction()
-     * @generated
-     */
-    EClass DAO_DIRECTIVE_FUNCTION = eINSTANCE.getDaoDirectiveFunction();
-
-    /**
-     * The meta object literal for the '<em><b>Pojo</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DAO_DIRECTIVE_FUNCTION__POJO = eINSTANCE.getDaoDirectiveFunction_Pojo();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveUpdateImpl <em>Dao Directive Update</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.dsl.processorDsl.impl.DaoDirectiveUpdateImpl
-     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveUpdate()
-     * @generated
-     */
-    EClass DAO_DIRECTIVE_UPDATE = eINSTANCE.getDaoDirectiveUpdate();
+    EReference FUN_PROC_DIRECTIVE__POJO = eINSTANCE.getFunProcDirective_Pojo();
 
     /**
      * The meta object literal for the '<em><b>Paramlist</b></em>' containment reference feature.
@@ -14320,7 +13956,7 @@ public interface ProcessorDslPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DAO_DIRECTIVE_UPDATE__PARAMLIST = eINSTANCE.getDaoDirectiveUpdate_Paramlist();
+    EReference FUN_PROC_DIRECTIVE__PARAMLIST = eINSTANCE.getFunProcDirective_Paramlist();
 
   }
 

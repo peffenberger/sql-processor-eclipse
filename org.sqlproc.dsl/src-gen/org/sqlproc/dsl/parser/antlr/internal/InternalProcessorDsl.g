@@ -15645,47 +15645,51 @@ ruleDaoDirectiveParameters returns [EObject current=null]
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
     }
     @after { leaveRule(); }:
-((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getDaoDirectiveParametersAccess().getInPojoTypeParserRuleCall_0_0()); 
-	    }
-		lv_in_0_0=rulePojoType		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDaoDirectiveParametersRule());
-	        }
-       		set(
-       			$current, 
-       			"in",
-        		lv_in_0_0, 
-        		"PojoType");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(this_COMMA_1=RULE_COMMA
+(this_COMMA_0=RULE_COMMA
     { 
-    newLeafNode(this_COMMA_1, grammarAccess.getDaoDirectiveParametersAccess().getCOMMATerminalRuleCall_1_0()); 
+    newLeafNode(this_COMMA_0, grammarAccess.getDaoDirectiveParametersAccess().getCOMMATerminalRuleCall_0()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDaoDirectiveParametersAccess().getOutPojoTypeParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getDaoDirectiveParametersAccess().getOutPojoTypeParserRuleCall_1_0()); 
 	    }
-		lv_out_2_0=rulePojoType		{
+		lv_out_1_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDaoDirectiveParametersRule());
 	        }
        		set(
        			$current, 
        			"out",
-        		lv_out_2_0, 
+        		lv_out_1_0, 
         		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))?)
+)(this_COMMA_2=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_2, grammarAccess.getDaoDirectiveParametersAccess().getCOMMATerminalRuleCall_2_0()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDaoDirectiveParametersAccess().getInsPojoTypeParserRuleCall_2_1_0()); 
+	    }
+		lv_ins_3_0=rulePojoType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDaoDirectiveParametersRule());
+	        }
+       		add(
+       			$current, 
+       			"ins",
+        		lv_ins_3_0, 
+        		"PojoType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*)
 ;
 finally {
 	myHiddenTokenState.restore();
@@ -15774,6 +15778,91 @@ ruleDescendantAssignment returns [EObject current=null]
 	    }
 
 )
+))
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+
+
+
+
+// Entry rule entryRuleFunProcType
+entryRuleFunProcType returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
+	}
+	:
+	{ newCompositeNode(grammarAccess.getFunProcTypeRule()); }
+	 iv_ruleFunProcType=ruleFunProcType 
+	 { $current=$iv_ruleFunProcType.current; } 
+	 EOF 
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+// Rule FunProcType
+ruleFunProcType returns [EObject current=null] 
+    @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
+    }
+    @after { leaveRule(); }:
+(((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getFunProcTypeAccess().getFunctionCallQueryAction_0_0(),
+            $current);
+    }
+)	otherlv_1='#FunctionCallQuery' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getFunProcTypeAccess().getFunctionCallQueryKeyword_0_1());
+    }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getFunProcTypeAccess().getProcedureCallQueryAction_1_0(),
+            $current);
+    }
+)	otherlv_3='#ProcedureCallQuery' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getFunProcTypeAccess().getProcedureCallQueryKeyword_1_1());
+    }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getFunProcTypeAccess().getFunctionCallAction_2_0(),
+            $current);
+    }
+)	otherlv_5='#FunctionCall' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getFunProcTypeAccess().getFunctionCallKeyword_2_1());
+    }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getFunProcTypeAccess().getProcedureUpdateAction_3_0(),
+            $current);
+    }
+)	otherlv_7='#ProcedureUpdate' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getFunProcTypeAccess().getProcedureUpdateKeyword_3_1());
+    }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getFunProcTypeAccess().getFunctionQueryAction_4_0(),
+            $current);
+    }
+)	otherlv_9='#FunctionQuery' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getFunProcTypeAccess().getFunctionQueryKeyword_4_1());
+    }
 ))
 ;
 finally {
@@ -15906,11 +15995,11 @@ this_LPAREN_7=RULE_LPAREN
     {
     	newLeafNode(otherlv_13, grammarAccess.getDaoDirectiveAccess().getCRUDKeyword_2_1());
     }
-(this_LPAREN_14=RULE_LPAREN
+(((	RULE_LPAREN)=>this_LPAREN_14=RULE_LPAREN
     { 
     newLeafNode(this_LPAREN_14, grammarAccess.getDaoDirectiveAccess().getLPARENTerminalRuleCall_2_2_0()); 
     }
-(
+)(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoPojoTypeParserRuleCall_2_2_1_0()); 
@@ -15943,11 +16032,11 @@ this_LPAREN_7=RULE_LPAREN
     {
     	newLeafNode(otherlv_18, grammarAccess.getDaoDirectiveAccess().getQueryKeyword_3_1());
     }
-(this_LPAREN_19=RULE_LPAREN
+(((	RULE_LPAREN)=>this_LPAREN_19=RULE_LPAREN
     { 
     newLeafNode(this_LPAREN_19, grammarAccess.getDaoDirectiveAccess().getLPARENTerminalRuleCall_3_2_0()); 
     }
-(
+)(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoPojoTypeParserRuleCall_3_2_1_0()); 
@@ -15973,18 +16062,32 @@ this_LPAREN_7=RULE_LPAREN
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getDaoDirectiveAccess().getDaoDirectiveProcedureAction_4_0(),
+            grammarAccess.getDaoDirectiveAccess().getFunProcDirectiveAction_4_0(),
             $current);
     }
-)	otherlv_23='#Procedure' 
-    {
-    	newLeafNode(otherlv_23, grammarAccess.getDaoDirectiveAccess().getProcedureKeyword_4_1());
-    }
-(this_LPAREN_24=RULE_LPAREN
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getTypeFunProcTypeParserRuleCall_4_1_0()); 
+	    }
+		lv_type_23_0=ruleFunProcType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDaoDirectiveRule());
+	        }
+       		set(
+       			$current, 
+       			"type",
+        		lv_type_23_0, 
+        		"FunProcType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(((	RULE_LPAREN)=>this_LPAREN_24=RULE_LPAREN
     { 
     newLeafNode(this_LPAREN_24, grammarAccess.getDaoDirectiveAccess().getLPARENTerminalRuleCall_4_2_0()); 
     }
-(
+)(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoPojoTypeParserRuleCall_4_2_1_0()); 
@@ -16002,157 +16105,27 @@ this_LPAREN_7=RULE_LPAREN
 	    }
 
 )
-)this_RPAREN_26=RULE_RPAREN
-    { 
-    newLeafNode(this_RPAREN_26, grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_4_2_2()); 
-    }
-)?)
-    |((
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getDaoDirectiveAccess().getDaoDirectiveFunctionAction_5_0(),
-            $current);
-    }
-)	otherlv_28='#Function' 
-    {
-    	newLeafNode(otherlv_28, grammarAccess.getDaoDirectiveAccess().getFunctionKeyword_5_1());
-    }
-(this_LPAREN_29=RULE_LPAREN
-    { 
-    newLeafNode(this_LPAREN_29, grammarAccess.getDaoDirectiveAccess().getLPARENTerminalRuleCall_5_2_0()); 
-    }
-(
+)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoPojoTypeParserRuleCall_5_2_1_0()); 
+	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getParamlistDaoDirectiveParametersParserRuleCall_4_2_2_0()); 
 	    }
-		lv_pojo_30_0=rulePojoType		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDaoDirectiveRule());
-	        }
-       		set(
-       			$current, 
-       			"pojo",
-        		lv_pojo_30_0, 
-        		"PojoType");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)this_RPAREN_31=RULE_RPAREN
-    { 
-    newLeafNode(this_RPAREN_31, grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_5_2_2()); 
-    }
-)?)
-    |((
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getDaoDirectiveAccess().getDaoDirectiveUpdateAction_6_0(),
-            $current);
-    }
-)	otherlv_33='#Update' 
-    {
-    	newLeafNode(otherlv_33, grammarAccess.getDaoDirectiveAccess().getUpdateKeyword_6_1());
-    }
-(this_LPAREN_34=RULE_LPAREN
-    { 
-    newLeafNode(this_LPAREN_34, grammarAccess.getDaoDirectiveAccess().getLPARENTerminalRuleCall_6_2_0()); 
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getParamlistDaoDirectiveParametersParserRuleCall_6_2_1_0()); 
-	    }
-		lv_paramlist_35_0=ruleDaoDirectiveParameters		{
+		lv_paramlist_26_0=ruleDaoDirectiveParameters		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDaoDirectiveRule());
 	        }
        		set(
        			$current, 
        			"paramlist",
-        		lv_paramlist_35_0, 
+        		lv_paramlist_26_0, 
         		"DaoDirectiveParameters");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)this_RPAREN_36=RULE_RPAREN
+)this_RPAREN_27=RULE_RPAREN
     { 
-    newLeafNode(this_RPAREN_36, grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_6_2_2()); 
-    }
-)?)
-    |((
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getDaoDirectiveAccess().getDaoDirectiveUpdateAction_7_0(),
-            $current);
-    }
-)	otherlv_38='#List' 
-    {
-    	newLeafNode(otherlv_38, grammarAccess.getDaoDirectiveAccess().getListKeyword_7_1());
-    }
-(this_LPAREN_39=RULE_LPAREN
-    { 
-    newLeafNode(this_LPAREN_39, grammarAccess.getDaoDirectiveAccess().getLPARENTerminalRuleCall_7_2_0()); 
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getParamlistDaoDirectiveParametersParserRuleCall_7_2_1_0()); 
-	    }
-		lv_paramlist_40_0=ruleDaoDirectiveParameters		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDaoDirectiveRule());
-	        }
-       		set(
-       			$current, 
-       			"paramlist",
-        		lv_paramlist_40_0, 
-        		"DaoDirectiveParameters");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)this_RPAREN_41=RULE_RPAREN
-    { 
-    newLeafNode(this_RPAREN_41, grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_7_2_2()); 
-    }
-)?)
-    |((
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getDaoDirectiveAccess().getDaoDirectiveUpdateAction_8_0(),
-            $current);
-    }
-)	otherlv_43='#Call' 
-    {
-    	newLeafNode(otherlv_43, grammarAccess.getDaoDirectiveAccess().getCallKeyword_8_1());
-    }
-(this_LPAREN_44=RULE_LPAREN
-    { 
-    newLeafNode(this_LPAREN_44, grammarAccess.getDaoDirectiveAccess().getLPARENTerminalRuleCall_8_2_0()); 
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getParamlistDaoDirectiveParametersParserRuleCall_8_2_1_0()); 
-	    }
-		lv_paramlist_45_0=ruleDaoDirectiveParameters		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDaoDirectiveRule());
-	        }
-       		set(
-       			$current, 
-       			"paramlist",
-        		lv_paramlist_45_0, 
-        		"DaoDirectiveParameters");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)this_RPAREN_46=RULE_RPAREN
-    { 
-    newLeafNode(this_RPAREN_46, grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_8_2_2()); 
+    newLeafNode(this_RPAREN_27, grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_4_2_3()); 
     }
 )?))
 ;
@@ -16308,177 +16281,6 @@ this_RBRACE_6=RULE_RBRACE
     newLeafNode(this_RBRACE_6, grammarAccess.getPojoDaoAccess().getRBRACETerminalRuleCall_6()); 
     }
 )
-;
-finally {
-	myHiddenTokenState.restore();
-}
-
-
-
-
-
-// Entry rule entryRulePojoMethodModifier
-entryRulePojoMethodModifier returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getPojoMethodModifierRule()); }
-	 iv_rulePojoMethodModifier=rulePojoMethodModifier 
-	 { $current=$iv_rulePojoMethodModifier.current; } 
-	 EOF 
-;
-
-// Rule PojoMethodModifier
-rulePojoMethodModifier returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-(
-		lv_callFunction_0_0=	'callFunction' 
-    {
-        newLeafNode(lv_callFunction_0_0, grammarAccess.getPojoMethodModifierAccess().getCallFunctionCallFunctionKeyword_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoMethodModifierRule());
-	        }
-       		setWithLastConsumed($current, "callFunction", true, "callFunction");
-	    }
-
-)
-)
-    |(
-(
-		lv_callUpdate_1_0=	'callUpdate' 
-    {
-        newLeafNode(lv_callUpdate_1_0, grammarAccess.getPojoMethodModifierAccess().getCallUpdateCallUpdateKeyword_1_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoMethodModifierRule());
-	        }
-       		setWithLastConsumed($current, "callUpdate", true, "callUpdate");
-	    }
-
-)
-)
-    |(
-(
-		lv_callQuery_2_0=	'callQuery' 
-    {
-        newLeafNode(lv_callQuery_2_0, grammarAccess.getPojoMethodModifierAccess().getCallQueryCallQueryKeyword_2_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoMethodModifierRule());
-	        }
-       		setWithLastConsumed($current, "callQuery", true, "callQuery");
-	    }
-
-)
-)
-    |(
-(
-		lv_callQueryFunction_3_0=	'callQueryFunction' 
-    {
-        newLeafNode(lv_callQueryFunction_3_0, grammarAccess.getPojoMethodModifierAccess().getCallQueryFunctionCallQueryFunctionKeyword_3_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoMethodModifierRule());
-	        }
-       		setWithLastConsumed($current, "callQueryFunction", true, "callQueryFunction");
-	    }
-
-)
-)
-    |(
-(
-		lv_callSelectFunction_4_0=	'callSelectFunction' 
-    {
-        newLeafNode(lv_callSelectFunction_4_0, grammarAccess.getPojoMethodModifierAccess().getCallSelectFunctionCallSelectFunctionKeyword_4_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoMethodModifierRule());
-	        }
-       		setWithLastConsumed($current, "callSelectFunction", true, "callSelectFunction");
-	    }
-
-)
-))
-;
-
-
-
-
-
-
-
-
-
-// Entry rule entryRulePojoMethodArg
-entryRulePojoMethodArg returns [EObject current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
-	}
-	:
-	{ newCompositeNode(grammarAccess.getPojoMethodArgRule()); }
-	 iv_rulePojoMethodArg=rulePojoMethodArg 
-	 { $current=$iv_rulePojoMethodArg.current; } 
-	 EOF 
-;
-finally {
-	myHiddenTokenState.restore();
-}
-
-// Rule PojoMethodArg
-rulePojoMethodArg returns [EObject current=null] 
-    @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
-    }
-    @after { leaveRule(); }:
-((
-(
-		lv_name_0_0=RULE_IDENT
-		{
-			newLeafNode(lv_name_0_0, grammarAccess.getPojoMethodArgAccess().getNameIDENTTerminalRuleCall_0_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoMethodArgRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"name",
-        		lv_name_0_0, 
-        		"IDENT");
-	    }
-
-)
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getPojoMethodArgAccess().getTypePojoTypeParserRuleCall_1_0()); 
-	    }
-		lv_type_1_0=rulePojoType		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPojoMethodArgRule());
-	        }
-       		set(
-       			$current, 
-       			"type",
-        		lv_type_1_0, 
-        		"PojoType");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
 ;
 finally {
 	myHiddenTokenState.restore();

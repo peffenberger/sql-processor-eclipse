@@ -24,12 +24,9 @@ import org.sqlproc.dsl.processorDsl.Constant;
 import org.sqlproc.dsl.processorDsl.ConstantOperator;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveCrud;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator;
-import org.sqlproc.dsl.processorDsl.DaoDirectiveFunction;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters;
-import org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveQuery;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveSerializable;
-import org.sqlproc.dsl.processorDsl.DaoDirectiveUpdate;
 import org.sqlproc.dsl.processorDsl.DaogenProperty;
 import org.sqlproc.dsl.processorDsl.DatabaseCatalogAssignement;
 import org.sqlproc.dsl.processorDsl.DatabaseColumn;
@@ -54,8 +51,12 @@ import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
 import org.sqlproc.dsl.processorDsl.Extends;
 import org.sqlproc.dsl.processorDsl.ExtendsAssignement;
 import org.sqlproc.dsl.processorDsl.ExtendsAssignementGenerics;
+import org.sqlproc.dsl.processorDsl.FunProcDirective;
+import org.sqlproc.dsl.processorDsl.FunctionCall;
+import org.sqlproc.dsl.processorDsl.FunctionCallQuery;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
 import org.sqlproc.dsl.processorDsl.FunctionPojoAssignement;
+import org.sqlproc.dsl.processorDsl.FunctionQuery;
 import org.sqlproc.dsl.processorDsl.Identifier;
 import org.sqlproc.dsl.processorDsl.IdentifierOperator;
 import org.sqlproc.dsl.processorDsl.IfMetaSql;
@@ -103,9 +104,6 @@ import org.sqlproc.dsl.processorDsl.PojoDirectiveToString;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier2;
-import org.sqlproc.dsl.processorDsl.PojoMethod;
-import org.sqlproc.dsl.processorDsl.PojoMethodArg;
-import org.sqlproc.dsl.processorDsl.PojoMethodModifier;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator;
@@ -116,8 +114,10 @@ import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveVersion;
 import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.PojogenProperty;
+import org.sqlproc.dsl.processorDsl.ProcedureCallQuery;
 import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
 import org.sqlproc.dsl.processorDsl.ProcedurePojoAssignement;
+import org.sqlproc.dsl.processorDsl.ProcedureUpdate;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 import org.sqlproc.dsl.processorDsl.Property;
 import org.sqlproc.dsl.processorDsl.ShowColumnTypeAssignement;
@@ -126,7 +126,6 @@ import org.sqlproc.dsl.processorDsl.SqlFragment;
 import org.sqlproc.dsl.processorDsl.SqlTypeAssignement;
 import org.sqlproc.dsl.processorDsl.TableAssignement;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
-import org.sqlproc.dsl.processorDsl.ToInitMethod;
 import org.sqlproc.dsl.services.ProcessorDslGrammarAccess;
 
 @SuppressWarnings("all")
@@ -204,21 +203,9 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
-			case ProcessorDslPackage.DAO_DIRECTIVE_FUNCTION:
-				if(context == grammarAccess.getDaoDirectiveRule()) {
-					sequence_DaoDirective(context, (DaoDirectiveFunction) semanticObject); 
-					return; 
-				}
-				else break;
 			case ProcessorDslPackage.DAO_DIRECTIVE_PARAMETERS:
 				if(context == grammarAccess.getDaoDirectiveParametersRule()) {
 					sequence_DaoDirectiveParameters(context, (DaoDirectiveParameters) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorDslPackage.DAO_DIRECTIVE_PROCEDURE:
-				if(context == grammarAccess.getDaoDirectiveRule()) {
-					sequence_DaoDirective(context, (DaoDirectiveProcedure) semanticObject); 
 					return; 
 				}
 				else break;
@@ -231,12 +218,6 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case ProcessorDslPackage.DAO_DIRECTIVE_SERIALIZABLE:
 				if(context == grammarAccess.getDaoDirectiveRule()) {
 					sequence_DaoDirective(context, (DaoDirectiveSerializable) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorDslPackage.DAO_DIRECTIVE_UPDATE:
-				if(context == grammarAccess.getDaoDirectiveRule()) {
-					sequence_DaoDirective(context, (DaoDirectiveUpdate) semanticObject); 
 					return; 
 				}
 				else break;
@@ -386,6 +367,24 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
+			case ProcessorDslPackage.FUN_PROC_DIRECTIVE:
+				if(context == grammarAccess.getDaoDirectiveRule()) {
+					sequence_DaoDirective(context, (FunProcDirective) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.FUNCTION_CALL:
+				if(context == grammarAccess.getFunProcTypeRule()) {
+					sequence_FunProcType(context, (FunctionCall) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.FUNCTION_CALL_QUERY:
+				if(context == grammarAccess.getFunProcTypeRule()) {
+					sequence_FunProcType(context, (FunctionCallQuery) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorDslPackage.FUNCTION_DEFINITION:
 				if(context == grammarAccess.getFunctionDefinitionRule()) {
 					sequence_FunctionDefinition(context, (FunctionDefinition) semanticObject); 
@@ -395,6 +394,12 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case ProcessorDslPackage.FUNCTION_POJO_ASSIGNEMENT:
 				if(context == grammarAccess.getFunctionPojoAssignementRule()) {
 					sequence_FunctionPojoAssignement(context, (FunctionPojoAssignement) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.FUNCTION_QUERY:
+				if(context == grammarAccess.getFunProcTypeRule()) {
+					sequence_FunProcType(context, (FunctionQuery) semanticObject); 
 					return; 
 				}
 				else break;
@@ -686,24 +691,6 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
-			case ProcessorDslPackage.POJO_METHOD:
-				if(context == grammarAccess.getPojoMethodRule()) {
-					sequence_PojoMethod(context, (PojoMethod) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorDslPackage.POJO_METHOD_ARG:
-				if(context == grammarAccess.getPojoMethodArgRule()) {
-					sequence_PojoMethodArg(context, (PojoMethodArg) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorDslPackage.POJO_METHOD_MODIFIER:
-				if(context == grammarAccess.getPojoMethodModifierRule()) {
-					sequence_PojoMethodModifier(context, (PojoMethodModifier) semanticObject); 
-					return; 
-				}
-				else break;
 			case ProcessorDslPackage.POJO_PROPERTY:
 				if(context == grammarAccess.getPojoPropertyRule()) {
 					sequence_PojoProperty(context, (PojoProperty) semanticObject); 
@@ -764,6 +751,12 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
+			case ProcessorDslPackage.PROCEDURE_CALL_QUERY:
+				if(context == grammarAccess.getFunProcTypeRule()) {
+					sequence_FunProcType(context, (ProcedureCallQuery) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorDslPackage.PROCEDURE_DEFINITION:
 				if(context == grammarAccess.getProcedureDefinitionRule()) {
 					sequence_ProcedureDefinition(context, (ProcedureDefinition) semanticObject); 
@@ -773,6 +766,12 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case ProcessorDslPackage.PROCEDURE_POJO_ASSIGNEMENT:
 				if(context == grammarAccess.getProcedurePojoAssignementRule()) {
 					sequence_ProcedurePojoAssignement(context, (ProcedurePojoAssignement) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.PROCEDURE_UPDATE:
+				if(context == grammarAccess.getFunProcTypeRule()) {
+					sequence_FunProcType(context, (ProcedureUpdate) semanticObject); 
 					return; 
 				}
 				else break;
@@ -815,12 +814,6 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case ProcessorDslPackage.TABLE_DEFINITION:
 				if(context == grammarAccess.getTableDefinitionRule()) {
 					sequence_TableDefinition(context, (TableDefinition) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorDslPackage.TO_INIT_METHOD:
-				if(context == grammarAccess.getToInitMethodRule()) {
-					sequence_ToInitMethod(context, (ToInitMethod) semanticObject); 
 					return; 
 				}
 				else break;
@@ -946,7 +939,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (in=PojoType out=PojoType?)
+	 *     (out=PojoType ins+=PojoType*)
 	 */
 	protected void sequence_DaoDirectiveParameters(EObject context, DaoDirectiveParameters semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -967,24 +960,6 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *     (ancestor=[PojoProperty|IDENT] descendants+=DescendantAssignment+)
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveDiscriminator semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (pojo=PojoType?)
-	 */
-	protected void sequence_DaoDirective(EObject context, DaoDirectiveFunction semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (pojo=PojoType?)
-	 */
-	protected void sequence_DaoDirective(EObject context, DaoDirectiveProcedure semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1016,9 +991,9 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     ((paramlist=DaoDirectiveParameters?) | (paramlist=DaoDirectiveParameters?) | (paramlist=DaoDirectiveParameters?))
+	 *     (type=FunProcType (pojo=PojoType paramlist=DaoDirectiveParameters)?)
 	 */
-	protected void sequence_DaoDirective(EObject context, DaoDirectiveUpdate semanticObject) {
+	protected void sequence_DaoDirective(EObject context, FunProcDirective semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1352,6 +1327,51 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *     )
 	 */
 	protected void sequence_Extends(EObject context, Extends semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {FunctionCall}
+	 */
+	protected void sequence_FunProcType(EObject context, FunctionCall semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {FunctionCallQuery}
+	 */
+	protected void sequence_FunProcType(EObject context, FunctionCallQuery semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {FunctionQuery}
+	 */
+	protected void sequence_FunProcType(EObject context, FunctionQuery semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {ProcedureCallQuery}
+	 */
+	protected void sequence_FunProcType(EObject context, ProcedureCallQuery semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {ProcedureUpdate}
+	 */
+	protected void sequence_FunProcType(EObject context, ProcedureUpdate semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1962,49 +1982,6 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (name=IDENT type=PojoType)
-	 */
-	protected void sequence_PojoMethodArg(EObject context, PojoMethodArg semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_METHOD_ARG__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_METHOD_ARG__NAME));
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_METHOD_ARG__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_METHOD_ARG__TYPE));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPojoMethodArgAccess().getNameIDENTTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getPojoMethodArgAccess().getTypePojoTypeParserRuleCall_1_0(), semanticObject.getType());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (
-	 *         callFunction?='callFunction' | 
-	 *         callUpdate?='callUpdate' | 
-	 *         callQuery?='callQuery' | 
-	 *         callQueryFunction?='callQueryFunction' | 
-	 *         callSelectFunction?='callSelectFunction'
-	 *     )
-	 */
-	protected void sequence_PojoMethodModifier(EObject context, PojoMethodModifier semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (modifiers1+=PojoMethodModifier* name=IDENT (type=PojoType args+=PojoMethodArg+)?)
-	 */
-	protected void sequence_PojoMethod(EObject context, PojoMethod semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (createColumn1=IDENT createColumn2=IDENT)
 	 */
 	protected void sequence_PojoPropertyDirective(EObject context, PojoPropertyDirectiveCreateCol semanticObject) {
@@ -2340,14 +2317,5 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 		feeder.accept(grammarAccess.getTableDefinitionAccess().getNameIDENTTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getTableDefinitionAccess().getTableIDENTTerminalRuleCall_2_0(), semanticObject.getTable());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=IDENT args+=PojoMethodArg+)
-	 */
-	protected void sequence_ToInitMethod(EObject context, ToInitMethod semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 }

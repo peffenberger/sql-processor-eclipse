@@ -21,6 +21,7 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.sqlproc.dsl.ImportManager;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
@@ -42,7 +43,6 @@ import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
-import org.sqlproc.dsl.processorDsl.PojoMethod;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
@@ -324,12 +324,13 @@ public class Utils {
         return result.startsWith("_") ? result.substring(1) : result;
     }
 
-    public static String dbName(PojoMethod e) {
+    public static String dbName(PojoDao e) {
+        String name = StringExtensions.toFirstLower(e.getName());
         String result = "";
         int last = 0;
         boolean lastDigit = false;
-        for (int i = 0, l = e.getName().length(); i < l; i++) {
-            char c = e.getName().charAt(i);
+        for (int i = 0, l = name.length(); i < l; i++) {
+            char c = name.charAt(i);
             if (Character.isUpperCase(c) || (Character.isDigit(c) && !lastDigit)) {
                 result = result + e.getName().substring(last, i).toUpperCase() + "_";
                 last = i;

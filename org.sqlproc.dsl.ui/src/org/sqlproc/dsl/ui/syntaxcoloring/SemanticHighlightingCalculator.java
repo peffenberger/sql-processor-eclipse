@@ -15,8 +15,7 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculato
 import org.sqlproc.dsl.processorDsl.Constant;
 import org.sqlproc.dsl.processorDsl.DaoDirective;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveCrud;
-import org.sqlproc.dsl.processorDsl.DaoDirectiveFunction;
-import org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveQuery;
 import org.sqlproc.dsl.processorDsl.DatabaseColumn;
 import org.sqlproc.dsl.processorDsl.DatabaseTable;
@@ -25,6 +24,7 @@ import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
 import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
+import org.sqlproc.dsl.processorDsl.FunProcDirective;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
 import org.sqlproc.dsl.processorDsl.Identifier;
 import org.sqlproc.dsl.processorDsl.MappingItem;
@@ -35,8 +35,6 @@ import org.sqlproc.dsl.processorDsl.PackageDeclaration;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
-import org.sqlproc.dsl.processorDsl.PojoMethod;
-import org.sqlproc.dsl.processorDsl.PojoMethodArg;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
@@ -185,35 +183,54 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
                     pojo = ((DaoDirectiveCrud) dir).getPojo();
                 else if (dir instanceof DaoDirectiveQuery)
                     pojo = ((DaoDirectiveQuery) dir).getPojo();
-                else if (dir instanceof DaoDirectiveProcedure)
-                    pojo = ((DaoDirectiveProcedure) dir).getPojo();
-                else if (dir instanceof DaoDirectiveFunction)
-                    pojo = ((DaoDirectiveFunction) dir).getPojo();
+                else if (dir instanceof FunProcDirective)
+                    pojo = ((FunProcDirective) dir).getPojo();
                 if (pojo != null && pojo.getRef() != null) {
                     provideHighlightingForPojoEntity(pojo.getRef().getName(), node, acceptor);
                 }
-            } else if (current instanceof PojoMethod) {
+                // } else if (current instanceof PojoMethod) {
+                // ICompositeNode node = NodeModelUtils.getNode(current);
+                // PojoMethod method = (PojoMethod) current;
+                // provideHighlightingForPojoProperty(method.getName(), node, acceptor);
+                // if (method.getType() != null) {
+                // PojoEntity ref = method.getType().getRef();
+                // if (ref != null)
+                // provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
+                // PojoEntity gref = method.getType().getGref();
+                // if (gref != null)
+                // provideHighlightingForPojoEntity(gref.getName(), node, acceptor);
+                // }
+                // if (method.getArgs() != null && !method.getArgs().isEmpty()) {
+                // for (PojoMethodArg arg : method.getArgs()) {
+                // if (arg.getType() != null) {
+                // PojoEntity ref = arg.getType().getRef();
+                // if (ref != null)
+                // provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
+                // PojoEntity gref = arg.getType().getGref();
+                // if (gref != null)
+                // provideHighlightingForPojoEntity(gref.getName(), node, acceptor);
+                // }
+                // }
+                // }
+            } else if (current instanceof DaoDirectiveParameters) {
                 ICompositeNode node = NodeModelUtils.getNode(current);
-                PojoMethod method = (PojoMethod) current;
-                provideHighlightingForPojoProperty(method.getName(), node, acceptor);
-                if (method.getType() != null) {
-                    PojoEntity ref = method.getType().getRef();
+                DaoDirectiveParameters dir = (DaoDirectiveParameters) current;
+                if (dir.getOut() != null) {
+                    PojoEntity ref = dir.getOut().getRef();
                     if (ref != null)
                         provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
-                    PojoEntity gref = method.getType().getGref();
+                    PojoEntity gref = dir.getOut().getGref();
                     if (gref != null)
                         provideHighlightingForPojoEntity(gref.getName(), node, acceptor);
                 }
-                if (method.getArgs() != null && !method.getArgs().isEmpty()) {
-                    for (PojoMethodArg arg : method.getArgs()) {
-                        if (arg.getType() != null) {
-                            PojoEntity ref = arg.getType().getRef();
-                            if (ref != null)
-                                provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
-                            PojoEntity gref = arg.getType().getGref();
-                            if (gref != null)
-                                provideHighlightingForPojoEntity(gref.getName(), node, acceptor);
-                        }
+                if (dir.getIns() != null && !dir.getIns().isEmpty()) {
+                    for (PojoType arg : dir.getIns()) {
+                        PojoEntity ref = arg.getRef();
+                        if (ref != null)
+                            provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
+                        PojoEntity gref = arg.getGref();
+                        if (gref != null)
+                            provideHighlightingForPojoEntity(gref.getName(), node, acceptor);
                     }
                 }
             }

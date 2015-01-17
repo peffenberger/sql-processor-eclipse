@@ -150,13 +150,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.ENUM_PROPERTY: return createEnumProperty();
       case ProcessorDslPackage.DAO_DIRECTIVE_PARAMETERS: return createDaoDirectiveParameters();
       case ProcessorDslPackage.DESCENDANT_ASSIGNMENT: return createDescendantAssignment();
+      case ProcessorDslPackage.FUN_PROC_TYPE: return createFunProcType();
       case ProcessorDslPackage.DAO_DIRECTIVE: return createDaoDirective();
       case ProcessorDslPackage.POJO_DAO_MODIFIER: return createPojoDaoModifier();
       case ProcessorDslPackage.POJO_DAO: return createPojoDao();
-      case ProcessorDslPackage.POJO_METHOD_MODIFIER: return createPojoMethodModifier();
-      case ProcessorDslPackage.POJO_METHOD: return createPojoMethod();
-      case ProcessorDslPackage.TO_INIT_METHOD: return createToInitMethod();
-      case ProcessorDslPackage.POJO_METHOD_ARG: return createPojoMethodArg();
       case ProcessorDslPackage.POJO_DIRECTIVE_TO_STRING: return createPojoDirectiveToString();
       case ProcessorDslPackage.POJO_DIRECTIVE_INDEX: return createPojoDirectiveIndex();
       case ProcessorDslPackage.POJO_DIRECTIVE_OPERATORS: return createPojoDirectiveOperators();
@@ -175,13 +172,16 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_VERSION: return createPojoPropertyDirectiveVersion();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_UPDATE_COL: return createPojoPropertyDirectiveUpdateCol();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_CREATE_COL: return createPojoPropertyDirectiveCreateCol();
+      case ProcessorDslPackage.FUNCTION_CALL_QUERY: return createFunctionCallQuery();
+      case ProcessorDslPackage.PROCEDURE_CALL_QUERY: return createProcedureCallQuery();
+      case ProcessorDslPackage.FUNCTION_CALL: return createFunctionCall();
+      case ProcessorDslPackage.PROCEDURE_UPDATE: return createProcedureUpdate();
+      case ProcessorDslPackage.FUNCTION_QUERY: return createFunctionQuery();
       case ProcessorDslPackage.DAO_DIRECTIVE_SERIALIZABLE: return createDaoDirectiveSerializable();
       case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR: return createDaoDirectiveDiscriminator();
       case ProcessorDslPackage.DAO_DIRECTIVE_CRUD: return createDaoDirectiveCrud();
       case ProcessorDslPackage.DAO_DIRECTIVE_QUERY: return createDaoDirectiveQuery();
-      case ProcessorDslPackage.DAO_DIRECTIVE_PROCEDURE: return createDaoDirectiveProcedure();
-      case ProcessorDslPackage.DAO_DIRECTIVE_FUNCTION: return createDaoDirectiveFunction();
-      case ProcessorDslPackage.DAO_DIRECTIVE_UPDATE: return createDaoDirectiveUpdate();
+      case ProcessorDslPackage.FUN_PROC_DIRECTIVE: return createFunProcDirective();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -1138,6 +1138,17 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public FunProcType createFunProcType()
+  {
+    FunProcTypeImpl funProcType = new FunProcTypeImpl();
+    return funProcType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public DaoDirective createDaoDirective()
   {
     DaoDirectiveImpl daoDirective = new DaoDirectiveImpl();
@@ -1164,50 +1175,6 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     PojoDaoImpl pojoDao = new PojoDaoImpl();
     return pojoDao;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoMethodModifier createPojoMethodModifier()
-  {
-    PojoMethodModifierImpl pojoMethodModifier = new PojoMethodModifierImpl();
-    return pojoMethodModifier;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoMethod createPojoMethod()
-  {
-    PojoMethodImpl pojoMethod = new PojoMethodImpl();
-    return pojoMethod;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ToInitMethod createToInitMethod()
-  {
-    ToInitMethodImpl toInitMethod = new ToInitMethodImpl();
-    return toInitMethod;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoMethodArg createPojoMethodArg()
-  {
-    PojoMethodArgImpl pojoMethodArg = new PojoMethodArgImpl();
-    return pojoMethodArg;
   }
 
   /**
@@ -1413,6 +1380,61 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public FunctionCallQuery createFunctionCallQuery()
+  {
+    FunctionCallQueryImpl functionCallQuery = new FunctionCallQueryImpl();
+    return functionCallQuery;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ProcedureCallQuery createProcedureCallQuery()
+  {
+    ProcedureCallQueryImpl procedureCallQuery = new ProcedureCallQueryImpl();
+    return procedureCallQuery;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FunctionCall createFunctionCall()
+  {
+    FunctionCallImpl functionCall = new FunctionCallImpl();
+    return functionCall;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ProcedureUpdate createProcedureUpdate()
+  {
+    ProcedureUpdateImpl procedureUpdate = new ProcedureUpdateImpl();
+    return procedureUpdate;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FunctionQuery createFunctionQuery()
+  {
+    FunctionQueryImpl functionQuery = new FunctionQueryImpl();
+    return functionQuery;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public DaoDirectiveSerializable createDaoDirectiveSerializable()
   {
     DaoDirectiveSerializableImpl daoDirectiveSerializable = new DaoDirectiveSerializableImpl();
@@ -1457,32 +1479,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public DaoDirectiveProcedure createDaoDirectiveProcedure()
+  public FunProcDirective createFunProcDirective()
   {
-    DaoDirectiveProcedureImpl daoDirectiveProcedure = new DaoDirectiveProcedureImpl();
-    return daoDirectiveProcedure;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public DaoDirectiveFunction createDaoDirectiveFunction()
-  {
-    DaoDirectiveFunctionImpl daoDirectiveFunction = new DaoDirectiveFunctionImpl();
-    return daoDirectiveFunction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public DaoDirectiveUpdate createDaoDirectiveUpdate()
-  {
-    DaoDirectiveUpdateImpl daoDirectiveUpdate = new DaoDirectiveUpdateImpl();
-    return daoDirectiveUpdate;
+    FunProcDirectiveImpl funProcDirective = new FunProcDirectiveImpl();
+    return funProcDirective;
   }
 
   /**

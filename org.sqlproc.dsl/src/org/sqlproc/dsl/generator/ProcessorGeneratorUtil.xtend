@@ -31,13 +31,13 @@ import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator
 import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator
 import org.sqlproc.dsl.processorDsl.DaoDirectiveCrud
 import org.sqlproc.dsl.processorDsl.DaoDirectiveQuery
-import org.sqlproc.dsl.processorDsl.DaoDirectiveFunction
-import org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure
 import org.sqlproc.dsl.processorDsl.DaoDirective
 import org.sqlproc.dsl.processorDsl.Artifacts
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage
+import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters
+import org.sqlproc.dsl.processorDsl.FunProcDirective
 
 class ProcessorGeneratorUtils {
 
@@ -259,7 +259,7 @@ class ProcessorGeneratorUtils {
     
     def getPojoDirective(PojoDao dao) {
     	dao?.directives.findFirst[x|x instanceof DaoDirectiveCrud || 
-    		x instanceof DaoDirectiveQuery || x instanceof DaoDirectiveFunction || x instanceof DaoDirectiveProcedure
+    		x instanceof DaoDirectiveQuery || x instanceof FunProcDirective
     	] 
     }
 
@@ -268,8 +268,7 @@ class ProcessorGeneratorUtils {
     	switch pojoDirective {
     		case DaoDirectiveCrud : (pojoDirective as DaoDirectiveCrud).pojo
     		case DaoDirectiveQuery : (pojoDirective as DaoDirectiveQuery).pojo
-    		case DaoDirectiveProcedure : (pojoDirective as DaoDirectiveProcedure).pojo
-    		case DaoDirectiveFunction : (pojoDirective as DaoDirectiveFunction).pojo
+    		case FunProcDirective : (pojoDirective as FunProcDirective).pojo
     	}
     	if (pojo != null)
     		return pojo.ref
@@ -296,61 +295,17 @@ class ProcessorGeneratorUtils {
 		return if(d != null) true else false
     }
 
-	    
-//
-//    def isCallUpdate(PojoDao dao) {
-//		val d = dao.directives?.findFirst[x|x instanceof DaoDirectivePojo]
-//		return if(d != null) true else false
-//
-//        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-//            return false;
-//        for (PojoMethodModifier modifier : f.getModifiers1()) {
-//            if (modifier.isCallUpdate())
-//                return true;
-//        }
-//        return false;
-//    }
-//
-//    def isCallFunction(PojoDao dao) {
-//        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-//            return false;
-//        for (PojoMethodModifier modifier : f.getModifiers1()) {
-//            if (modifier.isCallFunction())
-//                return true;
-//        }
-//        return false;
-//    }
-//
-//    def isCallQuery(PojoDao dao) {
-//        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-//            return false;
-//        for (PojoMethodModifier modifier : f.getModifiers1()) {
-//            if (modifier.isCallQuery())
-//                return true;
-//        }
-//        return false;
-//    }
-//
-//    def isCallQueryFunction(PojoDao dao) {
-//        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-//            return false;
-//        for (PojoMethodModifier modifier : f.getModifiers1()) {
-//            if (modifier.isCallQueryFunction())
-//                return true;
-//        }
-//        return false;
-//    }
-//
-//    def isCallSelectFunction(PojoDao dao	....
-//    	
-//    	
-//    ) {
-//        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-//            return false;
-//        for (PojoMethodModifier modifier : f.getModifiers1()) {
-//            if (modifier.isCallSelectFunction())
-//                return true;
-//        }
-//        return false;
-//    }
+    def listFunctionsDirectives(PojoDao dao) {
+    	val List<FunProcDirective> result = newArrayList()
+		dao.directives?.filter[x|x instanceof FunProcDirective].forEach[
+			result.add(it as FunProcDirective)
+		]
+		return result
+    }
+
+	def getParamName(PojoType pojo) {
+		if (pojo.ref != null)
+			return pojo.ref.name.toFirstLower
+		return pojo.type.simpleName.toFirstLower
+	}
 }
