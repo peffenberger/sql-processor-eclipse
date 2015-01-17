@@ -39417,9 +39417,9 @@ rule__DaoDirectiveParameters__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getDaoDirectiveParametersAccess().getCOMMATerminalRuleCall_0()); }
-	RULE_COMMA
-{ after(grammarAccess.getDaoDirectiveParametersAccess().getCOMMATerminalRuleCall_0()); }
+{ before(grammarAccess.getDaoDirectiveParametersAccess().getOutAssignment_0()); }
+(rule__DaoDirectiveParameters__OutAssignment_0)
+{ after(grammarAccess.getDaoDirectiveParametersAccess().getOutAssignment_0()); }
 )
 
 ;
@@ -39434,7 +39434,6 @@ rule__DaoDirectiveParameters__Group__1
     }
 :
 	rule__DaoDirectiveParameters__Group__1__Impl
-	rule__DaoDirectiveParameters__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -39446,37 +39445,9 @@ rule__DaoDirectiveParameters__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getDaoDirectiveParametersAccess().getOutAssignment_1()); }
-(rule__DaoDirectiveParameters__OutAssignment_1)
-{ after(grammarAccess.getDaoDirectiveParametersAccess().getOutAssignment_1()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__DaoDirectiveParameters__Group__2
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__DaoDirectiveParameters__Group__2__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__DaoDirectiveParameters__Group__2__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getDaoDirectiveParametersAccess().getGroup_2()); }
-(rule__DaoDirectiveParameters__Group_2__0)*
-{ after(grammarAccess.getDaoDirectiveParametersAccess().getGroup_2()); }
+{ before(grammarAccess.getDaoDirectiveParametersAccess().getGroup_1()); }
+(rule__DaoDirectiveParameters__Group_1__0)*
+{ after(grammarAccess.getDaoDirectiveParametersAccess().getGroup_1()); }
 )
 
 ;
@@ -39489,29 +39460,27 @@ finally {
 
 
 
-
-
-rule__DaoDirectiveParameters__Group_2__0
+rule__DaoDirectiveParameters__Group_1__0
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__DaoDirectiveParameters__Group_2__0__Impl
-	rule__DaoDirectiveParameters__Group_2__1
+	rule__DaoDirectiveParameters__Group_1__0__Impl
+	rule__DaoDirectiveParameters__Group_1__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__DaoDirectiveParameters__Group_2__0__Impl
+rule__DaoDirectiveParameters__Group_1__0__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getDaoDirectiveParametersAccess().getCOMMATerminalRuleCall_2_0()); }
+{ before(grammarAccess.getDaoDirectiveParametersAccess().getCOMMATerminalRuleCall_1_0()); }
 	RULE_COMMA
-{ after(grammarAccess.getDaoDirectiveParametersAccess().getCOMMATerminalRuleCall_2_0()); }
+{ after(grammarAccess.getDaoDirectiveParametersAccess().getCOMMATerminalRuleCall_1_0()); }
 )
 
 ;
@@ -39520,26 +39489,26 @@ finally {
 }
 
 
-rule__DaoDirectiveParameters__Group_2__1
+rule__DaoDirectiveParameters__Group_1__1
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__DaoDirectiveParameters__Group_2__1__Impl
+	rule__DaoDirectiveParameters__Group_1__1__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__DaoDirectiveParameters__Group_2__1__Impl
+rule__DaoDirectiveParameters__Group_1__1__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getDaoDirectiveParametersAccess().getInsAssignment_2_1()); }
-(rule__DaoDirectiveParameters__InsAssignment_2_1)
-{ after(grammarAccess.getDaoDirectiveParametersAccess().getInsAssignment_2_1()); }
+{ before(grammarAccess.getDaoDirectiveParametersAccess().getInsAssignment_1_1()); }
+(rule__DaoDirectiveParameters__InsAssignment_1_1)
+{ after(grammarAccess.getDaoDirectiveParametersAccess().getInsAssignment_1_1()); }
 )
 
 ;
@@ -40901,9 +40870,9 @@ rule__DaoDirective__Group_4_2__1__Impl
     }
 :
 (
-{ before(grammarAccess.getDaoDirectiveAccess().getPojoAssignment_4_2_1()); }
-(rule__DaoDirective__PojoAssignment_4_2_1)
-{ after(grammarAccess.getDaoDirectiveAccess().getPojoAssignment_4_2_1()); }
+{ before(grammarAccess.getDaoDirectiveAccess().getParamlistAssignment_4_2_1()); }
+(rule__DaoDirective__ParamlistAssignment_4_2_1)
+{ after(grammarAccess.getDaoDirectiveAccess().getParamlistAssignment_4_2_1()); }
 )
 
 ;
@@ -40918,7 +40887,6 @@ rule__DaoDirective__Group_4_2__2
     }
 :
 	rule__DaoDirective__Group_4_2__2__Impl
-	rule__DaoDirective__Group_4_2__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -40930,45 +40898,15 @@ rule__DaoDirective__Group_4_2__2__Impl
     }
 :
 (
-{ before(grammarAccess.getDaoDirectiveAccess().getParamlistAssignment_4_2_2()); }
-(rule__DaoDirective__ParamlistAssignment_4_2_2)
-{ after(grammarAccess.getDaoDirectiveAccess().getParamlistAssignment_4_2_2()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__DaoDirective__Group_4_2__3
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__DaoDirective__Group_4_2__3__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__DaoDirective__Group_4_2__3__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_4_2_3()); }
+{ before(grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_4_2_2()); }
 	RULE_RPAREN
-{ after(grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_4_2_3()); }
+{ after(grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_4_2_2()); }
 )
 
 ;
 finally {
 	restoreStackSize(stackSize);
 }
-
-
 
 
 
@@ -49865,14 +49803,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__DaoDirectiveParameters__OutAssignment_1
+rule__DaoDirectiveParameters__OutAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getDaoDirectiveParametersAccess().getOutPojoTypeParserRuleCall_1_0()); }
-	rulePojoType{ after(grammarAccess.getDaoDirectiveParametersAccess().getOutPojoTypeParserRuleCall_1_0()); }
+{ before(grammarAccess.getDaoDirectiveParametersAccess().getOutPojoTypeParserRuleCall_0_0()); }
+	rulePojoType{ after(grammarAccess.getDaoDirectiveParametersAccess().getOutPojoTypeParserRuleCall_0_0()); }
 )
 
 ;
@@ -49880,14 +49818,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__DaoDirectiveParameters__InsAssignment_2_1
+rule__DaoDirectiveParameters__InsAssignment_1_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getDaoDirectiveParametersAccess().getInsPojoTypeParserRuleCall_2_1_0()); }
-	rulePojoType{ after(grammarAccess.getDaoDirectiveParametersAccess().getInsPojoTypeParserRuleCall_2_1_0()); }
+{ before(grammarAccess.getDaoDirectiveParametersAccess().getInsPojoTypeParserRuleCall_1_1_0()); }
+	rulePojoType{ after(grammarAccess.getDaoDirectiveParametersAccess().getInsPojoTypeParserRuleCall_1_1_0()); }
 )
 
 ;
@@ -50020,29 +49958,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__DaoDirective__PojoAssignment_4_2_1
+rule__DaoDirective__ParamlistAssignment_4_2_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getDaoDirectiveAccess().getPojoPojoTypeParserRuleCall_4_2_1_0()); }
-	rulePojoType{ after(grammarAccess.getDaoDirectiveAccess().getPojoPojoTypeParserRuleCall_4_2_1_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__DaoDirective__ParamlistAssignment_4_2_2
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getDaoDirectiveAccess().getParamlistDaoDirectiveParametersParserRuleCall_4_2_2_0()); }
-	ruleDaoDirectiveParameters{ after(grammarAccess.getDaoDirectiveAccess().getParamlistDaoDirectiveParametersParserRuleCall_4_2_2_0()); }
+{ before(grammarAccess.getDaoDirectiveAccess().getParamlistDaoDirectiveParametersParserRuleCall_4_2_1_0()); }
+	ruleDaoDirectiveParameters{ after(grammarAccess.getDaoDirectiveAccess().getParamlistDaoDirectiveParametersParserRuleCall_4_2_1_0()); }
 )
 
 ;

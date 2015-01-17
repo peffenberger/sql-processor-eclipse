@@ -991,7 +991,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (type=FunProcType (pojo=PojoType paramlist=DaoDirectiveParameters)?)
+	 *     (type=FunProcType paramlist=DaoDirectiveParameters?)
 	 */
 	protected void sequence_DaoDirective(EObject context, FunProcDirective semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

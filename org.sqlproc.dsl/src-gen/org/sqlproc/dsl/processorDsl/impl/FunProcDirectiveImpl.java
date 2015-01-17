@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters;
 import org.sqlproc.dsl.processorDsl.FunProcDirective;
 import org.sqlproc.dsl.processorDsl.FunProcType;
-import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
 /**
@@ -24,7 +23,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.FunProcDirectiveImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.FunProcDirectiveImpl#getPojo <em>Pojo</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.FunProcDirectiveImpl#getParamlist <em>Paramlist</em>}</li>
  * </ul>
  * </p>
@@ -42,16 +40,6 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
    * @ordered
    */
   protected FunProcType type;
-
-  /**
-   * The cached value of the '{@link #getPojo() <em>Pojo</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getPojo()
-   * @generated
-   * @ordered
-   */
-  protected PojoType pojo;
 
   /**
    * The cached value of the '{@link #getParamlist() <em>Paramlist</em>}' containment reference.
@@ -137,54 +125,6 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoType getPojo()
-  {
-    return pojo;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetPojo(PojoType newPojo, NotificationChain msgs)
-  {
-    PojoType oldPojo = pojo;
-    pojo = newPojo;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.FUN_PROC_DIRECTIVE__POJO, oldPojo, newPojo);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setPojo(PojoType newPojo)
-  {
-    if (newPojo != pojo)
-    {
-      NotificationChain msgs = null;
-      if (pojo != null)
-        msgs = ((InternalEObject)pojo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.FUN_PROC_DIRECTIVE__POJO, null, msgs);
-      if (newPojo != null)
-        msgs = ((InternalEObject)newPojo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorDslPackage.FUN_PROC_DIRECTIVE__POJO, null, msgs);
-      msgs = basicSetPojo(newPojo, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.FUN_PROC_DIRECTIVE__POJO, newPojo, newPojo));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public DaoDirectiveParameters getParamlist()
   {
     return paramlist;
@@ -240,8 +180,6 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
     {
       case ProcessorDslPackage.FUN_PROC_DIRECTIVE__TYPE:
         return basicSetType(null, msgs);
-      case ProcessorDslPackage.FUN_PROC_DIRECTIVE__POJO:
-        return basicSetPojo(null, msgs);
       case ProcessorDslPackage.FUN_PROC_DIRECTIVE__PARAMLIST:
         return basicSetParamlist(null, msgs);
     }
@@ -260,8 +198,6 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
     {
       case ProcessorDslPackage.FUN_PROC_DIRECTIVE__TYPE:
         return getType();
-      case ProcessorDslPackage.FUN_PROC_DIRECTIVE__POJO:
-        return getPojo();
       case ProcessorDslPackage.FUN_PROC_DIRECTIVE__PARAMLIST:
         return getParamlist();
     }
@@ -280,9 +216,6 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
     {
       case ProcessorDslPackage.FUN_PROC_DIRECTIVE__TYPE:
         setType((FunProcType)newValue);
-        return;
-      case ProcessorDslPackage.FUN_PROC_DIRECTIVE__POJO:
-        setPojo((PojoType)newValue);
         return;
       case ProcessorDslPackage.FUN_PROC_DIRECTIVE__PARAMLIST:
         setParamlist((DaoDirectiveParameters)newValue);
@@ -304,9 +237,6 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
       case ProcessorDslPackage.FUN_PROC_DIRECTIVE__TYPE:
         setType((FunProcType)null);
         return;
-      case ProcessorDslPackage.FUN_PROC_DIRECTIVE__POJO:
-        setPojo((PojoType)null);
-        return;
       case ProcessorDslPackage.FUN_PROC_DIRECTIVE__PARAMLIST:
         setParamlist((DaoDirectiveParameters)null);
         return;
@@ -326,8 +256,6 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
     {
       case ProcessorDslPackage.FUN_PROC_DIRECTIVE__TYPE:
         return type != null;
-      case ProcessorDslPackage.FUN_PROC_DIRECTIVE__POJO:
-        return pojo != null;
       case ProcessorDslPackage.FUN_PROC_DIRECTIVE__PARAMLIST:
         return paramlist != null;
     }

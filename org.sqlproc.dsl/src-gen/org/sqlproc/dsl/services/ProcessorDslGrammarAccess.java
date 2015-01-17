@@ -9792,41 +9792,37 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class DaoDirectiveParametersElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DaoDirectiveParameters");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cCOMMATerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Assignment cOutAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOutPojoTypeParserRuleCall_1_0 = (RuleCall)cOutAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final RuleCall cCOMMATerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final Assignment cInsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cInsPojoTypeParserRuleCall_2_1_0 = (RuleCall)cInsAssignment_2_1.eContents().get(0);
+		private final Assignment cOutAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cOutPojoTypeParserRuleCall_0_0 = (RuleCall)cOutAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cCOMMATerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cInsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cInsPojoTypeParserRuleCall_1_1_0 = (RuleCall)cInsAssignment_1_1.eContents().get(0);
 		
 		//DaoDirectiveParameters hidden(ML_COMMENT, SL_COMMENT, WS):
-		//	COMMA out=PojoType (COMMA ins+=PojoType)*;
+		//	out=PojoType (COMMA ins+=PojoType)*;
 		public ParserRule getRule() { return rule; }
 
-		//COMMA out=PojoType (COMMA ins+=PojoType)*
+		//out=PojoType (COMMA ins+=PojoType)*
 		public Group getGroup() { return cGroup; }
 
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_0() { return cCOMMATerminalRuleCall_0; }
-
 		//out=PojoType
-		public Assignment getOutAssignment_1() { return cOutAssignment_1; }
+		public Assignment getOutAssignment_0() { return cOutAssignment_0; }
 
 		//PojoType
-		public RuleCall getOutPojoTypeParserRuleCall_1_0() { return cOutPojoTypeParserRuleCall_1_0; }
+		public RuleCall getOutPojoTypeParserRuleCall_0_0() { return cOutPojoTypeParserRuleCall_0_0; }
 
 		//(COMMA ins+=PojoType)*
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_1() { return cGroup_1; }
 
 		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_2_0() { return cCOMMATerminalRuleCall_2_0; }
+		public RuleCall getCOMMATerminalRuleCall_1_0() { return cCOMMATerminalRuleCall_1_0; }
 
 		//ins+=PojoType
-		public Assignment getInsAssignment_2_1() { return cInsAssignment_2_1; }
+		public Assignment getInsAssignment_1_1() { return cInsAssignment_1_1; }
 
 		//PojoType
-		public RuleCall getInsPojoTypeParserRuleCall_2_1_0() { return cInsPojoTypeParserRuleCall_2_1_0; }
+		public RuleCall getInsPojoTypeParserRuleCall_1_1_0() { return cInsPojoTypeParserRuleCall_1_1_0; }
 	}
 
 	public class DescendantAssignmentElements extends AbstractParserRuleElementFinder {
@@ -9987,23 +9983,21 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeFunProcTypeParserRuleCall_4_1_0 = (RuleCall)cTypeAssignment_4_1.eContents().get(0);
 		private final Group cGroup_4_2 = (Group)cGroup_4.eContents().get(2);
 		private final RuleCall cLPARENTerminalRuleCall_4_2_0 = (RuleCall)cGroup_4_2.eContents().get(0);
-		private final Assignment cPojoAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
-		private final RuleCall cPojoPojoTypeParserRuleCall_4_2_1_0 = (RuleCall)cPojoAssignment_4_2_1.eContents().get(0);
-		private final Assignment cParamlistAssignment_4_2_2 = (Assignment)cGroup_4_2.eContents().get(2);
-		private final RuleCall cParamlistDaoDirectiveParametersParserRuleCall_4_2_2_0 = (RuleCall)cParamlistAssignment_4_2_2.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_4_2_3 = (RuleCall)cGroup_4_2.eContents().get(3);
+		private final Assignment cParamlistAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
+		private final RuleCall cParamlistDaoDirectiveParametersParserRuleCall_4_2_1_0 = (RuleCall)cParamlistAssignment_4_2_1.eContents().get(0);
+		private final RuleCall cRPARENTerminalRuleCall_4_2_2 = (RuleCall)cGroup_4_2.eContents().get(2);
 		
 		//DaoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 		//	{DaoDirectiveSerializable} "#Serializable" LPAREN sernum=NUMBER RPAREN | {DaoDirectiveDiscriminator}
 		//	"#InheritanceHandler" LPAREN ancestor=[PojoProperty|IDENT] (COMMA descendants+=DescendantAssignment)+ RPAREN |
 		//	{DaoDirectiveCrud} "#CRUD" (LPAREN pojo=PojoType RPAREN)? | {DaoDirectiveQuery} "#Query" (LPAREN pojo=PojoType
-		//	RPAREN)? | {FunProcDirective} type=FunProcType (LPAREN pojo=PojoType paramlist=DaoDirectiveParameters RPAREN)?;
+		//	RPAREN)? | {FunProcDirective} type=FunProcType (LPAREN paramlist=DaoDirectiveParameters RPAREN)?;
 		public ParserRule getRule() { return rule; }
 
 		//{DaoDirectiveSerializable} "#Serializable" LPAREN sernum=NUMBER RPAREN | {DaoDirectiveDiscriminator}
 		//"#InheritanceHandler" LPAREN ancestor=[PojoProperty|IDENT] (COMMA descendants+=DescendantAssignment)+ RPAREN |
 		//{DaoDirectiveCrud} "#CRUD" (LPAREN pojo=PojoType RPAREN)? | {DaoDirectiveQuery} "#Query" (LPAREN pojo=PojoType RPAREN)?
-		//| {FunProcDirective} type=FunProcType (LPAREN pojo=PojoType paramlist=DaoDirectiveParameters RPAREN)?
+		//| {FunProcDirective} type=FunProcType (LPAREN paramlist=DaoDirectiveParameters RPAREN)?
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//{DaoDirectiveSerializable} "#Serializable" LPAREN sernum=NUMBER RPAREN
@@ -10112,7 +10106,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//RPAREN
 		public RuleCall getRPARENTerminalRuleCall_3_2_2() { return cRPARENTerminalRuleCall_3_2_2; }
 
-		//{FunProcDirective} type=FunProcType (LPAREN pojo=PojoType paramlist=DaoDirectiveParameters RPAREN)?
+		//{FunProcDirective} type=FunProcType (LPAREN paramlist=DaoDirectiveParameters RPAREN)?
 		public Group getGroup_4() { return cGroup_4; }
 
 		//{FunProcDirective}
@@ -10124,26 +10118,20 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//FunProcType
 		public RuleCall getTypeFunProcTypeParserRuleCall_4_1_0() { return cTypeFunProcTypeParserRuleCall_4_1_0; }
 
-		//(=> LPAREN pojo=PojoType paramlist=DaoDirectiveParameters RPAREN)?
+		//(=> LPAREN paramlist=DaoDirectiveParameters RPAREN)?
 		public Group getGroup_4_2() { return cGroup_4_2; }
 
 		//=> LPAREN
 		public RuleCall getLPARENTerminalRuleCall_4_2_0() { return cLPARENTerminalRuleCall_4_2_0; }
 
-		//pojo=PojoType
-		public Assignment getPojoAssignment_4_2_1() { return cPojoAssignment_4_2_1; }
-
-		//PojoType
-		public RuleCall getPojoPojoTypeParserRuleCall_4_2_1_0() { return cPojoPojoTypeParserRuleCall_4_2_1_0; }
-
 		//paramlist=DaoDirectiveParameters
-		public Assignment getParamlistAssignment_4_2_2() { return cParamlistAssignment_4_2_2; }
+		public Assignment getParamlistAssignment_4_2_1() { return cParamlistAssignment_4_2_1; }
 
 		//DaoDirectiveParameters
-		public RuleCall getParamlistDaoDirectiveParametersParserRuleCall_4_2_2_0() { return cParamlistDaoDirectiveParametersParserRuleCall_4_2_2_0; }
+		public RuleCall getParamlistDaoDirectiveParametersParserRuleCall_4_2_1_0() { return cParamlistDaoDirectiveParametersParserRuleCall_4_2_1_0; }
 
 		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_4_2_3() { return cRPARENTerminalRuleCall_4_2_3; }
+		public RuleCall getRPARENTerminalRuleCall_4_2_2() { return cRPARENTerminalRuleCall_4_2_2; }
 	}
 
 	public class PojoDaoModifierElements extends AbstractParserRuleElementFinder {
@@ -11901,7 +11889,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DaoDirectiveParameters hidden(ML_COMMENT, SL_COMMENT, WS):
-	//	COMMA out=PojoType (COMMA ins+=PojoType)*;
+	//	out=PojoType (COMMA ins+=PojoType)*;
 	public DaoDirectiveParametersElements getDaoDirectiveParametersAccess() {
 		return pDaoDirectiveParameters;
 	}
@@ -11935,7 +11923,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	{DaoDirectiveSerializable} "#Serializable" LPAREN sernum=NUMBER RPAREN | {DaoDirectiveDiscriminator}
 	//	"#InheritanceHandler" LPAREN ancestor=[PojoProperty|IDENT] (COMMA descendants+=DescendantAssignment)+ RPAREN |
 	//	{DaoDirectiveCrud} "#CRUD" (LPAREN pojo=PojoType RPAREN)? | {DaoDirectiveQuery} "#Query" (LPAREN pojo=PojoType
-	//	RPAREN)? | {FunProcDirective} type=FunProcType (LPAREN pojo=PojoType paramlist=DaoDirectiveParameters RPAREN)?;
+	//	RPAREN)? | {FunProcDirective} type=FunProcType (LPAREN paramlist=DaoDirectiveParameters RPAREN)?;
 	public DaoDirectiveElements getDaoDirectiveAccess() {
 		return pDaoDirective;
 	}

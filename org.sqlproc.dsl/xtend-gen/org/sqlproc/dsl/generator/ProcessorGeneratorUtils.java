@@ -29,6 +29,7 @@ import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.DaoDirective;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveCrud;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveQuery;
 import org.sqlproc.dsl.processorDsl.DescendantAssignment;
 import org.sqlproc.dsl.processorDsl.DirectiveProperties;
@@ -930,6 +931,18 @@ public class ProcessorGeneratorUtils {
     return IterableExtensions.<DaoDirective>findFirst(_directives, _function);
   }
   
+  public String getFunProcName(final PojoDao dao) {
+    String pojoName = dao.getName();
+    boolean _endsWith = pojoName.endsWith("Dao");
+    if (_endsWith) {
+      int _length = pojoName.length();
+      int _minus = (_length - 3);
+      String _substring = pojoName.substring(0, _minus);
+      pojoName = _substring;
+    }
+    return StringExtensions.toFirstLower(pojoName);
+  }
+  
   public PojoEntity getPojoImplicit(final PojoDao dao) {
     String pojoName = dao.getName();
     boolean _endsWith = pojoName.endsWith("Dao");
@@ -984,13 +997,17 @@ public class ProcessorGeneratorUtils {
   
   protected PojoEntity _getPojo(final PojoDao dao, final FunProcDirective pojoDirective) {
     PojoEntity _elvis = null;
-    PojoType _pojo = null;
+    DaoDirectiveParameters _paramlist = null;
     if (pojoDirective!=null) {
-      _pojo=pojoDirective.getPojo();
+      _paramlist=pojoDirective.getParamlist();
+    }
+    PojoType _out = null;
+    if (_paramlist!=null) {
+      _out=_paramlist.getOut();
     }
     PojoEntity _ref = null;
-    if (_pojo!=null) {
-      _ref=_pojo.getRef();
+    if (_out!=null) {
+      _ref=_out.getRef();
     }
     if (_ref != null) {
       _elvis = _ref;

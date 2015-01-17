@@ -469,7 +469,7 @@ EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 ;
 
 DaoDirectiveParameters hidden(ML_COMMENT, SL_COMMENT, WS):
-	COMMA out=PojoType (COMMA ins+=PojoType)*
+	out=PojoType (COMMA ins+=PojoType)*
 ;
 
 DescendantAssignment hidden(ML_COMMENT, SL_COMMENT, WS):
@@ -489,7 +489,7 @@ DaoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {DaoDirectiveDiscriminator} '#InheritanceHandler' LPAREN ancestor=[PojoProperty|IDENT] (COMMA descendants+=DescendantAssignment)+ RPAREN
 	| {DaoDirectiveCrud} '#CRUD' (=> LPAREN pojo=PojoType RPAREN)?
 	| {DaoDirectiveQuery} '#Query' (=> LPAREN pojo=PojoType RPAREN)?
-	| {FunProcDirective} type=FunProcType (=> LPAREN pojo=PojoType paramlist=DaoDirectiveParameters RPAREN)?
+	| {FunProcDirective} type=FunProcType (=> LPAREN paramlist=DaoDirectiveParameters RPAREN)?
 	;
 
 //PojoDaoModifier: (('extends' superType=[PojoDao|IDENT]) | ('serializable' sernum=NUMBER));

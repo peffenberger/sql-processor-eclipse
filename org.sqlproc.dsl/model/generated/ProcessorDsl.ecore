@@ -716,8 +716,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="FunProcDirective" eSuperTypes="#//DaoDirective">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//FunProcType"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="#//PojoType"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="paramlist" eType="#//DaoDirectiveParameters"
         containment="true"/>
   </eClassifiers>

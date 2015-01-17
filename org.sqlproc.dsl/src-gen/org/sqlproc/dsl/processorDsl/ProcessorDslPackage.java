@@ -5278,22 +5278,13 @@ public interface ProcessorDslPackage extends EPackage
   int FUN_PROC_DIRECTIVE__TYPE = DAO_DIRECTIVE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Pojo</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUN_PROC_DIRECTIVE__POJO = DAO_DIRECTIVE_FEATURE_COUNT + 1;
-
-  /**
    * The feature id for the '<em><b>Paramlist</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUN_PROC_DIRECTIVE__PARAMLIST = DAO_DIRECTIVE_FEATURE_COUNT + 2;
+  int FUN_PROC_DIRECTIVE__PARAMLIST = DAO_DIRECTIVE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Fun Proc Directive</em>' class.
@@ -5302,7 +5293,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUN_PROC_DIRECTIVE_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 3;
+  int FUN_PROC_DIRECTIVE_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 2;
 
 
   /**
@@ -10094,17 +10085,6 @@ public interface ProcessorDslPackage extends EPackage
   EReference getFunProcDirective_Type();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.FunProcDirective#getPojo <em>Pojo</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Pojo</em>'.
-   * @see org.sqlproc.dsl.processorDsl.FunProcDirective#getPojo()
-   * @see #getFunProcDirective()
-   * @generated
-   */
-  EReference getFunProcDirective_Pojo();
-
-  /**
    * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.FunProcDirective#getParamlist <em>Paramlist</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -13941,14 +13921,6 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference FUN_PROC_DIRECTIVE__TYPE = eINSTANCE.getFunProcDirective_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Pojo</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FUN_PROC_DIRECTIVE__POJO = eINSTANCE.getFunProcDirective_Pojo();
 
     /**
      * The meta object literal for the '<em><b>Paramlist</b></em>' containment reference feature.

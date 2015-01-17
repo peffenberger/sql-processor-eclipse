@@ -460,7 +460,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEnumPropertyAccess().getGroup_1_1(), "rule__EnumProperty__Group_1_1__0");
 					put(grammarAccess.getEnumPropertyAccess().getGroup_1_1_1_0(), "rule__EnumProperty__Group_1_1_1_0__0");
 					put(grammarAccess.getDaoDirectiveParametersAccess().getGroup(), "rule__DaoDirectiveParameters__Group__0");
-					put(grammarAccess.getDaoDirectiveParametersAccess().getGroup_2(), "rule__DaoDirectiveParameters__Group_2__0");
+					put(grammarAccess.getDaoDirectiveParametersAccess().getGroup_1(), "rule__DaoDirectiveParameters__Group_1__0");
 					put(grammarAccess.getDescendantAssignmentAccess().getGroup(), "rule__DescendantAssignment__Group__0");
 					put(grammarAccess.getFunProcTypeAccess().getGroup_0(), "rule__FunProcType__Group_0__0");
 					put(grammarAccess.getFunProcTypeAccess().getGroup_1(), "rule__FunProcType__Group_1__0");
@@ -978,8 +978,8 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEnumPropertyAccess().getNativeAssignment_1_0(), "rule__EnumProperty__NativeAssignment_1_0");
 					put(grammarAccess.getEnumPropertyAccess().getValueAssignment_1_1_1_0_2(), "rule__EnumProperty__ValueAssignment_1_1_1_0_2");
 					put(grammarAccess.getEnumPropertyAccess().getTypeAssignment_1_1_1_1(), "rule__EnumProperty__TypeAssignment_1_1_1_1");
-					put(grammarAccess.getDaoDirectiveParametersAccess().getOutAssignment_1(), "rule__DaoDirectiveParameters__OutAssignment_1");
-					put(grammarAccess.getDaoDirectiveParametersAccess().getInsAssignment_2_1(), "rule__DaoDirectiveParameters__InsAssignment_2_1");
+					put(grammarAccess.getDaoDirectiveParametersAccess().getOutAssignment_0(), "rule__DaoDirectiveParameters__OutAssignment_0");
+					put(grammarAccess.getDaoDirectiveParametersAccess().getInsAssignment_1_1(), "rule__DaoDirectiveParameters__InsAssignment_1_1");
 					put(grammarAccess.getDescendantAssignmentAccess().getValueAssignment_0(), "rule__DescendantAssignment__ValueAssignment_0");
 					put(grammarAccess.getDescendantAssignmentAccess().getDescendantAssignment_2(), "rule__DescendantAssignment__DescendantAssignment_2");
 					put(grammarAccess.getDaoDirectiveAccess().getSernumAssignment_0_3(), "rule__DaoDirective__SernumAssignment_0_3");
@@ -988,8 +988,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDaoDirectiveAccess().getPojoAssignment_2_2_1(), "rule__DaoDirective__PojoAssignment_2_2_1");
 					put(grammarAccess.getDaoDirectiveAccess().getPojoAssignment_3_2_1(), "rule__DaoDirective__PojoAssignment_3_2_1");
 					put(grammarAccess.getDaoDirectiveAccess().getTypeAssignment_4_1(), "rule__DaoDirective__TypeAssignment_4_1");
-					put(grammarAccess.getDaoDirectiveAccess().getPojoAssignment_4_2_1(), "rule__DaoDirective__PojoAssignment_4_2_1");
-					put(grammarAccess.getDaoDirectiveAccess().getParamlistAssignment_4_2_2(), "rule__DaoDirective__ParamlistAssignment_4_2_2");
+					put(grammarAccess.getDaoDirectiveAccess().getParamlistAssignment_4_2_1(), "rule__DaoDirective__ParamlistAssignment_4_2_1");
 					put(grammarAccess.getPojoDaoModifierAccess().getSuperTypeAssignment_1(), "rule__PojoDaoModifier__SuperTypeAssignment_1");
 					put(grammarAccess.getPojoDaoAccess().getDirectivesAssignment_0(), "rule__PojoDao__DirectivesAssignment_0");
 					put(grammarAccess.getPojoDaoAccess().getModifiers1Assignment_1(), "rule__PojoDao__Modifiers1Assignment_1");

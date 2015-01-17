@@ -263,6 +263,13 @@ class ProcessorGeneratorUtils {
     	] 
     }
     
+    def String getFunProcName(PojoDao dao) {
+        var pojoName = dao.getName()
+        if (pojoName.endsWith("Dao"))
+            pojoName = pojoName.substring(0, pojoName.length() - 3)
+        return pojoName.toFirstLower
+	}    
+	
     def PojoEntity getPojoImplicit(PojoDao dao) {
         var pojoName = dao.getName()
         if (pojoName.endsWith("Dao"))
@@ -281,7 +288,7 @@ class ProcessorGeneratorUtils {
     }
 
     def dispatch PojoEntity getPojo(PojoDao dao, FunProcDirective pojoDirective) {
-    	return pojoDirective?.pojo?.ref ?: getPojoImplicit(dao)
+    	return pojoDirective?.paramlist?.out?.ref ?: getPojoImplicit(dao)
     }
 
     def PojoEntity getPojo(PojoDao dao) {

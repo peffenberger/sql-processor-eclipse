@@ -12,7 +12,6 @@ package org.sqlproc.dsl.processorDsl;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.FunProcDirective#getType <em>Type</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.FunProcDirective#getPojo <em>Pojo</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.FunProcDirective#getParamlist <em>Paramlist</em>}</li>
  * </ul>
  * </p>
@@ -48,32 +47,6 @@ public interface FunProcDirective extends DaoDirective
    * @generated
    */
   void setType(FunProcType value);
-
-  /**
-   * Returns the value of the '<em><b>Pojo</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Pojo</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Pojo</em>' containment reference.
-   * @see #setPojo(PojoType)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getFunProcDirective_Pojo()
-   * @model containment="true"
-   * @generated
-   */
-  PojoType getPojo();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.FunProcDirective#getPojo <em>Pojo</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Pojo</em>' containment reference.
-   * @see #getPojo()
-   * @generated
-   */
-  void setPojo(PojoType value);
 
   /**
    * Returns the value of the '<em><b>Paramlist</b></em>' containment reference.

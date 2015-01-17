@@ -326,6 +326,8 @@ public class Utils {
 
     public static String dbName(PojoDao e) {
         String name = StringExtensions.toFirstLower(e.getName());
+        if (name.endsWith("Dao"))
+            name = name.substring(0, name.length() - 3);
         String result = "";
         int last = 0;
         boolean lastDigit = false;
@@ -337,8 +339,8 @@ public class Utils {
             }
             lastDigit = Character.isDigit(c);
         }
-        if (last < e.getName().length())
-            result = result + e.getName().substring(last).toUpperCase();
+        if (last < name.length())
+            result = result + name.substring(last).toUpperCase();
         return result.startsWith("_") ? result.substring(1) : result;
     }
 

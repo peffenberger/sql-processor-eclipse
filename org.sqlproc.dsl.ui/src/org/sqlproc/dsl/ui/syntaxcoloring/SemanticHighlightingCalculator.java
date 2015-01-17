@@ -24,7 +24,6 @@ import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
 import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
-import org.sqlproc.dsl.processorDsl.FunProcDirective;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
 import org.sqlproc.dsl.processorDsl.Identifier;
 import org.sqlproc.dsl.processorDsl.MappingItem;
@@ -183,8 +182,8 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
                     pojo = ((DaoDirectiveCrud) dir).getPojo();
                 else if (dir instanceof DaoDirectiveQuery)
                     pojo = ((DaoDirectiveQuery) dir).getPojo();
-                else if (dir instanceof FunProcDirective)
-                    pojo = ((FunProcDirective) dir).getPojo();
+                // else if (dir instanceof FunProcDirective)
+                // pojo = ((FunProcDirective) dir).getPojo();
                 if (pojo != null && pojo.getRef() != null) {
                     provideHighlightingForPojoEntity(pojo.getRef().getName(), node, acceptor);
                 }

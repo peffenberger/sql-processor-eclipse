@@ -108,12 +108,12 @@ class ProcessorDaoGenerator {
 		«compileList(d, e, moreResultClasses, im, true)»
 		«compileCount(d, e, moreResultClasses, im, true)»«ENDIF»
 		«IF !moreResultClasses.isEmpty»«compileMoreResultClasses(d, e, moreResultClasses, im)»«ENDIF»
-		«FOR fp: listFunctionsDirectives(d)»«compileFunctionProcedure(d, e, fp.type, fp.paramlist, im, true)»«ENDFOR»
+			«FOR fp: listFunctionsDirectives(d)»«compileFunctionProcedure(d, e, fp.type, fp.paramlist, im, true)»«ENDFOR»
 		}
 	'''
 	
 	def dispatch compileFunctionProcedure(PojoDao d, PojoEntity e, FunctionCallQuery type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
-		«val name = d.name.toFirstLower»
+		«val name = d.getFunProcName»
 		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("«name»: " + «FOR ma:p.ins SEPARATOR " + \" \" "»«ma.paramName»«ENDFOR» + " " + sqlControl);
@@ -141,7 +141,7 @@ class ProcessorDaoGenerator {
 	'''
 	
 	def dispatch compileFunctionProcedure(PojoDao d, PojoEntity e, ProcedureCallQuery type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
-		«val name = d.name.toFirstLower»
+		«val name = d.getFunProcName»
 		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("«name»: " + «FOR ma:p.ins SEPARATOR " + \" \" "»«ma.paramName»«ENDFOR» + " " + sqlControl);
@@ -169,7 +169,7 @@ class ProcessorDaoGenerator {
 	'''
 	
 	def dispatch compileFunctionProcedure(PojoDao d, PojoEntity e, FunctionCall type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
-		«val name = d.name.toFirstLower»
+		«val name = d.getFunProcName»
 		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("«name»: " + «FOR ma:p.ins SEPARATOR " + \" \" "»«ma.paramName»«ENDFOR» + " " + sqlControl);
@@ -197,7 +197,7 @@ class ProcessorDaoGenerator {
 	'''
 	
 	def dispatch compileFunctionProcedure(PojoDao d, PojoEntity e, ProcedureUpdate type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
-		«val name = d.name.toFirstLower»
+		«val name = d.getFunProcName»
 		public int «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("«name»: " + «FOR ma:p.ins SEPARATOR " + \" \" "»«ma.paramName»«ENDFOR» + " " + sqlControl);
@@ -225,7 +225,7 @@ class ProcessorDaoGenerator {
 	'''
 	
 	def dispatch compileFunctionProcedure(PojoDao d, PojoEntity e, FunctionQuery type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
-		«val name = d.name.toFirstLower»
+		«val name = d.getFunProcName»
 		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("«name»: " + «FOR ma:p.ins SEPARATOR " + \" \" "»«ma.paramName»«ENDFOR» + " " + sqlControl);
@@ -491,7 +491,7 @@ class ProcessorDaoGenerator {
 	'''
 	
 	def dispatch compileFunctionProcedureIfx(PojoDao d, PojoEntity e, FunctionCallQuery type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
-		«val name = d.name.toFirstLower»
+		«val name = d.getFunProcName»
 		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
 		«IF all»
 		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
@@ -503,7 +503,7 @@ class ProcessorDaoGenerator {
 	'''
 	
 	def dispatch compileFunctionProcedureIfx(PojoDao d, PojoEntity e, ProcedureCallQuery type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
-		«val name = d.name.toFirstLower»
+		«val name = d.getFunProcName»
 		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
 		«IF all»
 		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
@@ -515,7 +515,7 @@ class ProcessorDaoGenerator {
 	'''
 	
 	def dispatch compileFunctionProcedureIfx(PojoDao d, PojoEntity e, FunctionCall type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
-		«val name = d.name.toFirstLower»
+		«val name = d.getFunProcName»
 		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
 		«IF all»
 		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
@@ -527,7 +527,7 @@ class ProcessorDaoGenerator {
 	'''
 	
 	def dispatch compileFunctionProcedureIfx(PojoDao d, PojoEntity e, ProcedureUpdate type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
-		«val name = d.name.toFirstLower»
+		«val name = d.getFunProcName»
 		public int «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
 		«IF all»
 		public int «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
@@ -539,7 +539,7 @@ class ProcessorDaoGenerator {
 	'''
 	
 	def dispatch compileFunctionProcedureIfx(PojoDao d, PojoEntity e, FunctionQuery type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
-		«val name = d.name.toFirstLower»
+		«val name = d.getFunProcName»
 		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
 		«IF all»
 		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);

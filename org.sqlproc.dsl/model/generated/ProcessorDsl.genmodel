@@ -556,7 +556,6 @@
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//FunProcDirective">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//FunProcDirective/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//FunProcDirective/pojo"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//FunProcDirective/paramlist"/>
     </genClasses>
   </genPackages>

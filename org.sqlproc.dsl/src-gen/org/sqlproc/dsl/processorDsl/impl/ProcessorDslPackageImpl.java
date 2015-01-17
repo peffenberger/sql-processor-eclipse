@@ -5497,19 +5497,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFunProcDirective_Pojo()
-  {
-    return (EReference)funProcDirectiveEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getFunProcDirective_Paramlist()
   {
-    return (EReference)funProcDirectiveEClass.getEStructuralFeatures().get(2);
+    return (EReference)funProcDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -6105,7 +6095,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
 
     funProcDirectiveEClass = createEClass(FUN_PROC_DIRECTIVE);
     createEReference(funProcDirectiveEClass, FUN_PROC_DIRECTIVE__TYPE);
-    createEReference(funProcDirectiveEClass, FUN_PROC_DIRECTIVE__POJO);
     createEReference(funProcDirectiveEClass, FUN_PROC_DIRECTIVE__PARAMLIST);
   }
 
@@ -6743,7 +6732,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
 
     initEClass(funProcDirectiveEClass, FunProcDirective.class, "FunProcDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getFunProcDirective_Type(), this.getFunProcType(), null, "type", null, 0, 1, FunProcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getFunProcDirective_Pojo(), this.getPojoType(), null, "pojo", null, 0, 1, FunProcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFunProcDirective_Paramlist(), this.getDaoDirectiveParameters(), null, "paramlist", null, 0, 1, FunProcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource

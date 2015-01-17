@@ -354,13 +354,14 @@ public class ProcessorDaoGenerator {
       }
     }
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
     {
       List<FunProcDirective> _listFunctionsDirectives = this._processorGeneratorUtils.listFunctionsDirectives(d);
       for(final FunProcDirective fp : _listFunctionsDirectives) {
         FunProcType _type = fp.getType();
         DaoDirectiveParameters _paramlist = fp.getParamlist();
         CharSequence _compileFunctionProcedure = this.compileFunctionProcedure(d, e, _type, _paramlist, im, true);
-        _builder.append(_compileFunctionProcedure, "");
+        _builder.append(_compileFunctionProcedure, "\t");
       }
     }
     _builder.newLineIfNotEmpty();
@@ -371,8 +372,7 @@ public class ProcessorDaoGenerator {
   
   protected CharSequence _compileFunctionProcedure(final PojoDao d, final PojoEntity e, final FunctionCallQuery type, final DaoDirectiveParameters p, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = d.getName();
-    final String name = StringExtensions.toFirstLower(_name);
+    final String name = this._processorGeneratorUtils.getFunProcName(d);
     _builder.newLineIfNotEmpty();
     _builder.append("public ");
     PojoType _out = p.getOut();
@@ -426,8 +426,8 @@ public class ProcessorDaoGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("SqlProcedureEngine sqlProc");
-    String _name_1 = d.getName();
-    _builder.append(_name_1, "\t");
+    String _name = d.getName();
+    _builder.append(_name, "\t");
     _builder.append(" = sqlEngineFactory.getCheckedProcedureEngine(\"FUN_");
     String _dbName = Utils.dbName(d);
     _builder.append(_dbName, "\t");
@@ -438,13 +438,13 @@ public class ProcessorDaoGenerator {
     CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_out_1, im);
     _builder.append(_compileType_2, "\t");
     _builder.append(" list = sqlProc");
-    String _name_2 = d.getName();
-    _builder.append(_name_2, "\t");
+    String _name_1 = d.getName();
+    _builder.append(_name_1, "\t");
     _builder.append(".callQuery(sqlSession, ");
     PojoType _out_2 = p.getOut();
     PojoEntity _gref = _out_2.getGref();
-    String _name_3 = _gref.getName();
-    _builder.append(_name_3, "\t");
+    String _name_2 = _gref.getName();
+    _builder.append(_name_2, "\t");
     _builder.append(".class, ");
     {
       EList<PojoType> _ins_2 = p.getIns();
@@ -628,8 +628,7 @@ public class ProcessorDaoGenerator {
   
   protected CharSequence _compileFunctionProcedure(final PojoDao d, final PojoEntity e, final ProcedureCallQuery type, final DaoDirectiveParameters p, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = d.getName();
-    final String name = StringExtensions.toFirstLower(_name);
+    final String name = this._processorGeneratorUtils.getFunProcName(d);
     _builder.newLineIfNotEmpty();
     _builder.append("public ");
     PojoType _out = p.getOut();
@@ -683,8 +682,8 @@ public class ProcessorDaoGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("SqlProcedureEngine sqlProc");
-    String _name_1 = d.getName();
-    _builder.append(_name_1, "\t");
+    String _name = d.getName();
+    _builder.append(_name, "\t");
     _builder.append(" = sqlEngineFactory.getCheckedProcedureEngine(\"PROC_");
     String _dbName = Utils.dbName(d);
     _builder.append(_dbName, "\t");
@@ -695,13 +694,13 @@ public class ProcessorDaoGenerator {
     CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_out_1, im);
     _builder.append(_compileType_2, "\t");
     _builder.append(" list = sqlProc");
-    String _name_2 = d.getName();
-    _builder.append(_name_2, "\t");
+    String _name_1 = d.getName();
+    _builder.append(_name_1, "\t");
     _builder.append(".callQuery(sqlSession, ");
     PojoType _out_2 = p.getOut();
     PojoEntity _gref = _out_2.getGref();
-    String _name_3 = _gref.getName();
-    _builder.append(_name_3, "\t");
+    String _name_2 = _gref.getName();
+    _builder.append(_name_2, "\t");
     _builder.append(".class, ");
     {
       EList<PojoType> _ins_2 = p.getIns();
@@ -885,8 +884,7 @@ public class ProcessorDaoGenerator {
   
   protected CharSequence _compileFunctionProcedure(final PojoDao d, final PojoEntity e, final FunctionCall type, final DaoDirectiveParameters p, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = d.getName();
-    final String name = StringExtensions.toFirstLower(_name);
+    final String name = this._processorGeneratorUtils.getFunProcName(d);
     _builder.newLineIfNotEmpty();
     _builder.append("public ");
     PojoType _out = p.getOut();
@@ -940,8 +938,8 @@ public class ProcessorDaoGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("SqlProcedureEngine sqlFun");
-    String _name_1 = d.getName();
-    _builder.append(_name_1, "\t");
+    String _name = d.getName();
+    _builder.append(_name, "\t");
     _builder.append(" = sqlEngineFactory.getCheckedProcedureEngine(\"FUN_");
     String _dbName = Utils.dbName(d);
     _builder.append(_dbName, "\t");
@@ -949,8 +947,8 @@ public class ProcessorDaoGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("Object result = sqlFun");
-    String _name_2 = d.getName();
-    _builder.append(_name_2, "\t");
+    String _name_1 = d.getName();
+    _builder.append(_name_1, "\t");
     _builder.append(".callFunction(sqlSession, ");
     {
       EList<PojoType> _ins_2 = p.getIns();
@@ -1138,8 +1136,7 @@ public class ProcessorDaoGenerator {
   
   protected CharSequence _compileFunctionProcedure(final PojoDao d, final PojoEntity e, final ProcedureUpdate type, final DaoDirectiveParameters p, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = d.getName();
-    final String name = StringExtensions.toFirstLower(_name);
+    final String name = this._processorGeneratorUtils.getFunProcName(d);
     _builder.newLineIfNotEmpty();
     _builder.append("public int ");
     _builder.append(name, "");
@@ -1189,8 +1186,8 @@ public class ProcessorDaoGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("SqlProcedureEngine sqlProc");
-    String _name_1 = d.getName();
-    _builder.append(_name_1, "\t");
+    String _name = d.getName();
+    _builder.append(_name, "\t");
     _builder.append(" = sqlEngineFactory.getCheckedProcedureEngine(\"PROC_");
     String _dbName = Utils.dbName(d);
     _builder.append(_dbName, "\t");
@@ -1198,8 +1195,8 @@ public class ProcessorDaoGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("int count = sqlProc");
-    String _name_2 = d.getName();
-    _builder.append(_name_2, "\t");
+    String _name_1 = d.getName();
+    _builder.append(_name_1, "\t");
     _builder.append(".callUpdate(sqlSession, ");
     {
       EList<PojoType> _ins_2 = p.getIns();
@@ -1371,8 +1368,7 @@ public class ProcessorDaoGenerator {
   
   protected CharSequence _compileFunctionProcedure(final PojoDao d, final PojoEntity e, final FunctionQuery type, final DaoDirectiveParameters p, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = d.getName();
-    final String name = StringExtensions.toFirstLower(_name);
+    final String name = this._processorGeneratorUtils.getFunProcName(d);
     _builder.newLineIfNotEmpty();
     _builder.append("public ");
     PojoType _out = p.getOut();
@@ -1426,8 +1422,8 @@ public class ProcessorDaoGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("SqlQueryEngine sqlFun");
-    String _name_1 = d.getName();
-    _builder.append(_name_1, "\t");
+    String _name = d.getName();
+    _builder.append(_name, "\t");
     _builder.append(" = sqlEngineFactory.getCheckedQueryEngine(\"FUN_");
     String _dbName = Utils.dbName(d);
     _builder.append(_dbName, "\t");
@@ -1440,8 +1436,8 @@ public class ProcessorDaoGenerator {
     CharSequence _compileType_2 = this._processorGeneratorUtils.compileType(_get, im);
     _builder.append(_compileType_2, "\t");
     _builder.append("> list = sqlFun");
-    String _name_2 = d.getName();
-    _builder.append(_name_2, "\t");
+    String _name_1 = d.getName();
+    _builder.append(_name_1, "\t");
     _builder.append(".query(sqlSession, ");
     EList<PojoType> _ins_3 = p.getIns();
     PojoType _get_1 = _ins_3.get(0);
@@ -2970,8 +2966,7 @@ public class ProcessorDaoGenerator {
   
   protected CharSequence _compileFunctionProcedureIfx(final PojoDao d, final PojoEntity e, final FunctionCallQuery type, final DaoDirectiveParameters p, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = d.getName();
-    final String name = StringExtensions.toFirstLower(_name);
+    final String name = this._processorGeneratorUtils.getFunProcName(d);
     _builder.newLineIfNotEmpty();
     _builder.append("public ");
     PojoType _out = p.getOut();
@@ -3086,8 +3081,7 @@ public class ProcessorDaoGenerator {
   
   protected CharSequence _compileFunctionProcedureIfx(final PojoDao d, final PojoEntity e, final ProcedureCallQuery type, final DaoDirectiveParameters p, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = d.getName();
-    final String name = StringExtensions.toFirstLower(_name);
+    final String name = this._processorGeneratorUtils.getFunProcName(d);
     _builder.newLineIfNotEmpty();
     _builder.append("public ");
     PojoType _out = p.getOut();
@@ -3202,8 +3196,7 @@ public class ProcessorDaoGenerator {
   
   protected CharSequence _compileFunctionProcedureIfx(final PojoDao d, final PojoEntity e, final FunctionCall type, final DaoDirectiveParameters p, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = d.getName();
-    final String name = StringExtensions.toFirstLower(_name);
+    final String name = this._processorGeneratorUtils.getFunProcName(d);
     _builder.newLineIfNotEmpty();
     _builder.append("public ");
     PojoType _out = p.getOut();
@@ -3318,8 +3311,7 @@ public class ProcessorDaoGenerator {
   
   protected CharSequence _compileFunctionProcedureIfx(final PojoDao d, final PojoEntity e, final ProcedureUpdate type, final DaoDirectiveParameters p, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = d.getName();
-    final String name = StringExtensions.toFirstLower(_name);
+    final String name = this._processorGeneratorUtils.getFunProcName(d);
     _builder.newLineIfNotEmpty();
     _builder.append("public int ");
     _builder.append(name, "");
@@ -3418,8 +3410,7 @@ public class ProcessorDaoGenerator {
   
   protected CharSequence _compileFunctionProcedureIfx(final PojoDao d, final PojoEntity e, final FunctionQuery type, final DaoDirectiveParameters p, final ImportManager im, final boolean all) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = d.getName();
-    final String name = StringExtensions.toFirstLower(_name);
+    final String name = this._processorGeneratorUtils.getFunProcName(d);
     _builder.newLineIfNotEmpty();
     _builder.append("public ");
     PojoType _out = p.getOut();
