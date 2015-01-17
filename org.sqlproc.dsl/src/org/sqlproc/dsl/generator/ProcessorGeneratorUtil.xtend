@@ -144,7 +144,7 @@ class ProcessorGeneratorUtils {
     }
     
     def getDiscriminator(PojoEntity pojo) {
-		val d = pojo.directives?.findFirst[x|x instanceof PojoDirectiveDiscriminator] as PojoDirectiveDiscriminator
+		val d = pojo?.directives?.findFirst[x|x instanceof PojoDirectiveDiscriminator] as PojoDirectiveDiscriminator
 		return d?.discriminator
     }
 
@@ -154,7 +154,7 @@ class ProcessorGeneratorUtils {
     }
 
 	def PojoEntity getSuperType(PojoEntity pojo) {
-		val m = pojo.modifiers2?.findFirst[x|x.superType != null]
+		val m = pojo?.modifiers2?.findFirst[x|x.superType != null]
 		return m?.superType
 	}
 
@@ -262,22 +262,26 @@ class ProcessorGeneratorUtils {
     		x instanceof DaoDirectiveQuery || x instanceof FunProcDirective
     	] 
     }
-
-    def PojoEntity getPojo(PojoDao dao, DaoDirective pojoDirective) {
-    	val PojoType pojo = if (pojoDirective != null)
-    	switch pojoDirective {
-    		case DaoDirectiveCrud : (pojoDirective as DaoDirectiveCrud).pojo
-    		case DaoDirectiveQuery : (pojoDirective as DaoDirectiveQuery).pojo
-    		case FunProcDirective : (pojoDirective as FunProcDirective).pojo
-    	}
-    	if (pojo != null)
-    		return pojo.ref
+    
+    def PojoEntity getPojoImplicit(PojoDao dao) {
         var pojoName = dao.getName()
         if (pojoName.endsWith("Dao"))
             pojoName = pojoName.substring(0, pojoName.length() - 3)
         val Artifacts artifacts = getContainerOfType(dao, Artifacts)
         return findEntity(qualifiedNameConverter, artifacts,
                 scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS), pojoName)
+    }
+
+    def dispatch PojoEntity getPojo(PojoDao dao, DaoDirectiveCrud pojoDirective) {
+    	return pojoDirective?.pojo?.ref ?: getPojoImplicit(dao)
+    }
+
+    def dispatch PojoEntity getPojo(PojoDao dao, DaoDirectiveQuery pojoDirective) {
+    	return pojoDirective?.pojo?.ref ?: getPojoImplicit(dao)
+    }
+
+    def dispatch PojoEntity getPojo(PojoDao dao, FunProcDirective pojoDirective) {
+    	return pojoDirective?.pojo?.ref ?: getPojoImplicit(dao)
     }
 
     def PojoEntity getPojo(PojoDao dao) {

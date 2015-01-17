@@ -5,6 +5,7 @@ package org.sqlproc.dsl.generator;
 
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -496,7 +497,10 @@ public class ProcessorGeneratorUtils {
   }
   
   public String getDiscriminator(final PojoEntity pojo) {
-    EList<PojoDirective> _directives = pojo.getDirectives();
+    EList<PojoDirective> _directives = null;
+    if (pojo!=null) {
+      _directives=pojo.getDirectives();
+    }
     PojoDirective _findFirst = null;
     if (_directives!=null) {
       final Function1<PojoDirective, Boolean> _function = new Function1<PojoDirective, Boolean>() {
@@ -537,7 +541,10 @@ public class ProcessorGeneratorUtils {
   }
   
   public PojoEntity getSuperType(final PojoEntity pojo) {
-    EList<PojoEntityModifier2> _modifiers2 = pojo.getModifiers2();
+    EList<PojoEntityModifier2> _modifiers2 = null;
+    if (pojo!=null) {
+      _modifiers2=pojo.getModifiers2();
+    }
     PojoEntityModifier2 _findFirst = null;
     if (_modifiers2!=null) {
       final Function1<PojoEntityModifier2, Boolean> _function = new Function1<PojoEntityModifier2, Boolean>() {
@@ -923,37 +930,7 @@ public class ProcessorGeneratorUtils {
     return IterableExtensions.<DaoDirective>findFirst(_directives, _function);
   }
   
-  public PojoEntity getPojo(final PojoDao dao, final DaoDirective pojoDirective) {
-    PojoType _xifexpression = null;
-    boolean _notEquals = (!Objects.equal(pojoDirective, null));
-    if (_notEquals) {
-      PojoType _switchResult = null;
-      boolean _matched = false;
-      if (!_matched) {
-        if (Objects.equal(pojoDirective, DaoDirectiveCrud.class)) {
-          _matched=true;
-          _switchResult = ((DaoDirectiveCrud) pojoDirective).getPojo();
-        }
-      }
-      if (!_matched) {
-        if (Objects.equal(pojoDirective, DaoDirectiveQuery.class)) {
-          _matched=true;
-          _switchResult = ((DaoDirectiveQuery) pojoDirective).getPojo();
-        }
-      }
-      if (!_matched) {
-        if (Objects.equal(pojoDirective, FunProcDirective.class)) {
-          _matched=true;
-          _switchResult = ((FunProcDirective) pojoDirective).getPojo();
-        }
-      }
-      _xifexpression = _switchResult;
-    }
-    final PojoType pojo = _xifexpression;
-    boolean _notEquals_1 = (!Objects.equal(pojo, null));
-    if (_notEquals_1) {
-      return pojo.getRef();
-    }
+  public PojoEntity getPojoImplicit(final PojoDao dao) {
     String pojoName = dao.getName();
     boolean _endsWith = pojoName.endsWith("Dao");
     if (_endsWith) {
@@ -965,6 +942,63 @@ public class ProcessorGeneratorUtils {
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(dao, Artifacts.class);
     IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
     return Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, pojoName);
+  }
+  
+  protected PojoEntity _getPojo(final PojoDao dao, final DaoDirectiveCrud pojoDirective) {
+    PojoEntity _elvis = null;
+    PojoType _pojo = null;
+    if (pojoDirective!=null) {
+      _pojo=pojoDirective.getPojo();
+    }
+    PojoEntity _ref = null;
+    if (_pojo!=null) {
+      _ref=_pojo.getRef();
+    }
+    if (_ref != null) {
+      _elvis = _ref;
+    } else {
+      PojoEntity _pojoImplicit = this.getPojoImplicit(dao);
+      _elvis = _pojoImplicit;
+    }
+    return _elvis;
+  }
+  
+  protected PojoEntity _getPojo(final PojoDao dao, final DaoDirectiveQuery pojoDirective) {
+    PojoEntity _elvis = null;
+    PojoType _pojo = null;
+    if (pojoDirective!=null) {
+      _pojo=pojoDirective.getPojo();
+    }
+    PojoEntity _ref = null;
+    if (_pojo!=null) {
+      _ref=_pojo.getRef();
+    }
+    if (_ref != null) {
+      _elvis = _ref;
+    } else {
+      PojoEntity _pojoImplicit = this.getPojoImplicit(dao);
+      _elvis = _pojoImplicit;
+    }
+    return _elvis;
+  }
+  
+  protected PojoEntity _getPojo(final PojoDao dao, final FunProcDirective pojoDirective) {
+    PojoEntity _elvis = null;
+    PojoType _pojo = null;
+    if (pojoDirective!=null) {
+      _pojo=pojoDirective.getPojo();
+    }
+    PojoEntity _ref = null;
+    if (_pojo!=null) {
+      _ref=_pojo.getRef();
+    }
+    if (_ref != null) {
+      _elvis = _ref;
+    } else {
+      PojoEntity _pojoImplicit = this.getPojoImplicit(dao);
+      _elvis = _pojoImplicit;
+    }
+    return _elvis;
   }
   
   public PojoEntity getPojo(final PojoDao dao) {
@@ -1056,5 +1090,18 @@ public class ProcessorGeneratorUtils {
     JvmType _type = pojo.getType();
     String _simpleName = _type.getSimpleName();
     return StringExtensions.toFirstLower(_simpleName);
+  }
+  
+  public PojoEntity getPojo(final PojoDao dao, final DaoDirective pojoDirective) {
+    if (pojoDirective instanceof DaoDirectiveCrud) {
+      return _getPojo(dao, (DaoDirectiveCrud)pojoDirective);
+    } else if (pojoDirective instanceof DaoDirectiveQuery) {
+      return _getPojo(dao, (DaoDirectiveQuery)pojoDirective);
+    } else if (pojoDirective instanceof FunProcDirective) {
+      return _getPojo(dao, (FunProcDirective)pojoDirective);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(dao, pojoDirective).toString());
+    }
   }
 }

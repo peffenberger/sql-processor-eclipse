@@ -346,6 +346,15 @@ public class ProcessorDaoGenerator {
     }
     _builder.newLineIfNotEmpty();
     {
+      boolean _isEmpty = moreResultClasses.isEmpty();
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        CharSequence _compileMoreResultClasses = this.compileMoreResultClasses(d, e, moreResultClasses, im);
+        _builder.append(_compileMoreResultClasses, "");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    {
       List<FunProcDirective> _listFunctionsDirectives = this._processorGeneratorUtils.listFunctionsDirectives(d);
       for(final FunProcDirective fp : _listFunctionsDirectives) {
         FunProcType _type = fp.getType();

@@ -107,6 +107,7 @@ class ProcessorDaoGenerator {
 		«IF isQuery(d)»
 		«compileList(d, e, moreResultClasses, im, true)»
 		«compileCount(d, e, moreResultClasses, im, true)»«ENDIF»
+		«IF !moreResultClasses.isEmpty»«compileMoreResultClasses(d, e, moreResultClasses, im)»«ENDIF»
 		«FOR fp: listFunctionsDirectives(d)»«compileFunctionProcedure(d, e, fp.type, fp.paramlist, im, true)»«ENDFOR»
 		}
 	'''
