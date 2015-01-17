@@ -1065,7 +1065,8 @@ public class TablePojoGenerator {
                     buffer.append(annotations.getConflictAnnotationsDefinitions(realPojoName, true));
                 }
                 if (pojoDiscriminators.containsKey(pojo))
-                    buffer.append(NLINDENT).append("#Discriminator(").append(pojoDiscriminators.get(pojo)).append(")");
+                    buffer.append(NLINDENT).append("#InheritanceChild(").append(pojoDiscriminators.get(pojo))
+                            .append(")");
                 if (generateOperators != null) {
                     buffer.append(NLINDENT).append("#Operators");
                     if (!"operators".equals(generateOperators))
@@ -1153,7 +1154,7 @@ public class TablePojoGenerator {
                     if (attribute.toInit())
                         toInit.add(name);
                     if (inheritanceColumns.containsKey(pojo) && pentry.getKey().equals(inheritanceColumns.get(pojo))) {
-                        buffer.append(NLINDENT).append(INDENT).append("#Discriminator");
+                        buffer.append(NLINDENT).append(INDENT).append("#InheritanceDiscriminator");
                     }
                     if (attribute.isVersion()) {
                         buffer.append(NLINDENT).append(INDENT).append("#Version");
