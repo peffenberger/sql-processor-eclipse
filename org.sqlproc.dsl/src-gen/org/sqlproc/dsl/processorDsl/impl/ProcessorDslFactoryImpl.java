@@ -177,8 +177,8 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_CREATE_COL: return createPojoPropertyDirectiveCreateCol();
       case ProcessorDslPackage.DAO_DIRECTIVE_SERIALIZABLE: return createDaoDirectiveSerializable();
       case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR: return createDaoDirectiveDiscriminator();
-      case ProcessorDslPackage.DAO_DIRECTIVE_POJO: return createDaoDirectivePojo();
-      case ProcessorDslPackage.DAO_DIRECTIVE_GENERICS: return createDaoDirectiveGenerics();
+      case ProcessorDslPackage.DAO_DIRECTIVE_CRUD: return createDaoDirectiveCrud();
+      case ProcessorDslPackage.DAO_DIRECTIVE_QUERY: return createDaoDirectiveQuery();
       case ProcessorDslPackage.DAO_DIRECTIVE_PROCEDURE: return createDaoDirectiveProcedure();
       case ProcessorDslPackage.DAO_DIRECTIVE_FUNCTION: return createDaoDirectiveFunction();
       case ProcessorDslPackage.DAO_DIRECTIVE_UPDATE: return createDaoDirectiveUpdate();
@@ -1435,10 +1435,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public DaoDirectivePojo createDaoDirectivePojo()
+  public DaoDirectiveCrud createDaoDirectiveCrud()
   {
-    DaoDirectivePojoImpl daoDirectivePojo = new DaoDirectivePojoImpl();
-    return daoDirectivePojo;
+    DaoDirectiveCrudImpl daoDirectiveCrud = new DaoDirectiveCrudImpl();
+    return daoDirectiveCrud;
   }
 
   /**
@@ -1446,10 +1446,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public DaoDirectiveGenerics createDaoDirectiveGenerics()
+  public DaoDirectiveQuery createDaoDirectiveQuery()
   {
-    DaoDirectiveGenericsImpl daoDirectiveGenerics = new DaoDirectiveGenericsImpl();
-    return daoDirectiveGenerics;
+    DaoDirectiveQueryImpl daoDirectiveQuery = new DaoDirectiveQueryImpl();
+    return daoDirectiveQuery;
   }
 
   /**

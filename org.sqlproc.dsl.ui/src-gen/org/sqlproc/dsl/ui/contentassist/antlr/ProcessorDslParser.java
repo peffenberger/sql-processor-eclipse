@@ -466,9 +466,13 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDaoDirectiveAccess().getGroup_1(), "rule__DaoDirective__Group_1__0");
 					put(grammarAccess.getDaoDirectiveAccess().getGroup_1_4(), "rule__DaoDirective__Group_1_4__0");
 					put(grammarAccess.getDaoDirectiveAccess().getGroup_2(), "rule__DaoDirective__Group_2__0");
+					put(grammarAccess.getDaoDirectiveAccess().getGroup_2_2(), "rule__DaoDirective__Group_2_2__0");
 					put(grammarAccess.getDaoDirectiveAccess().getGroup_3(), "rule__DaoDirective__Group_3__0");
+					put(grammarAccess.getDaoDirectiveAccess().getGroup_3_2(), "rule__DaoDirective__Group_3_2__0");
 					put(grammarAccess.getDaoDirectiveAccess().getGroup_4(), "rule__DaoDirective__Group_4__0");
+					put(grammarAccess.getDaoDirectiveAccess().getGroup_4_2(), "rule__DaoDirective__Group_4_2__0");
 					put(grammarAccess.getDaoDirectiveAccess().getGroup_5(), "rule__DaoDirective__Group_5__0");
+					put(grammarAccess.getDaoDirectiveAccess().getGroup_5_2(), "rule__DaoDirective__Group_5_2__0");
 					put(grammarAccess.getDaoDirectiveAccess().getGroup_6(), "rule__DaoDirective__Group_6__0");
 					put(grammarAccess.getDaoDirectiveAccess().getGroup_6_2(), "rule__DaoDirective__Group_6_2__0");
 					put(grammarAccess.getDaoDirectiveAccess().getGroup_7(), "rule__DaoDirective__Group_7__0");
@@ -477,7 +481,6 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDaoDirectiveAccess().getGroup_8_2(), "rule__DaoDirective__Group_8_2__0");
 					put(grammarAccess.getPojoDaoModifierAccess().getGroup(), "rule__PojoDaoModifier__Group__0");
 					put(grammarAccess.getPojoDaoAccess().getGroup(), "rule__PojoDao__Group__0");
-					put(grammarAccess.getPojoDaoAccess().getGroup_4(), "rule__PojoDao__Group_4__0");
 					put(grammarAccess.getPojoMethodAccess().getGroup(), "rule__PojoMethod__Group__0");
 					put(grammarAccess.getPojoMethodAccess().getGroup_2(), "rule__PojoMethod__Group_2__0");
 					put(grammarAccess.getToInitMethodAccess().getGroup(), "rule__ToInitMethod__Group__0");
@@ -989,10 +992,10 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDaoDirectiveAccess().getSernumAssignment_0_3(), "rule__DaoDirective__SernumAssignment_0_3");
 					put(grammarAccess.getDaoDirectiveAccess().getAncestorAssignment_1_3(), "rule__DaoDirective__AncestorAssignment_1_3");
 					put(grammarAccess.getDaoDirectiveAccess().getDescendantsAssignment_1_4_1(), "rule__DaoDirective__DescendantsAssignment_1_4_1");
-					put(grammarAccess.getDaoDirectiveAccess().getPojoAssignment_2_3(), "rule__DaoDirective__PojoAssignment_2_3");
-					put(grammarAccess.getDaoDirectiveAccess().getGenericsAssignment_3_3(), "rule__DaoDirective__GenericsAssignment_3_3");
-					put(grammarAccess.getDaoDirectiveAccess().getPojoAssignment_4_3(), "rule__DaoDirective__PojoAssignment_4_3");
-					put(grammarAccess.getDaoDirectiveAccess().getPojoAssignment_5_3(), "rule__DaoDirective__PojoAssignment_5_3");
+					put(grammarAccess.getDaoDirectiveAccess().getPojoAssignment_2_2_1(), "rule__DaoDirective__PojoAssignment_2_2_1");
+					put(grammarAccess.getDaoDirectiveAccess().getPojoAssignment_3_2_1(), "rule__DaoDirective__PojoAssignment_3_2_1");
+					put(grammarAccess.getDaoDirectiveAccess().getPojoAssignment_4_2_1(), "rule__DaoDirective__PojoAssignment_4_2_1");
+					put(grammarAccess.getDaoDirectiveAccess().getPojoAssignment_5_2_1(), "rule__DaoDirective__PojoAssignment_5_2_1");
 					put(grammarAccess.getDaoDirectiveAccess().getParamlistAssignment_6_2_1(), "rule__DaoDirective__ParamlistAssignment_6_2_1");
 					put(grammarAccess.getDaoDirectiveAccess().getParamlistAssignment_7_2_1(), "rule__DaoDirective__ParamlistAssignment_7_2_1");
 					put(grammarAccess.getDaoDirectiveAccess().getParamlistAssignment_8_2_1(), "rule__DaoDirective__ParamlistAssignment_8_2_1");
@@ -1000,10 +1003,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoDaoAccess().getDirectivesAssignment_0(), "rule__PojoDao__DirectivesAssignment_0");
 					put(grammarAccess.getPojoDaoAccess().getModifiers1Assignment_1(), "rule__PojoDao__Modifiers1Assignment_1");
 					put(grammarAccess.getPojoDaoAccess().getNameAssignment_3(), "rule__PojoDao__NameAssignment_3");
-					put(grammarAccess.getPojoDaoAccess().getPojoGenericsAssignment_4_2(), "rule__PojoDao__PojoGenericsAssignment_4_2");
-					put(grammarAccess.getPojoDaoAccess().getPojoAssignment_4_3(), "rule__PojoDao__PojoAssignment_4_3");
-					put(grammarAccess.getPojoDaoAccess().getModifiers2Assignment_5(), "rule__PojoDao__Modifiers2Assignment_5");
-					put(grammarAccess.getPojoDaoAccess().getMethodsAssignment_7(), "rule__PojoDao__MethodsAssignment_7");
+					put(grammarAccess.getPojoDaoAccess().getModifiers2Assignment_4(), "rule__PojoDao__Modifiers2Assignment_4");
 					put(grammarAccess.getPojoMethodModifierAccess().getCallFunctionAssignment_0(), "rule__PojoMethodModifier__CallFunctionAssignment_0");
 					put(grammarAccess.getPojoMethodModifierAccess().getCallUpdateAssignment_1(), "rule__PojoMethodModifier__CallUpdateAssignment_1");
 					put(grammarAccess.getPojoMethodModifierAccess().getCallQueryAssignment_2(), "rule__PojoMethodModifier__CallQueryAssignment_2");

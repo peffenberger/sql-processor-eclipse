@@ -892,19 +892,19 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.DAO_DIRECTIVE_POJO:
+      case ProcessorDslPackage.DAO_DIRECTIVE_CRUD:
       {
-        DaoDirectivePojo daoDirectivePojo = (DaoDirectivePojo)theEObject;
-        T result = caseDaoDirectivePojo(daoDirectivePojo);
-        if (result == null) result = caseDaoDirective(daoDirectivePojo);
+        DaoDirectiveCrud daoDirectiveCrud = (DaoDirectiveCrud)theEObject;
+        T result = caseDaoDirectiveCrud(daoDirectiveCrud);
+        if (result == null) result = caseDaoDirective(daoDirectiveCrud);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.DAO_DIRECTIVE_GENERICS:
+      case ProcessorDslPackage.DAO_DIRECTIVE_QUERY:
       {
-        DaoDirectiveGenerics daoDirectiveGenerics = (DaoDirectiveGenerics)theEObject;
-        T result = caseDaoDirectiveGenerics(daoDirectiveGenerics);
-        if (result == null) result = caseDaoDirective(daoDirectiveGenerics);
+        DaoDirectiveQuery daoDirectiveQuery = (DaoDirectiveQuery)theEObject;
+        T result = caseDaoDirectiveQuery(daoDirectiveQuery);
+        if (result == null) result = caseDaoDirective(daoDirectiveQuery);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2745,33 +2745,33 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Pojo</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Crud</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Dao Directive Pojo</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Crud</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDaoDirectivePojo(DaoDirectivePojo object)
+  public T caseDaoDirectiveCrud(DaoDirectiveCrud object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Generics</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Query</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Dao Directive Generics</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Query</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDaoDirectiveGenerics(DaoDirectiveGenerics object)
+  public T caseDaoDirectiveQuery(DaoDirectiveQuery object)
   {
     return null;
   }

@@ -10,17 +10,26 @@ import java.util.Map;
 import java.util.TreeMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.sqlproc.dsl.ImportManager;
+import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.DaoDirective;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveCrud;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveFunction;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveQuery;
 import org.sqlproc.dsl.processorDsl.DescendantAssignment;
 import org.sqlproc.dsl.processorDsl.DirectiveProperties;
 import org.sqlproc.dsl.processorDsl.Entity;
@@ -48,6 +57,7 @@ import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveVersion;
 import org.sqlproc.dsl.processorDsl.PojoType;
+import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 import org.sqlproc.dsl.util.Utils;
 
 @SuppressWarnings("all")
@@ -55,6 +65,12 @@ public class ProcessorGeneratorUtils {
   @Inject
   @Extension
   private IQualifiedNameProvider _iQualifiedNameProvider;
+  
+  @Inject
+  private IScopeProvider scopeProvider;
+  
+  @Inject
+  private IQualifiedNameConverter qualifiedNameConverter;
   
   public CharSequence compileType(final EnumProperty f, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
@@ -885,5 +901,132 @@ public class ProcessorGeneratorUtils {
     };
     IterableExtensions.<DaoDirective>forEach(_filter, _function_1);
     return result;
+  }
+  
+  public DaoDirective getPojoDirective(final PojoDao dao) {
+    EList<DaoDirective> _directives = null;
+    if (dao!=null) {
+      _directives=dao.getDirectives();
+    }
+    final Function1<DaoDirective, Boolean> _function = new Function1<DaoDirective, Boolean>() {
+      public Boolean apply(final DaoDirective x) {
+        boolean _or = false;
+        if ((((x instanceof DaoDirectiveCrud) || 
+          (x instanceof DaoDirectiveQuery)) || (x instanceof DaoDirectiveFunction))) {
+          _or = true;
+        } else {
+          _or = (x instanceof DaoDirectiveProcedure);
+        }
+        return Boolean.valueOf(_or);
+      }
+    };
+    return IterableExtensions.<DaoDirective>findFirst(_directives, _function);
+  }
+  
+  public PojoEntity getPojo(final PojoDao dao, final DaoDirective pojoDirective) {
+    PojoType _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(pojoDirective, null));
+    if (_notEquals) {
+      PojoType _switchResult = null;
+      boolean _matched = false;
+      if (!_matched) {
+        if (Objects.equal(pojoDirective, DaoDirectiveCrud.class)) {
+          _matched=true;
+          _switchResult = ((DaoDirectiveCrud) pojoDirective).getPojo();
+        }
+      }
+      if (!_matched) {
+        if (Objects.equal(pojoDirective, DaoDirectiveQuery.class)) {
+          _matched=true;
+          _switchResult = ((DaoDirectiveQuery) pojoDirective).getPojo();
+        }
+      }
+      if (!_matched) {
+        if (Objects.equal(pojoDirective, DaoDirectiveProcedure.class)) {
+          _matched=true;
+          _switchResult = ((DaoDirectiveProcedure) pojoDirective).getPojo();
+        }
+      }
+      if (!_matched) {
+        if (Objects.equal(pojoDirective, DaoDirectiveFunction.class)) {
+          _matched=true;
+          _switchResult = ((DaoDirectiveFunction) pojoDirective).getPojo();
+        }
+      }
+      _xifexpression = _switchResult;
+    }
+    final PojoType pojo = _xifexpression;
+    boolean _notEquals_1 = (!Objects.equal(pojo, null));
+    if (_notEquals_1) {
+      return pojo.getRef();
+    }
+    String pojoName = dao.getName();
+    boolean _endsWith = pojoName.endsWith("Dao");
+    if (_endsWith) {
+      int _length = pojoName.length();
+      int _minus = (_length - 3);
+      String _substring = pojoName.substring(0, _minus);
+      pojoName = _substring;
+    }
+    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(dao, Artifacts.class);
+    IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
+    return Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, pojoName);
+  }
+  
+  public PojoEntity getPojo(final PojoDao dao) {
+    DaoDirective _pojoDirective = null;
+    if (dao!=null) {
+      _pojoDirective=this.getPojoDirective(dao);
+    }
+    final DaoDirective pojoDirective = _pojoDirective;
+    PojoEntity _pojo = null;
+    if (dao!=null) {
+      _pojo=this.getPojo(dao, pojoDirective);
+    }
+    return _pojo;
+  }
+  
+  public boolean isCRUD(final PojoDao dao) {
+    EList<DaoDirective> _directives = dao.getDirectives();
+    DaoDirective _findFirst = null;
+    if (_directives!=null) {
+      final Function1<DaoDirective, Boolean> _function = new Function1<DaoDirective, Boolean>() {
+        public Boolean apply(final DaoDirective x) {
+          return Boolean.valueOf((x instanceof DaoDirectiveCrud));
+        }
+      };
+      _findFirst=IterableExtensions.<DaoDirective>findFirst(_directives, _function);
+    }
+    final DaoDirective d = _findFirst;
+    boolean _xifexpression = false;
+    boolean _notEquals = (!Objects.equal(d, null));
+    if (_notEquals) {
+      _xifexpression = true;
+    } else {
+      _xifexpression = false;
+    }
+    return _xifexpression;
+  }
+  
+  public boolean isQuery(final PojoDao dao) {
+    EList<DaoDirective> _directives = dao.getDirectives();
+    DaoDirective _findFirst = null;
+    if (_directives!=null) {
+      final Function1<DaoDirective, Boolean> _function = new Function1<DaoDirective, Boolean>() {
+        public Boolean apply(final DaoDirective x) {
+          return Boolean.valueOf((x instanceof DaoDirectiveQuery));
+        }
+      };
+      _findFirst=IterableExtensions.<DaoDirective>findFirst(_directives, _function);
+    }
+    final DaoDirective d = _findFirst;
+    boolean _xifexpression = false;
+    boolean _notEquals = (!Objects.equal(d, null));
+    if (_notEquals) {
+      _xifexpression = true;
+    } else {
+      _xifexpression = false;
+    }
+    return _xifexpression;
   }
 }

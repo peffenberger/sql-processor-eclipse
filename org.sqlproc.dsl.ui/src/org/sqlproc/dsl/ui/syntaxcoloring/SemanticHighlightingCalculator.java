@@ -13,6 +13,11 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.sqlproc.dsl.processorDsl.Constant;
+import org.sqlproc.dsl.processorDsl.DaoDirective;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveCrud;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveFunction;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveQuery;
 import org.sqlproc.dsl.processorDsl.DatabaseColumn;
 import org.sqlproc.dsl.processorDsl.DatabaseTable;
 import org.sqlproc.dsl.processorDsl.Entity;
@@ -33,6 +38,7 @@ import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoMethod;
 import org.sqlproc.dsl.processorDsl.PojoMethodArg;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
+import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
 import org.sqlproc.dsl.resolver.PojoResolver;
@@ -168,9 +174,24 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
                 ICompositeNode node = NodeModelUtils.getNode(current);
                 PojoDao dao = (PojoDao) current;
                 provideHighlightingForPojoDao(dao.getName(), node, acceptor);
-                PojoEntity ref = dao.getPojo();
-                if (ref != null)
-                    provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
+                // PojoEntity ref = dao.getPojo();
+                // if (ref != null)
+                // provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
+            } else if (current instanceof DaoDirective) {
+                ICompositeNode node = NodeModelUtils.getNode(current);
+                DaoDirective dir = (DaoDirective) current;
+                PojoType pojo = null;
+                if (dir instanceof DaoDirectiveCrud)
+                    pojo = ((DaoDirectiveCrud) dir).getPojo();
+                else if (dir instanceof DaoDirectiveQuery)
+                    pojo = ((DaoDirectiveQuery) dir).getPojo();
+                else if (dir instanceof DaoDirectiveProcedure)
+                    pojo = ((DaoDirectiveProcedure) dir).getPojo();
+                else if (dir instanceof DaoDirectiveFunction)
+                    pojo = ((DaoDirectiveFunction) dir).getPojo();
+                if (pojo != null && pojo.getRef() != null) {
+                    provideHighlightingForPojoEntity(pojo.getRef().getName(), node, acceptor);
+                }
             } else if (current instanceof PojoMethod) {
                 ICompositeNode node = NodeModelUtils.getNode(current);
                 PojoMethod method = (PojoMethod) current;

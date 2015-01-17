@@ -43,7 +43,6 @@ import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoMethod;
-import org.sqlproc.dsl.processorDsl.PojoMethodModifier;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
@@ -63,16 +62,6 @@ public class Utils {
             return (PojoEntity) e.getEntity();
         return null;
     }
-
-    // public static boolean isAnnotationEnum(AnnotationProperty a) {
-    // if (a.getType() != null) {
-    // String qname = a.getType().getQualifiedName();
-    // if (qname.indexOf("java.") >= 0) // TODO - better
-    // return false;
-    // return true;
-    // }
-    // return false;
-    // }
 
     public static String getAnnotationValue(AnnotationProperty a) {
         String value = a.getNumber();
@@ -101,11 +90,12 @@ public class Utils {
         return dir;
     }
 
+    // TODO
     public static String getDaoImplements(PojoDao dao, Implements impl) {
         StringBuilder sb = new StringBuilder();
-        sb.append(impl.getImplements().getSimpleName());
-        if (dao.isPojoGenerics() && impl.isGenerics())
-            sb.append("<").append(dao.getPojo().getName()).append(">");
+        // sb.append(impl.getImplements().getSimpleName());
+        // if (dao.isPojoGenerics() && impl.isGenerics())
+        // sb.append("<").append(dao.getPojo().getName()).append(">");
         return sb.toString();
     }
 
@@ -484,56 +474,6 @@ public class Utils {
                 return false;
         }
         return true;
-    }
-
-    public static boolean isCallUpdate(PojoMethod f) {
-        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-            return false;
-        for (PojoMethodModifier modifier : f.getModifiers1()) {
-            if (modifier.isCallUpdate())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isCallFunction(PojoMethod f) {
-        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-            return false;
-        for (PojoMethodModifier modifier : f.getModifiers1()) {
-            if (modifier.isCallFunction())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isCallQuery(PojoMethod f) {
-        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-            return false;
-        for (PojoMethodModifier modifier : f.getModifiers1()) {
-            if (modifier.isCallQuery())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isCallQueryFunction(PojoMethod f) {
-        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-            return false;
-        for (PojoMethodModifier modifier : f.getModifiers1()) {
-            if (modifier.isCallQueryFunction())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isCallSelectFunction(PojoMethod f) {
-        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-            return false;
-        for (PojoMethodModifier modifier : f.getModifiers1()) {
-            if (modifier.isCallSelectFunction())
-                return true;
-        }
-        return false;
     }
 
     public static EnumProperty getEnumAttr(EnumEntity e) {

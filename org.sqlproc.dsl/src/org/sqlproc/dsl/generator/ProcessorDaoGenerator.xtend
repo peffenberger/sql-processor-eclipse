@@ -33,7 +33,8 @@ class ProcessorDaoGenerator {
 		«addImplements(d, im)»
 		«addExtends(d, im)»
 		«val moreResultClasses = getMoreResultClasses(d)»
-		«val classBody = compile(d, d.pojo, moreResultClasses, im)»
+		«val pojo = getPojo(d)»
+		«val classBody = compile(d, pojo, moreResultClasses, im)»
 		«IF d.eContainer != null»package «d.eContainer.fullyQualifiedName»«IF d.implPackage != null».«d.implPackage»«ENDIF»;«ENDIF»
 		«IF d.implPackage != null»
 		
@@ -64,7 +65,7 @@ class ProcessorDaoGenerator {
 		import org.sqlproc.engine.SqlSession;
 		import org.sqlproc.engine.SqlSessionFactory;
 		import org.sqlproc.engine.impl.SqlStandardControl;
-		«IF d.pojo != null»import «d.pojo.completeName»;«ENDIF»
+		«IF pojo != null»import «pojo.completeName»;«ENDIF»
 		«FOR f:moreResultClasses.entrySet»«FOR a:f.value.values SEPARATOR "
 		"»import «a.ref.completeName»;«ENDFOR»«ENDFOR»
 		
@@ -94,14 +95,15 @@ class ProcessorDaoGenerator {
 				this.sqlSessionFactory = sqlSessionFactory;
 			}
 			
-		«FOR m:d.methods»«IF m.name == "scaffold" || m.name == "scaffold0"»«compileInsert(d, e, getParent(e), im, m.name == "scaffold")»
-		«compileGet(d, e, moreResultClasses, im, m.name == "scaffold")»
-		«compileUpdate(d, e, getParent(e), im, m.name == "scaffold")»
-		«compileDelete(d, e, getParent(e), im, m.name == "scaffold")»
-		«compileList(d, e, moreResultClasses, im, m.name == "scaffold")»
-		«compileCount(d, e, moreResultClasses, im, m.name == "scaffold")»
-		«IF !moreResultClasses.empty»«compileMoreResultClasses(d, e, moreResultClasses, im)»«ENDIF»«ELSEIF isCallUpdate(m)»
-		«compileCallUpdate(d, m, im, true)»«ELSEIF isCallFunction(m)»«compileCallFunction(d, m, im, true)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQuery(d, m, im, isCallQueryFunction(m), true)»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunction(d, m, im, true)»«ENDIF»«ENDFOR»
+		«IF isCRUD(d)»«compileInsert(d, e, getParent(e), im, true)»
+		«compileGet(d, e, moreResultClasses, im, true)»
+		«compileUpdate(d, e, getParent(e), im, true)»
+		«compileDelete(d, e, getParent(e), im, true)»«ENDIF»«IF isQuery(d)»
+		«compileList(d, e, moreResultClasses, im, true)»
+		«compileCount(d, e, moreResultClasses, im, true)»«ENDIF»
+		«IF !moreResultClasses.empty»«compileMoreResultClasses(d, e, moreResultClasses, im)»«ENDIF»
+«««		«ELSEIF isCallUpdate(m)»
+«««		«compileCallUpdate(d, m, im, true)»«ELSEIF isCallFunction(m)»«compileCallFunction(d, m, im, true)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQuery(d, m, im, isCallQueryFunction(m), true)»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunction(d, m, im, true)»«ENDIF»«ENDFOR»
 		}
 	'''
 	
@@ -431,27 +433,34 @@ class ProcessorDaoGenerator {
 	«val im = new ImportManager(true)»
 	«addImplements(d, im)»
 	«addExtends(d, im)»
-	«val classBody = compileIfx(d, d.pojo, im)»
+	«val pojo = getPojo(d)»
+	«val classBody = compileIfx(d, pojo, im)»
 	«IF d.eContainer != null»package «d.eContainer.fullyQualifiedName»;«ENDIF»
 	
 	import java.util.List;
 	import org.sqlproc.engine.SqlSession;
 	import org.sqlproc.engine.SqlControl;
-	import «d.pojo.completeName»;
+	import «pojo.completeName»;
 	
 	«classBody»
 	'''
 	
 	def compileIfx(PojoDao d, PojoEntity e, ImportManager im) '''
 	public interface «d.name» {
-		«FOR m:d.methods»«IF m.name == "scaffold" || m.name == "scaffold0"»«compileInsertIfx(d, e, im, m.name == "scaffold")»
-		«compileGetIfx(d, e, im, m.name == "scaffold")»
-		«compileUpdateIfx(d, e, im, m.name == "scaffold")»
-		«compileDeleteIfx(d, e, im, m.name == "scaffold")»
-		«compileListIfx(d, e, im, m.name == "scaffold")»
-		«compileCountIfx(d, e, im, m.name == "scaffold")»
-		«ELSEIF isCallUpdate(m)»
-		«compileCallUpdateIfx(d, m, im, true)»«ELSEIF isCallFunction(m)»«compileCallFunctionIfx(d, m, im, true)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQueryIfx(d, m, im, isCallQueryFunction(m), true)»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunctionIfx(d, m, im, true)»«ENDIF»«ENDFOR»
+		«IF isCRUD(d)»«compileInsertIfx(d, e, im, true)»
+		«compileGetIfx(d, e, im, true)»
+		«compileUpdateIfx(d, e, im, true)»
+		«compileDeleteIfx(d, e, im, true)»«ENDIF»«IF isQuery(d)»
+		«compileListIfx(d, e, im, true)»
+		«compileCountIfx(d, e, im, true)»«ENDIF»
+«««		«FOR m:d.methods»«IF m.name == "scaffold" || m.name == "scaffold0"»«compileInsertIfx(d, e, im, m.name == "scaffold")»
+«««		«compileGetIfx(d, e, im, m.name == "scaffold")»
+«««		«compileUpdateIfx(d, e, im, m.name == "scaffold")»
+«««		«compileDeleteIfx(d, e, im, m.name == "scaffold")»
+«««		«compileListIfx(d, e, im, m.name == "scaffold")»
+«««		«compileCountIfx(d, e, im, m.name == "scaffold")»
+«««		«ELSEIF isCallUpdate(m)»
+«««		«compileCallUpdateIfx(d, m, im, true)»«ELSEIF isCallFunction(m)»«compileCallFunctionIfx(d, m, im, true)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQueryIfx(d, m, im, isCallQueryFunction(m), true)»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunctionIfx(d, m, im, true)»«ENDIF»«ENDFOR»
 	}
 	'''
 	

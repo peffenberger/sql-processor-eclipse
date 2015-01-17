@@ -8,6 +8,7 @@ import org.sqlproc.dsl.processorDsl.PojoProperty
 import org.sqlproc.dsl.ImportManager
 
 import static org.sqlproc.dsl.util.Utils.*
+import static org.eclipse.xtext.EcoreUtil2.*
 import org.sqlproc.dsl.processorDsl.PojoType
 import org.sqlproc.dsl.processorDsl.EnumProperty
 import org.sqlproc.dsl.processorDsl.PojoEntity
@@ -28,10 +29,25 @@ import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex
 import java.util.TreeMap
 import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator
 import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator
+import org.sqlproc.dsl.processorDsl.DaoDirectiveCrud
+import org.sqlproc.dsl.processorDsl.DaoDirectiveQuery
+import org.sqlproc.dsl.processorDsl.DaoDirectiveFunction
+import org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure
+import org.sqlproc.dsl.processorDsl.DaoDirective
+import org.sqlproc.dsl.processorDsl.Artifacts
+import org.eclipse.xtext.scoping.IScopeProvider
+import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.sqlproc.dsl.processorDsl.ProcessorDslPackage
 
 class ProcessorGeneratorUtils {
 
 	@Inject extension IQualifiedNameProvider
+
+    @Inject
+    IScopeProvider scopeProvider
+
+    @Inject
+    IQualifiedNameConverter qualifiedNameConverter
 
 	def compileType(EnumProperty f, ImportManager im) '''
 	«IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getType != null»«im.serialize(f.getType)»«ENDIF»'''
@@ -240,4 +256,101 @@ class ProcessorGeneratorUtils {
 		]
         return result
     }
+    
+    def getPojoDirective(PojoDao dao) {
+    	dao?.directives.findFirst[x|x instanceof DaoDirectiveCrud || 
+    		x instanceof DaoDirectiveQuery || x instanceof DaoDirectiveFunction || x instanceof DaoDirectiveProcedure
+    	] 
+    }
+
+    def PojoEntity getPojo(PojoDao dao, DaoDirective pojoDirective) {
+    	val PojoType pojo = if (pojoDirective != null)
+    	switch pojoDirective {
+    		case DaoDirectiveCrud : (pojoDirective as DaoDirectiveCrud).pojo
+    		case DaoDirectiveQuery : (pojoDirective as DaoDirectiveQuery).pojo
+    		case DaoDirectiveProcedure : (pojoDirective as DaoDirectiveProcedure).pojo
+    		case DaoDirectiveFunction : (pojoDirective as DaoDirectiveFunction).pojo
+    	}
+    	if (pojo != null)
+    		return pojo.ref
+        var pojoName = dao.getName()
+        if (pojoName.endsWith("Dao"))
+            pojoName = pojoName.substring(0, pojoName.length() - 3)
+        val Artifacts artifacts = getContainerOfType(dao, Artifacts)
+        return findEntity(qualifiedNameConverter, artifacts,
+                scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS), pojoName)
+    }
+
+    def PojoEntity getPojo(PojoDao dao) {
+    	val DaoDirective pojoDirective = dao?.getPojoDirective
+    	return dao?.getPojo(pojoDirective)
+    }
+
+    def isCRUD(PojoDao dao) {
+		val d = dao.directives?.findFirst[x|x instanceof DaoDirectiveCrud]
+		return if(d != null) true else false
+    }
+
+    def isQuery(PojoDao dao) {
+		val d = dao.directives?.findFirst[x|x instanceof DaoDirectiveQuery]
+		return if(d != null) true else false
+    }
+
+	    
+//
+//    def isCallUpdate(PojoDao dao) {
+//		val d = dao.directives?.findFirst[x|x instanceof DaoDirectivePojo]
+//		return if(d != null) true else false
+//
+//        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
+//            return false;
+//        for (PojoMethodModifier modifier : f.getModifiers1()) {
+//            if (modifier.isCallUpdate())
+//                return true;
+//        }
+//        return false;
+//    }
+//
+//    def isCallFunction(PojoDao dao) {
+//        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
+//            return false;
+//        for (PojoMethodModifier modifier : f.getModifiers1()) {
+//            if (modifier.isCallFunction())
+//                return true;
+//        }
+//        return false;
+//    }
+//
+//    def isCallQuery(PojoDao dao) {
+//        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
+//            return false;
+//        for (PojoMethodModifier modifier : f.getModifiers1()) {
+//            if (modifier.isCallQuery())
+//                return true;
+//        }
+//        return false;
+//    }
+//
+//    def isCallQueryFunction(PojoDao dao) {
+//        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
+//            return false;
+//        for (PojoMethodModifier modifier : f.getModifiers1()) {
+//            if (modifier.isCallQueryFunction())
+//                return true;
+//        }
+//        return false;
+//    }
+//
+//    def isCallSelectFunction(PojoDao dao	....
+//    	
+//    	
+//    ) {
+//        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
+//            return false;
+//        for (PojoMethodModifier modifier : f.getModifiers1()) {
+//            if (modifier.isCallSelectFunction())
+//                return true;
+//        }
+//        return false;
+//    }
 }

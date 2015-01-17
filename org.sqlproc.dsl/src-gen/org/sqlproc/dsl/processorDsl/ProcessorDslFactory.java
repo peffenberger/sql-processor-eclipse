@@ -1040,22 +1040,22 @@ public interface ProcessorDslFactory extends EFactory
   DaoDirectiveDiscriminator createDaoDirectiveDiscriminator();
 
   /**
-   * Returns a new object of class '<em>Dao Directive Pojo</em>'.
+   * Returns a new object of class '<em>Dao Directive Crud</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Dao Directive Pojo</em>'.
+   * @return a new object of class '<em>Dao Directive Crud</em>'.
    * @generated
    */
-  DaoDirectivePojo createDaoDirectivePojo();
+  DaoDirectiveCrud createDaoDirectiveCrud();
 
   /**
-   * Returns a new object of class '<em>Dao Directive Generics</em>'.
+   * Returns a new object of class '<em>Dao Directive Query</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Dao Directive Generics</em>'.
+   * @return a new object of class '<em>Dao Directive Query</em>'.
    * @generated
    */
-  DaoDirectiveGenerics createDaoDirectiveGenerics();
+  DaoDirectiveQuery createDaoDirectiveQuery();
 
   /**
    * Returns a new object of class '<em>Dao Directive Procedure</em>'.

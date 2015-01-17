@@ -630,12 +630,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers1" upperBound="-1"
         eType="#//PojoEntityModifier1" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pojoGenerics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="#//PojoEntity"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers2" upperBound="-1"
         eType="#//PojoDaoModifier" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
-        eType="#//PojoMethod" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoMethodModifier">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="callFunction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -729,12 +725,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="descendants" upperBound="-1"
         eType="#//DescendantAssignment" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DaoDirectivePojo" eSuperTypes="#//DaoDirective">
+  <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveCrud" eSuperTypes="#//DaoDirective">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="#//PojoType"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveGenerics" eSuperTypes="#//DaoDirective">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="generics" eType="#//PojoType"
+  <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveQuery" eSuperTypes="#//DaoDirective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="#//PojoType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveProcedure" eSuperTypes="#//DaoDirective">

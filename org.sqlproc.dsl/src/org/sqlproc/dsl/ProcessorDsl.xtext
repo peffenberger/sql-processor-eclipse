@@ -408,7 +408,7 @@ PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {PojoDirectiveIndex} '#Index' LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN
 	| {PojoDirectiveOperators} '#Operators' (LPAREN operatorsSuffix=IDENT RPAREN)?
 	| {PojoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
-	| {PojoDirectiveDiscriminator} '#Discriminator' LPAREN discriminator=(IDENT|NUMBER) RPAREN
+	| {PojoDirectiveDiscriminator} '#InheritanceChild' LPAREN discriminator=(IDENT|NUMBER) RPAREN
 	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
 	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
 	| {PojoDirectiveToInit} '#ToInit' LPAREN proplist=DirectiveProperties RPAREN
@@ -436,7 +436,7 @@ PojoAnnotatedProperty: (=> AT (=> AT (=> AT setterAnnotations+=Annotation | gett
 PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
 	{PojoPropertyDirectiveRequired} '#Required'
 	| {PojoPropertyDirectivePrimaryKey} '#PrimaryKey'
-	| {PojoPropertyDirectiveDiscriminator} '#Discriminator'
+	| {PojoPropertyDirectiveDiscriminator} '#InheritanceDiscriminator'
 	| {PojoPropertyDirectiveIndex} '#Index' LPAREN index=NUMBER RPAREN
 	| {PojoPropertyDirectiveVersion} '#Version'
 	| {PojoPropertyDirectiveUpdateCol} '#UpdateCol' LPAREN updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN
@@ -478,11 +478,13 @@ DescendantAssignment hidden(ML_COMMENT, SL_COMMENT, WS):
 
 DaoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	{DaoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
-	| {DaoDirectiveDiscriminator} '#Discriminator' LPAREN ancestor=[PojoProperty|IDENT] (COMMA descendants+=DescendantAssignment)+ RPAREN
-	| {DaoDirectivePojo} '#Pojo' LPAREN pojo=PojoType RPAREN
-	| {DaoDirectiveGenerics} '#Generics' LPAREN generics=PojoType RPAREN
-	| {DaoDirectiveProcedure} '#Procedure' LPAREN pojo=PojoType RPAREN
-	| {DaoDirectiveFunction} '#Function' LPAREN pojo=PojoType RPAREN
+	| {DaoDirectiveDiscriminator} '#InheritanceHandler' LPAREN ancestor=[PojoProperty|IDENT] (COMMA descendants+=DescendantAssignment)+ RPAREN
+	//| {DaoDirectivePojo} '#Pojo' LPAREN pojo=PojoType RPAREN
+	| {DaoDirectiveCrud} '#CRUD' (LPAREN pojo=PojoType RPAREN)?
+	| {DaoDirectiveQuery} '#Query' (LPAREN pojo=PojoType RPAREN)?
+	//| {DaoDirectiveGenerics} '#Generics' LPAREN generics=PojoType RPAREN
+	| {DaoDirectiveProcedure} '#Procedure' (LPAREN pojo=PojoType RPAREN)?
+	| {DaoDirectiveFunction} '#Function' (LPAREN pojo=PojoType RPAREN)?
 	| {DaoDirectiveUpdate} '#Update' (LPAREN paramlist=DaoDirectiveParameters RPAREN)?
 	| {DaoDirectiveUpdate} '#List' (LPAREN paramlist=DaoDirectiveParameters RPAREN)?
 	| {DaoDirectiveUpdate} '#Call' (LPAREN paramlist=DaoDirectiveParameters RPAREN)?
@@ -493,26 +495,26 @@ PojoDaoModifier: ('extends' superType=[PojoDao|IDENT]);
 
 PojoDao hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=DaoDirective*
-	(modifiers1+=PojoEntityModifier1)* 'dao' name=IDENT (COLON COLON ((pojoGenerics ?= COLON)?) pojo=[PojoEntity|IDENT])?
+	(modifiers1+=PojoEntityModifier1)* 'dao' name=IDENT //(COLON COLON ((pojoGenerics ?= COLON)?) pojo=[PojoEntity|IDENT])?
 	  (modifiers2+=PojoDaoModifier)* 
 	LBRACE
-		methods+=PojoMethod*
+		//methods+=PojoMethod*
 		//toInits+=ToInitMethod*
 	RBRACE;
 
-PojoMethodModifier: ((callFunction?='callFunction') | (callUpdate?='callUpdate') | (callQuery?='callQuery') | (callQueryFunction?='callQueryFunction') | (callSelectFunction?='callSelectFunction'));
-
-PojoMethod hidden(ML_COMMENT, SL_COMMENT, WS):
-		(modifiers1+=PojoMethodModifier)* name=IDENT (type=PojoType COLON COLON COLON (args+=PojoMethodArg)+)?
-;
-
-ToInitMethod hidden(ML_COMMENT, SL_COMMENT, WS):
-		name=IDENT COLON COLON COLON (args+=PojoMethodArg)+
-;
-
-PojoMethodArg hidden(ML_COMMENT, SL_COMMENT, WS):
-	name=IDENT type=PojoType
-;
+//PojoMethodModifier: ((callFunction?='callFunction') | (callUpdate?='callUpdate') | (callQuery?='callQuery') | (callQueryFunction?='callQueryFunction') | (callSelectFunction?='callSelectFunction'));
+//
+//PojoMethod hidden(ML_COMMENT, SL_COMMENT, WS):
+//		(modifiers1+=PojoMethodModifier)* name=IDENT (type=PojoType COLON COLON COLON (args+=PojoMethodArg)+)?
+//;
+//
+//ToInitMethod hidden(ML_COMMENT, SL_COMMENT, WS):
+//		name=IDENT COLON COLON COLON (args+=PojoMethodArg)+
+//;
+//
+//PojoMethodArg hidden(ML_COMMENT, SL_COMMENT, WS):
+//	name=IDENT type=PojoType
+//;
 
 QualifiedNameWithWildcard:
   QualifiedName '.*'?; 

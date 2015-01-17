@@ -22,12 +22,12 @@ import org.sqlproc.dsl.processorDsl.ColumnAssignement;
 import org.sqlproc.dsl.processorDsl.ColumnTypeAssignement;
 import org.sqlproc.dsl.processorDsl.Constant;
 import org.sqlproc.dsl.processorDsl.ConstantOperator;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveCrud;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveFunction;
-import org.sqlproc.dsl.processorDsl.DaoDirectiveGenerics;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters;
-import org.sqlproc.dsl.processorDsl.DaoDirectivePojo;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveProcedure;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveQuery;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveSerializable;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveUpdate;
 import org.sqlproc.dsl.processorDsl.DaogenProperty;
@@ -192,6 +192,12 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
+			case ProcessorDslPackage.DAO_DIRECTIVE_CRUD:
+				if(context == grammarAccess.getDaoDirectiveRule()) {
+					sequence_DaoDirective(context, (DaoDirectiveCrud) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorDslPackage.DAO_DIRECTIVE_DISCRIMINATOR:
 				if(context == grammarAccess.getDaoDirectiveRule()) {
 					sequence_DaoDirective(context, (DaoDirectiveDiscriminator) semanticObject); 
@@ -204,27 +210,21 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
-			case ProcessorDslPackage.DAO_DIRECTIVE_GENERICS:
-				if(context == grammarAccess.getDaoDirectiveRule()) {
-					sequence_DaoDirective(context, (DaoDirectiveGenerics) semanticObject); 
-					return; 
-				}
-				else break;
 			case ProcessorDslPackage.DAO_DIRECTIVE_PARAMETERS:
 				if(context == grammarAccess.getDaoDirectiveParametersRule()) {
 					sequence_DaoDirectiveParameters(context, (DaoDirectiveParameters) semanticObject); 
 					return; 
 				}
 				else break;
-			case ProcessorDslPackage.DAO_DIRECTIVE_POJO:
-				if(context == grammarAccess.getDaoDirectiveRule()) {
-					sequence_DaoDirective(context, (DaoDirectivePojo) semanticObject); 
-					return; 
-				}
-				else break;
 			case ProcessorDslPackage.DAO_DIRECTIVE_PROCEDURE:
 				if(context == grammarAccess.getDaoDirectiveRule()) {
 					sequence_DaoDirective(context, (DaoDirectiveProcedure) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.DAO_DIRECTIVE_QUERY:
+				if(context == grammarAccess.getDaoDirectiveRule()) {
+					sequence_DaoDirective(context, (DaoDirectiveQuery) semanticObject); 
 					return; 
 				}
 				else break;
@@ -955,6 +955,15 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
+	 *     (pojo=PojoType?)
+	 */
+	protected void sequence_DaoDirective(EObject context, DaoDirectiveCrud semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (ancestor=[PojoProperty|IDENT] descendants+=DescendantAssignment+)
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveDiscriminator semanticObject) {
@@ -964,65 +973,28 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     pojo=PojoType
+	 *     (pojo=PojoType?)
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveFunction semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_FUNCTION__POJO) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_FUNCTION__POJO));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDaoDirectiveAccess().getPojoPojoTypeParserRuleCall_5_3_0(), semanticObject.getPojo());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     generics=PojoType
-	 */
-	protected void sequence_DaoDirective(EObject context, DaoDirectiveGenerics semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_GENERICS__GENERICS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_GENERICS__GENERICS));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDaoDirectiveAccess().getGenericsPojoTypeParserRuleCall_3_3_0(), semanticObject.getGenerics());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     pojo=PojoType
-	 */
-	protected void sequence_DaoDirective(EObject context, DaoDirectivePojo semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_POJO__POJO) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_POJO__POJO));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDaoDirectiveAccess().getPojoPojoTypeParserRuleCall_2_3_0(), semanticObject.getPojo());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     pojo=PojoType
+	 *     (pojo=PojoType?)
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveProcedure semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_PROCEDURE__POJO) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.DAO_DIRECTIVE_PROCEDURE__POJO));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDaoDirectiveAccess().getPojoPojoTypeParserRuleCall_4_3_0(), semanticObject.getPojo());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (pojo=PojoType?)
+	 */
+	protected void sequence_DaoDirective(EObject context, DaoDirectiveQuery semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1773,14 +1745,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         directives+=DaoDirective* 
-	 *         modifiers1+=PojoEntityModifier1* 
-	 *         name=IDENT 
-	 *         (pojoGenerics?=COLON? pojo=[PojoEntity|IDENT])? 
-	 *         modifiers2+=PojoDaoModifier* 
-	 *         methods+=PojoMethod*
-	 *     )
+	 *     (directives+=DaoDirective* modifiers1+=PojoEntityModifier1* name=IDENT modifiers2+=PojoDaoModifier*)
 	 */
 	protected void sequence_PojoDao(EObject context, PojoDao semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

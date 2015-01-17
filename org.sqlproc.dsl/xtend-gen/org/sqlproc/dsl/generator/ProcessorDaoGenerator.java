@@ -57,8 +57,9 @@ public class ProcessorDaoGenerator {
     _builder.newLineIfNotEmpty();
     final Map<String, Map<String, PojoType>> moreResultClasses = this._processorGeneratorUtils.getMoreResultClasses(d);
     _builder.newLineIfNotEmpty();
-    PojoEntity _pojo = d.getPojo();
-    final CharSequence classBody = this.compile(d, _pojo, moreResultClasses, im);
+    final PojoEntity pojo = this._processorGeneratorUtils.getPojo(d);
+    _builder.newLineIfNotEmpty();
+    final CharSequence classBody = this.compile(d, pojo, moreResultClasses, im);
     _builder.newLineIfNotEmpty();
     {
       EObject _eContainer = d.eContainer();
@@ -153,12 +154,10 @@ public class ProcessorDaoGenerator {
     _builder.append("import org.sqlproc.engine.impl.SqlStandardControl;");
     _builder.newLine();
     {
-      PojoEntity _pojo_1 = d.getPojo();
-      boolean _notEquals_4 = (!Objects.equal(_pojo_1, null));
+      boolean _notEquals_4 = (!Objects.equal(pojo, null));
       if (_notEquals_4) {
         _builder.append("import ");
-        PojoEntity _pojo_2 = d.getPojo();
-        String _completeName = this._processorGeneratorUtils.completeName(_pojo_2);
+        String _completeName = this._processorGeneratorUtils.completeName(pojo);
         _builder.append(_completeName, "");
         _builder.append(";");
       }
@@ -309,96 +308,42 @@ public class ProcessorDaoGenerator {
     _builder.append("\t");
     _builder.newLine();
     {
-      EList<PojoMethod> _methods = d.getMethods();
-      for(final PojoMethod m : _methods) {
-        {
-          boolean _or = false;
-          String _name_4 = m.getName();
-          boolean _equals = Objects.equal(_name_4, "scaffold");
-          if (_equals) {
-            _or = true;
-          } else {
-            String _name_5 = m.getName();
-            boolean _equals_1 = Objects.equal(_name_5, "scaffold0");
-            _or = _equals_1;
-          }
-          if (_or) {
-            PojoEntity _parent = this._processorGeneratorUtils.getParent(e);
-            String _name_6 = m.getName();
-            boolean _equals_2 = Objects.equal(_name_6, "scaffold");
-            CharSequence _compileInsert = this.compileInsert(d, e, _parent, im, _equals_2);
-            _builder.append(_compileInsert, "");
-            _builder.newLineIfNotEmpty();
-            String _name_7 = m.getName();
-            boolean _equals_3 = Objects.equal(_name_7, "scaffold");
-            CharSequence _compileGet = this.compileGet(d, e, moreResultClasses, im, _equals_3);
-            _builder.append(_compileGet, "");
-            _builder.newLineIfNotEmpty();
-            PojoEntity _parent_1 = this._processorGeneratorUtils.getParent(e);
-            String _name_8 = m.getName();
-            boolean _equals_4 = Objects.equal(_name_8, "scaffold");
-            CharSequence _compileUpdate = this.compileUpdate(d, e, _parent_1, im, _equals_4);
-            _builder.append(_compileUpdate, "");
-            _builder.newLineIfNotEmpty();
-            PojoEntity _parent_2 = this._processorGeneratorUtils.getParent(e);
-            String _name_9 = m.getName();
-            boolean _equals_5 = Objects.equal(_name_9, "scaffold");
-            CharSequence _compileDelete = this.compileDelete(d, e, _parent_2, im, _equals_5);
-            _builder.append(_compileDelete, "");
-            _builder.newLineIfNotEmpty();
-            String _name_10 = m.getName();
-            boolean _equals_6 = Objects.equal(_name_10, "scaffold");
-            CharSequence _compileList = this.compileList(d, e, moreResultClasses, im, _equals_6);
-            _builder.append(_compileList, "");
-            _builder.newLineIfNotEmpty();
-            String _name_11 = m.getName();
-            boolean _equals_7 = Objects.equal(_name_11, "scaffold");
-            CharSequence _compileCount = this.compileCount(d, e, moreResultClasses, im, _equals_7);
-            _builder.append(_compileCount, "");
-            _builder.newLineIfNotEmpty();
-            {
-              boolean _isEmpty = moreResultClasses.isEmpty();
-              boolean _not = (!_isEmpty);
-              if (_not) {
-                CharSequence _compileMoreResultClasses = this.compileMoreResultClasses(d, e, moreResultClasses, im);
-                _builder.append(_compileMoreResultClasses, "");
-              }
-            }
-          } else {
-            boolean _isCallUpdate = Utils.isCallUpdate(m);
-            if (_isCallUpdate) {
-              _builder.newLineIfNotEmpty();
-              CharSequence _compileCallUpdate = this.compileCallUpdate(d, m, im, true);
-              _builder.append(_compileCallUpdate, "");
-            } else {
-              boolean _isCallFunction = Utils.isCallFunction(m);
-              if (_isCallFunction) {
-                CharSequence _compileCallFunction = this.compileCallFunction(d, m, im, true);
-                _builder.append(_compileCallFunction, "");
-              } else {
-                boolean _or_1 = false;
-                boolean _isCallQuery = Utils.isCallQuery(m);
-                if (_isCallQuery) {
-                  _or_1 = true;
-                } else {
-                  boolean _isCallQueryFunction = Utils.isCallQueryFunction(m);
-                  _or_1 = _isCallQueryFunction;
-                }
-                if (_or_1) {
-                  boolean _isCallQueryFunction_1 = Utils.isCallQueryFunction(m);
-                  CharSequence _compileCallQuery = this.compileCallQuery(d, m, im, _isCallQueryFunction_1, true);
-                  _builder.append(_compileCallQuery, "");
-                } else {
-                  boolean _isCallSelectFunction = Utils.isCallSelectFunction(m);
-                  if (_isCallSelectFunction) {
-                    CharSequence _compileCallSelectFunction = this.compileCallSelectFunction(d, m, im, true);
-                    _builder.append(_compileCallSelectFunction, "");
-                  }
-                }
-              }
-            }
-          }
-        }
+      boolean _isCRUD = this._processorGeneratorUtils.isCRUD(d);
+      if (_isCRUD) {
+        PojoEntity _parent = this._processorGeneratorUtils.getParent(e);
+        CharSequence _compileInsert = this.compileInsert(d, e, _parent, im, true);
+        _builder.append(_compileInsert, "");
+        _builder.newLineIfNotEmpty();
+        CharSequence _compileGet = this.compileGet(d, e, moreResultClasses, im, true);
+        _builder.append(_compileGet, "");
+        _builder.newLineIfNotEmpty();
+        PojoEntity _parent_1 = this._processorGeneratorUtils.getParent(e);
+        CharSequence _compileUpdate = this.compileUpdate(d, e, _parent_1, im, true);
+        _builder.append(_compileUpdate, "");
+        _builder.newLineIfNotEmpty();
+        PojoEntity _parent_2 = this._processorGeneratorUtils.getParent(e);
+        CharSequence _compileDelete = this.compileDelete(d, e, _parent_2, im, true);
+        _builder.append(_compileDelete, "");
+      }
+    }
+    {
+      boolean _isQuery = this._processorGeneratorUtils.isQuery(d);
+      if (_isQuery) {
+        _builder.newLineIfNotEmpty();
+        CharSequence _compileList = this.compileList(d, e, moreResultClasses, im, true);
+        _builder.append(_compileList, "");
+        _builder.newLineIfNotEmpty();
+        CharSequence _compileCount = this.compileCount(d, e, moreResultClasses, im, true);
+        _builder.append(_compileCount, "");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    {
+      boolean _isEmpty = moreResultClasses.isEmpty();
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        CharSequence _compileMoreResultClasses = this.compileMoreResultClasses(d, e, moreResultClasses, im);
+        _builder.append(_compileMoreResultClasses, "");
       }
     }
     _builder.newLineIfNotEmpty();
@@ -2760,8 +2705,9 @@ public class ProcessorDaoGenerator {
     _builder.newLineIfNotEmpty();
     this.addExtends(d, im);
     _builder.newLineIfNotEmpty();
-    PojoEntity _pojo = d.getPojo();
-    final CharSequence classBody = this.compileIfx(d, _pojo, im);
+    final PojoEntity pojo = this._processorGeneratorUtils.getPojo(d);
+    _builder.newLineIfNotEmpty();
+    final CharSequence classBody = this.compileIfx(d, pojo, im);
     _builder.newLineIfNotEmpty();
     {
       EObject _eContainer = d.eContainer();
@@ -2783,8 +2729,7 @@ public class ProcessorDaoGenerator {
     _builder.append("import org.sqlproc.engine.SqlControl;");
     _builder.newLine();
     _builder.append("import ");
-    PojoEntity _pojo_1 = d.getPojo();
-    String _completeName = this._processorGeneratorUtils.completeName(_pojo_1);
+    String _completeName = this._processorGeneratorUtils.completeName(pojo);
     _builder.append(_completeName, "");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
@@ -2803,90 +2748,35 @@ public class ProcessorDaoGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     {
-      EList<PojoMethod> _methods = d.getMethods();
-      for(final PojoMethod m : _methods) {
-        {
-          boolean _or = false;
-          String _name_1 = m.getName();
-          boolean _equals = Objects.equal(_name_1, "scaffold");
-          if (_equals) {
-            _or = true;
-          } else {
-            String _name_2 = m.getName();
-            boolean _equals_1 = Objects.equal(_name_2, "scaffold0");
-            _or = _equals_1;
-          }
-          if (_or) {
-            String _name_3 = m.getName();
-            boolean _equals_2 = Objects.equal(_name_3, "scaffold");
-            CharSequence _compileInsertIfx = this.compileInsertIfx(d, e, im, _equals_2);
-            _builder.append(_compileInsertIfx, "\t");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            String _name_4 = m.getName();
-            boolean _equals_3 = Objects.equal(_name_4, "scaffold");
-            CharSequence _compileGetIfx = this.compileGetIfx(d, e, im, _equals_3);
-            _builder.append(_compileGetIfx, "\t");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            String _name_5 = m.getName();
-            boolean _equals_4 = Objects.equal(_name_5, "scaffold");
-            CharSequence _compileUpdateIfx = this.compileUpdateIfx(d, e, im, _equals_4);
-            _builder.append(_compileUpdateIfx, "\t");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            String _name_6 = m.getName();
-            boolean _equals_5 = Objects.equal(_name_6, "scaffold");
-            CharSequence _compileDeleteIfx = this.compileDeleteIfx(d, e, im, _equals_5);
-            _builder.append(_compileDeleteIfx, "\t");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            String _name_7 = m.getName();
-            boolean _equals_6 = Objects.equal(_name_7, "scaffold");
-            CharSequence _compileListIfx = this.compileListIfx(d, e, im, _equals_6);
-            _builder.append(_compileListIfx, "\t");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            String _name_8 = m.getName();
-            boolean _equals_7 = Objects.equal(_name_8, "scaffold");
-            CharSequence _compileCountIfx = this.compileCountIfx(d, e, im, _equals_7);
-            _builder.append(_compileCountIfx, "\t");
-            _builder.newLineIfNotEmpty();
-          } else {
-            boolean _isCallUpdate = Utils.isCallUpdate(m);
-            if (_isCallUpdate) {
-              _builder.append("\t");
-              CharSequence _compileCallUpdateIfx = this.compileCallUpdateIfx(d, m, im, true);
-              _builder.append(_compileCallUpdateIfx, "\t");
-            } else {
-              boolean _isCallFunction = Utils.isCallFunction(m);
-              if (_isCallFunction) {
-                CharSequence _compileCallFunctionIfx = this.compileCallFunctionIfx(d, m, im, true);
-                _builder.append(_compileCallFunctionIfx, "\t");
-              } else {
-                boolean _or_1 = false;
-                boolean _isCallQuery = Utils.isCallQuery(m);
-                if (_isCallQuery) {
-                  _or_1 = true;
-                } else {
-                  boolean _isCallQueryFunction = Utils.isCallQueryFunction(m);
-                  _or_1 = _isCallQueryFunction;
-                }
-                if (_or_1) {
-                  boolean _isCallQueryFunction_1 = Utils.isCallQueryFunction(m);
-                  CharSequence _compileCallQueryIfx = this.compileCallQueryIfx(d, m, im, _isCallQueryFunction_1, true);
-                  _builder.append(_compileCallQueryIfx, "\t");
-                } else {
-                  boolean _isCallSelectFunction = Utils.isCallSelectFunction(m);
-                  if (_isCallSelectFunction) {
-                    CharSequence _compileCallSelectFunctionIfx = this.compileCallSelectFunctionIfx(d, m, im, true);
-                    _builder.append(_compileCallSelectFunctionIfx, "\t");
-                  }
-                }
-              }
-            }
-          }
-        }
+      boolean _isCRUD = this._processorGeneratorUtils.isCRUD(d);
+      if (_isCRUD) {
+        CharSequence _compileInsertIfx = this.compileInsertIfx(d, e, im, true);
+        _builder.append(_compileInsertIfx, "\t");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        CharSequence _compileGetIfx = this.compileGetIfx(d, e, im, true);
+        _builder.append(_compileGetIfx, "\t");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        CharSequence _compileUpdateIfx = this.compileUpdateIfx(d, e, im, true);
+        _builder.append(_compileUpdateIfx, "\t");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        CharSequence _compileDeleteIfx = this.compileDeleteIfx(d, e, im, true);
+        _builder.append(_compileDeleteIfx, "\t");
+      }
+    }
+    {
+      boolean _isQuery = this._processorGeneratorUtils.isQuery(d);
+      if (_isQuery) {
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        CharSequence _compileListIfx = this.compileListIfx(d, e, im, true);
+        _builder.append(_compileListIfx, "\t");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        CharSequence _compileCountIfx = this.compileCountIfx(d, e, im, true);
+        _builder.append(_compileCountIfx, "\t");
       }
     }
     _builder.newLineIfNotEmpty();

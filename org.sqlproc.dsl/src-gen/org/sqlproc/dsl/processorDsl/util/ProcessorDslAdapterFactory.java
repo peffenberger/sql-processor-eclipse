@@ -640,14 +640,14 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createDaoDirectiveDiscriminatorAdapter();
       }
       @Override
-      public Adapter caseDaoDirectivePojo(DaoDirectivePojo object)
+      public Adapter caseDaoDirectiveCrud(DaoDirectiveCrud object)
       {
-        return createDaoDirectivePojoAdapter();
+        return createDaoDirectiveCrudAdapter();
       }
       @Override
-      public Adapter caseDaoDirectiveGenerics(DaoDirectiveGenerics object)
+      public Adapter caseDaoDirectiveQuery(DaoDirectiveQuery object)
       {
-        return createDaoDirectiveGenericsAdapter();
+        return createDaoDirectiveQueryAdapter();
       }
       @Override
       public Adapter caseDaoDirectiveProcedure(DaoDirectiveProcedure object)
@@ -2382,31 +2382,31 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectivePojo <em>Dao Directive Pojo</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveCrud <em>Dao Directive Crud</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectivePojo
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveCrud
    * @generated
    */
-  public Adapter createDaoDirectivePojoAdapter()
+  public Adapter createDaoDirectiveCrudAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveGenerics <em>Dao Directive Generics</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveQuery <em>Dao Directive Query</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveGenerics
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveQuery
    * @generated
    */
-  public Adapter createDaoDirectiveGenericsAdapter()
+  public Adapter createDaoDirectiveQueryAdapter()
   {
     return null;
   }
