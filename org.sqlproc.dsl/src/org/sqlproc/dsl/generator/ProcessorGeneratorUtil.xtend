@@ -38,6 +38,7 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage
 import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters
 import org.sqlproc.dsl.processorDsl.FunProcDirective
+import org.eclipse.xtext.common.types.JvmPrimitiveType
 
 class ProcessorGeneratorUtils {
 
@@ -50,15 +51,15 @@ class ProcessorGeneratorUtils {
     IQualifiedNameConverter qualifiedNameConverter
 
 	def compileType(EnumProperty f, ImportManager im) '''
-	«IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getType != null»«im.serialize(f.getType)»«ENDIF»'''
+	«IF f.getType != null»«im.serialize(f.getType)»«ENDIF»'''
 
 	def compileType(PojoProperty f, ImportManager im) '''
-	«IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getRef != null»«f.getRef.fullyQualifiedName»«ELSEIF f.
+	«IF f.getRef != null»«f.getRef.fullyQualifiedName»«ELSEIF f.
 		getType != null»«im.serialize(f.getType)»«ENDIF»«IF f.getGtype != null»<«im.serialize(f.getGtype)»>«ENDIF»«IF f.
 		getGref != null»<«f.getGref.fullyQualifiedName»>«ENDIF»«IF f.array»[]«ENDIF»'''
 
 	def compileType(PojoType f, ImportManager im) '''
-	«IF f.getNative != null»«f.getNative.substring(1)»«ELSEIF f.getRef != null»«im.serialize(pojoMethod2jvmType(f.getRef))»«ELSEIF f.
+	«IF f.getRef != null»«im.serialize(pojoMethod2jvmType(f.getRef))»«ELSEIF f.
 		getType != null»«im.serialize(f.getType)»«ENDIF»«IF f.getGtype != null»<«im.serialize(f.getGtype)»>«ENDIF»«IF f.
 		getGref != null»<«im.serialize(pojoMethod2jvmType(f.getGref))»>«ENDIF»«IF f.array»[]«ENDIF»'''
 
@@ -97,11 +98,6 @@ class ProcessorGeneratorUtils {
 		return d?.createColumn2
 	}
 
-//	def isDiscriminator(PojoProperty f) {
-//		val d = f.directives?.findFirst[x|x instanceof PojoPropertyDirectiveDiscriminator]
-//		return if(d != null) true else false
-//	}
-
 	def isPrimaryKey(PojoProperty f) {
 		val d = f.directives?.findFirst[x|x instanceof PojoPropertyDirectivePrimaryKey]
 		return if(d != null) true else false
@@ -119,6 +115,10 @@ class ProcessorGeneratorUtils {
 	def isList(PojoProperty f) {
 		val name = f?.type?.simpleName
 		return "List" == name
+	}
+
+	def isNative(PojoProperty f) {
+		return if (f.type != null && f.type instanceof JvmPrimitiveType) true else false
 	}
 
 	// PojoEntity

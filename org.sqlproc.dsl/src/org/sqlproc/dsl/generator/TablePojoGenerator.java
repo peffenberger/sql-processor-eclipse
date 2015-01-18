@@ -1190,10 +1190,10 @@ public class TablePojoGenerator {
                         if (attribute.isDependencyClassNameIsEnum())
                             toStr.add(name);
                     } else if (attribute.isPrimitive()) {
-                        buffer.append('_').append(attribute.getClassName());
+                        buffer.append(':').append(attribute.getClassName());
                         toStr.add(name);
                     } else {
-                        buffer.append(": ").append(attribute.getClassName());
+                        buffer.append(":").append(attribute.getClassName());
                         if (!attribute.getClassName().startsWith(COLLECTION_LIST))
                             toStr.add(name);
                     }
@@ -1324,10 +1324,10 @@ public class TablePojoGenerator {
                         buffer.append(":: ").append(attribute.getDependencyClassName());
                         toStr.add(name);
                     } else if (attribute.isPrimitive()) {
-                        buffer.append('_').append(attribute.getClassName());
+                        buffer.append(':').append(attribute.getClassName());
                         toStr.add(name);
                     } else {
-                        buffer.append(": ").append(attribute.getClassName());
+                        buffer.append(":").append(attribute.getClassName());
                         if (!attribute.getClassName().startsWith(COLLECTION_LIST))
                             toStr.add(name);
                     }
@@ -1396,10 +1396,10 @@ public class TablePojoGenerator {
                         buffer.append(":: ").append(attribute.getDependencyClassName());
                         toStr.add(name);
                     } else if (attribute.isPrimitive()) {
-                        buffer.append('_').append(attribute.getClassName());
+                        buffer.append(':').append(attribute.getClassName());
                         toStr.add(name);
                     } else {
-                        buffer.append(": ").append(attribute.getClassName());
+                        buffer.append(":").append(attribute.getClassName());
                         if (!attribute.getClassName().startsWith(COLLECTION_LIST))
                             toStr.add(name);
                     }
@@ -1509,15 +1509,23 @@ public class TablePojoGenerator {
     protected PojoAttribute convertDbColumnDefinition(String dbName, PojoAttrType sqlType) {
         PojoAttribute attribute = new PojoAttribute(dbName);
         attribute.setName(columnToCamelCase(dbName));
-        if (sqlType.getNativeType() != null) {
-            attribute.setPrimitive(true);
-            attribute.setClassName(sqlType.getNativeType().substring(1) + (sqlType.isArray() ? " []" : ""));
-        } else if (sqlType.getRef() != null) {
+        if (sqlType.getRef() != null) {
             attribute.setPrimitive(false);
             attribute.setDependencyClassName(sqlType.getRef().getName());
             if (attribute.getDependencyClassName() == null) {
                 attribute.setDependencyClassName(sqlType.getText());
             }
+        } else if (sqlType.isNativeType()) {
+            // System.out.println("getIdentifier " + sqlType.getType().getIdentifier());
+            // System.out.println("getQualifiedName " + sqlType.getType().getQualifiedName());
+            // System.out.println("getSimpleName " + sqlType.getType().getSimpleName());
+            // System.out.println("JvmPrimitiveType " + (sqlType.getType() instanceof JvmPrimitiveType));
+            // if (sqlType.getType() instanceof JvmPrimitiveType) {
+            // System.out.println("getArrayType " + ((JvmPrimitiveType) sqlType.getType()).getArrayType());
+            // }
+            // JvmPrimitiveTypeImplCustom
+            attribute.setPrimitive(true);
+            attribute.setClassName(sqlType.getType().getIdentifier() + (sqlType.isArray() ? " []" : ""));
         } else {
             attribute.setPrimitive(false);
             attribute.setClassName(sqlType.getType().getIdentifier());
@@ -1554,9 +1562,9 @@ public class TablePojoGenerator {
         if (sqlType.getRef() != null) {
             attribute.setPrimitive(false);
             attribute.setDependencyClassName(sqlType.getRef().getName());
-        } else if (sqlType.getNativeType() != null) {
+        } else if (sqlType.isNativeType()) {
             attribute.setPrimitive(true);
-            attribute.setClassName(sqlType.getNativeType().substring(1) + (sqlType.isArray() ? " []" : ""));
+            attribute.setClassName(sqlType.getType().getIdentifier() + (sqlType.isArray() ? " []" : ""));
         } else {
             attribute.setPrimitive(false);
             attribute.setClassName(sqlType.getType().getIdentifier());

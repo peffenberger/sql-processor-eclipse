@@ -262,7 +262,7 @@ class ProcessorPojoGenerator {
 			final int prime = 31;
 			int result = 1;
 			«FOR f2:f.attrs»
-			result = prime * result + «IF f2.native != null»(int) («f2.name» ^ («f2.name» >>> 32))«ELSE»((«f2.name» != null) ? «f2.name».hashCode() : 0)«ENDIF»;
+			result = prime * result + «IF f2.isNative»(int) («f2.name» ^ («f2.name» >>> 32))«ELSE»((«f2.name» != null) ? «f2.name».hashCode() : 0)«ENDIF»;
 			«ENDFOR»
 			return result;
 		}	
@@ -283,7 +283,7 @@ class ProcessorPojoGenerator {
 				return false;
 			«e.name» other = («e.name») obj;
 			«FOR f2:f.attrs»
-			«IF f2.native != null»if («f2.name» != other.«f2.name»)«ELSE»if («f2.name» == null || !«f2.name».equals(other.«f2.name»))«ENDIF»
+			«IF f2.isNative»if («f2.name» != other.«f2.name»)«ELSE»if («f2.name» == null || !«f2.name».equals(other.«f2.name»))«ENDIF»
 			return false;
 			«ENDFOR»
 			return true;
@@ -740,11 +740,11 @@ class ProcessorPojoGenerator {
 	}
 	
 	def isAttribute(PojoProperty f) {
-		return f.getNative != null || f.getRef != null || f.getType != null
+		return f.getRef != null || f.getType != null
 	}
 	
 	def simplAttrs(PojoProperty f) {
-		return f.attrs.filter(f2|f2.getNative != null || f2.getType != null).toList
+		return f.attrs.filter(f2| f2.getType != null).toList
 	}
 	
 	def compileImplements(EnumEntity e) '''

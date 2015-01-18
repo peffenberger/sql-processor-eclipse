@@ -36,7 +36,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getNative <em>Native</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getAttrs <em>Attrs</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getRef <em>Ref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getType <em>Type</em>}</li>
@@ -79,26 +78,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getNative() <em>Native</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNative()
-   * @generated
-   * @ordered
-   */
-  protected static final String NATIVE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getNative() <em>Native</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNative()
-   * @generated
-   * @ordered
-   */
-  protected String native_ = NATIVE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getAttrs() <em>Attrs</em>}' reference list.
@@ -226,29 +205,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_PROPERTY__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getNative()
-  {
-    return native_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setNative(String newNative)
-  {
-    String oldNative = native_;
-    native_ = newNative;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_PROPERTY__NATIVE, oldNative, native_));
   }
 
   /**
@@ -490,8 +446,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
         return getDirectives();
       case ProcessorDslPackage.POJO_PROPERTY__NAME:
         return getName();
-      case ProcessorDslPackage.POJO_PROPERTY__NATIVE:
-        return getNative();
       case ProcessorDslPackage.POJO_PROPERTY__ATTRS:
         return getAttrs();
       case ProcessorDslPackage.POJO_PROPERTY__REF:
@@ -529,9 +483,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
         return;
       case ProcessorDslPackage.POJO_PROPERTY__NAME:
         setName((String)newValue);
-        return;
-      case ProcessorDslPackage.POJO_PROPERTY__NATIVE:
-        setNative((String)newValue);
         return;
       case ProcessorDslPackage.POJO_PROPERTY__ATTRS:
         getAttrs().clear();
@@ -572,9 +523,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
       case ProcessorDslPackage.POJO_PROPERTY__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ProcessorDslPackage.POJO_PROPERTY__NATIVE:
-        setNative(NATIVE_EDEFAULT);
-        return;
       case ProcessorDslPackage.POJO_PROPERTY__ATTRS:
         getAttrs().clear();
         return;
@@ -611,8 +559,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
         return directives != null && !directives.isEmpty();
       case ProcessorDslPackage.POJO_PROPERTY__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ProcessorDslPackage.POJO_PROPERTY__NATIVE:
-        return NATIVE_EDEFAULT == null ? native_ != null : !NATIVE_EDEFAULT.equals(native_);
       case ProcessorDslPackage.POJO_PROPERTY__ATTRS:
         return attrs != null && !attrs.isEmpty();
       case ProcessorDslPackage.POJO_PROPERTY__REF:
@@ -642,8 +588,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", native: ");
-    result.append(native_);
     result.append(", array: ");
     result.append(array);
     result.append(')');

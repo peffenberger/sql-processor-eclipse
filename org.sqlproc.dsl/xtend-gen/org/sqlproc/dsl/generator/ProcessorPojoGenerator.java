@@ -1399,9 +1399,8 @@ public class ProcessorPojoGenerator {
         _builder.append("\t\t");
         _builder.append("result = prime * result + ");
         {
-          String _native = f2.getNative();
-          boolean _notEquals = (!Objects.equal(_native, null));
-          if (_notEquals) {
+          boolean _isNative = this._processorGeneratorUtils.isNative(f2);
+          if (_isNative) {
             _builder.append("(int) (");
             String _name = f2.getName();
             _builder.append(_name, "\t\t");
@@ -1505,9 +1504,8 @@ public class ProcessorPojoGenerator {
       for(final PojoProperty f2 : _attrs) {
         _builder.append("\t\t");
         {
-          String _native = f2.getNative();
-          boolean _notEquals = (!Objects.equal(_native, null));
-          if (_notEquals) {
+          boolean _isNative = this._processorGeneratorUtils.isNative(f2);
+          if (_isNative) {
             _builder.append("if (");
             String _name_2 = f2.getName();
             _builder.append(_name_2, "\t\t");
@@ -3920,22 +3918,14 @@ public class ProcessorPojoGenerator {
   
   public boolean isAttribute(final PojoProperty f) {
     boolean _or = false;
-    boolean _or_1 = false;
-    String _native = f.getNative();
-    boolean _notEquals = (!Objects.equal(_native, null));
+    Entity _ref = f.getRef();
+    boolean _notEquals = (!Objects.equal(_ref, null));
     if (_notEquals) {
-      _or_1 = true;
-    } else {
-      Entity _ref = f.getRef();
-      boolean _notEquals_1 = (!Objects.equal(_ref, null));
-      _or_1 = _notEquals_1;
-    }
-    if (_or_1) {
       _or = true;
     } else {
       JvmType _type = f.getType();
-      boolean _notEquals_2 = (!Objects.equal(_type, null));
-      _or = _notEquals_2;
+      boolean _notEquals_1 = (!Objects.equal(_type, null));
+      _or = _notEquals_1;
     }
     return _or;
   }
@@ -3944,17 +3934,8 @@ public class ProcessorPojoGenerator {
     EList<PojoProperty> _attrs = f.getAttrs();
     final Function1<PojoProperty, Boolean> _function = new Function1<PojoProperty, Boolean>() {
       public Boolean apply(final PojoProperty f2) {
-        boolean _or = false;
-        String _native = f2.getNative();
-        boolean _notEquals = (!Objects.equal(_native, null));
-        if (_notEquals) {
-          _or = true;
-        } else {
-          JvmType _type = f2.getType();
-          boolean _notEquals_1 = (!Objects.equal(_type, null));
-          _or = _notEquals_1;
-        }
-        return Boolean.valueOf(_or);
+        JvmType _type = f2.getType();
+        return Boolean.valueOf((!Objects.equal(_type, null)));
       }
     };
     Iterable<PojoProperty> _filter = IterableExtensions.<PojoProperty>filter(_attrs, _function);

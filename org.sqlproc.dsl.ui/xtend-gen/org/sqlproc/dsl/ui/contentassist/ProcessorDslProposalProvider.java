@@ -670,22 +670,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     final Procedure1<PojoProperty> _function_1 = new Procedure1<PojoProperty>() {
       public void apply(final PojoProperty it) {
         boolean _or = false;
-        boolean _or_1 = false;
-        String _native = it.getNative();
-        boolean _notEquals = (!Objects.equal(_native, null));
+        Entity _ref = it.getRef();
+        boolean _notEquals = (!Objects.equal(_ref, null));
         if (_notEquals) {
-          _or_1 = true;
-        } else {
-          Entity _ref = it.getRef();
-          boolean _notEquals_1 = (!Objects.equal(_ref, null));
-          _or_1 = _notEquals_1;
-        }
-        if (_or_1) {
           _or = true;
         } else {
           JvmType _type = it.getType();
-          boolean _notEquals_2 = (!Objects.equal(_type, null));
-          _or = _notEquals_2;
+          boolean _notEquals_1 = (!Objects.equal(_type, null));
+          _or = _notEquals_1;
         }
         if (_or) {
           properties.add(it);

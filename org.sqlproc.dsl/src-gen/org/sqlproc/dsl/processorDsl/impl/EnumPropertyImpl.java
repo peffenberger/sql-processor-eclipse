@@ -23,7 +23,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl#getNative <em>Native</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl#getType <em>Type</em>}</li>
  * </ul>
@@ -52,26 +51,6 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getNative() <em>Native</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNative()
-   * @generated
-   * @ordered
-   */
-  protected static final String NATIVE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getNative() <em>Native</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNative()
-   * @generated
-   * @ordered
-   */
-  protected String native_ = NATIVE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -152,29 +131,6 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getNative()
-  {
-    return native_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setNative(String newNative)
-  {
-    String oldNative = native_;
-    native_ = newNative;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ENUM_PROPERTY__NATIVE, oldNative, native_));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public String getValue()
   {
     return value;
@@ -248,8 +204,6 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
     {
       case ProcessorDslPackage.ENUM_PROPERTY__NAME:
         return getName();
-      case ProcessorDslPackage.ENUM_PROPERTY__NATIVE:
-        return getNative();
       case ProcessorDslPackage.ENUM_PROPERTY__VALUE:
         return getValue();
       case ProcessorDslPackage.ENUM_PROPERTY__TYPE:
@@ -271,9 +225,6 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
     {
       case ProcessorDslPackage.ENUM_PROPERTY__NAME:
         setName((String)newValue);
-        return;
-      case ProcessorDslPackage.ENUM_PROPERTY__NATIVE:
-        setNative((String)newValue);
         return;
       case ProcessorDslPackage.ENUM_PROPERTY__VALUE:
         setValue((String)newValue);
@@ -298,9 +249,6 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
       case ProcessorDslPackage.ENUM_PROPERTY__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ProcessorDslPackage.ENUM_PROPERTY__NATIVE:
-        setNative(NATIVE_EDEFAULT);
-        return;
       case ProcessorDslPackage.ENUM_PROPERTY__VALUE:
         setValue(VALUE_EDEFAULT);
         return;
@@ -323,8 +271,6 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
     {
       case ProcessorDslPackage.ENUM_PROPERTY__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ProcessorDslPackage.ENUM_PROPERTY__NATIVE:
-        return NATIVE_EDEFAULT == null ? native_ != null : !NATIVE_EDEFAULT.equals(native_);
       case ProcessorDslPackage.ENUM_PROPERTY__VALUE:
         return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
       case ProcessorDslPackage.ENUM_PROPERTY__TYPE:
@@ -346,8 +292,6 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", native: ");
-    result.append(native_);
     result.append(", value: ");
     result.append(value);
     result.append(')');

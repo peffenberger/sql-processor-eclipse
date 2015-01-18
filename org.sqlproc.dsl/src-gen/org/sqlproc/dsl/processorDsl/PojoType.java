@@ -14,7 +14,6 @@ import org.eclipse.xtext.common.types.JvmType;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.PojoType#getNative <em>Native</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoType#getRef <em>Ref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoType#getType <em>Type</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoType#getGref <em>Gref</em>}</li>
@@ -29,32 +28,6 @@ import org.eclipse.xtext.common.types.JvmType;
  */
 public interface PojoType extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Native</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Native</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Native</em>' attribute.
-   * @see #setNative(String)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoType_Native()
-   * @model
-   * @generated
-   */
-  String getNative();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoType#getNative <em>Native</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Native</em>' attribute.
-   * @see #getNative()
-   * @generated
-   */
-  void setNative(String value);
-
   /**
    * Returns the value of the '<em><b>Ref</b></em>' reference.
    * <!-- begin-user-doc -->

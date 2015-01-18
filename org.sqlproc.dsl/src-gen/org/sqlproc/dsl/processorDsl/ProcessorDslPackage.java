@@ -3287,22 +3287,13 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_TYPE = 61;
 
   /**
-   * The feature id for the '<em><b>Native</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_TYPE__NATIVE = 0;
-
-  /**
    * The feature id for the '<em><b>Ref</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_TYPE__REF = 1;
+  int POJO_TYPE__REF = 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -3311,7 +3302,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_TYPE__TYPE = 2;
+  int POJO_TYPE__TYPE = 1;
 
   /**
    * The feature id for the '<em><b>Gref</b></em>' reference.
@@ -3320,7 +3311,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_TYPE__GREF = 3;
+  int POJO_TYPE__GREF = 2;
 
   /**
    * The feature id for the '<em><b>Gtype</b></em>' reference.
@@ -3329,7 +3320,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_TYPE__GTYPE = 4;
+  int POJO_TYPE__GTYPE = 3;
 
   /**
    * The feature id for the '<em><b>Array</b></em>' attribute.
@@ -3338,7 +3329,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_TYPE__ARRAY = 5;
+  int POJO_TYPE__ARRAY = 4;
 
   /**
    * The number of structural features of the '<em>Pojo Type</em>' class.
@@ -3347,7 +3338,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_TYPE_FEATURE_COUNT = 6;
+  int POJO_TYPE_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.AbstractPojoEntityImpl <em>Abstract Pojo Entity</em>}' class.
@@ -4106,22 +4097,13 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_PROPERTY__NAME = 1;
 
   /**
-   * The feature id for the '<em><b>Native</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_PROPERTY__NATIVE = 2;
-
-  /**
    * The feature id for the '<em><b>Attrs</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__ATTRS = 3;
+  int POJO_PROPERTY__ATTRS = 2;
 
   /**
    * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -4130,7 +4112,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__REF = 4;
+  int POJO_PROPERTY__REF = 3;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -4139,7 +4121,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__TYPE = 5;
+  int POJO_PROPERTY__TYPE = 4;
 
   /**
    * The feature id for the '<em><b>Gref</b></em>' reference.
@@ -4148,7 +4130,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__GREF = 6;
+  int POJO_PROPERTY__GREF = 5;
 
   /**
    * The feature id for the '<em><b>Gtype</b></em>' reference.
@@ -4157,7 +4139,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__GTYPE = 7;
+  int POJO_PROPERTY__GTYPE = 6;
 
   /**
    * The feature id for the '<em><b>Array</b></em>' attribute.
@@ -4166,7 +4148,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__ARRAY = 8;
+  int POJO_PROPERTY__ARRAY = 7;
 
   /**
    * The number of structural features of the '<em>Pojo Property</em>' class.
@@ -4175,7 +4157,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY_FEATURE_COUNT = 9;
+  int POJO_PROPERTY_FEATURE_COUNT = 8;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumEntityModifier1Impl <em>Enum Entity Modifier1</em>}' class.
@@ -4317,22 +4299,13 @@ public interface ProcessorDslPackage extends EPackage
   int ENUM_PROPERTY__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Native</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ENUM_PROPERTY__NATIVE = 1;
-
-  /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENUM_PROPERTY__VALUE = 2;
+  int ENUM_PROPERTY__VALUE = 1;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -4341,7 +4314,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENUM_PROPERTY__TYPE = 3;
+  int ENUM_PROPERTY__TYPE = 2;
 
   /**
    * The number of structural features of the '<em>Enum Property</em>' class.
@@ -4350,7 +4323,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENUM_PROPERTY_FEATURE_COUNT = 4;
+  int ENUM_PROPERTY_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.DaoDirectiveParametersImpl <em>Dao Directive Parameters</em>}' class.
@@ -8436,17 +8409,6 @@ public interface ProcessorDslPackage extends EPackage
   EClass getPojoType();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoType#getNative <em>Native</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Native</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoType#getNative()
-   * @see #getPojoType()
-   * @generated
-   */
-  EAttribute getPojoType_Native();
-
-  /**
    * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoType#getRef <em>Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9177,17 +9139,6 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getPojoProperty_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getNative <em>Native</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Native</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoProperty#getNative()
-   * @see #getPojoProperty()
-   * @generated
-   */
-  EAttribute getPojoProperty_Native();
-
-  /**
    * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getAttrs <em>Attrs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9358,17 +9309,6 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EAttribute getEnumProperty_Name();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.EnumProperty#getNative <em>Native</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Native</em>'.
-   * @see org.sqlproc.dsl.processorDsl.EnumProperty#getNative()
-   * @see #getEnumProperty()
-   * @generated
-   */
-  EAttribute getEnumProperty_Native();
 
   /**
    * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.EnumProperty#getValue <em>Value</em>}'.
@@ -12571,14 +12511,6 @@ public interface ProcessorDslPackage extends EPackage
     EClass POJO_TYPE = eINSTANCE.getPojoType();
 
     /**
-     * The meta object literal for the '<em><b>Native</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_TYPE__NATIVE = eINSTANCE.getPojoType_Native();
-
-    /**
      * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13159,14 +13091,6 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute POJO_PROPERTY__NAME = eINSTANCE.getPojoProperty_Name();
 
     /**
-     * The meta object literal for the '<em><b>Native</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_PROPERTY__NATIVE = eINSTANCE.getPojoProperty_Native();
-
-    /**
      * The meta object literal for the '<em><b>Attrs</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13301,14 +13225,6 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute ENUM_PROPERTY__NAME = eINSTANCE.getEnumProperty_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Native</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ENUM_PROPERTY__NATIVE = eINSTANCE.getEnumProperty_Native();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.

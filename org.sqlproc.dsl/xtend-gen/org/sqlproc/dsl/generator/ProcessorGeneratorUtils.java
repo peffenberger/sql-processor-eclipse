@@ -12,6 +12,7 @@ import java.util.TreeMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.common.types.JvmPrimitiveType;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
@@ -77,12 +78,26 @@ public class ProcessorGeneratorUtils {
   public CharSequence compileType(final EnumProperty f, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      String _native = f.getNative();
-      boolean _notEquals = (!Objects.equal(_native, null));
+      JvmType _type = f.getType();
+      boolean _notEquals = (!Objects.equal(_type, null));
       if (_notEquals) {
-        String _native_1 = f.getNative();
-        String _substring = _native_1.substring(1);
-        _builder.append(_substring, "");
+        JvmType _type_1 = f.getType();
+        CharSequence _serialize = im.serialize(_type_1);
+        _builder.append(_serialize, "");
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compileType(final PojoProperty f, final ImportManager im) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      Entity _ref = f.getRef();
+      boolean _notEquals = (!Objects.equal(_ref, null));
+      if (_notEquals) {
+        Entity _ref_1 = f.getRef();
+        QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_ref_1);
+        _builder.append(_fullyQualifiedName, "");
       } else {
         JvmType _type = f.getType();
         boolean _notEquals_1 = (!Objects.equal(_type, null));
@@ -93,40 +108,10 @@ public class ProcessorGeneratorUtils {
         }
       }
     }
-    return _builder;
-  }
-  
-  public CharSequence compileType(final PojoProperty f, final ImportManager im) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      String _native = f.getNative();
-      boolean _notEquals = (!Objects.equal(_native, null));
-      if (_notEquals) {
-        String _native_1 = f.getNative();
-        String _substring = _native_1.substring(1);
-        _builder.append(_substring, "");
-      } else {
-        Entity _ref = f.getRef();
-        boolean _notEquals_1 = (!Objects.equal(_ref, null));
-        if (_notEquals_1) {
-          Entity _ref_1 = f.getRef();
-          QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_ref_1);
-          _builder.append(_fullyQualifiedName, "");
-        } else {
-          JvmType _type = f.getType();
-          boolean _notEquals_2 = (!Objects.equal(_type, null));
-          if (_notEquals_2) {
-            JvmType _type_1 = f.getType();
-            CharSequence _serialize = im.serialize(_type_1);
-            _builder.append(_serialize, "");
-          }
-        }
-      }
-    }
     {
       JvmType _gtype = f.getGtype();
-      boolean _notEquals_3 = (!Objects.equal(_gtype, null));
-      if (_notEquals_3) {
+      boolean _notEquals_2 = (!Objects.equal(_gtype, null));
+      if (_notEquals_2) {
         _builder.append("<");
         JvmType _gtype_1 = f.getGtype();
         CharSequence _serialize_1 = im.serialize(_gtype_1);
@@ -136,8 +121,8 @@ public class ProcessorGeneratorUtils {
     }
     {
       PojoEntity _gref = f.getGref();
-      boolean _notEquals_4 = (!Objects.equal(_gref, null));
-      if (_notEquals_4) {
+      boolean _notEquals_3 = (!Objects.equal(_gref, null));
+      if (_notEquals_3) {
         _builder.append("<");
         PojoEntity _gref_1 = f.getGref();
         QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(_gref_1);
@@ -157,35 +142,27 @@ public class ProcessorGeneratorUtils {
   public CharSequence compileType(final PojoType f, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      String _native = f.getNative();
-      boolean _notEquals = (!Objects.equal(_native, null));
+      PojoEntity _ref = f.getRef();
+      boolean _notEquals = (!Objects.equal(_ref, null));
       if (_notEquals) {
-        String _native_1 = f.getNative();
-        String _substring = _native_1.substring(1);
-        _builder.append(_substring, "");
+        PojoEntity _ref_1 = f.getRef();
+        JvmType _pojoMethod2jvmType = Utils.pojoMethod2jvmType(_ref_1);
+        CharSequence _serialize = im.serialize(_pojoMethod2jvmType);
+        _builder.append(_serialize, "");
       } else {
-        PojoEntity _ref = f.getRef();
-        boolean _notEquals_1 = (!Objects.equal(_ref, null));
+        JvmType _type = f.getType();
+        boolean _notEquals_1 = (!Objects.equal(_type, null));
         if (_notEquals_1) {
-          PojoEntity _ref_1 = f.getRef();
-          JvmType _pojoMethod2jvmType = Utils.pojoMethod2jvmType(_ref_1);
-          CharSequence _serialize = im.serialize(_pojoMethod2jvmType);
-          _builder.append(_serialize, "");
-        } else {
-          JvmType _type = f.getType();
-          boolean _notEquals_2 = (!Objects.equal(_type, null));
-          if (_notEquals_2) {
-            JvmType _type_1 = f.getType();
-            CharSequence _serialize_1 = im.serialize(_type_1);
-            _builder.append(_serialize_1, "");
-          }
+          JvmType _type_1 = f.getType();
+          CharSequence _serialize_1 = im.serialize(_type_1);
+          _builder.append(_serialize_1, "");
         }
       }
     }
     {
       JvmType _gtype = f.getGtype();
-      boolean _notEquals_3 = (!Objects.equal(_gtype, null));
-      if (_notEquals_3) {
+      boolean _notEquals_2 = (!Objects.equal(_gtype, null));
+      if (_notEquals_2) {
         _builder.append("<");
         JvmType _gtype_1 = f.getGtype();
         CharSequence _serialize_2 = im.serialize(_gtype_1);
@@ -195,8 +172,8 @@ public class ProcessorGeneratorUtils {
     }
     {
       PojoEntity _gref = f.getGref();
-      boolean _notEquals_4 = (!Objects.equal(_gref, null));
-      if (_notEquals_4) {
+      boolean _notEquals_3 = (!Objects.equal(_gref, null));
+      if (_notEquals_3) {
         _builder.append("<");
         PojoEntity _gref_1 = f.getGref();
         JvmType _pojoMethod2jvmType_1 = Utils.pojoMethod2jvmType(_gref_1);
@@ -413,6 +390,25 @@ public class ProcessorGeneratorUtils {
     }
     final String name = _simpleName;
     return Objects.equal("List", name);
+  }
+  
+  public boolean isNative(final PojoProperty f) {
+    boolean _xifexpression = false;
+    boolean _and = false;
+    JvmType _type = f.getType();
+    boolean _notEquals = (!Objects.equal(_type, null));
+    if (!_notEquals) {
+      _and = false;
+    } else {
+      JvmType _type_1 = f.getType();
+      _and = (_type_1 instanceof JvmPrimitiveType);
+    }
+    if (_and) {
+      _xifexpression = true;
+    } else {
+      _xifexpression = false;
+    }
+    return _xifexpression;
   }
   
   public boolean isAbstract(final PojoEntity pojo) {

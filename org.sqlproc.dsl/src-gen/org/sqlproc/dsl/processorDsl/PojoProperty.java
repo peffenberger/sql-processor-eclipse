@@ -18,7 +18,6 @@ import org.eclipse.xtext.common.types.JvmType;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoProperty#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoProperty#getName <em>Name</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.PojoProperty#getNative <em>Native</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoProperty#getAttrs <em>Attrs</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoProperty#getRef <em>Ref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoProperty#getType <em>Type</em>}</li>
@@ -75,32 +74,6 @@ public interface PojoProperty extends EObject
    * @generated
    */
   void setName(String value);
-
-  /**
-   * Returns the value of the '<em><b>Native</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Native</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Native</em>' attribute.
-   * @see #setNative(String)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoProperty_Native()
-   * @model
-   * @generated
-   */
-  String getNative();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getNative <em>Native</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Native</em>' attribute.
-   * @see #getNative()
-   * @generated
-   */
-  void setNative(String value);
 
   /**
    * Returns the value of the '<em><b>Attrs</b></em>' reference list.

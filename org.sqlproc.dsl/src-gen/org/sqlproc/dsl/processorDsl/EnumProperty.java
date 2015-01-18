@@ -15,7 +15,6 @@ import org.eclipse.xtext.common.types.JvmType;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.EnumProperty#getName <em>Name</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.EnumProperty#getNative <em>Native</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.EnumProperty#getValue <em>Value</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.EnumProperty#getType <em>Type</em>}</li>
  * </ul>
@@ -52,32 +51,6 @@ public interface EnumProperty extends EObject
    * @generated
    */
   void setName(String value);
-
-  /**
-   * Returns the value of the '<em><b>Native</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Native</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Native</em>' attribute.
-   * @see #setNative(String)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getEnumProperty_Native()
-   * @model
-   * @generated
-   */
-  String getNative();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.EnumProperty#getNative <em>Native</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Native</em>' attribute.
-   * @see #getNative()
-   * @generated
-   */
-  void setNative(String value);
 
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.

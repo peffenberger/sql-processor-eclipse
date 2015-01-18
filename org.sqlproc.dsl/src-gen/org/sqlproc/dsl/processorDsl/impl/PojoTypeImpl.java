@@ -23,7 +23,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoTypeImpl#getNative <em>Native</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoTypeImpl#getRef <em>Ref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoTypeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoTypeImpl#getGref <em>Gref</em>}</li>
@@ -36,26 +35,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  */
 public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoType
 {
-  /**
-   * The default value of the '{@link #getNative() <em>Native</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNative()
-   * @generated
-   * @ordered
-   */
-  protected static final String NATIVE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getNative() <em>Native</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNative()
-   * @generated
-   * @ordered
-   */
-  protected String native_ = NATIVE_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.
    * <!-- begin-user-doc -->
@@ -135,29 +114,6 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   protected EClass eStaticClass()
   {
     return ProcessorDslPackage.Literals.POJO_TYPE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getNative()
-  {
-    return native_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setNative(String newNative)
-  {
-    String oldNative = native_;
-    native_ = newNative;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_TYPE__NATIVE, oldNative, native_));
   }
 
   /**
@@ -365,8 +321,6 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.POJO_TYPE__NATIVE:
-        return getNative();
       case ProcessorDslPackage.POJO_TYPE__REF:
         if (resolve) return getRef();
         return basicGetRef();
@@ -395,9 +349,6 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.POJO_TYPE__NATIVE:
-        setNative((String)newValue);
-        return;
       case ProcessorDslPackage.POJO_TYPE__REF:
         setRef((PojoEntity)newValue);
         return;
@@ -427,9 +378,6 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.POJO_TYPE__NATIVE:
-        setNative(NATIVE_EDEFAULT);
-        return;
       case ProcessorDslPackage.POJO_TYPE__REF:
         setRef((PojoEntity)null);
         return;
@@ -459,8 +407,6 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.POJO_TYPE__NATIVE:
-        return NATIVE_EDEFAULT == null ? native_ != null : !NATIVE_EDEFAULT.equals(native_);
       case ProcessorDslPackage.POJO_TYPE__REF:
         return ref != null;
       case ProcessorDslPackage.POJO_TYPE__TYPE:
@@ -486,9 +432,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (native: ");
-    result.append(native_);
-    result.append(", array: ");
+    result.append(" (array: ");
     result.append(array);
     result.append(')');
     return result.toString();

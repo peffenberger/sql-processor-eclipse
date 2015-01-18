@@ -3947,19 +3947,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoType_Native()
-  {
-    return (EAttribute)pojoTypeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getPojoType_Ref()
   {
-    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(1);
+    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -3969,7 +3959,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    */
   public EReference getPojoType_Type()
   {
-    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(2);
+    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3979,7 +3969,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    */
   public EReference getPojoType_Gref()
   {
-    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(3);
+    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -3989,7 +3979,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    */
   public EReference getPojoType_Gtype()
   {
-    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(4);
+    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -3999,7 +3989,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    */
   public EAttribute getPojoType_Array()
   {
-    return (EAttribute)pojoTypeEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)pojoTypeEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -4637,19 +4627,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoProperty_Native()
-  {
-    return (EAttribute)pojoPropertyEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getPojoProperty_Attrs()
   {
-    return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(3);
+    return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -4659,7 +4639,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    */
   public EReference getPojoProperty_Ref()
   {
-    return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(4);
+    return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -4669,7 +4649,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    */
   public EReference getPojoProperty_Type()
   {
-    return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(5);
+    return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -4679,7 +4659,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    */
   public EReference getPojoProperty_Gref()
   {
-    return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(6);
+    return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -4689,7 +4669,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    */
   public EReference getPojoProperty_Gtype()
   {
-    return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(7);
+    return (EReference)pojoPropertyEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -4699,7 +4679,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    */
   public EAttribute getPojoProperty_Array()
   {
-    return (EAttribute)pojoPropertyEClass.getEStructuralFeatures().get(8);
+    return (EAttribute)pojoPropertyEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -4807,7 +4787,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getEnumProperty_Native()
+  public EAttribute getEnumProperty_Value()
   {
     return (EAttribute)enumPropertyEClass.getEStructuralFeatures().get(1);
   }
@@ -4817,19 +4797,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getEnumProperty_Value()
-  {
-    return (EAttribute)enumPropertyEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getEnumProperty_Type()
   {
-    return (EReference)enumPropertyEClass.getEStructuralFeatures().get(3);
+    return (EReference)enumPropertyEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -5884,7 +5854,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEAttribute(optionalFeatureEClass, OPTIONAL_FEATURE__OPTION);
 
     pojoTypeEClass = createEClass(POJO_TYPE);
-    createEAttribute(pojoTypeEClass, POJO_TYPE__NATIVE);
     createEReference(pojoTypeEClass, POJO_TYPE__REF);
     createEReference(pojoTypeEClass, POJO_TYPE__TYPE);
     createEReference(pojoTypeEClass, POJO_TYPE__GREF);
@@ -5971,7 +5940,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     pojoPropertyEClass = createEClass(POJO_PROPERTY);
     createEReference(pojoPropertyEClass, POJO_PROPERTY__DIRECTIVES);
     createEAttribute(pojoPropertyEClass, POJO_PROPERTY__NAME);
-    createEAttribute(pojoPropertyEClass, POJO_PROPERTY__NATIVE);
     createEReference(pojoPropertyEClass, POJO_PROPERTY__ATTRS);
     createEReference(pojoPropertyEClass, POJO_PROPERTY__REF);
     createEReference(pojoPropertyEClass, POJO_PROPERTY__TYPE);
@@ -5992,7 +5960,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
 
     enumPropertyEClass = createEClass(ENUM_PROPERTY);
     createEAttribute(enumPropertyEClass, ENUM_PROPERTY__NAME);
-    createEAttribute(enumPropertyEClass, ENUM_PROPERTY__NATIVE);
     createEAttribute(enumPropertyEClass, ENUM_PROPERTY__VALUE);
     createEReference(enumPropertyEClass, ENUM_PROPERTY__TYPE);
 
@@ -6521,7 +6488,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEAttribute(getOptionalFeature_Option(), ecorePackage.getEString(), "option", null, 0, 1, OptionalFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoTypeEClass, PojoType.class, "PojoType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPojoType_Native(), ecorePackage.getEString(), "native", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoType_Ref(), this.getPojoEntity(), null, "ref", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoType_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoType_Gref(), this.getPojoEntity(), null, "gref", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -6608,7 +6574,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEClass(pojoPropertyEClass, PojoProperty.class, "PojoProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPojoProperty_Directives(), this.getPojoPropertyDirective(), null, "directives", null, 0, -1, PojoProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojoProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, PojoProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoProperty_Native(), ecorePackage.getEString(), "native", null, 0, 1, PojoProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoProperty_Attrs(), this.getPojoProperty(), null, "attrs", null, 0, -1, PojoProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoProperty_Ref(), this.getEntity(), null, "ref", null, 0, 1, PojoProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoProperty_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, PojoProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -6629,7 +6594,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
 
     initEClass(enumPropertyEClass, EnumProperty.class, "EnumProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEnumProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, EnumProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEnumProperty_Native(), ecorePackage.getEString(), "native", null, 0, 1, EnumProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEnumProperty_Value(), ecorePackage.getEString(), "value", null, 0, 1, EnumProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEnumProperty_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, EnumProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

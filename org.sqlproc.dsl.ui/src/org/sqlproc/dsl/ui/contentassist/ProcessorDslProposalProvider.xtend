@@ -345,7 +345,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 			return properties
 
 		pojoEntity.features.map[feature].forEach [
-			if (native != null || ref != null || type != null)
+			if (ref != null || type != null)
 				properties.add(it)
 		]
 
