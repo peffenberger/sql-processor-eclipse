@@ -31,6 +31,7 @@ import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.DescendantAssignment;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
+import org.sqlproc.dsl.processorDsl.EnumPropertyValue;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
 import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
@@ -487,7 +488,7 @@ public class Utils {
         return null;
     }
 
-    public static String getValue(EnumProperty p) {
+    public static String getValue(EnumPropertyValue p) {
         if (p.getValue() == null)
             return null;
         return p.getValue().replaceAll("'", "\"");

@@ -460,9 +460,14 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//EnumEntity/modifiers2"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//EnumEntity/features"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//EnumPropertyValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//EnumPropertyValue/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//EnumPropertyValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//EnumPropertyDirective"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//EnumProperty">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//EnumProperty/directives"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//EnumProperty/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//EnumProperty/value"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//EnumProperty/type"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//DaoDirectiveParameters">
@@ -532,6 +537,9 @@
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectiveCreateCol">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoPropertyDirectiveCreateCol/createColumn1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoPropertyDirectiveCreateCol/createColumn2"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//EnumPropertyDirectiveValues">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//EnumPropertyDirectiveValues/values"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//FunctionCallQuery"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//ProcedureCallQuery"/>

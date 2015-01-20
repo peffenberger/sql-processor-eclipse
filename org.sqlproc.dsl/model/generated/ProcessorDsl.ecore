@@ -601,9 +601,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
         eType="#//EnumProperty" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EnumProperty">
+  <eClassifiers xsi:type="ecore:EClass" name="EnumPropertyValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumPropertyDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumProperty">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="directives" upperBound="-1"
+        eType="#//EnumPropertyDirective" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveParameters">
@@ -688,6 +694,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveCreateCol" eSuperTypes="#//PojoPropertyDirective">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="createColumn1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="createColumn2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumPropertyDirectiveValues" eSuperTypes="#//EnumPropertyDirective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//EnumPropertyValue" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionCallQuery" eSuperTypes="#//FunProcType"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProcedureCallQuery" eSuperTypes="#//FunProcType"/>

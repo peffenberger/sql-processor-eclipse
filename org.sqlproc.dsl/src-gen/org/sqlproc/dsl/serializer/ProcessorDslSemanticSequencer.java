@@ -44,6 +44,8 @@ import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.EnumEntityModifier1;
 import org.sqlproc.dsl.processorDsl.EnumEntityModifier2;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
+import org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues;
+import org.sqlproc.dsl.processorDsl.EnumPropertyValue;
 import org.sqlproc.dsl.processorDsl.ExportAssignement;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
 import org.sqlproc.dsl.processorDsl.ExtendedColumnName;
@@ -321,6 +323,18 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case ProcessorDslPackage.ENUM_PROPERTY:
 				if(context == grammarAccess.getEnumPropertyRule()) {
 					sequence_EnumProperty(context, (EnumProperty) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.ENUM_PROPERTY_DIRECTIVE_VALUES:
+				if(context == grammarAccess.getEnumPropertyDirectiveRule()) {
+					sequence_EnumPropertyDirective(context, (EnumPropertyDirectiveValues) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.ENUM_PROPERTY_VALUE:
+				if(context == grammarAccess.getEnumPropertyValueRule()) {
+					sequence_EnumPropertyValue(context, (EnumPropertyValue) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1239,7 +1253,25 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (name=IDENT (value=NUMBER | value=STRING_VALUE | type=[JvmType|QualifiedName]))
+	 *     (values+=EnumPropertyValue values+=EnumPropertyValue*)
+	 */
+	protected void sequence_EnumPropertyDirective(EObject context, EnumPropertyDirectiveValues semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=IDENT (value=NUMBER | value=STRING_VALUE))
+	 */
+	protected void sequence_EnumPropertyValue(EObject context, EnumPropertyValue semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (directives+=EnumPropertyDirective name=IDENT type=[JvmType|QualifiedName])
 	 */
 	protected void sequence_EnumProperty(EObject context, EnumProperty semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

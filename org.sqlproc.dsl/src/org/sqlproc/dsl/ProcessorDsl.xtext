@@ -410,8 +410,8 @@ PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {PojoDirectiveEnumInit} '#EnumInit' LPAREN proplist=DirectiveProperties RPAREN
 	| {PojoDirectiveIsDef} '#IsDef' LPAREN proplist=DirectiveProperties RPAREN
 	| {PojoDirectiveEnumDef} '#EnumDef' LPAREN proplist=DirectiveProperties RPAREN
-	
 ;
+
 //PojoEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('discriminator' discriminator=(IDENT|NUMBER)) | (operators='operators' (operatorsSuffix=IDENT)?)| ('serializable' sernum=NUMBER));
 PojoEntityModifier2: ('extends' superType=[PojoEntity|IDENT]);
 
@@ -459,8 +459,14 @@ EnumEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 		features+=EnumProperty*
 	RBRACE;
 
+EnumPropertyValue: name=IDENT EQUALS value=(NUMBER|STRING_VALUE);
+
+EnumPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
+	{EnumPropertyDirectiveValues} '#Values' LPAREN values+=EnumPropertyValue (COMMA values+=EnumPropertyValue)* RPAREN
+	;
+
 EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
-	name=IDENT (COLON (COLON COLON value=(NUMBER|STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName]))
+	directives+=EnumPropertyDirective name=IDENT COLON type=[jvmTypes::JvmType|QualifiedName]
 ;
 
 DaoDirectiveParameters hidden(ML_COMMENT, SL_COMMENT, WS):

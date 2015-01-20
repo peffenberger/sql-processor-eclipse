@@ -1018,22 +1018,41 @@ public class TablePojoGenerator {
                 if (pojoExtends.containsKey(pojo))
                     buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
                 buffer.append(" {");
+                buffer.append(NLINDENT).append(INDENT).append("#Values(");
+                boolean first = true;
                 for (EnumAttribute attribute : pentry.getValue()) {
                     // System.out.println("  RRR " + attribute.getName());
+                    if (attribute.getIntValue() == null && attribute.getStrValue() == null)
+                        continue;
                     String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(attribute.getName())
                             : null;
                     if (name == null)
                         name = attribute.getName();
                     if (attribute.getIntValue() == null && attribute.getStrValue() == null)
                         name = columnToCamelCase(name);
-                    buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
-
-                    if (attribute.getIntValue() == null && attribute.getStrValue() == null) {
-                        buffer.append(":").append(attribute.getClassName());
-                    } else if (attribute.getIntValue() != null) {
-                        buffer.append("::: ").append(attribute.getIntValue());
+                    if (!first)
+                        buffer.append(",");
+                    else
+                        first = false;
+                    buffer.append(name).append(" = ");
+                    if (attribute.getIntValue() != null) {
+                        buffer.append(attribute.getIntValue());
                     } else if (attribute.getStrValue() != null) {
-                        buffer.append("::: \"").append(attribute.getStrValue()).append("\"");
+                        buffer.append("\"").append(attribute.getStrValue()).append("\"");
+                    }
+                }
+                buffer.append(")");
+                for (EnumAttribute attribute : pentry.getValue()) {
+                    // System.out.println("  RRR " + attribute.getName());
+                    if (attribute.getIntValue() == null && attribute.getStrValue() == null) {
+                        String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(attribute.getName())
+                                : null;
+                        if (name == null)
+                            name = attribute.getName();
+                        if (attribute.getIntValue() == null && attribute.getStrValue() == null)
+                            name = columnToCamelCase(name);
+                        buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
+                        buffer.append(":").append(attribute.getClassName());
                     }
                 }
                 if (pojoExtends.containsKey(pojo)) {

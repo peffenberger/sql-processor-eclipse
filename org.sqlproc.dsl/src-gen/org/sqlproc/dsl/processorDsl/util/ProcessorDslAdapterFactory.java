@@ -490,6 +490,16 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createEnumEntityAdapter();
       }
       @Override
+      public Adapter caseEnumPropertyValue(EnumPropertyValue object)
+      {
+        return createEnumPropertyValueAdapter();
+      }
+      @Override
+      public Adapter caseEnumPropertyDirective(EnumPropertyDirective object)
+      {
+        return createEnumPropertyDirectiveAdapter();
+      }
+      @Override
       public Adapter caseEnumProperty(EnumProperty object)
       {
         return createEnumPropertyAdapter();
@@ -613,6 +623,11 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
       public Adapter casePojoPropertyDirectiveCreateCol(PojoPropertyDirectiveCreateCol object)
       {
         return createPojoPropertyDirectiveCreateColAdapter();
+      }
+      @Override
+      public Adapter caseEnumPropertyDirectiveValues(EnumPropertyDirectiveValues object)
+      {
+        return createEnumPropertyDirectiveValuesAdapter();
       }
       @Override
       public Adapter caseFunctionCallQuery(FunctionCallQuery object)
@@ -1932,6 +1947,36 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.EnumPropertyValue <em>Enum Property Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.EnumPropertyValue
+   * @generated
+   */
+  public Adapter createEnumPropertyValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.EnumPropertyDirective <em>Enum Property Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.EnumPropertyDirective
+   * @generated
+   */
+  public Adapter createEnumPropertyDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.EnumProperty <em>Enum Property</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -2302,6 +2347,21 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPojoPropertyDirectiveCreateColAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues <em>Enum Property Directive Values</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues
+   * @generated
+   */
+  public Adapter createEnumPropertyDirectiveValuesAdapter()
   {
     return null;
   }

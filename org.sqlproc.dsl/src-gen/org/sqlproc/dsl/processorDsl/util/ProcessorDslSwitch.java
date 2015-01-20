@@ -661,6 +661,20 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorDslPackage.ENUM_PROPERTY_VALUE:
+      {
+        EnumPropertyValue enumPropertyValue = (EnumPropertyValue)theEObject;
+        T result = caseEnumPropertyValue(enumPropertyValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ENUM_PROPERTY_DIRECTIVE:
+      {
+        EnumPropertyDirective enumPropertyDirective = (EnumPropertyDirective)theEObject;
+        T result = caseEnumPropertyDirective(enumPropertyDirective);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorDslPackage.ENUM_PROPERTY:
       {
         EnumProperty enumProperty = (EnumProperty)theEObject;
@@ -852,6 +866,14 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         PojoPropertyDirectiveCreateCol pojoPropertyDirectiveCreateCol = (PojoPropertyDirectiveCreateCol)theEObject;
         T result = casePojoPropertyDirectiveCreateCol(pojoPropertyDirectiveCreateCol);
         if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveCreateCol);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ENUM_PROPERTY_DIRECTIVE_VALUES:
+      {
+        EnumPropertyDirectiveValues enumPropertyDirectiveValues = (EnumPropertyDirectiveValues)theEObject;
+        T result = caseEnumPropertyDirectiveValues(enumPropertyDirectiveValues);
+        if (result == null) result = caseEnumPropertyDirective(enumPropertyDirectiveValues);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2268,6 +2290,38 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Property Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Property Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumPropertyValue(EnumPropertyValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Property Directive</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Property Directive</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumPropertyDirective(EnumPropertyDirective object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Enum Property</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2663,6 +2717,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePojoPropertyDirectiveCreateCol(PojoPropertyDirectiveCreateCol object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Property Directive Values</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Property Directive Values</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumPropertyDirectiveValues(EnumPropertyDirectiveValues object)
   {
     return null;
   }

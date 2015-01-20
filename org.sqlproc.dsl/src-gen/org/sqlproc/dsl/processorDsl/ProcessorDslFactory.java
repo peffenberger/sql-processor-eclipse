@@ -770,6 +770,24 @@ public interface ProcessorDslFactory extends EFactory
   EnumEntity createEnumEntity();
 
   /**
+   * Returns a new object of class '<em>Enum Property Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Property Value</em>'.
+   * @generated
+   */
+  EnumPropertyValue createEnumPropertyValue();
+
+  /**
+   * Returns a new object of class '<em>Enum Property Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Property Directive</em>'.
+   * @generated
+   */
+  EnumPropertyDirective createEnumPropertyDirective();
+
+  /**
    * Returns a new object of class '<em>Enum Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -993,6 +1011,15 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   PojoPropertyDirectiveCreateCol createPojoPropertyDirectiveCreateCol();
+
+  /**
+   * Returns a new object of class '<em>Enum Property Directive Values</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Property Directive Values</em>'.
+   * @generated
+   */
+  EnumPropertyDirectiveValues createEnumPropertyDirectiveValues();
 
   /**
    * Returns a new object of class '<em>Function Call Query</em>'.

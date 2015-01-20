@@ -15284,6 +15284,174 @@ finally {
 
 
 
+// Entry rule entryRuleEnumPropertyValue
+entryRuleEnumPropertyValue returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getEnumPropertyValueRule()); }
+	 iv_ruleEnumPropertyValue=ruleEnumPropertyValue 
+	 { $current=$iv_ruleEnumPropertyValue.current; } 
+	 EOF 
+;
+
+// Rule EnumPropertyValue
+ruleEnumPropertyValue returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		lv_name_0_0=RULE_IDENT
+		{
+			newLeafNode(lv_name_0_0, grammarAccess.getEnumPropertyValueAccess().getNameIDENTTerminalRuleCall_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEnumPropertyValueRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_0_0, 
+        		"IDENT");
+	    }
+
+)
+)this_EQUALS_1=RULE_EQUALS
+    { 
+    newLeafNode(this_EQUALS_1, grammarAccess.getEnumPropertyValueAccess().getEQUALSTerminalRuleCall_1()); 
+    }
+(
+(
+(
+		lv_value_2_1=RULE_NUMBER
+		{
+			newLeafNode(lv_value_2_1, grammarAccess.getEnumPropertyValueAccess().getValueNUMBERTerminalRuleCall_2_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEnumPropertyValueRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_2_1, 
+        		"NUMBER");
+	    }
+
+    |		lv_value_2_2=RULE_STRING_VALUE
+		{
+			newLeafNode(lv_value_2_2, grammarAccess.getEnumPropertyValueAccess().getValueSTRING_VALUETerminalRuleCall_2_0_1()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEnumPropertyValueRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_2_2, 
+        		"STRING_VALUE");
+	    }
+
+)
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleEnumPropertyDirective
+entryRuleEnumPropertyDirective returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
+	}
+	:
+	{ newCompositeNode(grammarAccess.getEnumPropertyDirectiveRule()); }
+	 iv_ruleEnumPropertyDirective=ruleEnumPropertyDirective 
+	 { $current=$iv_ruleEnumPropertyDirective.current; } 
+	 EOF 
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+// Rule EnumPropertyDirective
+ruleEnumPropertyDirective returns [EObject current=null] 
+    @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getEnumPropertyDirectiveAccess().getEnumPropertyDirectiveValuesAction_0(),
+            $current);
+    }
+)	otherlv_1='#Values' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getEnumPropertyDirectiveAccess().getValuesKeyword_1());
+    }
+this_LPAREN_2=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_2, grammarAccess.getEnumPropertyDirectiveAccess().getLPARENTerminalRuleCall_2()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getEnumPropertyDirectiveAccess().getValuesEnumPropertyValueParserRuleCall_3_0()); 
+	    }
+		lv_values_3_0=ruleEnumPropertyValue		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getEnumPropertyDirectiveRule());
+	        }
+       		add(
+       			$current, 
+       			"values",
+        		lv_values_3_0, 
+        		"EnumPropertyValue");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(this_COMMA_4=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_4, grammarAccess.getEnumPropertyDirectiveAccess().getCOMMATerminalRuleCall_4_0()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getEnumPropertyDirectiveAccess().getValuesEnumPropertyValueParserRuleCall_4_1_0()); 
+	    }
+		lv_values_5_0=ruleEnumPropertyValue		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getEnumPropertyDirectiveRule());
+	        }
+       		add(
+       			$current, 
+       			"values",
+        		lv_values_5_0, 
+        		"EnumPropertyValue");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*this_RPAREN_6=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_6, grammarAccess.getEnumPropertyDirectiveAccess().getRPARENTerminalRuleCall_5()); 
+    }
+)
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+
+
+
+
 // Entry rule entryRuleEnumProperty
 entryRuleEnumProperty returns [EObject current=null] 
 	@init { 
@@ -15307,9 +15475,27 @@ ruleEnumProperty returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_name_0_0=RULE_IDENT
+		{ 
+	        newCompositeNode(grammarAccess.getEnumPropertyAccess().getDirectivesEnumPropertyDirectiveParserRuleCall_0_0()); 
+	    }
+		lv_directives_0_0=ruleEnumPropertyDirective		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getEnumPropertyRule());
+	        }
+       		add(
+       			$current, 
+       			"directives",
+        		lv_directives_0_0, 
+        		"EnumPropertyDirective");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		lv_name_1_0=RULE_IDENT
 		{
-			newLeafNode(lv_name_0_0, grammarAccess.getEnumPropertyAccess().getNameIDENTTerminalRuleCall_0_0()); 
+			newLeafNode(lv_name_1_0, grammarAccess.getEnumPropertyAccess().getNameIDENTTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -15318,61 +15504,16 @@ ruleEnumProperty returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"name",
-        		lv_name_0_0, 
+        		lv_name_1_0, 
         		"IDENT");
 	    }
 
 )
-)(this_COLON_1=RULE_COLON
+)this_COLON_2=RULE_COLON
     { 
-    newLeafNode(this_COLON_1, grammarAccess.getEnumPropertyAccess().getCOLONTerminalRuleCall_1_0()); 
-    }
-((this_COLON_2=RULE_COLON
-    { 
-    newLeafNode(this_COLON_2, grammarAccess.getEnumPropertyAccess().getCOLONTerminalRuleCall_1_1_0_0()); 
-    }
-this_COLON_3=RULE_COLON
-    { 
-    newLeafNode(this_COLON_3, grammarAccess.getEnumPropertyAccess().getCOLONTerminalRuleCall_1_1_0_1()); 
+    newLeafNode(this_COLON_2, grammarAccess.getEnumPropertyAccess().getCOLONTerminalRuleCall_2()); 
     }
 (
-(
-(
-		lv_value_4_1=RULE_NUMBER
-		{
-			newLeafNode(lv_value_4_1, grammarAccess.getEnumPropertyAccess().getValueNUMBERTerminalRuleCall_1_1_0_2_0_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getEnumPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"value",
-        		lv_value_4_1, 
-        		"NUMBER");
-	    }
-
-    |		lv_value_4_2=RULE_STRING_VALUE
-		{
-			newLeafNode(lv_value_4_2, grammarAccess.getEnumPropertyAccess().getValueSTRING_VALUETerminalRuleCall_1_1_0_2_0_1()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getEnumPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"value",
-        		lv_value_4_2, 
-        		"STRING_VALUE");
-	    }
-
-)
-
-)
-))
-    |(
 (
 		{
 			if ($current==null) {
@@ -15380,14 +15521,14 @@ this_COLON_3=RULE_COLON
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getEnumPropertyAccess().getTypeJvmTypeCrossReference_1_1_1_0()); 
+	        newCompositeNode(grammarAccess.getEnumPropertyAccess().getTypeJvmTypeCrossReference_3_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))))
+))
 ;
 finally {
 	myHiddenTokenState.restore();

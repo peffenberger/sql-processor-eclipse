@@ -147,6 +147,8 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.ENUM_ENTITY_MODIFIER1: return createEnumEntityModifier1();
       case ProcessorDslPackage.ENUM_ENTITY_MODIFIER2: return createEnumEntityModifier2();
       case ProcessorDslPackage.ENUM_ENTITY: return createEnumEntity();
+      case ProcessorDslPackage.ENUM_PROPERTY_VALUE: return createEnumPropertyValue();
+      case ProcessorDslPackage.ENUM_PROPERTY_DIRECTIVE: return createEnumPropertyDirective();
       case ProcessorDslPackage.ENUM_PROPERTY: return createEnumProperty();
       case ProcessorDslPackage.DAO_DIRECTIVE_PARAMETERS: return createDaoDirectiveParameters();
       case ProcessorDslPackage.DESCENDANT_ASSIGNMENT: return createDescendantAssignment();
@@ -172,6 +174,7 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_VERSION: return createPojoPropertyDirectiveVersion();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_UPDATE_COL: return createPojoPropertyDirectiveUpdateCol();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_CREATE_COL: return createPojoPropertyDirectiveCreateCol();
+      case ProcessorDslPackage.ENUM_PROPERTY_DIRECTIVE_VALUES: return createEnumPropertyDirectiveValues();
       case ProcessorDslPackage.FUNCTION_CALL_QUERY: return createFunctionCallQuery();
       case ProcessorDslPackage.PROCEDURE_CALL_QUERY: return createProcedureCallQuery();
       case ProcessorDslPackage.FUNCTION_CALL: return createFunctionCall();
@@ -1105,6 +1108,28 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EnumPropertyValue createEnumPropertyValue()
+  {
+    EnumPropertyValueImpl enumPropertyValue = new EnumPropertyValueImpl();
+    return enumPropertyValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EnumPropertyDirective createEnumPropertyDirective()
+  {
+    EnumPropertyDirectiveImpl enumPropertyDirective = new EnumPropertyDirectiveImpl();
+    return enumPropertyDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EnumProperty createEnumProperty()
   {
     EnumPropertyImpl enumProperty = new EnumPropertyImpl();
@@ -1373,6 +1398,17 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     PojoPropertyDirectiveCreateColImpl pojoPropertyDirectiveCreateCol = new PojoPropertyDirectiveCreateColImpl();
     return pojoPropertyDirectiveCreateCol;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EnumPropertyDirectiveValues createEnumPropertyDirectiveValues()
+  {
+    EnumPropertyDirectiveValuesImpl enumPropertyDirectiveValues = new EnumPropertyDirectiveValuesImpl();
+    return enumPropertyDirectiveValues;
   }
 
   /**

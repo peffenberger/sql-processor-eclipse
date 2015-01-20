@@ -4280,14 +4280,14 @@ public interface ProcessorDslPackage extends EPackage
   int ENUM_ENTITY_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl <em>Enum Property</em>}' class.
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyValueImpl <em>Enum Property Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl
-   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumProperty()
+   * @see org.sqlproc.dsl.processorDsl.impl.EnumPropertyValueImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumPropertyValue()
    * @generated
    */
-  int ENUM_PROPERTY = 83;
+  int ENUM_PROPERTY_VALUE = 83;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4296,7 +4296,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENUM_PROPERTY__NAME = 0;
+  int ENUM_PROPERTY_VALUE__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4305,7 +4305,63 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENUM_PROPERTY__VALUE = 1;
+  int ENUM_PROPERTY_VALUE__VALUE = 1;
+
+  /**
+   * The number of structural features of the '<em>Enum Property Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_PROPERTY_VALUE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyDirectiveImpl <em>Enum Property Directive</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.EnumPropertyDirectiveImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumPropertyDirective()
+   * @generated
+   */
+  int ENUM_PROPERTY_DIRECTIVE = 84;
+
+  /**
+   * The number of structural features of the '<em>Enum Property Directive</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_PROPERTY_DIRECTIVE_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl <em>Enum Property</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumProperty()
+   * @generated
+   */
+  int ENUM_PROPERTY = 85;
+
+  /**
+   * The feature id for the '<em><b>Directives</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_PROPERTY__DIRECTIVES = 0;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_PROPERTY__NAME = 1;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -4333,7 +4389,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveParameters()
    * @generated
    */
-  int DAO_DIRECTIVE_PARAMETERS = 84;
+  int DAO_DIRECTIVE_PARAMETERS = 86;
 
   /**
    * The feature id for the '<em><b>Out</b></em>' containment reference.
@@ -4370,7 +4426,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDescendantAssignment()
    * @generated
    */
-  int DESCENDANT_ASSIGNMENT = 85;
+  int DESCENDANT_ASSIGNMENT = 87;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4407,7 +4463,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunProcType()
    * @generated
    */
-  int FUN_PROC_TYPE = 86;
+  int FUN_PROC_TYPE = 88;
 
   /**
    * The number of structural features of the '<em>Fun Proc Type</em>' class.
@@ -4426,7 +4482,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirective()
    * @generated
    */
-  int DAO_DIRECTIVE = 87;
+  int DAO_DIRECTIVE = 89;
 
   /**
    * The number of structural features of the '<em>Dao Directive</em>' class.
@@ -4445,7 +4501,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDaoModifier()
    * @generated
    */
-  int POJO_DAO_MODIFIER = 88;
+  int POJO_DAO_MODIFIER = 90;
 
   /**
    * The feature id for the '<em><b>Super Type</b></em>' reference.
@@ -4473,7 +4529,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDao()
    * @generated
    */
-  int POJO_DAO = 89;
+  int POJO_DAO = 91;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -4528,7 +4584,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveToString()
    * @generated
    */
-  int POJO_DIRECTIVE_TO_STRING = 90;
+  int POJO_DIRECTIVE_TO_STRING = 92;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4556,7 +4612,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveIndex()
    * @generated
    */
-  int POJO_DIRECTIVE_INDEX = 91;
+  int POJO_DIRECTIVE_INDEX = 93;
 
   /**
    * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -4593,7 +4649,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveOperators()
    * @generated
    */
-  int POJO_DIRECTIVE_OPERATORS = 92;
+  int POJO_DIRECTIVE_OPERATORS = 94;
 
   /**
    * The feature id for the '<em><b>Operators Suffix</b></em>' attribute.
@@ -4621,7 +4677,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveSerializable()
    * @generated
    */
-  int POJO_DIRECTIVE_SERIALIZABLE = 93;
+  int POJO_DIRECTIVE_SERIALIZABLE = 95;
 
   /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
@@ -4649,7 +4705,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveDiscriminator()
    * @generated
    */
-  int POJO_DIRECTIVE_DISCRIMINATOR = 94;
+  int POJO_DIRECTIVE_DISCRIMINATOR = 96;
 
   /**
    * The feature id for the '<em><b>Discriminator</b></em>' attribute.
@@ -4677,7 +4733,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEquals()
    * @generated
    */
-  int POJO_DIRECTIVE_EQUALS = 95;
+  int POJO_DIRECTIVE_EQUALS = 97;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4705,7 +4761,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveHashCode()
    * @generated
    */
-  int POJO_DIRECTIVE_HASH_CODE = 96;
+  int POJO_DIRECTIVE_HASH_CODE = 98;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4733,7 +4789,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveToInit()
    * @generated
    */
-  int POJO_DIRECTIVE_TO_INIT = 97;
+  int POJO_DIRECTIVE_TO_INIT = 99;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4761,7 +4817,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEnumInit()
    * @generated
    */
-  int POJO_DIRECTIVE_ENUM_INIT = 98;
+  int POJO_DIRECTIVE_ENUM_INIT = 100;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4789,7 +4845,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveIsDef()
    * @generated
    */
-  int POJO_DIRECTIVE_IS_DEF = 99;
+  int POJO_DIRECTIVE_IS_DEF = 101;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4817,7 +4873,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEnumDef()
    * @generated
    */
-  int POJO_DIRECTIVE_ENUM_DEF = 100;
+  int POJO_DIRECTIVE_ENUM_DEF = 102;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4845,7 +4901,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveRequired()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_REQUIRED = 101;
+  int POJO_PROPERTY_DIRECTIVE_REQUIRED = 103;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Required</em>' class.
@@ -4864,7 +4920,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectivePrimaryKey()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = 102;
+  int POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = 104;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Primary Key</em>' class.
@@ -4883,7 +4939,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveDiscriminator()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = 103;
+  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = 105;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Discriminator</em>' class.
@@ -4902,7 +4958,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveIndex()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_INDEX = 104;
+  int POJO_PROPERTY_DIRECTIVE_INDEX = 106;
 
   /**
    * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -4930,7 +4986,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveVersion()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_VERSION = 105;
+  int POJO_PROPERTY_DIRECTIVE_VERSION = 107;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Version</em>' class.
@@ -4949,7 +5005,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveUpdateCol()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL = 106;
+  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL = 108;
 
   /**
    * The feature id for the '<em><b>Update Column1</b></em>' attribute.
@@ -4986,7 +5042,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveCreateCol()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_CREATE_COL = 107;
+  int POJO_PROPERTY_DIRECTIVE_CREATE_COL = 109;
 
   /**
    * The feature id for the '<em><b>Create Column1</b></em>' attribute.
@@ -5016,6 +5072,34 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_PROPERTY_DIRECTIVE_CREATE_COL_FEATURE_COUNT = POJO_PROPERTY_DIRECTIVE_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyDirectiveValuesImpl <em>Enum Property Directive Values</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.EnumPropertyDirectiveValuesImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumPropertyDirectiveValues()
+   * @generated
+   */
+  int ENUM_PROPERTY_DIRECTIVE_VALUES = 110;
+
+  /**
+   * The feature id for the '<em><b>Values</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_PROPERTY_DIRECTIVE_VALUES__VALUES = ENUM_PROPERTY_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Enum Property Directive Values</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_PROPERTY_DIRECTIVE_VALUES_FEATURE_COUNT = ENUM_PROPERTY_DIRECTIVE_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.FunctionCallQueryImpl <em>Function Call Query</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5023,7 +5107,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionCallQuery()
    * @generated
    */
-  int FUNCTION_CALL_QUERY = 108;
+  int FUNCTION_CALL_QUERY = 111;
 
   /**
    * The number of structural features of the '<em>Function Call Query</em>' class.
@@ -5042,7 +5126,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getProcedureCallQuery()
    * @generated
    */
-  int PROCEDURE_CALL_QUERY = 109;
+  int PROCEDURE_CALL_QUERY = 112;
 
   /**
    * The number of structural features of the '<em>Procedure Call Query</em>' class.
@@ -5061,7 +5145,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionCall()
    * @generated
    */
-  int FUNCTION_CALL = 110;
+  int FUNCTION_CALL = 113;
 
   /**
    * The number of structural features of the '<em>Function Call</em>' class.
@@ -5080,7 +5164,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getProcedureUpdate()
    * @generated
    */
-  int PROCEDURE_UPDATE = 111;
+  int PROCEDURE_UPDATE = 114;
 
   /**
    * The number of structural features of the '<em>Procedure Update</em>' class.
@@ -5099,7 +5183,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionQuery()
    * @generated
    */
-  int FUNCTION_QUERY = 112;
+  int FUNCTION_QUERY = 115;
 
   /**
    * The number of structural features of the '<em>Function Query</em>' class.
@@ -5118,7 +5202,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveSerializable()
    * @generated
    */
-  int DAO_DIRECTIVE_SERIALIZABLE = 113;
+  int DAO_DIRECTIVE_SERIALIZABLE = 116;
 
   /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
@@ -5146,7 +5230,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveDiscriminator()
    * @generated
    */
-  int DAO_DIRECTIVE_DISCRIMINATOR = 114;
+  int DAO_DIRECTIVE_DISCRIMINATOR = 117;
 
   /**
    * The feature id for the '<em><b>Ancestor</b></em>' reference.
@@ -5183,7 +5267,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveCrud()
    * @generated
    */
-  int DAO_DIRECTIVE_CRUD = 115;
+  int DAO_DIRECTIVE_CRUD = 118;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' containment reference.
@@ -5211,7 +5295,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveQuery()
    * @generated
    */
-  int DAO_DIRECTIVE_QUERY = 116;
+  int DAO_DIRECTIVE_QUERY = 119;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' containment reference.
@@ -5239,7 +5323,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunProcDirective()
    * @generated
    */
-  int FUN_PROC_DIRECTIVE = 117;
+  int FUN_PROC_DIRECTIVE = 120;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -9290,6 +9374,48 @@ public interface ProcessorDslPackage extends EPackage
   EReference getEnumEntity_Features();
 
   /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.EnumPropertyValue <em>Enum Property Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Enum Property Value</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumPropertyValue
+   * @generated
+   */
+  EClass getEnumPropertyValue();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.EnumPropertyValue#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumPropertyValue#getName()
+   * @see #getEnumPropertyValue()
+   * @generated
+   */
+  EAttribute getEnumPropertyValue_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.EnumPropertyValue#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumPropertyValue#getValue()
+   * @see #getEnumPropertyValue()
+   * @generated
+   */
+  EAttribute getEnumPropertyValue_Value();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.EnumPropertyDirective <em>Enum Property Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Enum Property Directive</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumPropertyDirective
+   * @generated
+   */
+  EClass getEnumPropertyDirective();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.EnumProperty <em>Enum Property</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9298,6 +9424,17 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EClass getEnumProperty();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.EnumProperty#getDirectives <em>Directives</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Directives</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumProperty#getDirectives()
+   * @see #getEnumProperty()
+   * @generated
+   */
+  EReference getEnumProperty_Directives();
 
   /**
    * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.EnumProperty#getName <em>Name</em>}'.
@@ -9309,17 +9446,6 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EAttribute getEnumProperty_Name();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.EnumProperty#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see org.sqlproc.dsl.processorDsl.EnumProperty#getValue()
-   * @see #getEnumProperty()
-   * @generated
-   */
-  EAttribute getEnumProperty_Value();
 
   /**
    * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.EnumProperty#getType <em>Type</em>}'.
@@ -9857,6 +9983,27 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EAttribute getPojoPropertyDirectiveCreateCol_CreateColumn2();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues <em>Enum Property Directive Values</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Enum Property Directive Values</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues
+   * @generated
+   */
+  EClass getEnumPropertyDirectiveValues();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues#getValues <em>Values</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Values</em>'.
+   * @see org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues#getValues()
+   * @see #getEnumPropertyDirectiveValues()
+   * @generated
+   */
+  EReference getEnumPropertyDirectiveValues_Values();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.FunctionCallQuery <em>Function Call Query</em>}'.
@@ -13209,6 +13356,42 @@ public interface ProcessorDslPackage extends EPackage
     EReference ENUM_ENTITY__FEATURES = eINSTANCE.getEnumEntity_Features();
 
     /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyValueImpl <em>Enum Property Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.EnumPropertyValueImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumPropertyValue()
+     * @generated
+     */
+    EClass ENUM_PROPERTY_VALUE = eINSTANCE.getEnumPropertyValue();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENUM_PROPERTY_VALUE__NAME = eINSTANCE.getEnumPropertyValue_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENUM_PROPERTY_VALUE__VALUE = eINSTANCE.getEnumPropertyValue_Value();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyDirectiveImpl <em>Enum Property Directive</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.EnumPropertyDirectiveImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumPropertyDirective()
+     * @generated
+     */
+    EClass ENUM_PROPERTY_DIRECTIVE = eINSTANCE.getEnumPropertyDirective();
+
+    /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyImpl <em>Enum Property</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13219,20 +13402,20 @@ public interface ProcessorDslPackage extends EPackage
     EClass ENUM_PROPERTY = eINSTANCE.getEnumProperty();
 
     /**
+     * The meta object literal for the '<em><b>Directives</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENUM_PROPERTY__DIRECTIVES = eINSTANCE.getEnumProperty_Directives();
+
+    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute ENUM_PROPERTY__NAME = eINSTANCE.getEnumProperty_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ENUM_PROPERTY__VALUE = eINSTANCE.getEnumProperty_Value();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' reference feature.
@@ -13689,6 +13872,24 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN2 = eINSTANCE.getPojoPropertyDirectiveCreateCol_CreateColumn2();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumPropertyDirectiveValuesImpl <em>Enum Property Directive Values</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.EnumPropertyDirectiveValuesImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumPropertyDirectiveValues()
+     * @generated
+     */
+    EClass ENUM_PROPERTY_DIRECTIVE_VALUES = eINSTANCE.getEnumPropertyDirectiveValues();
+
+    /**
+     * The meta object literal for the '<em><b>Values</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENUM_PROPERTY_DIRECTIVE_VALUES__VALUES = eINSTANCE.getEnumPropertyDirectiveValues_Values();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.FunctionCallQueryImpl <em>Function Call Query</em>}' class.

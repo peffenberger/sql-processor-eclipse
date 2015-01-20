@@ -20,6 +20,7 @@ import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity
 import org.sqlproc.dsl.processorDsl.Annotation
 import org.sqlproc.dsl.processorDsl.AnnotationProperty
+import org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues
 
 //import static extension org.sqlproc.dsl.generator.ProcessorGeneratorUtils.*
 
@@ -65,7 +66,9 @@ class ProcessorPojoGenerator {
 	def compile(EnumEntity e, ImportManager im, EnumProperty ea) '''
 	public enum «e.name» «compileImplements(e)»{
 	
-		«FOR f:e.features.filter(x| x.value!=null) SEPARATOR ", "»«f.name»(«f.value»)«ENDFOR»;
+		«FOR fe:e.features SEPARATOR ", "»
+		«FOR f:fe.directives.filter(x| x instanceof EnumPropertyDirectiveValues) SEPARATOR ", "»«FOR v:(f as EnumPropertyDirectiveValues).values SEPARATOR ", "»«v.name»(«v.value»)«ENDFOR»«ENDFOR»;
+		«ENDFOR»
 		«IF getSernum(e) != null»
 			
 		private static final long serialVersionUID = «getSernum(e)»L;

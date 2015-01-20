@@ -27,6 +27,9 @@ import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.Entity;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
+import org.sqlproc.dsl.processorDsl.EnumPropertyDirective;
+import org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues;
+import org.sqlproc.dsl.processorDsl.EnumPropertyValue;
 import org.sqlproc.dsl.processorDsl.Extends;
 import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
@@ -150,33 +153,54 @@ public class ProcessorPojoGenerator {
     _builder.append("{");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
-    _builder.append("\t");
     {
       EList<EnumProperty> _features = e.getFeatures();
-      final Function1<EnumProperty, Boolean> _function = new Function1<EnumProperty, Boolean>() {
-        public Boolean apply(final EnumProperty x) {
-          String _value = x.getValue();
-          return Boolean.valueOf((!Objects.equal(_value, null)));
-        }
-      };
-      Iterable<EnumProperty> _filter = IterableExtensions.<EnumProperty>filter(_features, _function);
       boolean _hasElements = false;
-      for(final EnumProperty f : _filter) {
+      for(final EnumProperty fe : _features) {
         if (!_hasElements) {
           _hasElements = true;
         } else {
           _builder.appendImmediate(", ", "\t");
         }
-        String _name_1 = f.getName();
-        _builder.append(_name_1, "\t");
-        _builder.append("(");
-        String _value = f.getValue();
-        _builder.append(_value, "\t");
-        _builder.append(")");
+        _builder.append("\t");
+        {
+          EList<EnumPropertyDirective> _directives = fe.getDirectives();
+          final Function1<EnumPropertyDirective, Boolean> _function = new Function1<EnumPropertyDirective, Boolean>() {
+            public Boolean apply(final EnumPropertyDirective x) {
+              return Boolean.valueOf((x instanceof EnumPropertyDirectiveValues));
+            }
+          };
+          Iterable<EnumPropertyDirective> _filter = IterableExtensions.<EnumPropertyDirective>filter(_directives, _function);
+          boolean _hasElements_1 = false;
+          for(final EnumPropertyDirective f : _filter) {
+            if (!_hasElements_1) {
+              _hasElements_1 = true;
+            } else {
+              _builder.appendImmediate(", ", "\t");
+            }
+            {
+              EList<EnumPropertyValue> _values = ((EnumPropertyDirectiveValues) f).getValues();
+              boolean _hasElements_2 = false;
+              for(final EnumPropertyValue v : _values) {
+                if (!_hasElements_2) {
+                  _hasElements_2 = true;
+                } else {
+                  _builder.appendImmediate(", ", "\t");
+                }
+                String _name_1 = v.getName();
+                _builder.append(_name_1, "\t");
+                _builder.append("(");
+                String _value = v.getValue();
+                _builder.append(_value, "\t");
+                _builder.append(")");
+              }
+            }
+          }
+        }
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
     {
       String _sernum = this._processorGeneratorUtils.getSernum(e);
       boolean _notEquals = (!Objects.equal(_sernum, null));

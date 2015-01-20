@@ -9663,30 +9663,22 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getRBRACETerminalRuleCall_7() { return cRBRACETerminalRuleCall_7; }
 	}
 
-	public class EnumPropertyElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumProperty");
+	public class EnumPropertyValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumPropertyValue");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cCOLONTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
-		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
-		private final Group cGroup_1_1_0 = (Group)cAlternatives_1_1.eContents().get(0);
-		private final RuleCall cCOLONTerminalRuleCall_1_1_0_0 = (RuleCall)cGroup_1_1_0.eContents().get(0);
-		private final RuleCall cCOLONTerminalRuleCall_1_1_0_1 = (RuleCall)cGroup_1_1_0.eContents().get(1);
-		private final Assignment cValueAssignment_1_1_0_2 = (Assignment)cGroup_1_1_0.eContents().get(2);
-		private final Alternatives cValueAlternatives_1_1_0_2_0 = (Alternatives)cValueAssignment_1_1_0_2.eContents().get(0);
-		private final RuleCall cValueNUMBERTerminalRuleCall_1_1_0_2_0_0 = (RuleCall)cValueAlternatives_1_1_0_2_0.eContents().get(0);
-		private final RuleCall cValueSTRING_VALUETerminalRuleCall_1_1_0_2_0_1 = (RuleCall)cValueAlternatives_1_1_0_2_0.eContents().get(1);
-		private final Assignment cTypeAssignment_1_1_1 = (Assignment)cAlternatives_1_1.eContents().get(1);
-		private final CrossReference cTypeJvmTypeCrossReference_1_1_1_0 = (CrossReference)cTypeAssignment_1_1_1.eContents().get(0);
-		private final RuleCall cTypeJvmTypeQualifiedNameParserRuleCall_1_1_1_0_1 = (RuleCall)cTypeJvmTypeCrossReference_1_1_1_0.eContents().get(1);
+		private final RuleCall cEQUALSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cValueAlternatives_2_0 = (Alternatives)cValueAssignment_2.eContents().get(0);
+		private final RuleCall cValueNUMBERTerminalRuleCall_2_0_0 = (RuleCall)cValueAlternatives_2_0.eContents().get(0);
+		private final RuleCall cValueSTRING_VALUETerminalRuleCall_2_0_1 = (RuleCall)cValueAlternatives_2_0.eContents().get(1);
 		
-		//EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
-		//	name=IDENT (COLON (COLON COLON value=(NUMBER | STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName]));
+		//EnumPropertyValue:
+		//	name=IDENT EQUALS value=(NUMBER | STRING_VALUE);
 		public ParserRule getRule() { return rule; }
 
-		//name=IDENT (COLON (COLON COLON value=(NUMBER | STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName]))
+		//name=IDENT EQUALS value=(NUMBER | STRING_VALUE)
 		public Group getGroup() { return cGroup; }
 
 		//name=IDENT
@@ -9695,44 +9687,116 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
 
-		//COLON (COLON COLON value=(NUMBER | STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName])
-		public Group getGroup_1() { return cGroup_1; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_1_0() { return cCOLONTerminalRuleCall_1_0; }
-
-		//COLON COLON value=(NUMBER | STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName]
-		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
-
-		//COLON COLON value=(NUMBER | STRING_VALUE)
-		public Group getGroup_1_1_0() { return cGroup_1_1_0; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_1_1_0_0() { return cCOLONTerminalRuleCall_1_1_0_0; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_1_1_0_1() { return cCOLONTerminalRuleCall_1_1_0_1; }
+		//EQUALS
+		public RuleCall getEQUALSTerminalRuleCall_1() { return cEQUALSTerminalRuleCall_1; }
 
 		//value=(NUMBER | STRING_VALUE)
-		public Assignment getValueAssignment_1_1_0_2() { return cValueAssignment_1_1_0_2; }
+		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
 
 		//NUMBER | STRING_VALUE
-		public Alternatives getValueAlternatives_1_1_0_2_0() { return cValueAlternatives_1_1_0_2_0; }
+		public Alternatives getValueAlternatives_2_0() { return cValueAlternatives_2_0; }
 
 		//NUMBER
-		public RuleCall getValueNUMBERTerminalRuleCall_1_1_0_2_0_0() { return cValueNUMBERTerminalRuleCall_1_1_0_2_0_0; }
+		public RuleCall getValueNUMBERTerminalRuleCall_2_0_0() { return cValueNUMBERTerminalRuleCall_2_0_0; }
 
 		//STRING_VALUE
-		public RuleCall getValueSTRING_VALUETerminalRuleCall_1_1_0_2_0_1() { return cValueSTRING_VALUETerminalRuleCall_1_1_0_2_0_1; }
+		public RuleCall getValueSTRING_VALUETerminalRuleCall_2_0_1() { return cValueSTRING_VALUETerminalRuleCall_2_0_1; }
+	}
+
+	public class EnumPropertyDirectiveElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumPropertyDirective");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cEnumPropertyDirectiveValuesAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cValuesKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cLPARENTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Assignment cValuesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cValuesEnumPropertyValueParserRuleCall_3_0 = (RuleCall)cValuesAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final RuleCall cCOMMATerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final Assignment cValuesAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cValuesEnumPropertyValueParserRuleCall_4_1_0 = (RuleCall)cValuesAssignment_4_1.eContents().get(0);
+		private final RuleCall cRPARENTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		
+		//EnumPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
+		//	{EnumPropertyDirectiveValues} "#Values" LPAREN values+=EnumPropertyValue (COMMA values+=EnumPropertyValue)* RPAREN;
+		public ParserRule getRule() { return rule; }
+
+		//{EnumPropertyDirectiveValues} "#Values" LPAREN values+=EnumPropertyValue (COMMA values+=EnumPropertyValue)* RPAREN
+		public Group getGroup() { return cGroup; }
+
+		//{EnumPropertyDirectiveValues}
+		public Action getEnumPropertyDirectiveValuesAction_0() { return cEnumPropertyDirectiveValuesAction_0; }
+
+		//"#Values"
+		public Keyword getValuesKeyword_1() { return cValuesKeyword_1; }
+
+		//LPAREN
+		public RuleCall getLPARENTerminalRuleCall_2() { return cLPARENTerminalRuleCall_2; }
+
+		//values+=EnumPropertyValue
+		public Assignment getValuesAssignment_3() { return cValuesAssignment_3; }
+
+		//EnumPropertyValue
+		public RuleCall getValuesEnumPropertyValueParserRuleCall_3_0() { return cValuesEnumPropertyValueParserRuleCall_3_0; }
+
+		//(COMMA values+=EnumPropertyValue)*
+		public Group getGroup_4() { return cGroup_4; }
+
+		//COMMA
+		public RuleCall getCOMMATerminalRuleCall_4_0() { return cCOMMATerminalRuleCall_4_0; }
+
+		//values+=EnumPropertyValue
+		public Assignment getValuesAssignment_4_1() { return cValuesAssignment_4_1; }
+
+		//EnumPropertyValue
+		public RuleCall getValuesEnumPropertyValueParserRuleCall_4_1_0() { return cValuesEnumPropertyValueParserRuleCall_4_1_0; }
+
+		//RPAREN
+		public RuleCall getRPARENTerminalRuleCall_5() { return cRPARENTerminalRuleCall_5; }
+	}
+
+	public class EnumPropertyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumProperty");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDirectivesAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cDirectivesEnumPropertyDirectiveParserRuleCall_0_0 = (RuleCall)cDirectivesAssignment_0.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDENTTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final RuleCall cCOLONTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cTypeJvmTypeCrossReference_3_0 = (CrossReference)cTypeAssignment_3.eContents().get(0);
+		private final RuleCall cTypeJvmTypeQualifiedNameParserRuleCall_3_0_1 = (RuleCall)cTypeJvmTypeCrossReference_3_0.eContents().get(1);
+		
+		//EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
+		//	directives+=EnumPropertyDirective name=IDENT COLON type=[jvmTypes::JvmType|QualifiedName];
+		public ParserRule getRule() { return rule; }
+
+		//directives+=EnumPropertyDirective name=IDENT COLON type=[jvmTypes::JvmType|QualifiedName]
+		public Group getGroup() { return cGroup; }
+
+		//directives+=EnumPropertyDirective
+		public Assignment getDirectivesAssignment_0() { return cDirectivesAssignment_0; }
+
+		//EnumPropertyDirective
+		public RuleCall getDirectivesEnumPropertyDirectiveParserRuleCall_0_0() { return cDirectivesEnumPropertyDirectiveParserRuleCall_0_0; }
+
+		//name=IDENT
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//IDENT
+		public RuleCall getNameIDENTTerminalRuleCall_1_0() { return cNameIDENTTerminalRuleCall_1_0; }
+
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_2() { return cCOLONTerminalRuleCall_2; }
 
 		//type=[jvmTypes::JvmType|QualifiedName]
-		public Assignment getTypeAssignment_1_1_1() { return cTypeAssignment_1_1_1; }
+		public Assignment getTypeAssignment_3() { return cTypeAssignment_3; }
 
 		//[jvmTypes::JvmType|QualifiedName]
-		public CrossReference getTypeJvmTypeCrossReference_1_1_1_0() { return cTypeJvmTypeCrossReference_1_1_1_0; }
+		public CrossReference getTypeJvmTypeCrossReference_3_0() { return cTypeJvmTypeCrossReference_3_0; }
 
 		//QualifiedName
-		public RuleCall getTypeJvmTypeQualifiedNameParserRuleCall_1_1_1_0_1() { return cTypeJvmTypeQualifiedNameParserRuleCall_1_1_1_0_1; }
+		public RuleCall getTypeJvmTypeQualifiedNameParserRuleCall_3_0_1() { return cTypeJvmTypeQualifiedNameParserRuleCall_3_0_1; }
 	}
 
 	public class DaoDirectiveParametersElements extends AbstractParserRuleElementFinder {
@@ -10361,6 +10425,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	private final EnumEntityModifier1Elements pEnumEntityModifier1;
 	private final EnumEntityModifier2Elements pEnumEntityModifier2;
 	private final EnumEntityElements pEnumEntity;
+	private final EnumPropertyValueElements pEnumPropertyValue;
+	private final EnumPropertyDirectiveElements pEnumPropertyDirective;
 	private final EnumPropertyElements pEnumProperty;
 	private final DaoDirectiveParametersElements pDaoDirectiveParameters;
 	private final DescendantAssignmentElements pDescendantAssignment;
@@ -10506,6 +10572,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pEnumEntityModifier1 = new EnumEntityModifier1Elements();
 		this.pEnumEntityModifier2 = new EnumEntityModifier2Elements();
 		this.pEnumEntity = new EnumEntityElements();
+		this.pEnumPropertyValue = new EnumPropertyValueElements();
+		this.pEnumPropertyDirective = new EnumPropertyDirectiveElements();
 		this.pEnumProperty = new EnumPropertyElements();
 		this.pDaoDirectiveParameters = new DaoDirectiveParametersElements();
 		this.pDescendantAssignment = new DescendantAssignmentElements();
@@ -11822,8 +11890,28 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getEnumEntityAccess().getRule();
 	}
 
+	//EnumPropertyValue:
+	//	name=IDENT EQUALS value=(NUMBER | STRING_VALUE);
+	public EnumPropertyValueElements getEnumPropertyValueAccess() {
+		return pEnumPropertyValue;
+	}
+	
+	public ParserRule getEnumPropertyValueRule() {
+		return getEnumPropertyValueAccess().getRule();
+	}
+
+	//EnumPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
+	//	{EnumPropertyDirectiveValues} "#Values" LPAREN values+=EnumPropertyValue (COMMA values+=EnumPropertyValue)* RPAREN;
+	public EnumPropertyDirectiveElements getEnumPropertyDirectiveAccess() {
+		return pEnumPropertyDirective;
+	}
+	
+	public ParserRule getEnumPropertyDirectiveRule() {
+		return getEnumPropertyDirectiveAccess().getRule();
+	}
+
 	//EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
-	//	name=IDENT (COLON (COLON COLON value=(NUMBER | STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName]));
+	//	directives+=EnumPropertyDirective name=IDENT COLON type=[jvmTypes::JvmType|QualifiedName];
 	public EnumPropertyElements getEnumPropertyAccess() {
 		return pEnumProperty;
 	}

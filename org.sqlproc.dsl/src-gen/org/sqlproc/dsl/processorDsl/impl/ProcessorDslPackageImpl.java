@@ -45,6 +45,9 @@ import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.EnumEntityModifier1;
 import org.sqlproc.dsl.processorDsl.EnumEntityModifier2;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
+import org.sqlproc.dsl.processorDsl.EnumPropertyDirective;
+import org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues;
+import org.sqlproc.dsl.processorDsl.EnumPropertyValue;
 import org.sqlproc.dsl.processorDsl.ExportAssignement;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
 import org.sqlproc.dsl.processorDsl.ExtendedColumnName;
@@ -726,6 +729,20 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass enumPropertyValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass enumPropertyDirectiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass enumPropertyEClass = null;
 
   /**
@@ -895,6 +912,13 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * @generated
    */
   private EClass pojoPropertyDirectiveCreateColEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass enumPropertyDirectiveValuesEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -4767,6 +4791,46 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getEnumPropertyValue()
+  {
+    return enumPropertyValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEnumPropertyValue_Name()
+  {
+    return (EAttribute)enumPropertyValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEnumPropertyValue_Value()
+  {
+    return (EAttribute)enumPropertyValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEnumPropertyDirective()
+  {
+    return enumPropertyDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getEnumProperty()
   {
     return enumPropertyEClass;
@@ -4777,9 +4841,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getEnumProperty_Name()
+  public EReference getEnumProperty_Directives()
   {
-    return (EAttribute)enumPropertyEClass.getEStructuralFeatures().get(0);
+    return (EReference)enumPropertyEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -4787,7 +4851,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getEnumProperty_Value()
+  public EAttribute getEnumProperty_Name()
   {
     return (EAttribute)enumPropertyEClass.getEStructuralFeatures().get(1);
   }
@@ -5300,6 +5364,26 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
   public EAttribute getPojoPropertyDirectiveCreateCol_CreateColumn2()
   {
     return (EAttribute)pojoPropertyDirectiveCreateColEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEnumPropertyDirectiveValues()
+  {
+    return enumPropertyDirectiveValuesEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEnumPropertyDirectiveValues_Values()
+  {
+    return (EReference)enumPropertyDirectiveValuesEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -5958,9 +6042,15 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEReference(enumEntityEClass, ENUM_ENTITY__MODIFIERS2);
     createEReference(enumEntityEClass, ENUM_ENTITY__FEATURES);
 
+    enumPropertyValueEClass = createEClass(ENUM_PROPERTY_VALUE);
+    createEAttribute(enumPropertyValueEClass, ENUM_PROPERTY_VALUE__NAME);
+    createEAttribute(enumPropertyValueEClass, ENUM_PROPERTY_VALUE__VALUE);
+
+    enumPropertyDirectiveEClass = createEClass(ENUM_PROPERTY_DIRECTIVE);
+
     enumPropertyEClass = createEClass(ENUM_PROPERTY);
+    createEReference(enumPropertyEClass, ENUM_PROPERTY__DIRECTIVES);
     createEAttribute(enumPropertyEClass, ENUM_PROPERTY__NAME);
-    createEAttribute(enumPropertyEClass, ENUM_PROPERTY__VALUE);
     createEReference(enumPropertyEClass, ENUM_PROPERTY__TYPE);
 
     daoDirectiveParametersEClass = createEClass(DAO_DIRECTIVE_PARAMETERS);
@@ -6036,6 +6126,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     pojoPropertyDirectiveCreateColEClass = createEClass(POJO_PROPERTY_DIRECTIVE_CREATE_COL);
     createEAttribute(pojoPropertyDirectiveCreateColEClass, POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN1);
     createEAttribute(pojoPropertyDirectiveCreateColEClass, POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN2);
+
+    enumPropertyDirectiveValuesEClass = createEClass(ENUM_PROPERTY_DIRECTIVE_VALUES);
+    createEReference(enumPropertyDirectiveValuesEClass, ENUM_PROPERTY_DIRECTIVE_VALUES__VALUES);
 
     functionCallQueryEClass = createEClass(FUNCTION_CALL_QUERY);
 
@@ -6124,6 +6217,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     pojoPropertyDirectiveVersionEClass.getESuperTypes().add(this.getPojoPropertyDirective());
     pojoPropertyDirectiveUpdateColEClass.getESuperTypes().add(this.getPojoPropertyDirective());
     pojoPropertyDirectiveCreateColEClass.getESuperTypes().add(this.getPojoPropertyDirective());
+    enumPropertyDirectiveValuesEClass.getESuperTypes().add(this.getEnumPropertyDirective());
     functionCallQueryEClass.getESuperTypes().add(this.getFunProcType());
     procedureCallQueryEClass.getESuperTypes().add(this.getFunProcType());
     functionCallEClass.getESuperTypes().add(this.getFunProcType());
@@ -6592,9 +6686,15 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEReference(getEnumEntity_Modifiers2(), this.getEnumEntityModifier2(), null, "modifiers2", null, 0, -1, EnumEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEnumEntity_Features(), this.getEnumProperty(), null, "features", null, 0, -1, EnumEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(enumPropertyValueEClass, EnumPropertyValue.class, "EnumPropertyValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEnumPropertyValue_Name(), ecorePackage.getEString(), "name", null, 0, 1, EnumPropertyValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEnumPropertyValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, EnumPropertyValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(enumPropertyDirectiveEClass, EnumPropertyDirective.class, "EnumPropertyDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(enumPropertyEClass, EnumProperty.class, "EnumProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEnumProperty_Directives(), this.getEnumPropertyDirective(), null, "directives", null, 0, -1, EnumProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEnumProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, EnumProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEnumProperty_Value(), ecorePackage.getEString(), "value", null, 0, 1, EnumProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEnumProperty_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, EnumProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(daoDirectiveParametersEClass, DaoDirectiveParameters.class, "DaoDirectiveParameters", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -6670,6 +6770,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEClass(pojoPropertyDirectiveCreateColEClass, PojoPropertyDirectiveCreateCol.class, "PojoPropertyDirectiveCreateCol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPojoPropertyDirectiveCreateCol_CreateColumn1(), ecorePackage.getEString(), "createColumn1", null, 0, 1, PojoPropertyDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojoPropertyDirectiveCreateCol_CreateColumn2(), ecorePackage.getEString(), "createColumn2", null, 0, 1, PojoPropertyDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(enumPropertyDirectiveValuesEClass, EnumPropertyDirectiveValues.class, "EnumPropertyDirectiveValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEnumPropertyDirectiveValues_Values(), this.getEnumPropertyValue(), null, "values", null, 0, -1, EnumPropertyDirectiveValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(functionCallQueryEClass, FunctionCallQuery.class, "FunctionCallQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
