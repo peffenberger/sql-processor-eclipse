@@ -440,9 +440,10 @@ PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 
 PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=PojoPropertyDirective*
-	name=IDENT (=> LPAREN attrs+=[PojoProperty|IDENT] (COMMA attrs+=[PojoProperty|IDENT])* RPAREN)?
-	(COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[Entity|IDENT])
-	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|IDENT]) MORE_THAN)? (array ?= '[]')?
+	name=IDENT ((=> LPAREN attrs+=[PojoProperty|IDENT] (COMMA attrs+=[PojoProperty|IDENT])* RPAREN) |
+	((=> LPAREN attrs+=[PojoProperty|IDENT] (COMMA attrs+=[PojoProperty|IDENT])* RPAREN)?
+		(COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[Entity|IDENT])
+	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|IDENT]) MORE_THAN)? (array ?= '[]')?))
 	//(modifiers+=PojoPropertyModifier)*
 ;
 

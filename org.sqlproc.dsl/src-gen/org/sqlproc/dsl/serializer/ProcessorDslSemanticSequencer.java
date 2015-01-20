@@ -2060,10 +2060,15 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *     (
 	 *         directives+=PojoPropertyDirective* 
 	 *         name=IDENT 
-	 *         (attrs+=[PojoProperty|IDENT] attrs+=[PojoProperty|IDENT]*)? 
-	 *         (type=[JvmType|QualifiedName] | ref=[Entity|IDENT]) 
-	 *         (gtype=[JvmType|QualifiedName] | gref=[PojoEntity|IDENT])? 
-	 *         array?='[]'?
+	 *         (
+	 *             (attrs+=[PojoProperty|IDENT] attrs+=[PojoProperty|IDENT]*) | 
+	 *             (
+	 *                 (attrs+=[PojoProperty|IDENT] attrs+=[PojoProperty|IDENT]*)? 
+	 *                 (type=[JvmType|QualifiedName] | ref=[Entity|IDENT]) 
+	 *                 (gtype=[JvmType|QualifiedName] | gref=[PojoEntity|IDENT])? 
+	 *                 array?='[]'?
+	 *             )
+	 *         )
 	 *     )
 	 */
 	protected void sequence_PojoProperty(EObject context, PojoProperty semanticObject) {

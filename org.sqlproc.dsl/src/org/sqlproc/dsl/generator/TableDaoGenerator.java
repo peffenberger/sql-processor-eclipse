@@ -248,7 +248,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                             String pojoName2 = tableNames.get(pojo2);
                             if (pojoName2 == null)
                                 pojoName2 = pojo2;
-                            buffer.append("=").append("::").append(tableToCamelCase(pojoName2));
+                            buffer.append("=").append(tableToCamelCase(pojoName2));
                         }
                     } else {
                         for (String pojo2 : pojoInheritanceDiscriminator.get(entry.getValue())) {
@@ -256,13 +256,13 @@ public class TableDaoGenerator extends TableMetaGenerator {
                             String pojoName2 = tableNames.get(pojo2);
                             if (pojoName2 == null)
                                 pojoName2 = pojo2;
-                            buffer.append("=").append("::").append(tableToCamelCase(pojoName2));
+                            buffer.append("=").append(tableToCamelCase(pojoName2));
                         }
                     }
                     buffer.append(")");
                 }
-                buffer.append(NLINDENT).append("#CRUD(::").append(tableToCamelCase(pojoName)).append(")");
-                buffer.append(NLINDENT).append("#Query(::").append(tableToCamelCase(pojoName)).append(")");
+                buffer.append(NLINDENT).append("#CRUD(").append(tableToCamelCase(pojoName)).append(")");
+                buffer.append(NLINDENT).append("#Query(").append(tableToCamelCase(pojoName)).append(")");
                 if (isSerializable || serializables.contains(pojo))
                     buffer.append(NLINDENT).append("#Serializable(1)");
                 buffer.append(NLINDENT);
@@ -310,8 +310,8 @@ public class TableDaoGenerator extends TableMetaGenerator {
                     String name = metaProceduresResultSet.get(procedure);
                     if (tableNames.containsKey(name))
                         name = tableNames.get(name);
-                    buffer.append(NLINDENT).append("#ProcedureCallQuery(").append(":java.util.List<:")
-                            .append(tableToCamelCase(name)).append(">");
+                    buffer.append(NLINDENT).append("#ProcedureCallQuery(").append(":").append(COLLECTION_LIST)
+                            .append("<").append(tableToCamelCase(name)).append(">");
                 } else {
                     PojoAttribute returnAttribute = (attributes.containsKey(FAKE_FUN_PROC_COLUMN_NAME)) ? attributes
                             .get(FAKE_FUN_PROC_COLUMN_NAME) : null;
@@ -325,9 +325,9 @@ public class TableDaoGenerator extends TableMetaGenerator {
                 String dispName = null;
                 PojoType ptype = pojosForProcedures.get(procedure);
                 if (ptype != null)
-                    dispName = (ptype.getRef() != null) ? "::" + ptype.getRef().getName() : ":"
+                    dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ":"
                             + ptype.getType().getSimpleName();
-                buffer.append(",").append((dispName != null) ? dispName : "::" + pojoName);
+                buffer.append(",").append((dispName != null) ? dispName : pojoName);
                 buffer.append(")");
 
                 if (isSerializable || serializables.contains(procedure))
@@ -367,8 +367,8 @@ public class TableDaoGenerator extends TableMetaGenerator {
                     String name = metaFunctionsResultSet.get(function);
                     if (tableNames.containsKey(name))
                         name = tableNames.get(name);
-                    buffer.append(NLINDENT).append("#FunctionCallQuery(").append(" :java.util.List<:")
-                            .append(tableToCamelCase(name)).append(">");
+                    buffer.append(NLINDENT).append("#FunctionCallQuery(").append(":").append(COLLECTION_LIST)
+                            .append("<").append(tableToCamelCase(name)).append(">");
                 } else if (metaFunctionsResult.containsKey(function)) {
                     buffer.append(NLINDENT).append("#FunctionCall(").append(":")
                             .append(metaType2className(metaFunctionsResult.get(function)));
@@ -385,9 +385,9 @@ public class TableDaoGenerator extends TableMetaGenerator {
                 String dispName = null;
                 PojoType ptype = pojosForProcedures.get(function);
                 if (ptype != null)
-                    dispName = (ptype.getRef() != null) ? "::" + ptype.getRef().getName() : ":"
+                    dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ":"
                             + ptype.getType().getSimpleName();
-                buffer.append(",").append((dispName != null) ? dispName : "::" + pojoName);
+                buffer.append(",").append((dispName != null) ? dispName : pojoName);
                 buffer.append(")");
 
                 if (isSerializable || serializables.contains(function))
@@ -428,8 +428,8 @@ public class TableDaoGenerator extends TableMetaGenerator {
                     String name = metaFunctionsResultSet.get(function);
                     if (tableNames.containsKey(name))
                         name = tableNames.get(name);
-                    buffer.append(NLINDENT).append("#FunctionCallQuery(").append(":java.util.List<:")
-                            .append(tableToCamelCase(name)).append(">");
+                    buffer.append(NLINDENT).append("#FunctionCallQuery(").append(":").append(COLLECTION_LIST)
+                            .append("<").append(tableToCamelCase(name)).append(">");
                 } else if (metaFunctionsResult.containsKey(function) && dbType == DbType.DB2) {
                     buffer.append(NLINDENT).append("callSelectFunction ").append(":")
                             .append(metaType2className(metaFunctionsResult.get(function)));
@@ -449,9 +449,9 @@ public class TableDaoGenerator extends TableMetaGenerator {
                 String dispName = null;
                 PojoType ptype = pojosForProcedures.get(function);
                 if (ptype != null)
-                    dispName = (ptype.getRef() != null) ? "::" + ptype.getRef().getName() : ":"
+                    dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ":"
                             + ptype.getType().getSimpleName();
-                buffer.append(",").append((dispName != null) ? dispName : "::" + pojoName);
+                buffer.append(",").append((dispName != null) ? dispName : pojoName);
                 buffer.append(")");
 
                 if (isSerializable || serializables.contains(function))

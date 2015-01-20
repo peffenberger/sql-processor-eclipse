@@ -666,7 +666,7 @@ public class TablePojoGenerator {
                                 attrib.setOneToManyColumn(entry.getKey());
                                 attrib.setOneToManyOppositeColumn(fkColumn);
                                 attrib.setOneToManyTable(fk.getKey());
-                                attrib.setClassName(COLLECTION_LIST + " <:"
+                                attrib.setClassName(COLLECTION_LIST + " <"
                                         + tableToCamelCase(getTableName(fk.getKey())) + ">");
                                 attrib.setRef(fk.getKey());
                                 String dbColumnName = columnToDbConv(attrib.getName());
@@ -692,7 +692,7 @@ public class TablePojoGenerator {
                             attrib.setOneToManyOppositeColumn(attribute.getFkColumns().get(fk.getKey()).get(0));
                             attrib.setOneToManyTable(fk.getKey());
                         }
-                        attrib.setClassName(COLLECTION_LIST + " <:" + tableToCamelCase(getTableName(fk.getKey())) + ">");
+                        attrib.setClassName(COLLECTION_LIST + " <" + tableToCamelCase(getTableName(fk.getKey())) + ">");
                         attrib.setRef(fk.getKey());
                         String dbColumnName = columnToDbConv(attrib.getName());
                         newAttributes.put(dbColumnName, attrib);
@@ -861,7 +861,7 @@ public class TablePojoGenerator {
                             referName += pojo.substring(1);
                         PojoAttribute attrib = new PojoAttribute(null);
                         attrib.setName(referName + "s");
-                        attrib.setClassName(COLLECTION_LIST + " <:" + pojo + ">");
+                        attrib.setClassName(COLLECTION_LIST + " <" + pojo + ">");
                         referPojoAttr.put(attrib.getName(), attrib);
                     }
                 }
@@ -1029,7 +1029,7 @@ public class TablePojoGenerator {
                     buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
 
                     if (attribute.getIntValue() == null && attribute.getStrValue() == null) {
-                        buffer.append(": ").append(attribute.getClassName());
+                        buffer.append(":").append(attribute.getClassName());
                     } else if (attribute.getIntValue() != null) {
                         buffer.append("::: ").append(attribute.getIntValue());
                     } else if (attribute.getStrValue() != null) {
@@ -1143,8 +1143,8 @@ public class TablePojoGenerator {
                                 if (annotations == null
                                         || !annotations.hasAttributeAnnotationsDefinitions(realPojoName, name,
                                                 ANNOTATION_SIZE)) {
-                                    buffer.append(NLINDENT).append(INDENT).append("@Size ::: max ")
-                                            .append(attribute.getSize());
+                                    buffer.append(NLINDENT).append(INDENT).append("@Size(max = ")
+                                            .append(attribute.getSize()).append(")");
                                 }
                             }
                         }
@@ -1186,7 +1186,7 @@ public class TablePojoGenerator {
                     }
                     buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
                     if (attribute.getDependencyClassName() != null) {
-                        buffer.append(":: ").append(attribute.getDependencyClassName());
+                        buffer.append(attribute.getDependencyClassName());
                         if (attribute.isDependencyClassNameIsEnum())
                             toStr.add(name);
                     } else if (attribute.isPrimitive()) {
@@ -1213,65 +1213,58 @@ public class TablePojoGenerator {
                     if (annotations != null) {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_EQUALS, true));
                     }
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_EQUALS).append(" :::");
-                    for (String name : pkeys) {
-                        buffer.append(" ").append(name);
-                    }
+                    buffer.append(NLINDENT).append(INDENT).append(METHOD_EQUALS).append("(");
+                    appendList(buffer, pkeys);
+                    buffer.append(")");
                 }
                 if (generateMethods.contains(METHOD_HASH_CODE) && !pkeys.isEmpty()) {
                     if (annotations != null) {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_HASH_CODE,
                                 true));
                     }
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_HASH_CODE).append(" :::");
-                    for (String name : pkeys) {
-                        buffer.append(" ").append(name);
-                    }
+                    buffer.append(NLINDENT).append(INDENT).append(METHOD_HASH_CODE).append("(");
+                    appendList(buffer, pkeys);
+                    buffer.append(")");
                 }
                 if (generateMethods.contains(METHOD_TO_INIT)) {
                     if (annotations != null) {
                         buffer.append(annotations
                                 .getAttributeAnnotationsDefinitions(realPojoName, METHOD_TO_INIT, true));
                     }
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_INIT).append(" :::");
-                    for (String name : toInit) {
-                        buffer.append(" ").append(name);
-                    }
+                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_INIT).append("(");
+                    appendList(buffer, toInit);
+                    buffer.append(")");
                 } else if (generateMethods.contains(ENUM_TO_INIT) && !toInit.isEmpty()) {
                     if (annotations != null) {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, ENUM_TO_INIT, true));
                     }
-                    buffer.append(NLINDENT).append(INDENT).append(ENUM_TO_INIT).append(" :::");
-                    for (String name : toInit) {
-                        buffer.append(" ").append(name);
-                    }
+                    buffer.append(NLINDENT).append(INDENT).append(ENUM_TO_INIT).append("(");
+                    appendList(buffer, toInit);
+                    buffer.append(")");
                 }
                 if (generateMethods.contains(METHOD_IS_DEF)) {
                     if (annotations != null) {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_IS_DEF, true));
                     }
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_IS_DEF).append(" :::");
-                    for (String name : isDef) {
-                        buffer.append(" ").append(name);
-                    }
+                    buffer.append(NLINDENT).append(INDENT).append(METHOD_IS_DEF).append("(");
+                    appendList(buffer, isDef);
+                    buffer.append(")");
                 } else if (generateMethods.contains(ENUM_IS_DEF) && !isDef.isEmpty()) {
                     if (annotations != null) {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, ENUM_IS_DEF, true));
                     }
-                    buffer.append(NLINDENT).append(INDENT).append(ENUM_IS_DEF).append(" :::");
-                    for (String name : isDef) {
-                        buffer.append(" ").append(name);
-                    }
+                    buffer.append(NLINDENT).append(INDENT).append(ENUM_IS_DEF).append("(");
+                    appendList(buffer, isDef);
+                    buffer.append(")");
                 }
                 if (generateMethods.contains(METHOD_TO_STRING) && !toStr.isEmpty()) {
                     if (annotations != null) {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_TO_STRING,
                                 true));
                     }
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_STRING).append(" :::");
-                    for (String name : toStr) {
-                        buffer.append(" ").append(name);
-                    }
+                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_STRING).append("(");
+                    appendList(buffer, toStr);
+                    buffer.append(")");
                 }
                 buffer.append(NLINDENT).append("}\n");
             }
@@ -1321,7 +1314,7 @@ public class TablePojoGenerator {
                         name = columnToCamelCase(name);
                     buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
                     if (attribute.getDependencyClassName() != null) {
-                        buffer.append(":: ").append(attribute.getDependencyClassName());
+                        buffer.append(attribute.getDependencyClassName());
                         toStr.add(name);
                     } else if (attribute.isPrimitive()) {
                         buffer.append(':').append(attribute.getClassName());
@@ -1343,10 +1336,9 @@ public class TablePojoGenerator {
                     getParentAttrs(pojoExtends.get(pojo), null, null);
                 }
                 if (generateMethods.contains(METHOD_TO_STRING) && !toStr.isEmpty()) {
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_STRING).append(" :::");
-                    for (String name : toStr) {
-                        buffer.append(" ").append(name);
-                    }
+                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_STRING).append("(");
+                    appendList(buffer, toStr);
+                    buffer.append(")");
                 }
                 buffer.append(NLINDENT).append("}\n");
             }
@@ -1393,7 +1385,7 @@ public class TablePojoGenerator {
                         name = columnToCamelCase(name);
                     buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
                     if (attribute.getDependencyClassName() != null) {
-                        buffer.append(":: ").append(attribute.getDependencyClassName());
+                        buffer.append(attribute.getDependencyClassName());
                         toStr.add(name);
                     } else if (attribute.isPrimitive()) {
                         buffer.append(':').append(attribute.getClassName());
@@ -1415,10 +1407,9 @@ public class TablePojoGenerator {
                     getParentAttrs(pojoExtends.get(pojo), null, null);
                 }
                 if (generateMethods.contains(METHOD_TO_STRING) && !toStr.isEmpty()) {
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_STRING).append(" :::");
-                    for (String name : toStr) {
-                        buffer.append(" ").append(name);
-                    }
+                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_STRING).append(")");
+                    appendList(buffer, toStr);
+                    buffer.append(")");
                 }
                 buffer.append(NLINDENT).append("}\n");
             }
@@ -1429,6 +1420,17 @@ public class TablePojoGenerator {
             ex.printStackTrace(printWriter);
             String s = writer.toString();
             return s;
+        }
+    }
+
+    protected void appendList(StringBuilder buffer, Set<String> list) {
+        boolean first = true;
+        for (String name : list) {
+            if (!first)
+                buffer.append(",");
+            else
+                first = false;
+            buffer.append(name);
         }
     }
 
