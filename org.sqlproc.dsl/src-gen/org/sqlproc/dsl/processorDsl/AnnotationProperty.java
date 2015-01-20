@@ -15,8 +15,8 @@ import org.eclipse.xtext.common.types.JvmType;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getName <em>Name</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getRef <em>Ref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getType <em>Type</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getRef <em>Ref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getNumber <em>Number</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getValue <em>Value</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getConstant <em>Constant</em>}</li>
@@ -56,32 +56,6 @@ public interface AnnotationProperty extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Ref</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Ref</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Ref</em>' reference.
-   * @see #setRef(PojoEntity)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getAnnotationProperty_Ref()
-   * @model
-   * @generated
-   */
-  PojoEntity getRef();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getRef <em>Ref</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ref</em>' reference.
-   * @see #getRef()
-   * @generated
-   */
-  void setRef(PojoEntity value);
-
-  /**
    * Returns the value of the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
@@ -106,6 +80,32 @@ public interface AnnotationProperty extends EObject
    * @generated
    */
   void setType(JvmType value);
+
+  /**
+   * Returns the value of the '<em><b>Ref</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Ref</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ref</em>' reference.
+   * @see #setRef(PojoEntity)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getAnnotationProperty_Ref()
+   * @model
+   * @generated
+   */
+  PojoEntity getRef();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getRef <em>Ref</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ref</em>' reference.
+   * @see #getRef()
+   * @generated
+   */
+  void setRef(PojoEntity value);
 
   /**
    * Returns the value of the '<em><b>Number</b></em>' attribute.

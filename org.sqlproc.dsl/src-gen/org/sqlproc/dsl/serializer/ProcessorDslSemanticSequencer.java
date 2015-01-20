@@ -835,7 +835,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (name=IDENT (ref=[PojoEntity|IDENT] | type=[JvmType|QualifiedName])? (number=NUMBER | value=STRING_VALUE | constant=IDENT))
+	 *     (name=IDENT (type=[JvmType|QualifiedName] | ref=[PojoEntity|IDENT])? (number=NUMBER | value=STRING_VALUE | constant=IDENT))
 	 */
 	protected void sequence_AnnotationProperty(EObject context, AnnotationProperty semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -844,7 +844,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (type=[JvmType|QualifiedName] features+=AnnotationProperty*)
+	 *     (type=[JvmType|QualifiedName] (features+=AnnotationProperty features+=AnnotationProperty*)?)
 	 */
 	protected void sequence_Annotation(EObject context, Annotation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2060,8 +2060,9 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *     (
 	 *         directives+=PojoPropertyDirective* 
 	 *         name=IDENT 
-	 *         (attrs+=[PojoProperty|IDENT]* | ref=[Entity|IDENT] | type=[JvmType|QualifiedName]) 
-	 *         (gref=[PojoEntity|IDENT] | gtype=[JvmType|QualifiedName])? 
+	 *         (attrs+=[PojoProperty|IDENT] attrs+=[PojoProperty|IDENT]*)? 
+	 *         (type=[JvmType|QualifiedName] | ref=[Entity|IDENT]) 
+	 *         (gtype=[JvmType|QualifiedName] | gref=[PojoEntity|IDENT])? 
 	 *         array?='[]'?
 	 *     )
 	 */
@@ -2072,7 +2073,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     ((ref=[PojoEntity|IDENT] | type=[JvmType|QualifiedName]) (gref=[PojoEntity|IDENT] | gtype=[JvmType|QualifiedName])? array?='[]'?)
+	 *     ((type=[JvmType|QualifiedName] | ref=[PojoEntity|IDENT]) (gtype=[JvmType|QualifiedName] | gref=[PojoEntity|IDENT])? array?='[]'?)
 	 */
 	protected void sequence_PojoType(EObject context, PojoType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

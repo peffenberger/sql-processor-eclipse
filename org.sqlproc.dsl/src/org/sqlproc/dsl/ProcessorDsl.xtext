@@ -31,10 +31,10 @@ ManyToManyAssignement: pkColumn=IDENT '->' pkTable=IDENT ('->' fkColumn=IDENT)?;
 DebugLevelAssignement: debug=IDENT (WS+ scope=PropertyValue)?;
 ProcedurePojoAssignement: dbProcedure=IDENT '->' pojo=PojoType;
 FunctionPojoAssignement: dbFunction=IDENT '->' pojo=PojoType;
-ImplementsAssignement: toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ExtendsAssignement: toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ImplementsAssignementGenerics: toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ExtendsAssignementGenerics: toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ImplementsAssignement: COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ExtendsAssignement: COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ImplementsAssignementGenerics: COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ExtendsAssignementGenerics: COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 
 Property:
 	(name='resolve-pojo-on'
@@ -358,8 +358,8 @@ FeatureValue:
   (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)+;
 
 PojoType:
-	(COLON (COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]))
-	(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)? (array ?= '[]')?;
+	(COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoEntity|IDENT])
+	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|IDENT]) MORE_THAN)? (array ?= '[]')?;
 
 PackageDeclaration hidden(ML_COMMENT, SL_COMMENT, WS):
 	'package' name=(IDENT|IDENT_DOT) ('suffix' suffix=(IDENT|NUMBER))? LBRACE
@@ -367,11 +367,11 @@ PackageDeclaration hidden(ML_COMMENT, SL_COMMENT, WS):
 	RBRACE;
 
 Annotation:
-	type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?
+	type=[jvmTypes::JvmType|QualifiedName] (=> LPAREN features+=AnnotationProperty (COMMA features+=AnnotationProperty)* RPAREN)?
 ;
 
 AnnotationProperty:
-	(COMMA)? name=IDENT (COLON (COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]))? (number=NUMBER|value=STRING_VALUE|constant=IDENT)
+	name=IDENT (=> 'as' (COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoEntity|IDENT]))? EQUALS (number=NUMBER|value=STRING_VALUE|constant=IDENT) 
 ;
 
 Entity: PojoEntity | EnumEntity;
@@ -385,10 +385,10 @@ Import hidden(ML_COMMENT, SL_COMMENT, WS):
 	'import' importedNamespace = QualifiedNameWithWildcard;
 
 Implements hidden(ML_COMMENT, SL_COMMENT, WS):
-	'implements' implements = [jvmTypes::JvmType|QualifiedName] (generics ?= '<<>>')? ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
+	'implements' COLON implements = [jvmTypes::JvmType|QualifiedName] (generics ?= '<<>>')? ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
 
 Extends hidden(ML_COMMENT, SL_COMMENT, WS):
-	'extends' extends = [jvmTypes::JvmType|QualifiedName] (generics ?= '<<>>')? ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
+	'extends' COLON extends = [jvmTypes::JvmType|QualifiedName] (generics ?= '<<>>')? ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
 
 ImplPackage hidden(ML_COMMENT, SL_COMMENT, WS):
 	'implementation-package' name=(IDENT|IDENT_DOT);
@@ -440,9 +440,9 @@ PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 
 PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=PojoPropertyDirective*
-	name=IDENT  
-	(COLON (COLON (COLON (attrs+=[PojoProperty|IDENT])* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
-	(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)? (array ?= '[]')?
+	name=IDENT (=> LPAREN attrs+=[PojoProperty|IDENT] (COMMA attrs+=[PojoProperty|IDENT])* RPAREN)?
+	(COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[Entity|IDENT])
+	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|IDENT]) MORE_THAN)? (array ?= '[]')?
 	//(modifiers+=PojoPropertyModifier)*
 ;
 

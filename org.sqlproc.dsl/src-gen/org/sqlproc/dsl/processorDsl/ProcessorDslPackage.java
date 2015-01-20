@@ -3287,31 +3287,22 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_TYPE = 61;
 
   /**
-   * The feature id for the '<em><b>Ref</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_TYPE__REF = 0;
-
-  /**
    * The feature id for the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_TYPE__TYPE = 1;
+  int POJO_TYPE__TYPE = 0;
 
   /**
-   * The feature id for the '<em><b>Gref</b></em>' reference.
+   * The feature id for the '<em><b>Ref</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_TYPE__GREF = 2;
+  int POJO_TYPE__REF = 1;
 
   /**
    * The feature id for the '<em><b>Gtype</b></em>' reference.
@@ -3320,7 +3311,16 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_TYPE__GTYPE = 3;
+  int POJO_TYPE__GTYPE = 2;
+
+  /**
+   * The feature id for the '<em><b>Gref</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE__GREF = 3;
 
   /**
    * The feature id for the '<em><b>Array</b></em>' attribute.
@@ -3462,22 +3462,22 @@ public interface ProcessorDslPackage extends EPackage
   int ANNOTATION_PROPERTY__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Ref</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ANNOTATION_PROPERTY__REF = 1;
-
-  /**
    * The feature id for the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANNOTATION_PROPERTY__TYPE = 2;
+  int ANNOTATION_PROPERTY__TYPE = 1;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_PROPERTY__REF = 2;
 
   /**
    * The feature id for the '<em><b>Number</b></em>' attribute.
@@ -4106,31 +4106,22 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_PROPERTY__ATTRS = 2;
 
   /**
-   * The feature id for the '<em><b>Ref</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_PROPERTY__REF = 3;
-
-  /**
    * The feature id for the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__TYPE = 4;
+  int POJO_PROPERTY__TYPE = 3;
 
   /**
-   * The feature id for the '<em><b>Gref</b></em>' reference.
+   * The feature id for the '<em><b>Ref</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__GREF = 5;
+  int POJO_PROPERTY__REF = 4;
 
   /**
    * The feature id for the '<em><b>Gtype</b></em>' reference.
@@ -4139,7 +4130,16 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__GTYPE = 6;
+  int POJO_PROPERTY__GTYPE = 5;
+
+  /**
+   * The feature id for the '<em><b>Gref</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_PROPERTY__GREF = 6;
 
   /**
    * The feature id for the '<em><b>Array</b></em>' attribute.
@@ -8409,17 +8409,6 @@ public interface ProcessorDslPackage extends EPackage
   EClass getPojoType();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoType#getRef <em>Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Ref</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoType#getRef()
-   * @see #getPojoType()
-   * @generated
-   */
-  EReference getPojoType_Ref();
-
-  /**
    * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoType#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8431,15 +8420,15 @@ public interface ProcessorDslPackage extends EPackage
   EReference getPojoType_Type();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoType#getGref <em>Gref</em>}'.
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoType#getRef <em>Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Gref</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoType#getGref()
+   * @return the meta object for the reference '<em>Ref</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoType#getRef()
    * @see #getPojoType()
    * @generated
    */
-  EReference getPojoType_Gref();
+  EReference getPojoType_Ref();
 
   /**
    * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoType#getGtype <em>Gtype</em>}'.
@@ -8451,6 +8440,17 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EReference getPojoType_Gtype();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoType#getGref <em>Gref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Gref</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoType#getGref()
+   * @see #getPojoType()
+   * @generated
+   */
+  EReference getPojoType_Gref();
 
   /**
    * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoType#isArray <em>Array</em>}'.
@@ -8560,17 +8560,6 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getAnnotationProperty_Name();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getRef <em>Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Ref</em>'.
-   * @see org.sqlproc.dsl.processorDsl.AnnotationProperty#getRef()
-   * @see #getAnnotationProperty()
-   * @generated
-   */
-  EReference getAnnotationProperty_Ref();
-
-  /**
    * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8580,6 +8569,17 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EReference getAnnotationProperty_Type();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getRef <em>Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Ref</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationProperty#getRef()
+   * @see #getAnnotationProperty()
+   * @generated
+   */
+  EReference getAnnotationProperty_Ref();
 
   /**
    * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getNumber <em>Number</em>}'.
@@ -9150,17 +9150,6 @@ public interface ProcessorDslPackage extends EPackage
   EReference getPojoProperty_Attrs();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getRef <em>Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Ref</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoProperty#getRef()
-   * @see #getPojoProperty()
-   * @generated
-   */
-  EReference getPojoProperty_Ref();
-
-  /**
    * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9172,15 +9161,15 @@ public interface ProcessorDslPackage extends EPackage
   EReference getPojoProperty_Type();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getGref <em>Gref</em>}'.
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getRef <em>Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Gref</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoProperty#getGref()
+   * @return the meta object for the reference '<em>Ref</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoProperty#getRef()
    * @see #getPojoProperty()
    * @generated
    */
-  EReference getPojoProperty_Gref();
+  EReference getPojoProperty_Ref();
 
   /**
    * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getGtype <em>Gtype</em>}'.
@@ -9192,6 +9181,17 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EReference getPojoProperty_Gtype();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getGref <em>Gref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Gref</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoProperty#getGref()
+   * @see #getPojoProperty()
+   * @generated
+   */
+  EReference getPojoProperty_Gref();
 
   /**
    * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.PojoProperty#isArray <em>Array</em>}'.
@@ -12511,14 +12511,6 @@ public interface ProcessorDslPackage extends EPackage
     EClass POJO_TYPE = eINSTANCE.getPojoType();
 
     /**
-     * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_TYPE__REF = eINSTANCE.getPojoType_Ref();
-
-    /**
      * The meta object literal for the '<em><b>Type</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12527,12 +12519,12 @@ public interface ProcessorDslPackage extends EPackage
     EReference POJO_TYPE__TYPE = eINSTANCE.getPojoType_Type();
 
     /**
-     * The meta object literal for the '<em><b>Gref</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference POJO_TYPE__GREF = eINSTANCE.getPojoType_Gref();
+    EReference POJO_TYPE__REF = eINSTANCE.getPojoType_Ref();
 
     /**
      * The meta object literal for the '<em><b>Gtype</b></em>' reference feature.
@@ -12541,6 +12533,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference POJO_TYPE__GTYPE = eINSTANCE.getPojoType_Gtype();
+
+    /**
+     * The meta object literal for the '<em><b>Gref</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_TYPE__GREF = eINSTANCE.getPojoType_Gref();
 
     /**
      * The meta object literal for the '<em><b>Array</b></em>' attribute feature.
@@ -12629,20 +12629,20 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute ANNOTATION_PROPERTY__NAME = eINSTANCE.getAnnotationProperty_Name();
 
     /**
-     * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ANNOTATION_PROPERTY__REF = eINSTANCE.getAnnotationProperty_Ref();
-
-    /**
      * The meta object literal for the '<em><b>Type</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference ANNOTATION_PROPERTY__TYPE = eINSTANCE.getAnnotationProperty_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ANNOTATION_PROPERTY__REF = eINSTANCE.getAnnotationProperty_Ref();
 
     /**
      * The meta object literal for the '<em><b>Number</b></em>' attribute feature.
@@ -13099,14 +13099,6 @@ public interface ProcessorDslPackage extends EPackage
     EReference POJO_PROPERTY__ATTRS = eINSTANCE.getPojoProperty_Attrs();
 
     /**
-     * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_PROPERTY__REF = eINSTANCE.getPojoProperty_Ref();
-
-    /**
      * The meta object literal for the '<em><b>Type</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13115,12 +13107,12 @@ public interface ProcessorDslPackage extends EPackage
     EReference POJO_PROPERTY__TYPE = eINSTANCE.getPojoProperty_Type();
 
     /**
-     * The meta object literal for the '<em><b>Gref</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference POJO_PROPERTY__GREF = eINSTANCE.getPojoProperty_Gref();
+    EReference POJO_PROPERTY__REF = eINSTANCE.getPojoProperty_Ref();
 
     /**
      * The meta object literal for the '<em><b>Gtype</b></em>' reference feature.
@@ -13129,6 +13121,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EReference POJO_PROPERTY__GTYPE = eINSTANCE.getPojoProperty_Gtype();
+
+    /**
+     * The meta object literal for the '<em><b>Gref</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_PROPERTY__GREF = eINSTANCE.getPojoProperty_Gref();
 
     /**
      * The meta object literal for the '<em><b>Array</b></em>' attribute feature.

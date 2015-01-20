@@ -14,10 +14,10 @@ import org.eclipse.xtext.common.types.JvmType;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.PojoType#getRef <em>Ref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoType#getType <em>Type</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.PojoType#getGref <em>Gref</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojoType#getRef <em>Ref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoType#getGtype <em>Gtype</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.PojoType#getGref <em>Gref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojoType#isArray <em>Array</em>}</li>
  * </ul>
  * </p>
@@ -28,32 +28,6 @@ import org.eclipse.xtext.common.types.JvmType;
  */
 public interface PojoType extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Ref</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Ref</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Ref</em>' reference.
-   * @see #setRef(PojoEntity)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoType_Ref()
-   * @model
-   * @generated
-   */
-  PojoEntity getRef();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoType#getRef <em>Ref</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ref</em>' reference.
-   * @see #getRef()
-   * @generated
-   */
-  void setRef(PojoEntity value);
-
   /**
    * Returns the value of the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->
@@ -81,30 +55,30 @@ public interface PojoType extends EObject
   void setType(JvmType value);
 
   /**
-   * Returns the value of the '<em><b>Gref</b></em>' reference.
+   * Returns the value of the '<em><b>Ref</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Gref</em>' reference isn't clear,
+   * If the meaning of the '<em>Ref</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Gref</em>' reference.
-   * @see #setGref(PojoEntity)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoType_Gref()
+   * @return the value of the '<em>Ref</em>' reference.
+   * @see #setRef(PojoEntity)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoType_Ref()
    * @model
    * @generated
    */
-  PojoEntity getGref();
+  PojoEntity getRef();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoType#getGref <em>Gref</em>}' reference.
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoType#getRef <em>Ref</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Gref</em>' reference.
-   * @see #getGref()
+   * @param value the new value of the '<em>Ref</em>' reference.
+   * @see #getRef()
    * @generated
    */
-  void setGref(PojoEntity value);
+  void setRef(PojoEntity value);
 
   /**
    * Returns the value of the '<em><b>Gtype</b></em>' reference.
@@ -131,6 +105,32 @@ public interface PojoType extends EObject
    * @generated
    */
   void setGtype(JvmType value);
+
+  /**
+   * Returns the value of the '<em><b>Gref</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Gref</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Gref</em>' reference.
+   * @see #setGref(PojoEntity)
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojoType_Gref()
+   * @model
+   * @generated
+   */
+  PojoEntity getGref();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojoType#getGref <em>Gref</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Gref</em>' reference.
+   * @see #getGref()
+   * @generated
+   */
+  void setGref(PojoEntity value);
 
   /**
    * Returns the value of the '<em><b>Array</b></em>' attribute.
