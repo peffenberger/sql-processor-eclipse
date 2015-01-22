@@ -40,6 +40,12 @@ import org.sqlproc.dsl.processorDsl.FunProcDirective
 import org.eclipse.xtext.common.types.JvmPrimitiveType
 import org.sqlproc.dsl.processorDsl.Implements
 import org.sqlproc.dsl.processorDsl.ImplementsExtendsDirectiveGenerics
+import org.sqlproc.dsl.processorDsl.Annotation
+import org.sqlproc.dsl.processorDsl.AnnotatedEntity
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard
 
 class ProcessorGeneratorUtils {
 
@@ -336,5 +342,52 @@ class ProcessorGeneratorUtils {
 		if (pojo.ref != null)
 			return pojo.ref.name.toFirstLower
 		return pojo.type.simpleName.toFirstLower
+	}
+
+	// Annotations
+    def isConflict(Annotation an) {
+		val d = an.directives?.findFirst[x|x instanceof AnnotationDirectiveConflict]
+		return if(d != null) true else false
+    }
+	
+	def List<Annotation> conflictAnnotations(AnnotatedEntity pojo) {
+		if (pojo == null)
+			return newArrayList()
+		return pojo.annotations.filter[x|x.isConflict].toList
+	}
+
+    def isConstructor(Annotation an) {
+		val d = an.directives?.findFirst[x|x instanceof AnnotationDirectiveConstructor]
+		return if(d != null) true else false
+    }
+	
+	def List<Annotation> constructorAnnotations(AnnotatedEntity pojo) {
+		if (pojo == null)
+			return newArrayList()
+		return pojo.annotations.filter[x|x.isConstructor].toList
+	}
+
+    def isStatic(Annotation an) {
+		val d = an.directives?.findFirst[x|x instanceof AnnotationDirectiveStatic]
+		return if(d != null) true else false
+    }
+	
+	def List<Annotation> staticAnnotations(AnnotatedEntity pojo) {
+		if (pojo == null)
+			return newArrayList()
+		return pojo.annotations.filter[x|x.isStatic].toList
+	}
+
+    def isStandard(Annotation an) {
+    	if (an.directives == null || an.directives.isEmpty)
+    		return true
+		val d = an.directives?.findFirst[x|x instanceof AnnotationDirectiveStandard]
+		return if(d != null) true else false
+    }
+	
+	def List<Annotation> standardAnnotations(AnnotatedEntity pojo) {
+		if (pojo == null)
+			return newArrayList()
+		return pojo.annotations.filter[x|x.isStandard].toList
 	}
 }

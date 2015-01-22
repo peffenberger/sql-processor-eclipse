@@ -12900,6 +12900,80 @@ finally {
 
 
 
+// Entry rule entryRuleAnnotationDirective
+entryRuleAnnotationDirective returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
+	}
+	:
+	{ newCompositeNode(grammarAccess.getAnnotationDirectiveRule()); }
+	 iv_ruleAnnotationDirective=ruleAnnotationDirective 
+	 { $current=$iv_ruleAnnotationDirective.current; } 
+	 EOF 
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+// Rule AnnotationDirective
+ruleAnnotationDirective returns [EObject current=null] 
+    @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
+    }
+    @after { leaveRule(); }:
+(((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getAnnotationDirectiveAccess().getAnnotationDirectiveConflictAction_0_0(),
+            $current);
+    }
+)	otherlv_1='#Conflict' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getAnnotationDirectiveAccess().getConflictKeyword_0_1());
+    }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getAnnotationDirectiveAccess().getAnnotationDirectiveStaticAction_1_0(),
+            $current);
+    }
+)	otherlv_3='#Static' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getAnnotationDirectiveAccess().getStaticKeyword_1_1());
+    }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getAnnotationDirectiveAccess().getAnnotationDirectiveConstructorAction_2_0(),
+            $current);
+    }
+)	otherlv_5='#Constructor' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getAnnotationDirectiveAccess().getConstructorKeyword_2_1());
+    }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getAnnotationDirectiveAccess().getAnnotationDirectiveStandardAction_3_0(),
+            $current);
+    }
+)	otherlv_7='#Standard' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getAnnotationDirectiveAccess().getStandardKeyword_3_1());
+    }
+))
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+
+
+
+
 // Entry rule entryRuleAnnotation
 entryRuleAnnotation returns [EObject current=null] 
 	:
@@ -12916,66 +12990,84 @@ ruleAnnotation returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
+		{ 
+	        newCompositeNode(grammarAccess.getAnnotationAccess().getDirectivesAnnotationDirectiveParserRuleCall_0_0()); 
+	    }
+		lv_directives_0_0=ruleAnnotationDirective		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getAnnotationRule());
+	        }
+       		add(
+       			$current, 
+       			"directives",
+        		lv_directives_0_0, 
+        		"AnnotationDirective");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*(
+(
 		{
 			if ($current==null) {
 	            $current = createModelElement(grammarAccess.getAnnotationRule());
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getAnnotationAccess().getTypeJvmTypeCrossReference_0_0()); 
+	        newCompositeNode(grammarAccess.getAnnotationAccess().getTypeJvmTypeCrossReference_1_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(((	RULE_LPAREN)=>this_LPAREN_1=RULE_LPAREN
+)(((	RULE_LPAREN)=>this_LPAREN_2=RULE_LPAREN
     { 
-    newLeafNode(this_LPAREN_1, grammarAccess.getAnnotationAccess().getLPARENTerminalRuleCall_1_0()); 
+    newLeafNode(this_LPAREN_2, grammarAccess.getAnnotationAccess().getLPARENTerminalRuleCall_2_0()); 
     }
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAnnotationAccess().getFeaturesAnnotationPropertyParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getAnnotationAccess().getFeaturesAnnotationPropertyParserRuleCall_2_1_0()); 
 	    }
-		lv_features_2_0=ruleAnnotationProperty		{
+		lv_features_3_0=ruleAnnotationProperty		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAnnotationRule());
 	        }
        		add(
        			$current, 
        			"features",
-        		lv_features_2_0, 
+        		lv_features_3_0, 
         		"AnnotationProperty");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(this_COMMA_3=RULE_COMMA
+)(this_COMMA_4=RULE_COMMA
     { 
-    newLeafNode(this_COMMA_3, grammarAccess.getAnnotationAccess().getCOMMATerminalRuleCall_1_2_0()); 
+    newLeafNode(this_COMMA_4, grammarAccess.getAnnotationAccess().getCOMMATerminalRuleCall_2_2_0()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAnnotationAccess().getFeaturesAnnotationPropertyParserRuleCall_1_2_1_0()); 
+	        newCompositeNode(grammarAccess.getAnnotationAccess().getFeaturesAnnotationPropertyParserRuleCall_2_2_1_0()); 
 	    }
-		lv_features_4_0=ruleAnnotationProperty		{
+		lv_features_5_0=ruleAnnotationProperty		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAnnotationRule());
 	        }
        		add(
        			$current, 
        			"features",
-        		lv_features_4_0, 
+        		lv_features_5_0, 
         		"AnnotationProperty");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))*this_RPAREN_5=RULE_RPAREN
+))*this_RPAREN_6=RULE_RPAREN
     { 
-    newLeafNode(this_RPAREN_5, grammarAccess.getAnnotationAccess().getRPARENTerminalRuleCall_1_3()); 
+    newLeafNode(this_RPAREN_6, grammarAccess.getAnnotationAccess().getRPARENTerminalRuleCall_2_3()); 
     }
 )?)
 ;
@@ -13016,14 +13108,69 @@ ruleAnnotationProperty returns [EObject current=null]
 	    }
 
 )
-)(((	'as' 
-)=>	otherlv_1='as' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getAnnotationPropertyAccess().getAsKeyword_1_0());
-    }
-)((this_COLON_2=RULE_COLON
+)this_EQUALS_1=RULE_EQUALS
     { 
-    newLeafNode(this_COLON_2, grammarAccess.getAnnotationPropertyAccess().getCOLONTerminalRuleCall_1_1_0_0()); 
+    newLeafNode(this_EQUALS_1, grammarAccess.getAnnotationPropertyAccess().getEQUALSTerminalRuleCall_1()); 
+    }
+((
+(
+		lv_number_2_0=RULE_NUMBER
+		{
+			newLeafNode(lv_number_2_0, grammarAccess.getAnnotationPropertyAccess().getNumberNUMBERTerminalRuleCall_2_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAnnotationPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"number",
+        		lv_number_2_0, 
+        		"NUMBER");
+	    }
+
+)
+)
+    |(
+(
+		lv_value_3_0=RULE_STRING_VALUE
+		{
+			newLeafNode(lv_value_3_0, grammarAccess.getAnnotationPropertyAccess().getValueSTRING_VALUETerminalRuleCall_2_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAnnotationPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_3_0, 
+        		"STRING_VALUE");
+	    }
+
+)
+)
+    |(
+(
+		lv_constant_4_0=RULE_IDENT
+		{
+			newLeafNode(lv_constant_4_0, grammarAccess.getAnnotationPropertyAccess().getConstantIDENTTerminalRuleCall_2_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAnnotationPropertyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"constant",
+        		lv_constant_4_0, 
+        		"IDENT");
+	    }
+
+)
+))((this_COLON_5=RULE_COLON
+    { 
+    newLeafNode(this_COLON_5, grammarAccess.getAnnotationPropertyAccess().getCOLONTerminalRuleCall_3_0_0()); 
     }
 (
 (
@@ -13033,7 +13180,7 @@ ruleAnnotationProperty returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getAnnotationPropertyAccess().getTypeJvmTypeCrossReference_1_1_0_1_0()); 
+	        newCompositeNode(grammarAccess.getAnnotationPropertyAccess().getTypeJvmTypeCrossReference_3_0_1_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
@@ -13048,73 +13195,13 @@ ruleAnnotationProperty returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getAnnotationPropertyRule());
 	        }
         }
-	otherlv_4=RULE_IDENT
+	otherlv_7=RULE_IDENT
 	{
-		newLeafNode(otherlv_4, grammarAccess.getAnnotationPropertyAccess().getRefPojoEntityCrossReference_1_1_1_0()); 
+		newLeafNode(otherlv_7, grammarAccess.getAnnotationPropertyAccess().getRefPojoEntityCrossReference_3_1_0()); 
 	}
 
 )
-)))?this_EQUALS_5=RULE_EQUALS
-    { 
-    newLeafNode(this_EQUALS_5, grammarAccess.getAnnotationPropertyAccess().getEQUALSTerminalRuleCall_2()); 
-    }
-((
-(
-		lv_number_6_0=RULE_NUMBER
-		{
-			newLeafNode(lv_number_6_0, grammarAccess.getAnnotationPropertyAccess().getNumberNUMBERTerminalRuleCall_3_0_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getAnnotationPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"number",
-        		lv_number_6_0, 
-        		"NUMBER");
-	    }
-
-)
-)
-    |(
-(
-		lv_value_7_0=RULE_STRING_VALUE
-		{
-			newLeafNode(lv_value_7_0, grammarAccess.getAnnotationPropertyAccess().getValueSTRING_VALUETerminalRuleCall_3_1_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getAnnotationPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"value",
-        		lv_value_7_0, 
-        		"STRING_VALUE");
-	    }
-
-)
-)
-    |(
-(
-		lv_constant_8_0=RULE_IDENT
-		{
-			newLeafNode(lv_constant_8_0, grammarAccess.getAnnotationPropertyAccess().getConstantIDENTTerminalRuleCall_3_2_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getAnnotationPropertyRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"constant",
-        		lv_constant_8_0, 
-        		"IDENT");
-	    }
-
-)
-)))
+))?)
 ;
 
 
@@ -13179,106 +13266,37 @@ ruleAnnotatedEntity returns [EObject current=null]
     { 
     newLeafNode(this_AT_0, grammarAccess.getAnnotatedEntityAccess().getATTerminalRuleCall_0_0()); 
     }
-)((((	RULE_AT)=>this_AT_1=RULE_AT
-    { 
-    newLeafNode(this_AT_1, grammarAccess.getAnnotatedEntityAccess().getATTerminalRuleCall_0_1_0_0()); 
-    }
-)((((	RULE_AT)=>this_AT_2=RULE_AT
-    { 
-    newLeafNode(this_AT_2, grammarAccess.getAnnotatedEntityAccess().getATTerminalRuleCall_0_1_0_1_0_0()); 
-    }
-)((((	RULE_AT)=>this_AT_3=RULE_AT
-    { 
-    newLeafNode(this_AT_3, grammarAccess.getAnnotatedEntityAccess().getATTerminalRuleCall_0_1_0_1_0_1_0_0()); 
-    }
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getConflictAnnotationsAnnotationParserRuleCall_0_1_0_1_0_1_0_1_0()); 
+	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getAnnotationsAnnotationParserRuleCall_0_1_0()); 
 	    }
-		lv_conflictAnnotations_4_0=ruleAnnotation		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAnnotatedEntityRule());
-	        }
-       		add(
-       			$current, 
-       			"conflictAnnotations",
-        		lv_conflictAnnotations_4_0, 
-        		"Annotation");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-    |(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getStaticAnnotationsAnnotationParserRuleCall_0_1_0_1_0_1_1_0()); 
-	    }
-		lv_staticAnnotations_5_0=ruleAnnotation		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAnnotatedEntityRule());
-	        }
-       		add(
-       			$current, 
-       			"staticAnnotations",
-        		lv_staticAnnotations_5_0, 
-        		"Annotation");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)))
-    |(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getConstructorAnnotationsAnnotationParserRuleCall_0_1_0_1_1_0()); 
-	    }
-		lv_constructorAnnotations_6_0=ruleAnnotation		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAnnotatedEntityRule());
-	        }
-       		add(
-       			$current, 
-       			"constructorAnnotations",
-        		lv_constructorAnnotations_6_0, 
-        		"Annotation");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)))
-    |(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getAnnotationsAnnotationParserRuleCall_0_1_1_0()); 
-	    }
-		lv_annotations_7_0=ruleAnnotation		{
+		lv_annotations_1_0=ruleAnnotation		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAnnotatedEntityRule());
 	        }
        		add(
        			$current, 
        			"annotations",
-        		lv_annotations_7_0, 
+        		lv_annotations_1_0, 
         		"Annotation");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)))*(
+))*(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getAnnotatedEntityAccess().getEntityEntityParserRuleCall_1_0()); 
 	    }
-		lv_entity_8_0=ruleEntity		{
+		lv_entity_2_0=ruleEntity		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAnnotatedEntityRule());
 	        }
        		set(
        			$current, 
        			"entity",
-        		lv_entity_8_0, 
+        		lv_entity_2_0, 
         		"Entity");
 	        afterParserOrEnumRuleCall();
 	    }

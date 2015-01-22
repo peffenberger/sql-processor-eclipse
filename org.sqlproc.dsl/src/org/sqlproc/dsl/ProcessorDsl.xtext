@@ -370,17 +370,25 @@ Package hidden(ML_COMMENT, SL_COMMENT, WS):
 		elements+=AbstractPojoEntity*
 	RBRACE;
 
+AnnotationDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+	{AnnotationDirectiveConflict} '#Conflict'
+	| {AnnotationDirectiveStatic} '#Static'
+	| {AnnotationDirectiveConstructor} '#Constructor'
+	| {AnnotationDirectiveStandard} '#Standard'
+;
+
 Annotation:
+	directives+=AnnotationDirective*
 	type=[jvmTypes::JvmType|QualifiedName] (=> LPAREN features+=AnnotationProperty (COMMA features+=AnnotationProperty)* RPAREN)?
 ;
 
 AnnotationProperty:
-	name=IDENT (=> 'as' (COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoEntity|IDENT]))? EQUALS (number=NUMBER|value=STRING_VALUE|constant=IDENT) 
+	name=IDENT EQUALS (number=NUMBER|value=STRING_VALUE|constant=IDENT) ((COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoEntity|IDENT]))?  
 ;
 
 Entity: PojoEntity | EnumEntity;
 
-AnnotatedEntity: (=> AT (=> AT (=> AT (=> AT conflictAnnotations+=Annotation | staticAnnotations+=Annotation) | constructorAnnotations+=Annotation) | annotations+=Annotation))* entity=Entity;
+AnnotatedEntity: (=> AT annotations+=Annotation)* entity=Entity;
 
 AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 	Package | AnnotatedEntity | Import | Implements | Extends | PojoDao;
@@ -398,13 +406,14 @@ Implements hidden(ML_COMMENT, SL_COMMENT, WS):
 
 Extends hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=ImplementsExtendsDirective*
-	'extends' COLON extends = [jvmTypes::JvmType|QualifiedName] /*(generics ?= '<<>>')?*/ ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
+	'extends' COLON extends = [jvmTypes::JvmType|QualifiedName] ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
 
 PojoEntityModifier1: ((final?='final') | (abstract?='abstract'));
 
 DirectiveProperties hidden(ML_COMMENT, SL_COMMENT, WS):
 	features+=[PojoProperty|IDENT] (COMMA features+=[PojoProperty|IDENT])*
 ;
+
 PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
 	{PojoDirectiveToString} '#ToString' LPAREN proplist=DirectiveProperties RPAREN
 	| {PojoDirectiveIndex} '#Index' LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN

@@ -3349,7 +3349,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAbstractPojoEntity()
    * @generated
    */
-  int ABSTRACT_POJO_ENTITY = 68;
+  int ABSTRACT_POJO_ENTITY = 69;
 
   /**
    * The number of structural features of the '<em>Abstract Pojo Entity</em>' class.
@@ -3407,6 +3407,25 @@ public interface ProcessorDslPackage extends EPackage
   int PACKAGE_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveImpl <em>Annotation Directive</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotationDirective()
+   * @generated
+   */
+  int ANNOTATION_DIRECTIVE = 64;
+
+  /**
+   * The number of structural features of the '<em>Annotation Directive</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_DIRECTIVE_FEATURE_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationImpl <em>Annotation</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3414,7 +3433,16 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotation()
    * @generated
    */
-  int ANNOTATION = 64;
+  int ANNOTATION = 65;
+
+  /**
+   * The feature id for the '<em><b>Directives</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION__DIRECTIVES = 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -3423,7 +3451,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATION__TYPE = 0;
+  int ANNOTATION__TYPE = 1;
 
   /**
    * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -3432,7 +3460,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATION__FEATURES = 1;
+  int ANNOTATION__FEATURES = 2;
 
   /**
    * The number of structural features of the '<em>Annotation</em>' class.
@@ -3441,7 +3469,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATION_FEATURE_COUNT = 2;
+  int ANNOTATION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl <em>Annotation Property</em>}' class.
@@ -3451,7 +3479,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotationProperty()
    * @generated
    */
-  int ANNOTATION_PROPERTY = 65;
+  int ANNOTATION_PROPERTY = 66;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3463,31 +3491,13 @@ public interface ProcessorDslPackage extends EPackage
   int ANNOTATION_PROPERTY__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ANNOTATION_PROPERTY__TYPE = 1;
-
-  /**
-   * The feature id for the '<em><b>Ref</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ANNOTATION_PROPERTY__REF = 2;
-
-  /**
    * The feature id for the '<em><b>Number</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANNOTATION_PROPERTY__NUMBER = 3;
+  int ANNOTATION_PROPERTY__NUMBER = 1;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -3496,7 +3506,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATION_PROPERTY__VALUE = 4;
+  int ANNOTATION_PROPERTY__VALUE = 2;
 
   /**
    * The feature id for the '<em><b>Constant</b></em>' attribute.
@@ -3505,7 +3515,25 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATION_PROPERTY__CONSTANT = 5;
+  int ANNOTATION_PROPERTY__CONSTANT = 3;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_PROPERTY__TYPE = 4;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_PROPERTY__REF = 5;
 
   /**
    * The number of structural features of the '<em>Annotation Property</em>' class.
@@ -3524,7 +3552,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEntity()
    * @generated
    */
-  int ENTITY = 66;
+  int ENTITY = 67;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -3561,34 +3589,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotatedEntity()
    * @generated
    */
-  int ANNOTATED_ENTITY = 67;
-
-  /**
-   * The feature id for the '<em><b>Conflict Annotations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ANNOTATED_ENTITY__CONFLICT_ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Static Annotations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ANNOTATED_ENTITY__STATIC_ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Constructor Annotations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ANNOTATED_ENTITY__CONSTRUCTOR_ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
+  int ANNOTATED_ENTITY = 68;
 
   /**
    * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -3597,7 +3598,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY__ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
+  int ANNOTATED_ENTITY__ANNOTATIONS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Entity</b></em>' containment reference.
@@ -3606,7 +3607,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY__ENTITY = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
+  int ANNOTATED_ENTITY__ENTITY = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Annotated Entity</em>' class.
@@ -3615,7 +3616,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 5;
+  int ANNOTATED_ENTITY_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ImportImpl <em>Import</em>}' class.
@@ -3625,7 +3626,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getImport()
    * @generated
    */
-  int IMPORT = 69;
+  int IMPORT = 70;
 
   /**
    * The feature id for the '<em><b>Imported Namespace</b></em>' attribute.
@@ -3653,7 +3654,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getImplementsExtendsDirective()
    * @generated
    */
-  int IMPLEMENTS_EXTENDS_DIRECTIVE = 70;
+  int IMPLEMENTS_EXTENDS_DIRECTIVE = 71;
 
   /**
    * The number of structural features of the '<em>Implements Extends Directive</em>' class.
@@ -3672,7 +3673,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getImplements()
    * @generated
    */
-  int IMPLEMENTS = 71;
+  int IMPLEMENTS = 72;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -3745,7 +3746,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getExtends()
    * @generated
    */
-  int EXTENDS = 72;
+  int EXTENDS = 73;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -3818,7 +3819,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoEntityModifier1()
    * @generated
    */
-  int POJO_ENTITY_MODIFIER1 = 73;
+  int POJO_ENTITY_MODIFIER1 = 74;
 
   /**
    * The feature id for the '<em><b>Final</b></em>' attribute.
@@ -3855,7 +3856,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDirectiveProperties()
    * @generated
    */
-  int DIRECTIVE_PROPERTIES = 74;
+  int DIRECTIVE_PROPERTIES = 75;
 
   /**
    * The feature id for the '<em><b>Features</b></em>' reference list.
@@ -3883,7 +3884,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirective()
    * @generated
    */
-  int POJO_DIRECTIVE = 75;
+  int POJO_DIRECTIVE = 76;
 
   /**
    * The number of structural features of the '<em>Pojo Directive</em>' class.
@@ -3902,7 +3903,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoEntityModifier2()
    * @generated
    */
-  int POJO_ENTITY_MODIFIER2 = 76;
+  int POJO_ENTITY_MODIFIER2 = 77;
 
   /**
    * The feature id for the '<em><b>Super Type</b></em>' reference.
@@ -3930,7 +3931,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoEntity()
    * @generated
    */
-  int POJO_ENTITY = 77;
+  int POJO_ENTITY = 78;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -3994,7 +3995,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoAnnotatedProperty()
    * @generated
    */
-  int POJO_ANNOTATED_PROPERTY = 78;
+  int POJO_ANNOTATED_PROPERTY = 79;
 
   /**
    * The feature id for the '<em><b>Setter Annotations</b></em>' containment reference list.
@@ -4049,7 +4050,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirective()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE = 79;
+  int POJO_PROPERTY_DIRECTIVE = 80;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive</em>' class.
@@ -4068,7 +4069,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoProperty()
    * @generated
    */
-  int POJO_PROPERTY = 80;
+  int POJO_PROPERTY = 81;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -4159,7 +4160,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumEntityModifier1()
    * @generated
    */
-  int ENUM_ENTITY_MODIFIER1 = 81;
+  int ENUM_ENTITY_MODIFIER1 = 82;
 
   /**
    * The feature id for the '<em><b>Final</b></em>' attribute.
@@ -4187,7 +4188,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumEntityModifier2()
    * @generated
    */
-  int ENUM_ENTITY_MODIFIER2 = 82;
+  int ENUM_ENTITY_MODIFIER2 = 83;
 
   /**
    * The feature id for the '<em><b>Super Type</b></em>' reference.
@@ -4215,7 +4216,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumEntity()
    * @generated
    */
-  int ENUM_ENTITY = 83;
+  int ENUM_ENTITY = 84;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -4279,7 +4280,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumPropertyValue()
    * @generated
    */
-  int ENUM_PROPERTY_VALUE = 84;
+  int ENUM_PROPERTY_VALUE = 85;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4316,7 +4317,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumPropertyDirective()
    * @generated
    */
-  int ENUM_PROPERTY_DIRECTIVE = 85;
+  int ENUM_PROPERTY_DIRECTIVE = 86;
 
   /**
    * The number of structural features of the '<em>Enum Property Directive</em>' class.
@@ -4335,7 +4336,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumProperty()
    * @generated
    */
-  int ENUM_PROPERTY = 86;
+  int ENUM_PROPERTY = 87;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -4381,7 +4382,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveParameters()
    * @generated
    */
-  int DAO_DIRECTIVE_PARAMETERS = 87;
+  int DAO_DIRECTIVE_PARAMETERS = 88;
 
   /**
    * The feature id for the '<em><b>Out</b></em>' containment reference.
@@ -4418,7 +4419,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDescendantAssignment()
    * @generated
    */
-  int DESCENDANT_ASSIGNMENT = 88;
+  int DESCENDANT_ASSIGNMENT = 89;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4455,7 +4456,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunProcType()
    * @generated
    */
-  int FUN_PROC_TYPE = 89;
+  int FUN_PROC_TYPE = 90;
 
   /**
    * The number of structural features of the '<em>Fun Proc Type</em>' class.
@@ -4474,7 +4475,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirective()
    * @generated
    */
-  int DAO_DIRECTIVE = 90;
+  int DAO_DIRECTIVE = 91;
 
   /**
    * The number of structural features of the '<em>Dao Directive</em>' class.
@@ -4493,7 +4494,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDaoModifier()
    * @generated
    */
-  int POJO_DAO_MODIFIER = 91;
+  int POJO_DAO_MODIFIER = 92;
 
   /**
    * The feature id for the '<em><b>Super Type</b></em>' reference.
@@ -4521,7 +4522,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDao()
    * @generated
    */
-  int POJO_DAO = 92;
+  int POJO_DAO = 93;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -4576,7 +4577,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPackageDirectiveSuffix()
    * @generated
    */
-  int PACKAGE_DIRECTIVE_SUFFIX = 93;
+  int PACKAGE_DIRECTIVE_SUFFIX = 94;
 
   /**
    * The feature id for the '<em><b>Suffix</b></em>' attribute.
@@ -4604,7 +4605,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPackageDirectiveImplementation()
    * @generated
    */
-  int PACKAGE_DIRECTIVE_IMPLEMENTATION = 94;
+  int PACKAGE_DIRECTIVE_IMPLEMENTATION = 95;
 
   /**
    * The feature id for the '<em><b>Implementation</b></em>' attribute.
@@ -4625,6 +4626,82 @@ public interface ProcessorDslPackage extends EPackage
   int PACKAGE_DIRECTIVE_IMPLEMENTATION_FEATURE_COUNT = PACKAGE_DIRECTIVE_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveConflictImpl <em>Annotation Directive Conflict</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveConflictImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotationDirectiveConflict()
+   * @generated
+   */
+  int ANNOTATION_DIRECTIVE_CONFLICT = 96;
+
+  /**
+   * The number of structural features of the '<em>Annotation Directive Conflict</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_DIRECTIVE_CONFLICT_FEATURE_COUNT = ANNOTATION_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveStaticImpl <em>Annotation Directive Static</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveStaticImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotationDirectiveStatic()
+   * @generated
+   */
+  int ANNOTATION_DIRECTIVE_STATIC = 97;
+
+  /**
+   * The number of structural features of the '<em>Annotation Directive Static</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_DIRECTIVE_STATIC_FEATURE_COUNT = ANNOTATION_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveConstructorImpl <em>Annotation Directive Constructor</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveConstructorImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotationDirectiveConstructor()
+   * @generated
+   */
+  int ANNOTATION_DIRECTIVE_CONSTRUCTOR = 98;
+
+  /**
+   * The number of structural features of the '<em>Annotation Directive Constructor</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_DIRECTIVE_CONSTRUCTOR_FEATURE_COUNT = ANNOTATION_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveStandardImpl <em>Annotation Directive Standard</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveStandardImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotationDirectiveStandard()
+   * @generated
+   */
+  int ANNOTATION_DIRECTIVE_STANDARD = 99;
+
+  /**
+   * The number of structural features of the '<em>Annotation Directive Standard</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_DIRECTIVE_STANDARD_FEATURE_COUNT = ANNOTATION_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.ImplementsExtendsDirectiveGenericsImpl <em>Implements Extends Directive Generics</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4632,7 +4709,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getImplementsExtendsDirectiveGenerics()
    * @generated
    */
-  int IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS = 95;
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS = 100;
 
   /**
    * The number of structural features of the '<em>Implements Extends Directive Generics</em>' class.
@@ -4651,7 +4728,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveToString()
    * @generated
    */
-  int POJO_DIRECTIVE_TO_STRING = 96;
+  int POJO_DIRECTIVE_TO_STRING = 101;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4679,7 +4756,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveIndex()
    * @generated
    */
-  int POJO_DIRECTIVE_INDEX = 97;
+  int POJO_DIRECTIVE_INDEX = 102;
 
   /**
    * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -4716,7 +4793,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveOperators()
    * @generated
    */
-  int POJO_DIRECTIVE_OPERATORS = 98;
+  int POJO_DIRECTIVE_OPERATORS = 103;
 
   /**
    * The feature id for the '<em><b>Operators Suffix</b></em>' attribute.
@@ -4744,7 +4821,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveSerializable()
    * @generated
    */
-  int POJO_DIRECTIVE_SERIALIZABLE = 99;
+  int POJO_DIRECTIVE_SERIALIZABLE = 104;
 
   /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
@@ -4772,7 +4849,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveDiscriminator()
    * @generated
    */
-  int POJO_DIRECTIVE_DISCRIMINATOR = 100;
+  int POJO_DIRECTIVE_DISCRIMINATOR = 105;
 
   /**
    * The feature id for the '<em><b>Discriminator</b></em>' attribute.
@@ -4800,7 +4877,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEquals()
    * @generated
    */
-  int POJO_DIRECTIVE_EQUALS = 101;
+  int POJO_DIRECTIVE_EQUALS = 106;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4828,7 +4905,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveHashCode()
    * @generated
    */
-  int POJO_DIRECTIVE_HASH_CODE = 102;
+  int POJO_DIRECTIVE_HASH_CODE = 107;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4856,7 +4933,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveToInit()
    * @generated
    */
-  int POJO_DIRECTIVE_TO_INIT = 103;
+  int POJO_DIRECTIVE_TO_INIT = 108;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4884,7 +4961,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEnumInit()
    * @generated
    */
-  int POJO_DIRECTIVE_ENUM_INIT = 104;
+  int POJO_DIRECTIVE_ENUM_INIT = 109;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4912,7 +4989,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveIsDef()
    * @generated
    */
-  int POJO_DIRECTIVE_IS_DEF = 105;
+  int POJO_DIRECTIVE_IS_DEF = 110;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4940,7 +5017,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEnumDef()
    * @generated
    */
-  int POJO_DIRECTIVE_ENUM_DEF = 106;
+  int POJO_DIRECTIVE_ENUM_DEF = 111;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -4968,7 +5045,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveRequired()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_REQUIRED = 107;
+  int POJO_PROPERTY_DIRECTIVE_REQUIRED = 112;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Required</em>' class.
@@ -4987,7 +5064,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectivePrimaryKey()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = 108;
+  int POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = 113;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Primary Key</em>' class.
@@ -5006,7 +5083,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveDiscriminator()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = 109;
+  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = 114;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Discriminator</em>' class.
@@ -5025,7 +5102,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveIndex()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_INDEX = 110;
+  int POJO_PROPERTY_DIRECTIVE_INDEX = 115;
 
   /**
    * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -5053,7 +5130,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveVersion()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_VERSION = 111;
+  int POJO_PROPERTY_DIRECTIVE_VERSION = 116;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Version</em>' class.
@@ -5072,7 +5149,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveUpdateCol()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL = 112;
+  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL = 117;
 
   /**
    * The feature id for the '<em><b>Update Column1</b></em>' attribute.
@@ -5109,7 +5186,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveCreateCol()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_CREATE_COL = 113;
+  int POJO_PROPERTY_DIRECTIVE_CREATE_COL = 118;
 
   /**
    * The feature id for the '<em><b>Create Column1</b></em>' attribute.
@@ -5146,7 +5223,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumPropertyDirectiveValues()
    * @generated
    */
-  int ENUM_PROPERTY_DIRECTIVE_VALUES = 114;
+  int ENUM_PROPERTY_DIRECTIVE_VALUES = 119;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' containment reference list.
@@ -5174,7 +5251,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionCallQuery()
    * @generated
    */
-  int FUNCTION_CALL_QUERY = 115;
+  int FUNCTION_CALL_QUERY = 120;
 
   /**
    * The number of structural features of the '<em>Function Call Query</em>' class.
@@ -5193,7 +5270,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getProcedureCallQuery()
    * @generated
    */
-  int PROCEDURE_CALL_QUERY = 116;
+  int PROCEDURE_CALL_QUERY = 121;
 
   /**
    * The number of structural features of the '<em>Procedure Call Query</em>' class.
@@ -5212,7 +5289,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionCall()
    * @generated
    */
-  int FUNCTION_CALL = 117;
+  int FUNCTION_CALL = 122;
 
   /**
    * The number of structural features of the '<em>Function Call</em>' class.
@@ -5231,7 +5308,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getProcedureUpdate()
    * @generated
    */
-  int PROCEDURE_UPDATE = 118;
+  int PROCEDURE_UPDATE = 123;
 
   /**
    * The number of structural features of the '<em>Procedure Update</em>' class.
@@ -5250,7 +5327,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionQuery()
    * @generated
    */
-  int FUNCTION_QUERY = 119;
+  int FUNCTION_QUERY = 124;
 
   /**
    * The number of structural features of the '<em>Function Query</em>' class.
@@ -5269,7 +5346,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveSerializable()
    * @generated
    */
-  int DAO_DIRECTIVE_SERIALIZABLE = 120;
+  int DAO_DIRECTIVE_SERIALIZABLE = 125;
 
   /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
@@ -5297,7 +5374,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveDiscriminator()
    * @generated
    */
-  int DAO_DIRECTIVE_DISCRIMINATOR = 121;
+  int DAO_DIRECTIVE_DISCRIMINATOR = 126;
 
   /**
    * The feature id for the '<em><b>Ancestor</b></em>' reference.
@@ -5334,7 +5411,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveCrud()
    * @generated
    */
-  int DAO_DIRECTIVE_CRUD = 122;
+  int DAO_DIRECTIVE_CRUD = 127;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' containment reference.
@@ -5362,7 +5439,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveQuery()
    * @generated
    */
-  int DAO_DIRECTIVE_QUERY = 123;
+  int DAO_DIRECTIVE_QUERY = 128;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' containment reference.
@@ -5390,7 +5467,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunProcDirective()
    * @generated
    */
-  int FUN_PROC_DIRECTIVE = 124;
+  int FUN_PROC_DIRECTIVE = 129;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -8646,6 +8723,16 @@ public interface ProcessorDslPackage extends EPackage
   EReference getPackage_Elements();
 
   /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirective <em>Annotation Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Annotation Directive</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirective
+   * @generated
+   */
+  EClass getAnnotationDirective();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.Annotation <em>Annotation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8654,6 +8741,17 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EClass getAnnotation();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.Annotation#getDirectives <em>Directives</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Directives</em>'.
+   * @see org.sqlproc.dsl.processorDsl.Annotation#getDirectives()
+   * @see #getAnnotation()
+   * @generated
+   */
+  EReference getAnnotation_Directives();
 
   /**
    * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.Annotation#getType <em>Type</em>}'.
@@ -8699,28 +8797,6 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getAnnotationProperty_Name();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Type</em>'.
-   * @see org.sqlproc.dsl.processorDsl.AnnotationProperty#getType()
-   * @see #getAnnotationProperty()
-   * @generated
-   */
-  EReference getAnnotationProperty_Type();
-
-  /**
-   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getRef <em>Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Ref</em>'.
-   * @see org.sqlproc.dsl.processorDsl.AnnotationProperty#getRef()
-   * @see #getAnnotationProperty()
-   * @generated
-   */
-  EReference getAnnotationProperty_Ref();
-
-  /**
    * Returns the meta object for the attribute '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getNumber <em>Number</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8752,6 +8828,28 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EAttribute getAnnotationProperty_Constant();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationProperty#getType()
+   * @see #getAnnotationProperty()
+   * @generated
+   */
+  EReference getAnnotationProperty_Type();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.AnnotationProperty#getRef <em>Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Ref</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationProperty#getRef()
+   * @see #getAnnotationProperty()
+   * @generated
+   */
+  EReference getAnnotationProperty_Ref();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.Entity <em>Entity</em>}'.
@@ -8794,39 +8892,6 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EClass getAnnotatedEntity();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getConflictAnnotations <em>Conflict Annotations</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Conflict Annotations</em>'.
-   * @see org.sqlproc.dsl.processorDsl.AnnotatedEntity#getConflictAnnotations()
-   * @see #getAnnotatedEntity()
-   * @generated
-   */
-  EReference getAnnotatedEntity_ConflictAnnotations();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getStaticAnnotations <em>Static Annotations</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Static Annotations</em>'.
-   * @see org.sqlproc.dsl.processorDsl.AnnotatedEntity#getStaticAnnotations()
-   * @see #getAnnotatedEntity()
-   * @generated
-   */
-  EReference getAnnotatedEntity_StaticAnnotations();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getConstructorAnnotations <em>Constructor Annotations</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Constructor Annotations</em>'.
-   * @see org.sqlproc.dsl.processorDsl.AnnotatedEntity#getConstructorAnnotations()
-   * @see #getAnnotatedEntity()
-   * @generated
-   */
-  EReference getAnnotatedEntity_ConstructorAnnotations();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.sqlproc.dsl.processorDsl.AnnotatedEntity#getAnnotations <em>Annotations</em>}'.
@@ -9702,6 +9767,46 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EAttribute getPackageDirectiveImplementation_Implementation();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict <em>Annotation Directive Conflict</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Annotation Directive Conflict</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict
+   * @generated
+   */
+  EClass getAnnotationDirectiveConflict();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic <em>Annotation Directive Static</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Annotation Directive Static</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic
+   * @generated
+   */
+  EClass getAnnotationDirectiveStatic();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor <em>Annotation Directive Constructor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Annotation Directive Constructor</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor
+   * @generated
+   */
+  EClass getAnnotationDirectiveConstructor();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard <em>Annotation Directive Standard</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Annotation Directive Standard</em>'.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard
+   * @generated
+   */
+  EClass getAnnotationDirectiveStandard();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.ImplementsExtendsDirectiveGenerics <em>Implements Extends Directive Generics</em>}'.
@@ -12822,6 +12927,16 @@ public interface ProcessorDslPackage extends EPackage
     EReference PACKAGE__ELEMENTS = eINSTANCE.getPackage_Elements();
 
     /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveImpl <em>Annotation Directive</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotationDirective()
+     * @generated
+     */
+    EClass ANNOTATION_DIRECTIVE = eINSTANCE.getAnnotationDirective();
+
+    /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationImpl <em>Annotation</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12830,6 +12945,14 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EClass ANNOTATION = eINSTANCE.getAnnotation();
+
+    /**
+     * The meta object literal for the '<em><b>Directives</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ANNOTATION__DIRECTIVES = eINSTANCE.getAnnotation_Directives();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' reference feature.
@@ -12866,22 +12989,6 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute ANNOTATION_PROPERTY__NAME = eINSTANCE.getAnnotationProperty_Name();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ANNOTATION_PROPERTY__TYPE = eINSTANCE.getAnnotationProperty_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ANNOTATION_PROPERTY__REF = eINSTANCE.getAnnotationProperty_Ref();
-
-    /**
      * The meta object literal for the '<em><b>Number</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12904,6 +13011,22 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute ANNOTATION_PROPERTY__CONSTANT = eINSTANCE.getAnnotationProperty_Constant();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ANNOTATION_PROPERTY__TYPE = eINSTANCE.getAnnotationProperty_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ANNOTATION_PROPERTY__REF = eINSTANCE.getAnnotationProperty_Ref();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.EntityImpl <em>Entity</em>}' class.
@@ -12940,30 +13063,6 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EClass ANNOTATED_ENTITY = eINSTANCE.getAnnotatedEntity();
-
-    /**
-     * The meta object literal for the '<em><b>Conflict Annotations</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ANNOTATED_ENTITY__CONFLICT_ANNOTATIONS = eINSTANCE.getAnnotatedEntity_ConflictAnnotations();
-
-    /**
-     * The meta object literal for the '<em><b>Static Annotations</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ANNOTATED_ENTITY__STATIC_ANNOTATIONS = eINSTANCE.getAnnotatedEntity_StaticAnnotations();
-
-    /**
-     * The meta object literal for the '<em><b>Constructor Annotations</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ANNOTATED_ENTITY__CONSTRUCTOR_ANNOTATIONS = eINSTANCE.getAnnotatedEntity_ConstructorAnnotations();
 
     /**
      * The meta object literal for the '<em><b>Annotations</b></em>' containment reference list feature.
@@ -13674,6 +13773,46 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute PACKAGE_DIRECTIVE_IMPLEMENTATION__IMPLEMENTATION = eINSTANCE.getPackageDirectiveImplementation_Implementation();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveConflictImpl <em>Annotation Directive Conflict</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveConflictImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotationDirectiveConflict()
+     * @generated
+     */
+    EClass ANNOTATION_DIRECTIVE_CONFLICT = eINSTANCE.getAnnotationDirectiveConflict();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveStaticImpl <em>Annotation Directive Static</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveStaticImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotationDirectiveStatic()
+     * @generated
+     */
+    EClass ANNOTATION_DIRECTIVE_STATIC = eINSTANCE.getAnnotationDirectiveStatic();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveConstructorImpl <em>Annotation Directive Constructor</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveConstructorImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotationDirectiveConstructor()
+     * @generated
+     */
+    EClass ANNOTATION_DIRECTIVE_CONSTRUCTOR = eINSTANCE.getAnnotationDirectiveConstructor();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveStandardImpl <em>Annotation Directive Standard</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.AnnotationDirectiveStandardImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getAnnotationDirectiveStandard()
+     * @generated
+     */
+    EClass ANNOTATION_DIRECTIVE_STANDARD = eINSTANCE.getAnnotationDirectiveStandard();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.ImplementsExtendsDirectiveGenericsImpl <em>Implements Extends Directive Generics</em>}' class.

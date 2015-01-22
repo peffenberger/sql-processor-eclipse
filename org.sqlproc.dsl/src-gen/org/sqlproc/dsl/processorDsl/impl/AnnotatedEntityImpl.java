@@ -29,9 +29,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotatedEntityImpl#getConflictAnnotations <em>Conflict Annotations</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotatedEntityImpl#getStaticAnnotations <em>Static Annotations</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotatedEntityImpl#getConstructorAnnotations <em>Constructor Annotations</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotatedEntityImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotatedEntityImpl#getEntity <em>Entity</em>}</li>
  * </ul>
@@ -41,36 +38,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  */
 public class AnnotatedEntityImpl extends AbstractPojoEntityImpl implements AnnotatedEntity
 {
-  /**
-   * The cached value of the '{@link #getConflictAnnotations() <em>Conflict Annotations</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getConflictAnnotations()
-   * @generated
-   * @ordered
-   */
-  protected EList<Annotation> conflictAnnotations;
-
-  /**
-   * The cached value of the '{@link #getStaticAnnotations() <em>Static Annotations</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getStaticAnnotations()
-   * @generated
-   * @ordered
-   */
-  protected EList<Annotation> staticAnnotations;
-
-  /**
-   * The cached value of the '{@link #getConstructorAnnotations() <em>Constructor Annotations</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getConstructorAnnotations()
-   * @generated
-   * @ordered
-   */
-  protected EList<Annotation> constructorAnnotations;
-
   /**
    * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -110,48 +77,6 @@ public class AnnotatedEntityImpl extends AbstractPojoEntityImpl implements Annot
   protected EClass eStaticClass()
   {
     return ProcessorDslPackage.Literals.ANNOTATED_ENTITY;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Annotation> getConflictAnnotations()
-  {
-    if (conflictAnnotations == null)
-    {
-      conflictAnnotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, ProcessorDslPackage.ANNOTATED_ENTITY__CONFLICT_ANNOTATIONS);
-    }
-    return conflictAnnotations;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Annotation> getStaticAnnotations()
-  {
-    if (staticAnnotations == null)
-    {
-      staticAnnotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, ProcessorDslPackage.ANNOTATED_ENTITY__STATIC_ANNOTATIONS);
-    }
-    return staticAnnotations;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Annotation> getConstructorAnnotations()
-  {
-    if (constructorAnnotations == null)
-    {
-      constructorAnnotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, ProcessorDslPackage.ANNOTATED_ENTITY__CONSTRUCTOR_ANNOTATIONS);
-    }
-    return constructorAnnotations;
   }
 
   /**
@@ -226,12 +151,6 @@ public class AnnotatedEntityImpl extends AbstractPojoEntityImpl implements Annot
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.ANNOTATED_ENTITY__CONFLICT_ANNOTATIONS:
-        return ((InternalEList<?>)getConflictAnnotations()).basicRemove(otherEnd, msgs);
-      case ProcessorDslPackage.ANNOTATED_ENTITY__STATIC_ANNOTATIONS:
-        return ((InternalEList<?>)getStaticAnnotations()).basicRemove(otherEnd, msgs);
-      case ProcessorDslPackage.ANNOTATED_ENTITY__CONSTRUCTOR_ANNOTATIONS:
-        return ((InternalEList<?>)getConstructorAnnotations()).basicRemove(otherEnd, msgs);
       case ProcessorDslPackage.ANNOTATED_ENTITY__ANNOTATIONS:
         return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
       case ProcessorDslPackage.ANNOTATED_ENTITY__ENTITY:
@@ -250,12 +169,6 @@ public class AnnotatedEntityImpl extends AbstractPojoEntityImpl implements Annot
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.ANNOTATED_ENTITY__CONFLICT_ANNOTATIONS:
-        return getConflictAnnotations();
-      case ProcessorDslPackage.ANNOTATED_ENTITY__STATIC_ANNOTATIONS:
-        return getStaticAnnotations();
-      case ProcessorDslPackage.ANNOTATED_ENTITY__CONSTRUCTOR_ANNOTATIONS:
-        return getConstructorAnnotations();
       case ProcessorDslPackage.ANNOTATED_ENTITY__ANNOTATIONS:
         return getAnnotations();
       case ProcessorDslPackage.ANNOTATED_ENTITY__ENTITY:
@@ -275,18 +188,6 @@ public class AnnotatedEntityImpl extends AbstractPojoEntityImpl implements Annot
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.ANNOTATED_ENTITY__CONFLICT_ANNOTATIONS:
-        getConflictAnnotations().clear();
-        getConflictAnnotations().addAll((Collection<? extends Annotation>)newValue);
-        return;
-      case ProcessorDslPackage.ANNOTATED_ENTITY__STATIC_ANNOTATIONS:
-        getStaticAnnotations().clear();
-        getStaticAnnotations().addAll((Collection<? extends Annotation>)newValue);
-        return;
-      case ProcessorDslPackage.ANNOTATED_ENTITY__CONSTRUCTOR_ANNOTATIONS:
-        getConstructorAnnotations().clear();
-        getConstructorAnnotations().addAll((Collection<? extends Annotation>)newValue);
-        return;
       case ProcessorDslPackage.ANNOTATED_ENTITY__ANNOTATIONS:
         getAnnotations().clear();
         getAnnotations().addAll((Collection<? extends Annotation>)newValue);
@@ -308,15 +209,6 @@ public class AnnotatedEntityImpl extends AbstractPojoEntityImpl implements Annot
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.ANNOTATED_ENTITY__CONFLICT_ANNOTATIONS:
-        getConflictAnnotations().clear();
-        return;
-      case ProcessorDslPackage.ANNOTATED_ENTITY__STATIC_ANNOTATIONS:
-        getStaticAnnotations().clear();
-        return;
-      case ProcessorDslPackage.ANNOTATED_ENTITY__CONSTRUCTOR_ANNOTATIONS:
-        getConstructorAnnotations().clear();
-        return;
       case ProcessorDslPackage.ANNOTATED_ENTITY__ANNOTATIONS:
         getAnnotations().clear();
         return;
@@ -337,12 +229,6 @@ public class AnnotatedEntityImpl extends AbstractPojoEntityImpl implements Annot
   {
     switch (featureID)
     {
-      case ProcessorDslPackage.ANNOTATED_ENTITY__CONFLICT_ANNOTATIONS:
-        return conflictAnnotations != null && !conflictAnnotations.isEmpty();
-      case ProcessorDslPackage.ANNOTATED_ENTITY__STATIC_ANNOTATIONS:
-        return staticAnnotations != null && !staticAnnotations.isEmpty();
-      case ProcessorDslPackage.ANNOTATED_ENTITY__CONSTRUCTOR_ANNOTATIONS:
-        return constructorAnnotations != null && !constructorAnnotations.isEmpty();
       case ProcessorDslPackage.ANNOTATED_ENTITY__ANNOTATIONS:
         return annotations != null && !annotations.isEmpty();
       case ProcessorDslPackage.ANNOTATED_ENTITY__ENTITY:

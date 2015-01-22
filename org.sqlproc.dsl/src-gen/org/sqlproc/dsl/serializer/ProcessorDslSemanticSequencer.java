@@ -15,6 +15,10 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
@@ -149,6 +153,30 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case ProcessorDslPackage.ANNOTATION:
 				if(context == grammarAccess.getAnnotationRule()) {
 					sequence_Annotation(context, (Annotation) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.ANNOTATION_DIRECTIVE_CONFLICT:
+				if(context == grammarAccess.getAnnotationDirectiveRule()) {
+					sequence_AnnotationDirective(context, (AnnotationDirectiveConflict) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.ANNOTATION_DIRECTIVE_CONSTRUCTOR:
+				if(context == grammarAccess.getAnnotationDirectiveRule()) {
+					sequence_AnnotationDirective(context, (AnnotationDirectiveConstructor) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.ANNOTATION_DIRECTIVE_STANDARD:
+				if(context == grammarAccess.getAnnotationDirectiveRule()) {
+					sequence_AnnotationDirective(context, (AnnotationDirectiveStandard) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.ANNOTATION_DIRECTIVE_STATIC:
+				if(context == grammarAccess.getAnnotationDirectiveRule()) {
+					sequence_AnnotationDirective(context, (AnnotationDirectiveStatic) semanticObject); 
 					return; 
 				}
 				else break;
@@ -849,10 +877,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         (conflictAnnotations+=Annotation | staticAnnotations+=Annotation | constructorAnnotations+=Annotation | annotations+=Annotation)* 
-	 *         entity=Entity
-	 *     )
+	 *     (annotations+=Annotation* entity=Entity)
 	 */
 	protected void sequence_AnnotatedEntity(EObject context, AnnotatedEntity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -861,7 +886,43 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (name=IDENT (type=[JvmType|QualifiedName] | ref=[PojoEntity|IDENT])? (number=NUMBER | value=STRING_VALUE | constant=IDENT))
+	 *     {AnnotationDirectiveConflict}
+	 */
+	protected void sequence_AnnotationDirective(EObject context, AnnotationDirectiveConflict semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {AnnotationDirectiveConstructor}
+	 */
+	protected void sequence_AnnotationDirective(EObject context, AnnotationDirectiveConstructor semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {AnnotationDirectiveStandard}
+	 */
+	protected void sequence_AnnotationDirective(EObject context, AnnotationDirectiveStandard semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {AnnotationDirectiveStatic}
+	 */
+	protected void sequence_AnnotationDirective(EObject context, AnnotationDirectiveStatic semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=IDENT (number=NUMBER | value=STRING_VALUE | constant=IDENT) (type=[JvmType|QualifiedName] | ref=[PojoEntity|IDENT])?)
 	 */
 	protected void sequence_AnnotationProperty(EObject context, AnnotationProperty semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -870,7 +931,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (type=[JvmType|QualifiedName] (features+=AnnotationProperty features+=AnnotationProperty*)?)
+	 *     (directives+=AnnotationDirective* type=[JvmType|QualifiedName] (features+=AnnotationProperty features+=AnnotationProperty*)?)
 	 */
 	protected void sequence_Annotation(EObject context, Annotation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

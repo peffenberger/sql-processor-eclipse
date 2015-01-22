@@ -9,6 +9,11 @@ import java.util.Set;
 
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
+import org.sqlproc.dsl.processorDsl.AnnotationDirective;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
@@ -22,24 +27,13 @@ public class Annotations {
     Map<String, Map<String, List<Annotation>>> getterAnnotations = new HashMap<String, Map<String, List<Annotation>>>();
     Map<String, Map<String, List<Annotation>>> attributeAnnotations = new HashMap<String, Map<String, List<Annotation>>>();
 
-    public void addEntityAnnotations(String pojoName, List<Annotation> annotations) {
-        entityAnnotations.put(pojoName, new ArrayList<Annotation>());
-        entityAnnotations.get(pojoName).addAll(annotations);
-    }
-
-    public void addConstructorAnnotations(String pojoName, List<Annotation> annotations) {
-        constructorAnnotations.put(pojoName, new ArrayList<Annotation>());
-        constructorAnnotations.get(pojoName).addAll(annotations);
-    }
-
-    public void addStaticAnnotations(String pojoName, List<Annotation> annotations) {
-        staticAnnotations.put(pojoName, new ArrayList<Annotation>());
-        staticAnnotations.get(pojoName).addAll(annotations);
-    }
-
-    public void addConflictAnnotations(String pojoName, List<Annotation> annotations) {
-        conflictAnnotations.put(pojoName, new ArrayList<Annotation>());
-        conflictAnnotations.get(pojoName).addAll(annotations);
+    public void addAnnotation(String pojoName, Annotation annotation, Map<String, List<Annotation>> annotations) {
+        List<Annotation> list;
+        if ((list = annotations.get(pojoName)) == null) {
+            list = new ArrayList<Annotation>();
+            annotations.put(pojoName, list);
+        }
+        list.add(annotation);
     }
 
     public void addGetterAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
@@ -223,10 +217,25 @@ public class Annotations {
 
     public static void grabAnnotations(AnnotatedEntity apojo, PojoEntity pojo, Annotations as) {
         String pojoName = pojo.getName();
-        as.addEntityAnnotations(pojoName, apojo.getAnnotations());
-        as.addConstructorAnnotations(pojoName, apojo.getConstructorAnnotations());
-        as.addStaticAnnotations(pojoName, apojo.getStaticAnnotations());
-        as.addConflictAnnotations(pojoName, apojo.getConflictAnnotations());
+        if (apojo.getAnnotations() != null && !apojo.getAnnotations().isEmpty()) {
+            for (Annotation an : apojo.getAnnotations()) {
+                if (an.getDirectives() == null || an.getDirectives().isEmpty()) {
+                    as.addAnnotation(pojoName, an, as.entityAnnotations);
+                } else {
+                    for (AnnotationDirective dir : an.getDirectives()) {
+                        if (dir instanceof AnnotationDirectiveConflict) {
+                            as.addAnnotation(pojoName, an, as.conflictAnnotations);
+                        } else if (dir instanceof AnnotationDirectiveConstructor) {
+                            as.addAnnotation(pojoName, an, as.constructorAnnotations);
+                        } else if (dir instanceof AnnotationDirectiveStandard) {
+                            as.addAnnotation(pojoName, an, as.entityAnnotations);
+                        } else if (dir instanceof AnnotationDirectiveStatic) {
+                            as.addAnnotation(pojoName, an, as.staticAnnotations);
+                        }
+                    }
+                }
+            }
+        }
         for (PojoAnnotatedProperty feature : pojo.getFeatures()) {
             if (feature.getFeature() == null)
                 continue;

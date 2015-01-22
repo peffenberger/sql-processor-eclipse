@@ -12,6 +12,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
+import org.sqlproc.dsl.processorDsl.AnnotationDirective;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
@@ -519,6 +524,11 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createPackageAdapter();
       }
       @Override
+      public Adapter caseAnnotationDirective(AnnotationDirective object)
+      {
+        return createAnnotationDirectiveAdapter();
+      }
+      @Override
       public Adapter caseAnnotation(Annotation object)
       {
         return createAnnotationAdapter();
@@ -672,6 +682,26 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
       public Adapter casePackageDirectiveImplementation(PackageDirectiveImplementation object)
       {
         return createPackageDirectiveImplementationAdapter();
+      }
+      @Override
+      public Adapter caseAnnotationDirectiveConflict(AnnotationDirectiveConflict object)
+      {
+        return createAnnotationDirectiveConflictAdapter();
+      }
+      @Override
+      public Adapter caseAnnotationDirectiveStatic(AnnotationDirectiveStatic object)
+      {
+        return createAnnotationDirectiveStaticAdapter();
+      }
+      @Override
+      public Adapter caseAnnotationDirectiveConstructor(AnnotationDirectiveConstructor object)
+      {
+        return createAnnotationDirectiveConstructorAdapter();
+      }
+      @Override
+      public Adapter caseAnnotationDirectiveStandard(AnnotationDirectiveStandard object)
+      {
+        return createAnnotationDirectiveStandardAdapter();
       }
       @Override
       public Adapter caseImplementsExtendsDirectiveGenerics(ImplementsExtendsDirectiveGenerics object)
@@ -1806,6 +1836,21 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirective <em>Annotation Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirective
+   * @generated
+   */
+  public Adapter createAnnotationDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.Annotation <em>Annotation</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -2266,6 +2311,66 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPackageDirectiveImplementationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict <em>Annotation Directive Conflict</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict
+   * @generated
+   */
+  public Adapter createAnnotationDirectiveConflictAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic <em>Annotation Directive Static</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic
+   * @generated
+   */
+  public Adapter createAnnotationDirectiveStaticAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor <em>Annotation Directive Constructor</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor
+   * @generated
+   */
+  public Adapter createAnnotationDirectiveConstructorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard <em>Annotation Directive Standard</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard
+   * @generated
+   */
+  public Adapter createAnnotationDirectiveStandardAdapter()
   {
     return null;
   }

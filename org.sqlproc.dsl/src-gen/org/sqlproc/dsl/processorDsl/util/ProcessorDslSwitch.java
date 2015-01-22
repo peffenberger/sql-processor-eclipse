@@ -10,6 +10,11 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
+import org.sqlproc.dsl.processorDsl.AnnotationDirective;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
@@ -645,6 +650,13 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE:
+      {
+        AnnotationDirective annotationDirective = (AnnotationDirective)theEObject;
+        T result = caseAnnotationDirective(annotationDirective);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorDslPackage.ANNOTATION:
       {
         Annotation annotation = (Annotation)theEObject;
@@ -868,6 +880,38 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         PackageDirectiveImplementation packageDirectiveImplementation = (PackageDirectiveImplementation)theEObject;
         T result = casePackageDirectiveImplementation(packageDirectiveImplementation);
         if (result == null) result = casePackageDirective(packageDirectiveImplementation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE_CONFLICT:
+      {
+        AnnotationDirectiveConflict annotationDirectiveConflict = (AnnotationDirectiveConflict)theEObject;
+        T result = caseAnnotationDirectiveConflict(annotationDirectiveConflict);
+        if (result == null) result = caseAnnotationDirective(annotationDirectiveConflict);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE_STATIC:
+      {
+        AnnotationDirectiveStatic annotationDirectiveStatic = (AnnotationDirectiveStatic)theEObject;
+        T result = caseAnnotationDirectiveStatic(annotationDirectiveStatic);
+        if (result == null) result = caseAnnotationDirective(annotationDirectiveStatic);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE_CONSTRUCTOR:
+      {
+        AnnotationDirectiveConstructor annotationDirectiveConstructor = (AnnotationDirectiveConstructor)theEObject;
+        T result = caseAnnotationDirectiveConstructor(annotationDirectiveConstructor);
+        if (result == null) result = caseAnnotationDirective(annotationDirectiveConstructor);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE_STANDARD:
+      {
+        AnnotationDirectiveStandard annotationDirectiveStandard = (AnnotationDirectiveStandard)theEObject;
+        T result = caseAnnotationDirectiveStandard(annotationDirectiveStandard);
+        if (result == null) result = caseAnnotationDirective(annotationDirectiveStandard);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2140,6 +2184,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Annotation Directive</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Annotation Directive</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAnnotationDirective(AnnotationDirective object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2631,6 +2691,70 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePackageDirectiveImplementation(PackageDirectiveImplementation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Annotation Directive Conflict</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Annotation Directive Conflict</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAnnotationDirectiveConflict(AnnotationDirectiveConflict object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Annotation Directive Static</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Annotation Directive Static</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAnnotationDirectiveStatic(AnnotationDirectiveStatic object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Annotation Directive Constructor</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Annotation Directive Constructor</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAnnotationDirectiveConstructor(AnnotationDirectiveConstructor object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Annotation Directive Standard</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Annotation Directive Standard</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAnnotationDirectiveStandard(AnnotationDirectiveStandard object)
   {
     return null;
   }

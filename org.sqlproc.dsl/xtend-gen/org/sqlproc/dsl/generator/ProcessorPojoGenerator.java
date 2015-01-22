@@ -529,7 +529,7 @@ public class ProcessorPojoGenerator {
       Iterable<PojoAnnotatedProperty> _filter = IterableExtensions.<PojoAnnotatedProperty>filter(_features_2, _function);
       for(final PojoAnnotatedProperty f_1 : _filter) {
         {
-          EList<Annotation> _staticAnnotations = ae.getStaticAnnotations();
+          List<Annotation> _staticAnnotations = this._processorGeneratorUtils.staticAnnotations(ae);
           for(final Annotation a_1 : _staticAnnotations) {
             _builder.append("\t");
             _builder.append("@");
@@ -579,7 +579,7 @@ public class ProcessorPojoGenerator {
       Set<Map.Entry<String, List<PojoProperty>>> _entrySet = _index_1.entrySet();
       for(final Map.Entry<String, List<PojoProperty>> f_2 : _entrySet) {
         {
-          EList<Annotation> _staticAnnotations_1 = ae.getStaticAnnotations();
+          List<Annotation> _staticAnnotations_1 = this._processorGeneratorUtils.staticAnnotations(ae);
           for(final Annotation a_2 : _staticAnnotations_1) {
             _builder.append("\t");
             _builder.append("@");
@@ -626,7 +626,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.newLine();
     {
-      EList<Annotation> _constructorAnnotations = ae.getConstructorAnnotations();
+      List<Annotation> _constructorAnnotations = this._processorGeneratorUtils.constructorAnnotations(ae);
       for(final Annotation a_3 : _constructorAnnotations) {
         _builder.append("\t");
         _builder.append("@");
@@ -676,7 +676,7 @@ public class ProcessorPojoGenerator {
         _builder.append("\t");
         _builder.newLine();
         {
-          EList<Annotation> _constructorAnnotations_1 = ae.getConstructorAnnotations();
+          List<Annotation> _constructorAnnotations_1 = this._processorGeneratorUtils.constructorAnnotations(ae);
           for(final Annotation a_4 : _constructorAnnotations_1) {
             _builder.append("\t");
             _builder.append("@");
@@ -1818,7 +1818,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      EList<Annotation> _conflictAnnotations = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_2 : _conflictAnnotations) {
         _builder.append("\t");
         _builder.append("@");
@@ -1903,7 +1903,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      EList<Annotation> _conflictAnnotations_1 = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations_1 = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_4 : _conflictAnnotations_1) {
         _builder.append("\t");
         _builder.append("@");
@@ -1985,7 +1985,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      EList<Annotation> _conflictAnnotations_2 = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations_2 = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_6 : _conflictAnnotations_2) {
         _builder.append("\t");
         _builder.append("@");
@@ -2070,7 +2070,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      EList<Annotation> _conflictAnnotations_3 = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations_3 = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_8 : _conflictAnnotations_3) {
         _builder.append("\t");
         _builder.append("@");
@@ -2403,7 +2403,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      EList<Annotation> _conflictAnnotations_4 = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations_4 = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_15 : _conflictAnnotations_4) {
         _builder.append("\t");
         _builder.append("@");
@@ -2728,7 +2728,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      EList<Annotation> _conflictAnnotations = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_2 : _conflictAnnotations) {
         _builder.append("\t");
         _builder.append("@");
@@ -2814,7 +2814,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      EList<Annotation> _conflictAnnotations_1 = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations_1 = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_4 : _conflictAnnotations_1) {
         _builder.append("\t");
         _builder.append("@");
@@ -2896,7 +2896,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      EList<Annotation> _conflictAnnotations_2 = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations_2 = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_6 : _conflictAnnotations_2) {
         _builder.append("\t");
         _builder.append("@");
@@ -2981,7 +2981,7 @@ public class ProcessorPojoGenerator {
       }
     }
     {
-      EList<Annotation> _conflictAnnotations_3 = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations_3 = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_8 : _conflictAnnotations_3) {
         _builder.append("\t");
         _builder.append("@");
@@ -3386,7 +3386,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _conflictAnnotations = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a : _conflictAnnotations) {
         _builder.append("\t");
         _builder.append("@");
@@ -3433,7 +3433,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _conflictAnnotations_1 = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations_1 = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_1 : _conflictAnnotations_1) {
         _builder.append("\t");
         _builder.append("@");
@@ -3485,7 +3485,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _conflictAnnotations_2 = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations_2 = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_2 : _conflictAnnotations_2) {
         _builder.append("\t");
         _builder.append("@");
@@ -3534,7 +3534,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _conflictAnnotations_3 = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations_3 = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_3 : _conflictAnnotations_3) {
         _builder.append("\t");
         _builder.append("@");
@@ -3586,7 +3586,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _conflictAnnotations_4 = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations_4 = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_4 : _conflictAnnotations_4) {
         _builder.append("\t");
         _builder.append("@");
@@ -3705,7 +3705,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _conflictAnnotations_5 = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations_5 = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_5 : _conflictAnnotations_5) {
         _builder.append("\t");
         _builder.append("@");
@@ -3757,7 +3757,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _conflictAnnotations_6 = ae.getConflictAnnotations();
+      List<Annotation> _conflictAnnotations_6 = this._processorGeneratorUtils.conflictAnnotations(ae);
       for(final Annotation a_6 : _conflictAnnotations_6) {
         _builder.append("\t");
         _builder.append("@");

@@ -16,6 +16,7 @@ import org.eclipse.xtext.common.types.JvmType;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.Annotation#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Annotation#getType <em>Type</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Annotation#getFeatures <em>Features</em>}</li>
  * </ul>
@@ -27,6 +28,22 @@ import org.eclipse.xtext.common.types.JvmType;
  */
 public interface Annotation extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Directives</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.AnnotationDirective}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Directives</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Directives</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getAnnotation_Directives()
+   * @model containment="true"
+   * @generated
+   */
+  EList<AnnotationDirective> getDirectives();
+
   /**
    * Returns the value of the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->

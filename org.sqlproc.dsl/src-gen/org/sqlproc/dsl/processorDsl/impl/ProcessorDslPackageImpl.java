@@ -14,6 +14,11 @@ import org.eclipse.xtext.common.types.TypesPackage;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
+import org.sqlproc.dsl.processorDsl.AnnotationDirective;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
@@ -599,6 +604,13 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass annotationDirectiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass annotationEClass = null;
 
   /**
@@ -810,6 +822,34 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * @generated
    */
   private EClass packageDirectiveImplementationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass annotationDirectiveConflictEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass annotationDirectiveStaticEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass annotationDirectiveConstructorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass annotationDirectiveStandardEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -4082,6 +4122,16 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getAnnotationDirective()
+  {
+    return annotationDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getAnnotation()
   {
     return annotationEClass;
@@ -4092,7 +4142,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAnnotation_Type()
+  public EReference getAnnotation_Directives()
   {
     return (EReference)annotationEClass.getEStructuralFeatures().get(0);
   }
@@ -4102,9 +4152,19 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAnnotation_Features()
+  public EReference getAnnotation_Type()
   {
     return (EReference)annotationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAnnotation_Features()
+  {
+    return (EReference)annotationEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -4132,29 +4192,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAnnotationProperty_Type()
-  {
-    return (EReference)annotationPropertyEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAnnotationProperty_Ref()
-  {
-    return (EReference)annotationPropertyEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EAttribute getAnnotationProperty_Number()
   {
-    return (EAttribute)annotationPropertyEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)annotationPropertyEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4164,7 +4204,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    */
   public EAttribute getAnnotationProperty_Value()
   {
-    return (EAttribute)annotationPropertyEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)annotationPropertyEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -4174,7 +4214,27 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    */
   public EAttribute getAnnotationProperty_Constant()
   {
-    return (EAttribute)annotationPropertyEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)annotationPropertyEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAnnotationProperty_Type()
+  {
+    return (EReference)annotationPropertyEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAnnotationProperty_Ref()
+  {
+    return (EReference)annotationPropertyEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -4222,7 +4282,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAnnotatedEntity_ConflictAnnotations()
+  public EReference getAnnotatedEntity_Annotations()
   {
     return (EReference)annotatedEntityEClass.getEStructuralFeatures().get(0);
   }
@@ -4232,39 +4292,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAnnotatedEntity_StaticAnnotations()
-  {
-    return (EReference)annotatedEntityEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAnnotatedEntity_ConstructorAnnotations()
-  {
-    return (EReference)annotatedEntityEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAnnotatedEntity_Annotations()
-  {
-    return (EReference)annotatedEntityEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getAnnotatedEntity_Entity()
   {
-    return (EReference)annotatedEntityEClass.getEStructuralFeatures().get(4);
+    return (EReference)annotatedEntityEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -5065,6 +5095,46 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
   public EAttribute getPackageDirectiveImplementation_Implementation()
   {
     return (EAttribute)packageDirectiveImplementationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAnnotationDirectiveConflict()
+  {
+    return annotationDirectiveConflictEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAnnotationDirectiveStatic()
+  {
+    return annotationDirectiveStaticEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAnnotationDirectiveConstructor()
+  {
+    return annotationDirectiveConstructorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAnnotationDirectiveStandard()
+  {
+    return annotationDirectiveStandardEClass;
   }
 
   /**
@@ -6010,26 +6080,26 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEAttribute(packageEClass, PACKAGE__NAME);
     createEReference(packageEClass, PACKAGE__ELEMENTS);
 
+    annotationDirectiveEClass = createEClass(ANNOTATION_DIRECTIVE);
+
     annotationEClass = createEClass(ANNOTATION);
+    createEReference(annotationEClass, ANNOTATION__DIRECTIVES);
     createEReference(annotationEClass, ANNOTATION__TYPE);
     createEReference(annotationEClass, ANNOTATION__FEATURES);
 
     annotationPropertyEClass = createEClass(ANNOTATION_PROPERTY);
     createEAttribute(annotationPropertyEClass, ANNOTATION_PROPERTY__NAME);
-    createEReference(annotationPropertyEClass, ANNOTATION_PROPERTY__TYPE);
-    createEReference(annotationPropertyEClass, ANNOTATION_PROPERTY__REF);
     createEAttribute(annotationPropertyEClass, ANNOTATION_PROPERTY__NUMBER);
     createEAttribute(annotationPropertyEClass, ANNOTATION_PROPERTY__VALUE);
     createEAttribute(annotationPropertyEClass, ANNOTATION_PROPERTY__CONSTANT);
+    createEReference(annotationPropertyEClass, ANNOTATION_PROPERTY__TYPE);
+    createEReference(annotationPropertyEClass, ANNOTATION_PROPERTY__REF);
 
     entityEClass = createEClass(ENTITY);
     createEReference(entityEClass, ENTITY__DIRECTIVES);
     createEAttribute(entityEClass, ENTITY__NAME);
 
     annotatedEntityEClass = createEClass(ANNOTATED_ENTITY);
-    createEReference(annotatedEntityEClass, ANNOTATED_ENTITY__CONFLICT_ANNOTATIONS);
-    createEReference(annotatedEntityEClass, ANNOTATED_ENTITY__STATIC_ANNOTATIONS);
-    createEReference(annotatedEntityEClass, ANNOTATED_ENTITY__CONSTRUCTOR_ANNOTATIONS);
     createEReference(annotatedEntityEClass, ANNOTATED_ENTITY__ANNOTATIONS);
     createEReference(annotatedEntityEClass, ANNOTATED_ENTITY__ENTITY);
 
@@ -6139,6 +6209,14 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
 
     packageDirectiveImplementationEClass = createEClass(PACKAGE_DIRECTIVE_IMPLEMENTATION);
     createEAttribute(packageDirectiveImplementationEClass, PACKAGE_DIRECTIVE_IMPLEMENTATION__IMPLEMENTATION);
+
+    annotationDirectiveConflictEClass = createEClass(ANNOTATION_DIRECTIVE_CONFLICT);
+
+    annotationDirectiveStaticEClass = createEClass(ANNOTATION_DIRECTIVE_STATIC);
+
+    annotationDirectiveConstructorEClass = createEClass(ANNOTATION_DIRECTIVE_CONSTRUCTOR);
+
+    annotationDirectiveStandardEClass = createEClass(ANNOTATION_DIRECTIVE_STANDARD);
 
     implementsExtendsDirectiveGenericsEClass = createEClass(IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS);
 
@@ -6268,6 +6346,10 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     pojoDaoEClass.getESuperTypes().add(this.getAbstractPojoEntity());
     packageDirectiveSuffixEClass.getESuperTypes().add(this.getPackageDirective());
     packageDirectiveImplementationEClass.getESuperTypes().add(this.getPackageDirective());
+    annotationDirectiveConflictEClass.getESuperTypes().add(this.getAnnotationDirective());
+    annotationDirectiveStaticEClass.getESuperTypes().add(this.getAnnotationDirective());
+    annotationDirectiveConstructorEClass.getESuperTypes().add(this.getAnnotationDirective());
+    annotationDirectiveStandardEClass.getESuperTypes().add(this.getAnnotationDirective());
     implementsExtendsDirectiveGenericsEClass.getESuperTypes().add(this.getImplementsExtendsDirective());
     pojoDirectiveToStringEClass.getESuperTypes().add(this.getPojoDirective());
     pojoDirectiveIndexEClass.getESuperTypes().add(this.getPojoDirective());
@@ -6663,26 +6745,26 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEAttribute(getPackage_Name(), ecorePackage.getEString(), "name", null, 0, 1, org.sqlproc.dsl.processorDsl.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPackage_Elements(), this.getAbstractPojoEntity(), null, "elements", null, 0, -1, org.sqlproc.dsl.processorDsl.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(annotationDirectiveEClass, AnnotationDirective.class, "AnnotationDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAnnotation_Directives(), this.getAnnotationDirective(), null, "directives", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAnnotation_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAnnotation_Features(), this.getAnnotationProperty(), null, "features", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(annotationPropertyEClass, AnnotationProperty.class, "AnnotationProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAnnotationProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, AnnotationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAnnotationProperty_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, AnnotationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAnnotationProperty_Ref(), this.getPojoEntity(), null, "ref", null, 0, 1, AnnotationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAnnotationProperty_Number(), ecorePackage.getEString(), "number", null, 0, 1, AnnotationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAnnotationProperty_Value(), ecorePackage.getEString(), "value", null, 0, 1, AnnotationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAnnotationProperty_Constant(), ecorePackage.getEString(), "constant", null, 0, 1, AnnotationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAnnotationProperty_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, AnnotationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAnnotationProperty_Ref(), this.getPojoEntity(), null, "ref", null, 0, 1, AnnotationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEntity_Directives(), this.getPojoDirective(), null, "directives", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEntity_Name(), ecorePackage.getEString(), "name", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(annotatedEntityEClass, AnnotatedEntity.class, "AnnotatedEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAnnotatedEntity_ConflictAnnotations(), this.getAnnotation(), null, "conflictAnnotations", null, 0, -1, AnnotatedEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAnnotatedEntity_StaticAnnotations(), this.getAnnotation(), null, "staticAnnotations", null, 0, -1, AnnotatedEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAnnotatedEntity_ConstructorAnnotations(), this.getAnnotation(), null, "constructorAnnotations", null, 0, -1, AnnotatedEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAnnotatedEntity_Annotations(), this.getAnnotation(), null, "annotations", null, 0, -1, AnnotatedEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAnnotatedEntity_Entity(), this.getEntity(), null, "entity", null, 0, 1, AnnotatedEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -6792,6 +6874,14 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
 
     initEClass(packageDirectiveImplementationEClass, PackageDirectiveImplementation.class, "PackageDirectiveImplementation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPackageDirectiveImplementation_Implementation(), ecorePackage.getEString(), "implementation", null, 0, 1, PackageDirectiveImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(annotationDirectiveConflictEClass, AnnotationDirectiveConflict.class, "AnnotationDirectiveConflict", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(annotationDirectiveStaticEClass, AnnotationDirectiveStatic.class, "AnnotationDirectiveStatic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(annotationDirectiveConstructorEClass, AnnotationDirectiveConstructor.class, "AnnotationDirectiveConstructor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(annotationDirectiveStandardEClass, AnnotationDirectiveStandard.class, "AnnotationDirectiveStandard", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(implementsExtendsDirectiveGenericsEClass, ImplementsExtendsDirectiveGenerics.class, "ImplementsExtendsDirectiveGenerics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

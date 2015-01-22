@@ -24,11 +24,11 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl#getRef <em>Ref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl#getNumber <em>Number</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl#getConstant <em>Constant</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationPropertyImpl#getRef <em>Ref</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,26 +55,6 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected JvmType type;
-
-  /**
-   * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRef()
-   * @generated
-   * @ordered
-   */
-  protected PojoEntity ref;
 
   /**
    * The default value of the '{@link #getNumber() <em>Number</em>}' attribute.
@@ -137,6 +117,26 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
   protected String constant = CONSTANT_EDEFAULT;
 
   /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected JvmType type;
+
+  /**
+   * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRef()
+   * @generated
+   * @ordered
+   */
+  protected PojoEntity ref;
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -178,6 +178,75 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ANNOTATION_PROPERTY__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getNumber()
+  {
+    return number;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setNumber(String newNumber)
+  {
+    String oldNumber = number;
+    number = newNumber;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ANNOTATION_PROPERTY__NUMBER, oldNumber, number));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getValue()
+  {
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(String newValue)
+  {
+    String oldValue = value;
+    value = newValue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ANNOTATION_PROPERTY__VALUE, oldValue, value));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getConstant()
+  {
+    return constant;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setConstant(String newConstant)
+  {
+    String oldConstant = constant;
+    constant = newConstant;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ANNOTATION_PROPERTY__CONSTANT, oldConstant, constant));
   }
 
   /**
@@ -271,75 +340,6 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getNumber()
-  {
-    return number;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setNumber(String newNumber)
-  {
-    String oldNumber = number;
-    number = newNumber;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ANNOTATION_PROPERTY__NUMBER, oldNumber, number));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getValue()
-  {
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setValue(String newValue)
-  {
-    String oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ANNOTATION_PROPERTY__VALUE, oldValue, value));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getConstant()
-  {
-    return constant;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setConstant(String newConstant)
-  {
-    String oldConstant = constant;
-    constant = newConstant;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.ANNOTATION_PROPERTY__CONSTANT, oldConstant, constant));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -347,18 +347,18 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
     {
       case ProcessorDslPackage.ANNOTATION_PROPERTY__NAME:
         return getName();
-      case ProcessorDslPackage.ANNOTATION_PROPERTY__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
-      case ProcessorDslPackage.ANNOTATION_PROPERTY__REF:
-        if (resolve) return getRef();
-        return basicGetRef();
       case ProcessorDslPackage.ANNOTATION_PROPERTY__NUMBER:
         return getNumber();
       case ProcessorDslPackage.ANNOTATION_PROPERTY__VALUE:
         return getValue();
       case ProcessorDslPackage.ANNOTATION_PROPERTY__CONSTANT:
         return getConstant();
+      case ProcessorDslPackage.ANNOTATION_PROPERTY__TYPE:
+        if (resolve) return getType();
+        return basicGetType();
+      case ProcessorDslPackage.ANNOTATION_PROPERTY__REF:
+        if (resolve) return getRef();
+        return basicGetRef();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -376,12 +376,6 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
       case ProcessorDslPackage.ANNOTATION_PROPERTY__NAME:
         setName((String)newValue);
         return;
-      case ProcessorDslPackage.ANNOTATION_PROPERTY__TYPE:
-        setType((JvmType)newValue);
-        return;
-      case ProcessorDslPackage.ANNOTATION_PROPERTY__REF:
-        setRef((PojoEntity)newValue);
-        return;
       case ProcessorDslPackage.ANNOTATION_PROPERTY__NUMBER:
         setNumber((String)newValue);
         return;
@@ -390,6 +384,12 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
         return;
       case ProcessorDslPackage.ANNOTATION_PROPERTY__CONSTANT:
         setConstant((String)newValue);
+        return;
+      case ProcessorDslPackage.ANNOTATION_PROPERTY__TYPE:
+        setType((JvmType)newValue);
+        return;
+      case ProcessorDslPackage.ANNOTATION_PROPERTY__REF:
+        setRef((PojoEntity)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -408,12 +408,6 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
       case ProcessorDslPackage.ANNOTATION_PROPERTY__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ProcessorDslPackage.ANNOTATION_PROPERTY__TYPE:
-        setType((JvmType)null);
-        return;
-      case ProcessorDslPackage.ANNOTATION_PROPERTY__REF:
-        setRef((PojoEntity)null);
-        return;
       case ProcessorDslPackage.ANNOTATION_PROPERTY__NUMBER:
         setNumber(NUMBER_EDEFAULT);
         return;
@@ -422,6 +416,12 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
         return;
       case ProcessorDslPackage.ANNOTATION_PROPERTY__CONSTANT:
         setConstant(CONSTANT_EDEFAULT);
+        return;
+      case ProcessorDslPackage.ANNOTATION_PROPERTY__TYPE:
+        setType((JvmType)null);
+        return;
+      case ProcessorDslPackage.ANNOTATION_PROPERTY__REF:
+        setRef((PojoEntity)null);
         return;
     }
     super.eUnset(featureID);
@@ -439,16 +439,16 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
     {
       case ProcessorDslPackage.ANNOTATION_PROPERTY__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ProcessorDslPackage.ANNOTATION_PROPERTY__TYPE:
-        return type != null;
-      case ProcessorDslPackage.ANNOTATION_PROPERTY__REF:
-        return ref != null;
       case ProcessorDslPackage.ANNOTATION_PROPERTY__NUMBER:
         return NUMBER_EDEFAULT == null ? number != null : !NUMBER_EDEFAULT.equals(number);
       case ProcessorDslPackage.ANNOTATION_PROPERTY__VALUE:
         return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
       case ProcessorDslPackage.ANNOTATION_PROPERTY__CONSTANT:
         return CONSTANT_EDEFAULT == null ? constant != null : !CONSTANT_EDEFAULT.equals(constant);
+      case ProcessorDslPackage.ANNOTATION_PROPERTY__TYPE:
+        return type != null;
+      case ProcessorDslPackage.ANNOTATION_PROPERTY__REF:
+        return ref != null;
     }
     return super.eIsSet(featureID);
   }

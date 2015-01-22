@@ -599,6 +599,15 @@ public interface ProcessorDslFactory extends EFactory
   Package createPackage();
 
   /**
+   * Returns a new object of class '<em>Annotation Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive</em>'.
+   * @generated
+   */
+  AnnotationDirective createAnnotationDirective();
+
+  /**
    * Returns a new object of class '<em>Annotation</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -876,6 +885,42 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   PackageDirectiveImplementation createPackageDirectiveImplementation();
+
+  /**
+   * Returns a new object of class '<em>Annotation Directive Conflict</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive Conflict</em>'.
+   * @generated
+   */
+  AnnotationDirectiveConflict createAnnotationDirectiveConflict();
+
+  /**
+   * Returns a new object of class '<em>Annotation Directive Static</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive Static</em>'.
+   * @generated
+   */
+  AnnotationDirectiveStatic createAnnotationDirectiveStatic();
+
+  /**
+   * Returns a new object of class '<em>Annotation Directive Constructor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive Constructor</em>'.
+   * @generated
+   */
+  AnnotationDirectiveConstructor createAnnotationDirectiveConstructor();
+
+  /**
+   * Returns a new object of class '<em>Annotation Directive Standard</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive Standard</em>'.
+   * @generated
+   */
+  AnnotationDirectiveStandard createAnnotationDirectiveStandard();
 
   /**
    * Returns a new object of class '<em>Implements Extends Directive Generics</em>'.

@@ -13,6 +13,11 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
+import org.sqlproc.dsl.processorDsl.AnnotationDirective;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
@@ -253,6 +258,7 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.POJO_TYPE: return createPojoType();
       case ProcessorDslPackage.PACKAGE_DIRECTIVE: return createPackageDirective();
       case ProcessorDslPackage.PACKAGE: return createPackage();
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE: return createAnnotationDirective();
       case ProcessorDslPackage.ANNOTATION: return createAnnotation();
       case ProcessorDslPackage.ANNOTATION_PROPERTY: return createAnnotationProperty();
       case ProcessorDslPackage.ENTITY: return createEntity();
@@ -284,6 +290,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.POJO_DAO: return createPojoDao();
       case ProcessorDslPackage.PACKAGE_DIRECTIVE_SUFFIX: return createPackageDirectiveSuffix();
       case ProcessorDslPackage.PACKAGE_DIRECTIVE_IMPLEMENTATION: return createPackageDirectiveImplementation();
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE_CONFLICT: return createAnnotationDirectiveConflict();
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE_STATIC: return createAnnotationDirectiveStatic();
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE_CONSTRUCTOR: return createAnnotationDirectiveConstructor();
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE_STANDARD: return createAnnotationDirectiveStandard();
       case ProcessorDslPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS: return createImplementsExtendsDirectiveGenerics();
       case ProcessorDslPackage.POJO_DIRECTIVE_TO_STRING: return createPojoDirectiveToString();
       case ProcessorDslPackage.POJO_DIRECTIVE_INDEX: return createPojoDirectiveIndex();
@@ -1028,6 +1038,17 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public AnnotationDirective createAnnotationDirective()
+  {
+    AnnotationDirectiveImpl annotationDirective = new AnnotationDirectiveImpl();
+    return annotationDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Annotation createAnnotation()
   {
     AnnotationImpl annotation = new AnnotationImpl();
@@ -1362,6 +1383,50 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     PackageDirectiveImplementationImpl packageDirectiveImplementation = new PackageDirectiveImplementationImpl();
     return packageDirectiveImplementation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationDirectiveConflict createAnnotationDirectiveConflict()
+  {
+    AnnotationDirectiveConflictImpl annotationDirectiveConflict = new AnnotationDirectiveConflictImpl();
+    return annotationDirectiveConflict;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationDirectiveStatic createAnnotationDirectiveStatic()
+  {
+    AnnotationDirectiveStaticImpl annotationDirectiveStatic = new AnnotationDirectiveStaticImpl();
+    return annotationDirectiveStatic;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationDirectiveConstructor createAnnotationDirectiveConstructor()
+  {
+    AnnotationDirectiveConstructorImpl annotationDirectiveConstructor = new AnnotationDirectiveConstructorImpl();
+    return annotationDirectiveConstructor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationDirectiveStandard createAnnotationDirectiveStandard()
+  {
+    AnnotationDirectiveStandardImpl annotationDirectiveStandard = new AnnotationDirectiveStandardImpl();
+    return annotationDirectiveStandard;
   }
 
   /**
