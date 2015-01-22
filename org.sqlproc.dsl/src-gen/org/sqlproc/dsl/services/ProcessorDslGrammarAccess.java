@@ -10230,15 +10230,11 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRBRACETerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//PojoDao hidden(ML_COMMENT, SL_COMMENT, WS):
-		//	directives+=DaoDirective* modifiers1+=PojoEntityModifier1* "dao" name= //(COLON COLON ((pojoGenerics ?= COLON)?) pojo=[PojoEntity|IDENT])?
-		//	IDENT modifiers2+=PojoDaoModifier* LBRACE //methods+=PojoMethod*
-		//	//toInits+=ToInitMethod*
+		//	directives+=DaoDirective* modifiers1+=PojoEntityModifier1* "dao" name=IDENT modifiers2+=PojoDaoModifier* LBRACE //methods+=PojoMethod*
 		//	RBRACE;
 		public ParserRule getRule() { return rule; }
 
-		//directives+=DaoDirective* modifiers1+=PojoEntityModifier1* "dao" name= //(COLON COLON ((pojoGenerics ?= COLON)?) pojo=[PojoEntity|IDENT])?
-		//IDENT modifiers2+=PojoDaoModifier* LBRACE //methods+=PojoMethod*
-		////toInits+=ToInitMethod*
+		//directives+=DaoDirective* modifiers1+=PojoEntityModifier1* "dao" name=IDENT modifiers2+=PojoDaoModifier* LBRACE //methods+=PojoMethod*
 		//RBRACE
 		public Group getGroup() { return cGroup; }
 
@@ -10257,11 +10253,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"dao"
 		public Keyword getDaoKeyword_2() { return cDaoKeyword_2; }
 
-		//name= //(COLON COLON ((pojoGenerics ?= COLON)?) pojo=[PojoEntity|IDENT])?
-		//IDENT
+		//name=IDENT
 		public Assignment getNameAssignment_3() { return cNameAssignment_3; }
 
-		////(COLON COLON ((pojoGenerics ?= COLON)?) pojo=[PojoEntity|IDENT])?
 		//IDENT
 		public RuleCall getNameIDENTTerminalRuleCall_3_0() { return cNameIDENTTerminalRuleCall_3_0; }
 
@@ -10275,7 +10269,6 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getLBRACETerminalRuleCall_5() { return cLBRACETerminalRuleCall_5; }
 
 		////methods+=PojoMethod*
-		////toInits+=ToInitMethod*
 		//RBRACE
 		public RuleCall getRBRACETerminalRuleCall_6() { return cRBRACETerminalRuleCall_6; }
 	}
@@ -12021,9 +12014,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PojoDao hidden(ML_COMMENT, SL_COMMENT, WS):
-	//	directives+=DaoDirective* modifiers1+=PojoEntityModifier1* "dao" name= //(COLON COLON ((pojoGenerics ?= COLON)?) pojo=[PojoEntity|IDENT])?
-	//	IDENT modifiers2+=PojoDaoModifier* LBRACE //methods+=PojoMethod*
-	//	//toInits+=ToInitMethod*
+	//	directives+=DaoDirective* modifiers1+=PojoEntityModifier1* "dao" name=IDENT modifiers2+=PojoDaoModifier* LBRACE //methods+=PojoMethod*
 	//	RBRACE;
 	public PojoDaoElements getPojoDaoAccess() {
 		return pPojoDao;
