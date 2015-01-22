@@ -401,6 +401,7 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAnnotatedEntityAccess().getGroup_0_1_0_1_0(), "rule__AnnotatedEntity__Group_0_1_0_1_0__0");
 					put(grammarAccess.getAnnotatedEntityAccess().getGroup_0_1_0_1_0_1_0(), "rule__AnnotatedEntity__Group_0_1_0_1_0_1_0__0");
 					put(grammarAccess.getImportAccess().getGroup(), "rule__Import__Group__0");
+					put(grammarAccess.getImplementsExtendsDirectiveAccess().getGroup(), "rule__ImplementsExtendsDirective__Group__0");
 					put(grammarAccess.getImplementsAccess().getGroup(), "rule__Implements__Group__0");
 					put(grammarAccess.getImplementsAccess().getGroup_4(), "rule__Implements__Group_4__0");
 					put(grammarAccess.getImplementsAccess().getGroup_5(), "rule__Implements__Group_5__0");
@@ -909,14 +910,14 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAnnotatedEntityAccess().getAnnotationsAssignment_0_1_1(), "rule__AnnotatedEntity__AnnotationsAssignment_0_1_1");
 					put(grammarAccess.getAnnotatedEntityAccess().getEntityAssignment_1(), "rule__AnnotatedEntity__EntityAssignment_1");
 					put(grammarAccess.getImportAccess().getImportedNamespaceAssignment_1(), "rule__Import__ImportedNamespaceAssignment_1");
-					put(grammarAccess.getImplementsAccess().getImplementsAssignment_2(), "rule__Implements__ImplementsAssignment_2");
-					put(grammarAccess.getImplementsAccess().getGenericsAssignment_3(), "rule__Implements__GenericsAssignment_3");
+					put(grammarAccess.getImplementsAccess().getDirectivesAssignment_0(), "rule__Implements__DirectivesAssignment_0");
+					put(grammarAccess.getImplementsAccess().getImplementsAssignment_3(), "rule__Implements__ImplementsAssignment_3");
 					put(grammarAccess.getImplementsAccess().getOnlyPojosAssignment_4_1(), "rule__Implements__OnlyPojosAssignment_4_1");
 					put(grammarAccess.getImplementsAccess().getOnlyDaosAssignment_5_1(), "rule__Implements__OnlyDaosAssignment_5_1");
 					put(grammarAccess.getImplementsAccess().getExceptPojosAssignment_6_1(), "rule__Implements__ExceptPojosAssignment_6_1");
 					put(grammarAccess.getImplementsAccess().getExceptDaosAssignment_7_1(), "rule__Implements__ExceptDaosAssignment_7_1");
-					put(grammarAccess.getExtendsAccess().getExtendsAssignment_2(), "rule__Extends__ExtendsAssignment_2");
-					put(grammarAccess.getExtendsAccess().getGenericsAssignment_3(), "rule__Extends__GenericsAssignment_3");
+					put(grammarAccess.getExtendsAccess().getDirectivesAssignment_0(), "rule__Extends__DirectivesAssignment_0");
+					put(grammarAccess.getExtendsAccess().getExtendsAssignment_3(), "rule__Extends__ExtendsAssignment_3");
 					put(grammarAccess.getExtendsAccess().getOnlyPojosAssignment_4_1(), "rule__Extends__OnlyPojosAssignment_4_1");
 					put(grammarAccess.getExtendsAccess().getOnlyDaosAssignment_5_1(), "rule__Extends__OnlyDaosAssignment_5_1");
 					put(grammarAccess.getExtendsAccess().getExceptPojosAssignment_6_1(), "rule__Extends__ExceptPojosAssignment_6_1");

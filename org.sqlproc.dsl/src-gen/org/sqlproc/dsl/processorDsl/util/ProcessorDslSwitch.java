@@ -558,6 +558,13 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorDslPackage.IMPLEMENTS_EXTENDS_DIRECTIVE:
+      {
+        ImplementsExtendsDirective implementsExtendsDirective = (ImplementsExtendsDirective)theEObject;
+        T result = caseImplementsExtendsDirective(implementsExtendsDirective);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorDslPackage.IMPLEMENTS:
       {
         Implements implements_ = (Implements)theEObject;
@@ -722,6 +729,14 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         PojoDao pojoDao = (PojoDao)theEObject;
         T result = casePojoDao(pojoDao);
         if (result == null) result = caseAbstractPojoEntity(pojoDao);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS:
+      {
+        ImplementsExtendsDirectiveGenerics implementsExtendsDirectiveGenerics = (ImplementsExtendsDirectiveGenerics)theEObject;
+        T result = caseImplementsExtendsDirectiveGenerics(implementsExtendsDirectiveGenerics);
+        if (result == null) result = caseImplementsExtendsDirective(implementsExtendsDirectiveGenerics);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2066,6 +2081,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Implements Extends Directive</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Implements Extends Directive</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseImplementsExtendsDirective(ImplementsExtendsDirective object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Implements</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2429,6 +2460,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePojoDao(PojoDao object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Implements Extends Directive Generics</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Implements Extends Directive Generics</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseImplementsExtendsDirectiveGenerics(ImplementsExtendsDirectiveGenerics object)
   {
     return null;
   }

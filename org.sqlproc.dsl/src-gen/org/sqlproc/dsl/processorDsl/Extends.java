@@ -14,8 +14,8 @@ import org.eclipse.xtext.common.types.JvmType;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.Extends#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Extends#getExtends <em>Extends</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.Extends#isGenerics <em>Generics</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Extends#getOnlyPojos <em>Only Pojos</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Extends#getOnlyDaos <em>Only Daos</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Extends#getExceptPojos <em>Except Pojos</em>}</li>
@@ -29,6 +29,22 @@ import org.eclipse.xtext.common.types.JvmType;
  */
 public interface Extends extends AbstractPojoEntity
 {
+  /**
+   * Returns the value of the '<em><b>Directives</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.ImplementsExtendsDirective}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Directives</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Directives</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getExtends_Directives()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ImplementsExtendsDirective> getDirectives();
+
   /**
    * Returns the value of the '<em><b>Extends</b></em>' reference.
    * <!-- begin-user-doc -->
@@ -54,32 +70,6 @@ public interface Extends extends AbstractPojoEntity
    * @generated
    */
   void setExtends(JvmType value);
-
-  /**
-   * Returns the value of the '<em><b>Generics</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Generics</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Generics</em>' attribute.
-   * @see #setGenerics(boolean)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getExtends_Generics()
-   * @model
-   * @generated
-   */
-  boolean isGenerics();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.Extends#isGenerics <em>Generics</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Generics</em>' attribute.
-   * @see #isGenerics()
-   * @generated
-   */
-  void setGenerics(boolean value);
 
   /**
    * Returns the value of the '<em><b>Only Pojos</b></em>' reference list.

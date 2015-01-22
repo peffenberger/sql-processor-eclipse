@@ -133,6 +133,7 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.ANNOTATED_ENTITY: return createAnnotatedEntity();
       case ProcessorDslPackage.ABSTRACT_POJO_ENTITY: return createAbstractPojoEntity();
       case ProcessorDslPackage.IMPORT: return createImport();
+      case ProcessorDslPackage.IMPLEMENTS_EXTENDS_DIRECTIVE: return createImplementsExtendsDirective();
       case ProcessorDslPackage.IMPLEMENTS: return createImplements();
       case ProcessorDslPackage.EXTENDS: return createExtends();
       case ProcessorDslPackage.IMPL_PACKAGE: return createImplPackage();
@@ -156,6 +157,7 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.DAO_DIRECTIVE: return createDaoDirective();
       case ProcessorDslPackage.POJO_DAO_MODIFIER: return createPojoDaoModifier();
       case ProcessorDslPackage.POJO_DAO: return createPojoDao();
+      case ProcessorDslPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS: return createImplementsExtendsDirectiveGenerics();
       case ProcessorDslPackage.POJO_DIRECTIVE_TO_STRING: return createPojoDirectiveToString();
       case ProcessorDslPackage.POJO_DIRECTIVE_INDEX: return createPojoDirectiveIndex();
       case ProcessorDslPackage.POJO_DIRECTIVE_OPERATORS: return createPojoDirectiveOperators();
@@ -954,6 +956,17 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public ImplementsExtendsDirective createImplementsExtendsDirective()
+  {
+    ImplementsExtendsDirectiveImpl implementsExtendsDirective = new ImplementsExtendsDirectiveImpl();
+    return implementsExtendsDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Implements createImplements()
   {
     ImplementsImpl implements_ = new ImplementsImpl();
@@ -1200,6 +1213,17 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     PojoDaoImpl pojoDao = new PojoDaoImpl();
     return pojoDao;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ImplementsExtendsDirectiveGenerics createImplementsExtendsDirectiveGenerics()
+  {
+    ImplementsExtendsDirectiveGenericsImpl implementsExtendsDirectiveGenerics = new ImplementsExtendsDirectiveGenericsImpl();
+    return implementsExtendsDirectiveGenerics;
   }
 
   /**

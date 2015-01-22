@@ -70,6 +70,7 @@ import org.sqlproc.dsl.processorDsl.ImplPackage;
 import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignement;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics;
+import org.sqlproc.dsl.processorDsl.ImplementsExtendsDirectiveGenerics;
 import org.sqlproc.dsl.processorDsl.Import;
 import org.sqlproc.dsl.processorDsl.ImportAssignement;
 import org.sqlproc.dsl.processorDsl.InheritanceAssignement;
@@ -482,6 +483,12 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case ProcessorDslPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS:
 				if(context == grammarAccess.getImplementsAssignementGenericsRule()) {
 					sequence_ImplementsAssignementGenerics(context, (ImplementsAssignementGenerics) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS:
+				if(context == grammarAccess.getImplementsExtendsDirectiveRule()) {
+					sequence_ImplementsExtendsDirective(context, (ImplementsExtendsDirectiveGenerics) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1335,8 +1342,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	/**
 	 * Constraint:
 	 *     (
+	 *         directives+=ImplementsExtendsDirective* 
 	 *         extends=[JvmType|QualifiedName] 
-	 *         generics?='<<>>'? 
 	 *         onlyPojos+=[PojoEntity|IDENT]* 
 	 *         onlyDaos+=[PojoDao|IDENT]* 
 	 *         exceptPojos+=[PojoEntity|IDENT]* 
@@ -1543,9 +1550,18 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
+	 *     {ImplementsExtendsDirectiveGenerics}
+	 */
+	protected void sequence_ImplementsExtendsDirective(EObject context, ImplementsExtendsDirectiveGenerics semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (
+	 *         directives+=ImplementsExtendsDirective* 
 	 *         implements=[JvmType|QualifiedName] 
-	 *         generics?='<<>>'? 
 	 *         onlyPojos+=[PojoEntity|IDENT]* 
 	 *         onlyDaos+=[PojoDao|IDENT]* 
 	 *         exceptPojos+=[PojoEntity|IDENT]* 

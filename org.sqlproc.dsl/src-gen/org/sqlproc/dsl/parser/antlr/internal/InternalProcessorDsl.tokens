@@ -6,6 +6,7 @@
 '#FunctionCall'=169
 '#FunctionCallQuery'=167
 '#FunctionQuery'=171
+'#Generics'=139
 '#HashCode'=154
 '#Index'=149
 '#InheritanceChild'=152
@@ -26,7 +27,6 @@
 '#Version'=162
 '->'=41
 '.*'=176
-'<<>>'=140
 '[]'=135
 'abstract'=147
 'active-filter'=111
@@ -69,7 +69,7 @@
 'ignore-one-to-many'=90
 'ignore-tables'=80
 'implementation-package'=106
-'implements'=139
+'implements'=140
 'implements-interfaces'=99
 'implements-interfaces-generics'=101
 'import'=138

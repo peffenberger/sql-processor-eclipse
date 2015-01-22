@@ -39,6 +39,8 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage
 import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters
 import org.sqlproc.dsl.processorDsl.FunProcDirective
 import org.eclipse.xtext.common.types.JvmPrimitiveType
+import org.sqlproc.dsl.processorDsl.Implements
+import org.sqlproc.dsl.processorDsl.ImplementsExtendsDirectiveGenerics
 
 class ProcessorGeneratorUtils {
 
@@ -66,6 +68,12 @@ class ProcessorGeneratorUtils {
 	def completeName(PojoEntity e) {
 		return getPackage(e) + "." + e.name
 	}
+
+	// Implements
+    def isGenerics(Implements impl) {
+		val d = impl.directives?.findFirst[x|x instanceof ImplementsExtendsDirectiveGenerics]
+		return if(d != null) true else false
+    }
 
 	// PojoProperty
 	def isRequired(PojoProperty f) {
@@ -294,6 +302,17 @@ class ProcessorGeneratorUtils {
     def PojoEntity getPojo(PojoDao dao) {
     	val DaoDirective pojoDirective = dao?.getPojoDirective
     	return dao?.getPojo(pojoDirective)
+    }
+
+    def String getDaoImplements(PojoDao dao, Implements impl) {
+        val StringBuilder sb = new StringBuilder()
+        sb.append(impl.getImplements().getSimpleName())
+        if (isGenerics(impl)) {
+        	val pojo = getPojo(dao)
+        	if (pojo != null)
+        	sb.append("<").append(pojo.getName()).append(">");
+        }
+        return sb.toString();
     }
 
     def isCRUD(PojoDao dao) {

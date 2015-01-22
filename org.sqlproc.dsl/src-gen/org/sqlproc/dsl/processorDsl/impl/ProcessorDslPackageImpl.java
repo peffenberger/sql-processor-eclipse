@@ -73,6 +73,8 @@ import org.sqlproc.dsl.processorDsl.ImplPackage;
 import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignement;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics;
+import org.sqlproc.dsl.processorDsl.ImplementsExtendsDirective;
+import org.sqlproc.dsl.processorDsl.ImplementsExtendsDirectiveGenerics;
 import org.sqlproc.dsl.processorDsl.Import;
 import org.sqlproc.dsl.processorDsl.ImportAssignement;
 import org.sqlproc.dsl.processorDsl.InheritanceAssignement;
@@ -631,6 +633,13 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass implementsExtendsDirectiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass implementsEClass = null;
 
   /**
@@ -786,6 +795,13 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * @generated
    */
   private EClass pojoDaoEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass implementsExtendsDirectiveGenericsEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -4281,6 +4297,16 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getImplementsExtendsDirective()
+  {
+    return implementsExtendsDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getImplements()
   {
     return implementsEClass;
@@ -4291,7 +4317,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getImplements_Implements()
+  public EReference getImplements_Directives()
   {
     return (EReference)implementsEClass.getEStructuralFeatures().get(0);
   }
@@ -4301,9 +4327,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getImplements_Generics()
+  public EReference getImplements_Implements()
   {
-    return (EAttribute)implementsEClass.getEStructuralFeatures().get(1);
+    return (EReference)implementsEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4361,7 +4387,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExtends_Extends()
+  public EReference getExtends_Directives()
   {
     return (EReference)extendsEClass.getEStructuralFeatures().get(0);
   }
@@ -4371,9 +4397,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getExtends_Generics()
+  public EReference getExtends_Extends()
   {
-    return (EAttribute)extendsEClass.getEStructuralFeatures().get(1);
+    return (EReference)extendsEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -5014,6 +5040,16 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
   public EReference getPojoDao_Modifiers2()
   {
     return (EReference)pojoDaoEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getImplementsExtendsDirectiveGenerics()
+  {
+    return implementsExtendsDirectiveGenericsEClass;
   }
 
   /**
@@ -5977,17 +6013,19 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     importEClass = createEClass(IMPORT);
     createEAttribute(importEClass, IMPORT__IMPORTED_NAMESPACE);
 
+    implementsExtendsDirectiveEClass = createEClass(IMPLEMENTS_EXTENDS_DIRECTIVE);
+
     implementsEClass = createEClass(IMPLEMENTS);
+    createEReference(implementsEClass, IMPLEMENTS__DIRECTIVES);
     createEReference(implementsEClass, IMPLEMENTS__IMPLEMENTS);
-    createEAttribute(implementsEClass, IMPLEMENTS__GENERICS);
     createEReference(implementsEClass, IMPLEMENTS__ONLY_POJOS);
     createEReference(implementsEClass, IMPLEMENTS__ONLY_DAOS);
     createEReference(implementsEClass, IMPLEMENTS__EXCEPT_POJOS);
     createEReference(implementsEClass, IMPLEMENTS__EXCEPT_DAOS);
 
     extendsEClass = createEClass(EXTENDS);
+    createEReference(extendsEClass, EXTENDS__DIRECTIVES);
     createEReference(extendsEClass, EXTENDS__EXTENDS);
-    createEAttribute(extendsEClass, EXTENDS__GENERICS);
     createEReference(extendsEClass, EXTENDS__ONLY_POJOS);
     createEReference(extendsEClass, EXTENDS__ONLY_DAOS);
     createEReference(extendsEClass, EXTENDS__EXCEPT_POJOS);
@@ -6073,6 +6111,8 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEReference(pojoDaoEClass, POJO_DAO__MODIFIERS1);
     createEAttribute(pojoDaoEClass, POJO_DAO__NAME);
     createEReference(pojoDaoEClass, POJO_DAO__MODIFIERS2);
+
+    implementsExtendsDirectiveGenericsEClass = createEClass(IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS);
 
     pojoDirectiveToStringEClass = createEClass(POJO_DIRECTIVE_TO_STRING);
     createEReference(pojoDirectiveToStringEClass, POJO_DIRECTIVE_TO_STRING__PROPLIST);
@@ -6199,6 +6239,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     pojoEntityEClass.getESuperTypes().add(this.getEntity());
     enumEntityEClass.getESuperTypes().add(this.getEntity());
     pojoDaoEClass.getESuperTypes().add(this.getAbstractPojoEntity());
+    implementsExtendsDirectiveGenericsEClass.getESuperTypes().add(this.getImplementsExtendsDirective());
     pojoDirectiveToStringEClass.getESuperTypes().add(this.getPojoDirective());
     pojoDirectiveIndexEClass.getESuperTypes().add(this.getPojoDirective());
     pojoDirectiveOperatorsEClass.getESuperTypes().add(this.getPojoDirective());
@@ -6621,17 +6662,19 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getImport_ImportedNamespace(), ecorePackage.getEString(), "importedNamespace", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(implementsExtendsDirectiveEClass, ImplementsExtendsDirective.class, "ImplementsExtendsDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(implementsEClass, Implements.class, "Implements", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getImplements_Directives(), this.getImplementsExtendsDirective(), null, "directives", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getImplements_Implements(), theTypesPackage.getJvmType(), null, "implements", null, 0, 1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getImplements_Generics(), ecorePackage.getEBoolean(), "generics", null, 0, 1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getImplements_OnlyPojos(), this.getPojoEntity(), null, "onlyPojos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getImplements_OnlyDaos(), this.getPojoDao(), null, "onlyDaos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getImplements_ExceptPojos(), this.getPojoEntity(), null, "exceptPojos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getImplements_ExceptDaos(), this.getPojoDao(), null, "exceptDaos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(extendsEClass, Extends.class, "Extends", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExtends_Directives(), this.getImplementsExtendsDirective(), null, "directives", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExtends_Extends(), theTypesPackage.getJvmType(), null, "extends", null, 0, 1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getExtends_Generics(), ecorePackage.getEBoolean(), "generics", null, 0, 1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExtends_OnlyPojos(), this.getPojoEntity(), null, "onlyPojos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExtends_OnlyDaos(), this.getPojoDao(), null, "onlyDaos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExtends_ExceptPojos(), this.getPojoEntity(), null, "exceptPojos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -6717,6 +6760,8 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEReference(getPojoDao_Modifiers1(), this.getPojoEntityModifier1(), null, "modifiers1", null, 0, -1, PojoDao.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojoDao_Name(), ecorePackage.getEString(), "name", null, 0, 1, PojoDao.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoDao_Modifiers2(), this.getPojoDaoModifier(), null, "modifiers2", null, 0, -1, PojoDao.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(implementsExtendsDirectiveGenericsEClass, ImplementsExtendsDirectiveGenerics.class, "ImplementsExtendsDirectiveGenerics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(pojoDirectiveToStringEClass, PojoDirectiveToString.class, "PojoDirectiveToString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPojoDirectiveToString_Proplist(), this.getDirectiveProperties(), null, "proplist", null, 0, 1, PojoDirectiveToString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

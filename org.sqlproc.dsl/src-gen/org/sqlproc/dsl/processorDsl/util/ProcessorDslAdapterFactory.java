@@ -420,6 +420,11 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createImportAdapter();
       }
       @Override
+      public Adapter caseImplementsExtendsDirective(ImplementsExtendsDirective object)
+      {
+        return createImplementsExtendsDirectiveAdapter();
+      }
+      @Override
       public Adapter caseImplements(Implements object)
       {
         return createImplementsAdapter();
@@ -533,6 +538,11 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
       public Adapter casePojoDao(PojoDao object)
       {
         return createPojoDaoAdapter();
+      }
+      @Override
+      public Adapter caseImplementsExtendsDirectiveGenerics(ImplementsExtendsDirectiveGenerics object)
+      {
+        return createImplementsExtendsDirectiveGenericsAdapter();
       }
       @Override
       public Adapter casePojoDirectiveToString(PojoDirectiveToString object)
@@ -1737,6 +1747,21 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.ImplementsExtendsDirective <em>Implements Extends Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.ImplementsExtendsDirective
+   * @generated
+   */
+  public Adapter createImplementsExtendsDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.Implements <em>Implements</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -2077,6 +2102,21 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPojoDaoAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.ImplementsExtendsDirectiveGenerics <em>Implements Extends Directive Generics</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.ImplementsExtendsDirectiveGenerics
+   * @generated
+   */
+  public Adapter createImplementsExtendsDirectiveGenericsAdapter()
   {
     return null;
   }

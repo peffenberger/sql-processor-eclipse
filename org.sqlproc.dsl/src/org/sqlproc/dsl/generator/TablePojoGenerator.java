@@ -73,6 +73,7 @@ public class TablePojoGenerator {
     protected static final String ANNOTATION_SIZE = "javax.validation.constraints.Size";
     protected static final String INDENT = "  ";
     protected static final String NLINDENT = "\n  ";
+    protected static final String NL = "\n";
 
     protected String suffix;
     protected Map<String, String> finalEntities;
