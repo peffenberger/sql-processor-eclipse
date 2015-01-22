@@ -562,11 +562,7 @@
         eType="#//PojoAnnotatedProperty" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoAnnotatedProperty">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="setterAnnotations" upperBound="-1"
-        eType="#//Annotation" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="getterAnnotations" upperBound="-1"
-        eType="#//Annotation" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attributeAnnotations" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"
         eType="#//Annotation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="#//PojoProperty"
         containment="true"/>
@@ -644,6 +640,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="AnnotationDirectiveStatic" eSuperTypes="#//AnnotationDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="AnnotationDirectiveConstructor" eSuperTypes="#//AnnotationDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="AnnotationDirectiveStandard" eSuperTypes="#//AnnotationDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotationDirectiveSetter" eSuperTypes="#//AnnotationDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotationDirectiveGetter" eSuperTypes="#//AnnotationDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotationDirectiveAttribute" eSuperTypes="#//AnnotationDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="ImplementsExtendsDirectiveGenerics"
       eSuperTypes="#//ImplementsExtendsDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveToString" eSuperTypes="#//PojoDirective">
@@ -663,30 +662,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveDiscriminator" eSuperTypes="#//PojoDirective">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="discriminator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveEquals" eSuperTypes="#//PojoDirective">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="proplist" eType="#//DirectiveProperties"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveHashCode" eSuperTypes="#//PojoDirective">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="proplist" eType="#//DirectiveProperties"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveToInit" eSuperTypes="#//PojoDirective">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="proplist" eType="#//DirectiveProperties"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveEnumInit" eSuperTypes="#//PojoDirective">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="proplist" eType="#//DirectiveProperties"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveIsDef" eSuperTypes="#//PojoDirective">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="proplist" eType="#//DirectiveProperties"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveEnumDef" eSuperTypes="#//PojoDirective">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="proplist" eType="#//DirectiveProperties"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveRequired" eSuperTypes="#//PojoPropertyDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectivePrimaryKey" eSuperTypes="#//PojoPropertyDirective"/>

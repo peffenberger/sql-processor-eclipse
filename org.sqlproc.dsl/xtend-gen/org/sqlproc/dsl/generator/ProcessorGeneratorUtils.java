@@ -29,8 +29,11 @@ import org.sqlproc.dsl.ImportManager;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.AnnotationDirective;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveAttribute;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveGetter;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveSetter;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic;
 import org.sqlproc.dsl.processorDsl.Artifacts;
@@ -1311,6 +1314,130 @@ public class ProcessorGeneratorUtils {
     final Function1<Annotation, Boolean> _function = new Function1<Annotation, Boolean>() {
       public Boolean apply(final Annotation x) {
         return Boolean.valueOf(ProcessorGeneratorUtils.this.isStandard(x));
+      }
+    };
+    Iterable<Annotation> _filter = IterableExtensions.<Annotation>filter(_annotations, _function);
+    return IterableExtensions.<Annotation>toList(_filter);
+  }
+  
+  public boolean isSetter(final Annotation an) {
+    EList<AnnotationDirective> _directives = an.getDirectives();
+    AnnotationDirective _findFirst = null;
+    if (_directives!=null) {
+      final Function1<AnnotationDirective, Boolean> _function = new Function1<AnnotationDirective, Boolean>() {
+        public Boolean apply(final AnnotationDirective x) {
+          return Boolean.valueOf((x instanceof AnnotationDirectiveSetter));
+        }
+      };
+      _findFirst=IterableExtensions.<AnnotationDirective>findFirst(_directives, _function);
+    }
+    final AnnotationDirective d = _findFirst;
+    boolean _xifexpression = false;
+    boolean _notEquals = (!Objects.equal(d, null));
+    if (_notEquals) {
+      _xifexpression = true;
+    } else {
+      _xifexpression = false;
+    }
+    return _xifexpression;
+  }
+  
+  public List<Annotation> setterAnnotations(final PojoAnnotatedProperty prop) {
+    boolean _equals = Objects.equal(prop, null);
+    if (_equals) {
+      return CollectionLiterals.<Annotation>newArrayList();
+    }
+    EList<Annotation> _annotations = prop.getAnnotations();
+    final Function1<Annotation, Boolean> _function = new Function1<Annotation, Boolean>() {
+      public Boolean apply(final Annotation x) {
+        return Boolean.valueOf(ProcessorGeneratorUtils.this.isSetter(x));
+      }
+    };
+    Iterable<Annotation> _filter = IterableExtensions.<Annotation>filter(_annotations, _function);
+    return IterableExtensions.<Annotation>toList(_filter);
+  }
+  
+  public boolean isGetter(final Annotation an) {
+    EList<AnnotationDirective> _directives = an.getDirectives();
+    AnnotationDirective _findFirst = null;
+    if (_directives!=null) {
+      final Function1<AnnotationDirective, Boolean> _function = new Function1<AnnotationDirective, Boolean>() {
+        public Boolean apply(final AnnotationDirective x) {
+          return Boolean.valueOf((x instanceof AnnotationDirectiveGetter));
+        }
+      };
+      _findFirst=IterableExtensions.<AnnotationDirective>findFirst(_directives, _function);
+    }
+    final AnnotationDirective d = _findFirst;
+    boolean _xifexpression = false;
+    boolean _notEquals = (!Objects.equal(d, null));
+    if (_notEquals) {
+      _xifexpression = true;
+    } else {
+      _xifexpression = false;
+    }
+    return _xifexpression;
+  }
+  
+  public List<Annotation> getterAnnotations(final PojoAnnotatedProperty prop) {
+    boolean _equals = Objects.equal(prop, null);
+    if (_equals) {
+      return CollectionLiterals.<Annotation>newArrayList();
+    }
+    EList<Annotation> _annotations = prop.getAnnotations();
+    final Function1<Annotation, Boolean> _function = new Function1<Annotation, Boolean>() {
+      public Boolean apply(final Annotation x) {
+        return Boolean.valueOf(ProcessorGeneratorUtils.this.isGetter(x));
+      }
+    };
+    Iterable<Annotation> _filter = IterableExtensions.<Annotation>filter(_annotations, _function);
+    return IterableExtensions.<Annotation>toList(_filter);
+  }
+  
+  public boolean isAttribute(final Annotation an) {
+    boolean _or = false;
+    EList<AnnotationDirective> _directives = an.getDirectives();
+    boolean _equals = Objects.equal(_directives, null);
+    if (_equals) {
+      _or = true;
+    } else {
+      EList<AnnotationDirective> _directives_1 = an.getDirectives();
+      boolean _isEmpty = _directives_1.isEmpty();
+      _or = _isEmpty;
+    }
+    if (_or) {
+      return true;
+    }
+    EList<AnnotationDirective> _directives_2 = an.getDirectives();
+    AnnotationDirective _findFirst = null;
+    if (_directives_2!=null) {
+      final Function1<AnnotationDirective, Boolean> _function = new Function1<AnnotationDirective, Boolean>() {
+        public Boolean apply(final AnnotationDirective x) {
+          return Boolean.valueOf((x instanceof AnnotationDirectiveAttribute));
+        }
+      };
+      _findFirst=IterableExtensions.<AnnotationDirective>findFirst(_directives_2, _function);
+    }
+    final AnnotationDirective d = _findFirst;
+    boolean _xifexpression = false;
+    boolean _notEquals = (!Objects.equal(d, null));
+    if (_notEquals) {
+      _xifexpression = true;
+    } else {
+      _xifexpression = false;
+    }
+    return _xifexpression;
+  }
+  
+  public List<Annotation> attributeAnnotations(final PojoAnnotatedProperty prop) {
+    boolean _equals = Objects.equal(prop, null);
+    if (_equals) {
+      return CollectionLiterals.<Annotation>newArrayList();
+    }
+    EList<Annotation> _annotations = prop.getAnnotations();
+    final Function1<Annotation, Boolean> _function = new Function1<Annotation, Boolean>() {
+      public Boolean apply(final Annotation x) {
+        return Boolean.valueOf(ProcessorGeneratorUtils.this.isAttribute(x));
       }
     };
     Iterable<Annotation> _filter = IterableExtensions.<Annotation>filter(_annotations, _function);

@@ -923,6 +923,33 @@ public interface ProcessorDslFactory extends EFactory
   AnnotationDirectiveStandard createAnnotationDirectiveStandard();
 
   /**
+   * Returns a new object of class '<em>Annotation Directive Setter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive Setter</em>'.
+   * @generated
+   */
+  AnnotationDirectiveSetter createAnnotationDirectiveSetter();
+
+  /**
+   * Returns a new object of class '<em>Annotation Directive Getter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive Getter</em>'.
+   * @generated
+   */
+  AnnotationDirectiveGetter createAnnotationDirectiveGetter();
+
+  /**
+   * Returns a new object of class '<em>Annotation Directive Attribute</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive Attribute</em>'.
+   * @generated
+   */
+  AnnotationDirectiveAttribute createAnnotationDirectiveAttribute();
+
+  /**
    * Returns a new object of class '<em>Implements Extends Directive Generics</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -975,60 +1002,6 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   PojoDirectiveDiscriminator createPojoDirectiveDiscriminator();
-
-  /**
-   * Returns a new object of class '<em>Pojo Directive Equals</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Directive Equals</em>'.
-   * @generated
-   */
-  PojoDirectiveEquals createPojoDirectiveEquals();
-
-  /**
-   * Returns a new object of class '<em>Pojo Directive Hash Code</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Directive Hash Code</em>'.
-   * @generated
-   */
-  PojoDirectiveHashCode createPojoDirectiveHashCode();
-
-  /**
-   * Returns a new object of class '<em>Pojo Directive To Init</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Directive To Init</em>'.
-   * @generated
-   */
-  PojoDirectiveToInit createPojoDirectiveToInit();
-
-  /**
-   * Returns a new object of class '<em>Pojo Directive Enum Init</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Directive Enum Init</em>'.
-   * @generated
-   */
-  PojoDirectiveEnumInit createPojoDirectiveEnumInit();
-
-  /**
-   * Returns a new object of class '<em>Pojo Directive Is Def</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Directive Is Def</em>'.
-   * @generated
-   */
-  PojoDirectiveIsDef createPojoDirectiveIsDef();
-
-  /**
-   * Returns a new object of class '<em>Pojo Directive Enum Def</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Directive Enum Def</em>'.
-   * @generated
-   */
-  PojoDirectiveEnumDef createPojoDirectiveEnumDef();
 
   /**
    * Returns a new object of class '<em>Pojo Property Directive Required</em>'.

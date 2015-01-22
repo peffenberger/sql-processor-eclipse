@@ -15,8 +15,11 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveAttribute;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveGetter;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveSetter;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
@@ -98,15 +101,9 @@ import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveEnumDef;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveEnumInit;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveEquals;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveIsDef;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveOperators;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveToInit;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveToString;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
@@ -156,6 +153,12 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
+			case ProcessorDslPackage.ANNOTATION_DIRECTIVE_ATTRIBUTE:
+				if(context == grammarAccess.getAnnotationDirectiveRule()) {
+					sequence_AnnotationDirective(context, (AnnotationDirectiveAttribute) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorDslPackage.ANNOTATION_DIRECTIVE_CONFLICT:
 				if(context == grammarAccess.getAnnotationDirectiveRule()) {
 					sequence_AnnotationDirective(context, (AnnotationDirectiveConflict) semanticObject); 
@@ -165,6 +168,18 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case ProcessorDslPackage.ANNOTATION_DIRECTIVE_CONSTRUCTOR:
 				if(context == grammarAccess.getAnnotationDirectiveRule()) {
 					sequence_AnnotationDirective(context, (AnnotationDirectiveConstructor) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.ANNOTATION_DIRECTIVE_GETTER:
+				if(context == grammarAccess.getAnnotationDirectiveRule()) {
+					sequence_AnnotationDirective(context, (AnnotationDirectiveGetter) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.ANNOTATION_DIRECTIVE_SETTER:
+				if(context == grammarAccess.getAnnotationDirectiveRule()) {
+					sequence_AnnotationDirective(context, (AnnotationDirectiveSetter) semanticObject); 
 					return; 
 				}
 				else break;
@@ -666,39 +681,9 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
-			case ProcessorDslPackage.POJO_DIRECTIVE_ENUM_DEF:
-				if(context == grammarAccess.getPojoDirectiveRule()) {
-					sequence_PojoDirective(context, (PojoDirectiveEnumDef) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorDslPackage.POJO_DIRECTIVE_ENUM_INIT:
-				if(context == grammarAccess.getPojoDirectiveRule()) {
-					sequence_PojoDirective(context, (PojoDirectiveEnumInit) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorDslPackage.POJO_DIRECTIVE_EQUALS:
-				if(context == grammarAccess.getPojoDirectiveRule()) {
-					sequence_PojoDirective(context, (PojoDirectiveEquals) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorDslPackage.POJO_DIRECTIVE_HASH_CODE:
-				if(context == grammarAccess.getPojoDirectiveRule()) {
-					sequence_PojoDirective(context, (PojoDirectiveHashCode) semanticObject); 
-					return; 
-				}
-				else break;
 			case ProcessorDslPackage.POJO_DIRECTIVE_INDEX:
 				if(context == grammarAccess.getPojoDirectiveRule()) {
 					sequence_PojoDirective(context, (PojoDirectiveIndex) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorDslPackage.POJO_DIRECTIVE_IS_DEF:
-				if(context == grammarAccess.getPojoDirectiveRule()) {
-					sequence_PojoDirective(context, (PojoDirectiveIsDef) semanticObject); 
 					return; 
 				}
 				else break;
@@ -711,12 +696,6 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case ProcessorDslPackage.POJO_DIRECTIVE_SERIALIZABLE:
 				if(context == grammarAccess.getPojoDirectiveRule()) {
 					sequence_PojoDirective(context, (PojoDirectiveSerializable) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorDslPackage.POJO_DIRECTIVE_TO_INIT:
-				if(context == grammarAccess.getPojoDirectiveRule()) {
-					sequence_PojoDirective(context, (PojoDirectiveToInit) semanticObject); 
 					return; 
 				}
 				else break;
@@ -886,6 +865,15 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
+	 *     {AnnotationDirectiveAttribute}
+	 */
+	protected void sequence_AnnotationDirective(EObject context, AnnotationDirectiveAttribute semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     {AnnotationDirectiveConflict}
 	 */
 	protected void sequence_AnnotationDirective(EObject context, AnnotationDirectiveConflict semanticObject) {
@@ -898,6 +886,24 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *     {AnnotationDirectiveConstructor}
 	 */
 	protected void sequence_AnnotationDirective(EObject context, AnnotationDirectiveConstructor semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {AnnotationDirectiveGetter}
+	 */
+	protected void sequence_AnnotationDirective(EObject context, AnnotationDirectiveGetter semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {AnnotationDirectiveSetter}
+	 */
+	protected void sequence_AnnotationDirective(EObject context, AnnotationDirectiveSetter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1847,7 +1853,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     ((setterAnnotations+=Annotation | getterAnnotations+=Annotation | attributeAnnotations+=Annotation)* feature=PojoProperty)
+	 *     (annotations+=Annotation* feature=PojoProperty)
 	 */
 	protected void sequence_PojoAnnotatedProperty(EObject context, PojoAnnotatedProperty semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1899,70 +1905,6 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     proplist=DirectiveProperties
-	 */
-	protected void sequence_PojoDirective(EObject context, PojoDirectiveEnumDef semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_ENUM_DEF__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_ENUM_DEF__PROPLIST));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_10_3_0(), semanticObject.getProplist());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     proplist=DirectiveProperties
-	 */
-	protected void sequence_PojoDirective(EObject context, PojoDirectiveEnumInit semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_ENUM_INIT__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_ENUM_INIT__PROPLIST));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_8_3_0(), semanticObject.getProplist());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     proplist=DirectiveProperties
-	 */
-	protected void sequence_PojoDirective(EObject context, PojoDirectiveEquals semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_EQUALS__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_EQUALS__PROPLIST));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_5_3_0(), semanticObject.getProplist());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     proplist=DirectiveProperties
-	 */
-	protected void sequence_PojoDirective(EObject context, PojoDirectiveHashCode semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_HASH_CODE__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_HASH_CODE__PROPLIST));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_6_3_0(), semanticObject.getProplist());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (index=NUMBER proplist=DirectiveProperties)
 	 */
 	protected void sequence_PojoDirective(EObject context, PojoDirectiveIndex semanticObject) {
@@ -1976,22 +1918,6 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getPojoDirectiveAccess().getIndexNUMBERTerminalRuleCall_1_3_0(), semanticObject.getIndex());
 		feeder.accept(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_1_5_0(), semanticObject.getProplist());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     proplist=DirectiveProperties
-	 */
-	protected void sequence_PojoDirective(EObject context, PojoDirectiveIsDef semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_IS_DEF__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_IS_DEF__PROPLIST));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_9_3_0(), semanticObject.getProplist());
 		feeder.finish();
 	}
 	
@@ -2017,22 +1943,6 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getPojoDirectiveAccess().getSernumNUMBERTerminalRuleCall_3_3_0(), semanticObject.getSernum());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     proplist=DirectiveProperties
-	 */
-	protected void sequence_PojoDirective(EObject context, PojoDirectiveToInit semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_TO_INIT__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_TO_INIT__PROPLIST));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_7_3_0(), semanticObject.getProplist());
 		feeder.finish();
 	}
 	

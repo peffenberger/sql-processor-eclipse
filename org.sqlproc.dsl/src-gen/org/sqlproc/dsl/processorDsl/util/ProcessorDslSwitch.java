@@ -11,8 +11,11 @@ import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.AnnotationDirective;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveAttribute;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveGetter;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveSetter;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
@@ -101,15 +104,9 @@ import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoDirective;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveEnumDef;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveEnumInit;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveEquals;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveIsDef;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveOperators;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveToInit;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveToString;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
@@ -915,6 +912,30 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE_SETTER:
+      {
+        AnnotationDirectiveSetter annotationDirectiveSetter = (AnnotationDirectiveSetter)theEObject;
+        T result = caseAnnotationDirectiveSetter(annotationDirectiveSetter);
+        if (result == null) result = caseAnnotationDirective(annotationDirectiveSetter);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE_GETTER:
+      {
+        AnnotationDirectiveGetter annotationDirectiveGetter = (AnnotationDirectiveGetter)theEObject;
+        T result = caseAnnotationDirectiveGetter(annotationDirectiveGetter);
+        if (result == null) result = caseAnnotationDirective(annotationDirectiveGetter);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE_ATTRIBUTE:
+      {
+        AnnotationDirectiveAttribute annotationDirectiveAttribute = (AnnotationDirectiveAttribute)theEObject;
+        T result = caseAnnotationDirectiveAttribute(annotationDirectiveAttribute);
+        if (result == null) result = caseAnnotationDirective(annotationDirectiveAttribute);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorDslPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS:
       {
         ImplementsExtendsDirectiveGenerics implementsExtendsDirectiveGenerics = (ImplementsExtendsDirectiveGenerics)theEObject;
@@ -960,54 +981,6 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         PojoDirectiveDiscriminator pojoDirectiveDiscriminator = (PojoDirectiveDiscriminator)theEObject;
         T result = casePojoDirectiveDiscriminator(pojoDirectiveDiscriminator);
         if (result == null) result = casePojoDirective(pojoDirectiveDiscriminator);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.POJO_DIRECTIVE_EQUALS:
-      {
-        PojoDirectiveEquals pojoDirectiveEquals = (PojoDirectiveEquals)theEObject;
-        T result = casePojoDirectiveEquals(pojoDirectiveEquals);
-        if (result == null) result = casePojoDirective(pojoDirectiveEquals);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.POJO_DIRECTIVE_HASH_CODE:
-      {
-        PojoDirectiveHashCode pojoDirectiveHashCode = (PojoDirectiveHashCode)theEObject;
-        T result = casePojoDirectiveHashCode(pojoDirectiveHashCode);
-        if (result == null) result = casePojoDirective(pojoDirectiveHashCode);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.POJO_DIRECTIVE_TO_INIT:
-      {
-        PojoDirectiveToInit pojoDirectiveToInit = (PojoDirectiveToInit)theEObject;
-        T result = casePojoDirectiveToInit(pojoDirectiveToInit);
-        if (result == null) result = casePojoDirective(pojoDirectiveToInit);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.POJO_DIRECTIVE_ENUM_INIT:
-      {
-        PojoDirectiveEnumInit pojoDirectiveEnumInit = (PojoDirectiveEnumInit)theEObject;
-        T result = casePojoDirectiveEnumInit(pojoDirectiveEnumInit);
-        if (result == null) result = casePojoDirective(pojoDirectiveEnumInit);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.POJO_DIRECTIVE_IS_DEF:
-      {
-        PojoDirectiveIsDef pojoDirectiveIsDef = (PojoDirectiveIsDef)theEObject;
-        T result = casePojoDirectiveIsDef(pojoDirectiveIsDef);
-        if (result == null) result = casePojoDirective(pojoDirectiveIsDef);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorDslPackage.POJO_DIRECTIVE_ENUM_DEF:
-      {
-        PojoDirectiveEnumDef pojoDirectiveEnumDef = (PojoDirectiveEnumDef)theEObject;
-        T result = casePojoDirectiveEnumDef(pojoDirectiveEnumDef);
-        if (result == null) result = casePojoDirective(pojoDirectiveEnumDef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2760,6 +2733,54 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Annotation Directive Setter</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Annotation Directive Setter</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAnnotationDirectiveSetter(AnnotationDirectiveSetter object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Annotation Directive Getter</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Annotation Directive Getter</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAnnotationDirectiveGetter(AnnotationDirectiveGetter object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Annotation Directive Attribute</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Annotation Directive Attribute</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAnnotationDirectiveAttribute(AnnotationDirectiveAttribute object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Implements Extends Directive Generics</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2851,102 +2872,6 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePojoDirectiveDiscriminator(PojoDirectiveDiscriminator object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Equals</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Equals</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePojoDirectiveEquals(PojoDirectiveEquals object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Hash Code</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Hash Code</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePojoDirectiveHashCode(PojoDirectiveHashCode object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive To Init</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Directive To Init</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePojoDirectiveToInit(PojoDirectiveToInit object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Enum Init</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Enum Init</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePojoDirectiveEnumInit(PojoDirectiveEnumInit object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Is Def</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Is Def</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePojoDirectiveIsDef(PojoDirectiveIsDef object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Enum Def</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Enum Def</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePojoDirectiveEnumDef(PojoDirectiveEnumDef object)
   {
     return null;
   }

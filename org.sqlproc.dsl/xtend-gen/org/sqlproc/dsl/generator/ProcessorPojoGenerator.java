@@ -930,7 +930,7 @@ public class ProcessorPojoGenerator {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a : _attributeAnnotations) {
         _builder.append("\t");
         _builder.append("@");
@@ -987,8 +987,8 @@ public class ProcessorPojoGenerator {
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     {
-      EList<Annotation> _getterAnnotations = aaf.getGetterAnnotations();
-      for(final Annotation a_1 : _getterAnnotations) {
+      List<Annotation> _terAnnotations = this._processorGeneratorUtils.getterAnnotations(aaf);
+      for(final Annotation a_1 : _terAnnotations) {
         _builder.append("\t");
         _builder.append("@");
         JvmType _type_1 = a_1.getType();
@@ -1040,7 +1040,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _setterAnnotations = aaf.getSetterAnnotations();
+      List<Annotation> _setterAnnotations = this._processorGeneratorUtils.setterAnnotations(aaf);
       for(final Annotation a_2 : _setterAnnotations) {
         _builder.append("\t");
         _builder.append("@");
@@ -1376,7 +1376,7 @@ public class ProcessorPojoGenerator {
     _builder.append("@Override");
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a : _attributeAnnotations) {
         _builder.append("\t");
         _builder.append("@");
@@ -1462,7 +1462,7 @@ public class ProcessorPojoGenerator {
     _builder.append("@Override");
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a : _attributeAnnotations) {
         _builder.append("\t");
         _builder.append("@");
@@ -1572,7 +1572,7 @@ public class ProcessorPojoGenerator {
     _builder.append("@Override");
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a : _attributeAnnotations) {
         _builder.append("\t");
         _builder.append("@");
@@ -1642,7 +1642,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_1 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_1 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_1 : _attributeAnnotations_1) {
         _builder.append("\t");
         _builder.append("@");
@@ -1748,7 +1748,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a : _attributeAnnotations) {
         _builder.append("\t");
         _builder.append("@");
@@ -1785,7 +1785,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_1 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_1 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_1 : _attributeAnnotations_1) {
         _builder.append("\t");
         _builder.append("@");
@@ -1870,7 +1870,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_2 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_2 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_3 : _attributeAnnotations_2) {
         _builder.append("\t");
         _builder.append("@");
@@ -1952,7 +1952,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_3 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_3 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_5 : _attributeAnnotations_3) {
         _builder.append("\t");
         _builder.append("@");
@@ -2037,7 +2037,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_4 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_4 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_7 : _attributeAnnotations_4) {
         _builder.append("\t");
         _builder.append("@");
@@ -2119,7 +2119,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_5 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_5 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_9 : _attributeAnnotations_5) {
         _builder.append("\t");
         _builder.append("@");
@@ -2171,7 +2171,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_6 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_6 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_10 : _attributeAnnotations_6) {
         _builder.append("\t");
         _builder.append("@");
@@ -2220,7 +2220,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_7 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_7 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_11 : _attributeAnnotations_7) {
         _builder.append("\t");
         _builder.append("@");
@@ -2272,7 +2272,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_8 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_8 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_12 : _attributeAnnotations_8) {
         _builder.append("\t");
         _builder.append("@");
@@ -2321,7 +2321,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_9 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_9 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_13 : _attributeAnnotations_9) {
         _builder.append("\t");
         _builder.append("@");
@@ -2370,7 +2370,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_10 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_10 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_14 : _attributeAnnotations_10) {
         _builder.append("\t");
         _builder.append("@");
@@ -2452,7 +2452,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_11 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_11 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_16 : _attributeAnnotations_11) {
         _builder.append("\t");
         _builder.append("@");
@@ -2561,7 +2561,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_12 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_12 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_17 : _attributeAnnotations_12) {
         _builder.append("\t");
         _builder.append("@");
@@ -2658,7 +2658,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a : _attributeAnnotations) {
         _builder.append("\t");
         _builder.append("@");
@@ -2695,7 +2695,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_1 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_1 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_1 : _attributeAnnotations_1) {
         _builder.append("\t");
         _builder.append("@");
@@ -2781,7 +2781,7 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_2 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_2 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_3 : _attributeAnnotations_2) {
         _builder.append("\t");
         _builder.append("@");
@@ -2863,7 +2863,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_3 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_3 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_5 : _attributeAnnotations_3) {
         _builder.append("\t");
         _builder.append("@");
@@ -2948,7 +2948,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_4 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_4 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_7 : _attributeAnnotations_4) {
         _builder.append("\t");
         _builder.append("@");
@@ -3030,7 +3030,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_5 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_5 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_9 : _attributeAnnotations_5) {
         _builder.append("\t");
         _builder.append("@");
@@ -3082,7 +3082,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_6 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_6 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_10 : _attributeAnnotations_6) {
         _builder.append("\t");
         _builder.append("@");
@@ -3131,7 +3131,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_7 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_7 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_11 : _attributeAnnotations_7) {
         _builder.append("\t");
         _builder.append("@");
@@ -3183,7 +3183,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_8 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_8 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_12 : _attributeAnnotations_8) {
         _builder.append("\t");
         _builder.append("@");
@@ -3232,7 +3232,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_9 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_9 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_13 : _attributeAnnotations_9) {
         _builder.append("\t");
         _builder.append("@");
@@ -3281,7 +3281,7 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      EList<Annotation> _attributeAnnotations_10 = aaf.getAttributeAnnotations();
+      List<Annotation> _attributeAnnotations_10 = this._processorGeneratorUtils.attributeAnnotations(aaf);
       for(final Annotation a_14 : _attributeAnnotations_10) {
         _builder.append("\t");
         _builder.append("@");

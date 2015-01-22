@@ -14,8 +14,11 @@ import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.AnnotationDirective;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveAttribute;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveGetter;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveSetter;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
@@ -104,15 +107,9 @@ import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoDirective;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveEnumDef;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveEnumInit;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveEquals;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveIsDef;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveOperators;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveToInit;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveToString;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
@@ -294,18 +291,15 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.ANNOTATION_DIRECTIVE_STATIC: return createAnnotationDirectiveStatic();
       case ProcessorDslPackage.ANNOTATION_DIRECTIVE_CONSTRUCTOR: return createAnnotationDirectiveConstructor();
       case ProcessorDslPackage.ANNOTATION_DIRECTIVE_STANDARD: return createAnnotationDirectiveStandard();
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE_SETTER: return createAnnotationDirectiveSetter();
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE_GETTER: return createAnnotationDirectiveGetter();
+      case ProcessorDslPackage.ANNOTATION_DIRECTIVE_ATTRIBUTE: return createAnnotationDirectiveAttribute();
       case ProcessorDslPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS: return createImplementsExtendsDirectiveGenerics();
       case ProcessorDslPackage.POJO_DIRECTIVE_TO_STRING: return createPojoDirectiveToString();
       case ProcessorDslPackage.POJO_DIRECTIVE_INDEX: return createPojoDirectiveIndex();
       case ProcessorDslPackage.POJO_DIRECTIVE_OPERATORS: return createPojoDirectiveOperators();
       case ProcessorDslPackage.POJO_DIRECTIVE_SERIALIZABLE: return createPojoDirectiveSerializable();
       case ProcessorDslPackage.POJO_DIRECTIVE_DISCRIMINATOR: return createPojoDirectiveDiscriminator();
-      case ProcessorDslPackage.POJO_DIRECTIVE_EQUALS: return createPojoDirectiveEquals();
-      case ProcessorDslPackage.POJO_DIRECTIVE_HASH_CODE: return createPojoDirectiveHashCode();
-      case ProcessorDslPackage.POJO_DIRECTIVE_TO_INIT: return createPojoDirectiveToInit();
-      case ProcessorDslPackage.POJO_DIRECTIVE_ENUM_INIT: return createPojoDirectiveEnumInit();
-      case ProcessorDslPackage.POJO_DIRECTIVE_IS_DEF: return createPojoDirectiveIsDef();
-      case ProcessorDslPackage.POJO_DIRECTIVE_ENUM_DEF: return createPojoDirectiveEnumDef();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_REQUIRED: return createPojoPropertyDirectiveRequired();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY: return createPojoPropertyDirectivePrimaryKey();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR: return createPojoPropertyDirectiveDiscriminator();
@@ -1434,6 +1428,39 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public AnnotationDirectiveSetter createAnnotationDirectiveSetter()
+  {
+    AnnotationDirectiveSetterImpl annotationDirectiveSetter = new AnnotationDirectiveSetterImpl();
+    return annotationDirectiveSetter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationDirectiveGetter createAnnotationDirectiveGetter()
+  {
+    AnnotationDirectiveGetterImpl annotationDirectiveGetter = new AnnotationDirectiveGetterImpl();
+    return annotationDirectiveGetter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationDirectiveAttribute createAnnotationDirectiveAttribute()
+  {
+    AnnotationDirectiveAttributeImpl annotationDirectiveAttribute = new AnnotationDirectiveAttributeImpl();
+    return annotationDirectiveAttribute;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ImplementsExtendsDirectiveGenerics createImplementsExtendsDirectiveGenerics()
   {
     ImplementsExtendsDirectiveGenericsImpl implementsExtendsDirectiveGenerics = new ImplementsExtendsDirectiveGenericsImpl();
@@ -1493,72 +1520,6 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     PojoDirectiveDiscriminatorImpl pojoDirectiveDiscriminator = new PojoDirectiveDiscriminatorImpl();
     return pojoDirectiveDiscriminator;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoDirectiveEquals createPojoDirectiveEquals()
-  {
-    PojoDirectiveEqualsImpl pojoDirectiveEquals = new PojoDirectiveEqualsImpl();
-    return pojoDirectiveEquals;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoDirectiveHashCode createPojoDirectiveHashCode()
-  {
-    PojoDirectiveHashCodeImpl pojoDirectiveHashCode = new PojoDirectiveHashCodeImpl();
-    return pojoDirectiveHashCode;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoDirectiveToInit createPojoDirectiveToInit()
-  {
-    PojoDirectiveToInitImpl pojoDirectiveToInit = new PojoDirectiveToInitImpl();
-    return pojoDirectiveToInit;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoDirectiveEnumInit createPojoDirectiveEnumInit()
-  {
-    PojoDirectiveEnumInitImpl pojoDirectiveEnumInit = new PojoDirectiveEnumInitImpl();
-    return pojoDirectiveEnumInit;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoDirectiveIsDef createPojoDirectiveIsDef()
-  {
-    PojoDirectiveIsDefImpl pojoDirectiveIsDef = new PojoDirectiveIsDefImpl();
-    return pojoDirectiveIsDef;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoDirectiveEnumDef createPojoDirectiveEnumDef()
-  {
-    PojoDirectiveEnumDefImpl pojoDirectiveEnumDef = new PojoDirectiveEnumDefImpl();
-    return pojoDirectiveEnumDef;
   }
 
   /**

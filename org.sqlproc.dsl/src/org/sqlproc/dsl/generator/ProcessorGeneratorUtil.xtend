@@ -46,6 +46,10 @@ import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveSetter
+import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveGetter
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveAttribute
 
 class ProcessorGeneratorUtils {
 
@@ -389,5 +393,40 @@ class ProcessorGeneratorUtils {
 		if (pojo == null)
 			return newArrayList()
 		return pojo.annotations.filter[x|x.isStandard].toList
+	}
+
+    def isSetter(Annotation an) {
+		val d = an.directives?.findFirst[x|x instanceof AnnotationDirectiveSetter]
+		return if(d != null) true else false
+    }
+	
+	def List<Annotation> setterAnnotations(PojoAnnotatedProperty prop) {
+		if (prop == null)
+			return newArrayList()
+		return prop.annotations.filter[x|x.isSetter].toList
+	}
+
+    def isGetter(Annotation an) {
+		val d = an.directives?.findFirst[x|x instanceof AnnotationDirectiveGetter]
+		return if(d != null) true else false
+    }
+	
+	def List<Annotation> getterAnnotations(PojoAnnotatedProperty prop) {
+		if (prop == null)
+			return newArrayList()
+		return prop.annotations.filter[x|x.isGetter].toList
+	}
+
+    def isAttribute(Annotation an) {
+    	if (an.directives == null || an.directives.isEmpty)
+    		return true
+		val d = an.directives?.findFirst[x|x instanceof AnnotationDirectiveAttribute]
+		return if(d != null) true else false
+    }
+	
+	def List<Annotation> attributeAnnotations(PojoAnnotatedProperty prop) {
+		if (prop == null)
+			return newArrayList()
+		return prop.annotations.filter[x|x.isAttribute].toList
 	}
 }

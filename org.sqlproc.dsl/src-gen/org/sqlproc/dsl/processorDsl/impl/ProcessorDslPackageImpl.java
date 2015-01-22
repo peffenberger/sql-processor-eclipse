@@ -15,8 +15,11 @@ import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
 import org.sqlproc.dsl.processorDsl.AnnotationDirective;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveAttribute;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveGetter;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveSetter;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard;
 import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
@@ -105,15 +108,9 @@ import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoDirective;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveEnumDef;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveEnumInit;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveEquals;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveIsDef;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveOperators;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable;
-import org.sqlproc.dsl.processorDsl.PojoDirectiveToInit;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveToString;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
@@ -856,6 +853,27 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass annotationDirectiveSetterEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass annotationDirectiveGetterEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass annotationDirectiveAttributeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass implementsExtendsDirectiveGenericsEClass = null;
 
   /**
@@ -892,48 +910,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * @generated
    */
   private EClass pojoDirectiveDiscriminatorEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass pojoDirectiveEqualsEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass pojoDirectiveHashCodeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass pojoDirectiveToInitEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass pojoDirectiveEnumInitEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass pojoDirectiveIsDefEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass pojoDirectiveEnumDefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -4612,7 +4588,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoAnnotatedProperty_SetterAnnotations()
+  public EReference getPojoAnnotatedProperty_Annotations()
   {
     return (EReference)pojoAnnotatedPropertyEClass.getEStructuralFeatures().get(0);
   }
@@ -4622,29 +4598,9 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoAnnotatedProperty_GetterAnnotations()
-  {
-    return (EReference)pojoAnnotatedPropertyEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoAnnotatedProperty_AttributeAnnotations()
-  {
-    return (EReference)pojoAnnotatedPropertyEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getPojoAnnotatedProperty_Feature()
   {
-    return (EReference)pojoAnnotatedPropertyEClass.getEStructuralFeatures().get(3);
+    return (EReference)pojoAnnotatedPropertyEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -5142,6 +5098,36 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getAnnotationDirectiveSetter()
+  {
+    return annotationDirectiveSetterEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAnnotationDirectiveGetter()
+  {
+    return annotationDirectiveGetterEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAnnotationDirectiveAttribute()
+  {
+    return annotationDirectiveAttributeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getImplementsExtendsDirectiveGenerics()
   {
     return implementsExtendsDirectiveGenericsEClass;
@@ -5255,126 +5241,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
   public EAttribute getPojoDirectiveDiscriminator_Discriminator()
   {
     return (EAttribute)pojoDirectiveDiscriminatorEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getPojoDirectiveEquals()
-  {
-    return pojoDirectiveEqualsEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoDirectiveEquals_Proplist()
-  {
-    return (EReference)pojoDirectiveEqualsEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getPojoDirectiveHashCode()
-  {
-    return pojoDirectiveHashCodeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoDirectiveHashCode_Proplist()
-  {
-    return (EReference)pojoDirectiveHashCodeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getPojoDirectiveToInit()
-  {
-    return pojoDirectiveToInitEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoDirectiveToInit_Proplist()
-  {
-    return (EReference)pojoDirectiveToInitEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getPojoDirectiveEnumInit()
-  {
-    return pojoDirectiveEnumInitEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoDirectiveEnumInit_Proplist()
-  {
-    return (EReference)pojoDirectiveEnumInitEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getPojoDirectiveIsDef()
-  {
-    return pojoDirectiveIsDefEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoDirectiveIsDef_Proplist()
-  {
-    return (EReference)pojoDirectiveIsDefEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getPojoDirectiveEnumDef()
-  {
-    return pojoDirectiveEnumDefEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoDirectiveEnumDef_Proplist()
-  {
-    return (EReference)pojoDirectiveEnumDefEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -6144,9 +6010,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEReference(pojoEntityEClass, POJO_ENTITY__FEATURES);
 
     pojoAnnotatedPropertyEClass = createEClass(POJO_ANNOTATED_PROPERTY);
-    createEReference(pojoAnnotatedPropertyEClass, POJO_ANNOTATED_PROPERTY__SETTER_ANNOTATIONS);
-    createEReference(pojoAnnotatedPropertyEClass, POJO_ANNOTATED_PROPERTY__GETTER_ANNOTATIONS);
-    createEReference(pojoAnnotatedPropertyEClass, POJO_ANNOTATED_PROPERTY__ATTRIBUTE_ANNOTATIONS);
+    createEReference(pojoAnnotatedPropertyEClass, POJO_ANNOTATED_PROPERTY__ANNOTATIONS);
     createEReference(pojoAnnotatedPropertyEClass, POJO_ANNOTATED_PROPERTY__FEATURE);
 
     pojoPropertyDirectiveEClass = createEClass(POJO_PROPERTY_DIRECTIVE);
@@ -6218,6 +6082,12 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
 
     annotationDirectiveStandardEClass = createEClass(ANNOTATION_DIRECTIVE_STANDARD);
 
+    annotationDirectiveSetterEClass = createEClass(ANNOTATION_DIRECTIVE_SETTER);
+
+    annotationDirectiveGetterEClass = createEClass(ANNOTATION_DIRECTIVE_GETTER);
+
+    annotationDirectiveAttributeEClass = createEClass(ANNOTATION_DIRECTIVE_ATTRIBUTE);
+
     implementsExtendsDirectiveGenericsEClass = createEClass(IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS);
 
     pojoDirectiveToStringEClass = createEClass(POJO_DIRECTIVE_TO_STRING);
@@ -6235,24 +6105,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
 
     pojoDirectiveDiscriminatorEClass = createEClass(POJO_DIRECTIVE_DISCRIMINATOR);
     createEAttribute(pojoDirectiveDiscriminatorEClass, POJO_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR);
-
-    pojoDirectiveEqualsEClass = createEClass(POJO_DIRECTIVE_EQUALS);
-    createEReference(pojoDirectiveEqualsEClass, POJO_DIRECTIVE_EQUALS__PROPLIST);
-
-    pojoDirectiveHashCodeEClass = createEClass(POJO_DIRECTIVE_HASH_CODE);
-    createEReference(pojoDirectiveHashCodeEClass, POJO_DIRECTIVE_HASH_CODE__PROPLIST);
-
-    pojoDirectiveToInitEClass = createEClass(POJO_DIRECTIVE_TO_INIT);
-    createEReference(pojoDirectiveToInitEClass, POJO_DIRECTIVE_TO_INIT__PROPLIST);
-
-    pojoDirectiveEnumInitEClass = createEClass(POJO_DIRECTIVE_ENUM_INIT);
-    createEReference(pojoDirectiveEnumInitEClass, POJO_DIRECTIVE_ENUM_INIT__PROPLIST);
-
-    pojoDirectiveIsDefEClass = createEClass(POJO_DIRECTIVE_IS_DEF);
-    createEReference(pojoDirectiveIsDefEClass, POJO_DIRECTIVE_IS_DEF__PROPLIST);
-
-    pojoDirectiveEnumDefEClass = createEClass(POJO_DIRECTIVE_ENUM_DEF);
-    createEReference(pojoDirectiveEnumDefEClass, POJO_DIRECTIVE_ENUM_DEF__PROPLIST);
 
     pojoPropertyDirectiveRequiredEClass = createEClass(POJO_PROPERTY_DIRECTIVE_REQUIRED);
 
@@ -6350,18 +6202,15 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     annotationDirectiveStaticEClass.getESuperTypes().add(this.getAnnotationDirective());
     annotationDirectiveConstructorEClass.getESuperTypes().add(this.getAnnotationDirective());
     annotationDirectiveStandardEClass.getESuperTypes().add(this.getAnnotationDirective());
+    annotationDirectiveSetterEClass.getESuperTypes().add(this.getAnnotationDirective());
+    annotationDirectiveGetterEClass.getESuperTypes().add(this.getAnnotationDirective());
+    annotationDirectiveAttributeEClass.getESuperTypes().add(this.getAnnotationDirective());
     implementsExtendsDirectiveGenericsEClass.getESuperTypes().add(this.getImplementsExtendsDirective());
     pojoDirectiveToStringEClass.getESuperTypes().add(this.getPojoDirective());
     pojoDirectiveIndexEClass.getESuperTypes().add(this.getPojoDirective());
     pojoDirectiveOperatorsEClass.getESuperTypes().add(this.getPojoDirective());
     pojoDirectiveSerializableEClass.getESuperTypes().add(this.getPojoDirective());
     pojoDirectiveDiscriminatorEClass.getESuperTypes().add(this.getPojoDirective());
-    pojoDirectiveEqualsEClass.getESuperTypes().add(this.getPojoDirective());
-    pojoDirectiveHashCodeEClass.getESuperTypes().add(this.getPojoDirective());
-    pojoDirectiveToInitEClass.getESuperTypes().add(this.getPojoDirective());
-    pojoDirectiveEnumInitEClass.getESuperTypes().add(this.getPojoDirective());
-    pojoDirectiveIsDefEClass.getESuperTypes().add(this.getPojoDirective());
-    pojoDirectiveEnumDefEClass.getESuperTypes().add(this.getPojoDirective());
     pojoPropertyDirectiveRequiredEClass.getESuperTypes().add(this.getPojoPropertyDirective());
     pojoPropertyDirectivePrimaryKeyEClass.getESuperTypes().add(this.getPojoPropertyDirective());
     pojoPropertyDirectiveDiscriminatorEClass.getESuperTypes().add(this.getPojoPropertyDirective());
@@ -6809,9 +6658,7 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEReference(getPojoEntity_Features(), this.getPojoAnnotatedProperty(), null, "features", null, 0, -1, PojoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoAnnotatedPropertyEClass, PojoAnnotatedProperty.class, "PojoAnnotatedProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPojoAnnotatedProperty_SetterAnnotations(), this.getAnnotation(), null, "setterAnnotations", null, 0, -1, PojoAnnotatedProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoAnnotatedProperty_GetterAnnotations(), this.getAnnotation(), null, "getterAnnotations", null, 0, -1, PojoAnnotatedProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoAnnotatedProperty_AttributeAnnotations(), this.getAnnotation(), null, "attributeAnnotations", null, 0, -1, PojoAnnotatedProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoAnnotatedProperty_Annotations(), this.getAnnotation(), null, "annotations", null, 0, -1, PojoAnnotatedProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoAnnotatedProperty_Feature(), this.getPojoProperty(), null, "feature", null, 0, 1, PojoAnnotatedProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoPropertyDirectiveEClass, PojoPropertyDirective.class, "PojoPropertyDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -6883,6 +6730,12 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
 
     initEClass(annotationDirectiveStandardEClass, AnnotationDirectiveStandard.class, "AnnotationDirectiveStandard", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(annotationDirectiveSetterEClass, AnnotationDirectiveSetter.class, "AnnotationDirectiveSetter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(annotationDirectiveGetterEClass, AnnotationDirectiveGetter.class, "AnnotationDirectiveGetter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(annotationDirectiveAttributeEClass, AnnotationDirectiveAttribute.class, "AnnotationDirectiveAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(implementsExtendsDirectiveGenericsEClass, ImplementsExtendsDirectiveGenerics.class, "ImplementsExtendsDirectiveGenerics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(pojoDirectiveToStringEClass, PojoDirectiveToString.class, "PojoDirectiveToString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -6900,24 +6753,6 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
 
     initEClass(pojoDirectiveDiscriminatorEClass, PojoDirectiveDiscriminator.class, "PojoDirectiveDiscriminator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPojoDirectiveDiscriminator_Discriminator(), ecorePackage.getEString(), "discriminator", null, 0, 1, PojoDirectiveDiscriminator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(pojoDirectiveEqualsEClass, PojoDirectiveEquals.class, "PojoDirectiveEquals", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPojoDirectiveEquals_Proplist(), this.getDirectiveProperties(), null, "proplist", null, 0, 1, PojoDirectiveEquals.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(pojoDirectiveHashCodeEClass, PojoDirectiveHashCode.class, "PojoDirectiveHashCode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPojoDirectiveHashCode_Proplist(), this.getDirectiveProperties(), null, "proplist", null, 0, 1, PojoDirectiveHashCode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(pojoDirectiveToInitEClass, PojoDirectiveToInit.class, "PojoDirectiveToInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPojoDirectiveToInit_Proplist(), this.getDirectiveProperties(), null, "proplist", null, 0, 1, PojoDirectiveToInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(pojoDirectiveEnumInitEClass, PojoDirectiveEnumInit.class, "PojoDirectiveEnumInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPojoDirectiveEnumInit_Proplist(), this.getDirectiveProperties(), null, "proplist", null, 0, 1, PojoDirectiveEnumInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(pojoDirectiveIsDefEClass, PojoDirectiveIsDef.class, "PojoDirectiveIsDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPojoDirectiveIsDef_Proplist(), this.getDirectiveProperties(), null, "proplist", null, 0, 1, PojoDirectiveIsDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(pojoDirectiveEnumDefEClass, PojoDirectiveEnumDef.class, "PojoDirectiveEnumDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPojoDirectiveEnumDef_Proplist(), this.getDirectiveProperties(), null, "proplist", null, 0, 1, PojoDirectiveEnumDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoPropertyDirectiveRequiredEClass, PojoPropertyDirectiveRequired.class, "PojoPropertyDirectiveRequired", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

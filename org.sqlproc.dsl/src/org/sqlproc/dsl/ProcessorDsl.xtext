@@ -375,11 +375,14 @@ AnnotationDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {AnnotationDirectiveStatic} '#Static'
 	| {AnnotationDirectiveConstructor} '#Constructor'
 	| {AnnotationDirectiveStandard} '#Standard'
+	| {AnnotationDirectiveSetter} '#Setter'
+	| {AnnotationDirectiveGetter} '#Getter'
+	| {AnnotationDirectiveAttribute} '#Attribute'
 ;
 
 Annotation:
 	directives+=AnnotationDirective*
-	type=[jvmTypes::JvmType|QualifiedName] (=> LPAREN features+=AnnotationProperty (COMMA features+=AnnotationProperty)* RPAREN)?
+	AT type=[jvmTypes::JvmType|QualifiedName] (=> LPAREN features+=AnnotationProperty (COMMA features+=AnnotationProperty)* RPAREN)?
 ;
 
 AnnotationProperty:
@@ -388,7 +391,7 @@ AnnotationProperty:
 
 Entity: PojoEntity | EnumEntity;
 
-AnnotatedEntity: (=> AT annotations+=Annotation)* entity=Entity;
+AnnotatedEntity: (annotations+=Annotation)* entity=Entity;
 
 AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 	Package | AnnotatedEntity | Import | Implements | Extends | PojoDao;
@@ -420,12 +423,12 @@ PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {PojoDirectiveOperators} '#Operators' (LPAREN operatorsSuffix=IDENT RPAREN)?
 	| {PojoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
 	| {PojoDirectiveDiscriminator} '#InheritanceChild' LPAREN discriminator=(IDENT|NUMBER) RPAREN
-	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveToInit} '#ToInit' LPAREN proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveEnumInit} '#EnumInit' LPAREN proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveIsDef} '#IsDef' LPAREN proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveEnumDef} '#EnumDef' LPAREN proplist=DirectiveProperties RPAREN
+//	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
+//	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
+//	| {PojoDirectiveToInit} '#ToInit' LPAREN proplist=DirectiveProperties RPAREN
+//	| {PojoDirectiveEnumInit} '#EnumInit' LPAREN proplist=DirectiveProperties RPAREN
+//	| {PojoDirectiveIsDef} '#IsDef' LPAREN proplist=DirectiveProperties RPAREN
+//	| {PojoDirectiveEnumDef} '#EnumDef' LPAREN proplist=DirectiveProperties RPAREN
 ;
 
 PojoEntityModifier2: ('extends' superType=[PojoEntity|IDENT]);
@@ -437,7 +440,7 @@ PojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 		features+=PojoAnnotatedProperty*
 	RBRACE;
 
-PojoAnnotatedProperty: (=> AT (=> AT (=> AT setterAnnotations+=Annotation | getterAnnotations+=Annotation) | attributeAnnotations+=Annotation))* feature=PojoProperty;
+PojoAnnotatedProperty: (annotations+=Annotation)* feature=PojoProperty;
 
 PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
 	{PojoPropertyDirectiveRequired} '#Required'

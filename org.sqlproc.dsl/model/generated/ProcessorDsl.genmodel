@@ -429,9 +429,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoEntity/features"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoAnnotatedProperty">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoAnnotatedProperty/setterAnnotations"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoAnnotatedProperty/getterAnnotations"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoAnnotatedProperty/attributeAnnotations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoAnnotatedProperty/annotations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoAnnotatedProperty/feature"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirective"/>
@@ -495,6 +493,9 @@
     <genClasses ecoreClass="ProcessorDsl.ecore#//AnnotationDirectiveStatic"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//AnnotationDirectiveConstructor"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//AnnotationDirectiveStandard"/>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//AnnotationDirectiveSetter"/>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//AnnotationDirectiveGetter"/>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//AnnotationDirectiveAttribute"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//ImplementsExtendsDirectiveGenerics"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveToString">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveToString/proplist"/>
@@ -511,24 +512,6 @@
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveDiscriminator">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoDirectiveDiscriminator/discriminator"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveEquals">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveEquals/proplist"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveHashCode">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveHashCode/proplist"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveToInit">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveToInit/proplist"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveEnumInit">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveEnumInit/proplist"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveIsDef">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveIsDef/proplist"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoDirectiveEnumDef">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//PojoDirectiveEnumDef/proplist"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectiveRequired"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectivePrimaryKey"/>
