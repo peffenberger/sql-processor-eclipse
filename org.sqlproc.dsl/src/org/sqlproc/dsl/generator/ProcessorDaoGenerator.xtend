@@ -14,7 +14,6 @@ import org.sqlproc.dsl.processorDsl.Implements
 import org.sqlproc.dsl.processorDsl.Extends
 import org.sqlproc.dsl.processorDsl.PojoDao
 import java.util.Map
-import org.sqlproc.dsl.processorDsl.ImplPackage
 import org.sqlproc.dsl.processorDsl.PojoType
 import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters
 import org.sqlproc.dsl.processorDsl.FunctionCallQuery
@@ -39,9 +38,10 @@ class ProcessorDaoGenerator {
 		«addExtends(d, im)»
 		«val moreResultClasses = getMoreResultClasses(d)»
 		«val pojo = getPojo(d)»
-		«val classBody = compile(d, pojo, moreResultClasses, im)»
-		«IF d.eContainer != null»package «d.eContainer.fullyQualifiedName»«IF d.implPackage != null».«d.implPackage»«ENDIF»;«ENDIF»
-		«IF d.implPackage != null»
+		«val implPackage = getImplPackage(d)»
+		«val classBody = compile(d, pojo, moreResultClasses, im, implPackage)»
+		«IF d.eContainer != null»package «d.eContainer.fullyQualifiedName»«IF implPackage != null».«implPackage»«ENDIF»;«ENDIF»
+		«IF implPackage != null»
 		
 		import «d.eContainer.fullyQualifiedName».«d.name»;
 		«ENDIF»
@@ -77,8 +77,8 @@ class ProcessorDaoGenerator {
 		«classBody»
 	'''
 	
-	def compile(PojoDao d, PojoEntity e, Map<String, Map<String, PojoType>> moreResultClasses, ImportManager im) '''
-		public «IF isAbstract(d)»abstract «ENDIF»class «d.name»«IF d.implPackage != null»Impl«ENDIF» «compileExtends(d, im)»«compileImplements(d)»{
+	def compile(PojoDao d, PojoEntity e, Map<String, Map<String, PojoType>> moreResultClasses, ImportManager im, String implPackage) '''
+		public «IF isAbstract(d)»abstract «ENDIF»class «d.name»«IF implPackage != null»Impl«ENDIF» «compileExtends(d, im)»«compileImplements(d, implPackage)»{
 			«IF getSernum(d) != null»
 			
 			private static final long serialVersionUID = «getSernum(d)»L;
@@ -88,14 +88,14 @@ class ProcessorDaoGenerator {
 			protected SqlEngineFactory sqlEngineFactory;
 			protected SqlSessionFactory sqlSessionFactory;
 					
-			public «d.name»«IF d.implPackage != null»Impl«ENDIF»() {
+			public «d.name»«IF implPackage != null»Impl«ENDIF»() {
 			}
 					
-			public «d.name»«IF d.implPackage != null»Impl«ENDIF»(SqlEngineFactory sqlEngineFactory) {
+			public «d.name»«IF implPackage != null»Impl«ENDIF»(SqlEngineFactory sqlEngineFactory) {
 				this.sqlEngineFactory = sqlEngineFactory;
 			}
 					
-			public «d.name»«IF d.implPackage != null»Impl«ENDIF»(SqlEngineFactory sqlEngineFactory, SqlSessionFactory sqlSessionFactory) {
+			public «d.name»«IF implPackage != null»Impl«ENDIF»(SqlEngineFactory sqlEngineFactory, SqlSessionFactory sqlSessionFactory) {
 				this.sqlEngineFactory = sqlEngineFactory;
 				this.sqlSessionFactory = sqlSessionFactory;
 			}
@@ -625,8 +625,8 @@ class ProcessorDaoGenerator {
 	def compileExtends(PojoDao e, ImportManager im) '''
 		«IF getSuperType(e) != null»extends «getFullName(e, getSuperType(e), getSuperType(e).fullyQualifiedName, im)» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
 	
-	def compileImplements(PojoDao d) '''
-		«IF isImplements(d) || getSernum(d) != null || d.implPackage != null»implements «FOR f:getImplements(d) SEPARATOR ", " »«getDaoImplements(d, f)»«ENDFOR»«IF getSernum(d) != null»«IF isImplements(d)», «ENDIF»Serializable«ENDIF»«IF d.implPackage != null»«IF isImplements(d) || getSernum(d) != null», «ENDIF»«d.name»«ENDIF» «ENDIF»'''
+	def compileImplements(PojoDao d, String implPackage) '''
+		«IF isImplements(d) || getSernum(d) != null || implPackage != null»implements «FOR f:getImplements(d) SEPARATOR ", " »«getDaoImplements(d, f)»«ENDFOR»«IF getSernum(d) != null»«IF isImplements(d)», «ENDIF»Serializable«ENDIF»«IF implPackage != null»«IF isImplements(d) || getSernum(d) != null», «ENDIF»«d.name»«ENDIF» «ENDIF»'''
 	
 	def addImplements(PojoDao e, ImportManager im) {
 		for(impl: e.eContainer.eContents.filter(typeof(Implements))) {
@@ -723,12 +723,5 @@ class ProcessorDaoGenerator {
 				list.add(ext)
 		}
 		return list
-	}
-	
-	def getImplPackage(PojoDao e) {
-		for(ext: e.eContainer.eContents.filter(typeof(ImplPackage))) {
-			return ext.name
-		}
-		return null
 	}
 }

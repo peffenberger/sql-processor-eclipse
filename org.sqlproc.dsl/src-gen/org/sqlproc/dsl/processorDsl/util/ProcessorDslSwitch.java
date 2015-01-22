@@ -65,7 +65,6 @@ import org.sqlproc.dsl.processorDsl.IfSql;
 import org.sqlproc.dsl.processorDsl.IfSqlBool;
 import org.sqlproc.dsl.processorDsl.IfSqlCond;
 import org.sqlproc.dsl.processorDsl.IfSqlFragment;
-import org.sqlproc.dsl.processorDsl.ImplPackage;
 import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignement;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics;
@@ -89,6 +88,7 @@ import org.sqlproc.dsl.processorDsl.OptionalFeature;
 import org.sqlproc.dsl.processorDsl.OrdSql;
 import org.sqlproc.dsl.processorDsl.OrdSql2;
 import org.sqlproc.dsl.processorDsl.PackageDirective;
+import org.sqlproc.dsl.processorDsl.PackageDirectiveImplementation;
 import org.sqlproc.dsl.processorDsl.PackageDirectiveSuffix;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
@@ -712,14 +712,6 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.IMPL_PACKAGE:
-      {
-        ImplPackage implPackage = (ImplPackage)theEObject;
-        T result = caseImplPackage(implPackage);
-        if (result == null) result = caseAbstractPojoEntity(implPackage);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case ProcessorDslPackage.POJO_ENTITY_MODIFIER1:
       {
         PojoEntityModifier1 pojoEntityModifier1 = (PojoEntityModifier1)theEObject;
@@ -868,6 +860,14 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         PackageDirectiveSuffix packageDirectiveSuffix = (PackageDirectiveSuffix)theEObject;
         T result = casePackageDirectiveSuffix(packageDirectiveSuffix);
         if (result == null) result = casePackageDirective(packageDirectiveSuffix);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.PACKAGE_DIRECTIVE_IMPLEMENTATION:
+      {
+        PackageDirectiveImplementation packageDirectiveImplementation = (PackageDirectiveImplementation)theEObject;
+        T result = casePackageDirectiveImplementation(packageDirectiveImplementation);
+        if (result == null) result = casePackageDirective(packageDirectiveImplementation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2284,22 +2284,6 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Impl Package</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Impl Package</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseImplPackage(ImplPackage object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Pojo Entity Modifier1</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2631,6 +2615,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePackageDirectiveSuffix(PackageDirectiveSuffix object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Package Directive Implementation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Package Directive Implementation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePackageDirectiveImplementation(PackageDirectiveImplementation object)
   {
     return null;
   }

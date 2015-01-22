@@ -31,7 +31,6 @@ public class TableDaoGenerator extends TableMetaGenerator {
     protected Map<String, String> finalDaos;
     protected Set<String> daoIgnoreTables = new HashSet<String>();
     protected Set<String> daoOnlyTables = new HashSet<String>();
-    protected String daoImplementationPackage;
     protected Map<String, ImplementsExtends> daoToImplements = new HashMap<String, ImplementsExtends>();
     protected ImplementsExtends daoToExtends = null;
     protected boolean daoMakeItFinal;
@@ -61,7 +60,6 @@ public class TableDaoGenerator extends TableMetaGenerator {
         if (daoOnlyTables != null) {
             this.daoOnlyTables.addAll(daoOnlyTables);
         }
-        this.daoImplementationPackage = modelProperty.getDaoImplementationPackage(artifacts);
         Map<String, ImplementsExtends> daoToImplements = modelProperty.getDaoToImplements(artifacts);
         if (daoToImplements != null) {
             this.daoToImplements.putAll(daoToImplements);
@@ -78,7 +76,6 @@ public class TableDaoGenerator extends TableMetaGenerator {
             System.out.println("finalDaos " + this.finalDaos);
             System.out.println("daoIgnoreTables " + this.daoIgnoreTables);
             System.out.println("daoOnlyTables " + this.daoOnlyTables);
-            System.out.println("daoImplementationPackage " + this.daoImplementationPackage);
             System.out.println("daoToImplements " + this.daoToImplements);
             System.out.println("daoToExtends " + this.daoToExtends);
             System.out.println("daoFunctionsResult " + this.daoFunctionsResult);
@@ -202,10 +199,6 @@ public class TableDaoGenerator extends TableMetaGenerator {
                         buffer.append(" ").append(daoName);
                     }
                 }
-                oneMoreLine = true;
-            }
-            if (daoImplementationPackage != null) {
-                buffer.append(NLINDENT).append("implementation-package ").append(daoImplementationPackage);
                 oneMoreLine = true;
             }
             if (oneMoreLine) {

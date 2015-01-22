@@ -67,7 +67,6 @@ import org.sqlproc.dsl.processorDsl.IfSql;
 import org.sqlproc.dsl.processorDsl.IfSqlBool;
 import org.sqlproc.dsl.processorDsl.IfSqlCond;
 import org.sqlproc.dsl.processorDsl.IfSqlFragment;
-import org.sqlproc.dsl.processorDsl.ImplPackage;
 import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignement;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics;
@@ -91,6 +90,7 @@ import org.sqlproc.dsl.processorDsl.OptionalFeature;
 import org.sqlproc.dsl.processorDsl.OrdSql;
 import org.sqlproc.dsl.processorDsl.OrdSql2;
 import org.sqlproc.dsl.processorDsl.PackageDirective;
+import org.sqlproc.dsl.processorDsl.PackageDirectiveImplementation;
 import org.sqlproc.dsl.processorDsl.PackageDirectiveSuffix;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
@@ -564,11 +564,6 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createExtendsAdapter();
       }
       @Override
-      public Adapter caseImplPackage(ImplPackage object)
-      {
-        return createImplPackageAdapter();
-      }
-      @Override
       public Adapter casePojoEntityModifier1(PojoEntityModifier1 object)
       {
         return createPojoEntityModifier1Adapter();
@@ -672,6 +667,11 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
       public Adapter casePackageDirectiveSuffix(PackageDirectiveSuffix object)
       {
         return createPackageDirectiveSuffixAdapter();
+      }
+      @Override
+      public Adapter casePackageDirectiveImplementation(PackageDirectiveImplementation object)
+      {
+        return createPackageDirectiveImplementationAdapter();
       }
       @Override
       public Adapter caseImplementsExtendsDirectiveGenerics(ImplementsExtendsDirectiveGenerics object)
@@ -1941,21 +1941,6 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.ImplPackage <em>Impl Package</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.ImplPackage
-   * @generated
-   */
-  public Adapter createImplPackageAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoEntityModifier1 <em>Pojo Entity Modifier1</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -2266,6 +2251,21 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPackageDirectiveSuffixAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PackageDirectiveImplementation <em>Package Directive Implementation</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PackageDirectiveImplementation
+   * @generated
+   */
+  public Adapter createPackageDirectiveImplementationAdapter()
   {
     return null;
   }

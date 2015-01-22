@@ -88,10 +88,6 @@ public interface ModelProperty extends Adapter {
 
     Map<String, ImplementsExtends> getDaoToImplements(EObject model);
 
-    String getDaoImplementationPackage(EObject model);
-
-    String getImplementationPackage(EObject model);
-
     boolean isMakeItFinal(EObject model);
 
     boolean isDaoMakeItFinal(EObject model);

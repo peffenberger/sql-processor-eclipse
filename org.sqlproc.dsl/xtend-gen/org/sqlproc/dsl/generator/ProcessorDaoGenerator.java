@@ -29,7 +29,6 @@ import org.sqlproc.dsl.processorDsl.FunProcType;
 import org.sqlproc.dsl.processorDsl.FunctionCall;
 import org.sqlproc.dsl.processorDsl.FunctionCallQuery;
 import org.sqlproc.dsl.processorDsl.FunctionQuery;
-import org.sqlproc.dsl.processorDsl.ImplPackage;
 import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
@@ -66,7 +65,9 @@ public class ProcessorDaoGenerator {
     _builder.newLineIfNotEmpty();
     final PojoEntity pojo = this._processorGeneratorUtils.getPojo(d);
     _builder.newLineIfNotEmpty();
-    final CharSequence classBody = this.compile(d, pojo, moreResultClasses, im);
+    final String implPackage = Utils.getImplPackage(d);
+    _builder.newLineIfNotEmpty();
+    final CharSequence classBody = this.compile(d, pojo, moreResultClasses, im, implPackage);
     _builder.newLineIfNotEmpty();
     {
       EObject _eContainer = d.eContainer();
@@ -77,12 +78,10 @@ public class ProcessorDaoGenerator {
         QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(_eContainer_1);
         _builder.append(_fullyQualifiedName, "");
         {
-          String _implPackage = this.getImplPackage(d);
-          boolean _notEquals_1 = (!Objects.equal(_implPackage, null));
+          boolean _notEquals_1 = (!Objects.equal(implPackage, null));
           if (_notEquals_1) {
             _builder.append(".");
-            String _implPackage_1 = this.getImplPackage(d);
-            _builder.append(_implPackage_1, "");
+            _builder.append(implPackage, "");
           }
         }
         _builder.append(";");
@@ -90,8 +89,7 @@ public class ProcessorDaoGenerator {
     }
     _builder.newLineIfNotEmpty();
     {
-      String _implPackage_2 = this.getImplPackage(d);
-      boolean _notEquals_2 = (!Objects.equal(_implPackage_2, null));
+      boolean _notEquals_2 = (!Objects.equal(implPackage, null));
       if (_notEquals_2) {
         _builder.newLine();
         _builder.append("import ");
@@ -199,7 +197,7 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final PojoDao d, final PojoEntity e, final Map<String, Map<String, PojoType>> moreResultClasses, final ImportManager im) {
+  public CharSequence compile(final PojoDao d, final PojoEntity e, final Map<String, Map<String, PojoType>> moreResultClasses, final ImportManager im, final String implPackage) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public ");
     {
@@ -212,8 +210,7 @@ public class ProcessorDaoGenerator {
     String _name = d.getName();
     _builder.append(_name, "");
     {
-      String _implPackage = this.getImplPackage(d);
-      boolean _notEquals = (!Objects.equal(_implPackage, null));
+      boolean _notEquals = (!Objects.equal(implPackage, null));
       if (_notEquals) {
         _builder.append("Impl");
       }
@@ -221,7 +218,7 @@ public class ProcessorDaoGenerator {
     _builder.append(" ");
     CharSequence _compileExtends = this.compileExtends(d, im);
     _builder.append(_compileExtends, "");
-    CharSequence _compileImplements = this.compileImplements(d);
+    CharSequence _compileImplements = this.compileImplements(d, implPackage);
     _builder.append(_compileImplements, "");
     _builder.append("{");
     _builder.newLineIfNotEmpty();
@@ -256,8 +253,7 @@ public class ProcessorDaoGenerator {
     String _name_1 = d.getName();
     _builder.append(_name_1, "\t");
     {
-      String _implPackage_1 = this.getImplPackage(d);
-      boolean _notEquals_2 = (!Objects.equal(_implPackage_1, null));
+      boolean _notEquals_2 = (!Objects.equal(implPackage, null));
       if (_notEquals_2) {
         _builder.append("Impl");
       }
@@ -274,8 +270,7 @@ public class ProcessorDaoGenerator {
     String _name_2 = d.getName();
     _builder.append(_name_2, "\t");
     {
-      String _implPackage_2 = this.getImplPackage(d);
-      boolean _notEquals_3 = (!Objects.equal(_implPackage_2, null));
+      boolean _notEquals_3 = (!Objects.equal(implPackage, null));
       if (_notEquals_3) {
         _builder.append("Impl");
       }
@@ -295,8 +290,7 @@ public class ProcessorDaoGenerator {
     String _name_3 = d.getName();
     _builder.append(_name_3, "\t");
     {
-      String _implPackage_3 = this.getImplPackage(d);
-      boolean _notEquals_4 = (!Objects.equal(_implPackage_3, null));
+      boolean _notEquals_4 = (!Objects.equal(implPackage, null));
       if (_notEquals_4) {
         _builder.append("Impl");
       }
@@ -3910,7 +3904,7 @@ public class ProcessorDaoGenerator {
     return _builder;
   }
   
-  public CharSequence compileImplements(final PojoDao d) {
+  public CharSequence compileImplements(final PojoDao d, final String implPackage) {
     StringConcatenation _builder = new StringConcatenation();
     {
       boolean _or = false;
@@ -3926,8 +3920,7 @@ public class ProcessorDaoGenerator {
       if (_or_1) {
         _or = true;
       } else {
-        String _implPackage = this.getImplPackage(d);
-        boolean _notEquals_1 = (!Objects.equal(_implPackage, null));
+        boolean _notEquals_1 = (!Objects.equal(implPackage, null));
         _or = _notEquals_1;
       }
       if (_or) {
@@ -3959,8 +3952,7 @@ public class ProcessorDaoGenerator {
           }
         }
         {
-          String _implPackage_1 = this.getImplPackage(d);
-          boolean _notEquals_3 = (!Objects.equal(_implPackage_1, null));
+          boolean _notEquals_3 = (!Objects.equal(implPackage, null));
           if (_notEquals_3) {
             {
               boolean _or_2 = false;
@@ -4160,16 +4152,6 @@ public class ProcessorDaoGenerator {
       }
     }
     return list;
-  }
-  
-  public String getImplPackage(final PojoDao e) {
-    EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
-    Iterable<ImplPackage> _filter = Iterables.<ImplPackage>filter(_eContents, ImplPackage.class);
-    for (final ImplPackage ext : _filter) {
-      return ext.getName();
-    }
-    return null;
   }
   
   public CharSequence compileFunctionProcedure(final PojoDao d, final PojoEntity e, final FunProcType type, final DaoDirectiveParameters p, final ImportManager im, final boolean all) {

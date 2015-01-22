@@ -40,6 +40,7 @@ import org.sqlproc.dsl.processorDsl.MappingRule;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.Package;
 import org.sqlproc.dsl.processorDsl.PackageDirective;
+import org.sqlproc.dsl.processorDsl.PackageDirectiveImplementation;
 import org.sqlproc.dsl.processorDsl.PackageDirectiveSuffix;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
@@ -641,6 +642,18 @@ public class Utils {
         for (PackageDirective dir : pkg.getDirectives()) {
             if (dir instanceof PackageDirectiveSuffix)
                 return ((PackageDirectiveSuffix) dir).getSuffix();
+        }
+        return null;
+    }
+
+    public static String getImplPackage(PojoDao d) {
+        Package packageDeclaration = EcoreUtil2.getContainerOfType(d, Package.class);
+        if (packageDeclaration == null || packageDeclaration.getDirectives() == null
+                || packageDeclaration.getDirectives().isEmpty())
+            return null;
+        for (PackageDirective dir : packageDeclaration.getDirectives()) {
+            if (dir instanceof PackageDirectiveImplementation)
+                return ((PackageDirectiveImplementation) dir).getImplementation();
         }
         return null;
     }

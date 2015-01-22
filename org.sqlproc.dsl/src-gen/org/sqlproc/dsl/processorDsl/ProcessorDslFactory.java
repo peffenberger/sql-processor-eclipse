@@ -680,15 +680,6 @@ public interface ProcessorDslFactory extends EFactory
   Extends createExtends();
 
   /**
-   * Returns a new object of class '<em>Impl Package</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Impl Package</em>'.
-   * @generated
-   */
-  ImplPackage createImplPackage();
-
-  /**
    * Returns a new object of class '<em>Pojo Entity Modifier1</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -876,6 +867,15 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   PackageDirectiveSuffix createPackageDirectiveSuffix();
+
+  /**
+   * Returns a new object of class '<em>Package Directive Implementation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Package Directive Implementation</em>'.
+   * @generated
+   */
+  PackageDirectiveImplementation createPackageDirectiveImplementation();
 
   /**
    * Returns a new object of class '<em>Implements Extends Directive Generics</em>'.

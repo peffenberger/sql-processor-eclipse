@@ -107,7 +107,6 @@ public class TablePojoGenerator {
     protected Map<String, List<String>> joinTables = new HashMap<String, List<String>>();
     protected boolean doGenerateWrappers;
     protected boolean doGenerateValidationAnnotations;
-    protected String implementationPackage;
     protected boolean makeItFinal;
     protected String versionColumn;
     protected Map<String, Set<String>> versionColumns = new HashMap<String, Set<String>>();
@@ -252,7 +251,6 @@ public class TablePojoGenerator {
         }
         this.doGenerateWrappers = modelProperty.isDoGenerateWrappers(artifacts);
         this.doGenerateValidationAnnotations = modelProperty.isDoGenerateValidationAnnotations(artifacts);
-        this.implementationPackage = modelProperty.getImplementationPackage(artifacts);
         this.makeItFinal = modelProperty.isMakeItFinal(artifacts);
         this.versionColumn = modelProperty.getVersionColumn(artifacts);
         Map<String, Set<String>> versionColumns = modelProperty.getVersionColumns(artifacts);
@@ -339,7 +337,6 @@ public class TablePojoGenerator {
             System.out.println("joinTables " + this.joinTables);
             System.out.println("doGenerateWrappers " + this.doGenerateWrappers);
             System.out.println("doGenerateValidationAnnotations " + this.doGenerateValidationAnnotations);
-            System.out.println("implementationPackage " + this.implementationPackage);
             System.out.println("makeItFinal " + this.makeItFinal);
             System.out.println("sequences " + this.dbSequences);
             System.out.println("dbType " + this.dbType);
@@ -924,7 +921,7 @@ public class TablePojoGenerator {
                         isSerializable = true;
                         continue;
                     }
-                    buffer.append(NLINDENT).append("implements ").append(type.getIdentifier());
+                    buffer.append(NLINDENT).append("implements :").append(type.getIdentifier());
                     if (ie.isGenerics())
                         buffer.append(" <<>>");
                     if (!ie.getDbTables().isEmpty()) {
@@ -952,7 +949,7 @@ public class TablePojoGenerator {
             }
             if (toExtends != null) {
                 JvmType type = toExtends.getToImplement();
-                buffer.append(NLINDENT).append("extends ").append(type.getIdentifier());
+                buffer.append(NLINDENT).append("extends :").append(type.getIdentifier());
                 if (toExtends.isGenerics())
                     buffer.append(" <<>>");
                 if (!toExtends.getDbTables().isEmpty()) {
@@ -975,10 +972,6 @@ public class TablePojoGenerator {
                         buffer.append(" ").append(realPojoName);
                     }
                 }
-                oneMoreLine = true;
-            }
-            if (implementationPackage != null) {
-                buffer.append(NLINDENT).append("implementation-package ").append(implementationPackage);
                 oneMoreLine = true;
             }
             if (oneMoreLine) {

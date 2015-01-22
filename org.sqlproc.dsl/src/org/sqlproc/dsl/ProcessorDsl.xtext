@@ -107,7 +107,6 @@ PojogenProperty:
 	|name='generate-wrappers'
 	|name='generate-validation-annotations'
 	|name='preserve-foreign-keys' (WS+ dbTables+=IDENT)*
-	|name='implementation-package' WS+ implPackage=IDENT
 	|name='make-it-final'
 	|name='version-column' WS+ version=IDENT (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
 	|name='debug-level' WS+ debug=DebugLevelAssignement
@@ -147,7 +146,6 @@ MetagenProperty:
 DaogenProperty:
 	(name='ignore-tables' (WS+ dbTables+=IDENT)+
 	|name='only-tables' (WS+ dbTables+=IDENT)*
-	|name='implementation-package' WS+ implPackage=IDENT
 	|name='implements-interfaces' WS+ toImplements=ImplementsAssignement
 	|name='extends-class' WS+ toExtends=ExtendsAssignement
 	|name='implements-interfaces-generics' WS+ toImplementsGenerics=ImplementsAssignementGenerics 
@@ -363,6 +361,7 @@ PojoType:
 
 PackageDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
 	{PackageDirectiveSuffix} '#Suffix' LPAREN suffix=(IDENT|NUMBER) RPAREN
+	| {PackageDirectiveImplementation} '#Implementation' LPAREN implementation=(IDENT|IDENT_DOT) RPAREN
 ;
 
 Package hidden(ML_COMMENT, SL_COMMENT, WS):
@@ -384,7 +383,7 @@ Entity: PojoEntity | EnumEntity;
 AnnotatedEntity: (=> AT (=> AT (=> AT (=> AT conflictAnnotations+=Annotation | staticAnnotations+=Annotation) | constructorAnnotations+=Annotation) | annotations+=Annotation))* entity=Entity;
 
 AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-	Package | AnnotatedEntity | Import | Implements | Extends | ImplPackage | PojoDao;
+	Package | AnnotatedEntity | Import | Implements | Extends | PojoDao;
 
 Import hidden(ML_COMMENT, SL_COMMENT, WS):
 	'import' importedNamespace = QualifiedNameWithWildcard;
@@ -400,9 +399,6 @@ Implements hidden(ML_COMMENT, SL_COMMENT, WS):
 Extends hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=ImplementsExtendsDirective*
 	'extends' COLON extends = [jvmTypes::JvmType|QualifiedName] /*(generics ?= '<<>>')?*/ ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
-
-ImplPackage hidden(ML_COMMENT, SL_COMMENT, WS):
-	'implementation-package' name=(IDENT|IDENT_DOT);
 
 PojoEntityModifier1: ((final?='final') | (abstract?='abstract'));
 

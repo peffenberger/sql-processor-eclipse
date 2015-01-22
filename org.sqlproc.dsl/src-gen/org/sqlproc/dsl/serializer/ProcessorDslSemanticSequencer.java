@@ -66,7 +66,6 @@ import org.sqlproc.dsl.processorDsl.IfSql;
 import org.sqlproc.dsl.processorDsl.IfSqlBool;
 import org.sqlproc.dsl.processorDsl.IfSqlCond;
 import org.sqlproc.dsl.processorDsl.IfSqlFragment;
-import org.sqlproc.dsl.processorDsl.ImplPackage;
 import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignement;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics;
@@ -88,6 +87,7 @@ import org.sqlproc.dsl.processorDsl.MetagenProperty;
 import org.sqlproc.dsl.processorDsl.OptionalFeature;
 import org.sqlproc.dsl.processorDsl.OrdSql;
 import org.sqlproc.dsl.processorDsl.OrdSql2;
+import org.sqlproc.dsl.processorDsl.PackageDirectiveImplementation;
 import org.sqlproc.dsl.processorDsl.PackageDirectiveSuffix;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
@@ -460,13 +460,6 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
-			case ProcessorDslPackage.IMPL_PACKAGE:
-				if(context == grammarAccess.getAbstractPojoEntityRule() ||
-				   context == grammarAccess.getImplPackageRule()) {
-					sequence_ImplPackage(context, (ImplPackage) semanticObject); 
-					return; 
-				}
-				else break;
 			case ProcessorDslPackage.IMPLEMENTS:
 				if(context == grammarAccess.getAbstractPojoEntityRule() ||
 				   context == grammarAccess.getImplementsRule()) {
@@ -599,6 +592,12 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 				if(context == grammarAccess.getAbstractPojoEntityRule() ||
 				   context == grammarAccess.getPackageRule()) {
 					sequence_Package(context, (org.sqlproc.dsl.processorDsl.Package) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.PACKAGE_DIRECTIVE_IMPLEMENTATION:
+				if(context == grammarAccess.getPackageDirectiveRule()) {
+					sequence_PackageDirective(context, (PackageDirectiveImplementation) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1030,7 +1029,6 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *     (
 	 *         (name='ignore-tables' dbTables+=IDENT+) | 
 	 *         (name='only-tables' dbTables+=IDENT*) | 
-	 *         (name='implementation-package' implPackage=IDENT) | 
 	 *         (name='implements-interfaces' toImplements=ImplementsAssignement) | 
 	 *         (name='extends-class' toExtends=ExtendsAssignement) | 
 	 *         (name='implements-interfaces-generics' toImplementsGenerics=ImplementsAssignementGenerics) | 
@@ -1529,15 +1527,6 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (name=IDENT | name=IDENT_DOT)
-	 */
-	protected void sequence_ImplPackage(EObject context, ImplPackage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (toImplement=[JvmType|QualifiedName] dbTables+=IDENT* dbNotTables+=IDENT*)
 	 */
 	protected void sequence_ImplementsAssignementGenerics(EObject context, ImplementsAssignementGenerics semanticObject) {
@@ -1764,6 +1753,15 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *     sqls+=OrdSql2+
 	 */
 	protected void sequence_OrdSql(EObject context, OrdSql semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (implementation=IDENT | implementation=IDENT_DOT)
+	 */
+	protected void sequence_PackageDirective(EObject context, PackageDirectiveImplementation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2185,7 +2183,6 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         name='generate-wrappers' | 
 	 *         name='generate-validation-annotations' | 
 	 *         (name='preserve-foreign-keys' dbTables+=IDENT*) | 
-	 *         (name='implementation-package' implPackage=IDENT) | 
 	 *         name='make-it-final' | 
 	 *         (name='version-column' version=IDENT dbTables+=IDENT* dbNotTables+=IDENT*) | 
 	 *         (name='debug-level' debug=DebugLevelAssignement) | 

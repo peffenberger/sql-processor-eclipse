@@ -93,7 +93,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String POJOGEN_GENERATE_WRAPPERS = "generate-wrappers";
     public static final String POJOGEN_GENERATE_VALIDATION_ANNOTATIONS = "generate-validation-annotations";
     public static final String POJOGEN_NOT_ABSTRACT_TABLES_TABLES = "not-abstract-tables";
-    public static final String POJOGEN_IMPLEMENTATION_PACKAGE = "implementation-package";
     public static final String POJOGEN_MAKE_IT_FINAL = "make-it-final";
     public static final String POJOGEN_VERSION_COLUMN = "version-column";
     public static final String POJOGEN_DEBUG_LEVEL = "debug-level";
@@ -128,7 +127,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String DAOGEN = "daogen";
     public static final String DAOGEN_IGNORE_TABLES = "ignore-tables";
     public static final String DAOGEN_ONLY_TABLES = "only-tables";
-    public static final String DAOGEN_IMPLEMENTATION_PACKAGE = "implementation-package";
     public static final String DAOGEN_IMPLEMENTS_INTERFACES = "implements-interfaces";
     public static final String DAOGEN_EXTENDS_CLASS = "extends-class";
     public static final String DAOGEN_IMPLEMENTS_INTERFACES_GENERICS = "implements-interfaces-generics";
@@ -204,7 +202,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, List<String>> joinTables;
         public boolean doGenerateWrappers;
         public boolean doGenerateValidationAnnotations;
-        public String implementationPackage;
         public boolean makeItFinal;
         public String versionColumn;
         public Map<String, Set<String>> versionColumns;
@@ -247,7 +244,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 
         public Set<String> daoIgnoreTables;
         public Set<String> daoOnlyTables;
-        public String daoImplementationPackage;
         public Map<String, ImplementsExtends> daoToImplements;
         public ImplementsExtends daoToExtends;
         public boolean daoMakeItFinal;
@@ -464,7 +460,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.joinTables = new HashMap<String, List<String>>();
         modelValues.doGenerateWrappers = false;
         modelValues.doGenerateValidationAnnotations = false;
-        modelValues.implementationPackage = null;
         modelValues.makeItFinal = false;
         modelValues.versionColumn = null;
         modelValues.versionColumns = new HashMap<String, Set<String>>();
@@ -511,7 +506,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     private static void initDaogenModel(ModelValues modelValues) {
         modelValues.daoIgnoreTables = new HashSet<String>();
         modelValues.daoOnlyTables = new HashSet<String>();
-        modelValues.daoImplementationPackage = null;
         modelValues.daoToImplements = new HashMap<String, ImplementsExtends>();
         modelValues.daoToExtends = null;
         modelValues.daoMakeItFinal = false;
@@ -858,8 +852,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.doGenerateWrappers = true;
         } else if (POJOGEN_GENERATE_VALIDATION_ANNOTATIONS.equals(property.getName())) {
             modelValues.doGenerateValidationAnnotations = true;
-        } else if (POJOGEN_IMPLEMENTATION_PACKAGE.equals(property.getName())) {
-            modelValues.implementationPackage = property.getImplPackage();
         } else if (POJOGEN_MAKE_IT_FINAL.equals(property.getName())) {
             modelValues.makeItFinal = true;
         } else if (POJOGEN_VERSION_COLUMN.equals(property.getName())) {
@@ -1029,8 +1021,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
                 modelValues.daoOnlyTables.add(property.getDbTables().get(i));
             }
-        } else if (DAOGEN_IMPLEMENTATION_PACKAGE.equals(property.getName())) {
-            modelValues.daoImplementationPackage = property.getImplPackage();
         } else if (DAOGEN_IMPLEMENTS_INTERFACES.equals(property.getName())) {
             ImplementsExtends ie = new ImplementsExtends(property.getToImplements().getToImplement(), false, property
                     .getToImplements().getDbTables(), property.getToImplements().getDbNotTables());
@@ -1275,12 +1265,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public String getImplementationPackage(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.implementationPackage : null;
-    }
-
-    @Override
     public boolean isMakeItFinal(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.makeItFinal : false;
@@ -1520,12 +1504,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public Set<String> getDaoOnlyTables(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.daoOnlyTables : Collections.<String> emptySet();
-    }
-
-    @Override
-    public String getDaoImplementationPackage(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoImplementationPackage : null;
     }
 
     @Override

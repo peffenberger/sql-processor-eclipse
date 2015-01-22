@@ -36,7 +36,6 @@ import org.sqlproc.dsl.processorDsl.Artifacts
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage
-import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters
 import org.sqlproc.dsl.processorDsl.FunProcDirective
 import org.eclipse.xtext.common.types.JvmPrimitiveType
 import org.sqlproc.dsl.processorDsl.Implements

@@ -3,6 +3,7 @@
  */
 package org.sqlproc.dsl.generator
 
+import static org.sqlproc.dsl.util.Utils.*;
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity
@@ -29,12 +30,13 @@ class ProcessorDslGenerator2 implements IGenerator2 {
 			)
 		}
 		for(d: resource.allContents.toIterable.filter(typeof(PojoDao))) {
-			if (d.implPackage != null) {
+			val implPackage = getImplPackage(d)
+			if (implPackage != null) {
 	    		fsa.generateFile(d.eContainer.fullyQualifiedName.toString("/") + "/"+
 		      		d.fullyQualifiedName + ".java",d.compileIfx
 			    )
 	    		fsa.generateFile(d.eContainer.fullyQualifiedName.toString("/") + "/"+ 
-		      		d.implPackage + "/" + d.fullyQualifiedName + "Impl.java",d.compile
+		      		implPackage + "/" + d.fullyQualifiedName + "Impl.java",d.compile
 			    )
 			}
 			else {
@@ -52,12 +54,13 @@ class ProcessorDslGenerator2 implements IGenerator2 {
 			)
 		}
 		for(d: resource.allContents.toIterable.filter(typeof(PojoDao))) {
-			if (d.implPackage != null) {
+			val implPackage = getImplPackage(d)
+			if (implPackage != null) {
 	    		fsa.generateFile(d.eContainer.fullyQualifiedName.toString("/") + "/"+
 		      		d.fullyQualifiedName + ".java",d.compileIfx
 			    )
 	    		fsa.generateFile(d.eContainer.fullyQualifiedName.toString("/") + "/"+ 
-		      		d.implPackage + "/" + d.fullyQualifiedName + "Impl.java",d.compile
+		      		implPackage + "/" + d.fullyQualifiedName + "Impl.java",d.compile
 			    )
 			}
 			else {

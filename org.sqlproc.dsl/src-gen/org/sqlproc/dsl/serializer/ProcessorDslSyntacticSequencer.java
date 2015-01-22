@@ -29,15 +29,14 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_8_1_a;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_0_1_0_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_10_1_p;
-	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_11_1_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_1_1_0_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_2_1_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_3_1_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_4_1_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_5_1_p;
-	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_6_1_p;
+	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_7_1_p;
+	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_7_3_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_8_1_p;
-	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_8_3_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_9_1_p;
 	protected AbstractElementAlias match_DatabaseProperty_WSTerminalRuleCall_10_1_p;
 	protected AbstractElementAlias match_DatabaseProperty_WSTerminalRuleCall_14_1_p;
@@ -161,21 +160,20 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_2_3_0_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_30_1_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_33_1_0_p;
-	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_34_1_p;
+	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_35_1_p;
+	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_35_3_0_p;
+	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_35_3_2_0_p;
+	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_35_4_0_p;
+	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_35_4_2_0_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_36_1_p;
-	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_36_3_0_p;
-	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_36_3_2_0_p;
-	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_36_4_0_p;
-	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_36_4_2_0_p;
-	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_37_1_p;
+	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_37_1_0_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_38_1_0_p;
-	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_39_1_0_p;
+	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_39_1_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_3_1_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_3_3_0_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_40_1_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_41_1_p;
-	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_42_1_p;
-	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_42_3_0_p;
+	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_41_3_0_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_4_1_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_4_3_0_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_5_1_p;
@@ -206,15 +204,14 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_Artifacts_WSTerminalRuleCall_2_8_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_8_1());
 		match_DaogenProperty_WSTerminalRuleCall_0_1_0_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_0_1_0());
 		match_DaogenProperty_WSTerminalRuleCall_10_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_10_1());
-		match_DaogenProperty_WSTerminalRuleCall_11_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_11_1());
 		match_DaogenProperty_WSTerminalRuleCall_1_1_0_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_1_1_0());
 		match_DaogenProperty_WSTerminalRuleCall_2_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_2_1());
 		match_DaogenProperty_WSTerminalRuleCall_3_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_3_1());
 		match_DaogenProperty_WSTerminalRuleCall_4_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_4_1());
 		match_DaogenProperty_WSTerminalRuleCall_5_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_5_1());
-		match_DaogenProperty_WSTerminalRuleCall_6_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_6_1());
+		match_DaogenProperty_WSTerminalRuleCall_7_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_7_1());
+		match_DaogenProperty_WSTerminalRuleCall_7_3_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_7_3());
 		match_DaogenProperty_WSTerminalRuleCall_8_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_8_1());
-		match_DaogenProperty_WSTerminalRuleCall_8_3_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_8_3());
 		match_DaogenProperty_WSTerminalRuleCall_9_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_9_1());
 		match_DatabaseProperty_WSTerminalRuleCall_10_1_p = new TokenAlias(true, false, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_10_1());
 		match_DatabaseProperty_WSTerminalRuleCall_14_1_p = new TokenAlias(true, false, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_14_1());
@@ -338,21 +335,20 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_PojogenProperty_WSTerminalRuleCall_2_3_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_2_3_0());
 		match_PojogenProperty_WSTerminalRuleCall_30_1_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_30_1());
 		match_PojogenProperty_WSTerminalRuleCall_33_1_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_33_1_0());
-		match_PojogenProperty_WSTerminalRuleCall_34_1_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_34_1());
+		match_PojogenProperty_WSTerminalRuleCall_35_1_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_35_1());
+		match_PojogenProperty_WSTerminalRuleCall_35_3_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_35_3_0());
+		match_PojogenProperty_WSTerminalRuleCall_35_3_2_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_35_3_2_0());
+		match_PojogenProperty_WSTerminalRuleCall_35_4_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_35_4_0());
+		match_PojogenProperty_WSTerminalRuleCall_35_4_2_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_35_4_2_0());
 		match_PojogenProperty_WSTerminalRuleCall_36_1_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_36_1());
-		match_PojogenProperty_WSTerminalRuleCall_36_3_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_36_3_0());
-		match_PojogenProperty_WSTerminalRuleCall_36_3_2_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_36_3_2_0());
-		match_PojogenProperty_WSTerminalRuleCall_36_4_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_36_4_0());
-		match_PojogenProperty_WSTerminalRuleCall_36_4_2_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_36_4_2_0());
-		match_PojogenProperty_WSTerminalRuleCall_37_1_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_37_1());
+		match_PojogenProperty_WSTerminalRuleCall_37_1_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_37_1_0());
 		match_PojogenProperty_WSTerminalRuleCall_38_1_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_38_1_0());
-		match_PojogenProperty_WSTerminalRuleCall_39_1_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_39_1_0());
+		match_PojogenProperty_WSTerminalRuleCall_39_1_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_39_1());
 		match_PojogenProperty_WSTerminalRuleCall_3_1_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_3_1());
 		match_PojogenProperty_WSTerminalRuleCall_3_3_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_3_3_0());
 		match_PojogenProperty_WSTerminalRuleCall_40_1_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_40_1());
 		match_PojogenProperty_WSTerminalRuleCall_41_1_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_41_1());
-		match_PojogenProperty_WSTerminalRuleCall_42_1_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_42_1());
-		match_PojogenProperty_WSTerminalRuleCall_42_3_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_42_3_0());
+		match_PojogenProperty_WSTerminalRuleCall_41_3_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_41_3_0());
 		match_PojogenProperty_WSTerminalRuleCall_4_1_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_4_1());
 		match_PojogenProperty_WSTerminalRuleCall_4_3_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_4_3_0());
 		match_PojogenProperty_WSTerminalRuleCall_5_1_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_5_1());
@@ -613,8 +609,6 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_DaogenProperty_WSTerminalRuleCall_0_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DaogenProperty_WSTerminalRuleCall_10_1_p.equals(syntax))
 				emit_DaogenProperty_WSTerminalRuleCall_10_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_DaogenProperty_WSTerminalRuleCall_11_1_p.equals(syntax))
-				emit_DaogenProperty_WSTerminalRuleCall_11_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DaogenProperty_WSTerminalRuleCall_1_1_0_p.equals(syntax))
 				emit_DaogenProperty_WSTerminalRuleCall_1_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DaogenProperty_WSTerminalRuleCall_2_1_p.equals(syntax))
@@ -625,12 +619,12 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_DaogenProperty_WSTerminalRuleCall_4_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DaogenProperty_WSTerminalRuleCall_5_1_p.equals(syntax))
 				emit_DaogenProperty_WSTerminalRuleCall_5_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_DaogenProperty_WSTerminalRuleCall_6_1_p.equals(syntax))
-				emit_DaogenProperty_WSTerminalRuleCall_6_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_DaogenProperty_WSTerminalRuleCall_7_1_p.equals(syntax))
+				emit_DaogenProperty_WSTerminalRuleCall_7_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_DaogenProperty_WSTerminalRuleCall_7_3_p.equals(syntax))
+				emit_DaogenProperty_WSTerminalRuleCall_7_3_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DaogenProperty_WSTerminalRuleCall_8_1_p.equals(syntax))
 				emit_DaogenProperty_WSTerminalRuleCall_8_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_DaogenProperty_WSTerminalRuleCall_8_3_p.equals(syntax))
-				emit_DaogenProperty_WSTerminalRuleCall_8_3_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DaogenProperty_WSTerminalRuleCall_9_1_p.equals(syntax))
 				emit_DaogenProperty_WSTerminalRuleCall_9_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DatabaseProperty_WSTerminalRuleCall_10_1_p.equals(syntax))
@@ -877,24 +871,24 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_PojogenProperty_WSTerminalRuleCall_30_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PojogenProperty_WSTerminalRuleCall_33_1_0_p.equals(syntax))
 				emit_PojogenProperty_WSTerminalRuleCall_33_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_PojogenProperty_WSTerminalRuleCall_34_1_p.equals(syntax))
-				emit_PojogenProperty_WSTerminalRuleCall_34_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_PojogenProperty_WSTerminalRuleCall_35_1_p.equals(syntax))
+				emit_PojogenProperty_WSTerminalRuleCall_35_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_PojogenProperty_WSTerminalRuleCall_35_3_0_p.equals(syntax))
+				emit_PojogenProperty_WSTerminalRuleCall_35_3_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_PojogenProperty_WSTerminalRuleCall_35_3_2_0_p.equals(syntax))
+				emit_PojogenProperty_WSTerminalRuleCall_35_3_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_PojogenProperty_WSTerminalRuleCall_35_4_0_p.equals(syntax))
+				emit_PojogenProperty_WSTerminalRuleCall_35_4_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_PojogenProperty_WSTerminalRuleCall_35_4_2_0_p.equals(syntax))
+				emit_PojogenProperty_WSTerminalRuleCall_35_4_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PojogenProperty_WSTerminalRuleCall_36_1_p.equals(syntax))
 				emit_PojogenProperty_WSTerminalRuleCall_36_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_PojogenProperty_WSTerminalRuleCall_36_3_0_p.equals(syntax))
-				emit_PojogenProperty_WSTerminalRuleCall_36_3_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_PojogenProperty_WSTerminalRuleCall_36_3_2_0_p.equals(syntax))
-				emit_PojogenProperty_WSTerminalRuleCall_36_3_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_PojogenProperty_WSTerminalRuleCall_36_4_0_p.equals(syntax))
-				emit_PojogenProperty_WSTerminalRuleCall_36_4_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_PojogenProperty_WSTerminalRuleCall_36_4_2_0_p.equals(syntax))
-				emit_PojogenProperty_WSTerminalRuleCall_36_4_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_PojogenProperty_WSTerminalRuleCall_37_1_p.equals(syntax))
-				emit_PojogenProperty_WSTerminalRuleCall_37_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_PojogenProperty_WSTerminalRuleCall_37_1_0_p.equals(syntax))
+				emit_PojogenProperty_WSTerminalRuleCall_37_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PojogenProperty_WSTerminalRuleCall_38_1_0_p.equals(syntax))
 				emit_PojogenProperty_WSTerminalRuleCall_38_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_PojogenProperty_WSTerminalRuleCall_39_1_0_p.equals(syntax))
-				emit_PojogenProperty_WSTerminalRuleCall_39_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_PojogenProperty_WSTerminalRuleCall_39_1_p.equals(syntax))
+				emit_PojogenProperty_WSTerminalRuleCall_39_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PojogenProperty_WSTerminalRuleCall_3_1_p.equals(syntax))
 				emit_PojogenProperty_WSTerminalRuleCall_3_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PojogenProperty_WSTerminalRuleCall_3_3_0_p.equals(syntax))
@@ -903,10 +897,8 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_PojogenProperty_WSTerminalRuleCall_40_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PojogenProperty_WSTerminalRuleCall_41_1_p.equals(syntax))
 				emit_PojogenProperty_WSTerminalRuleCall_41_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_PojogenProperty_WSTerminalRuleCall_42_1_p.equals(syntax))
-				emit_PojogenProperty_WSTerminalRuleCall_42_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_PojogenProperty_WSTerminalRuleCall_42_3_0_p.equals(syntax))
-				emit_PojogenProperty_WSTerminalRuleCall_42_3_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_PojogenProperty_WSTerminalRuleCall_41_3_0_p.equals(syntax))
+				emit_PojogenProperty_WSTerminalRuleCall_41_3_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PojogenProperty_WSTerminalRuleCall_4_1_p.equals(syntax))
 				emit_PojogenProperty_WSTerminalRuleCall_4_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PojogenProperty_WSTerminalRuleCall_4_3_0_p.equals(syntax))
@@ -1039,14 +1031,6 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * Syntax:
 	 *     WS+
 	 */
-	protected void emit_DaogenProperty_WSTerminalRuleCall_11_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     WS+
-	 */
 	protected void emit_DaogenProperty_WSTerminalRuleCall_1_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
@@ -1087,7 +1071,15 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * Syntax:
 	 *     WS+
 	 */
-	protected void emit_DaogenProperty_WSTerminalRuleCall_6_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_DaogenProperty_WSTerminalRuleCall_7_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     WS+
+	 */
+	protected void emit_DaogenProperty_WSTerminalRuleCall_7_3_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1096,14 +1088,6 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     WS+
 	 */
 	protected void emit_DaogenProperty_WSTerminalRuleCall_8_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     WS+
-	 */
-	protected void emit_DaogenProperty_WSTerminalRuleCall_8_3_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -2095,7 +2079,39 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * Syntax:
 	 *     WS+
 	 */
-	protected void emit_PojogenProperty_WSTerminalRuleCall_34_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PojogenProperty_WSTerminalRuleCall_35_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     WS+
+	 */
+	protected void emit_PojogenProperty_WSTerminalRuleCall_35_3_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     WS+
+	 */
+	protected void emit_PojogenProperty_WSTerminalRuleCall_35_3_2_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     WS+
+	 */
+	protected void emit_PojogenProperty_WSTerminalRuleCall_35_4_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     WS+
+	 */
+	protected void emit_PojogenProperty_WSTerminalRuleCall_35_4_2_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -2111,39 +2127,7 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * Syntax:
 	 *     WS+
 	 */
-	protected void emit_PojogenProperty_WSTerminalRuleCall_36_3_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     WS+
-	 */
-	protected void emit_PojogenProperty_WSTerminalRuleCall_36_3_2_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     WS+
-	 */
-	protected void emit_PojogenProperty_WSTerminalRuleCall_36_4_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     WS+
-	 */
-	protected void emit_PojogenProperty_WSTerminalRuleCall_36_4_2_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     WS+
-	 */
-	protected void emit_PojogenProperty_WSTerminalRuleCall_37_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PojogenProperty_WSTerminalRuleCall_37_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -2159,7 +2143,7 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * Syntax:
 	 *     WS+
 	 */
-	protected void emit_PojogenProperty_WSTerminalRuleCall_39_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PojogenProperty_WSTerminalRuleCall_39_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -2199,15 +2183,7 @@ public class ProcessorDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * Syntax:
 	 *     WS+
 	 */
-	protected void emit_PojogenProperty_WSTerminalRuleCall_42_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     WS+
-	 */
-	protected void emit_PojogenProperty_WSTerminalRuleCall_42_3_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PojogenProperty_WSTerminalRuleCall_41_3_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
