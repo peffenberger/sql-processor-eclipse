@@ -29,7 +29,7 @@ import org.sqlproc.dsl.processorDsl.MappingRule
 import org.sqlproc.dsl.processorDsl.MetaSql
 import org.sqlproc.dsl.processorDsl.MetaStatement
 import org.sqlproc.dsl.processorDsl.OptionalFeature
-import org.sqlproc.dsl.processorDsl.PackageDeclaration
+import org.sqlproc.dsl.processorDsl.Package
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty
 import org.sqlproc.dsl.processorDsl.PojoDao
 import org.sqlproc.dsl.processorDsl.PojoDefinition
@@ -274,7 +274,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
         
         val entityName = Utils.getTokenFromModifier(statement, COLUMN_USAGE_EXTENDED)
         val entity = if (entityName != null) Utils.findEntity(qualifiedNameConverter, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES), entityName)
+                scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES), entityName)
         if (entity != null) {
             switch (checkEntityProperty(entity, columnName)) {
             case ValidationResult.WARNING:
@@ -318,7 +318,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
 
         val entityName = Utils.getTokenFromModifier(statement, IDENTIFIER_USAGE_EXTENDED)
         val entity = if (entityName != null) Utils.findEntity(qualifiedNameConverter, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES), entityName)
+                scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES), entityName)
         if (entity != null) {
             switch (checkEntityProperty(entity, identifierName)) {
             case ValidationResult.WARNING:
@@ -362,7 +362,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
 
         val entityName = Utils.getTokenFromModifier(statement, CONSTANT_USAGE_EXTENDED)
         val entity = if (entityName != null) Utils.findEntity(qualifiedNameConverter, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES), entityName)
+                scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES), entityName)
         if (entity != null) {
             switch (checkEntityProperty(entity, constant.getName())) {
             case ValidationResult.WARNING:
@@ -409,7 +409,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
 
         val entityName = Utils.getTokenFromModifier(rule, MAPPING_USAGE_EXTENDED)
         val entity = if (entityName != null) Utils.findEntity(qualifiedNameConverter, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES), entityName)
+                scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES), entityName)
         if (entity != null) {
             switch (checkEntityProperty(entity, columnName)) {
             case ValidationResult.WARNING:
@@ -460,7 +460,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
 	            var value = modifier.substring(ix + 1)
 	            if (IDENTIFIER_USAGE_EXTENDED.equals(key)) {
 	                val entity = Utils.findEntity(qualifiedNameConverter, artifacts,
-	                        scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES), value)
+	                        scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES), value)
 	                if (entity == null) {
 	                    error("Cannot find entity : " + value + "[" + IDENTIFIER_USAGE_EXTENDED + "]",
 	                            ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index)
@@ -474,7 +474,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
 	                }
 	            } else if (COLUMN_USAGE_EXTENDED.equals(key)) {
 	                val entity = Utils.findEntity(qualifiedNameConverter, artifacts,
-	                        scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES), value)
+	                        scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES), value)
 	                if (entity == null) {
 	                    error("Cannot find entity : " + value + "[" + COLUMN_USAGE_EXTENDED + "]",
 	                            ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index)
@@ -488,7 +488,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
 	                }
 	            } else if (CONSTANT_USAGE_EXTENDED.equals(key)) {
 	                val entity = Utils.findEntity(qualifiedNameConverter, artifacts,
-	                        scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES), value)
+	                        scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES), value)
 	                if (entity == null) {
 	                    error("Cannot find entity : " + value + "[" + CONSTANT_USAGE_EXTENDED + "]",
 	                            ProcessorDslPackage.Literals.META_STATEMENT__MODIFIERS, index)
@@ -530,7 +530,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
 	            val value = modifier.substring(ix + 1)
 	            if (MAPPING_USAGE_EXTENDED.equals(key)) {
 	                val entity = Utils.findEntity(qualifiedNameConverter, artifacts,
-	                        scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES), value)
+	                        scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES), value)
 	                if (entity == null) {
 	                    error("Cannot find entity : " + value + "[" + MAPPING_USAGE_EXTENDED + "]",
 	                            ProcessorDslPackage.Literals.MAPPING_RULE__MODIFIERS, index)
@@ -820,7 +820,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
         if (!(pojoEntity.rootContainer instanceof Artifacts))
             return
         val artifacts = pojoEntity.rootContainer as Artifacts
-        for (PackageDeclaration pkg : artifacts.getPojoPackages()) {
+        for (Package pkg : artifacts.getPackages()) {
             if (pkg != null) {
 	            for (AbstractPojoEntity entity : pkg.getElements()) {
 	                if (entity != null && (entity instanceof PojoEntity)) {
@@ -856,7 +856,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
         if (!(enumEntity.rootContainer instanceof Artifacts))
             return
         val artifacts = enumEntity.rootContainer as Artifacts
-        for (PackageDeclaration pkg : artifacts.getPojoPackages()) {
+        for (Package pkg : artifacts.getPackages()) {
             if (pkg != null) {
 	            for (AbstractPojoEntity entity : pkg.getElements()) {
 	                if (entity != null && (entity instanceof EnumEntity)) {
@@ -891,7 +891,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
         if (!(pojoDao.rootContainer instanceof Artifacts))
             return
         val artifacts = pojoDao.rootContainer as Artifacts
-        for (PackageDeclaration pkg : artifacts.getPojoPackages()) {
+        for (Package pkg : artifacts.getPackages()) {
             if (pkg != null) {
 	            for (AbstractPojoEntity dao : pkg.getElements()) {
 	                if (dao != null && (dao instanceof PojoDao)) {

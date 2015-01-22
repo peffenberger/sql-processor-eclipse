@@ -73,6 +73,7 @@ public class TablePojoGenerator {
     protected static final String ANNOTATION_SIZE = "javax.validation.constraints.Size";
     protected static final String INDENT = "  ";
     protected static final String NLINDENT = "\n  ";
+    protected static final String NL = "\n";
 
     protected String suffix;
     protected Map<String, String> finalEntities;
@@ -1245,7 +1246,7 @@ public class TablePojoGenerator {
                     appendList(buffer, pkeys);
                     buffer.append(")");
                 }
-                if (generateMethods.contains(METHOD_TO_INIT)) {
+                if (generateMethods.contains(METHOD_TO_INIT) && !toInit.isEmpty()) {
                     if (annotations != null) {
                         buffer.append(annotations
                                 .getAttributeAnnotationsDefinitions(realPojoName, METHOD_TO_INIT, true));
@@ -1261,7 +1262,7 @@ public class TablePojoGenerator {
                     appendList(buffer, toInit);
                     buffer.append(")");
                 }
-                if (generateMethods.contains(METHOD_IS_DEF)) {
+                if (generateMethods.contains(METHOD_IS_DEF) && !isDef.isEmpty()) {
                     if (annotations != null) {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_IS_DEF, true));
                     }

@@ -7,7 +7,131 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.sqlproc.dsl.processorDsl.*;
+import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
+import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
+import org.sqlproc.dsl.processorDsl.Annotation;
+import org.sqlproc.dsl.processorDsl.AnnotationProperty;
+import org.sqlproc.dsl.processorDsl.Artifacts;
+import org.sqlproc.dsl.processorDsl.Column;
+import org.sqlproc.dsl.processorDsl.ColumnAssignement;
+import org.sqlproc.dsl.processorDsl.ColumnTypeAssignement;
+import org.sqlproc.dsl.processorDsl.Constant;
+import org.sqlproc.dsl.processorDsl.ConstantOperator;
+import org.sqlproc.dsl.processorDsl.DaoDirective;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveCrud;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveQuery;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveSerializable;
+import org.sqlproc.dsl.processorDsl.DaogenProperty;
+import org.sqlproc.dsl.processorDsl.DatabaseCatalogAssignement;
+import org.sqlproc.dsl.processorDsl.DatabaseColumn;
+import org.sqlproc.dsl.processorDsl.DatabaseMetaInfoAssignement;
+import org.sqlproc.dsl.processorDsl.DatabaseProperty;
+import org.sqlproc.dsl.processorDsl.DatabaseSchemaAssignement;
+import org.sqlproc.dsl.processorDsl.DatabaseTable;
+import org.sqlproc.dsl.processorDsl.DatabaseTypeAssignement;
+import org.sqlproc.dsl.processorDsl.DebugLevelAssignement;
+import org.sqlproc.dsl.processorDsl.DescendantAssignment;
+import org.sqlproc.dsl.processorDsl.DirectiveProperties;
+import org.sqlproc.dsl.processorDsl.DriverMetaInfoAssignement;
+import org.sqlproc.dsl.processorDsl.DriverMethodOutputAssignement;
+import org.sqlproc.dsl.processorDsl.Entity;
+import org.sqlproc.dsl.processorDsl.EnumEntity;
+import org.sqlproc.dsl.processorDsl.EnumEntityModifier1;
+import org.sqlproc.dsl.processorDsl.EnumEntityModifier2;
+import org.sqlproc.dsl.processorDsl.EnumProperty;
+import org.sqlproc.dsl.processorDsl.EnumPropertyDirective;
+import org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues;
+import org.sqlproc.dsl.processorDsl.EnumPropertyValue;
+import org.sqlproc.dsl.processorDsl.ExportAssignement;
+import org.sqlproc.dsl.processorDsl.ExtendedColumn;
+import org.sqlproc.dsl.processorDsl.ExtendedColumnName;
+import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
+import org.sqlproc.dsl.processorDsl.Extends;
+import org.sqlproc.dsl.processorDsl.ExtendsAssignement;
+import org.sqlproc.dsl.processorDsl.ExtendsAssignementGenerics;
+import org.sqlproc.dsl.processorDsl.FunProcDirective;
+import org.sqlproc.dsl.processorDsl.FunProcType;
+import org.sqlproc.dsl.processorDsl.FunctionCall;
+import org.sqlproc.dsl.processorDsl.FunctionCallQuery;
+import org.sqlproc.dsl.processorDsl.FunctionDefinition;
+import org.sqlproc.dsl.processorDsl.FunctionPojoAssignement;
+import org.sqlproc.dsl.processorDsl.FunctionQuery;
+import org.sqlproc.dsl.processorDsl.Identifier;
+import org.sqlproc.dsl.processorDsl.IdentifierOperator;
+import org.sqlproc.dsl.processorDsl.IfMetaSql;
+import org.sqlproc.dsl.processorDsl.IfSql;
+import org.sqlproc.dsl.processorDsl.IfSqlBool;
+import org.sqlproc.dsl.processorDsl.IfSqlCond;
+import org.sqlproc.dsl.processorDsl.IfSqlFragment;
+import org.sqlproc.dsl.processorDsl.ImplPackage;
+import org.sqlproc.dsl.processorDsl.Implements;
+import org.sqlproc.dsl.processorDsl.ImplementsAssignement;
+import org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics;
+import org.sqlproc.dsl.processorDsl.ImplementsExtendsDirective;
+import org.sqlproc.dsl.processorDsl.ImplementsExtendsDirectiveGenerics;
+import org.sqlproc.dsl.processorDsl.Import;
+import org.sqlproc.dsl.processorDsl.ImportAssignement;
+import org.sqlproc.dsl.processorDsl.InheritanceAssignement;
+import org.sqlproc.dsl.processorDsl.JoinTableAssignement;
+import org.sqlproc.dsl.processorDsl.ManyToManyAssignement;
+import org.sqlproc.dsl.processorDsl.Mapping;
+import org.sqlproc.dsl.processorDsl.MappingColumn;
+import org.sqlproc.dsl.processorDsl.MappingColumnName;
+import org.sqlproc.dsl.processorDsl.MappingItem;
+import org.sqlproc.dsl.processorDsl.MappingRule;
+import org.sqlproc.dsl.processorDsl.MetaSql;
+import org.sqlproc.dsl.processorDsl.MetaStatement;
+import org.sqlproc.dsl.processorDsl.MetaTypeAssignement;
+import org.sqlproc.dsl.processorDsl.MetagenProperty;
+import org.sqlproc.dsl.processorDsl.OptionalFeature;
+import org.sqlproc.dsl.processorDsl.OrdSql;
+import org.sqlproc.dsl.processorDsl.OrdSql2;
+import org.sqlproc.dsl.processorDsl.PackageDirective;
+import org.sqlproc.dsl.processorDsl.PackageDirectiveSuffix;
+import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
+import org.sqlproc.dsl.processorDsl.PojoDao;
+import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
+import org.sqlproc.dsl.processorDsl.PojoDefinition;
+import org.sqlproc.dsl.processorDsl.PojoDirective;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveEnumDef;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveEnumInit;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveEquals;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveIsDef;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveOperators;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveToInit;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveToString;
+import org.sqlproc.dsl.processorDsl.PojoEntity;
+import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
+import org.sqlproc.dsl.processorDsl.PojoEntityModifier2;
+import org.sqlproc.dsl.processorDsl.PojoProperty;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirective;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectivePrimaryKey;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveVersion;
+import org.sqlproc.dsl.processorDsl.PojoType;
+import org.sqlproc.dsl.processorDsl.PojogenProperty;
+import org.sqlproc.dsl.processorDsl.ProcedureCallQuery;
+import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
+import org.sqlproc.dsl.processorDsl.ProcedurePojoAssignement;
+import org.sqlproc.dsl.processorDsl.ProcedureUpdate;
+import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
+import org.sqlproc.dsl.processorDsl.Property;
+import org.sqlproc.dsl.processorDsl.ShowColumnTypeAssignement;
+import org.sqlproc.dsl.processorDsl.Sql;
+import org.sqlproc.dsl.processorDsl.SqlFragment;
+import org.sqlproc.dsl.processorDsl.SqlTypeAssignement;
+import org.sqlproc.dsl.processorDsl.TableAssignement;
+import org.sqlproc.dsl.processorDsl.TableDefinition;
 
 /**
  * <!-- begin-user-doc -->
@@ -506,11 +630,18 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorDslPackage.PACKAGE_DECLARATION:
+      case ProcessorDslPackage.PACKAGE_DIRECTIVE:
       {
-        PackageDeclaration packageDeclaration = (PackageDeclaration)theEObject;
-        T result = casePackageDeclaration(packageDeclaration);
-        if (result == null) result = caseAbstractPojoEntity(packageDeclaration);
+        PackageDirective packageDirective = (PackageDirective)theEObject;
+        T result = casePackageDirective(packageDirective);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.PACKAGE:
+      {
+        org.sqlproc.dsl.processorDsl.Package package_ = (org.sqlproc.dsl.processorDsl.Package)theEObject;
+        T result = casePackage(package_);
+        if (result == null) result = caseAbstractPojoEntity(package_);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -555,6 +686,13 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         Import import_ = (Import)theEObject;
         T result = caseImport(import_);
         if (result == null) result = caseAbstractPojoEntity(import_);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.IMPLEMENTS_EXTENDS_DIRECTIVE:
+      {
+        ImplementsExtendsDirective implementsExtendsDirective = (ImplementsExtendsDirective)theEObject;
+        T result = caseImplementsExtendsDirective(implementsExtendsDirective);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -722,6 +860,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         PojoDao pojoDao = (PojoDao)theEObject;
         T result = casePojoDao(pojoDao);
         if (result == null) result = caseAbstractPojoEntity(pojoDao);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.PACKAGE_DIRECTIVE_SUFFIX:
+      {
+        PackageDirectiveSuffix packageDirectiveSuffix = (PackageDirectiveSuffix)theEObject;
+        T result = casePackageDirectiveSuffix(packageDirectiveSuffix);
+        if (result == null) result = casePackageDirective(packageDirectiveSuffix);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS:
+      {
+        ImplementsExtendsDirectiveGenerics implementsExtendsDirectiveGenerics = (ImplementsExtendsDirectiveGenerics)theEObject;
+        T result = caseImplementsExtendsDirectiveGenerics(implementsExtendsDirectiveGenerics);
+        if (result == null) result = caseImplementsExtendsDirective(implementsExtendsDirectiveGenerics);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1954,17 +2108,33 @@ public class ProcessorDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Package Declaration</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Package Directive</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Package Declaration</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Package Directive</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePackageDeclaration(PackageDeclaration object)
+  public T casePackageDirective(PackageDirective object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Package</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Package</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePackage(org.sqlproc.dsl.processorDsl.Package object)
   {
     return null;
   }
@@ -2061,6 +2231,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseImport(Import object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Implements Extends Directive</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Implements Extends Directive</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseImplementsExtendsDirective(ImplementsExtendsDirective object)
   {
     return null;
   }
@@ -2429,6 +2615,38 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePojoDao(PojoDao object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Package Directive Suffix</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Package Directive Suffix</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePackageDirectiveSuffix(PackageDirectiveSuffix object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Implements Extends Directive Generics</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Implements Extends Directive Generics</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseImplementsExtendsDirectiveGenerics(ImplementsExtendsDirectiveGenerics object)
   {
     return null;
   }

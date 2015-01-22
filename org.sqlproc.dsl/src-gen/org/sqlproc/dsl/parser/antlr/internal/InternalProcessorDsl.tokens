@@ -6,6 +6,7 @@
 '#FunctionCall'=169
 '#FunctionCallQuery'=167
 '#FunctionQuery'=171
+'#Generics'=139
 '#HashCode'=154
 '#Index'=149
 '#InheritanceChild'=152
@@ -19,6 +20,7 @@
 '#Query'=174
 '#Required'=159
 '#Serializable'=151
+'#Suffix'=136
 '#ToInit'=155
 '#ToString'=148
 '#UpdateCol'=163
@@ -26,7 +28,6 @@
 '#Version'=162
 '->'=41
 '.*'=176
-'<<>>'=140
 '[]'=135
 'abstract'=147
 'active-filter'=111
@@ -69,7 +70,7 @@
 'ignore-one-to-many'=90
 'ignore-tables'=80
 'implementation-package'=106
-'implements'=139
+'implements'=140
 'implements-interfaces'=99
 'implements-interfaces-generics'=101
 'import'=138
@@ -121,7 +122,6 @@
 'skip-functions-procedures'=62
 'skip-indexes'=61
 'statement-meta-type'=119
-'suffix'=136
 'table'=132
 'table-identity'=117
 'table-many-to-many'=95

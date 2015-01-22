@@ -139,14 +139,14 @@ public class TableDaoGenerator extends TableMetaGenerator {
                         isSerializable = true;
                         continue;
                     }
-                    buffer.append("\n  implements ").append(type.getIdentifier());
                     if (ie.isGenerics()) {
-                        buffer.append(" <<>>");
+                        buffer.append(NLINDENT).append("#Generics");
                         if (notGenerics == null)
                             notGenerics = new HashSet<String>();
                         if (generics == null)
                             generics = new HashSet<String>();
                     }
+                    buffer.append(NLINDENT).append("implements :").append(type.getIdentifier());
                     if (!ie.getDbTables().isEmpty()) {
                         buffer.append(" onlyDaos");
                         for (String dbColumn : ie.getDbTables()) {
@@ -179,9 +179,9 @@ public class TableDaoGenerator extends TableMetaGenerator {
             }
             if (daoToExtends != null) {
                 JvmType type = daoToExtends.getToImplement();
-                buffer.append("\n  extends ").append(type.getIdentifier());
                 if (daoToExtends.isGenerics())
-                    buffer.append(" <<>>");
+                    buffer.append(NLINDENT).append("#Generics");
+                buffer.append(NLINDENT).append("extends :").append(type.getIdentifier());
                 if (!daoToExtends.getDbTables().isEmpty()) {
                     buffer.append(" onlyDaos");
                     for (String dbColumn : daoToExtends.getDbTables()) {
@@ -205,11 +205,11 @@ public class TableDaoGenerator extends TableMetaGenerator {
                 oneMoreLine = true;
             }
             if (daoImplementationPackage != null) {
-                buffer.append("\n  implementation-package ").append(daoImplementationPackage);
+                buffer.append(NLINDENT).append("implementation-package ").append(daoImplementationPackage);
                 oneMoreLine = true;
             }
             if (oneMoreLine) {
-                buffer.append(INDENT);
+                buffer.append(NL);
             }
             for (String pojo : pojos.keySet()) {
                 // System.out.println("QQQQQ " + pojo);
@@ -265,21 +265,18 @@ public class TableDaoGenerator extends TableMetaGenerator {
                 buffer.append(NLINDENT).append("#Query(").append(tableToCamelCase(pojoName)).append(")");
                 if (isSerializable || serializables.contains(pojo))
                     buffer.append(NLINDENT).append("#Serializable(1)");
+                // if (generics == null && notGenerics == null) {
+                // } else if (generics != null && !generics.isEmpty() && generics.contains(daoName)) {
+                // buffer.append(NLINDENT).append("#Generics");
+                // } else if (notGenerics != null && !notGenerics.isEmpty() && notGenerics.contains(daoName)) {
+                // } else {
+                // buffer.append(NLINDENT).append("#Generics");
+                // }
                 buffer.append(NLINDENT);
                 if (daoMakeItFinal)
                     buffer.append("final ");
                 buffer.append("dao ");
                 buffer.append(daoName);
-                // if (generics == null && notGenerics == null) {
-                // buffer.append(" :: ");
-                // } else if (generics != null && !generics.isEmpty() && generics.contains(daoName)) {
-                // buffer.append(" ::: ");
-                // } else if (notGenerics != null && !notGenerics.isEmpty() && notGenerics.contains(daoName)) {
-                // buffer.append(" :: ");
-                // } else {
-                // buffer.append(" ::: ");
-                // }
-                // buffer.append(tableToCamelCase(pojoName));
                 buffer.append(" {");
                 buffer.append(NLINDENT).append("}\n");
             }

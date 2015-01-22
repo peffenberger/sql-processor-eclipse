@@ -67,7 +67,6 @@ import org.sqlproc.dsl.processorDsl.MappingColumnName;
 import org.sqlproc.dsl.processorDsl.MappingRule;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.MetagenProperty;
-import org.sqlproc.dsl.processorDsl.PackageDeclaration;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
@@ -264,7 +263,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     boolean _notEquals = (!Objects.equal(entityName, null));
     if (_notEquals) {
       IScopeProvider _scopeProvider = this.getScopeProvider();
-      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
       _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
     }
     final PojoEntity pojoEntity = _xifexpression;
@@ -384,7 +383,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     boolean _notEquals = (!Objects.equal(entityName, null));
     if (_notEquals) {
       IScopeProvider _scopeProvider = this.getScopeProvider();
-      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
       _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
     }
     final PojoEntity pojoEntity = _xifexpression;
@@ -1954,7 +1953,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       public void apply(final IEObjectDescription description) {
         URI _eObjectURI = description.getEObjectURI();
         EObject _eObject = resourceSet.getEObject(_eObjectURI, true);
-        final PackageDeclaration packageDeclaration = ((PackageDeclaration) _eObject);
+        final org.sqlproc.dsl.processorDsl.Package packageDeclaration = ((org.sqlproc.dsl.processorDsl.Package) _eObject);
         EList<AbstractPojoEntity> _elements = packageDeclaration.getElements();
         final Procedure1<AbstractPojoEntity> _function = new Procedure1<AbstractPojoEntity>() {
           public void apply(final AbstractPojoEntity aEntity) {
@@ -2025,7 +2024,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     Resource _eResource = artifacts.eResource();
     ResourceSet _resourceSet = _eResource.getResourceSet();
     IScopeProvider _scopeProvider = this.getScopeProvider();
-    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
     final Set<PojoEntity> entities = this.listEntities(_resourceSet, _scope);
     final Procedure1<PojoEntity> _function = new Procedure1<PojoEntity>() {
       public void apply(final PojoEntity entity) {
@@ -2083,7 +2082,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     Resource _eResource = artifacts.eResource();
     ResourceSet _resourceSet = _eResource.getResourceSet();
     IScopeProvider _scopeProvider = this.getScopeProvider();
-    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
     final Set<PojoEntity> entities = this.listEntities(_resourceSet, _scope);
     final Procedure1<PojoEntity> _function = new Procedure1<PojoEntity>() {
       public void apply(final PojoEntity entity) {

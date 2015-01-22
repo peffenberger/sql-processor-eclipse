@@ -14,8 +14,8 @@ import org.eclipse.xtext.common.types.JvmType;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#getImplements <em>Implements</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#isGenerics <em>Generics</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#getOnlyPojos <em>Only Pojos</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#getOnlyDaos <em>Only Daos</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.Implements#getExceptPojos <em>Except Pojos</em>}</li>
@@ -29,6 +29,22 @@ import org.eclipse.xtext.common.types.JvmType;
  */
 public interface Implements extends AbstractPojoEntity
 {
+  /**
+   * Returns the value of the '<em><b>Directives</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.ImplementsExtendsDirective}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Directives</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Directives</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getImplements_Directives()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ImplementsExtendsDirective> getDirectives();
+
   /**
    * Returns the value of the '<em><b>Implements</b></em>' reference.
    * <!-- begin-user-doc -->
@@ -54,32 +70,6 @@ public interface Implements extends AbstractPojoEntity
    * @generated
    */
   void setImplements(JvmType value);
-
-  /**
-   * Returns the value of the '<em><b>Generics</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Generics</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Generics</em>' attribute.
-   * @see #setGenerics(boolean)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getImplements_Generics()
-   * @model
-   * @generated
-   */
-  boolean isGenerics();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.Implements#isGenerics <em>Generics</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Generics</em>' attribute.
-   * @see #isGenerics()
-   * @generated
-   */
-  void setGenerics(boolean value);
 
   /**
    * Returns the value of the '<em><b>Only Pojos</b></em>' reference list.

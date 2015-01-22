@@ -30,7 +30,7 @@ import org.sqlproc.dsl.processorDsl.MappingItem;
 import org.sqlproc.dsl.processorDsl.MappingRule;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.OptionalFeature;
-import org.sqlproc.dsl.processorDsl.PackageDeclaration;
+import org.sqlproc.dsl.processorDsl.Package;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
@@ -141,9 +141,9 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
                 ICompositeNode node = NodeModelUtils.getNode(current);
                 FunctionDefinition function = (FunctionDefinition) current;
                 provideHighlightingForTable(null, function.getName(), node, acceptor);
-            } else if (current instanceof PackageDeclaration) {
+            } else if (current instanceof Package) {
                 ICompositeNode node = NodeModelUtils.getNode(current);
-                PackageDeclaration pkg = (PackageDeclaration) current;
+                Package pkg = (Package) current;
                 provideHighlightingForPojoPackage(pkg.getName(), node, acceptor);
             } else if (current instanceof PojoEntity) {
                 ICompositeNode node = NodeModelUtils.getNode(current);

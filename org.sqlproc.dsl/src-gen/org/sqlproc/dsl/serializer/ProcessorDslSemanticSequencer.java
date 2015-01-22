@@ -70,6 +70,7 @@ import org.sqlproc.dsl.processorDsl.ImplPackage;
 import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignement;
 import org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics;
+import org.sqlproc.dsl.processorDsl.ImplementsExtendsDirectiveGenerics;
 import org.sqlproc.dsl.processorDsl.Import;
 import org.sqlproc.dsl.processorDsl.ImportAssignement;
 import org.sqlproc.dsl.processorDsl.InheritanceAssignement;
@@ -87,7 +88,7 @@ import org.sqlproc.dsl.processorDsl.MetagenProperty;
 import org.sqlproc.dsl.processorDsl.OptionalFeature;
 import org.sqlproc.dsl.processorDsl.OrdSql;
 import org.sqlproc.dsl.processorDsl.OrdSql2;
-import org.sqlproc.dsl.processorDsl.PackageDeclaration;
+import org.sqlproc.dsl.processorDsl.PackageDirectiveSuffix;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
@@ -485,6 +486,12 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
+			case ProcessorDslPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS:
+				if(context == grammarAccess.getImplementsExtendsDirectiveRule()) {
+					sequence_ImplementsExtendsDirective(context, (ImplementsExtendsDirectiveGenerics) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorDslPackage.IMPORT:
 				if(context == grammarAccess.getAbstractPojoEntityRule() ||
 				   context == grammarAccess.getImportRule()) {
@@ -588,10 +595,16 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 					return; 
 				}
 				else break;
-			case ProcessorDslPackage.PACKAGE_DECLARATION:
+			case ProcessorDslPackage.PACKAGE:
 				if(context == grammarAccess.getAbstractPojoEntityRule() ||
-				   context == grammarAccess.getPackageDeclarationRule()) {
-					sequence_PackageDeclaration(context, (PackageDeclaration) semanticObject); 
+				   context == grammarAccess.getPackageRule()) {
+					sequence_Package(context, (org.sqlproc.dsl.processorDsl.Package) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.PACKAGE_DIRECTIVE_SUFFIX:
+				if(context == grammarAccess.getPackageDirectiveRule()) {
+					sequence_PackageDirective(context, (PackageDirectiveSuffix) semanticObject); 
 					return; 
 				}
 				else break;
@@ -877,7 +890,7 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *             statements+=MetaStatement | 
 	 *             mappings+=MappingRule | 
 	 *             features+=OptionalFeature | 
-	 *             pojoPackages+=PackageDeclaration
+	 *             packages+=Package
 	 *         )*
 	 *     )
 	 */
@@ -1335,8 +1348,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	/**
 	 * Constraint:
 	 *     (
+	 *         directives+=ImplementsExtendsDirective* 
 	 *         extends=[JvmType|QualifiedName] 
-	 *         generics?='<<>>'? 
 	 *         onlyPojos+=[PojoEntity|IDENT]* 
 	 *         onlyDaos+=[PojoDao|IDENT]* 
 	 *         exceptPojos+=[PojoEntity|IDENT]* 
@@ -1543,9 +1556,18 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
+	 *     {ImplementsExtendsDirectiveGenerics}
+	 */
+	protected void sequence_ImplementsExtendsDirective(EObject context, ImplementsExtendsDirectiveGenerics semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (
+	 *         directives+=ImplementsExtendsDirective* 
 	 *         implements=[JvmType|QualifiedName] 
-	 *         generics?='<<>>'? 
 	 *         onlyPojos+=[PojoEntity|IDENT]* 
 	 *         onlyDaos+=[PojoDao|IDENT]* 
 	 *         exceptPojos+=[PojoEntity|IDENT]* 
@@ -1748,9 +1770,18 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     ((name=IDENT | name=IDENT_DOT) (suffix=IDENT | suffix=NUMBER)? elements+=AbstractPojoEntity*)
+	 *     (suffix=IDENT | suffix=NUMBER)
 	 */
-	protected void sequence_PackageDeclaration(EObject context, PackageDeclaration semanticObject) {
+	protected void sequence_PackageDirective(EObject context, PackageDirectiveSuffix semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (directives+=PackageDirective* (name=IDENT | name=IDENT_DOT) elements+=AbstractPojoEntity*)
+	 */
+	protected void sequence_Package(EObject context, org.sqlproc.dsl.processorDsl.Package semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

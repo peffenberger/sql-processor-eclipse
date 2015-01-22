@@ -32,7 +32,7 @@ import org.sqlproc.dsl.processorDsl.MappingColumn
 import org.sqlproc.dsl.processorDsl.MappingRule
 import org.sqlproc.dsl.processorDsl.MetaStatement
 import org.sqlproc.dsl.processorDsl.MetagenProperty
-import org.sqlproc.dsl.processorDsl.PackageDeclaration
+import org.sqlproc.dsl.processorDsl.Package
 import org.sqlproc.dsl.processorDsl.PojoDefinition
 import org.sqlproc.dsl.processorDsl.PojoEntity
 import org.sqlproc.dsl.processorDsl.PojoProperty
@@ -178,7 +178,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		val entityName = Utils.getTokenFromModifier(metaStatement, usageInFilterExt)
 		val pojoEntity = if (entityName != null)
 				Utils.findEntity(qualifiedNameConverter, artifacts,
-					getScopeProvider().getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES),
+					getScopeProvider().getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES),
 					entityName)
 
 		val pojoName = if(pojoEntity == null) Utils.getTokenFromModifier(metaStatement, usageInFilter)
@@ -235,7 +235,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		val entityName = Utils.getTokenFromModifier(mappingRule, MAPPING_USAGE_EXTENDED)
 		val pojoEntity = if (entityName != null)
 				Utils.findEntity(qualifiedNameConverter, artifacts,
-					getScopeProvider().getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES),
+					getScopeProvider().getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES),
 					entityName)
 
 		val pojoName = if(pojoEntity == null) Utils.getTokenFromModifier(mappingRule, MAPPING_USAGE)
@@ -983,7 +983,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 	def Set<PojoEntity> listEntities(ResourceSet resourceSet, IScope scope) {
 		val result = <PojoEntity>newTreeSet[o1, o2|o1.name.compareTo(o2.name)]
 		scope.getAllElements().forEach [ description |
-			val packageDeclaration = resourceSet.getEObject(description.getEObjectURI(), true) as PackageDeclaration
+			val packageDeclaration = resourceSet.getEObject(description.getEObjectURI(), true) as Package
 			packageDeclaration.getElements().forEach [ aEntity |
 				if (aEntity instanceof AnnotatedEntity) {
 					var ae = aEntity as AnnotatedEntity
@@ -1018,7 +1018,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		val metaStatement = model.getContainerOfType(typeof(MetaStatement))
 		val artifacts = metaStatement.getContainerOfType(typeof(Artifacts))
 		val entities = listEntities(artifacts.eResource().getResourceSet(),
-			getScopeProvider().getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES))
+			getScopeProvider().getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES))
 		entities.forEach [ entity |
 			val proposal = getValueConverter().toString(entity.getName(), "IDENT")
 			acceptor.accept(createCompletionProposal(CONSTANT_USAGE_EXTENDED + "=" + proposal, context))
@@ -1046,7 +1046,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		val mappingRule = model.getContainerOfType(typeof(MappingRule))
 		val artifacts = mappingRule.getContainerOfType(typeof(Artifacts))
 		val entities = listEntities(artifacts.eResource().getResourceSet(),
-			getScopeProvider().getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES))
+			getScopeProvider().getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES))
 		entities.forEach [ entity |
 			val proposal = getValueConverter().toString(entity.getName(), "IDENT")
 			acceptor.accept(createCompletionProposal(MAPPING_USAGE_EXTENDED + "=" + proposal, context))

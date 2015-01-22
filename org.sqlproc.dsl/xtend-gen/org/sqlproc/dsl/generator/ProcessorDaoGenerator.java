@@ -3941,7 +3941,7 @@ public class ProcessorDaoGenerator {
             } else {
               _builder.appendImmediate(", ", "");
             }
-            String _daoImplements = Utils.getDaoImplements(d, f);
+            String _daoImplements = this._processorGeneratorUtils.getDaoImplements(d, f);
             _builder.append(_daoImplements, "");
           }
         }

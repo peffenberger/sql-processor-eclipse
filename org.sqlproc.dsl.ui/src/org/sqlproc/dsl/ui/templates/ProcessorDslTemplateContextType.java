@@ -28,7 +28,7 @@ import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.EnumEntityModifier1;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
-import org.sqlproc.dsl.processorDsl.PackageDeclaration;
+import org.sqlproc.dsl.processorDsl.Package;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
@@ -104,11 +104,11 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
         return statement;
     }
 
-    protected PackageDeclaration getPackage(XtextTemplateContext xtextTemplateContext) {
+    protected Package getPackage(XtextTemplateContext xtextTemplateContext) {
         if (xtextTemplateContext == null)
             return null;
         EObject object = xtextTemplateContext.getContentAssistContext().getCurrentModel();
-        PackageDeclaration packagex = EcoreUtil2.getContainerOfType(object, PackageDeclaration.class);
+        Package packagex = EcoreUtil2.getContainerOfType(object, Package.class);
         return packagex;
     }
 
@@ -686,12 +686,12 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
         @Override
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
-            PackageDeclaration packagex = getPackage((XtextTemplateContext) context);
+            Package packagex = getPackage((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
 
                 Map<String, String> finalEntities = new HashMap<String, String>();
                 Annotations annotations = new Annotations();
-                String suffix = packagex.getSuffix();
+                String suffix = Utils.getSuffix(packagex);
                 for (AbstractPojoEntity ape : packagex.getElements()) {
                     if (ape instanceof AnnotatedEntity) {
                         AnnotatedEntity apojo = (AnnotatedEntity) ape;
@@ -786,11 +786,11 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
         @Override
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
-            PackageDeclaration packagex = getPackage((XtextTemplateContext) context);
+            Package packagex = getPackage((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
 
                 Map<String, String> finalDaos = new HashMap<String, String>();
-                String suffix = packagex.getSuffix();
+                String suffix = Utils.getSuffix(packagex);
                 for (AbstractPojoEntity ape : packagex.getElements()) {
                     if (ape instanceof PojoDao) {
                         PojoDao dao = (PojoDao) ape;

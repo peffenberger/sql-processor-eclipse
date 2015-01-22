@@ -35,11 +35,12 @@ import org.sqlproc.dsl.processorDsl.EnumPropertyValue;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
 import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
-import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.MappingColumn;
 import org.sqlproc.dsl.processorDsl.MappingRule;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
-import org.sqlproc.dsl.processorDsl.PackageDeclaration;
+import org.sqlproc.dsl.processorDsl.Package;
+import org.sqlproc.dsl.processorDsl.PackageDirective;
+import org.sqlproc.dsl.processorDsl.PackageDirectiveSuffix;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
@@ -89,15 +90,6 @@ public class Utils {
                 dir = uri.substring(0, ix);
         }
         return dir;
-    }
-
-    // TODO
-    public static String getDaoImplements(PojoDao dao, Implements impl) {
-        StringBuilder sb = new StringBuilder();
-        // sb.append(impl.getImplements().getSimpleName());
-        // if (dao.isPojoGenerics() && impl.isGenerics())
-        // sb.append("<").append(dao.getPojo().getName()).append(">");
-        return sb.toString();
     }
 
     public static boolean hasName(PojoProperty f, String name) {
@@ -191,7 +183,7 @@ public class Utils {
         Iterable<IEObjectDescription> iterable = scope.getAllElements();
         for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
             IEObjectDescription description = iter.next();
-            PackageDeclaration packageDeclaration = (PackageDeclaration) artifacts.eResource().getResourceSet()
+            Package packageDeclaration = (Package) artifacts.eResource().getResourceSet()
                     .getEObject(description.getEObjectURI(), true);
             for (AbstractPojoEntity aEntity : packageDeclaration.getElements()) {
                 if (aEntity instanceof AnnotatedEntity) {
@@ -346,7 +338,7 @@ public class Utils {
     }
 
     public static String getPackage(PojoEntity e) {
-        PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(e, PackageDeclaration.class);
+        Package packageDeclaration = EcoreUtil2.getContainerOfType(e, Package.class);
         return packageDeclaration.getName();
     }
 
@@ -362,7 +354,7 @@ public class Utils {
     }
 
     public static String getPackage(EnumEntity e) {
-        PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(e, PackageDeclaration.class);
+        Package packageDeclaration = EcoreUtil2.getContainerOfType(e, Package.class);
         return packageDeclaration.getName();
     }
 
@@ -378,7 +370,7 @@ public class Utils {
     }
 
     public static String getPackage(PojoDao e) {
-        PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(e, PackageDeclaration.class);
+        Package packageDeclaration = EcoreUtil2.getContainerOfType(e, Package.class);
         return packageDeclaration.getName();
     }
 
@@ -394,7 +386,7 @@ public class Utils {
     }
 
     public static String getPackage(PojoAnnotatedProperty e) {
-        PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(e, PackageDeclaration.class);
+        Package packageDeclaration = EcoreUtil2.getContainerOfType(e, Package.class);
         return packageDeclaration.getName();
     }
 
@@ -641,5 +633,15 @@ public class Utils {
                 dbType = dbTypes[0];
         }
         return dbType;
+    }
+
+    public static String getSuffix(Package pkg) {
+        if (pkg.getDirectives() == null || pkg.getDirectives().isEmpty())
+            return null;
+        for (PackageDirective dir : pkg.getDirectives()) {
+            if (dir instanceof PackageDirectiveSuffix)
+                return ((PackageDirectiveSuffix) dir).getSuffix();
+        }
+        return null;
     }
 }

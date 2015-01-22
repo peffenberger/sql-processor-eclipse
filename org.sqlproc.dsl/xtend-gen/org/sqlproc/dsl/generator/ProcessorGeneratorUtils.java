@@ -40,6 +40,9 @@ import org.sqlproc.dsl.processorDsl.EnumEntityModifier1;
 import org.sqlproc.dsl.processorDsl.EnumEntityModifier2;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
 import org.sqlproc.dsl.processorDsl.FunProcDirective;
+import org.sqlproc.dsl.processorDsl.Implements;
+import org.sqlproc.dsl.processorDsl.ImplementsExtendsDirective;
+import org.sqlproc.dsl.processorDsl.ImplementsExtendsDirectiveGenerics;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
@@ -196,6 +199,28 @@ public class ProcessorGeneratorUtils {
     String _plus = (_package + ".");
     String _name = e.getName();
     return (_plus + _name);
+  }
+  
+  public boolean isGenerics(final Implements impl) {
+    EList<ImplementsExtendsDirective> _directives = impl.getDirectives();
+    ImplementsExtendsDirective _findFirst = null;
+    if (_directives!=null) {
+      final Function1<ImplementsExtendsDirective, Boolean> _function = new Function1<ImplementsExtendsDirective, Boolean>() {
+        public Boolean apply(final ImplementsExtendsDirective x) {
+          return Boolean.valueOf((x instanceof ImplementsExtendsDirectiveGenerics));
+        }
+      };
+      _findFirst=IterableExtensions.<ImplementsExtendsDirective>findFirst(_directives, _function);
+    }
+    final ImplementsExtendsDirective d = _findFirst;
+    boolean _xifexpression = false;
+    boolean _notEquals = (!Objects.equal(d, null));
+    if (_notEquals) {
+      _xifexpression = true;
+    } else {
+      _xifexpression = false;
+    }
+    return _xifexpression;
   }
   
   public boolean isRequired(final PojoProperty f) {
@@ -1025,6 +1050,25 @@ public class ProcessorGeneratorUtils {
       _pojo=this.getPojo(dao, pojoDirective);
     }
     return _pojo;
+  }
+  
+  public String getDaoImplements(final PojoDao dao, final Implements impl) {
+    final StringBuilder sb = new StringBuilder();
+    JvmType _implements = impl.getImplements();
+    String _simpleName = _implements.getSimpleName();
+    sb.append(_simpleName);
+    boolean _isGenerics = this.isGenerics(impl);
+    if (_isGenerics) {
+      final PojoEntity pojo = this.getPojo(dao);
+      boolean _notEquals = (!Objects.equal(pojo, null));
+      if (_notEquals) {
+        StringBuilder _append = sb.append("<");
+        String _name = pojo.getName();
+        StringBuilder _append_1 = _append.append(_name);
+        _append_1.append(">");
+      }
+    }
+    return sb.toString();
   }
   
   public boolean isCRUD(final PojoDao dao) {

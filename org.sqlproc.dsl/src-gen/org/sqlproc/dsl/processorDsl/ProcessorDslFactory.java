@@ -581,13 +581,22 @@ public interface ProcessorDslFactory extends EFactory
   PojoType createPojoType();
 
   /**
-   * Returns a new object of class '<em>Package Declaration</em>'.
+   * Returns a new object of class '<em>Package Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Package Declaration</em>'.
+   * @return a new object of class '<em>Package Directive</em>'.
    * @generated
    */
-  PackageDeclaration createPackageDeclaration();
+  PackageDirective createPackageDirective();
+
+  /**
+   * Returns a new object of class '<em>Package</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Package</em>'.
+   * @generated
+   */
+  Package createPackage();
 
   /**
    * Returns a new object of class '<em>Annotation</em>'.
@@ -642,6 +651,15 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   Import createImport();
+
+  /**
+   * Returns a new object of class '<em>Implements Extends Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Implements Extends Directive</em>'.
+   * @generated
+   */
+  ImplementsExtendsDirective createImplementsExtendsDirective();
 
   /**
    * Returns a new object of class '<em>Implements</em>'.
@@ -849,6 +867,24 @@ public interface ProcessorDslFactory extends EFactory
    * @generated
    */
   PojoDao createPojoDao();
+
+  /**
+   * Returns a new object of class '<em>Package Directive Suffix</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Package Directive Suffix</em>'.
+   * @generated
+   */
+  PackageDirectiveSuffix createPackageDirectiveSuffix();
+
+  /**
+   * Returns a new object of class '<em>Implements Extends Directive Generics</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Implements Extends Directive Generics</em>'.
+   * @generated
+   */
+  ImplementsExtendsDirectiveGenerics createImplementsExtendsDirectiveGenerics();
 
   /**
    * Returns a new object of class '<em>Pojo Directive To String</em>'.
