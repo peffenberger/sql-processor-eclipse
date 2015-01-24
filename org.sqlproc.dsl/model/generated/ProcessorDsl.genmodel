@@ -528,6 +528,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoPropertyDirectiveCreateCol/createColumn1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorDsl.ecore#//PojoPropertyDirectiveCreateCol/createColumn2"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectiveToInit"/>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectiveEnumInit"/>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectiveIsDef"/>
+    <genClasses ecoreClass="ProcessorDsl.ecore#//PojoPropertyDirectiveEnumDef"/>
     <genClasses ecoreClass="ProcessorDsl.ecore#//EnumPropertyDirectiveValues">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorDsl.ecore#//EnumPropertyDirectiveValues/values"/>
     </genClasses>

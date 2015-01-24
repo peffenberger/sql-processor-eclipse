@@ -14621,6 +14621,50 @@ this_LPAREN_22=RULE_LPAREN
     { 
     newLeafNode(this_RPAREN_26, grammarAccess.getPojoPropertyDirectiveAccess().getRPARENTerminalRuleCall_6_6()); 
     }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getPojoPropertyDirectiveAccess().getPojoPropertyDirectiveToInitAction_7_0(),
+            $current);
+    }
+)	otherlv_28='#ToInit' 
+    {
+    	newLeafNode(otherlv_28, grammarAccess.getPojoPropertyDirectiveAccess().getToInitKeyword_7_1());
+    }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getPojoPropertyDirectiveAccess().getPojoPropertyDirectiveEnumInitAction_8_0(),
+            $current);
+    }
+)	otherlv_30='#EnumInit' 
+    {
+    	newLeafNode(otherlv_30, grammarAccess.getPojoPropertyDirectiveAccess().getEnumInitKeyword_8_1());
+    }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getPojoPropertyDirectiveAccess().getPojoPropertyDirectiveIsDefAction_9_0(),
+            $current);
+    }
+)	otherlv_32='#IsDef' 
+    {
+    	newLeafNode(otherlv_32, grammarAccess.getPojoPropertyDirectiveAccess().getIsDefKeyword_9_1());
+    }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getPojoPropertyDirectiveAccess().getPojoPropertyDirectiveEnumDefAction_10_0(),
+            $current);
+    }
+)	otherlv_34='#EnumDef' 
+    {
+    	newLeafNode(otherlv_34, grammarAccess.getPojoPropertyDirectiveAccess().getEnumDefKeyword_10_1());
+    }
 ))
 ;
 finally {

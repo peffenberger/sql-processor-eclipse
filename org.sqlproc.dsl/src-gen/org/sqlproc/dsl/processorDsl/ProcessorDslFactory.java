@@ -1067,6 +1067,42 @@ public interface ProcessorDslFactory extends EFactory
   PojoPropertyDirectiveCreateCol createPojoPropertyDirectiveCreateCol();
 
   /**
+   * Returns a new object of class '<em>Pojo Property Directive To Init</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive To Init</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveToInit createPojoPropertyDirectiveToInit();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Enum Init</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Enum Init</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveEnumInit createPojoPropertyDirectiveEnumInit();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Is Def</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Is Def</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveIsDef createPojoPropertyDirectiveIsDef();
+
+  /**
+   * Returns a new object of class '<em>Pojo Property Directive Enum Def</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Property Directive Enum Def</em>'.
+   * @generated
+   */
+  PojoPropertyDirectiveEnumDef createPojoPropertyDirectiveEnumDef();
+
+  /**
    * Returns a new object of class '<em>Enum Property Directive Values</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

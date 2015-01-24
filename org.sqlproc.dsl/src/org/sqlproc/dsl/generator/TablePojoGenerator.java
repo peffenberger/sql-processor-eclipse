@@ -1118,8 +1118,8 @@ public class TablePojoGenerator {
                 buffer.append(" {");
                 Set<String> pkeys = new HashSet<String>();
                 Set<String> toStr = new HashSet<String>();
-                Set<String> isDef = new HashSet<String>();
-                Set<String> toInit = new HashSet<String>();
+                // Set<String> isDef = new HashSet<String>();
+                // Set<String> toInit = new HashSet<String>();
                 Map<String, PojoAttribute> addedAttributes = new LinkedHashMap<String, PojoAttribute>();
                 for (Map.Entry<String, PojoAttribute> pentry : pojos.get(pojo).entrySet()) {
                     // System.out.println("  RRR " + pentry.getKey());
@@ -1160,10 +1160,20 @@ public class TablePojoGenerator {
                             }
                         }
                     }
-                    if (attribute.isDef())
-                        isDef.add(name);
-                    if (attribute.toInit())
-                        toInit.add(name);
+                    if (attribute.isDef()) {
+                        // isDef.add(name);
+                        if (generateMethods.contains(METHOD_IS_DEF))
+                            buffer.append(NLINDENT).append(INDENT).append("#IsDef");
+                        else if (generateMethods.contains(ENUM_IS_DEF))
+                            buffer.append(NLINDENT).append(INDENT).append("#EnumDef");
+                    }
+                    if (attribute.toInit()) {
+                        // toInit.add(name);
+                        if (generateMethods.contains(METHOD_TO_INIT))
+                            buffer.append(NLINDENT).append(INDENT).append("#ToInit");
+                        else if (generateMethods.contains(ENUM_TO_INIT))
+                            buffer.append(NLINDENT).append(INDENT).append("#EnumInit");
+                    }
                     if (inheritanceColumns.containsKey(pojo) && pentry.getKey().equals(inheritanceColumns.get(pojo))) {
                         buffer.append(NLINDENT).append(INDENT).append("#InheritanceDiscriminator");
                     }
@@ -1209,9 +1219,9 @@ public class TablePojoGenerator {
                             toStr.add(name);
                     }
                 }
-                if (pojoExtends.containsKey(pojo)) {
-                    getParentAttrs(pojoExtends.get(pojo), isDef, toInit);
-                }
+                // if (pojoExtends.containsKey(pojo)) {
+                // getParentAttrs(pojoExtends.get(pojo), isDef, toInit);
+                // }
                 for (Map.Entry<String, PojoAttribute> pentry : addedAttributes.entrySet()) {
                     PojoAttribute attribute = pentry.getValue();
                     buffer.append(NLINDENT).append(INDENT).append("#CreateCol(").append(pentry.getKey()).append(",")
@@ -1236,40 +1246,6 @@ public class TablePojoGenerator {
                     }
                     buffer.append(NLINDENT).append(INDENT).append(METHOD_HASH_CODE).append("(");
                     appendList(buffer, pkeys);
-                    buffer.append(")");
-                }
-                if (generateMethods.contains(METHOD_TO_INIT) && !toInit.isEmpty()) {
-                    if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_TO_INIT,
-                                true, false));
-                    }
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_INIT).append("(");
-                    appendList(buffer, toInit);
-                    buffer.append(")");
-                } else if (generateMethods.contains(ENUM_TO_INIT) && !toInit.isEmpty()) {
-                    if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, ENUM_TO_INIT, true,
-                                false));
-                    }
-                    buffer.append(NLINDENT).append(INDENT).append(ENUM_TO_INIT).append("(");
-                    appendList(buffer, toInit);
-                    buffer.append(")");
-                }
-                if (generateMethods.contains(METHOD_IS_DEF) && !isDef.isEmpty()) {
-                    if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_IS_DEF, true,
-                                false));
-                    }
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_IS_DEF).append("(");
-                    appendList(buffer, isDef);
-                    buffer.append(")");
-                } else if (generateMethods.contains(ENUM_IS_DEF) && !isDef.isEmpty()) {
-                    if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, ENUM_IS_DEF, true,
-                                false));
-                    }
-                    buffer.append(NLINDENT).append(INDENT).append(ENUM_IS_DEF).append("(");
-                    appendList(buffer, isDef);
                     buffer.append(")");
                 }
                 if (generateMethods.contains(METHOD_TO_STRING) && !toStr.isEmpty()) {

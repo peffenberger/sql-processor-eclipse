@@ -409,14 +409,12 @@ public class ProcessorPojoGenerator {
     }
     {
       boolean _or = false;
-      PojoAnnotatedProperty _hasIsDef = this.hasIsDef(e);
-      boolean _notEquals_2 = (!Objects.equal(_hasIsDef, null));
-      if (_notEquals_2) {
+      boolean _hasIsDef = this._processorGeneratorUtils.hasIsDef(e);
+      if (_hasIsDef) {
         _or = true;
       } else {
-        PojoAnnotatedProperty _hasToInit = this.hasToInit(e);
-        boolean _notEquals_3 = (!Objects.equal(_hasToInit, null));
-        _or = _notEquals_3;
+        boolean _hasToInit = this._processorGeneratorUtils.hasToInit(e);
+        _or = _hasToInit;
       }
       if (_or) {
         _builder.append("import java.util.Set;");
@@ -794,6 +792,46 @@ public class ProcessorPojoGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    final List<PojoProperty> toInit = this._processorGeneratorUtils.toInitFeatures(e);
+    {
+      boolean _isEmpty_6 = toInit.isEmpty();
+      boolean _not_6 = (!_isEmpty_6);
+      if (_not_6) {
+        CharSequence _compileToInit = this.compileToInit(toInit, im, e, ae);
+        _builder.append(_compileToInit, "");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    final List<PojoProperty> enumInit = this._processorGeneratorUtils.enumInitFeatures(e);
+    {
+      boolean _isEmpty_7 = enumInit.isEmpty();
+      boolean _not_7 = (!_isEmpty_7);
+      if (_not_7) {
+        CharSequence _compileEnumInit = this.compileEnumInit(enumInit, im, e, ae);
+        _builder.append(_compileEnumInit, "");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    final List<PojoProperty> isDef = this._processorGeneratorUtils.isDefFeatures(e);
+    {
+      boolean _isEmpty_8 = isDef.isEmpty();
+      boolean _not_8 = (!_isEmpty_8);
+      if (_not_8) {
+        CharSequence _compileIsDef = this.compileIsDef(isDef, im, e, ae);
+        _builder.append(_compileIsDef, "");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    final List<PojoProperty> enumDef = this._processorGeneratorUtils.enumDefFeatures(e);
+    {
+      boolean _isEmpty_9 = enumDef.isEmpty();
+      boolean _not_9 = (!_isEmpty_9);
+      if (_not_9) {
+        CharSequence _compileEnumDef = this.compileEnumDef(enumDef, im, e, ae);
+        _builder.append(_compileEnumDef, "");
+      }
+    }
+    _builder.newLineIfNotEmpty();
     {
       EList<PojoAnnotatedProperty> _features_12 = e.getFeatures();
       final Function1<PojoAnnotatedProperty, Boolean> _function_2 = new Function1<PojoAnnotatedProperty, Boolean>() {
@@ -826,51 +864,11 @@ public class ProcessorPojoGenerator {
             } else {
               PojoProperty _feature_12 = f_9.getFeature();
               String _name_9 = _feature_12.getName();
-              boolean _equalsIgnoreCase_2 = _name_9.equalsIgnoreCase("toInit");
+              boolean _equalsIgnoreCase_2 = _name_9.equalsIgnoreCase("toString");
               if (_equalsIgnoreCase_2) {
                 PojoProperty _feature_13 = f_9.getFeature();
-                CharSequence _compileToInit = this.compileToInit(_feature_13, f_9, im, e, ae);
-                _builder.append(_compileToInit, "");
-                _builder.newLineIfNotEmpty();
-              } else {
-                PojoProperty _feature_14 = f_9.getFeature();
-                String _name_10 = _feature_14.getName();
-                boolean _equalsIgnoreCase_3 = _name_10.equalsIgnoreCase("enumInit");
-                if (_equalsIgnoreCase_3) {
-                  PojoProperty _feature_15 = f_9.getFeature();
-                  CharSequence _compileEnumInit = this.compileEnumInit(_feature_15, f_9, im, e, ae);
-                  _builder.append(_compileEnumInit, "");
-                  _builder.newLineIfNotEmpty();
-                } else {
-                  PojoProperty _feature_16 = f_9.getFeature();
-                  String _name_11 = _feature_16.getName();
-                  boolean _equalsIgnoreCase_4 = _name_11.equalsIgnoreCase("isDef");
-                  if (_equalsIgnoreCase_4) {
-                    PojoProperty _feature_17 = f_9.getFeature();
-                    CharSequence _compileIsDef = this.compileIsDef(_feature_17, f_9, im, e, ae);
-                    _builder.append(_compileIsDef, "");
-                    _builder.newLineIfNotEmpty();
-                  } else {
-                    PojoProperty _feature_18 = f_9.getFeature();
-                    String _name_12 = _feature_18.getName();
-                    boolean _equalsIgnoreCase_5 = _name_12.equalsIgnoreCase("enumDef");
-                    if (_equalsIgnoreCase_5) {
-                      PojoProperty _feature_19 = f_9.getFeature();
-                      CharSequence _compileEnumDef = this.compileEnumDef(_feature_19, f_9, im, e, ae);
-                      _builder.append(_compileEnumDef, "");
-                      _builder.newLineIfNotEmpty();
-                    } else {
-                      PojoProperty _feature_20 = f_9.getFeature();
-                      String _name_13 = _feature_20.getName();
-                      boolean _equalsIgnoreCase_6 = _name_13.equalsIgnoreCase("toString");
-                      if (_equalsIgnoreCase_6) {
-                        PojoProperty _feature_21 = f_9.getFeature();
-                        CharSequence _compileToString = this.compileToString(_feature_21, f_9, im, e, ae);
-                        _builder.append(_compileToString, "");
-                      }
-                    }
-                  }
-                }
+                CharSequence _compileToString = this.compileToString(_feature_13, f_9, im, e, ae);
+                _builder.append(_compileToString, "");
               }
             }
           }
@@ -1722,7 +1720,7 @@ public class ProcessorPojoGenerator {
     return _builder;
   }
   
-  public CharSequence compileIsDef(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileIsDef(final List<PojoProperty> l, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
@@ -1730,9 +1728,8 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.append("\t\t");
     {
-      EList<PojoProperty> _attrs = f.getAttrs();
       boolean _hasElements = false;
-      for(final PojoProperty f2 : _attrs) {
+      for(final PojoProperty f2 : l) {
         if (!_hasElements) {
           _hasElements = true;
         } else {
@@ -1747,9 +1744,13 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private Set<String> nullValues = new HashSet<String>();");
+    _builder.newLine();
+    _builder.newLine();
     {
-      List<Annotation> _attributeAnnotations = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a : _attributeAnnotations) {
+      List<Annotation> _conflictAnnotations = this._processorGeneratorUtils.conflictAnnotations(ae);
+      for(final Annotation a : _conflictAnnotations) {
         _builder.append("\t");
         _builder.append("@");
         JvmType _type = a.getType();
@@ -1764,84 +1765,14 @@ public class ProcessorPojoGenerator {
             {
               EList<AnnotationProperty> _features_1 = a.getFeatures();
               boolean _hasElements_1 = false;
-              for(final AnnotationProperty af : _features_1) {
+              for(final AnnotationProperty ff : _features_1) {
                 if (!_hasElements_1) {
                   _hasElements_1 = true;
                 } else {
                   _builder.appendImmediate(", ", "\t");
                 }
-                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
+                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(ff, im);
                 _builder.append(_compileAnnotationProperty, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t");
-    _builder.append("private Set<String> nullValues = new HashSet<String>();");
-    _builder.newLine();
-    _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_1 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_1 : _attributeAnnotations_1) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_1 = a_1.getType();
-        CharSequence _serialize_1 = im.serialize(_type_1);
-        _builder.append(_serialize_1, "\t");
-        {
-          EList<AnnotationProperty> _features_2 = a_1.getFeatures();
-          boolean _isEmpty_1 = _features_2.isEmpty();
-          boolean _not_1 = (!_isEmpty_1);
-          if (_not_1) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_3 = a_1.getFeatures();
-              boolean _hasElements_2 = false;
-              for(final AnnotationProperty af_1 : _features_3) {
-                if (!_hasElements_2) {
-                  _hasElements_2 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, im);
-                _builder.append(_compileAnnotationProperty_1, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      List<Annotation> _conflictAnnotations = this._processorGeneratorUtils.conflictAnnotations(ae);
-      for(final Annotation a_2 : _conflictAnnotations) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_2 = a_2.getType();
-        CharSequence _serialize_2 = im.serialize(_type_2);
-        _builder.append(_serialize_2, "\t");
-        {
-          EList<AnnotationProperty> _features_4 = a_2.getFeatures();
-          boolean _isEmpty_2 = _features_4.isEmpty();
-          boolean _not_2 = (!_isEmpty_2);
-          if (_not_2) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_5 = a_2.getFeatures();
-              boolean _hasElements_3 = false;
-              for(final AnnotationProperty ff : _features_5) {
-                if (!_hasElements_3) {
-                  _hasElements_3 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff, im);
-                _builder.append(_compileAnnotationProperty_2, "\t");
               }
             }
             _builder.append(")");
@@ -1870,63 +1801,30 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      List<Annotation> _attributeAnnotations_2 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_3 : _attributeAnnotations_2) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_3 = a_3.getType();
-        CharSequence _serialize_3 = im.serialize(_type_3);
-        _builder.append(_serialize_3, "\t");
-        {
-          EList<AnnotationProperty> _features_6 = a_3.getFeatures();
-          boolean _isEmpty_3 = _features_6.isEmpty();
-          boolean _not_3 = (!_isEmpty_3);
-          if (_not_3) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_7 = a_3.getFeatures();
-              boolean _hasElements_4 = false;
-              for(final AnnotationProperty af_2 : _features_7) {
-                if (!_hasElements_4) {
-                  _hasElements_4 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(af_2, im);
-                _builder.append(_compileAnnotationProperty_3, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
       List<Annotation> _conflictAnnotations_1 = this._processorGeneratorUtils.conflictAnnotations(ae);
-      for(final Annotation a_4 : _conflictAnnotations_1) {
+      for(final Annotation a_1 : _conflictAnnotations_1) {
         _builder.append("\t");
         _builder.append("@");
-        JvmType _type_4 = a_4.getType();
-        CharSequence _serialize_4 = im.serialize(_type_4);
-        _builder.append(_serialize_4, "\t");
+        JvmType _type_1 = a_1.getType();
+        CharSequence _serialize_1 = im.serialize(_type_1);
+        _builder.append(_serialize_1, "\t");
         {
-          EList<AnnotationProperty> _features_8 = a_4.getFeatures();
-          boolean _isEmpty_4 = _features_8.isEmpty();
-          boolean _not_4 = (!_isEmpty_4);
-          if (_not_4) {
+          EList<AnnotationProperty> _features_2 = a_1.getFeatures();
+          boolean _isEmpty_1 = _features_2.isEmpty();
+          boolean _not_1 = (!_isEmpty_1);
+          if (_not_1) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_9 = a_4.getFeatures();
-              boolean _hasElements_5 = false;
-              for(final AnnotationProperty ff_1 : _features_9) {
-                if (!_hasElements_5) {
-                  _hasElements_5 = true;
+              EList<AnnotationProperty> _features_3 = a_1.getFeatures();
+              boolean _hasElements_2 = false;
+              for(final AnnotationProperty ff_1 : _features_3) {
+                if (!_hasElements_2) {
+                  _hasElements_2 = true;
                 } else {
                   _builder.appendImmediate(", ", "\t");
                 }
-                CharSequence _compileAnnotationProperty_4 = this.compileAnnotationProperty(ff_1, im);
-                _builder.append(_compileAnnotationProperty_4, "\t");
+                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(ff_1, im);
+                _builder.append(_compileAnnotationProperty_1, "\t");
               }
             }
             _builder.append(")");
@@ -1952,63 +1850,30 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      List<Annotation> _attributeAnnotations_3 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_5 : _attributeAnnotations_3) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_5 = a_5.getType();
-        CharSequence _serialize_5 = im.serialize(_type_5);
-        _builder.append(_serialize_5, "\t");
-        {
-          EList<AnnotationProperty> _features_10 = a_5.getFeatures();
-          boolean _isEmpty_5 = _features_10.isEmpty();
-          boolean _not_5 = (!_isEmpty_5);
-          if (_not_5) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_11 = a_5.getFeatures();
-              boolean _hasElements_6 = false;
-              for(final AnnotationProperty af_3 : _features_11) {
-                if (!_hasElements_6) {
-                  _hasElements_6 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_5 = this.compileAnnotationProperty(af_3, im);
-                _builder.append(_compileAnnotationProperty_5, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
       List<Annotation> _conflictAnnotations_2 = this._processorGeneratorUtils.conflictAnnotations(ae);
-      for(final Annotation a_6 : _conflictAnnotations_2) {
+      for(final Annotation a_2 : _conflictAnnotations_2) {
         _builder.append("\t");
         _builder.append("@");
-        JvmType _type_6 = a_6.getType();
-        CharSequence _serialize_6 = im.serialize(_type_6);
-        _builder.append(_serialize_6, "\t");
+        JvmType _type_2 = a_2.getType();
+        CharSequence _serialize_2 = im.serialize(_type_2);
+        _builder.append(_serialize_2, "\t");
         {
-          EList<AnnotationProperty> _features_12 = a_6.getFeatures();
-          boolean _isEmpty_6 = _features_12.isEmpty();
-          boolean _not_6 = (!_isEmpty_6);
-          if (_not_6) {
+          EList<AnnotationProperty> _features_4 = a_2.getFeatures();
+          boolean _isEmpty_2 = _features_4.isEmpty();
+          boolean _not_2 = (!_isEmpty_2);
+          if (_not_2) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_13 = a_6.getFeatures();
-              boolean _hasElements_7 = false;
-              for(final AnnotationProperty ff_2 : _features_13) {
-                if (!_hasElements_7) {
-                  _hasElements_7 = true;
+              EList<AnnotationProperty> _features_5 = a_2.getFeatures();
+              boolean _hasElements_3 = false;
+              for(final AnnotationProperty ff_2 : _features_5) {
+                if (!_hasElements_3) {
+                  _hasElements_3 = true;
                 } else {
                   _builder.appendImmediate(", ", "\t");
                 }
-                CharSequence _compileAnnotationProperty_6 = this.compileAnnotationProperty(ff_2, im);
-                _builder.append(_compileAnnotationProperty_6, "\t");
+                CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff_2, im);
+                _builder.append(_compileAnnotationProperty_2, "\t");
               }
             }
             _builder.append(")");
@@ -2037,63 +1902,30 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      List<Annotation> _attributeAnnotations_4 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_7 : _attributeAnnotations_4) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_7 = a_7.getType();
-        CharSequence _serialize_7 = im.serialize(_type_7);
-        _builder.append(_serialize_7, "\t");
-        {
-          EList<AnnotationProperty> _features_14 = a_7.getFeatures();
-          boolean _isEmpty_7 = _features_14.isEmpty();
-          boolean _not_7 = (!_isEmpty_7);
-          if (_not_7) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_15 = a_7.getFeatures();
-              boolean _hasElements_8 = false;
-              for(final AnnotationProperty af_4 : _features_15) {
-                if (!_hasElements_8) {
-                  _hasElements_8 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_7 = this.compileAnnotationProperty(af_4, im);
-                _builder.append(_compileAnnotationProperty_7, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
       List<Annotation> _conflictAnnotations_3 = this._processorGeneratorUtils.conflictAnnotations(ae);
-      for(final Annotation a_8 : _conflictAnnotations_3) {
+      for(final Annotation a_3 : _conflictAnnotations_3) {
         _builder.append("\t");
         _builder.append("@");
-        JvmType _type_8 = a_8.getType();
-        CharSequence _serialize_8 = im.serialize(_type_8);
-        _builder.append(_serialize_8, "\t");
+        JvmType _type_3 = a_3.getType();
+        CharSequence _serialize_3 = im.serialize(_type_3);
+        _builder.append(_serialize_3, "\t");
         {
-          EList<AnnotationProperty> _features_16 = a_8.getFeatures();
-          boolean _isEmpty_8 = _features_16.isEmpty();
-          boolean _not_8 = (!_isEmpty_8);
-          if (_not_8) {
+          EList<AnnotationProperty> _features_6 = a_3.getFeatures();
+          boolean _isEmpty_3 = _features_6.isEmpty();
+          boolean _not_3 = (!_isEmpty_3);
+          if (_not_3) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_17 = a_8.getFeatures();
-              boolean _hasElements_9 = false;
-              for(final AnnotationProperty ff_3 : _features_17) {
-                if (!_hasElements_9) {
-                  _hasElements_9 = true;
+              EList<AnnotationProperty> _features_7 = a_3.getFeatures();
+              boolean _hasElements_4 = false;
+              for(final AnnotationProperty ff_3 : _features_7) {
+                if (!_hasElements_4) {
+                  _hasElements_4 = true;
                 } else {
                   _builder.appendImmediate(", ", "\t");
                 }
-                CharSequence _compileAnnotationProperty_8 = this.compileAnnotationProperty(ff_3, im);
-                _builder.append(_compileAnnotationProperty_8, "\t");
+                CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(ff_3, im);
+                _builder.append(_compileAnnotationProperty_3, "\t");
               }
             }
             _builder.append(")");
@@ -2118,39 +1950,6 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_5 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_9 : _attributeAnnotations_5) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_9 = a_9.getType();
-        CharSequence _serialize_9 = im.serialize(_type_9);
-        _builder.append(_serialize_9, "\t");
-        {
-          EList<AnnotationProperty> _features_18 = a_9.getFeatures();
-          boolean _isEmpty_9 = _features_18.isEmpty();
-          boolean _not_9 = (!_isEmpty_9);
-          if (_not_9) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_19 = a_9.getFeatures();
-              boolean _hasElements_10 = false;
-              for(final AnnotationProperty af_5 : _features_19) {
-                if (!_hasElements_10) {
-                  _hasElements_10 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_9 = this.compileAnnotationProperty(af_5, im);
-                _builder.append(_compileAnnotationProperty_9, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public void setNull(String... attributes) {");
     _builder.newLine();
@@ -2170,39 +1969,6 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_6 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_10 : _attributeAnnotations_6) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_10 = a_10.getType();
-        CharSequence _serialize_10 = im.serialize(_type_10);
-        _builder.append(_serialize_10, "\t");
-        {
-          EList<AnnotationProperty> _features_20 = a_10.getFeatures();
-          boolean _isEmpty_10 = _features_20.isEmpty();
-          boolean _not_10 = (!_isEmpty_10);
-          if (_not_10) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_21 = a_10.getFeatures();
-              boolean _hasElements_11 = false;
-              for(final AnnotationProperty af_6 : _features_21) {
-                if (!_hasElements_11) {
-                  _hasElements_11 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_10 = this.compileAnnotationProperty(af_6, im);
-                _builder.append(_compileAnnotationProperty_10, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public ");
     String _name_3 = e.getName();
@@ -2219,39 +1985,6 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_7 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_11 : _attributeAnnotations_7) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_11 = a_11.getType();
-        CharSequence _serialize_11 = im.serialize(_type_11);
-        _builder.append(_serialize_11, "\t");
-        {
-          EList<AnnotationProperty> _features_22 = a_11.getFeatures();
-          boolean _isEmpty_11 = _features_22.isEmpty();
-          boolean _not_11 = (!_isEmpty_11);
-          if (_not_11) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_23 = a_11.getFeatures();
-              boolean _hasElements_12 = false;
-              for(final AnnotationProperty af_7 : _features_23) {
-                if (!_hasElements_12) {
-                  _hasElements_12 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_11 = this.compileAnnotationProperty(af_7, im);
-                _builder.append(_compileAnnotationProperty_11, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public void clearNull(String... attributes) {");
     _builder.newLine();
@@ -2271,39 +2004,6 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_8 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_12 : _attributeAnnotations_8) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_12 = a_12.getType();
-        CharSequence _serialize_12 = im.serialize(_type_12);
-        _builder.append(_serialize_12, "\t");
-        {
-          EList<AnnotationProperty> _features_24 = a_12.getFeatures();
-          boolean _isEmpty_12 = _features_24.isEmpty();
-          boolean _not_12 = (!_isEmpty_12);
-          if (_not_12) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_25 = a_12.getFeatures();
-              boolean _hasElements_13 = false;
-              for(final AnnotationProperty af_8 : _features_25) {
-                if (!_hasElements_13) {
-                  _hasElements_13 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_12 = this.compileAnnotationProperty(af_8, im);
-                _builder.append(_compileAnnotationProperty_12, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public ");
     String _name_4 = e.getName();
@@ -2320,39 +2020,6 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_9 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_13 : _attributeAnnotations_9) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_13 = a_13.getType();
-        CharSequence _serialize_13 = im.serialize(_type_13);
-        _builder.append(_serialize_13, "\t");
-        {
-          EList<AnnotationProperty> _features_26 = a_13.getFeatures();
-          boolean _isEmpty_13 = _features_26.isEmpty();
-          boolean _not_13 = (!_isEmpty_13);
-          if (_not_13) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_27 = a_13.getFeatures();
-              boolean _hasElements_14 = false;
-              for(final AnnotationProperty af_9 : _features_27) {
-                if (!_hasElements_14) {
-                  _hasElements_14 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_13 = this.compileAnnotationProperty(af_9, im);
-                _builder.append(_compileAnnotationProperty_13, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public Boolean isNull(String attrName) {");
     _builder.newLine();
@@ -2370,63 +2037,30 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      List<Annotation> _attributeAnnotations_10 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_14 : _attributeAnnotations_10) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_14 = a_14.getType();
-        CharSequence _serialize_14 = im.serialize(_type_14);
-        _builder.append(_serialize_14, "\t");
-        {
-          EList<AnnotationProperty> _features_28 = a_14.getFeatures();
-          boolean _isEmpty_14 = _features_28.isEmpty();
-          boolean _not_14 = (!_isEmpty_14);
-          if (_not_14) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_29 = a_14.getFeatures();
-              boolean _hasElements_15 = false;
-              for(final AnnotationProperty af_10 : _features_29) {
-                if (!_hasElements_15) {
-                  _hasElements_15 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_14 = this.compileAnnotationProperty(af_10, im);
-                _builder.append(_compileAnnotationProperty_14, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
       List<Annotation> _conflictAnnotations_4 = this._processorGeneratorUtils.conflictAnnotations(ae);
-      for(final Annotation a_15 : _conflictAnnotations_4) {
+      for(final Annotation a_4 : _conflictAnnotations_4) {
         _builder.append("\t");
         _builder.append("@");
-        JvmType _type_15 = a_15.getType();
-        CharSequence _serialize_15 = im.serialize(_type_15);
-        _builder.append(_serialize_15, "\t");
+        JvmType _type_4 = a_4.getType();
+        CharSequence _serialize_4 = im.serialize(_type_4);
+        _builder.append(_serialize_4, "\t");
         {
-          EList<AnnotationProperty> _features_30 = a_15.getFeatures();
-          boolean _isEmpty_15 = _features_30.isEmpty();
-          boolean _not_15 = (!_isEmpty_15);
-          if (_not_15) {
+          EList<AnnotationProperty> _features_8 = a_4.getFeatures();
+          boolean _isEmpty_4 = _features_8.isEmpty();
+          boolean _not_4 = (!_isEmpty_4);
+          if (_not_4) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_31 = a_15.getFeatures();
-              boolean _hasElements_16 = false;
-              for(final AnnotationProperty ff_4 : _features_31) {
-                if (!_hasElements_16) {
-                  _hasElements_16 = true;
+              EList<AnnotationProperty> _features_9 = a_4.getFeatures();
+              boolean _hasElements_5 = false;
+              for(final AnnotationProperty ff_4 : _features_9) {
+                if (!_hasElements_5) {
+                  _hasElements_5 = true;
                 } else {
                   _builder.appendImmediate(", ", "\t");
                 }
-                CharSequence _compileAnnotationProperty_15 = this.compileAnnotationProperty(ff_4, im);
-                _builder.append(_compileAnnotationProperty_15, "\t");
+                CharSequence _compileAnnotationProperty_4 = this.compileAnnotationProperty(ff_4, im);
+                _builder.append(_compileAnnotationProperty_4, "\t");
               }
             }
             _builder.append(")");
@@ -2451,39 +2085,6 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_11 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_16 : _attributeAnnotations_11) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_16 = a_16.getType();
-        CharSequence _serialize_16 = im.serialize(_type_16);
-        _builder.append(_serialize_16, "\t");
-        {
-          EList<AnnotationProperty> _features_32 = a_16.getFeatures();
-          boolean _isEmpty_16 = _features_32.isEmpty();
-          boolean _not_16 = (!_isEmpty_16);
-          if (_not_16) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_33 = a_16.getFeatures();
-              boolean _hasElements_17 = false;
-              for(final AnnotationProperty af_11 : _features_33) {
-                if (!_hasElements_17) {
-                  _hasElements_17 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_16 = this.compileAnnotationProperty(af_11, im);
-                _builder.append(_compileAnnotationProperty_16, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public Boolean isDef(String attrName) {");
     _builder.newLine();
@@ -2560,39 +2161,6 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_12 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_17 : _attributeAnnotations_12) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_17 = a_17.getType();
-        CharSequence _serialize_17 = im.serialize(_type_17);
-        _builder.append(_serialize_17, "\t");
-        {
-          EList<AnnotationProperty> _features_34 = a_17.getFeatures();
-          boolean _isEmpty_17 = _features_34.isEmpty();
-          boolean _not_17 = (!_isEmpty_17);
-          if (_not_17) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_35 = a_17.getFeatures();
-              boolean _hasElements_18 = false;
-              for(final AnnotationProperty af_12 : _features_35) {
-                if (!_hasElements_18) {
-                  _hasElements_18 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_17 = this.compileAnnotationProperty(af_12, im);
-                _builder.append(_compileAnnotationProperty_17, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public void clearAllNull() {");
     _builder.newLine();
@@ -2605,7 +2173,7 @@ public class ProcessorPojoGenerator {
     return _builder;
   }
   
-  public CharSequence compileEnumDef(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileEnumDef(final List<PojoProperty> l, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
@@ -2613,9 +2181,8 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.append("\t\t");
     {
-      EList<PojoProperty> _attrs = f.getAttrs();
       boolean _hasElements = false;
-      for(final PojoProperty f2 : _attrs) {
+      for(final PojoProperty f2 : l) {
         if (!_hasElements) {
           _hasElements = true;
         } else {
@@ -2632,7 +2199,7 @@ public class ProcessorPojoGenerator {
     return _builder;
   }
   
-  public CharSequence compileToInit(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileToInit(final List<PojoProperty> l, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
@@ -2640,9 +2207,8 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.append("\t\t");
     {
-      EList<PojoProperty> _attrs = f.getAttrs();
       boolean _hasElements = false;
-      for(final PojoProperty f2 : _attrs) {
+      for(final PojoProperty f2 : l) {
         if (!_hasElements) {
           _hasElements = true;
         } else {
@@ -2657,9 +2223,13 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private Set<String> initAssociations = new HashSet<String>();");
+    _builder.newLine();
+    _builder.newLine();
     {
-      List<Annotation> _attributeAnnotations = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a : _attributeAnnotations) {
+      List<Annotation> _conflictAnnotations = this._processorGeneratorUtils.conflictAnnotations(ae);
+      for(final Annotation a : _conflictAnnotations) {
         _builder.append("\t");
         _builder.append("@");
         JvmType _type = a.getType();
@@ -2674,84 +2244,14 @@ public class ProcessorPojoGenerator {
             {
               EList<AnnotationProperty> _features_1 = a.getFeatures();
               boolean _hasElements_1 = false;
-              for(final AnnotationProperty af : _features_1) {
+              for(final AnnotationProperty ff : _features_1) {
                 if (!_hasElements_1) {
                   _hasElements_1 = true;
                 } else {
                   _builder.appendImmediate(", ", "\t");
                 }
-                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
+                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(ff, im);
                 _builder.append(_compileAnnotationProperty, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t");
-    _builder.append("private Set<String> initAssociations = new HashSet<String>();");
-    _builder.newLine();
-    _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_1 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_1 : _attributeAnnotations_1) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_1 = a_1.getType();
-        CharSequence _serialize_1 = im.serialize(_type_1);
-        _builder.append(_serialize_1, "\t");
-        {
-          EList<AnnotationProperty> _features_2 = a_1.getFeatures();
-          boolean _isEmpty_1 = _features_2.isEmpty();
-          boolean _not_1 = (!_isEmpty_1);
-          if (_not_1) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_3 = a_1.getFeatures();
-              boolean _hasElements_2 = false;
-              for(final AnnotationProperty af_1 : _features_3) {
-                if (!_hasElements_2) {
-                  _hasElements_2 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, im);
-                _builder.append(_compileAnnotationProperty_1, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      List<Annotation> _conflictAnnotations = this._processorGeneratorUtils.conflictAnnotations(ae);
-      for(final Annotation a_2 : _conflictAnnotations) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_2 = a_2.getType();
-        CharSequence _serialize_2 = im.serialize(_type_2);
-        _builder.append(_serialize_2, "\t");
-        {
-          EList<AnnotationProperty> _features_4 = a_2.getFeatures();
-          boolean _isEmpty_2 = _features_4.isEmpty();
-          boolean _not_2 = (!_isEmpty_2);
-          if (_not_2) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_5 = a_2.getFeatures();
-              boolean _hasElements_3 = false;
-              for(final AnnotationProperty ff : _features_5) {
-                if (!_hasElements_3) {
-                  _hasElements_3 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff, im);
-                _builder.append(_compileAnnotationProperty_2, "\t");
               }
             }
             _builder.append(")");
@@ -2781,63 +2281,30 @@ public class ProcessorPojoGenerator {
     _builder.append("\t");
     _builder.newLine();
     {
-      List<Annotation> _attributeAnnotations_2 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_3 : _attributeAnnotations_2) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_3 = a_3.getType();
-        CharSequence _serialize_3 = im.serialize(_type_3);
-        _builder.append(_serialize_3, "\t");
-        {
-          EList<AnnotationProperty> _features_6 = a_3.getFeatures();
-          boolean _isEmpty_3 = _features_6.isEmpty();
-          boolean _not_3 = (!_isEmpty_3);
-          if (_not_3) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_7 = a_3.getFeatures();
-              boolean _hasElements_4 = false;
-              for(final AnnotationProperty af_2 : _features_7) {
-                if (!_hasElements_4) {
-                  _hasElements_4 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(af_2, im);
-                _builder.append(_compileAnnotationProperty_3, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
       List<Annotation> _conflictAnnotations_1 = this._processorGeneratorUtils.conflictAnnotations(ae);
-      for(final Annotation a_4 : _conflictAnnotations_1) {
+      for(final Annotation a_1 : _conflictAnnotations_1) {
         _builder.append("\t");
         _builder.append("@");
-        JvmType _type_4 = a_4.getType();
-        CharSequence _serialize_4 = im.serialize(_type_4);
-        _builder.append(_serialize_4, "\t");
+        JvmType _type_1 = a_1.getType();
+        CharSequence _serialize_1 = im.serialize(_type_1);
+        _builder.append(_serialize_1, "\t");
         {
-          EList<AnnotationProperty> _features_8 = a_4.getFeatures();
-          boolean _isEmpty_4 = _features_8.isEmpty();
-          boolean _not_4 = (!_isEmpty_4);
-          if (_not_4) {
+          EList<AnnotationProperty> _features_2 = a_1.getFeatures();
+          boolean _isEmpty_1 = _features_2.isEmpty();
+          boolean _not_1 = (!_isEmpty_1);
+          if (_not_1) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_9 = a_4.getFeatures();
-              boolean _hasElements_5 = false;
-              for(final AnnotationProperty ff_1 : _features_9) {
-                if (!_hasElements_5) {
-                  _hasElements_5 = true;
+              EList<AnnotationProperty> _features_3 = a_1.getFeatures();
+              boolean _hasElements_2 = false;
+              for(final AnnotationProperty ff_1 : _features_3) {
+                if (!_hasElements_2) {
+                  _hasElements_2 = true;
                 } else {
                   _builder.appendImmediate(", ", "\t");
                 }
-                CharSequence _compileAnnotationProperty_4 = this.compileAnnotationProperty(ff_1, im);
-                _builder.append(_compileAnnotationProperty_4, "\t");
+                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(ff_1, im);
+                _builder.append(_compileAnnotationProperty_1, "\t");
               }
             }
             _builder.append(")");
@@ -2863,63 +2330,30 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      List<Annotation> _attributeAnnotations_3 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_5 : _attributeAnnotations_3) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_5 = a_5.getType();
-        CharSequence _serialize_5 = im.serialize(_type_5);
-        _builder.append(_serialize_5, "\t");
-        {
-          EList<AnnotationProperty> _features_10 = a_5.getFeatures();
-          boolean _isEmpty_5 = _features_10.isEmpty();
-          boolean _not_5 = (!_isEmpty_5);
-          if (_not_5) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_11 = a_5.getFeatures();
-              boolean _hasElements_6 = false;
-              for(final AnnotationProperty af_3 : _features_11) {
-                if (!_hasElements_6) {
-                  _hasElements_6 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_5 = this.compileAnnotationProperty(af_3, im);
-                _builder.append(_compileAnnotationProperty_5, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
       List<Annotation> _conflictAnnotations_2 = this._processorGeneratorUtils.conflictAnnotations(ae);
-      for(final Annotation a_6 : _conflictAnnotations_2) {
+      for(final Annotation a_2 : _conflictAnnotations_2) {
         _builder.append("\t");
         _builder.append("@");
-        JvmType _type_6 = a_6.getType();
-        CharSequence _serialize_6 = im.serialize(_type_6);
-        _builder.append(_serialize_6, "\t");
+        JvmType _type_2 = a_2.getType();
+        CharSequence _serialize_2 = im.serialize(_type_2);
+        _builder.append(_serialize_2, "\t");
         {
-          EList<AnnotationProperty> _features_12 = a_6.getFeatures();
-          boolean _isEmpty_6 = _features_12.isEmpty();
-          boolean _not_6 = (!_isEmpty_6);
-          if (_not_6) {
+          EList<AnnotationProperty> _features_4 = a_2.getFeatures();
+          boolean _isEmpty_2 = _features_4.isEmpty();
+          boolean _not_2 = (!_isEmpty_2);
+          if (_not_2) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_13 = a_6.getFeatures();
-              boolean _hasElements_7 = false;
-              for(final AnnotationProperty ff_2 : _features_13) {
-                if (!_hasElements_7) {
-                  _hasElements_7 = true;
+              EList<AnnotationProperty> _features_5 = a_2.getFeatures();
+              boolean _hasElements_3 = false;
+              for(final AnnotationProperty ff_2 : _features_5) {
+                if (!_hasElements_3) {
+                  _hasElements_3 = true;
                 } else {
                   _builder.appendImmediate(", ", "\t");
                 }
-                CharSequence _compileAnnotationProperty_6 = this.compileAnnotationProperty(ff_2, im);
-                _builder.append(_compileAnnotationProperty_6, "\t");
+                CharSequence _compileAnnotationProperty_2 = this.compileAnnotationProperty(ff_2, im);
+                _builder.append(_compileAnnotationProperty_2, "\t");
               }
             }
             _builder.append(")");
@@ -2948,63 +2382,30 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      List<Annotation> _attributeAnnotations_4 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_7 : _attributeAnnotations_4) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_7 = a_7.getType();
-        CharSequence _serialize_7 = im.serialize(_type_7);
-        _builder.append(_serialize_7, "\t");
-        {
-          EList<AnnotationProperty> _features_14 = a_7.getFeatures();
-          boolean _isEmpty_7 = _features_14.isEmpty();
-          boolean _not_7 = (!_isEmpty_7);
-          if (_not_7) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_15 = a_7.getFeatures();
-              boolean _hasElements_8 = false;
-              for(final AnnotationProperty af_4 : _features_15) {
-                if (!_hasElements_8) {
-                  _hasElements_8 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_7 = this.compileAnnotationProperty(af_4, im);
-                _builder.append(_compileAnnotationProperty_7, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
       List<Annotation> _conflictAnnotations_3 = this._processorGeneratorUtils.conflictAnnotations(ae);
-      for(final Annotation a_8 : _conflictAnnotations_3) {
+      for(final Annotation a_3 : _conflictAnnotations_3) {
         _builder.append("\t");
         _builder.append("@");
-        JvmType _type_8 = a_8.getType();
-        CharSequence _serialize_8 = im.serialize(_type_8);
-        _builder.append(_serialize_8, "\t");
+        JvmType _type_3 = a_3.getType();
+        CharSequence _serialize_3 = im.serialize(_type_3);
+        _builder.append(_serialize_3, "\t");
         {
-          EList<AnnotationProperty> _features_16 = a_8.getFeatures();
-          boolean _isEmpty_8 = _features_16.isEmpty();
-          boolean _not_8 = (!_isEmpty_8);
-          if (_not_8) {
+          EList<AnnotationProperty> _features_6 = a_3.getFeatures();
+          boolean _isEmpty_3 = _features_6.isEmpty();
+          boolean _not_3 = (!_isEmpty_3);
+          if (_not_3) {
             _builder.append("(");
             {
-              EList<AnnotationProperty> _features_17 = a_8.getFeatures();
-              boolean _hasElements_9 = false;
-              for(final AnnotationProperty ff_3 : _features_17) {
-                if (!_hasElements_9) {
-                  _hasElements_9 = true;
+              EList<AnnotationProperty> _features_7 = a_3.getFeatures();
+              boolean _hasElements_4 = false;
+              for(final AnnotationProperty ff_3 : _features_7) {
+                if (!_hasElements_4) {
+                  _hasElements_4 = true;
                 } else {
                   _builder.appendImmediate(", ", "\t");
                 }
-                CharSequence _compileAnnotationProperty_8 = this.compileAnnotationProperty(ff_3, im);
-                _builder.append(_compileAnnotationProperty_8, "\t");
+                CharSequence _compileAnnotationProperty_3 = this.compileAnnotationProperty(ff_3, im);
+                _builder.append(_compileAnnotationProperty_3, "\t");
               }
             }
             _builder.append(")");
@@ -3029,39 +2430,6 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_5 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_9 : _attributeAnnotations_5) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_9 = a_9.getType();
-        CharSequence _serialize_9 = im.serialize(_type_9);
-        _builder.append(_serialize_9, "\t");
-        {
-          EList<AnnotationProperty> _features_18 = a_9.getFeatures();
-          boolean _isEmpty_9 = _features_18.isEmpty();
-          boolean _not_9 = (!_isEmpty_9);
-          if (_not_9) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_19 = a_9.getFeatures();
-              boolean _hasElements_10 = false;
-              for(final AnnotationProperty af_5 : _features_19) {
-                if (!_hasElements_10) {
-                  _hasElements_10 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_9 = this.compileAnnotationProperty(af_5, im);
-                _builder.append(_compileAnnotationProperty_9, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public void setInit(String... associations) {");
     _builder.newLine();
@@ -3081,39 +2449,6 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_6 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_10 : _attributeAnnotations_6) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_10 = a_10.getType();
-        CharSequence _serialize_10 = im.serialize(_type_10);
-        _builder.append(_serialize_10, "\t");
-        {
-          EList<AnnotationProperty> _features_20 = a_10.getFeatures();
-          boolean _isEmpty_10 = _features_20.isEmpty();
-          boolean _not_10 = (!_isEmpty_10);
-          if (_not_10) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_21 = a_10.getFeatures();
-              boolean _hasElements_11 = false;
-              for(final AnnotationProperty af_6 : _features_21) {
-                if (!_hasElements_11) {
-                  _hasElements_11 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_10 = this.compileAnnotationProperty(af_6, im);
-                _builder.append(_compileAnnotationProperty_10, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public ");
     String _name_3 = e.getName();
@@ -3130,39 +2465,6 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_7 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_11 : _attributeAnnotations_7) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_11 = a_11.getType();
-        CharSequence _serialize_11 = im.serialize(_type_11);
-        _builder.append(_serialize_11, "\t");
-        {
-          EList<AnnotationProperty> _features_22 = a_11.getFeatures();
-          boolean _isEmpty_11 = _features_22.isEmpty();
-          boolean _not_11 = (!_isEmpty_11);
-          if (_not_11) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_23 = a_11.getFeatures();
-              boolean _hasElements_12 = false;
-              for(final AnnotationProperty af_7 : _features_23) {
-                if (!_hasElements_12) {
-                  _hasElements_12 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_11 = this.compileAnnotationProperty(af_7, im);
-                _builder.append(_compileAnnotationProperty_11, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public void clearInit(String... associations) {");
     _builder.newLine();
@@ -3182,39 +2484,6 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_8 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_12 : _attributeAnnotations_8) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_12 = a_12.getType();
-        CharSequence _serialize_12 = im.serialize(_type_12);
-        _builder.append(_serialize_12, "\t");
-        {
-          EList<AnnotationProperty> _features_24 = a_12.getFeatures();
-          boolean _isEmpty_12 = _features_24.isEmpty();
-          boolean _not_12 = (!_isEmpty_12);
-          if (_not_12) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_25 = a_12.getFeatures();
-              boolean _hasElements_13 = false;
-              for(final AnnotationProperty af_8 : _features_25) {
-                if (!_hasElements_13) {
-                  _hasElements_13 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_12 = this.compileAnnotationProperty(af_8, im);
-                _builder.append(_compileAnnotationProperty_12, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public ");
     String _name_4 = e.getName();
@@ -3231,39 +2500,6 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_9 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_13 : _attributeAnnotations_9) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_13 = a_13.getType();
-        CharSequence _serialize_13 = im.serialize(_type_13);
-        _builder.append(_serialize_13, "\t");
-        {
-          EList<AnnotationProperty> _features_26 = a_13.getFeatures();
-          boolean _isEmpty_13 = _features_26.isEmpty();
-          boolean _not_13 = (!_isEmpty_13);
-          if (_not_13) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_27 = a_13.getFeatures();
-              boolean _hasElements_14 = false;
-              for(final AnnotationProperty af_9 : _features_27) {
-                if (!_hasElements_14) {
-                  _hasElements_14 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_13 = this.compileAnnotationProperty(af_9, im);
-                _builder.append(_compileAnnotationProperty_13, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public Boolean toInit(String association) {");
     _builder.newLine();
@@ -3280,39 +2516,6 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_10 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_14 : _attributeAnnotations_10) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_14 = a_14.getType();
-        CharSequence _serialize_14 = im.serialize(_type_14);
-        _builder.append(_serialize_14, "\t");
-        {
-          EList<AnnotationProperty> _features_28 = a_14.getFeatures();
-          boolean _isEmpty_14 = _features_28.isEmpty();
-          boolean _not_14 = (!_isEmpty_14);
-          if (_not_14) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_29 = a_14.getFeatures();
-              boolean _hasElements_15 = false;
-              for(final AnnotationProperty af_10 : _features_29) {
-                if (!_hasElements_15) {
-                  _hasElements_15 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_14 = this.compileAnnotationProperty(af_10, im);
-                _builder.append(_compileAnnotationProperty_14, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public void clearAllInit() {");
     _builder.newLine();
@@ -3325,7 +2528,7 @@ public class ProcessorPojoGenerator {
     return _builder;
   }
   
-  public CharSequence compileEnumInit(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileEnumInit(final List<PojoProperty> l, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
@@ -3333,9 +2536,8 @@ public class ProcessorPojoGenerator {
     _builder.newLine();
     _builder.append("\t\t");
     {
-      EList<PojoProperty> _attrs = f.getAttrs();
       boolean _hasElements = false;
-      for(final PojoProperty f2 : _attrs) {
+      for(final PojoProperty f2 : l) {
         if (!_hasElements) {
           _hasElements = true;
         } else {
@@ -3914,30 +3116,6 @@ public class ProcessorPojoGenerator {
     };
     Iterable<PojoAnnotatedProperty> _filter = IterableExtensions.<PojoAnnotatedProperty>filter(_features, _function);
     return IterableExtensions.<PojoAnnotatedProperty>toList(_filter);
-  }
-  
-  public PojoAnnotatedProperty hasIsDef(final PojoEntity e) {
-    EList<PojoAnnotatedProperty> _features = e.getFeatures();
-    final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
-      public Boolean apply(final PojoAnnotatedProperty f) {
-        PojoProperty _feature = f.getFeature();
-        String _name = _feature.getName();
-        return Boolean.valueOf(Objects.equal(_name, "isDef"));
-      }
-    };
-    return IterableExtensions.<PojoAnnotatedProperty>findFirst(_features, _function);
-  }
-  
-  public PojoAnnotatedProperty hasToInit(final PojoEntity e) {
-    EList<PojoAnnotatedProperty> _features = e.getFeatures();
-    final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
-      public Boolean apply(final PojoAnnotatedProperty f) {
-        PojoProperty _feature = f.getFeature();
-        String _name = _feature.getName();
-        return Boolean.valueOf(Objects.equal(_name, "toInit"));
-      }
-    };
-    return IterableExtensions.<PojoAnnotatedProperty>findFirst(_features, _function);
   }
   
   public boolean isAttribute(final PojoProperty f) {

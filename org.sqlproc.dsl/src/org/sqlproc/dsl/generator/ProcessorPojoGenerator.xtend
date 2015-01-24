@@ -125,7 +125,7 @@ class ProcessorPojoGenerator {
 	«IF !e.listFeatures.empty»
 	import java.util.ArrayList;
 	«ENDIF»
-	«IF e.hasIsDef != null || e.hasToInit != null»
+	«IF e.hasIsDef || e.hasToInit»
 	import java.util.Set;
 	import java.util.HashSet;
 	import java.lang.reflect.InvocationTargetException;
@@ -181,12 +181,12 @@ class ProcessorPojoGenerator {
 	«FOR f:e.features.filter(x| isAttribute(x.feature))»
 		«f.feature.compile(f, im, e, ae, getOperatorsSuffix(e))»
 	«ENDFOR»
+	«val toInit = e.toInitFeatures»«IF !toInit.empty»«compileToInit(toInit, im, e, ae)»«ENDIF»
+	«val enumInit = e.enumInitFeatures»«IF !enumInit.empty»«compileEnumInit(enumInit, im, e, ae)»«ENDIF»
+	«val isDef = e.isDefFeatures»«IF !isDef.empty»«compileIsDef(isDef, im, e, ae)»«ENDIF»
+	«val enumDef = e.enumDefFeatures»«IF !enumDef.empty»«compileEnumDef(enumDef, im, e, ae)»«ENDIF»
 	«FOR f:e.features.filter(x| !isAttribute(x.feature))»«IF f.feature.name.equalsIgnoreCase("hashCode")»«f.feature.compileHashCode(f, im, e, ae)»
 	«ELSEIF f.feature.name.equalsIgnoreCase("equals")»«f.feature.compileEquals(f, im, e, ae)»
-	«ELSEIF f.feature.name.equalsIgnoreCase("toInit")»«f.feature.compileToInit(f, im, e, ae)»
-	«ELSEIF f.feature.name.equalsIgnoreCase("enumInit")»«f.feature.compileEnumInit(f, im, e, ae)»
-	«ELSEIF f.feature.name.equalsIgnoreCase("isDef")»«f.feature.compileIsDef(f, im, e, ae)»
-	«ELSEIF f.feature.name.equalsIgnoreCase("enumDef")»«f.feature.compileEnumDef(f, im, e, ae)»
 	«ELSEIF f.feature.name.equalsIgnoreCase("toString")»«f.feature.compileToString(f, im, e, ae)»«ENDIF»«ENDFOR»«IF hasOperators(e) && getOperatorsSuffix(e) == null»
 	«compileOperators(im, e, ae)»«ENDIF»
 	}
@@ -311,20 +311,14 @@ class ProcessorPojoGenerator {
 		}
 	'''
 	
-	def compileIsDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
+	def compileIsDef(List<PojoProperty> l, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 	
 		public enum Attribute {
-			«FOR f2:f.attrs SEPARATOR ", "»«f2.name»«ENDFOR»
+			«FOR f2:l SEPARATOR ", "»«f2.name»«ENDFOR»
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		private Set<String> nullValues = new HashSet<String>();
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		«FOR a:ae.conflictAnnotations»
 		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
@@ -335,9 +329,6 @@ class ProcessorPojoGenerator {
 				nullValues.add(attribute.name());
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		«FOR a:ae.conflictAnnotations»
 		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
@@ -346,9 +337,6 @@ class ProcessorPojoGenerator {
 			return this;
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		«FOR a:ae.conflictAnnotations»
 		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
@@ -359,9 +347,6 @@ class ProcessorPojoGenerator {
 				nullValues.remove(attribute.name());
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		«FOR a:ae.conflictAnnotations»
 		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
@@ -370,9 +355,6 @@ class ProcessorPojoGenerator {
 			return this;
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public void setNull(String... attributes) {
 			if (attributes == null)
 				throw new IllegalArgumentException();
@@ -380,17 +362,11 @@ class ProcessorPojoGenerator {
 				nullValues.add(attribute);
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public «e.name» _setNull(String... attributes) {
 			setNull(attributes);
 			return this;
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public void clearNull(String... attributes) {
 			if (attributes == null)
 				throw new IllegalArgumentException();
@@ -398,26 +374,17 @@ class ProcessorPojoGenerator {
 				nullValues.remove(attribute);
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public «e.name» _clearNull(String... attributes) {
 			clearNull(attributes);
 			return this;
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public Boolean isNull(String attrName) {
 			if (attrName == null)
 				throw new IllegalArgumentException();
 			return nullValues.contains(attrName);
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		«FOR a:ae.conflictAnnotations»
 		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
@@ -427,9 +394,6 @@ class ProcessorPojoGenerator {
 			return nullValues.contains(attribute.name());
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public Boolean isDef(String attrName) {
 			if (attrName == null)
 				throw new IllegalArgumentException();
@@ -456,35 +420,26 @@ class ProcessorPojoGenerator {
 			return false;
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public void clearAllNull() {
 			nullValues = new HashSet<String>();
 		}
 	'''
 	
-	def compileEnumDef(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
+	def compileEnumDef(List<PojoProperty> l, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 	
 		public enum Attribute {
-			«FOR f2:f.attrs SEPARATOR ", "»«f2.name»«ENDFOR»
+			«FOR f2:l SEPARATOR ", "»«f2.name»«ENDFOR»
 		}
 	'''
 	
-	def compileToInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
+	def compileToInit(List<PojoProperty> l, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 	
 		public enum Association {
-			«FOR f2:f.attrs SEPARATOR ", "»«f2.name»«ENDFOR»
+			«FOR f2:l SEPARATOR ", "»«f2.name»«ENDFOR»
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		private Set<String> initAssociations = new HashSet<String>();
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		«FOR a:ae.conflictAnnotations»
 		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
@@ -495,9 +450,6 @@ class ProcessorPojoGenerator {
 				initAssociations.add(association.name());
 		}
 		
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		«FOR a:ae.conflictAnnotations»
 		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
@@ -506,9 +458,6 @@ class ProcessorPojoGenerator {
 			return this;
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		«FOR a:ae.conflictAnnotations»
 		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
@@ -519,9 +468,6 @@ class ProcessorPojoGenerator {
 				initAssociations.remove(association.name());
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		«FOR a:ae.conflictAnnotations»
 		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR ff:a.features SEPARATOR ", "»«compileAnnotationProperty(ff, im)»«ENDFOR»)«ENDIF»
 		«ENDFOR»
@@ -530,9 +476,6 @@ class ProcessorPojoGenerator {
 			return this;
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public void setInit(String... associations) {
 			if (associations == null)
 				throw new IllegalArgumentException();
@@ -540,17 +483,11 @@ class ProcessorPojoGenerator {
 				initAssociations.add(association);
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public «e.name» _setInit(String... associations) {
 			setInit(associations);
 			return this;
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public void clearInit(String... associations) {
 			if (associations == null)
 				throw new IllegalArgumentException();
@@ -558,35 +495,26 @@ class ProcessorPojoGenerator {
 				initAssociations.remove(association);
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public «e.name» _clearInit(String... associations) {
 			clearInit(associations);
 			return this;
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public Boolean toInit(String association) {
 			if (association == null)
 				throw new IllegalArgumentException();
 			return initAssociations.contains(association);
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public void clearAllInit() {
 			initAssociations = new HashSet<String>();
 		}
 	'''
 	
-	def compileEnumInit(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
+	def compileEnumInit(List<PojoProperty> l, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 	
 		public enum Association {
-			«FOR f2:f.attrs SEPARATOR ", "»«f2.name»«ENDFOR»
+			«FOR f2:l SEPARATOR ", "»«f2.name»«ENDFOR»
 		}
 	'''
 	
@@ -732,14 +660,6 @@ class ProcessorPojoGenerator {
 	
 	def requiredFeatures1(PojoEntity e) {
 		return e.features.filter(f|isRequired(f.feature)).toList
-	}
-	
-	def hasIsDef(PojoEntity e) {
-		return e.features.findFirst(f|f.feature.name == "isDef")
-	}
-	
-	def hasToInit(PojoEntity e) {
-		return e.features.findFirst(f|f.feature.name == "toInit")
 	}
 	
 	def isAttribute(PojoProperty f) {

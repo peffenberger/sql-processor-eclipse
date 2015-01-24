@@ -119,9 +119,13 @@ import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirective;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumDef;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumInit;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIsDef;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectivePrimaryKey;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveToInit;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveVersion;
 import org.sqlproc.dsl.processorDsl.PojoType;
@@ -959,6 +963,34 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * @generated
    */
   private EClass pojoPropertyDirectiveCreateColEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pojoPropertyDirectiveToInitEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pojoPropertyDirectiveEnumInitEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pojoPropertyDirectiveIsDefEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pojoPropertyDirectiveEnumDefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -5368,6 +5400,46 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getPojoPropertyDirectiveToInit()
+  {
+    return pojoPropertyDirectiveToInitEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPojoPropertyDirectiveEnumInit()
+  {
+    return pojoPropertyDirectiveEnumInitEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPojoPropertyDirectiveIsDef()
+  {
+    return pojoPropertyDirectiveIsDefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPojoPropertyDirectiveEnumDef()
+  {
+    return pojoPropertyDirectiveEnumDefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getEnumPropertyDirectiveValues()
   {
     return enumPropertyDirectiveValuesEClass;
@@ -6125,6 +6197,14 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     createEAttribute(pojoPropertyDirectiveCreateColEClass, POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN1);
     createEAttribute(pojoPropertyDirectiveCreateColEClass, POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN2);
 
+    pojoPropertyDirectiveToInitEClass = createEClass(POJO_PROPERTY_DIRECTIVE_TO_INIT);
+
+    pojoPropertyDirectiveEnumInitEClass = createEClass(POJO_PROPERTY_DIRECTIVE_ENUM_INIT);
+
+    pojoPropertyDirectiveIsDefEClass = createEClass(POJO_PROPERTY_DIRECTIVE_IS_DEF);
+
+    pojoPropertyDirectiveEnumDefEClass = createEClass(POJO_PROPERTY_DIRECTIVE_ENUM_DEF);
+
     enumPropertyDirectiveValuesEClass = createEClass(ENUM_PROPERTY_DIRECTIVE_VALUES);
     createEReference(enumPropertyDirectiveValuesEClass, ENUM_PROPERTY_DIRECTIVE_VALUES__VALUES);
 
@@ -6218,6 +6298,10 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     pojoPropertyDirectiveVersionEClass.getESuperTypes().add(this.getPojoPropertyDirective());
     pojoPropertyDirectiveUpdateColEClass.getESuperTypes().add(this.getPojoPropertyDirective());
     pojoPropertyDirectiveCreateColEClass.getESuperTypes().add(this.getPojoPropertyDirective());
+    pojoPropertyDirectiveToInitEClass.getESuperTypes().add(this.getPojoPropertyDirective());
+    pojoPropertyDirectiveEnumInitEClass.getESuperTypes().add(this.getPojoPropertyDirective());
+    pojoPropertyDirectiveIsDefEClass.getESuperTypes().add(this.getPojoPropertyDirective());
+    pojoPropertyDirectiveEnumDefEClass.getESuperTypes().add(this.getPojoPropertyDirective());
     enumPropertyDirectiveValuesEClass.getESuperTypes().add(this.getEnumPropertyDirective());
     functionCallQueryEClass.getESuperTypes().add(this.getFunProcType());
     procedureCallQueryEClass.getESuperTypes().add(this.getFunProcType());
@@ -6772,6 +6856,14 @@ public class ProcessorDslPackageImpl extends EPackageImpl implements ProcessorDs
     initEClass(pojoPropertyDirectiveCreateColEClass, PojoPropertyDirectiveCreateCol.class, "PojoPropertyDirectiveCreateCol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPojoPropertyDirectiveCreateCol_CreateColumn1(), ecorePackage.getEString(), "createColumn1", null, 0, 1, PojoPropertyDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojoPropertyDirectiveCreateCol_CreateColumn2(), ecorePackage.getEString(), "createColumn2", null, 0, 1, PojoPropertyDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(pojoPropertyDirectiveToInitEClass, PojoPropertyDirectiveToInit.class, "PojoPropertyDirectiveToInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(pojoPropertyDirectiveEnumInitEClass, PojoPropertyDirectiveEnumInit.class, "PojoPropertyDirectiveEnumInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(pojoPropertyDirectiveIsDefEClass, PojoPropertyDirectiveIsDef.class, "PojoPropertyDirectiveIsDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(pojoPropertyDirectiveEnumDefEClass, PojoPropertyDirectiveEnumDef.class, "PojoPropertyDirectiveEnumDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(enumPropertyDirectiveValuesEClass, EnumPropertyDirectiveValues.class, "EnumPropertyDirectiveValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEnumPropertyDirectiveValues_Values(), this.getEnumPropertyValue(), null, "values", null, 0, -1, EnumPropertyDirectiveValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

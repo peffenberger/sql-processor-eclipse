@@ -428,6 +428,10 @@ public class ProcessorDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoPropertyDirectiveAccess().getGroup_4(), "rule__PojoPropertyDirective__Group_4__0");
 					put(grammarAccess.getPojoPropertyDirectiveAccess().getGroup_5(), "rule__PojoPropertyDirective__Group_5__0");
 					put(grammarAccess.getPojoPropertyDirectiveAccess().getGroup_6(), "rule__PojoPropertyDirective__Group_6__0");
+					put(grammarAccess.getPojoPropertyDirectiveAccess().getGroup_7(), "rule__PojoPropertyDirective__Group_7__0");
+					put(grammarAccess.getPojoPropertyDirectiveAccess().getGroup_8(), "rule__PojoPropertyDirective__Group_8__0");
+					put(grammarAccess.getPojoPropertyDirectiveAccess().getGroup_9(), "rule__PojoPropertyDirective__Group_9__0");
+					put(grammarAccess.getPojoPropertyDirectiveAccess().getGroup_10(), "rule__PojoPropertyDirective__Group_10__0");
 					put(grammarAccess.getPojoPropertyAccess().getGroup(), "rule__PojoProperty__Group__0");
 					put(grammarAccess.getPojoPropertyAccess().getGroup_2_0(), "rule__PojoProperty__Group_2_0__0");
 					put(grammarAccess.getPojoPropertyAccess().getGroup_2_0_2(), "rule__PojoProperty__Group_2_0_2__0");

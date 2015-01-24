@@ -117,9 +117,13 @@ import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirective;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumDef;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumInit;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIsDef;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectivePrimaryKey;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveToInit;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveVersion;
 import org.sqlproc.dsl.processorDsl.PojoType;
@@ -779,6 +783,26 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
       public Adapter casePojoPropertyDirectiveCreateCol(PojoPropertyDirectiveCreateCol object)
       {
         return createPojoPropertyDirectiveCreateColAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectiveToInit(PojoPropertyDirectiveToInit object)
+      {
+        return createPojoPropertyDirectiveToInitAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectiveEnumInit(PojoPropertyDirectiveEnumInit object)
+      {
+        return createPojoPropertyDirectiveEnumInitAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectiveIsDef(PojoPropertyDirectiveIsDef object)
+      {
+        return createPojoPropertyDirectiveIsDefAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectiveEnumDef(PojoPropertyDirectiveEnumDef object)
+      {
+        return createPojoPropertyDirectiveEnumDefAdapter();
       }
       @Override
       public Adapter caseEnumPropertyDirectiveValues(EnumPropertyDirectiveValues object)
@@ -2593,6 +2617,66 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPojoPropertyDirectiveCreateColAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveToInit <em>Pojo Property Directive To Init</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveToInit
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectiveToInitAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumInit <em>Pojo Property Directive Enum Init</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumInit
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectiveEnumInitAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIsDef <em>Pojo Property Directive Is Def</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIsDef
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectiveIsDefAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumDef <em>Pojo Property Directive Enum Def</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumDef
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectiveEnumDefAdapter()
   {
     return null;
   }

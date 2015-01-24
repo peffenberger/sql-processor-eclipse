@@ -679,6 +679,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="createColumn1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="createColumn2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveToInit" eSuperTypes="#//PojoPropertyDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveEnumInit" eSuperTypes="#//PojoPropertyDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveIsDef" eSuperTypes="#//PojoPropertyDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveEnumDef" eSuperTypes="#//PojoPropertyDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="EnumPropertyDirectiveValues" eSuperTypes="#//EnumPropertyDirective">
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
         eType="#//EnumPropertyValue" containment="true"/>

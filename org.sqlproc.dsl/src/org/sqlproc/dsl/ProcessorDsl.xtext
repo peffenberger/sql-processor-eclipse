@@ -405,7 +405,7 @@ ImplementsExtendsDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 
 Implements hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=ImplementsExtendsDirective*
-	'implements' COLON implements = [jvmTypes::JvmType|QualifiedName] /*(generics ?= '<<>>')?*/ ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
+	'implements' COLON implements = [jvmTypes::JvmType|QualifiedName] ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
 
 Extends hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=ImplementsExtendsDirective*
@@ -425,10 +425,6 @@ PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {PojoDirectiveDiscriminator} '#InheritanceChild' LPAREN discriminator=(IDENT|NUMBER) RPAREN
 //	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
 //	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
-//	| {PojoDirectiveToInit} '#ToInit' LPAREN proplist=DirectiveProperties RPAREN
-//	| {PojoDirectiveEnumInit} '#EnumInit' LPAREN proplist=DirectiveProperties RPAREN
-//	| {PojoDirectiveIsDef} '#IsDef' LPAREN proplist=DirectiveProperties RPAREN
-//	| {PojoDirectiveEnumDef} '#EnumDef' LPAREN proplist=DirectiveProperties RPAREN
 ;
 
 PojoEntityModifier2: ('extends' superType=[PojoEntity|IDENT]);
@@ -450,6 +446,10 @@ PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {PojoPropertyDirectiveVersion} '#Version'
 	| {PojoPropertyDirectiveUpdateCol} '#UpdateCol' LPAREN updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN
 	| {PojoPropertyDirectiveCreateCol} '#CreateCol' LPAREN createColumn1=IDENT COMMA createColumn2=IDENT RPAREN
+	| {PojoPropertyDirectiveToInit} '#ToInit'
+	| {PojoPropertyDirectiveEnumInit} '#EnumInit'
+	| {PojoPropertyDirectiveIsDef} '#IsDef'
+	| {PojoPropertyDirectiveEnumDef} '#EnumDef'
 ;
 
 PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):

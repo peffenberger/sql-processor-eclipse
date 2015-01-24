@@ -118,9 +118,13 @@ import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirective;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumDef;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumInit;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIsDef;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectivePrimaryKey;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveToInit;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveVersion;
 import org.sqlproc.dsl.processorDsl.PojoType;
@@ -307,6 +311,10 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_VERSION: return createPojoPropertyDirectiveVersion();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_UPDATE_COL: return createPojoPropertyDirectiveUpdateCol();
       case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_CREATE_COL: return createPojoPropertyDirectiveCreateCol();
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_TO_INIT: return createPojoPropertyDirectiveToInit();
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_ENUM_INIT: return createPojoPropertyDirectiveEnumInit();
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_IS_DEF: return createPojoPropertyDirectiveIsDef();
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_ENUM_DEF: return createPojoPropertyDirectiveEnumDef();
       case ProcessorDslPackage.ENUM_PROPERTY_DIRECTIVE_VALUES: return createEnumPropertyDirectiveValues();
       case ProcessorDslPackage.FUNCTION_CALL_QUERY: return createFunctionCallQuery();
       case ProcessorDslPackage.PROCEDURE_CALL_QUERY: return createProcedureCallQuery();
@@ -1597,6 +1605,50 @@ public class ProcessorDslFactoryImpl extends EFactoryImpl implements ProcessorDs
   {
     PojoPropertyDirectiveCreateColImpl pojoPropertyDirectiveCreateCol = new PojoPropertyDirectiveCreateColImpl();
     return pojoPropertyDirectiveCreateCol;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoPropertyDirectiveToInit createPojoPropertyDirectiveToInit()
+  {
+    PojoPropertyDirectiveToInitImpl pojoPropertyDirectiveToInit = new PojoPropertyDirectiveToInitImpl();
+    return pojoPropertyDirectiveToInit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoPropertyDirectiveEnumInit createPojoPropertyDirectiveEnumInit()
+  {
+    PojoPropertyDirectiveEnumInitImpl pojoPropertyDirectiveEnumInit = new PojoPropertyDirectiveEnumInitImpl();
+    return pojoPropertyDirectiveEnumInit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoPropertyDirectiveIsDef createPojoPropertyDirectiveIsDef()
+  {
+    PojoPropertyDirectiveIsDefImpl pojoPropertyDirectiveIsDef = new PojoPropertyDirectiveIsDefImpl();
+    return pojoPropertyDirectiveIsDef;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoPropertyDirectiveEnumDef createPojoPropertyDirectiveEnumDef()
+  {
+    PojoPropertyDirectiveEnumDefImpl pojoPropertyDirectiveEnumDef = new PojoPropertyDirectiveEnumDefImpl();
+    return pojoPropertyDirectiveEnumDef;
   }
 
   /**

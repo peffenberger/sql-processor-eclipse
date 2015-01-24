@@ -8362,14 +8362,14 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExceptDaosPojoDaoIDENTTerminalRuleCall_7_1_0_1 = (RuleCall)cExceptDaosPojoDaoCrossReference_7_1_0.eContents().get(1);
 		
 		//Implements hidden(ML_COMMENT, SL_COMMENT, WS):
-		//	directives+=ImplementsExtendsDirective* "implements" COLON implements=[jvmTypes::JvmType|QualifiedName]
-		//	/ *(generics ?= '<<>>')?* / ("onlyPojos" onlyPojos+=[PojoEntity|IDENT]*)? ("onlyDaos" onlyDaos+=[PojoDao|IDENT]*)?
-		//	("exceptPojos" exceptPojos+=[PojoEntity|IDENT]*)? ("exceptDaos" exceptDaos+=[PojoDao|IDENT]*)?;
+		//	directives+=ImplementsExtendsDirective* "implements" COLON implements=[jvmTypes::JvmType|QualifiedName] ("onlyPojos"
+		//	onlyPojos+=[PojoEntity|IDENT]*)? ("onlyDaos" onlyDaos+=[PojoDao|IDENT]*)? ("exceptPojos"
+		//	exceptPojos+=[PojoEntity|IDENT]*)? ("exceptDaos" exceptDaos+=[PojoDao|IDENT]*)?;
 		public ParserRule getRule() { return rule; }
 
-		//directives+=ImplementsExtendsDirective* "implements" COLON implements=[jvmTypes::JvmType|QualifiedName]
-		/// *(generics ?= '<<>>')?* / ("onlyPojos" onlyPojos+=[PojoEntity|IDENT]*)? ("onlyDaos" onlyDaos+=[PojoDao|IDENT]*)?
-		//("exceptPojos" exceptPojos+=[PojoEntity|IDENT]*)? ("exceptDaos" exceptDaos+=[PojoDao|IDENT]*)?
+		//directives+=ImplementsExtendsDirective* "implements" COLON implements=[jvmTypes::JvmType|QualifiedName] ("onlyPojos"
+		//onlyPojos+=[PojoEntity|IDENT]*)? ("onlyDaos" onlyDaos+=[PojoDao|IDENT]*)? ("exceptPojos"
+		//exceptPojos+=[PojoEntity|IDENT]*)? ("exceptDaos" exceptDaos+=[PojoDao|IDENT]*)?
 		public Group getGroup() { return cGroup; }
 
 		//directives+=ImplementsExtendsDirective*
@@ -8697,10 +8697,6 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		
 		////	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
 		////	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
-		////	| {PojoDirectiveToInit} '#ToInit' LPAREN proplist=DirectiveProperties RPAREN
-		////	| {PojoDirectiveEnumInit} '#EnumInit' LPAREN proplist=DirectiveProperties RPAREN
-		////	| {PojoDirectiveIsDef} '#IsDef' LPAREN proplist=DirectiveProperties RPAREN
-		////	| {PojoDirectiveEnumDef} '#EnumDef' LPAREN proplist=DirectiveProperties RPAREN
 		//PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 		//	{PojoDirectiveToString} "#ToString" LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveIndex} "#Index" LPAREN
 		//	index=NUMBER COMMA proplist=DirectiveProperties RPAREN | {PojoDirectiveOperators} "#Operators" (LPAREN
@@ -9002,20 +8998,36 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cCreateColumn2Assignment_6_5 = (Assignment)cGroup_6.eContents().get(5);
 		private final RuleCall cCreateColumn2IDENTTerminalRuleCall_6_5_0 = (RuleCall)cCreateColumn2Assignment_6_5.eContents().get(0);
 		private final RuleCall cRPARENTerminalRuleCall_6_6 = (RuleCall)cGroup_6.eContents().get(6);
+		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
+		private final Action cPojoPropertyDirectiveToInitAction_7_0 = (Action)cGroup_7.eContents().get(0);
+		private final Keyword cToInitKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
+		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
+		private final Action cPojoPropertyDirectiveEnumInitAction_8_0 = (Action)cGroup_8.eContents().get(0);
+		private final Keyword cEnumInitKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
+		private final Group cGroup_9 = (Group)cAlternatives.eContents().get(9);
+		private final Action cPojoPropertyDirectiveIsDefAction_9_0 = (Action)cGroup_9.eContents().get(0);
+		private final Keyword cIsDefKeyword_9_1 = (Keyword)cGroup_9.eContents().get(1);
+		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
+		private final Action cPojoPropertyDirectiveEnumDefAction_10_0 = (Action)cGroup_10.eContents().get(0);
+		private final Keyword cEnumDefKeyword_10_1 = (Keyword)cGroup_10.eContents().get(1);
 		
 		//PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 		//	{PojoPropertyDirectiveRequired} "#Required" | {PojoPropertyDirectivePrimaryKey} "#PrimaryKey" |
 		//	{PojoPropertyDirectiveDiscriminator} "#InheritanceDiscriminator" | {PojoPropertyDirectiveIndex} "#Index" LPAREN
 		//	index=NUMBER RPAREN | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateCol" LPAREN
 		//	updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN | {PojoPropertyDirectiveCreateCol} "#CreateCol" LPAREN
-		//	createColumn1=IDENT COMMA createColumn2=IDENT RPAREN;
+		//	createColumn1=IDENT COMMA createColumn2=IDENT RPAREN | {PojoPropertyDirectiveToInit} "#ToInit" |
+		//	{PojoPropertyDirectiveEnumInit} "#EnumInit" | {PojoPropertyDirectiveIsDef} "#IsDef" | {PojoPropertyDirectiveEnumDef}
+		//	"#EnumDef";
 		public ParserRule getRule() { return rule; }
 
 		//{PojoPropertyDirectiveRequired} "#Required" | {PojoPropertyDirectivePrimaryKey} "#PrimaryKey" |
 		//{PojoPropertyDirectiveDiscriminator} "#InheritanceDiscriminator" | {PojoPropertyDirectiveIndex} "#Index" LPAREN
 		//index=NUMBER RPAREN | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateCol" LPAREN
 		//updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN | {PojoPropertyDirectiveCreateCol} "#CreateCol" LPAREN
-		//createColumn1=IDENT COMMA createColumn2=IDENT RPAREN
+		//createColumn1=IDENT COMMA createColumn2=IDENT RPAREN | {PojoPropertyDirectiveToInit} "#ToInit" |
+		//{PojoPropertyDirectiveEnumInit} "#EnumInit" | {PojoPropertyDirectiveIsDef} "#IsDef" | {PojoPropertyDirectiveEnumDef}
+		//"#EnumDef"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//{PojoPropertyDirectiveRequired} "#Required"
@@ -9134,6 +9146,42 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//RPAREN
 		public RuleCall getRPARENTerminalRuleCall_6_6() { return cRPARENTerminalRuleCall_6_6; }
+
+		//{PojoPropertyDirectiveToInit} "#ToInit"
+		public Group getGroup_7() { return cGroup_7; }
+
+		//{PojoPropertyDirectiveToInit}
+		public Action getPojoPropertyDirectiveToInitAction_7_0() { return cPojoPropertyDirectiveToInitAction_7_0; }
+
+		//"#ToInit"
+		public Keyword getToInitKeyword_7_1() { return cToInitKeyword_7_1; }
+
+		//{PojoPropertyDirectiveEnumInit} "#EnumInit"
+		public Group getGroup_8() { return cGroup_8; }
+
+		//{PojoPropertyDirectiveEnumInit}
+		public Action getPojoPropertyDirectiveEnumInitAction_8_0() { return cPojoPropertyDirectiveEnumInitAction_8_0; }
+
+		//"#EnumInit"
+		public Keyword getEnumInitKeyword_8_1() { return cEnumInitKeyword_8_1; }
+
+		//{PojoPropertyDirectiveIsDef} "#IsDef"
+		public Group getGroup_9() { return cGroup_9; }
+
+		//{PojoPropertyDirectiveIsDef}
+		public Action getPojoPropertyDirectiveIsDefAction_9_0() { return cPojoPropertyDirectiveIsDefAction_9_0; }
+
+		//"#IsDef"
+		public Keyword getIsDefKeyword_9_1() { return cIsDefKeyword_9_1; }
+
+		//{PojoPropertyDirectiveEnumDef} "#EnumDef"
+		public Group getGroup_10() { return cGroup_10; }
+
+		//{PojoPropertyDirectiveEnumDef}
+		public Action getPojoPropertyDirectiveEnumDefAction_10_0() { return cPojoPropertyDirectiveEnumDefAction_10_0; }
+
+		//"#EnumDef"
+		public Keyword getEnumDefKeyword_10_1() { return cEnumDefKeyword_10_1; }
 	}
 
 	public class PojoPropertyElements extends AbstractParserRuleElementFinder {
@@ -11546,9 +11594,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Implements hidden(ML_COMMENT, SL_COMMENT, WS):
-	//	directives+=ImplementsExtendsDirective* "implements" COLON implements=[jvmTypes::JvmType|QualifiedName]
-	//	/ *(generics ?= '<<>>')?* / ("onlyPojos" onlyPojos+=[PojoEntity|IDENT]*)? ("onlyDaos" onlyDaos+=[PojoDao|IDENT]*)?
-	//	("exceptPojos" exceptPojos+=[PojoEntity|IDENT]*)? ("exceptDaos" exceptDaos+=[PojoDao|IDENT]*)?;
+	//	directives+=ImplementsExtendsDirective* "implements" COLON implements=[jvmTypes::JvmType|QualifiedName] ("onlyPojos"
+	//	onlyPojos+=[PojoEntity|IDENT]*)? ("onlyDaos" onlyDaos+=[PojoDao|IDENT]*)? ("exceptPojos"
+	//	exceptPojos+=[PojoEntity|IDENT]*)? ("exceptDaos" exceptDaos+=[PojoDao|IDENT]*)?;
 	public ImplementsElements getImplementsAccess() {
 		return pImplements;
 	}
@@ -11591,10 +11639,6 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	////	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
 	////	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
-	////	| {PojoDirectiveToInit} '#ToInit' LPAREN proplist=DirectiveProperties RPAREN
-	////	| {PojoDirectiveEnumInit} '#EnumInit' LPAREN proplist=DirectiveProperties RPAREN
-	////	| {PojoDirectiveIsDef} '#IsDef' LPAREN proplist=DirectiveProperties RPAREN
-	////	| {PojoDirectiveEnumDef} '#EnumDef' LPAREN proplist=DirectiveProperties RPAREN
 	//PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	{PojoDirectiveToString} "#ToString" LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveIndex} "#Index" LPAREN
 	//	index=NUMBER COMMA proplist=DirectiveProperties RPAREN | {PojoDirectiveOperators} "#Operators" (LPAREN
@@ -11644,7 +11688,9 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	{PojoPropertyDirectiveDiscriminator} "#InheritanceDiscriminator" | {PojoPropertyDirectiveIndex} "#Index" LPAREN
 	//	index=NUMBER RPAREN | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateCol" LPAREN
 	//	updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN | {PojoPropertyDirectiveCreateCol} "#CreateCol" LPAREN
-	//	createColumn1=IDENT COMMA createColumn2=IDENT RPAREN;
+	//	createColumn1=IDENT COMMA createColumn2=IDENT RPAREN | {PojoPropertyDirectiveToInit} "#ToInit" |
+	//	{PojoPropertyDirectiveEnumInit} "#EnumInit" | {PojoPropertyDirectiveIsDef} "#IsDef" | {PojoPropertyDirectiveEnumDef}
+	//	"#EnumDef";
 	public PojoPropertyDirectiveElements getPojoPropertyDirectiveAccess() {
 		return pPojoPropertyDirective;
 	}

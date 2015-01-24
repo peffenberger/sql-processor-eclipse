@@ -115,9 +115,13 @@ import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirective;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumDef;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumInit;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIsDef;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectivePrimaryKey;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveToInit;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol;
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveVersion;
 import org.sqlproc.dsl.processorDsl.PojoType;
@@ -1037,6 +1041,38 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         PojoPropertyDirectiveCreateCol pojoPropertyDirectiveCreateCol = (PojoPropertyDirectiveCreateCol)theEObject;
         T result = casePojoPropertyDirectiveCreateCol(pojoPropertyDirectiveCreateCol);
         if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveCreateCol);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_TO_INIT:
+      {
+        PojoPropertyDirectiveToInit pojoPropertyDirectiveToInit = (PojoPropertyDirectiveToInit)theEObject;
+        T result = casePojoPropertyDirectiveToInit(pojoPropertyDirectiveToInit);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveToInit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_ENUM_INIT:
+      {
+        PojoPropertyDirectiveEnumInit pojoPropertyDirectiveEnumInit = (PojoPropertyDirectiveEnumInit)theEObject;
+        T result = casePojoPropertyDirectiveEnumInit(pojoPropertyDirectiveEnumInit);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveEnumInit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_IS_DEF:
+      {
+        PojoPropertyDirectiveIsDef pojoPropertyDirectiveIsDef = (PojoPropertyDirectiveIsDef)theEObject;
+        T result = casePojoPropertyDirectiveIsDef(pojoPropertyDirectiveIsDef);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveIsDef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_PROPERTY_DIRECTIVE_ENUM_DEF:
+      {
+        PojoPropertyDirectiveEnumDef pojoPropertyDirectiveEnumDef = (PojoPropertyDirectiveEnumDef)theEObject;
+        T result = casePojoPropertyDirectiveEnumDef(pojoPropertyDirectiveEnumDef);
+        if (result == null) result = casePojoPropertyDirective(pojoPropertyDirectiveEnumDef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2984,6 +3020,70 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePojoPropertyDirectiveCreateCol(PojoPropertyDirectiveCreateCol object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive To Init</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive To Init</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveToInit(PojoPropertyDirectiveToInit object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Enum Init</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Enum Init</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveEnumInit(PojoPropertyDirectiveEnumInit object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Is Def</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Is Def</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveIsDef(PojoPropertyDirectiveIsDef object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Property Directive Enum Def</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Property Directive Enum Def</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoPropertyDirectiveEnumDef(PojoPropertyDirectiveEnumDef object)
   {
     return null;
   }
