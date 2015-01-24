@@ -1072,7 +1072,8 @@ public class TablePojoGenerator {
                 String realPojoName = tableToCamelCase(pojoName);
                 printComment(buffer, comments.get(pojo), INDENT);
                 if (annotations != null) {
-                    buffer.append(annotations.getEntityAnnotationsDefinitions(realPojoName, true));
+                    buffer.append(annotations.getEntityAnnotationsDefinitions(realPojoName, true,
+                            annotations.isNonStandardPojoAnnotations(realPojoName)));
                     buffer.append(annotations.getConstructorAnnotationsDefinitions(realPojoName, true));
                     buffer.append(annotations.getStaticAnnotationsDefinitions(realPojoName, true));
                     buffer.append(annotations.getConflictAnnotationsDefinitions(realPojoName, true));
@@ -1090,10 +1091,6 @@ public class TablePojoGenerator {
                 if (generateMethods.contains(METHOD_INDEX) && indexes.containsKey(pojo)) {
                     List<Map<PojoAttribute, Boolean>> mainList = indexes.get(pojo);
                     for (int i = 0, l = mainList.size(); i < l; i++) {
-                        if (annotations != null) {
-                            buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_INDEX,
-                                    true));
-                        }
                         buffer.append(NLINDENT).append("#Index(").append(i + 1);
                         for (PojoAttribute attr : mainList.get(i).keySet()) {
                             String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(attr.getName())
@@ -1136,7 +1133,8 @@ public class TablePojoGenerator {
                         name = columnToCamelCase(name);
                     printComment(buffer, attribute.getComment(), INDENT, INDENT);
                     if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, name, true));
+                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, name, true,
+                                annotations.isNonStandardPojoAnnotations(realPojoName, name)));
                         buffer.append(annotations.getGetterAnnotationsDefinitions(realPojoName, name, true));
                         buffer.append(annotations.getSetterAnnotationsDefinitions(realPojoName, name, true));
                     }
@@ -1224,7 +1222,8 @@ public class TablePojoGenerator {
                 }
                 if (generateMethods.contains(METHOD_EQUALS) && !pkeys.isEmpty()) {
                     if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_EQUALS, true));
+                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_EQUALS, true,
+                                false));
                     }
                     buffer.append(NLINDENT).append(INDENT).append(METHOD_EQUALS).append("(");
                     appendList(buffer, pkeys);
@@ -1233,7 +1232,7 @@ public class TablePojoGenerator {
                 if (generateMethods.contains(METHOD_HASH_CODE) && !pkeys.isEmpty()) {
                     if (annotations != null) {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_HASH_CODE,
-                                true));
+                                true, false));
                     }
                     buffer.append(NLINDENT).append(INDENT).append(METHOD_HASH_CODE).append("(");
                     appendList(buffer, pkeys);
@@ -1241,15 +1240,16 @@ public class TablePojoGenerator {
                 }
                 if (generateMethods.contains(METHOD_TO_INIT) && !toInit.isEmpty()) {
                     if (annotations != null) {
-                        buffer.append(annotations
-                                .getAttributeAnnotationsDefinitions(realPojoName, METHOD_TO_INIT, true));
+                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_TO_INIT,
+                                true, false));
                     }
                     buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_INIT).append("(");
                     appendList(buffer, toInit);
                     buffer.append(")");
                 } else if (generateMethods.contains(ENUM_TO_INIT) && !toInit.isEmpty()) {
                     if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, ENUM_TO_INIT, true));
+                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, ENUM_TO_INIT, true,
+                                false));
                     }
                     buffer.append(NLINDENT).append(INDENT).append(ENUM_TO_INIT).append("(");
                     appendList(buffer, toInit);
@@ -1257,14 +1257,16 @@ public class TablePojoGenerator {
                 }
                 if (generateMethods.contains(METHOD_IS_DEF) && !isDef.isEmpty()) {
                     if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_IS_DEF, true));
+                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_IS_DEF, true,
+                                false));
                     }
                     buffer.append(NLINDENT).append(INDENT).append(METHOD_IS_DEF).append("(");
                     appendList(buffer, isDef);
                     buffer.append(")");
                 } else if (generateMethods.contains(ENUM_IS_DEF) && !isDef.isEmpty()) {
                     if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, ENUM_IS_DEF, true));
+                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, ENUM_IS_DEF, true,
+                                false));
                     }
                     buffer.append(NLINDENT).append(INDENT).append(ENUM_IS_DEF).append("(");
                     appendList(buffer, isDef);
@@ -1273,7 +1275,7 @@ public class TablePojoGenerator {
                 if (generateMethods.contains(METHOD_TO_STRING) && !toStr.isEmpty()) {
                     if (annotations != null) {
                         buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_TO_STRING,
-                                true));
+                                true, false));
                     }
                     buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_STRING).append("(");
                     appendList(buffer, toStr);
