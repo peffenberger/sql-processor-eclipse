@@ -832,49 +832,36 @@ public class ProcessorPojoGenerator {
       }
     }
     _builder.newLineIfNotEmpty();
+    final List<PojoProperty> equals = this._processorGeneratorUtils.equalsFeatures(e);
     {
-      EList<PojoAnnotatedProperty> _features_12 = e.getFeatures();
-      final Function1<PojoAnnotatedProperty, Boolean> _function_2 = new Function1<PojoAnnotatedProperty, Boolean>() {
-        public Boolean apply(final PojoAnnotatedProperty x) {
-          PojoProperty _feature = x.getFeature();
-          boolean _isAttribute = ProcessorPojoGenerator.this.isAttribute(_feature);
-          return Boolean.valueOf((!_isAttribute));
-        }
-      };
-      Iterable<PojoAnnotatedProperty> _filter_2 = IterableExtensions.<PojoAnnotatedProperty>filter(_features_12, _function_2);
-      for(final PojoAnnotatedProperty f_9 : _filter_2) {
-        {
-          PojoProperty _feature_8 = f_9.getFeature();
-          String _name_7 = _feature_8.getName();
-          boolean _equalsIgnoreCase = _name_7.equalsIgnoreCase("hashCode");
-          if (_equalsIgnoreCase) {
-            PojoProperty _feature_9 = f_9.getFeature();
-            CharSequence _compileHashCode = this.compileHashCode(_feature_9, f_9, im, e, ae);
-            _builder.append(_compileHashCode, "");
-            _builder.newLineIfNotEmpty();
-          } else {
-            PojoProperty _feature_10 = f_9.getFeature();
-            String _name_8 = _feature_10.getName();
-            boolean _equalsIgnoreCase_1 = _name_8.equalsIgnoreCase("equals");
-            if (_equalsIgnoreCase_1) {
-              PojoProperty _feature_11 = f_9.getFeature();
-              CharSequence _compileEquals = this.compileEquals(_feature_11, f_9, im, e, ae);
-              _builder.append(_compileEquals, "");
-              _builder.newLineIfNotEmpty();
-            } else {
-              PojoProperty _feature_12 = f_9.getFeature();
-              String _name_9 = _feature_12.getName();
-              boolean _equalsIgnoreCase_2 = _name_9.equalsIgnoreCase("toString");
-              if (_equalsIgnoreCase_2) {
-                PojoProperty _feature_13 = f_9.getFeature();
-                CharSequence _compileToString = this.compileToString(_feature_13, f_9, im, e, ae);
-                _builder.append(_compileToString, "");
-              }
-            }
-          }
-        }
+      boolean _isEmpty_10 = equals.isEmpty();
+      boolean _not_10 = (!_isEmpty_10);
+      if (_not_10) {
+        CharSequence _compileEquals = this.compileEquals(equals, im, e, ae);
+        _builder.append(_compileEquals, "");
       }
     }
+    _builder.newLineIfNotEmpty();
+    final List<PojoProperty> hashCode = this._processorGeneratorUtils.hashCodeFeatures(e);
+    {
+      boolean _isEmpty_11 = hashCode.isEmpty();
+      boolean _not_11 = (!_isEmpty_11);
+      if (_not_11) {
+        CharSequence _compileHashCode = this.compileHashCode(hashCode, im, e, ae);
+        _builder.append(_compileHashCode, "");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    final List<PojoProperty> toString = this._processorGeneratorUtils.toStringFeatures(e);
+    {
+      boolean _isEmpty_12 = toString.isEmpty();
+      boolean _not_12 = (!_isEmpty_12);
+      if (_not_12) {
+        CharSequence _compileToString = this.compileToString(toString, im, e, ae);
+        _builder.append(_compileToString, "");
+      }
+    }
+    _builder.newLineIfNotEmpty();
     {
       boolean _and = false;
       boolean _hasOperators = this._processorGeneratorUtils.hasOperators(e);
@@ -886,7 +873,6 @@ public class ProcessorPojoGenerator {
         _and = _equals;
       }
       if (_and) {
-        _builder.newLineIfNotEmpty();
         CharSequence _compileOperators = this.compileOperators(im, e, ae);
         _builder.append(_compileOperators, "");
       }
@@ -1367,45 +1353,12 @@ public class ProcessorPojoGenerator {
     return _builder;
   }
   
-  public CharSequence compileHashCode(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileHashCode(final List<PojoProperty> l, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@Override");
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a : _attributeAnnotations) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type = a.getType();
-        CharSequence _serialize = im.serialize(_type);
-        _builder.append(_serialize, "\t");
-        {
-          EList<AnnotationProperty> _features = a.getFeatures();
-          boolean _isEmpty = _features.isEmpty();
-          boolean _not = (!_isEmpty);
-          if (_not) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_1 = a.getFeatures();
-              boolean _hasElements = false;
-              for(final AnnotationProperty af : _features_1) {
-                if (!_hasElements) {
-                  _hasElements = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
-                _builder.append(_compileAnnotationProperty, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public int hashCode() {");
     _builder.newLine();
@@ -1416,8 +1369,7 @@ public class ProcessorPojoGenerator {
     _builder.append("int result = 1;");
     _builder.newLine();
     {
-      EList<PojoProperty> _attrs = f.getAttrs();
-      for(final PojoProperty f2 : _attrs) {
+      for(final PojoProperty f2 : l) {
         _builder.append("\t\t");
         _builder.append("result = prime * result + ");
         {
@@ -1453,45 +1405,12 @@ public class ProcessorPojoGenerator {
     return _builder;
   }
   
-  public CharSequence compileEquals(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileEquals(final List<PojoProperty> l, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@Override");
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a : _attributeAnnotations) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type = a.getType();
-        CharSequence _serialize = im.serialize(_type);
-        _builder.append(_serialize, "\t");
-        {
-          EList<AnnotationProperty> _features = a.getFeatures();
-          boolean _isEmpty = _features.isEmpty();
-          boolean _not = (!_isEmpty);
-          if (_not) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_1 = a.getFeatures();
-              boolean _hasElements = false;
-              for(final AnnotationProperty af : _features_1) {
-                if (!_hasElements) {
-                  _hasElements = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
-                _builder.append(_compileAnnotationProperty, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public boolean equals(Object obj) {");
     _builder.newLine();
@@ -1522,8 +1441,7 @@ public class ProcessorPojoGenerator {
     _builder.append(") obj;");
     _builder.newLineIfNotEmpty();
     {
-      EList<PojoProperty> _attrs = f.getAttrs();
-      for(final PojoProperty f2 : _attrs) {
+      for(final PojoProperty f2 : l) {
         _builder.append("\t\t");
         {
           boolean _isNative = this._processorGeneratorUtils.isNative(f2);
@@ -1563,45 +1481,12 @@ public class ProcessorPojoGenerator {
     return _builder;
   }
   
-  public CharSequence compileToString(final PojoProperty f, final PojoAnnotatedProperty aaf, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
+  public CharSequence compileToString(final List<PojoProperty> l, final ImportManager im, final PojoEntity e, final AnnotatedEntity ae) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@Override");
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a : _attributeAnnotations) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type = a.getType();
-        CharSequence _serialize = im.serialize(_type);
-        _builder.append(_serialize, "\t");
-        {
-          EList<AnnotationProperty> _features = a.getFeatures();
-          boolean _isEmpty = _features.isEmpty();
-          boolean _not = (!_isEmpty);
-          if (_not) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_1 = a.getFeatures();
-              boolean _hasElements = false;
-              for(final AnnotationProperty af : _features_1) {
-                if (!_hasElements) {
-                  _hasElements = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty = this.compileAnnotationProperty(af, im);
-                _builder.append(_compileAnnotationProperty, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public String toString() {");
     _builder.newLine();
@@ -1611,11 +1496,10 @@ public class ProcessorPojoGenerator {
     _builder.append(_name, "\t\t");
     _builder.append(" [");
     {
-      EList<PojoProperty> _attrs = f.getAttrs();
-      boolean _hasElements_1 = false;
-      for(final PojoProperty f2 : _attrs) {
-        if (!_hasElements_1) {
-          _hasElements_1 = true;
+      boolean _hasElements = false;
+      for(final PojoProperty f2 : l) {
+        if (!_hasElements) {
+          _hasElements = true;
         } else {
           _builder.appendImmediate(" + \", ", "\t\t");
         }
@@ -1639,39 +1523,6 @@ public class ProcessorPojoGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    {
-      List<Annotation> _attributeAnnotations_1 = this._processorGeneratorUtils.attributeAnnotations(aaf);
-      for(final Annotation a_1 : _attributeAnnotations_1) {
-        _builder.append("\t");
-        _builder.append("@");
-        JvmType _type_1 = a_1.getType();
-        CharSequence _serialize_1 = im.serialize(_type_1);
-        _builder.append(_serialize_1, "\t");
-        {
-          EList<AnnotationProperty> _features_2 = a_1.getFeatures();
-          boolean _isEmpty_1 = _features_2.isEmpty();
-          boolean _not_1 = (!_isEmpty_1);
-          if (_not_1) {
-            _builder.append("(");
-            {
-              EList<AnnotationProperty> _features_3 = a_1.getFeatures();
-              boolean _hasElements_2 = false;
-              for(final AnnotationProperty af_1 : _features_3) {
-                if (!_hasElements_2) {
-                  _hasElements_2 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t");
-                }
-                CharSequence _compileAnnotationProperty_1 = this.compileAnnotationProperty(af_1, im);
-                _builder.append(_compileAnnotationProperty_1, "\t");
-              }
-            }
-            _builder.append(")");
-          }
-        }
-        _builder.newLineIfNotEmpty();
-      }
-    }
     _builder.append("\t");
     _builder.append("public String toStringFull() {");
     _builder.newLine();
@@ -1681,18 +1532,18 @@ public class ProcessorPojoGenerator {
     _builder.append(_name_3, "\t\t");
     _builder.append(" [");
     {
-      EList<PojoAnnotatedProperty> _features_4 = e.getFeatures();
+      EList<PojoAnnotatedProperty> _features = e.getFeatures();
       final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
         public Boolean apply(final PojoAnnotatedProperty x) {
           PojoProperty _feature = x.getFeature();
           return Boolean.valueOf(ProcessorPojoGenerator.this.isAttribute(_feature));
         }
       };
-      Iterable<PojoAnnotatedProperty> _filter = IterableExtensions.<PojoAnnotatedProperty>filter(_features_4, _function);
-      boolean _hasElements_3 = false;
+      Iterable<PojoAnnotatedProperty> _filter = IterableExtensions.<PojoAnnotatedProperty>filter(_features, _function);
+      boolean _hasElements_1 = false;
       for(final PojoAnnotatedProperty f2_1 : _filter) {
-        if (!_hasElements_3) {
-          _hasElements_3 = true;
+        if (!_hasElements_1) {
+          _hasElements_1 = true;
         } else {
           _builder.appendImmediate(" + \", ", "\t\t");
         }
@@ -3130,18 +2981,6 @@ public class ProcessorPojoGenerator {
       _or = _notEquals_1;
     }
     return _or;
-  }
-  
-  public List<PojoProperty> simplAttrs(final PojoProperty f) {
-    EList<PojoProperty> _attrs = f.getAttrs();
-    final Function1<PojoProperty, Boolean> _function = new Function1<PojoProperty, Boolean>() {
-      public Boolean apply(final PojoProperty f2) {
-        JvmType _type = f2.getType();
-        return Boolean.valueOf((!Objects.equal(_type, null)));
-      }
-    };
-    Iterable<PojoProperty> _filter = IterableExtensions.<PojoProperty>filter(_attrs, _function);
-    return IterableExtensions.<PojoProperty>toList(_filter);
   }
   
   public CharSequence compileImplements(final EnumEntity e) {

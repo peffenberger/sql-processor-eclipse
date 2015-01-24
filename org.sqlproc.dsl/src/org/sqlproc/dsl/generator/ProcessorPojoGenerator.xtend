@@ -185,10 +185,10 @@ class ProcessorPojoGenerator {
 	«val enumInit = e.enumInitFeatures»«IF !enumInit.empty»«compileEnumInit(enumInit, im, e, ae)»«ENDIF»
 	«val isDef = e.isDefFeatures»«IF !isDef.empty»«compileIsDef(isDef, im, e, ae)»«ENDIF»
 	«val enumDef = e.enumDefFeatures»«IF !enumDef.empty»«compileEnumDef(enumDef, im, e, ae)»«ENDIF»
-	«FOR f:e.features.filter(x| !isAttribute(x.feature))»«IF f.feature.name.equalsIgnoreCase("hashCode")»«f.feature.compileHashCode(f, im, e, ae)»
-	«ELSEIF f.feature.name.equalsIgnoreCase("equals")»«f.feature.compileEquals(f, im, e, ae)»
-	«ELSEIF f.feature.name.equalsIgnoreCase("toString")»«f.feature.compileToString(f, im, e, ae)»«ENDIF»«ENDFOR»«IF hasOperators(e) && getOperatorsSuffix(e) == null»
-	«compileOperators(im, e, ae)»«ENDIF»
+	«val equals = e.equalsFeatures»«IF !equals.empty»«compileEquals(equals, im, e, ae)»«ENDIF»
+	«val hashCode = e.hashCodeFeatures»«IF !hashCode.empty»«compileHashCode(hashCode, im, e, ae)»«ENDIF»
+	«val toString = e.toStringFeatures»«IF !toString.empty»«compileToString(toString, im, e, ae)»«ENDIF»
+	«IF hasOperators(e) && getOperatorsSuffix(e) == null»«compileOperators(im, e, ae)»«ENDIF»
 	}
 	'''
 	
@@ -255,28 +255,22 @@ class ProcessorPojoGenerator {
 		}«ENDIF»
 	'''
 	
-	def compileHashCode(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
+	def compileHashCode(List<PojoProperty> l, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 	
 		@Override
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
-			«FOR f2:f.attrs»
+			«FOR f2:l»
 			result = prime * result + «IF f2.isNative»(int) («f2.name» ^ («f2.name» >>> 32))«ELSE»((«f2.name» != null) ? «f2.name».hashCode() : 0)«ENDIF»;
 			«ENDFOR»
 			return result;
 		}	
 	'''
 	
-	def compileEquals(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
+	def compileEquals(List<PojoProperty> l, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 	
 		@Override
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public boolean equals(Object obj) {
 			if (this == obj)
 				return true;
@@ -285,7 +279,7 @@ class ProcessorPojoGenerator {
 			if (getClass() != obj.getClass())
 				return false;
 			«e.name» other = («e.name») obj;
-			«FOR f2:f.attrs»
+			«FOR f2:l»
 			«IF f2.isNative»if («f2.name» != other.«f2.name»)«ELSE»if («f2.name» == null || !«f2.name».equals(other.«f2.name»))«ENDIF»
 			return false;
 			«ENDFOR»
@@ -293,19 +287,13 @@ class ProcessorPojoGenerator {
 		}	
 	'''
 	
-	def compileToString(PojoProperty f, PojoAnnotatedProperty aaf, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
+	def compileToString(List<PojoProperty> l, ImportManager im, PojoEntity e, AnnotatedEntity ae) '''
 	
 		@Override
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public String toString() {
-			return "«e.name» [«FOR f2:f.attrs SEPARATOR " + \", "»«f2.name»=" + «f2.name»«ENDFOR»«IF getSuperType(e) != null» + super.toString()«ENDIF» + "]";
+			return "«e.name» [«FOR f2:l SEPARATOR " + \", "»«f2.name»=" + «f2.name»«ENDFOR»«IF getSuperType(e) != null» + super.toString()«ENDIF» + "]";
 		}
 	
-		«FOR a:aaf.attributeAnnotations»
-		@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR af:a.features SEPARATOR ", "»«compileAnnotationProperty(af, im)»«ENDFOR»)«ENDIF»
-		«ENDFOR»
 		public String toStringFull() {
 			return "«e.name» [«FOR f2:e.features.filter(x| isAttribute(x.feature)) SEPARATOR " + \", "»«f2.feature.name»=" + «f2.feature.name»«ENDFOR»«IF getSuperType(e) != null» + super.toString()«ENDIF» + "]";
 		}
@@ -666,9 +654,9 @@ class ProcessorPojoGenerator {
 		return f.getRef != null || f.getType != null
 	}
 	
-	def simplAttrs(PojoProperty f) {
-		return f.attrs.filter(f2| f2.getType != null).toList
-	}
+//	def simplAttrs(PojoProperty f) {
+//		return f.attrs.filter(f2| f2.getType != null).toList
+//	}
 	
 	def compileImplements(EnumEntity e) '''
 		«IF getSernum(e) != null»implements Serializable«ENDIF» '''

@@ -4072,22 +4072,13 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_PROPERTY__NAME = 1;
 
   /**
-   * The feature id for the '<em><b>Attrs</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_PROPERTY__ATTRS = 2;
-
-  /**
    * The feature id for the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__TYPE = 3;
+  int POJO_PROPERTY__TYPE = 2;
 
   /**
    * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -4096,7 +4087,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__REF = 4;
+  int POJO_PROPERTY__REF = 3;
 
   /**
    * The feature id for the '<em><b>Gtype</b></em>' reference.
@@ -4105,7 +4096,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__GTYPE = 5;
+  int POJO_PROPERTY__GTYPE = 4;
 
   /**
    * The feature id for the '<em><b>Gref</b></em>' reference.
@@ -4114,7 +4105,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__GREF = 6;
+  int POJO_PROPERTY__GREF = 5;
 
   /**
    * The feature id for the '<em><b>Array</b></em>' attribute.
@@ -4123,7 +4114,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY__ARRAY = 7;
+  int POJO_PROPERTY__ARRAY = 6;
 
   /**
    * The number of structural features of the '<em>Pojo Property</em>' class.
@@ -4132,7 +4123,7 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_PROPERTY_FEATURE_COUNT = 8;
+  int POJO_PROPERTY_FEATURE_COUNT = 7;
 
   /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.EnumEntityModifier1Impl <em>Enum Entity Modifier1</em>}' class.
@@ -4909,6 +4900,62 @@ public interface ProcessorDslPackage extends EPackage
   int POJO_DIRECTIVE_DISCRIMINATOR_FEATURE_COUNT = POJO_DIRECTIVE_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveEqualsImpl <em>Pojo Directive Equals</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveEqualsImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEquals()
+   * @generated
+   */
+  int POJO_DIRECTIVE_EQUALS = 109;
+
+  /**
+   * The feature id for the '<em><b>Proplist</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_DIRECTIVE_EQUALS__PROPLIST = POJO_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Pojo Directive Equals</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_DIRECTIVE_EQUALS_FEATURE_COUNT = POJO_DIRECTIVE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveHashCodeImpl <em>Pojo Directive Hash Code</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveHashCodeImpl
+   * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveHashCode()
+   * @generated
+   */
+  int POJO_DIRECTIVE_HASH_CODE = 110;
+
+  /**
+   * The feature id for the '<em><b>Proplist</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_DIRECTIVE_HASH_CODE__PROPLIST = POJO_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Pojo Directive Hash Code</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_DIRECTIVE_HASH_CODE_FEATURE_COUNT = POJO_DIRECTIVE_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveRequiredImpl <em>Pojo Property Directive Required</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4916,7 +4963,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveRequired()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_REQUIRED = 109;
+  int POJO_PROPERTY_DIRECTIVE_REQUIRED = 111;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Required</em>' class.
@@ -4935,7 +4982,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectivePrimaryKey()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = 110;
+  int POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = 112;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Primary Key</em>' class.
@@ -4954,7 +5001,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveDiscriminator()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = 111;
+  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = 113;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Discriminator</em>' class.
@@ -4973,7 +5020,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveIndex()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_INDEX = 112;
+  int POJO_PROPERTY_DIRECTIVE_INDEX = 114;
 
   /**
    * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -5001,7 +5048,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveVersion()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_VERSION = 113;
+  int POJO_PROPERTY_DIRECTIVE_VERSION = 115;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Version</em>' class.
@@ -5020,7 +5067,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveUpdateCol()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL = 114;
+  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL = 116;
 
   /**
    * The feature id for the '<em><b>Update Column1</b></em>' attribute.
@@ -5057,7 +5104,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveCreateCol()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_CREATE_COL = 115;
+  int POJO_PROPERTY_DIRECTIVE_CREATE_COL = 117;
 
   /**
    * The feature id for the '<em><b>Create Column1</b></em>' attribute.
@@ -5094,7 +5141,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveToInit()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_TO_INIT = 116;
+  int POJO_PROPERTY_DIRECTIVE_TO_INIT = 118;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive To Init</em>' class.
@@ -5113,7 +5160,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveEnumInit()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_ENUM_INIT = 117;
+  int POJO_PROPERTY_DIRECTIVE_ENUM_INIT = 119;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Enum Init</em>' class.
@@ -5132,7 +5179,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveIsDef()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_IS_DEF = 118;
+  int POJO_PROPERTY_DIRECTIVE_IS_DEF = 120;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Is Def</em>' class.
@@ -5151,7 +5198,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoPropertyDirectiveEnumDef()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_ENUM_DEF = 119;
+  int POJO_PROPERTY_DIRECTIVE_ENUM_DEF = 121;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Enum Def</em>' class.
@@ -5170,7 +5217,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getEnumPropertyDirectiveValues()
    * @generated
    */
-  int ENUM_PROPERTY_DIRECTIVE_VALUES = 120;
+  int ENUM_PROPERTY_DIRECTIVE_VALUES = 122;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' containment reference list.
@@ -5198,7 +5245,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionCallQuery()
    * @generated
    */
-  int FUNCTION_CALL_QUERY = 121;
+  int FUNCTION_CALL_QUERY = 123;
 
   /**
    * The number of structural features of the '<em>Function Call Query</em>' class.
@@ -5217,7 +5264,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getProcedureCallQuery()
    * @generated
    */
-  int PROCEDURE_CALL_QUERY = 122;
+  int PROCEDURE_CALL_QUERY = 124;
 
   /**
    * The number of structural features of the '<em>Procedure Call Query</em>' class.
@@ -5236,7 +5283,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionCall()
    * @generated
    */
-  int FUNCTION_CALL = 123;
+  int FUNCTION_CALL = 125;
 
   /**
    * The number of structural features of the '<em>Function Call</em>' class.
@@ -5255,7 +5302,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getProcedureUpdate()
    * @generated
    */
-  int PROCEDURE_UPDATE = 124;
+  int PROCEDURE_UPDATE = 126;
 
   /**
    * The number of structural features of the '<em>Procedure Update</em>' class.
@@ -5274,7 +5321,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunctionQuery()
    * @generated
    */
-  int FUNCTION_QUERY = 125;
+  int FUNCTION_QUERY = 127;
 
   /**
    * The number of structural features of the '<em>Function Query</em>' class.
@@ -5293,7 +5340,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveSerializable()
    * @generated
    */
-  int DAO_DIRECTIVE_SERIALIZABLE = 126;
+  int DAO_DIRECTIVE_SERIALIZABLE = 128;
 
   /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
@@ -5321,7 +5368,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveDiscriminator()
    * @generated
    */
-  int DAO_DIRECTIVE_DISCRIMINATOR = 127;
+  int DAO_DIRECTIVE_DISCRIMINATOR = 129;
 
   /**
    * The feature id for the '<em><b>Ancestor</b></em>' reference.
@@ -5358,7 +5405,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveCrud()
    * @generated
    */
-  int DAO_DIRECTIVE_CRUD = 128;
+  int DAO_DIRECTIVE_CRUD = 130;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' containment reference.
@@ -5386,7 +5433,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getDaoDirectiveQuery()
    * @generated
    */
-  int DAO_DIRECTIVE_QUERY = 129;
+  int DAO_DIRECTIVE_QUERY = 131;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' containment reference.
@@ -5414,7 +5461,7 @@ public interface ProcessorDslPackage extends EPackage
    * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getFunProcDirective()
    * @generated
    */
-  int FUN_PROC_DIRECTIVE = 130;
+  int FUN_PROC_DIRECTIVE = 132;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -9257,17 +9304,6 @@ public interface ProcessorDslPackage extends EPackage
   EAttribute getPojoProperty_Name();
 
   /**
-   * Returns the meta object for the reference list '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getAttrs <em>Attrs</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Attrs</em>'.
-   * @see org.sqlproc.dsl.processorDsl.PojoProperty#getAttrs()
-   * @see #getPojoProperty()
-   * @generated
-   */
-  EReference getPojoProperty_Attrs();
-
-  /**
    * Returns the meta object for the reference '{@link org.sqlproc.dsl.processorDsl.PojoProperty#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9888,6 +9924,48 @@ public interface ProcessorDslPackage extends EPackage
    * @generated
    */
   EAttribute getPojoDirectiveDiscriminator_Discriminator();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveEquals <em>Pojo Directive Equals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pojo Directive Equals</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveEquals
+   * @generated
+   */
+  EClass getPojoDirectiveEquals();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveEquals#getProplist <em>Proplist</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Proplist</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveEquals#getProplist()
+   * @see #getPojoDirectiveEquals()
+   * @generated
+   */
+  EReference getPojoDirectiveEquals_Proplist();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode <em>Pojo Directive Hash Code</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pojo Directive Hash Code</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode
+   * @generated
+   */
+  EClass getPojoDirectiveHashCode();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode#getProplist <em>Proplist</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Proplist</em>'.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode#getProplist()
+   * @see #getPojoDirectiveHashCode()
+   * @generated
+   */
+  EReference getPojoDirectiveHashCode_Proplist();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired <em>Pojo Property Directive Required</em>}'.
@@ -13272,14 +13350,6 @@ public interface ProcessorDslPackage extends EPackage
     EAttribute POJO_PROPERTY__NAME = eINSTANCE.getPojoProperty_Name();
 
     /**
-     * The meta object literal for the '<em><b>Attrs</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_PROPERTY__ATTRS = eINSTANCE.getPojoProperty_Attrs();
-
-    /**
      * The meta object literal for the '<em><b>Type</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13804,6 +13874,42 @@ public interface ProcessorDslPackage extends EPackage
      * @generated
      */
     EAttribute POJO_DIRECTIVE_DISCRIMINATOR__DISCRIMINATOR = eINSTANCE.getPojoDirectiveDiscriminator_Discriminator();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveEqualsImpl <em>Pojo Directive Equals</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveEqualsImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveEquals()
+     * @generated
+     */
+    EClass POJO_DIRECTIVE_EQUALS = eINSTANCE.getPojoDirectiveEquals();
+
+    /**
+     * The meta object literal for the '<em><b>Proplist</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_DIRECTIVE_EQUALS__PROPLIST = eINSTANCE.getPojoDirectiveEquals_Proplist();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoDirectiveHashCodeImpl <em>Pojo Directive Hash Code</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.dsl.processorDsl.impl.PojoDirectiveHashCodeImpl
+     * @see org.sqlproc.dsl.processorDsl.impl.ProcessorDslPackageImpl#getPojoDirectiveHashCode()
+     * @generated
+     */
+    EClass POJO_DIRECTIVE_HASH_CODE = eINSTANCE.getPojoDirectiveHashCode();
+
+    /**
+     * The meta object literal for the '<em><b>Proplist</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_DIRECTIVE_HASH_CODE__PROPLIST = eINSTANCE.getPojoDirectiveHashCode_Proplist();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyDirectiveRequiredImpl <em>Pojo Property Directive Required</em>}' class.

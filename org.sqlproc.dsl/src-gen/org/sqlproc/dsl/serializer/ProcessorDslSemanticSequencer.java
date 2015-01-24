@@ -101,6 +101,8 @@ import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveEquals;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveOperators;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable;
@@ -682,6 +684,18 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case ProcessorDslPackage.POJO_DIRECTIVE_DISCRIMINATOR:
 				if(context == grammarAccess.getPojoDirectiveRule()) {
 					sequence_PojoDirective(context, (PojoDirectiveDiscriminator) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.POJO_DIRECTIVE_EQUALS:
+				if(context == grammarAccess.getPojoDirectiveRule()) {
+					sequence_PojoDirective(context, (PojoDirectiveEquals) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorDslPackage.POJO_DIRECTIVE_HASH_CODE:
+				if(context == grammarAccess.getPojoDirectiveRule()) {
+					sequence_PojoDirective(context, (PojoDirectiveHashCode) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1933,6 +1947,38 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
+	 *     proplist=DirectiveProperties
+	 */
+	protected void sequence_PojoDirective(EObject context, PojoDirectiveEquals semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_EQUALS__PROPLIST) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_EQUALS__PROPLIST));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_5_3_0(), semanticObject.getProplist());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     proplist=DirectiveProperties
+	 */
+	protected void sequence_PojoDirective(EObject context, PojoDirectiveHashCode semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_HASH_CODE__PROPLIST) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorDslPackage.Literals.POJO_DIRECTIVE_HASH_CODE__PROPLIST));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_6_3_0(), semanticObject.getProplist());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (index=NUMBER proplist=DirectiveProperties)
 	 */
 	protected void sequence_PojoDirective(EObject context, PojoDirectiveIndex semanticObject) {
@@ -2156,15 +2202,9 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *     (
 	 *         directives+=PojoPropertyDirective* 
 	 *         name=IDENT 
-	 *         (
-	 *             (attrs+=[PojoProperty|IDENT] attrs+=[PojoProperty|IDENT]*) | 
-	 *             (
-	 *                 (attrs+=[PojoProperty|IDENT] attrs+=[PojoProperty|IDENT]*)? 
-	 *                 (type=[JvmType|QualifiedName] | ref=[Entity|IDENT]) 
-	 *                 (gtype=[JvmType|QualifiedName] | gref=[PojoEntity|IDENT])? 
-	 *                 array?='[]'?
-	 *             )
-	 *         )
+	 *         (type=[JvmType|QualifiedName] | ref=[Entity|IDENT]) 
+	 *         (gtype=[JvmType|QualifiedName] | gref=[PojoEntity|IDENT])? 
+	 *         array?='[]'?
 	 *     )
 	 */
 	protected void sequence_PojoProperty(EObject context, PojoProperty semanticObject) {

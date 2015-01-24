@@ -423,8 +423,8 @@ PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {PojoDirectiveOperators} '#Operators' (LPAREN operatorsSuffix=IDENT RPAREN)?
 	| {PojoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
 	| {PojoDirectiveDiscriminator} '#InheritanceChild' LPAREN discriminator=(IDENT|NUMBER) RPAREN
-//	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
-//	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
 ;
 
 PojoEntityModifier2: ('extends' superType=[PojoEntity|IDENT]);
@@ -452,12 +452,18 @@ PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {PojoPropertyDirectiveEnumDef} '#EnumDef'
 ;
 
+//PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
+//	directives+=PojoPropertyDirective*
+//	name=IDENT ((=> LPAREN attrs+=[PojoProperty|IDENT] (COMMA attrs+=[PojoProperty|IDENT])* RPAREN) |
+//	((=> LPAREN attrs+=[PojoProperty|IDENT] (COMMA attrs+=[PojoProperty|IDENT])* RPAREN)?
+//		(COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[Entity|IDENT])
+//	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|IDENT]) MORE_THAN)? (array ?= '[]')?))
+//;
+
 PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=PojoPropertyDirective*
-	name=IDENT ((=> LPAREN attrs+=[PojoProperty|IDENT] (COMMA attrs+=[PojoProperty|IDENT])* RPAREN) |
-	((=> LPAREN attrs+=[PojoProperty|IDENT] (COMMA attrs+=[PojoProperty|IDENT])* RPAREN)?
-		(COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[Entity|IDENT])
-	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|IDENT]) MORE_THAN)? (array ?= '[]')?))
+	name=IDENT (COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[Entity|IDENT])
+	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|IDENT]) MORE_THAN)? (array ?= '[]')?
 ;
 
 EnumEntityModifier1: ((final?='final'));

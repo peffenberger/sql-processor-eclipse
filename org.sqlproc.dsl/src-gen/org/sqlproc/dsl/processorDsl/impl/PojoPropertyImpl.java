@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.common.types.JvmType;
@@ -36,7 +35,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getAttrs <em>Attrs</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getRef <em>Ref</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoPropertyImpl#getGtype <em>Gtype</em>}</li>
@@ -78,16 +76,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getAttrs() <em>Attrs</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAttrs()
-   * @generated
-   * @ordered
-   */
-  protected EList<PojoProperty> attrs;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' reference.
@@ -205,20 +193,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_PROPERTY__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<PojoProperty> getAttrs()
-  {
-    if (attrs == null)
-    {
-      attrs = new EObjectResolvingEList<PojoProperty>(PojoProperty.class, this, ProcessorDslPackage.POJO_PROPERTY__ATTRS);
-    }
-    return attrs;
   }
 
   /**
@@ -446,8 +420,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
         return getDirectives();
       case ProcessorDslPackage.POJO_PROPERTY__NAME:
         return getName();
-      case ProcessorDslPackage.POJO_PROPERTY__ATTRS:
-        return getAttrs();
       case ProcessorDslPackage.POJO_PROPERTY__TYPE:
         if (resolve) return getType();
         return basicGetType();
@@ -484,10 +456,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
       case ProcessorDslPackage.POJO_PROPERTY__NAME:
         setName((String)newValue);
         return;
-      case ProcessorDslPackage.POJO_PROPERTY__ATTRS:
-        getAttrs().clear();
-        getAttrs().addAll((Collection<? extends PojoProperty>)newValue);
-        return;
       case ProcessorDslPackage.POJO_PROPERTY__TYPE:
         setType((JvmType)newValue);
         return;
@@ -523,9 +491,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
       case ProcessorDslPackage.POJO_PROPERTY__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ProcessorDslPackage.POJO_PROPERTY__ATTRS:
-        getAttrs().clear();
-        return;
       case ProcessorDslPackage.POJO_PROPERTY__TYPE:
         setType((JvmType)null);
         return;
@@ -559,8 +524,6 @@ public class PojoPropertyImpl extends MinimalEObjectImpl.Container implements Po
         return directives != null && !directives.isEmpty();
       case ProcessorDslPackage.POJO_PROPERTY__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ProcessorDslPackage.POJO_PROPERTY__ATTRS:
-        return attrs != null && !attrs.isEmpty();
       case ProcessorDslPackage.POJO_PROPERTY__TYPE:
         return type != null;
       case ProcessorDslPackage.POJO_PROPERTY__REF:

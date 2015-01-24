@@ -1004,6 +1004,24 @@ public interface ProcessorDslFactory extends EFactory
   PojoDirectiveDiscriminator createPojoDirectiveDiscriminator();
 
   /**
+   * Returns a new object of class '<em>Pojo Directive Equals</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Equals</em>'.
+   * @generated
+   */
+  PojoDirectiveEquals createPojoDirectiveEquals();
+
+  /**
+   * Returns a new object of class '<em>Pojo Directive Hash Code</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Hash Code</em>'.
+   * @generated
+   */
+  PojoDirectiveHashCode createPojoDirectiveHashCode();
+
+  /**
    * Returns a new object of class '<em>Pojo Property Directive Required</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

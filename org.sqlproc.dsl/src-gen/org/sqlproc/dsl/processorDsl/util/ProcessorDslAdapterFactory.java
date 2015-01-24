@@ -106,6 +106,8 @@ import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoDirective;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveEquals;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveOperators;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable;
@@ -748,6 +750,16 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
       public Adapter casePojoDirectiveDiscriminator(PojoDirectiveDiscriminator object)
       {
         return createPojoDirectiveDiscriminatorAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveEquals(PojoDirectiveEquals object)
+      {
+        return createPojoDirectiveEqualsAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveHashCode(PojoDirectiveHashCode object)
+      {
+        return createPojoDirectiveHashCodeAdapter();
       }
       @Override
       public Adapter casePojoPropertyDirectiveRequired(PojoPropertyDirectiveRequired object)
@@ -2512,6 +2524,36 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPojoDirectiveDiscriminatorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveEquals <em>Pojo Directive Equals</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveEquals
+   * @generated
+   */
+  public Adapter createPojoDirectiveEqualsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode <em>Pojo Directive Hash Code</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode
+   * @generated
+   */
+  public Adapter createPojoDirectiveHashCodeAdapter()
   {
     return null;
   }

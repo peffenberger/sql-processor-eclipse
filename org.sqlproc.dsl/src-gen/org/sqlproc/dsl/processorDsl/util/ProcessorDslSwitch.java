@@ -104,6 +104,8 @@ import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoDirective;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveEquals;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveOperators;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable;
@@ -985,6 +987,22 @@ public class ProcessorDslSwitch<T> extends Switch<T>
         PojoDirectiveDiscriminator pojoDirectiveDiscriminator = (PojoDirectiveDiscriminator)theEObject;
         T result = casePojoDirectiveDiscriminator(pojoDirectiveDiscriminator);
         if (result == null) result = casePojoDirective(pojoDirectiveDiscriminator);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_EQUALS:
+      {
+        PojoDirectiveEquals pojoDirectiveEquals = (PojoDirectiveEquals)theEObject;
+        T result = casePojoDirectiveEquals(pojoDirectiveEquals);
+        if (result == null) result = casePojoDirective(pojoDirectiveEquals);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorDslPackage.POJO_DIRECTIVE_HASH_CODE:
+      {
+        PojoDirectiveHashCode pojoDirectiveHashCode = (PojoDirectiveHashCode)theEObject;
+        T result = casePojoDirectiveHashCode(pojoDirectiveHashCode);
+        if (result == null) result = casePojoDirective(pojoDirectiveHashCode);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2908,6 +2926,38 @@ public class ProcessorDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePojoDirectiveDiscriminator(PojoDirectiveDiscriminator object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Equals</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Equals</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveEquals(PojoDirectiveEquals object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Hash Code</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Hash Code</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveHashCode(PojoDirectiveHashCode object)
   {
     return null;
   }

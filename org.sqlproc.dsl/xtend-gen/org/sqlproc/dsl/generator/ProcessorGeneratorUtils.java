@@ -23,6 +23,7 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.sqlproc.dsl.ImportManager;
@@ -58,9 +59,12 @@ import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
 import org.sqlproc.dsl.processorDsl.PojoDirective;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveEquals;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveOperators;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveToString;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier2;
@@ -391,26 +395,6 @@ public class ProcessorGeneratorUtils {
     boolean _xifexpression = false;
     boolean _notEquals = (!Objects.equal(d, null));
     if (_notEquals) {
-      _xifexpression = true;
-    } else {
-      _xifexpression = false;
-    }
-    return _xifexpression;
-  }
-  
-  public boolean isAttribute(final PojoProperty f) {
-    boolean _xifexpression = false;
-    boolean _or = false;
-    EList<PojoProperty> _attrs = f.getAttrs();
-    boolean _equals = Objects.equal(_attrs, null);
-    if (_equals) {
-      _or = true;
-    } else {
-      EList<PojoProperty> _attrs_1 = f.getAttrs();
-      boolean _isEmpty = _attrs_1.isEmpty();
-      _or = _isEmpty;
-    }
-    if (_or) {
       _xifexpression = true;
     } else {
       _xifexpression = false;
@@ -758,6 +742,78 @@ public class ProcessorGeneratorUtils {
     return result;
   }
   
+  public List<PojoProperty> toStringFeatures(final PojoEntity pojo) {
+    final List<PojoProperty> result = CollectionLiterals.<PojoProperty>newArrayList();
+    EList<PojoDirective> _directives = null;
+    if (pojo!=null) {
+      _directives=pojo.getDirectives();
+    }
+    final Function1<PojoDirective, Boolean> _function = new Function1<PojoDirective, Boolean>() {
+      public Boolean apply(final PojoDirective x) {
+        return Boolean.valueOf((x instanceof PojoDirectiveToString));
+      }
+    };
+    Iterable<PojoDirective> _filter = IterableExtensions.<PojoDirective>filter(_directives, _function);
+    final Procedure1<PojoDirective> _function_1 = new Procedure1<PojoDirective>() {
+      public void apply(final PojoDirective it) {
+        final PojoDirectiveToString d = ((PojoDirectiveToString) it);
+        DirectiveProperties _proplist = d.getProplist();
+        EList<PojoProperty> _features = _proplist.getFeatures();
+        result.addAll(_features);
+      }
+    };
+    IterableExtensions.<PojoDirective>forEach(_filter, _function_1);
+    return result;
+  }
+  
+  public List<PojoProperty> equalsFeatures(final PojoEntity pojo) {
+    final List<PojoProperty> result = CollectionLiterals.<PojoProperty>newArrayList();
+    EList<PojoDirective> _directives = null;
+    if (pojo!=null) {
+      _directives=pojo.getDirectives();
+    }
+    final Function1<PojoDirective, Boolean> _function = new Function1<PojoDirective, Boolean>() {
+      public Boolean apply(final PojoDirective x) {
+        return Boolean.valueOf((x instanceof PojoDirectiveEquals));
+      }
+    };
+    Iterable<PojoDirective> _filter = IterableExtensions.<PojoDirective>filter(_directives, _function);
+    final Procedure1<PojoDirective> _function_1 = new Procedure1<PojoDirective>() {
+      public void apply(final PojoDirective it) {
+        final PojoDirectiveEquals d = ((PojoDirectiveEquals) it);
+        DirectiveProperties _proplist = d.getProplist();
+        EList<PojoProperty> _features = _proplist.getFeatures();
+        result.addAll(_features);
+      }
+    };
+    IterableExtensions.<PojoDirective>forEach(_filter, _function_1);
+    return result;
+  }
+  
+  public List<PojoProperty> hashCodeFeatures(final PojoEntity pojo) {
+    final List<PojoProperty> result = CollectionLiterals.<PojoProperty>newArrayList();
+    EList<PojoDirective> _directives = null;
+    if (pojo!=null) {
+      _directives=pojo.getDirectives();
+    }
+    final Function1<PojoDirective, Boolean> _function = new Function1<PojoDirective, Boolean>() {
+      public Boolean apply(final PojoDirective x) {
+        return Boolean.valueOf((x instanceof PojoDirectiveHashCode));
+      }
+    };
+    Iterable<PojoDirective> _filter = IterableExtensions.<PojoDirective>filter(_directives, _function);
+    final Procedure1<PojoDirective> _function_1 = new Procedure1<PojoDirective>() {
+      public void apply(final PojoDirective it) {
+        final PojoDirectiveHashCode d = ((PojoDirectiveHashCode) it);
+        DirectiveProperties _proplist = d.getProplist();
+        EList<PojoProperty> _features = _proplist.getFeatures();
+        result.addAll(_features);
+      }
+    };
+    IterableExtensions.<PojoDirective>forEach(_filter, _function_1);
+    return result;
+  }
+  
   public List<PojoProperty> requiredFeatures(final PojoEntity pojo) {
     boolean _equals = Objects.equal(pojo, null);
     if (_equals) {
@@ -794,19 +850,12 @@ public class ProcessorGeneratorUtils {
       return CollectionLiterals.<PojoProperty>newArrayList();
     }
     EList<PojoAnnotatedProperty> _features = pojo.getFeatures();
-    final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
-      public Boolean apply(final PojoAnnotatedProperty x) {
-        PojoProperty _feature = x.getFeature();
-        return Boolean.valueOf(ProcessorGeneratorUtils.this.isAttribute(_feature));
-      }
-    };
-    Iterable<PojoAnnotatedProperty> _filter = IterableExtensions.<PojoAnnotatedProperty>filter(_features, _function);
-    final Function1<PojoAnnotatedProperty, PojoProperty> _function_1 = new Function1<PojoAnnotatedProperty, PojoProperty>() {
+    final Function1<PojoAnnotatedProperty, PojoProperty> _function = new Function1<PojoAnnotatedProperty, PojoProperty>() {
       public PojoProperty apply(final PojoAnnotatedProperty it) {
         return it.getFeature();
       }
     };
-    Iterable<PojoProperty> _map = IterableExtensions.<PojoAnnotatedProperty, PojoProperty>map(_filter, _function_1);
+    List<PojoProperty> _map = ListExtensions.<PojoAnnotatedProperty, PojoProperty>map(_features, _function);
     final List<PojoProperty> features = IterableExtensions.<PojoProperty>toList(_map);
     final PojoEntity se = this.getSuperType(pojo);
     boolean _equals_1 = Objects.equal(se, null);
@@ -1006,18 +1055,9 @@ public class ProcessorGeneratorUtils {
     EList<PojoAnnotatedProperty> _features = pojo.getFeatures();
     final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
       public Boolean apply(final PojoAnnotatedProperty x) {
-        boolean _and = false;
         PojoProperty _feature = x.getFeature();
-        boolean _isAttribute = ProcessorGeneratorUtils.this.isAttribute(_feature);
-        if (!_isAttribute) {
-          _and = false;
-        } else {
-          PojoProperty _feature_1 = x.getFeature();
-          String _name = _feature_1.getName();
-          boolean _equals = Objects.equal(_name, name);
-          _and = _equals;
-        }
-        return Boolean.valueOf(_and);
+        String _name = _feature.getName();
+        return Boolean.valueOf(Objects.equal(_name, name));
       }
     };
     PojoAnnotatedProperty _findFirst = IterableExtensions.<PojoAnnotatedProperty>findFirst(_features, _function);

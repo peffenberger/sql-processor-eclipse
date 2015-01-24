@@ -54,6 +54,9 @@ import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveToInit
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumInit
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIsDef
 import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumDef
+import org.sqlproc.dsl.processorDsl.PojoDirectiveToString
+import org.sqlproc.dsl.processorDsl.PojoDirectiveEquals
+import org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode
 
 class ProcessorGeneratorUtils {
 
@@ -129,9 +132,9 @@ class ProcessorGeneratorUtils {
 		return if(d != null) true else false
 	}
 
-	def isAttribute(PojoProperty f) {
-		return if(f.attrs == null || f.attrs.isEmpty()) true else false
-	}
+//	def isAttribute(PojoProperty f) {
+//		return if(f.attrs == null || f.attrs.isEmpty()) true else false
+//	}
 
 	def isList(PojoProperty f) {
 		val name = f?.type?.simpleName
@@ -219,6 +222,33 @@ class ProcessorGeneratorUtils {
         return result
     }
 
+    def List<PojoProperty> toStringFeatures(PojoEntity pojo) {
+        val List<PojoProperty> result = newArrayList()
+		pojo?.directives.filter[x|x instanceof PojoDirectiveToString].forEach[
+			val d = it as PojoDirectiveToString
+			result.addAll(d.proplist.features)
+		]
+        return result
+    }
+
+    def List<PojoProperty> equalsFeatures(PojoEntity pojo) {
+        val List<PojoProperty> result = newArrayList()
+		pojo?.directives.filter[x|x instanceof PojoDirectiveEquals].forEach[
+			val d = it as PojoDirectiveEquals
+			result.addAll(d.proplist.features)
+		]
+        return result
+    }
+
+    def List<PojoProperty> hashCodeFeatures(PojoEntity pojo) {
+        val List<PojoProperty> result = newArrayList()
+		pojo?.directives.filter[x|x instanceof PojoDirectiveHashCode].forEach[
+			val d = it as PojoDirectiveHashCode
+			result.addAll(d.proplist.features)
+		]
+        return result
+    }
+
 	def List<PojoProperty> requiredFeatures(PojoEntity pojo) {
 		if (pojo == null)
 			return newArrayList()
@@ -233,7 +263,7 @@ class ProcessorGeneratorUtils {
 	def List<PojoProperty> attributes(PojoEntity pojo) {
 		if (pojo == null)
 			return newArrayList()
-		val features = pojo.features.filter[x|x.feature.isAttribute].map[feature].toList
+		val features = pojo.features/*.filter[x|x.feature.isAttribute]*/.map[feature].toList
 		val se = pojo.superType
 		if (se == null)
 			return features
@@ -308,7 +338,7 @@ class ProcessorGeneratorUtils {
     def PojoProperty getAttribute(PojoEntity pojo, String name) {
 		if (pojo == null)
 			return null
-		val feature = pojo.features.findFirst[x|x.feature.isAttribute && x.feature.name == name].feature
+		val feature = pojo.features.findFirst[x|/*x.feature.isAttribute &&*/ x.feature.name == name].feature
 		return feature ?: pojo.superType?.getAttribute(name)
     }
 
