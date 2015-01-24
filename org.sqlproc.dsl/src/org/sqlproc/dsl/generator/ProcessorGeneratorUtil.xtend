@@ -338,8 +338,8 @@ class ProcessorGeneratorUtils {
     def PojoProperty getAttribute(PojoEntity pojo, String name) {
 		if (pojo == null)
 			return null
-		val feature = pojo.features.findFirst[x|/*x.feature.isAttribute &&*/ x.feature.name == name].feature
-		return feature ?: pojo.superType?.getAttribute(name)
+		val feature = pojo.features.findFirst[x|/*x.feature.isAttribute &&*/ x.feature.name == name]
+		return feature?.feature ?: pojo.superType?.getAttribute(name)
     }
 
 	// EnumEntity

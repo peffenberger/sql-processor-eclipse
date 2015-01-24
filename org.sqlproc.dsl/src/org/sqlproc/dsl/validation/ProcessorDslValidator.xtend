@@ -49,6 +49,8 @@ import com.google.inject.Inject
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import org.sqlproc.dsl.generator.ProcessorGeneratorUtils
+import org.sqlproc.dsl.processorDsl.DirectiveProperties
+import org.sqlproc.dsl.processorDsl.PojoDirective
 
 enum ValidationResult {
 	OK, WARNING, ERROR
@@ -165,7 +167,6 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
             }
         }
     }
-
 
     def equalsStatement(MetaStatement statement1, MetaStatement statement2) {
         if (statement1 == null && statement2 == null)
@@ -907,4 +908,20 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
             }
         }
     }
+
+	@Check
+	def checkDirectiveProperties(DirectiveProperties directiveProperties) {
+		if (directiveProperties.features == null || directiveProperties.features.empty)
+			return;
+        val directive = directiveProperties.getContainerOfType(typeof(PojoDirective))
+        val entity = directive.getContainerOfType(typeof(PojoEntity))
+        for (PojoProperty prop : directiveProperties.features) {
+        	if (getAttribute(entity, prop.name) == null) {
+                error("Cannot find property : " + prop.name + "[" + entity.name + "]",
+                        ProcessorDslPackage.Literals.DIRECTIVE_PROPERTIES__FEATURES)
+                return
+        	}
+        }
+		return
+	}
 }

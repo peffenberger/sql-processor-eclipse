@@ -1060,11 +1060,14 @@ public class ProcessorGeneratorUtils {
         return Boolean.valueOf(Objects.equal(_name, name));
       }
     };
-    PojoAnnotatedProperty _findFirst = IterableExtensions.<PojoAnnotatedProperty>findFirst(_features, _function);
-    final PojoProperty feature = _findFirst.getFeature();
+    final PojoAnnotatedProperty feature = IterableExtensions.<PojoAnnotatedProperty>findFirst(_features, _function);
     PojoProperty _elvis = null;
-    if (feature != null) {
-      _elvis = feature;
+    PojoProperty _feature = null;
+    if (feature!=null) {
+      _feature=feature.getFeature();
+    }
+    if (_feature != null) {
+      _elvis = _feature;
     } else {
       PojoEntity _superType = this.getSuperType(pojo);
       PojoProperty _attribute = null;
