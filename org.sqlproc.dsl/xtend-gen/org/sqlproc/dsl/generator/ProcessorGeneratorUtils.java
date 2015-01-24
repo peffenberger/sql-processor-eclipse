@@ -862,9 +862,39 @@ public class ProcessorGeneratorUtils {
     if (_equals_1) {
       return features;
     }
-    List<PojoProperty> _requiredFeatures = this.requiredFeatures(se);
-    features.addAll(_requiredFeatures);
+    List<PojoProperty> _attributes = this.attributes(se);
+    features.addAll(_attributes);
     return features;
+  }
+  
+  public Map<String, PojoProperty> attributesAsMap(final PojoEntity pojo) {
+    final TreeMap<String, PojoProperty> result = new TreeMap<String, PojoProperty>();
+    boolean _equals = Objects.equal(pojo, null);
+    if (_equals) {
+      return result;
+    }
+    EList<PojoAnnotatedProperty> _features = pojo.getFeatures();
+    final Function1<PojoAnnotatedProperty, PojoProperty> _function = new Function1<PojoAnnotatedProperty, PojoProperty>() {
+      public PojoProperty apply(final PojoAnnotatedProperty it) {
+        return it.getFeature();
+      }
+    };
+    List<PojoProperty> _map = ListExtensions.<PojoAnnotatedProperty, PojoProperty>map(_features, _function);
+    final Procedure1<PojoProperty> _function_1 = new Procedure1<PojoProperty>() {
+      public void apply(final PojoProperty it) {
+        String _name = it.getName();
+        result.put(_name, it);
+      }
+    };
+    IterableExtensions.<PojoProperty>forEach(_map, _function_1);
+    final PojoEntity se = this.getSuperType(pojo);
+    boolean _equals_1 = Objects.equal(se, null);
+    if (_equals_1) {
+      return result;
+    }
+    Map<String, PojoProperty> _attributesAsMap = this.attributesAsMap(se);
+    result.putAll(_attributesAsMap);
+    return result;
   }
   
   public List<PojoProperty> toInitFeatures(final PojoEntity pojo) {

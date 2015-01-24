@@ -267,8 +267,22 @@ class ProcessorGeneratorUtils {
 		val se = pojo.superType
 		if (se == null)
 			return features
-		features.addAll(se.requiredFeatures)
+		features.addAll(se.attributes)
 		return features
+	}
+
+	def Map<String, PojoProperty> attributesAsMap(PojoEntity pojo) {
+		val result = new TreeMap()
+		if (pojo == null)
+			return result
+		pojo.features/*.filter[x|x.feature.isAttribute]*/.map[feature].forEach[
+			result.put(it.name, it)
+		]
+		val se = pojo.superType
+		if (se == null)
+			return result
+		result.putAll(se.attributesAsMap)
+		return result
 	}
 
 	def List<PojoProperty> toInitFeatures(PojoEntity pojo) {

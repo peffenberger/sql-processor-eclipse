@@ -44,7 +44,6 @@ import org.sqlproc.dsl.processorDsl.Column;
 import org.sqlproc.dsl.processorDsl.Constant;
 import org.sqlproc.dsl.processorDsl.DatabaseColumn;
 import org.sqlproc.dsl.processorDsl.DatabaseTable;
-import org.sqlproc.dsl.processorDsl.DirectiveProperties;
 import org.sqlproc.dsl.processorDsl.Entity;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
@@ -58,7 +57,6 @@ import org.sqlproc.dsl.processorDsl.OptionalFeature;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
-import org.sqlproc.dsl.processorDsl.PojoDirective;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
@@ -1894,42 +1892,5 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         }
       }
     }
-  }
-  
-  @Check
-  public void checkDirectiveProperties(final DirectiveProperties directiveProperties) {
-    boolean _or = false;
-    EList<PojoProperty> _features = directiveProperties.getFeatures();
-    boolean _equals = Objects.equal(_features, null);
-    if (_equals) {
-      _or = true;
-    } else {
-      EList<PojoProperty> _features_1 = directiveProperties.getFeatures();
-      boolean _isEmpty = _features_1.isEmpty();
-      _or = _isEmpty;
-    }
-    if (_or) {
-      return;
-    }
-    final PojoDirective directive = EcoreUtil2.<PojoDirective>getContainerOfType(directiveProperties, PojoDirective.class);
-    final PojoEntity entity = EcoreUtil2.<PojoEntity>getContainerOfType(directive, PojoEntity.class);
-    EList<PojoProperty> _features_2 = directiveProperties.getFeatures();
-    for (final PojoProperty prop : _features_2) {
-      String _name = prop.getName();
-      PojoProperty _attribute = this._processorGeneratorUtils.getAttribute(entity, _name);
-      boolean _equals_1 = Objects.equal(_attribute, null);
-      if (_equals_1) {
-        String _name_1 = prop.getName();
-        String _plus = ("Cannot find property : " + _name_1);
-        String _plus_1 = (_plus + "[");
-        String _name_2 = entity.getName();
-        String _plus_2 = (_plus_1 + _name_2);
-        String _plus_3 = (_plus_2 + "]");
-        this.error(_plus_3, 
-          ProcessorDslPackage.Literals.DIRECTIVE_PROPERTIES__FEATURES);
-        return;
-      }
-    }
-    return;
   }
 }

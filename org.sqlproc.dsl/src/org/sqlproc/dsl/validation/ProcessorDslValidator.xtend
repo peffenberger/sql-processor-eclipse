@@ -909,19 +909,20 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
         }
     }
 
-	@Check
-	def checkDirectiveProperties(DirectiveProperties directiveProperties) {
-		if (directiveProperties.features == null || directiveProperties.features.empty)
-			return;
-        val directive = directiveProperties.getContainerOfType(typeof(PojoDirective))
-        val entity = directive.getContainerOfType(typeof(PojoEntity))
-        for (PojoProperty prop : directiveProperties.features) {
-        	if (getAttribute(entity, prop.name) == null) {
-                error("Cannot find property : " + prop.name + "[" + entity.name + "]",
-                        ProcessorDslPackage.Literals.DIRECTIVE_PROPERTIES__FEATURES)
-                return
-        	}
-        }
-		return
-	}
+//	@Check
+//	def checkDirectiveProperties(DirectiveProperties directiveProperties) {
+//		if (directiveProperties.features == null || directiveProperties.features.empty)
+//			return;
+//        val directive = directiveProperties.getContainerOfType(typeof(PojoDirective))
+//        val entity = directive.getContainerOfType(typeof(PojoEntity))
+//		val attributes = attributesAsMap(entity)
+//        for (PojoProperty prop : directiveProperties.features) {
+//        	if (!attributes.containsKey(prop.name)) {
+//                error("Cannot find property : " + prop.name + "[" + entity.name + "]",
+//                        ProcessorDslPackage.Literals.DIRECTIVE_PROPERTIES__FEATURES)
+//                return
+//        	}
+//        }
+//		return
+//	}
 }

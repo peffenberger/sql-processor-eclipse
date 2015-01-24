@@ -49,6 +49,9 @@ import com.google.inject.Inject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import org.sqlproc.dsl.generator.ProcessorGeneratorUtils
+import org.sqlproc.dsl.processorDsl.DirectiveProperties
+import org.sqlproc.dsl.processorDsl.PojoDirective
+import java.util.TreeMap
 
 /**
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
@@ -575,8 +578,8 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		acceptTables(model, context, acceptor, "->")
 	}
 
-	override completeInheritanceAssignement_DbTable(EObject model, Assignment assignment,
-		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	override completeInheritanceAssignement_DbTable(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model)) {
 			super.completeInheritanceAssignement_DbTable(model, assignment, context, acceptor)
 			return
@@ -635,8 +638,8 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		}
 	}
 
-	override completeImplementsAssignement_DbTables(EObject model, Assignment assignment,
-		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	override completeImplementsAssignement_DbTables(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model)) {
 			super.completeImplementsAssignement_DbTables(model, assignment, context, acceptor)
 			return
@@ -668,8 +671,8 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		acceptFunctions(model, context, acceptor)
 	}
 
-	override completeExtendsAssignement_DbNotTables(EObject model, Assignment assignment,
-		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	override completeExtendsAssignement_DbNotTables(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model)) {
 			super.completeExtendsAssignement_DbNotTables(model, assignment, context, acceptor)
 			return
@@ -723,8 +726,8 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		acceptFunctions(model, context, acceptor)
 	}
 
-	override completeColumnTypeAssignement_DbColumn(EObject model, Assignment assignment,
-		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	override completeColumnTypeAssignement_DbColumn(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
 			super.completeColumnTypeAssignement_DbColumn(model, assignment, context, acceptor)
 			return
@@ -868,8 +871,8 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		}
 	}
 
-	override completeManyToManyAssignement_PkColumn(EObject model, Assignment assignment,
-		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	override completeManyToManyAssignement_PkColumn(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
 			super.completeManyToManyAssignement_PkColumn(model, assignment, context, acceptor)
 			return
@@ -880,8 +883,8 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		}
 	}
 
-	override completeManyToManyAssignement_PkTable(EObject model, Assignment assignment,
-		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	override completeManyToManyAssignement_PkTable(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model) && !(model instanceof ManyToManyAssignement)) {
 			super.completeManyToManyAssignement_PkTable(model, assignment, context, acceptor)
 			return
@@ -940,8 +943,8 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		}
 	}
 
-	override completeShowColumnTypeAssignement_Type(EObject model, Assignment assignment,
-		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	override completeShowColumnTypeAssignement_Type(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model) && !(model instanceof ShowColumnTypeAssignement)) {
 			super.completeShowColumnTypeAssignement_Type(model, assignment, context, acceptor)
 			return
@@ -962,8 +965,8 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		}
 	}
 
-	override completeJoinTableAssignement_DbTable(EObject model, Assignment assignment,
-		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	override completeJoinTableAssignement_DbTable(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model)) {
 			super.completeJoinTableAssignement_DbTable(model, assignment, context, acceptor)
 			return
@@ -971,8 +974,8 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		acceptTables(model, context, acceptor, "->")
 	}
 
-	override completeJoinTableAssignement_DbTables(EObject model, Assignment assignment,
-		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	override completeJoinTableAssignement_DbTables(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model)) {
 			super.completeJoinTableAssignement_DbTables(model, assignment, context, acceptor)
 			return
@@ -1116,8 +1119,8 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		acceptSequences(model, context, acceptor)
 	}
 
-	override completeMetaTypeAssignement_DbColumn(EObject model, Assignment assignment,
-		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	override completeMetaTypeAssignement_DbColumn(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model) && !(model instanceof MetagenProperty)) {
 			super.completeMetaTypeAssignement_DbColumn(model, assignment, context, acceptor)
 			return
@@ -1191,8 +1194,8 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		acceptor.accept(createCompletionProposal(proposal, context))
 	}
 
-	override completeDatabaseTypeAssignement_DbType(EObject model, Assignment assignment,
-		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	override completeDatabaseTypeAssignement_DbType(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model)) {
 			super.completeDatabaseTypeAssignement_DbType(model, assignment, context, acceptor)
 			return
@@ -1259,4 +1262,30 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		}
 		acceptCheckConstraints(model, context, acceptor)
 	}
+
+//	override completeDirectiveProperties_Features(EObject model, Assignment assignment, ContentAssistContext context,
+//		ICompletionProposalAcceptor acceptor) {
+//		println(model)
+//		if (!(model instanceof DirectiveProperties) || (model as DirectiveProperties).features == null ||
+//			(model as DirectiveProperties).features.empty) {
+//			super.completeDirectiveProperties_Features(model, assignment, context, acceptor)
+//			return
+//		}
+//		val directiveProperties = model as DirectiveProperties
+//		val directive = model.getContainerOfType(typeof(PojoDirective))
+//		val entity = directive.getContainerOfType(typeof(PojoEntity))
+//		val attributes = attributesAsMap(entity)
+//		for (PojoProperty prop : directiveProperties.features) {
+//			attributes.remove(prop.name)
+//		}
+//		attributes.forEach [ name, attr |
+//			val proposal = getValueConverter().toString(name, "IDENT")
+//			acceptor.accept(createCompletionProposal(proposal, context))
+//		]
+//	}
+//
+//	override completePojoDirective_Proplist(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+//		println(model)
+//		super.completePojoDirective_Proplist(model, assignment, context, acceptor)
+//	}
 }
