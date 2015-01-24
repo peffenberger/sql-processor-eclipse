@@ -3371,6 +3371,12 @@ rule__Property__Alternatives_0
 { after(grammarAccess.getPropertyAccess().getGroup_0_7()); }
 )
 
+    |(
+{ before(grammarAccess.getPropertyAccess().getNameAssignment_0_8()); }
+(rule__Property__NameAssignment_0_8)
+{ after(grammarAccess.getPropertyAccess().getNameAssignment_0_8()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -42162,6 +42168,29 @@ rule__Property__ReplacementAssignment_0_7_4
 (
 { before(grammarAccess.getPropertyAccess().getReplacementPropertyValueParserRuleCall_0_7_4_0()); }
 	rulePropertyValue{ after(grammarAccess.getPropertyAccess().getReplacementPropertyValueParserRuleCall_0_7_4_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Property__NameAssignment_0_8
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getPropertyAccess().getNameCompressMetaDirectivesKeyword_0_8_0()); }
+(
+{ before(grammarAccess.getPropertyAccess().getNameCompressMetaDirectivesKeyword_0_8_0()); }
+
+	'compress-meta-directives' 
+
+{ after(grammarAccess.getPropertyAccess().getNameCompressMetaDirectivesKeyword_0_8_0()); }
+)
+
+{ after(grammarAccess.getPropertyAccess().getNameCompressMetaDirectivesKeyword_0_8_0()); }
 )
 
 ;

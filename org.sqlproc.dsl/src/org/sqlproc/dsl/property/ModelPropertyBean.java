@@ -42,6 +42,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String RESOLVE_POJO_OFF = "resolve-pojo-off";
     public static final String REPLACE_ALL_REGEX = "replace-all-regex";
     public static final String REPLACE_ALL_REPLACEMENT = "replace-all-replacement";
+    public static final String COMPRESS_META_DIRECTIVES = "compress-meta-directives";
     public static final String DATABASE = "database";
     public static final String DATABASE_IS_ONLINE = "is-online";
     public static final String DATABASE_IS_OFFLINE = "is-offline";
@@ -154,6 +155,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public boolean doResolveDb;
         public Map<String, String> replaceAllRegex;
         public Map<String, String> replaceAllReplacement;
+        public boolean doCompressMetaDirectives;
         public String dbDriver;
         public String dbUrl;
         public String dbUsername;
@@ -406,6 +408,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     private static void initModel(ModelValues modelValues) {
         modelValues.replaceAllRegex = new HashMap<String, String>();
         modelValues.replaceAllReplacement = new HashMap<String, String>();
+        modelValues.doCompressMetaDirectives = false;
     }
 
     private static void initDatabaseModel(ModelValues modelValues) {
@@ -529,6 +532,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         } else if (REPLACE_ALL_REPLACEMENT.equals(property.getName())) {
             if (property.getReplacement() != null && property.getReplaceId() != null)
                 modelValues.replaceAllReplacement.put(property.getReplaceId(), property.getReplacement());
+        } else if (COMPRESS_META_DIRECTIVES.equals(property.getName())) {
+            modelValues.doCompressMetaDirectives = true;
         }
     }
 
@@ -1076,6 +1081,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             }
         }
         return result;
+    }
+
+    @Override
+    public boolean isCompressMetaDirectives(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.doCompressMetaDirectives : false;
     }
 
     @Override

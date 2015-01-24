@@ -909,6 +909,8 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
         }
     }
 
+
+	// see ProcessorDslScopeProvider
 //	@Check
 //	def checkDirectiveProperties(DirectiveProperties directiveProperties) {
 //		if (directiveProperties.features == null || directiveProperties.features.empty)

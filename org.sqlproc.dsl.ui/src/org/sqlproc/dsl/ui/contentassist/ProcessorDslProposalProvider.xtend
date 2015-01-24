@@ -52,6 +52,7 @@ import org.sqlproc.dsl.generator.ProcessorGeneratorUtils
 import org.sqlproc.dsl.processorDsl.DirectiveProperties
 import org.sqlproc.dsl.processorDsl.PojoDirective
 import java.util.TreeMap
+import org.eclipse.xtext.CrossReference
 
 /**
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
@@ -1263,6 +1264,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 		acceptCheckConstraints(model, context, acceptor)
 	}
 
+	// TODO: id doesn't work (model is Artifacts), nor ProcessorDslScopeProvider can help
 //	override completeDirectiveProperties_Features(EObject model, Assignment assignment, ContentAssistContext context,
 //		ICompletionProposalAcceptor acceptor) {
 //		println(model)
@@ -1282,10 +1284,9 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 //			val proposal = getValueConverter().toString(name, "IDENT")
 //			acceptor.accept(createCompletionProposal(proposal, context))
 //		]
-//	}
-//
-//	override completePojoDirective_Proplist(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-//		println(model)
-//		super.completePojoDirective_Proplist(model, assignment, context, acceptor)
+
+//		lookupCrossReference(assignment.getTerminal() as CrossReference, context, acceptor, [
+//			(EObjectOrProxy as PojoProperty). // test it belongs to model
+//		])
 //	}
 }

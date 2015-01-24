@@ -1201,25 +1201,27 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_0_7_3 = (RuleCall)cGroup_0_7.eContents().get(3);
 		private final Assignment cReplacementAssignment_0_7_4 = (Assignment)cGroup_0_7.eContents().get(4);
 		private final RuleCall cReplacementPropertyValueParserRuleCall_0_7_4_0 = (RuleCall)cReplacementAssignment_0_7_4.eContents().get(0);
+		private final Assignment cNameAssignment_0_8 = (Assignment)cAlternatives_0.eContents().get(8);
+		private final Keyword cNameCompressMetaDirectivesKeyword_0_8_0 = (Keyword)cNameAssignment_0_8.eContents().get(0);
 		private final RuleCall cSEMICOLONTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//Property:
 		//	(name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
 		//	pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
 		//	name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue | name="replace-all-replacement" WS+
-		//	replaceId=IDENT WS+ replacement=PropertyValue) SEMICOLON;
+		//	replaceId=IDENT WS+ replacement=PropertyValue | name="compress-meta-directives") SEMICOLON;
 		public ParserRule getRule() { return rule; }
 
 		//(name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
 		//pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
 		//name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue | name="replace-all-replacement" WS+
-		//replaceId=IDENT WS+ replacement=PropertyValue) SEMICOLON
+		//replaceId=IDENT WS+ replacement=PropertyValue | name="compress-meta-directives") SEMICOLON
 		public Group getGroup() { return cGroup; }
 
 		//name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
 		//pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
 		//name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue | name="replace-all-replacement" WS+
-		//replaceId=IDENT WS+ replacement=PropertyValue
+		//replaceId=IDENT WS+ replacement=PropertyValue | name="compress-meta-directives"
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
 		//name="resolve-pojo-on"
@@ -1347,6 +1349,12 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//PropertyValue
 		public RuleCall getReplacementPropertyValueParserRuleCall_0_7_4_0() { return cReplacementPropertyValueParserRuleCall_0_7_4_0; }
+
+		//name="compress-meta-directives"
+		public Assignment getNameAssignment_0_8() { return cNameAssignment_0_8; }
+
+		//"compress-meta-directives"
+		public Keyword getNameCompressMetaDirectivesKeyword_0_8_0() { return cNameCompressMetaDirectivesKeyword_0_8_0; }
 
 		//SEMICOLON
 		public RuleCall getSEMICOLONTerminalRuleCall_1() { return cSEMICOLONTerminalRuleCall_1; }
@@ -10659,7 +10667,7 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	(name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
 	//	pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
 	//	name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue | name="replace-all-replacement" WS+
-	//	replaceId=IDENT WS+ replacement=PropertyValue) SEMICOLON;
+	//	replaceId=IDENT WS+ replacement=PropertyValue | name="compress-meta-directives") SEMICOLON;
 	public PropertyElements getPropertyAccess() {
 		return pProperty;
 	}

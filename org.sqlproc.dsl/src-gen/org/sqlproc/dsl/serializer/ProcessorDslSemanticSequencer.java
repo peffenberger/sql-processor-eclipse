@@ -2321,7 +2321,8 @@ public class ProcessorDslSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         (name='metagen-' metagen=MetagenProperty) | 
 	 *         (name='daogen-' daogen=DaogenProperty) | 
 	 *         (name='replace-all-regex' replaceId=IDENT regex=PropertyValue) | 
-	 *         (name='replace-all-replacement' replaceId=IDENT replacement=PropertyValue)
+	 *         (name='replace-all-replacement' replaceId=IDENT replacement=PropertyValue) | 
+	 *         name='compress-meta-directives'
 	 *     )
 	 */
 	protected void sequence_Property(EObject context, Property semanticObject) {

@@ -173,4 +173,6 @@ public interface ModelProperty extends Adapter {
     String getDaoPackage(EObject model);
 
     Map<String, String> getEnumForCheckConstraints(EObject model);
+
+    boolean isCompressMetaDirectives(EObject model);
 }

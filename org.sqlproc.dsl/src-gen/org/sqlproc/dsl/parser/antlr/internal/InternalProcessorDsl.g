@@ -2164,9 +2164,25 @@ ruleProperty returns [EObject current=null]
 	    }
 
 )
-)))this_SEMICOLON_20=RULE_SEMICOLON
+))
+    |(
+(
+		lv_name_20_0=	'compress-meta-directives' 
+    {
+        newLeafNode(lv_name_20_0, grammarAccess.getPropertyAccess().getNameCompressMetaDirectivesKeyword_0_8_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_20_0, "compress-meta-directives");
+	    }
+
+)
+))this_SEMICOLON_21=RULE_SEMICOLON
     { 
-    newLeafNode(this_SEMICOLON_20, grammarAccess.getPropertyAccess().getSEMICOLONTerminalRuleCall_1()); 
+    newLeafNode(this_SEMICOLON_21, grammarAccess.getPropertyAccess().getSEMICOLONTerminalRuleCall_1()); 
     }
 )
 ;
