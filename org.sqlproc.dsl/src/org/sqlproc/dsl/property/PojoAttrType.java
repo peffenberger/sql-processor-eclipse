@@ -1,5 +1,6 @@
 package org.sqlproc.dsl.property;
 
+import org.eclipse.xtext.common.types.JvmPrimitiveType;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -9,7 +10,7 @@ import org.sqlproc.dsl.processorDsl.PojoType;
 public class PojoAttrType {
     String name;
     int size;
-    String nativeType;
+    boolean nativeType;
     JvmType type;
     JvmType gtype;
     boolean array;
@@ -18,8 +19,9 @@ public class PojoAttrType {
     String text;
 
     public PojoAttrType(String typeName, String size, PojoType pojoType) {
-        this.nativeType = pojoType.getNative();
         this.type = pojoType.getType();
+        // JvmPrimitiveTypeImplCustom
+        this.nativeType = (type != null && type instanceof JvmPrimitiveType) ? true : false;
         this.ref = pojoType.getRef();
         this.array = pojoType.isArray();
         this.gtype = pojoType.getGtype();
@@ -67,12 +69,8 @@ public class PojoAttrType {
         this.size = size;
     }
 
-    public String getNativeType() {
+    public boolean isNativeType() {
         return nativeType;
-    }
-
-    public void setNativeType(String nativeType) {
-        this.nativeType = nativeType;
     }
 
     public JvmType getType() {

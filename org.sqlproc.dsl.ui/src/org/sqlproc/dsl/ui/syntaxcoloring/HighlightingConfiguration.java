@@ -10,6 +10,7 @@ public class HighlightingConfiguration extends DefaultHighlightingConfiguration 
 
     public final static String PUNCTATION = "punctation";
     public final static String TYPE = "type";
+    public final static String KEYWORD = "keyword";
     public static final String DEFAULT = "default";
     public final static String NAME = "name";
     public static final String COMMENT = "comment";
@@ -24,11 +25,14 @@ public class HighlightingConfiguration extends DefaultHighlightingConfiguration 
     public final static String ENTITY_NAME = "entityName";
     public final static String PROPERTY_NAME = "propertyName";
     public final static String DAO_NAME = "daoName";
+    public final static String DIRECTIVE = "directive";
+    public final static String META_DIRECTIVE = "metaDirective";
 
     public void configure(IHighlightingConfigurationAcceptor acceptor) {
         // super.configure(acceptor);
         acceptor.acceptDefaultHighlighting(PUNCTATION, "Control characters", punctationStyle());
         acceptor.acceptDefaultHighlighting(TYPE, "Artifact type", typeStyle());
+        acceptor.acceptDefaultHighlighting(KEYWORD, "Keyword", keywordStyle());
         acceptor.acceptDefaultHighlighting(COMMENT, "Comment", commentStyle());
         acceptor.acceptDefaultHighlighting(DEFAULT, "Default", defaultStyle());
         acceptor.acceptDefaultHighlighting(CONSTANT, "Constant", constantStyle());
@@ -43,6 +47,8 @@ public class HighlightingConfiguration extends DefaultHighlightingConfiguration 
         acceptor.acceptDefaultHighlighting(ENTITY_NAME, "Pojo entity name", entityNameStyle());
         acceptor.acceptDefaultHighlighting(PROPERTY_NAME, "Pojo property name", propertyNameStyle());
         acceptor.acceptDefaultHighlighting(DAO_NAME, "Pojo DAO name", daoNameStyle());
+        acceptor.acceptDefaultHighlighting(DIRECTIVE, "Control directive", directiveStyle());
+        acceptor.acceptDefaultHighlighting(META_DIRECTIVE, "Meta directive", metaDirectiveStyle());
     }
 
     public TextStyle punctationStyle() {
@@ -54,6 +60,13 @@ public class HighlightingConfiguration extends DefaultHighlightingConfiguration 
     public TextStyle typeStyle() {
         TextStyle textStyle = defaultStyle();
         textStyle.setStyle(SWT.ITALIC);
+        return textStyle;
+    }
+
+    public TextStyle keywordStyle() {
+        TextStyle textStyle = defaultStyle();
+        textStyle.setColor(new RGB(127, 0, 85));
+        textStyle.setStyle(SWT.BOLD);
         return textStyle;
     }
 
@@ -151,5 +164,21 @@ public class HighlightingConfiguration extends DefaultHighlightingConfiguration 
         // TextStyle textStyle = defaultStyle();
         // textStyle.setColor(new RGB(34, 139, 34));
         // return textStyle;
+    }
+
+    public TextStyle directiveStyle() {
+        TextStyle textStyle = new TextStyle();
+        textStyle.setStyle(SWT.NORMAL);
+        // textStyle.setBackgroundColor(new RGB(255, 255, 255));
+        textStyle.setColor(new RGB(0, 0, 0));
+        return textStyle;
+    }
+
+    public TextStyle metaDirectiveStyle() {
+        TextStyle textStyle = new TextStyle();
+        textStyle.setStyle(SWT.NORMAL);
+        // textStyle.setBackgroundColor(new RGB(255, 255, 255));
+        textStyle.setColor(new RGB(0, 0, 0));
+        return textStyle;
     }
 }

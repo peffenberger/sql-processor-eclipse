@@ -66,7 +66,7 @@ public class ProcessorDslFormatter extends AbstractDeclarativeFormatter {
     ParserRule _optionalFeatureRule = this._processorDslGrammarAccess.getOptionalFeatureRule();
     _setLinewrap_11.after(_optionalFeatureRule);
     FormattingConfig.LinewrapLocator _setLinewrap_12 = c.setLinewrap(1, 1, 2);
-    ParserRule _packageDeclarationRule = this._processorDslGrammarAccess.getPackageDeclarationRule();
-    _setLinewrap_12.after(_packageDeclarationRule);
+    ParserRule _packageRule = this._processorDslGrammarAccess.getPackageRule();
+    _setLinewrap_12.after(_packageRule);
   }
 }

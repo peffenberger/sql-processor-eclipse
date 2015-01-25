@@ -88,10 +88,6 @@ public interface ModelProperty extends Adapter {
 
     Map<String, ImplementsExtends> getDaoToImplements(EObject model);
 
-    String getDaoImplementationPackage(EObject model);
-
-    String getImplementationPackage(EObject model);
-
     boolean isMakeItFinal(EObject model);
 
     boolean isDaoMakeItFinal(EObject model);
@@ -177,4 +173,6 @@ public interface ModelProperty extends Adapter {
     String getDaoPackage(EObject model);
 
     Map<String, String> getEnumForCheckConstraints(EObject model);
+
+    boolean isCompressMetaDirectives(EObject model);
 }

@@ -13,11 +13,14 @@ import java.util.ArrayList
 import org.sqlproc.dsl.processorDsl.Implements
 import org.sqlproc.dsl.processorDsl.Extends
 import org.sqlproc.dsl.processorDsl.PojoDao
-import java.util.List
-import org.sqlproc.dsl.processorDsl.PojoMethodArg
 import java.util.Map
-import org.sqlproc.dsl.processorDsl.ImplPackage
-import org.sqlproc.dsl.processorDsl.PojoMethod
+import org.sqlproc.dsl.processorDsl.PojoType
+import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters
+import org.sqlproc.dsl.processorDsl.FunctionCallQuery
+import org.sqlproc.dsl.processorDsl.ProcedureCallQuery
+import org.sqlproc.dsl.processorDsl.FunctionCall
+import org.sqlproc.dsl.processorDsl.ProcedureUpdate
+import org.sqlproc.dsl.processorDsl.FunctionQuery
 
 /**
  * Generates code from your model files on save.
@@ -33,10 +36,12 @@ class ProcessorDaoGenerator {
 		«val im = new ImportManager(true)»
 		«addImplements(d, im)»
 		«addExtends(d, im)»
-		«val toInits = getToInits(d)»
-		«val classBody = compile(d, d.pojo, toInits, im)»
-		«IF d.eContainer != null»package «d.eContainer.fullyQualifiedName»«IF d.implPackage != null».«d.implPackage»«ENDIF»;«ENDIF»
-		«IF d.implPackage != null»
+		«val moreResultClasses = getMoreResultClasses(d)»
+		«val pojo = getPojo(d)»
+		«val implPackage = getImplPackage(d)»
+		«val classBody = compile(d, pojo, moreResultClasses, im, implPackage)»
+		«IF d.eContainer != null»package «d.eContainer.fullyQualifiedName»«IF implPackage != null».«implPackage»«ENDIF»;«ENDIF»
+		«IF implPackage != null»
 		
 		import «d.eContainer.fullyQualifiedName».«d.name»;
 		«ENDIF»
@@ -65,15 +70,15 @@ class ProcessorDaoGenerator {
 		import org.sqlproc.engine.SqlSession;
 		import org.sqlproc.engine.SqlSessionFactory;
 		import org.sqlproc.engine.impl.SqlStandardControl;
-		«IF d.pojo != null»import «d.pojo.completeName»;«ENDIF»
-		«FOR f:toInits.entrySet»«FOR a:f.value SEPARATOR "
-		"»import «a.type.ref.completeName»;«ENDFOR»«ENDFOR»
+		«IF pojo != null»import «pojo.completeName»;«ENDIF»
+		«FOR f:moreResultClasses.entrySet»«FOR a:f.value.values SEPARATOR "
+		"»import «a.ref.completeName»;«ENDFOR»«ENDFOR»
 		
 		«classBody»
 	'''
 	
-	def compile(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im) '''
-		public «IF isAbstract(d)»abstract «ENDIF»class «d.name»«IF d.implPackage != null»Impl«ENDIF» «compileExtends(d, im)»«compileImplements(d)»{
+	def compile(PojoDao d, PojoEntity e, Map<String, Map<String, PojoType>> moreResultClasses, ImportManager im, String implPackage) '''
+		public «IF isAbstract(d)»abstract «ENDIF»class «d.name»«IF implPackage != null»Impl«ENDIF» «compileExtends(d, im)»«compileImplements(d, implPackage)»{
 			«IF getSernum(d) != null»
 			
 			private static final long serialVersionUID = «getSernum(d)»L;
@@ -83,137 +88,166 @@ class ProcessorDaoGenerator {
 			protected SqlEngineFactory sqlEngineFactory;
 			protected SqlSessionFactory sqlSessionFactory;
 					
-			public «d.name»«IF d.implPackage != null»Impl«ENDIF»() {
+			public «d.name»«IF implPackage != null»Impl«ENDIF»() {
 			}
 					
-			public «d.name»«IF d.implPackage != null»Impl«ENDIF»(SqlEngineFactory sqlEngineFactory) {
+			public «d.name»«IF implPackage != null»Impl«ENDIF»(SqlEngineFactory sqlEngineFactory) {
 				this.sqlEngineFactory = sqlEngineFactory;
 			}
 					
-			public «d.name»«IF d.implPackage != null»Impl«ENDIF»(SqlEngineFactory sqlEngineFactory, SqlSessionFactory sqlSessionFactory) {
+			public «d.name»«IF implPackage != null»Impl«ENDIF»(SqlEngineFactory sqlEngineFactory, SqlSessionFactory sqlSessionFactory) {
 				this.sqlEngineFactory = sqlEngineFactory;
 				this.sqlSessionFactory = sqlSessionFactory;
 			}
 			
-		«FOR m:d.methods»«IF m.name == "scaffold" || m.name == "scaffold0"»«compileInsert(d, e, getParent(e), im, m.name == "scaffold")»
-		«compileGet(d, e, toInits, im, m.name == "scaffold")»
-		«compileUpdate(d, e, getParent(e), im, m.name == "scaffold")»
-		«compileDelete(d, e, getParent(e), im, m.name == "scaffold")»
-		«compileList(d, e, toInits, im, m.name == "scaffold")»
-		«compileCount(d, e, toInits, im, m.name == "scaffold")»
-		«IF !toInits.empty»«compileMoreResultClasses(d, e, toInits, im)»«ENDIF»«ELSEIF isCallUpdate(m)»
-		«compileCallUpdate(d, m, im, true)»«ELSEIF isCallFunction(m)»«compileCallFunction(d, m, im, true)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQuery(d, m, im, isCallQueryFunction(m), true)»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunction(d, m, im, true)»«ENDIF»«ENDFOR»
+		«IF isCRUD(d)»«compileInsert(d, e, getParent(e), im, true)»
+		«compileGet(d, e, moreResultClasses, im, true)»
+		«compileUpdate(d, e, getParent(e), im, true)»
+		«compileDelete(d, e, getParent(e), im, true)»«ENDIF»
+		«IF isQuery(d)»
+		«compileList(d, e, moreResultClasses, im, true)»
+		«compileCount(d, e, moreResultClasses, im, true)»«ENDIF»
+		«IF !moreResultClasses.isEmpty»«compileMoreResultClasses(d, e, moreResultClasses, im)»«ENDIF»
+			«FOR fp: listFunctionsDirectives(d)»«compileFunctionProcedure(d, e, fp.type, fp.paramlist, im, true)»«ENDFOR»
 		}
 	'''
 	
-	def compileCallQuery(PojoDao d, PojoMethod m, ImportManager im, boolean isFunction, boolean all) '''
-	
-		public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
+	def dispatch compileFunctionProcedure(PojoDao d, PojoEntity e, FunctionCallQuery type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
+		«val name = d.getFunProcName»
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
-				logger.trace("«m.name»: " + «FOR ma:m.args SEPARATOR " + \" \" "»«ma.name»«ENDFOR» + " " + sqlControl);
+				logger.trace("«name»: " + «FOR ma:p.ins SEPARATOR " + \" \" "»«ma.paramName»«ENDFOR» + " " + sqlControl);
 			}
-			SqlProcedureEngine sqlProc«m.name.toFirstUpper» = sqlEngineFactory.getCheckedProcedureEngine("«IF isFunction»FUN«ELSE»PROC«ENDIF»_«dbName(m)»");
-			«m.type.compileType(im)» list = sqlProc«m.name.toFirstUpper».callQuery(sqlSession, «m.type.gref.name».class, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
+			SqlProcedureEngine sqlProc«d.name» = sqlEngineFactory.getCheckedProcedureEngine("FUN_«dbName(d)»");
+			«p.out.compileType(im)» list = sqlProc«d.name».callQuery(sqlSession, «p.out.gref.name».class, «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», sqlControl);
 			if (logger.isTraceEnabled()) {
-				logger.trace("«m.name» result: " + list);
+				logger.trace("«name» result: " + list);
 			}
 			return list;
 		}
 		«IF all»
-		public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
-			return «m.name»(sqlSessionFactory.getSqlSession(), «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
+			return «name»(sqlSessionFactory.getSqlSession(), «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», sqlControl);
 		}
 		«ENDIF»
-		public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
-			return «m.name»(sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR») {
+			return «name»(sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», null);
 		}
 		«IF all»
-		public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
-			return «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR») {
+			return «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», null);
 		}
 		«ENDIF»
 	'''
 	
-	def compileCallFunction(PojoDao d, PojoMethod m, ImportManager im, boolean all) '''
-	
-		public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
+	def dispatch compileFunctionProcedure(PojoDao d, PojoEntity e, ProcedureCallQuery type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
+		«val name = d.getFunProcName»
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
-				logger.trace("«m.name»: " + «FOR ma:m.args SEPARATOR " + \" \" "»«ma.name»«ENDFOR» + " " + sqlControl);
+				logger.trace("«name»: " + «FOR ma:p.ins SEPARATOR " + \" \" "»«ma.paramName»«ENDFOR» + " " + sqlControl);
 			}
-			SqlProcedureEngine sqlFun«m.name.toFirstUpper» = sqlEngineFactory.getCheckedProcedureEngine("FUN_«dbName(m)»");
-			Object result = sqlFun«m.name.toFirstUpper».callFunction(sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
+			SqlProcedureEngine sqlProc«d.name» = sqlEngineFactory.getCheckedProcedureEngine("PROC_«dbName(d)»");
+			«p.out.compileType(im)» list = sqlProc«d.name».callQuery(sqlSession, «p.out.gref.name».class, «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», sqlControl);
 			if (logger.isTraceEnabled()) {
-				logger.trace("«m.name» result: " + result);
+				logger.trace("«name» result: " + list);
 			}
-			return («m.type.compileType(im)») result;
+			return list;
 		}
 		«IF all»
-		public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
-			return «m.name»(sqlSessionFactory.getSqlSession(), «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
+			return «name»(sqlSessionFactory.getSqlSession(), «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», sqlControl);
 		}
 		«ENDIF»
-		public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
-			return «m.name»(sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR») {
+			return «name»(sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», null);
 		}
 		«IF all»
-		public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
-			return «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR») {
+			return «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», null);
 		}
 		«ENDIF»
 	'''
 	
-	def compileCallUpdate(PojoDao d, PojoMethod m, ImportManager im, boolean all) '''
-	
-		public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
+	def dispatch compileFunctionProcedure(PojoDao d, PojoEntity e, FunctionCall type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
+		«val name = d.getFunProcName»
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
-				logger.trace("«m.name»: " + «FOR ma:m.args SEPARATOR " + \" \" "»«ma.name»«ENDFOR» + " " + sqlControl);
+				logger.trace("«name»: " + «FOR ma:p.ins SEPARATOR " + \" \" "»«ma.paramName»«ENDFOR» + " " + sqlControl);
 			}
-			SqlProcedureEngine sqlProc«m.name.toFirstUpper» = sqlEngineFactory.getCheckedProcedureEngine("PROC_«dbName(m)»");
-			int count = sqlProc«m.name.toFirstUpper».callUpdate(sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
+			SqlProcedureEngine sqlFun«d.name» = sqlEngineFactory.getCheckedProcedureEngine("FUN_«dbName(d)»");
+			Object result = sqlFun«d.name».callFunction(sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», sqlControl);
 			if (logger.isTraceEnabled()) {
-				logger.trace("«m.name» result: " + count);
+				logger.trace("«name» result: " + result);
+			}
+			return («p.out.compileType(im)») result;
+		}
+		«IF all»
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
+			return «name»(sqlSessionFactory.getSqlSession(), «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», sqlControl);
+		}
+		«ENDIF»
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR») {
+			return «name»(sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», null);
+		}
+		«IF all»
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR») {
+			return «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», null);
+		}
+		«ENDIF»
+	'''
+	
+	def dispatch compileFunctionProcedure(PojoDao d, PojoEntity e, ProcedureUpdate type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
+		«val name = d.getFunProcName»
+		public int «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
+			if (logger.isTraceEnabled()) {
+				logger.trace("«name»: " + «FOR ma:p.ins SEPARATOR " + \" \" "»«ma.paramName»«ENDFOR» + " " + sqlControl);
+			}
+			SqlProcedureEngine sqlProc«d.name» = sqlEngineFactory.getCheckedProcedureEngine("PROC_«dbName(d)»");
+			int count = sqlProc«d.name».callUpdate(sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», sqlControl);
+			if (logger.isTraceEnabled()) {
+				logger.trace("«name» result: " + count);
 			}
 			return count;
 		}
 		«IF all»
-		public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
-			return «m.name»(sqlSessionFactory.getSqlSession(), «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
+		public int «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
+			return «name»(sqlSessionFactory.getSqlSession(), «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», sqlControl);
 		}
 		«ENDIF»
-		public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
-			return «m.name»(sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
+		public int «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR») {
+			return «name»(sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», null);
 		}
 		«IF all»
-		public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
-			return «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
+		public int «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR») {
+			return «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», null);
 		}
 		«ENDIF»
 	'''
 	
-	def compileCallSelectFunction(PojoDao d, PojoMethod m, ImportManager im, boolean all) '''
-	
-		public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
+	def dispatch compileFunctionProcedure(PojoDao d, PojoEntity e, FunctionQuery type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
+		«val name = d.getFunProcName»
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
-				logger.trace("«m.name»: " + «FOR ma:m.args SEPARATOR " + \" \" "»«ma.name»«ENDFOR» + " " + sqlControl);
+				logger.trace("«name»: " + «FOR ma:p.ins SEPARATOR " + \" \" "»«ma.paramName»«ENDFOR» + " " + sqlControl);
 			}
-			SqlQueryEngine sqlFun«m.name.toFirstUpper» = sqlEngineFactory.getCheckedQueryEngine("FUN_«dbName(m)»");
-			java.util.List<«m.args.get(0).type.compileType(im)»> list = sqlFun«m.name.toFirstUpper».query(sqlSession, «m.args.get(0).type.compileType(im)».class, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
+			SqlQueryEngine sqlFun«d.name» = sqlEngineFactory.getCheckedQueryEngine("FUN_«dbName(d)»");
+			java.util.List<«p.ins.get(0).compileType(im)»> list = sqlFun«d.name».query(sqlSession, «p.ins.get(0).compileType(im)».class, «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», sqlControl);
 			if (logger.isTraceEnabled()) {
-				logger.trace("«m.name» result: " + list);
+				logger.trace("«name» result: " + list);
 			}
 			return (list != null && !list.isEmpty()) ? list.get(0).getResult() : null;
 		}
 		«IF all»
-		public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl) {
-			return «m.name»(sqlSessionFactory.getSqlSession(), «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», sqlControl);
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl) {
+			return «name»(sqlSessionFactory.getSqlSession(), «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», sqlControl);
 		}
 		«ENDIF»
-		public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
-			return «m.name»(sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR») {
+			return «name»(sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», null);
 		}
 		«IF all»
-		public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR») {
-			return «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.name»«ENDFOR», null);
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR») {
+			return «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», null);
 		}
 		«ENDIF»
 	'''
@@ -250,14 +284,14 @@ class ProcessorDaoGenerator {
 		}
 		«ENDIF»
 	'''	
-	def compileGet(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im, boolean all) '''
+	def compileGet(PojoDao d, PojoEntity e, Map<String, Map<String, PojoType>> moreResultClasses, ImportManager im, boolean all) '''
 	
 		public «e.name» get(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("get get: " + «e.name.toFirstLower» + " " + sqlControl);
 			}
 			SqlCrudEngine sqlGetEngine«e.name» = sqlEngineFactory.getCheckedCrudEngine("GET_«dbName(e)»");
-			«IF toInits.empty»//«ENDIF»sqlControl = getMoreResultClasses(«e.name.toFirstLower», sqlControl);
+			«IF moreResultClasses.empty»//«ENDIF»sqlControl = getMoreResultClasses(«e.name.toFirstLower», sqlControl);
 			«e.name» «e.name.toFirstLower»Got = sqlGetEngine«e.name».get(sqlSession, «e.name».class, «e.name.toFirstLower», sqlControl);
 			if (logger.isTraceEnabled()) {
 				logger.trace("get «e.name.toFirstLower» result: " + «e.name.toFirstLower»Got);
@@ -348,14 +382,14 @@ class ProcessorDaoGenerator {
 		«ENDIF»
 	'''
 	
-	def compileList(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im, boolean all) '''
+	def compileList(PojoDao d, PojoEntity e, Map<String, Map<String, PojoType>> moreResultClasses, ImportManager im, boolean all) '''
 	
 		public List<«e.name»> list(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("list «e.name.toFirstLower»: " + «e.name.toFirstLower» + " " + sqlControl);
 			}
 			SqlQueryEngine sqlEngine«e.name» = sqlEngineFactory.getCheckedQueryEngine("SELECT_«dbName(e)»");
-			«IF toInits.empty»//«ENDIF»sqlControl = getMoreResultClasses(«e.name.toFirstLower», sqlControl);
+			«IF moreResultClasses.empty»//«ENDIF»sqlControl = getMoreResultClasses(«e.name.toFirstLower», sqlControl);
 			List<«e.name»> «e.name.toFirstLower»List = sqlEngine«e.name».query(sqlSession, «e.name».class, «e.name.toFirstLower», sqlControl);
 			if (logger.isTraceEnabled()) {
 				logger.trace("list «e.name.toFirstLower» size: " + ((«e.name.toFirstLower»List != null) ? «e.name.toFirstLower»List.size() : "null"));
@@ -377,14 +411,14 @@ class ProcessorDaoGenerator {
 		«ENDIF»
 	'''
 	
-	def compileCount(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im, boolean all) '''
+	def compileCount(PojoDao d, PojoEntity e, Map<String, Map<String, PojoType>> moreResultClasses, ImportManager im, boolean all) '''
 	
 		public int count(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("count «e.name.toFirstLower»: " + «e.name.toFirstLower» + " " + sqlControl);
 			}
 			SqlQueryEngine sqlEngine«e.name» = sqlEngineFactory.getCheckedQueryEngine("SELECT_«dbName(e)»");
-			«IF toInits.empty»//«ENDIF»sqlControl = getMoreResultClasses(«e.name.toFirstLower», sqlControl);
+			«IF moreResultClasses.empty»//«ENDIF»sqlControl = getMoreResultClasses(«e.name.toFirstLower», sqlControl);
 			int count = sqlEngine«e.name».queryCount(sqlSession, «e.name.toFirstLower», sqlControl);
 			if (logger.isTraceEnabled()) {
 				logger.trace("count: " + count);
@@ -406,18 +440,18 @@ class ProcessorDaoGenerator {
 		«ENDIF»
 	'''
 	
-	def compileMoreResultClasses(PojoDao d, PojoEntity e, Map<String, List<PojoMethodArg>> toInits, ImportManager im) '''
+	def compileMoreResultClasses(PojoDao d, PojoEntity e, Map<String, Map<String, PojoType>> moreResultClasses, ImportManager im) '''
 	
 		SqlControl getMoreResultClasses(«e.name» «e.name.toFirstLower», SqlControl sqlControl) {
 			if (sqlControl != null && sqlControl.getMoreResultClasses() != null)
 				return sqlControl;
 			Map<String, Class<?>> moreResultClasses = null;
-			«FOR f:toInits.entrySet SEPARATOR "
+			«FOR f:moreResultClasses.entrySet SEPARATOR "
 	"»		if («e.name.toFirstLower» != null && «e.name.toFirstLower».toInit(«e.name».Association.«f.key».name())) {
 				if (moreResultClasses == null)
 					moreResultClasses = new HashMap<String, Class<?>>();
-			«FOR a:f.value SEPARATOR "
-	"»		moreResultClasses.put("«a.name»", «a.type.ref.fullyQualifiedName».class);«ENDFOR»
+			«FOR a:f.value.entrySet SEPARATOR "
+	"»		moreResultClasses.put("«a.key»", «a.value.ref.fullyQualifiedName».class);«ENDFOR»
 			}
 			«ENDFOR»
 			if (moreResultClasses != null) {
@@ -432,75 +466,87 @@ class ProcessorDaoGenerator {
 	«val im = new ImportManager(true)»
 	«addImplements(d, im)»
 	«addExtends(d, im)»
-	«val classBody = compileIfx(d, d.pojo, im)»
+	«val pojo = getPojo(d)»
+	«val classBody = compileIfx(d, pojo, im)»
 	«IF d.eContainer != null»package «d.eContainer.fullyQualifiedName»;«ENDIF»
 	
 	import java.util.List;
 	import org.sqlproc.engine.SqlSession;
 	import org.sqlproc.engine.SqlControl;
-	import «d.pojo.completeName»;
+	import «pojo.completeName»;
 	
 	«classBody»
 	'''
 	
 	def compileIfx(PojoDao d, PojoEntity e, ImportManager im) '''
 	public interface «d.name» {
-		«FOR m:d.methods»«IF m.name == "scaffold" || m.name == "scaffold0"»«compileInsertIfx(d, e, im, m.name == "scaffold")»
-		«compileGetIfx(d, e, im, m.name == "scaffold")»
-		«compileUpdateIfx(d, e, im, m.name == "scaffold")»
-		«compileDeleteIfx(d, e, im, m.name == "scaffold")»
-		«compileListIfx(d, e, im, m.name == "scaffold")»
-		«compileCountIfx(d, e, im, m.name == "scaffold")»
-		«ELSEIF isCallUpdate(m)»
-		«compileCallUpdateIfx(d, m, im, true)»«ELSEIF isCallFunction(m)»«compileCallFunctionIfx(d, m, im, true)»«ELSEIF isCallQuery(m) || isCallQueryFunction(m)»«compileCallQueryIfx(d, m, im, isCallQueryFunction(m), true)»«ELSEIF isCallSelectFunction(m)»«compileCallSelectFunctionIfx(d, m, im, true)»«ENDIF»«ENDFOR»
+		«IF isCRUD(d)»«compileInsertIfx(d, e, im, true)»
+		«compileGetIfx(d, e, im, true)»
+		«compileUpdateIfx(d, e, im, true)»
+		«compileDeleteIfx(d, e, im, true)»«ENDIF»«IF isQuery(d)»
+		«compileListIfx(d, e, im, true)»
+		«compileCountIfx(d, e, im, true)»«ENDIF»
+		«FOR fp: listFunctionsDirectives(d)»«compileFunctionProcedureIfx(d, e, fp.type, fp.paramlist, im, true)»«ENDFOR»
 	}
 	'''
 	
-	def compileCallQueryIfx(PojoDao d, PojoMethod m, ImportManager im, boolean isFunction, boolean all) '''
-	
-		public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
+	def dispatch compileFunctionProcedureIfx(PojoDao d, PojoEntity e, FunctionCallQuery type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
+		«val name = d.getFunProcName»
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
 		«IF all»
-		public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
 		«ENDIF»
-		public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR»);
 		«IF all»
-		public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
-		«ENDIF»
-	'''
-	
-	def compileCallFunctionIfx(PojoDao d, PojoMethod m, ImportManager im, boolean all) '''
-	
-		public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
-		«IF all»
-		public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
-		«ENDIF»
-		public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
-		«IF all»
-		public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR»);
 		«ENDIF»
 	'''
 	
-	def compileCallUpdateIfx(PojoDao d, PojoMethod m, ImportManager im, boolean all) '''
-	
-		public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
+	def dispatch compileFunctionProcedureIfx(PojoDao d, PojoEntity e, ProcedureCallQuery type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
+		«val name = d.getFunProcName»
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
 		«IF all»
-		public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
 		«ENDIF»
-		public int «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR»);
 		«IF all»
-		public int «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR»);
 		«ENDIF»
 	'''
 	
-	def compileCallSelectFunctionIfx(PojoDao d, PojoMethod m, ImportManager im, boolean all) '''
-	
-		public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
+	def dispatch compileFunctionProcedureIfx(PojoDao d, PojoEntity e, FunctionCall type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
+		«val name = d.getFunProcName»
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
 		«IF all»
-		public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR», SqlControl sqlControl);
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
 		«ENDIF»
-		public «m.type.compileType(im)» «m.name»(SqlSession sqlSession, «FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR»);
 		«IF all»
-		public «m.type.compileType(im)» «m.name»(«FOR ma:m.args SEPARATOR ", "»«ma.type.compileType(im)» «ma.name»«ENDFOR»);
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR»);
+		«ENDIF»
+	'''
+	
+	def dispatch compileFunctionProcedureIfx(PojoDao d, PojoEntity e, ProcedureUpdate type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
+		«val name = d.getFunProcName»
+		public int «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
+		«IF all»
+		public int «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
+		«ENDIF»
+		public int «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR»);
+		«IF all»
+		public int «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR»);
+		«ENDIF»
+	'''
+	
+	def dispatch compileFunctionProcedureIfx(PojoDao d, PojoEntity e, FunctionQuery type, DaoDirectiveParameters p, ImportManager im, boolean all) '''
+		«val name = d.getFunProcName»
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
+		«IF all»
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR», SqlControl sqlControl);
+		«ENDIF»
+		public «p.out.compileType(im)» «name»(SqlSession sqlSession, «FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR»);
+		«IF all»
+		public «p.out.compileType(im)» «name»(«FOR ma:p.ins SEPARATOR ", "»«ma.compileType(im)» «ma.paramName»«ENDFOR»);
 		«ENDIF»
 	'''
 	
@@ -579,8 +625,8 @@ class ProcessorDaoGenerator {
 	def compileExtends(PojoDao e, ImportManager im) '''
 		«IF getSuperType(e) != null»extends «getFullName(e, getSuperType(e), getSuperType(e).fullyQualifiedName, im)» «ELSEIF getExtends(e) != ""»extends «getExtends(e)» «ENDIF»'''
 	
-	def compileImplements(PojoDao d) '''
-		«IF isImplements(d) || getSernum(d) != null || d.implPackage != null»implements «FOR f:getImplements(d) SEPARATOR ", " »«getDaoImplements(d, f)»«ENDFOR»«IF getSernum(d) != null»«IF isImplements(d)», «ENDIF»Serializable«ENDIF»«IF d.implPackage != null»«IF isImplements(d) || getSernum(d) != null», «ENDIF»«d.name»«ENDIF» «ENDIF»'''
+	def compileImplements(PojoDao d, String implPackage) '''
+		«IF isImplements(d) || getSernum(d) != null || implPackage != null»implements «FOR f:getImplements(d) SEPARATOR ", " »«getDaoImplements(d, f)»«ENDFOR»«IF getSernum(d) != null»«IF isImplements(d)», «ENDIF»Serializable«ENDIF»«IF implPackage != null»«IF isImplements(d) || getSernum(d) != null», «ENDIF»«d.name»«ENDIF» «ENDIF»'''
 	
 	def addImplements(PojoDao e, ImportManager im) {
 		for(impl: e.eContainer.eContents.filter(typeof(Implements))) {
@@ -677,12 +723,5 @@ class ProcessorDaoGenerator {
 				list.add(ext)
 		}
 		return list
-	}
-	
-	def getImplPackage(PojoDao e) {
-		for(ext: e.eContainer.eContents.filter(typeof(ImplPackage))) {
-			return ext.name
-		}
-		return null
 	}
 }

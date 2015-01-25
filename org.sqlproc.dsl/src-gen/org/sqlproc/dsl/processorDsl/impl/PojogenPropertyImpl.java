@@ -69,7 +69,6 @@ import org.sqlproc.dsl.processorDsl.TableAssignement;
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getToExtends <em>To Extends</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getToImplementsGenerics <em>To Implements Generics</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getToExtendsGenerics <em>To Extends Generics</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getImplPackage <em>Impl Package</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getDbNotTables <em>Db Not Tables</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojogenPropertyImpl#getDebug <em>Debug</em>}</li>
@@ -375,26 +374,6 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected ExtendsAssignementGenerics toExtendsGenerics;
-
-  /**
-   * The default value of the '{@link #getImplPackage() <em>Impl Package</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getImplPackage()
-   * @generated
-   * @ordered
-   */
-  protected static final String IMPL_PACKAGE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getImplPackage() <em>Impl Package</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getImplPackage()
-   * @generated
-   * @ordered
-   */
-  protected String implPackage = IMPL_PACKAGE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
@@ -1098,29 +1077,6 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getImplPackage()
-  {
-    return implPackage;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setImplPackage(String newImplPackage)
-  {
-    String oldImplPackage = implPackage;
-    implPackage = newImplPackage;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJOGEN_PROPERTY__IMPL_PACKAGE, oldImplPackage, implPackage));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public String getVersion()
   {
     return version;
@@ -1416,8 +1372,6 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return getToImplementsGenerics();
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS_GENERICS:
         return getToExtendsGenerics();
-      case ProcessorDslPackage.POJOGEN_PROPERTY__IMPL_PACKAGE:
-        return getImplPackage();
       case ProcessorDslPackage.POJOGEN_PROPERTY__VERSION:
         return getVersion();
       case ProcessorDslPackage.POJOGEN_PROPERTY__DB_NOT_TABLES:
@@ -1531,9 +1485,6 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS_GENERICS:
         setToExtendsGenerics((ExtendsAssignementGenerics)newValue);
-        return;
-      case ProcessorDslPackage.POJOGEN_PROPERTY__IMPL_PACKAGE:
-        setImplPackage((String)newValue);
         return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__VERSION:
         setVersion((String)newValue);
@@ -1649,9 +1600,6 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS_GENERICS:
         setToExtendsGenerics((ExtendsAssignementGenerics)null);
         return;
-      case ProcessorDslPackage.POJOGEN_PROPERTY__IMPL_PACKAGE:
-        setImplPackage(IMPL_PACKAGE_EDEFAULT);
-        return;
       case ProcessorDslPackage.POJOGEN_PROPERTY__VERSION:
         setVersion(VERSION_EDEFAULT);
         return;
@@ -1739,8 +1687,6 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return toImplementsGenerics != null;
       case ProcessorDslPackage.POJOGEN_PROPERTY__TO_EXTENDS_GENERICS:
         return toExtendsGenerics != null;
-      case ProcessorDslPackage.POJOGEN_PROPERTY__IMPL_PACKAGE:
-        return IMPL_PACKAGE_EDEFAULT == null ? implPackage != null : !IMPL_PACKAGE_EDEFAULT.equals(implPackage);
       case ProcessorDslPackage.POJOGEN_PROPERTY__VERSION:
         return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
       case ProcessorDslPackage.POJOGEN_PROPERTY__DB_NOT_TABLES:
@@ -1792,8 +1738,6 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
     result.append(methods);
     result.append(", operatorsSuffix: ");
     result.append(operatorsSuffix);
-    result.append(", implPackage: ");
-    result.append(implPackage);
     result.append(", version: ");
     result.append(version);
     result.append(", dbNotTables: ");

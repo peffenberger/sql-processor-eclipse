@@ -37,7 +37,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToExtends <em>To Extends</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToImplementsGenerics <em>To Implements Generics</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getToExtendsGenerics <em>To Extends Generics</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getImplPackage <em>Impl Package</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getVersion <em>Version</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDbNotTables <em>Db Not Tables</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getDebug <em>Debug</em>}</li>
@@ -533,32 +532,6 @@ public interface PojogenProperty extends EObject
    * @generated
    */
   void setToExtendsGenerics(ExtendsAssignementGenerics value);
-
-  /**
-   * Returns the value of the '<em><b>Impl Package</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Impl Package</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Impl Package</em>' attribute.
-   * @see #setImplPackage(String)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getPojogenProperty_ImplPackage()
-   * @model
-   * @generated
-   */
-  String getImplPackage();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.PojogenProperty#getImplPackage <em>Impl Package</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Impl Package</em>' attribute.
-   * @see #getImplPackage()
-   * @generated
-   */
-  void setImplPackage(String value);
 
   /**
    * Returns the value of the '<em><b>Version</b></em>' attribute.

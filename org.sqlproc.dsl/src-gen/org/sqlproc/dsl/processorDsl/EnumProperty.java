@@ -2,6 +2,8 @@
  */
 package org.sqlproc.dsl.processorDsl;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.xtext.common.types.JvmType;
@@ -14,9 +16,8 @@ import org.eclipse.xtext.common.types.JvmType;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.EnumProperty#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.EnumProperty#getName <em>Name</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.EnumProperty#getNative <em>Native</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.EnumProperty#getValue <em>Value</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.EnumProperty#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -27,6 +28,22 @@ import org.eclipse.xtext.common.types.JvmType;
  */
 public interface EnumProperty extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Directives</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.dsl.processorDsl.EnumPropertyDirective}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Directives</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Directives</em>' containment reference list.
+   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getEnumProperty_Directives()
+   * @model containment="true"
+   * @generated
+   */
+  EList<EnumPropertyDirective> getDirectives();
+
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
@@ -52,58 +69,6 @@ public interface EnumProperty extends EObject
    * @generated
    */
   void setName(String value);
-
-  /**
-   * Returns the value of the '<em><b>Native</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Native</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Native</em>' attribute.
-   * @see #setNative(String)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getEnumProperty_Native()
-   * @model
-   * @generated
-   */
-  String getNative();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.EnumProperty#getNative <em>Native</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Native</em>' attribute.
-   * @see #getNative()
-   * @generated
-   */
-  void setNative(String value);
-
-  /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Value</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(String)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getEnumProperty_Value()
-   * @model
-   * @generated
-   */
-  String getValue();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.EnumProperty#getValue <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
-   * @see #getValue()
-   * @generated
-   */
-  void setValue(String value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' reference.

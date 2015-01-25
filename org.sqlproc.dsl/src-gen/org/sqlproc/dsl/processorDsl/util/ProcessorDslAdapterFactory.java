@@ -9,7 +9,139 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.sqlproc.dsl.processorDsl.*;
+import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
+import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
+import org.sqlproc.dsl.processorDsl.Annotation;
+import org.sqlproc.dsl.processorDsl.AnnotationDirective;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveAttribute;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveGetter;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveSetter;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic;
+import org.sqlproc.dsl.processorDsl.AnnotationProperty;
+import org.sqlproc.dsl.processorDsl.Artifacts;
+import org.sqlproc.dsl.processorDsl.Column;
+import org.sqlproc.dsl.processorDsl.ColumnAssignement;
+import org.sqlproc.dsl.processorDsl.ColumnTypeAssignement;
+import org.sqlproc.dsl.processorDsl.Constant;
+import org.sqlproc.dsl.processorDsl.ConstantOperator;
+import org.sqlproc.dsl.processorDsl.DaoDirective;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveCrud;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveQuery;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveSerializable;
+import org.sqlproc.dsl.processorDsl.DaogenProperty;
+import org.sqlproc.dsl.processorDsl.DatabaseCatalogAssignement;
+import org.sqlproc.dsl.processorDsl.DatabaseColumn;
+import org.sqlproc.dsl.processorDsl.DatabaseMetaInfoAssignement;
+import org.sqlproc.dsl.processorDsl.DatabaseProperty;
+import org.sqlproc.dsl.processorDsl.DatabaseSchemaAssignement;
+import org.sqlproc.dsl.processorDsl.DatabaseTable;
+import org.sqlproc.dsl.processorDsl.DatabaseTypeAssignement;
+import org.sqlproc.dsl.processorDsl.DebugLevelAssignement;
+import org.sqlproc.dsl.processorDsl.DescendantAssignment;
+import org.sqlproc.dsl.processorDsl.DirectiveProperties;
+import org.sqlproc.dsl.processorDsl.DriverMetaInfoAssignement;
+import org.sqlproc.dsl.processorDsl.DriverMethodOutputAssignement;
+import org.sqlproc.dsl.processorDsl.Entity;
+import org.sqlproc.dsl.processorDsl.EnumEntity;
+import org.sqlproc.dsl.processorDsl.EnumEntityModifier1;
+import org.sqlproc.dsl.processorDsl.EnumEntityModifier2;
+import org.sqlproc.dsl.processorDsl.EnumProperty;
+import org.sqlproc.dsl.processorDsl.EnumPropertyDirective;
+import org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues;
+import org.sqlproc.dsl.processorDsl.EnumPropertyValue;
+import org.sqlproc.dsl.processorDsl.ExportAssignement;
+import org.sqlproc.dsl.processorDsl.ExtendedColumn;
+import org.sqlproc.dsl.processorDsl.ExtendedColumnName;
+import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
+import org.sqlproc.dsl.processorDsl.Extends;
+import org.sqlproc.dsl.processorDsl.ExtendsAssignement;
+import org.sqlproc.dsl.processorDsl.ExtendsAssignementGenerics;
+import org.sqlproc.dsl.processorDsl.FunProcDirective;
+import org.sqlproc.dsl.processorDsl.FunProcType;
+import org.sqlproc.dsl.processorDsl.FunctionCall;
+import org.sqlproc.dsl.processorDsl.FunctionCallQuery;
+import org.sqlproc.dsl.processorDsl.FunctionDefinition;
+import org.sqlproc.dsl.processorDsl.FunctionPojoAssignement;
+import org.sqlproc.dsl.processorDsl.FunctionQuery;
+import org.sqlproc.dsl.processorDsl.Identifier;
+import org.sqlproc.dsl.processorDsl.IdentifierOperator;
+import org.sqlproc.dsl.processorDsl.IfMetaSql;
+import org.sqlproc.dsl.processorDsl.IfSql;
+import org.sqlproc.dsl.processorDsl.IfSqlBool;
+import org.sqlproc.dsl.processorDsl.IfSqlCond;
+import org.sqlproc.dsl.processorDsl.IfSqlFragment;
+import org.sqlproc.dsl.processorDsl.Implements;
+import org.sqlproc.dsl.processorDsl.ImplementsAssignement;
+import org.sqlproc.dsl.processorDsl.ImplementsAssignementGenerics;
+import org.sqlproc.dsl.processorDsl.ImplementsExtendsDirective;
+import org.sqlproc.dsl.processorDsl.ImplementsExtendsDirectiveGenerics;
+import org.sqlproc.dsl.processorDsl.Import;
+import org.sqlproc.dsl.processorDsl.ImportAssignement;
+import org.sqlproc.dsl.processorDsl.InheritanceAssignement;
+import org.sqlproc.dsl.processorDsl.JoinTableAssignement;
+import org.sqlproc.dsl.processorDsl.ManyToManyAssignement;
+import org.sqlproc.dsl.processorDsl.Mapping;
+import org.sqlproc.dsl.processorDsl.MappingColumn;
+import org.sqlproc.dsl.processorDsl.MappingColumnName;
+import org.sqlproc.dsl.processorDsl.MappingItem;
+import org.sqlproc.dsl.processorDsl.MappingRule;
+import org.sqlproc.dsl.processorDsl.MetaSql;
+import org.sqlproc.dsl.processorDsl.MetaStatement;
+import org.sqlproc.dsl.processorDsl.MetaTypeAssignement;
+import org.sqlproc.dsl.processorDsl.MetagenProperty;
+import org.sqlproc.dsl.processorDsl.OptionalFeature;
+import org.sqlproc.dsl.processorDsl.OrdSql;
+import org.sqlproc.dsl.processorDsl.OrdSql2;
+import org.sqlproc.dsl.processorDsl.PackageDirective;
+import org.sqlproc.dsl.processorDsl.PackageDirectiveImplementation;
+import org.sqlproc.dsl.processorDsl.PackageDirectiveSuffix;
+import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
+import org.sqlproc.dsl.processorDsl.PojoDao;
+import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
+import org.sqlproc.dsl.processorDsl.PojoDefinition;
+import org.sqlproc.dsl.processorDsl.PojoDirective;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveEquals;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveOperators;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveToString;
+import org.sqlproc.dsl.processorDsl.PojoEntity;
+import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
+import org.sqlproc.dsl.processorDsl.PojoEntityModifier2;
+import org.sqlproc.dsl.processorDsl.PojoProperty;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirective;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumDef;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumInit;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIsDef;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectivePrimaryKey;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveToInit;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol;
+import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveVersion;
+import org.sqlproc.dsl.processorDsl.PojoType;
+import org.sqlproc.dsl.processorDsl.PojogenProperty;
+import org.sqlproc.dsl.processorDsl.ProcedureCallQuery;
+import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
+import org.sqlproc.dsl.processorDsl.ProcedurePojoAssignement;
+import org.sqlproc.dsl.processorDsl.ProcedureUpdate;
+import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
+import org.sqlproc.dsl.processorDsl.Property;
+import org.sqlproc.dsl.processorDsl.ShowColumnTypeAssignement;
+import org.sqlproc.dsl.processorDsl.Sql;
+import org.sqlproc.dsl.processorDsl.SqlFragment;
+import org.sqlproc.dsl.processorDsl.SqlTypeAssignement;
+import org.sqlproc.dsl.processorDsl.TableAssignement;
+import org.sqlproc.dsl.processorDsl.TableDefinition;
 
 /**
  * <!-- begin-user-doc -->
@@ -385,9 +517,19 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createPojoTypeAdapter();
       }
       @Override
-      public Adapter casePackageDeclaration(PackageDeclaration object)
+      public Adapter casePackageDirective(PackageDirective object)
       {
-        return createPackageDeclarationAdapter();
+        return createPackageDirectiveAdapter();
+      }
+      @Override
+      public Adapter casePackage(org.sqlproc.dsl.processorDsl.Package object)
+      {
+        return createPackageAdapter();
+      }
+      @Override
+      public Adapter caseAnnotationDirective(AnnotationDirective object)
+      {
+        return createAnnotationDirectiveAdapter();
       }
       @Override
       public Adapter caseAnnotation(Annotation object)
@@ -420,6 +562,11 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createImportAdapter();
       }
       @Override
+      public Adapter caseImplementsExtendsDirective(ImplementsExtendsDirective object)
+      {
+        return createImplementsExtendsDirectiveAdapter();
+      }
+      @Override
       public Adapter caseImplements(Implements object)
       {
         return createImplementsAdapter();
@@ -430,14 +577,19 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createExtendsAdapter();
       }
       @Override
-      public Adapter caseImplPackage(ImplPackage object)
-      {
-        return createImplPackageAdapter();
-      }
-      @Override
       public Adapter casePojoEntityModifier1(PojoEntityModifier1 object)
       {
         return createPojoEntityModifier1Adapter();
+      }
+      @Override
+      public Adapter caseDirectiveProperties(DirectiveProperties object)
+      {
+        return createDirectivePropertiesAdapter();
+      }
+      @Override
+      public Adapter casePojoDirective(PojoDirective object)
+      {
+        return createPojoDirectiveAdapter();
       }
       @Override
       public Adapter casePojoEntityModifier2(PojoEntityModifier2 object)
@@ -455,9 +607,9 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createPojoAnnotatedPropertyAdapter();
       }
       @Override
-      public Adapter casePojoPropertyModifier(PojoPropertyModifier object)
+      public Adapter casePojoPropertyDirective(PojoPropertyDirective object)
       {
-        return createPojoPropertyModifierAdapter();
+        return createPojoPropertyDirectiveAdapter();
       }
       @Override
       public Adapter casePojoProperty(PojoProperty object)
@@ -480,9 +632,39 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createEnumEntityAdapter();
       }
       @Override
+      public Adapter caseEnumPropertyValue(EnumPropertyValue object)
+      {
+        return createEnumPropertyValueAdapter();
+      }
+      @Override
+      public Adapter caseEnumPropertyDirective(EnumPropertyDirective object)
+      {
+        return createEnumPropertyDirectiveAdapter();
+      }
+      @Override
       public Adapter caseEnumProperty(EnumProperty object)
       {
         return createEnumPropertyAdapter();
+      }
+      @Override
+      public Adapter caseDaoDirectiveParameters(DaoDirectiveParameters object)
+      {
+        return createDaoDirectiveParametersAdapter();
+      }
+      @Override
+      public Adapter caseDescendantAssignment(DescendantAssignment object)
+      {
+        return createDescendantAssignmentAdapter();
+      }
+      @Override
+      public Adapter caseFunProcType(FunProcType object)
+      {
+        return createFunProcTypeAdapter();
+      }
+      @Override
+      public Adapter caseDaoDirective(DaoDirective object)
+      {
+        return createDaoDirectiveAdapter();
       }
       @Override
       public Adapter casePojoDaoModifier(PojoDaoModifier object)
@@ -495,24 +677,199 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
         return createPojoDaoAdapter();
       }
       @Override
-      public Adapter casePojoMethodModifier(PojoMethodModifier object)
+      public Adapter casePackageDirectiveSuffix(PackageDirectiveSuffix object)
       {
-        return createPojoMethodModifierAdapter();
+        return createPackageDirectiveSuffixAdapter();
       }
       @Override
-      public Adapter casePojoMethod(PojoMethod object)
+      public Adapter casePackageDirectiveImplementation(PackageDirectiveImplementation object)
       {
-        return createPojoMethodAdapter();
+        return createPackageDirectiveImplementationAdapter();
       }
       @Override
-      public Adapter caseToInitMethod(ToInitMethod object)
+      public Adapter caseAnnotationDirectiveConflict(AnnotationDirectiveConflict object)
       {
-        return createToInitMethodAdapter();
+        return createAnnotationDirectiveConflictAdapter();
       }
       @Override
-      public Adapter casePojoMethodArg(PojoMethodArg object)
+      public Adapter caseAnnotationDirectiveStatic(AnnotationDirectiveStatic object)
       {
-        return createPojoMethodArgAdapter();
+        return createAnnotationDirectiveStaticAdapter();
+      }
+      @Override
+      public Adapter caseAnnotationDirectiveConstructor(AnnotationDirectiveConstructor object)
+      {
+        return createAnnotationDirectiveConstructorAdapter();
+      }
+      @Override
+      public Adapter caseAnnotationDirectiveStandard(AnnotationDirectiveStandard object)
+      {
+        return createAnnotationDirectiveStandardAdapter();
+      }
+      @Override
+      public Adapter caseAnnotationDirectiveSetter(AnnotationDirectiveSetter object)
+      {
+        return createAnnotationDirectiveSetterAdapter();
+      }
+      @Override
+      public Adapter caseAnnotationDirectiveGetter(AnnotationDirectiveGetter object)
+      {
+        return createAnnotationDirectiveGetterAdapter();
+      }
+      @Override
+      public Adapter caseAnnotationDirectiveAttribute(AnnotationDirectiveAttribute object)
+      {
+        return createAnnotationDirectiveAttributeAdapter();
+      }
+      @Override
+      public Adapter caseImplementsExtendsDirectiveGenerics(ImplementsExtendsDirectiveGenerics object)
+      {
+        return createImplementsExtendsDirectiveGenericsAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveToString(PojoDirectiveToString object)
+      {
+        return createPojoDirectiveToStringAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveIndex(PojoDirectiveIndex object)
+      {
+        return createPojoDirectiveIndexAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveOperators(PojoDirectiveOperators object)
+      {
+        return createPojoDirectiveOperatorsAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveSerializable(PojoDirectiveSerializable object)
+      {
+        return createPojoDirectiveSerializableAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveDiscriminator(PojoDirectiveDiscriminator object)
+      {
+        return createPojoDirectiveDiscriminatorAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveEquals(PojoDirectiveEquals object)
+      {
+        return createPojoDirectiveEqualsAdapter();
+      }
+      @Override
+      public Adapter casePojoDirectiveHashCode(PojoDirectiveHashCode object)
+      {
+        return createPojoDirectiveHashCodeAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectiveRequired(PojoPropertyDirectiveRequired object)
+      {
+        return createPojoPropertyDirectiveRequiredAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectivePrimaryKey(PojoPropertyDirectivePrimaryKey object)
+      {
+        return createPojoPropertyDirectivePrimaryKeyAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectiveDiscriminator(PojoPropertyDirectiveDiscriminator object)
+      {
+        return createPojoPropertyDirectiveDiscriminatorAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectiveIndex(PojoPropertyDirectiveIndex object)
+      {
+        return createPojoPropertyDirectiveIndexAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectiveVersion(PojoPropertyDirectiveVersion object)
+      {
+        return createPojoPropertyDirectiveVersionAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectiveUpdateCol(PojoPropertyDirectiveUpdateCol object)
+      {
+        return createPojoPropertyDirectiveUpdateColAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectiveCreateCol(PojoPropertyDirectiveCreateCol object)
+      {
+        return createPojoPropertyDirectiveCreateColAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectiveToInit(PojoPropertyDirectiveToInit object)
+      {
+        return createPojoPropertyDirectiveToInitAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectiveEnumInit(PojoPropertyDirectiveEnumInit object)
+      {
+        return createPojoPropertyDirectiveEnumInitAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectiveIsDef(PojoPropertyDirectiveIsDef object)
+      {
+        return createPojoPropertyDirectiveIsDefAdapter();
+      }
+      @Override
+      public Adapter casePojoPropertyDirectiveEnumDef(PojoPropertyDirectiveEnumDef object)
+      {
+        return createPojoPropertyDirectiveEnumDefAdapter();
+      }
+      @Override
+      public Adapter caseEnumPropertyDirectiveValues(EnumPropertyDirectiveValues object)
+      {
+        return createEnumPropertyDirectiveValuesAdapter();
+      }
+      @Override
+      public Adapter caseFunctionCallQuery(FunctionCallQuery object)
+      {
+        return createFunctionCallQueryAdapter();
+      }
+      @Override
+      public Adapter caseProcedureCallQuery(ProcedureCallQuery object)
+      {
+        return createProcedureCallQueryAdapter();
+      }
+      @Override
+      public Adapter caseFunctionCall(FunctionCall object)
+      {
+        return createFunctionCallAdapter();
+      }
+      @Override
+      public Adapter caseProcedureUpdate(ProcedureUpdate object)
+      {
+        return createProcedureUpdateAdapter();
+      }
+      @Override
+      public Adapter caseFunctionQuery(FunctionQuery object)
+      {
+        return createFunctionQueryAdapter();
+      }
+      @Override
+      public Adapter caseDaoDirectiveSerializable(DaoDirectiveSerializable object)
+      {
+        return createDaoDirectiveSerializableAdapter();
+      }
+      @Override
+      public Adapter caseDaoDirectiveDiscriminator(DaoDirectiveDiscriminator object)
+      {
+        return createDaoDirectiveDiscriminatorAdapter();
+      }
+      @Override
+      public Adapter caseDaoDirectiveCrud(DaoDirectiveCrud object)
+      {
+        return createDaoDirectiveCrudAdapter();
+      }
+      @Override
+      public Adapter caseDaoDirectiveQuery(DaoDirectiveQuery object)
+      {
+        return createDaoDirectiveQueryAdapter();
+      }
+      @Override
+      public Adapter caseFunProcDirective(FunProcDirective object)
+      {
+        return createFunProcDirectiveAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -1467,16 +1824,46 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PackageDeclaration <em>Package Declaration</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PackageDirective <em>Package Directive</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.PackageDeclaration
+   * @see org.sqlproc.dsl.processorDsl.PackageDirective
    * @generated
    */
-  public Adapter createPackageDeclarationAdapter()
+  public Adapter createPackageDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.Package <em>Package</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.Package
+   * @generated
+   */
+  public Adapter createPackageAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirective <em>Annotation Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirective
+   * @generated
+   */
+  public Adapter createAnnotationDirectiveAdapter()
   {
     return null;
   }
@@ -1572,6 +1959,21 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.ImplementsExtendsDirective <em>Implements Extends Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.ImplementsExtendsDirective
+   * @generated
+   */
+  public Adapter createImplementsExtendsDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.Implements <em>Implements</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1602,21 +2004,6 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.ImplPackage <em>Impl Package</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.ImplPackage
-   * @generated
-   */
-  public Adapter createImplPackageAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoEntityModifier1 <em>Pojo Entity Modifier1</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1627,6 +2014,36 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPojoEntityModifier1Adapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DirectiveProperties <em>Directive Properties</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.DirectiveProperties
+   * @generated
+   */
+  public Adapter createDirectivePropertiesAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirective <em>Pojo Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirective
+   * @generated
+   */
+  public Adapter createPojoDirectiveAdapter()
   {
     return null;
   }
@@ -1677,16 +2094,16 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyModifier <em>Pojo Property Modifier</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirective <em>Pojo Property Directive</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.PojoPropertyModifier
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirective
    * @generated
    */
-  public Adapter createPojoPropertyModifierAdapter()
+  public Adapter createPojoPropertyDirectiveAdapter()
   {
     return null;
   }
@@ -1752,6 +2169,36 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.EnumPropertyValue <em>Enum Property Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.EnumPropertyValue
+   * @generated
+   */
+  public Adapter createEnumPropertyValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.EnumPropertyDirective <em>Enum Property Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.EnumPropertyDirective
+   * @generated
+   */
+  public Adapter createEnumPropertyDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.EnumProperty <em>Enum Property</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1762,6 +2209,66 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEnumPropertyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveParameters <em>Dao Directive Parameters</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveParameters
+   * @generated
+   */
+  public Adapter createDaoDirectiveParametersAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DescendantAssignment <em>Descendant Assignment</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.DescendantAssignment
+   * @generated
+   */
+  public Adapter createDescendantAssignmentAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.FunProcType <em>Fun Proc Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.FunProcType
+   * @generated
+   */
+  public Adapter createFunProcTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirective <em>Dao Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.DaoDirective
+   * @generated
+   */
+  public Adapter createDaoDirectiveAdapter()
   {
     return null;
   }
@@ -1797,61 +2304,586 @@ public class ProcessorDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoMethodModifier <em>Pojo Method Modifier</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PackageDirectiveSuffix <em>Package Directive Suffix</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethodModifier
+   * @see org.sqlproc.dsl.processorDsl.PackageDirectiveSuffix
    * @generated
    */
-  public Adapter createPojoMethodModifierAdapter()
+  public Adapter createPackageDirectiveSuffixAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoMethod <em>Pojo Method</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PackageDirectiveImplementation <em>Package Directive Implementation</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethod
+   * @see org.sqlproc.dsl.processorDsl.PackageDirectiveImplementation
    * @generated
    */
-  public Adapter createPojoMethodAdapter()
+  public Adapter createPackageDirectiveImplementationAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.ToInitMethod <em>To Init Method</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict <em>Annotation Directive Conflict</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.ToInitMethod
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict
    * @generated
    */
-  public Adapter createToInitMethodAdapter()
+  public Adapter createAnnotationDirectiveConflictAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoMethodArg <em>Pojo Method Arg</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic <em>Annotation Directive Static</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.dsl.processorDsl.PojoMethodArg
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic
    * @generated
    */
-  public Adapter createPojoMethodArgAdapter()
+  public Adapter createAnnotationDirectiveStaticAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor <em>Annotation Directive Constructor</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor
+   * @generated
+   */
+  public Adapter createAnnotationDirectiveConstructorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard <em>Annotation Directive Standard</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard
+   * @generated
+   */
+  public Adapter createAnnotationDirectiveStandardAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveSetter <em>Annotation Directive Setter</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveSetter
+   * @generated
+   */
+  public Adapter createAnnotationDirectiveSetterAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveGetter <em>Annotation Directive Getter</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveGetter
+   * @generated
+   */
+  public Adapter createAnnotationDirectiveGetterAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.AnnotationDirectiveAttribute <em>Annotation Directive Attribute</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.AnnotationDirectiveAttribute
+   * @generated
+   */
+  public Adapter createAnnotationDirectiveAttributeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.ImplementsExtendsDirectiveGenerics <em>Implements Extends Directive Generics</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.ImplementsExtendsDirectiveGenerics
+   * @generated
+   */
+  public Adapter createImplementsExtendsDirectiveGenericsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveToString <em>Pojo Directive To String</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveToString
+   * @generated
+   */
+  public Adapter createPojoDirectiveToStringAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveIndex <em>Pojo Directive Index</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveIndex
+   * @generated
+   */
+  public Adapter createPojoDirectiveIndexAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveOperators <em>Pojo Directive Operators</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveOperators
+   * @generated
+   */
+  public Adapter createPojoDirectiveOperatorsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable <em>Pojo Directive Serializable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveSerializable
+   * @generated
+   */
+  public Adapter createPojoDirectiveSerializableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator <em>Pojo Directive Discriminator</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveDiscriminator
+   * @generated
+   */
+  public Adapter createPojoDirectiveDiscriminatorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveEquals <em>Pojo Directive Equals</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveEquals
+   * @generated
+   */
+  public Adapter createPojoDirectiveEqualsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode <em>Pojo Directive Hash Code</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode
+   * @generated
+   */
+  public Adapter createPojoDirectiveHashCodeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired <em>Pojo Property Directive Required</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveRequired
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectiveRequiredAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectivePrimaryKey <em>Pojo Property Directive Primary Key</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectivePrimaryKey
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectivePrimaryKeyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator <em>Pojo Property Directive Discriminator</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveDiscriminator
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectiveDiscriminatorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex <em>Pojo Property Directive Index</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIndex
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectiveIndexAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveVersion <em>Pojo Property Directive Version</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveVersion
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectiveVersionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol <em>Pojo Property Directive Update Col</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveUpdateCol
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectiveUpdateColAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol <em>Pojo Property Directive Create Col</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveCreateCol
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectiveCreateColAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveToInit <em>Pojo Property Directive To Init</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveToInit
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectiveToInitAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumInit <em>Pojo Property Directive Enum Init</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumInit
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectiveEnumInitAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIsDef <em>Pojo Property Directive Is Def</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveIsDef
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectiveIsDefAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumDef <em>Pojo Property Directive Enum Def</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumDef
+   * @generated
+   */
+  public Adapter createPojoPropertyDirectiveEnumDefAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues <em>Enum Property Directive Values</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.EnumPropertyDirectiveValues
+   * @generated
+   */
+  public Adapter createEnumPropertyDirectiveValuesAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.FunctionCallQuery <em>Function Call Query</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.FunctionCallQuery
+   * @generated
+   */
+  public Adapter createFunctionCallQueryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.ProcedureCallQuery <em>Procedure Call Query</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.ProcedureCallQuery
+   * @generated
+   */
+  public Adapter createProcedureCallQueryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.FunctionCall <em>Function Call</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.FunctionCall
+   * @generated
+   */
+  public Adapter createFunctionCallAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.ProcedureUpdate <em>Procedure Update</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.ProcedureUpdate
+   * @generated
+   */
+  public Adapter createProcedureUpdateAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.FunctionQuery <em>Function Query</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.FunctionQuery
+   * @generated
+   */
+  public Adapter createFunctionQueryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveSerializable <em>Dao Directive Serializable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveSerializable
+   * @generated
+   */
+  public Adapter createDaoDirectiveSerializableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator <em>Dao Directive Discriminator</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator
+   * @generated
+   */
+  public Adapter createDaoDirectiveDiscriminatorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveCrud <em>Dao Directive Crud</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveCrud
+   * @generated
+   */
+  public Adapter createDaoDirectiveCrudAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.DaoDirectiveQuery <em>Dao Directive Query</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.DaoDirectiveQuery
+   * @generated
+   */
+  public Adapter createDaoDirectiveQueryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.dsl.processorDsl.FunProcDirective <em>Fun Proc Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.dsl.processorDsl.FunProcDirective
+   * @generated
+   */
+  public Adapter createFunProcDirectiveAdapter()
   {
     return null;
   }

@@ -35,7 +35,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getDbTables <em>Db Tables</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getImplPackage <em>Impl Package</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getToImplements <em>To Implements</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getToExtends <em>To Extends</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.DaogenPropertyImpl#getToImplementsGenerics <em>To Implements Generics</em>}</li>
@@ -81,26 +80,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * @ordered
    */
   protected EList<String> dbTables;
-
-  /**
-   * The default value of the '{@link #getImplPackage() <em>Impl Package</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getImplPackage()
-   * @generated
-   * @ordered
-   */
-  protected static final String IMPL_PACKAGE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getImplPackage() <em>Impl Package</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getImplPackage()
-   * @generated
-   * @ordered
-   */
-  protected String implPackage = IMPL_PACKAGE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getToImplements() <em>To Implements</em>}' containment reference.
@@ -278,29 +257,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
       dbTables = new EDataTypeEList<String>(String.class, this, ProcessorDslPackage.DAOGEN_PROPERTY__DB_TABLES);
     }
     return dbTables;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getImplPackage()
-  {
-    return implPackage;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setImplPackage(String newImplPackage)
-  {
-    String oldImplPackage = implPackage;
-    implPackage = newImplPackage;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.DAOGEN_PROPERTY__IMPL_PACKAGE, oldImplPackage, implPackage));
   }
 
   /**
@@ -700,8 +656,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         return getName();
       case ProcessorDslPackage.DAOGEN_PROPERTY__DB_TABLES:
         return getDbTables();
-      case ProcessorDslPackage.DAOGEN_PROPERTY__IMPL_PACKAGE:
-        return getImplPackage();
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS:
         return getToImplements();
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS:
@@ -741,9 +695,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
       case ProcessorDslPackage.DAOGEN_PROPERTY__DB_TABLES:
         getDbTables().clear();
         getDbTables().addAll((Collection<? extends String>)newValue);
-        return;
-      case ProcessorDslPackage.DAOGEN_PROPERTY__IMPL_PACKAGE:
-        setImplPackage((String)newValue);
         return;
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS:
         setToImplements((ImplementsAssignement)newValue);
@@ -792,9 +743,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
       case ProcessorDslPackage.DAOGEN_PROPERTY__DB_TABLES:
         getDbTables().clear();
         return;
-      case ProcessorDslPackage.DAOGEN_PROPERTY__IMPL_PACKAGE:
-        setImplPackage(IMPL_PACKAGE_EDEFAULT);
-        return;
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS:
         setToImplements((ImplementsAssignement)null);
         return;
@@ -840,8 +788,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ProcessorDslPackage.DAOGEN_PROPERTY__DB_TABLES:
         return dbTables != null && !dbTables.isEmpty();
-      case ProcessorDslPackage.DAOGEN_PROPERTY__IMPL_PACKAGE:
-        return IMPL_PACKAGE_EDEFAULT == null ? implPackage != null : !IMPL_PACKAGE_EDEFAULT.equals(implPackage);
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS:
         return toImplements != null;
       case ProcessorDslPackage.DAOGEN_PROPERTY__TO_EXTENDS:
@@ -879,8 +825,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
     result.append(name);
     result.append(", dbTables: ");
     result.append(dbTables);
-    result.append(", implPackage: ");
-    result.append(implPackage);
     result.append(", dbFunction: ");
     result.append(dbFunction);
     result.append(", activeFilter: ");

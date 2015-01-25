@@ -42,10 +42,12 @@ import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.sqlproc.dsl.generator.ProcessorGeneratorUtils;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Artifacts;
@@ -65,7 +67,6 @@ import org.sqlproc.dsl.processorDsl.MappingColumnName;
 import org.sqlproc.dsl.processorDsl.MappingRule;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.MetagenProperty;
-import org.sqlproc.dsl.processorDsl.PackageDeclaration;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
@@ -96,19 +97,56 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   @Inject
   private IQualifiedNameConverter qualifiedNameConverter;
   
+  @Inject
+  @Extension
+  private ProcessorGeneratorUtils _processorGeneratorUtils;
+  
   private final ArrayList<String> STATEMENT_TYPE = CollectionLiterals.<String>newArrayList("QRY", "CRUD", "CALL");
   
   private final ArrayList<String> MAPPING_TYPE = CollectionLiterals.<String>newArrayList("OUT");
   
   private final ArrayList<String> OPTION_TYPE = CollectionLiterals.<String>newArrayList("OPT", "LOPT", "IOPT", "SOPT", "BOPT", "MOPT");
   
-  private final ArrayList<String> TYPES = CollectionLiterals.<String>newArrayList("int", "integer", "long", "byte", "short", 
-    "float", "double", "character", "char", "string", "str", "time", "date", "datetime", "timestamp", "stamp", 
-    "bool", "boolean", "bigint", "biginteger", "bigdec", "bigdecimal", "bytearr", "bytearray", "bytes", "text", 
-    "blob", "clob", "einteger", "eint", "enumstring", "estring", "fromdate", "todate", "cursor", "other");
+  private final ArrayList<String> TYPES = CollectionLiterals.<String>newArrayList(
+    "int", 
+    "integer", 
+    "long", 
+    "byte", 
+    "short", 
+    "float", 
+    "double", 
+    "character", 
+    "char", 
+    "string", 
+    "str", 
+    "time", 
+    "date", 
+    "datetime", 
+    "timestamp", 
+    "stamp", 
+    "bool", 
+    "boolean", 
+    "bigint", 
+    "biginteger", 
+    "bigdec", 
+    "bigdecimal", 
+    "bytearr", 
+    "bytearray", 
+    "bytes", 
+    "text", 
+    "blob", 
+    "clob", 
+    "einteger", 
+    "eint", 
+    "enumstring", 
+    "estring", 
+    "fromdate", 
+    "todate", 
+    "cursor", 
+    "other");
   
-  private final ArrayList<String> MODIFIERS = CollectionLiterals.<String>newArrayList("any", "null", "notnull", "seq", "seq=", 
-    "idsel", "idsel=", "id", "isDef=", "isCall=", "dtype=", "gtype=", "discr");
+  private final ArrayList<String> MODIFIERS = CollectionLiterals.<String>newArrayList("any", "null", "notnull", "seq", "seq=", "idsel", "idsel=", "id", "isDef=", 
+    "isCall=", "dtype=", "gtype=", "discr");
   
   private final ArrayList<String> F_TYPES = CollectionLiterals.<String>newArrayList("set", "update", "values", "where");
   
@@ -195,7 +233,8 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   public void completeConstant_Name(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     String _prefix = context.getPrefix();
-    boolean _completeUsage = this.completeUsage(model, assignment, context, acceptor, Constants.CONSTANT_USAGE, Constants.CONSTANT_USAGE_EXTENDED, _prefix, false);
+    boolean _completeUsage = this.completeUsage(model, assignment, context, acceptor, Constants.CONSTANT_USAGE, Constants.CONSTANT_USAGE_EXTENDED, _prefix, 
+      false);
     boolean _not = (!_completeUsage);
     if (_not) {
       super.completeConstant_Name(model, assignment, context, acceptor);
@@ -204,8 +243,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   public void completeIdentifier_Name(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     String _prefix = context.getPrefix();
-    boolean _completeUsage = this.completeUsage(model, assignment, context, acceptor, Constants.IDENTIFIER_USAGE, Constants.IDENTIFIER_USAGE_EXTENDED, _prefix, 
-      false);
+    boolean _completeUsage = this.completeUsage(model, assignment, context, acceptor, Constants.IDENTIFIER_USAGE, Constants.IDENTIFIER_USAGE_EXTENDED, _prefix, false);
     boolean _not = (!_completeUsage);
     if (_not) {
       super.completeIdentifier_Name(model, assignment, context, acceptor);
@@ -225,7 +263,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     boolean _notEquals = (!Objects.equal(entityName, null));
     if (_notEquals) {
       IScopeProvider _scopeProvider = this.getScopeProvider();
-      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
       _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
     }
     final PojoEntity pojoEntity = _xifexpression;
@@ -345,7 +383,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     boolean _notEquals = (!Objects.equal(entityName, null));
     if (_notEquals) {
       IScopeProvider _scopeProvider = this.getScopeProvider();
-      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
       _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
     }
     final PojoEntity pojoEntity = _xifexpression;
@@ -566,7 +604,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         checkProperty = _substring_3;
       }
       final String _checkProperty = checkProperty;
-      List<PojoProperty> _attributes = Utils.attributes(baseEntity);
+      List<PojoProperty> _attributes = this._processorGeneratorUtils.attributes(baseEntity);
       final Function1<PojoProperty, Boolean> _function = new Function1<PojoProperty, Boolean>() {
         public Boolean apply(final PojoProperty it) {
           String _name = it.getName();
@@ -631,22 +669,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     final Procedure1<PojoProperty> _function_1 = new Procedure1<PojoProperty>() {
       public void apply(final PojoProperty it) {
         boolean _or = false;
-        boolean _or_1 = false;
-        String _native = it.getNative();
-        boolean _notEquals = (!Objects.equal(_native, null));
+        Entity _ref = it.getRef();
+        boolean _notEquals = (!Objects.equal(_ref, null));
         if (_notEquals) {
-          _or_1 = true;
-        } else {
-          Entity _ref = it.getRef();
-          boolean _notEquals_1 = (!Objects.equal(_ref, null));
-          _or_1 = _notEquals_1;
-        }
-        if (_or_1) {
           _or = true;
         } else {
           JvmType _type = it.getType();
-          boolean _notEquals_2 = (!Objects.equal(_type, null));
-          _or = _notEquals_2;
+          boolean _notEquals_1 = (!Objects.equal(_type, null));
+          _or = _notEquals_1;
         }
         if (_or) {
           properties.add(it);
@@ -654,7 +684,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       }
     };
     IterableExtensions.<PojoProperty>forEach(_map, _function_1);
-    final PojoEntity superType = Utils.getSuperType(pojoEntity);
+    final PojoEntity superType = this._processorGeneratorUtils.getSuperType(pojoEntity);
     List<PojoProperty> _xifexpression = null;
     boolean _equals_1 = Objects.equal(superType, null);
     if (_equals_1) {
@@ -1781,8 +1811,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
-  private final ArrayList<String> methods = CollectionLiterals.<String>newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", 
-    "enumInit", "index=");
+  private final ArrayList<String> methods = CollectionLiterals.<String>newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", "enumInit", "index=");
   
   public void completePojogenProperty_Methods(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     if ((!(model instanceof PojogenProperty))) {
@@ -1924,7 +1953,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       public void apply(final IEObjectDescription description) {
         URI _eObjectURI = description.getEObjectURI();
         EObject _eObject = resourceSet.getEObject(_eObjectURI, true);
-        final PackageDeclaration packageDeclaration = ((PackageDeclaration) _eObject);
+        final org.sqlproc.dsl.processorDsl.Package packageDeclaration = ((org.sqlproc.dsl.processorDsl.Package) _eObject);
         EList<AbstractPojoEntity> _elements = packageDeclaration.getElements();
         final Procedure1<AbstractPojoEntity> _function = new Procedure1<AbstractPojoEntity>() {
           public void apply(final AbstractPojoEntity aEntity) {
@@ -1995,7 +2024,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     Resource _eResource = artifacts.eResource();
     ResourceSet _resourceSet = _eResource.getResourceSet();
     IScopeProvider _scopeProvider = this.getScopeProvider();
-    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
     final Set<PojoEntity> entities = this.listEntities(_resourceSet, _scope);
     final Procedure1<PojoEntity> _function = new Procedure1<PojoEntity>() {
       public void apply(final PojoEntity entity) {
@@ -2053,7 +2082,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     Resource _eResource = artifacts.eResource();
     ResourceSet _resourceSet = _eResource.getResourceSet();
     IScopeProvider _scopeProvider = this.getScopeProvider();
-    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
     final Set<PojoEntity> entities = this.listEntities(_resourceSet, _scope);
     final Procedure1<PojoEntity> _function = new Procedure1<PojoEntity>() {
       public void apply(final PojoEntity entity) {

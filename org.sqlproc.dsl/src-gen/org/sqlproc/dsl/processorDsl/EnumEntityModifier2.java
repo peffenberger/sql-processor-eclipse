@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.EnumEntityModifier2#getSuperType <em>Super Type</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.EnumEntityModifier2#getSernum <em>Sernum</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,31 +47,5 @@ public interface EnumEntityModifier2 extends EObject
    * @generated
    */
   void setSuperType(PojoEntity value);
-
-  /**
-   * Returns the value of the '<em><b>Sernum</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Sernum</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Sernum</em>' attribute.
-   * @see #setSernum(String)
-   * @see org.sqlproc.dsl.processorDsl.ProcessorDslPackage#getEnumEntityModifier2_Sernum()
-   * @model
-   * @generated
-   */
-  String getSernum();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.dsl.processorDsl.EnumEntityModifier2#getSernum <em>Sernum</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Sernum</em>' attribute.
-   * @see #getSernum()
-   * @generated
-   */
-  void setSernum(String value);
 
 } // EnumEntityModifier2

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.xtext.common.types.JvmType;
 
 import org.sqlproc.dsl.processorDsl.Annotation;
+import org.sqlproc.dsl.processorDsl.AnnotationDirective;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 
@@ -31,6 +32,7 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationImpl#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.AnnotationImpl#getFeatures <em>Features</em>}</li>
  * </ul>
@@ -40,6 +42,16 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  */
 public class AnnotationImpl extends MinimalEObjectImpl.Container implements Annotation
 {
+  /**
+   * The cached value of the '{@link #getDirectives() <em>Directives</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDirectives()
+   * @generated
+   * @ordered
+   */
+  protected EList<AnnotationDirective> directives;
+
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' reference.
    * <!-- begin-user-doc -->
@@ -79,6 +91,20 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
   protected EClass eStaticClass()
   {
     return ProcessorDslPackage.Literals.ANNOTATION;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<AnnotationDirective> getDirectives()
+  {
+    if (directives == null)
+    {
+      directives = new EObjectContainmentEList<AnnotationDirective>(AnnotationDirective.class, this, ProcessorDslPackage.ANNOTATION__DIRECTIVES);
+    }
+    return directives;
   }
 
   /**
@@ -148,6 +174,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.ANNOTATION__DIRECTIVES:
+        return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
       case ProcessorDslPackage.ANNOTATION__FEATURES:
         return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
     }
@@ -164,6 +192,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.ANNOTATION__DIRECTIVES:
+        return getDirectives();
       case ProcessorDslPackage.ANNOTATION__TYPE:
         if (resolve) return getType();
         return basicGetType();
@@ -184,6 +214,10 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.ANNOTATION__DIRECTIVES:
+        getDirectives().clear();
+        getDirectives().addAll((Collection<? extends AnnotationDirective>)newValue);
+        return;
       case ProcessorDslPackage.ANNOTATION__TYPE:
         setType((JvmType)newValue);
         return;
@@ -205,6 +239,9 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.ANNOTATION__DIRECTIVES:
+        getDirectives().clear();
+        return;
       case ProcessorDslPackage.ANNOTATION__TYPE:
         setType((JvmType)null);
         return;
@@ -225,6 +262,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.ANNOTATION__DIRECTIVES:
+        return directives != null && !directives.isEmpty();
       case ProcessorDslPackage.ANNOTATION__TYPE:
         return type != null;
       case ProcessorDslPackage.ANNOTATION__FEATURES:

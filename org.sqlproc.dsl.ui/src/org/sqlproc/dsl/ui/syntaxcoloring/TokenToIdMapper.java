@@ -1,55 +1,95 @@
 package org.sqlproc.dsl.ui.syntaxcoloring;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.sqlproc.dsl.parser.antlr.internal.InternalProcessorDslLexer;
 
 public class TokenToIdMapper extends DefaultAntlrTokenToAttributeIdMapper {
 
+    private static final Set<Integer> punctations = new HashSet<>();
+    static {
+        punctations.add(InternalProcessorDslLexer.RULE_IDENT_DOT);
+        punctations.add(InternalProcessorDslLexer.RULE_IDENT);
+        punctations.add(InternalProcessorDslLexer.RULE_NUMBER);
+        punctations.add(InternalProcessorDslLexer.RULE_ESC_CHAR);
+        punctations.add(InternalProcessorDslLexer.RULE_AND);
+        punctations.add(InternalProcessorDslLexer.RULE_OR);
+        punctations.add(InternalProcessorDslLexer.RULE_COLON);
+        punctations.add(InternalProcessorDslLexer.RULE_SEMICOLON);
+        punctations.add(InternalProcessorDslLexer.RULE_STRING);
+        punctations.add(InternalProcessorDslLexer.RULE_COMMA);
+        punctations.add(InternalProcessorDslLexer.RULE_MINUS);
+        punctations.add(InternalProcessorDslLexer.RULE_PLUS);
+        punctations.add(InternalProcessorDslLexer.RULE_LPAREN);
+        punctations.add(InternalProcessorDslLexer.RULE_RPAREN);
+        punctations.add(InternalProcessorDslLexer.RULE_LBRACE);
+        punctations.add(InternalProcessorDslLexer.RULE_RBRACE);
+        punctations.add(InternalProcessorDslLexer.RULE_QUESTI);
+        punctations.add(InternalProcessorDslLexer.RULE_NOT);
+        punctations.add(InternalProcessorDslLexer.RULE_BAND);
+        punctations.add(InternalProcessorDslLexer.RULE_BOR);
+        punctations.add(InternalProcessorDslLexer.RULE_HASH);
+        punctations.add(InternalProcessorDslLexer.RULE_AT);
+        punctations.add(InternalProcessorDslLexer.RULE_CARET);
+        punctations.add(InternalProcessorDslLexer.RULE_EQUALS);
+        punctations.add(InternalProcessorDslLexer.RULE_LESS_THAN);
+        punctations.add(InternalProcessorDslLexer.RULE_MORE_THAN);
+        punctations.add(InternalProcessorDslLexer.RULE_PERCENT);
+        punctations.add(InternalProcessorDslLexer.RULE_DOT);
+
+        punctations.add(InternalProcessorDslLexer.RULE_REST);
+    }
+
+    private static final Set<String> types = new HashSet<>();
+    static {
+        types.add("'QRY'");
+        types.add("'CRUD'");
+        types.add("'CALL'");
+        types.add("'OUT'");
+        types.add("'OPT'");
+        types.add("'LOPT'");
+        types.add("'IOPT'");
+        types.add("'SOPT'");
+        types.add("'BOPT'");
+        types.add("'MOPT'");
+    }
+
+    private static final Set<String> keywords = new HashSet<>();
+    static {
+        keywords.add("'pojo'");
+        keywords.add("'table'");
+        keywords.add("'procedure'");
+        keywords.add("'function'");
+        keywords.add("'package'");
+        keywords.add("'import'");
+        keywords.add("'implements'");
+        keywords.add("'extends'");
+        keywords.add("'onlyPojos'");
+        keywords.add("'onlyDaos'");
+        keywords.add("'exceptPojos'");
+        keywords.add("'exceptDaos'");
+        keywords.add("'final'");
+        keywords.add("'abstract'");
+        keywords.add("'enum'");
+        keywords.add("'dao'");
+    }
+
     @Override
     protected String calculateId(String tokenName, int tokenType) {
-        if (tokenType == InternalProcessorDslLexer.RULE_BAND || tokenType == InternalProcessorDslLexer.RULE_RBRACE
-                || tokenType == InternalProcessorDslLexer.RULE_CARET
-                || tokenType == InternalProcessorDslLexer.RULE_MORE_THAN
-                || tokenType == InternalProcessorDslLexer.RULE_SEMICOLON
-                || tokenType == InternalProcessorDslLexer.RULE_PLUS || tokenType == InternalProcessorDslLexer.RULE_OR
-                || tokenType == InternalProcessorDslLexer.RULE_HASH
-                || tokenType == InternalProcessorDslLexer.RULE_COMMA || tokenType == InternalProcessorDslLexer.RULE_AND
-                || tokenType == InternalProcessorDslLexer.RULE_QUESTI
-                || tokenType == InternalProcessorDslLexer.RULE_NOT || tokenType == InternalProcessorDslLexer.RULE_MINUS
-                || tokenType == InternalProcessorDslLexer.RULE_COLON
-                || tokenType == InternalProcessorDslLexer.RULE_STRING
-                || tokenType == InternalProcessorDslLexer.RULE_REST
-                || tokenType == InternalProcessorDslLexer.RULE_ESC_CHAR
-                || tokenType == InternalProcessorDslLexer.RULE_NUMBER
-                || tokenType == InternalProcessorDslLexer.RULE_IDENT
-                || tokenType == InternalProcessorDslLexer.RULE_LPAREN
-                || tokenType == InternalProcessorDslLexer.RULE_EQUALS
-                || tokenType == InternalProcessorDslLexer.RULE_LBRACE
-                || tokenType == InternalProcessorDslLexer.RULE_RPAREN
-                || tokenType == InternalProcessorDslLexer.RULE_BOR
-                || tokenType == InternalProcessorDslLexer.RULE_LESS_THAN
-                || tokenType == InternalProcessorDslLexer.RULE_PERCENT
-                || tokenType == InternalProcessorDslLexer.RULE_IDENT_DOT
-                || tokenType == InternalProcessorDslLexer.RULE_AT)
+        if (punctations.contains(tokenType))
             return HighlightingConfiguration.PUNCTATION;
 
         if (tokenType == InternalProcessorDslLexer.RULE_ML_COMMENT
                 || tokenType == InternalProcessorDslLexer.RULE_SL_COMMENT)
             return HighlightingConfiguration.COMMENT;
 
-        if (tokenName.equals("'BOPT'") || tokenName.equals("'OUT'") || tokenName.equals("'SOPT'")
-                || tokenName.equals("'OPT'") || tokenName.equals("'QRY'") || tokenName.equals("'IOPT'")
-                || tokenName.equals("'LOPT'") || tokenName.equals("'MOPT'") || tokenName.equals("'CRUD'")
-                || tokenName.equals("'CALL'") || tokenName.equals("'pojo'") || tokenName.equals("'out'")
-                || tokenName.equals("'in'") || tokenName.equals("'const'") || tokenName.equals("'table'")
-                || tokenName.equals("'col'") || tokenName.equals("'prefix'") || tokenName.startsWith("'database")
-                || tokenName.startsWith("'resolve") || tokenName.equals("'abstract'") || tokenName.equals("'package'")
-                || tokenName.startsWith("'equals") || tokenName.equals("'outx'") || tokenName.equals("'inx'")
-                || tokenName.equals("'constx'") || tokenName.equals("'colx'") || tokenName.equals("'final'")
-                || tokenName.equals("'discriminator'") || tokenName.equals("'required'")
-                || tokenName.equals("'primaryKey'") || tokenName.equals("'dao'") || tokenName.equals("'procedure'")
-                || tokenName.equals("'function'"))
+        if (types.contains(tokenName))
             return HighlightingConfiguration.TYPE;
+
+        if (keywords.contains(tokenName))
+            return HighlightingConfiguration.KEYWORD;
 
         return HighlightingConfiguration.DEFAULT;
     }

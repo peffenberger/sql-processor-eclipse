@@ -22,7 +22,6 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoModifierImpl#getSuperType <em>Super Type</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoModifierImpl#getSernum <em>Sernum</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,26 +38,6 @@ public class PojoDaoModifierImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected PojoDao superType;
-
-  /**
-   * The default value of the '{@link #getSernum() <em>Sernum</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSernum()
-   * @generated
-   * @ordered
-   */
-  protected static final String SERNUM_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getSernum() <em>Sernum</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSernum()
-   * @generated
-   * @ordered
-   */
-  protected String sernum = SERNUM_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -129,29 +108,6 @@ public class PojoDaoModifierImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getSernum()
-  {
-    return sernum;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setSernum(String newSernum)
-  {
-    String oldSernum = sernum;
-    sernum = newSernum;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_DAO_MODIFIER__SERNUM, oldSernum, sernum));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -160,8 +116,6 @@ public class PojoDaoModifierImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJO_DAO_MODIFIER__SUPER_TYPE:
         if (resolve) return getSuperType();
         return basicGetSuperType();
-      case ProcessorDslPackage.POJO_DAO_MODIFIER__SERNUM:
-        return getSernum();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -178,9 +132,6 @@ public class PojoDaoModifierImpl extends MinimalEObjectImpl.Container implements
     {
       case ProcessorDslPackage.POJO_DAO_MODIFIER__SUPER_TYPE:
         setSuperType((PojoDao)newValue);
-        return;
-      case ProcessorDslPackage.POJO_DAO_MODIFIER__SERNUM:
-        setSernum((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -199,9 +150,6 @@ public class PojoDaoModifierImpl extends MinimalEObjectImpl.Container implements
       case ProcessorDslPackage.POJO_DAO_MODIFIER__SUPER_TYPE:
         setSuperType((PojoDao)null);
         return;
-      case ProcessorDslPackage.POJO_DAO_MODIFIER__SERNUM:
-        setSernum(SERNUM_EDEFAULT);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -218,27 +166,8 @@ public class PojoDaoModifierImpl extends MinimalEObjectImpl.Container implements
     {
       case ProcessorDslPackage.POJO_DAO_MODIFIER__SUPER_TYPE:
         return superType != null;
-      case ProcessorDslPackage.POJO_DAO_MODIFIER__SERNUM:
-        return SERNUM_EDEFAULT == null ? sernum != null : !SERNUM_EDEFAULT.equals(sernum);
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (sernum: ");
-    result.append(sernum);
-    result.append(')');
-    return result.toString();
   }
 
 } //PojoDaoModifierImpl

@@ -32,10 +32,12 @@ import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.sqlproc.dsl.generator.ProcessorGeneratorUtils;
 import org.sqlproc.dsl.processorDsl.AbstractPojoEntity;
 import org.sqlproc.dsl.processorDsl.Artifacts;
 import org.sqlproc.dsl.processorDsl.Column;
@@ -52,7 +54,6 @@ import org.sqlproc.dsl.processorDsl.MappingRule;
 import org.sqlproc.dsl.processorDsl.MetaSql;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
 import org.sqlproc.dsl.processorDsl.OptionalFeature;
-import org.sqlproc.dsl.processorDsl.PackageDeclaration;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
@@ -92,6 +93,10 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
   
   @Inject
   private ModelProperty modelProperty;
+  
+  @Inject
+  @Extension
+  private ProcessorGeneratorUtils _processorGeneratorUtils;
   
   private final ArrayList<String> F_TYPES = CollectionLiterals.<String>newArrayList("set", "update", "values", "where", "columns", "set=opt", "where=opt");
   
@@ -580,7 +585,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoEntity _xifexpression = null;
     boolean _notEquals = (!Objects.equal(entityName, null));
     if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
       _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
     }
     final PojoEntity entity = _xifexpression;
@@ -663,7 +668,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoEntity _xifexpression = null;
     boolean _notEquals = (!Objects.equal(entityName, null));
     if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
       _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
     }
     final PojoEntity entity = _xifexpression;
@@ -746,7 +751,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoEntity _xifexpression = null;
     boolean _notEquals = (!Objects.equal(entityName, null));
     if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
       _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
     }
     final PojoEntity entity = _xifexpression;
@@ -854,7 +859,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     PojoEntity _xifexpression = null;
     boolean _notEquals = (!Objects.equal(entityName, null));
     if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
       _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
     }
     final PojoEntity entity = _xifexpression;
@@ -950,7 +955,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           String value = modifier.substring((ix + 1));
           boolean _equals_1 = Constants.IDENTIFIER_USAGE_EXTENDED.equals(key);
           if (_equals_1) {
-            IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+            IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
             final PojoEntity entity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, value);
             boolean _equals_2 = Objects.equal(entity, null);
             if (_equals_2) {
@@ -970,7 +975,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
             } else {
               boolean _equals_5 = Constants.COLUMN_USAGE_EXTENDED.equals(key);
               if (_equals_5) {
-                IScope _scope_2 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+                IScope _scope_2 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
                 final PojoEntity entity_1 = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope_2, value);
                 boolean _equals_6 = Objects.equal(entity_1, null);
                 if (_equals_6) {
@@ -990,7 +995,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
                 } else {
                   boolean _equals_9 = Constants.CONSTANT_USAGE_EXTENDED.equals(key);
                   if (_equals_9) {
-                    IScope _scope_4 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+                    IScope _scope_4 = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
                     final PojoEntity entity_2 = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope_4, value);
                     boolean _equals_10 = Objects.equal(entity_2, null);
                     if (_equals_10) {
@@ -1061,7 +1066,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           final String value = modifier.substring((ix + 1));
           boolean _equals_1 = Constants.MAPPING_USAGE_EXTENDED.equals(key);
           if (_equals_1) {
-            IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJO_PACKAGES);
+            IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
             final PojoEntity entity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, value);
             boolean _equals_2 = Objects.equal(entity, null);
             if (_equals_2) {
@@ -1093,8 +1098,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     }
     int _length = param.length();
     int i = (_length - 1);
-    boolean _while = (i >= 0);
-    while (_while) {
+    while ((i >= 0)) {
       {
         char _charAt = param.charAt(i);
         boolean _isDigit = Character.isDigit(_charAt);
@@ -1104,7 +1108,6 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         }
         i = (i - 1);
       }
-      _while = (i >= 0);
     }
     return true;
   }
@@ -1366,7 +1369,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         }
       }
     }
-    PojoEntity superType = Utils.getSuperType(entity);
+    PojoEntity superType = this._processorGeneratorUtils.getSuperType(entity);
     boolean _notEquals = (!Objects.equal(superType, null));
     if (_notEquals) {
       ValidationResult result = this.checkEntityProperty(superType, property);
@@ -1382,7 +1385,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         return result;
       }
     }
-    boolean _isAbstract = Utils.isAbstract(entity);
+    boolean _isAbstract = this._processorGeneratorUtils.isAbstract(entity);
     if (_isAbstract) {
       return ValidationResult.WARNING;
     } else {
@@ -1719,8 +1722,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoEntity);
     final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
-    for (final PackageDeclaration pkg : _pojoPackages) {
+    EList<org.sqlproc.dsl.processorDsl.Package> _packages = artifacts.getPackages();
+    for (final org.sqlproc.dsl.processorDsl.Package pkg : _packages) {
       boolean _notEquals = (!Objects.equal(pkg, null));
       if (_notEquals) {
         EList<AbstractPojoEntity> _elements = pkg.getElements();
@@ -1790,8 +1793,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(enumEntity);
     final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
-    for (final PackageDeclaration pkg : _pojoPackages) {
+    EList<org.sqlproc.dsl.processorDsl.Package> _packages = artifacts.getPackages();
+    for (final org.sqlproc.dsl.processorDsl.Package pkg : _packages) {
       boolean _notEquals = (!Objects.equal(pkg, null));
       if (_notEquals) {
         EList<AbstractPojoEntity> _elements = pkg.getElements();
@@ -1858,8 +1861,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoDao);
     final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
-    for (final PackageDeclaration pkg : _pojoPackages) {
+    EList<org.sqlproc.dsl.processorDsl.Package> _packages = artifacts.getPackages();
+    for (final org.sqlproc.dsl.processorDsl.Package pkg : _packages) {
       boolean _notEquals = (!Objects.equal(pkg, null));
       if (_notEquals) {
         EList<AbstractPojoEntity> _elements = pkg.getElements();

@@ -5,6 +5,7 @@ package org.sqlproc.dsl.processorDsl.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -13,11 +14,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.common.types.JvmType;
 
 import org.sqlproc.dsl.processorDsl.Extends;
+import org.sqlproc.dsl.processorDsl.ImplementsExtendsDirective;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
@@ -29,8 +33,8 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl#getExtends <em>Extends</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl#isGenerics <em>Generics</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl#getOnlyPojos <em>Only Pojos</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl#getOnlyDaos <em>Only Daos</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.ExtendsImpl#getExceptPojos <em>Except Pojos</em>}</li>
@@ -43,6 +47,16 @@ import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
 public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
 {
   /**
+   * The cached value of the '{@link #getDirectives() <em>Directives</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDirectives()
+   * @generated
+   * @ordered
+   */
+  protected EList<ImplementsExtendsDirective> directives;
+
+  /**
    * The cached value of the '{@link #getExtends() <em>Extends</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -51,26 +65,6 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
    * @ordered
    */
   protected JvmType extends_;
-
-  /**
-   * The default value of the '{@link #isGenerics() <em>Generics</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isGenerics()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean GENERICS_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isGenerics() <em>Generics</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isGenerics()
-   * @generated
-   * @ordered
-   */
-  protected boolean generics = GENERICS_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getOnlyPojos() <em>Only Pojos</em>}' reference list.
@@ -138,6 +132,20 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<ImplementsExtendsDirective> getDirectives()
+  {
+    if (directives == null)
+    {
+      directives = new EObjectContainmentEList<ImplementsExtendsDirective>(ImplementsExtendsDirective.class, this, ProcessorDslPackage.EXTENDS__DIRECTIVES);
+    }
+    return directives;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public JvmType getExtends()
   {
     if (extends_ != null && extends_.eIsProxy())
@@ -174,29 +182,6 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
     extends_ = newExtends;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.EXTENDS__EXTENDS, oldExtends, extends_));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean isGenerics()
-  {
-    return generics;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setGenerics(boolean newGenerics)
-  {
-    boolean oldGenerics = generics;
-    generics = newGenerics;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.EXTENDS__GENERICS, oldGenerics, generics));
   }
 
   /**
@@ -261,15 +246,31 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
    * @generated
    */
   @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ProcessorDslPackage.EXTENDS__DIRECTIVES:
+        return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.EXTENDS__DIRECTIVES:
+        return getDirectives();
       case ProcessorDslPackage.EXTENDS__EXTENDS:
         if (resolve) return getExtends();
         return basicGetExtends();
-      case ProcessorDslPackage.EXTENDS__GENERICS:
-        return isGenerics();
       case ProcessorDslPackage.EXTENDS__ONLY_POJOS:
         return getOnlyPojos();
       case ProcessorDslPackage.EXTENDS__ONLY_DAOS:
@@ -293,11 +294,12 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.EXTENDS__DIRECTIVES:
+        getDirectives().clear();
+        getDirectives().addAll((Collection<? extends ImplementsExtendsDirective>)newValue);
+        return;
       case ProcessorDslPackage.EXTENDS__EXTENDS:
         setExtends((JvmType)newValue);
-        return;
-      case ProcessorDslPackage.EXTENDS__GENERICS:
-        setGenerics((Boolean)newValue);
         return;
       case ProcessorDslPackage.EXTENDS__ONLY_POJOS:
         getOnlyPojos().clear();
@@ -329,11 +331,11 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.EXTENDS__DIRECTIVES:
+        getDirectives().clear();
+        return;
       case ProcessorDslPackage.EXTENDS__EXTENDS:
         setExtends((JvmType)null);
-        return;
-      case ProcessorDslPackage.EXTENDS__GENERICS:
-        setGenerics(GENERICS_EDEFAULT);
         return;
       case ProcessorDslPackage.EXTENDS__ONLY_POJOS:
         getOnlyPojos().clear();
@@ -361,10 +363,10 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.EXTENDS__DIRECTIVES:
+        return directives != null && !directives.isEmpty();
       case ProcessorDslPackage.EXTENDS__EXTENDS:
         return extends_ != null;
-      case ProcessorDslPackage.EXTENDS__GENERICS:
-        return generics != GENERICS_EDEFAULT;
       case ProcessorDslPackage.EXTENDS__ONLY_POJOS:
         return onlyPojos != null && !onlyPojos.isEmpty();
       case ProcessorDslPackage.EXTENDS__ONLY_DAOS:
@@ -375,23 +377,6 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
         return exceptDaos != null && !exceptDaos.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (generics: ");
-    result.append(generics);
-    result.append(')');
-    return result.toString();
   }
 
 } //ExtendsImpl

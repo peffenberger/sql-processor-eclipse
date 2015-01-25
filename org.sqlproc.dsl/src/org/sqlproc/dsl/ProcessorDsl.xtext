@@ -9,7 +9,7 @@ Artifacts: {Artifacts}
     WS* (properties+=Property WS*|pojos+=PojoDefinition WS*|tables+=TableDefinition WS*
     	|procedures+=ProcedureDefinition WS*|functions+=FunctionDefinition WS*
     	|statements+=MetaStatement WS*|mappings+=MappingRule WS*|features+=OptionalFeature WS*
-    	|pojoPackages+=PackageDeclaration WS*
+    	|packages+=Package WS*
     )*;
 
 DatabaseCatalogAssignement: dbCatalog=PropertyValue;
@@ -31,10 +31,10 @@ ManyToManyAssignement: pkColumn=IDENT '->' pkTable=IDENT ('->' fkColumn=IDENT)?;
 DebugLevelAssignement: debug=IDENT (WS+ scope=PropertyValue)?;
 ProcedurePojoAssignement: dbProcedure=IDENT '->' pojo=PojoType;
 FunctionPojoAssignement: dbFunction=IDENT '->' pojo=PojoType;
-ImplementsAssignement: toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ExtendsAssignement: toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ImplementsAssignementGenerics: toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ExtendsAssignementGenerics: toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ImplementsAssignement: COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ExtendsAssignement: COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ImplementsAssignementGenerics: COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ExtendsAssignementGenerics: COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 
 Property:
 	(name='resolve-pojo-on'
@@ -45,6 +45,7 @@ Property:
 	|name='daogen-' daogen=DaogenProperty
 	|name='replace-all-regex' WS+ replaceId=IDENT WS+ regex=PropertyValue
 	|name='replace-all-replacement' WS+ replaceId=IDENT WS+ replacement=PropertyValue
+	|name='compress-meta-directives'
 	) SEMICOLON;
 
 DatabaseProperty:
@@ -107,7 +108,6 @@ PojogenProperty:
 	|name='generate-wrappers'
 	|name='generate-validation-annotations'
 	|name='preserve-foreign-keys' (WS+ dbTables+=IDENT)*
-	|name='implementation-package' WS+ implPackage=IDENT
 	|name='make-it-final'
 	|name='version-column' WS+ version=IDENT (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
 	|name='debug-level' WS+ debug=DebugLevelAssignement
@@ -147,7 +147,6 @@ MetagenProperty:
 DaogenProperty:
 	(name='ignore-tables' (WS+ dbTables+=IDENT)+
 	|name='only-tables' (WS+ dbTables+=IDENT)*
-	|name='implementation-package' WS+ implPackage=IDENT
 	|name='implements-interfaces' WS+ toImplements=ImplementsAssignement
 	|name='extends-class' WS+ toExtends=ExtendsAssignement
 	|name='implements-interfaces-generics' WS+ toImplementsGenerics=ImplementsAssignementGenerics 
@@ -357,108 +356,171 @@ terminal STRING_VALUE : '\"' -> '\"' ;
 FeatureValue:
   (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)+;
 
-//SimpleType:
-//	(native = ('_void'|'_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') |
-//	(COLON (COLON ref=[PojoEntity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]));
-
 PojoType:
-	(native = ('_void'|'_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 
-	(COLON (COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]))
-	(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) (array ?= '[]')?;
+	(COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoEntity|IDENT])
+	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|IDENT]) MORE_THAN)? (array ?= '[]')?;
 
-PackageDeclaration hidden(ML_COMMENT, SL_COMMENT, WS):
-	'package' name=(IDENT|IDENT_DOT) ('suffix' suffix=(IDENT|NUMBER))? LBRACE
+PackageDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+	{PackageDirectiveSuffix} '#Suffix' LPAREN suffix=(IDENT|NUMBER) RPAREN
+	| {PackageDirectiveImplementation} '#Implementation' LPAREN implementation=(IDENT|IDENT_DOT) RPAREN
+;
+
+Package hidden(ML_COMMENT, SL_COMMENT, WS):
+	directives+=PackageDirective*
+	'package' name=(IDENT|IDENT_DOT) LBRACE
 		elements+=AbstractPojoEntity*
 	RBRACE;
 
+AnnotationDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+	{AnnotationDirectiveConflict} '#Conflict'
+	| {AnnotationDirectiveStatic} '#Static'
+	| {AnnotationDirectiveConstructor} '#Constructor'
+	| {AnnotationDirectiveStandard} '#Standard'
+	| {AnnotationDirectiveSetter} '#Setter'
+	| {AnnotationDirectiveGetter} '#Getter'
+	| {AnnotationDirectiveAttribute} '#Attribute'
+;
+
 Annotation:
-	type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?
+	directives+=AnnotationDirective*
+	AT type=[jvmTypes::JvmType|QualifiedName] (=> LPAREN features+=AnnotationProperty (COMMA features+=AnnotationProperty)* RPAREN)?
 ;
 
 AnnotationProperty:
-	(COMMA)? name=IDENT (COLON (COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]))? (number=NUMBER|value=STRING_VALUE|constant=IDENT)
+	name=IDENT EQUALS (number=NUMBER|value=STRING_VALUE|constant=IDENT) ((COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoEntity|IDENT]))?  
 ;
 
 Entity: PojoEntity | EnumEntity;
 
-AnnotatedEntity: (=> AT (=> AT (=> AT (=> AT conflictAnnotations+=Annotation | staticAnnotations+=Annotation) | constructorAnnotations+=Annotation) | annotations+=Annotation))* entity=Entity;
+AnnotatedEntity: (annotations+=Annotation)* entity=Entity;
 
 AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-	PackageDeclaration | AnnotatedEntity | Import | Implements | Extends | ImplPackage | PojoDao;
+	Package | AnnotatedEntity | Import | Implements | Extends | PojoDao;
 
 Import hidden(ML_COMMENT, SL_COMMENT, WS):
 	'import' importedNamespace = QualifiedNameWithWildcard;
 
+ImplementsExtendsDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+	{ImplementsExtendsDirectiveGenerics} '#Generics'
+;
+
 Implements hidden(ML_COMMENT, SL_COMMENT, WS):
-	'implements' implements = [jvmTypes::JvmType|QualifiedName] (generics ?= '<<>>')? ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
+	directives+=ImplementsExtendsDirective*
+	'implements' COLON implements = [jvmTypes::JvmType|QualifiedName] ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
 
 Extends hidden(ML_COMMENT, SL_COMMENT, WS):
-	'extends' extends = [jvmTypes::JvmType|QualifiedName] (generics ?= '<<>>')? ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
-
-ImplPackage hidden(ML_COMMENT, SL_COMMENT, WS):
-	'implementation-package' name=(IDENT|IDENT_DOT);
+	directives+=ImplementsExtendsDirective*
+	'extends' COLON extends = [jvmTypes::JvmType|QualifiedName] ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
 
 PojoEntityModifier1: ((final?='final') | (abstract?='abstract'));
 
-PojoEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('discriminator' discriminator=(IDENT|NUMBER)) | (operators='operators' (operatorsSuffix=IDENT)?)| ('serializable' sernum=NUMBER));
+DirectiveProperties hidden(ML_COMMENT, SL_COMMENT, WS):
+	features+=[PojoProperty|IDENT] (COMMA features+=[PojoProperty|IDENT])*
+;
+
+PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+	{PojoDirectiveToString} '#ToString' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveIndex} '#Index' LPAREN index=NUMBER COMMA proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveOperators} '#Operators' (LPAREN operatorsSuffix=IDENT RPAREN)?
+	| {PojoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
+	| {PojoDirectiveDiscriminator} '#InheritanceChild' LPAREN discriminator=(IDENT|NUMBER) RPAREN
+	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
+;
+
+PojoEntityModifier2: ('extends' superType=[PojoEntity|IDENT]);
 
 PojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
+	directives+=PojoDirective*
 	(modifiers1+=PojoEntityModifier1)* 'pojo' name=IDENT (modifiers2+=PojoEntityModifier2)* 
 	LBRACE
 		features+=PojoAnnotatedProperty*
 	RBRACE;
 
-PojoAnnotatedProperty: (=> AT (=> AT (=> AT setterAnnotations+=Annotation | getterAnnotations+=Annotation) | attributeAnnotations+=Annotation))* feature=PojoProperty;
+PojoAnnotatedProperty: (annotations+=Annotation)* feature=PojoProperty;
 
-PojoPropertyModifier: ((required?='required') | (discriminator?='discriminator') | (primaryKey?='primaryKey') | ('index' index=NUMBER) | (version?='optLock') | 
-	                   ('updateCol' updateColumn1=IDENT '->' updateColumn2=IDENT) | ('createCol' createColumn1=IDENT '->' createColumn2=IDENT) 
-);
+PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+	{PojoPropertyDirectiveRequired} '#Required'
+	| {PojoPropertyDirectivePrimaryKey} '#PrimaryKey'
+	| {PojoPropertyDirectiveDiscriminator} '#InheritanceDiscriminator'
+	| {PojoPropertyDirectiveIndex} '#Index' LPAREN index=NUMBER RPAREN
+	| {PojoPropertyDirectiveVersion} '#Version'
+	| {PojoPropertyDirectiveUpdateCol} '#UpdateCol' LPAREN updateColumn1=IDENT COMMA updateColumn2=IDENT RPAREN
+	| {PojoPropertyDirectiveCreateCol} '#CreateCol' LPAREN createColumn1=IDENT COMMA createColumn2=IDENT RPAREN
+	| {PojoPropertyDirectiveToInit} '#ToInit'
+	| {PojoPropertyDirectiveEnumInit} '#EnumInit'
+	| {PojoPropertyDirectiveIsDef} '#IsDef'
+	| {PojoPropertyDirectiveEnumDef} '#EnumDef'
+;
+
+//PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
+//	directives+=PojoPropertyDirective*
+//	name=IDENT ((=> LPAREN attrs+=[PojoProperty|IDENT] (COMMA attrs+=[PojoProperty|IDENT])* RPAREN) |
+//	((=> LPAREN attrs+=[PojoProperty|IDENT] (COMMA attrs+=[PojoProperty|IDENT])* RPAREN)?
+//		(COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[Entity|IDENT])
+//	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|IDENT]) MORE_THAN)? (array ?= '[]')?))
+//;
 
 PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
-	name=IDENT (native = ('_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 
-	(COLON (COLON (COLON (attrs+=[PojoProperty|IDENT])* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
-	(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) (array ?= '[]')?
-	(modifiers+=PojoPropertyModifier)*
+	directives+=PojoPropertyDirective*
+	name=IDENT (COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[Entity|IDENT])
+	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|IDENT]) MORE_THAN)? (array ?= '[]')?
 ;
 
 EnumEntityModifier1: ((final?='final'));
 
-EnumEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('serializable' sernum=NUMBER));
+EnumEntityModifier2: ('extends' superType=[PojoEntity|IDENT]);
 
 EnumEntity hidden(ML_COMMENT, SL_COMMENT, WS):
+	directives+=PojoDirective*
 	(modifiers1+=EnumEntityModifier1)* 'enum' name=IDENT (modifiers2+=EnumEntityModifier2)* 
 	LBRACE
 		features+=EnumProperty*
 	RBRACE;
 
+EnumPropertyValue: name=IDENT EQUALS value=(NUMBER|STRING_VALUE);
+
+EnumPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
+	{EnumPropertyDirectiveValues} '#Values' LPAREN values+=EnumPropertyValue (COMMA values+=EnumPropertyValue)* RPAREN
+	;
+
 EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
-	name=IDENT (native = ('_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 
-	(COLON (COLON COLON value=(NUMBER|STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName])))
+	directives+=EnumPropertyDirective name=IDENT COLON type=[jvmTypes::JvmType|QualifiedName]
 ;
 
-PojoDaoModifier: (('extends' superType=[PojoDao|IDENT]) | ('serializable' sernum=NUMBER));
+DaoDirectiveParameters hidden(ML_COMMENT, SL_COMMENT, WS):
+	out=PojoType (COMMA ins+=PojoType)*
+;
+
+DescendantAssignment hidden(ML_COMMENT, SL_COMMENT, WS):
+	value=(NUMBER|STRING_VALUE) EQUALS descendant=PojoType
+;
+
+FunProcType  hidden(ML_COMMENT, SL_COMMENT, WS):
+	{FunctionCallQuery} "#FunctionCallQuery" | 
+	{ProcedureCallQuery} "#ProcedureCallQuery" | 
+	{FunctionCall} "#FunctionCall" | 
+	{ProcedureUpdate} "#ProcedureUpdate" | 
+	{FunctionQuery} "#FunctionQuery"
+	;
+
+DaoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
+	{DaoDirectiveSerializable} '#Serializable' LPAREN sernum=NUMBER RPAREN
+	| {DaoDirectiveDiscriminator} '#InheritanceHandler' LPAREN ancestor=[PojoProperty|IDENT] (COMMA descendants+=DescendantAssignment)+ RPAREN
+	| {DaoDirectiveCrud} '#CRUD' (=> LPAREN pojo=PojoType RPAREN)?
+	| {DaoDirectiveQuery} '#Query' (=> LPAREN pojo=PojoType RPAREN)?
+	| {FunProcDirective} type=FunProcType (=> LPAREN paramlist=DaoDirectiveParameters RPAREN)?
+	;
+
+PojoDaoModifier: ('extends' superType=[PojoDao|IDENT]);
 
 PojoDao hidden(ML_COMMENT, SL_COMMENT, WS):
-	(modifiers1+=PojoEntityModifier1)* 'dao' name=IDENT (COLON COLON ((pojoGenerics ?= COLON)?) pojo=[PojoEntity|IDENT])?
+	directives+=DaoDirective*
+	(modifiers1+=PojoEntityModifier1)* 'dao' name=IDENT
 	  (modifiers2+=PojoDaoModifier)* 
 	LBRACE
-		methods+=PojoMethod*
-		toInits+=ToInitMethod*
+		//methods+=PojoMethod*
 	RBRACE;
-
-PojoMethodModifier: ((callFunction?='callFunction') | (callUpdate?='callUpdate') | (callQuery?='callQuery') | (callQueryFunction?='callQueryFunction') | (callSelectFunction?='callSelectFunction'));
-
-PojoMethod hidden(ML_COMMENT, SL_COMMENT, WS):
-		(modifiers1+=PojoMethodModifier)* name=IDENT (type=PojoType COLON COLON COLON (args+=PojoMethodArg)+)?
-;
-
-ToInitMethod hidden(ML_COMMENT, SL_COMMENT, WS):
-		name=IDENT COLON COLON COLON (args+=PojoMethodArg)+
-;
-
-PojoMethodArg hidden(ML_COMMENT, SL_COMMENT, WS):
-	name=IDENT type=PojoType
-;
 
 QualifiedNameWithWildcard:
   QualifiedName '.*'?; 

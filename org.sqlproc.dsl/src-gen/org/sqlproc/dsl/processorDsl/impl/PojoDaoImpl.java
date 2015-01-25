@@ -17,13 +17,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sqlproc.dsl.processorDsl.DaoDirective;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDaoModifier;
-import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoEntityModifier1;
-import org.sqlproc.dsl.processorDsl.PojoMethod;
 import org.sqlproc.dsl.processorDsl.ProcessorDslPackage;
-import org.sqlproc.dsl.processorDsl.ToInitMethod;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,13 +30,10 @@ import org.sqlproc.dsl.processorDsl.ToInitMethod;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getModifiers1 <em>Modifiers1</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#isPojoGenerics <em>Pojo Generics</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getPojo <em>Pojo</em>}</li>
  *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getModifiers2 <em>Modifiers2</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getMethods <em>Methods</em>}</li>
- *   <li>{@link org.sqlproc.dsl.processorDsl.impl.PojoDaoImpl#getToInits <em>To Inits</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,6 +41,16 @@ import org.sqlproc.dsl.processorDsl.ToInitMethod;
  */
 public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
 {
+  /**
+   * The cached value of the '{@link #getDirectives() <em>Directives</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDirectives()
+   * @generated
+   * @ordered
+   */
+  protected EList<DaoDirective> directives;
+
   /**
    * The cached value of the '{@link #getModifiers1() <em>Modifiers1</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -77,36 +82,6 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isPojoGenerics() <em>Pojo Generics</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isPojoGenerics()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean POJO_GENERICS_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isPojoGenerics() <em>Pojo Generics</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isPojoGenerics()
-   * @generated
-   * @ordered
-   */
-  protected boolean pojoGenerics = POJO_GENERICS_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getPojo() <em>Pojo</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getPojo()
-   * @generated
-   * @ordered
-   */
-  protected PojoEntity pojo;
-
-  /**
    * The cached value of the '{@link #getModifiers2() <em>Modifiers2</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -115,26 +90,6 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
    * @ordered
    */
   protected EList<PojoDaoModifier> modifiers2;
-
-  /**
-   * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMethods()
-   * @generated
-   * @ordered
-   */
-  protected EList<PojoMethod> methods;
-
-  /**
-   * The cached value of the '{@link #getToInits() <em>To Inits</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getToInits()
-   * @generated
-   * @ordered
-   */
-  protected EList<ToInitMethod> toInits;
 
   /**
    * <!-- begin-user-doc -->
@@ -155,6 +110,20 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
   protected EClass eStaticClass()
   {
     return ProcessorDslPackage.Literals.POJO_DAO;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<DaoDirective> getDirectives()
+  {
+    if (directives == null)
+    {
+      directives = new EObjectContainmentEList<DaoDirective>(DaoDirective.class, this, ProcessorDslPackage.POJO_DAO__DIRECTIVES);
+    }
+    return directives;
   }
 
   /**
@@ -199,72 +168,6 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isPojoGenerics()
-  {
-    return pojoGenerics;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setPojoGenerics(boolean newPojoGenerics)
-  {
-    boolean oldPojoGenerics = pojoGenerics;
-    pojoGenerics = newPojoGenerics;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_DAO__POJO_GENERICS, oldPojoGenerics, pojoGenerics));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoEntity getPojo()
-  {
-    if (pojo != null && pojo.eIsProxy())
-    {
-      InternalEObject oldPojo = (InternalEObject)pojo;
-      pojo = (PojoEntity)eResolveProxy(oldPojo);
-      if (pojo != oldPojo)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorDslPackage.POJO_DAO__POJO, oldPojo, pojo));
-      }
-    }
-    return pojo;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoEntity basicGetPojo()
-  {
-    return pojo;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setPojo(PojoEntity newPojo)
-  {
-    PojoEntity oldPojo = pojo;
-    pojo = newPojo;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorDslPackage.POJO_DAO__POJO, oldPojo, pojo));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EList<PojoDaoModifier> getModifiers2()
   {
     if (modifiers2 == null)
@@ -279,47 +182,17 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoMethod> getMethods()
-  {
-    if (methods == null)
-    {
-      methods = new EObjectContainmentEList<PojoMethod>(PojoMethod.class, this, ProcessorDslPackage.POJO_DAO__METHODS);
-    }
-    return methods;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<ToInitMethod> getToInits()
-  {
-    if (toInits == null)
-    {
-      toInits = new EObjectContainmentEList<ToInitMethod>(ToInitMethod.class, this, ProcessorDslPackage.POJO_DAO__TO_INITS);
-    }
-    return toInits;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_DAO__DIRECTIVES:
+        return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
       case ProcessorDslPackage.POJO_DAO__MODIFIERS1:
         return ((InternalEList<?>)getModifiers1()).basicRemove(otherEnd, msgs);
       case ProcessorDslPackage.POJO_DAO__MODIFIERS2:
         return ((InternalEList<?>)getModifiers2()).basicRemove(otherEnd, msgs);
-      case ProcessorDslPackage.POJO_DAO__METHODS:
-        return ((InternalEList<?>)getMethods()).basicRemove(otherEnd, msgs);
-      case ProcessorDslPackage.POJO_DAO__TO_INITS:
-        return ((InternalEList<?>)getToInits()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -334,21 +207,14 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_DAO__DIRECTIVES:
+        return getDirectives();
       case ProcessorDslPackage.POJO_DAO__MODIFIERS1:
         return getModifiers1();
       case ProcessorDslPackage.POJO_DAO__NAME:
         return getName();
-      case ProcessorDslPackage.POJO_DAO__POJO_GENERICS:
-        return isPojoGenerics();
-      case ProcessorDslPackage.POJO_DAO__POJO:
-        if (resolve) return getPojo();
-        return basicGetPojo();
       case ProcessorDslPackage.POJO_DAO__MODIFIERS2:
         return getModifiers2();
-      case ProcessorDslPackage.POJO_DAO__METHODS:
-        return getMethods();
-      case ProcessorDslPackage.POJO_DAO__TO_INITS:
-        return getToInits();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -364,6 +230,10 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_DAO__DIRECTIVES:
+        getDirectives().clear();
+        getDirectives().addAll((Collection<? extends DaoDirective>)newValue);
+        return;
       case ProcessorDslPackage.POJO_DAO__MODIFIERS1:
         getModifiers1().clear();
         getModifiers1().addAll((Collection<? extends PojoEntityModifier1>)newValue);
@@ -371,23 +241,9 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
       case ProcessorDslPackage.POJO_DAO__NAME:
         setName((String)newValue);
         return;
-      case ProcessorDslPackage.POJO_DAO__POJO_GENERICS:
-        setPojoGenerics((Boolean)newValue);
-        return;
-      case ProcessorDslPackage.POJO_DAO__POJO:
-        setPojo((PojoEntity)newValue);
-        return;
       case ProcessorDslPackage.POJO_DAO__MODIFIERS2:
         getModifiers2().clear();
         getModifiers2().addAll((Collection<? extends PojoDaoModifier>)newValue);
-        return;
-      case ProcessorDslPackage.POJO_DAO__METHODS:
-        getMethods().clear();
-        getMethods().addAll((Collection<? extends PojoMethod>)newValue);
-        return;
-      case ProcessorDslPackage.POJO_DAO__TO_INITS:
-        getToInits().clear();
-        getToInits().addAll((Collection<? extends ToInitMethod>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -403,26 +259,17 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_DAO__DIRECTIVES:
+        getDirectives().clear();
+        return;
       case ProcessorDslPackage.POJO_DAO__MODIFIERS1:
         getModifiers1().clear();
         return;
       case ProcessorDslPackage.POJO_DAO__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ProcessorDslPackage.POJO_DAO__POJO_GENERICS:
-        setPojoGenerics(POJO_GENERICS_EDEFAULT);
-        return;
-      case ProcessorDslPackage.POJO_DAO__POJO:
-        setPojo((PojoEntity)null);
-        return;
       case ProcessorDslPackage.POJO_DAO__MODIFIERS2:
         getModifiers2().clear();
-        return;
-      case ProcessorDslPackage.POJO_DAO__METHODS:
-        getMethods().clear();
-        return;
-      case ProcessorDslPackage.POJO_DAO__TO_INITS:
-        getToInits().clear();
         return;
     }
     super.eUnset(featureID);
@@ -438,20 +285,14 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
   {
     switch (featureID)
     {
+      case ProcessorDslPackage.POJO_DAO__DIRECTIVES:
+        return directives != null && !directives.isEmpty();
       case ProcessorDslPackage.POJO_DAO__MODIFIERS1:
         return modifiers1 != null && !modifiers1.isEmpty();
       case ProcessorDslPackage.POJO_DAO__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ProcessorDslPackage.POJO_DAO__POJO_GENERICS:
-        return pojoGenerics != POJO_GENERICS_EDEFAULT;
-      case ProcessorDslPackage.POJO_DAO__POJO:
-        return pojo != null;
       case ProcessorDslPackage.POJO_DAO__MODIFIERS2:
         return modifiers2 != null && !modifiers2.isEmpty();
-      case ProcessorDslPackage.POJO_DAO__METHODS:
-        return methods != null && !methods.isEmpty();
-      case ProcessorDslPackage.POJO_DAO__TO_INITS:
-        return toInits != null && !toInits.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -469,8 +310,6 @@ public class PojoDaoImpl extends AbstractPojoEntityImpl implements PojoDao
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", pojoGenerics: ");
-    result.append(pojoGenerics);
     result.append(')');
     return result.toString();
   }

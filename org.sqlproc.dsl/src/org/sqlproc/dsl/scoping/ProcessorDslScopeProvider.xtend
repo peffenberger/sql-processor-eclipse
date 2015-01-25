@@ -3,6 +3,12 @@
  */
 package org.sqlproc.dsl.scoping
 
+import org.eclipse.xtext.scoping.IScope
+import org.sqlproc.dsl.processorDsl.DirectiveProperties
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.scoping.Scopes
+import org.sqlproc.dsl.processorDsl.PojoEntity
+import com.google.inject.Inject
 /**
  * This class contains custom scoping description.
  * 
@@ -11,5 +17,11 @@ package org.sqlproc.dsl.scoping
  *
  */
 class ProcessorDslScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider {
-
+	
+	@Inject extension org.sqlproc.dsl.generator.ProcessorGeneratorUtils
+	
+	// http://xtextcasts.org/episodes/17-restricting-scope
+	def IScope scope_DirectiveProperties_features(DirectiveProperties directiveProperties, EReference eReference) {
+		Scopes::scopeFor((directiveProperties.eContainer.eContainer as PojoEntity).attributes)
+	}
 }

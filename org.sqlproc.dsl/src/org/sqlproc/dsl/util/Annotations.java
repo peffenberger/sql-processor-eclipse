@@ -9,11 +9,23 @@ import java.util.Set;
 
 import org.sqlproc.dsl.processorDsl.AnnotatedEntity;
 import org.sqlproc.dsl.processorDsl.Annotation;
+import org.sqlproc.dsl.processorDsl.AnnotationDirective;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveAttribute;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConflict;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveConstructor;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveGetter;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveSetter;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStandard;
+import org.sqlproc.dsl.processorDsl.AnnotationDirectiveStatic;
 import org.sqlproc.dsl.processorDsl.AnnotationProperty;
 import org.sqlproc.dsl.processorDsl.PojoAnnotatedProperty;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 
 public class Annotations {
+    protected static final String INDENT = "  ";
+    protected static final String NLINDENT = "\n  ";
+    protected static final String NL = "\n";
+
     Map<String, List<Annotation>> entityAnnotations = new HashMap<String, List<Annotation>>();
     Map<String, List<Annotation>> constructorAnnotations = new HashMap<String, List<Annotation>>();
     Map<String, List<Annotation>> staticAnnotations = new HashMap<String, List<Annotation>>();
@@ -22,59 +34,38 @@ public class Annotations {
     Map<String, Map<String, List<Annotation>>> getterAnnotations = new HashMap<String, Map<String, List<Annotation>>>();
     Map<String, Map<String, List<Annotation>>> attributeAnnotations = new HashMap<String, Map<String, List<Annotation>>>();
 
-    public void addEntityAnnotations(String pojoName, List<Annotation> annotations) {
-        entityAnnotations.put(pojoName, new ArrayList<Annotation>());
-        entityAnnotations.get(pojoName).addAll(annotations);
+    public void addAnnotation(String pojoName, Annotation annotation, Map<String, List<Annotation>> annotations) {
+        List<Annotation> list;
+        if ((list = annotations.get(pojoName)) == null) {
+            list = new ArrayList<Annotation>();
+            annotations.put(pojoName, list);
+        }
+        list.add(annotation);
     }
 
-    public void addConstructorAnnotations(String pojoName, List<Annotation> annotations) {
-        constructorAnnotations.put(pojoName, new ArrayList<Annotation>());
-        constructorAnnotations.get(pojoName).addAll(annotations);
+    public void addAttributeAnnotation(String pojoName, String featureName, Annotation annotation,
+            Map<String, Map<String, List<Annotation>>> annotations) {
+        List<Annotation> list;
+        Map<String, List<Annotation>> map;
+        if ((map = annotations.get(pojoName)) == null) {
+            map = new HashMap<String, List<Annotation>>();
+            annotations.put(pojoName, map);
+        }
+        if ((list = map.get(featureName)) == null) {
+            list = new ArrayList<Annotation>();
+            map.put(featureName, list);
+        }
+        list.add(annotation);
     }
 
-    public void addStaticAnnotations(String pojoName, List<Annotation> annotations) {
-        staticAnnotations.put(pojoName, new ArrayList<Annotation>());
-        staticAnnotations.get(pojoName).addAll(annotations);
-    }
-
-    public void addConflictAnnotations(String pojoName, List<Annotation> annotations) {
-        conflictAnnotations.put(pojoName, new ArrayList<Annotation>());
-        conflictAnnotations.get(pojoName).addAll(annotations);
-    }
-
-    public void addGetterAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
-        if (!getterAnnotations.containsKey(pojoName))
-            getterAnnotations.put(pojoName, new HashMap<String, List<Annotation>>());
-        List<Annotation> list = getterAnnotations.get(pojoName).get(featureName);
-        if (list == null)
-            getterAnnotations.get(pojoName).put(featureName, list = new ArrayList<Annotation>());
-        list.addAll(annotations);
-    }
-
-    public void addSetterAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
-        if (!setterAnnotations.containsKey(pojoName))
-            setterAnnotations.put(pojoName, new HashMap<String, List<Annotation>>());
-        List<Annotation> list = setterAnnotations.get(pojoName).get(featureName);
-        if (list == null)
-            setterAnnotations.get(pojoName).put(featureName, list = new ArrayList<Annotation>());
-        list.addAll(annotations);
-    }
-
-    public void addAttributeAnnotations(String pojoName, String featureName, List<Annotation> annotations) {
-        if (!attributeAnnotations.containsKey(pojoName))
-            attributeAnnotations.put(pojoName, new HashMap<String, List<Annotation>>());
-        List<Annotation> list = attributeAnnotations.get(pojoName).get(featureName);
-        if (list == null)
-            attributeAnnotations.get(pojoName).put(featureName, list = new ArrayList<Annotation>());
-        list.addAll(annotations);
-    }
-
-    public StringBuilder getEntityAnnotationsDefinitions(String pojoName, boolean simpleNames) {
+    public StringBuilder getEntityAnnotationsDefinitions(String pojoName, boolean simpleNames,
+            boolean nonStandardAnnotations) {
         StringBuilder sb = new StringBuilder();
         if (!entityAnnotations.containsKey(pojoName))
             return sb;
         for (Annotation a : entityAnnotations.get(pojoName)) {
-            getAnnotationDefinition(sb, a, "\n  @", simpleNames);
+            getAnnotationDefinition(sb, a, ((nonStandardAnnotations) ? NLINDENT + "#Standard" : "") + NLINDENT + "@",
+                    simpleNames);
         }
         return sb;
     }
@@ -84,7 +75,7 @@ public class Annotations {
         if (!constructorAnnotations.containsKey(pojoName))
             return sb;
         for (Annotation a : constructorAnnotations.get(pojoName)) {
-            getAnnotationDefinition(sb, a, "\n  @@", simpleNames);
+            getAnnotationDefinition(sb, a, NLINDENT + "#Constructor" + NLINDENT + "@", simpleNames);
         }
         return sb;
     }
@@ -94,7 +85,7 @@ public class Annotations {
         if (!staticAnnotations.containsKey(pojoName))
             return sb;
         for (Annotation a : staticAnnotations.get(pojoName)) {
-            getAnnotationDefinition(sb, a, "\n  @@@", simpleNames);
+            getAnnotationDefinition(sb, a, NLINDENT + "#Static" + NLINDENT + "@", simpleNames);
         }
         return sb;
     }
@@ -104,9 +95,15 @@ public class Annotations {
         if (!conflictAnnotations.containsKey(pojoName))
             return sb;
         for (Annotation a : conflictAnnotations.get(pojoName)) {
-            getAnnotationDefinition(sb, a, "\n  @@@@", simpleNames);
+            getAnnotationDefinition(sb, a, NLINDENT + "#Conflict" + NLINDENT + "@", simpleNames);
         }
         return sb;
+    }
+
+    public boolean isNonStandardPojoAnnotations(String pojoName) {
+        return (constructorAnnotations.containsKey(pojoName) && !constructorAnnotations.get(pojoName).isEmpty())
+                || (staticAnnotations.containsKey(pojoName) && !staticAnnotations.get(pojoName).isEmpty())
+                || (conflictAnnotations.containsKey(pojoName) && !conflictAnnotations.get(pojoName).isEmpty());
     }
 
     public StringBuilder getGetterAnnotationsDefinitions(String pojoName, String featureName, boolean simpleNames) {
@@ -114,7 +111,7 @@ public class Annotations {
         if (!getterAnnotations.containsKey(pojoName) || !getterAnnotations.get(pojoName).containsKey(featureName))
             return sb;
         for (Annotation a : getterAnnotations.get(pojoName).get(featureName)) {
-            getAnnotationDefinition(sb, a, "\n    @@", simpleNames);
+            getAnnotationDefinition(sb, a, NLINDENT + INDENT + "#Getter" + NLINDENT + INDENT + "@", simpleNames);
         }
         return sb;
     }
@@ -124,19 +121,28 @@ public class Annotations {
         if (!setterAnnotations.containsKey(pojoName) || !setterAnnotations.get(pojoName).containsKey(featureName))
             return sb;
         for (Annotation a : setterAnnotations.get(pojoName).get(featureName)) {
-            getAnnotationDefinition(sb, a, "\n    @@@", simpleNames);
+            getAnnotationDefinition(sb, a, NLINDENT + INDENT + "#Setter" + NLINDENT + INDENT + "@", simpleNames);
         }
         return sb;
     }
 
-    public StringBuilder getAttributeAnnotationsDefinitions(String pojoName, String featureName, boolean simpleNames) {
+    public StringBuilder getAttributeAnnotationsDefinitions(String pojoName, String featureName, boolean simpleNames,
+            boolean nonStandardAnnotations) {
         StringBuilder sb = new StringBuilder();
         if (!attributeAnnotations.containsKey(pojoName) || !attributeAnnotations.get(pojoName).containsKey(featureName))
             return sb;
         for (Annotation a : attributeAnnotations.get(pojoName).get(featureName)) {
-            getAnnotationDefinition(sb, a, "\n    @", simpleNames);
+            getAnnotationDefinition(sb, a, ((nonStandardAnnotations) ? NLINDENT + INDENT + "#Attribute" : "")
+                    + NLINDENT + INDENT + "@", simpleNames);
         }
         return sb;
+    }
+
+    public boolean isNonStandardPojoAnnotations(String pojoName, String featureName) {
+        return (getterAnnotations.containsKey(pojoName) && getterAnnotations.get(pojoName).containsKey(featureName) && !getterAnnotations
+                .get(pojoName).get(featureName).isEmpty())
+                || (setterAnnotations.containsKey(pojoName) && setterAnnotations.get(pojoName).containsKey(featureName) && !setterAnnotations
+                        .get(pojoName).get(featureName).isEmpty());
     }
 
     public boolean hasAttributeAnnotationsDefinitions(String pojoName, String featureName, String annotationName) {
@@ -155,25 +161,26 @@ public class Annotations {
     public void getAnnotationDefinition(StringBuilder sb, Annotation a, String prefix, boolean simpleNames) {
         sb.append(prefix).append((simpleNames) ? a.getType().getSimpleName() : a.getType().getQualifiedName());
         if (a.getFeatures() != null && !a.getFeatures().isEmpty()) {
-            sb.append(" ::: ");
+            sb.append("(");
             boolean first = true;
             for (AnnotationProperty ap : a.getFeatures()) {
                 if (first)
                     first = false;
                 else
-                    sb.append(", ");
+                    sb.append(",");
                 getAnnotationPropertyDefinition(sb, ap, simpleNames);
             }
+            sb.append(")");
         }
     }
 
     public void getAnnotationPropertyDefinition(StringBuilder sb, AnnotationProperty ap, boolean simpleNames) {
         sb.append(ap.getName());
         if (ap.getType() != null)
-            sb.append(" :").append((simpleNames) ? ap.getType().getSimpleName() : ap.getType().getQualifiedName());
+            sb.append(":").append((simpleNames) ? ap.getType().getSimpleName() : ap.getType().getQualifiedName());
         else if (ap.getRef() != null)
-            sb.append(" ::").append(ap.getRef().getName());
-        sb.append(" ");
+            sb.append(ap.getRef().getName());
+        sb.append(" = ");
         if (ap.getValue() != null)
             sb.append(ap.getValue());
         else if (ap.getNumber() != null)
@@ -223,19 +230,48 @@ public class Annotations {
 
     public static void grabAnnotations(AnnotatedEntity apojo, PojoEntity pojo, Annotations as) {
         String pojoName = pojo.getName();
-        as.addEntityAnnotations(pojoName, apojo.getAnnotations());
-        as.addConstructorAnnotations(pojoName, apojo.getConstructorAnnotations());
-        as.addStaticAnnotations(pojoName, apojo.getStaticAnnotations());
-        as.addConflictAnnotations(pojoName, apojo.getConflictAnnotations());
+        if (apojo.getAnnotations() != null && !apojo.getAnnotations().isEmpty()) {
+            for (Annotation an : apojo.getAnnotations()) {
+                if (an.getDirectives() == null || an.getDirectives().isEmpty()) {
+                    as.addAnnotation(pojoName, an, as.entityAnnotations);
+                } else {
+                    for (AnnotationDirective dir : an.getDirectives()) {
+                        if (dir instanceof AnnotationDirectiveConflict) {
+                            as.addAnnotation(pojoName, an, as.conflictAnnotations);
+                        } else if (dir instanceof AnnotationDirectiveConstructor) {
+                            as.addAnnotation(pojoName, an, as.constructorAnnotations);
+                        } else if (dir instanceof AnnotationDirectiveStandard) {
+                            as.addAnnotation(pojoName, an, as.entityAnnotations);
+                        } else if (dir instanceof AnnotationDirectiveStatic) {
+                            as.addAnnotation(pojoName, an, as.staticAnnotations);
+                        }
+                    }
+                }
+            }
+        }
         for (PojoAnnotatedProperty feature : pojo.getFeatures()) {
             if (feature.getFeature() == null)
                 continue;
-            if (feature.getAttributeAnnotations() != null)
-                as.addAttributeAnnotations(pojoName, feature.getFeature().getName(), feature.getAttributeAnnotations());
-            if (feature.getSetterAnnotations() != null)
-                as.addSetterAnnotations(pojoName, feature.getFeature().getName(), feature.getSetterAnnotations());
-            if (feature.getGetterAnnotations() != null)
-                as.addGetterAnnotations(pojoName, feature.getFeature().getName(), feature.getGetterAnnotations());
+            if (feature.getAnnotations() != null && !feature.getAnnotations().isEmpty()) {
+                for (Annotation an : feature.getAnnotations()) {
+                    if (an.getDirectives() == null || an.getDirectives().isEmpty()) {
+                        as.addAttributeAnnotation(pojoName, feature.getFeature().getName(), an, as.attributeAnnotations);
+                    } else {
+                        for (AnnotationDirective dir : an.getDirectives()) {
+                            if (dir instanceof AnnotationDirectiveSetter) {
+                                as.addAttributeAnnotation(pojoName, feature.getFeature().getName(), an,
+                                        as.setterAnnotations);
+                            } else if (dir instanceof AnnotationDirectiveGetter) {
+                                as.addAttributeAnnotation(pojoName, feature.getFeature().getName(), an,
+                                        as.getterAnnotations);
+                            } else if (dir instanceof AnnotationDirectiveAttribute) {
+                                as.addAttributeAnnotation(pojoName, feature.getFeature().getName(), an,
+                                        as.attributeAnnotations);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
