@@ -171,7 +171,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
                         newPair(((EnumEntity) current).getName(), HighlightingConfiguration.ENTITY_NAME));
             } else if (current instanceof EnumProperty) {
                 provideSimpleHighlighting(node, acceptor,
-                        newPair(((EnumEntity) current).getName(), HighlightingConfiguration.PROPERTY_NAME));
+                        newPair(((EnumProperty) current).getName(), HighlightingConfiguration.PROPERTY_NAME));
             } else if (current instanceof PojoDao) {
                 provideSimpleHighlighting(node, acceptor,
                         newPair(((PojoDao) current).getName(), HighlightingConfiguration.DAO_NAME));
