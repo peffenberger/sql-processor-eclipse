@@ -149,7 +149,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
                 provideSimpleHighlighting(node, acceptor,
                         newPair(((Package) current).getName(), HighlightingConfiguration.PACKAGE_NAME));
             } else if (current instanceof PojoEntity) {
-                List<Pair<String, String>> tokens = new ArrayList<>();
+                List<Pair<String, String>> tokens = new ArrayList<Pair<String, String>>();
                 PojoEntity pojo = (PojoEntity) current;
                 if (pojo.getName() != null)
                     tokens.add(newPair(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
@@ -176,7 +176,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
                 provideSimpleHighlighting(node, acceptor,
                         newPair(((PojoDao) current).getName(), HighlightingConfiguration.DAO_NAME));
             } else if (current instanceof DaoDirective) {
-                List<Pair<String, String>> tokens = new ArrayList<>();
+                List<Pair<String, String>> tokens = new ArrayList<Pair<String, String>>();
                 DaoDirective dir = (DaoDirective) current;
                 if (dir instanceof DaoDirectiveCrud) {
                     tokens.addAll(newPair(((DaoDirectiveCrud) dir).getPojo(), HighlightingConfiguration.ENTITY_NAME));
@@ -184,7 +184,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
                 } else if (dir instanceof DaoDirectiveQuery) {
                     tokens.addAll(newPair(((DaoDirectiveQuery) dir).getPojo(), HighlightingConfiguration.ENTITY_NAME));
                 } else if (dir instanceof DaoDirectiveDiscriminator) {
-                    tokens.add(new Pair<>(((DaoDirectiveDiscriminator) dir).getAncestor().getName(),
+                    tokens.add(new Pair<String, String>(((DaoDirectiveDiscriminator) dir).getAncestor().getName(),
                             HighlightingConfiguration.PROPERTY_NAME));
                     for (DescendantAssignment da : ((DaoDirectiveDiscriminator) dir).getDescendants()) {
                         tokens.addAll(newPair(da.getDescendant(), HighlightingConfiguration.ENTITY_NAME));
@@ -198,49 +198,49 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
                 }
                 provideSimpleHighlighting(node, acceptor, tokens);
             } else if (current instanceof PojoDirective) {
-                List<Pair<String, String>> tokens = new ArrayList<>();
+                List<Pair<String, String>> tokens = new ArrayList<Pair<String, String>>();
                 PojoDirective dir = (PojoDirective) current;
                 if (dir instanceof PojoDirectiveToString) {
                     for (PojoProperty prop : ((PojoDirectiveToString) dir).getProplist().getFeatures()) {
-                        tokens.add(new Pair<>(prop.getName(), HighlightingConfiguration.PROPERTY_NAME));
+                        tokens.add(new Pair<String, String>(prop.getName(), HighlightingConfiguration.PROPERTY_NAME));
                     }
                 } else if (dir instanceof PojoDirectiveIndex) {
                     for (PojoProperty prop : ((PojoDirectiveIndex) dir).getProplist().getFeatures()) {
-                        tokens.add(new Pair<>(prop.getName(), HighlightingConfiguration.PROPERTY_NAME));
+                        tokens.add(new Pair<String, String>(prop.getName(), HighlightingConfiguration.PROPERTY_NAME));
                     }
                 } else if (dir instanceof PojoDirectiveEquals) {
                     for (PojoProperty prop : ((PojoDirectiveEquals) dir).getProplist().getFeatures()) {
-                        tokens.add(new Pair<>(prop.getName(), HighlightingConfiguration.PROPERTY_NAME));
+                        tokens.add(new Pair<String, String>(prop.getName(), HighlightingConfiguration.PROPERTY_NAME));
                     }
                 } else if (dir instanceof PojoDirectiveHashCode) {
                     for (PojoProperty prop : ((PojoDirectiveHashCode) dir).getProplist().getFeatures()) {
-                        tokens.add(new Pair<>(prop.getName(), HighlightingConfiguration.PROPERTY_NAME));
+                        tokens.add(new Pair<String, String>(prop.getName(), HighlightingConfiguration.PROPERTY_NAME));
                     }
                 }
                 provideSimpleHighlighting(node, acceptor, tokens);
             } else if (current instanceof Implements) {
-                List<Pair<String, String>> tokens = new ArrayList<>();
+                List<Pair<String, String>> tokens = new ArrayList<Pair<String, String>>();
                 Implements imp = (Implements) current;
                 for (PojoEntity pojo : imp.getOnlyPojos())
-                    tokens.add(new Pair<>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
+                    tokens.add(new Pair<String, String>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
                 for (PojoDao dao : imp.getOnlyDaos())
-                    tokens.add(new Pair<>(dao.getName(), HighlightingConfiguration.DAO_NAME));
+                    tokens.add(new Pair<String, String>(dao.getName(), HighlightingConfiguration.DAO_NAME));
                 for (PojoEntity pojo : imp.getExceptPojos())
-                    tokens.add(new Pair<>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
+                    tokens.add(new Pair<String, String>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
                 for (PojoDao dao : imp.getExceptDaos())
-                    tokens.add(new Pair<>(dao.getName(), HighlightingConfiguration.DAO_NAME));
+                    tokens.add(new Pair<String, String>(dao.getName(), HighlightingConfiguration.DAO_NAME));
                 provideSimpleHighlighting(node, acceptor, tokens);
             } else if (current instanceof Extends) {
-                List<Pair<String, String>> tokens = new ArrayList<>();
+                List<Pair<String, String>> tokens = new ArrayList<Pair<String, String>>();
                 Extends ext = (Extends) current;
                 for (PojoEntity pojo : ext.getOnlyPojos())
-                    tokens.add(new Pair<>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
+                    tokens.add(new Pair<String, String>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
                 for (PojoDao dao : ext.getOnlyDaos())
-                    tokens.add(new Pair<>(dao.getName(), HighlightingConfiguration.DAO_NAME));
+                    tokens.add(new Pair<String, String>(dao.getName(), HighlightingConfiguration.DAO_NAME));
                 for (PojoEntity pojo : ext.getExceptPojos())
-                    tokens.add(new Pair<>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
+                    tokens.add(new Pair<String, String>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
                 for (PojoDao dao : ext.getExceptDaos())
-                    tokens.add(new Pair<>(dao.getName(), HighlightingConfiguration.DAO_NAME));
+                    tokens.add(new Pair<String, String>(dao.getName(), HighlightingConfiguration.DAO_NAME));
                 provideSimpleHighlighting(node, acceptor, tokens);
             }
         }
@@ -248,7 +248,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 
     private Pair<String, String> newPair(String name, String highlightingId) {
         if (name != null)
-            return new Pair<>(name, highlightingId);
+            return new Pair<String, String>(name, highlightingId);
         return null;
     }
 
@@ -256,23 +256,23 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
         List<Pair<String, String>> list = new ArrayList<Pair<String, String>>();
         String name1 = (pojo != null && pojo.getRef() != null) ? pojo.getRef().getName() : null;
         if (name1 != null)
-            list.add(new Pair<>(name1, highlightingId));
+            list.add(new Pair<String, String>(name1, highlightingId));
         String name2 = (pojo != null && pojo.getGref() != null) ? pojo.getGref().getName() : null;
         if (name2 != null)
-            list.add(new Pair<>(name2, highlightingId));
+            list.add(new Pair<String, String>(name2, highlightingId));
         return list;
     }
 
     private List<Pair<String, String>> newPair(PojoProperty prop, String highlightingId, String highlightingId2) {
         List<Pair<String, String>> list = new ArrayList<Pair<String, String>>();
         if (prop.getName() != null)
-            list.add(new Pair<>(prop.getName(), highlightingId));
+            list.add(new Pair<String, String>(prop.getName(), highlightingId));
         Entity ref = prop.getRef();
         if (ref != null && (ref instanceof PojoEntity || ref instanceof EnumEntity))
-            list.add(new Pair<>(ref.getName(), highlightingId2));
+            list.add(new Pair<String, String>(ref.getName(), highlightingId2));
         PojoEntity gref = prop.getGref();
         if (gref != null && (gref instanceof PojoEntity || gref instanceof EnumEntity))
-            list.add(new Pair<>(gref.getName(), highlightingId2));
+            list.add(new Pair<String, String>(gref.getName(), highlightingId2));
         return list;
     }
 

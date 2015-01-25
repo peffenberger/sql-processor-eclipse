@@ -8,7 +8,7 @@ import org.sqlproc.dsl.parser.antlr.internal.InternalProcessorDslLexer;
 
 public class TokenToIdMapper extends DefaultAntlrTokenToAttributeIdMapper {
 
-    private static final Set<Integer> punctations = new HashSet<>();
+    private static final Set<Integer> punctations = new HashSet<Integer>();
     static {
         punctations.add(InternalProcessorDslLexer.RULE_IDENT_DOT);
         punctations.add(InternalProcessorDslLexer.RULE_IDENT);
@@ -42,7 +42,7 @@ public class TokenToIdMapper extends DefaultAntlrTokenToAttributeIdMapper {
         punctations.add(InternalProcessorDslLexer.RULE_REST);
     }
 
-    private static final Set<String> types = new HashSet<>();
+    private static final Set<String> types = new HashSet<String>();
     static {
         types.add("'QRY'");
         types.add("'CRUD'");
@@ -56,7 +56,7 @@ public class TokenToIdMapper extends DefaultAntlrTokenToAttributeIdMapper {
         types.add("'MOPT'");
     }
 
-    private static final Set<String> keywords = new HashSet<>();
+    private static final Set<String> keywords = new HashSet<String>();
     static {
         keywords.add("'pojo'");
         keywords.add("'table'");
