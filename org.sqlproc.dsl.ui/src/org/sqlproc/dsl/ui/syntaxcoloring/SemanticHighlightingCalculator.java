@@ -1,6 +1,8 @@
 package org.sqlproc.dsl.ui.syntaxcoloring;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -15,17 +17,22 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculato
 import org.sqlproc.dsl.processorDsl.Constant;
 import org.sqlproc.dsl.processorDsl.DaoDirective;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveCrud;
+import org.sqlproc.dsl.processorDsl.DaoDirectiveDiscriminator;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveParameters;
 import org.sqlproc.dsl.processorDsl.DaoDirectiveQuery;
 import org.sqlproc.dsl.processorDsl.DatabaseColumn;
 import org.sqlproc.dsl.processorDsl.DatabaseTable;
+import org.sqlproc.dsl.processorDsl.DescendantAssignment;
 import org.sqlproc.dsl.processorDsl.Entity;
 import org.sqlproc.dsl.processorDsl.EnumEntity;
 import org.sqlproc.dsl.processorDsl.EnumProperty;
 import org.sqlproc.dsl.processorDsl.ExtendedColumn;
 import org.sqlproc.dsl.processorDsl.ExtendedMappingItem;
+import org.sqlproc.dsl.processorDsl.Extends;
+import org.sqlproc.dsl.processorDsl.FunProcDirective;
 import org.sqlproc.dsl.processorDsl.FunctionDefinition;
 import org.sqlproc.dsl.processorDsl.Identifier;
+import org.sqlproc.dsl.processorDsl.Implements;
 import org.sqlproc.dsl.processorDsl.MappingItem;
 import org.sqlproc.dsl.processorDsl.MappingRule;
 import org.sqlproc.dsl.processorDsl.MetaStatement;
@@ -33,6 +40,11 @@ import org.sqlproc.dsl.processorDsl.OptionalFeature;
 import org.sqlproc.dsl.processorDsl.Package;
 import org.sqlproc.dsl.processorDsl.PojoDao;
 import org.sqlproc.dsl.processorDsl.PojoDefinition;
+import org.sqlproc.dsl.processorDsl.PojoDirective;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveEquals;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
+import org.sqlproc.dsl.processorDsl.PojoDirectiveToString;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.PojoType;
@@ -40,6 +52,7 @@ import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
 import org.sqlproc.dsl.processorDsl.TableDefinition;
 import org.sqlproc.dsl.resolver.PojoResolver;
 import org.sqlproc.dsl.resolver.PojoResolverFactory;
+import org.sqlproc.dsl.util.Pair;
 
 import com.google.inject.Inject;
 
@@ -161,36 +174,103 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
                 // if (ref != null)
                 // provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
             } else if (current instanceof DaoDirective) {
+                List<Pair<String, String>> tokens = new ArrayList<>();
                 DaoDirective dir = (DaoDirective) current;
-                PojoType pojo = null;
-                if (dir instanceof DaoDirectiveCrud)
-                    pojo = ((DaoDirectiveCrud) dir).getPojo();
-                else if (dir instanceof DaoDirectiveQuery)
-                    pojo = ((DaoDirectiveQuery) dir).getPojo();
-                // else if (dir instanceof FunProcDirective)
-                // pojo = ((FunProcDirective) dir).getPojo();
-                if (pojo != null && pojo.getRef() != null) {
-                    provideHighlightingForPojoEntity(pojo.getRef().getName(), node, acceptor);
-                }
-            } else if (current instanceof DaoDirectiveParameters) {
-                DaoDirectiveParameters dir = (DaoDirectiveParameters) current;
-                if (dir.getOut() != null) {
-                    PojoEntity ref = dir.getOut().getRef();
-                    if (ref != null)
-                        provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
-                    PojoEntity gref = dir.getOut().getGref();
-                    if (gref != null)
-                        provideHighlightingForPojoEntity(gref.getName(), node, acceptor);
-                }
-                if (dir.getIns() != null && !dir.getIns().isEmpty()) {
-                    for (PojoType arg : dir.getIns()) {
-                        PojoEntity ref = arg.getRef();
-                        if (ref != null)
-                            provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
-                        PojoEntity gref = arg.getGref();
-                        if (gref != null)
-                            provideHighlightingForPojoEntity(gref.getName(), node, acceptor);
+                if (dir instanceof DaoDirectiveCrud) {
+                    tokens.addAll(newPairPojo(((DaoDirectiveCrud) dir).getPojo(), HighlightingConfiguration.ENTITY_NAME));
+                    provideSimpleHighlighting(node, acceptor, tokens);
+                } else if (dir instanceof DaoDirectiveQuery) {
+                    tokens.addAll(newPairPojo(((DaoDirectiveQuery) dir).getPojo(),
+                            HighlightingConfiguration.ENTITY_NAME));
+                } else if (dir instanceof DaoDirectiveDiscriminator) {
+                    tokens.add(new Pair<>(((DaoDirectiveDiscriminator) dir).getAncestor().getName(),
+                            HighlightingConfiguration.PROPERTY_NAME));
+                    for (DescendantAssignment da : ((DaoDirectiveDiscriminator) dir).getDescendants()) {
+                        tokens.addAll(newPairPojo(da.getDescendant(), HighlightingConfiguration.ENTITY_NAME));
                     }
+                } else if (dir instanceof FunProcDirective) {
+                    DaoDirectiveParameters dp = ((FunProcDirective) current).getParamlist();
+                    tokens.addAll(newPairPojo(dp.getOut(), HighlightingConfiguration.ENTITY_NAME));
+                    for (PojoType pojo : dp.getIns()) {
+                        tokens.addAll(newPairPojo(pojo, HighlightingConfiguration.ENTITY_NAME));
+                    }
+                }
+                provideSimpleHighlighting(node, acceptor, tokens);
+            } else if (current instanceof PojoDirective) {
+                List<Pair<String, String>> tokens = new ArrayList<>();
+                PojoDirective dir = (PojoDirective) current;
+                if (dir instanceof PojoDirectiveToString) {
+                    for (PojoProperty prop : ((PojoDirectiveToString) dir).getProplist().getFeatures()) {
+                        tokens.add(new Pair<>(prop.getName(), HighlightingConfiguration.PROPERTY_NAME));
+                    }
+                } else if (dir instanceof PojoDirectiveIndex) {
+                    for (PojoProperty prop : ((PojoDirectiveIndex) dir).getProplist().getFeatures()) {
+                        tokens.add(new Pair<>(prop.getName(), HighlightingConfiguration.PROPERTY_NAME));
+                    }
+                } else if (dir instanceof PojoDirectiveEquals) {
+                    for (PojoProperty prop : ((PojoDirectiveEquals) dir).getProplist().getFeatures()) {
+                        tokens.add(new Pair<>(prop.getName(), HighlightingConfiguration.PROPERTY_NAME));
+                    }
+                } else if (dir instanceof PojoDirectiveHashCode) {
+                    for (PojoProperty prop : ((PojoDirectiveHashCode) dir).getProplist().getFeatures()) {
+                        tokens.add(new Pair<>(prop.getName(), HighlightingConfiguration.PROPERTY_NAME));
+                    }
+                }
+                provideSimpleHighlighting(node, acceptor, tokens);
+            } else if (current instanceof Implements) {
+                List<Pair<String, String>> tokens = new ArrayList<>();
+                Implements imp = (Implements) current;
+                for (PojoEntity pojo : imp.getOnlyPojos())
+                    tokens.add(new Pair<>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
+                for (PojoDao dao : imp.getOnlyDaos())
+                    tokens.add(new Pair<>(dao.getName(), HighlightingConfiguration.DAO_NAME));
+                for (PojoEntity pojo : imp.getExceptPojos())
+                    tokens.add(new Pair<>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
+                for (PojoDao dao : imp.getExceptDaos())
+                    tokens.add(new Pair<>(dao.getName(), HighlightingConfiguration.DAO_NAME));
+                provideSimpleHighlighting(node, acceptor, tokens);
+            } else if (current instanceof Extends) {
+                List<Pair<String, String>> tokens = new ArrayList<>();
+                Extends ext = (Extends) current;
+                for (PojoEntity pojo : ext.getOnlyPojos())
+                    tokens.add(new Pair<>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
+                for (PojoDao dao : ext.getOnlyDaos())
+                    tokens.add(new Pair<>(dao.getName(), HighlightingConfiguration.DAO_NAME));
+                for (PojoEntity pojo : ext.getExceptPojos())
+                    tokens.add(new Pair<>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
+                for (PojoDao dao : ext.getExceptDaos())
+                    tokens.add(new Pair<>(dao.getName(), HighlightingConfiguration.DAO_NAME));
+                provideSimpleHighlighting(node, acceptor, tokens);
+            }
+        }
+    }
+
+    private List<Pair<String, String>> newPairPojo(PojoType pojo, String highlightingId) {
+        List<Pair<String, String>> list = new ArrayList<Pair<String, String>>();
+        String name1 = (pojo != null && pojo.getRef() != null) ? pojo.getRef().getName() : null;
+        if (name1 != null)
+            list.add(new Pair<>(name1, highlightingId));
+        String name2 = (pojo != null && pojo.getGref() != null) ? pojo.getGref().getName() : null;
+        if (name2 != null)
+            list.add(new Pair<>(name2, highlightingId));
+        return list;
+    }
+
+    private void provideSimpleHighlighting(ICompositeNode node, IHighlightedPositionAcceptor acceptor,
+            List<Pair<String, String>> tokens) {
+        if (tokens == null || tokens.isEmpty())
+            return;
+        int ix = 0, lx = tokens.size();
+        Iterator<INode> iterator = new NodeTreeIterator(node);
+        while (iterator.hasNext()) {
+            INode inode = iterator.next();
+            for (int i = ix; i < lx; i++) {
+                if (equals(tokens.get(i).getFirst(), inode)) {
+                    acceptor.addPosition(inode.getOffset(), inode.getLength(), tokens.get(i).getSecond());
+                    if (i == lx - 1)
+                        return;
+                    else
+                        ix = i + 1;
                 }
             }
         }

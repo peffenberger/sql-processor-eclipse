@@ -65,7 +65,8 @@ public class HighlightingConfiguration extends DefaultHighlightingConfiguration 
 
     public TextStyle keywordStyle() {
         TextStyle textStyle = defaultStyle();
-        textStyle.setStyle(SWT.ITALIC);
+        textStyle.setColor(new RGB(127, 0, 85));
+        textStyle.setStyle(SWT.BOLD);
         return textStyle;
     }
 
