@@ -46,6 +46,7 @@ import org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveIndex;
 import org.sqlproc.dsl.processorDsl.PojoDirectiveToString;
 import org.sqlproc.dsl.processorDsl.PojoEntity;
+import org.sqlproc.dsl.processorDsl.PojoEntityModifier2;
 import org.sqlproc.dsl.processorDsl.PojoProperty;
 import org.sqlproc.dsl.processorDsl.PojoType;
 import org.sqlproc.dsl.processorDsl.ProcedureDefinition;
@@ -142,57 +143,57 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
             } else if (current instanceof FunctionDefinition) {
                 FunctionDefinition function = (FunctionDefinition) current;
                 provideHighlightingForTable(null, function.getName(), node, acceptor);
-            } else if (current instanceof Package) {
-                Package pkg = (Package) current;
-                provideHighlightingForPojoPackage(pkg.getName(), node, acceptor);
+            }
+
+            else if (current instanceof Package) {
+                provideSimpleHighlighting(node, acceptor,
+                        newPair(((Package) current).getName(), HighlightingConfiguration.PACKAGE_NAME));
             } else if (current instanceof PojoEntity) {
+                List<Pair<String, String>> tokens = new ArrayList<>();
                 PojoEntity pojo = (PojoEntity) current;
-                provideHighlightingForPojoEntity(pojo.getName(), node, acceptor);
-            } else if (current instanceof PojoProperty) {
-                PojoProperty property = (PojoProperty) current;
-                provideHighlightingForPojoProperty(property.getName(), node, acceptor);
-                Entity ref = property.getRef();
-                if (ref != null) {
-                    if (ref instanceof PojoEntity)
-                        provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
-                    else if (ref instanceof EnumEntity)
-                        provideHighlightingForEnumEntity(ref.getName(), node, acceptor);
+                if (pojo.getName() != null)
+                    tokens.add(newPair(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
+                if (pojo.getDirectives() != null && !pojo.getDirectives().isEmpty()) {
+                    for (PojoEntityModifier2 mod : pojo.getModifiers2()) {
+                        if (mod.getSuperType() != null && mod.getSuperType().getName() != null)
+                            tokens.add(newPair(mod.getSuperType().getName(), HighlightingConfiguration.ENTITY_NAME));
+                    }
                 }
-                PojoEntity gref = property.getGref();
-                if (gref != null)
-                    provideHighlightingForPojoEntity(gref.getName(), node, acceptor);
+                provideSimpleHighlighting(node, acceptor, tokens);
+            } else if (current instanceof PojoProperty) {
+                provideSimpleHighlighting(
+                        node,
+                        acceptor,
+                        newPair((PojoProperty) current, HighlightingConfiguration.PROPERTY_NAME,
+                                HighlightingConfiguration.ENTITY_NAME));
             } else if (current instanceof EnumEntity) {
-                EnumEntity pojo = (EnumEntity) current;
-                provideHighlightingForEnumEntity(pojo.getName(), node, acceptor);
+                provideSimpleHighlighting(node, acceptor,
+                        newPair(((EnumEntity) current).getName(), HighlightingConfiguration.ENTITY_NAME));
             } else if (current instanceof EnumProperty) {
-                EnumProperty property = (EnumProperty) current;
-                provideHighlightingForEnumProperty(property.getName(), node, acceptor);
+                provideSimpleHighlighting(node, acceptor,
+                        newPair(((EnumEntity) current).getName(), HighlightingConfiguration.PROPERTY_NAME));
             } else if (current instanceof PojoDao) {
-                PojoDao dao = (PojoDao) current;
-                provideHighlightingForPojoDao(dao.getName(), node, acceptor);
-                // PojoEntity ref = dao.getPojo();
-                // if (ref != null)
-                // provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
+                provideSimpleHighlighting(node, acceptor,
+                        newPair(((PojoDao) current).getName(), HighlightingConfiguration.DAO_NAME));
             } else if (current instanceof DaoDirective) {
                 List<Pair<String, String>> tokens = new ArrayList<>();
                 DaoDirective dir = (DaoDirective) current;
                 if (dir instanceof DaoDirectiveCrud) {
-                    tokens.addAll(newPairPojo(((DaoDirectiveCrud) dir).getPojo(), HighlightingConfiguration.ENTITY_NAME));
+                    tokens.addAll(newPair(((DaoDirectiveCrud) dir).getPojo(), HighlightingConfiguration.ENTITY_NAME));
                     provideSimpleHighlighting(node, acceptor, tokens);
                 } else if (dir instanceof DaoDirectiveQuery) {
-                    tokens.addAll(newPairPojo(((DaoDirectiveQuery) dir).getPojo(),
-                            HighlightingConfiguration.ENTITY_NAME));
+                    tokens.addAll(newPair(((DaoDirectiveQuery) dir).getPojo(), HighlightingConfiguration.ENTITY_NAME));
                 } else if (dir instanceof DaoDirectiveDiscriminator) {
                     tokens.add(new Pair<>(((DaoDirectiveDiscriminator) dir).getAncestor().getName(),
                             HighlightingConfiguration.PROPERTY_NAME));
                     for (DescendantAssignment da : ((DaoDirectiveDiscriminator) dir).getDescendants()) {
-                        tokens.addAll(newPairPojo(da.getDescendant(), HighlightingConfiguration.ENTITY_NAME));
+                        tokens.addAll(newPair(da.getDescendant(), HighlightingConfiguration.ENTITY_NAME));
                     }
                 } else if (dir instanceof FunProcDirective) {
                     DaoDirectiveParameters dp = ((FunProcDirective) current).getParamlist();
-                    tokens.addAll(newPairPojo(dp.getOut(), HighlightingConfiguration.ENTITY_NAME));
+                    tokens.addAll(newPair(dp.getOut(), HighlightingConfiguration.ENTITY_NAME));
                     for (PojoType pojo : dp.getIns()) {
-                        tokens.addAll(newPairPojo(pojo, HighlightingConfiguration.ENTITY_NAME));
+                        tokens.addAll(newPair(pojo, HighlightingConfiguration.ENTITY_NAME));
                     }
                 }
                 provideSimpleHighlighting(node, acceptor, tokens);
@@ -245,7 +246,13 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
         }
     }
 
-    private List<Pair<String, String>> newPairPojo(PojoType pojo, String highlightingId) {
+    private Pair<String, String> newPair(String name, String highlightingId) {
+        if (name != null)
+            return new Pair<>(name, highlightingId);
+        return null;
+    }
+
+    private List<Pair<String, String>> newPair(PojoType pojo, String highlightingId) {
         List<Pair<String, String>> list = new ArrayList<Pair<String, String>>();
         String name1 = (pojo != null && pojo.getRef() != null) ? pojo.getRef().getName() : null;
         if (name1 != null)
@@ -253,6 +260,19 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
         String name2 = (pojo != null && pojo.getGref() != null) ? pojo.getGref().getName() : null;
         if (name2 != null)
             list.add(new Pair<>(name2, highlightingId));
+        return list;
+    }
+
+    private List<Pair<String, String>> newPair(PojoProperty prop, String highlightingId, String highlightingId2) {
+        List<Pair<String, String>> list = new ArrayList<Pair<String, String>>();
+        if (prop.getName() != null)
+            list.add(new Pair<>(prop.getName(), highlightingId));
+        Entity ref = prop.getRef();
+        if (ref != null && (ref instanceof PojoEntity || ref instanceof EnumEntity))
+            list.add(new Pair<>(ref.getName(), highlightingId2));
+        PojoEntity gref = prop.getGref();
+        if (gref != null && (gref instanceof PojoEntity || gref instanceof EnumEntity))
+            list.add(new Pair<>(gref.getName(), highlightingId2));
         return list;
     }
 
@@ -267,6 +287,26 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
             for (int i = ix; i < lx; i++) {
                 if (equals(tokens.get(i).getFirst(), inode)) {
                     acceptor.addPosition(inode.getOffset(), inode.getLength(), tokens.get(i).getSecond());
+                    if (i == lx - 1)
+                        return;
+                    else
+                        ix = i + 1;
+                }
+            }
+        }
+    }
+
+    private void provideSimpleHighlighting(ICompositeNode node, IHighlightedPositionAcceptor acceptor,
+            Pair<String, String>... tokens) {
+        if (tokens == null || tokens.length == 0)
+            return;
+        int ix = 0, lx = tokens.length;
+        Iterator<INode> iterator = new NodeTreeIterator(node);
+        while (iterator.hasNext()) {
+            INode inode = iterator.next();
+            for (int i = ix; i < lx; i++) {
+                if (equals(tokens[i].getFirst(), inode)) {
+                    acceptor.addPosition(inode.getOffset(), inode.getLength(), tokens[i].getSecond());
                     if (i == lx - 1)
                         return;
                     else
@@ -304,89 +344,6 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
             }
             if (equals(pojo, inode)) {
                 acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.IDENTIFIER);
-                return;
-            }
-        }
-    }
-
-    private void provideHighlightingForPojoPackage(String pojo, ICompositeNode node,
-            IHighlightedPositionAcceptor acceptor) {
-        if (pojo == null)
-            return;
-        Iterator<INode> iterator = new NodeTreeIterator(node);
-        while (iterator.hasNext()) {
-            INode inode = iterator.next();
-            if (equals(pojo, inode)) {
-                acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.PACKAGE_NAME);
-                return;
-            }
-        }
-    }
-
-    private void provideHighlightingForPojoEntity(String pojo, ICompositeNode node,
-            IHighlightedPositionAcceptor acceptor) {
-        if (pojo == null)
-            return;
-        Iterator<INode> iterator = new NodeTreeIterator(node);
-        while (iterator.hasNext()) {
-            INode inode = iterator.next();
-            if (equals(pojo, inode)) {
-                acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.ENTITY_NAME);
-                return;
-            }
-        }
-    }
-
-    private void provideHighlightingForPojoProperty(String pojo, ICompositeNode node,
-            IHighlightedPositionAcceptor acceptor) {
-        if (pojo == null)
-            return;
-        Iterator<INode> iterator = new NodeTreeIterator(node);
-        while (iterator.hasNext()) {
-            INode inode = iterator.next();
-            if (equals(pojo, inode)) {
-                acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.PROPERTY_NAME);
-                return;
-            }
-        }
-    }
-
-    private void provideHighlightingForEnumEntity(String pojo, ICompositeNode node,
-            IHighlightedPositionAcceptor acceptor) {
-        if (pojo == null)
-            return;
-        Iterator<INode> iterator = new NodeTreeIterator(node);
-        while (iterator.hasNext()) {
-            INode inode = iterator.next();
-            if (equals(pojo, inode)) {
-                acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.ENTITY_NAME);
-                return;
-            }
-        }
-    }
-
-    private void provideHighlightingForEnumProperty(String pojo, ICompositeNode node,
-            IHighlightedPositionAcceptor acceptor) {
-        if (pojo == null)
-            return;
-        Iterator<INode> iterator = new NodeTreeIterator(node);
-        while (iterator.hasNext()) {
-            INode inode = iterator.next();
-            if (equals(pojo, inode)) {
-                acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.PROPERTY_NAME);
-                return;
-            }
-        }
-    }
-
-    private void provideHighlightingForPojoDao(String dao, ICompositeNode node, IHighlightedPositionAcceptor acceptor) {
-        if (dao == null)
-            return;
-        Iterator<INode> iterator = new NodeTreeIterator(node);
-        while (iterator.hasNext()) {
-            INode inode = iterator.next();
-            if (equals(dao, inode)) {
-                acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.DAO_NAME);
                 return;
             }
         }
