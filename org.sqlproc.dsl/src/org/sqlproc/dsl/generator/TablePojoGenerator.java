@@ -1239,7 +1239,7 @@ public class TablePojoGenerator {
                         }
                     }
                     // if (pojoExtends.containsKey(pojo)) {
-                    // getParentAttrs(pojoExtends.get(pojo), isDef, toInit);
+                    // getParentAttrs(pojoExtends.get(pojo), null, null, toStr);
                     // }
                     for (Map.Entry<String, PojoAttribute> pentry : addedAttributes.entrySet()) {
                         PojoAttribute attribute = pentry.getValue();
@@ -1344,7 +1344,7 @@ public class TablePojoGenerator {
                         }
                     }
                     // if (pojoExtends.containsKey(pojo)) {
-                    // getParentAttrs(pojoExtends.get(pojo), null, null);
+                    // getParentAttrs(pojoExtends.get(pojo), null, null, toStr);
                     // }
                 }
                 if (generateMethods.contains(METHOD_TO_STRING) && !toStr.isEmpty()) {
@@ -1426,9 +1426,9 @@ public class TablePojoGenerator {
                                 bufferPartial.append(" required");
                         }
                     }
-                    if (pojoExtends.containsKey(pojo)) {
-                        getParentAttrs(pojoExtends.get(pojo), null, null);
-                    }
+                    // if (pojoExtends.containsKey(pojo)) {
+                    // getParentAttrs(pojoExtends.get(pojo), null, null, toStr);
+                    // }
                 }
                 if (generateMethods.contains(METHOD_TO_STRING) && !toStr.isEmpty()) {
                     bufferMeta.append(nlindent()).append("#ToString(");
@@ -1475,7 +1475,7 @@ public class TablePojoGenerator {
         }
     }
 
-    protected void getParentAttrs(String pojo, Set<String> isDef, Set<String> toInit) {
+    protected void getParentAttrs(String pojo, Set<String> isDef, Set<String> toInit, Set<String> toStr) {
         for (Map.Entry<String, PojoAttribute> pentry : pojos.get(pojo).entrySet()) {
             if (ignoreColumns.containsKey(pojo) && ignoreColumns.get(pojo).contains(pentry.getKey()))
                 continue;
@@ -1485,13 +1485,24 @@ public class TablePojoGenerator {
                 name = attribute.getName();
             else
                 name = columnToCamelCase(name);
-            if (attribute.isDef() && isDef != null)
+            if (isDef != null && attribute.isDef())
                 isDef.add(name);
-            if (attribute.toInit() && toInit != null)
+            if (toInit != null && attribute.toInit())
                 toInit.add(name);
+            if (toStr != null) {
+                if (attribute.getDependencyClassName() != null) {
+                    if (attribute.isDependencyClassNameIsEnum())
+                        toStr.add(name);
+                } else if (attribute.isPrimitive()) {
+                    toStr.add(name);
+                } else {
+                    if (!attribute.getClassName().startsWith(COLLECTION_LIST))
+                        toStr.add(name);
+                }
+            }
         }
         if (pojoExtends.containsKey(pojo)) {
-            getParentAttrs(pojoExtends.get(pojo), isDef, toInit);
+            getParentAttrs(pojoExtends.get(pojo), isDef, toInit, toStr);
         }
     }
 
