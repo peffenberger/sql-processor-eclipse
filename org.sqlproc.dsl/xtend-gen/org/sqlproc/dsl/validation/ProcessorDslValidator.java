@@ -1098,8 +1098,7 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     }
     int _length = param.length();
     int i = (_length - 1);
-    boolean _while = (i >= 0);
-    while (_while) {
+    while ((i >= 0)) {
       {
         char _charAt = param.charAt(i);
         boolean _isDigit = Character.isDigit(_charAt);
@@ -1109,7 +1108,6 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         }
         i = (i - 1);
       }
-      _while = (i >= 0);
     }
     return true;
   }

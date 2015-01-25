@@ -443,7 +443,7 @@ public class TableDaoGenerator extends TableMetaGenerator {
                         bufferMeta.append(nlindent()).append("#FunctionCallQuery(").append(":").append(COLLECTION_LIST)
                                 .append("<").append(tableToCamelCase(name)).append(">");
                     } else if (metaFunctionsResult.containsKey(function) && dbType == DbType.DB2) {
-                        bufferMeta.append(nlindent()).append("callSelectFunction ").append(":")
+                        bufferMeta.append(nlindent()).append("#FunctionQuery(").append(":")
                                 .append(metaType2className(metaFunctionsResult.get(function)));
                     } else if (metaFunctionsResult.containsKey(function)) {
                         bufferMeta.append(nlindent()).append("callFunction ").append(":")
