@@ -474,7 +474,12 @@ class ProcessorDaoGenerator {
 	import org.sqlproc.engine.SqlSession;
 	import org.sqlproc.engine.SqlControl;
 	import «pojo.completeName»;
-	
+	«IF !im.imports.empty»
+	«FOR i : im.imports»
+	import «i»;
+	«ENDFOR»
+	«ENDIF»
+		
 	«classBody»
 	'''
 	

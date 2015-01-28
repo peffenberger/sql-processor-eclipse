@@ -1372,26 +1372,37 @@ public class ProcessorGeneratorUtils {
   }
   
   protected PojoEntity _getPojo(final PojoDao dao, final FunProcDirective pojoDirective) {
-    PojoEntity _elvis = null;
     DaoDirectiveParameters _paramlist = null;
     if (pojoDirective!=null) {
       _paramlist=pojoDirective.getParamlist();
     }
-    PojoType _out = null;
+    EList<PojoType> _ins = null;
     if (_paramlist!=null) {
-      _out=_paramlist.getOut();
+      _ins=_paramlist.getIns();
     }
-    PojoEntity _ref = null;
-    if (_out!=null) {
-      _ref=_out.getRef();
-    }
-    if (_ref != null) {
-      _elvis = _ref;
+    final List<PojoType> list = _ins;
+    boolean _or = false;
+    boolean _or_1 = false;
+    boolean _equals = Objects.equal(list, null);
+    if (_equals) {
+      _or_1 = true;
     } else {
-      PojoEntity _pojoImplicit = this.getPojoImplicit(dao);
-      _elvis = _pojoImplicit;
+      boolean _isEmpty = list.isEmpty();
+      _or_1 = _isEmpty;
     }
-    return _elvis;
+    if (_or_1) {
+      _or = true;
+    } else {
+      PojoType _head = IterableExtensions.<PojoType>head(list);
+      PojoEntity _ref = _head.getRef();
+      boolean _equals_1 = Objects.equal(_ref, null);
+      _or = _equals_1;
+    }
+    if (_or) {
+      return this.getPojoImplicit(dao);
+    }
+    PojoType _head_1 = IterableExtensions.<PojoType>head(list);
+    return _head_1.getRef();
   }
   
   public PojoEntity getPojo(final PojoDao dao) {

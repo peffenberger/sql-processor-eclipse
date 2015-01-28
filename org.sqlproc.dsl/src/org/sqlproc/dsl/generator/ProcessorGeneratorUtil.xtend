@@ -437,7 +437,10 @@ class ProcessorGeneratorUtils {
     }
 
     def dispatch PojoEntity getPojo(PojoDao dao, FunProcDirective pojoDirective) {
-    	return pojoDirective?.paramlist?.out?.ref ?: getPojoImplicit(dao)
+    	val List<PojoType> list = pojoDirective?.paramlist?.ins
+    	if (list == null || list.empty || list.head.ref == null)
+    		return getPojoImplicit(dao)
+    	return list.head.ref
     }
 
     def PojoEntity getPojo(PojoDao dao) {

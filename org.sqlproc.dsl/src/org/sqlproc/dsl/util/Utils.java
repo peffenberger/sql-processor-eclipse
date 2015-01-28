@@ -340,6 +340,8 @@ public class Utils {
 
     public static String getPackage(PojoEntity e) {
         Package packageDeclaration = EcoreUtil2.getContainerOfType(e, Package.class);
+        if (packageDeclaration == null)
+            System.out.println("XXXXXXXXXX " + e.getName());
         return packageDeclaration.getName();
     }
 

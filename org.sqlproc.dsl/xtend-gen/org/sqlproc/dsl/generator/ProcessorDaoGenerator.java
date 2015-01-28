@@ -2895,6 +2895,23 @@ public class ProcessorDaoGenerator {
     _builder.append(_completeName, "");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
+    {
+      List<String> _imports = im.getImports();
+      boolean _isEmpty = _imports.isEmpty();
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        {
+          List<String> _imports_1 = im.getImports();
+          for(final String i : _imports_1) {
+            _builder.append("import ");
+            _builder.append(i, "");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("\t");
     _builder.newLine();
     _builder.append(classBody, "");
     _builder.newLineIfNotEmpty();
