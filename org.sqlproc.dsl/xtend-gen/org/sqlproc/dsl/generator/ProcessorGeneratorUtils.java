@@ -1109,6 +1109,11 @@ public class ProcessorGeneratorUtils {
     return _elvis;
   }
   
+  public String getSuffix(final Entity pojo) {
+    final org.sqlproc.dsl.processorDsl.Package packageDeclaration = EcoreUtil2.<org.sqlproc.dsl.processorDsl.Package>getContainerOfType(pojo, org.sqlproc.dsl.processorDsl.Package.class);
+    return Utils.getSuffix(packageDeclaration);
+  }
+  
   public boolean isFinal(final EnumEntity enum_) {
     EList<EnumEntityModifier1> _modifiers1 = enum_.getModifiers1();
     EnumEntityModifier1 _findFirst = null;
@@ -1500,6 +1505,11 @@ public class ProcessorGeneratorUtils {
     };
     IterableExtensions.<DaoDirective>forEach(_filter, _function_1);
     return result;
+  }
+  
+  public String getSuffix(final PojoDao dao) {
+    final org.sqlproc.dsl.processorDsl.Package packageDeclaration = EcoreUtil2.<org.sqlproc.dsl.processorDsl.Package>getContainerOfType(dao, org.sqlproc.dsl.processorDsl.Package.class);
+    return Utils.getSuffix(packageDeclaration);
   }
   
   public String getParamName(final PojoType pojo) {

@@ -57,6 +57,8 @@ import org.sqlproc.dsl.processorDsl.PojoPropertyDirectiveEnumDef
 import org.sqlproc.dsl.processorDsl.PojoDirectiveToString
 import org.sqlproc.dsl.processorDsl.PojoDirectiveEquals
 import org.sqlproc.dsl.processorDsl.PojoDirectiveHashCode
+import org.sqlproc.dsl.processorDsl.Package;
+import org.sqlproc.dsl.processorDsl.Entity
 
 class ProcessorGeneratorUtils {
 
@@ -356,6 +358,11 @@ class ProcessorGeneratorUtils {
 		return feature?.feature ?: pojo.superType?.getAttribute(name)
     }
 
+    def String getSuffix(Entity pojo) {
+        val Package packageDeclaration = getContainerOfType(pojo, Package);
+        return getSuffix(packageDeclaration)
+    }
+
 	// EnumEntity
     def isFinal(EnumEntity ^enum) {
 		val m = ^enum.modifiers1?.findFirst[x|x.final]
@@ -475,6 +482,11 @@ class ProcessorGeneratorUtils {
 			result.add(it as FunProcDirective)
 		]
 		return result
+    }
+
+    def String getSuffix(PojoDao dao) {
+        val Package packageDeclaration = getContainerOfType(dao, Package);
+        return getSuffix(packageDeclaration)
     }
 
 	def getParamName(PojoType pojo) {
