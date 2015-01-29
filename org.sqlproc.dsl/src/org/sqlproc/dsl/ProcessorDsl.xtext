@@ -48,6 +48,10 @@ Property:
 	|name='compress-meta-directives'
 	) SEMICOLON;
 
+//PropertyCondition hidden(ML_COMMENT, SL_COMMENT, WS):
+//	LBRACE name=IDENT EQUALS value=(IDENT | NUMBER) RBRACE
+//;
+
 DatabaseProperty:
 	(name='is-online'
 	|name='is-offline'

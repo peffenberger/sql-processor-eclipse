@@ -1584,7 +1584,7 @@ public class TablePojoGenerator {
             attribute.setPrimitive(false);
             attribute.setClassName(sqlType.getType().getIdentifier());
             if (sqlType.getGtype() != null)
-                attribute.setClassName(attribute.getClassName() + "<" + sqlType.getGtype().getIdentifier() + ">");
+                attribute.setClassName(attribute.getClassName() + "<:" + sqlType.getGtype().getIdentifier() + ">");
         }
         return attribute;
     }

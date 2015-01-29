@@ -176,10 +176,6 @@ public class Annotations {
 
     public void getAnnotationPropertyDefinition(StringBuilder sb, AnnotationProperty ap, boolean simpleNames) {
         sb.append(ap.getName());
-        if (ap.getType() != null)
-            sb.append(":").append((simpleNames) ? ap.getType().getSimpleName() : ap.getType().getQualifiedName());
-        else if (ap.getRef() != null)
-            sb.append(ap.getRef().getName());
         sb.append(" = ");
         if (ap.getValue() != null)
             sb.append(ap.getValue());
@@ -187,6 +183,10 @@ public class Annotations {
             sb.append(ap.getNumber());
         else
             sb.append(ap.getConstant());
+        if (ap.getType() != null)
+            sb.append(" :").append((simpleNames) ? ap.getType().getSimpleName() : ap.getType().getQualifiedName());
+        else if (ap.getRef() != null)
+            sb.append(" ").append(ap.getRef().getName());
     }
 
     public Set<String> getImports() {
