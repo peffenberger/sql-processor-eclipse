@@ -1471,8 +1471,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_21 = (Assignment)cAlternatives.eContents().get(21);
 		private final Keyword cNameUppercaseNamesKeyword_21_0 = (Keyword)cNameAssignment_21.eContents().get(0);
 		
-		////PropertyCondition hidden(ML_COMMENT, SL_COMMENT, WS):
-		////	LBRACE name=IDENT EQUALS value=(IDENT | NUMBER) RBRACE
+		////PropertyCondition:
+		////	LBRACE WS* name=IDENT WS+ EQUALS WS+ value=(IDENT | NUMBER) WS* RBRACE
 		////;
 		//DatabaseProperty:
 		//	name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=PropertyValue | name="login-username" WS+
@@ -10679,8 +10679,8 @@ public class ProcessorDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getPropertyAccess().getRule();
 	}
 
-	////PropertyCondition hidden(ML_COMMENT, SL_COMMENT, WS):
-	////	LBRACE name=IDENT EQUALS value=(IDENT | NUMBER) RBRACE
+	////PropertyCondition:
+	////	LBRACE WS* name=IDENT WS+ EQUALS WS+ value=(IDENT | NUMBER) WS* RBRACE
 	////;
 	//DatabaseProperty:
 	//	name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=PropertyValue | name="login-username" WS+

@@ -147,7 +147,7 @@ class ProcessorDaoGenerator {
 				logger.trace("«name»: " + «FOR ma:p.ins SEPARATOR " + \" \" "»«ma.paramName»«ENDFOR» + " " + sqlControl);
 			}
 			SqlProcedureEngine sqlProc«d.name» = sqlEngineFactory.getCheckedProcedureEngine("PROC_«dbName(d)»");
-			«p.out.compileType(im)» list = sqlProc«d.name».callQuery(sqlSession, «p.out.gref.name».class, «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», sqlControl);
+			«p.out.compileType(im)» list = sqlProc«d.name».callQuery(sqlSession, «IF p.out.gref != null»«p.out.gref.name»«ELSE»«p.out.gtype.simpleName»«ENDIF».class, «FOR ma:p.ins SEPARATOR ", "»«ma.paramName»«ENDFOR», sqlControl);
 			if (logger.isTraceEnabled()) {
 				logger.trace("«name» result: " + list);
 			}

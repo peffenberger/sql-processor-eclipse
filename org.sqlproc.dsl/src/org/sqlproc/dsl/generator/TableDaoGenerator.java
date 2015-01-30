@@ -315,8 +315,8 @@ public class TableDaoGenerator extends TableMetaGenerator {
                         PojoAttribute returnAttribute = (attributes.containsKey(FAKE_FUN_PROC_COLUMN_NAME)) ? attributes
                                 .get(FAKE_FUN_PROC_COLUMN_NAME) : null;
                         if (returnAttribute != null && dbType != DbType.POSTGRESQL && dbType != DbType.MS_SQL) {
-                            bufferMeta.append(nlindent()).append("#ProcedureCallQuery(").append(":")
-                                    .append(returnAttribute.getClassName());
+                            bufferMeta.append(nlindent()).append("#ProcedureCallQuery(:").append(COLLECTION_LIST)
+                                    .append("<").append(":").append(returnAttribute.getClassName()).append(">");
                         } else {
                             bufferMeta.append(nlindent()).append("#ProcedureUpdate(").append(":int");
                         }
@@ -381,8 +381,8 @@ public class TableDaoGenerator extends TableMetaGenerator {
                         PojoAttribute returnAttribute = (attributes.containsKey(FAKE_FUN_PROC_COLUMN_NAME)) ? attributes
                                 .get(FAKE_FUN_PROC_COLUMN_NAME) : null;
                         if (returnAttribute != null) {
-                            bufferMeta.append(nlindent()).append("#FunctionCallQuery(").append(":")
-                                    .append(returnAttribute.getClassName());
+                            bufferMeta.append(nlindent()).append("#FunctionCallQuery(:").append(COLLECTION_LIST)
+                                    .append("<").append(":").append(returnAttribute.getClassName()).append(">");
                         } else {
                             bufferMeta.append(nlindent()).append("#FunctionUpdate(").append(":int");
                         }
@@ -452,8 +452,8 @@ public class TableDaoGenerator extends TableMetaGenerator {
                         PojoAttribute returnAttribute = (attributes.containsKey(FAKE_FUN_PROC_COLUMN_NAME)) ? attributes
                                 .get(FAKE_FUN_PROC_COLUMN_NAME) : null;
                         if (returnAttribute != null) {
-                            bufferMeta.append(nlindent()).append("#FunctionCallQuery(").append(":")
-                                    .append(returnAttribute.getClassName());
+                            bufferMeta.append(nlindent()).append("#FunctionCallQuery(:").append(COLLECTION_LIST)
+                                    .append("<").append(":").append(returnAttribute.getClassName()).append(">");
                         } else {
                             bufferMeta.append(nlindent()).append("#FunctionUpdate(").append(":int");
                         }

@@ -691,10 +691,22 @@ public class ProcessorDaoGenerator {
     String _name_1 = d.getName();
     _builder.append(_name_1, "\t");
     _builder.append(".callQuery(sqlSession, ");
-    PojoType _out_2 = p.getOut();
-    PojoEntity _gref = _out_2.getGref();
-    String _name_2 = _gref.getName();
-    _builder.append(_name_2, "\t");
+    {
+      PojoType _out_2 = p.getOut();
+      PojoEntity _gref = _out_2.getGref();
+      boolean _notEquals = (!Objects.equal(_gref, null));
+      if (_notEquals) {
+        PojoType _out_3 = p.getOut();
+        PojoEntity _gref_1 = _out_3.getGref();
+        String _name_2 = _gref_1.getName();
+        _builder.append(_name_2, "\t");
+      } else {
+        PojoType _out_4 = p.getOut();
+        JvmType _gtype = _out_4.getGtype();
+        String _simpleName = _gtype.getSimpleName();
+        _builder.append(_simpleName, "\t");
+      }
+    }
     _builder.append(".class, ");
     {
       EList<PojoType> _ins_2 = p.getIns();
@@ -730,8 +742,8 @@ public class ProcessorDaoGenerator {
     {
       if (all) {
         _builder.append("public ");
-        PojoType _out_3 = p.getOut();
-        CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_out_3, im);
+        PojoType _out_5 = p.getOut();
+        CharSequence _compileType_3 = this._processorGeneratorUtils.compileType(_out_5, im);
         _builder.append(_compileType_3, "");
         _builder.append(" ");
         _builder.append(name, "");
@@ -778,8 +790,8 @@ public class ProcessorDaoGenerator {
       }
     }
     _builder.append("public ");
-    PojoType _out_4 = p.getOut();
-    CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(_out_4, im);
+    PojoType _out_6 = p.getOut();
+    CharSequence _compileType_5 = this._processorGeneratorUtils.compileType(_out_6, im);
     _builder.append(_compileType_5, "");
     _builder.append(" ");
     _builder.append(name, "");
@@ -826,8 +838,8 @@ public class ProcessorDaoGenerator {
     {
       if (all) {
         _builder.append("public ");
-        PojoType _out_5 = p.getOut();
-        CharSequence _compileType_7 = this._processorGeneratorUtils.compileType(_out_5, im);
+        PojoType _out_7 = p.getOut();
+        CharSequence _compileType_7 = this._processorGeneratorUtils.compileType(_out_7, im);
         _builder.append(_compileType_7, "");
         _builder.append(" ");
         _builder.append(name, "");

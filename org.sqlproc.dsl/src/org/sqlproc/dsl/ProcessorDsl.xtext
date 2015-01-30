@@ -48,8 +48,8 @@ Property:
 	|name='compress-meta-directives'
 	) SEMICOLON;
 
-//PropertyCondition hidden(ML_COMMENT, SL_COMMENT, WS):
-//	LBRACE name=IDENT EQUALS value=(IDENT | NUMBER) RBRACE
+//PropertyCondition:
+//	LBRACE WS* name=IDENT WS+ EQUALS WS+ value=(IDENT | NUMBER) WS* RBRACE
 //;
 
 DatabaseProperty:
