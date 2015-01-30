@@ -140,7 +140,7 @@ class ProcessorPojoGenerator {
 	'''
 	
 	def compile(PojoEntity e, AnnotatedEntity ae, ImportManager im) '''
-	«FOR a:ae.annotations»
+	«FOR a:ae.standardAnnotations»
 	@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, im)»«ENDFOR»)«ENDIF»
 	«ENDFOR»
 	public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e, im)»«compileImplements(e)»{

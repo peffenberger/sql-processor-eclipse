@@ -453,8 +453,8 @@ public class ProcessorPojoGenerator {
   public CharSequence compile(final PojoEntity e, final AnnotatedEntity ae, final ImportManager im) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      EList<Annotation> _annotations = ae.getAnnotations();
-      for(final Annotation a : _annotations) {
+      List<Annotation> _standardAnnotations = this._processorGeneratorUtils.standardAnnotations(ae);
+      for(final Annotation a : _standardAnnotations) {
         _builder.append("@");
         JvmType _type = a.getType();
         CharSequence _serialize = im.serialize(_type);
