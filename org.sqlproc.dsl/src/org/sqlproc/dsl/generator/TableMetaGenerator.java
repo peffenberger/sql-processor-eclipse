@@ -1075,7 +1075,7 @@ public class TableMetaGenerator extends TablePojoGenerator {
                 String outPojoName = tableNames.get(outPojo);
                 if (outPojoName == null)
                     outPojoName = outPojo;
-                buffer.append(",").append(Constants.COLUMN_USAGE_EXTENDED).append("=")
+                buffer.append(",").append(Constants.MAPPING_USAGE_EXTENDED).append("=")
                         .append(tableToCamelCase(outPojoName));
                 buffer.append(")=\n ");
                 for (Map.Entry<String, PojoAttribute> pentry : pojos.get(outPojo).entrySet()) {
@@ -1108,7 +1108,7 @@ public class TableMetaGenerator extends TablePojoGenerator {
                 String outPojoName = tableNames.get(outPojo);
                 if (outPojoName == null)
                     outPojoName = outPojo;
-                buffer.append(",").append(Constants.COLUMN_USAGE_EXTENDED).append("=")
+                buffer.append(",").append(Constants.MAPPING_USAGE_EXTENDED).append("=")
                         .append(tableToCamelCase(outPojoName));
                 buffer.append(")=\n ");
                 for (Map.Entry<String, PojoAttribute> pentry : pojos.get(outPojo).entrySet()) {
@@ -1196,7 +1196,7 @@ public class TableMetaGenerator extends TablePojoGenerator {
         buffer.append("\n").append("FUN_").append(pojo.toUpperCase()).append("(OUT");
         if (metaMakeItFinal)
             buffer.append(",final=");
-        buffer.append(",").append(Constants.COLUMN_USAGE_EXTENDED).append("=").append(tableToCamelCase(pojoName));
+        buffer.append(",").append(Constants.MAPPING_USAGE_EXTENDED).append("=").append(tableToCamelCase(pojoName));
         buffer.append(")=\n ");
         buffer.append("  1$result\n;");
         buffer.append("\n");
