@@ -925,9 +925,9 @@ public class TablePojoGenerator {
                         isSerializable = true;
                         continue;
                     }
-                    buffer.append(NLINDENT).append("implements :").append(type.getIdentifier());
                     if (ie.isGenerics())
-                        buffer.append(" <<>>");
+                        buffer.append(NLINDENT).append("#Generics");
+                    buffer.append(NLINDENT).append("implements :").append(type.getIdentifier());
                     if (!ie.getDbTables().isEmpty()) {
                         buffer.append(" onlyPojos");
                         for (String dbTable : ie.getDbTables()) {
@@ -952,10 +952,10 @@ public class TablePojoGenerator {
                 oneMoreLine = true;
             }
             if (toExtends != null) {
+                if (toExtends.isGenerics())
+                    buffer.append(NLINDENT).append("#Generics");
                 JvmType type = toExtends.getToImplement();
                 buffer.append(NLINDENT).append("extends :").append(type.getIdentifier());
-                if (toExtends.isGenerics())
-                    buffer.append(" <<>>");
                 if (!toExtends.getDbTables().isEmpty()) {
                     buffer.append(" onlyPojos");
                     for (String dbTable : toExtends.getDbTables()) {
