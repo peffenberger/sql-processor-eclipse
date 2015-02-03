@@ -134,6 +134,7 @@ public class TablePojoGenerator {
     protected Map<String, String> comments = new HashMap<String, String>();
 
     protected Map<String, String> metaFunctionsResult = new HashMap<String, String>();
+    protected Map<String, String> metaProceduresResult = new HashMap<String, String>();
 
     public TablePojoGenerator() {
     }
@@ -728,7 +729,7 @@ public class TablePojoGenerator {
         int ix = 0;
         for (DbColumn dbColumn : dbProcColumns) {
             ix++;
-            if (dbColumn.getColumnType() == 5
+            if ((dbColumn.getColumnType() == 3 || dbColumn.getColumnType() == 5)
                     && (dbColumn.getName() == null || dbColumn.getName().trim().length() == 0
                             || dbColumn.getName().equalsIgnoreCase("returnValue")
                             || dbColumn.getName().equalsIgnoreCase("RETURN_VALUE")
@@ -756,6 +757,12 @@ public class TablePojoGenerator {
                 // System.out.println("XXXXXX " + procedure + " " + metaType + " " + attribute.getClassName());
                 if (metaType != null)
                     metaFunctionsResult.put(procedure, metaType);
+            } else if (FAKE_FUN_PROC_COLUMN_NAME.equals(dbColumn.getName()) && attribute.getClassName() != null
+                    && (dbColumn.getColumnType() == 3 || dbColumn.getColumnType() == 5)) {
+                String metaType = className2metaType(attribute.getClassName());
+                // System.out.println("XXXXXX " + procedure + " " + metaType + " " + attribute.getClassName());
+                if (metaType != null)
+                    metaProceduresResult.put(procedure, metaType);
             }
         }
         if (createColumns.containsKey(procedure)) {

@@ -1066,6 +1066,13 @@ public class TableMetaGenerator extends TablePojoGenerator {
             buffer.append(")=");
             buffer.append("\n  1$1(type=").append(metaFunctionsResult.get(pojo));
             buffer.append(")\n;");
+        } else if ((dbType == DbType.HSQLDB || dbType == DbType.INFORMIX) && metaProceduresResult.containsKey(pojo)) {
+            buffer.append("\n").append(((isFunction) ? "FUN_" : "PROC_")).append(pojo.toUpperCase()).append("(OUT");
+            if (metaMakeItFinal)
+                buffer.append(",final=");
+            buffer.append(")=");
+            buffer.append("\n  1$1(type=").append(metaProceduresResult.get(pojo));
+            buffer.append(")\n;");
         } else if (!isFunction && metaProceduresResultSet.containsKey(pojo)) {
             String outPojo = metaProceduresResultSet.get(pojo);
             if (pojos.containsKey(outPojo)) {

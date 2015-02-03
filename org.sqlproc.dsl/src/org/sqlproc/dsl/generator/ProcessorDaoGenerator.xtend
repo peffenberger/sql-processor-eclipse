@@ -556,7 +556,6 @@ class ProcessorDaoGenerator {
 	'''
 	
 	def compileInsertIfx(PojoDao d, PojoEntity e, ImportManager im, boolean all) '''
-	
 		public «e.name» insert(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
 		«IF all»
 		public «e.name» insert(«e.name» «e.name.toFirstLower», SqlControl sqlControl);
@@ -568,19 +567,17 @@ class ProcessorDaoGenerator {
 	'''
 	
 	def compileGetIfx(PojoDao d, PojoEntity e, ImportManager im, boolean all) '''
-	
 		public «e.name» get(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
 		«IF all»
 		public «e.name» get(«e.name» «e.name.toFirstLower», SqlControl sqlControl);
 		«ENDIF»
-			public «e.name» get(SqlSession sqlSession, «e.name» «e.name.toFirstLower»);
+		public «e.name» get(SqlSession sqlSession, «e.name» «e.name.toFirstLower»);
 		«IF all»
 		public «e.name» get(«e.name» «e.name.toFirstLower»);
 		«ENDIF»
 	'''
 	
 	def compileUpdateIfx(PojoDao d, PojoEntity e, ImportManager im, boolean all) '''
-	
 		public int update(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
 		«IF all»
 		public int update(«e.name» «e.name.toFirstLower», SqlControl sqlControl);
@@ -592,7 +589,6 @@ class ProcessorDaoGenerator {
 	'''
 	
 	def compileDeleteIfx(PojoDao d, PojoEntity e, ImportManager im, boolean all) '''
-	
 		public int delete(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
 		«IF all»
 		public int delete(«e.name» «e.name.toFirstLower», SqlControl sqlControl);
@@ -604,7 +600,6 @@ class ProcessorDaoGenerator {
 	'''
 	
 	def compileListIfx(PojoDao d, PojoEntity e, ImportManager im, boolean all) '''
-	
 		public List<«e.name»> list(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
 		«IF all»
 		public List<«e.name»> list(«e.name» «e.name.toFirstLower», SqlControl sqlControl);
@@ -616,7 +611,6 @@ class ProcessorDaoGenerator {
 	'''
 	
 	def compileCountIfx(PojoDao d, PojoEntity e, ImportManager im, boolean all) '''
-	
 		public int count(SqlSession sqlSession, «e.name» «e.name.toFirstLower», SqlControl sqlControl);
 		«IF all»
 		public int count(«e.name» «e.name.toFirstLower», SqlControl sqlControl);
