@@ -617,7 +617,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completePojogenProperty_DbColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
+		if (!isResolveDb(model) || !(model instanceof PojogenProperty)) {
 			super.completePojogenProperty_DbColumn(model, assignment, context, acceptor)
 			return
 		}
@@ -629,7 +629,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completePojogenProperty_DbColumns(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
+		if (!isResolveDb(model) || !(model instanceof PojogenProperty)) {
 			super.completePojogenProperty_DbColumns(model, assignment, context, acceptor)
 			return
 		}
@@ -729,7 +729,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeColumnTypeAssignement_DbColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
+		if (!isResolveDb(model) || !(model instanceof PojogenProperty)) {
 			super.completeColumnTypeAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
@@ -745,7 +745,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeColumnAssignement_DbColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
+		if (!isResolveDb(model) || !(model instanceof PojogenProperty)) {
 			super.completeColumnAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
@@ -758,7 +758,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeImportAssignement_PkTable(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof ImportAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof ImportAssignement)) {
 			super.completeImportAssignement_PkTable(model, assignment, context, acceptor)
 			return
 		}
@@ -780,7 +780,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeImportAssignement_PkColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof ImportAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof ImportAssignement)) {
 			super.completeImportAssignement_PkColumn(model, assignment, context, acceptor)
 			return
 		}
@@ -804,7 +804,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeImportAssignement_DbColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
+		if (!isResolveDb(model) || !(model instanceof PojogenProperty)) {
 			super.completeImportAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
@@ -816,7 +816,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeExportAssignement_FkTable(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof ExportAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof ExportAssignement)) {
 			super.completeExportAssignement_FkTable(model, assignment, context, acceptor)
 			return
 		}
@@ -838,7 +838,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeExportAssignement_FkColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof ExportAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof ExportAssignement)) {
 			super.completeExportAssignement_FkColumn(model, assignment, context, acceptor)
 			return
 		}
@@ -862,7 +862,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeExportAssignement_DbColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
+		if (!isResolveDb(model) || !(model instanceof PojogenProperty)) {
 			super.completeExportAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
@@ -874,7 +874,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeManyToManyAssignement_PkColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
+		if (!isResolveDb(model) || !(model instanceof PojogenProperty)) {
 			super.completeManyToManyAssignement_PkColumn(model, assignment, context, acceptor)
 			return
 		}
@@ -886,7 +886,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeManyToManyAssignement_PkTable(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof ManyToManyAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof ManyToManyAssignement)) {
 			super.completeManyToManyAssignement_PkTable(model, assignment, context, acceptor)
 			return
 		}
@@ -904,7 +904,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeInheritanceAssignement_DbColumns(EObject model, Assignment assignment,
 		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof InheritanceAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof InheritanceAssignement)) {
 			super.completeInheritanceAssignement_DbColumns(model, assignment, context, acceptor)
 			return
 		}
@@ -930,7 +930,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeShowColumnTypeAssignement_DbColumn(EObject model, Assignment assignment,
 		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
+		if (!isResolveDb(model) || !(model instanceof PojogenProperty)) {
 			super.completeShowColumnTypeAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
@@ -946,7 +946,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeShowColumnTypeAssignement_Type(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof ShowColumnTypeAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof ShowColumnTypeAssignement)) {
 			super.completeShowColumnTypeAssignement_Type(model, assignment, context, acceptor)
 			return
 		}
@@ -1122,7 +1122,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeMetaTypeAssignement_DbColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof MetagenProperty)) {
+		if (!isResolveDb(model) || !(model instanceof MetagenProperty)) {
 			super.completeMetaTypeAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
@@ -1141,7 +1141,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeMetagenProperty_DbColumns(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof MetagenProperty)) {
+		if (!isResolveDb(model) || !(model instanceof MetagenProperty)) {
 			super.completeMetagenProperty_DbColumns(model, assignment, context, acceptor)
 			return
 		}
@@ -1173,7 +1173,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeDriverMethodOutputAssignement_DriverMethod(EObject model, Assignment assignment,
 		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof DatabaseProperty)) {
+		if (!isResolveDb(model) || !(model instanceof DatabaseProperty)) {
 			super.completeDriverMethodOutputAssignement_DriverMethod(model, assignment, context, acceptor)
 			return
 		}
@@ -1185,7 +1185,7 @@ class ProcessorDslProposalProvider extends AbstractProcessorDslProposalProvider 
 
 	override completeDriverMethodOutputAssignement_CallOutput(EObject model, Assignment assignment,
 		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof DriverMethodOutputAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof DriverMethodOutputAssignement)) {
 			super.completeDriverMethodOutputAssignement_CallOutput(model, assignment, context, acceptor)
 			return
 		}
