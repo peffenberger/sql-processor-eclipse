@@ -1173,15 +1173,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completePojogenProperty_DbColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof PojogenProperty));
+      _or = (!(model instanceof PojogenProperty));
     }
-    if (_and) {
+    if (_or) {
       super.completePojogenProperty_DbColumn(model, assignment, context, acceptor);
       return;
     }
@@ -1196,15 +1196,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completePojogenProperty_DbColumns(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof PojogenProperty));
+      _or = (!(model instanceof PojogenProperty));
     }
-    if (_and) {
+    if (_or) {
       super.completePojogenProperty_DbColumns(model, assignment, context, acceptor);
       return;
     }
@@ -1315,15 +1315,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeColumnTypeAssignement_DbColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof PojogenProperty));
+      _or = (!(model instanceof PojogenProperty));
     }
-    if (_and) {
+    if (_or) {
       super.completeColumnTypeAssignement_DbColumn(model, assignment, context, acceptor);
       return;
     }
@@ -1354,15 +1354,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeColumnAssignement_DbColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof PojogenProperty));
+      _or = (!(model instanceof PojogenProperty));
     }
-    if (_and) {
+    if (_or) {
       super.completeColumnAssignement_DbColumn(model, assignment, context, acceptor);
       return;
     }
@@ -1380,31 +1380,31 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeImportAssignement_PkTable(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof ImportAssignement));
+      _or = (!(model instanceof ImportAssignement));
     }
-    if (_and) {
+    if (_or) {
       super.completeImportAssignement_PkTable(model, assignment, context, acceptor);
       return;
     }
     final ImportAssignement imp = ((ImportAssignement) model);
     final PojogenProperty prop = EcoreUtil2.<PojogenProperty>getContainerOfType(model, PojogenProperty.class);
-    boolean _and_1 = false;
+    boolean _and = false;
     String _dbTable = prop.getDbTable();
     boolean _notEquals = (!Objects.equal(_dbTable, null));
     if (!_notEquals) {
-      _and_1 = false;
+      _and = false;
     } else {
       String _dbColumn = imp.getDbColumn();
       boolean _notEquals_1 = (!Objects.equal(_dbColumn, null));
-      _and_1 = _notEquals_1;
+      _and = _notEquals_1;
     }
-    if (_and_1) {
+    if (_and) {
       String _name = prop.getName();
       boolean _equals = Objects.equal("create-many-to-one", _name);
       if (_equals) {
@@ -1440,39 +1440,39 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeImportAssignement_PkColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof ImportAssignement));
+      _or = (!(model instanceof ImportAssignement));
     }
-    if (_and) {
+    if (_or) {
       super.completeImportAssignement_PkColumn(model, assignment, context, acceptor);
       return;
     }
     final ImportAssignement imp = ((ImportAssignement) model);
     final PojogenProperty prop = EcoreUtil2.<PojogenProperty>getContainerOfType(model, PojogenProperty.class);
+    boolean _and = false;
     boolean _and_1 = false;
-    boolean _and_2 = false;
     String _dbTable = prop.getDbTable();
     boolean _notEquals = (!Objects.equal(_dbTable, null));
     if (!_notEquals) {
-      _and_2 = false;
+      _and_1 = false;
     } else {
       String _dbColumn = imp.getDbColumn();
       boolean _notEquals_1 = (!Objects.equal(_dbColumn, null));
-      _and_2 = _notEquals_1;
+      _and_1 = _notEquals_1;
     }
-    if (!_and_2) {
-      _and_1 = false;
+    if (!_and_1) {
+      _and = false;
     } else {
       String _pkTable = imp.getPkTable();
       boolean _notEquals_2 = (!Objects.equal(_pkTable, null));
-      _and_1 = _notEquals_2;
+      _and = _notEquals_2;
     }
-    if (_and_1) {
+    if (_and) {
       String _name = prop.getName();
       boolean _equals = Objects.equal("create-many-to-one", _name);
       if (_equals) {
@@ -1523,15 +1523,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeImportAssignement_DbColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof PojogenProperty));
+      _or = (!(model instanceof PojogenProperty));
     }
-    if (_and) {
+    if (_or) {
       super.completeImportAssignement_DbColumn(model, assignment, context, acceptor);
       return;
     }
@@ -1546,31 +1546,31 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeExportAssignement_FkTable(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof ExportAssignement));
+      _or = (!(model instanceof ExportAssignement));
     }
-    if (_and) {
+    if (_or) {
       super.completeExportAssignement_FkTable(model, assignment, context, acceptor);
       return;
     }
     final ExportAssignement exp = ((ExportAssignement) model);
     final PojogenProperty prop = EcoreUtil2.<PojogenProperty>getContainerOfType(model, PojogenProperty.class);
-    boolean _and_1 = false;
+    boolean _and = false;
     String _dbTable = prop.getDbTable();
     boolean _notEquals = (!Objects.equal(_dbTable, null));
     if (!_notEquals) {
-      _and_1 = false;
+      _and = false;
     } else {
       String _dbColumn = exp.getDbColumn();
       boolean _notEquals_1 = (!Objects.equal(_dbColumn, null));
-      _and_1 = _notEquals_1;
+      _and = _notEquals_1;
     }
-    if (_and_1) {
+    if (_and) {
       String _name = prop.getName();
       boolean _equals = Objects.equal("create-one-to-many", _name);
       if (_equals) {
@@ -1606,39 +1606,39 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeExportAssignement_FkColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof ExportAssignement));
+      _or = (!(model instanceof ExportAssignement));
     }
-    if (_and) {
+    if (_or) {
       super.completeExportAssignement_FkColumn(model, assignment, context, acceptor);
       return;
     }
     final ExportAssignement exp = ((ExportAssignement) model);
     final PojogenProperty prop = EcoreUtil2.<PojogenProperty>getContainerOfType(model, PojogenProperty.class);
+    boolean _and = false;
     boolean _and_1 = false;
-    boolean _and_2 = false;
     String _dbTable = prop.getDbTable();
     boolean _notEquals = (!Objects.equal(_dbTable, null));
     if (!_notEquals) {
-      _and_2 = false;
+      _and_1 = false;
     } else {
       String _dbColumn = exp.getDbColumn();
       boolean _notEquals_1 = (!Objects.equal(_dbColumn, null));
-      _and_2 = _notEquals_1;
+      _and_1 = _notEquals_1;
     }
-    if (!_and_2) {
-      _and_1 = false;
+    if (!_and_1) {
+      _and = false;
     } else {
       String _fkTable = exp.getFkTable();
       boolean _notEquals_2 = (!Objects.equal(_fkTable, null));
-      _and_1 = _notEquals_2;
+      _and = _notEquals_2;
     }
-    if (_and_1) {
+    if (_and) {
       String _name = prop.getName();
       boolean _equals = Objects.equal("create-one-to-many", _name);
       if (_equals) {
@@ -1689,15 +1689,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeExportAssignement_DbColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof PojogenProperty));
+      _or = (!(model instanceof PojogenProperty));
     }
-    if (_and) {
+    if (_or) {
       super.completeExportAssignement_DbColumn(model, assignment, context, acceptor);
       return;
     }
@@ -1712,15 +1712,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeManyToManyAssignement_PkColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof PojogenProperty));
+      _or = (!(model instanceof PojogenProperty));
     }
-    if (_and) {
+    if (_or) {
       super.completeManyToManyAssignement_PkColumn(model, assignment, context, acceptor);
       return;
     }
@@ -1735,31 +1735,31 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeManyToManyAssignement_PkTable(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof ManyToManyAssignement));
+      _or = (!(model instanceof ManyToManyAssignement));
     }
-    if (_and) {
+    if (_or) {
       super.completeManyToManyAssignement_PkTable(model, assignment, context, acceptor);
       return;
     }
     final ManyToManyAssignement many2 = ((ManyToManyAssignement) model);
     final PojogenProperty prop = EcoreUtil2.<PojogenProperty>getContainerOfType(model, PojogenProperty.class);
-    boolean _and_1 = false;
+    boolean _and = false;
     String _dbTable = prop.getDbTable();
     boolean _notEquals = (!Objects.equal(_dbTable, null));
     if (!_notEquals) {
-      _and_1 = false;
+      _and = false;
     } else {
       String _pkColumn = many2.getPkColumn();
       boolean _notEquals_1 = (!Objects.equal(_pkColumn, null));
-      _and_1 = _notEquals_1;
+      _and = _notEquals_1;
     }
-    if (_and_1) {
+    if (_and) {
       String _dbTable_1 = prop.getDbTable();
       List<DbImport> _dbImports = this.dbResolver.getDbImports(model, _dbTable_1);
       final Procedure1<DbImport> _function = new Procedure1<DbImport>() {
@@ -1789,15 +1789,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeInheritanceAssignement_DbColumns(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof InheritanceAssignement));
+      _or = (!(model instanceof InheritanceAssignement));
     }
-    if (_and) {
+    if (_or) {
       super.completeInheritanceAssignement_DbColumns(model, assignment, context, acceptor);
       return;
     }
@@ -1830,15 +1830,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeShowColumnTypeAssignement_DbColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof PojogenProperty));
+      _or = (!(model instanceof PojogenProperty));
     }
-    if (_and) {
+    if (_or) {
       super.completeShowColumnTypeAssignement_DbColumn(model, assignment, context, acceptor);
       return;
     }
@@ -1869,15 +1869,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeShowColumnTypeAssignement_Type(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof ShowColumnTypeAssignement));
+      _or = (!(model instanceof ShowColumnTypeAssignement));
     }
-    if (_and) {
+    if (_or) {
       super.completeShowColumnTypeAssignement_Type(model, assignment, context, acceptor);
       return;
     }
@@ -2172,15 +2172,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeMetaTypeAssignement_DbColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof MetagenProperty));
+      _or = (!(model instanceof MetagenProperty));
     }
-    if (_and) {
+    if (_or) {
       super.completeMetaTypeAssignement_DbColumn(model, assignment, context, acceptor);
       return;
     }
@@ -2201,15 +2201,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeMetagenProperty_DbColumns(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof MetagenProperty));
+      _or = (!(model instanceof MetagenProperty));
     }
-    if (_and) {
+    if (_or) {
       super.completeMetagenProperty_DbColumns(model, assignment, context, acceptor);
       return;
     }
@@ -2248,15 +2248,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeDriverMethodOutputAssignement_DriverMethod(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof DatabaseProperty));
+      _or = (!(model instanceof DatabaseProperty));
     }
-    if (_and) {
+    if (_or) {
       super.completeDriverMethodOutputAssignement_DriverMethod(model, assignment, context, acceptor);
       return;
     }
@@ -2273,15 +2273,15 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   }
   
   public void completeDriverMethodOutputAssignement_CallOutput(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
-    boolean _and = false;
+    boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
-    if (!_not) {
-      _and = false;
+    if (_not) {
+      _or = true;
     } else {
-      _and = (!(model instanceof DriverMethodOutputAssignement));
+      _or = (!(model instanceof DriverMethodOutputAssignement));
     }
-    if (_and) {
+    if (_or) {
       super.completeDriverMethodOutputAssignement_CallOutput(model, assignment, context, acceptor);
       return;
     }
