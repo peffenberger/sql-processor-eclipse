@@ -136,7 +136,8 @@ class PojoJvmModelInferrer {
 		   			for (attr : allRequiredAttributes)
 	   					parameters += entity.toParameter(attr.name, attr.type)
 	   				addAnnotations(entity.constructorAnnotations.map[a|a.annotation])
-	   				body = '''super(«FOR attr : entity.parentRequiredAttributes SEPARATOR ","»«attr.name»«ENDFOR»);
+	   				body = '''
+	   				super(«FOR attr : entity.parentRequiredAttributes SEPARATOR ","»«attr.name»«ENDFOR»);
 	   				«FOR attr : entity.requiredAttributes»
 	   				set«attr.name.toFirstUpper»(«attr.name»);
 					«ENDFOR»
