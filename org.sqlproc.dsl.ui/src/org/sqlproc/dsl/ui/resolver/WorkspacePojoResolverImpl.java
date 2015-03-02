@@ -10,7 +10,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IContainer;
@@ -24,7 +27,6 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
@@ -48,20 +50,26 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
     @Inject
     ModelProperty modelProperty;
 
-    private List<URLClassLoader> allLoaders;
+    private Map<String, URLClassLoader> allLoaders;
 
     protected void init() {
         LOGGER.info("POJO START");
         List<IJavaProject> javaProjects = new ArrayList<IJavaProject>();
-        List<URLClassLoader> loaders = new ArrayList<URLClassLoader>();
+        Map<String, URLClassLoader> loaders = new LinkedHashMap<String, URLClassLoader>();
         IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
+        // [P/RemoteSystemsTempFiles, P/Servers, P/simple-jdbc-crud, P/simple-jdbc-dao]
         for (IProject project : projects) {
             try {
                 project.open(null /* IProgressMonitor */);
                 IJavaProject javaProject = JavaCore.create(project);
                 javaProjects.add(javaProject);
                 URLClassLoader classLoader = getProjectClassLoader(javaProject);
-                loaders.add(classLoader);
+                String pname = project.toString();
+                if (pname.startsWith("P/"))
+                    pname = pname.substring(2);
+                else
+                    pname = project.getName();
+                loaders.put(pname, classLoader);
             } catch (CoreException e) {
                 LOGGER.warn("Can't handle project '" + project + "': " + e.getMessage());
             }
@@ -91,27 +99,51 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
     }
 
     @Override
-    public List<URLClassLoader> getAllLoaders() {
+    public Class<?> loadClass(String name, URI uri) {
+        // platform:/resource/simple-jdbc-dao/src/main/resources/statements.meta
+        String pname = getProjectName(uri);
         if (allLoaders == null)
             init();
-        return allLoaders;
-    }
-
-    @Override
-    public Class<?> loadClass(String name) {
-        if (allLoaders == null)
-            init();
-        for (URLClassLoader loader : allLoaders) {
+        boolean retry = false;
+        if (pname != null) {
+            URLClassLoader loader = allLoaders.get(pname);
+            if (loader != null) {
+                try {
+                    return loader.loadClass(name);
+                } catch (ClassNotFoundException ignore) {
+                }
+                // for the case a new project is opened
+                init();
+                loader = allLoaders.get(pname);
+                if (loader != null) {
+                    try {
+                        return loader.loadClass(name);
+                    } catch (ClassNotFoundException ignore) {
+                    }
+                } else {
+                    retry = true;
+                }
+            } else {
+                retry = true;
+            }
+        }
+        if (!retry)
+            return null;
+        for (Entry<String, URLClassLoader> e : allLoaders.entrySet()) {
             try {
-                return loader.loadClass(name);
+                Class<?> clazz = e.getValue().loadClass(name);
+                LOGGER.warn("Found " + name + "(" + uri + ") in " + e.getKey());
+                return clazz;
             } catch (ClassNotFoundException ignore) {
             }
         }
         // for the case a new project is opened
         init();
-        for (URLClassLoader loader : allLoaders) {
+        for (Entry<String, URLClassLoader> e : allLoaders.entrySet()) {
             try {
-                return loader.loadClass(name);
+                Class<?> clazz = e.getValue().loadClass(name);
+                LOGGER.warn("Found " + name + "(" + uri + ") in " + e.getKey());
+                return clazz;
             } catch (ClassNotFoundException ignore) {
             }
         }
@@ -120,10 +152,11 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
     }
 
     @Override
-    public PropertyDescriptor[] getPropertyDescriptors(String name) {
+    public PropertyDescriptor[] getPropertyDescriptors(String name, URI uri) {
+        // platform:/resource/simple-jdbc-dao/src/main/resources/statements.meta
         if (allLoaders == null)
             init();
-        Class<?> beanClass = loadClass(name);
+        Class<?> beanClass = loadClass(name, uri);
         if (beanClass == null)
             return null;
 
@@ -162,7 +195,7 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
     }
 
     @Override
-    public List<Class<?>> getPojoClasses() {
+    public List<Class<?>> getPojoClasses(URI uri) {
         List<Class<?>> pojos = new ArrayList<Class<?>>();
         IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
         if (editorPart != null) {
@@ -204,7 +237,7 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
         return pojos;
     }
 
-    // 0000000a org.sqlproc.dsl.processorDsl.impl.TableDefinitionImpl@d452db (name: person, table: PERSON)
+    // 0000000a org.sqlproc.meta.processorMeta.impl.TableDefinitionImpl@d452db (name: person, table: PERSON)
     // 0000000b org.eclipse.xtext.linking.lazy.LazyLinkingResource@1386e14
     // uri='platform:/resource/simple-jdbc-all/src/main/resources/definitions.qry'
     // 0000000c platform:/resource/simple-jdbc-all/src/main/resources/definitions.qry
@@ -217,9 +250,7 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
     // 0000000j L/simple-jdbc-all/src/main/resources/hsqldb.ddl
 
     @Override
-    public InputStream getFile(EObject model, String filename) {
-        Resource resource = model.eResource();
-        URI uri = resource.getURI();
+    public InputStream getFile(String filename, URI uri) {
         if (uri.isPlatformResource()) {
             IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
             IFile modelFile = root.getFile(new Path(uri.toPlatformString(false)));
@@ -236,5 +267,21 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
         }
         LOGGER.warn("Can't find file '" + filename + "' in project");
         return null;
+    }
+
+    private static final String PREFIX1 = "platform:/resource/";
+    private static final int PLEN1 = PREFIX1.length();
+
+    private String getProjectName(URI uri) {
+        // platform:/resource/simple-jdbc-dao/src/main/resources/statements.meta
+        if (uri == null)
+            return null;
+        String name = uri.toString();
+        if (name.startsWith(PREFIX1))
+            name = name.substring(PLEN1);
+        int ix = name.indexOf("/");
+        if (ix >= 0)
+            name = name.substring(0, ix);
+        return name;
     }
 }

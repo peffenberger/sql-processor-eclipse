@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.templates.SimpleTemplateVariableResolver;
 import org.eclipse.jface.text.templates.TemplateContext;
@@ -585,7 +586,8 @@ public class ProcessorDslTemplateContextType extends XtextTemplateContextType {
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             if (artifacts != null && pojoResolver.isResolvePojo(artifacts)) {
-                List<Class<?>> pojoClasses = pojoResolver.getPojoClasses();
+                URI uri = (artifacts.eResource() != null) ? artifacts.eResource().getURI() : null;
+                List<Class<?>> pojoClasses = pojoResolver.getPojoClasses(uri);
                 return getPojoDefinitions(pojoClasses);
             }
             return super.resolve(context);

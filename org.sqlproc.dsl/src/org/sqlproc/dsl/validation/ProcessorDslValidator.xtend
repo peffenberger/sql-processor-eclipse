@@ -51,6 +51,7 @@ import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import org.sqlproc.dsl.generator.ProcessorGeneratorUtils
 import org.sqlproc.dsl.processorDsl.DirectiveProperties
 import org.sqlproc.dsl.processorDsl.PojoDirective
+import org.eclipse.emf.common.util.URI
 
 enum ValidationResult {
 	OK, WARNING, ERROR
@@ -151,7 +152,8 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
 
     @Check
     def checkUniquePojoDefinition(PojoDefinition pojoDefinition) {
-        if (isResolvePojo(pojoDefinition) && !checkClass(getClass(pojoDefinition)))
+    	val URI uri = pojoDefinition.eResource?.URI
+        if (isResolvePojo(pojoDefinition) && !checkClass(getClass(pojoDefinition), uri))
             error("Class name : " + getClass(pojoDefinition) + " not exists",
                     ProcessorDslPackage.Literals.POJO_DEFINITION__NAME)
         if (!(pojoDefinition.rootContainer instanceof Artifacts))
@@ -237,11 +239,11 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
         return filteredModifiers
     }
 
-    def checkClass(String className) {
+    def checkClass(String className, URI uri) {
         if (className == null || pojoResolverFactory.getPojoResolver() == null)
             return true
 
-        val clazz = pojoResolverFactory.getPojoResolver().loadClass(className)
+        val clazz = pojoResolverFactory.getPojoResolver().loadClass(className, uri)
         return clazz != null
     }
 
@@ -270,6 +272,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
         val columnName = Utils.getName(column)
         if (Utils.isNumber(columnName))
             return
+        val URI uri = column.eResource?.URI
         val statement = column.getContainerOfType(typeof(MetaStatement))
         val artifacts = statement.getContainerOfType(typeof(Artifacts))
         
@@ -293,7 +296,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
                 scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS), pojoName)
         val columnUsageClass = if (pojo != null) getClass(pojo)
         if (columnUsageClass != null) {
-            switch (checkClassProperty(columnUsageClass, columnName)) {
+            switch (checkClassProperty(columnUsageClass, columnName, uri)) {
             case ValidationResult.WARNING:
                 warning("Problem property : " + columnName + "[" + columnUsageClass + "]",
                         ProcessorDslPackage.Literals.COLUMN__COLUMNS)
@@ -313,6 +316,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
     def checkIdentifier(Identifier identifier) {
         if (!isResolvePojo(identifier))
             return
+        val URI uri = identifier.eResource?.URI
         val identifierName = identifier.getName()
         val statement = identifier.getContainerOfType(typeof(MetaStatement))
         val artifacts = statement.getContainerOfType(typeof(Artifacts))
@@ -337,7 +341,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
                 scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS), pojoName)
         val identifierUsageClass = if (pojo != null) getClass(pojo)
         if (identifierUsageClass != null) {
-            switch (checkClassProperty(identifierUsageClass, identifierName)) {
+            switch (checkClassProperty(identifierUsageClass, identifierName, uri)) {
             case ValidationResult.WARNING:
                 warning("Problem property : " + identifierName + "[" + identifierUsageClass + "]",
                         ProcessorDslPackage.Literals.IDENTIFIER__NAME)
@@ -358,6 +362,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
     def checkConstant(Constant constant) {
         if (!isResolvePojo(constant))
             return
+        val URI uri = constant.eResource?.URI
         val statement = constant.getContainerOfType(typeof(MetaStatement))
         val artifacts = statement.getContainerOfType(typeof(Artifacts))
 
@@ -381,7 +386,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
                 scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS), pojoName)
         val constantUsageClass = if (pojo != null) getClass(pojo)
         if (constantUsageClass != null) {
-            switch (checkClassProperty(constantUsageClass, constant.getName())) {
+            switch (checkClassProperty(constantUsageClass, constant.getName(), uri)) {
             case ValidationResult.WARNING:
                 warning("Problem property : " + constant.getName() + "[" + constantUsageClass + "]",
                         ProcessorDslPackage.Literals.CONSTANT__NAME)
@@ -405,6 +410,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
         val columnName = Utils.getName(column)
         if (Utils.isNumber(columnName))
             return
+        val URI uri = column.eResource?.URI
         val rule = column.getContainerOfType(typeof(MetaStatement))
         val artifacts = rule.getContainerOfType(typeof(Artifacts))
 
@@ -428,7 +434,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
                 scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS), pojoName)
         val mappingUsageClass = if (pojo != null) getClass(pojo)
         if (mappingUsageClass != null) {
-            switch (checkClassProperty(mappingUsageClass, columnName)) {
+            switch (checkClassProperty(mappingUsageClass, columnName, uri)) {
             case ValidationResult.WARNING:
                 warning("Problem property : " + columnName + "[" + mappingUsageClass + "]",
                         ProcessorDslPackage.Literals.MAPPING_COLUMN__ITEMS)
@@ -585,12 +591,12 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
         return false
     }
 
-    def ValidationResult checkClassProperty(String className, String property) {
+    def ValidationResult checkClassProperty(String className, String property, URI uri) {
         if (property == null || isNumber(property) || pojoResolverFactory.getPojoResolver() == null)
             return ValidationResult.OK
         if (className == null)
             return ValidationResult.ERROR
-        var descriptors = pojoResolverFactory.getPojoResolver().getPropertyDescriptors(className)
+        var descriptors = pojoResolverFactory.getPojoResolver().getPropertyDescriptors(className, uri)
         if (descriptors == null) {
             return ValidationResult.WARNING
         }
@@ -612,7 +618,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
             descriptor.name == _checkProperty
         ]
         if (innerDesriptor == null) {
-            val clazz = pojoResolverFactory.getPojoResolver().loadClass(className)
+            val clazz = pojoResolverFactory.getPojoResolver().loadClass(className, uri)
             if (clazz != null && Modifier.isAbstract(clazz.getModifiers()))
                 return ValidationResult.WARNING
             return ValidationResult.ERROR
@@ -626,7 +632,7 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
                 innerClass = type.getActualTypeArguments().head as Class<?>
                 if (isPrimitive(innerClass))
                     return ValidationResult.ERROR
-                return checkClassProperty(innerClass.getName(), innerProperty)
+                return checkClassProperty(innerClass.getName(), innerProperty, uri)
             } else if (typeof(Collection).isAssignableFrom(innerClass)) {
                 val type = innerDesriptor.getReadMethod().getGenericReturnType() as ParameterizedType
                 if (type.getActualTypeArguments() == null || type.getActualTypeArguments().length == 0)
@@ -634,11 +640,11 @@ class ProcessorDslValidator extends AbstractProcessorDslValidator {
                 innerClass = type.getActualTypeArguments().head as Class<?>
                 if (isPrimitive(innerClass))
                     return ValidationResult.ERROR
-                return checkClassProperty(innerClass.getName(), innerProperty)
+                return checkClassProperty(innerClass.getName(), innerProperty, uri)
             } else {
                 if (isPrimitive(innerClass))
                     return ValidationResult.ERROR
-                return checkClassProperty(innerClass.getName(), innerProperty)
+                return checkClassProperty(innerClass.getName(), innerProperty, uri)
             }
         }
         return ValidationResult.OK

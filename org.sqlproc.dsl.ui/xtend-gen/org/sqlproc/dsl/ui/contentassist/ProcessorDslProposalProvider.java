@@ -306,13 +306,19 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     final String prefix = _xifexpression_3;
     boolean _notEquals_2 = (!Objects.equal(pojoDefinition, null));
     if (_notEquals_2) {
+      Resource _eResource = model.eResource();
+      URI _uRI = null;
+      if (_eResource!=null) {
+        _uRI=_eResource.getURI();
+      }
+      final URI uri = _uRI;
       String _class = this.getClass(pojoDefinition);
-      final String clazz = this.getClassName(_class, prefix);
+      final String clazz = this.getClassName(_class, prefix, uri);
       boolean _equals_3 = Objects.equal(clazz, null);
       if (_equals_3) {
         return false;
       }
-      final PropertyDescriptor[] descriptors = this.pojoResolver.getPropertyDescriptors(clazz);
+      final PropertyDescriptor[] descriptors = this.pojoResolver.getPropertyDescriptors(clazz, uri);
       boolean _equals_4 = Objects.equal(descriptors, null);
       if (_equals_4) {
         return false;
@@ -465,13 +471,19 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     final boolean _cutPrefix = cutPrefix;
     boolean _notEquals_3 = (!Objects.equal(pojoDefinition, null));
     if (_notEquals_3) {
+      Resource _eResource = model.eResource();
+      URI _uRI = null;
+      if (_eResource!=null) {
+        _uRI=_eResource.getURI();
+      }
+      final URI uri = _uRI;
       String _class = this.getClass(pojoDefinition);
-      final String clazz = this.getClassName(_class, prefix);
+      final String clazz = this.getClassName(_class, prefix, uri);
       boolean _equals_3 = Objects.equal(clazz, null);
       if (_equals_3) {
         return;
       }
-      final PropertyDescriptor[] descriptors = this.pojoResolver.getPropertyDescriptors(clazz);
+      final PropertyDescriptor[] descriptors = this.pojoResolver.getPropertyDescriptors(clazz, uri);
       boolean _equals_4 = Objects.equal(descriptors, null);
       if (_equals_4) {
         super.completeMappingColumnName_Name(model, assignment, context, acceptor);
@@ -739,7 +751,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     return false;
   }
   
-  public String getClassName(final String baseClass, final String property) {
+  public String getClassName(final String baseClass, final String property, final URI uri) {
     boolean _or = false;
     boolean _equals = Objects.equal(baseClass, null);
     if (_equals) {
@@ -776,7 +788,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       String _substring_3 = checkProperty.substring(0, pos1);
       checkProperty = _substring_3;
     }
-    PropertyDescriptor[] descriptors = this.pojoResolver.getPropertyDescriptors(baseClass);
+    PropertyDescriptor[] descriptors = this.pojoResolver.getPropertyDescriptors(baseClass, uri);
     boolean _equals_2 = Objects.equal(descriptors, null);
     if (_equals_2) {
       return null;
@@ -822,7 +834,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         return null;
       }
       String _name = innerClass.getName();
-      return this.getClassName(_name, innerProperty);
+      return this.getClassName(_name, innerProperty, uri);
     } else {
       boolean _isAssignableFrom = Collection.class.isAssignableFrom(innerClass);
       if (_isAssignableFrom) {
@@ -851,14 +863,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
           return null;
         }
         String _name_1 = innerClass.getName();
-        return this.getClassName(_name_1, innerProperty);
+        return this.getClassName(_name_1, innerProperty, uri);
       } else {
         boolean _isPrimitive_2 = this.isPrimitive(innerClass);
         if (_isPrimitive_2) {
           return null;
         }
         String _name_2 = innerClass.getName();
-        return this.getClassName(_name_2, innerProperty);
+        return this.getClassName(_name_2, innerProperty, uri);
       }
     }
   }
