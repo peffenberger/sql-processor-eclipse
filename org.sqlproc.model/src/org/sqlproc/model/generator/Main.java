@@ -180,19 +180,21 @@ public class Main {
         Resource controlResource = set.getResource(URI.createURI(getFile(source, control)), true);
         set.getResources().add(controlResource);
         Resource pojoResource = null;
-        try {
-            pojoResource = set.getResource(URI.createURI(getFile(source, pojo)), true);
-            set.getResources().add(pojoResource);
-        } catch (Exception ex) {
-            System.out.println("Can't read " + getFile(source, pojo));
-        }
         Resource daoResource = null;
-        if (pojoResource != null) {
+        if (merge) {
             try {
-                daoResource = set.getResource(URI.createURI(getFile(source, dao)), true);
-                set.getResources().add(daoResource);
+                pojoResource = set.getResource(URI.createURI(getFile(source, pojo)), true);
+                set.getResources().add(pojoResource);
             } catch (Exception ex) {
-                System.out.println("Can't read " + getFile(source, dao));
+                System.out.println("Can't read " + getFile(source, pojo));
+            }
+            if (pojoResource != null) {
+                try {
+                    daoResource = set.getResource(URI.createURI(getFile(source, dao)), true);
+                    set.getResources().add(daoResource);
+                } catch (Exception ex) {
+                    System.out.println("Can't read " + getFile(source, dao));
+                }
             }
         }
 
@@ -276,11 +278,13 @@ public class Main {
             return;
         }
 
+        System.out.println("Going to generate " + pojo);
         String pojoDefinitions = Utils.generatePojo(definitions, pojoPackage,
                 ((XtextResource) controlResource).getSerializer(), dbResolver, scopeProvider, modelProperty);
         fileAccess.generateFile(pojo, "package " + pojoPackageName + " {\n" + pojoDefinitions + "}");
         System.out.println(pojo + " generation finished.");
 
+        System.out.println("Going to generate " + dao);
         String daoDefinitions = Utils.generateDao(definitions, daoPackage,
                 ((XtextResource) controlResource).getSerializer(), dbResolver, scopeProvider, modelProperty);
         fileAccess.generateFile(dao, "package " + daoPackageName + " {\n" + daoDefinitions + "}");

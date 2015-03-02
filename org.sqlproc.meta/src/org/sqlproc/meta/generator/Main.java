@@ -127,11 +127,13 @@ public class Main {
         Resource controlResource = set.getResource(URI.createURI(getFile(source, control)), true);
         set.getResources().add(controlResource);
         Resource sqlResource = null;
-        try {
-            sqlResource = set.getResource(URI.createURI(getFile(source, sql)), true);
-            set.getResources().add(sqlResource);
-        } catch (Exception ex) {
-            System.out.println("Can't read " + getFile(source, sql));
+        if (merge) {
+            try {
+                sqlResource = set.getResource(URI.createURI(getFile(source, sql)), true);
+                set.getResources().add(sqlResource);
+            } catch (Exception ex) {
+                System.out.println("Can't read " + getFile(source, sql));
+            }
         }
 
         System.out.println("Going to validate " + controlResource);
@@ -176,6 +178,7 @@ public class Main {
             }
         }
 
+        System.out.println("Going to generate " + sql);
         String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions, statements,
                 ((XtextResource) controlResource).getSerializer());
         fileAccess.generateFile(sql, metaDefinitions);

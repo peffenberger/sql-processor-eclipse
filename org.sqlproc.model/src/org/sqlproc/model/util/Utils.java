@@ -388,7 +388,7 @@ public class Utils {
 
     public static String generatePojo(Artifacts artifacts, Package packagex, ISerializer serializer,
             DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty) {
-        if (artifacts == null || !dbResolver.isResolveDb(artifacts) || packagex == null)
+        if (artifacts == null || !dbResolver.isResolveDb(artifacts))
             return null;
         if (serializer == null)
             serializer = ((XtextResource) packagex.eResource()).getSerializer();
