@@ -4709,8 +4709,8 @@ public class InternalProcessorModelLexer extends Lexer {
         try {
             int _type = RULE_LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50376:13: ( '(' )
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50376:15: '('
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51188:13: ( '(' )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51188:15: '('
             {
             match('('); 
 
@@ -4729,8 +4729,8 @@ public class InternalProcessorModelLexer extends Lexer {
         try {
             int _type = RULE_RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50378:13: ( ')' )
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50378:15: ')'
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51190:13: ( ')' )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51190:15: ')'
             {
             match(')'); 
 
@@ -4749,8 +4749,8 @@ public class InternalProcessorModelLexer extends Lexer {
         try {
             int _type = RULE_COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50380:12: ( ',' )
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50380:14: ','
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51192:12: ( ',' )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51192:14: ','
             {
             match(','); 
 
@@ -4769,10 +4769,10 @@ public class InternalProcessorModelLexer extends Lexer {
         try {
             int _type = RULE_HEX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50382:10: ( ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )? )
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50382:12: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51194:10: ( ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )? )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51194:12: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
             {
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50382:12: ( '0x' | '0X' )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51194:12: ( '0x' | '0X' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -4800,7 +4800,7 @@ public class InternalProcessorModelLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50382:13: '0x'
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51194:13: '0x'
                     {
                     match("0x"); 
 
@@ -4808,7 +4808,7 @@ public class InternalProcessorModelLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50382:18: '0X'
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51194:18: '0X'
                     {
                     match("0X"); 
 
@@ -4818,7 +4818,7 @@ public class InternalProcessorModelLexer extends Lexer {
 
             }
 
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50382:24: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51194:24: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+
             int cnt2=0;
             loop2:
             do {
@@ -4856,7 +4856,7 @@ public class InternalProcessorModelLexer extends Lexer {
                 cnt2++;
             } while (true);
 
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50382:58: ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51194:58: ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -4865,10 +4865,10 @@ public class InternalProcessorModelLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50382:59: '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51194:59: '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
                     {
                     match('#'); 
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50382:63: ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51194:63: ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
                     int alt3=2;
                     int LA3_0 = input.LA(1);
 
@@ -4886,7 +4886,7 @@ public class InternalProcessorModelLexer extends Lexer {
                     }
                     switch (alt3) {
                         case 1 :
-                            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50382:64: ( 'b' | 'B' ) ( 'i' | 'I' )
+                            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51194:64: ( 'b' | 'B' ) ( 'i' | 'I' )
                             {
                             if ( input.LA(1)=='B'||input.LA(1)=='b' ) {
                                 input.consume();
@@ -4910,7 +4910,7 @@ public class InternalProcessorModelLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50382:84: ( 'l' | 'L' )
+                            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51194:84: ( 'l' | 'L' )
                             {
                             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
                                 input.consume();
@@ -4949,11 +4949,11 @@ public class InternalProcessorModelLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50384:10: ( '0' .. '9' ( '0' .. '9' | '_' )* )
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50384:12: '0' .. '9' ( '0' .. '9' | '_' )*
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51196:10: ( '0' .. '9' ( '0' .. '9' | '_' )* )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51196:12: '0' .. '9' ( '0' .. '9' | '_' )*
             {
             matchRange('0','9'); 
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50384:21: ( '0' .. '9' | '_' )*
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51196:21: ( '0' .. '9' | '_' )*
             loop5:
             do {
                 int alt5=2;
@@ -5002,11 +5002,11 @@ public class InternalProcessorModelLexer extends Lexer {
         try {
             int _type = RULE_DECIMAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50386:14: ( RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )? )
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50386:16: RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51198:14: ( RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )? )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51198:16: RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
             {
             mRULE_INT(); 
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50386:25: ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )?
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51198:25: ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -5015,7 +5015,7 @@ public class InternalProcessorModelLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50386:26: ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51198:26: ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT
                     {
                     if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                         input.consume();
@@ -5026,7 +5026,7 @@ public class InternalProcessorModelLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50386:36: ( '+' | '-' )?
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51198:36: ( '+' | '-' )?
                     int alt6=2;
                     int LA6_0 = input.LA(1);
 
@@ -5059,7 +5059,7 @@ public class InternalProcessorModelLexer extends Lexer {
 
             }
 
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50386:58: ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51198:58: ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
             int alt8=3;
             int LA8_0 = input.LA(1);
 
@@ -5071,7 +5071,7 @@ public class InternalProcessorModelLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50386:59: ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' )
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51198:59: ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' )
                     {
                     if ( input.LA(1)=='B'||input.LA(1)=='b' ) {
                         input.consume();
@@ -5095,7 +5095,7 @@ public class InternalProcessorModelLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50386:87: ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' )
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51198:87: ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' )
                     {
                     if ( input.LA(1)=='D'||input.LA(1)=='F'||input.LA(1)=='L'||input.LA(1)=='d'||input.LA(1)=='f'||input.LA(1)=='l' ) {
                         input.consume();
@@ -5128,10 +5128,10 @@ public class InternalProcessorModelLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50388:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )* )
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50388:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51200:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )* )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51200:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
             {
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50388:11: ( '^' )?
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51200:11: ( '^' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -5140,7 +5140,7 @@ public class InternalProcessorModelLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50388:11: '^'
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51200:11: '^'
                     {
                     match('^'); 
 
@@ -5158,7 +5158,7 @@ public class InternalProcessorModelLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50388:44: ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51200:44: ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
             loop10:
             do {
                 int alt10=2;
@@ -5207,10 +5207,10 @@ public class InternalProcessorModelLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )? | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )? ) )
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )? | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )? )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )? | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )? ) )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )? | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )? )
             {
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )? | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )? )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )? | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )? )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -5228,10 +5228,10 @@ public class InternalProcessorModelLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )?
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* ( '\"' )?
                     {
                     match('\"'); 
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop11:
                     do {
                         int alt11=3;
@@ -5247,7 +5247,7 @@ public class InternalProcessorModelLexer extends Lexer {
 
                         switch (alt11) {
                     	case 1 :
-                    	    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:21: '\\\\' .
+                    	    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -5255,7 +5255,7 @@ public class InternalProcessorModelLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -5275,7 +5275,7 @@ public class InternalProcessorModelLexer extends Lexer {
                         }
                     } while (true);
 
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:44: ( '\"' )?
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:44: ( '\"' )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -5284,7 +5284,7 @@ public class InternalProcessorModelLexer extends Lexer {
                     }
                     switch (alt12) {
                         case 1 :
-                            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:44: '\"'
+                            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:44: '\"'
                             {
                             match('\"'); 
 
@@ -5297,10 +5297,10 @@ public class InternalProcessorModelLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:49: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )?
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:49: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' )?
                     {
                     match('\''); 
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:54: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:54: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop13:
                     do {
                         int alt13=3;
@@ -5316,7 +5316,7 @@ public class InternalProcessorModelLexer extends Lexer {
 
                         switch (alt13) {
                     	case 1 :
-                    	    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:55: '\\\\' .
+                    	    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:55: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -5324,7 +5324,7 @@ public class InternalProcessorModelLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:62: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:62: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -5344,7 +5344,7 @@ public class InternalProcessorModelLexer extends Lexer {
                         }
                     } while (true);
 
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:79: ( '\\'' )?
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:79: ( '\\'' )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -5353,7 +5353,7 @@ public class InternalProcessorModelLexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50390:79: '\\''
+                            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51202:79: '\\''
                             {
                             match('\''); 
 
@@ -5384,12 +5384,12 @@ public class InternalProcessorModelLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50392:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50392:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51204:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51204:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50392:24: ( options {greedy=false; } : . )*
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51204:24: ( options {greedy=false; } : . )*
             loop16:
             do {
                 int alt16=2;
@@ -5414,7 +5414,7 @@ public class InternalProcessorModelLexer extends Lexer {
 
                 switch (alt16) {
             	case 1 :
-            	    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50392:52: .
+            	    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51204:52: .
             	    {
             	    matchAny(); 
 
@@ -5444,12 +5444,12 @@ public class InternalProcessorModelLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50394:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50394:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51206:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51206:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50394:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51206:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop17:
             do {
                 int alt17=2;
@@ -5462,7 +5462,7 @@ public class InternalProcessorModelLexer extends Lexer {
 
                 switch (alt17) {
             	case 1 :
-            	    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50394:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51206:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -5482,7 +5482,7 @@ public class InternalProcessorModelLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50394:40: ( ( '\\r' )? '\\n' )?
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51206:40: ( ( '\\r' )? '\\n' )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -5491,9 +5491,9 @@ public class InternalProcessorModelLexer extends Lexer {
             }
             switch (alt19) {
                 case 1 :
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50394:41: ( '\\r' )? '\\n'
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51206:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50394:41: ( '\\r' )?
+                    // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51206:41: ( '\\r' )?
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -5502,7 +5502,7 @@ public class InternalProcessorModelLexer extends Lexer {
                     }
                     switch (alt18) {
                         case 1 :
-                            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50394:41: '\\r'
+                            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51206:41: '\\r'
                             {
                             match('\r'); 
 
@@ -5534,10 +5534,10 @@ public class InternalProcessorModelLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50396:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50396:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51208:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51208:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50396:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51208:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt20=0;
             loop20:
             do {
@@ -5591,8 +5591,8 @@ public class InternalProcessorModelLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50398:16: ( . )
-            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:50398:18: .
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51210:16: ( . )
+            // ../org.sqlproc.model.ui/src-gen/org/sqlproc/model/ui/contentassist/antlr/internal/InternalProcessorModel.g:51210:18: .
             {
             matchAny(); 
 

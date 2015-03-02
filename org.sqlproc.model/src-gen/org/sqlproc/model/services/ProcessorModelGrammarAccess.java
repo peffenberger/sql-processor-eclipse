@@ -3809,39 +3809,77 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Action cImplementsExtendsDirectiveOnlyPojosAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cOnlyPojosKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cOnlyPojosAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final CrossReference cOnlyPojosPojoEntityCrossReference_1_2_0 = (CrossReference)cOnlyPojosAssignment_1_2.eContents().get(0);
-		private final RuleCall cOnlyPojosPojoEntityValidIDParserRuleCall_1_2_0_1 = (RuleCall)cOnlyPojosPojoEntityCrossReference_1_2_0.eContents().get(1);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final RuleCall cLPARENTerminalRuleCall_1_2_0 = (RuleCall)cGroup_1_2.eContents().get(0);
+		private final Assignment cOnlyPojosAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final CrossReference cOnlyPojosPojoEntityCrossReference_1_2_1_0 = (CrossReference)cOnlyPojosAssignment_1_2_1.eContents().get(0);
+		private final RuleCall cOnlyPojosPojoEntityValidIDParserRuleCall_1_2_1_0_1 = (RuleCall)cOnlyPojosPojoEntityCrossReference_1_2_1_0.eContents().get(1);
+		private final Group cGroup_1_2_2 = (Group)cGroup_1_2.eContents().get(2);
+		private final RuleCall cCOMMATerminalRuleCall_1_2_2_0 = (RuleCall)cGroup_1_2_2.eContents().get(0);
+		private final Assignment cOnlyPojosAssignment_1_2_2_1 = (Assignment)cGroup_1_2_2.eContents().get(1);
+		private final CrossReference cOnlyPojosPojoEntityCrossReference_1_2_2_1_0 = (CrossReference)cOnlyPojosAssignment_1_2_2_1.eContents().get(0);
+		private final RuleCall cOnlyPojosPojoEntityValidIDParserRuleCall_1_2_2_1_0_1 = (RuleCall)cOnlyPojosPojoEntityCrossReference_1_2_2_1_0.eContents().get(1);
+		private final RuleCall cRPARENTerminalRuleCall_1_2_3 = (RuleCall)cGroup_1_2.eContents().get(3);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
 		private final Action cImplementsExtendsDirectiveOnlyDaosAction_2_0 = (Action)cGroup_2.eContents().get(0);
 		private final Keyword cOnlyDaosKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final Assignment cOnlyDaosAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
-		private final CrossReference cOnlyDaosDaoEntityCrossReference_2_2_0 = (CrossReference)cOnlyDaosAssignment_2_2.eContents().get(0);
-		private final RuleCall cOnlyDaosDaoEntityValidIDParserRuleCall_2_2_0_1 = (RuleCall)cOnlyDaosDaoEntityCrossReference_2_2_0.eContents().get(1);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final RuleCall cLPARENTerminalRuleCall_2_2_0 = (RuleCall)cGroup_2_2.eContents().get(0);
+		private final Assignment cOnlyDaosAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final CrossReference cOnlyDaosDaoEntityCrossReference_2_2_1_0 = (CrossReference)cOnlyDaosAssignment_2_2_1.eContents().get(0);
+		private final RuleCall cOnlyDaosDaoEntityValidIDParserRuleCall_2_2_1_0_1 = (RuleCall)cOnlyDaosDaoEntityCrossReference_2_2_1_0.eContents().get(1);
+		private final Group cGroup_2_2_2 = (Group)cGroup_2_2.eContents().get(2);
+		private final RuleCall cCOMMATerminalRuleCall_2_2_2_0 = (RuleCall)cGroup_2_2_2.eContents().get(0);
+		private final Assignment cOnlyDaosAssignment_2_2_2_1 = (Assignment)cGroup_2_2_2.eContents().get(1);
+		private final CrossReference cOnlyDaosDaoEntityCrossReference_2_2_2_1_0 = (CrossReference)cOnlyDaosAssignment_2_2_2_1.eContents().get(0);
+		private final RuleCall cOnlyDaosDaoEntityValidIDParserRuleCall_2_2_2_1_0_1 = (RuleCall)cOnlyDaosDaoEntityCrossReference_2_2_2_1_0.eContents().get(1);
+		private final RuleCall cRPARENTerminalRuleCall_2_2_3 = (RuleCall)cGroup_2_2.eContents().get(3);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
 		private final Action cImplementsExtendsDirectiveExceptPojosAction_3_0 = (Action)cGroup_3.eContents().get(0);
 		private final Keyword cExceptPojosKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
-		private final Assignment cExceptPojosAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
-		private final CrossReference cExceptPojosPojoEntityCrossReference_3_2_0 = (CrossReference)cExceptPojosAssignment_3_2.eContents().get(0);
-		private final RuleCall cExceptPojosPojoEntityValidIDParserRuleCall_3_2_0_1 = (RuleCall)cExceptPojosPojoEntityCrossReference_3_2_0.eContents().get(1);
+		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
+		private final RuleCall cLPARENTerminalRuleCall_3_2_0 = (RuleCall)cGroup_3_2.eContents().get(0);
+		private final Assignment cExceptPojosAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
+		private final CrossReference cExceptPojosPojoEntityCrossReference_3_2_1_0 = (CrossReference)cExceptPojosAssignment_3_2_1.eContents().get(0);
+		private final RuleCall cExceptPojosPojoEntityValidIDParserRuleCall_3_2_1_0_1 = (RuleCall)cExceptPojosPojoEntityCrossReference_3_2_1_0.eContents().get(1);
+		private final Group cGroup_3_2_2 = (Group)cGroup_3_2.eContents().get(2);
+		private final RuleCall cCOMMATerminalRuleCall_3_2_2_0 = (RuleCall)cGroup_3_2_2.eContents().get(0);
+		private final Assignment cExceptPojosAssignment_3_2_2_1 = (Assignment)cGroup_3_2_2.eContents().get(1);
+		private final CrossReference cExceptPojosPojoEntityCrossReference_3_2_2_1_0 = (CrossReference)cExceptPojosAssignment_3_2_2_1.eContents().get(0);
+		private final RuleCall cExceptPojosPojoEntityValidIDParserRuleCall_3_2_2_1_0_1 = (RuleCall)cExceptPojosPojoEntityCrossReference_3_2_2_1_0.eContents().get(1);
+		private final RuleCall cRPARENTerminalRuleCall_3_2_3 = (RuleCall)cGroup_3_2.eContents().get(3);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
 		private final Action cImplementsExtendsDirectiveExceptDaosAction_4_0 = (Action)cGroup_4.eContents().get(0);
 		private final Keyword cExceptDaosKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
-		private final Assignment cExceptDaosAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final CrossReference cExceptDaosDaoEntityCrossReference_4_2_0 = (CrossReference)cExceptDaosAssignment_4_2.eContents().get(0);
-		private final RuleCall cExceptDaosDaoEntityValidIDParserRuleCall_4_2_0_1 = (RuleCall)cExceptDaosDaoEntityCrossReference_4_2_0.eContents().get(1);
+		private final Group cGroup_4_2 = (Group)cGroup_4.eContents().get(2);
+		private final RuleCall cLPARENTerminalRuleCall_4_2_0 = (RuleCall)cGroup_4_2.eContents().get(0);
+		private final Assignment cExceptDaosAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
+		private final CrossReference cExceptDaosDaoEntityCrossReference_4_2_1_0 = (CrossReference)cExceptDaosAssignment_4_2_1.eContents().get(0);
+		private final RuleCall cExceptDaosDaoEntityValidIDParserRuleCall_4_2_1_0_1 = (RuleCall)cExceptDaosDaoEntityCrossReference_4_2_1_0.eContents().get(1);
+		private final Group cGroup_4_2_2 = (Group)cGroup_4_2.eContents().get(2);
+		private final RuleCall cCOMMATerminalRuleCall_4_2_2_0 = (RuleCall)cGroup_4_2_2.eContents().get(0);
+		private final Assignment cExceptDaosAssignment_4_2_2_1 = (Assignment)cGroup_4_2_2.eContents().get(1);
+		private final CrossReference cExceptDaosDaoEntityCrossReference_4_2_2_1_0 = (CrossReference)cExceptDaosAssignment_4_2_2_1.eContents().get(0);
+		private final RuleCall cExceptDaosDaoEntityValidIDParserRuleCall_4_2_2_1_0_1 = (RuleCall)cExceptDaosDaoEntityCrossReference_4_2_2_1_0.eContents().get(1);
+		private final RuleCall cRPARENTerminalRuleCall_4_2_3 = (RuleCall)cGroup_4_2.eContents().get(3);
 		
 		//ImplementsExtendsDirective:
-		//	{ImplementsExtendsDirectiveGenerics} "#Generics" | {ImplementsExtendsDirectiveOnlyPojos} "#OnlyPojos"
-		//	onlyPojos+=[PojoEntity|ValidID]* | {ImplementsExtendsDirectiveOnlyDaos} "#OnlyDaos" onlyDaos+=[DaoEntity|ValidID]* |
-		//	{ImplementsExtendsDirectiveExceptPojos} "#ExceptPojos" exceptPojos+=[PojoEntity|ValidID]* |
-		//	{ImplementsExtendsDirectiveExceptDaos} "#ExceptDaos" exceptDaos+=[DaoEntity|ValidID]*;
+		//	{ImplementsExtendsDirectiveGenerics} "#Generics" | {ImplementsExtendsDirectiveOnlyPojos} "#OnlyPojos" (LPAREN
+		//	onlyPojos+=[PojoEntity|ValidID] (COMMA onlyPojos+=[PojoEntity|ValidID])* RPAREN)? |
+		//	{ImplementsExtendsDirectiveOnlyDaos} "#OnlyDaos" (LPAREN onlyDaos+=[DaoEntity|ValidID] (COMMA
+		//	onlyDaos+=[DaoEntity|ValidID])* RPAREN)? | {ImplementsExtendsDirectiveExceptPojos} "#ExceptPojos" (LPAREN
+		//	exceptPojos+=[PojoEntity|ValidID] (COMMA exceptPojos+=[PojoEntity|ValidID])* RPAREN)? |
+		//	{ImplementsExtendsDirectiveExceptDaos} "#ExceptDaos" (LPAREN exceptDaos+=[DaoEntity|ValidID] (COMMA
+		//	exceptDaos+=[DaoEntity|ValidID])* RPAREN)?;
 		public ParserRule getRule() { return rule; }
 
-		//{ImplementsExtendsDirectiveGenerics} "#Generics" | {ImplementsExtendsDirectiveOnlyPojos} "#OnlyPojos"
-		//onlyPojos+=[PojoEntity|ValidID]* | {ImplementsExtendsDirectiveOnlyDaos} "#OnlyDaos" onlyDaos+=[DaoEntity|ValidID]* |
-		//{ImplementsExtendsDirectiveExceptPojos} "#ExceptPojos" exceptPojos+=[PojoEntity|ValidID]* |
-		//{ImplementsExtendsDirectiveExceptDaos} "#ExceptDaos" exceptDaos+=[DaoEntity|ValidID]*
+		//{ImplementsExtendsDirectiveGenerics} "#Generics" | {ImplementsExtendsDirectiveOnlyPojos} "#OnlyPojos" (LPAREN
+		//onlyPojos+=[PojoEntity|ValidID] (COMMA onlyPojos+=[PojoEntity|ValidID])* RPAREN)? |
+		//{ImplementsExtendsDirectiveOnlyDaos} "#OnlyDaos" (LPAREN onlyDaos+=[DaoEntity|ValidID] (COMMA
+		//onlyDaos+=[DaoEntity|ValidID])* RPAREN)? | {ImplementsExtendsDirectiveExceptPojos} "#ExceptPojos" (LPAREN
+		//exceptPojos+=[PojoEntity|ValidID] (COMMA exceptPojos+=[PojoEntity|ValidID])* RPAREN)? |
+		//{ImplementsExtendsDirectiveExceptDaos} "#ExceptDaos" (LPAREN exceptDaos+=[DaoEntity|ValidID] (COMMA
+		//exceptDaos+=[DaoEntity|ValidID])* RPAREN)?
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//{ImplementsExtendsDirectiveGenerics} "#Generics"
@@ -3853,7 +3891,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"#Generics"
 		public Keyword getGenericsKeyword_0_1() { return cGenericsKeyword_0_1; }
 
-		//{ImplementsExtendsDirectiveOnlyPojos} "#OnlyPojos" onlyPojos+=[PojoEntity|ValidID]*
+		//{ImplementsExtendsDirectiveOnlyPojos} "#OnlyPojos" (LPAREN onlyPojos+=[PojoEntity|ValidID] (COMMA
+		//onlyPojos+=[PojoEntity|ValidID])* RPAREN)?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{ImplementsExtendsDirectiveOnlyPojos}
@@ -3862,16 +3901,41 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"#OnlyPojos"
 		public Keyword getOnlyPojosKeyword_1_1() { return cOnlyPojosKeyword_1_1; }
 
-		//onlyPojos+=[PojoEntity|ValidID]*
-		public Assignment getOnlyPojosAssignment_1_2() { return cOnlyPojosAssignment_1_2; }
+		//(=> LPAREN onlyPojos+=[PojoEntity|ValidID] (COMMA onlyPojos+=[PojoEntity|ValidID])* RPAREN)?
+		public Group getGroup_1_2() { return cGroup_1_2; }
+
+		//=> LPAREN
+		public RuleCall getLPARENTerminalRuleCall_1_2_0() { return cLPARENTerminalRuleCall_1_2_0; }
+
+		//onlyPojos+=[PojoEntity|ValidID]
+		public Assignment getOnlyPojosAssignment_1_2_1() { return cOnlyPojosAssignment_1_2_1; }
 
 		//[PojoEntity|ValidID]
-		public CrossReference getOnlyPojosPojoEntityCrossReference_1_2_0() { return cOnlyPojosPojoEntityCrossReference_1_2_0; }
+		public CrossReference getOnlyPojosPojoEntityCrossReference_1_2_1_0() { return cOnlyPojosPojoEntityCrossReference_1_2_1_0; }
 
 		//ValidID
-		public RuleCall getOnlyPojosPojoEntityValidIDParserRuleCall_1_2_0_1() { return cOnlyPojosPojoEntityValidIDParserRuleCall_1_2_0_1; }
+		public RuleCall getOnlyPojosPojoEntityValidIDParserRuleCall_1_2_1_0_1() { return cOnlyPojosPojoEntityValidIDParserRuleCall_1_2_1_0_1; }
 
-		//{ImplementsExtendsDirectiveOnlyDaos} "#OnlyDaos" onlyDaos+=[DaoEntity|ValidID]*
+		//(COMMA onlyPojos+=[PojoEntity|ValidID])*
+		public Group getGroup_1_2_2() { return cGroup_1_2_2; }
+
+		//COMMA
+		public RuleCall getCOMMATerminalRuleCall_1_2_2_0() { return cCOMMATerminalRuleCall_1_2_2_0; }
+
+		//onlyPojos+=[PojoEntity|ValidID]
+		public Assignment getOnlyPojosAssignment_1_2_2_1() { return cOnlyPojosAssignment_1_2_2_1; }
+
+		//[PojoEntity|ValidID]
+		public CrossReference getOnlyPojosPojoEntityCrossReference_1_2_2_1_0() { return cOnlyPojosPojoEntityCrossReference_1_2_2_1_0; }
+
+		//ValidID
+		public RuleCall getOnlyPojosPojoEntityValidIDParserRuleCall_1_2_2_1_0_1() { return cOnlyPojosPojoEntityValidIDParserRuleCall_1_2_2_1_0_1; }
+
+		//RPAREN
+		public RuleCall getRPARENTerminalRuleCall_1_2_3() { return cRPARENTerminalRuleCall_1_2_3; }
+
+		//{ImplementsExtendsDirectiveOnlyDaos} "#OnlyDaos" (LPAREN onlyDaos+=[DaoEntity|ValidID] (COMMA
+		//onlyDaos+=[DaoEntity|ValidID])* RPAREN)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//{ImplementsExtendsDirectiveOnlyDaos}
@@ -3880,16 +3944,41 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"#OnlyDaos"
 		public Keyword getOnlyDaosKeyword_2_1() { return cOnlyDaosKeyword_2_1; }
 
-		//onlyDaos+=[DaoEntity|ValidID]*
-		public Assignment getOnlyDaosAssignment_2_2() { return cOnlyDaosAssignment_2_2; }
+		//(=> LPAREN onlyDaos+=[DaoEntity|ValidID] (COMMA onlyDaos+=[DaoEntity|ValidID])* RPAREN)?
+		public Group getGroup_2_2() { return cGroup_2_2; }
+
+		//=> LPAREN
+		public RuleCall getLPARENTerminalRuleCall_2_2_0() { return cLPARENTerminalRuleCall_2_2_0; }
+
+		//onlyDaos+=[DaoEntity|ValidID]
+		public Assignment getOnlyDaosAssignment_2_2_1() { return cOnlyDaosAssignment_2_2_1; }
 
 		//[DaoEntity|ValidID]
-		public CrossReference getOnlyDaosDaoEntityCrossReference_2_2_0() { return cOnlyDaosDaoEntityCrossReference_2_2_0; }
+		public CrossReference getOnlyDaosDaoEntityCrossReference_2_2_1_0() { return cOnlyDaosDaoEntityCrossReference_2_2_1_0; }
 
 		//ValidID
-		public RuleCall getOnlyDaosDaoEntityValidIDParserRuleCall_2_2_0_1() { return cOnlyDaosDaoEntityValidIDParserRuleCall_2_2_0_1; }
+		public RuleCall getOnlyDaosDaoEntityValidIDParserRuleCall_2_2_1_0_1() { return cOnlyDaosDaoEntityValidIDParserRuleCall_2_2_1_0_1; }
 
-		//{ImplementsExtendsDirectiveExceptPojos} "#ExceptPojos" exceptPojos+=[PojoEntity|ValidID]*
+		//(COMMA onlyDaos+=[DaoEntity|ValidID])*
+		public Group getGroup_2_2_2() { return cGroup_2_2_2; }
+
+		//COMMA
+		public RuleCall getCOMMATerminalRuleCall_2_2_2_0() { return cCOMMATerminalRuleCall_2_2_2_0; }
+
+		//onlyDaos+=[DaoEntity|ValidID]
+		public Assignment getOnlyDaosAssignment_2_2_2_1() { return cOnlyDaosAssignment_2_2_2_1; }
+
+		//[DaoEntity|ValidID]
+		public CrossReference getOnlyDaosDaoEntityCrossReference_2_2_2_1_0() { return cOnlyDaosDaoEntityCrossReference_2_2_2_1_0; }
+
+		//ValidID
+		public RuleCall getOnlyDaosDaoEntityValidIDParserRuleCall_2_2_2_1_0_1() { return cOnlyDaosDaoEntityValidIDParserRuleCall_2_2_2_1_0_1; }
+
+		//RPAREN
+		public RuleCall getRPARENTerminalRuleCall_2_2_3() { return cRPARENTerminalRuleCall_2_2_3; }
+
+		//{ImplementsExtendsDirectiveExceptPojos} "#ExceptPojos" (LPAREN exceptPojos+=[PojoEntity|ValidID] (COMMA
+		//exceptPojos+=[PojoEntity|ValidID])* RPAREN)?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//{ImplementsExtendsDirectiveExceptPojos}
@@ -3898,16 +3987,41 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"#ExceptPojos"
 		public Keyword getExceptPojosKeyword_3_1() { return cExceptPojosKeyword_3_1; }
 
-		//exceptPojos+=[PojoEntity|ValidID]*
-		public Assignment getExceptPojosAssignment_3_2() { return cExceptPojosAssignment_3_2; }
+		//(=> LPAREN exceptPojos+=[PojoEntity|ValidID] (COMMA exceptPojos+=[PojoEntity|ValidID])* RPAREN)?
+		public Group getGroup_3_2() { return cGroup_3_2; }
+
+		//=> LPAREN
+		public RuleCall getLPARENTerminalRuleCall_3_2_0() { return cLPARENTerminalRuleCall_3_2_0; }
+
+		//exceptPojos+=[PojoEntity|ValidID]
+		public Assignment getExceptPojosAssignment_3_2_1() { return cExceptPojosAssignment_3_2_1; }
 
 		//[PojoEntity|ValidID]
-		public CrossReference getExceptPojosPojoEntityCrossReference_3_2_0() { return cExceptPojosPojoEntityCrossReference_3_2_0; }
+		public CrossReference getExceptPojosPojoEntityCrossReference_3_2_1_0() { return cExceptPojosPojoEntityCrossReference_3_2_1_0; }
 
 		//ValidID
-		public RuleCall getExceptPojosPojoEntityValidIDParserRuleCall_3_2_0_1() { return cExceptPojosPojoEntityValidIDParserRuleCall_3_2_0_1; }
+		public RuleCall getExceptPojosPojoEntityValidIDParserRuleCall_3_2_1_0_1() { return cExceptPojosPojoEntityValidIDParserRuleCall_3_2_1_0_1; }
 
-		//{ImplementsExtendsDirectiveExceptDaos} "#ExceptDaos" exceptDaos+=[DaoEntity|ValidID]*
+		//(COMMA exceptPojos+=[PojoEntity|ValidID])*
+		public Group getGroup_3_2_2() { return cGroup_3_2_2; }
+
+		//COMMA
+		public RuleCall getCOMMATerminalRuleCall_3_2_2_0() { return cCOMMATerminalRuleCall_3_2_2_0; }
+
+		//exceptPojos+=[PojoEntity|ValidID]
+		public Assignment getExceptPojosAssignment_3_2_2_1() { return cExceptPojosAssignment_3_2_2_1; }
+
+		//[PojoEntity|ValidID]
+		public CrossReference getExceptPojosPojoEntityCrossReference_3_2_2_1_0() { return cExceptPojosPojoEntityCrossReference_3_2_2_1_0; }
+
+		//ValidID
+		public RuleCall getExceptPojosPojoEntityValidIDParserRuleCall_3_2_2_1_0_1() { return cExceptPojosPojoEntityValidIDParserRuleCall_3_2_2_1_0_1; }
+
+		//RPAREN
+		public RuleCall getRPARENTerminalRuleCall_3_2_3() { return cRPARENTerminalRuleCall_3_2_3; }
+
+		//{ImplementsExtendsDirectiveExceptDaos} "#ExceptDaos" (LPAREN exceptDaos+=[DaoEntity|ValidID] (COMMA
+		//exceptDaos+=[DaoEntity|ValidID])* RPAREN)?
 		public Group getGroup_4() { return cGroup_4; }
 
 		//{ImplementsExtendsDirectiveExceptDaos}
@@ -3916,14 +4030,38 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"#ExceptDaos"
 		public Keyword getExceptDaosKeyword_4_1() { return cExceptDaosKeyword_4_1; }
 
-		//exceptDaos+=[DaoEntity|ValidID]*
-		public Assignment getExceptDaosAssignment_4_2() { return cExceptDaosAssignment_4_2; }
+		//(=> LPAREN exceptDaos+=[DaoEntity|ValidID] (COMMA exceptDaos+=[DaoEntity|ValidID])* RPAREN)?
+		public Group getGroup_4_2() { return cGroup_4_2; }
+
+		//=> LPAREN
+		public RuleCall getLPARENTerminalRuleCall_4_2_0() { return cLPARENTerminalRuleCall_4_2_0; }
+
+		//exceptDaos+=[DaoEntity|ValidID]
+		public Assignment getExceptDaosAssignment_4_2_1() { return cExceptDaosAssignment_4_2_1; }
 
 		//[DaoEntity|ValidID]
-		public CrossReference getExceptDaosDaoEntityCrossReference_4_2_0() { return cExceptDaosDaoEntityCrossReference_4_2_0; }
+		public CrossReference getExceptDaosDaoEntityCrossReference_4_2_1_0() { return cExceptDaosDaoEntityCrossReference_4_2_1_0; }
 
 		//ValidID
-		public RuleCall getExceptDaosDaoEntityValidIDParserRuleCall_4_2_0_1() { return cExceptDaosDaoEntityValidIDParserRuleCall_4_2_0_1; }
+		public RuleCall getExceptDaosDaoEntityValidIDParserRuleCall_4_2_1_0_1() { return cExceptDaosDaoEntityValidIDParserRuleCall_4_2_1_0_1; }
+
+		//(COMMA exceptDaos+=[DaoEntity|ValidID])*
+		public Group getGroup_4_2_2() { return cGroup_4_2_2; }
+
+		//COMMA
+		public RuleCall getCOMMATerminalRuleCall_4_2_2_0() { return cCOMMATerminalRuleCall_4_2_2_0; }
+
+		//exceptDaos+=[DaoEntity|ValidID]
+		public Assignment getExceptDaosAssignment_4_2_2_1() { return cExceptDaosAssignment_4_2_2_1; }
+
+		//[DaoEntity|ValidID]
+		public CrossReference getExceptDaosDaoEntityCrossReference_4_2_2_1_0() { return cExceptDaosDaoEntityCrossReference_4_2_2_1_0; }
+
+		//ValidID
+		public RuleCall getExceptDaosDaoEntityValidIDParserRuleCall_4_2_2_1_0_1() { return cExceptDaosDaoEntityValidIDParserRuleCall_4_2_2_1_0_1; }
+
+		//RPAREN
+		public RuleCall getRPARENTerminalRuleCall_4_2_3() { return cRPARENTerminalRuleCall_4_2_3; }
 	}
 
 	public class ImplementsElements extends AbstractParserRuleElementFinder {
@@ -6323,10 +6461,13 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImplementsExtendsDirective:
-	//	{ImplementsExtendsDirectiveGenerics} "#Generics" | {ImplementsExtendsDirectiveOnlyPojos} "#OnlyPojos"
-	//	onlyPojos+=[PojoEntity|ValidID]* | {ImplementsExtendsDirectiveOnlyDaos} "#OnlyDaos" onlyDaos+=[DaoEntity|ValidID]* |
-	//	{ImplementsExtendsDirectiveExceptPojos} "#ExceptPojos" exceptPojos+=[PojoEntity|ValidID]* |
-	//	{ImplementsExtendsDirectiveExceptDaos} "#ExceptDaos" exceptDaos+=[DaoEntity|ValidID]*;
+	//	{ImplementsExtendsDirectiveGenerics} "#Generics" | {ImplementsExtendsDirectiveOnlyPojos} "#OnlyPojos" (LPAREN
+	//	onlyPojos+=[PojoEntity|ValidID] (COMMA onlyPojos+=[PojoEntity|ValidID])* RPAREN)? |
+	//	{ImplementsExtendsDirectiveOnlyDaos} "#OnlyDaos" (LPAREN onlyDaos+=[DaoEntity|ValidID] (COMMA
+	//	onlyDaos+=[DaoEntity|ValidID])* RPAREN)? | {ImplementsExtendsDirectiveExceptPojos} "#ExceptPojos" (LPAREN
+	//	exceptPojos+=[PojoEntity|ValidID] (COMMA exceptPojos+=[PojoEntity|ValidID])* RPAREN)? |
+	//	{ImplementsExtendsDirectiveExceptDaos} "#ExceptDaos" (LPAREN exceptDaos+=[DaoEntity|ValidID] (COMMA
+	//	exceptDaos+=[DaoEntity|ValidID])* RPAREN)?;
 	public ImplementsExtendsDirectiveElements getImplementsExtendsDirectiveAccess() {
 		return pImplementsExtendsDirective;
 	}

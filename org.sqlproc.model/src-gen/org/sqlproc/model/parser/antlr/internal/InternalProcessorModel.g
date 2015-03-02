@@ -6644,6 +6644,32 @@ ruleImplementsExtendsDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_3, grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyPojosKeyword_1_1());
     }
+(((	RULE_LPAREN)=>this_LPAREN_4=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_4, grammarAccess.getImplementsExtendsDirectiveAccess().getLPARENTerminalRuleCall_1_2_0()); 
+    }
+)(
+(
+		{ 
+		  /* */ 
+		}
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementsExtendsDirectiveRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyPojosPojoEntityCrossReference_1_2_1_0()); 
+	    }
+		ruleValidID		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(this_COMMA_6=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_6, grammarAccess.getImplementsExtendsDirectiveAccess().getCOMMATerminalRuleCall_1_2_2_0()); 
+    }
 (
 (
 		{ 
@@ -6655,14 +6681,18 @@ ruleImplementsExtendsDirective returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyPojosPojoEntityCrossReference_1_2_0()); 
+	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyPojosPojoEntityCrossReference_1_2_2_1_0()); 
 	    }
 		ruleValidID		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*)
+))*this_RPAREN_8=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_8, grammarAccess.getImplementsExtendsDirectiveAccess().getRPARENTerminalRuleCall_1_2_3()); 
+    }
+)?)
     |((
 	{ 
 	  /* */ 
@@ -6672,9 +6702,35 @@ ruleImplementsExtendsDirective returns [EObject current=null]
             grammarAccess.getImplementsExtendsDirectiveAccess().getImplementsExtendsDirectiveOnlyDaosAction_2_0(),
             $current);
     }
-)	otherlv_6='#OnlyDaos' 
+)	otherlv_10='#OnlyDaos' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyDaosKeyword_2_1());
+    	newLeafNode(otherlv_10, grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyDaosKeyword_2_1());
+    }
+(((	RULE_LPAREN)=>this_LPAREN_11=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_11, grammarAccess.getImplementsExtendsDirectiveAccess().getLPARENTerminalRuleCall_2_2_0()); 
+    }
+)(
+(
+		{ 
+		  /* */ 
+		}
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementsExtendsDirectiveRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyDaosDaoEntityCrossReference_2_2_1_0()); 
+	    }
+		ruleValidID		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(this_COMMA_13=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_13, grammarAccess.getImplementsExtendsDirectiveAccess().getCOMMATerminalRuleCall_2_2_2_0()); 
     }
 (
 (
@@ -6687,14 +6743,18 @@ ruleImplementsExtendsDirective returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyDaosDaoEntityCrossReference_2_2_0()); 
+	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyDaosDaoEntityCrossReference_2_2_2_1_0()); 
 	    }
 		ruleValidID		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*)
+))*this_RPAREN_15=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_15, grammarAccess.getImplementsExtendsDirectiveAccess().getRPARENTerminalRuleCall_2_2_3()); 
+    }
+)?)
     |((
 	{ 
 	  /* */ 
@@ -6704,9 +6764,35 @@ ruleImplementsExtendsDirective returns [EObject current=null]
             grammarAccess.getImplementsExtendsDirectiveAccess().getImplementsExtendsDirectiveExceptPojosAction_3_0(),
             $current);
     }
-)	otherlv_9='#ExceptPojos' 
+)	otherlv_17='#ExceptPojos' 
     {
-    	newLeafNode(otherlv_9, grammarAccess.getImplementsExtendsDirectiveAccess().getExceptPojosKeyword_3_1());
+    	newLeafNode(otherlv_17, grammarAccess.getImplementsExtendsDirectiveAccess().getExceptPojosKeyword_3_1());
+    }
+(((	RULE_LPAREN)=>this_LPAREN_18=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_18, grammarAccess.getImplementsExtendsDirectiveAccess().getLPARENTerminalRuleCall_3_2_0()); 
+    }
+)(
+(
+		{ 
+		  /* */ 
+		}
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementsExtendsDirectiveRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptPojosPojoEntityCrossReference_3_2_1_0()); 
+	    }
+		ruleValidID		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(this_COMMA_20=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_20, grammarAccess.getImplementsExtendsDirectiveAccess().getCOMMATerminalRuleCall_3_2_2_0()); 
     }
 (
 (
@@ -6719,14 +6805,18 @@ ruleImplementsExtendsDirective returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptPojosPojoEntityCrossReference_3_2_0()); 
+	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptPojosPojoEntityCrossReference_3_2_2_1_0()); 
 	    }
 		ruleValidID		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*)
+))*this_RPAREN_22=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_22, grammarAccess.getImplementsExtendsDirectiveAccess().getRPARENTerminalRuleCall_3_2_3()); 
+    }
+)?)
     |((
 	{ 
 	  /* */ 
@@ -6736,9 +6826,35 @@ ruleImplementsExtendsDirective returns [EObject current=null]
             grammarAccess.getImplementsExtendsDirectiveAccess().getImplementsExtendsDirectiveExceptDaosAction_4_0(),
             $current);
     }
-)	otherlv_12='#ExceptDaos' 
+)	otherlv_24='#ExceptDaos' 
     {
-    	newLeafNode(otherlv_12, grammarAccess.getImplementsExtendsDirectiveAccess().getExceptDaosKeyword_4_1());
+    	newLeafNode(otherlv_24, grammarAccess.getImplementsExtendsDirectiveAccess().getExceptDaosKeyword_4_1());
+    }
+(((	RULE_LPAREN)=>this_LPAREN_25=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_25, grammarAccess.getImplementsExtendsDirectiveAccess().getLPARENTerminalRuleCall_4_2_0()); 
+    }
+)(
+(
+		{ 
+		  /* */ 
+		}
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementsExtendsDirectiveRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptDaosDaoEntityCrossReference_4_2_1_0()); 
+	    }
+		ruleValidID		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(this_COMMA_27=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_27, grammarAccess.getImplementsExtendsDirectiveAccess().getCOMMATerminalRuleCall_4_2_2_0()); 
     }
 (
 (
@@ -6751,14 +6867,18 @@ ruleImplementsExtendsDirective returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptDaosDaoEntityCrossReference_4_2_0()); 
+	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptDaosDaoEntityCrossReference_4_2_2_1_0()); 
 	    }
 		ruleValidID		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*))
+))*this_RPAREN_29=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_29, grammarAccess.getImplementsExtendsDirectiveAccess().getRPARENTerminalRuleCall_4_2_3()); 
+    }
+)?))
 ;
 
 

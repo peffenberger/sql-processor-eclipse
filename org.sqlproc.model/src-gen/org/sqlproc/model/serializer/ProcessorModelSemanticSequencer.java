@@ -2610,7 +2610,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (exceptDaos+=[DaoEntity|ValidID]*)
+	 *     ((exceptDaos+=[DaoEntity|ValidID] exceptDaos+=[DaoEntity|ValidID]*)?)
 	 */
 	protected void sequence_ImplementsExtendsDirective(EObject context, ImplementsExtendsDirectiveExceptDaos semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2619,7 +2619,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (exceptPojos+=[PojoEntity|ValidID]*)
+	 *     ((exceptPojos+=[PojoEntity|ValidID] exceptPojos+=[PojoEntity|ValidID]*)?)
 	 */
 	protected void sequence_ImplementsExtendsDirective(EObject context, ImplementsExtendsDirectiveExceptPojos semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2637,7 +2637,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (onlyDaos+=[DaoEntity|ValidID]*)
+	 *     ((onlyDaos+=[DaoEntity|ValidID] onlyDaos+=[DaoEntity|ValidID]*)?)
 	 */
 	protected void sequence_ImplementsExtendsDirective(EObject context, ImplementsExtendsDirectiveOnlyDaos semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2646,7 +2646,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (onlyPojos+=[PojoEntity|ValidID]*)
+	 *     ((onlyPojos+=[PojoEntity|ValidID] onlyPojos+=[PojoEntity|ValidID]*)?)
 	 */
 	protected void sequence_ImplementsExtendsDirective(EObject context, ImplementsExtendsDirectiveOnlyPojos semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

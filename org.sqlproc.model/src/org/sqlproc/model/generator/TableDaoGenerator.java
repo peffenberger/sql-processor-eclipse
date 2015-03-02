@@ -181,7 +181,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                     }
                     if (!ie.getDbTables().isEmpty()) {
                         buffer.append(NLINDENT).append("#OnlyDaos(");
-                        boolean first = false;
+                        boolean first = true;
                         for (String dbColumn : ie.getDbTables()) {
                             if (!first)
                                 buffer.append(",");
@@ -197,7 +197,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                     }
                     if (!ie.getDbNotTables().isEmpty()) {
                         buffer.append(NLINDENT).append("#ExceptDaos(");
-                        boolean first = false;
+                        boolean first = true;
                         for (String dbColumn : ie.getDbNotTables()) {
                             if (!first)
                                 buffer.append(",");
@@ -220,7 +220,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                     buffer.append(NLINDENT).append("#Generics");
                 if (!daoToExtends.getDbTables().isEmpty()) {
                     buffer.append(NLINDENT).append("#OnlyDaos(");
-                    boolean first = false;
+                    boolean first = true;
                     for (String dbColumn : daoToExtends.getDbTables()) {
                         if (!first)
                             buffer.append(",");
@@ -236,7 +236,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 }
                 if (!daoToExtends.getDbNotTables().isEmpty()) {
                     buffer.append(NLINDENT).append("#ExceptDaos(");
-                    boolean first = false;
+                    boolean first = true;
                     for (String dbColumn : daoToExtends.getDbNotTables()) {
                         if (!first)
                             buffer.append(",");

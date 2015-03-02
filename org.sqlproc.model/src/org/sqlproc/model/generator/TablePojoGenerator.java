@@ -915,6 +915,17 @@ public class TablePojoGenerator {
             boolean isSerializable = false;
             Set<String> serializables = new HashSet<String>();
             boolean oneMoreLine = false;
+
+            if (entityImports != null) {
+                for (String qualifiedName : entityImports) {
+                    buffer.append(NLINDENT).append("import ").append(qualifiedName);
+                }
+                oneMoreLine = true;
+            }
+            if (oneMoreLine) {
+                buffer.append("\n");
+            }
+
             if (!toImplements.isEmpty()) {
                 for (ImplementsExtends ie : toImplements.values()) {
                     JvmType type = ie.getToImplement();
@@ -950,7 +961,7 @@ public class TablePojoGenerator {
                         buffer.append(NLINDENT).append("#Generics");
                     if (!ie.getDbTables().isEmpty()) {
                         buffer.append(NLINDENT).append("#OnlyPojos(");
-                        boolean first = false;
+                        boolean first = true;
                         for (String dbTable : ie.getDbTables()) {
                             if (!first)
                                 buffer.append(",");
@@ -966,7 +977,7 @@ public class TablePojoGenerator {
                     }
                     if (!ie.getDbNotTables().isEmpty()) {
                         buffer.append(NLINDENT).append("#ExceptPojos(");
-                        boolean first = false;
+                        boolean first = true;
                         for (String dbTable : ie.getDbNotTables()) {
                             if (!first)
                                 buffer.append(",");
@@ -989,7 +1000,7 @@ public class TablePojoGenerator {
                     buffer.append(NLINDENT).append("#Generics");
                 if (!toExtends.getDbTables().isEmpty()) {
                     buffer.append(NLINDENT).append("#OnlyPojos(");
-                    boolean first = false;
+                    boolean first = true;
                     for (String dbTable : toExtends.getDbTables()) {
                         if (!first)
                             buffer.append(",");
@@ -1005,7 +1016,7 @@ public class TablePojoGenerator {
                 }
                 if (!toExtends.getDbNotTables().isEmpty()) {
                     buffer.append(NLINDENT).append("#ExceptPojos(");
-                    boolean first = false;
+                    boolean first = true;
                     for (String dbTable : toExtends.getDbNotTables()) {
                         if (!first)
                             buffer.append(",");
@@ -1025,11 +1036,6 @@ public class TablePojoGenerator {
             }
             if (oneMoreLine) {
                 buffer.append("\n");
-            }
-            if (entityImports != null) {
-                for (String qualifiedName : entityImports) {
-                    buffer.append(INDENT).append("import ").append(qualifiedName).append("\n");
-                }
             }
 
             // Enum
