@@ -174,8 +174,8 @@ class PojoJvmModelInferrer {
 	   				]
 	   				members += attr._toSetterExt(attr.name, attr.name, type, typeRef(entityType), attr.updateColumn1, attr.updateColumn2, 
 	   								attr.createColumn1, attr.createColumn2)
-		   			if (entity.hasOperators) {
-	   					val operSuffix = entity.operatorsSuffix ?: 'Op'
+		   			val operSuffix = entity.operatorsSuffix
+		   			if (operSuffix != null) {
 	   					members += entity.toField(attr.name + operSuffix, typeRef(String)) []
 		   				members += attr.toGetter(attr.name + operSuffix, typeRef(String))
 	   					members += attr.toSetter(attr.name + operSuffix, attr.name + operSuffix, typeRef(String))
