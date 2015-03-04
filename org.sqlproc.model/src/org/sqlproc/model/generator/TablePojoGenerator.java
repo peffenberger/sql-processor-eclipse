@@ -22,9 +22,16 @@ import java.util.TreeSet;
 import org.apache.log4j.Logger;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.serializer.ISerializer;
+import org.sqlproc.model.processorModel.AbstractEntity;
+import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.Artifacts;
+import org.sqlproc.model.processorModel.EnumEntity;
+import org.sqlproc.model.processorModel.Package;
+import org.sqlproc.model.processorModel.PojoEntity;
+import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.property.EnumAttribute;
 import org.sqlproc.model.property.ImplementsExtends;
@@ -894,7 +901,7 @@ public class TablePojoGenerator {
 
     public String getPojoDefinitions(ModelProperty modelProperty, Artifacts artifacts, ISerializer serializer) {
         String result = getPojoDefinitions(serializer);
-        return replaceAll(modelProperty, result, artifacts);
+        return Utils.replaceAll(modelProperty, result, artifacts);
     }
 
     public String getPojoDefinitions(ISerializer serializer) {
@@ -1054,7 +1061,7 @@ public class TablePojoGenerator {
                     pojoName = pojo;
                 String realPojoName = tableToCamelCase(pojoName);
                 if (finalEntities.containsKey(realPojoName)) {
-                    buffer.append(getFinalContent(finalEntities.get(realPojoName)));
+                    buffer.append(Utils.getFinalContent(finalEntities.get(realPojoName)));
                     continue;
                 }
                 if (entityAnnotations != null) {
@@ -1120,7 +1127,14 @@ public class TablePojoGenerator {
                 // if (pojoExtends.containsKey(pojo)) {
                 // getParentAttrs(pojoExtends.get(pojo), null, null);
                 // }
-                buffer.append(NLINDENT).append("}\n");
+                if (finalEntitiesFeatures.containsKey(realPojoName)) {
+                    buffer.append("\n");
+                    for (Entry<String, String> e : finalEntitiesFeatures.get(realPojoName).entrySet()) {
+                        buffer.append(Utils.getFinalContent(e.getValue()));
+                    }
+                    buffer.append(INDENT).append("}\n");
+                } else
+                    buffer.append(NLINDENT).append("}\n");
             }
 
             // Pojo
@@ -1138,7 +1152,7 @@ public class TablePojoGenerator {
                     pojoName = pojo;
                 String realPojoName = tableToCamelCase(pojoName);
                 if (finalEntities.containsKey(realPojoName)) {
-                    buffer.append(getFinalContent(finalEntities.get(realPojoName)));
+                    buffer.append(Utils.getFinalContent(finalEntities.get(realPojoName)));
                     continue;
                 }
                 if (entityAnnotations != null) {
@@ -1351,7 +1365,14 @@ public class TablePojoGenerator {
                 else
                     buffer.append(bufferMeta);
                 buffer.append(bufferPartial);
-                buffer.append(NLINDENT).append("}\n");
+                if (finalEntitiesFeatures.containsKey(realPojoName)) {
+                    buffer.append("\n");
+                    for (Entry<String, String> e : finalEntitiesFeatures.get(realPojoName).entrySet()) {
+                        buffer.append(Utils.getFinalContent(e.getValue()));
+                    }
+                    buffer.append(INDENT).append("}\n");
+                } else
+                    buffer.append(NLINDENT).append("}\n");
             }
 
             // Procedure
@@ -1369,7 +1390,7 @@ public class TablePojoGenerator {
                     pojoName = pojo;
                 String realPojoName = tableToCamelCase(pojoName);
                 if (finalEntities.containsKey(realPojoName)) {
-                    buffer.append(getFinalContent(finalEntities.get(realPojoName)));
+                    buffer.append(Utils.getFinalContent(finalEntities.get(realPojoName)));
                     continue;
                 }
                 if (entityAnnotations != null) {
@@ -1455,7 +1476,14 @@ public class TablePojoGenerator {
                 else
                     buffer.append(bufferMeta);
                 buffer.append(bufferPartial);
-                buffer.append(NLINDENT).append("}\n");
+                if (finalEntitiesFeatures.containsKey(realPojoName)) {
+                    buffer.append("\n");
+                    for (Entry<String, String> e : finalEntitiesFeatures.get(realPojoName).entrySet()) {
+                        buffer.append(Utils.getFinalContent(e.getValue()));
+                    }
+                    buffer.append(INDENT).append("}\n");
+                } else
+                    buffer.append(NLINDENT).append("}\n");
             }
 
             // Function
@@ -1475,7 +1503,7 @@ public class TablePojoGenerator {
                     pojoName = pojo;
                 String realPojoName = tableToCamelCase(pojoName);
                 if (finalEntities.containsKey(realPojoName)) {
-                    buffer.append(getFinalContent(finalEntities.get(realPojoName)));
+                    buffer.append(Utils.getFinalContent(finalEntities.get(realPojoName)));
                     continue;
                 }
                 if (entityAnnotations != null) {
@@ -1562,7 +1590,14 @@ public class TablePojoGenerator {
                 else
                     buffer.append(bufferMeta);
                 buffer.append(bufferPartial);
-                buffer.append(NLINDENT).append("}\n");
+                if (finalEntitiesFeatures.containsKey(realPojoName)) {
+                    buffer.append("\n");
+                    for (Entry<String, String> e : finalEntitiesFeatures.get(realPojoName).entrySet()) {
+                        buffer.append(Utils.getFinalContent(e.getValue()));
+                    }
+                    buffer.append(INDENT).append("}\n");
+                } else
+                    buffer.append(NLINDENT).append("}\n");
             }
             return buffer.toString();
         } catch (RuntimeException ex) {
@@ -2006,7 +2041,7 @@ public class TablePojoGenerator {
         }
     }
 
-    public boolean addDefinitions(DbResolver dbResolver, IScopeProvider scopeProvider) {
+    protected boolean addDefinitions(DbResolver dbResolver, IScopeProvider scopeProvider) {
         try {
             List<String> tables = Utils.findTables(null, artifacts,
                     scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__TABLES));
@@ -2082,22 +2117,62 @@ public class TablePojoGenerator {
         }
     }
 
-    protected String replaceAll(ModelProperty modelProperty, String buffer, Artifacts artifacts) {
-        for (Entry<String, String> entry : modelProperty.getReplaceAll(artifacts).entrySet()) {
-            String regex = entry.getKey();
-            String replacement = entry.getValue();
-            System.out.println("REGEX " + regex);
-            System.out.println("REPLACEMENT " + replacement);
-            buffer = buffer.replaceAll(regex, replacement);
-        }
-        return buffer;
-    }
-
-    protected String getFinalContent(String s) {
-        if (s == null)
+    public static String generatePojo(Artifacts artifacts, Package packagex, ISerializer serializer,
+            DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty) {
+        if (artifacts == null || !dbResolver.isResolveDb(artifacts))
             return null;
-        if (s.startsWith("\n"))
-            s = s.substring(1);
-        return s + "\n";
+        if (serializer == null)
+            serializer = ((XtextResource) packagex.eResource()).getSerializer();
+
+        Set<String> imports = (packagex != null) ? Utils.getImports(packagex, serializer) : null;
+        Map<String, String> finalEntities = new HashMap<String, String>();
+        Map<String, Map<String, String>> finalFeatures = new HashMap<String, Map<String, String>>();
+        Annotations annotations = new Annotations();
+        if (packagex != null) {
+            for (AbstractEntity ape : packagex.getElements()) {
+                if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof PojoEntity) {
+                    PojoEntity pojo = (PojoEntity) ((AnnotatedEntity) ape).getEntity();
+                    Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
+                    if (pojo.isFinal()) {
+                        // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
+                        finalEntities.put(pojo.getName(), serializer.serialize(pojo));
+                    } else {
+                        Map<String, String> map;
+                        finalFeatures.put(pojo.getName(), map = new LinkedHashMap<String, String>());
+                        for (org.sqlproc.model.processorModel.PojoAttribute attr : pojo.getAttributes()) {
+                            if (attr.isFinal())
+                                map.put(attr.getName(), serializer.serialize(attr));
+                        }
+                        for (PojoProcedure proc : pojo.getProcedures()) {
+                            // if (proc.isFinal())
+                            map.put(proc.getName(), serializer.serialize(proc));
+                        }
+                    }
+                } else if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof EnumEntity) {
+                    EnumEntity pojo = (EnumEntity) ((AnnotatedEntity) ape).getEntity();
+                    Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
+                    if (pojo.isFinal()) {
+                        // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
+                        finalEntities.put(pojo.getName(), serializer.serialize(pojo));
+                    } else {
+                        Map<String, String> map;
+                        finalFeatures.put(pojo.getName(), map = new LinkedHashMap<String, String>());
+                        for (PojoProcedure proc : pojo.getProcedures()) {
+                            // if (proc.isFinal())
+                            map.put(proc.getName(), serializer.serialize(proc));
+                        }
+                    }
+                }
+            }
+        }
+
+        // List<String> tables = dbResolver.getTables(artifacts);
+        List<String> dbSequences = dbResolver.getSequences(artifacts);
+        DbType dbType = Utils.getDbType(dbResolver, artifacts);
+        TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, finalEntities, finalFeatures,
+                annotations, imports, dbSequences, dbType);
+        if (generator.addDefinitions(dbResolver, scopeProvider))
+            return generator.getPojoDefinitions(modelProperty, artifacts, serializer);
+        return null;
     }
 }

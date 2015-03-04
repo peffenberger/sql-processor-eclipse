@@ -10,6 +10,8 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContext;
 import org.eclipse.xtext.xbase.ui.templates.XbaseTemplateContextType;
+import org.sqlproc.model.generator.TableDaoGenerator;
+import org.sqlproc.model.generator.TablePojoGenerator;
 import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.Package;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
@@ -189,7 +191,8 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             Package packagex = getPackage((XtextTemplateContext) context);
-            String pojos = Utils.generatePojo(artifacts, packagex, null, dbResolver, scopeProvider, modelProperty);
+            String pojos = TablePojoGenerator.generatePojo(artifacts, packagex, null, dbResolver, scopeProvider,
+                    modelProperty);
             if (pojos != null)
                 return pojos;
             return super.resolve(context);
@@ -213,7 +216,8 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             Package packagex = getPackage((XtextTemplateContext) context);
-            String daos = Utils.generateDao(artifacts, packagex, null, dbResolver, scopeProvider, modelProperty);
+            String daos = TableDaoGenerator.generateDao(artifacts, packagex, null, dbResolver, scopeProvider,
+                    modelProperty);
             if (daos != null)
                 return daos;
             return super.resolve(context);

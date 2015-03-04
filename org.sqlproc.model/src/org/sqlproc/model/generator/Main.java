@@ -26,7 +26,6 @@ import org.sqlproc.model.property.ModelPropertyBean;
 import org.sqlproc.model.property.ModelPropertyBean.ModelValues;
 import org.sqlproc.model.resolver.DbResolver;
 import org.sqlproc.model.resolver.DbResolverBean;
-import org.sqlproc.model.util.Utils;
 
 import com.google.common.io.Files;
 import com.google.inject.Inject;
@@ -279,13 +278,13 @@ public class Main {
         }
 
         System.out.println("Going to generate " + pojo);
-        String pojoDefinitions = Utils.generatePojo(definitions, pojoPackage,
+        String pojoDefinitions = TablePojoGenerator.generatePojo(definitions, pojoPackage,
                 ((XtextResource) controlResource).getSerializer(), dbResolver, scopeProvider, modelProperty);
         fileAccess.generateFile(pojo, "package " + pojoPackageName + " {\n" + pojoDefinitions + "}");
         System.out.println(pojo + " generation finished.");
 
         System.out.println("Going to generate " + dao);
-        String daoDefinitions = Utils.generateDao(definitions, daoPackage,
+        String daoDefinitions = TableDaoGenerator.generateDao(definitions, daoPackage,
                 ((XtextResource) controlResource).getSerializer(), dbResolver, scopeProvider, modelProperty);
         fileAccess.generateFile(dao, "package " + daoPackageName + " {\n" + daoDefinitions + "}");
         System.out.println(dao + " generation finished.");

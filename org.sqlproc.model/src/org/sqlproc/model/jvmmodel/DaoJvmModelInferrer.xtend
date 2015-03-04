@@ -279,7 +279,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    					documentation = attr.documentation
    					addAnnotations(attr.attributeAnnotations.map[a|a.annotation])
    					static = attr.static
-   					final = attr.final
+   					//final = attr.final
    					if (attr.static)
    						visibility = JvmVisibility.PUBLIC 
    					if (attr.initExpr != null) {
@@ -304,7 +304,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    					documentation = proc.documentation
    					addAnnotations(proc.annotations.map[a|a.annotation])
    					static = proc.static
-   					final = proc.final
+   					//final = proc.final
    					for (param : proc.params) {
    						parameters += param.toParameter(param.name, param.parameterType)
    					}

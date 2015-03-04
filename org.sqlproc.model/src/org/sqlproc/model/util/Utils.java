@@ -1,11 +1,9 @@
 package org.sqlproc.model.util;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
@@ -14,24 +12,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.xtype.XImportDeclaration;
-import org.sqlproc.model.generator.TableDaoGenerator;
-import org.sqlproc.model.generator.TablePojoGenerator;
-import org.sqlproc.model.processorModel.AbstractEntity;
-import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.Artifacts;
-import org.sqlproc.model.processorModel.DaoEntity;
-import org.sqlproc.model.processorModel.EnumEntity;
 import org.sqlproc.model.processorModel.FunctionDefinition;
 import org.sqlproc.model.processorModel.Package;
-import org.sqlproc.model.processorModel.PojoAttribute;
-import org.sqlproc.model.processorModel.PojoEntity;
-import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
 import org.sqlproc.model.processorModel.TableDefinition;
 import org.sqlproc.model.property.ModelProperty;
@@ -386,107 +373,22 @@ public class Utils {
         return imports;
     }
 
-    public static String generatePojo(Artifacts artifacts, Package packagex, ISerializer serializer,
-            DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty) {
-        if (artifacts == null || !dbResolver.isResolveDb(artifacts))
-            return null;
-        if (serializer == null)
-            serializer = ((XtextResource) packagex.eResource()).getSerializer();
-
-        Set<String> imports = (packagex != null) ? getImports(packagex, serializer) : null;
-        Map<String, String> finalEntities = new HashMap<String, String>();
-        Map<String, Map<String, String>> finalFeatures = new HashMap<String, Map<String, String>>();
-        Annotations annotations = new Annotations();
-        if (packagex != null) {
-            for (AbstractEntity ape : packagex.getElements()) {
-                if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof PojoEntity) {
-                    PojoEntity pojo = (PojoEntity) ((AnnotatedEntity) ape).getEntity();
-                    Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
-                    if (pojo.isFinal()) {
-                        // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
-                        finalEntities.put(pojo.getName(), serializer.serialize(pojo));
-                    } else {
-                        Map<String, String> map;
-                        finalFeatures.put(pojo.getName(), map = new HashMap<String, String>());
-                        for (PojoAttribute attr : pojo.getAttributes()) {
-                            if (attr.isFinal())
-                                map.put(attr.getName(), serializer.serialize(attr));
-                        }
-                        for (PojoProcedure proc : pojo.getProcedures()) {
-                            if (proc.isFinal())
-                                map.put(proc.getName(), serializer.serialize(proc));
-                        }
-                    }
-                } else if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof EnumEntity) {
-                    EnumEntity pojo = (EnumEntity) ((AnnotatedEntity) ape).getEntity();
-                    Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
-                    if (pojo.isFinal()) {
-                        // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
-                        finalEntities.put(pojo.getName(), serializer.serialize(pojo));
-                    } else {
-                        Map<String, String> map;
-                        finalFeatures.put(pojo.getName(), map = new HashMap<String, String>());
-                        for (PojoProcedure proc : pojo.getProcedures()) {
-                            if (proc.isFinal())
-                                map.put(proc.getName(), serializer.serialize(proc));
-                        }
-                    }
-                }
-            }
+    public static String replaceAll(ModelProperty modelProperty, String buffer, Artifacts artifacts) {
+        for (Entry<String, String> entry : modelProperty.getReplaceAll(artifacts).entrySet()) {
+            String regex = entry.getKey();
+            String replacement = entry.getValue();
+            System.out.println("REGEX " + regex);
+            System.out.println("REPLACEMENT " + replacement);
+            buffer = buffer.replaceAll(regex, replacement);
         }
-
-        // List<String> tables = dbResolver.getTables(artifacts);
-        List<String> dbSequences = dbResolver.getSequences(artifacts);
-        DbType dbType = Utils.getDbType(dbResolver, artifacts);
-        TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, finalEntities, finalFeatures,
-                annotations, imports, dbSequences, dbType);
-        if (generator.addDefinitions(dbResolver, scopeProvider))
-            return generator.getPojoDefinitions(modelProperty, artifacts, serializer);
-        return null;
+        return buffer;
     }
 
-    public static String generateDao(Artifacts artifacts, Package packagex, ISerializer serializer,
-            DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty) {
-        if (artifacts == null || !dbResolver.isResolveDb(artifacts))
+    public static String getFinalContent(String s) {
+        if (s == null)
             return null;
-        if (serializer == null)
-            serializer = ((XtextResource) packagex.eResource()).getSerializer();
-
-        Set<String> imports = (packagex != null) ? getImports(packagex, serializer) : null;
-        Map<String, String> finalDaos = new HashMap<String, String>();
-        Map<String, Map<String, String>> finalFeatures = new HashMap<String, Map<String, String>>();
-        Annotations annotations = new Annotations();
-        if (packagex != null) {
-            for (AbstractEntity ape : packagex.getElements()) {
-                if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof DaoEntity) {
-                    DaoEntity dao = (DaoEntity) ((AnnotatedEntity) ape).getEntity();
-                    Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
-                    if (dao.isFinal()) {
-                        // ISerializer serializer = ((XtextResource) dao.eResource()).getSerializer();
-                        finalDaos.put(dao.getName(), serializer.serialize(dao));
-                    } else {
-                        Map<String, String> map;
-                        finalFeatures.put(dao.getName(), map = new HashMap<String, String>());
-                        for (PojoAttribute attr : dao.getAttributes()) {
-                            // if (attr.isFinal())
-                            map.put(attr.getName(), serializer.serialize(attr));
-                        }
-                        for (PojoProcedure proc : dao.getProcedures()) {
-                            // if (proc.isFinal())
-                            map.put(proc.getName(), serializer.serialize(proc));
-                        }
-                    }
-                }
-            }
-        }
-
-        // List<String> tables = dbResolver.getTables(artifacts);
-        List<String> dbSequences = dbResolver.getSequences(artifacts);
-        DbType dbType = getDbType(dbResolver, artifacts);
-        TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, scopeProvider, finalDaos,
-                finalFeatures, annotations, imports, dbSequences, dbType);
-        if (generator.addDefinitions(dbResolver, scopeProvider))
-            return generator.getDaoDefinitions(modelProperty, artifacts, serializer);
-        return null;
+        if (s.startsWith("\n"))
+            s = s.substring(1);
+        return s + "\n";
     }
 }

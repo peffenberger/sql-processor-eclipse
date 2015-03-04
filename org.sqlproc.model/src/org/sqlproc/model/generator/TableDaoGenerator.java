@@ -15,15 +15,23 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.serializer.ISerializer;
+import org.sqlproc.model.processorModel.AbstractEntity;
+import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.Artifacts;
+import org.sqlproc.model.processorModel.DaoEntity;
+import org.sqlproc.model.processorModel.Package;
+import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.property.ImplementsExtends;
 import org.sqlproc.model.property.ModelProperty;
 import org.sqlproc.model.property.PojoAttribute;
+import org.sqlproc.model.resolver.DbResolver;
 import org.sqlproc.model.resolver.DbResolver.DbType;
 import org.sqlproc.model.util.Annotations;
 import org.sqlproc.model.util.Debug;
+import org.sqlproc.model.util.Utils;
 
 public class TableDaoGenerator extends TablePojoGenerator {
 
@@ -112,7 +120,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
 
     public String getDaoDefinitions(ModelProperty modelProperty, Artifacts artifacts, ISerializer serializer) {
         String result = getDaoDefinitions(serializer);
-        return replaceAll(modelProperty, result, artifacts);
+        return Utils.replaceAll(modelProperty, result, artifacts);
     }
 
     public String getDaoDefinitions(ISerializer serializer) {
@@ -275,7 +283,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 daoImports.add(pojoPackage + "." + pojoName);
                 String daoName = pojoName + "Dao";
                 if (finalDaos.containsKey(daoName)) {
-                    buffer.append(getFinalContent(finalDaos.get(daoName)));
+                    buffer.append(Utils.getFinalContent(finalDaos.get(daoName)));
                     continue;
                 }
                 if (pojoInheritanceDiscriminator.containsKey(pojo) || pojoInheritanceSimple.containsKey(pojo)) {
@@ -334,7 +342,14 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 buffer.append("#Dao ");
                 buffer.append(daoName);
                 buffer.append(" {");
-                buffer.append(NLINDENT).append("}\n");
+                if (finalDaosFeatures.containsKey(daoName)) {
+                    buffer.append("\n");
+                    for (Entry<String, String> e : finalDaosFeatures.get(daoName).entrySet()) {
+                        buffer.append(Utils.getFinalContent(e.getValue()));
+                    }
+                    buffer.append(INDENT).append("}\n");
+                } else
+                    buffer.append(NLINDENT).append("}\n");
             }
 
             // Procedure
@@ -357,7 +372,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 daoImports.add(pojoPackage + "." + pojoName);
                 String daoName = pojoName + "Dao";
                 if (finalDaos.containsKey(daoName)) {
-                    buffer.append(getFinalContent(finalDaos.get(daoName)));
+                    buffer.append(Utils.getFinalContent(finalDaos.get(daoName)));
                     continue;
                 }
                 if (daoAnnotations != null) {
@@ -407,7 +422,14 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 buffer.append("#Dao ");
                 buffer.append(daoName);
                 buffer.append(" {");
-                buffer.append(NLINDENT).append("}\n");
+                if (finalDaosFeatures.containsKey(daoName)) {
+                    buffer.append("\n");
+                    for (Entry<String, String> e : finalDaosFeatures.get(daoName).entrySet()) {
+                        buffer.append(Utils.getFinalContent(e.getValue()));
+                    }
+                    buffer.append(INDENT).append("}\n");
+                } else
+                    buffer.append(NLINDENT).append("}\n");
             }
 
             // Procedure is function
@@ -430,7 +452,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 daoImports.add(pojoPackage + "." + pojoName);
                 String daoName = pojoName + "Dao";
                 if (finalDaos.containsKey(daoName)) {
-                    buffer.append(getFinalContent(finalDaos.get(daoName)));
+                    buffer.append(Utils.getFinalContent(finalDaos.get(daoName)));
                     continue;
                 }
                 if (daoAnnotations != null) {
@@ -484,7 +506,14 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 buffer.append("#Dao ");
                 buffer.append(daoName);
                 buffer.append(" {");
-                buffer.append(NLINDENT).append("}\n");
+                if (finalDaosFeatures.containsKey(daoName)) {
+                    buffer.append("\n");
+                    for (Entry<String, String> e : finalDaosFeatures.get(daoName).entrySet()) {
+                        buffer.append(Utils.getFinalContent(e.getValue()));
+                    }
+                    buffer.append(INDENT).append("}\n");
+                } else
+                    buffer.append(NLINDENT).append("}\n");
             }
 
             // Function
@@ -507,7 +536,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 daoImports.add(pojoPackage + "." + pojoName);
                 String daoName = pojoName + "Dao";
                 if (finalDaos.containsKey(daoName)) {
-                    buffer.append(getFinalContent(finalDaos.get(daoName)));
+                    buffer.append(Utils.getFinalContent(finalDaos.get(daoName)));
                     continue;
                 }
                 if (daoAnnotations != null) {
@@ -564,7 +593,14 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 buffer.append("#Dao ");
                 buffer.append(daoName);
                 buffer.append(" {");
-                buffer.append(NLINDENT).append("}\n");
+                if (finalDaosFeatures.containsKey(daoName)) {
+                    buffer.append("\n");
+                    for (Entry<String, String> e : finalDaosFeatures.get(daoName).entrySet()) {
+                        buffer.append(Utils.getFinalContent(e.getValue()));
+                    }
+                    buffer.append(INDENT).append("}\n");
+                } else
+                    buffer.append(NLINDENT).append("}\n");
             }
 
             return buffer;
@@ -600,4 +636,50 @@ public class TableDaoGenerator extends TablePojoGenerator {
             toInits(pojoExtends.get(pojo), toInit);
         }
     }
+
+    public static String generateDao(Artifacts artifacts, Package packagex, ISerializer serializer,
+            DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty) {
+        if (artifacts == null || !dbResolver.isResolveDb(artifacts))
+            return null;
+        if (serializer == null)
+            serializer = ((XtextResource) packagex.eResource()).getSerializer();
+
+        Set<String> imports = (packagex != null) ? Utils.getImports(packagex, serializer) : null;
+        Map<String, String> finalDaos = new HashMap<String, String>();
+        Map<String, Map<String, String>> finalFeatures = new HashMap<String, Map<String, String>>();
+        Annotations annotations = new Annotations();
+        if (packagex != null) {
+            for (AbstractEntity ape : packagex.getElements()) {
+                if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof DaoEntity) {
+                    DaoEntity dao = (DaoEntity) ((AnnotatedEntity) ape).getEntity();
+                    Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
+                    if (dao.isFinal()) {
+                        // ISerializer serializer = ((XtextResource) dao.eResource()).getSerializer();
+                        finalDaos.put(dao.getName(), serializer.serialize(dao));
+                    } else {
+                        Map<String, String> map;
+                        finalFeatures.put(dao.getName(), map = new LinkedHashMap<String, String>());
+                        for (org.sqlproc.model.processorModel.PojoAttribute attr : dao.getAttributes()) {
+                            // if (attr.isFinal())
+                            map.put(attr.getName(), serializer.serialize(attr));
+                        }
+                        for (PojoProcedure proc : dao.getProcedures()) {
+                            // if (proc.isFinal())
+                            map.put(proc.getName(), serializer.serialize(proc));
+                        }
+                    }
+                }
+            }
+        }
+
+        // List<String> tables = dbResolver.getTables(artifacts);
+        List<String> dbSequences = dbResolver.getSequences(artifacts);
+        DbType dbType = Utils.getDbType(dbResolver, artifacts);
+        TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, scopeProvider, finalDaos,
+                finalFeatures, annotations, imports, dbSequences, dbType);
+        if (generator.addDefinitions(dbResolver, scopeProvider))
+            return generator.getDaoDefinitions(modelProperty, artifacts, serializer);
+        return null;
+    }
+
 }
