@@ -96,6 +96,12 @@ public class Main {
                 return;
             }
         }
+        System.out.println("models " + models);
+        System.out.println("control " + control);
+        System.out.println("pojo " + pojo);
+        System.out.println("dao " + dao);
+        System.out.println("sql " + sql);
+        System.out.println("ddl " + ddl);
         if (models == null && (control == null || pojo == null || dao == null || sql == null)) {
             usage(null);
             return;
@@ -166,14 +172,20 @@ public class Main {
         }
 
         for (Resource resource : set2) {
+            System.out.println("Going to validate " + resource);
             if (!isValid(resource))
                 return;
+            System.out.println("Validated " + resource);
         }
         System.out.println("Resource(s) validation finished.");
 
         if (generate) {
             fileAccess.setOutputPath(target);
-            generator.doGenerate(set, fileAccess);
+            for (Resource resource : set2) {
+                System.out.println("Going to generate " + resource);
+                generator.doGenerate(resource, fileAccess);
+                System.out.println("Generated " + resource + " into " + target);
+            }
             System.out.println("Java code generation finished.");
         }
     }
@@ -185,29 +197,59 @@ public class Main {
         Resource controlResource = set.getResource(URI.createURI(getFile(source, control)), true);
         set.getResources().add(controlResource);
         Resource pojoResource = null;
-        File pojoFile = new File(URI.createURI(getFile(source, pojo)).toFileString());
-        if (pojoFile.canRead()) {
-            pojoResource = set.getResource(URI.createURI(getFile(source, pojo)), true);
-            set.getResources().add(pojoResource);
-        }
         Resource daoResource = null;
-        File daoFile = new File(URI.createURI(getFile(source, dao)).toFileString());
-        if (daoFile.canRead()) {
-            daoResource = set.getResource(URI.createURI(getFile(source, dao)), true);
-            set.getResources().add(daoResource);
+        if (merge) {
+            try {
+                pojoResource = set.getResource(URI.createURI(getFile(source, pojo)), true);
+                set.getResources().add(pojoResource);
+            } catch (Exception ex) {
+                System.out.println("Can't read " + getFile(source, pojo));
+            }
+            if (pojoResource != null) {
+                try {
+                    daoResource = set.getResource(URI.createURI(getFile(source, dao)), true);
+                    set.getResources().add(daoResource);
+                } catch (Exception ex) {
+                    System.out.println("Can't read " + getFile(source, dao));
+                }
+            }
         }
         Resource sqlResource = null;
-        File sqlFile = new File(URI.createURI(getFile(source, sql)).toFileString());
-        if (sqlFile.canRead()) {
-            sqlResource = set.getResource(URI.createURI(getFile(source, sql)), true);
-            set.getResources().add(sqlResource);
+        if (merge) {
+            try {
+                sqlResource = set.getResource(URI.createURI(getFile(source, sql)), true);
+                set.getResources().add(sqlResource);
+            } catch (Exception ex) {
+                System.out.println("Can't read " + getFile(source, sql));
+            }
         }
 
-        if (!isValid(controlResource) || (merge && pojoResource != null && !isValid(pojoResource))
-                || (merge && daoResource != null && !isValid(daoResource))
-                || (merge && sqlResource != null && !isValid(sqlResource)))
+        System.out.println("Going to validate " + controlResource);
+        boolean controlResourceIsOk = isValid(controlResource);
+        if (!controlResourceIsOk)
             return;
-        System.out.println("Resource(s) validation finished.");
+        System.out.println("Validated " + controlResource);
+        if (merge && pojoResource != null) {
+            System.out.println("Going to validate " + pojoResource);
+            boolean pojoResourceIsOk = isValid(pojoResource);
+            if (!pojoResourceIsOk)
+                return;
+            System.out.println("Validated " + pojoResource);
+        }
+        if (merge && daoResource != null) {
+            System.out.println("Going to validate " + daoResource);
+            boolean daoResourceIsOk = isValid(daoResource);
+            if (!daoResourceIsOk)
+                return;
+            System.out.println("Validated " + daoResource);
+        }
+        if (merge && sqlResource != null) {
+            System.out.println("Going to validate " + sqlResource);
+            boolean sqlResourceIsOk = isValid(sqlResource);
+            if (!sqlResourceIsOk)
+                return;
+            System.out.println("Validated " + sqlResource);
+        }
 
         Artifacts definitions = (Artifacts) controlResource.getContents().get(0);
         if (definitions.getProperties().isEmpty()) {
@@ -280,16 +322,19 @@ public class Main {
             }
         }
 
+        System.out.println("Going to generate " + pojo);
         String pojoDefinitions = getPojoDefinitions(modelProperty, dbResolver, definitions, pojoPackage,
                 ((XtextResource) controlResource).getSerializer());
         fileAccess.generateFile(pojo, "package " + pojoPackageName + " {\n" + pojoDefinitions + "}");
         System.out.println(pojo + " generation finished.");
 
+        System.out.println("Going to generate " + dao);
         String daoDefinitions = getDaoDefinitions(modelProperty, dbResolver, definitions, daoPackage,
                 ((XtextResource) controlResource).getSerializer());
         fileAccess.generateFile(dao, "package " + daoPackageName + " {\n" + daoDefinitions + "}");
         System.out.println(dao + " generation finished.");
 
+        System.out.println("Going to generate " + sql);
         String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions, statements,
                 ((XtextResource) controlResource).getSerializer());
         fileAccess.generateFile(sql, metaDefinitions);
