@@ -70,7 +70,7 @@ public class Annotations {
         for (XAnnotation a : annotations.get(pojoName)) {
             if (nonStandardAnnotations)
                 sb.append(NLINDENT).append(directive);
-            sb.append(NLINDENT).append(Utils.removeBlankLines(serializer.serialize(a)));
+            sb.append(NLINDENT).append("final ").append(Utils.removeBlankLines(serializer.serialize(a)));
         }
         return sb;
     }
@@ -109,7 +109,7 @@ public class Annotations {
         for (XAnnotation a : annotations.get(pojoName).get(featureName)) {
             if (directive != null)
                 sb.append(NLINDENT).append(INDENT).append(directive);
-            sb.append(NLINDENT).append(INDENT).append(Utils.removeBlankLines(serializer.serialize(a)));
+            sb.append(NLINDENT).append(INDENT).append("final ").append(Utils.removeBlankLines(serializer.serialize(a)));
         }
         return sb;
     }
