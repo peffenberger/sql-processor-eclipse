@@ -647,7 +647,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
         Set<String> imports = (packagex != null) ? Utils.getImports(packagex, serializer) : null;
         Map<String, String> finalDaos = new HashMap<String, String>();
         Map<String, Map<String, String>> finalFeatures = new HashMap<String, Map<String, String>>();
-        Annotations annotations = new Annotations();
+        Annotations annotations = new Annotations(INDENT, NL);
         if (packagex != null) {
             for (AbstractEntity ape : packagex.getElements()) {
                 if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof DaoEntity) {

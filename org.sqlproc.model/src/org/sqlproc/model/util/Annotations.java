@@ -25,9 +25,16 @@ import org.sqlproc.model.processorModel.PojoEntity;
 import org.sqlproc.model.processorModel.PojoProcedure;
 
 public class Annotations {
-    protected static final String INDENT = "  ";
-    protected static final String NLINDENT = "\n  ";
-    protected static final String NL = "\n";
+
+    protected String INDENT = "  ";
+    protected String NL = "\n";
+    protected String NLINDENT = NL + INDENT;
+
+    public Annotations(String indent, String nl) {
+        INDENT = indent;
+        NLINDENT = nl + indent;
+        NL = nl;
+    }
 
     Map<String, List<XAnnotation>> entityAnnotations = new HashMap<String, List<XAnnotation>>();
     Map<String, List<XAnnotation>> constructorAnnotations = new HashMap<String, List<XAnnotation>>();

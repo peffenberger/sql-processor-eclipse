@@ -57,6 +57,11 @@ public class TablePojoGenerator {
     protected Logger LOGGER = Logger.getLogger(TablePojoGenerator.class);
     private Debug debug = new Debug(LOGGER);
 
+    protected static String INDENT = "    ";
+    protected static String NL = "\n";
+    protected static String NLINDENT = NL + INDENT;
+    protected static String NLINDENTINDENT = NL + INDENT + INDENT;
+
     protected enum PrimitiveType {
         BOOLEAN, BYTE, SHORT, INT, LONG, FLOAT, DOUBLE, CHAR, BYTE_ARRAY, CHAR_ARRAY;
 
@@ -80,10 +85,6 @@ public class TablePojoGenerator {
     protected static final String COLLECTION_LIST = "java.util.List";
     protected static final String ANNOTATION_NOT_NULL = "javax.validation.constraints.NotNull";
     protected static final String ANNOTATION_SIZE = "javax.validation.constraints.Size";
-    protected static final String INDENT = "  ";
-    protected static final String NLINDENT = "\n" + INDENT;
-    protected static final String NLINDENTINDENT = "\n" + INDENT + INDENT;
-    protected static final String NL = "\n";
 
     protected Artifacts artifacts;
     protected Map<String, String> finalEntities;
@@ -2127,7 +2128,7 @@ public class TablePojoGenerator {
         Set<String> imports = (packagex != null) ? Utils.getImports(packagex, serializer) : null;
         Map<String, String> finalEntities = new HashMap<String, String>();
         Map<String, Map<String, String>> finalFeatures = new HashMap<String, Map<String, String>>();
-        Annotations annotations = new Annotations();
+        Annotations annotations = new Annotations(INDENT, NL);
         if (packagex != null) {
             for (AbstractEntity ape : packagex.getElements()) {
                 if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof PojoEntity) {
