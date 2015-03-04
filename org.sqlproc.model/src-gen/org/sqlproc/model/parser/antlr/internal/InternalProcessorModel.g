@@ -9564,17 +9564,32 @@ ruleAnnotation returns [EObject current=null]
 )
 )*(
 (
-		{ 
-	        newCompositeNode(grammarAccess.getAnnotationAccess().getAnnotationXAnnotationParserRuleCall_1_0()); 
+		lv_final_1_0=	'final' 
+    {
+        newLeafNode(lv_final_1_0, grammarAccess.getAnnotationAccess().getFinalFinalKeyword_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAnnotationRule());
+	        }
+       		setWithLastConsumed($current, "final", true, "final");
 	    }
-		lv_annotation_1_0=ruleXAnnotation		{
+
+)
+)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getAnnotationAccess().getAnnotationXAnnotationParserRuleCall_2_0()); 
+	    }
+		lv_annotation_2_0=ruleXAnnotation		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAnnotationRule());
 	        }
        		set(
        			$current, 
        			"annotation",
-        		lv_annotation_1_0, 
+        		lv_annotation_2_0, 
         		"XAnnotation");
 	        afterParserOrEnumRuleCall();
 	    }

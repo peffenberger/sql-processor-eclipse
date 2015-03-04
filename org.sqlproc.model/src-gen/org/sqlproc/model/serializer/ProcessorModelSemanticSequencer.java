@@ -2063,7 +2063,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (directives+=AnnotationDirective* annotation=XAnnotation)
+	 *     (directives+=AnnotationDirective* final?='final'? annotation=XAnnotation)
 	 */
 	protected void sequence_Annotation(EObject context, Annotation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

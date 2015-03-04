@@ -208,6 +208,8 @@ public class Annotations {
 
         if (apojo.getAnnotations() != null && !apojo.getAnnotations().isEmpty()) {
             for (Annotation an : apojo.getAnnotations()) {
+                if (!an.isFinal())
+                    continue;
                 if (an.getDirectives() == null || an.getDirectives().isEmpty()) {
                     as.addAnnotation(name, an.getAnnotation(), as.entityAnnotations);
                 } else {
@@ -229,6 +231,8 @@ public class Annotations {
             for (PojoAttribute feature : pojo.getAttributes()) {
                 if (feature.getAnnotations() != null && !feature.getAnnotations().isEmpty()) {
                     for (Annotation an : feature.getAnnotations()) {
+                        if (!an.isFinal())
+                            continue;
                         if (an.getDirectives() == null || an.getDirectives().isEmpty()) {
                             as.addAnnotation(name, feature.getName(), an.getAnnotation(), as.attributeAnnotations);
                         } else {
@@ -249,6 +253,8 @@ public class Annotations {
             for (PojoProcedure feature : pojo.getProcedures()) {
                 if (feature.getAnnotations() != null && !feature.getAnnotations().isEmpty()) {
                     for (Annotation an : feature.getAnnotations()) {
+                        if (!an.isFinal())
+                            continue;
                         as.addAnnotation(name, feature.getName(), an.getAnnotation(), as.procedureAnnotations);
                     }
                 }
@@ -258,6 +264,8 @@ public class Annotations {
             for (PojoAttribute feature : dao.getAttributes()) {
                 if (feature.getAnnotations() != null && !feature.getAnnotations().isEmpty()) {
                     for (Annotation an : feature.getAnnotations()) {
+                        if (!an.isFinal())
+                            continue;
                         if (an.getDirectives() == null || an.getDirectives().isEmpty()) {
                             as.addAnnotation(name, feature.getName(), an.getAnnotation(), as.attributeAnnotations);
                         } else {
@@ -278,6 +286,8 @@ public class Annotations {
             for (PojoProcedure feature : dao.getProcedures()) {
                 if (feature.getAnnotations() != null && !feature.getAnnotations().isEmpty()) {
                     for (Annotation an : feature.getAnnotations()) {
+                        if (!an.isFinal())
+                            continue;
                         as.addAnnotation(name, feature.getName(), an.getAnnotation(), as.procedureAnnotations);
                     }
                 }

@@ -912,7 +912,8 @@ public class ProcessorModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDaoEntityAccess().getAttributesAssignment_7(), "rule__DaoEntity__AttributesAssignment_7");
 					put(grammarAccess.getDaoEntityAccess().getProceduresAssignment_8(), "rule__DaoEntity__ProceduresAssignment_8");
 					put(grammarAccess.getAnnotationAccess().getDirectivesAssignment_0(), "rule__Annotation__DirectivesAssignment_0");
-					put(grammarAccess.getAnnotationAccess().getAnnotationAssignment_1(), "rule__Annotation__AnnotationAssignment_1");
+					put(grammarAccess.getAnnotationAccess().getFinalAssignment_1(), "rule__Annotation__FinalAssignment_1");
+					put(grammarAccess.getAnnotationAccess().getAnnotationAssignment_2(), "rule__Annotation__AnnotationAssignment_2");
 					put(grammarAccess.getXAnnotationAccess().getAnnotationTypeAssignment_2(), "rule__XAnnotation__AnnotationTypeAssignment_2");
 					put(grammarAccess.getXAnnotationAccess().getElementValuePairsAssignment_3_1_0_0(), "rule__XAnnotation__ElementValuePairsAssignment_3_1_0_0");
 					put(grammarAccess.getXAnnotationAccess().getElementValuePairsAssignment_3_1_0_1_1(), "rule__XAnnotation__ElementValuePairsAssignment_3_1_0_1_1");

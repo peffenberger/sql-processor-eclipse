@@ -326,6 +326,7 @@
     <genClasses ecoreClass="ProcessorModel.ecore#//AnnotationDirective"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//Annotation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Annotation/directives"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Annotation/final"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Annotation/annotation"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PackageDirectiveImplementation">

@@ -3628,9 +3628,19 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getAnnotation_Final()
+  {
+    return (EAttribute)annotationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getAnnotation_Annotation()
   {
-    return (EReference)annotationEClass.getEStructuralFeatures().get(1);
+    return (EReference)annotationEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -4712,6 +4722,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
 
     annotationEClass = createEClass(ANNOTATION);
     createEReference(annotationEClass, ANNOTATION__DIRECTIVES);
+    createEAttribute(annotationEClass, ANNOTATION__FINAL);
     createEReference(annotationEClass, ANNOTATION__ANNOTATION);
 
     packageDirectiveImplementationEClass = createEClass(PACKAGE_DIRECTIVE_IMPLEMENTATION);
@@ -5247,6 +5258,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
 
     initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAnnotation_Directives(), this.getAnnotationDirective(), null, "directives", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAnnotation_Final(), ecorePackage.getEBoolean(), "final", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAnnotation_Annotation(), theXAnnotationsPackage.getXAnnotation(), null, "annotation", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(packageDirectiveImplementationEClass, PackageDirectiveImplementation.class, "PackageDirectiveImplementation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

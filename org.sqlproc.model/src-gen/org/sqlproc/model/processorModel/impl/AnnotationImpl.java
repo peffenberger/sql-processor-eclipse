@@ -32,6 +32,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationImpl#getDirectives <em>Directives</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationImpl#isFinal <em>Final</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationImpl#getAnnotation <em>Annotation</em>}</li>
  * </ul>
  * </p>
@@ -49,6 +50,26 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
    * @ordered
    */
   protected EList<AnnotationDirective> directives;
+
+  /**
+   * The default value of the '{@link #isFinal() <em>Final</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isFinal()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean FINAL_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isFinal() <em>Final</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isFinal()
+   * @generated
+   * @ordered
+   */
+  protected boolean final_ = FINAL_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getAnnotation() <em>Annotation</em>}' containment reference.
@@ -93,6 +114,29 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
       directives = new EObjectContainmentEList<AnnotationDirective>(AnnotationDirective.class, this, ProcessorModelPackage.ANNOTATION__DIRECTIVES);
     }
     return directives;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isFinal()
+  {
+    return final_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFinal(boolean newFinal)
+  {
+    boolean oldFinal = final_;
+    final_ = newFinal;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ANNOTATION__FINAL, oldFinal, final_));
   }
 
   /**
@@ -173,6 +217,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
     {
       case ProcessorModelPackage.ANNOTATION__DIRECTIVES:
         return getDirectives();
+      case ProcessorModelPackage.ANNOTATION__FINAL:
+        return isFinal();
       case ProcessorModelPackage.ANNOTATION__ANNOTATION:
         return getAnnotation();
     }
@@ -194,6 +240,9 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
         getDirectives().clear();
         getDirectives().addAll((Collection<? extends AnnotationDirective>)newValue);
         return;
+      case ProcessorModelPackage.ANNOTATION__FINAL:
+        setFinal((Boolean)newValue);
+        return;
       case ProcessorModelPackage.ANNOTATION__ANNOTATION:
         setAnnotation((XAnnotation)newValue);
         return;
@@ -214,6 +263,9 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
       case ProcessorModelPackage.ANNOTATION__DIRECTIVES:
         getDirectives().clear();
         return;
+      case ProcessorModelPackage.ANNOTATION__FINAL:
+        setFinal(FINAL_EDEFAULT);
+        return;
       case ProcessorModelPackage.ANNOTATION__ANNOTATION:
         setAnnotation((XAnnotation)null);
         return;
@@ -233,10 +285,29 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
     {
       case ProcessorModelPackage.ANNOTATION__DIRECTIVES:
         return directives != null && !directives.isEmpty();
+      case ProcessorModelPackage.ANNOTATION__FINAL:
+        return final_ != FINAL_EDEFAULT;
       case ProcessorModelPackage.ANNOTATION__ANNOTATION:
         return annotation != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (final: ");
+    result.append(final_);
+    result.append(')');
+    return result.toString();
   }
 
 } //AnnotationImpl

@@ -3161,13 +3161,22 @@ public interface ProcessorModelPackage extends EPackage
   int ANNOTATION__DIRECTIVES = 0;
 
   /**
+   * The feature id for the '<em><b>Final</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION__FINAL = 1;
+
+  /**
    * The feature id for the '<em><b>Annotation</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANNOTATION__ANNOTATION = 1;
+  int ANNOTATION__ANNOTATION = 2;
 
   /**
    * The number of structural features of the '<em>Annotation</em>' class.
@@ -3176,7 +3185,7 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATION_FEATURE_COUNT = 2;
+  int ANNOTATION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.PackageDirectiveImplementationImpl <em>Package Directive Implementation</em>}' class.
@@ -7154,6 +7163,17 @@ public interface ProcessorModelPackage extends EPackage
   EReference getAnnotation_Directives();
 
   /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.Annotation#isFinal <em>Final</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Final</em>'.
+   * @see org.sqlproc.model.processorModel.Annotation#isFinal()
+   * @see #getAnnotation()
+   * @generated
+   */
+  EAttribute getAnnotation_Final();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.Annotation#getAnnotation <em>Annotation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -10202,6 +10222,14 @@ public interface ProcessorModelPackage extends EPackage
      * @generated
      */
     EReference ANNOTATION__DIRECTIVES = eINSTANCE.getAnnotation_Directives();
+
+    /**
+     * The meta object literal for the '<em><b>Final</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ANNOTATION__FINAL = eINSTANCE.getAnnotation_Final();
 
     /**
      * The meta object literal for the '<em><b>Annotation</b></em>' containment reference feature.

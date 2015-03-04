@@ -5820,14 +5820,16 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDirectivesAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDirectivesAnnotationDirectiveParserRuleCall_0_0 = (RuleCall)cDirectivesAssignment_0.eContents().get(0);
-		private final Assignment cAnnotationAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cAnnotationXAnnotationParserRuleCall_1_0 = (RuleCall)cAnnotationAssignment_1.eContents().get(0);
+		private final Assignment cFinalAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cFinalFinalKeyword_1_0 = (Keyword)cFinalAssignment_1.eContents().get(0);
+		private final Assignment cAnnotationAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cAnnotationXAnnotationParserRuleCall_2_0 = (RuleCall)cAnnotationAssignment_2.eContents().get(0);
 		
 		//Annotation:
-		//	directives+=AnnotationDirective* annotation=XAnnotation;
+		//	directives+=AnnotationDirective* final?="final"? annotation=XAnnotation;
 		public ParserRule getRule() { return rule; }
 
-		//directives+=AnnotationDirective* annotation=XAnnotation
+		//directives+=AnnotationDirective* final?="final"? annotation=XAnnotation
 		public Group getGroup() { return cGroup; }
 
 		//directives+=AnnotationDirective*
@@ -5836,11 +5838,17 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//AnnotationDirective
 		public RuleCall getDirectivesAnnotationDirectiveParserRuleCall_0_0() { return cDirectivesAnnotationDirectiveParserRuleCall_0_0; }
 
+		//final?="final"?
+		public Assignment getFinalAssignment_1() { return cFinalAssignment_1; }
+
+		//"final"
+		public Keyword getFinalFinalKeyword_1_0() { return cFinalFinalKeyword_1_0; }
+
 		//annotation=XAnnotation
-		public Assignment getAnnotationAssignment_1() { return cAnnotationAssignment_1; }
+		public Assignment getAnnotationAssignment_2() { return cAnnotationAssignment_2; }
 
 		//XAnnotation
-		public RuleCall getAnnotationXAnnotationParserRuleCall_1_0() { return cAnnotationXAnnotationParserRuleCall_1_0; }
+		public RuleCall getAnnotationXAnnotationParserRuleCall_2_0() { return cAnnotationXAnnotationParserRuleCall_2_0; }
 	}
 	
 	
@@ -6715,7 +6723,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Annotation:
-	//	directives+=AnnotationDirective* annotation=XAnnotation;
+	//	directives+=AnnotationDirective* final?="final"? annotation=XAnnotation;
 	public AnnotationElements getAnnotationAccess() {
 		return pAnnotation;
 	}

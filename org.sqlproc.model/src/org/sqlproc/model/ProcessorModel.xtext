@@ -350,7 +350,7 @@ AnnotationDirective:
 ;
 
 Annotation:
-	directives+=AnnotationDirective* annotation=XAnnotation
+	directives+=AnnotationDirective* (final?='final')? annotation=XAnnotation
 ;
 
 terminal LPAREN: '(';
