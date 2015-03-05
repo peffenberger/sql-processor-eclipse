@@ -259,6 +259,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 
         public Map<String, Set<String>> defaultAttrs = new HashMap<String, Set<String>>();
         public Map<String, Set<String>> conditionalAttrs = new HashMap<String, Set<String>>();
+        public Map<String, Set<String>> systemEnvAttrs = new HashMap<String, Set<String>>();
     }
 
     private ModelValues modelValues = null;
@@ -317,6 +318,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 
                 System.out.println("defaultAttrs = " + modelValues.defaultAttrs);
                 System.out.println("conditionalAttrs = " + modelValues.conditionalAttrs);
+                System.out.println("systemEnvAttrs = " + modelValues.systemEnvAttrs);
 
                 LOGGER.debug("MODEL " + modelValues.toString());
             }
@@ -426,6 +428,21 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 
         try {
             for (Property property : artifacts.getProperties()) {
+
+                if (property.getName().startsWith(DATABASE)) {
+                    String envValue = System.getenv(property.getName());
+                    if (envValue != null) {
+                        setValue(modelValues, property.getDatabase(), envValue);
+                        modelValues.systemEnvAttrs.get(DATABASE).add(property.getDatabase().getName());
+                    }
+                }
+            }
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            for (Property property : artifacts.getProperties()) {
                 PropertyCondition condition = property.getCondition();
                 boolean condIsValid = isValid(condition);
 
@@ -493,6 +510,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.dbUppercaseNames = false;
         modelValues.defaultAttrs.put(DATABASE, new HashSet<String>());
         modelValues.conditionalAttrs.put(DATABASE, new HashSet<String>());
+        modelValues.systemEnvAttrs.put(DATABASE, new HashSet<String>());
     }
 
     private static void initPojogenModel(ModelValues modelValues) {
@@ -607,6 +625,107 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     public static void setValue(ModelValues modelValues, DatabaseProperty property) {
+        if (property == null)
+            return;
+        if (DATABASE_IS_ONLINE.equals(property.getName())) {
+            modelValues.doResolveDb = true;
+        } else if (DATABASE_IS_OFFLINE.equals(property.getName())) {
+            modelValues.doResolveDb = false;
+        } else if (DATABASE_HAS_URL.equals(property.getName())) {
+            modelValues.dbUrl = getPropertyValue(property.getDbUrl());
+        } else if (DATABASE_LOGIN_USERNAME.equals(property.getName())) {
+            modelValues.dbUsername = getPropertyValue(property.getDbUsername());
+        } else if (DATABASE_LOGIN_NPASSWORD.equals(property.getName())) {
+            modelValues.dbPassword = getPropertyValue(property.getDbPassword());
+        } else if (DATABASE_IN_CATALOG.equals(property.getName())) {
+            if (property.getDbCatalog() != null)
+                modelValues.dbCatalog = getPropertyValue(property.getDbCatalog().getDbCatalog());
+            else
+                modelValues.dbCatalog = null;
+        } else if (DATABASE_ACTIVE_SCHEMA.equals(property.getName())) {
+            if (property.getDbSchema() != null)
+                modelValues.dbSchema = getPropertyValue(property.getDbSchema().getDbSchema());
+            else
+                modelValues.dbSchema = null;
+        } else if (DATABASE_JDBC_DRIVER.equals(property.getName())) {
+            if (property.getDbDriverx() != null)
+                modelValues.dbDriver = getPropertyValue(property.getDbDriverx().getQualifiedName());
+            else
+                modelValues.dbDriver = getPropertyValue(property.getDbDriver());
+        } else if (DATABASE_EXECUTE_BEFORE.equals(property.getName())) {
+            modelValues.dbSqlsBefore = getPropertyValue(property.getDbExecuteBefore());
+        } else if (DATABASE_EXECUTE_AFTER.equals(property.getName())) {
+            modelValues.dbSqlsAfter = getPropertyValue(property.getDbExecuteAfter());
+        } else if (DATABASE_INDEX_TYPES.equals(property.getName())) {
+            modelValues.dbIndexTypes = getPropertyValue(property.getDbIndexTypes());
+        } else if (DATABASE_SKIP_INDEXES.equals(property.getName())) {
+            modelValues.dbSkipIndexes = true;
+        } else if (DATABASE_SKIP_PROCEDURES.equals(property.getName())) {
+            modelValues.dbSkipProcedures = true;
+        } else if (DATABASE_SKIP_CHECK_CONSTRAINTS.equals(property.getName())) {
+            modelValues.dbSkipCheckConstraints = true;
+        } else if (DATABASE_OF_TYPE.equals(property.getName())) {
+            if (property.getDbType() != null)
+                modelValues.dbType = getPropertyValue(property.getDbType().getDbType());
+            else
+                modelValues.dbType = null;
+        } else if (DATABASE_DEBUG_LEVEL.equals(property.getName()) && property.getDebug() != null) {
+            modelValues.dbDebugLevel = property.getDebug().getDebug();
+            modelValues.dbDebugScope = getPropertyValue(property.getDebug().getScope());
+        } else if (DATABASE_TAKE_COMMENTS.equals(property.getName())) {
+            modelValues.dbTakeComments = true;
+        } else if (DATABASE_LOWERCASE_NAMES.equals(property.getName())) {
+            modelValues.dbLowercaseNames = true;
+        } else if (DATABASE_UPPERCASE_NAMES.equals(property.getName())) {
+            modelValues.dbUppercaseNames = true;
+        }
+    }
+
+    public static void setValue(ModelValues modelValues, DatabaseProperty property, String value) {
+        if (property == null)
+            return;
+        if (DATABASE_IS_ONLINE.equals(property.getName())) {
+            modelValues.doResolveDb = value.equalsIgnoreCase("true");
+        } else if (DATABASE_IS_OFFLINE.equals(property.getName())) {
+            modelValues.doResolveDb = value.equalsIgnoreCase("true");
+        } else if (DATABASE_HAS_URL.equals(property.getName())) {
+            modelValues.dbUrl = getPropertyValue(value);
+        } else if (DATABASE_LOGIN_USERNAME.equals(property.getName())) {
+            modelValues.dbUsername = getPropertyValue(value);
+        } else if (DATABASE_LOGIN_NPASSWORD.equals(property.getName())) {
+            modelValues.dbPassword = getPropertyValue(value);
+        } else if (DATABASE_IN_CATALOG.equals(property.getName())) {
+            modelValues.dbCatalog = getPropertyValue(value);
+        } else if (DATABASE_ACTIVE_SCHEMA.equals(property.getName())) {
+            modelValues.dbSchema = getPropertyValue(value);
+        } else if (DATABASE_JDBC_DRIVER.equals(property.getName())) {
+            modelValues.dbDriver = getPropertyValue(value);
+        } else if (DATABASE_EXECUTE_BEFORE.equals(property.getName())) {
+            modelValues.dbSqlsBefore = getPropertyValue(value);
+        } else if (DATABASE_EXECUTE_AFTER.equals(property.getName())) {
+            modelValues.dbSqlsAfter = getPropertyValue(value);
+        } else if (DATABASE_INDEX_TYPES.equals(property.getName())) {
+            modelValues.dbIndexTypes = getPropertyValue(value);
+        } else if (DATABASE_SKIP_INDEXES.equals(property.getName())) {
+            modelValues.dbSkipIndexes = value.equalsIgnoreCase("true");
+        } else if (DATABASE_SKIP_PROCEDURES.equals(property.getName())) {
+            modelValues.dbSkipProcedures = value.equalsIgnoreCase("true");
+        } else if (DATABASE_SKIP_CHECK_CONSTRAINTS.equals(property.getName())) {
+            modelValues.dbSkipCheckConstraints = value.equalsIgnoreCase("true");
+        } else if (DATABASE_OF_TYPE.equals(property.getName())) {
+            modelValues.dbType = getPropertyValue(value);
+        } else if (DATABASE_DEBUG_LEVEL.equals(property.getName()) && property.getDebug() != null) {
+            modelValues.dbDebugLevel = getPropertyValue(value);
+        } else if (DATABASE_TAKE_COMMENTS.equals(property.getName())) {
+            modelValues.dbTakeComments = value.equalsIgnoreCase("true");
+        } else if (DATABASE_LOWERCASE_NAMES.equals(property.getName())) {
+            modelValues.dbLowercaseNames = value.equalsIgnoreCase("true");
+        } else if (DATABASE_UPPERCASE_NAMES.equals(property.getName())) {
+            modelValues.dbUppercaseNames = value.equalsIgnoreCase("true");
+        }
+    }
+
+    public static void setDatabaseValue(ModelValues modelValues, DatabaseProperty property) {
         if (property == null)
             return;
         if (DATABASE_IS_ONLINE.equals(property.getName())) {
