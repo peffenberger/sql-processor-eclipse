@@ -12132,12 +12132,10 @@ rulePojoType returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getPojoTypeRule());
 	        }
         }
-		{ 
-	        newCompositeNode(grammarAccess.getPojoTypeAccess().getTypeJvmTypeCrossReference_0_0_1_0()); 
-	    }
-		ruleQualifiedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
+	otherlv_1=RULE_IDENT
+	{
+		newLeafNode(otherlv_1, grammarAccess.getPojoTypeAccess().getRefPojoDefinitionCrossReference_0_0_1_0()); 
+	}
 
 )
 ))
@@ -12148,10 +12146,12 @@ rulePojoType returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getPojoTypeRule());
 	        }
         }
-	otherlv_2=RULE_IDENT
-	{
-		newLeafNode(otherlv_2, grammarAccess.getPojoTypeAccess().getRefPojoDefinitionCrossReference_0_1_0()); 
-	}
+		{ 
+	        newCompositeNode(grammarAccess.getPojoTypeAccess().getTypeJvmTypeCrossReference_0_1_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
 ))(this_LESS_THAN_3=RULE_LESS_THAN
@@ -12169,12 +12169,10 @@ rulePojoType returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getPojoTypeRule());
 	        }
         }
-		{ 
-	        newCompositeNode(grammarAccess.getPojoTypeAccess().getGtypeJvmTypeCrossReference_1_1_0_1_0()); 
-	    }
-		ruleQualifiedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
+	otherlv_5=RULE_IDENT
+	{
+		newLeafNode(otherlv_5, grammarAccess.getPojoTypeAccess().getGrefPojoDefinitionCrossReference_1_1_0_1_0()); 
+	}
 
 )
 ))
@@ -12185,10 +12183,12 @@ rulePojoType returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getPojoTypeRule());
 	        }
         }
-	otherlv_6=RULE_IDENT
-	{
-		newLeafNode(otherlv_6, grammarAccess.getPojoTypeAccess().getGrefPojoDefinitionCrossReference_1_1_1_0()); 
-	}
+		{ 
+	        newCompositeNode(grammarAccess.getPojoTypeAccess().getGtypeJvmTypeCrossReference_1_1_1_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
 ))this_MORE_THAN_7=RULE_MORE_THAN

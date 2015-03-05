@@ -14,10 +14,10 @@ import org.eclipse.xtext.common.types.JvmType;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.sqlproc.meta.processorMeta.PojoType#getType <em>Type</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.PojoType#getRef <em>Ref</em>}</li>
- *   <li>{@link org.sqlproc.meta.processorMeta.PojoType#getGtype <em>Gtype</em>}</li>
+ *   <li>{@link org.sqlproc.meta.processorMeta.PojoType#getType <em>Type</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.PojoType#getGref <em>Gref</em>}</li>
+ *   <li>{@link org.sqlproc.meta.processorMeta.PojoType#getGtype <em>Gtype</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.PojoType#isArray <em>Array</em>}</li>
  * </ul>
  * </p>
@@ -28,32 +28,6 @@ import org.eclipse.xtext.common.types.JvmType;
  */
 public interface PojoType extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Type</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Type</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(JvmType)
-   * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getPojoType_Type()
-   * @model
-   * @generated
-   */
-  JvmType getType();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.PojoType#getType <em>Type</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' reference.
-   * @see #getType()
-   * @generated
-   */
-  void setType(JvmType value);
-
   /**
    * Returns the value of the '<em><b>Ref</b></em>' reference.
    * <!-- begin-user-doc -->
@@ -81,30 +55,30 @@ public interface PojoType extends EObject
   void setRef(PojoDefinition value);
 
   /**
-   * Returns the value of the '<em><b>Gtype</b></em>' reference.
+   * Returns the value of the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Gtype</em>' reference isn't clear,
+   * If the meaning of the '<em>Type</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Gtype</em>' reference.
-   * @see #setGtype(JvmType)
-   * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getPojoType_Gtype()
+   * @return the value of the '<em>Type</em>' reference.
+   * @see #setType(JvmType)
+   * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getPojoType_Type()
    * @model
    * @generated
    */
-  JvmType getGtype();
+  JvmType getType();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.PojoType#getGtype <em>Gtype</em>}' reference.
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.PojoType#getType <em>Type</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Gtype</em>' reference.
-   * @see #getGtype()
+   * @param value the new value of the '<em>Type</em>' reference.
+   * @see #getType()
    * @generated
    */
-  void setGtype(JvmType value);
+  void setType(JvmType value);
 
   /**
    * Returns the value of the '<em><b>Gref</b></em>' reference.
@@ -131,6 +105,32 @@ public interface PojoType extends EObject
    * @generated
    */
   void setGref(PojoDefinition value);
+
+  /**
+   * Returns the value of the '<em><b>Gtype</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Gtype</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Gtype</em>' reference.
+   * @see #setGtype(JvmType)
+   * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getPojoType_Gtype()
+   * @model
+   * @generated
+   */
+  JvmType getGtype();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.PojoType#getGtype <em>Gtype</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Gtype</em>' reference.
+   * @see #getGtype()
+   * @generated
+   */
+  void setGtype(JvmType value);
 
   /**
    * Returns the value of the '<em><b>Array</b></em>' attribute.

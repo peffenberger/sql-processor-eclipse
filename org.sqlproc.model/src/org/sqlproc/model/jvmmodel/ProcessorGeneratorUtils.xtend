@@ -846,7 +846,7 @@ class ProcessorGeneratorUtils {
 	}
 
 	def isExtends(DaoEntity e) {
-		for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
+		for(ext: e.eContainer.eContainer.eContents.filter(typeof(Extends))) {
 			if (!ext.onlyDaos.empty) {
 				for (ee : ext.onlyDaos) {
 					if (ee.name == e.name)
@@ -879,7 +879,7 @@ class ProcessorGeneratorUtils {
 	}
 	
 	def getExtends(DaoEntity e) {
-		for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
+		for(ext: e.eContainer.eContainer.eContents.filter(typeof(Extends))) {
 			if (isExtends(e, ext))
 				return ext
 		}
@@ -887,7 +887,7 @@ class ProcessorGeneratorUtils {
 	}
 	
 	def isImplements(DaoEntity e) {
-		for(ext: e.eContainer.eContents.filter(typeof(Implements))) {
+		for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
 			for (ee : ext.exceptDaos) {
 				if (ee.name == e.name)
 					return false
@@ -923,7 +923,7 @@ class ProcessorGeneratorUtils {
 	def getImplements(DaoEntity e) {
 		val List<Implements> list = newArrayList()
 		
-		for(ext: e.eContainer.eContents.filter(typeof(Implements))) {
+		for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
 			if (isImplements(e, ext))
 				list.add(ext)
 		}

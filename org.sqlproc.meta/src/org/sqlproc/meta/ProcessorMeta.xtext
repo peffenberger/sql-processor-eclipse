@@ -356,8 +356,8 @@ FeatureValue:
   (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)+;
 
 PojoType:
-	(COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoDefinition|IDENT])
-	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoDefinition|IDENT]) MORE_THAN)? (array ?= '[]')?;
+	(COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName])
+	(LESS_THAN (COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)? (array ?= '[]')?;
 
 QualifiedName: (IDENT|IDENT_DOT);
 

@@ -1251,7 +1251,7 @@ public class TablePojoGenerator {
                                     if (entityAnnotations == null
                                             || !entityAnnotations.hasAttributeAnnotationsDefinitions(realPojoName,
                                                     name, ANNOTATION_NOT_NULL)) {
-                                        bufferPartial.append(NLINDENT).append(INDENT).append("final @NotNull");
+                                        bufferPartial.append(NLINDENT).append(INDENT).append("@NotNull");
                                     }
                             }
                             if (attribute.getDependencyClassName() == null && !attribute.isPrimitive()) {
@@ -1259,7 +1259,7 @@ public class TablePojoGenerator {
                                     if (entityAnnotations == null
                                             || !entityAnnotations.hasAttributeAnnotationsDefinitions(realPojoName,
                                                     name, ANNOTATION_SIZE)) {
-                                        bufferPartial.append(NLINDENT).append(INDENT).append("final @Size(max = ")
+                                        bufferPartial.append(NLINDENT).append(INDENT).append("@Size(max = ")
                                                 .append(attribute.getSize()).append(")");
                                     }
                                 }

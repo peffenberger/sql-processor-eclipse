@@ -3343,31 +3343,22 @@ public interface ProcessorMetaPackage extends EPackage
   int POJO_TYPE = 63;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_TYPE__TYPE = 0;
-
-  /**
    * The feature id for the '<em><b>Ref</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_TYPE__REF = 1;
+  int POJO_TYPE__REF = 0;
 
   /**
-   * The feature id for the '<em><b>Gtype</b></em>' reference.
+   * The feature id for the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_TYPE__GTYPE = 2;
+  int POJO_TYPE__TYPE = 1;
 
   /**
    * The feature id for the '<em><b>Gref</b></em>' reference.
@@ -3376,7 +3367,16 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_TYPE__GREF = 3;
+  int POJO_TYPE__GREF = 2;
+
+  /**
+   * The feature id for the '<em><b>Gtype</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE__GTYPE = 3;
 
   /**
    * The feature id for the '<em><b>Array</b></em>' attribute.
@@ -6579,17 +6579,6 @@ public interface ProcessorMetaPackage extends EPackage
   EClass getPojoType();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Type</em>'.
-   * @see org.sqlproc.meta.processorMeta.PojoType#getType()
-   * @see #getPojoType()
-   * @generated
-   */
-  EReference getPojoType_Type();
-
-  /**
    * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getRef <em>Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6601,15 +6590,15 @@ public interface ProcessorMetaPackage extends EPackage
   EReference getPojoType_Ref();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getGtype <em>Gtype</em>}'.
+   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Gtype</em>'.
-   * @see org.sqlproc.meta.processorMeta.PojoType#getGtype()
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType#getType()
    * @see #getPojoType()
    * @generated
    */
-  EReference getPojoType_Gtype();
+  EReference getPojoType_Type();
 
   /**
    * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getGref <em>Gref</em>}'.
@@ -6621,6 +6610,17 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    */
   EReference getPojoType_Gref();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getGtype <em>Gtype</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Gtype</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType#getGtype()
+   * @see #getPojoType()
+   * @generated
+   */
+  EReference getPojoType_Gtype();
 
   /**
    * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.PojoType#isArray <em>Array</em>}'.
@@ -9145,14 +9145,6 @@ public interface ProcessorMetaPackage extends EPackage
     EClass POJO_TYPE = eINSTANCE.getPojoType();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_TYPE__TYPE = eINSTANCE.getPojoType_Type();
-
-    /**
      * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9161,12 +9153,12 @@ public interface ProcessorMetaPackage extends EPackage
     EReference POJO_TYPE__REF = eINSTANCE.getPojoType_Ref();
 
     /**
-     * The meta object literal for the '<em><b>Gtype</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference POJO_TYPE__GTYPE = eINSTANCE.getPojoType_Gtype();
+    EReference POJO_TYPE__TYPE = eINSTANCE.getPojoType_Type();
 
     /**
      * The meta object literal for the '<em><b>Gref</b></em>' reference feature.
@@ -9175,6 +9167,14 @@ public interface ProcessorMetaPackage extends EPackage
      * @generated
      */
     EReference POJO_TYPE__GREF = eINSTANCE.getPojoType_Gref();
+
+    /**
+     * The meta object literal for the '<em><b>Gtype</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_TYPE__GTYPE = eINSTANCE.getPojoType_Gtype();
 
     /**
      * The meta object literal for the '<em><b>Array</b></em>' attribute feature.

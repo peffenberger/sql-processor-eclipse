@@ -771,10 +771,10 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOptionalFeatureAccess().getTypeAssignment_2(), "rule__OptionalFeature__TypeAssignment_2");
 					put(grammarAccess.getOptionalFeatureAccess().getModifiersAssignment_3_1(), "rule__OptionalFeature__ModifiersAssignment_3_1");
 					put(grammarAccess.getOptionalFeatureAccess().getOptionAssignment_6(), "rule__OptionalFeature__OptionAssignment_6");
-					put(grammarAccess.getPojoTypeAccess().getTypeAssignment_0_0_1(), "rule__PojoType__TypeAssignment_0_0_1");
-					put(grammarAccess.getPojoTypeAccess().getRefAssignment_0_1(), "rule__PojoType__RefAssignment_0_1");
-					put(grammarAccess.getPojoTypeAccess().getGtypeAssignment_1_1_0_1(), "rule__PojoType__GtypeAssignment_1_1_0_1");
-					put(grammarAccess.getPojoTypeAccess().getGrefAssignment_1_1_1(), "rule__PojoType__GrefAssignment_1_1_1");
+					put(grammarAccess.getPojoTypeAccess().getRefAssignment_0_0_1(), "rule__PojoType__RefAssignment_0_0_1");
+					put(grammarAccess.getPojoTypeAccess().getTypeAssignment_0_1(), "rule__PojoType__TypeAssignment_0_1");
+					put(grammarAccess.getPojoTypeAccess().getGrefAssignment_1_1_0_1(), "rule__PojoType__GrefAssignment_1_1_0_1");
+					put(grammarAccess.getPojoTypeAccess().getGtypeAssignment_1_1_1(), "rule__PojoType__GtypeAssignment_1_1_1");
 					put(grammarAccess.getPojoTypeAccess().getArrayAssignment_2(), "rule__PojoType__ArrayAssignment_2");
 				}
 			};

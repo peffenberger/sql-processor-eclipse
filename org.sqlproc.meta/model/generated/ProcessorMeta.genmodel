@@ -365,10 +365,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//OptionalFeature/option"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorMeta.ecore#//PojoType">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/ref"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/gtype"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/gref"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/gtype"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//PojoType/array"/>
     </genClasses>
   </genPackages>

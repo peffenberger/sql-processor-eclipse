@@ -6,8 +6,16 @@ import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
 import org.eclipse.xtext.xbase.compiler.GeneratorConfig
 import org.eclipse.xtext.common.types.JvmFormalParameter
 import org.eclipse.xtext.common.types.JvmGenericArrayTypeReference
+import org.eclipse.xtext.common.types.JvmCustomAnnotationValue
+import org.eclipse.xtext.xbase.XExpression
+import org.eclipse.xtext.xbase.impl.XStringLiteralImpl
+import org.eclipse.xtext.xbase.XStringLiteral
+import com.google.inject.Inject
+import org.eclipse.xtext.xbase.compiler.XbaseCompiler
 
 class ProcessorModelGenerator extends JvmModelGenerator {
+	
+	@Inject XbaseCompiler compiler
 	
 	override generateEnumLiteral(JvmEnumerationLiteral it, ITreeAppendable appendable, GeneratorConfig config) {
       super.generateEnumLiteral(it, appendable, config)
@@ -25,5 +33,20 @@ class ProcessorModelGenerator extends JvmModelGenerator {
 			val name = tracedAppendable.declareVariable(it, makeJavaIdentifier(simpleName))
 			tracedAppendable.traceSignificant(it).append(name)
 		}
+	}
+
+	override dispatch void toJavaLiteral(JvmCustomAnnotationValue it, ITreeAppendable appendable, GeneratorConfig config) {
+		if(values.isEmpty)
+			appendable.append('{}')
+		else 
+			appendable.forEachWithShortcut(values.filter(XExpression), [
+				println(it)
+				if (it instanceof XStringLiteral) {
+					appendable.append('"' + doConvertToJavaString(it.value) + '"')
+				}
+				else {
+					compiler.toJavaExpression(it, appendable)
+				}
+			])
 	}
 }

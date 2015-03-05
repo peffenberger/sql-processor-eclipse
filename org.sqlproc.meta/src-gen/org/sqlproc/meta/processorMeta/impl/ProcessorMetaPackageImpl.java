@@ -3555,7 +3555,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoType_Type()
+  public EReference getPojoType_Ref()
   {
     return (EReference)pojoTypeEClass.getEStructuralFeatures().get(0);
   }
@@ -3565,7 +3565,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoType_Ref()
+  public EReference getPojoType_Type()
   {
     return (EReference)pojoTypeEClass.getEStructuralFeatures().get(1);
   }
@@ -3575,7 +3575,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoType_Gtype()
+  public EReference getPojoType_Gref()
   {
     return (EReference)pojoTypeEClass.getEStructuralFeatures().get(2);
   }
@@ -3585,7 +3585,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoType_Gref()
+  public EReference getPojoType_Gtype()
   {
     return (EReference)pojoTypeEClass.getEStructuralFeatures().get(3);
   }
@@ -3988,10 +3988,10 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     createEAttribute(optionalFeatureEClass, OPTIONAL_FEATURE__OPTION);
 
     pojoTypeEClass = createEClass(POJO_TYPE);
-    createEReference(pojoTypeEClass, POJO_TYPE__TYPE);
     createEReference(pojoTypeEClass, POJO_TYPE__REF);
-    createEReference(pojoTypeEClass, POJO_TYPE__GTYPE);
+    createEReference(pojoTypeEClass, POJO_TYPE__TYPE);
     createEReference(pojoTypeEClass, POJO_TYPE__GREF);
+    createEReference(pojoTypeEClass, POJO_TYPE__GTYPE);
     createEAttribute(pojoTypeEClass, POJO_TYPE__ARRAY);
   }
 
@@ -4387,10 +4387,10 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     initEAttribute(getOptionalFeature_Option(), ecorePackage.getEString(), "option", null, 0, 1, OptionalFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoTypeEClass, PojoType.class, "PojoType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPojoType_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoType_Ref(), this.getPojoDefinition(), null, "ref", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoType_Gtype(), theTypesPackage.getJvmType(), null, "gtype", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoType_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoType_Gref(), this.getPojoDefinition(), null, "gref", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoType_Gtype(), theTypesPackage.getJvmType(), null, "gtype", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojoType_Array(), ecorePackage.getEBoolean(), "array", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource

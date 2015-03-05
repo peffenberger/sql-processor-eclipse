@@ -23,10 +23,10 @@ import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.meta.processorMeta.impl.PojoTypeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.PojoTypeImpl#getRef <em>Ref</em>}</li>
- *   <li>{@link org.sqlproc.meta.processorMeta.impl.PojoTypeImpl#getGtype <em>Gtype</em>}</li>
+ *   <li>{@link org.sqlproc.meta.processorMeta.impl.PojoTypeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.PojoTypeImpl#getGref <em>Gref</em>}</li>
+ *   <li>{@link org.sqlproc.meta.processorMeta.impl.PojoTypeImpl#getGtype <em>Gtype</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.PojoTypeImpl#isArray <em>Array</em>}</li>
  * </ul>
  * </p>
@@ -35,16 +35,6 @@ import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
  */
 public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoType
 {
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected JvmType type;
-
   /**
    * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.
    * <!-- begin-user-doc -->
@@ -56,14 +46,14 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   protected PojoDefinition ref;
 
   /**
-   * The cached value of the '{@link #getGtype() <em>Gtype</em>}' reference.
+   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getGtype()
+   * @see #getType()
    * @generated
    * @ordered
    */
-  protected JvmType gtype;
+  protected JvmType type;
 
   /**
    * The cached value of the '{@link #getGref() <em>Gref</em>}' reference.
@@ -74,6 +64,16 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * @ordered
    */
   protected PojoDefinition gref;
+
+  /**
+   * The cached value of the '{@link #getGtype() <em>Gtype</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getGtype()
+   * @generated
+   * @ordered
+   */
+  protected JvmType gtype;
 
   /**
    * The default value of the '{@link #isArray() <em>Array</em>}' attribute.
@@ -114,49 +114,6 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   protected EClass eStaticClass()
   {
     return ProcessorMetaPackage.Literals.POJO_TYPE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JvmType getType()
-  {
-    if (type != null && type.eIsProxy())
-    {
-      InternalEObject oldType = (InternalEObject)type;
-      type = (JvmType)eResolveProxy(oldType);
-      if (type != oldType)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorMetaPackage.POJO_TYPE__TYPE, oldType, type));
-      }
-    }
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JvmType basicGetType()
-  {
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setType(JvmType newType)
-  {
-    JvmType oldType = type;
-    type = newType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.POJO_TYPE__TYPE, oldType, type));
   }
 
   /**
@@ -207,19 +164,19 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmType getGtype()
+  public JvmType getType()
   {
-    if (gtype != null && gtype.eIsProxy())
+    if (type != null && type.eIsProxy())
     {
-      InternalEObject oldGtype = (InternalEObject)gtype;
-      gtype = (JvmType)eResolveProxy(oldGtype);
-      if (gtype != oldGtype)
+      InternalEObject oldType = (InternalEObject)type;
+      type = (JvmType)eResolveProxy(oldType);
+      if (type != oldType)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorMetaPackage.POJO_TYPE__GTYPE, oldGtype, gtype));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorMetaPackage.POJO_TYPE__TYPE, oldType, type));
       }
     }
-    return gtype;
+    return type;
   }
 
   /**
@@ -227,9 +184,9 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmType basicGetGtype()
+  public JvmType basicGetType()
   {
-    return gtype;
+    return type;
   }
 
   /**
@@ -237,12 +194,12 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setGtype(JvmType newGtype)
+  public void setType(JvmType newType)
   {
-    JvmType oldGtype = gtype;
-    gtype = newGtype;
+    JvmType oldType = type;
+    type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.POJO_TYPE__GTYPE, oldGtype, gtype));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.POJO_TYPE__TYPE, oldType, type));
   }
 
   /**
@@ -293,6 +250,49 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
+  public JvmType getGtype()
+  {
+    if (gtype != null && gtype.eIsProxy())
+    {
+      InternalEObject oldGtype = (InternalEObject)gtype;
+      gtype = (JvmType)eResolveProxy(oldGtype);
+      if (gtype != oldGtype)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorMetaPackage.POJO_TYPE__GTYPE, oldGtype, gtype));
+      }
+    }
+    return gtype;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public JvmType basicGetGtype()
+  {
+    return gtype;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setGtype(JvmType newGtype)
+  {
+    JvmType oldGtype = gtype;
+    gtype = newGtype;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.POJO_TYPE__GTYPE, oldGtype, gtype));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public boolean isArray()
   {
     return array;
@@ -321,18 +321,18 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   {
     switch (featureID)
     {
-      case ProcessorMetaPackage.POJO_TYPE__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
       case ProcessorMetaPackage.POJO_TYPE__REF:
         if (resolve) return getRef();
         return basicGetRef();
-      case ProcessorMetaPackage.POJO_TYPE__GTYPE:
-        if (resolve) return getGtype();
-        return basicGetGtype();
+      case ProcessorMetaPackage.POJO_TYPE__TYPE:
+        if (resolve) return getType();
+        return basicGetType();
       case ProcessorMetaPackage.POJO_TYPE__GREF:
         if (resolve) return getGref();
         return basicGetGref();
+      case ProcessorMetaPackage.POJO_TYPE__GTYPE:
+        if (resolve) return getGtype();
+        return basicGetGtype();
       case ProcessorMetaPackage.POJO_TYPE__ARRAY:
         return isArray();
     }
@@ -349,17 +349,17 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   {
     switch (featureID)
     {
-      case ProcessorMetaPackage.POJO_TYPE__TYPE:
-        setType((JvmType)newValue);
-        return;
       case ProcessorMetaPackage.POJO_TYPE__REF:
         setRef((PojoDefinition)newValue);
         return;
-      case ProcessorMetaPackage.POJO_TYPE__GTYPE:
-        setGtype((JvmType)newValue);
+      case ProcessorMetaPackage.POJO_TYPE__TYPE:
+        setType((JvmType)newValue);
         return;
       case ProcessorMetaPackage.POJO_TYPE__GREF:
         setGref((PojoDefinition)newValue);
+        return;
+      case ProcessorMetaPackage.POJO_TYPE__GTYPE:
+        setGtype((JvmType)newValue);
         return;
       case ProcessorMetaPackage.POJO_TYPE__ARRAY:
         setArray((Boolean)newValue);
@@ -378,17 +378,17 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   {
     switch (featureID)
     {
-      case ProcessorMetaPackage.POJO_TYPE__TYPE:
-        setType((JvmType)null);
-        return;
       case ProcessorMetaPackage.POJO_TYPE__REF:
         setRef((PojoDefinition)null);
         return;
-      case ProcessorMetaPackage.POJO_TYPE__GTYPE:
-        setGtype((JvmType)null);
+      case ProcessorMetaPackage.POJO_TYPE__TYPE:
+        setType((JvmType)null);
         return;
       case ProcessorMetaPackage.POJO_TYPE__GREF:
         setGref((PojoDefinition)null);
+        return;
+      case ProcessorMetaPackage.POJO_TYPE__GTYPE:
+        setGtype((JvmType)null);
         return;
       case ProcessorMetaPackage.POJO_TYPE__ARRAY:
         setArray(ARRAY_EDEFAULT);
@@ -407,14 +407,14 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
   {
     switch (featureID)
     {
-      case ProcessorMetaPackage.POJO_TYPE__TYPE:
-        return type != null;
       case ProcessorMetaPackage.POJO_TYPE__REF:
         return ref != null;
-      case ProcessorMetaPackage.POJO_TYPE__GTYPE:
-        return gtype != null;
+      case ProcessorMetaPackage.POJO_TYPE__TYPE:
+        return type != null;
       case ProcessorMetaPackage.POJO_TYPE__GREF:
         return gref != null;
+      case ProcessorMetaPackage.POJO_TYPE__GTYPE:
+        return gtype != null;
       case ProcessorMetaPackage.POJO_TYPE__ARRAY:
         return array != ARRAY_EDEFAULT;
     }
