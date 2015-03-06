@@ -45,6 +45,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String REPLACE_ALL_REGEX = "replace-all-regex";
     public static final String REPLACE_ALL_REPLACEMENT = "replace-all-replacement";
     public static final String COMPRESS_META_DIRECTIVES = "compress-meta-directives";
+    public static final List<String> STANDARD_DIRECTIVES = new ArrayList<String>();
+    static {
+        STANDARD_DIRECTIVES.add(RESOLVE_POJO_ON);
+        STANDARD_DIRECTIVES.add(RESOLVE_POJO_OFF);
+        STANDARD_DIRECTIVES.add(REPLACE_ALL_REGEX);
+        STANDARD_DIRECTIVES.add(REPLACE_ALL_REPLACEMENT);
+        STANDARD_DIRECTIVES.add(COMPRESS_META_DIRECTIVES);
+    }
+
     public static final String DATABASE = "database";
     public static final String DATABASE_IS_ONLINE = "is-online";
     public static final String DATABASE_IS_OFFLINE = "is-offline";
@@ -52,7 +61,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String DATABASE_EXECUTE_BEFORE = "ddl-create";
     public static final String DATABASE_EXECUTE_AFTER = "ddl-drop";
     public static final String DATABASE_LOGIN_USERNAME = "login-username";
-    public static final String DATABASE_LOGIN_NPASSWORD = "login-password";
+    public static final String DATABASE_LOGIN_PASSWORD = "login-password";
     public static final String DATABASE_IN_CATALOG = "in-catalog";
     public static final String DATABASE_ACTIVE_SCHEMA = "active-schema";
     public static final String DATABASE_JDBC_DRIVER = "jdbc-driver";
@@ -65,6 +74,29 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String DATABASE_TAKE_COMMENTS = "take-comments";
     public static final String DATABASE_LOWERCASE_NAMES = "lowercase-names";
     public static final String DATABASE_UPPERCASE_NAMES = "uppercase-names";
+    public static final List<String> DATABASE_DIRECTIVES = new ArrayList<String>();
+    static {
+        DATABASE_DIRECTIVES.add(DATABASE_IS_ONLINE);
+        DATABASE_DIRECTIVES.add(DATABASE_IS_OFFLINE);
+        DATABASE_DIRECTIVES.add(DATABASE_HAS_URL);
+        DATABASE_DIRECTIVES.add(DATABASE_EXECUTE_BEFORE);
+        DATABASE_DIRECTIVES.add(DATABASE_EXECUTE_AFTER);
+        DATABASE_DIRECTIVES.add(DATABASE_LOGIN_USERNAME);
+        DATABASE_DIRECTIVES.add(DATABASE_LOGIN_PASSWORD);
+        DATABASE_DIRECTIVES.add(DATABASE_IN_CATALOG);
+        DATABASE_DIRECTIVES.add(DATABASE_ACTIVE_SCHEMA);
+        DATABASE_DIRECTIVES.add(DATABASE_JDBC_DRIVER);
+        DATABASE_DIRECTIVES.add(DATABASE_INDEX_TYPES);
+        DATABASE_DIRECTIVES.add(DATABASE_SKIP_INDEXES);
+        DATABASE_DIRECTIVES.add(DATABASE_SKIP_CHECK_CONSTRAINTS);
+        DATABASE_DIRECTIVES.add(DATABASE_SKIP_PROCEDURES);
+        DATABASE_DIRECTIVES.add(DATABASE_OF_TYPE);
+        DATABASE_DIRECTIVES.add(DATABASE_DEBUG_LEVEL);
+        DATABASE_DIRECTIVES.add(DATABASE_TAKE_COMMENTS);
+        DATABASE_DIRECTIVES.add(DATABASE_LOWERCASE_NAMES);
+        DATABASE_DIRECTIVES.add(DATABASE_UPPERCASE_NAMES);
+    }
+
     public static final String POJOGEN = "pojogen";
     public static final String POJOGEN_TYPE_SQLTYPES = "types-sqltypes";
     public static final String POJOGEN_TYPE_IN_TABLE = "types-in-table";
@@ -140,7 +172,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String DAOGEN_ACTIVE_FILTER = "active-filter";
     public static final String DAOGEN_PACKAGE = "package";
 
-    public static final String GLOBAL = "___GLOBAL";
+    public static final String STANDARD = "___GLOBAL";
 
     public static class PairValues {
         public String value1;
@@ -419,7 +451,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                     if (!isNull(condition))
                         continue;
                     setValue(modelValues, property);
-                    modelValues.defaultAttrs.get(GLOBAL).add(property.getName());
+                    modelValues.defaultAttrs.get(STANDARD).add(property.getName());
                 }
             }
         } catch (RuntimeException e) {
@@ -427,16 +459,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         }
 
         try {
-            for (Property property : artifacts.getProperties()) {
-
-                if (property.getName().startsWith(DATABASE)) {
-                    String envValue = System.getenv(property.getName());
-                    if (envValue != null) {
-                        setValue(modelValues, property.getDatabase(), envValue);
-                        modelValues.systemEnvAttrs.get(DATABASE).add(property.getDatabase().getName());
-                    }
-                }
-            }
+            setStandardValuesFromEnv(modelValues);
+            setDatabaseValuesFromEnv(modelValues);
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
@@ -469,7 +493,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 } else {
                     if (condIsValid) {
                         setValue(modelValues, property);
-                        modelValues.conditionalAttrs.get(GLOBAL).add(property.getName());
+                        modelValues.conditionalAttrs.get(STANDARD).add(property.getName());
                     }
                 }
             }
@@ -484,8 +508,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.replaceAllRegex = new HashMap<String, String>();
         modelValues.replaceAllReplacement = new HashMap<String, String>();
         modelValues.doCompressMetaDirectives = false;
-        modelValues.defaultAttrs.put(GLOBAL, new HashSet<String>());
-        modelValues.conditionalAttrs.put(GLOBAL, new HashSet<String>());
+        modelValues.defaultAttrs.put(STANDARD, new HashSet<String>());
+        modelValues.conditionalAttrs.put(STANDARD, new HashSet<String>());
     }
 
     private static void initDatabaseModel(ModelValues modelValues) {
@@ -624,6 +648,22 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         }
     }
 
+    public static void setStandardValuesFromEnv(ModelValues modelValues) {
+        for (String name : STANDARD_DIRECTIVES) {
+            String value = System.getenv(name);
+            if (value == null)
+                continue;
+            modelValues.systemEnvAttrs.get(STANDARD).add(name);
+            if (RESOLVE_POJO_ON.equals(name)) {
+                modelValues.doResolvePojo = true;
+            } else if (RESOLVE_POJO_OFF.equals(name)) {
+                modelValues.doResolvePojo = false;
+            } else if (COMPRESS_META_DIRECTIVES.equals(name)) {
+                modelValues.doCompressMetaDirectives = true;
+            }
+        }
+    }
+
     public static void setValue(ModelValues modelValues, DatabaseProperty property) {
         if (property == null)
             return;
@@ -635,7 +675,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.dbUrl = getPropertyValue(property.getDbUrl());
         } else if (DATABASE_LOGIN_USERNAME.equals(property.getName())) {
             modelValues.dbUsername = getPropertyValue(property.getDbUsername());
-        } else if (DATABASE_LOGIN_NPASSWORD.equals(property.getName())) {
+        } else if (DATABASE_LOGIN_PASSWORD.equals(property.getName())) {
             modelValues.dbPassword = getPropertyValue(property.getDbPassword());
         } else if (DATABASE_IN_CATALOG.equals(property.getName())) {
             if (property.getDbCatalog() != null)
@@ -681,47 +721,51 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         }
     }
 
-    public static void setValue(ModelValues modelValues, DatabaseProperty property, String value) {
-        if (property == null)
-            return;
-        if (DATABASE_IS_ONLINE.equals(property.getName())) {
-            modelValues.doResolveDb = value.equalsIgnoreCase("true");
-        } else if (DATABASE_IS_OFFLINE.equals(property.getName())) {
-            modelValues.doResolveDb = value.equalsIgnoreCase("true");
-        } else if (DATABASE_HAS_URL.equals(property.getName())) {
-            modelValues.dbUrl = getPropertyValue(value);
-        } else if (DATABASE_LOGIN_USERNAME.equals(property.getName())) {
-            modelValues.dbUsername = getPropertyValue(value);
-        } else if (DATABASE_LOGIN_NPASSWORD.equals(property.getName())) {
-            modelValues.dbPassword = getPropertyValue(value);
-        } else if (DATABASE_IN_CATALOG.equals(property.getName())) {
-            modelValues.dbCatalog = getPropertyValue(value);
-        } else if (DATABASE_ACTIVE_SCHEMA.equals(property.getName())) {
-            modelValues.dbSchema = getPropertyValue(value);
-        } else if (DATABASE_JDBC_DRIVER.equals(property.getName())) {
-            modelValues.dbDriver = getPropertyValue(value);
-        } else if (DATABASE_EXECUTE_BEFORE.equals(property.getName())) {
-            modelValues.dbSqlsBefore = getPropertyValue(value);
-        } else if (DATABASE_EXECUTE_AFTER.equals(property.getName())) {
-            modelValues.dbSqlsAfter = getPropertyValue(value);
-        } else if (DATABASE_INDEX_TYPES.equals(property.getName())) {
-            modelValues.dbIndexTypes = getPropertyValue(value);
-        } else if (DATABASE_SKIP_INDEXES.equals(property.getName())) {
-            modelValues.dbSkipIndexes = value.equalsIgnoreCase("true");
-        } else if (DATABASE_SKIP_PROCEDURES.equals(property.getName())) {
-            modelValues.dbSkipProcedures = value.equalsIgnoreCase("true");
-        } else if (DATABASE_SKIP_CHECK_CONSTRAINTS.equals(property.getName())) {
-            modelValues.dbSkipCheckConstraints = value.equalsIgnoreCase("true");
-        } else if (DATABASE_OF_TYPE.equals(property.getName())) {
-            modelValues.dbType = getPropertyValue(value);
-        } else if (DATABASE_DEBUG_LEVEL.equals(property.getName()) && property.getDebug() != null) {
-            modelValues.dbDebugLevel = getPropertyValue(value);
-        } else if (DATABASE_TAKE_COMMENTS.equals(property.getName())) {
-            modelValues.dbTakeComments = value.equalsIgnoreCase("true");
-        } else if (DATABASE_LOWERCASE_NAMES.equals(property.getName())) {
-            modelValues.dbLowercaseNames = value.equalsIgnoreCase("true");
-        } else if (DATABASE_UPPERCASE_NAMES.equals(property.getName())) {
-            modelValues.dbUppercaseNames = value.equalsIgnoreCase("true");
+    public static void setDatabaseValuesFromEnv(ModelValues modelValues) {
+        for (String name : DATABASE_DIRECTIVES) {
+            String value = System.getenv(DATABASE + "-" + name);
+            if (value == null)
+                continue;
+            modelValues.systemEnvAttrs.get(DATABASE).add(name);
+            if (DATABASE_IS_ONLINE.equals(name)) {
+                modelValues.doResolveDb = value.equalsIgnoreCase("true");
+            } else if (DATABASE_IS_OFFLINE.equals(name)) {
+                modelValues.doResolveDb = value.equalsIgnoreCase("true");
+            } else if (DATABASE_HAS_URL.equals(name)) {
+                modelValues.dbUrl = getPropertyValue(value);
+            } else if (DATABASE_LOGIN_USERNAME.equals(name)) {
+                modelValues.dbUsername = getPropertyValue(value);
+            } else if (DATABASE_LOGIN_PASSWORD.equals(name)) {
+                modelValues.dbPassword = getPropertyValue(value);
+            } else if (DATABASE_IN_CATALOG.equals(name)) {
+                modelValues.dbCatalog = getPropertyValue(value);
+            } else if (DATABASE_ACTIVE_SCHEMA.equals(name)) {
+                modelValues.dbSchema = getPropertyValue(value);
+            } else if (DATABASE_JDBC_DRIVER.equals(name)) {
+                modelValues.dbDriver = getPropertyValue(value);
+            } else if (DATABASE_EXECUTE_BEFORE.equals(name)) {
+                modelValues.dbSqlsBefore = getPropertyValue(value);
+            } else if (DATABASE_EXECUTE_AFTER.equals(name)) {
+                modelValues.dbSqlsAfter = getPropertyValue(value);
+            } else if (DATABASE_INDEX_TYPES.equals(name)) {
+                modelValues.dbIndexTypes = getPropertyValue(value);
+            } else if (DATABASE_SKIP_INDEXES.equals(name)) {
+                modelValues.dbSkipIndexes = value.equalsIgnoreCase("true");
+            } else if (DATABASE_SKIP_PROCEDURES.equals(name)) {
+                modelValues.dbSkipProcedures = value.equalsIgnoreCase("true");
+            } else if (DATABASE_SKIP_CHECK_CONSTRAINTS.equals(name)) {
+                modelValues.dbSkipCheckConstraints = value.equalsIgnoreCase("true");
+            } else if (DATABASE_OF_TYPE.equals(name)) {
+                modelValues.dbType = getPropertyValue(value);
+            } else if (DATABASE_DEBUG_LEVEL.equals(name)) {
+                modelValues.dbDebugLevel = getPropertyValue(value);
+            } else if (DATABASE_TAKE_COMMENTS.equals(name)) {
+                modelValues.dbTakeComments = value.equalsIgnoreCase("true");
+            } else if (DATABASE_LOWERCASE_NAMES.equals(name)) {
+                modelValues.dbLowercaseNames = value.equalsIgnoreCase("true");
+            } else if (DATABASE_UPPERCASE_NAMES.equals(name)) {
+                modelValues.dbUppercaseNames = value.equalsIgnoreCase("true");
+            }
         }
     }
 
@@ -736,7 +780,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.dbUrl = getPropertyValue(property.getDbUrl());
         } else if (DATABASE_LOGIN_USERNAME.equals(property.getName())) {
             modelValues.dbUsername = getPropertyValue(property.getDbUsername());
-        } else if (DATABASE_LOGIN_NPASSWORD.equals(property.getName())) {
+        } else if (DATABASE_LOGIN_PASSWORD.equals(property.getName())) {
             modelValues.dbPassword = getPropertyValue(property.getDbPassword());
         } else if (DATABASE_IN_CATALOG.equals(property.getName())) {
             if (property.getDbCatalog() != null)
@@ -1140,7 +1184,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.metaMakeItFinal = true;
         } else if (METAGEN_LIKE_COLUMNS.equals(property.getName())) {
             if (property.getDbTable() == null) {
-                modelValues.metaLikeColumns.put(GLOBAL, new HashSet<String>());
+                modelValues.metaLikeColumns.put(STANDARD, new HashSet<String>());
             } else {
                 if (!modelValues.metaLikeColumns.containsKey(property.getDbTable()))
                     modelValues.metaLikeColumns.put(property.getDbTable(), new HashSet<String>());
@@ -1150,7 +1194,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             }
         } else if (METAGEN_NOT_LIKE_COLUMNS.equals(property.getName())) {
             if (property.getDbTable() == null) {
-                modelValues.metaNotLikeColumns.put(GLOBAL, new HashSet<String>());
+                modelValues.metaNotLikeColumns.put(STANDARD, new HashSet<String>());
             } else {
                 if (!modelValues.metaNotLikeColumns.containsKey(property.getDbTable()))
                     modelValues.metaNotLikeColumns.put(property.getDbTable(), new HashSet<String>());

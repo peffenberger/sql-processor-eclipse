@@ -784,8 +784,8 @@ public class TableMetaGenerator extends TablePojoGenerator {
                 continue;
             boolean useLike = false;
             if (select) {
-                if (!metaNotLikeColumns.containsKey(ModelPropertyBean.GLOBAL)
-                        || metaLikeColumns.containsKey(ModelPropertyBean.GLOBAL)) {
+                if (!metaNotLikeColumns.containsKey(ModelPropertyBean.STANDARD)
+                        || metaLikeColumns.containsKey(ModelPropertyBean.STANDARD)) {
                     if (attr.attribute.getClassName() != null && attr.attribute.getClassName().endsWith("String"))
                         useLike = true;
                 }
