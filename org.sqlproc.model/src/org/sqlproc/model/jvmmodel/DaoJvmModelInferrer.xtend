@@ -91,7 +91,6 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    			for (impl : entity.getImplements) {
    				if (impl.isGenerics) {
    					val genericType = typeRef(impl.implements, typeRef(pojoType))
-   					println(genericType)
    					superTypes += genericType
    				}
    				else {

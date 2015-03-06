@@ -350,6 +350,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 
                 System.out.println("defaultAttrs = " + modelValues.defaultAttrs);
                 System.out.println("conditionalAttrs = " + modelValues.conditionalAttrs);
+                System.out.println("systemEnvAttrs = " + modelValues.systemEnvAttrs);
 
                 LOGGER.debug("MODEL " + modelValues.toString());
             }
@@ -627,6 +628,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.conditionalAttrs.put(DAOGEN, new HashSet<String>());
     }
 
+    private static String getEnvName(String category, String name) {
+        StringBuilder sb = new StringBuilder();
+        if (category != null) {
+            sb.append(category).append("_");
+        }
+        sb.append(name.replaceAll("-", "_"));
+        return sb.toString();
+    }
+
     public static void setValue(ModelValues modelValues, Property property) {
         if (property == null)
             return;
@@ -648,7 +658,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 
     public static void setStandardValuesFromEnv(ModelValues modelValues) {
         for (String name : STANDARD_DIRECTIVES) {
-            String value = System.getenv(name);
+            String envName = getEnvName(null, name);
+            String value = System.getenv(envName);
             if (value == null)
                 continue;
             modelValues.systemEnvAttrs.get(STANDARD).add(name);
@@ -721,7 +732,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 
     public static void setDatabaseValuesFromEnv(ModelValues modelValues) {
         for (String name : DATABASE_DIRECTIVES) {
-            String value = System.getenv(DATABASE + "-" + name);
+            String envName = getEnvName(DATABASE, name);
+            String value = System.getenv(envName);
             if (value == null)
                 continue;
             modelValues.systemEnvAttrs.get(DATABASE).add(name);
