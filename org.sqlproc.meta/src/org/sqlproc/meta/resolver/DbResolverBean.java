@@ -70,12 +70,12 @@ public class DbResolverBean implements DbResolver {
         @Override
         public String toString() {
             return "DatabaseValues [dbDriver=" + dbDriver + ", dbUrl=" + dbUrl + ", dbUsername=" + dbUsername
-                    + ", dbPassword=" + dbPassword + ", dbCatalog=" + dbCatalog + ", dbSchema=" + dbSchema
-                    + ", dbSqlsBefore=" + dbSqlsBefore + ", dbSqlsAfter=" + dbSqlsAfter + ", connection=" + connection
-                    + ", dbIndexTypes=" + dbIndexTypes + ", dbSkipIndexes=" + dbSkipIndexes + ", dbSkipProcedures="
-                    + dbSkipProcedures + ", dbSkipCheckConstraints=" + dbSkipCheckConstraints + ", dbTakeComments="
-                    + dbTakeComments + ", dbLowercaseNames=" + dbLowercaseNames + ", dbUppercaseNames="
-                    + dbUppercaseNames + ", dbType=" + dbType + ", dir=" + dir + "]";
+                    + ", dbCatalog=" + dbCatalog + ", dbSchema=" + dbSchema + ", dbSqlsBefore=" + dbSqlsBefore
+                    + ", dbSqlsAfter=" + dbSqlsAfter + ", connection=" + connection + ", dbIndexTypes=" + dbIndexTypes
+                    + ", dbSkipIndexes=" + dbSkipIndexes + ", dbSkipProcedures=" + dbSkipProcedures
+                    + ", dbSkipCheckConstraints=" + dbSkipCheckConstraints + ", dbTakeComments=" + dbTakeComments
+                    + ", dbLowercaseNames=" + dbLowercaseNames + ", dbUppercaseNames=" + dbUppercaseNames + ", dbType="
+                    + dbType + ", dir=" + dir + "]";
         }
 
     }
@@ -320,6 +320,7 @@ public class DbResolverBean implements DbResolver {
         debug.trace(m, "DB OPEN");
         synchronized (sync) {
             debug.trace(m, "DATA START FOR " + modelDatabaseValues.dir);
+            debug.info(m, "DATA START FOR " + modelDatabaseValues.toString());
             URI uri = (model.eResource() != null) ? model.eResource().getURI() : null;
             Class<?> driverClass = (this.driverClass != null) ? this.driverClass : pojoResolverFactory
                     .getPojoResolver().loadClass(modelDatabaseValues.dbDriver, uri);

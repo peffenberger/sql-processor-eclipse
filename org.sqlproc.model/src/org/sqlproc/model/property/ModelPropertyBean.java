@@ -510,6 +510,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.doCompressMetaDirectives = false;
         modelValues.defaultAttrs.put(STANDARD, new HashSet<String>());
         modelValues.conditionalAttrs.put(STANDARD, new HashSet<String>());
+        modelValues.systemEnvAttrs.put(STANDARD, new HashSet<String>());
     }
 
     private static void initDatabaseModel(ModelValues modelValues) {
