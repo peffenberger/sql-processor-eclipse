@@ -217,6 +217,15 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    				visibility = JvmVisibility.PROTECTED
    				final = true
    				initializer = '''«LOGGER_FACTORY».getLogger(getClass())'''
+//   				val that = it
+//   				initializer = [
+//   					val StandardTypeReferenceOwner owner = new StandardTypeReferenceOwner(services, that);
+//   					val OwnedConverter converter = new OwnedConverter(owner);
+//					var t1 = converter.toLightweightReference(typeRef(LOGGER))
+//					var t2 = converter.toLightweightReference(typeRef(LOGGER_FACTORY))
+//					append(t2)
+//	   				append('''.getLogger(getClass())''')
+//   				]
    			]
    			
    			members += entity.toConstructor [
