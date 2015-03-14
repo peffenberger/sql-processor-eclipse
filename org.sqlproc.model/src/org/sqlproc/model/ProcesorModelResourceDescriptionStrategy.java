@@ -1,30 +1,59 @@
 package org.sqlproc.model;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.common.types.JvmGenericType;
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.xbase.resource.XbaseResourceDescriptionStrategy;
 
 public class ProcesorModelResourceDescriptionStrategy extends XbaseResourceDescriptionStrategy {
 
+    private static final Logger LOG = Logger.getLogger(ProcesorModelResourceDescriptionStrategy.class);
+
     @Override
     protected boolean isResolvedAndExternal(EObject from, EObject to) {
-        return super.isResolvedAndExternal(from, to);
-        // if (to == null)
-        // return false;
-        // if (!to.eIsProxy()) {
-        // if (to.eResource() == null) {
-        // // TODO
-        // // JvmGenericType: cz.isvs.ais3.audit.model.Agenda (visibility: PUBLIC, simpleName: Agenda, identifier:
-        // // cz.isvs.ais3.audit.model.Agenda, deprecated: <unset>) (abstract: false, static: false, final: false,
-        // // packageName: cz.isvs.ais3.audit.model) (interface: false, strictFloatingPoint: false, anonymous:
-        // // false)
-        // // JvmParameterizedTypeReference: cz.isvs.ais3.audit.model.Agenda
-        //
-        // return false;
-        // }
-        // return from.eResource() != to.eResource();
-        // }
-        // return !getLazyURIEncoder()
-        // .isCrossLinkFragment(from.eResource(), ((InternalEObject) to).eProxyURI().fragment());
+        if (to == null)
+            return false;
+        if (!to.eIsProxy()) {
+            if (to.eResource() == null) {
+                // Workaround
+                if (isGeneratedDaoCode(from)) {
+                    return false;
+                }
+                LOG.error("Reference from " + EcoreUtil.getURI(from) + " to " + to
+                        + " cannot be exported as the target is not contained in a resource.");
+                return false;
+            }
+            return from.eResource() != to.eResource();
+        }
+        return !getLazyURIEncoder()
+                .isCrossLinkFragment(from.eResource(), ((InternalEObject) to).eProxyURI().fragment());
     }
 
+    private boolean isGeneratedDaoCode(EObject from) {
+        // from instanceof JvmParameterizedTypeReference
+        // from.eContainer() instanceof JvmFormalParameter
+        // from.eContainer().eContainer() instanceof JvmOperation
+        // from.eContainer().eContainer().eContainer() instanceof JvmGenericType
+        if (from == null || !(from instanceof JvmParameterizedTypeReference))
+            return false;
+        for (EObject cont = from.eContainer(); cont != null; cont = cont.eContainer()) {
+            if (cont instanceof JvmGenericType && ((JvmGenericType) cont).getSimpleName().endsWith("Dao"))
+                return true;
+        }
+        return false;
+    }
+
+    // private void info(EObject eo) {
+    // if (eo == null)
+    // return;
+    // System.out.println(eo.eClass());
+    // System.out.println(eo.eContainer());
+    // System.out.println(eo.eContainingFeature());
+    // System.out.println(eo.eContainmentFeature());
+    // System.out.println(eo.eResource());
+    // info(eo.eContainer());
+    // }
 }
