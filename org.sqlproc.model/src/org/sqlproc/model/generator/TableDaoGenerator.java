@@ -280,7 +280,6 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 if (pojoName == null)
                     pojoName = pojo;
                 pojoName = tableToCamelCase(pojoName);
-                daoImports.add(pojoPackage + "." + pojoName);
                 String daoName = pojoName + "Dao";
                 if (finalDaos.containsKey(daoName)) {
                     buffer.append(Utils.getFinalContent(finalDaos.get(daoName)));
@@ -316,7 +315,8 @@ public class TableDaoGenerator extends TablePojoGenerator {
                                 String pojoName2 = tableNames.get(pojo2);
                                 if (pojoName2 == null)
                                     pojoName2 = pojo2;
-                                bufferMeta.append("=").append(tableToCamelCase(pojoName2));
+                                bufferMeta.append("=").append(pojoPackage).append(".")
+                                        .append(tableToCamelCase(pojoName2));
                             }
                         } else {
                             for (String pojo2 : pojoInheritanceDiscriminator.get(entry.getValue())) {
@@ -324,13 +324,16 @@ public class TableDaoGenerator extends TablePojoGenerator {
                                 String pojoName2 = tableNames.get(pojo2);
                                 if (pojoName2 == null)
                                     pojoName2 = pojo2;
-                                bufferMeta.append("=").append(tableToCamelCase(pojoName2));
+                                bufferMeta.append("=").append(pojoPackage).append(".")
+                                        .append(tableToCamelCase(pojoName2));
                             }
                         }
                         bufferMeta.append(")");
                     }
-                    bufferMeta.append(nlindent()).append("#CRUD(").append(pojoName).append(")");
-                    bufferMeta.append(nlindent()).append("#Query(").append(pojoName).append(")");
+                    bufferMeta.append(nlindent()).append("#CRUD(").append(pojoPackage).append(".").append(pojoName)
+                            .append(")");
+                    bufferMeta.append(nlindent()).append("#Query(").append(pojoPackage).append(".").append(pojoName)
+                            .append(")");
                 }
                 if (bufferMeta.length() > 0 && bufferMeta.charAt(0) == ' ')
                     buffer.append(NLINDENT).append(bufferMeta.substring(1));
@@ -369,7 +372,6 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 if (pojoName == null)
                     pojoName = procedure;
                 pojoName = tableToCamelCase(pojoName);
-                daoImports.add(pojoPackage + "." + pojoName);
                 String daoName = pojoName + "Dao";
                 if (finalDaos.containsKey(daoName)) {
                     buffer.append(Utils.getFinalContent(finalDaos.get(daoName)));
@@ -394,7 +396,8 @@ public class TableDaoGenerator extends TablePojoGenerator {
                         if (tableNames.containsKey(name))
                             name = tableNames.get(name);
                         bufferMeta.append(nlindent()).append("#ProcedureCallQuery(").append(COLLECTION_LIST)
-                                .append("<").append(tableToCamelCase(name)).append(">");
+                                .append("<").append(pojos.containsKey(name) ? pojoPackage + "." : "")
+                                .append(tableToCamelCase(name)).append(">");
                     } else {
                         PojoAttribute returnAttribute = (attributes.containsKey(FAKE_FUN_PROC_COLUMN_NAME)) ? attributes
                                 .get(FAKE_FUN_PROC_COLUMN_NAME) : null;
@@ -409,7 +412,8 @@ public class TableDaoGenerator extends TablePojoGenerator {
                     JvmParameterizedTypeReference ptype = pojosForProcedures.get(procedure);
                     if (ptype != null)
                         dispName = ptype.getType().getSimpleName();
-                    bufferMeta.append(",").append((dispName != null) ? dispName : pojoName);
+                    bufferMeta.append(",").append(pojoPackage).append(".")
+                            .append((dispName != null) ? dispName : pojoName);
                     bufferMeta.append(")");
                 }
                 if (bufferMeta.length() > 0 && bufferMeta.charAt(0) == ' ')
@@ -449,7 +453,6 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 if (pojoName == null)
                     pojoName = function;
                 pojoName = tableToCamelCase(pojoName);
-                daoImports.add(pojoPackage + "." + pojoName);
                 String daoName = pojoName + "Dao";
                 if (finalDaos.containsKey(daoName)) {
                     buffer.append(Utils.getFinalContent(finalDaos.get(daoName)));
@@ -474,6 +477,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                         if (tableNames.containsKey(name))
                             name = tableNames.get(name);
                         bufferMeta.append(nlindent()).append("#FunctionCallQuery(").append(COLLECTION_LIST).append("<")
+                                .append(pojos.containsKey(name) ? pojoPackage + "." : "")
                                 .append(tableToCamelCase(name)).append(">");
                     } else if (metaFunctionsResult.containsKey(function)) {
                         bufferMeta.append(nlindent()).append("#FunctionCall(")
@@ -492,7 +496,8 @@ public class TableDaoGenerator extends TablePojoGenerator {
                     JvmParameterizedTypeReference ptype = pojosForProcedures.get(function);
                     if (ptype != null)
                         dispName = ptype.getType().getSimpleName();
-                    bufferMeta.append(",").append((dispName != null) ? dispName : pojoName);
+                    bufferMeta.append(",").append(pojoPackage).append(".")
+                            .append((dispName != null) ? dispName : pojoName);
                     bufferMeta.append(")");
 
                 }
@@ -533,7 +538,6 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 if (pojoName == null)
                     pojoName = function;
                 pojoName = tableToCamelCase(pojoName);
-                daoImports.add(pojoPackage + "." + pojoName);
                 String daoName = pojoName + "Dao";
                 if (finalDaos.containsKey(daoName)) {
                     buffer.append(Utils.getFinalContent(finalDaos.get(daoName)));
@@ -558,6 +562,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                         if (tableNames.containsKey(name))
                             name = tableNames.get(name);
                         bufferMeta.append(nlindent()).append("#FunctionCallQuery(").append(COLLECTION_LIST).append("<")
+                                .append(pojos.containsKey(name) ? pojoPackage + "." : "")
                                 .append(tableToCamelCase(name)).append(">");
                     } else if (metaFunctionsResult.containsKey(function) && dbType == DbType.DB2) {
                         bufferMeta.append(nlindent()).append("#FunctionQuery(")
@@ -579,7 +584,8 @@ public class TableDaoGenerator extends TablePojoGenerator {
                     JvmParameterizedTypeReference ptype = pojosForProcedures.get(function);
                     if (ptype != null)
                         dispName = ptype.getType().getSimpleName();
-                    bufferMeta.append(",").append((dispName != null) ? dispName : pojoName);
+                    bufferMeta.append(",").append(pojoPackage).append(".")
+                            .append((dispName != null) ? dispName : pojoName);
                     bufferMeta.append(")");
 
                 }

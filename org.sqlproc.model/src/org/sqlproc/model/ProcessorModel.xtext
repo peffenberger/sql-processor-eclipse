@@ -194,10 +194,10 @@ AbstractEntity:
 
 ImplementsExtendsDirective: 
 	{ImplementsExtendsDirectiveGenerics} '#Generics'
-	| {ImplementsExtendsDirectiveOnlyPojos} '#OnlyPojos' (=> LPAREN onlyPojos+=[PojoEntity|ValidID] (COMMA onlyPojos+=[PojoEntity|ValidID])* RPAREN)? 
-	| {ImplementsExtendsDirectiveOnlyDaos} '#OnlyDaos' (=> LPAREN onlyDaos+=[DaoEntity|ValidID] (COMMA onlyDaos+=[DaoEntity|ValidID])* RPAREN)?
-	| {ImplementsExtendsDirectiveExceptPojos} '#ExceptPojos' (=> LPAREN exceptPojos+=[PojoEntity|ValidID] (COMMA exceptPojos+=[PojoEntity|ValidID])* RPAREN)?
-	| {ImplementsExtendsDirectiveExceptDaos} '#ExceptDaos' (=> LPAREN exceptDaos+=[DaoEntity|ValidID] (COMMA exceptDaos+=[DaoEntity|ValidID])* RPAREN)?
+	| {ImplementsExtendsDirectiveOnlyPojos} '#OnlyPojos' (=> LPAREN onlyPojos+=[PojoEntity|QualifiedName] (COMMA onlyPojos+=[PojoEntity|QualifiedName])* RPAREN)? 
+	| {ImplementsExtendsDirectiveOnlyDaos} '#OnlyDaos' (=> LPAREN onlyDaos+=[DaoEntity|QualifiedName] (COMMA onlyDaos+=[DaoEntity|QualifiedName])* RPAREN)?
+	| {ImplementsExtendsDirectiveExceptPojos} '#ExceptPojos' (=> LPAREN exceptPojos+=[PojoEntity|QualifiedName] (COMMA exceptPojos+=[PojoEntity|QualifiedName])* RPAREN)?
+	| {ImplementsExtendsDirectiveExceptDaos} '#ExceptDaos' (=> LPAREN exceptDaos+=[DaoEntity|QualifiedName] (COMMA exceptDaos+=[DaoEntity|QualifiedName])* RPAREN)?
 ;
 
 Implements:
@@ -319,10 +319,10 @@ FunProcType :
 DaoDirective:
 	{DaoDirectiveSerializable} '#Serializable' LPAREN sernum=INT RPAREN
 	| {DaoDirectiveDiscriminator} '#InheritanceHandler' LPAREN ancestor=[PojoAttribute|ValidID] (COMMA descendants+=DescendantAssignment)+ RPAREN
-	| {DaoDirectiveCrud} '#CRUD' (=> LPAREN pojo=[PojoEntity|ValidID] RPAREN)?
-	| {DaoDirectiveQuery} '#Query' (=> LPAREN pojo=[PojoEntity|ValidID] RPAREN)?
+	| {DaoDirectiveCrud} '#CRUD' (=> LPAREN pojo=[PojoEntity|QualifiedName] RPAREN)?
+	| {DaoDirectiveQuery} '#Query' (=> LPAREN pojo=[PojoEntity|QualifiedName] RPAREN)?
 	| {DaoFunProcDirective} type=FunProcType (=> LPAREN paramlist=DaoDirectiveParameters RPAREN)?
-	| {DaoDirectivePojo} '#Pojo' (=> LPAREN pojo=[PojoEntity|ValidID] RPAREN)
+	| {DaoDirectivePojo} '#Pojo' (=> LPAREN pojo=[PojoEntity|QualifiedName] RPAREN)
 ;
 
 DaoEntity:

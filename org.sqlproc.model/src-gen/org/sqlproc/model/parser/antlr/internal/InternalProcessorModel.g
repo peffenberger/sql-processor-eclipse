@@ -6661,7 +6661,7 @@ ruleImplementsExtendsDirective returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyPojosPojoEntityCrossReference_1_2_1_0()); 
 	    }
-		ruleValidID		{ 
+		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6683,7 +6683,7 @@ ruleImplementsExtendsDirective returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyPojosPojoEntityCrossReference_1_2_2_1_0()); 
 	    }
-		ruleValidID		{ 
+		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6723,7 +6723,7 @@ ruleImplementsExtendsDirective returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyDaosDaoEntityCrossReference_2_2_1_0()); 
 	    }
-		ruleValidID		{ 
+		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6745,7 +6745,7 @@ ruleImplementsExtendsDirective returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyDaosDaoEntityCrossReference_2_2_2_1_0()); 
 	    }
-		ruleValidID		{ 
+		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6785,7 +6785,7 @@ ruleImplementsExtendsDirective returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptPojosPojoEntityCrossReference_3_2_1_0()); 
 	    }
-		ruleValidID		{ 
+		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6807,7 +6807,7 @@ ruleImplementsExtendsDirective returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptPojosPojoEntityCrossReference_3_2_2_1_0()); 
 	    }
-		ruleValidID		{ 
+		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6847,7 +6847,7 @@ ruleImplementsExtendsDirective returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptDaosDaoEntityCrossReference_4_2_1_0()); 
 	    }
-		ruleValidID		{ 
+		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6869,7 +6869,7 @@ ruleImplementsExtendsDirective returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptDaosDaoEntityCrossReference_4_2_2_1_0()); 
 	    }
-		ruleValidID		{ 
+		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9105,7 +9105,7 @@ this_LPAREN_7=RULE_LPAREN
 		{ 
 	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityCrossReference_2_2_1_0()); 
 	    }
-		ruleValidID		{ 
+		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9145,7 +9145,7 @@ this_LPAREN_7=RULE_LPAREN
 		{ 
 	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityCrossReference_3_2_1_0()); 
 	    }
-		ruleValidID		{ 
+		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9239,7 +9239,7 @@ this_LPAREN_7=RULE_LPAREN
 		{ 
 	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityCrossReference_5_2_1_0()); 
 	    }
-		ruleValidID		{ 
+		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 

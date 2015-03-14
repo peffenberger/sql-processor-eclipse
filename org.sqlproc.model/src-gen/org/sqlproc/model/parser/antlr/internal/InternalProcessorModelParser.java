@@ -18083,7 +18083,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleImplementsExtendsDirective"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6616:1: ruleImplementsExtendsDirective returns [EObject current=null] : ( ( () otherlv_1= '#Generics' ) | ( () otherlv_3= '#OnlyPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_6= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_8= RULE_RPAREN )? ) | ( () otherlv_10= '#OnlyDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_13= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_15= RULE_RPAREN )? ) | ( () otherlv_17= '#ExceptPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_20= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_22= RULE_RPAREN )? ) | ( () otherlv_24= '#ExceptDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_27= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_29= RULE_RPAREN )? ) ) ;
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6616:1: ruleImplementsExtendsDirective returns [EObject current=null] : ( ( () otherlv_1= '#Generics' ) | ( () otherlv_3= '#OnlyPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_6= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_8= RULE_RPAREN )? ) | ( () otherlv_10= '#OnlyDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_13= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_15= RULE_RPAREN )? ) | ( () otherlv_17= '#ExceptPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_20= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_22= RULE_RPAREN )? ) | ( () otherlv_24= '#ExceptDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_27= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_29= RULE_RPAREN )? ) ) ;
     public final EObject ruleImplementsExtendsDirective() throws RecognitionException {
         EObject current = null;
 
@@ -18108,10 +18108,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6619:28: ( ( ( () otherlv_1= '#Generics' ) | ( () otherlv_3= '#OnlyPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_6= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_8= RULE_RPAREN )? ) | ( () otherlv_10= '#OnlyDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_13= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_15= RULE_RPAREN )? ) | ( () otherlv_17= '#ExceptPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_20= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_22= RULE_RPAREN )? ) | ( () otherlv_24= '#ExceptDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_27= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_29= RULE_RPAREN )? ) ) )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6620:1: ( ( () otherlv_1= '#Generics' ) | ( () otherlv_3= '#OnlyPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_6= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_8= RULE_RPAREN )? ) | ( () otherlv_10= '#OnlyDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_13= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_15= RULE_RPAREN )? ) | ( () otherlv_17= '#ExceptPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_20= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_22= RULE_RPAREN )? ) | ( () otherlv_24= '#ExceptDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_27= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_29= RULE_RPAREN )? ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6619:28: ( ( ( () otherlv_1= '#Generics' ) | ( () otherlv_3= '#OnlyPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_6= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_8= RULE_RPAREN )? ) | ( () otherlv_10= '#OnlyDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_13= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_15= RULE_RPAREN )? ) | ( () otherlv_17= '#ExceptPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_20= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_22= RULE_RPAREN )? ) | ( () otherlv_24= '#ExceptDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_27= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_29= RULE_RPAREN )? ) ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6620:1: ( ( () otherlv_1= '#Generics' ) | ( () otherlv_3= '#OnlyPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_6= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_8= RULE_RPAREN )? ) | ( () otherlv_10= '#OnlyDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_13= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_15= RULE_RPAREN )? ) | ( () otherlv_17= '#ExceptPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_20= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_22= RULE_RPAREN )? ) | ( () otherlv_24= '#ExceptDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_27= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_29= RULE_RPAREN )? ) )
             {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6620:1: ( ( () otherlv_1= '#Generics' ) | ( () otherlv_3= '#OnlyPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_6= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_8= RULE_RPAREN )? ) | ( () otherlv_10= '#OnlyDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_13= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_15= RULE_RPAREN )? ) | ( () otherlv_17= '#ExceptPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_20= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_22= RULE_RPAREN )? ) | ( () otherlv_24= '#ExceptDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_27= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_29= RULE_RPAREN )? ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6620:1: ( ( () otherlv_1= '#Generics' ) | ( () otherlv_3= '#OnlyPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_6= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_8= RULE_RPAREN )? ) | ( () otherlv_10= '#OnlyDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_13= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_15= RULE_RPAREN )? ) | ( () otherlv_17= '#ExceptPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_20= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_22= RULE_RPAREN )? ) | ( () otherlv_24= '#ExceptDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_27= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_29= RULE_RPAREN )? ) )
             int alt107=5;
             switch ( input.LA(1) ) {
             case 118:
@@ -18185,10 +18185,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6634:6: ( () otherlv_3= '#OnlyPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_6= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_8= RULE_RPAREN )? )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6634:6: ( () otherlv_3= '#OnlyPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_6= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_8= RULE_RPAREN )? )
                     {
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6634:6: ( () otherlv_3= '#OnlyPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_6= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_8= RULE_RPAREN )? )
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6634:7: () otherlv_3= '#OnlyPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_6= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_8= RULE_RPAREN )?
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6634:6: ( () otherlv_3= '#OnlyPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_6= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_8= RULE_RPAREN )? )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6634:7: () otherlv_3= '#OnlyPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_6= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_8= RULE_RPAREN )?
                     {
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6634:7: ()
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6635:2: 
@@ -18214,7 +18214,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                           	newLeafNode(otherlv_3, grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyPojosKeyword_1_1());
                           
                     }
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6647:1: ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_6= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_8= RULE_RPAREN )?
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6647:1: ( ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_6= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_8= RULE_RPAREN )?
                     int alt100=2;
                     int LA100_0 = input.LA(1);
 
@@ -18223,7 +18223,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt100) {
                         case 1 :
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6647:2: ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_6= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_8= RULE_RPAREN
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6647:2: ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_6= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_8= RULE_RPAREN
                             {
                             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6647:2: ( ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN )
                             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6647:3: ( RULE_LPAREN )=>this_LPAREN_4= RULE_LPAREN
@@ -18237,11 +18237,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6651:2: ( ( ruleValidID ) )
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6652:1: ( ruleValidID )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6651:2: ( ( ruleQualifiedName ) )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6652:1: ( ruleQualifiedName )
                             {
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6652:1: ( ruleValidID )
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6653:3: ruleValidID
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6652:1: ( ruleQualifiedName )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6653:3: ruleQualifiedName
                             {
                             if ( state.backtracking==0 ) {
                                
@@ -18260,8 +18260,8 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyPojosPojoEntityCrossReference_1_2_1_0()); 
                               	    
                             }
-                            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12417);
-                            ruleValidID();
+                            pushFollow(FollowSets000.FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12417);
+                            ruleQualifiedName();
 
                             state._fsp--;
                             if (state.failed) return current;
@@ -18276,7 +18276,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6669:2: (this_COMMA_6= RULE_COMMA ( ( ruleValidID ) ) )*
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6669:2: (this_COMMA_6= RULE_COMMA ( ( ruleQualifiedName ) ) )*
                             loop99:
                             do {
                                 int alt99=2;
@@ -18289,7 +18289,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                                 switch (alt99) {
                             	case 1 :
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6669:3: this_COMMA_6= RULE_COMMA ( ( ruleValidID ) )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6669:3: this_COMMA_6= RULE_COMMA ( ( ruleQualifiedName ) )
                             	    {
                             	    this_COMMA_6=(Token)match(input,RULE_COMMA,FollowSets000.FOLLOW_RULE_COMMA_in_ruleImplementsExtendsDirective12429); if (state.failed) return current;
                             	    if ( state.backtracking==0 ) {
@@ -18297,11 +18297,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                             	          newLeafNode(this_COMMA_6, grammarAccess.getImplementsExtendsDirectiveAccess().getCOMMATerminalRuleCall_1_2_2_0()); 
                             	          
                             	    }
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6673:1: ( ( ruleValidID ) )
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6674:1: ( ruleValidID )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6673:1: ( ( ruleQualifiedName ) )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6674:1: ( ruleQualifiedName )
                             	    {
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6674:1: ( ruleValidID )
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6675:3: ruleValidID
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6674:1: ( ruleQualifiedName )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6675:3: ruleQualifiedName
                             	    {
                             	    if ( state.backtracking==0 ) {
                             	       
@@ -18320,8 +18320,8 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                             	      	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyPojosPojoEntityCrossReference_1_2_2_1_0()); 
                             	      	    
                             	    }
-                            	    pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12455);
-                            	    ruleValidID();
+                            	    pushFollow(FollowSets000.FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12455);
+                            	    ruleQualifiedName();
 
                             	    state._fsp--;
                             	    if (state.failed) return current;
@@ -18364,10 +18364,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6696:6: ( () otherlv_10= '#OnlyDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_13= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_15= RULE_RPAREN )? )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6696:6: ( () otherlv_10= '#OnlyDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_13= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_15= RULE_RPAREN )? )
                     {
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6696:6: ( () otherlv_10= '#OnlyDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_13= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_15= RULE_RPAREN )? )
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6696:7: () otherlv_10= '#OnlyDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_13= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_15= RULE_RPAREN )?
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6696:6: ( () otherlv_10= '#OnlyDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_13= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_15= RULE_RPAREN )? )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6696:7: () otherlv_10= '#OnlyDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_13= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_15= RULE_RPAREN )?
                     {
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6696:7: ()
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6697:2: 
@@ -18393,7 +18393,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                           	newLeafNode(otherlv_10, grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyDaosKeyword_2_1());
                           
                     }
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6709:1: ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_13= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_15= RULE_RPAREN )?
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6709:1: ( ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_13= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_15= RULE_RPAREN )?
                     int alt102=2;
                     int LA102_0 = input.LA(1);
 
@@ -18402,7 +18402,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt102) {
                         case 1 :
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6709:2: ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_13= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_15= RULE_RPAREN
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6709:2: ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_13= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_15= RULE_RPAREN
                             {
                             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6709:2: ( ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN )
                             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6709:3: ( RULE_LPAREN )=>this_LPAREN_11= RULE_LPAREN
@@ -18416,11 +18416,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6713:2: ( ( ruleValidID ) )
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6714:1: ( ruleValidID )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6713:2: ( ( ruleQualifiedName ) )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6714:1: ( ruleQualifiedName )
                             {
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6714:1: ( ruleValidID )
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6715:3: ruleValidID
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6714:1: ( ruleQualifiedName )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6715:3: ruleQualifiedName
                             {
                             if ( state.backtracking==0 ) {
                                
@@ -18439,8 +18439,8 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyDaosDaoEntityCrossReference_2_2_1_0()); 
                               	    
                             }
-                            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12546);
-                            ruleValidID();
+                            pushFollow(FollowSets000.FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12546);
+                            ruleQualifiedName();
 
                             state._fsp--;
                             if (state.failed) return current;
@@ -18455,7 +18455,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6731:2: (this_COMMA_13= RULE_COMMA ( ( ruleValidID ) ) )*
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6731:2: (this_COMMA_13= RULE_COMMA ( ( ruleQualifiedName ) ) )*
                             loop101:
                             do {
                                 int alt101=2;
@@ -18468,7 +18468,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                                 switch (alt101) {
                             	case 1 :
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6731:3: this_COMMA_13= RULE_COMMA ( ( ruleValidID ) )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6731:3: this_COMMA_13= RULE_COMMA ( ( ruleQualifiedName ) )
                             	    {
                             	    this_COMMA_13=(Token)match(input,RULE_COMMA,FollowSets000.FOLLOW_RULE_COMMA_in_ruleImplementsExtendsDirective12558); if (state.failed) return current;
                             	    if ( state.backtracking==0 ) {
@@ -18476,11 +18476,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                             	          newLeafNode(this_COMMA_13, grammarAccess.getImplementsExtendsDirectiveAccess().getCOMMATerminalRuleCall_2_2_2_0()); 
                             	          
                             	    }
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6735:1: ( ( ruleValidID ) )
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6736:1: ( ruleValidID )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6735:1: ( ( ruleQualifiedName ) )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6736:1: ( ruleQualifiedName )
                             	    {
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6736:1: ( ruleValidID )
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6737:3: ruleValidID
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6736:1: ( ruleQualifiedName )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6737:3: ruleQualifiedName
                             	    {
                             	    if ( state.backtracking==0 ) {
                             	       
@@ -18499,8 +18499,8 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                             	      	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyDaosDaoEntityCrossReference_2_2_2_1_0()); 
                             	      	    
                             	    }
-                            	    pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12584);
-                            	    ruleValidID();
+                            	    pushFollow(FollowSets000.FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12584);
+                            	    ruleQualifiedName();
 
                             	    state._fsp--;
                             	    if (state.failed) return current;
@@ -18543,10 +18543,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6758:6: ( () otherlv_17= '#ExceptPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_20= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_22= RULE_RPAREN )? )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6758:6: ( () otherlv_17= '#ExceptPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_20= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_22= RULE_RPAREN )? )
                     {
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6758:6: ( () otherlv_17= '#ExceptPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_20= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_22= RULE_RPAREN )? )
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6758:7: () otherlv_17= '#ExceptPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_20= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_22= RULE_RPAREN )?
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6758:6: ( () otherlv_17= '#ExceptPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_20= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_22= RULE_RPAREN )? )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6758:7: () otherlv_17= '#ExceptPojos' ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_20= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_22= RULE_RPAREN )?
                     {
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6758:7: ()
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6759:2: 
@@ -18572,7 +18572,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                           	newLeafNode(otherlv_17, grammarAccess.getImplementsExtendsDirectiveAccess().getExceptPojosKeyword_3_1());
                           
                     }
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6771:1: ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_20= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_22= RULE_RPAREN )?
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6771:1: ( ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_20= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_22= RULE_RPAREN )?
                     int alt104=2;
                     int LA104_0 = input.LA(1);
 
@@ -18581,7 +18581,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt104) {
                         case 1 :
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6771:2: ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_20= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_22= RULE_RPAREN
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6771:2: ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_20= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_22= RULE_RPAREN
                             {
                             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6771:2: ( ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN )
                             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6771:3: ( RULE_LPAREN )=>this_LPAREN_18= RULE_LPAREN
@@ -18595,11 +18595,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6775:2: ( ( ruleValidID ) )
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6776:1: ( ruleValidID )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6775:2: ( ( ruleQualifiedName ) )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6776:1: ( ruleQualifiedName )
                             {
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6776:1: ( ruleValidID )
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6777:3: ruleValidID
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6776:1: ( ruleQualifiedName )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6777:3: ruleQualifiedName
                             {
                             if ( state.backtracking==0 ) {
                                
@@ -18618,8 +18618,8 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptPojosPojoEntityCrossReference_3_2_1_0()); 
                               	    
                             }
-                            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12675);
-                            ruleValidID();
+                            pushFollow(FollowSets000.FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12675);
+                            ruleQualifiedName();
 
                             state._fsp--;
                             if (state.failed) return current;
@@ -18634,7 +18634,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6793:2: (this_COMMA_20= RULE_COMMA ( ( ruleValidID ) ) )*
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6793:2: (this_COMMA_20= RULE_COMMA ( ( ruleQualifiedName ) ) )*
                             loop103:
                             do {
                                 int alt103=2;
@@ -18647,7 +18647,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                                 switch (alt103) {
                             	case 1 :
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6793:3: this_COMMA_20= RULE_COMMA ( ( ruleValidID ) )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6793:3: this_COMMA_20= RULE_COMMA ( ( ruleQualifiedName ) )
                             	    {
                             	    this_COMMA_20=(Token)match(input,RULE_COMMA,FollowSets000.FOLLOW_RULE_COMMA_in_ruleImplementsExtendsDirective12687); if (state.failed) return current;
                             	    if ( state.backtracking==0 ) {
@@ -18655,11 +18655,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                             	          newLeafNode(this_COMMA_20, grammarAccess.getImplementsExtendsDirectiveAccess().getCOMMATerminalRuleCall_3_2_2_0()); 
                             	          
                             	    }
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6797:1: ( ( ruleValidID ) )
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6798:1: ( ruleValidID )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6797:1: ( ( ruleQualifiedName ) )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6798:1: ( ruleQualifiedName )
                             	    {
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6798:1: ( ruleValidID )
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6799:3: ruleValidID
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6798:1: ( ruleQualifiedName )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6799:3: ruleQualifiedName
                             	    {
                             	    if ( state.backtracking==0 ) {
                             	       
@@ -18678,8 +18678,8 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                             	      	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptPojosPojoEntityCrossReference_3_2_2_1_0()); 
                             	      	    
                             	    }
-                            	    pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12713);
-                            	    ruleValidID();
+                            	    pushFollow(FollowSets000.FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12713);
+                            	    ruleQualifiedName();
 
                             	    state._fsp--;
                             	    if (state.failed) return current;
@@ -18722,10 +18722,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6820:6: ( () otherlv_24= '#ExceptDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_27= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_29= RULE_RPAREN )? )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6820:6: ( () otherlv_24= '#ExceptDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_27= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_29= RULE_RPAREN )? )
                     {
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6820:6: ( () otherlv_24= '#ExceptDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_27= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_29= RULE_RPAREN )? )
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6820:7: () otherlv_24= '#ExceptDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_27= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_29= RULE_RPAREN )?
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6820:6: ( () otherlv_24= '#ExceptDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_27= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_29= RULE_RPAREN )? )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6820:7: () otherlv_24= '#ExceptDaos' ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_27= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_29= RULE_RPAREN )?
                     {
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6820:7: ()
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6821:2: 
@@ -18751,7 +18751,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                           	newLeafNode(otherlv_24, grammarAccess.getImplementsExtendsDirectiveAccess().getExceptDaosKeyword_4_1());
                           
                     }
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6833:1: ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_27= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_29= RULE_RPAREN )?
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6833:1: ( ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_27= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_29= RULE_RPAREN )?
                     int alt106=2;
                     int LA106_0 = input.LA(1);
 
@@ -18760,7 +18760,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt106) {
                         case 1 :
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6833:2: ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleValidID ) ) (this_COMMA_27= RULE_COMMA ( ( ruleValidID ) ) )* this_RPAREN_29= RULE_RPAREN
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6833:2: ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN ) ( ( ruleQualifiedName ) ) (this_COMMA_27= RULE_COMMA ( ( ruleQualifiedName ) ) )* this_RPAREN_29= RULE_RPAREN
                             {
                             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6833:2: ( ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN )
                             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6833:3: ( RULE_LPAREN )=>this_LPAREN_25= RULE_LPAREN
@@ -18774,11 +18774,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6837:2: ( ( ruleValidID ) )
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6838:1: ( ruleValidID )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6837:2: ( ( ruleQualifiedName ) )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6838:1: ( ruleQualifiedName )
                             {
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6838:1: ( ruleValidID )
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6839:3: ruleValidID
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6838:1: ( ruleQualifiedName )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6839:3: ruleQualifiedName
                             {
                             if ( state.backtracking==0 ) {
                                
@@ -18797,8 +18797,8 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptDaosDaoEntityCrossReference_4_2_1_0()); 
                               	    
                             }
-                            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12804);
-                            ruleValidID();
+                            pushFollow(FollowSets000.FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12804);
+                            ruleQualifiedName();
 
                             state._fsp--;
                             if (state.failed) return current;
@@ -18813,7 +18813,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6855:2: (this_COMMA_27= RULE_COMMA ( ( ruleValidID ) ) )*
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6855:2: (this_COMMA_27= RULE_COMMA ( ( ruleQualifiedName ) ) )*
                             loop105:
                             do {
                                 int alt105=2;
@@ -18826,7 +18826,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                                 switch (alt105) {
                             	case 1 :
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6855:3: this_COMMA_27= RULE_COMMA ( ( ruleValidID ) )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6855:3: this_COMMA_27= RULE_COMMA ( ( ruleQualifiedName ) )
                             	    {
                             	    this_COMMA_27=(Token)match(input,RULE_COMMA,FollowSets000.FOLLOW_RULE_COMMA_in_ruleImplementsExtendsDirective12816); if (state.failed) return current;
                             	    if ( state.backtracking==0 ) {
@@ -18834,11 +18834,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                             	          newLeafNode(this_COMMA_27, grammarAccess.getImplementsExtendsDirectiveAccess().getCOMMATerminalRuleCall_4_2_2_0()); 
                             	          
                             	    }
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6859:1: ( ( ruleValidID ) )
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6860:1: ( ruleValidID )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6859:1: ( ( ruleQualifiedName ) )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6860:1: ( ruleQualifiedName )
                             	    {
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6860:1: ( ruleValidID )
-                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6861:3: ruleValidID
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6860:1: ( ruleQualifiedName )
+                            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6861:3: ruleQualifiedName
                             	    {
                             	    if ( state.backtracking==0 ) {
                             	       
@@ -18857,8 +18857,8 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                             	      	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptDaosDaoEntityCrossReference_4_2_2_1_0()); 
                             	      	    
                             	    }
-                            	    pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12842);
-                            	    ruleValidID();
+                            	    pushFollow(FollowSets000.FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12842);
+                            	    ruleQualifiedName();
 
                             	    state._fsp--;
                             	    if (state.failed) return current;
@@ -24594,7 +24594,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDaoDirective"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8972:1: ruleDaoDirective returns [EObject current=null] : ( ( () otherlv_1= '#Serializable' this_LPAREN_2= RULE_LPAREN ( (lv_sernum_3_0= RULE_INT ) ) this_RPAREN_4= RULE_RPAREN ) | ( () otherlv_6= '#InheritanceHandler' this_LPAREN_7= RULE_LPAREN ( ( ruleValidID ) ) (this_COMMA_9= RULE_COMMA ( (lv_descendants_10_0= ruleDescendantAssignment ) ) )+ this_RPAREN_11= RULE_RPAREN ) | ( () otherlv_13= '#CRUD' ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_16= RULE_RPAREN )? ) | ( () otherlv_18= '#Query' ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_21= RULE_RPAREN )? ) | ( () ( (lv_type_23_0= ruleFunProcType ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_24= RULE_LPAREN ) ( (lv_paramlist_25_0= ruleDaoDirectiveParameters ) ) this_RPAREN_26= RULE_RPAREN )? ) | ( () otherlv_28= '#Pojo' ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_31= RULE_RPAREN ) ) ) ;
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8972:1: ruleDaoDirective returns [EObject current=null] : ( ( () otherlv_1= '#Serializable' this_LPAREN_2= RULE_LPAREN ( (lv_sernum_3_0= RULE_INT ) ) this_RPAREN_4= RULE_RPAREN ) | ( () otherlv_6= '#InheritanceHandler' this_LPAREN_7= RULE_LPAREN ( ( ruleValidID ) ) (this_COMMA_9= RULE_COMMA ( (lv_descendants_10_0= ruleDescendantAssignment ) ) )+ this_RPAREN_11= RULE_RPAREN ) | ( () otherlv_13= '#CRUD' ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_16= RULE_RPAREN )? ) | ( () otherlv_18= '#Query' ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_21= RULE_RPAREN )? ) | ( () ( (lv_type_23_0= ruleFunProcType ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_24= RULE_LPAREN ) ( (lv_paramlist_25_0= ruleDaoDirectiveParameters ) ) this_RPAREN_26= RULE_RPAREN )? ) | ( () otherlv_28= '#Pojo' ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_31= RULE_RPAREN ) ) ) ;
     public final EObject ruleDaoDirective() throws RecognitionException {
         EObject current = null;
 
@@ -24627,10 +24627,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8975:28: ( ( ( () otherlv_1= '#Serializable' this_LPAREN_2= RULE_LPAREN ( (lv_sernum_3_0= RULE_INT ) ) this_RPAREN_4= RULE_RPAREN ) | ( () otherlv_6= '#InheritanceHandler' this_LPAREN_7= RULE_LPAREN ( ( ruleValidID ) ) (this_COMMA_9= RULE_COMMA ( (lv_descendants_10_0= ruleDescendantAssignment ) ) )+ this_RPAREN_11= RULE_RPAREN ) | ( () otherlv_13= '#CRUD' ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_16= RULE_RPAREN )? ) | ( () otherlv_18= '#Query' ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_21= RULE_RPAREN )? ) | ( () ( (lv_type_23_0= ruleFunProcType ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_24= RULE_LPAREN ) ( (lv_paramlist_25_0= ruleDaoDirectiveParameters ) ) this_RPAREN_26= RULE_RPAREN )? ) | ( () otherlv_28= '#Pojo' ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_31= RULE_RPAREN ) ) ) )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8976:1: ( ( () otherlv_1= '#Serializable' this_LPAREN_2= RULE_LPAREN ( (lv_sernum_3_0= RULE_INT ) ) this_RPAREN_4= RULE_RPAREN ) | ( () otherlv_6= '#InheritanceHandler' this_LPAREN_7= RULE_LPAREN ( ( ruleValidID ) ) (this_COMMA_9= RULE_COMMA ( (lv_descendants_10_0= ruleDescendantAssignment ) ) )+ this_RPAREN_11= RULE_RPAREN ) | ( () otherlv_13= '#CRUD' ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_16= RULE_RPAREN )? ) | ( () otherlv_18= '#Query' ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_21= RULE_RPAREN )? ) | ( () ( (lv_type_23_0= ruleFunProcType ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_24= RULE_LPAREN ) ( (lv_paramlist_25_0= ruleDaoDirectiveParameters ) ) this_RPAREN_26= RULE_RPAREN )? ) | ( () otherlv_28= '#Pojo' ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_31= RULE_RPAREN ) ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8975:28: ( ( ( () otherlv_1= '#Serializable' this_LPAREN_2= RULE_LPAREN ( (lv_sernum_3_0= RULE_INT ) ) this_RPAREN_4= RULE_RPAREN ) | ( () otherlv_6= '#InheritanceHandler' this_LPAREN_7= RULE_LPAREN ( ( ruleValidID ) ) (this_COMMA_9= RULE_COMMA ( (lv_descendants_10_0= ruleDescendantAssignment ) ) )+ this_RPAREN_11= RULE_RPAREN ) | ( () otherlv_13= '#CRUD' ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_16= RULE_RPAREN )? ) | ( () otherlv_18= '#Query' ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_21= RULE_RPAREN )? ) | ( () ( (lv_type_23_0= ruleFunProcType ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_24= RULE_LPAREN ) ( (lv_paramlist_25_0= ruleDaoDirectiveParameters ) ) this_RPAREN_26= RULE_RPAREN )? ) | ( () otherlv_28= '#Pojo' ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_31= RULE_RPAREN ) ) ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8976:1: ( ( () otherlv_1= '#Serializable' this_LPAREN_2= RULE_LPAREN ( (lv_sernum_3_0= RULE_INT ) ) this_RPAREN_4= RULE_RPAREN ) | ( () otherlv_6= '#InheritanceHandler' this_LPAREN_7= RULE_LPAREN ( ( ruleValidID ) ) (this_COMMA_9= RULE_COMMA ( (lv_descendants_10_0= ruleDescendantAssignment ) ) )+ this_RPAREN_11= RULE_RPAREN ) | ( () otherlv_13= '#CRUD' ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_16= RULE_RPAREN )? ) | ( () otherlv_18= '#Query' ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_21= RULE_RPAREN )? ) | ( () ( (lv_type_23_0= ruleFunProcType ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_24= RULE_LPAREN ) ( (lv_paramlist_25_0= ruleDaoDirectiveParameters ) ) this_RPAREN_26= RULE_RPAREN )? ) | ( () otherlv_28= '#Pojo' ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_31= RULE_RPAREN ) ) )
             {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8976:1: ( ( () otherlv_1= '#Serializable' this_LPAREN_2= RULE_LPAREN ( (lv_sernum_3_0= RULE_INT ) ) this_RPAREN_4= RULE_RPAREN ) | ( () otherlv_6= '#InheritanceHandler' this_LPAREN_7= RULE_LPAREN ( ( ruleValidID ) ) (this_COMMA_9= RULE_COMMA ( (lv_descendants_10_0= ruleDescendantAssignment ) ) )+ this_RPAREN_11= RULE_RPAREN ) | ( () otherlv_13= '#CRUD' ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_16= RULE_RPAREN )? ) | ( () otherlv_18= '#Query' ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_21= RULE_RPAREN )? ) | ( () ( (lv_type_23_0= ruleFunProcType ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_24= RULE_LPAREN ) ( (lv_paramlist_25_0= ruleDaoDirectiveParameters ) ) this_RPAREN_26= RULE_RPAREN )? ) | ( () otherlv_28= '#Pojo' ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_31= RULE_RPAREN ) ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8976:1: ( ( () otherlv_1= '#Serializable' this_LPAREN_2= RULE_LPAREN ( (lv_sernum_3_0= RULE_INT ) ) this_RPAREN_4= RULE_RPAREN ) | ( () otherlv_6= '#InheritanceHandler' this_LPAREN_7= RULE_LPAREN ( ( ruleValidID ) ) (this_COMMA_9= RULE_COMMA ( (lv_descendants_10_0= ruleDescendantAssignment ) ) )+ this_RPAREN_11= RULE_RPAREN ) | ( () otherlv_13= '#CRUD' ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_16= RULE_RPAREN )? ) | ( () otherlv_18= '#Query' ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_21= RULE_RPAREN )? ) | ( () ( (lv_type_23_0= ruleFunProcType ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_24= RULE_LPAREN ) ( (lv_paramlist_25_0= ruleDaoDirectiveParameters ) ) this_RPAREN_26= RULE_RPAREN )? ) | ( () otherlv_28= '#Pojo' ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_31= RULE_RPAREN ) ) )
             int alt147=6;
             switch ( input.LA(1) ) {
             case 128:
@@ -24913,10 +24913,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9078:6: ( () otherlv_13= '#CRUD' ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_16= RULE_RPAREN )? )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9078:6: ( () otherlv_13= '#CRUD' ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_16= RULE_RPAREN )? )
                     {
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9078:6: ( () otherlv_13= '#CRUD' ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_16= RULE_RPAREN )? )
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9078:7: () otherlv_13= '#CRUD' ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_16= RULE_RPAREN )?
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9078:6: ( () otherlv_13= '#CRUD' ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_16= RULE_RPAREN )? )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9078:7: () otherlv_13= '#CRUD' ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_16= RULE_RPAREN )?
                     {
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9078:7: ()
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9079:2: 
@@ -24942,7 +24942,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                           	newLeafNode(otherlv_13, grammarAccess.getDaoDirectiveAccess().getCRUDKeyword_2_1());
                           
                     }
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9091:1: ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_16= RULE_RPAREN )?
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9091:1: ( ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_16= RULE_RPAREN )?
                     int alt144=2;
                     int LA144_0 = input.LA(1);
 
@@ -24951,7 +24951,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt144) {
                         case 1 :
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9091:2: ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_16= RULE_RPAREN
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9091:2: ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_16= RULE_RPAREN
                             {
                             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9091:2: ( ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN )
                             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9091:3: ( RULE_LPAREN )=>this_LPAREN_14= RULE_LPAREN
@@ -24965,11 +24965,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9095:2: ( ( ruleValidID ) )
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9096:1: ( ruleValidID )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9095:2: ( ( ruleQualifiedName ) )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9096:1: ( ruleQualifiedName )
                             {
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9096:1: ( ruleValidID )
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9097:3: ruleValidID
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9096:1: ( ruleQualifiedName )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9097:3: ruleQualifiedName
                             {
                             if ( state.backtracking==0 ) {
                                
@@ -24988,8 +24988,8 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityCrossReference_2_2_1_0()); 
                               	    
                             }
-                            pushFollow(FollowSets001.FOLLOW_ruleValidID_in_ruleDaoDirective17369);
-                            ruleValidID();
+                            pushFollow(FollowSets001.FOLLOW_ruleQualifiedName_in_ruleDaoDirective17369);
+                            ruleQualifiedName();
 
                             state._fsp--;
                             if (state.failed) return current;
@@ -25023,10 +25023,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9118:6: ( () otherlv_18= '#Query' ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_21= RULE_RPAREN )? )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9118:6: ( () otherlv_18= '#Query' ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_21= RULE_RPAREN )? )
                     {
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9118:6: ( () otherlv_18= '#Query' ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_21= RULE_RPAREN )? )
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9118:7: () otherlv_18= '#Query' ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_21= RULE_RPAREN )?
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9118:6: ( () otherlv_18= '#Query' ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_21= RULE_RPAREN )? )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9118:7: () otherlv_18= '#Query' ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_21= RULE_RPAREN )?
                     {
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9118:7: ()
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9119:2: 
@@ -25052,7 +25052,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                           	newLeafNode(otherlv_18, grammarAccess.getDaoDirectiveAccess().getQueryKeyword_3_1());
                           
                     }
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9131:1: ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_21= RULE_RPAREN )?
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9131:1: ( ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_21= RULE_RPAREN )?
                     int alt145=2;
                     int LA145_0 = input.LA(1);
 
@@ -25061,7 +25061,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt145) {
                         case 1 :
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9131:2: ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_21= RULE_RPAREN
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9131:2: ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_21= RULE_RPAREN
                             {
                             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9131:2: ( ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN )
                             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9131:3: ( RULE_LPAREN )=>this_LPAREN_19= RULE_LPAREN
@@ -25075,11 +25075,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9135:2: ( ( ruleValidID ) )
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9136:1: ( ruleValidID )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9135:2: ( ( ruleQualifiedName ) )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9136:1: ( ruleQualifiedName )
                             {
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9136:1: ( ruleValidID )
-                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9137:3: ruleValidID
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9136:1: ( ruleQualifiedName )
+                            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9137:3: ruleQualifiedName
                             {
                             if ( state.backtracking==0 ) {
                                
@@ -25098,8 +25098,8 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                               	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityCrossReference_3_2_1_0()); 
                               	    
                             }
-                            pushFollow(FollowSets001.FOLLOW_ruleValidID_in_ruleDaoDirective17458);
-                            ruleValidID();
+                            pushFollow(FollowSets001.FOLLOW_ruleQualifiedName_in_ruleDaoDirective17458);
+                            ruleQualifiedName();
 
                             state._fsp--;
                             if (state.failed) return current;
@@ -25268,10 +25268,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9212:6: ( () otherlv_28= '#Pojo' ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_31= RULE_RPAREN ) )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9212:6: ( () otherlv_28= '#Pojo' ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_31= RULE_RPAREN ) )
                     {
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9212:6: ( () otherlv_28= '#Pojo' ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_31= RULE_RPAREN ) )
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9212:7: () otherlv_28= '#Pojo' ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_31= RULE_RPAREN )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9212:6: ( () otherlv_28= '#Pojo' ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_31= RULE_RPAREN ) )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9212:7: () otherlv_28= '#Pojo' ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_31= RULE_RPAREN )
                     {
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9212:7: ()
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9213:2: 
@@ -25297,8 +25297,8 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                           	newLeafNode(otherlv_28, grammarAccess.getDaoDirectiveAccess().getPojoKeyword_5_1());
                           
                     }
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9225:1: ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_31= RULE_RPAREN )
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9225:2: ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleValidID ) ) this_RPAREN_31= RULE_RPAREN
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9225:1: ( ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_31= RULE_RPAREN )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9225:2: ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN ) ( ( ruleQualifiedName ) ) this_RPAREN_31= RULE_RPAREN
                     {
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9225:2: ( ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN )
                     // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9225:3: ( RULE_LPAREN )=>this_LPAREN_29= RULE_LPAREN
@@ -25312,11 +25312,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9229:2: ( ( ruleValidID ) )
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9230:1: ( ruleValidID )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9229:2: ( ( ruleQualifiedName ) )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9230:1: ( ruleQualifiedName )
                     {
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9230:1: ( ruleValidID )
-                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9231:3: ruleValidID
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9230:1: ( ruleQualifiedName )
+                    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:9231:3: ruleQualifiedName
                     {
                     if ( state.backtracking==0 ) {
                        
@@ -25335,8 +25335,8 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                       	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityCrossReference_5_2_1_0()); 
                       	    
                     }
-                    pushFollow(FollowSets001.FOLLOW_ruleValidID_in_ruleDaoDirective17639);
-                    ruleValidID();
+                    pushFollow(FollowSets001.FOLLOW_ruleQualifiedName_in_ruleDaoDirective17639);
+                    ruleQualifiedName();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -50345,17 +50345,17 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
     protected DFA419 dfa419 = new DFA419(this);
     protected DFA426 dfa426 = new DFA426(this);
     static final String DFA98_eotS =
-        "\35\uffff";
+        "\55\uffff";
     static final String DFA98_eofS =
-        "\35\uffff";
+        "\55\uffff";
     static final String DFA98_minS =
-        "\2\166\4\6\3\uffff\4\13\4\7\1\13\1\166\1\13\1\166\1\13\1\166\1\13\1\166\4\7";
+        "\2\166\4\6\3\uffff\4\13\4\7\2\13\1\166\2\13\1\166\2\13\1\166\2\13\1\166\10\7\4\13\4\7";
     static final String DFA98_maxS =
-        "\1\u00a7\5\174\3\uffff\4\13\4\10\1\13\1\174\1\13\1\174\1\13\1\174\1\13\1\174\4\10";
+        "\1\u00a7\5\174\3\uffff\4\13\4\u00c7\2\13\1\174\2\13\1\174\2\13\1\174\2\13\1\174\10\u00c7\4\13\4\u00c7";
     static final String DFA98_acceptS =
-        "\6\uffff\1\1\1\2\1\3\24\uffff";
+        "\6\uffff\1\1\1\2\1\3\44\uffff";
     static final String DFA98_specialS =
-        "\35\uffff}>";
+        "\55\uffff}>";
     static final String[] DFA98_transitionS = {
             "\1\1\1\2\1\3\1\4\1\5\1\6\1\7\12\10\16\uffff\1\10\1\uffff\21\10",
             "\1\1\1\2\1\3\1\4\1\5\1\6\1\7",
@@ -50370,22 +50370,38 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             "\1\16",
             "\1\17",
             "\1\20",
-            "\1\22\1\21",
-            "\1\24\1\23",
-            "\1\26\1\25",
-            "\1\30\1\27",
-            "\1\31",
+            "\1\23\1\22\u00be\uffff\1\21",
+            "\1\26\1\25\u00be\uffff\1\24",
+            "\1\31\1\30\u00be\uffff\1\27",
+            "\1\34\1\33\u00be\uffff\1\32",
+            "\1\35",
+            "\1\36",
             "\1\1\1\2\1\3\1\4\1\5\1\6\1\7",
-            "\1\32",
+            "\1\37",
+            "\1\40",
             "\1\1\1\2\1\3\1\4\1\5\1\6\1\7",
-            "\1\33",
+            "\1\41",
+            "\1\42",
             "\1\1\1\2\1\3\1\4\1\5\1\6\1\7",
-            "\1\34",
+            "\1\43",
+            "\1\44",
             "\1\1\1\2\1\3\1\4\1\5\1\6\1\7",
-            "\1\22\1\21",
-            "\1\24\1\23",
-            "\1\26\1\25",
-            "\1\30\1\27"
+            "\1\23\1\22\u00be\uffff\1\21",
+            "\1\23\1\22\u00be\uffff\1\45",
+            "\1\26\1\25\u00be\uffff\1\24",
+            "\1\26\1\25\u00be\uffff\1\46",
+            "\1\31\1\30\u00be\uffff\1\27",
+            "\1\31\1\30\u00be\uffff\1\47",
+            "\1\34\1\33\u00be\uffff\1\32",
+            "\1\34\1\33\u00be\uffff\1\50",
+            "\1\51",
+            "\1\52",
+            "\1\53",
+            "\1\54",
+            "\1\23\1\22\u00be\uffff\1\45",
+            "\1\26\1\25\u00be\uffff\1\46",
+            "\1\31\1\30\u00be\uffff\1\47",
+            "\1\34\1\33\u00be\uffff\1\50"
     };
 
     static final short[] DFA98_eot = DFA.unpackEncodedString(DFA98_eotS);
@@ -55865,27 +55881,27 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_118_in_ruleImplementsExtendsDirective12340 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_119_in_ruleImplementsExtendsDirective12372 = new BitSet(new long[]{0x0000000000000042L});
         public static final BitSet FOLLOW_RULE_LPAREN_in_ruleImplementsExtendsDirective12390 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12417 = new BitSet(new long[]{0x0000000000000180L});
+        public static final BitSet FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12417 = new BitSet(new long[]{0x0000000000000180L});
         public static final BitSet FOLLOW_RULE_COMMA_in_ruleImplementsExtendsDirective12429 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12455 = new BitSet(new long[]{0x0000000000000180L});
+        public static final BitSet FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12455 = new BitSet(new long[]{0x0000000000000180L});
         public static final BitSet FOLLOW_RULE_RPAREN_in_ruleImplementsExtendsDirective12468 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_120_in_ruleImplementsExtendsDirective12501 = new BitSet(new long[]{0x0000000000000042L});
         public static final BitSet FOLLOW_RULE_LPAREN_in_ruleImplementsExtendsDirective12519 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12546 = new BitSet(new long[]{0x0000000000000180L});
+        public static final BitSet FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12546 = new BitSet(new long[]{0x0000000000000180L});
         public static final BitSet FOLLOW_RULE_COMMA_in_ruleImplementsExtendsDirective12558 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12584 = new BitSet(new long[]{0x0000000000000180L});
+        public static final BitSet FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12584 = new BitSet(new long[]{0x0000000000000180L});
         public static final BitSet FOLLOW_RULE_RPAREN_in_ruleImplementsExtendsDirective12597 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_121_in_ruleImplementsExtendsDirective12630 = new BitSet(new long[]{0x0000000000000042L});
         public static final BitSet FOLLOW_RULE_LPAREN_in_ruleImplementsExtendsDirective12648 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12675 = new BitSet(new long[]{0x0000000000000180L});
+        public static final BitSet FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12675 = new BitSet(new long[]{0x0000000000000180L});
         public static final BitSet FOLLOW_RULE_COMMA_in_ruleImplementsExtendsDirective12687 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12713 = new BitSet(new long[]{0x0000000000000180L});
+        public static final BitSet FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12713 = new BitSet(new long[]{0x0000000000000180L});
         public static final BitSet FOLLOW_RULE_RPAREN_in_ruleImplementsExtendsDirective12726 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_122_in_ruleImplementsExtendsDirective12759 = new BitSet(new long[]{0x0000000000000042L});
         public static final BitSet FOLLOW_RULE_LPAREN_in_ruleImplementsExtendsDirective12777 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12804 = new BitSet(new long[]{0x0000000000000180L});
+        public static final BitSet FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12804 = new BitSet(new long[]{0x0000000000000180L});
         public static final BitSet FOLLOW_RULE_COMMA_in_ruleImplementsExtendsDirective12816 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleImplementsExtendsDirective12842 = new BitSet(new long[]{0x0000000000000180L});
+        public static final BitSet FOLLOW_ruleQualifiedName_in_ruleImplementsExtendsDirective12842 = new BitSet(new long[]{0x0000000000000180L});
         public static final BitSet FOLLOW_RULE_RPAREN_in_ruleImplementsExtendsDirective12855 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleImplements_in_entryRuleImplements12893 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleImplements12903 = new BitSet(new long[]{0x0000000000000002L});
@@ -56079,11 +56095,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_RULE_RPAREN_in_ruleDaoDirective17293 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_157_in_ruleDaoDirective17324 = new BitSet(new long[]{0x0000000000000042L});
         public static final BitSet FOLLOW_RULE_LPAREN_in_ruleDaoDirective17342 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleDaoDirective17369 = new BitSet(new long[]{0x0000000000000080L});
+        public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDaoDirective17369 = new BitSet(new long[]{0x0000000000000080L});
         public static final BitSet FOLLOW_RULE_RPAREN_in_ruleDaoDirective17380 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_158_in_ruleDaoDirective17413 = new BitSet(new long[]{0x0000000000000042L});
         public static final BitSet FOLLOW_RULE_LPAREN_in_ruleDaoDirective17431 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleDaoDirective17458 = new BitSet(new long[]{0x0000000000000080L});
+        public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDaoDirective17458 = new BitSet(new long[]{0x0000000000000080L});
         public static final BitSet FOLLOW_RULE_RPAREN_in_ruleDaoDirective17469 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleFunProcType_in_ruleDaoDirective17511 = new BitSet(new long[]{0x0000000000000042L});
         public static final BitSet FOLLOW_RULE_LPAREN_in_ruleDaoDirective17529 = new BitSet(new long[]{0x0000000000020830L});
@@ -56091,7 +56107,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_RULE_RPAREN_in_ruleDaoDirective17561 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_134_in_ruleDaoDirective17594 = new BitSet(new long[]{0x0000000000000040L});
         public static final BitSet FOLLOW_RULE_LPAREN_in_ruleDaoDirective17612 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleDaoDirective17639 = new BitSet(new long[]{0x0000000000000080L});
+        public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDaoDirective17639 = new BitSet(new long[]{0x0000000000000080L});
         public static final BitSet FOLLOW_RULE_RPAREN_in_ruleDaoDirective17650 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleDaoEntity_in_entryRuleDaoEntity17687 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleDaoEntity17697 = new BitSet(new long[]{0x0000000000000002L});
