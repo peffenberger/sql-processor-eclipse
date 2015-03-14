@@ -302,7 +302,14 @@ class ProcessorGeneratorUtils {
 //        return null
 //    }
 	
+    def PojoEntity getParentReflectInheritance(PojoEntity pojo) {
+    	if (getDiscriminator(pojo) != null)
+			return null;
+		return getParent(pojo)
+	}
+
     def PojoEntity getParent(PojoEntity pojo) {
+
     	val superType = pojo?.superType
     	if (superType == null)
     		return null;

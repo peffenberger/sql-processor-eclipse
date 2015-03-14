@@ -326,7 +326,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members
    	) {
    		val pojoAttrName = pojo.name.toFirstLower
-   		val parent = pojo.parent
+   		val parent = pojo.parentReflectInheritance
    		
 		members += entity.toMethod('insert', typeRef(pojoType)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
@@ -379,7 +379,6 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members
    	) {
    		val pojoAttrName = pojo.name.toFirstLower
-   		val parent = pojo.parent
    		
 		members += entity.toMethod('insert', typeRef(pojoType)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
@@ -481,7 +480,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members
    	) {
    		val pojoAttrName = pojo.name.toFirstLower
-   		val parent = pojo.parent
+   		val parent = pojo.parentReflectInheritance
    		
 		members += entity.toMethod('update', typeRef(int)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
@@ -535,7 +534,6 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members
    	) {
    		val pojoAttrName = pojo.name.toFirstLower
-   		val parent = pojo.parent
    		
 		members += entity.toMethod('update', typeRef(int)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
@@ -562,7 +560,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members
    	) {
    		val pojoAttrName = pojo.name.toFirstLower
-   		val parent = pojo.parent
+   		val parent = pojo.parentReflectInheritance
    		
 		members += entity.toMethod('delete', typeRef(int)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
@@ -616,7 +614,6 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members
    	) {
    		val pojoAttrName = pojo.name.toFirstLower
-   		val parent = pojo.parent
    		
 		members += entity.toMethod('delete', typeRef(int)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
