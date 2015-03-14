@@ -97,11 +97,11 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    					superTypes += impl.implements.cloneWithProxies
    				}
    			}
-   			val ext = entity.getExtends
-   			if (ext != null)
-   				superTypes += ext.extends.cloneWithProxies
-   			if (entity.superType != null)
-   				superTypes += entity.superType.cloneWithProxies
+//   			val ext = entity.getExtends
+//   			if (ext != null)
+//   				superTypes += ext.extends.cloneWithProxies
+//   			if (entity.superType != null)
+//   				superTypes += entity.superType.cloneWithProxies
    				
    			if (sernum != null) {
    				superTypes += typeRef(SERIALIZABLE)

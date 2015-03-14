@@ -40,7 +40,9 @@ public class ProcesorModelResourceDescriptionStrategy extends XbaseResourceDescr
         if (from == null || !(from instanceof JvmParameterizedTypeReference))
             return false;
         for (EObject cont = from.eContainer(); cont != null; cont = cont.eContainer()) {
-            if (cont instanceof JvmGenericType && ((JvmGenericType) cont).getSimpleName().endsWith("Dao"))
+            if (cont instanceof JvmGenericType
+                    && (((JvmGenericType) cont).getSimpleName().endsWith("Dao") || ((JvmGenericType) cont)
+                            .getSimpleName().endsWith("DaoImpl")))
                 return true;
         }
         return false;
