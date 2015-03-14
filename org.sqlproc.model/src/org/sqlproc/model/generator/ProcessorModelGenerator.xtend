@@ -12,6 +12,7 @@ import org.eclipse.xtext.xbase.impl.XStringLiteralImpl
 import org.eclipse.xtext.xbase.XStringLiteral
 import com.google.inject.Inject
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler
+import org.eclipse.xtext.xbase.XNumberLiteral
 
 class ProcessorModelGenerator extends JvmModelGenerator {
 	
@@ -43,6 +44,8 @@ class ProcessorModelGenerator extends JvmModelGenerator {
 				//println(it)
 				if (it instanceof XStringLiteral) {
 					appendable.append('"' + doConvertToJavaString(it.value) + '"')
+				} else if (it instanceof XNumberLiteral) {
+					appendable.append(it.value)
 				}
 				else {
 					compiler.toJavaExpression(it, appendable)
