@@ -375,12 +375,12 @@
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveVersion"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveUpdateCol">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAttributeDirectiveUpdateCol/updateColumn1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttributeDirectiveUpdateCol/updateColumn1"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAttributeDirectiveUpdateCol/updateColumn2"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveCreateCol">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAttributeDirectiveCreateCol/createColumn1"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAttributeDirectiveCreateCol/createColumn2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttributeDirectiveCreateCol/createColumn2"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveToInit"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveEnumInit"/>

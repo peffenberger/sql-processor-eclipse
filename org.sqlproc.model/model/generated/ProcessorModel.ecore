@@ -512,12 +512,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveVersion" eSuperTypes="#//PojoAttributeDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveUpdateCol" eSuperTypes="#//PojoAttributeDirective">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="updateColumn1" eType="#//PojoAttribute"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateColumn1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="updateColumn2" eType="#//PojoAttribute"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveCreateCol" eSuperTypes="#//PojoAttributeDirective">
     <eStructuralFeatures xsi:type="ecore:EReference" name="createColumn1" eType="#//PojoAttribute"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="createColumn2" eType="#//PojoAttribute"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="createColumn2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveToInit" eSuperTypes="#//PojoAttributeDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveEnumInit" eSuperTypes="#//PojoAttributeDirective"/>

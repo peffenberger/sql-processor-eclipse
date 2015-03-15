@@ -40,14 +40,24 @@ public class PojoAttributeDirectiveCreateColImpl extends PojoAttributeDirectiveI
   protected PojoAttribute createColumn1;
 
   /**
-   * The cached value of the '{@link #getCreateColumn2() <em>Create Column2</em>}' reference.
+   * The default value of the '{@link #getCreateColumn2() <em>Create Column2</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getCreateColumn2()
    * @generated
    * @ordered
    */
-  protected PojoAttribute createColumn2;
+  protected static final String CREATE_COLUMN2_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getCreateColumn2() <em>Create Column2</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCreateColumn2()
+   * @generated
+   * @ordered
+   */
+  protected String createColumn2 = CREATE_COLUMN2_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -118,27 +128,7 @@ public class PojoAttributeDirectiveCreateColImpl extends PojoAttributeDirectiveI
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoAttribute getCreateColumn2()
-  {
-    if (createColumn2 != null && createColumn2.eIsProxy())
-    {
-      InternalEObject oldCreateColumn2 = (InternalEObject)createColumn2;
-      createColumn2 = (PojoAttribute)eResolveProxy(oldCreateColumn2);
-      if (createColumn2 != oldCreateColumn2)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2, oldCreateColumn2, createColumn2));
-      }
-    }
-    return createColumn2;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoAttribute basicGetCreateColumn2()
+  public String getCreateColumn2()
   {
     return createColumn2;
   }
@@ -148,9 +138,9 @@ public class PojoAttributeDirectiveCreateColImpl extends PojoAttributeDirectiveI
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCreateColumn2(PojoAttribute newCreateColumn2)
+  public void setCreateColumn2(String newCreateColumn2)
   {
-    PojoAttribute oldCreateColumn2 = createColumn2;
+    String oldCreateColumn2 = createColumn2;
     createColumn2 = newCreateColumn2;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2, oldCreateColumn2, createColumn2));
@@ -170,8 +160,7 @@ public class PojoAttributeDirectiveCreateColImpl extends PojoAttributeDirectiveI
         if (resolve) return getCreateColumn1();
         return basicGetCreateColumn1();
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2:
-        if (resolve) return getCreateColumn2();
-        return basicGetCreateColumn2();
+        return getCreateColumn2();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -190,7 +179,7 @@ public class PojoAttributeDirectiveCreateColImpl extends PojoAttributeDirectiveI
         setCreateColumn1((PojoAttribute)newValue);
         return;
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2:
-        setCreateColumn2((PojoAttribute)newValue);
+        setCreateColumn2((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -210,7 +199,7 @@ public class PojoAttributeDirectiveCreateColImpl extends PojoAttributeDirectiveI
         setCreateColumn1((PojoAttribute)null);
         return;
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2:
-        setCreateColumn2((PojoAttribute)null);
+        setCreateColumn2(CREATE_COLUMN2_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -229,9 +218,26 @@ public class PojoAttributeDirectiveCreateColImpl extends PojoAttributeDirectiveI
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN1:
         return createColumn1 != null;
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2:
-        return createColumn2 != null;
+        return CREATE_COLUMN2_EDEFAULT == null ? createColumn2 != null : !CREATE_COLUMN2_EDEFAULT.equals(createColumn2);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (createColumn2: ");
+    result.append(createColumn2);
+    result.append(')');
+    return result.toString();
   }
 
 } //PojoAttributeDirectiveCreateColImpl

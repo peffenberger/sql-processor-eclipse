@@ -249,8 +249,8 @@ PojoAttributeDirective:
 	| {PojoAttributeDirectiveDiscriminator} '#InheritanceDiscriminator'
 	| {PojoAttributeDirectiveIndex} '#Index' LPAREN index=INT RPAREN
 	| {PojoAttributeDirectiveVersion} '#Version'
-	| {PojoAttributeDirectiveUpdateCol} '#UpdateCol' LPAREN updateColumn1=[PojoAttribute|ValidID] COMMA updateColumn2=[PojoAttribute|ValidID] RPAREN
-	| {PojoAttributeDirectiveCreateCol} '#CreateCol' LPAREN createColumn1=[PojoAttribute|ValidID] COMMA createColumn2=[PojoAttribute|ValidID] RPAREN
+	| {PojoAttributeDirectiveUpdateCol} '#UpdateCol' LPAREN updateColumn1=ValidID COMMA updateColumn2=[PojoAttribute|ValidID] RPAREN
+	| {PojoAttributeDirectiveCreateCol} '#CreateCol' LPAREN createColumn1=[PojoAttribute|ValidID] COMMA createColumn2=ValidID RPAREN
 	| {PojoAttributeDirectiveToInit} '#ToInit'
 	| {PojoAttributeDirectiveEnumInit} '#EnumInit'
 	| {PojoAttributeDirectiveIsDef} '#IsDef'

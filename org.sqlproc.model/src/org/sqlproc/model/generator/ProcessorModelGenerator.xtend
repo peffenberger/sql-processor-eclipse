@@ -37,7 +37,7 @@ class ProcessorModelGenerator extends JvmModelGenerator {
 	}
 
 	override dispatch void toJavaLiteral(JvmCustomAnnotationValue it, ITreeAppendable appendable, GeneratorConfig config) {
-		if(values.isEmpty)
+		if(values.empty)
 			appendable.append('{}')
 		else 
 			appendable.forEachWithShortcut(values.filter(XExpression), [

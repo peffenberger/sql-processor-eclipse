@@ -47793,12 +47793,8 @@ rule__PojoAttributeDirective__UpdateColumn1Assignment_5_3
     }
 :
 (
-{ before(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1PojoAttributeCrossReference_5_3_0()); }
-(
-{ before(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1PojoAttributeValidIDParserRuleCall_5_3_0_1()); }
-	ruleValidID{ after(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1PojoAttributeValidIDParserRuleCall_5_3_0_1()); }
-)
-{ after(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1PojoAttributeCrossReference_5_3_0()); }
+{ before(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1ValidIDParserRuleCall_5_3_0()); }
+	ruleValidID{ after(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1ValidIDParserRuleCall_5_3_0()); }
 )
 
 ;
@@ -47850,12 +47846,8 @@ rule__PojoAttributeDirective__CreateColumn2Assignment_6_5
     }
 :
 (
-{ before(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn2PojoAttributeCrossReference_6_5_0()); }
-(
-{ before(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn2PojoAttributeValidIDParserRuleCall_6_5_0_1()); }
-	ruleValidID{ after(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn2PojoAttributeValidIDParserRuleCall_6_5_0_1()); }
-)
-{ after(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn2PojoAttributeCrossReference_6_5_0()); }
+{ before(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn2ValidIDParserRuleCall_6_5_0()); }
+	ruleValidID{ after(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn2ValidIDParserRuleCall_6_5_0()); }
 )
 
 ;

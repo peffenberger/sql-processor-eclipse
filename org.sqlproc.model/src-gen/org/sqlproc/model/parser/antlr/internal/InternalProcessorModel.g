@@ -7793,17 +7793,17 @@ this_LPAREN_15=RULE_LPAREN
 (
 (
 		{ 
-		  /* */ 
-		}
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoAttributeDirectiveRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1PojoAttributeCrossReference_5_3_0()); 
+	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1ValidIDParserRuleCall_5_3_0()); 
 	    }
-		ruleValidID		{ 
+		lv_updateColumn1_16_0=ruleValidID		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPojoAttributeDirectiveRule());
+	        }
+       		set(
+       			$current, 
+       			"updateColumn1",
+        		lv_updateColumn1_16_0, 
+        		"ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7877,17 +7877,17 @@ this_LPAREN_22=RULE_LPAREN
 (
 (
 		{ 
-		  /* */ 
-		}
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoAttributeDirectiveRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn2PojoAttributeCrossReference_6_5_0()); 
+	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn2ValidIDParserRuleCall_6_5_0()); 
 	    }
-		ruleValidID		{ 
+		lv_createColumn2_25_0=ruleValidID		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPojoAttributeDirectiveRule());
+	        }
+       		set(
+       			$current, 
+       			"createColumn2",
+        		lv_createColumn2_25_0, 
+        		"ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
 

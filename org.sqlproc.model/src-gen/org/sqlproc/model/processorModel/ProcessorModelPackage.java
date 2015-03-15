@@ -3666,7 +3666,7 @@ public interface ProcessorModelPackage extends EPackage
   int POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL = 80;
 
   /**
-   * The feature id for the '<em><b>Update Column1</b></em>' reference.
+   * The feature id for the '<em><b>Update Column1</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -3712,7 +3712,7 @@ public interface ProcessorModelPackage extends EPackage
   int POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN1 = POJO_ATTRIBUTE_DIRECTIVE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Create Column2</b></em>' reference.
+   * The feature id for the '<em><b>Create Column2</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -7529,15 +7529,15 @@ public interface ProcessorModelPackage extends EPackage
   EClass getPojoAttributeDirectiveUpdateCol();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol#getUpdateColumn1 <em>Update Column1</em>}'.
+   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol#getUpdateColumn1 <em>Update Column1</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Update Column1</em>'.
+   * @return the meta object for the attribute '<em>Update Column1</em>'.
    * @see org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol#getUpdateColumn1()
    * @see #getPojoAttributeDirectiveUpdateCol()
    * @generated
    */
-  EReference getPojoAttributeDirectiveUpdateCol_UpdateColumn1();
+  EAttribute getPojoAttributeDirectiveUpdateCol_UpdateColumn1();
 
   /**
    * Returns the meta object for the reference '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol#getUpdateColumn2 <em>Update Column2</em>}'.
@@ -7572,15 +7572,15 @@ public interface ProcessorModelPackage extends EPackage
   EReference getPojoAttributeDirectiveCreateCol_CreateColumn1();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn2 <em>Create Column2</em>}'.
+   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn2 <em>Create Column2</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Create Column2</em>'.
+   * @return the meta object for the attribute '<em>Create Column2</em>'.
    * @see org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn2()
    * @see #getPojoAttributeDirectiveCreateCol()
    * @generated
    */
-  EReference getPojoAttributeDirectiveCreateCol_CreateColumn2();
+  EAttribute getPojoAttributeDirectiveCreateCol_CreateColumn2();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveToInit <em>Pojo Attribute Directive To Init</em>}'.
@@ -10542,12 +10542,12 @@ public interface ProcessorModelPackage extends EPackage
     EClass POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL = eINSTANCE.getPojoAttributeDirectiveUpdateCol();
 
     /**
-     * The meta object literal for the '<em><b>Update Column1</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Update Column1</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1 = eINSTANCE.getPojoAttributeDirectiveUpdateCol_UpdateColumn1();
+    EAttribute POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1 = eINSTANCE.getPojoAttributeDirectiveUpdateCol_UpdateColumn1();
 
     /**
      * The meta object literal for the '<em><b>Update Column2</b></em>' reference feature.
@@ -10576,12 +10576,12 @@ public interface ProcessorModelPackage extends EPackage
     EReference POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN1 = eINSTANCE.getPojoAttributeDirectiveCreateCol_CreateColumn1();
 
     /**
-     * The meta object literal for the '<em><b>Create Column2</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Create Column2</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2 = eINSTANCE.getPojoAttributeDirectiveCreateCol_CreateColumn2();
+    EAttribute POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2 = eINSTANCE.getPojoAttributeDirectiveCreateCol_CreateColumn2();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.PojoAttributeDirectiveToInitImpl <em>Pojo Attribute Directive To Init</em>}' class.

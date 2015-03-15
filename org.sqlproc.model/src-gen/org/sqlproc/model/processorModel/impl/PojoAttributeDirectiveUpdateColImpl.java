@@ -30,14 +30,24 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
 public class PojoAttributeDirectiveUpdateColImpl extends PojoAttributeDirectiveImpl implements PojoAttributeDirectiveUpdateCol
 {
   /**
-   * The cached value of the '{@link #getUpdateColumn1() <em>Update Column1</em>}' reference.
+   * The default value of the '{@link #getUpdateColumn1() <em>Update Column1</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getUpdateColumn1()
    * @generated
    * @ordered
    */
-  protected PojoAttribute updateColumn1;
+  protected static final String UPDATE_COLUMN1_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getUpdateColumn1() <em>Update Column1</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getUpdateColumn1()
+   * @generated
+   * @ordered
+   */
+  protected String updateColumn1 = UPDATE_COLUMN1_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getUpdateColumn2() <em>Update Column2</em>}' reference.
@@ -75,27 +85,7 @@ public class PojoAttributeDirectiveUpdateColImpl extends PojoAttributeDirectiveI
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoAttribute getUpdateColumn1()
-  {
-    if (updateColumn1 != null && updateColumn1.eIsProxy())
-    {
-      InternalEObject oldUpdateColumn1 = (InternalEObject)updateColumn1;
-      updateColumn1 = (PojoAttribute)eResolveProxy(oldUpdateColumn1);
-      if (updateColumn1 != oldUpdateColumn1)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1, oldUpdateColumn1, updateColumn1));
-      }
-    }
-    return updateColumn1;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoAttribute basicGetUpdateColumn1()
+  public String getUpdateColumn1()
   {
     return updateColumn1;
   }
@@ -105,9 +95,9 @@ public class PojoAttributeDirectiveUpdateColImpl extends PojoAttributeDirectiveI
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setUpdateColumn1(PojoAttribute newUpdateColumn1)
+  public void setUpdateColumn1(String newUpdateColumn1)
   {
-    PojoAttribute oldUpdateColumn1 = updateColumn1;
+    String oldUpdateColumn1 = updateColumn1;
     updateColumn1 = newUpdateColumn1;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1, oldUpdateColumn1, updateColumn1));
@@ -167,8 +157,7 @@ public class PojoAttributeDirectiveUpdateColImpl extends PojoAttributeDirectiveI
     switch (featureID)
     {
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1:
-        if (resolve) return getUpdateColumn1();
-        return basicGetUpdateColumn1();
+        return getUpdateColumn1();
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2:
         if (resolve) return getUpdateColumn2();
         return basicGetUpdateColumn2();
@@ -187,7 +176,7 @@ public class PojoAttributeDirectiveUpdateColImpl extends PojoAttributeDirectiveI
     switch (featureID)
     {
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1:
-        setUpdateColumn1((PojoAttribute)newValue);
+        setUpdateColumn1((String)newValue);
         return;
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2:
         setUpdateColumn2((PojoAttribute)newValue);
@@ -207,7 +196,7 @@ public class PojoAttributeDirectiveUpdateColImpl extends PojoAttributeDirectiveI
     switch (featureID)
     {
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1:
-        setUpdateColumn1((PojoAttribute)null);
+        setUpdateColumn1(UPDATE_COLUMN1_EDEFAULT);
         return;
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2:
         setUpdateColumn2((PojoAttribute)null);
@@ -227,11 +216,28 @@ public class PojoAttributeDirectiveUpdateColImpl extends PojoAttributeDirectiveI
     switch (featureID)
     {
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1:
-        return updateColumn1 != null;
+        return UPDATE_COLUMN1_EDEFAULT == null ? updateColumn1 != null : !UPDATE_COLUMN1_EDEFAULT.equals(updateColumn1);
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2:
         return updateColumn2 != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (updateColumn1: ");
+    result.append(updateColumn1);
+    result.append(')');
+    return result.toString();
   }
 
 } //PojoAttributeDirectiveUpdateColImpl

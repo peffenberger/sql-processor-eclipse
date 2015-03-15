@@ -49,29 +49,29 @@ public interface PojoAttributeDirectiveCreateCol extends PojoAttributeDirective
   void setCreateColumn1(PojoAttribute value);
 
   /**
-   * Returns the value of the '<em><b>Create Column2</b></em>' reference.
+   * Returns the value of the '<em><b>Create Column2</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Create Column2</em>' reference isn't clear,
+   * If the meaning of the '<em>Create Column2</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Create Column2</em>' reference.
-   * @see #setCreateColumn2(PojoAttribute)
+   * @return the value of the '<em>Create Column2</em>' attribute.
+   * @see #setCreateColumn2(String)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoAttributeDirectiveCreateCol_CreateColumn2()
    * @model
    * @generated
    */
-  PojoAttribute getCreateColumn2();
+  String getCreateColumn2();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn2 <em>Create Column2</em>}' reference.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn2 <em>Create Column2</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Create Column2</em>' reference.
+   * @param value the new value of the '<em>Create Column2</em>' attribute.
    * @see #getCreateColumn2()
    * @generated
    */
-  void setCreateColumn2(PojoAttribute value);
+  void setCreateColumn2(String value);
 
 } // PojoAttributeDirectiveCreateCol

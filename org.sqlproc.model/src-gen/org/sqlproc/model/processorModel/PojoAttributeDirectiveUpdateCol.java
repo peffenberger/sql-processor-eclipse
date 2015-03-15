@@ -23,30 +23,30 @@ package org.sqlproc.model.processorModel;
 public interface PojoAttributeDirectiveUpdateCol extends PojoAttributeDirective
 {
   /**
-   * Returns the value of the '<em><b>Update Column1</b></em>' reference.
+   * Returns the value of the '<em><b>Update Column1</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Update Column1</em>' reference isn't clear,
+   * If the meaning of the '<em>Update Column1</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Update Column1</em>' reference.
-   * @see #setUpdateColumn1(PojoAttribute)
+   * @return the value of the '<em>Update Column1</em>' attribute.
+   * @see #setUpdateColumn1(String)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoAttributeDirectiveUpdateCol_UpdateColumn1()
    * @model
    * @generated
    */
-  PojoAttribute getUpdateColumn1();
+  String getUpdateColumn1();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol#getUpdateColumn1 <em>Update Column1</em>}' reference.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol#getUpdateColumn1 <em>Update Column1</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Update Column1</em>' reference.
+   * @param value the new value of the '<em>Update Column1</em>' attribute.
    * @see #getUpdateColumn1()
    * @generated
    */
-  void setUpdateColumn1(PojoAttribute value);
+  void setUpdateColumn1(String value);
 
   /**
    * Returns the value of the '<em><b>Update Column2</b></em>' reference.

@@ -2765,7 +2765,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (createColumn1=[PojoAttribute|ValidID] createColumn2=[PojoAttribute|ValidID])
+	 *     (createColumn1=[PojoAttribute|ValidID] createColumn2=ValidID)
 	 */
 	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveCreateCol semanticObject) {
 		if(errorAcceptor != null) {
@@ -2777,7 +2777,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn1PojoAttributeValidIDParserRuleCall_6_3_0_1(), semanticObject.getCreateColumn1());
-		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn2PojoAttributeValidIDParserRuleCall_6_5_0_1(), semanticObject.getCreateColumn2());
+		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn2ValidIDParserRuleCall_6_5_0(), semanticObject.getCreateColumn2());
 		feeder.finish();
 	}
 	
@@ -2863,7 +2863,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (updateColumn1=[PojoAttribute|ValidID] updateColumn2=[PojoAttribute|ValidID])
+	 *     (updateColumn1=ValidID updateColumn2=[PojoAttribute|ValidID])
 	 */
 	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveUpdateCol semanticObject) {
 		if(errorAcceptor != null) {
@@ -2874,7 +2874,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1PojoAttributeValidIDParserRuleCall_5_3_0_1(), semanticObject.getUpdateColumn1());
+		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1ValidIDParserRuleCall_5_3_0(), semanticObject.getUpdateColumn1());
 		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn2PojoAttributeValidIDParserRuleCall_5_5_0_1(), semanticObject.getUpdateColumn2());
 		feeder.finish();
 	}

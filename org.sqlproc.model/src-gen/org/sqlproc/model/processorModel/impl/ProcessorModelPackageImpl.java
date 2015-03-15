@@ -3978,9 +3978,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoAttributeDirectiveUpdateCol_UpdateColumn1()
+  public EAttribute getPojoAttributeDirectiveUpdateCol_UpdateColumn1()
   {
-    return (EReference)pojoAttributeDirectiveUpdateColEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)pojoAttributeDirectiveUpdateColEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -4018,9 +4018,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoAttributeDirectiveCreateCol_CreateColumn2()
+  public EAttribute getPojoAttributeDirectiveCreateCol_CreateColumn2()
   {
-    return (EReference)pojoAttributeDirectiveCreateColEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)pojoAttributeDirectiveCreateColEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4776,12 +4776,12 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     pojoAttributeDirectiveVersionEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE_VERSION);
 
     pojoAttributeDirectiveUpdateColEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL);
-    createEReference(pojoAttributeDirectiveUpdateColEClass, POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1);
+    createEAttribute(pojoAttributeDirectiveUpdateColEClass, POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1);
     createEReference(pojoAttributeDirectiveUpdateColEClass, POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2);
 
     pojoAttributeDirectiveCreateColEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL);
     createEReference(pojoAttributeDirectiveCreateColEClass, POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN1);
-    createEReference(pojoAttributeDirectiveCreateColEClass, POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2);
+    createEAttribute(pojoAttributeDirectiveCreateColEClass, POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2);
 
     pojoAttributeDirectiveToInitEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE_TO_INIT);
 
@@ -5312,12 +5312,12 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEClass(pojoAttributeDirectiveVersionEClass, PojoAttributeDirectiveVersion.class, "PojoAttributeDirectiveVersion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(pojoAttributeDirectiveUpdateColEClass, PojoAttributeDirectiveUpdateCol.class, "PojoAttributeDirectiveUpdateCol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPojoAttributeDirectiveUpdateCol_UpdateColumn1(), this.getPojoAttribute(), null, "updateColumn1", null, 0, 1, PojoAttributeDirectiveUpdateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPojoAttributeDirectiveUpdateCol_UpdateColumn1(), ecorePackage.getEString(), "updateColumn1", null, 0, 1, PojoAttributeDirectiveUpdateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoAttributeDirectiveUpdateCol_UpdateColumn2(), this.getPojoAttribute(), null, "updateColumn2", null, 0, 1, PojoAttributeDirectiveUpdateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoAttributeDirectiveCreateColEClass, PojoAttributeDirectiveCreateCol.class, "PojoAttributeDirectiveCreateCol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPojoAttributeDirectiveCreateCol_CreateColumn1(), this.getPojoAttribute(), null, "createColumn1", null, 0, 1, PojoAttributeDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoAttributeDirectiveCreateCol_CreateColumn2(), this.getPojoAttribute(), null, "createColumn2", null, 0, 1, PojoAttributeDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPojoAttributeDirectiveCreateCol_CreateColumn2(), ecorePackage.getEString(), "createColumn2", null, 0, 1, PojoAttributeDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoAttributeDirectiveToInitEClass, PojoAttributeDirectiveToInit.class, "PojoAttributeDirectiveToInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
