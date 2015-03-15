@@ -157,7 +157,6 @@ class ProcessorGeneratorUtils {
 
 
     def dispatch String constName(PojoAttribute attr) {
-    	println(attr)
         return constantName(attr.name)
     }
 
@@ -165,7 +164,6 @@ class ProcessorGeneratorUtils {
         val StringBuilder result = new StringBuilder("")
         var first = true
         for (attr : l) {
-	    	println(attr)
             if (first) {
                 first = false
             } else {
@@ -177,7 +175,6 @@ class ProcessorGeneratorUtils {
     }
 
     def String constantName(String name) {
-    	println(name)
         val StringBuilder result = new StringBuilder("")
         for (c : name.toCharArray) {
             if (Character.isUpperCase(c)) {
