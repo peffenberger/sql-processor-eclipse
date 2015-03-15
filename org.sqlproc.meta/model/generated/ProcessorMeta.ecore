@@ -275,8 +275,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbProcedure" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="debug" eType="#//DebugLevelAssignement"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optionalFeatures" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="optionalFeatures" upperBound="-1"
+        eType="#//ValueType" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activeFilter" eType="#//ValueType"
         containment="true"/>
   </eClassifiers>

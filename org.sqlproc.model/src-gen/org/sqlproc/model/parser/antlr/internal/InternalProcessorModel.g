@@ -5642,9 +5642,9 @@ ruleMetagenProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getOptionalFeaturesValidIDParserRuleCall_19_2_0()); 
+	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getOptionalFeaturesValueTypeParserRuleCall_19_2_0()); 
 	    }
-		lv_optionalFeatures_55_0=ruleValidID		{
+		lv_optionalFeatures_55_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMetagenPropertyRule());
 	        }
@@ -5652,7 +5652,7 @@ ruleMetagenProperty returns [EObject current=null]
        			$current, 
        			"optionalFeatures",
         		lv_optionalFeatures_55_0, 
-        		"ValidID");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 

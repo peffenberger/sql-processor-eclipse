@@ -3565,7 +3565,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_19_3 = (Group)cGroup_19.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_19_3_0 = (RuleCall)cGroup_19_3.eContents().get(0);
 		private final Assignment cOptionalFeaturesAssignment_19_3_1 = (Assignment)cGroup_19_3.eContents().get(1);
-		private final RuleCall cOptionalFeaturesIDENTTerminalRuleCall_19_3_1_0 = (RuleCall)cOptionalFeaturesAssignment_19_3_1.eContents().get(0);
+		private final RuleCall cOptionalFeaturesValueTypeParserRuleCall_19_3_1_0 = (RuleCall)cOptionalFeaturesAssignment_19_3_1.eContents().get(0);
 		private final Group cGroup_20 = (Group)cAlternatives.eContents().get(20);
 		private final Assignment cNameAssignment_20_0 = (Assignment)cGroup_20.eContents().get(0);
 		private final Keyword cNameActiveFilterKeyword_20_0_0 = (Keyword)cNameAssignment_20_0.eContents().get(0);
@@ -3586,7 +3586,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="function-result-set" WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT
 		//	WS+ dbTable=IDENT | name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" |
 		//	name="optimize-insert" (WS+ dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+
-		//	optionalFeatures+=IDENT)+ | name="active-filter" WS+ activeFilter=ValueType;
+		//	optionalFeatures+=ValueType)+ | name="active-filter" WS+ activeFilter=ValueType;
 		public ParserRule getRule() { return rule; }
 
 		//name="global-sequence" WS+ sequence=IDENT type=IDENT? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
@@ -3601,7 +3601,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//name="function-result-set" WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT
 		//WS+ dbTable=IDENT | name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" |
 		//name="optimize-insert" (WS+ dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+
-		//optionalFeatures+=IDENT)+ | name="active-filter" WS+ activeFilter=ValueType
+		//optionalFeatures+=ValueType)+ | name="active-filter" WS+ activeFilter=ValueType
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="global-sequence" WS+ sequence=IDENT type=IDENT? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
@@ -4101,7 +4101,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getDbTablesIDENTTerminalRuleCall_18_1_1_0() { return cDbTablesIDENTTerminalRuleCall_18_1_1_0; }
 
-		//name="optional-features" WS+ dbStatement=IDENT (WS+ optionalFeatures+=IDENT)+
+		//name="optional-features" WS+ dbStatement=IDENT (WS+ optionalFeatures+=ValueType)+
 		public Group getGroup_19() { return cGroup_19; }
 
 		//name="optional-features"
@@ -4119,17 +4119,17 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getDbStatementIDENTTerminalRuleCall_19_2_0() { return cDbStatementIDENTTerminalRuleCall_19_2_0; }
 
-		//(WS+ optionalFeatures+=IDENT)+
+		//(WS+ optionalFeatures+=ValueType)+
 		public Group getGroup_19_3() { return cGroup_19_3; }
 
 		//WS+
 		public RuleCall getWSTerminalRuleCall_19_3_0() { return cWSTerminalRuleCall_19_3_0; }
 
-		//optionalFeatures+=IDENT
+		//optionalFeatures+=ValueType
 		public Assignment getOptionalFeaturesAssignment_19_3_1() { return cOptionalFeaturesAssignment_19_3_1; }
 
-		//IDENT
-		public RuleCall getOptionalFeaturesIDENTTerminalRuleCall_19_3_1_0() { return cOptionalFeaturesIDENTTerminalRuleCall_19_3_1_0; }
+		//ValueType
+		public RuleCall getOptionalFeaturesValueTypeParserRuleCall_19_3_1_0() { return cOptionalFeaturesValueTypeParserRuleCall_19_3_1_0; }
 
 		//name="active-filter" WS+ activeFilter=ValueType
 		public Group getGroup_20() { return cGroup_20; }
@@ -8201,7 +8201,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="function-result-set" WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT
 	//	WS+ dbTable=IDENT | name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" |
 	//	name="optimize-insert" (WS+ dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+
-	//	optionalFeatures+=IDENT)+ | name="active-filter" WS+ activeFilter=ValueType;
+	//	optionalFeatures+=ValueType)+ | name="active-filter" WS+ activeFilter=ValueType;
 	public MetagenPropertyElements getMetagenPropertyAccess() {
 		return pMetagenProperty;
 	}

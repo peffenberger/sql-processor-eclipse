@@ -1070,7 +1070,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *         (name='debug-level' debug=DebugLevelAssignement) | 
 	 *         name='generate-operators' | 
 	 *         (name='optimize-insert' dbTables+=IDENT*) | 
-	 *         (name='optional-features' dbStatement=IDENT optionalFeatures+=IDENT+) | 
+	 *         (name='optional-features' dbStatement=IDENT optionalFeatures+=ValueType+) | 
 	 *         (name='active-filter' activeFilter=ValueType)
 	 *     )
 	 */

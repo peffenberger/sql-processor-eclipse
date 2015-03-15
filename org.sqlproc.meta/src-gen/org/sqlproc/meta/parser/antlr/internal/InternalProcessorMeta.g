@@ -6226,19 +6226,19 @@ ruleMetagenProperty returns [EObject current=null]
     }
 )+(
 (
-		lv_optionalFeatures_89_0=RULE_IDENT
-		{
-			newLeafNode(lv_optionalFeatures_89_0, grammarAccess.getMetagenPropertyAccess().getOptionalFeaturesIDENTTerminalRuleCall_19_3_1_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getOptionalFeaturesValueTypeParserRuleCall_19_3_1_0()); 
+	    }
+		lv_optionalFeatures_89_0=ruleValueType		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetagenPropertyRule());
+	            $current = createModelElementForParent(grammarAccess.getMetagenPropertyRule());
 	        }
-       		addWithLastConsumed(
+       		add(
        			$current, 
        			"optionalFeatures",
         		lv_optionalFeatures_89_0, 
-        		"IDENT");
+        		"ValueType");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )

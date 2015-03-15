@@ -337,20 +337,20 @@ public interface MetagenProperty extends EObject
   void setDebug(DebugLevelAssignement value);
 
   /**
-   * Returns the value of the '<em><b>Optional Features</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Optional Features</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.model.processorModel.ValueType}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Optional Features</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Optional Features</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Optional Features</em>' attribute list.
+   * @return the value of the '<em>Optional Features</em>' containment reference list.
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getMetagenProperty_OptionalFeatures()
-   * @model unique="false"
+   * @model containment="true"
    * @generated
    */
-  EList<String> getOptionalFeatures();
+  EList<ValueType> getOptionalFeatures();
 
   /**
    * Returns the value of the '<em><b>Active Filter</b></em>' containment reference.

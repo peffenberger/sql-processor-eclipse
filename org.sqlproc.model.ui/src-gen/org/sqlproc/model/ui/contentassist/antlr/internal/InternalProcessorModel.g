@@ -46576,8 +46576,8 @@ rule__MetagenProperty__OptionalFeaturesAssignment_19_2
     }
 :
 (
-{ before(grammarAccess.getMetagenPropertyAccess().getOptionalFeaturesValidIDParserRuleCall_19_2_0()); }
-	ruleValidID{ after(grammarAccess.getMetagenPropertyAccess().getOptionalFeaturesValidIDParserRuleCall_19_2_0()); }
+{ before(grammarAccess.getMetagenPropertyAccess().getOptionalFeaturesValueTypeParserRuleCall_19_2_0()); }
+	ruleValueType{ after(grammarAccess.getMetagenPropertyAccess().getOptionalFeaturesValueTypeParserRuleCall_19_2_0()); }
 )
 
 ;

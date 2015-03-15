@@ -2837,7 +2837,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDbStatementAssignment_19_1 = (Assignment)cGroup_19.eContents().get(1);
 		private final RuleCall cDbStatementValidIDParserRuleCall_19_1_0 = (RuleCall)cDbStatementAssignment_19_1.eContents().get(0);
 		private final Assignment cOptionalFeaturesAssignment_19_2 = (Assignment)cGroup_19.eContents().get(2);
-		private final RuleCall cOptionalFeaturesValidIDParserRuleCall_19_2_0 = (RuleCall)cOptionalFeaturesAssignment_19_2.eContents().get(0);
+		private final RuleCall cOptionalFeaturesValueTypeParserRuleCall_19_2_0 = (RuleCall)cOptionalFeaturesAssignment_19_2.eContents().get(0);
 		private final Group cGroup_20 = (Group)cAlternatives.eContents().get(20);
 		private final Assignment cNameAssignment_20_0 = (Assignment)cGroup_20.eContents().get(0);
 		private final Keyword cNameActiveFilterKeyword_20_0_0 = (Keyword)cNameAssignment_20_0.eContents().get(0);
@@ -2855,7 +2855,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="generate-default-idgenerators" | name="function-result" dbFunction=ValidID type=ValidID |
 		//	name="function-result-set" dbFunction=ValidID dbTable=ValidID | name="procedure-result-set" dbProcedure=ValidID
 		//	dbTable=ValidID | name="debug-level" debug=DebugLevelAssignement | name="generate-operators" | name="optimize-insert"
-		//	dbTables+=ValidID* | name="optional-features" dbStatement=ValidID optionalFeatures+=ValidID+ | name="active-filter"
+		//	dbTables+=ValidID* | name="optional-features" dbStatement=ValidID optionalFeatures+=ValueType+ | name="active-filter"
 		//	activeFilter=ValueType;
 		public ParserRule getRule() { return rule; }
 
@@ -2869,7 +2869,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//name="generate-default-idgenerators" | name="function-result" dbFunction=ValidID type=ValidID |
 		//name="function-result-set" dbFunction=ValidID dbTable=ValidID | name="procedure-result-set" dbProcedure=ValidID
 		//dbTable=ValidID | name="debug-level" debug=DebugLevelAssignement | name="generate-operators" | name="optimize-insert"
-		//dbTables+=ValidID* | name="optional-features" dbStatement=ValidID optionalFeatures+=ValidID+ | name="active-filter"
+		//dbTables+=ValidID* | name="optional-features" dbStatement=ValidID optionalFeatures+=ValueType+ | name="active-filter"
 		//activeFilter=ValueType
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -3239,7 +3239,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//ValidID
 		public RuleCall getDbTablesValidIDParserRuleCall_18_1_0() { return cDbTablesValidIDParserRuleCall_18_1_0; }
 
-		//name="optional-features" dbStatement=ValidID optionalFeatures+=ValidID+
+		//name="optional-features" dbStatement=ValidID optionalFeatures+=ValueType+
 		public Group getGroup_19() { return cGroup_19; }
 
 		//name="optional-features"
@@ -3254,11 +3254,11 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//ValidID
 		public RuleCall getDbStatementValidIDParserRuleCall_19_1_0() { return cDbStatementValidIDParserRuleCall_19_1_0; }
 
-		//optionalFeatures+=ValidID+
+		//optionalFeatures+=ValueType+
 		public Assignment getOptionalFeaturesAssignment_19_2() { return cOptionalFeaturesAssignment_19_2; }
 
-		//ValidID
-		public RuleCall getOptionalFeaturesValidIDParserRuleCall_19_2_0() { return cOptionalFeaturesValidIDParserRuleCall_19_2_0; }
+		//ValueType
+		public RuleCall getOptionalFeaturesValueTypeParserRuleCall_19_2_0() { return cOptionalFeaturesValueTypeParserRuleCall_19_2_0; }
 
 		//name="active-filter" activeFilter=ValueType
 		public Group getGroup_20() { return cGroup_20; }
@@ -6373,7 +6373,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="generate-default-idgenerators" | name="function-result" dbFunction=ValidID type=ValidID |
 	//	name="function-result-set" dbFunction=ValidID dbTable=ValidID | name="procedure-result-set" dbProcedure=ValidID
 	//	dbTable=ValidID | name="debug-level" debug=DebugLevelAssignement | name="generate-operators" | name="optimize-insert"
-	//	dbTables+=ValidID* | name="optional-features" dbStatement=ValidID optionalFeatures+=ValidID+ | name="active-filter"
+	//	dbTables+=ValidID* | name="optional-features" dbStatement=ValidID optionalFeatures+=ValueType+ | name="active-filter"
 	//	activeFilter=ValueType;
 	public MetagenPropertyElements getMetagenPropertyAccess() {
 		return pMetagenProperty;

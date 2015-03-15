@@ -1834,7 +1834,7 @@ public interface ProcessorModelPackage extends EPackage
   int METAGEN_PROPERTY__DEBUG = 12;
 
   /**
-   * The feature id for the '<em><b>Optional Features</b></em>' attribute list.
+   * The feature id for the '<em><b>Optional Features</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -6050,15 +6050,15 @@ public interface ProcessorModelPackage extends EPackage
   EReference getMetagenProperty_Debug();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.sqlproc.model.processorModel.MetagenProperty#getOptionalFeatures <em>Optional Features</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.model.processorModel.MetagenProperty#getOptionalFeatures <em>Optional Features</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Optional Features</em>'.
+   * @return the meta object for the containment reference list '<em>Optional Features</em>'.
    * @see org.sqlproc.model.processorModel.MetagenProperty#getOptionalFeatures()
    * @see #getMetagenProperty()
    * @generated
    */
-  EAttribute getMetagenProperty_OptionalFeatures();
+  EReference getMetagenProperty_OptionalFeatures();
 
   /**
    * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.MetagenProperty#getActiveFilter <em>Active Filter</em>}'.
@@ -9330,12 +9330,12 @@ public interface ProcessorModelPackage extends EPackage
     EReference METAGEN_PROPERTY__DEBUG = eINSTANCE.getMetagenProperty_Debug();
 
     /**
-     * The meta object literal for the '<em><b>Optional Features</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Optional Features</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute METAGEN_PROPERTY__OPTIONAL_FEATURES = eINSTANCE.getMetagenProperty_OptionalFeatures();
+    EReference METAGEN_PROPERTY__OPTIONAL_FEATURES = eINSTANCE.getMetagenProperty_OptionalFeatures();
 
     /**
      * The meta object literal for the '<em><b>Active Filter</b></em>' containment reference feature.

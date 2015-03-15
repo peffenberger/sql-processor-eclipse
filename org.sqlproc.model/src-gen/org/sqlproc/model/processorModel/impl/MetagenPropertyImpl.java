@@ -265,14 +265,14 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
   protected DebugLevelAssignement debug;
 
   /**
-   * The cached value of the '{@link #getOptionalFeatures() <em>Optional Features</em>}' attribute list.
+   * The cached value of the '{@link #getOptionalFeatures() <em>Optional Features</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getOptionalFeatures()
    * @generated
    * @ordered
    */
-  protected EList<String> optionalFeatures;
+  protected EList<ValueType> optionalFeatures;
 
   /**
    * The cached value of the '{@link #getActiveFilter() <em>Active Filter</em>}' containment reference.
@@ -598,11 +598,11 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getOptionalFeatures()
+  public EList<ValueType> getOptionalFeatures()
   {
     if (optionalFeatures == null)
     {
-      optionalFeatures = new EDataTypeEList<String>(String.class, this, ProcessorModelPackage.METAGEN_PROPERTY__OPTIONAL_FEATURES);
+      optionalFeatures = new EObjectContainmentEList<ValueType>(ValueType.class, this, ProcessorModelPackage.METAGEN_PROPERTY__OPTIONAL_FEATURES);
     }
     return optionalFeatures;
   }
@@ -669,6 +669,8 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return ((InternalEList<?>)getMetaTypes()).basicRemove(otherEnd, msgs);
       case ProcessorModelPackage.METAGEN_PROPERTY__DEBUG:
         return basicSetDebug(null, msgs);
+      case ProcessorModelPackage.METAGEN_PROPERTY__OPTIONAL_FEATURES:
+        return ((InternalEList<?>)getOptionalFeatures()).basicRemove(otherEnd, msgs);
       case ProcessorModelPackage.METAGEN_PROPERTY__ACTIVE_FILTER:
         return basicSetActiveFilter(null, msgs);
     }
@@ -775,7 +777,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return;
       case ProcessorModelPackage.METAGEN_PROPERTY__OPTIONAL_FEATURES:
         getOptionalFeatures().clear();
-        getOptionalFeatures().addAll((Collection<? extends String>)newValue);
+        getOptionalFeatures().addAll((Collection<? extends ValueType>)newValue);
         return;
       case ProcessorModelPackage.METAGEN_PROPERTY__ACTIVE_FILTER:
         setActiveFilter((ValueType)newValue);
@@ -920,8 +922,6 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
     result.append(dbFunction);
     result.append(", dbProcedure: ");
     result.append(dbProcedure);
-    result.append(", optionalFeatures: ");
-    result.append(optionalFeatures);
     result.append(')');
     return result.toString();
   }

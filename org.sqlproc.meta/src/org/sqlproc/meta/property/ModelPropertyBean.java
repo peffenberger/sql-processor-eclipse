@@ -1187,7 +1187,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             if (!modelValues.metaOptionalFeatures.containsKey(property.getDbStatement()))
                 modelValues.metaOptionalFeatures.put(property.getDbStatement(), new HashSet<String>());
             for (int i = 0, m = property.getOptionalFeatures().size(); i < m; i++) {
-                String optionalFeature = property.getOptionalFeatures().get(i);
+                String optionalFeature = getPropertyValue(property.getOptionalFeatures().get(i));
                 modelValues.metaOptionalFeatures.get(property.getDbStatement()).add(optionalFeature);
             }
         } else if (METAGEN_ACTIVE_FILTER.equals(property.getName())) {

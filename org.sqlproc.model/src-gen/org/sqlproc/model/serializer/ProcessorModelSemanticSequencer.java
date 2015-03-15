@@ -2729,7 +2729,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         (name='debug-level' debug=DebugLevelAssignement) | 
 	 *         name='generate-operators' | 
 	 *         (name='optimize-insert' dbTables+=ValidID*) | 
-	 *         (name='optional-features' dbStatement=ValidID optionalFeatures+=ValidID+) | 
+	 *         (name='optional-features' dbStatement=ValidID optionalFeatures+=ValueType+) | 
 	 *         (name='active-filter' activeFilter=ValueType)
 	 *     )
 	 */
