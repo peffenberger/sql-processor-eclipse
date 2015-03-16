@@ -32,6 +32,7 @@ class ProcessorModelFormatter extends XbaseFormatter {
 		c.setLinewrap().before(packageAccess.rightCurlyBracketKeyword_6)
 		c.setIndentationIncrement.after(packageAccess.leftCurlyBracketKeyword_3)
 		c.setIndentationDecrement.before(packageAccess.rightCurlyBracketKeyword_6)
+		c.setLinewrap(2).after(packageAccess.rule)
 				
 		c.setLinewrap().before(XImportSectionAccess.rule)
 
@@ -40,7 +41,7 @@ class ProcessorModelFormatter extends XbaseFormatter {
 		c.setLinewrap().before(extendsAccess.rule)
 		c.setLinewrap().before(extendsAccess.extendsKeyword_1)
 		
-		c.setLinewrap(2).before(enumEntityAccess.rule)
+		//c.setLinewrap(2).before(enumEntityAccess.rule)
 		c.setLinewrap().before(enumEntityAccess.enumKeyword_2)
 		c.setLinewrap().after(enumEntityAccess.leftCurlyBracketKeyword_4)
 		c.setLinewrap().before(enumEntityAccess.rightCurlyBracketKeyword_7)
@@ -50,7 +51,8 @@ class ProcessorModelFormatter extends XbaseFormatter {
 		c.setLinewrap().before(enumAttributeAccess.rule)
 		c.setLinewrap().before(enumAttributeAccess.attrKeyword_3)
 
-		c.setLinewrap(2).before(pojoEntityAccess.rule)
+		c.setLinewrap(2).before(annotatedEntityAccess.rule)
+		//c.setLinewrap(2).before(pojoEntityAccess.rule)
 		c.setLinewrap().before(pojoEntityAccess.pojoKeyword_3)
 		c.setLinewrap().after(pojoEntityAccess.leftCurlyBracketKeyword_6)
 		c.setLinewrap().before(pojoEntityAccess.rightCurlyBracketKeyword_9)
