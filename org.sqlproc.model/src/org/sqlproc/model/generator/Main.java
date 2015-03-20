@@ -16,12 +16,15 @@ import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
+import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.Package;
+import org.sqlproc.model.processorModel.PackageDirective;
+import org.sqlproc.model.processorModel.PackageDirectiveImplementation;
 import org.sqlproc.model.property.ModelPropertyBean;
 import org.sqlproc.model.property.ModelPropertyBean.ModelValues;
 import org.sqlproc.model.resolver.DbResolver;
@@ -85,7 +88,7 @@ public class Main {
         System.out.println("control " + control);
         System.out.println("pojo " + pojo);
         System.out.println("dao " + dao);
-        if (models == null && (control == null || pojo == null || dao == null)) {
+        if (models == null && (control == null || pojo == null)) {
             usage(null);
             return;
         }
@@ -187,7 +190,7 @@ public class Main {
             } catch (Exception ex) {
                 System.out.println("Can't read " + getFile(source, pojo));
             }
-            if (pojoResource != null) {
+            if (pojoResource != null && dao != null) {
                 try {
                     daoResource = set.getResource(URI.createURI(getFile(source, dao)), true);
                     set.getResources().add(daoResource);
@@ -236,6 +239,7 @@ public class Main {
         DbResolver dbResolver = new DbResolverBean(modelProperty, driverClass, dbSqlsBefore, null);
 
         Artifacts pojos = null;
+        List<Package> pojoPackages = null;
         Package pojoPackage = null;
         String pojoPackageName = null;
         if (!merge) {
@@ -244,7 +248,8 @@ public class Main {
             if (pojoResource != null) {
                 pojos = (Artifacts) pojoResource.getContents().get(0);
                 if (!pojos.getPackages().isEmpty()) {
-                    pojoPackage = pojos.getPackages().get(0);
+                    pojoPackages = pojos.getPackages();
+                    pojoPackage = pojoPackages.get(0);
                     pojoPackageName = pojoPackage.getName();
                 }
             } else {
@@ -257,37 +262,80 @@ public class Main {
         }
 
         Artifacts daos = null;
+        List<Package> daoPackages = null;
         Package daoPackage = null;
         String daoPackageName = null;
-        if (!merge) {
-            daoPackageName = modelProperty.getDaoPackage(null);
-        } else {
-            if (daoResource != null) {
-                daos = (Artifacts) daoResource.getContents().get(0);
-                if (!daos.getPackages().isEmpty()) {
-                    daoPackage = daos.getPackages().get(0);
-                    daoPackageName = daoPackage.getName();
-                }
-            } else {
+        if (dao != null) {
+            if (!merge) {
                 daoPackageName = modelProperty.getDaoPackage(null);
+            } else {
+                if (daoResource != null) {
+                    daos = (Artifacts) daoResource.getContents().get(0);
+                    if (!daos.getPackages().isEmpty()) {
+                        daoPackages = daos.getPackages();
+                        daoPackage = daoPackages.get(0);
+                        daoPackageName = daoPackage.getName();
+                    }
+                } else {
+                    daoPackageName = modelProperty.getDaoPackage(null);
+                }
+            }
+            if (daoPackage == null && daoPackageName == null) {
+                System.err.println("Missing DAO package.");
+                return;
             }
         }
-        if (daoPackage == null && daoPackageName == null) {
-            System.err.println("Missing DAO package.");
-            return;
+
+        ISerializer serializer = ((XtextResource) controlResource).getSerializer();
+
+        {
+            System.out.println("Going to generate " + pojo);
+            String pojoDefinitions = TablePojoGenerator.generatePojo(definitions, pojoPackage, serializer, dbResolver,
+                    scopeProvider, modelProperty);
+            StringBuilder sb = new StringBuilder();
+            sb.append("package ").append(pojoPackageName).append(" {\n").append(pojoDefinitions).append("}");
+            if (pojoPackages != null && !pojoPackages.isEmpty()) {
+                boolean first = true;
+                for (Package pkg : pojoPackages) {
+                    if (first) {
+                        first = false;
+                        continue;
+                    }
+                    sb.append("\n").append(serializer.serialize(pkg));
+                }
+            }
+            fileAccess.generateFile(pojo, "package " + pojoPackageName + " {\n" + pojoDefinitions + "}");
+            System.out.println(pojo + " generation finished.");
         }
 
-        System.out.println("Going to generate " + pojo);
-        String pojoDefinitions = TablePojoGenerator.generatePojo(definitions, pojoPackage,
-                ((XtextResource) controlResource).getSerializer(), dbResolver, scopeProvider, modelProperty);
-        fileAccess.generateFile(pojo, "package " + pojoPackageName + " {\n" + pojoDefinitions + "}");
-        System.out.println(pojo + " generation finished.");
-
-        System.out.println("Going to generate " + dao);
-        String daoDefinitions = TableDaoGenerator.generateDao(definitions, daoPackage,
-                ((XtextResource) controlResource).getSerializer(), dbResolver, scopeProvider, modelProperty);
-        fileAccess.generateFile(dao, "package " + daoPackageName + " {\n" + daoDefinitions + "}");
-        System.out.println(dao + " generation finished.");
+        if (dao != null) {
+            System.out.println("Going to generate " + dao);
+            String daoPackageImplementation = null;
+            if (daoPackage != null && daoPackage.getDirectives() != null && !daoPackage.getDirectives().isEmpty()) {
+                for (PackageDirective dir : daoPackage.getDirectives()) {
+                    if (dir instanceof PackageDirectiveImplementation)
+                        daoPackageImplementation = ((PackageDirectiveImplementation) dir).getImplementation();
+                }
+            }
+            String daoDefinitions = TableDaoGenerator.generateDao(definitions, daoPackage, serializer, dbResolver,
+                    scopeProvider, modelProperty);
+            StringBuilder sb = new StringBuilder();
+            if (daoPackageImplementation != null)
+                sb.append("#Implementation(").append(daoPackageImplementation).append("\n");
+            sb.append("package ").append(daoPackageName).append(" {\n").append(daoDefinitions).append("}");
+            if (daoPackages != null && !daoPackages.isEmpty()) {
+                boolean first = true;
+                for (Package pkg : daoPackages) {
+                    if (first) {
+                        first = false;
+                        continue;
+                    }
+                    sb.append("\n").append(serializer.serialize(pkg));
+                }
+            }
+            fileAccess.generateFile(dao, sb);
+            System.out.println(dao + " generation finished.");
+        }
     }
 
     protected String getFile(String source, String file) {
