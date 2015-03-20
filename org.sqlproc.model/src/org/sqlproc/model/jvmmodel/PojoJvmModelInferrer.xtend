@@ -49,7 +49,7 @@ class PojoJvmModelInferrer {
    	val SERIALIZABLE = 'java.io.Serializable'
    	val HASH_MAP = 'java.util.HashMap'
    	val HASH_SET = 'java.util.HashSet'
-   	val METHOD_UTILS = 'org.apache.commons.beanutils.MethodUtils'
+   	val PROPERTY_UTILS = 'org.apache.commons.beanutils.PropertyUtils'
    	val INVOCATION_TARGET_EXCEPTION = 'java.lang.reflect.InvocationTargetException'
    	val POJO = 'org.sqlproc.engine.annotation.Pojo'
 
@@ -369,22 +369,13 @@ class PojoJvmModelInferrer {
 						if (nullValues.contains(attrName))
 							return true;
 						try {
-							Object result = «METHOD_UTILS».invokeMethod(this, "get" + attrName.substring(0, 1).toUpperCase() + attrName.substring(1, attrName.length()), null);
+							Object result = «PROPERTY_UTILS».getSimpleProperty(this, attrName);
 							return (result != null) ? true : false;
-						} catch (NoSuchMethodException e) {
 						} catch (IllegalAccessException e) {
 							throw new RuntimeException(e);
 						} catch («INVOCATION_TARGET_EXCEPTION» e) {
 							throw new RuntimeException(e);
-						}
-						try {
-							Object result = «METHOD_UTILS».invokeMethod(this, "is" + attrName.substring(0, 1).toUpperCase() + attrName.substring(1, attrName.length()), null);
-							return (result != null) ? true : false;
 						} catch (NoSuchMethodException e) {
-						} catch (IllegalAccessException e) {
-							throw new RuntimeException(e);
-						} catch («INVOCATION_TARGET_EXCEPTION» e) {
-							throw new RuntimeException(e);
 						}
 						return false;
    					'''
