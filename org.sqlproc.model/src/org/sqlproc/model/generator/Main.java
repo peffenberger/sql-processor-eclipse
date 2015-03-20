@@ -142,6 +142,7 @@ public class Main {
         System.out.println("  -nomerge - do not merge generated artefacts with existing ones");
         System.out.println("  -verify - do not generate Java source files, only verify models files");
         System.out.println();
+        System.exit(1);
     }
 
     protected void runGenerator(String models, String source, String target, boolean generate) throws IOException,
@@ -158,8 +159,10 @@ public class Main {
 
         for (Resource resource : set2) {
             System.out.println("Going to validate " + resource);
-            if (!isValid(resource))
+            if (!isValid(resource)) {
+                System.exit(2);
                 return;
+            }
             System.out.println("Validated " + resource);
         }
         System.out.println("Resource(s) validation finished.");
@@ -202,27 +205,34 @@ public class Main {
 
         System.out.println("Going to validate " + controlResource);
         boolean controlResourceIsOk = isValid(controlResource);
-        if (!controlResourceIsOk)
+        if (!controlResourceIsOk) {
+            System.exit(2);
             return;
+        }
         System.out.println("Validated " + controlResource);
         if (merge && pojoResource != null) {
             System.out.println("Going to validate " + pojoResource);
             boolean pojoResourceIsOk = isValid(pojoResource);
-            if (!pojoResourceIsOk)
+            if (!pojoResourceIsOk) {
+                System.exit(2);
                 return;
+            }
             System.out.println("Validated " + pojoResource);
         }
         if (merge && daoResource != null) {
             System.out.println("Going to validate " + daoResource);
             boolean daoResourceIsOk = isValid(daoResource);
-            if (!daoResourceIsOk)
+            if (!daoResourceIsOk) {
+                System.exit(2);
                 return;
+            }
             System.out.println("Validated " + daoResource);
         }
 
         Artifacts definitions = (Artifacts) controlResource.getContents().get(0);
         if (definitions.getProperties().isEmpty()) {
             System.err.println("No control directive.");
+            System.exit(3);
             return;
         }
         fileAccess.setOutputPath(target);
@@ -258,6 +268,7 @@ public class Main {
         }
         if (pojoPackage == null && pojoPackageName == null) {
             System.err.println("Missing POJO package.");
+            System.exit(3);
             return;
         }
 
@@ -282,6 +293,7 @@ public class Main {
             }
             if (daoPackage == null && daoPackageName == null) {
                 System.err.println("Missing DAO package.");
+                System.exit(3);
                 return;
             }
         }

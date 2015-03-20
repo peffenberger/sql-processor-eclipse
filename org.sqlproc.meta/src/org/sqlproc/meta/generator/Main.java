@@ -118,6 +118,7 @@ public class Main {
         System.out.println("  -nomerge - do not merge generated artefacts with existing ones");
         System.out.println("  -verify - do not generate Java source files, only verify models files");
         System.out.println();
+        System.exit(1);
     }
 
     protected void runGenerator(String control, String sql, String ddl, String source, String target, boolean merge)
@@ -138,20 +139,25 @@ public class Main {
 
         System.out.println("Going to validate " + controlResource);
         boolean controlResourceIsOk = isValid(controlResource);
-        if (!controlResourceIsOk)
+        if (!controlResourceIsOk) {
+            System.exit(2);
             return;
+        }
         System.out.println("Validated " + controlResource);
         if (merge && sqlResource != null) {
             System.out.println("Going to validate " + sqlResource);
             boolean sqlResourceIsOk = isValid(sqlResource);
-            if (!sqlResourceIsOk)
+            if (!sqlResourceIsOk) {
+                System.exit(2);
                 return;
+            }
             System.out.println("Validated " + sqlResource);
         }
 
         Artifacts definitions = (Artifacts) controlResource.getContents().get(0);
         if (definitions.getProperties().isEmpty()) {
             System.err.println("No control directive.");
+            System.exit(3);
             return;
         }
         fileAccess.setOutputPath(target);
