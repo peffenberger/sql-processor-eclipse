@@ -4,8 +4,6 @@ package org.sqlproc.model.processorModel;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Column Type Assignement</b></em>'.
@@ -60,12 +58,12 @@ public interface ColumnTypeAssignement extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(JvmParameterizedTypeReference)
+   * @see #setType(PojoType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getColumnTypeAssignement_Type()
    * @model containment="true"
    * @generated
    */
-  JvmParameterizedTypeReference getType();
+  PojoType getType();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.ColumnTypeAssignement#getType <em>Type</em>}' containment reference.
@@ -75,6 +73,6 @@ public interface ColumnTypeAssignement extends EObject
    * @see #getType()
    * @generated
    */
-  void setType(JvmParameterizedTypeReference value);
+  void setType(PojoType value);
 
 } // ColumnTypeAssignement

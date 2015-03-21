@@ -100,6 +100,7 @@ import org.sqlproc.model.processorModel.PojoDirectiveSerializable;
 import org.sqlproc.model.processorModel.PojoDirectiveToString;
 import org.sqlproc.model.processorModel.PojoEntity;
 import org.sqlproc.model.processorModel.PojoProcedure;
+import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
@@ -188,6 +189,13 @@ public class ProcessorModelSwitch<T> extends Switch<T>
       {
         ValueType valueType = (ValueType)theEObject;
         T result = caseValueType(valueType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorModelPackage.POJO_TYPE:
+      {
+        PojoType pojoType = (PojoType)theEObject;
+        T result = casePojoType(pojoType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1001,6 +1009,22 @@ public class ProcessorModelSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseValueType(ValueType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoType(PojoType object)
   {
     return null;
   }

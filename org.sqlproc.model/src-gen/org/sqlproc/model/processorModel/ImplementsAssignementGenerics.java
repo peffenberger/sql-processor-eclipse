@@ -6,8 +6,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Implements Assignement Generics</b></em>'.
@@ -37,12 +35,12 @@ public interface ImplementsAssignementGenerics extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>To Implement</em>' containment reference.
-   * @see #setToImplement(JvmParameterizedTypeReference)
+   * @see #setToImplement(PojoType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getImplementsAssignementGenerics_ToImplement()
    * @model containment="true"
    * @generated
    */
-  JvmParameterizedTypeReference getToImplement();
+  PojoType getToImplement();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.ImplementsAssignementGenerics#getToImplement <em>To Implement</em>}' containment reference.
@@ -52,7 +50,7 @@ public interface ImplementsAssignementGenerics extends EObject
    * @see #getToImplement()
    * @generated
    */
-  void setToImplement(JvmParameterizedTypeReference value);
+  void setToImplement(PojoType value);
 
   /**
    * Returns the value of the '<em><b>Db Tables</b></em>' attribute list.

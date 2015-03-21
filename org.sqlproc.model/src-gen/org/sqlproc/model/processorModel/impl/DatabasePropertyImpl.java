@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
-
 import org.sqlproc.model.processorModel.DatabaseCatalogAssignement;
 import org.sqlproc.model.processorModel.DatabaseMetaInfoAssignement;
 import org.sqlproc.model.processorModel.DatabaseProperty;
@@ -28,6 +26,7 @@ import org.sqlproc.model.processorModel.DatabaseTypeAssignement;
 import org.sqlproc.model.processorModel.DebugLevelAssignement;
 import org.sqlproc.model.processorModel.DriverMetaInfoAssignement;
 import org.sqlproc.model.processorModel.DriverMethodOutputAssignement;
+import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.ValueType;
 
@@ -44,7 +43,6 @@ import org.sqlproc.model.processorModel.ValueType;
  *   <li>{@link org.sqlproc.model.processorModel.impl.DatabasePropertyImpl#getDbPassword <em>Db Password</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.DatabasePropertyImpl#getDbCatalog <em>Db Catalog</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.DatabasePropertyImpl#getDbSchema <em>Db Schema</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.DatabasePropertyImpl#getDbDriverx <em>Db Driverx</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.DatabasePropertyImpl#getDbDriver <em>Db Driver</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.DatabasePropertyImpl#getDbExecuteBefore <em>Db Execute Before</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.DatabasePropertyImpl#getDbExecuteAfter <em>Db Execute After</em>}</li>
@@ -132,16 +130,6 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
   protected DatabaseSchemaAssignement dbSchema;
 
   /**
-   * The cached value of the '{@link #getDbDriverx() <em>Db Driverx</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDbDriverx()
-   * @generated
-   * @ordered
-   */
-  protected JvmParameterizedTypeReference dbDriverx;
-
-  /**
    * The cached value of the '{@link #getDbDriver() <em>Db Driver</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -149,7 +137,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected ValueType dbDriver;
+  protected PojoType dbDriver;
 
   /**
    * The cached value of the '{@link #getDbExecuteBefore() <em>Db Execute Before</em>}' containment reference.
@@ -520,55 +508,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmParameterizedTypeReference getDbDriverx()
-  {
-    return dbDriverx;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetDbDriverx(JvmParameterizedTypeReference newDbDriverx, NotificationChain msgs)
-  {
-    JvmParameterizedTypeReference oldDbDriverx = dbDriverx;
-    dbDriverx = newDbDriverx;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX, oldDbDriverx, newDbDriverx);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setDbDriverx(JvmParameterizedTypeReference newDbDriverx)
-  {
-    if (newDbDriverx != dbDriverx)
-    {
-      NotificationChain msgs = null;
-      if (dbDriverx != null)
-        msgs = ((InternalEObject)dbDriverx).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX, null, msgs);
-      if (newDbDriverx != null)
-        msgs = ((InternalEObject)newDbDriverx).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX, null, msgs);
-      msgs = basicSetDbDriverx(newDbDriverx, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX, newDbDriverx, newDbDriverx));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ValueType getDbDriver()
+  public PojoType getDbDriver()
   {
     return dbDriver;
   }
@@ -578,9 +518,9 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDbDriver(ValueType newDbDriver, NotificationChain msgs)
+  public NotificationChain basicSetDbDriver(PojoType newDbDriver, NotificationChain msgs)
   {
-    ValueType oldDbDriver = dbDriver;
+    PojoType oldDbDriver = dbDriver;
     dbDriver = newDbDriver;
     if (eNotificationRequired())
     {
@@ -595,7 +535,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbDriver(ValueType newDbDriver)
+  public void setDbDriver(PojoType newDbDriver)
   {
     if (newDbDriver != dbDriver)
     {
@@ -981,8 +921,6 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         return basicSetDbCatalog(null, msgs);
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_SCHEMA:
         return basicSetDbSchema(null, msgs);
-      case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX:
-        return basicSetDbDriverx(null, msgs);
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVER:
         return basicSetDbDriver(null, msgs);
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:
@@ -1027,8 +965,6 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         return getDbCatalog();
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_SCHEMA:
         return getDbSchema();
-      case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX:
-        return getDbDriverx();
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVER:
         return getDbDriver();
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:
@@ -1080,11 +1016,8 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_SCHEMA:
         setDbSchema((DatabaseSchemaAssignement)newValue);
         return;
-      case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX:
-        setDbDriverx((JvmParameterizedTypeReference)newValue);
-        return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVER:
-        setDbDriver((ValueType)newValue);
+        setDbDriver((PojoType)newValue);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:
         setDbExecuteBefore((ValueType)newValue);
@@ -1143,11 +1076,8 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_SCHEMA:
         setDbSchema((DatabaseSchemaAssignement)null);
         return;
-      case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX:
-        setDbDriverx((JvmParameterizedTypeReference)null);
-        return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVER:
-        setDbDriver((ValueType)null);
+        setDbDriver((PojoType)null);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:
         setDbExecuteBefore((ValueType)null);
@@ -1199,8 +1129,6 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         return dbCatalog != null;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_SCHEMA:
         return dbSchema != null;
-      case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX:
-        return dbDriverx != null;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVER:
         return dbDriver != null;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:

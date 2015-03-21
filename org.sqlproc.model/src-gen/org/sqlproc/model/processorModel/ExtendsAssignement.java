@@ -6,8 +6,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Extends Assignement</b></em>'.
@@ -37,12 +35,12 @@ public interface ExtendsAssignement extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>To Extends</em>' containment reference.
-   * @see #setToExtends(JvmParameterizedTypeReference)
+   * @see #setToExtends(PojoType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getExtendsAssignement_ToExtends()
    * @model containment="true"
    * @generated
    */
-  JvmParameterizedTypeReference getToExtends();
+  PojoType getToExtends();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.ExtendsAssignement#getToExtends <em>To Extends</em>}' containment reference.
@@ -52,7 +50,7 @@ public interface ExtendsAssignement extends EObject
    * @see #getToExtends()
    * @generated
    */
-  void setToExtends(JvmParameterizedTypeReference value);
+  void setToExtends(PojoType value);
 
   /**
    * Returns the value of the '<em><b>Db Tables</b></em>' attribute list.

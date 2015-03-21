@@ -22,6 +22,15 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ValueType/number"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ValueType/id"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorMeta.ecore#//PojoType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/ident"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/ref"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/gident"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/gref"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/gtype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//PojoType/array"/>
+    </genClasses>
     <genClasses ecoreClass="ProcessorMeta.ecore#//DatabaseCatalogAssignement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//DatabaseCatalogAssignement/dbCatalog"/>
     </genClasses>
@@ -98,22 +107,22 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//FunctionPojoAssignement/pojo"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorMeta.ecore#//ImplementsAssignement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//ImplementsAssignement/toImplement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//ImplementsAssignement/toImplement"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ImplementsAssignement/dbTables"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ImplementsAssignement/dbNotTables"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorMeta.ecore#//ExtendsAssignement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//ExtendsAssignement/toExtends"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//ExtendsAssignement/toExtends"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ExtendsAssignement/dbTables"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ExtendsAssignement/dbNotTables"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorMeta.ecore#//ImplementsAssignementGenerics">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//ImplementsAssignementGenerics/toImplement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//ImplementsAssignementGenerics/toImplement"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ImplementsAssignementGenerics/dbTables"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ImplementsAssignementGenerics/dbNotTables"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorMeta.ecore#//ExtendsAssignementGenerics">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//ExtendsAssignementGenerics/toExtends"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//ExtendsAssignementGenerics/toExtends"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ExtendsAssignementGenerics/dbTables"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ExtendsAssignementGenerics/dbNotTables"/>
     </genClasses>
@@ -139,7 +148,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//DatabaseProperty/dbPassword"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//DatabaseProperty/dbCatalog"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//DatabaseProperty/dbSchema"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//DatabaseProperty/dbDriverx"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//DatabaseProperty/dbDriver"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//DatabaseProperty/dbExecuteBefore"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//DatabaseProperty/dbExecuteAfter"/>
@@ -363,13 +371,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//OptionalFeature/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//OptionalFeature/modifiers"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//OptionalFeature/option"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorMeta.ecore#//PojoType">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/ref"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/type"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/gref"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/gtype"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//PojoType/array"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

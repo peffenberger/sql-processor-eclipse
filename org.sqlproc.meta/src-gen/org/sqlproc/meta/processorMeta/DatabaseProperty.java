@@ -6,8 +6,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.xtext.common.types.JvmType;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Database Property</b></em>'.
@@ -22,7 +20,6 @@ import org.eclipse.xtext.common.types.JvmType;
  *   <li>{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbPassword <em>Db Password</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbCatalog <em>Db Catalog</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbSchema <em>Db Schema</em>}</li>
- *   <li>{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbDriverx <em>Db Driverx</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbDriver <em>Db Driver</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbExecuteBefore <em>Db Execute Before</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbExecuteAfter <em>Db Execute After</em>}</li>
@@ -198,32 +195,6 @@ public interface DatabaseProperty extends EObject
   void setDbSchema(DatabaseSchemaAssignement value);
 
   /**
-   * Returns the value of the '<em><b>Db Driverx</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Db Driverx</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Driverx</em>' reference.
-   * @see #setDbDriverx(JvmType)
-   * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getDatabaseProperty_DbDriverx()
-   * @model
-   * @generated
-   */
-  JvmType getDbDriverx();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbDriverx <em>Db Driverx</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Db Driverx</em>' reference.
-   * @see #getDbDriverx()
-   * @generated
-   */
-  void setDbDriverx(JvmType value);
-
-  /**
    * Returns the value of the '<em><b>Db Driver</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
@@ -232,12 +203,12 @@ public interface DatabaseProperty extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Db Driver</em>' containment reference.
-   * @see #setDbDriver(ValueType)
+   * @see #setDbDriver(PojoType)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getDatabaseProperty_DbDriver()
    * @model containment="true"
    * @generated
    */
-  ValueType getDbDriver();
+  PojoType getDbDriver();
 
   /**
    * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbDriver <em>Db Driver</em>}' containment reference.
@@ -247,7 +218,7 @@ public interface DatabaseProperty extends EObject
    * @see #getDbDriver()
    * @generated
    */
-  void setDbDriver(ValueType value);
+  void setDbDriver(PojoType value);
 
   /**
    * Returns the value of the '<em><b>Db Execute Before</b></em>' containment reference.

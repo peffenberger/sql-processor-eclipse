@@ -633,7 +633,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *         (name='login-password' dbPassword=ValueType) | 
 	 *         (name='in-catalog' dbCatalog=DatabaseCatalogAssignement) | 
 	 *         (name='active-schema' dbSchema=DatabaseSchemaAssignement) | 
-	 *         (name='jdbc-driver' (dbDriverx=[JvmType|QualifiedName] | dbDriver=ValueType)) | 
+	 *         (name='jdbc-driver' dbDriver=PojoType) | 
 	 *         (name='ddl-create' dbExecuteBefore=ValueType) | 
 	 *         (name='ddl-drop' dbExecuteAfter=ValueType) | 
 	 *         (name='index-types' dbIndexTypes=ValueType) | 
@@ -778,7 +778,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (toExtends=[JvmType|QualifiedName] dbTables+=IDENT* dbNotTables+=IDENT*)
+	 *     (toExtends=PojoType dbTables+=IDENT* dbNotTables+=IDENT*)
 	 */
 	protected void sequence_ExtendsAssignementGenerics(EObject context, ExtendsAssignementGenerics semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -787,7 +787,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (toExtends=[JvmType|QualifiedName] dbTables+=IDENT* dbNotTables+=IDENT*)
+	 *     (toExtends=PojoType dbTables+=IDENT* dbNotTables+=IDENT*)
 	 */
 	protected void sequence_ExtendsAssignement(EObject context, ExtendsAssignement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -917,7 +917,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (toImplement=[JvmType|QualifiedName] dbTables+=IDENT* dbNotTables+=IDENT*)
+	 *     (toImplement=PojoType dbTables+=IDENT* dbNotTables+=IDENT*)
 	 */
 	protected void sequence_ImplementsAssignementGenerics(EObject context, ImplementsAssignementGenerics semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -926,7 +926,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (toImplement=[JvmType|QualifiedName] dbTables+=IDENT* dbNotTables+=IDENT*)
+	 *     (toImplement=PojoType dbTables+=IDENT* dbNotTables+=IDENT*)
 	 */
 	protected void sequence_ImplementsAssignement(EObject context, ImplementsAssignement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1117,7 +1117,11 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     ((ref=[PojoDefinition|IDENT] | type=[JvmType|QualifiedName]) (gref=[PojoDefinition|IDENT] | gtype=[JvmType|QualifiedName])? array?='[]'?)
+	 *     (
+	 *         (ident=ValueType | ref=[PojoDefinition|IDENT] | type=[JvmType|QualifiedName]) 
+	 *         (gident=ValueType | gref=[PojoDefinition|IDENT] | gtype=[JvmType|QualifiedName])? 
+	 *         array?='[]'?
+	 *     )
 	 */
 	protected void sequence_PojoType(EObject context, PojoType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

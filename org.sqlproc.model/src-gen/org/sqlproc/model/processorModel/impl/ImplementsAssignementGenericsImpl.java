@@ -17,9 +17,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 
-import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
-
 import org.sqlproc.model.processorModel.ImplementsAssignementGenerics;
+import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -47,7 +46,7 @@ public class ImplementsAssignementGenericsImpl extends MinimalEObjectImpl.Contai
    * @generated
    * @ordered
    */
-  protected JvmParameterizedTypeReference toImplement;
+  protected PojoType toImplement;
 
   /**
    * The cached value of the '{@link #getDbTables() <em>Db Tables</em>}' attribute list.
@@ -95,7 +94,7 @@ public class ImplementsAssignementGenericsImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmParameterizedTypeReference getToImplement()
+  public PojoType getToImplement()
   {
     return toImplement;
   }
@@ -105,9 +104,9 @@ public class ImplementsAssignementGenericsImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetToImplement(JvmParameterizedTypeReference newToImplement, NotificationChain msgs)
+  public NotificationChain basicSetToImplement(PojoType newToImplement, NotificationChain msgs)
   {
-    JvmParameterizedTypeReference oldToImplement = toImplement;
+    PojoType oldToImplement = toImplement;
     toImplement = newToImplement;
     if (eNotificationRequired())
     {
@@ -122,7 +121,7 @@ public class ImplementsAssignementGenericsImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setToImplement(JvmParameterizedTypeReference newToImplement)
+  public void setToImplement(PojoType newToImplement)
   {
     if (newToImplement != toImplement)
     {
@@ -214,7 +213,7 @@ public class ImplementsAssignementGenericsImpl extends MinimalEObjectImpl.Contai
     switch (featureID)
     {
       case ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT:
-        setToImplement((JvmParameterizedTypeReference)newValue);
+        setToImplement((PojoType)newValue);
         return;
       case ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_TABLES:
         getDbTables().clear();
@@ -239,7 +238,7 @@ public class ImplementsAssignementGenericsImpl extends MinimalEObjectImpl.Contai
     switch (featureID)
     {
       case ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT:
-        setToImplement((JvmParameterizedTypeReference)null);
+        setToImplement((PojoType)null);
         return;
       case ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_TABLES:
         getDbTables().clear();

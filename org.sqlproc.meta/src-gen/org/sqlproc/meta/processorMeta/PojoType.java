@@ -14,8 +14,10 @@ import org.eclipse.xtext.common.types.JvmType;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.sqlproc.meta.processorMeta.PojoType#getIdent <em>Ident</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.PojoType#getRef <em>Ref</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.PojoType#getType <em>Type</em>}</li>
+ *   <li>{@link org.sqlproc.meta.processorMeta.PojoType#getGident <em>Gident</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.PojoType#getGref <em>Gref</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.PojoType#getGtype <em>Gtype</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.PojoType#isArray <em>Array</em>}</li>
@@ -28,6 +30,32 @@ import org.eclipse.xtext.common.types.JvmType;
  */
 public interface PojoType extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Ident</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Ident</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ident</em>' containment reference.
+   * @see #setIdent(ValueType)
+   * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getPojoType_Ident()
+   * @model containment="true"
+   * @generated
+   */
+  ValueType getIdent();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.PojoType#getIdent <em>Ident</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ident</em>' containment reference.
+   * @see #getIdent()
+   * @generated
+   */
+  void setIdent(ValueType value);
+
   /**
    * Returns the value of the '<em><b>Ref</b></em>' reference.
    * <!-- begin-user-doc -->
@@ -79,6 +107,32 @@ public interface PojoType extends EObject
    * @generated
    */
   void setType(JvmType value);
+
+  /**
+   * Returns the value of the '<em><b>Gident</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Gident</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Gident</em>' containment reference.
+   * @see #setGident(ValueType)
+   * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getPojoType_Gident()
+   * @model containment="true"
+   * @generated
+   */
+  ValueType getGident();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.PojoType#getGident <em>Gident</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Gident</em>' containment reference.
+   * @see #getGident()
+   * @generated
+   */
+  void setGident(ValueType value);
 
   /**
    * Returns the value of the '<em><b>Gref</b></em>' reference.

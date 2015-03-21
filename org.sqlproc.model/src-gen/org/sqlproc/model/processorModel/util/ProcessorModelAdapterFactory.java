@@ -102,6 +102,7 @@ import org.sqlproc.model.processorModel.PojoDirectiveSerializable;
 import org.sqlproc.model.processorModel.PojoDirectiveToString;
 import org.sqlproc.model.processorModel.PojoEntity;
 import org.sqlproc.model.processorModel.PojoProcedure;
+import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
@@ -188,6 +189,11 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
       public Adapter caseValueType(ValueType object)
       {
         return createValueTypeAdapter();
+      }
+      @Override
+      public Adapter casePojoType(PojoType object)
+      {
+        return createPojoTypeAdapter();
       }
       @Override
       public Adapter caseDatabaseCatalogAssignement(DatabaseCatalogAssignement object)
@@ -757,6 +763,21 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createValueTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.PojoType <em>Pojo Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.PojoType
+   * @generated
+   */
+  public Adapter createPojoTypeAdapter()
   {
     return null;
   }

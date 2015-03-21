@@ -13,14 +13,16 @@ Artifacts: {Artifacts}
     )*;
 
 ValueType: value = STRING | number = INT | id = QualifiedName;
+PojoType: '::' ident=ValueType | ':' ref=[PojoDefinition|ValidID] | type=JvmParameterizedTypeReference;
+
 DatabaseCatalogAssignement: dbCatalog=QualifiedName;
 DatabaseSchemaAssignement: dbSchema=QualifiedName;
 DatabaseTypeAssignement: dbType=ValidID;
 DatabaseMetaInfoAssignement: dbMetaInfo=ValueType;
 DriverMetaInfoAssignement: dbDriverInfo=ValueType;
 DriverMethodOutputAssignement: driverMethod=ValidID '->' callOutput=ValueType;
-SqlTypeAssignement: sqlType=ValueType '->' (':')? type=JvmParameterizedTypeReference;
-ColumnTypeAssignement: dbColumn=ValidID '->' (':')? type=JvmParameterizedTypeReference;
+SqlTypeAssignement: sqlType=ValueType '->' type=PojoType;
+ColumnTypeAssignement: dbColumn=ValidID '->' type=PojoType;
 ShowColumnTypeAssignement: dbColumn=ValidID '->' type=ValueType;
 TableAssignement: dbTable=ValidID '->' newName=ValidID;
 JoinTableAssignement: dbTable=ValidID ('->' dbTables+=ValidID)+;
@@ -30,12 +32,12 @@ ExportAssignement: dbColumn=ValidID '->' fkTable=ValidID ('->' fkColumn=ValidID)
 InheritanceAssignement: discriminator=ValidID '->' dbTable=ValidID ('->' dbColumns+=ValidID)+;
 ManyToManyAssignement: pkColumn=ValidID '->' pkTable=ValidID ('->' fkColumn=ValidID)?;
 DebugLevelAssignement: debug=ValidID (scope=ValidID)?;
-ProcedurePojoAssignement: dbProcedure=ValidID '->' (':')? pojo=JvmParameterizedTypeReference;
-FunctionPojoAssignement: dbFunction=ValidID '->' (':')? pojo=JvmParameterizedTypeReference;
-ImplementsAssignement: ':' toImplement=JvmParameterizedTypeReference ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
-ExtendsAssignement: ':' toExtends=JvmParameterizedTypeReference ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
-ImplementsAssignementGenerics: ':' toImplement=JvmParameterizedTypeReference ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
-ExtendsAssignementGenerics: ':' toExtends=JvmParameterizedTypeReference ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
+ProcedurePojoAssignement: dbProcedure=ValidID '->' pojo=PojoType;
+FunctionPojoAssignement: dbFunction=ValidID '->' pojo=PojoType;
+ImplementsAssignement: ':' toImplement=PojoType ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
+ExtendsAssignement: ':' toExtends=PojoType ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
+ImplementsAssignementGenerics: ':' toImplement=PojoType ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
+ExtendsAssignementGenerics: ':' toExtends=PojoType ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
 
 PropertyCondition:
 	'{' name=ValidID '=' value=ValueType '}'
@@ -61,7 +63,7 @@ DatabaseProperty:
 	|name='login-password' dbPassword=ValueType
 	|name='in-catalog' dbCatalog=DatabaseCatalogAssignement
 	|name='active-schema' dbSchema=DatabaseSchemaAssignement
-	|name='jdbc-driver' (=> ':' dbDriverx=JvmParameterizedTypeReference|dbDriver=ValueType)
+	|name='jdbc-driver' dbDriver=PojoType
 	|name='ddl-create' dbExecuteBefore=ValueType
 	|name='ddl-drop' dbExecuteAfter=ValueType
 	|name='index-types' dbIndexTypes=ValueType
@@ -157,7 +159,7 @@ DaogenProperty:
 	|name='implements-interfaces-generics' toImplementsGenerics=ImplementsAssignementGenerics 
 	|name='extends-class-generics' toExtendsGenerics=ExtendsAssignementGenerics
 	|name='make-it-final'
-	|name='function-result' dbFunction=ValidID (':')? resultType=JvmParameterizedTypeReference
+	|name='function-result' dbFunction=ValidID resultType=PojoType
 	|name='debug-level' debug=DebugLevelAssignement
 	|name='active-filter' activeFilter=ValueType
 	|name='package' pckg=QualifiedName

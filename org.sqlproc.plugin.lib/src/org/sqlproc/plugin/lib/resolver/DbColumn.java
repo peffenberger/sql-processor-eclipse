@@ -1,4 +1,4 @@
-package org.sqlproc.model.resolver;
+package org.sqlproc.plugin.lib.resolver;
 
 public class DbColumn { // implements Comparable<DbColumn> {
 

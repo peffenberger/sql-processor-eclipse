@@ -66,6 +66,7 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
     {
       case ProcessorMetaPackage.ARTIFACTS: return createArtifacts();
       case ProcessorMetaPackage.VALUE_TYPE: return createValueType();
+      case ProcessorMetaPackage.POJO_TYPE: return createPojoType();
       case ProcessorMetaPackage.DATABASE_CATALOG_ASSIGNEMENT: return createDatabaseCatalogAssignement();
       case ProcessorMetaPackage.DATABASE_SCHEMA_ASSIGNEMENT: return createDatabaseSchemaAssignement();
       case ProcessorMetaPackage.DATABASE_TYPE_ASSIGNEMENT: return createDatabaseTypeAssignement();
@@ -127,7 +128,6 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
       case ProcessorMetaPackage.EXTENDED_MAPPING_ITEM: return createExtendedMappingItem();
       case ProcessorMetaPackage.MAPPING_COLUMN_NAME: return createMappingColumnName();
       case ProcessorMetaPackage.OPTIONAL_FEATURE: return createOptionalFeature();
-      case ProcessorMetaPackage.POJO_TYPE: return createPojoType();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -153,6 +153,17 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
   {
     ValueTypeImpl valueType = new ValueTypeImpl();
     return valueType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoType createPojoType()
+  {
+    PojoTypeImpl pojoType = new PojoTypeImpl();
+    return pojoType;
   }
 
   /**
@@ -824,17 +835,6 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
   {
     OptionalFeatureImpl optionalFeature = new OptionalFeatureImpl();
     return optionalFeature;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoType createPojoType()
-  {
-    PojoTypeImpl pojoType = new PojoTypeImpl();
-    return pojoType;
   }
 
   /**

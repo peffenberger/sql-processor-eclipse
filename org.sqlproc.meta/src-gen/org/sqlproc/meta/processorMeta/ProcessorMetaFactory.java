@@ -41,6 +41,15 @@ public interface ProcessorMetaFactory extends EFactory
   ValueType createValueType();
 
   /**
+   * Returns a new object of class '<em>Pojo Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Type</em>'.
+   * @generated
+   */
+  PojoType createPojoType();
+
+  /**
    * Returns a new object of class '<em>Database Catalog Assignement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -588,15 +597,6 @@ public interface ProcessorMetaFactory extends EFactory
    * @generated
    */
   OptionalFeature createOptionalFeature();
-
-  /**
-   * Returns a new object of class '<em>Pojo Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Type</em>'.
-   * @generated
-   */
-  PojoType createPojoType();
 
   /**
    * Returns the package supported by this factory.

@@ -5,6 +5,7 @@ package org.sqlproc.meta.processorMeta.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -16,9 +17,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 
-import org.eclipse.xtext.common.types.JvmType;
-
 import org.sqlproc.meta.processorMeta.ExtendsAssignementGenerics;
+import org.sqlproc.meta.processorMeta.PojoType;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 
 /**
@@ -39,14 +39,14 @@ import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 public class ExtendsAssignementGenericsImpl extends MinimalEObjectImpl.Container implements ExtendsAssignementGenerics
 {
   /**
-   * The cached value of the '{@link #getToExtends() <em>To Extends</em>}' reference.
+   * The cached value of the '{@link #getToExtends() <em>To Extends</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getToExtends()
    * @generated
    * @ordered
    */
-  protected JvmType toExtends;
+  protected PojoType toExtends;
 
   /**
    * The cached value of the '{@link #getDbTables() <em>Db Tables</em>}' attribute list.
@@ -94,27 +94,7 @@ public class ExtendsAssignementGenericsImpl extends MinimalEObjectImpl.Container
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmType getToExtends()
-  {
-    if (toExtends != null && toExtends.eIsProxy())
-    {
-      InternalEObject oldToExtends = (InternalEObject)toExtends;
-      toExtends = (JvmType)eResolveProxy(oldToExtends);
-      if (toExtends != oldToExtends)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS__TO_EXTENDS, oldToExtends, toExtends));
-      }
-    }
-    return toExtends;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JvmType basicGetToExtends()
+  public PojoType getToExtends()
   {
     return toExtends;
   }
@@ -124,12 +104,37 @@ public class ExtendsAssignementGenericsImpl extends MinimalEObjectImpl.Container
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setToExtends(JvmType newToExtends)
+  public NotificationChain basicSetToExtends(PojoType newToExtends, NotificationChain msgs)
   {
-    JvmType oldToExtends = toExtends;
+    PojoType oldToExtends = toExtends;
     toExtends = newToExtends;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS__TO_EXTENDS, oldToExtends, toExtends));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS__TO_EXTENDS, oldToExtends, newToExtends);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setToExtends(PojoType newToExtends)
+  {
+    if (newToExtends != toExtends)
+    {
+      NotificationChain msgs = null;
+      if (toExtends != null)
+        msgs = ((InternalEObject)toExtends).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS__TO_EXTENDS, null, msgs);
+      if (newToExtends != null)
+        msgs = ((InternalEObject)newToExtends).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS__TO_EXTENDS, null, msgs);
+      msgs = basicSetToExtends(newToExtends, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS__TO_EXTENDS, newToExtends, newToExtends));
   }
 
   /**
@@ -166,13 +171,28 @@ public class ExtendsAssignementGenericsImpl extends MinimalEObjectImpl.Container
    * @generated
    */
   @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS__TO_EXTENDS:
+        return basicSetToExtends(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS__TO_EXTENDS:
-        if (resolve) return getToExtends();
-        return basicGetToExtends();
+        return getToExtends();
       case ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS__DB_TABLES:
         return getDbTables();
       case ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS__DB_NOT_TABLES:
@@ -193,7 +213,7 @@ public class ExtendsAssignementGenericsImpl extends MinimalEObjectImpl.Container
     switch (featureID)
     {
       case ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS__TO_EXTENDS:
-        setToExtends((JvmType)newValue);
+        setToExtends((PojoType)newValue);
         return;
       case ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS__DB_TABLES:
         getDbTables().clear();
@@ -218,7 +238,7 @@ public class ExtendsAssignementGenericsImpl extends MinimalEObjectImpl.Container
     switch (featureID)
     {
       case ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS__TO_EXTENDS:
-        setToExtends((JvmType)null);
+        setToExtends((PojoType)null);
         return;
       case ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS__DB_TABLES:
         getDbTables().clear();

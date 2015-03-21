@@ -34,9 +34,9 @@ import org.sqlproc.model.processorModel.PojoEntity;
 import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.property.EnumAttribute;
-import org.sqlproc.model.property.ImplementsExtends;
+import org.sqlproc.model.property.ImplementsExtendsImpl;
 import org.sqlproc.model.property.ModelProperty;
-import org.sqlproc.model.property.PojoAttrType;
+import org.sqlproc.model.property.PojoAttrTypeImpl;
 import org.sqlproc.model.property.PojoAttribute;
 import org.sqlproc.model.resolver.DbCheckConstraint;
 import org.sqlproc.model.resolver.DbColumn;
@@ -92,11 +92,11 @@ public class TablePojoGenerator {
 	protected Annotations entityAnnotations;
 	protected Set<String> entityImports;
 	protected boolean doCompressMetaDirectives;
-	protected Map<String, PojoAttrType> sqlTypes = new HashMap<String, PojoAttrType>();
-	protected Map<String, Map<String, PojoAttrType>> tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
-	protected Map<String, Map<String, PojoAttrType>> columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
-	protected Map<String, Map<String, PojoAttrType>> functionTypes = new HashMap<String, Map<String, PojoAttrType>>();
-	protected Map<String, Map<String, PojoAttrType>> procedureTypes = new HashMap<String, Map<String, PojoAttrType>>();
+	protected Map<String, PojoAttrTypeImpl> sqlTypes = new HashMap<String, PojoAttrTypeImpl>();
+	protected Map<String, Map<String, PojoAttrTypeImpl>> tableTypes = new HashMap<String, Map<String, PojoAttrTypeImpl>>();
+	protected Map<String, Map<String, PojoAttrTypeImpl>> columnTypes = new HashMap<String, Map<String, PojoAttrTypeImpl>>();
+	protected Map<String, Map<String, PojoAttrTypeImpl>> functionTypes = new HashMap<String, Map<String, PojoAttrTypeImpl>>();
+	protected Map<String, Map<String, PojoAttrTypeImpl>> procedureTypes = new HashMap<String, Map<String, PojoAttrTypeImpl>>();
 	protected Map<String, String> tableNames = new HashMap<String, String>();
 	protected Map<String, Map<String, String>> columnNames = new HashMap<String, Map<String, String>>();
 	protected Set<String> ignoreTables = new HashSet<String>();
@@ -105,7 +105,7 @@ public class TablePojoGenerator {
 	protected Map<String, Set<String>> ignoreColumns = new HashMap<String, Set<String>>();
 	protected Map<String, Set<String>> requiredColumns = new HashMap<String, Set<String>>();
 	protected Map<String, Set<String>> notRequiredColumns = new HashMap<String, Set<String>>();
-	protected Map<String, Map<String, PojoAttrType>> createColumns = new HashMap<String, Map<String, PojoAttrType>>();
+	protected Map<String, Map<String, PojoAttrTypeImpl>> createColumns = new HashMap<String, Map<String, PojoAttrTypeImpl>>();
 	protected Map<String, Map<String, Map<String, String>>> ignoreExports = new HashMap<String, Map<String, Map<String, String>>>();
 	protected Map<String, Map<String, Map<String, String>>> ignoreImports = new HashMap<String, Map<String, Map<String, String>>>();
 	protected Map<String, Map<String, Map<String, String>>> createExports = new HashMap<String, Map<String, Map<String, String>>>();
@@ -115,8 +115,8 @@ public class TablePojoGenerator {
 	protected Map<String, Map<String, Map<String, List<String>>>> inheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
 	protected Map<String, String> inheritanceColumns = new HashMap<String, String>();
 	protected Set<String> generateMethods = new HashSet<String>();
-	protected Map<String, ImplementsExtends> toImplements = new HashMap<String, ImplementsExtends>();
-	protected ImplementsExtends toExtends = null;
+	protected Map<String, ImplementsExtendsImpl> toImplements = new HashMap<String, ImplementsExtendsImpl>();
+	protected ImplementsExtendsImpl toExtends = null;
 	protected Map<String, List<String>> joinTables = new HashMap<String, List<String>>();
 	protected boolean doGenerateWrappers;
 	protected boolean doGenerateValidationAnnotations;
@@ -164,23 +164,23 @@ public class TablePojoGenerator {
 		this.entityImports = entityImports;
 
 		this.doCompressMetaDirectives = modelProperty.isCompressMetaDirectives(artifacts);
-		Map<String, PojoAttrType> sqlTypes = modelProperty.getSqlTypes(artifacts);
+		Map<String, PojoAttrTypeImpl> sqlTypes = modelProperty.getSqlTypes(artifacts);
 		if (sqlTypes != null) {
 			this.sqlTypes.putAll(sqlTypes);
 		}
-		Map<String, Map<String, PojoAttrType>> tableTypes = modelProperty.getTableTypes(artifacts);
+		Map<String, Map<String, PojoAttrTypeImpl>> tableTypes = modelProperty.getTableTypes(artifacts);
 		if (tableTypes != null) {
 			this.tableTypes.putAll(tableTypes);
 		}
-		Map<String, Map<String, PojoAttrType>> columnTypes = modelProperty.getColumnTypes(artifacts);
+		Map<String, Map<String, PojoAttrTypeImpl>> columnTypes = modelProperty.getColumnTypes(artifacts);
 		if (columnTypes != null) {
 			this.columnTypes.putAll(columnTypes);
 		}
-		Map<String, Map<String, PojoAttrType>> procedureTypes = modelProperty.getProcedureTypes(artifacts);
+		Map<String, Map<String, PojoAttrTypeImpl>> procedureTypes = modelProperty.getProcedureTypes(artifacts);
 		if (procedureTypes != null) {
 			this.procedureTypes.putAll(procedureTypes);
 		}
-		Map<String, Map<String, PojoAttrType>> functionTypes = modelProperty.getFunctionTypes(artifacts);
+		Map<String, Map<String, PojoAttrTypeImpl>> functionTypes = modelProperty.getFunctionTypes(artifacts);
 		if (functionTypes != null) {
 			this.functionTypes.putAll(functionTypes);
 		}
@@ -216,7 +216,7 @@ public class TablePojoGenerator {
 		if (notRequiredColumns != null) {
 			this.notRequiredColumns.putAll(notRequiredColumns);
 		}
-		Map<String, Map<String, PojoAttrType>> createColumns = modelProperty.getCreateColumns(artifacts);
+		Map<String, Map<String, PojoAttrTypeImpl>> createColumns = modelProperty.getCreateColumns(artifacts);
 		if (createColumns != null) {
 			this.createColumns.putAll(createColumns);
 		}
@@ -257,7 +257,7 @@ public class TablePojoGenerator {
 			this.generateMethods.addAll(generateMethods);
 		}
 		this.generateOperators = modelProperty.getGenerateOperators(artifacts);
-		Map<String, ImplementsExtends> toImplements = modelProperty.getToImplements(artifacts);
+		Map<String, ImplementsExtendsImpl> toImplements = modelProperty.getToImplements(artifacts);
 		if (toImplements != null) {
 			this.toImplements.putAll(toImplements);
 		}
@@ -412,7 +412,7 @@ public class TablePojoGenerator {
 		}
 
 		if (createColumns.containsKey(table)) {
-			for (Map.Entry<String, PojoAttrType> createColumn : createColumns.get(table).entrySet()) {
+			for (Map.Entry<String, PojoAttrTypeImpl> createColumn : createColumns.get(table).entrySet()) {
 				PojoAttribute attribute = convertDbColumnDefinition(createColumn.getKey(), createColumn.getValue());
 				attributes.put(createColumn.getKey(), attribute);
 			}
@@ -788,7 +788,7 @@ public class TablePojoGenerator {
 			System.out.println("TODO " + procedure + " returns " + attributesResultSet);
 		}
 		if (createColumns.containsKey(procedure)) {
-			for (Map.Entry<String, PojoAttrType> createColumn : createColumns.get(procedure).entrySet()) {
+			for (Map.Entry<String, PojoAttrTypeImpl> createColumn : createColumns.get(procedure).entrySet()) {
 				PojoAttribute attribute = convertDbColumnDefinition(createColumn.getKey(), createColumn.getValue());
 				attributes.put(createColumn.getKey(), attribute);
 				attribute.setFunProcType(dbProcedure.getFtype());
@@ -825,7 +825,7 @@ public class TablePojoGenerator {
 			}
 		}
 		if (createColumns.containsKey(function)) {
-			for (Map.Entry<String, PojoAttrType> createColumn : createColumns.get(function).entrySet()) {
+			for (Map.Entry<String, PojoAttrTypeImpl> createColumn : createColumns.get(function).entrySet()) {
 				PojoAttribute attribute = convertDbColumnDefinition(createColumn.getKey(), createColumn.getValue());
 				attributes.put(createColumn.getKey(), attribute);
 				attribute.setFunProcType(dbFunction.getFtype());
@@ -935,7 +935,7 @@ public class TablePojoGenerator {
 			}
 
 			if (!toImplements.isEmpty()) {
-				for (ImplementsExtends ie : toImplements.values()) {
+				for (ImplementsExtendsImpl ie : toImplements.values()) {
 					JvmType type = ie.getToImplement();
 					if (type.getIdentifier().endsWith("Serializable")) {
 						if (!ie.getDbTables().isEmpty()) {
@@ -1718,7 +1718,7 @@ public class TablePojoGenerator {
 		return result;
 	}
 
-	protected PojoAttribute convertDbColumnDefinition(String dbName, PojoAttrType sqlType) {
+	protected PojoAttribute convertDbColumnDefinition(String dbName, PojoAttrTypeImpl sqlType) {
 		PojoAttribute attribute = new PojoAttribute(dbName);
 		attribute.setName(columnToCamelCase(dbName));
 		attribute.setPrimitive(sqlType.isNativeType());
@@ -1735,10 +1735,10 @@ public class TablePojoGenerator {
 	}
 
 	protected PojoAttribute convertDbColumnDefinition(String table, DbColumn dbColumn,
-	        Map<String, Map<String, PojoAttrType>> redefinedTypes) {
+	        Map<String, Map<String, PojoAttrTypeImpl>> redefinedTypes) {
 		if (dbColumn == null)
 			return null;
-		PojoAttrType sqlType = redefinedTypes.containsKey(table) ? redefinedTypes.get(table).get(dbColumn.getName())
+		PojoAttrTypeImpl sqlType = redefinedTypes.containsKey(table) ? redefinedTypes.get(table).get(dbColumn.getName())
 		        : null;
 		if (sqlType == null)
 			sqlType = tableTypes.containsKey(table) ? tableTypes.get(table).get(dbColumn.getCompleteType()) : null;

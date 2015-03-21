@@ -12,6 +12,10 @@ Artifacts: {Artifacts}
     )*;
 
 ValueType: value = STRING_VALUE | number = NUMBER | id = QualifiedName;
+PojoType:
+	(COLON COLON ident=ValueType | COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName])
+	(LESS_THAN (COLON COLON gident=ValueType | COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)? (array ?= '[]')?;
+
 DatabaseCatalogAssignement: dbCatalog=QualifiedName;
 DatabaseSchemaAssignement: dbSchema=QualifiedName;
 DatabaseTypeAssignement: dbType=IDENT;
@@ -31,10 +35,10 @@ ManyToManyAssignement: pkColumn=IDENT '->' pkTable=IDENT ('->' fkColumn=IDENT)?;
 DebugLevelAssignement: debug=IDENT (WS+ scope=IDENT)?;
 ProcedurePojoAssignement: dbProcedure=IDENT '->' pojo=PojoType;
 FunctionPojoAssignement: dbFunction=IDENT '->' pojo=PojoType;
-ImplementsAssignement: COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ExtendsAssignement: COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ImplementsAssignementGenerics: COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ExtendsAssignementGenerics: COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ImplementsAssignement: toImplement=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ExtendsAssignement: toExtends=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ImplementsAssignementGenerics: toImplement=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ExtendsAssignementGenerics: toExtends=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 
 PropertyCondition:
 	LBRACE WS* name=IDENT WS+ EQUALS WS+ value=ValueType WS* RBRACE
@@ -60,7 +64,7 @@ DatabaseProperty:
 	|name='login-password' WS+ dbPassword=ValueType
 	|name='in-catalog' WS+ dbCatalog=DatabaseCatalogAssignement
 	|name='active-schema' WS+ dbSchema=DatabaseSchemaAssignement
-	|name='jdbc-driver' WS+ (=> COLON dbDriverx=[jvmTypes::JvmType|QualifiedName]|dbDriver=ValueType)
+	|name='jdbc-driver' WS+ dbDriver=PojoType
 	|name='ddl-create' WS+ dbExecuteBefore=ValueType
 	|name='ddl-drop' WS+ dbExecuteAfter=ValueType
 	|name='index-types' WS+ dbIndexTypes=ValueType
@@ -354,10 +358,6 @@ terminal STRING_VALUE : '\"' -> '\"' ;
 
 FeatureValue:
   (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)+;
-
-PojoType:
-	(COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName])
-	(LESS_THAN (COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)? (array ?= '[]')?;
 
 QualifiedName: (IDENT|IDENT_DOT);
 

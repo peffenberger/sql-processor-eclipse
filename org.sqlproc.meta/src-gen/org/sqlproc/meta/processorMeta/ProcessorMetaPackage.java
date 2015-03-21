@@ -194,6 +194,88 @@ public interface ProcessorMetaPackage extends EPackage
   int VALUE_TYPE_FEATURE_COUNT = 3;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.PojoTypeImpl <em>Pojo Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.meta.processorMeta.impl.PojoTypeImpl
+   * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getPojoType()
+   * @generated
+   */
+  int POJO_TYPE = 2;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE__IDENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE__REF = 1;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE__TYPE = 2;
+
+  /**
+   * The feature id for the '<em><b>Gident</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE__GIDENT = 3;
+
+  /**
+   * The feature id for the '<em><b>Gref</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE__GREF = 4;
+
+  /**
+   * The feature id for the '<em><b>Gtype</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE__GTYPE = 5;
+
+  /**
+   * The feature id for the '<em><b>Array</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE__ARRAY = 6;
+
+  /**
+   * The number of structural features of the '<em>Pojo Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE_FEATURE_COUNT = 7;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.DatabaseCatalogAssignementImpl <em>Database Catalog Assignement</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -201,7 +283,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getDatabaseCatalogAssignement()
    * @generated
    */
-  int DATABASE_CATALOG_ASSIGNEMENT = 2;
+  int DATABASE_CATALOG_ASSIGNEMENT = 3;
 
   /**
    * The feature id for the '<em><b>Db Catalog</b></em>' attribute.
@@ -229,7 +311,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getDatabaseSchemaAssignement()
    * @generated
    */
-  int DATABASE_SCHEMA_ASSIGNEMENT = 3;
+  int DATABASE_SCHEMA_ASSIGNEMENT = 4;
 
   /**
    * The feature id for the '<em><b>Db Schema</b></em>' attribute.
@@ -257,7 +339,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getDatabaseTypeAssignement()
    * @generated
    */
-  int DATABASE_TYPE_ASSIGNEMENT = 4;
+  int DATABASE_TYPE_ASSIGNEMENT = 5;
 
   /**
    * The feature id for the '<em><b>Db Type</b></em>' attribute.
@@ -285,7 +367,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getDatabaseMetaInfoAssignement()
    * @generated
    */
-  int DATABASE_META_INFO_ASSIGNEMENT = 5;
+  int DATABASE_META_INFO_ASSIGNEMENT = 6;
 
   /**
    * The feature id for the '<em><b>Db Meta Info</b></em>' containment reference.
@@ -313,7 +395,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getDriverMetaInfoAssignement()
    * @generated
    */
-  int DRIVER_META_INFO_ASSIGNEMENT = 6;
+  int DRIVER_META_INFO_ASSIGNEMENT = 7;
 
   /**
    * The feature id for the '<em><b>Db Driver Info</b></em>' containment reference.
@@ -341,7 +423,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getDriverMethodOutputAssignement()
    * @generated
    */
-  int DRIVER_METHOD_OUTPUT_ASSIGNEMENT = 7;
+  int DRIVER_METHOD_OUTPUT_ASSIGNEMENT = 8;
 
   /**
    * The feature id for the '<em><b>Driver Method</b></em>' attribute.
@@ -378,7 +460,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getSqlTypeAssignement()
    * @generated
    */
-  int SQL_TYPE_ASSIGNEMENT = 8;
+  int SQL_TYPE_ASSIGNEMENT = 9;
 
   /**
    * The feature id for the '<em><b>Sql Type</b></em>' containment reference.
@@ -415,7 +497,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getColumnTypeAssignement()
    * @generated
    */
-  int COLUMN_TYPE_ASSIGNEMENT = 9;
+  int COLUMN_TYPE_ASSIGNEMENT = 10;
 
   /**
    * The feature id for the '<em><b>Db Column</b></em>' attribute.
@@ -452,7 +534,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getShowColumnTypeAssignement()
    * @generated
    */
-  int SHOW_COLUMN_TYPE_ASSIGNEMENT = 10;
+  int SHOW_COLUMN_TYPE_ASSIGNEMENT = 11;
 
   /**
    * The feature id for the '<em><b>Db Column</b></em>' attribute.
@@ -489,7 +571,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getTableAssignement()
    * @generated
    */
-  int TABLE_ASSIGNEMENT = 11;
+  int TABLE_ASSIGNEMENT = 12;
 
   /**
    * The feature id for the '<em><b>Db Table</b></em>' attribute.
@@ -526,7 +608,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getJoinTableAssignement()
    * @generated
    */
-  int JOIN_TABLE_ASSIGNEMENT = 12;
+  int JOIN_TABLE_ASSIGNEMENT = 13;
 
   /**
    * The feature id for the '<em><b>Db Table</b></em>' attribute.
@@ -563,7 +645,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getColumnAssignement()
    * @generated
    */
-  int COLUMN_ASSIGNEMENT = 13;
+  int COLUMN_ASSIGNEMENT = 14;
 
   /**
    * The feature id for the '<em><b>Db Column</b></em>' attribute.
@@ -600,7 +682,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getImportAssignement()
    * @generated
    */
-  int IMPORT_ASSIGNEMENT = 14;
+  int IMPORT_ASSIGNEMENT = 15;
 
   /**
    * The feature id for the '<em><b>Db Column</b></em>' attribute.
@@ -646,7 +728,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getExportAssignement()
    * @generated
    */
-  int EXPORT_ASSIGNEMENT = 15;
+  int EXPORT_ASSIGNEMENT = 16;
 
   /**
    * The feature id for the '<em><b>Db Column</b></em>' attribute.
@@ -692,7 +774,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getInheritanceAssignement()
    * @generated
    */
-  int INHERITANCE_ASSIGNEMENT = 16;
+  int INHERITANCE_ASSIGNEMENT = 17;
 
   /**
    * The feature id for the '<em><b>Discriminator</b></em>' attribute.
@@ -738,7 +820,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getManyToManyAssignement()
    * @generated
    */
-  int MANY_TO_MANY_ASSIGNEMENT = 17;
+  int MANY_TO_MANY_ASSIGNEMENT = 18;
 
   /**
    * The feature id for the '<em><b>Pk Column</b></em>' attribute.
@@ -784,7 +866,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getDebugLevelAssignement()
    * @generated
    */
-  int DEBUG_LEVEL_ASSIGNEMENT = 18;
+  int DEBUG_LEVEL_ASSIGNEMENT = 19;
 
   /**
    * The feature id for the '<em><b>Debug</b></em>' attribute.
@@ -821,7 +903,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getProcedurePojoAssignement()
    * @generated
    */
-  int PROCEDURE_POJO_ASSIGNEMENT = 19;
+  int PROCEDURE_POJO_ASSIGNEMENT = 20;
 
   /**
    * The feature id for the '<em><b>Db Procedure</b></em>' attribute.
@@ -858,7 +940,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getFunctionPojoAssignement()
    * @generated
    */
-  int FUNCTION_POJO_ASSIGNEMENT = 20;
+  int FUNCTION_POJO_ASSIGNEMENT = 21;
 
   /**
    * The feature id for the '<em><b>Db Function</b></em>' attribute.
@@ -895,10 +977,10 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getImplementsAssignement()
    * @generated
    */
-  int IMPLEMENTS_ASSIGNEMENT = 21;
+  int IMPLEMENTS_ASSIGNEMENT = 22;
 
   /**
-   * The feature id for the '<em><b>To Implement</b></em>' reference.
+   * The feature id for the '<em><b>To Implement</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -941,10 +1023,10 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getExtendsAssignement()
    * @generated
    */
-  int EXTENDS_ASSIGNEMENT = 22;
+  int EXTENDS_ASSIGNEMENT = 23;
 
   /**
-   * The feature id for the '<em><b>To Extends</b></em>' reference.
+   * The feature id for the '<em><b>To Extends</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -987,10 +1069,10 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getImplementsAssignementGenerics()
    * @generated
    */
-  int IMPLEMENTS_ASSIGNEMENT_GENERICS = 23;
+  int IMPLEMENTS_ASSIGNEMENT_GENERICS = 24;
 
   /**
-   * The feature id for the '<em><b>To Implement</b></em>' reference.
+   * The feature id for the '<em><b>To Implement</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1033,10 +1115,10 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getExtendsAssignementGenerics()
    * @generated
    */
-  int EXTENDS_ASSIGNEMENT_GENERICS = 24;
+  int EXTENDS_ASSIGNEMENT_GENERICS = 25;
 
   /**
-   * The feature id for the '<em><b>To Extends</b></em>' reference.
+   * The feature id for the '<em><b>To Extends</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1079,7 +1161,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getPropertyCondition()
    * @generated
    */
-  int PROPERTY_CONDITION = 25;
+  int PROPERTY_CONDITION = 26;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1116,7 +1198,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getProperty()
    * @generated
    */
-  int PROPERTY = 26;
+  int PROPERTY = 27;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -1216,7 +1298,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getDatabaseProperty()
    * @generated
    */
-  int DATABASE_PROPERTY = 27;
+  int DATABASE_PROPERTY = 28;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1273,22 +1355,13 @@ public interface ProcessorMetaPackage extends EPackage
   int DATABASE_PROPERTY__DB_SCHEMA = 5;
 
   /**
-   * The feature id for the '<em><b>Db Driverx</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DATABASE_PROPERTY__DB_DRIVERX = 6;
-
-  /**
    * The feature id for the '<em><b>Db Driver</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_DRIVER = 7;
+  int DATABASE_PROPERTY__DB_DRIVER = 6;
 
   /**
    * The feature id for the '<em><b>Db Execute Before</b></em>' containment reference.
@@ -1297,7 +1370,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_EXECUTE_BEFORE = 8;
+  int DATABASE_PROPERTY__DB_EXECUTE_BEFORE = 7;
 
   /**
    * The feature id for the '<em><b>Db Execute After</b></em>' containment reference.
@@ -1306,7 +1379,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_EXECUTE_AFTER = 9;
+  int DATABASE_PROPERTY__DB_EXECUTE_AFTER = 8;
 
   /**
    * The feature id for the '<em><b>Db Index Types</b></em>' containment reference.
@@ -1315,7 +1388,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_INDEX_TYPES = 10;
+  int DATABASE_PROPERTY__DB_INDEX_TYPES = 9;
 
   /**
    * The feature id for the '<em><b>Db Type</b></em>' containment reference.
@@ -1324,7 +1397,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_TYPE = 11;
+  int DATABASE_PROPERTY__DB_TYPE = 10;
 
   /**
    * The feature id for the '<em><b>Db Meta Info</b></em>' containment reference.
@@ -1333,7 +1406,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_META_INFO = 12;
+  int DATABASE_PROPERTY__DB_META_INFO = 11;
 
   /**
    * The feature id for the '<em><b>Db Driver Info</b></em>' containment reference.
@@ -1342,7 +1415,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_DRIVER_INFO = 13;
+  int DATABASE_PROPERTY__DB_DRIVER_INFO = 12;
 
   /**
    * The feature id for the '<em><b>Db Methods Calls</b></em>' containment reference list.
@@ -1351,7 +1424,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DB_METHODS_CALLS = 14;
+  int DATABASE_PROPERTY__DB_METHODS_CALLS = 13;
 
   /**
    * The feature id for the '<em><b>Debug</b></em>' containment reference.
@@ -1360,7 +1433,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY__DEBUG = 15;
+  int DATABASE_PROPERTY__DEBUG = 14;
 
   /**
    * The number of structural features of the '<em>Database Property</em>' class.
@@ -1369,7 +1442,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATABASE_PROPERTY_FEATURE_COUNT = 16;
+  int DATABASE_PROPERTY_FEATURE_COUNT = 15;
 
   /**
    * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.PojogenPropertyImpl <em>Pojogen Property</em>}' class.
@@ -1379,7 +1452,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getPojogenProperty()
    * @generated
    */
-  int POJOGEN_PROPERTY = 28;
+  int POJOGEN_PROPERTY = 29;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1686,7 +1759,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMetaTypeAssignement()
    * @generated
    */
-  int META_TYPE_ASSIGNEMENT = 29;
+  int META_TYPE_ASSIGNEMENT = 30;
 
   /**
    * The feature id for the '<em><b>Db Column</b></em>' attribute.
@@ -1732,7 +1805,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMetagenProperty()
    * @generated
    */
-  int METAGEN_PROPERTY = 30;
+  int METAGEN_PROPERTY = 31;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1886,7 +1959,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getDaogenProperty()
    * @generated
    */
-  int DAOGEN_PROPERTY = 31;
+  int DAOGEN_PROPERTY = 32;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2004,7 +2077,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getPojoDefinition()
    * @generated
    */
-  int POJO_DEFINITION = 32;
+  int POJO_DEFINITION = 33;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2050,7 +2123,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getTableDefinition()
    * @generated
    */
-  int TABLE_DEFINITION = 33;
+  int TABLE_DEFINITION = 34;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2087,7 +2160,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getProcedureDefinition()
    * @generated
    */
-  int PROCEDURE_DEFINITION = 34;
+  int PROCEDURE_DEFINITION = 35;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2124,7 +2197,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getFunctionDefinition()
    * @generated
    */
-  int FUNCTION_DEFINITION = 35;
+  int FUNCTION_DEFINITION = 36;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2161,7 +2234,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMetaStatement()
    * @generated
    */
-  int META_STATEMENT = 36;
+  int META_STATEMENT = 37;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2216,7 +2289,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getSql()
    * @generated
    */
-  int SQL = 37;
+  int SQL = 38;
 
   /**
    * The feature id for the '<em><b>Sqls</b></em>' containment reference list.
@@ -2244,7 +2317,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getSqlFragment()
    * @generated
    */
-  int SQL_FRAGMENT = 38;
+  int SQL_FRAGMENT = 39;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2344,7 +2417,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMetaSql()
    * @generated
    */
-  int META_SQL = 39;
+  int META_SQL = 40;
 
   /**
    * The feature id for the '<em><b>Ifs</b></em>' containment reference list.
@@ -2408,7 +2481,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getIfSql()
    * @generated
    */
-  int IF_SQL = 40;
+  int IF_SQL = 41;
 
   /**
    * The feature id for the '<em><b>Sqls</b></em>' containment reference list.
@@ -2436,7 +2509,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getIfSqlFragment()
    * @generated
    */
-  int IF_SQL_FRAGMENT = 41;
+  int IF_SQL_FRAGMENT = 42;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2536,7 +2609,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getIfMetaSql()
    * @generated
    */
-  int IF_META_SQL = 42;
+  int IF_META_SQL = 43;
 
   /**
    * The feature id for the '<em><b>Ifs</b></em>' containment reference list.
@@ -2582,7 +2655,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getIfSqlCond()
    * @generated
    */
-  int IF_SQL_COND = 43;
+  int IF_SQL_COND = 44;
 
   /**
    * The feature id for the '<em><b>Bool1</b></em>' containment reference.
@@ -2628,7 +2701,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getIfSqlBool()
    * @generated
    */
-  int IF_SQL_BOOL = 44;
+  int IF_SQL_BOOL = 45;
 
   /**
    * The feature id for the '<em><b>Not</b></em>' attribute.
@@ -2683,7 +2756,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getOrdSql()
    * @generated
    */
-  int ORD_SQL = 45;
+  int ORD_SQL = 46;
 
   /**
    * The feature id for the '<em><b>Sqls</b></em>' containment reference list.
@@ -2711,7 +2784,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getOrdSql2()
    * @generated
    */
-  int ORD_SQL2 = 46;
+  int ORD_SQL2 = 47;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2766,7 +2839,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getColumn()
    * @generated
    */
-  int COLUMN = 47;
+  int COLUMN = 48;
 
   /**
    * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -2794,7 +2867,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getExtendedColumn()
    * @generated
    */
-  int EXTENDED_COLUMN = 48;
+  int EXTENDED_COLUMN = 49;
 
   /**
    * The feature id for the '<em><b>Col</b></em>' containment reference.
@@ -2831,7 +2904,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getExtendedColumnName()
    * @generated
    */
-  int EXTENDED_COLUMN_NAME = 49;
+  int EXTENDED_COLUMN_NAME = 50;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2859,7 +2932,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getConstant()
    * @generated
    */
-  int CONSTANT = 50;
+  int CONSTANT = 51;
 
   /**
    * The feature id for the '<em><b>Case</b></em>' attribute.
@@ -2905,7 +2978,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getIdentifier()
    * @generated
    */
-  int IDENTIFIER = 51;
+  int IDENTIFIER = 52;
 
   /**
    * The feature id for the '<em><b>Mode</b></em>' attribute.
@@ -2960,7 +3033,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getConstantOperator()
    * @generated
    */
-  int CONSTANT_OPERATOR = 52;
+  int CONSTANT_OPERATOR = 53;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2988,7 +3061,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getIdentifierOperator()
    * @generated
    */
-  int IDENTIFIER_OPERATOR = 53;
+  int IDENTIFIER_OPERATOR = 54;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3016,7 +3089,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getDatabaseColumn()
    * @generated
    */
-  int DATABASE_COLUMN = 54;
+  int DATABASE_COLUMN = 55;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3044,7 +3117,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getDatabaseTable()
    * @generated
    */
-  int DATABASE_TABLE = 55;
+  int DATABASE_TABLE = 56;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3072,7 +3145,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMappingRule()
    * @generated
    */
-  int MAPPING_RULE = 56;
+  int MAPPING_RULE = 57;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3127,7 +3200,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMapping()
    * @generated
    */
-  int MAPPING = 57;
+  int MAPPING = 58;
 
   /**
    * The feature id for the '<em><b>Mapping Items</b></em>' containment reference list.
@@ -3155,7 +3228,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMappingItem()
    * @generated
    */
-  int MAPPING_ITEM = 58;
+  int MAPPING_ITEM = 59;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3192,7 +3265,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMappingColumn()
    * @generated
    */
-  int MAPPING_COLUMN = 59;
+  int MAPPING_COLUMN = 60;
 
   /**
    * The feature id for the '<em><b>Items</b></em>' containment reference list.
@@ -3220,7 +3293,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getExtendedMappingItem()
    * @generated
    */
-  int EXTENDED_MAPPING_ITEM = 60;
+  int EXTENDED_MAPPING_ITEM = 61;
 
   /**
    * The feature id for the '<em><b>Attr</b></em>' containment reference.
@@ -3257,7 +3330,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMappingColumnName()
    * @generated
    */
-  int MAPPING_COLUMN_NAME = 61;
+  int MAPPING_COLUMN_NAME = 62;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3285,7 +3358,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getOptionalFeature()
    * @generated
    */
-  int OPTIONAL_FEATURE = 62;
+  int OPTIONAL_FEATURE = 63;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3331,70 +3404,6 @@ public interface ProcessorMetaPackage extends EPackage
    * @ordered
    */
   int OPTIONAL_FEATURE_FEATURE_COUNT = 4;
-
-  /**
-   * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.PojoTypeImpl <em>Pojo Type</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.sqlproc.meta.processorMeta.impl.PojoTypeImpl
-   * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getPojoType()
-   * @generated
-   */
-  int POJO_TYPE = 63;
-
-  /**
-   * The feature id for the '<em><b>Ref</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_TYPE__REF = 0;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_TYPE__TYPE = 1;
-
-  /**
-   * The feature id for the '<em><b>Gref</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_TYPE__GREF = 2;
-
-  /**
-   * The feature id for the '<em><b>Gtype</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_TYPE__GTYPE = 3;
-
-  /**
-   * The feature id for the '<em><b>Array</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_TYPE__ARRAY = 4;
-
-  /**
-   * The number of structural features of the '<em>Pojo Type</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJO_TYPE_FEATURE_COUNT = 5;
 
 
   /**
@@ -3537,6 +3546,93 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    */
   EAttribute getValueType_Id();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.PojoType <em>Pojo Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pojo Type</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType
+   * @generated
+   */
+  EClass getPojoType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.sqlproc.meta.processorMeta.PojoType#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Ident</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType#getIdent()
+   * @see #getPojoType()
+   * @generated
+   */
+  EReference getPojoType_Ident();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getRef <em>Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Ref</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType#getRef()
+   * @see #getPojoType()
+   * @generated
+   */
+  EReference getPojoType_Ref();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType#getType()
+   * @see #getPojoType()
+   * @generated
+   */
+  EReference getPojoType_Type();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.sqlproc.meta.processorMeta.PojoType#getGident <em>Gident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Gident</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType#getGident()
+   * @see #getPojoType()
+   * @generated
+   */
+  EReference getPojoType_Gident();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getGref <em>Gref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Gref</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType#getGref()
+   * @see #getPojoType()
+   * @generated
+   */
+  EReference getPojoType_Gref();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getGtype <em>Gtype</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Gtype</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType#getGtype()
+   * @see #getPojoType()
+   * @generated
+   */
+  EReference getPojoType_Gtype();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.PojoType#isArray <em>Array</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Array</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType#isArray()
+   * @see #getPojoType()
+   * @generated
+   */
+  EAttribute getPojoType_Array();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.DatabaseCatalogAssignement <em>Database Catalog Assignement</em>}'.
@@ -4146,10 +4242,10 @@ public interface ProcessorMetaPackage extends EPackage
   EClass getImplementsAssignement();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.ImplementsAssignement#getToImplement <em>To Implement</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.meta.processorMeta.ImplementsAssignement#getToImplement <em>To Implement</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>To Implement</em>'.
+   * @return the meta object for the containment reference '<em>To Implement</em>'.
    * @see org.sqlproc.meta.processorMeta.ImplementsAssignement#getToImplement()
    * @see #getImplementsAssignement()
    * @generated
@@ -4189,10 +4285,10 @@ public interface ProcessorMetaPackage extends EPackage
   EClass getExtendsAssignement();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.ExtendsAssignement#getToExtends <em>To Extends</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.meta.processorMeta.ExtendsAssignement#getToExtends <em>To Extends</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>To Extends</em>'.
+   * @return the meta object for the containment reference '<em>To Extends</em>'.
    * @see org.sqlproc.meta.processorMeta.ExtendsAssignement#getToExtends()
    * @see #getExtendsAssignement()
    * @generated
@@ -4232,10 +4328,10 @@ public interface ProcessorMetaPackage extends EPackage
   EClass getImplementsAssignementGenerics();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.ImplementsAssignementGenerics#getToImplement <em>To Implement</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.meta.processorMeta.ImplementsAssignementGenerics#getToImplement <em>To Implement</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>To Implement</em>'.
+   * @return the meta object for the containment reference '<em>To Implement</em>'.
    * @see org.sqlproc.meta.processorMeta.ImplementsAssignementGenerics#getToImplement()
    * @see #getImplementsAssignementGenerics()
    * @generated
@@ -4275,10 +4371,10 @@ public interface ProcessorMetaPackage extends EPackage
   EClass getExtendsAssignementGenerics();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.ExtendsAssignementGenerics#getToExtends <em>To Extends</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.meta.processorMeta.ExtendsAssignementGenerics#getToExtends <em>To Extends</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>To Extends</em>'.
+   * @return the meta object for the containment reference '<em>To Extends</em>'.
    * @see org.sqlproc.meta.processorMeta.ExtendsAssignementGenerics#getToExtends()
    * @see #getExtendsAssignementGenerics()
    * @generated
@@ -4523,17 +4619,6 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    */
   EReference getDatabaseProperty_DbSchema();
-
-  /**
-   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbDriverx <em>Db Driverx</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Db Driverx</em>'.
-   * @see org.sqlproc.meta.processorMeta.DatabaseProperty#getDbDriverx()
-   * @see #getDatabaseProperty()
-   * @generated
-   */
-  EReference getDatabaseProperty_DbDriverx();
 
   /**
    * Returns the meta object for the containment reference '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbDriver <em>Db Driver</em>}'.
@@ -6569,71 +6654,6 @@ public interface ProcessorMetaPackage extends EPackage
   EAttribute getOptionalFeature_Option();
 
   /**
-   * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.PojoType <em>Pojo Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Pojo Type</em>'.
-   * @see org.sqlproc.meta.processorMeta.PojoType
-   * @generated
-   */
-  EClass getPojoType();
-
-  /**
-   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getRef <em>Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Ref</em>'.
-   * @see org.sqlproc.meta.processorMeta.PojoType#getRef()
-   * @see #getPojoType()
-   * @generated
-   */
-  EReference getPojoType_Ref();
-
-  /**
-   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Type</em>'.
-   * @see org.sqlproc.meta.processorMeta.PojoType#getType()
-   * @see #getPojoType()
-   * @generated
-   */
-  EReference getPojoType_Type();
-
-  /**
-   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getGref <em>Gref</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Gref</em>'.
-   * @see org.sqlproc.meta.processorMeta.PojoType#getGref()
-   * @see #getPojoType()
-   * @generated
-   */
-  EReference getPojoType_Gref();
-
-  /**
-   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getGtype <em>Gtype</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Gtype</em>'.
-   * @see org.sqlproc.meta.processorMeta.PojoType#getGtype()
-   * @see #getPojoType()
-   * @generated
-   */
-  EReference getPojoType_Gtype();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.PojoType#isArray <em>Array</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Array</em>'.
-   * @see org.sqlproc.meta.processorMeta.PojoType#isArray()
-   * @see #getPojoType()
-   * @generated
-   */
-  EAttribute getPojoType_Array();
-
-  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6763,6 +6783,72 @@ public interface ProcessorMetaPackage extends EPackage
      * @generated
      */
     EAttribute VALUE_TYPE__ID = eINSTANCE.getValueType_Id();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.PojoTypeImpl <em>Pojo Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.meta.processorMeta.impl.PojoTypeImpl
+     * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getPojoType()
+     * @generated
+     */
+    EClass POJO_TYPE = eINSTANCE.getPojoType();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_TYPE__IDENT = eINSTANCE.getPojoType_Ident();
+
+    /**
+     * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_TYPE__REF = eINSTANCE.getPojoType_Ref();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_TYPE__TYPE = eINSTANCE.getPojoType_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Gident</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_TYPE__GIDENT = eINSTANCE.getPojoType_Gident();
+
+    /**
+     * The meta object literal for the '<em><b>Gref</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_TYPE__GREF = eINSTANCE.getPojoType_Gref();
+
+    /**
+     * The meta object literal for the '<em><b>Gtype</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_TYPE__GTYPE = eINSTANCE.getPojoType_Gtype();
+
+    /**
+     * The meta object literal for the '<em><b>Array</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_TYPE__ARRAY = eINSTANCE.getPojoType_Array();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.DatabaseCatalogAssignementImpl <em>Database Catalog Assignement</em>}' class.
@@ -7261,7 +7347,7 @@ public interface ProcessorMetaPackage extends EPackage
     EClass IMPLEMENTS_ASSIGNEMENT = eINSTANCE.getImplementsAssignement();
 
     /**
-     * The meta object literal for the '<em><b>To Implement</b></em>' reference feature.
+     * The meta object literal for the '<em><b>To Implement</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -7295,7 +7381,7 @@ public interface ProcessorMetaPackage extends EPackage
     EClass EXTENDS_ASSIGNEMENT = eINSTANCE.getExtendsAssignement();
 
     /**
-     * The meta object literal for the '<em><b>To Extends</b></em>' reference feature.
+     * The meta object literal for the '<em><b>To Extends</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -7329,7 +7415,7 @@ public interface ProcessorMetaPackage extends EPackage
     EClass IMPLEMENTS_ASSIGNEMENT_GENERICS = eINSTANCE.getImplementsAssignementGenerics();
 
     /**
-     * The meta object literal for the '<em><b>To Implement</b></em>' reference feature.
+     * The meta object literal for the '<em><b>To Implement</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -7363,7 +7449,7 @@ public interface ProcessorMetaPackage extends EPackage
     EClass EXTENDS_ASSIGNEMENT_GENERICS = eINSTANCE.getExtendsAssignementGenerics();
 
     /**
-     * The meta object literal for the '<em><b>To Extends</b></em>' reference feature.
+     * The meta object literal for the '<em><b>To Extends</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -7551,14 +7637,6 @@ public interface ProcessorMetaPackage extends EPackage
      * @generated
      */
     EReference DATABASE_PROPERTY__DB_SCHEMA = eINSTANCE.getDatabaseProperty_DbSchema();
-
-    /**
-     * The meta object literal for the '<em><b>Db Driverx</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATABASE_PROPERTY__DB_DRIVERX = eINSTANCE.getDatabaseProperty_DbDriverx();
 
     /**
      * The meta object literal for the '<em><b>Db Driver</b></em>' containment reference feature.
@@ -9133,56 +9211,6 @@ public interface ProcessorMetaPackage extends EPackage
      * @generated
      */
     EAttribute OPTIONAL_FEATURE__OPTION = eINSTANCE.getOptionalFeature_Option();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.PojoTypeImpl <em>Pojo Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.meta.processorMeta.impl.PojoTypeImpl
-     * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getPojoType()
-     * @generated
-     */
-    EClass POJO_TYPE = eINSTANCE.getPojoType();
-
-    /**
-     * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_TYPE__REF = eINSTANCE.getPojoType_Ref();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_TYPE__TYPE = eINSTANCE.getPojoType_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Gref</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_TYPE__GREF = eINSTANCE.getPojoType_Gref();
-
-    /**
-     * The meta object literal for the '<em><b>Gtype</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference POJO_TYPE__GTYPE = eINSTANCE.getPojoType_Gtype();
-
-    /**
-     * The meta object literal for the '<em><b>Array</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJO_TYPE__ARRAY = eINSTANCE.getPojoType_Array();
 
   }
 

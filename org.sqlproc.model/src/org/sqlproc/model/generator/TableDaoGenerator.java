@@ -24,7 +24,7 @@ import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.DaoEntity;
 import org.sqlproc.model.processorModel.Package;
 import org.sqlproc.model.processorModel.PojoProcedure;
-import org.sqlproc.model.property.ImplementsExtends;
+import org.sqlproc.model.property.ImplementsExtendsImpl;
 import org.sqlproc.model.property.ModelProperty;
 import org.sqlproc.model.property.PojoAttribute;
 import org.sqlproc.model.resolver.DbResolver;
@@ -47,8 +47,8 @@ public class TableDaoGenerator extends TablePojoGenerator {
     protected Set<String> daoImports;
     protected Set<String> daoIgnoreTables = new HashSet<String>();
     protected Set<String> daoOnlyTables = new HashSet<String>();
-    protected Map<String, ImplementsExtends> daoToImplements = new HashMap<String, ImplementsExtends>();
-    protected ImplementsExtends daoToExtends = null;
+    protected Map<String, ImplementsExtendsImpl> daoToImplements = new HashMap<String, ImplementsExtendsImpl>();
+    protected ImplementsExtendsImpl daoToExtends = null;
     protected boolean daoMakeItFinal;
     protected Map<String, JvmParameterizedTypeReference> daoFunctionsResult = new HashMap<String, JvmParameterizedTypeReference>();
     protected Filter daoActiveFilter = null;
@@ -88,7 +88,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
         if (daoOnlyTables != null) {
             this.daoOnlyTables.addAll(daoOnlyTables);
         }
-        Map<String, ImplementsExtends> daoToImplements = modelProperty.getDaoToImplements(artifacts);
+        Map<String, ImplementsExtendsImpl> daoToImplements = modelProperty.getDaoToImplements(artifacts);
         if (daoToImplements != null) {
             this.daoToImplements.putAll(daoToImplements);
         }
@@ -154,7 +154,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
             Set<String> serializables = new HashSet<String>();
             boolean oneMoreLine = false;
             if (!daoToImplements.isEmpty()) {
-                for (ImplementsExtends ie : daoToImplements.values()) {
+                for (ImplementsExtendsImpl ie : daoToImplements.values()) {
                     JvmType type = ie.getToImplement();
                     if (type.getIdentifier().endsWith("Serializable")) {
                         if (!ie.getDbTables().isEmpty()) {

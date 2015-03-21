@@ -1,4 +1,4 @@
-package org.sqlproc.model.resolver;
+package org.sqlproc.plugin.lib.resolver;
 
 import java.util.ArrayList;
 import java.util.List;

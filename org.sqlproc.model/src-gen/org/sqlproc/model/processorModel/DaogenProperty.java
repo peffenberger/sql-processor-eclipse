@@ -6,8 +6,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Daogen Property</b></em>'.
@@ -217,12 +215,12 @@ public interface DaogenProperty extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Result Type</em>' containment reference.
-   * @see #setResultType(JvmParameterizedTypeReference)
+   * @see #setResultType(PojoType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDaogenProperty_ResultType()
    * @model containment="true"
    * @generated
    */
-  JvmParameterizedTypeReference getResultType();
+  PojoType getResultType();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DaogenProperty#getResultType <em>Result Type</em>}' containment reference.
@@ -232,7 +230,7 @@ public interface DaogenProperty extends EObject
    * @see #getResultType()
    * @generated
    */
-  void setResultType(JvmParameterizedTypeReference value);
+  void setResultType(PojoType value);
 
   /**
    * Returns the value of the '<em><b>Debug</b></em>' containment reference.

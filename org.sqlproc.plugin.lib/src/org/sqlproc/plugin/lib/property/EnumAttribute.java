@@ -1,4 +1,4 @@
-package org.sqlproc.model.property;
+package org.sqlproc.plugin.lib.property;
 
 public class EnumAttribute {
 

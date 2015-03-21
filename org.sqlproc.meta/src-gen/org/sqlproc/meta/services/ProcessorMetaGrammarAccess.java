@@ -211,6 +211,155 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getIdQualifiedNameParserRuleCall_2_0() { return cIdQualifiedNameParserRuleCall_2_0; }
 	}
 
+	public class PojoTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PojoType");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Group cGroup_0_0 = (Group)cAlternatives_0.eContents().get(0);
+		private final RuleCall cCOLONTerminalRuleCall_0_0_0 = (RuleCall)cGroup_0_0.eContents().get(0);
+		private final RuleCall cCOLONTerminalRuleCall_0_0_1 = (RuleCall)cGroup_0_0.eContents().get(1);
+		private final Assignment cIdentAssignment_0_0_2 = (Assignment)cGroup_0_0.eContents().get(2);
+		private final RuleCall cIdentValueTypeParserRuleCall_0_0_2_0 = (RuleCall)cIdentAssignment_0_0_2.eContents().get(0);
+		private final Group cGroup_0_1 = (Group)cAlternatives_0.eContents().get(1);
+		private final RuleCall cCOLONTerminalRuleCall_0_1_0 = (RuleCall)cGroup_0_1.eContents().get(0);
+		private final Assignment cRefAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
+		private final CrossReference cRefPojoDefinitionCrossReference_0_1_1_0 = (CrossReference)cRefAssignment_0_1_1.eContents().get(0);
+		private final RuleCall cRefPojoDefinitionIDENTTerminalRuleCall_0_1_1_0_1 = (RuleCall)cRefPojoDefinitionCrossReference_0_1_1_0.eContents().get(1);
+		private final Assignment cTypeAssignment_0_2 = (Assignment)cAlternatives_0.eContents().get(2);
+		private final CrossReference cTypeJvmTypeCrossReference_0_2_0 = (CrossReference)cTypeAssignment_0_2.eContents().get(0);
+		private final RuleCall cTypeJvmTypeQualifiedNameParserRuleCall_0_2_0_1 = (RuleCall)cTypeJvmTypeCrossReference_0_2_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cLESS_THANTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
+		private final Group cGroup_1_1_0 = (Group)cAlternatives_1_1.eContents().get(0);
+		private final RuleCall cCOLONTerminalRuleCall_1_1_0_0 = (RuleCall)cGroup_1_1_0.eContents().get(0);
+		private final RuleCall cCOLONTerminalRuleCall_1_1_0_1 = (RuleCall)cGroup_1_1_0.eContents().get(1);
+		private final Assignment cGidentAssignment_1_1_0_2 = (Assignment)cGroup_1_1_0.eContents().get(2);
+		private final RuleCall cGidentValueTypeParserRuleCall_1_1_0_2_0 = (RuleCall)cGidentAssignment_1_1_0_2.eContents().get(0);
+		private final Group cGroup_1_1_1 = (Group)cAlternatives_1_1.eContents().get(1);
+		private final RuleCall cCOLONTerminalRuleCall_1_1_1_0 = (RuleCall)cGroup_1_1_1.eContents().get(0);
+		private final Assignment cGrefAssignment_1_1_1_1 = (Assignment)cGroup_1_1_1.eContents().get(1);
+		private final CrossReference cGrefPojoDefinitionCrossReference_1_1_1_1_0 = (CrossReference)cGrefAssignment_1_1_1_1.eContents().get(0);
+		private final RuleCall cGrefPojoDefinitionIDENTTerminalRuleCall_1_1_1_1_0_1 = (RuleCall)cGrefPojoDefinitionCrossReference_1_1_1_1_0.eContents().get(1);
+		private final Assignment cGtypeAssignment_1_1_2 = (Assignment)cAlternatives_1_1.eContents().get(2);
+		private final CrossReference cGtypeJvmTypeCrossReference_1_1_2_0 = (CrossReference)cGtypeAssignment_1_1_2.eContents().get(0);
+		private final RuleCall cGtypeJvmTypeQualifiedNameParserRuleCall_1_1_2_0_1 = (RuleCall)cGtypeJvmTypeCrossReference_1_1_2_0.eContents().get(1);
+		private final RuleCall cMORE_THANTerminalRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
+		private final Assignment cArrayAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cArrayLeftSquareBracketRightSquareBracketKeyword_2_0 = (Keyword)cArrayAssignment_2.eContents().get(0);
+		
+		//PojoType:
+		//	(COLON COLON ident=ValueType | COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName]) (LESS_THAN
+		//	(COLON COLON gident=ValueType | COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName])
+		//	MORE_THAN)? array?="[]"?;
+		public ParserRule getRule() { return rule; }
+
+		//(COLON COLON ident=ValueType | COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName]) (LESS_THAN
+		//(COLON COLON gident=ValueType | COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName])
+		//MORE_THAN)? array?="[]"?
+		public Group getGroup() { return cGroup; }
+
+		//COLON COLON ident=ValueType | COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName]
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//COLON COLON ident=ValueType
+		public Group getGroup_0_0() { return cGroup_0_0; }
+
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_0_0_0() { return cCOLONTerminalRuleCall_0_0_0; }
+
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_0_0_1() { return cCOLONTerminalRuleCall_0_0_1; }
+
+		//ident=ValueType
+		public Assignment getIdentAssignment_0_0_2() { return cIdentAssignment_0_0_2; }
+
+		//ValueType
+		public RuleCall getIdentValueTypeParserRuleCall_0_0_2_0() { return cIdentValueTypeParserRuleCall_0_0_2_0; }
+
+		//COLON ref=[PojoDefinition|IDENT]
+		public Group getGroup_0_1() { return cGroup_0_1; }
+
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_0_1_0() { return cCOLONTerminalRuleCall_0_1_0; }
+
+		//ref=[PojoDefinition|IDENT]
+		public Assignment getRefAssignment_0_1_1() { return cRefAssignment_0_1_1; }
+
+		//[PojoDefinition|IDENT]
+		public CrossReference getRefPojoDefinitionCrossReference_0_1_1_0() { return cRefPojoDefinitionCrossReference_0_1_1_0; }
+
+		//IDENT
+		public RuleCall getRefPojoDefinitionIDENTTerminalRuleCall_0_1_1_0_1() { return cRefPojoDefinitionIDENTTerminalRuleCall_0_1_1_0_1; }
+
+		//type=[jvmTypes::JvmType|QualifiedName]
+		public Assignment getTypeAssignment_0_2() { return cTypeAssignment_0_2; }
+
+		//[jvmTypes::JvmType|QualifiedName]
+		public CrossReference getTypeJvmTypeCrossReference_0_2_0() { return cTypeJvmTypeCrossReference_0_2_0; }
+
+		//QualifiedName
+		public RuleCall getTypeJvmTypeQualifiedNameParserRuleCall_0_2_0_1() { return cTypeJvmTypeQualifiedNameParserRuleCall_0_2_0_1; }
+
+		//(LESS_THAN (COLON COLON gident=ValueType | COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName])
+		//MORE_THAN)?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//LESS_THAN
+		public RuleCall getLESS_THANTerminalRuleCall_1_0() { return cLESS_THANTerminalRuleCall_1_0; }
+
+		//COLON COLON gident=ValueType | COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]
+		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
+
+		//COLON COLON gident=ValueType
+		public Group getGroup_1_1_0() { return cGroup_1_1_0; }
+
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_1_1_0_0() { return cCOLONTerminalRuleCall_1_1_0_0; }
+
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_1_1_0_1() { return cCOLONTerminalRuleCall_1_1_0_1; }
+
+		//gident=ValueType
+		public Assignment getGidentAssignment_1_1_0_2() { return cGidentAssignment_1_1_0_2; }
+
+		//ValueType
+		public RuleCall getGidentValueTypeParserRuleCall_1_1_0_2_0() { return cGidentValueTypeParserRuleCall_1_1_0_2_0; }
+
+		//COLON gref=[PojoDefinition|IDENT]
+		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
+
+		//COLON
+		public RuleCall getCOLONTerminalRuleCall_1_1_1_0() { return cCOLONTerminalRuleCall_1_1_1_0; }
+
+		//gref=[PojoDefinition|IDENT]
+		public Assignment getGrefAssignment_1_1_1_1() { return cGrefAssignment_1_1_1_1; }
+
+		//[PojoDefinition|IDENT]
+		public CrossReference getGrefPojoDefinitionCrossReference_1_1_1_1_0() { return cGrefPojoDefinitionCrossReference_1_1_1_1_0; }
+
+		//IDENT
+		public RuleCall getGrefPojoDefinitionIDENTTerminalRuleCall_1_1_1_1_0_1() { return cGrefPojoDefinitionIDENTTerminalRuleCall_1_1_1_1_0_1; }
+
+		//gtype=[jvmTypes::JvmType|QualifiedName]
+		public Assignment getGtypeAssignment_1_1_2() { return cGtypeAssignment_1_1_2; }
+
+		//[jvmTypes::JvmType|QualifiedName]
+		public CrossReference getGtypeJvmTypeCrossReference_1_1_2_0() { return cGtypeJvmTypeCrossReference_1_1_2_0; }
+
+		//QualifiedName
+		public RuleCall getGtypeJvmTypeQualifiedNameParserRuleCall_1_1_2_0_1() { return cGtypeJvmTypeQualifiedNameParserRuleCall_1_1_2_0_1; }
+
+		//MORE_THAN
+		public RuleCall getMORE_THANTerminalRuleCall_1_2() { return cMORE_THANTerminalRuleCall_1_2; }
+
+		//array?="[]"?
+		public Assignment getArrayAssignment_2() { return cArrayAssignment_2; }
+
+		//"[]"
+		public Keyword getArrayLeftSquareBracketRightSquareBracketKeyword_2_0() { return cArrayLeftSquareBracketRightSquareBracketKeyword_2_0; }
+	}
+
 	public class DatabaseCatalogAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DatabaseCatalogAssignement");
 		private final Assignment cDbCatalogAssignment = (Assignment)rule.eContents().get(1);
@@ -814,345 +963,305 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	public class ImplementsAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ImplementsAssignement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cCOLONTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Assignment cToImplementAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cToImplementJvmTypeCrossReference_1_0 = (CrossReference)cToImplementAssignment_1.eContents().get(0);
-		private final RuleCall cToImplementJvmTypeQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cToImplementJvmTypeCrossReference_1_0.eContents().get(1);
+		private final Assignment cToImplementAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cToImplementPojoTypeParserRuleCall_0_0 = (RuleCall)cToImplementAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final RuleCall cPLUSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final RuleCall cWSTerminalRuleCall_1_2_0 = (RuleCall)cGroup_1_2.eContents().get(0);
+		private final Assignment cDbTablesAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cDbTablesIDENTTerminalRuleCall_1_2_1_0 = (RuleCall)cDbTablesAssignment_1_2_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final RuleCall cWSTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final RuleCall cPLUSTerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
+		private final RuleCall cMINUSTerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
 		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
 		private final RuleCall cWSTerminalRuleCall_2_2_0 = (RuleCall)cGroup_2_2.eContents().get(0);
-		private final Assignment cDbTablesAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final RuleCall cDbTablesIDENTTerminalRuleCall_2_2_1_0 = (RuleCall)cDbTablesAssignment_2_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final RuleCall cMINUSTerminalRuleCall_3_1 = (RuleCall)cGroup_3.eContents().get(1);
-		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
-		private final RuleCall cWSTerminalRuleCall_3_2_0 = (RuleCall)cGroup_3_2.eContents().get(0);
-		private final Assignment cDbNotTablesAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
-		private final RuleCall cDbNotTablesIDENTTerminalRuleCall_3_2_1_0 = (RuleCall)cDbNotTablesAssignment_3_2_1.eContents().get(0);
+		private final Assignment cDbNotTablesAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cDbNotTablesIDENTTerminalRuleCall_2_2_1_0 = (RuleCall)cDbNotTablesAssignment_2_2_1.eContents().get(0);
 		
 		//ImplementsAssignement:
-		//	COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
-		//	dbNotTables+=IDENT)+)?;
+		//	toImplement=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 		public ParserRule getRule() { return rule; }
 
-		//COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
-		//dbNotTables+=IDENT)+)?
+		//toImplement=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
 		public Group getGroup() { return cGroup; }
 
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_0() { return cCOLONTerminalRuleCall_0; }
+		//toImplement=PojoType
+		public Assignment getToImplementAssignment_0() { return cToImplementAssignment_0; }
 
-		//toImplement=[jvmTypes::JvmType|QualifiedName]
-		public Assignment getToImplementAssignment_1() { return cToImplementAssignment_1; }
-
-		//[jvmTypes::JvmType|QualifiedName]
-		public CrossReference getToImplementJvmTypeCrossReference_1_0() { return cToImplementJvmTypeCrossReference_1_0; }
-
-		//QualifiedName
-		public RuleCall getToImplementJvmTypeQualifiedNameParserRuleCall_1_0_1() { return cToImplementJvmTypeQualifiedNameParserRuleCall_1_0_1; }
+		//PojoType
+		public RuleCall getToImplementPojoTypeParserRuleCall_0_0() { return cToImplementPojoTypeParserRuleCall_0_0; }
 
 		//(WS+ PLUS (WS+ dbTables+=IDENT)+)?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+
+		//PLUS
+		public RuleCall getPLUSTerminalRuleCall_1_1() { return cPLUSTerminalRuleCall_1_1; }
+
+		//(WS+ dbTables+=IDENT)+
+		public Group getGroup_1_2() { return cGroup_1_2; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_1_2_0() { return cWSTerminalRuleCall_1_2_0; }
+
+		//dbTables+=IDENT
+		public Assignment getDbTablesAssignment_1_2_1() { return cDbTablesAssignment_1_2_1; }
+
+		//IDENT
+		public RuleCall getDbTablesIDENTTerminalRuleCall_1_2_1_0() { return cDbTablesIDENTTerminalRuleCall_1_2_1_0; }
+
+		//(WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//WS+
 		public RuleCall getWSTerminalRuleCall_2_0() { return cWSTerminalRuleCall_2_0; }
 
-		//PLUS
-		public RuleCall getPLUSTerminalRuleCall_2_1() { return cPLUSTerminalRuleCall_2_1; }
+		//MINUS
+		public RuleCall getMINUSTerminalRuleCall_2_1() { return cMINUSTerminalRuleCall_2_1; }
 
-		//(WS+ dbTables+=IDENT)+
+		//(WS+ dbNotTables+=IDENT)+
 		public Group getGroup_2_2() { return cGroup_2_2; }
 
 		//WS+
 		public RuleCall getWSTerminalRuleCall_2_2_0() { return cWSTerminalRuleCall_2_2_0; }
 
-		//dbTables+=IDENT
-		public Assignment getDbTablesAssignment_2_2_1() { return cDbTablesAssignment_2_2_1; }
-
-		//IDENT
-		public RuleCall getDbTablesIDENTTerminalRuleCall_2_2_1_0() { return cDbTablesIDENTTerminalRuleCall_2_2_1_0; }
-
-		//(WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
-		public Group getGroup_3() { return cGroup_3; }
-
-		//WS+
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
-
-		//MINUS
-		public RuleCall getMINUSTerminalRuleCall_3_1() { return cMINUSTerminalRuleCall_3_1; }
-
-		//(WS+ dbNotTables+=IDENT)+
-		public Group getGroup_3_2() { return cGroup_3_2; }
-
-		//WS+
-		public RuleCall getWSTerminalRuleCall_3_2_0() { return cWSTerminalRuleCall_3_2_0; }
-
 		//dbNotTables+=IDENT
-		public Assignment getDbNotTablesAssignment_3_2_1() { return cDbNotTablesAssignment_3_2_1; }
+		public Assignment getDbNotTablesAssignment_2_2_1() { return cDbNotTablesAssignment_2_2_1; }
 
 		//IDENT
-		public RuleCall getDbNotTablesIDENTTerminalRuleCall_3_2_1_0() { return cDbNotTablesIDENTTerminalRuleCall_3_2_1_0; }
+		public RuleCall getDbNotTablesIDENTTerminalRuleCall_2_2_1_0() { return cDbNotTablesIDENTTerminalRuleCall_2_2_1_0; }
 	}
 
 	public class ExtendsAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExtendsAssignement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cCOLONTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Assignment cToExtendsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cToExtendsJvmTypeCrossReference_1_0 = (CrossReference)cToExtendsAssignment_1.eContents().get(0);
-		private final RuleCall cToExtendsJvmTypeQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cToExtendsJvmTypeCrossReference_1_0.eContents().get(1);
+		private final Assignment cToExtendsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cToExtendsPojoTypeParserRuleCall_0_0 = (RuleCall)cToExtendsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final RuleCall cPLUSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final RuleCall cWSTerminalRuleCall_1_2_0 = (RuleCall)cGroup_1_2.eContents().get(0);
+		private final Assignment cDbTablesAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cDbTablesIDENTTerminalRuleCall_1_2_1_0 = (RuleCall)cDbTablesAssignment_1_2_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final RuleCall cWSTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final RuleCall cPLUSTerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
+		private final RuleCall cMINUSTerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
 		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
 		private final RuleCall cWSTerminalRuleCall_2_2_0 = (RuleCall)cGroup_2_2.eContents().get(0);
-		private final Assignment cDbTablesAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final RuleCall cDbTablesIDENTTerminalRuleCall_2_2_1_0 = (RuleCall)cDbTablesAssignment_2_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final RuleCall cMINUSTerminalRuleCall_3_1 = (RuleCall)cGroup_3.eContents().get(1);
-		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
-		private final RuleCall cWSTerminalRuleCall_3_2_0 = (RuleCall)cGroup_3_2.eContents().get(0);
-		private final Assignment cDbNotTablesAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
-		private final RuleCall cDbNotTablesIDENTTerminalRuleCall_3_2_1_0 = (RuleCall)cDbNotTablesAssignment_3_2_1.eContents().get(0);
+		private final Assignment cDbNotTablesAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cDbNotTablesIDENTTerminalRuleCall_2_2_1_0 = (RuleCall)cDbNotTablesAssignment_2_2_1.eContents().get(0);
 		
 		//ExtendsAssignement:
-		//	COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
-		//	dbNotTables+=IDENT)+)?;
+		//	toExtends=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 		public ParserRule getRule() { return rule; }
 
-		//COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
-		//dbNotTables+=IDENT)+)?
+		//toExtends=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
 		public Group getGroup() { return cGroup; }
 
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_0() { return cCOLONTerminalRuleCall_0; }
+		//toExtends=PojoType
+		public Assignment getToExtendsAssignment_0() { return cToExtendsAssignment_0; }
 
-		//toExtends=[jvmTypes::JvmType|QualifiedName]
-		public Assignment getToExtendsAssignment_1() { return cToExtendsAssignment_1; }
-
-		//[jvmTypes::JvmType|QualifiedName]
-		public CrossReference getToExtendsJvmTypeCrossReference_1_0() { return cToExtendsJvmTypeCrossReference_1_0; }
-
-		//QualifiedName
-		public RuleCall getToExtendsJvmTypeQualifiedNameParserRuleCall_1_0_1() { return cToExtendsJvmTypeQualifiedNameParserRuleCall_1_0_1; }
+		//PojoType
+		public RuleCall getToExtendsPojoTypeParserRuleCall_0_0() { return cToExtendsPojoTypeParserRuleCall_0_0; }
 
 		//(WS+ PLUS (WS+ dbTables+=IDENT)+)?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+
+		//PLUS
+		public RuleCall getPLUSTerminalRuleCall_1_1() { return cPLUSTerminalRuleCall_1_1; }
+
+		//(WS+ dbTables+=IDENT)+
+		public Group getGroup_1_2() { return cGroup_1_2; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_1_2_0() { return cWSTerminalRuleCall_1_2_0; }
+
+		//dbTables+=IDENT
+		public Assignment getDbTablesAssignment_1_2_1() { return cDbTablesAssignment_1_2_1; }
+
+		//IDENT
+		public RuleCall getDbTablesIDENTTerminalRuleCall_1_2_1_0() { return cDbTablesIDENTTerminalRuleCall_1_2_1_0; }
+
+		//(WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//WS+
 		public RuleCall getWSTerminalRuleCall_2_0() { return cWSTerminalRuleCall_2_0; }
 
-		//PLUS
-		public RuleCall getPLUSTerminalRuleCall_2_1() { return cPLUSTerminalRuleCall_2_1; }
+		//MINUS
+		public RuleCall getMINUSTerminalRuleCall_2_1() { return cMINUSTerminalRuleCall_2_1; }
 
-		//(WS+ dbTables+=IDENT)+
+		//(WS+ dbNotTables+=IDENT)+
 		public Group getGroup_2_2() { return cGroup_2_2; }
 
 		//WS+
 		public RuleCall getWSTerminalRuleCall_2_2_0() { return cWSTerminalRuleCall_2_2_0; }
 
-		//dbTables+=IDENT
-		public Assignment getDbTablesAssignment_2_2_1() { return cDbTablesAssignment_2_2_1; }
-
-		//IDENT
-		public RuleCall getDbTablesIDENTTerminalRuleCall_2_2_1_0() { return cDbTablesIDENTTerminalRuleCall_2_2_1_0; }
-
-		//(WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
-		public Group getGroup_3() { return cGroup_3; }
-
-		//WS+
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
-
-		//MINUS
-		public RuleCall getMINUSTerminalRuleCall_3_1() { return cMINUSTerminalRuleCall_3_1; }
-
-		//(WS+ dbNotTables+=IDENT)+
-		public Group getGroup_3_2() { return cGroup_3_2; }
-
-		//WS+
-		public RuleCall getWSTerminalRuleCall_3_2_0() { return cWSTerminalRuleCall_3_2_0; }
-
 		//dbNotTables+=IDENT
-		public Assignment getDbNotTablesAssignment_3_2_1() { return cDbNotTablesAssignment_3_2_1; }
+		public Assignment getDbNotTablesAssignment_2_2_1() { return cDbNotTablesAssignment_2_2_1; }
 
 		//IDENT
-		public RuleCall getDbNotTablesIDENTTerminalRuleCall_3_2_1_0() { return cDbNotTablesIDENTTerminalRuleCall_3_2_1_0; }
+		public RuleCall getDbNotTablesIDENTTerminalRuleCall_2_2_1_0() { return cDbNotTablesIDENTTerminalRuleCall_2_2_1_0; }
 	}
 
 	public class ImplementsAssignementGenericsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ImplementsAssignementGenerics");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cCOLONTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Assignment cToImplementAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cToImplementJvmTypeCrossReference_1_0 = (CrossReference)cToImplementAssignment_1.eContents().get(0);
-		private final RuleCall cToImplementJvmTypeQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cToImplementJvmTypeCrossReference_1_0.eContents().get(1);
+		private final Assignment cToImplementAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cToImplementPojoTypeParserRuleCall_0_0 = (RuleCall)cToImplementAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final RuleCall cPLUSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final RuleCall cWSTerminalRuleCall_1_2_0 = (RuleCall)cGroup_1_2.eContents().get(0);
+		private final Assignment cDbTablesAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cDbTablesIDENTTerminalRuleCall_1_2_1_0 = (RuleCall)cDbTablesAssignment_1_2_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final RuleCall cWSTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final RuleCall cPLUSTerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
+		private final RuleCall cMINUSTerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
 		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
 		private final RuleCall cWSTerminalRuleCall_2_2_0 = (RuleCall)cGroup_2_2.eContents().get(0);
-		private final Assignment cDbTablesAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final RuleCall cDbTablesIDENTTerminalRuleCall_2_2_1_0 = (RuleCall)cDbTablesAssignment_2_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final RuleCall cMINUSTerminalRuleCall_3_1 = (RuleCall)cGroup_3.eContents().get(1);
-		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
-		private final RuleCall cWSTerminalRuleCall_3_2_0 = (RuleCall)cGroup_3_2.eContents().get(0);
-		private final Assignment cDbNotTablesAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
-		private final RuleCall cDbNotTablesIDENTTerminalRuleCall_3_2_1_0 = (RuleCall)cDbNotTablesAssignment_3_2_1.eContents().get(0);
+		private final Assignment cDbNotTablesAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cDbNotTablesIDENTTerminalRuleCall_2_2_1_0 = (RuleCall)cDbNotTablesAssignment_2_2_1.eContents().get(0);
 		
 		//ImplementsAssignementGenerics:
-		//	COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
-		//	dbNotTables+=IDENT)+)?;
+		//	toImplement=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 		public ParserRule getRule() { return rule; }
 
-		//COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
-		//dbNotTables+=IDENT)+)?
+		//toImplement=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
 		public Group getGroup() { return cGroup; }
 
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_0() { return cCOLONTerminalRuleCall_0; }
+		//toImplement=PojoType
+		public Assignment getToImplementAssignment_0() { return cToImplementAssignment_0; }
 
-		//toImplement=[jvmTypes::JvmType|QualifiedName]
-		public Assignment getToImplementAssignment_1() { return cToImplementAssignment_1; }
-
-		//[jvmTypes::JvmType|QualifiedName]
-		public CrossReference getToImplementJvmTypeCrossReference_1_0() { return cToImplementJvmTypeCrossReference_1_0; }
-
-		//QualifiedName
-		public RuleCall getToImplementJvmTypeQualifiedNameParserRuleCall_1_0_1() { return cToImplementJvmTypeQualifiedNameParserRuleCall_1_0_1; }
+		//PojoType
+		public RuleCall getToImplementPojoTypeParserRuleCall_0_0() { return cToImplementPojoTypeParserRuleCall_0_0; }
 
 		//(WS+ PLUS (WS+ dbTables+=IDENT)+)?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+
+		//PLUS
+		public RuleCall getPLUSTerminalRuleCall_1_1() { return cPLUSTerminalRuleCall_1_1; }
+
+		//(WS+ dbTables+=IDENT)+
+		public Group getGroup_1_2() { return cGroup_1_2; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_1_2_0() { return cWSTerminalRuleCall_1_2_0; }
+
+		//dbTables+=IDENT
+		public Assignment getDbTablesAssignment_1_2_1() { return cDbTablesAssignment_1_2_1; }
+
+		//IDENT
+		public RuleCall getDbTablesIDENTTerminalRuleCall_1_2_1_0() { return cDbTablesIDENTTerminalRuleCall_1_2_1_0; }
+
+		//(WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//WS+
 		public RuleCall getWSTerminalRuleCall_2_0() { return cWSTerminalRuleCall_2_0; }
 
-		//PLUS
-		public RuleCall getPLUSTerminalRuleCall_2_1() { return cPLUSTerminalRuleCall_2_1; }
+		//MINUS
+		public RuleCall getMINUSTerminalRuleCall_2_1() { return cMINUSTerminalRuleCall_2_1; }
 
-		//(WS+ dbTables+=IDENT)+
+		//(WS+ dbNotTables+=IDENT)+
 		public Group getGroup_2_2() { return cGroup_2_2; }
 
 		//WS+
 		public RuleCall getWSTerminalRuleCall_2_2_0() { return cWSTerminalRuleCall_2_2_0; }
 
-		//dbTables+=IDENT
-		public Assignment getDbTablesAssignment_2_2_1() { return cDbTablesAssignment_2_2_1; }
-
-		//IDENT
-		public RuleCall getDbTablesIDENTTerminalRuleCall_2_2_1_0() { return cDbTablesIDENTTerminalRuleCall_2_2_1_0; }
-
-		//(WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
-		public Group getGroup_3() { return cGroup_3; }
-
-		//WS+
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
-
-		//MINUS
-		public RuleCall getMINUSTerminalRuleCall_3_1() { return cMINUSTerminalRuleCall_3_1; }
-
-		//(WS+ dbNotTables+=IDENT)+
-		public Group getGroup_3_2() { return cGroup_3_2; }
-
-		//WS+
-		public RuleCall getWSTerminalRuleCall_3_2_0() { return cWSTerminalRuleCall_3_2_0; }
-
 		//dbNotTables+=IDENT
-		public Assignment getDbNotTablesAssignment_3_2_1() { return cDbNotTablesAssignment_3_2_1; }
+		public Assignment getDbNotTablesAssignment_2_2_1() { return cDbNotTablesAssignment_2_2_1; }
 
 		//IDENT
-		public RuleCall getDbNotTablesIDENTTerminalRuleCall_3_2_1_0() { return cDbNotTablesIDENTTerminalRuleCall_3_2_1_0; }
+		public RuleCall getDbNotTablesIDENTTerminalRuleCall_2_2_1_0() { return cDbNotTablesIDENTTerminalRuleCall_2_2_1_0; }
 	}
 
 	public class ExtendsAssignementGenericsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExtendsAssignementGenerics");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cCOLONTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Assignment cToExtendsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cToExtendsJvmTypeCrossReference_1_0 = (CrossReference)cToExtendsAssignment_1.eContents().get(0);
-		private final RuleCall cToExtendsJvmTypeQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cToExtendsJvmTypeCrossReference_1_0.eContents().get(1);
+		private final Assignment cToExtendsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cToExtendsPojoTypeParserRuleCall_0_0 = (RuleCall)cToExtendsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final RuleCall cPLUSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final RuleCall cWSTerminalRuleCall_1_2_0 = (RuleCall)cGroup_1_2.eContents().get(0);
+		private final Assignment cDbTablesAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cDbTablesIDENTTerminalRuleCall_1_2_1_0 = (RuleCall)cDbTablesAssignment_1_2_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final RuleCall cWSTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final RuleCall cPLUSTerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
+		private final RuleCall cMINUSTerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
 		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
 		private final RuleCall cWSTerminalRuleCall_2_2_0 = (RuleCall)cGroup_2_2.eContents().get(0);
-		private final Assignment cDbTablesAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final RuleCall cDbTablesIDENTTerminalRuleCall_2_2_1_0 = (RuleCall)cDbTablesAssignment_2_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final RuleCall cMINUSTerminalRuleCall_3_1 = (RuleCall)cGroup_3.eContents().get(1);
-		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
-		private final RuleCall cWSTerminalRuleCall_3_2_0 = (RuleCall)cGroup_3_2.eContents().get(0);
-		private final Assignment cDbNotTablesAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
-		private final RuleCall cDbNotTablesIDENTTerminalRuleCall_3_2_1_0 = (RuleCall)cDbNotTablesAssignment_3_2_1.eContents().get(0);
+		private final Assignment cDbNotTablesAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cDbNotTablesIDENTTerminalRuleCall_2_2_1_0 = (RuleCall)cDbNotTablesAssignment_2_2_1.eContents().get(0);
 		
 		//ExtendsAssignementGenerics:
-		//	COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
-		//	dbNotTables+=IDENT)+)?;
+		//	toExtends=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 		public ParserRule getRule() { return rule; }
 
-		//COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
-		//dbNotTables+=IDENT)+)?
+		//toExtends=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
 		public Group getGroup() { return cGroup; }
 
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_0() { return cCOLONTerminalRuleCall_0; }
+		//toExtends=PojoType
+		public Assignment getToExtendsAssignment_0() { return cToExtendsAssignment_0; }
 
-		//toExtends=[jvmTypes::JvmType|QualifiedName]
-		public Assignment getToExtendsAssignment_1() { return cToExtendsAssignment_1; }
-
-		//[jvmTypes::JvmType|QualifiedName]
-		public CrossReference getToExtendsJvmTypeCrossReference_1_0() { return cToExtendsJvmTypeCrossReference_1_0; }
-
-		//QualifiedName
-		public RuleCall getToExtendsJvmTypeQualifiedNameParserRuleCall_1_0_1() { return cToExtendsJvmTypeQualifiedNameParserRuleCall_1_0_1; }
+		//PojoType
+		public RuleCall getToExtendsPojoTypeParserRuleCall_0_0() { return cToExtendsPojoTypeParserRuleCall_0_0; }
 
 		//(WS+ PLUS (WS+ dbTables+=IDENT)+)?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+
+		//PLUS
+		public RuleCall getPLUSTerminalRuleCall_1_1() { return cPLUSTerminalRuleCall_1_1; }
+
+		//(WS+ dbTables+=IDENT)+
+		public Group getGroup_1_2() { return cGroup_1_2; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_1_2_0() { return cWSTerminalRuleCall_1_2_0; }
+
+		//dbTables+=IDENT
+		public Assignment getDbTablesAssignment_1_2_1() { return cDbTablesAssignment_1_2_1; }
+
+		//IDENT
+		public RuleCall getDbTablesIDENTTerminalRuleCall_1_2_1_0() { return cDbTablesIDENTTerminalRuleCall_1_2_1_0; }
+
+		//(WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//WS+
 		public RuleCall getWSTerminalRuleCall_2_0() { return cWSTerminalRuleCall_2_0; }
 
-		//PLUS
-		public RuleCall getPLUSTerminalRuleCall_2_1() { return cPLUSTerminalRuleCall_2_1; }
+		//MINUS
+		public RuleCall getMINUSTerminalRuleCall_2_1() { return cMINUSTerminalRuleCall_2_1; }
 
-		//(WS+ dbTables+=IDENT)+
+		//(WS+ dbNotTables+=IDENT)+
 		public Group getGroup_2_2() { return cGroup_2_2; }
 
 		//WS+
 		public RuleCall getWSTerminalRuleCall_2_2_0() { return cWSTerminalRuleCall_2_2_0; }
 
-		//dbTables+=IDENT
-		public Assignment getDbTablesAssignment_2_2_1() { return cDbTablesAssignment_2_2_1; }
-
-		//IDENT
-		public RuleCall getDbTablesIDENTTerminalRuleCall_2_2_1_0() { return cDbTablesIDENTTerminalRuleCall_2_2_1_0; }
-
-		//(WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
-		public Group getGroup_3() { return cGroup_3; }
-
-		//WS+
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
-
-		//MINUS
-		public RuleCall getMINUSTerminalRuleCall_3_1() { return cMINUSTerminalRuleCall_3_1; }
-
-		//(WS+ dbNotTables+=IDENT)+
-		public Group getGroup_3_2() { return cGroup_3_2; }
-
-		//WS+
-		public RuleCall getWSTerminalRuleCall_3_2_0() { return cWSTerminalRuleCall_3_2_0; }
-
 		//dbNotTables+=IDENT
-		public Assignment getDbNotTablesAssignment_3_2_1() { return cDbNotTablesAssignment_3_2_1; }
+		public Assignment getDbNotTablesAssignment_2_2_1() { return cDbNotTablesAssignment_2_2_1; }
 
 		//IDENT
-		public RuleCall getDbNotTablesIDENTTerminalRuleCall_3_2_1_0() { return cDbNotTablesIDENTTerminalRuleCall_3_2_1_0; }
+		public RuleCall getDbNotTablesIDENTTerminalRuleCall_2_2_1_0() { return cDbNotTablesIDENTTerminalRuleCall_2_2_1_0; }
 	}
 
 	public class PropertyConditionElements extends AbstractParserRuleElementFinder {
@@ -1475,14 +1584,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_7_0 = (Assignment)cGroup_7.eContents().get(0);
 		private final Keyword cNameJdbcDriverKeyword_7_0_0 = (Keyword)cNameAssignment_7_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_7_1 = (RuleCall)cGroup_7.eContents().get(1);
-		private final Alternatives cAlternatives_7_2 = (Alternatives)cGroup_7.eContents().get(2);
-		private final Group cGroup_7_2_0 = (Group)cAlternatives_7_2.eContents().get(0);
-		private final RuleCall cCOLONTerminalRuleCall_7_2_0_0 = (RuleCall)cGroup_7_2_0.eContents().get(0);
-		private final Assignment cDbDriverxAssignment_7_2_0_1 = (Assignment)cGroup_7_2_0.eContents().get(1);
-		private final CrossReference cDbDriverxJvmTypeCrossReference_7_2_0_1_0 = (CrossReference)cDbDriverxAssignment_7_2_0_1.eContents().get(0);
-		private final RuleCall cDbDriverxJvmTypeQualifiedNameParserRuleCall_7_2_0_1_0_1 = (RuleCall)cDbDriverxJvmTypeCrossReference_7_2_0_1_0.eContents().get(1);
-		private final Assignment cDbDriverAssignment_7_2_1 = (Assignment)cAlternatives_7_2.eContents().get(1);
-		private final RuleCall cDbDriverValueTypeParserRuleCall_7_2_1_0 = (RuleCall)cDbDriverAssignment_7_2_1.eContents().get(0);
+		private final Assignment cDbDriverAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
+		private final RuleCall cDbDriverPojoTypeParserRuleCall_7_2_0 = (RuleCall)cDbDriverAssignment_7_2.eContents().get(0);
 		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
 		private final Assignment cNameAssignment_8_0 = (Assignment)cGroup_8.eContents().get(0);
 		private final Keyword cNameDdlCreateKeyword_8_0_0 = (Keyword)cNameAssignment_8_0.eContents().get(0);
@@ -1549,22 +1652,21 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=ValueType | name="login-username" WS+
 		//	dbUsername=ValueType | name="login-password" WS+ dbPassword=ValueType | name="in-catalog" WS+
 		//	dbCatalog=DatabaseCatalogAssignement | name="active-schema" WS+ dbSchema=DatabaseSchemaAssignement |
-		//	name="jdbc-driver" WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=ValueType) | name="ddl-create"
-		//	WS+ dbExecuteBefore=ValueType | name="ddl-drop" WS+ dbExecuteAfter=ValueType | name="index-types" WS+
-		//	dbIndexTypes=ValueType | name="skip-indexes" | name="skip-functions-procedures" | name="skip-check-constraints" |
-		//	name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
-		//	dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
-		//	name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
-		//	debug=DebugLevelAssignement | name="take-comments" | name="lowercase-names" | name="uppercase-names";
+		//	name="jdbc-driver" WS+ dbDriver=PojoType | name="ddl-create" WS+ dbExecuteBefore=ValueType | name="ddl-drop" WS+
+		//	dbExecuteAfter=ValueType | name="index-types" WS+ dbIndexTypes=ValueType | name="skip-indexes" |
+		//	name="skip-functions-procedures" | name="skip-check-constraints" | name="is-of-type" WS+
+		//	dbType=DatabaseTypeAssignement | name="show-database-info" WS+ dbMetaInfo=DatabaseMetaInfoAssignement |
+		//	name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement | name="show-driver-output" (WS+
+		//	dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+ debug=DebugLevelAssignement |
+		//	name="take-comments" | name="lowercase-names" | name="uppercase-names";
 		public ParserRule getRule() { return rule; }
 
 		//name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=ValueType | name="login-username" WS+
 		//dbUsername=ValueType | name="login-password" WS+ dbPassword=ValueType | name="in-catalog" WS+
 		//dbCatalog=DatabaseCatalogAssignement | name="active-schema" WS+ dbSchema=DatabaseSchemaAssignement | name="jdbc-driver"
-		//WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=ValueType) | name="ddl-create" WS+
-		//dbExecuteBefore=ValueType | name="ddl-drop" WS+ dbExecuteAfter=ValueType | name="index-types" WS+
-		//dbIndexTypes=ValueType | name="skip-indexes" | name="skip-functions-procedures" | name="skip-check-constraints" |
-		//name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
+		//WS+ dbDriver=PojoType | name="ddl-create" WS+ dbExecuteBefore=ValueType | name="ddl-drop" WS+ dbExecuteAfter=ValueType
+		//| name="index-types" WS+ dbIndexTypes=ValueType | name="skip-indexes" | name="skip-functions-procedures" |
+		//name="skip-check-constraints" | name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
 		//dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
 		//name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
 		//debug=DebugLevelAssignement | name="take-comments" | name="lowercase-names" | name="uppercase-names"
@@ -1672,7 +1774,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//DatabaseSchemaAssignement
 		public RuleCall getDbSchemaDatabaseSchemaAssignementParserRuleCall_6_2_0() { return cDbSchemaDatabaseSchemaAssignementParserRuleCall_6_2_0; }
 
-		//name="jdbc-driver" WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=ValueType)
+		//name="jdbc-driver" WS+ dbDriver=PojoType
 		public Group getGroup_7() { return cGroup_7; }
 
 		//name="jdbc-driver"
@@ -1684,29 +1786,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_7_1() { return cWSTerminalRuleCall_7_1; }
 
-		//=> COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=ValueType
-		public Alternatives getAlternatives_7_2() { return cAlternatives_7_2; }
+		//dbDriver=PojoType
+		public Assignment getDbDriverAssignment_7_2() { return cDbDriverAssignment_7_2; }
 
-		//=> COLON dbDriverx=[jvmTypes::JvmType|QualifiedName]
-		public Group getGroup_7_2_0() { return cGroup_7_2_0; }
-
-		//=> COLON
-		public RuleCall getCOLONTerminalRuleCall_7_2_0_0() { return cCOLONTerminalRuleCall_7_2_0_0; }
-
-		//dbDriverx=[jvmTypes::JvmType|QualifiedName]
-		public Assignment getDbDriverxAssignment_7_2_0_1() { return cDbDriverxAssignment_7_2_0_1; }
-
-		//[jvmTypes::JvmType|QualifiedName]
-		public CrossReference getDbDriverxJvmTypeCrossReference_7_2_0_1_0() { return cDbDriverxJvmTypeCrossReference_7_2_0_1_0; }
-
-		//QualifiedName
-		public RuleCall getDbDriverxJvmTypeQualifiedNameParserRuleCall_7_2_0_1_0_1() { return cDbDriverxJvmTypeQualifiedNameParserRuleCall_7_2_0_1_0_1; }
-
-		//dbDriver=ValueType
-		public Assignment getDbDriverAssignment_7_2_1() { return cDbDriverAssignment_7_2_1; }
-
-		//ValueType
-		public RuleCall getDbDriverValueTypeParserRuleCall_7_2_1_0() { return cDbDriverValueTypeParserRuleCall_7_2_1_0; }
+		//PojoType
+		public RuleCall getDbDriverPojoTypeParserRuleCall_7_2_0() { return cDbDriverPojoTypeParserRuleCall_7_2_0; }
 
 		//name="ddl-create" WS+ dbExecuteBefore=ValueType
 		public Group getGroup_8() { return cGroup_8; }
@@ -7459,112 +7543,6 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getOPTION_TYPETerminalRuleCall_31() { return cOPTION_TYPETerminalRuleCall_31; }
 	}
 
-	public class PojoTypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PojoType");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final Group cGroup_0_0 = (Group)cAlternatives_0.eContents().get(0);
-		private final RuleCall cCOLONTerminalRuleCall_0_0_0 = (RuleCall)cGroup_0_0.eContents().get(0);
-		private final Assignment cRefAssignment_0_0_1 = (Assignment)cGroup_0_0.eContents().get(1);
-		private final CrossReference cRefPojoDefinitionCrossReference_0_0_1_0 = (CrossReference)cRefAssignment_0_0_1.eContents().get(0);
-		private final RuleCall cRefPojoDefinitionIDENTTerminalRuleCall_0_0_1_0_1 = (RuleCall)cRefPojoDefinitionCrossReference_0_0_1_0.eContents().get(1);
-		private final Assignment cTypeAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
-		private final CrossReference cTypeJvmTypeCrossReference_0_1_0 = (CrossReference)cTypeAssignment_0_1.eContents().get(0);
-		private final RuleCall cTypeJvmTypeQualifiedNameParserRuleCall_0_1_0_1 = (RuleCall)cTypeJvmTypeCrossReference_0_1_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cLESS_THANTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
-		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
-		private final Group cGroup_1_1_0 = (Group)cAlternatives_1_1.eContents().get(0);
-		private final RuleCall cCOLONTerminalRuleCall_1_1_0_0 = (RuleCall)cGroup_1_1_0.eContents().get(0);
-		private final Assignment cGrefAssignment_1_1_0_1 = (Assignment)cGroup_1_1_0.eContents().get(1);
-		private final CrossReference cGrefPojoDefinitionCrossReference_1_1_0_1_0 = (CrossReference)cGrefAssignment_1_1_0_1.eContents().get(0);
-		private final RuleCall cGrefPojoDefinitionIDENTTerminalRuleCall_1_1_0_1_0_1 = (RuleCall)cGrefPojoDefinitionCrossReference_1_1_0_1_0.eContents().get(1);
-		private final Assignment cGtypeAssignment_1_1_1 = (Assignment)cAlternatives_1_1.eContents().get(1);
-		private final CrossReference cGtypeJvmTypeCrossReference_1_1_1_0 = (CrossReference)cGtypeAssignment_1_1_1.eContents().get(0);
-		private final RuleCall cGtypeJvmTypeQualifiedNameParserRuleCall_1_1_1_0_1 = (RuleCall)cGtypeJvmTypeCrossReference_1_1_1_0.eContents().get(1);
-		private final RuleCall cMORE_THANTerminalRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
-		private final Assignment cArrayAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cArrayLeftSquareBracketRightSquareBracketKeyword_2_0 = (Keyword)cArrayAssignment_2.eContents().get(0);
-		
-		//PojoType:
-		//	(COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName]) (LESS_THAN (COLON
-		//	gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)? array?="[]"?;
-		public ParserRule getRule() { return rule; }
-
-		//(COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName]) (LESS_THAN (COLON
-		//gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)? array?="[]"?
-		public Group getGroup() { return cGroup; }
-
-		//COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName]
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
-
-		//COLON ref=[PojoDefinition|IDENT]
-		public Group getGroup_0_0() { return cGroup_0_0; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_0_0_0() { return cCOLONTerminalRuleCall_0_0_0; }
-
-		//ref=[PojoDefinition|IDENT]
-		public Assignment getRefAssignment_0_0_1() { return cRefAssignment_0_0_1; }
-
-		//[PojoDefinition|IDENT]
-		public CrossReference getRefPojoDefinitionCrossReference_0_0_1_0() { return cRefPojoDefinitionCrossReference_0_0_1_0; }
-
-		//IDENT
-		public RuleCall getRefPojoDefinitionIDENTTerminalRuleCall_0_0_1_0_1() { return cRefPojoDefinitionIDENTTerminalRuleCall_0_0_1_0_1; }
-
-		//type=[jvmTypes::JvmType|QualifiedName]
-		public Assignment getTypeAssignment_0_1() { return cTypeAssignment_0_1; }
-
-		//[jvmTypes::JvmType|QualifiedName]
-		public CrossReference getTypeJvmTypeCrossReference_0_1_0() { return cTypeJvmTypeCrossReference_0_1_0; }
-
-		//QualifiedName
-		public RuleCall getTypeJvmTypeQualifiedNameParserRuleCall_0_1_0_1() { return cTypeJvmTypeQualifiedNameParserRuleCall_0_1_0_1; }
-
-		//(LESS_THAN (COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//LESS_THAN
-		public RuleCall getLESS_THANTerminalRuleCall_1_0() { return cLESS_THANTerminalRuleCall_1_0; }
-
-		//COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]
-		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
-
-		//COLON gref=[PojoDefinition|IDENT]
-		public Group getGroup_1_1_0() { return cGroup_1_1_0; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_1_1_0_0() { return cCOLONTerminalRuleCall_1_1_0_0; }
-
-		//gref=[PojoDefinition|IDENT]
-		public Assignment getGrefAssignment_1_1_0_1() { return cGrefAssignment_1_1_0_1; }
-
-		//[PojoDefinition|IDENT]
-		public CrossReference getGrefPojoDefinitionCrossReference_1_1_0_1_0() { return cGrefPojoDefinitionCrossReference_1_1_0_1_0; }
-
-		//IDENT
-		public RuleCall getGrefPojoDefinitionIDENTTerminalRuleCall_1_1_0_1_0_1() { return cGrefPojoDefinitionIDENTTerminalRuleCall_1_1_0_1_0_1; }
-
-		//gtype=[jvmTypes::JvmType|QualifiedName]
-		public Assignment getGtypeAssignment_1_1_1() { return cGtypeAssignment_1_1_1; }
-
-		//[jvmTypes::JvmType|QualifiedName]
-		public CrossReference getGtypeJvmTypeCrossReference_1_1_1_0() { return cGtypeJvmTypeCrossReference_1_1_1_0; }
-
-		//QualifiedName
-		public RuleCall getGtypeJvmTypeQualifiedNameParserRuleCall_1_1_1_0_1() { return cGtypeJvmTypeQualifiedNameParserRuleCall_1_1_1_0_1; }
-
-		//MORE_THAN
-		public RuleCall getMORE_THANTerminalRuleCall_1_2() { return cMORE_THANTerminalRuleCall_1_2; }
-
-		//array?="[]"?
-		public Assignment getArrayAssignment_2() { return cArrayAssignment_2; }
-
-		//"[]"
-		public Keyword getArrayLeftSquareBracketRightSquareBracketKeyword_2_0() { return cArrayLeftSquareBracketRightSquareBracketKeyword_2_0; }
-	}
-
 	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedName");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -7590,6 +7568,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private final ArtifactsElements pArtifacts;
 	private final ValueTypeElements pValueType;
+	private final PojoTypeElements pPojoType;
 	private final DatabaseCatalogAssignementElements pDatabaseCatalogAssignement;
 	private final DatabaseSchemaAssignementElements pDatabaseSchemaAssignement;
 	private final DatabaseTypeAssignementElements pDatabaseTypeAssignement;
@@ -7697,7 +7676,6 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tREST;
 	private final TerminalRule tSTRING_VALUE;
 	private final FeatureValueElements pFeatureValue;
-	private final PojoTypeElements pPojoType;
 	private final QualifiedNameElements pQualifiedName;
 	
 	private final Grammar grammar;
@@ -7707,6 +7685,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.pArtifacts = new ArtifactsElements();
 		this.pValueType = new ValueTypeElements();
+		this.pPojoType = new PojoTypeElements();
 		this.pDatabaseCatalogAssignement = new DatabaseCatalogAssignementElements();
 		this.pDatabaseSchemaAssignement = new DatabaseSchemaAssignementElements();
 		this.pDatabaseTypeAssignement = new DatabaseTypeAssignementElements();
@@ -7814,7 +7793,6 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		this.tREST = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "REST");
 		this.tSTRING_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING_VALUE");
 		this.pFeatureValue = new FeatureValueElements();
-		this.pPojoType = new PojoTypeElements();
 		this.pQualifiedName = new QualifiedNameElements();
 	}
 	
@@ -7861,6 +7839,18 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getValueTypeRule() {
 		return getValueTypeAccess().getRule();
+	}
+
+	//PojoType:
+	//	(COLON COLON ident=ValueType | COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName]) (LESS_THAN
+	//	(COLON COLON gident=ValueType | COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName])
+	//	MORE_THAN)? array?="[]"?;
+	public PojoTypeElements getPojoTypeAccess() {
+		return pPojoType;
+	}
+	
+	public ParserRule getPojoTypeRule() {
+		return getPojoTypeAccess().getRule();
 	}
 
 	//DatabaseCatalogAssignement:
@@ -8054,8 +8044,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImplementsAssignement:
-	//	COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
-	//	dbNotTables+=IDENT)+)?;
+	//	toImplement=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 	public ImplementsAssignementElements getImplementsAssignementAccess() {
 		return pImplementsAssignement;
 	}
@@ -8065,8 +8054,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExtendsAssignement:
-	//	COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
-	//	dbNotTables+=IDENT)+)?;
+	//	toExtends=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 	public ExtendsAssignementElements getExtendsAssignementAccess() {
 		return pExtendsAssignement;
 	}
@@ -8076,8 +8064,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImplementsAssignementGenerics:
-	//	COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
-	//	dbNotTables+=IDENT)+)?;
+	//	toImplement=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 	public ImplementsAssignementGenericsElements getImplementsAssignementGenericsAccess() {
 		return pImplementsAssignementGenerics;
 	}
@@ -8087,8 +8074,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExtendsAssignementGenerics:
-	//	COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
-	//	dbNotTables+=IDENT)+)?;
+	//	toExtends=PojoType (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 	public ExtendsAssignementGenericsElements getExtendsAssignementGenericsAccess() {
 		return pExtendsAssignementGenerics;
 	}
@@ -8125,13 +8111,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=ValueType | name="login-username" WS+
 	//	dbUsername=ValueType | name="login-password" WS+ dbPassword=ValueType | name="in-catalog" WS+
 	//	dbCatalog=DatabaseCatalogAssignement | name="active-schema" WS+ dbSchema=DatabaseSchemaAssignement |
-	//	name="jdbc-driver" WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=ValueType) | name="ddl-create"
-	//	WS+ dbExecuteBefore=ValueType | name="ddl-drop" WS+ dbExecuteAfter=ValueType | name="index-types" WS+
-	//	dbIndexTypes=ValueType | name="skip-indexes" | name="skip-functions-procedures" | name="skip-check-constraints" |
-	//	name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
-	//	dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
-	//	name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
-	//	debug=DebugLevelAssignement | name="take-comments" | name="lowercase-names" | name="uppercase-names";
+	//	name="jdbc-driver" WS+ dbDriver=PojoType | name="ddl-create" WS+ dbExecuteBefore=ValueType | name="ddl-drop" WS+
+	//	dbExecuteAfter=ValueType | name="index-types" WS+ dbIndexTypes=ValueType | name="skip-indexes" |
+	//	name="skip-functions-procedures" | name="skip-check-constraints" | name="is-of-type" WS+
+	//	dbType=DatabaseTypeAssignement | name="show-database-info" WS+ dbMetaInfo=DatabaseMetaInfoAssignement |
+	//	name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement | name="show-driver-output" (WS+
+	//	dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+ debug=DebugLevelAssignement |
+	//	name="take-comments" | name="lowercase-names" | name="uppercase-names";
 	public DatabasePropertyElements getDatabasePropertyAccess() {
 		return pDatabaseProperty;
 	}
@@ -8873,17 +8859,6 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getFeatureValueRule() {
 		return getFeatureValueAccess().getRule();
-	}
-
-	//PojoType:
-	//	(COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName]) (LESS_THAN (COLON
-	//	gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)? array?="[]"?;
-	public PojoTypeElements getPojoTypeAccess() {
-		return pPojoType;
-	}
-	
-	public ParserRule getPojoTypeRule() {
-		return getPojoTypeAccess().getRule();
 	}
 
 	////     (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|SEMICOLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|AND|OR|ESC_CHAR)

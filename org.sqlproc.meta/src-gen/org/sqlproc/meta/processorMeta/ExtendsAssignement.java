@@ -6,8 +6,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.xtext.common.types.JvmType;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Extends Assignement</b></em>'.
@@ -29,30 +27,30 @@ import org.eclipse.xtext.common.types.JvmType;
 public interface ExtendsAssignement extends EObject
 {
   /**
-   * Returns the value of the '<em><b>To Extends</b></em>' reference.
+   * Returns the value of the '<em><b>To Extends</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>To Extends</em>' reference isn't clear,
+   * If the meaning of the '<em>To Extends</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>To Extends</em>' reference.
-   * @see #setToExtends(JvmType)
+   * @return the value of the '<em>To Extends</em>' containment reference.
+   * @see #setToExtends(PojoType)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getExtendsAssignement_ToExtends()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  JvmType getToExtends();
+  PojoType getToExtends();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.ExtendsAssignement#getToExtends <em>To Extends</em>}' reference.
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.ExtendsAssignement#getToExtends <em>To Extends</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>To Extends</em>' reference.
+   * @param value the new value of the '<em>To Extends</em>' containment reference.
    * @see #getToExtends()
    * @generated
    */
-  void setToExtends(JvmType value);
+  void setToExtends(PojoType value);
 
   /**
    * Returns the value of the '<em><b>Db Tables</b></em>' attribute list.

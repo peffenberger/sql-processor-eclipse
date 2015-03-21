@@ -6,8 +6,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.xtext.common.types.JvmType;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Implements Assignement Generics</b></em>'.
@@ -29,30 +27,30 @@ import org.eclipse.xtext.common.types.JvmType;
 public interface ImplementsAssignementGenerics extends EObject
 {
   /**
-   * Returns the value of the '<em><b>To Implement</b></em>' reference.
+   * Returns the value of the '<em><b>To Implement</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>To Implement</em>' reference isn't clear,
+   * If the meaning of the '<em>To Implement</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>To Implement</em>' reference.
-   * @see #setToImplement(JvmType)
+   * @return the value of the '<em>To Implement</em>' containment reference.
+   * @see #setToImplement(PojoType)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getImplementsAssignementGenerics_ToImplement()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  JvmType getToImplement();
+  PojoType getToImplement();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.ImplementsAssignementGenerics#getToImplement <em>To Implement</em>}' reference.
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.ImplementsAssignementGenerics#getToImplement <em>To Implement</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>To Implement</em>' reference.
+   * @param value the new value of the '<em>To Implement</em>' containment reference.
    * @see #getToImplement()
    * @generated
    */
-  void setToImplement(JvmType value);
+  void setToImplement(PojoType value);
 
   /**
    * Returns the value of the '<em><b>Db Tables</b></em>' attribute list.

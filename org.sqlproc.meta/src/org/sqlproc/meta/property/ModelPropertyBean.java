@@ -245,8 +245,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 		public String debugLevel;
 		public String debugScope;
 		public Set<String> preserveForeignKeys;
-		public Map<String, PojoType> pojosForProcedures;
-		public Map<String, PojoType> pojosForFunctions;
+		public Map<String, PojoEntityType> pojosForProcedures;
+		public Map<String, PojoEntityType> pojosForFunctions;
 		public String activeFilter;
 		public String pckg;
 		public Map<String, String> enumForCheckConstraints;
@@ -283,7 +283,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 		public Map<String, ImplementsExtends> daoToImplements;
 		public ImplementsExtends daoToExtends;
 		public boolean daoMakeItFinal;
-		public Map<String, PojoType> daoFunctionsResult;
+		public Map<String, PojoEntityType> daoFunctionsResult;
 		public String daoDebugLevel;
 		public String daoDebugScope;
 		public String daoActiveFilter;
@@ -575,8 +575,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 		modelValues.debugLevel = null;
 		modelValues.debugScope = null;
 		modelValues.preserveForeignKeys = new HashSet<String>();
-		modelValues.pojosForProcedures = new HashMap<String, PojoType>();
-		modelValues.pojosForFunctions = new HashMap<String, PojoType>();
+		modelValues.pojosForProcedures = new HashMap<String, PojoEntityType>();
+		modelValues.pojosForFunctions = new HashMap<String, PojoEntityType>();
 		modelValues.activeFilter = null;
 		modelValues.pckg = null;
 		modelValues.enumForCheckConstraints = new HashMap<String, String>();
@@ -621,7 +621,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 		modelValues.daoToImplements = new HashMap<String, ImplementsExtends>();
 		modelValues.daoToExtends = null;
 		modelValues.daoMakeItFinal = false;
-		modelValues.daoFunctionsResult = new HashMap<String, PojoType>();
+		modelValues.daoFunctionsResult = new HashMap<String, PojoEntityType>();
 		modelValues.daoDebugLevel = null;
 		modelValues.daoDebugScope = null;
 		modelValues.daoActiveFilter = null;
@@ -699,10 +699,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			else
 				modelValues.dbSchema = null;
 		} else if (DATABASE_JDBC_DRIVER.equals(property.getName())) {
-			if (property.getDbDriverx() != null)
-				modelValues.dbDriver = getPropertyValue(property.getDbDriverx().getQualifiedName());
-			else
-				modelValues.dbDriver = getPropertyValue(property.getDbDriver());
+			modelValues.dbDriver = getPropertyValue(property.getDbDriver());
 		} else if (DATABASE_EXECUTE_BEFORE.equals(property.getName())) {
 			modelValues.dbSqlsBefore = getPropertyValue(property.getDbExecuteBefore());
 		} else if (DATABASE_EXECUTE_AFTER.equals(property.getName())) {
@@ -1006,7 +1003,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			// modelValues.toImplements = new HashMap<String, JvmType>();
 			ImplementsExtends ie = new ImplementsExtends(property.getToImplements().getToImplement(), false, property
 			        .getToImplements().getDbTables(), property.getToImplements().getDbNotTables());
-			modelValues.toImplements.put(property.getToImplements().getToImplement().getIdentifier(), ie);
+			modelValues.toImplements.put(ie.getIdentifier(), ie);
 		} else if (POJOGEN_EXTENDS_CLASS.equals(property.getName())) {
 			ImplementsExtends ie = new ImplementsExtends(property.getToExtends().getToExtends(), false, property
 			        .getToExtends().getDbTables(), property.getToExtends().getDbNotTables());
@@ -1017,7 +1014,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			ImplementsExtends ie = new ImplementsExtends(property.getToImplementsGenerics().getToImplement(), true,
 			        property.getToImplementsGenerics().getDbTables(), property.getToImplementsGenerics()
 			                .getDbNotTables());
-			modelValues.toImplements.put(property.getToImplementsGenerics().getToImplement().getIdentifier(), ie);
+			modelValues.toImplements.put(ie.getIdentifier(), ie);
 		} else if (POJOGEN_EXTENDS_CLASS_GENERICS.equals(property.getName())) {
 			ImplementsExtends ie = new ImplementsExtends(property.getToExtendsGenerics().getToExtends(), true, property
 			        .getToExtendsGenerics().getDbTables(), property.getToExtendsGenerics().getDbNotTables());
@@ -1070,13 +1067,13 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			}
 		} else if (POJOGEN_POJOS_FOR_PROCEDURES.equals(property.getName())) {
 			for (int i = 0, m = property.getProcPojos().size(); i < m; i++) {
-				modelValues.pojosForProcedures.put(property.getProcPojos().get(i).getDbProcedure(), property
-				        .getProcPojos().get(i).getPojo());
+				modelValues.pojosForProcedures.put(property.getProcPojos().get(i).getDbProcedure(), new PojoEntityType(
+				        property.getProcPojos().get(i).getPojo()));
 			}
 		} else if (POJOGEN_POJOS_FOR_FUNCTIONS.equals(property.getName())) {
 			for (int i = 0, m = property.getFunPojos().size(); i < m; i++) {
-				modelValues.pojosForFunctions.put(property.getFunPojos().get(i).getDbFunction(), property.getFunPojos()
-				        .get(i).getPojo());
+				modelValues.pojosForFunctions.put(property.getFunPojos().get(i).getDbFunction(), new PojoEntityType(
+				        property.getFunPojos().get(i).getPojo()));
 			}
 		} else if (POJOGEN_ACTIVE_FILTER.equals(property.getName())) {
 			modelValues.activeFilter = getPropertyValue(property.getActiveFilter());
@@ -1209,7 +1206,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 		} else if (DAOGEN_IMPLEMENTS_INTERFACES.equals(property.getName())) {
 			ImplementsExtends ie = new ImplementsExtends(property.getToImplements().getToImplement(), false, property
 			        .getToImplements().getDbTables(), property.getToImplements().getDbNotTables());
-			modelValues.daoToImplements.put(property.getToImplements().getToImplement().getIdentifier(), ie);
+			modelValues.daoToImplements.put(ie.getIdentifier(), ie);
 		} else if (DAOGEN_EXTENDS_CLASS.equals(property.getName())) {
 			ImplementsExtends ie = new ImplementsExtends(property.getToExtends().getToExtends(), false, property
 			        .getToExtends().getDbTables(), property.getToExtends().getDbNotTables());
@@ -1218,7 +1215,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			ImplementsExtends ie = new ImplementsExtends(property.getToImplementsGenerics().getToImplement(), true,
 			        property.getToImplementsGenerics().getDbTables(), property.getToImplementsGenerics()
 			                .getDbNotTables());
-			modelValues.daoToImplements.put(property.getToImplementsGenerics().getToImplement().getIdentifier(), ie);
+			modelValues.daoToImplements.put(ie.getIdentifier(), ie);
 		} else if (DAOGEN_EXTENDS_CLASS_GENERICS.equals(property.getName())) {
 			ImplementsExtends ie = new ImplementsExtends(property.getToExtendsGenerics().getToExtends(), true, property
 			        .getToExtendsGenerics().getDbTables(), property.getToExtendsGenerics().getDbNotTables());
@@ -1226,7 +1223,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 		} else if (DAOGEN_MAKE_IT_FINAL.equals(property.getName())) {
 			modelValues.daoMakeItFinal = true;
 		} else if (DAOGEN_FUNCTION_RESULT.equals(property.getName())) {
-			modelValues.daoFunctionsResult.put(property.getDbFunction(), property.getResultType());
+			modelValues.daoFunctionsResult.put(property.getDbFunction(), new PojoEntityType(property.getResultType()));
 		} else if (DAOGEN_DEBUG_LEVEL.equals(property.getName()) && property.getDebug().getDebug() != null) {
 			modelValues.daoDebugLevel = property.getDebug().getDebug();
 			modelValues.daoDebugScope = getPropertyValue(property.getDebug().getScope());
@@ -1504,15 +1501,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 	}
 
 	@Override
-	public Map<String, PojoType> getPojosForProcedures(EObject model) {
+	public Map<String, PojoEntityType> getPojosForProcedures(EObject model) {
 		ModelValues modelValues = getModelValues(model);
-		return (modelValues != null) ? modelValues.pojosForProcedures : Collections.<String, PojoType> emptyMap();
+		return (modelValues != null) ? modelValues.pojosForProcedures : Collections.<String, PojoEntityType> emptyMap();
 	}
 
 	@Override
-	public Map<String, PojoType> getPojosForFunctions(EObject model) {
+	public Map<String, PojoEntityType> getPojosForFunctions(EObject model) {
 		ModelValues modelValues = getModelValues(model);
-		return (modelValues != null) ? modelValues.pojosForFunctions : Collections.<String, PojoType> emptyMap();
+		return (modelValues != null) ? modelValues.pojosForFunctions : Collections.<String, PojoEntityType> emptyMap();
 	}
 
 	@Override
@@ -1716,9 +1713,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 	}
 
 	@Override
-	public Map<String, PojoType> getDaoFunctionsResult(EObject model) {
+	public Map<String, PojoEntityType> getDaoFunctionsResult(EObject model) {
 		ModelValues modelValues = getModelValues(model);
-		return (modelValues != null) ? modelValues.daoFunctionsResult : Collections.<String, PojoType> emptyMap();
+		return (modelValues != null) ? modelValues.daoFunctionsResult : Collections.<String, PojoEntityType> emptyMap();
 	}
 
 	@Override
@@ -1915,5 +1912,20 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			return null;
 		String s2 = s.replaceAll("\\\\\\\\", "\\\\");
 		return s2;
+	}
+
+	private static String getPropertyValue(PojoType pv) {
+		if (pv == null)
+			return null;
+		if (pv.getType() != null)
+			return pv.getType().getQualifiedName();
+		if (pv.getIdent() != null)
+			return getPropertyValue(pv.getIdent());
+		if (pv.getRef() != null) {
+			if (pv.getRef().getClassx() != null)
+				return pv.getRef().getClassx().getQualifiedName();
+			return pv.getRef().getClass_();
+		}
+		return null;
 	}
 }

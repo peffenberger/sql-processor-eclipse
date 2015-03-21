@@ -289,6 +289,91 @@ ruleValueType returns [EObject current=null]
 
 
 
+// Entry rule entryRulePojoType
+entryRulePojoType returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getPojoTypeRule()); }
+	 iv_rulePojoType=rulePojoType 
+	 { $current=$iv_rulePojoType.current; } 
+	 EOF 
+;
+
+// Rule PojoType
+rulePojoType returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((	otherlv_0='::' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getPojoTypeAccess().getColonColonKeyword_0_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPojoTypeAccess().getIdentValueTypeParserRuleCall_0_1_0()); 
+	    }
+		lv_ident_1_0=ruleValueType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPojoTypeRule());
+	        }
+       		set(
+       			$current, 
+       			"ident",
+        		lv_ident_1_0, 
+        		"ValueType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(	otherlv_2=':' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getPojoTypeAccess().getColonKeyword_1_0());
+    }
+(
+(
+		{ 
+		  /* */ 
+		}
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoTypeRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPojoTypeAccess().getRefPojoDefinitionCrossReference_1_1_0()); 
+	    }
+		ruleValidID		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPojoTypeAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_2_0()); 
+	    }
+		lv_type_4_0=ruleJvmParameterizedTypeReference		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPojoTypeRule());
+	        }
+       		set(
+       			$current, 
+       			"type",
+        		lv_type_4_0, 
+        		"JvmParameterizedTypeReference");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
 // Entry rule entryRuleDatabaseCatalogAssignement
 entryRuleDatabaseCatalogAssignement returns [EObject current=null] 
 	:
@@ -581,24 +666,20 @@ ruleSqlTypeAssignement returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getSqlTypeAssignementAccess().getHyphenMinusGreaterThanSignKeyword_1());
     }
-(	otherlv_2=':' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getSqlTypeAssignementAccess().getColonKeyword_2());
-    }
-)?(
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSqlTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getSqlTypeAssignementAccess().getTypePojoTypeParserRuleCall_2_0()); 
 	    }
-		lv_type_3_0=ruleJvmParameterizedTypeReference		{
+		lv_type_2_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSqlTypeAssignementRule());
 	        }
        		set(
        			$current, 
        			"type",
-        		lv_type_3_0, 
-        		"JvmParameterizedTypeReference");
+        		lv_type_2_0, 
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -646,24 +727,20 @@ ruleColumnTypeAssignement returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getColumnTypeAssignementAccess().getHyphenMinusGreaterThanSignKeyword_1());
     }
-(	otherlv_2=':' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getColumnTypeAssignementAccess().getColonKeyword_2());
-    }
-)?(
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getColumnTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getColumnTypeAssignementAccess().getTypePojoTypeParserRuleCall_2_0()); 
 	    }
-		lv_type_3_0=ruleJvmParameterizedTypeReference		{
+		lv_type_2_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getColumnTypeAssignementRule());
 	        }
        		set(
        			$current, 
        			"type",
-        		lv_type_3_0, 
-        		"JvmParameterizedTypeReference");
+        		lv_type_2_0, 
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1344,24 +1421,20 @@ ruleProcedurePojoAssignement returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getProcedurePojoAssignementAccess().getHyphenMinusGreaterThanSignKeyword_1());
     }
-(	otherlv_2=':' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getProcedurePojoAssignementAccess().getColonKeyword_2());
-    }
-)?(
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getProcedurePojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getProcedurePojoAssignementAccess().getPojoPojoTypeParserRuleCall_2_0()); 
 	    }
-		lv_pojo_3_0=ruleJvmParameterizedTypeReference		{
+		lv_pojo_2_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getProcedurePojoAssignementRule());
 	        }
        		set(
        			$current, 
        			"pojo",
-        		lv_pojo_3_0, 
-        		"JvmParameterizedTypeReference");
+        		lv_pojo_2_0, 
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1409,24 +1482,20 @@ ruleFunctionPojoAssignement returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getFunctionPojoAssignementAccess().getHyphenMinusGreaterThanSignKeyword_1());
     }
-(	otherlv_2=':' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getFunctionPojoAssignementAccess().getColonKeyword_2());
-    }
-)?(
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getFunctionPojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getFunctionPojoAssignementAccess().getPojoPojoTypeParserRuleCall_2_0()); 
 	    }
-		lv_pojo_3_0=ruleJvmParameterizedTypeReference		{
+		lv_pojo_2_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getFunctionPojoAssignementRule());
 	        }
        		set(
        			$current, 
        			"pojo",
-        		lv_pojo_3_0, 
-        		"JvmParameterizedTypeReference");
+        		lv_pojo_2_0, 
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1459,9 +1528,9 @@ ruleImplementsAssignement returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsAssignementAccess().getToImplementJvmParameterizedTypeReferenceParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getImplementsAssignementAccess().getToImplementPojoTypeParserRuleCall_1_0()); 
 	    }
-		lv_toImplement_1_0=ruleJvmParameterizedTypeReference		{
+		lv_toImplement_1_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImplementsAssignementRule());
 	        }
@@ -1469,7 +1538,7 @@ ruleImplementsAssignement returns [EObject current=null]
        			$current, 
        			"toImplement",
         		lv_toImplement_1_0, 
-        		"JvmParameterizedTypeReference");
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1546,9 +1615,9 @@ ruleExtendsAssignement returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getExtendsAssignementAccess().getToExtendsJvmParameterizedTypeReferenceParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getExtendsAssignementAccess().getToExtendsPojoTypeParserRuleCall_1_0()); 
 	    }
-		lv_toExtends_1_0=ruleJvmParameterizedTypeReference		{
+		lv_toExtends_1_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getExtendsAssignementRule());
 	        }
@@ -1556,7 +1625,7 @@ ruleExtendsAssignement returns [EObject current=null]
        			$current, 
        			"toExtends",
         		lv_toExtends_1_0, 
-        		"JvmParameterizedTypeReference");
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1633,9 +1702,9 @@ ruleImplementsAssignementGenerics returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsAssignementGenericsAccess().getToImplementJvmParameterizedTypeReferenceParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getImplementsAssignementGenericsAccess().getToImplementPojoTypeParserRuleCall_1_0()); 
 	    }
-		lv_toImplement_1_0=ruleJvmParameterizedTypeReference		{
+		lv_toImplement_1_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImplementsAssignementGenericsRule());
 	        }
@@ -1643,7 +1712,7 @@ ruleImplementsAssignementGenerics returns [EObject current=null]
        			$current, 
        			"toImplement",
         		lv_toImplement_1_0, 
-        		"JvmParameterizedTypeReference");
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1720,9 +1789,9 @@ ruleExtendsAssignementGenerics returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getExtendsAssignementGenericsAccess().getToExtendsJvmParameterizedTypeReferenceParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getExtendsAssignementGenericsAccess().getToExtendsPojoTypeParserRuleCall_1_0()); 
 	    }
-		lv_toExtends_1_0=ruleJvmParameterizedTypeReference		{
+		lv_toExtends_1_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getExtendsAssignementGenericsRule());
 	        }
@@ -1730,7 +1799,7 @@ ruleExtendsAssignementGenerics returns [EObject current=null]
        			$current, 
        			"toExtends",
         		lv_toExtends_1_0, 
-        		"JvmParameterizedTypeReference");
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2416,61 +2485,37 @@ ruleDatabaseProperty returns [EObject current=null]
 	    }
 
 )
-)((((	':' 
-)=>	otherlv_13=':' 
-    {
-    	newLeafNode(otherlv_13, grammarAccess.getDatabasePropertyAccess().getColonKeyword_7_1_0_0());
-    }
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbDriverxJvmParameterizedTypeReferenceParserRuleCall_7_1_0_1_0()); 
+	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbDriverPojoTypeParserRuleCall_7_1_0()); 
 	    }
-		lv_dbDriverx_14_0=ruleJvmParameterizedTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
-	        }
-       		set(
-       			$current, 
-       			"dbDriverx",
-        		lv_dbDriverx_14_0, 
-        		"JvmParameterizedTypeReference");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-    |(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbDriverValueTypeParserRuleCall_7_1_1_0()); 
-	    }
-		lv_dbDriver_15_0=ruleValueType		{
+		lv_dbDriver_13_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"dbDriver",
-        		lv_dbDriver_15_0, 
-        		"ValueType");
+        		lv_dbDriver_13_0, 
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)))
+))
     |((
 (
-		lv_name_16_0=	'ddl-create' 
+		lv_name_14_0=	'ddl-create' 
     {
-        newLeafNode(lv_name_16_0, grammarAccess.getDatabasePropertyAccess().getNameDdlCreateKeyword_8_0_0());
+        newLeafNode(lv_name_14_0, grammarAccess.getDatabasePropertyAccess().getNameDdlCreateKeyword_8_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_16_0, "ddl-create");
+       		setWithLastConsumed($current, "name", lv_name_14_0, "ddl-create");
 	    }
 
 )
@@ -2479,14 +2524,14 @@ ruleDatabaseProperty returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbExecuteBeforeValueTypeParserRuleCall_8_1_0()); 
 	    }
-		lv_dbExecuteBefore_17_0=ruleValueType		{
+		lv_dbExecuteBefore_15_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"dbExecuteBefore",
-        		lv_dbExecuteBefore_17_0, 
+        		lv_dbExecuteBefore_15_0, 
         		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2495,16 +2540,16 @@ ruleDatabaseProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_18_0=	'ddl-drop' 
+		lv_name_16_0=	'ddl-drop' 
     {
-        newLeafNode(lv_name_18_0, grammarAccess.getDatabasePropertyAccess().getNameDdlDropKeyword_9_0_0());
+        newLeafNode(lv_name_16_0, grammarAccess.getDatabasePropertyAccess().getNameDdlDropKeyword_9_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_18_0, "ddl-drop");
+       		setWithLastConsumed($current, "name", lv_name_16_0, "ddl-drop");
 	    }
 
 )
@@ -2513,14 +2558,14 @@ ruleDatabaseProperty returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbExecuteAfterValueTypeParserRuleCall_9_1_0()); 
 	    }
-		lv_dbExecuteAfter_19_0=ruleValueType		{
+		lv_dbExecuteAfter_17_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"dbExecuteAfter",
-        		lv_dbExecuteAfter_19_0, 
+        		lv_dbExecuteAfter_17_0, 
         		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2529,16 +2574,16 @@ ruleDatabaseProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_20_0=	'index-types' 
+		lv_name_18_0=	'index-types' 
     {
-        newLeafNode(lv_name_20_0, grammarAccess.getDatabasePropertyAccess().getNameIndexTypesKeyword_10_0_0());
+        newLeafNode(lv_name_18_0, grammarAccess.getDatabasePropertyAccess().getNameIndexTypesKeyword_10_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_20_0, "index-types");
+       		setWithLastConsumed($current, "name", lv_name_18_0, "index-types");
 	    }
 
 )
@@ -2547,14 +2592,14 @@ ruleDatabaseProperty returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbIndexTypesValueTypeParserRuleCall_10_1_0()); 
 	    }
-		lv_dbIndexTypes_21_0=ruleValueType		{
+		lv_dbIndexTypes_19_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"dbIndexTypes",
-        		lv_dbIndexTypes_21_0, 
+        		lv_dbIndexTypes_19_0, 
         		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2563,64 +2608,64 @@ ruleDatabaseProperty returns [EObject current=null]
 ))
     |(
 (
-		lv_name_22_0=	'skip-indexes' 
+		lv_name_20_0=	'skip-indexes' 
     {
-        newLeafNode(lv_name_22_0, grammarAccess.getDatabasePropertyAccess().getNameSkipIndexesKeyword_11_0());
+        newLeafNode(lv_name_20_0, grammarAccess.getDatabasePropertyAccess().getNameSkipIndexesKeyword_11_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_22_0, "skip-indexes");
+       		setWithLastConsumed($current, "name", lv_name_20_0, "skip-indexes");
 	    }
 
 )
 )
     |(
 (
-		lv_name_23_0=	'skip-functions-procedures' 
+		lv_name_21_0=	'skip-functions-procedures' 
     {
-        newLeafNode(lv_name_23_0, grammarAccess.getDatabasePropertyAccess().getNameSkipFunctionsProceduresKeyword_12_0());
+        newLeafNode(lv_name_21_0, grammarAccess.getDatabasePropertyAccess().getNameSkipFunctionsProceduresKeyword_12_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_23_0, "skip-functions-procedures");
+       		setWithLastConsumed($current, "name", lv_name_21_0, "skip-functions-procedures");
 	    }
 
 )
 )
     |(
 (
-		lv_name_24_0=	'skip-check-constraints' 
+		lv_name_22_0=	'skip-check-constraints' 
     {
-        newLeafNode(lv_name_24_0, grammarAccess.getDatabasePropertyAccess().getNameSkipCheckConstraintsKeyword_13_0());
+        newLeafNode(lv_name_22_0, grammarAccess.getDatabasePropertyAccess().getNameSkipCheckConstraintsKeyword_13_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_24_0, "skip-check-constraints");
+       		setWithLastConsumed($current, "name", lv_name_22_0, "skip-check-constraints");
 	    }
 
 )
 )
     |((
 (
-		lv_name_25_0=	'is-of-type' 
+		lv_name_23_0=	'is-of-type' 
     {
-        newLeafNode(lv_name_25_0, grammarAccess.getDatabasePropertyAccess().getNameIsOfTypeKeyword_14_0_0());
+        newLeafNode(lv_name_23_0, grammarAccess.getDatabasePropertyAccess().getNameIsOfTypeKeyword_14_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_25_0, "is-of-type");
+       		setWithLastConsumed($current, "name", lv_name_23_0, "is-of-type");
 	    }
 
 )
@@ -2629,14 +2674,14 @@ ruleDatabaseProperty returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbTypeDatabaseTypeAssignementParserRuleCall_14_1_0()); 
 	    }
-		lv_dbType_26_0=ruleDatabaseTypeAssignement		{
+		lv_dbType_24_0=ruleDatabaseTypeAssignement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"dbType",
-        		lv_dbType_26_0, 
+        		lv_dbType_24_0, 
         		"DatabaseTypeAssignement");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2645,16 +2690,16 @@ ruleDatabaseProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_27_0=	'show-database-info' 
+		lv_name_25_0=	'show-database-info' 
     {
-        newLeafNode(lv_name_27_0, grammarAccess.getDatabasePropertyAccess().getNameShowDatabaseInfoKeyword_15_0_0());
+        newLeafNode(lv_name_25_0, grammarAccess.getDatabasePropertyAccess().getNameShowDatabaseInfoKeyword_15_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_27_0, "show-database-info");
+       		setWithLastConsumed($current, "name", lv_name_25_0, "show-database-info");
 	    }
 
 )
@@ -2663,14 +2708,14 @@ ruleDatabaseProperty returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbMetaInfoDatabaseMetaInfoAssignementParserRuleCall_15_1_0()); 
 	    }
-		lv_dbMetaInfo_28_0=ruleDatabaseMetaInfoAssignement		{
+		lv_dbMetaInfo_26_0=ruleDatabaseMetaInfoAssignement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"dbMetaInfo",
-        		lv_dbMetaInfo_28_0, 
+        		lv_dbMetaInfo_26_0, 
         		"DatabaseMetaInfoAssignement");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2679,16 +2724,16 @@ ruleDatabaseProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_29_0=	'show-driver-info' 
+		lv_name_27_0=	'show-driver-info' 
     {
-        newLeafNode(lv_name_29_0, grammarAccess.getDatabasePropertyAccess().getNameShowDriverInfoKeyword_16_0_0());
+        newLeafNode(lv_name_27_0, grammarAccess.getDatabasePropertyAccess().getNameShowDriverInfoKeyword_16_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_29_0, "show-driver-info");
+       		setWithLastConsumed($current, "name", lv_name_27_0, "show-driver-info");
 	    }
 
 )
@@ -2697,14 +2742,14 @@ ruleDatabaseProperty returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbDriverInfoDriverMetaInfoAssignementParserRuleCall_16_1_0()); 
 	    }
-		lv_dbDriverInfo_30_0=ruleDriverMetaInfoAssignement		{
+		lv_dbDriverInfo_28_0=ruleDriverMetaInfoAssignement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"dbDriverInfo",
-        		lv_dbDriverInfo_30_0, 
+        		lv_dbDriverInfo_28_0, 
         		"DriverMetaInfoAssignement");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2713,16 +2758,16 @@ ruleDatabaseProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_31_0=	'show-driver-output' 
+		lv_name_29_0=	'show-driver-output' 
     {
-        newLeafNode(lv_name_31_0, grammarAccess.getDatabasePropertyAccess().getNameShowDriverOutputKeyword_17_0_0());
+        newLeafNode(lv_name_29_0, grammarAccess.getDatabasePropertyAccess().getNameShowDriverOutputKeyword_17_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_31_0, "show-driver-output");
+       		setWithLastConsumed($current, "name", lv_name_29_0, "show-driver-output");
 	    }
 
 )
@@ -2731,14 +2776,14 @@ ruleDatabaseProperty returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbMethodsCallsDriverMethodOutputAssignementParserRuleCall_17_1_0()); 
 	    }
-		lv_dbMethodsCalls_32_0=ruleDriverMethodOutputAssignement		{
+		lv_dbMethodsCalls_30_0=ruleDriverMethodOutputAssignement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		add(
        			$current, 
        			"dbMethodsCalls",
-        		lv_dbMethodsCalls_32_0, 
+        		lv_dbMethodsCalls_30_0, 
         		"DriverMethodOutputAssignement");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2747,16 +2792,16 @@ ruleDatabaseProperty returns [EObject current=null]
 )+)
     |((
 (
-		lv_name_33_0=	'debug-level' 
+		lv_name_31_0=	'debug-level' 
     {
-        newLeafNode(lv_name_33_0, grammarAccess.getDatabasePropertyAccess().getNameDebugLevelKeyword_18_0_0());
+        newLeafNode(lv_name_31_0, grammarAccess.getDatabasePropertyAccess().getNameDebugLevelKeyword_18_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_33_0, "debug-level");
+       		setWithLastConsumed($current, "name", lv_name_31_0, "debug-level");
 	    }
 
 )
@@ -2765,14 +2810,14 @@ ruleDatabaseProperty returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDebugDebugLevelAssignementParserRuleCall_18_1_0()); 
 	    }
-		lv_debug_34_0=ruleDebugLevelAssignement		{
+		lv_debug_32_0=ruleDebugLevelAssignement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"debug",
-        		lv_debug_34_0, 
+        		lv_debug_32_0, 
         		"DebugLevelAssignement");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2781,48 +2826,48 @@ ruleDatabaseProperty returns [EObject current=null]
 ))
     |(
 (
-		lv_name_35_0=	'take-comments' 
+		lv_name_33_0=	'take-comments' 
     {
-        newLeafNode(lv_name_35_0, grammarAccess.getDatabasePropertyAccess().getNameTakeCommentsKeyword_19_0());
+        newLeafNode(lv_name_33_0, grammarAccess.getDatabasePropertyAccess().getNameTakeCommentsKeyword_19_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_35_0, "take-comments");
+       		setWithLastConsumed($current, "name", lv_name_33_0, "take-comments");
 	    }
 
 )
 )
     |(
 (
-		lv_name_36_0=	'lowercase-names' 
+		lv_name_34_0=	'lowercase-names' 
     {
-        newLeafNode(lv_name_36_0, grammarAccess.getDatabasePropertyAccess().getNameLowercaseNamesKeyword_20_0());
+        newLeafNode(lv_name_34_0, grammarAccess.getDatabasePropertyAccess().getNameLowercaseNamesKeyword_20_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_36_0, "lowercase-names");
+       		setWithLastConsumed($current, "name", lv_name_34_0, "lowercase-names");
 	    }
 
 )
 )
     |(
 (
-		lv_name_37_0=	'uppercase-names' 
+		lv_name_35_0=	'uppercase-names' 
     {
-        newLeafNode(lv_name_37_0, grammarAccess.getDatabasePropertyAccess().getNameUppercaseNamesKeyword_21_0());
+        newLeafNode(lv_name_35_0, grammarAccess.getDatabasePropertyAccess().getNameUppercaseNamesKeyword_21_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_37_0, "uppercase-names");
+       		setWithLastConsumed($current, "name", lv_name_35_0, "uppercase-names");
 	    }
 
 )
@@ -5965,24 +6010,20 @@ ruleDaogenProperty returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_15=':' 
-    {
-    	newLeafNode(otherlv_15, grammarAccess.getDaogenPropertyAccess().getColonKeyword_7_2());
-    }
-)?(
+)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDaogenPropertyAccess().getResultTypeJvmParameterizedTypeReferenceParserRuleCall_7_3_0()); 
+	        newCompositeNode(grammarAccess.getDaogenPropertyAccess().getResultTypePojoTypeParserRuleCall_7_2_0()); 
 	    }
-		lv_resultType_16_0=ruleJvmParameterizedTypeReference		{
+		lv_resultType_15_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDaogenPropertyRule());
 	        }
        		set(
        			$current, 
        			"resultType",
-        		lv_resultType_16_0, 
-        		"JvmParameterizedTypeReference");
+        		lv_resultType_15_0, 
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5990,16 +6031,16 @@ ruleDaogenProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_17_0=	'debug-level' 
+		lv_name_16_0=	'debug-level' 
     {
-        newLeafNode(lv_name_17_0, grammarAccess.getDaogenPropertyAccess().getNameDebugLevelKeyword_8_0_0());
+        newLeafNode(lv_name_16_0, grammarAccess.getDaogenPropertyAccess().getNameDebugLevelKeyword_8_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDaogenPropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_17_0, "debug-level");
+       		setWithLastConsumed($current, "name", lv_name_16_0, "debug-level");
 	    }
 
 )
@@ -6008,14 +6049,14 @@ ruleDaogenProperty returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getDaogenPropertyAccess().getDebugDebugLevelAssignementParserRuleCall_8_1_0()); 
 	    }
-		lv_debug_18_0=ruleDebugLevelAssignement		{
+		lv_debug_17_0=ruleDebugLevelAssignement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDaogenPropertyRule());
 	        }
        		set(
        			$current, 
        			"debug",
-        		lv_debug_18_0, 
+        		lv_debug_17_0, 
         		"DebugLevelAssignement");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -6024,16 +6065,16 @@ ruleDaogenProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_19_0=	'active-filter' 
+		lv_name_18_0=	'active-filter' 
     {
-        newLeafNode(lv_name_19_0, grammarAccess.getDaogenPropertyAccess().getNameActiveFilterKeyword_9_0_0());
+        newLeafNode(lv_name_18_0, grammarAccess.getDaogenPropertyAccess().getNameActiveFilterKeyword_9_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDaogenPropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_19_0, "active-filter");
+       		setWithLastConsumed($current, "name", lv_name_18_0, "active-filter");
 	    }
 
 )
@@ -6042,14 +6083,14 @@ ruleDaogenProperty returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getDaogenPropertyAccess().getActiveFilterValueTypeParserRuleCall_9_1_0()); 
 	    }
-		lv_activeFilter_20_0=ruleValueType		{
+		lv_activeFilter_19_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDaogenPropertyRule());
 	        }
        		set(
        			$current, 
        			"activeFilter",
-        		lv_activeFilter_20_0, 
+        		lv_activeFilter_19_0, 
         		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -6058,16 +6099,16 @@ ruleDaogenProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_21_0=	'package' 
+		lv_name_20_0=	'package' 
     {
-        newLeafNode(lv_name_21_0, grammarAccess.getDaogenPropertyAccess().getNamePackageKeyword_10_0_0());
+        newLeafNode(lv_name_20_0, grammarAccess.getDaogenPropertyAccess().getNamePackageKeyword_10_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDaogenPropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_21_0, "package");
+       		setWithLastConsumed($current, "name", lv_name_20_0, "package");
 	    }
 
 )
@@ -6076,14 +6117,14 @@ ruleDaogenProperty returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getDaogenPropertyAccess().getPckgQualifiedNameParserRuleCall_10_1_0()); 
 	    }
-		lv_pckg_22_0=ruleQualifiedName		{
+		lv_pckg_21_0=ruleQualifiedName		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDaogenPropertyRule());
 	        }
        		set(
        			$current, 
        			"pckg",
-        		lv_pckg_22_0, 
+        		lv_pckg_21_0, 
         		"QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }

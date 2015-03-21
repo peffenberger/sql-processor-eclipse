@@ -17,9 +17,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 
-import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
-
 import org.sqlproc.model.processorModel.ExtendsAssignementGenerics;
+import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -47,7 +46,7 @@ public class ExtendsAssignementGenericsImpl extends MinimalEObjectImpl.Container
    * @generated
    * @ordered
    */
-  protected JvmParameterizedTypeReference toExtends;
+  protected PojoType toExtends;
 
   /**
    * The cached value of the '{@link #getDbTables() <em>Db Tables</em>}' attribute list.
@@ -95,7 +94,7 @@ public class ExtendsAssignementGenericsImpl extends MinimalEObjectImpl.Container
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmParameterizedTypeReference getToExtends()
+  public PojoType getToExtends()
   {
     return toExtends;
   }
@@ -105,9 +104,9 @@ public class ExtendsAssignementGenericsImpl extends MinimalEObjectImpl.Container
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetToExtends(JvmParameterizedTypeReference newToExtends, NotificationChain msgs)
+  public NotificationChain basicSetToExtends(PojoType newToExtends, NotificationChain msgs)
   {
-    JvmParameterizedTypeReference oldToExtends = toExtends;
+    PojoType oldToExtends = toExtends;
     toExtends = newToExtends;
     if (eNotificationRequired())
     {
@@ -122,7 +121,7 @@ public class ExtendsAssignementGenericsImpl extends MinimalEObjectImpl.Container
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setToExtends(JvmParameterizedTypeReference newToExtends)
+  public void setToExtends(PojoType newToExtends)
   {
     if (newToExtends != toExtends)
     {
@@ -214,7 +213,7 @@ public class ExtendsAssignementGenericsImpl extends MinimalEObjectImpl.Container
     switch (featureID)
     {
       case ProcessorModelPackage.EXTENDS_ASSIGNEMENT_GENERICS__TO_EXTENDS:
-        setToExtends((JvmParameterizedTypeReference)newValue);
+        setToExtends((PojoType)newValue);
         return;
       case ProcessorModelPackage.EXTENDS_ASSIGNEMENT_GENERICS__DB_TABLES:
         getDbTables().clear();
@@ -239,7 +238,7 @@ public class ExtendsAssignementGenericsImpl extends MinimalEObjectImpl.Container
     switch (featureID)
     {
       case ProcessorModelPackage.EXTENDS_ASSIGNEMENT_GENERICS__TO_EXTENDS:
-        setToExtends((JvmParameterizedTypeReference)null);
+        setToExtends((PojoType)null);
         return;
       case ProcessorModelPackage.EXTENDS_ASSIGNEMENT_GENERICS__DB_TABLES:
         getDbTables().clear();

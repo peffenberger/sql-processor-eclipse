@@ -11,9 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
-
 import org.sqlproc.model.processorModel.FunctionPojoAssignement;
+import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -60,7 +59,7 @@ public class FunctionPojoAssignementImpl extends MinimalEObjectImpl.Container im
    * @generated
    * @ordered
    */
-  protected JvmParameterizedTypeReference pojo;
+  protected PojoType pojo;
 
   /**
    * <!-- begin-user-doc -->
@@ -111,7 +110,7 @@ public class FunctionPojoAssignementImpl extends MinimalEObjectImpl.Container im
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmParameterizedTypeReference getPojo()
+  public PojoType getPojo()
   {
     return pojo;
   }
@@ -121,9 +120,9 @@ public class FunctionPojoAssignementImpl extends MinimalEObjectImpl.Container im
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPojo(JvmParameterizedTypeReference newPojo, NotificationChain msgs)
+  public NotificationChain basicSetPojo(PojoType newPojo, NotificationChain msgs)
   {
-    JvmParameterizedTypeReference oldPojo = pojo;
+    PojoType oldPojo = pojo;
     pojo = newPojo;
     if (eNotificationRequired())
     {
@@ -138,7 +137,7 @@ public class FunctionPojoAssignementImpl extends MinimalEObjectImpl.Container im
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPojo(JvmParameterizedTypeReference newPojo)
+  public void setPojo(PojoType newPojo)
   {
     if (newPojo != pojo)
     {
@@ -202,7 +201,7 @@ public class FunctionPojoAssignementImpl extends MinimalEObjectImpl.Container im
         setDbFunction((String)newValue);
         return;
       case ProcessorModelPackage.FUNCTION_POJO_ASSIGNEMENT__POJO:
-        setPojo((JvmParameterizedTypeReference)newValue);
+        setPojo((PojoType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -222,7 +221,7 @@ public class FunctionPojoAssignementImpl extends MinimalEObjectImpl.Container im
         setDbFunction(DB_FUNCTION_EDEFAULT);
         return;
       case ProcessorModelPackage.FUNCTION_POJO_ASSIGNEMENT__POJO:
-        setPojo((JvmParameterizedTypeReference)null);
+        setPojo((PojoType)null);
         return;
     }
     super.eUnset(featureID);

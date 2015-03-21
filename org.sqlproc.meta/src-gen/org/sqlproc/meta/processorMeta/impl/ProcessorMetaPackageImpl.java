@@ -105,6 +105,13 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass pojoTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass databaseCatalogAssignementEClass = null;
 
   /**
@@ -528,13 +535,6 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
   private EClass optionalFeatureEClass = null;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass pojoTypeEClass = null;
-
-  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -728,6 +728,86 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
   public EAttribute getValueType_Id()
   {
     return (EAttribute)valueTypeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPojoType()
+  {
+    return pojoTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoType_Ident()
+  {
+    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoType_Ref()
+  {
+    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoType_Type()
+  {
+    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoType_Gident()
+  {
+    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoType_Gref()
+  {
+    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoType_Gtype()
+  {
+    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPojoType_Array()
+  {
+    return (EAttribute)pojoTypeEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -1655,7 +1735,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDatabaseProperty_DbDriverx()
+  public EReference getDatabaseProperty_DbDriver()
   {
     return (EReference)databasePropertyEClass.getEStructuralFeatures().get(6);
   }
@@ -1665,7 +1745,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDatabaseProperty_DbDriver()
+  public EReference getDatabaseProperty_DbExecuteBefore()
   {
     return (EReference)databasePropertyEClass.getEStructuralFeatures().get(7);
   }
@@ -1675,7 +1755,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDatabaseProperty_DbExecuteBefore()
+  public EReference getDatabaseProperty_DbExecuteAfter()
   {
     return (EReference)databasePropertyEClass.getEStructuralFeatures().get(8);
   }
@@ -1685,7 +1765,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDatabaseProperty_DbExecuteAfter()
+  public EReference getDatabaseProperty_DbIndexTypes()
   {
     return (EReference)databasePropertyEClass.getEStructuralFeatures().get(9);
   }
@@ -1695,7 +1775,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDatabaseProperty_DbIndexTypes()
+  public EReference getDatabaseProperty_DbType()
   {
     return (EReference)databasePropertyEClass.getEStructuralFeatures().get(10);
   }
@@ -1705,7 +1785,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDatabaseProperty_DbType()
+  public EReference getDatabaseProperty_DbMetaInfo()
   {
     return (EReference)databasePropertyEClass.getEStructuralFeatures().get(11);
   }
@@ -1715,7 +1795,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDatabaseProperty_DbMetaInfo()
+  public EReference getDatabaseProperty_DbDriverInfo()
   {
     return (EReference)databasePropertyEClass.getEStructuralFeatures().get(12);
   }
@@ -1725,7 +1805,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDatabaseProperty_DbDriverInfo()
+  public EReference getDatabaseProperty_DbMethodsCalls()
   {
     return (EReference)databasePropertyEClass.getEStructuralFeatures().get(13);
   }
@@ -1735,19 +1815,9 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDatabaseProperty_DbMethodsCalls()
-  {
-    return (EReference)databasePropertyEClass.getEStructuralFeatures().get(14);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getDatabaseProperty_Debug()
   {
-    return (EReference)databasePropertyEClass.getEStructuralFeatures().get(15);
+    return (EReference)databasePropertyEClass.getEStructuralFeatures().get(14);
   }
 
   /**
@@ -3545,66 +3615,6 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getPojoType()
-  {
-    return pojoTypeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoType_Ref()
-  {
-    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoType_Type()
-  {
-    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoType_Gref()
-  {
-    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPojoType_Gtype()
-  {
-    return (EReference)pojoTypeEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPojoType_Array()
-  {
-    return (EAttribute)pojoTypeEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public ProcessorMetaFactory getProcessorMetaFactory()
   {
     return (ProcessorMetaFactory)getEFactoryInstance();
@@ -3644,6 +3654,15 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     createEAttribute(valueTypeEClass, VALUE_TYPE__VALUE);
     createEAttribute(valueTypeEClass, VALUE_TYPE__NUMBER);
     createEAttribute(valueTypeEClass, VALUE_TYPE__ID);
+
+    pojoTypeEClass = createEClass(POJO_TYPE);
+    createEReference(pojoTypeEClass, POJO_TYPE__IDENT);
+    createEReference(pojoTypeEClass, POJO_TYPE__REF);
+    createEReference(pojoTypeEClass, POJO_TYPE__TYPE);
+    createEReference(pojoTypeEClass, POJO_TYPE__GIDENT);
+    createEReference(pojoTypeEClass, POJO_TYPE__GREF);
+    createEReference(pojoTypeEClass, POJO_TYPE__GTYPE);
+    createEAttribute(pojoTypeEClass, POJO_TYPE__ARRAY);
 
     databaseCatalogAssignementEClass = createEClass(DATABASE_CATALOG_ASSIGNEMENT);
     createEAttribute(databaseCatalogAssignementEClass, DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG);
@@ -3762,7 +3781,6 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_PASSWORD);
     createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_CATALOG);
     createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_SCHEMA);
-    createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_DRIVERX);
     createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_DRIVER);
     createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_EXECUTE_BEFORE);
     createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_EXECUTE_AFTER);
@@ -3986,13 +4004,6 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     createEAttribute(optionalFeatureEClass, OPTIONAL_FEATURE__TYPE);
     createEAttribute(optionalFeatureEClass, OPTIONAL_FEATURE__MODIFIERS);
     createEAttribute(optionalFeatureEClass, OPTIONAL_FEATURE__OPTION);
-
-    pojoTypeEClass = createEClass(POJO_TYPE);
-    createEReference(pojoTypeEClass, POJO_TYPE__REF);
-    createEReference(pojoTypeEClass, POJO_TYPE__TYPE);
-    createEReference(pojoTypeEClass, POJO_TYPE__GREF);
-    createEReference(pojoTypeEClass, POJO_TYPE__GTYPE);
-    createEAttribute(pojoTypeEClass, POJO_TYPE__ARRAY);
   }
 
   /**
@@ -4043,6 +4054,15 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     initEAttribute(getValueType_Value(), ecorePackage.getEString(), "value", null, 0, 1, ValueType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getValueType_Number(), ecorePackage.getEString(), "number", null, 0, 1, ValueType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getValueType_Id(), ecorePackage.getEString(), "id", null, 0, 1, ValueType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(pojoTypeEClass, PojoType.class, "PojoType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPojoType_Ident(), this.getValueType(), null, "ident", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoType_Ref(), this.getPojoDefinition(), null, "ref", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoType_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoType_Gident(), this.getValueType(), null, "gident", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoType_Gref(), this.getPojoDefinition(), null, "gref", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoType_Gtype(), theTypesPackage.getJvmType(), null, "gtype", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPojoType_Array(), ecorePackage.getEBoolean(), "array", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(databaseCatalogAssignementEClass, DatabaseCatalogAssignement.class, "DatabaseCatalogAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDatabaseCatalogAssignement_DbCatalog(), ecorePackage.getEString(), "dbCatalog", null, 0, 1, DatabaseCatalogAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4120,22 +4140,22 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     initEReference(getFunctionPojoAssignement_Pojo(), this.getPojoType(), null, "pojo", null, 0, 1, FunctionPojoAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(implementsAssignementEClass, ImplementsAssignement.class, "ImplementsAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getImplementsAssignement_ToImplement(), theTypesPackage.getJvmType(), null, "toImplement", null, 0, 1, ImplementsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImplementsAssignement_ToImplement(), this.getPojoType(), null, "toImplement", null, 0, 1, ImplementsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getImplementsAssignement_DbTables(), ecorePackage.getEString(), "dbTables", null, 0, -1, ImplementsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getImplementsAssignement_DbNotTables(), ecorePackage.getEString(), "dbNotTables", null, 0, -1, ImplementsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(extendsAssignementEClass, ExtendsAssignement.class, "ExtendsAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExtendsAssignement_ToExtends(), theTypesPackage.getJvmType(), null, "toExtends", null, 0, 1, ExtendsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExtendsAssignement_ToExtends(), this.getPojoType(), null, "toExtends", null, 0, 1, ExtendsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExtendsAssignement_DbTables(), ecorePackage.getEString(), "dbTables", null, 0, -1, ExtendsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExtendsAssignement_DbNotTables(), ecorePackage.getEString(), "dbNotTables", null, 0, -1, ExtendsAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(implementsAssignementGenericsEClass, ImplementsAssignementGenerics.class, "ImplementsAssignementGenerics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getImplementsAssignementGenerics_ToImplement(), theTypesPackage.getJvmType(), null, "toImplement", null, 0, 1, ImplementsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImplementsAssignementGenerics_ToImplement(), this.getPojoType(), null, "toImplement", null, 0, 1, ImplementsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getImplementsAssignementGenerics_DbTables(), ecorePackage.getEString(), "dbTables", null, 0, -1, ImplementsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getImplementsAssignementGenerics_DbNotTables(), ecorePackage.getEString(), "dbNotTables", null, 0, -1, ImplementsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(extendsAssignementGenericsEClass, ExtendsAssignementGenerics.class, "ExtendsAssignementGenerics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExtendsAssignementGenerics_ToExtends(), theTypesPackage.getJvmType(), null, "toExtends", null, 0, 1, ExtendsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExtendsAssignementGenerics_ToExtends(), this.getPojoType(), null, "toExtends", null, 0, 1, ExtendsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExtendsAssignementGenerics_DbTables(), ecorePackage.getEString(), "dbTables", null, 0, -1, ExtendsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExtendsAssignementGenerics_DbNotTables(), ecorePackage.getEString(), "dbNotTables", null, 0, -1, ExtendsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -4161,8 +4181,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     initEReference(getDatabaseProperty_DbPassword(), this.getValueType(), null, "dbPassword", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDatabaseProperty_DbCatalog(), this.getDatabaseCatalogAssignement(), null, "dbCatalog", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDatabaseProperty_DbSchema(), this.getDatabaseSchemaAssignement(), null, "dbSchema", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDatabaseProperty_DbDriverx(), theTypesPackage.getJvmType(), null, "dbDriverx", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDatabaseProperty_DbDriver(), this.getValueType(), null, "dbDriver", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDatabaseProperty_DbDriver(), this.getPojoType(), null, "dbDriver", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDatabaseProperty_DbExecuteBefore(), this.getValueType(), null, "dbExecuteBefore", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDatabaseProperty_DbExecuteAfter(), this.getValueType(), null, "dbExecuteAfter", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDatabaseProperty_DbIndexTypes(), this.getValueType(), null, "dbIndexTypes", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4385,13 +4404,6 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     initEAttribute(getOptionalFeature_Type(), ecorePackage.getEString(), "type", null, 0, 1, OptionalFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOptionalFeature_Modifiers(), ecorePackage.getEString(), "modifiers", null, 0, -1, OptionalFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOptionalFeature_Option(), ecorePackage.getEString(), "option", null, 0, 1, OptionalFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(pojoTypeEClass, PojoType.class, "PojoType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPojoType_Ref(), this.getPojoDefinition(), null, "ref", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoType_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoType_Gref(), this.getPojoDefinition(), null, "gref", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoType_Gtype(), theTypesPackage.getJvmType(), null, "gtype", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoType_Array(), ecorePackage.getEBoolean(), "array", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

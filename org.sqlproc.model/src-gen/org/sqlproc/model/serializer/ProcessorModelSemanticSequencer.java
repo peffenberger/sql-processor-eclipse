@@ -143,6 +143,7 @@ import org.sqlproc.model.processorModel.PojoDirectiveSerializable;
 import org.sqlproc.model.processorModel.PojoDirectiveToString;
 import org.sqlproc.model.processorModel.PojoEntity;
 import org.sqlproc.model.processorModel.PojoProcedure;
+import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
@@ -667,6 +668,12 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 			case ProcessorModelPackage.POJO_PROCEDURE:
 				if(context == grammarAccess.getPojoProcedureRule()) {
 					sequence_PojoProcedure(context, (PojoProcedure) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.POJO_TYPE:
+				if(context == grammarAccess.getPojoTypeRule()) {
+					sequence_PojoType(context, (PojoType) semanticObject); 
 					return; 
 				}
 				else break;
@@ -2109,7 +2116,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (dbColumn=ValidID type=JvmParameterizedTypeReference)
+	 *     (dbColumn=ValidID type=PojoType)
 	 */
 	protected void sequence_ColumnTypeAssignement(EObject context, ColumnTypeAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -2121,7 +2128,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getColumnTypeAssignementAccess().getDbColumnValidIDParserRuleCall_0_0(), semanticObject.getDbColumn());
-		feeder.accept(grammarAccess.getColumnTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_3_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getColumnTypeAssignementAccess().getTypePojoTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
@@ -2230,7 +2237,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         (name='implements-interfaces-generics' toImplementsGenerics=ImplementsAssignementGenerics) | 
 	 *         (name='extends-class-generics' toExtendsGenerics=ExtendsAssignementGenerics) | 
 	 *         name='make-it-final' | 
-	 *         (name='function-result' dbFunction=ValidID resultType=JvmParameterizedTypeReference) | 
+	 *         (name='function-result' dbFunction=ValidID resultType=PojoType) | 
 	 *         (name='debug-level' debug=DebugLevelAssignement) | 
 	 *         (name='active-filter' activeFilter=ValueType) | 
 	 *         (name='package' pckg=QualifiedName)
@@ -2283,7 +2290,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         (name='login-password' dbPassword=ValueType) | 
 	 *         (name='in-catalog' dbCatalog=DatabaseCatalogAssignement) | 
 	 *         (name='active-schema' dbSchema=DatabaseSchemaAssignement) | 
-	 *         (name='jdbc-driver' (dbDriverx=JvmParameterizedTypeReference | dbDriver=ValueType)) | 
+	 *         (name='jdbc-driver' dbDriver=PojoType) | 
 	 *         (name='ddl-create' dbExecuteBefore=ValueType) | 
 	 *         (name='ddl-drop' dbExecuteAfter=ValueType) | 
 	 *         (name='index-types' dbIndexTypes=ValueType) | 
@@ -2482,7 +2489,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (toExtends=JvmParameterizedTypeReference dbTables+=ValidID* dbNotTables+=ValidID*)
+	 *     (toExtends=PojoType dbTables+=ValidID* dbNotTables+=ValidID*)
 	 */
 	protected void sequence_ExtendsAssignementGenerics(EObject context, ExtendsAssignementGenerics semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2491,7 +2498,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (toExtends=JvmParameterizedTypeReference dbTables+=ValidID* dbNotTables+=ValidID*)
+	 *     (toExtends=PojoType dbTables+=ValidID* dbNotTables+=ValidID*)
 	 */
 	protected void sequence_ExtendsAssignement(EObject context, ExtendsAssignement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2573,7 +2580,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (dbFunction=ValidID pojo=JvmParameterizedTypeReference)
+	 *     (dbFunction=ValidID pojo=PojoType)
 	 */
 	protected void sequence_FunctionPojoAssignement(EObject context, FunctionPojoAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -2585,14 +2592,14 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getFunctionPojoAssignementAccess().getDbFunctionValidIDParserRuleCall_0_0(), semanticObject.getDbFunction());
-		feeder.accept(grammarAccess.getFunctionPojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_3_0(), semanticObject.getPojo());
+		feeder.accept(grammarAccess.getFunctionPojoAssignementAccess().getPojoPojoTypeParserRuleCall_2_0(), semanticObject.getPojo());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (toImplement=JvmParameterizedTypeReference dbTables+=ValidID* dbNotTables+=ValidID*)
+	 *     (toImplement=PojoType dbTables+=ValidID* dbNotTables+=ValidID*)
 	 */
 	protected void sequence_ImplementsAssignementGenerics(EObject context, ImplementsAssignementGenerics semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2601,7 +2608,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (toImplement=JvmParameterizedTypeReference dbTables+=ValidID* dbNotTables+=ValidID*)
+	 *     (toImplement=PojoType dbTables+=ValidID* dbNotTables+=ValidID*)
 	 */
 	protected void sequence_ImplementsAssignement(EObject context, ImplementsAssignement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -3060,6 +3067,15 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
+	 *     (ident=ValueType | ref=[PojoDefinition|ValidID] | type=JvmParameterizedTypeReference)
+	 */
+	protected void sequence_PojoType(EObject context, PojoType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (
 	 *         (name='types-sqltypes' sqlTypes+=SqlTypeAssignement+) | 
 	 *         (name='types-in-table' dbTable=ValidID sqlTypes+=SqlTypeAssignement+) | 
@@ -3131,7 +3147,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (dbProcedure=ValidID pojo=JvmParameterizedTypeReference)
+	 *     (dbProcedure=ValidID pojo=PojoType)
 	 */
 	protected void sequence_ProcedurePojoAssignement(EObject context, ProcedurePojoAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -3143,7 +3159,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getProcedurePojoAssignementAccess().getDbProcedureValidIDParserRuleCall_0_0(), semanticObject.getDbProcedure());
-		feeder.accept(grammarAccess.getProcedurePojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_3_0(), semanticObject.getPojo());
+		feeder.accept(grammarAccess.getProcedurePojoAssignementAccess().getPojoPojoTypeParserRuleCall_2_0(), semanticObject.getPojo());
 		feeder.finish();
 	}
 	
@@ -3210,7 +3226,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (sqlType=ValueType type=JvmParameterizedTypeReference)
+	 *     (sqlType=ValueType type=PojoType)
 	 */
 	protected void sequence_SqlTypeAssignement(EObject context, SqlTypeAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -3222,7 +3238,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getSqlTypeAssignementAccess().getSqlTypeValueTypeParserRuleCall_0_0(), semanticObject.getSqlType());
-		feeder.accept(grammarAccess.getSqlTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_3_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getSqlTypeAssignementAccess().getTypePojoTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	

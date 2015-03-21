@@ -86,6 +86,13 @@ public class ProcessorMetaSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorMetaPackage.POJO_TYPE:
+      {
+        PojoType pojoType = (PojoType)theEObject;
+        T result = casePojoType(pojoType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorMetaPackage.DATABASE_CATALOG_ASSIGNEMENT:
       {
         DatabaseCatalogAssignement databaseCatalogAssignement = (DatabaseCatalogAssignement)theEObject;
@@ -513,13 +520,6 @@ public class ProcessorMetaSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorMetaPackage.POJO_TYPE:
-      {
-        PojoType pojoType = (PojoType)theEObject;
-        T result = casePojoType(pojoType);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       default: return defaultCase(theEObject);
     }
   }
@@ -552,6 +552,22 @@ public class ProcessorMetaSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseValueType(ValueType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoType(PojoType object)
   {
     return null;
   }
@@ -1528,22 +1544,6 @@ public class ProcessorMetaSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseOptionalFeature(OptionalFeature object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePojoType(PojoType object)
   {
     return null;
   }

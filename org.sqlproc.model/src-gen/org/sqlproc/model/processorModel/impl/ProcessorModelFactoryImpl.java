@@ -103,6 +103,7 @@ import org.sqlproc.model.processorModel.PojoDirectiveSerializable;
 import org.sqlproc.model.processorModel.PojoDirectiveToString;
 import org.sqlproc.model.processorModel.PojoEntity;
 import org.sqlproc.model.processorModel.PojoProcedure;
+import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
@@ -172,6 +173,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
     {
       case ProcessorModelPackage.ARTIFACTS: return createArtifacts();
       case ProcessorModelPackage.VALUE_TYPE: return createValueType();
+      case ProcessorModelPackage.POJO_TYPE: return createPojoType();
       case ProcessorModelPackage.DATABASE_CATALOG_ASSIGNEMENT: return createDatabaseCatalogAssignement();
       case ProcessorModelPackage.DATABASE_SCHEMA_ASSIGNEMENT: return createDatabaseSchemaAssignement();
       case ProcessorModelPackage.DATABASE_TYPE_ASSIGNEMENT: return createDatabaseTypeAssignement();
@@ -301,6 +303,17 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
   {
     ValueTypeImpl valueType = new ValueTypeImpl();
     return valueType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoType createPojoType()
+  {
+    PojoTypeImpl pojoType = new PojoTypeImpl();
+    return pojoType;
   }
 
   /**

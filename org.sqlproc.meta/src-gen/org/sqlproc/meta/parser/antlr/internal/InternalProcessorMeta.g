@@ -354,6 +354,170 @@ ruleValueType returns [EObject current=null]
 
 
 
+// Entry rule entryRulePojoType
+entryRulePojoType returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getPojoTypeRule()); }
+	 iv_rulePojoType=rulePojoType 
+	 { $current=$iv_rulePojoType.current; } 
+	 EOF 
+;
+
+// Rule PojoType
+rulePojoType returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(((this_COLON_0=RULE_COLON
+    { 
+    newLeafNode(this_COLON_0, grammarAccess.getPojoTypeAccess().getCOLONTerminalRuleCall_0_0_0()); 
+    }
+this_COLON_1=RULE_COLON
+    { 
+    newLeafNode(this_COLON_1, grammarAccess.getPojoTypeAccess().getCOLONTerminalRuleCall_0_0_1()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPojoTypeAccess().getIdentValueTypeParserRuleCall_0_0_2_0()); 
+	    }
+		lv_ident_2_0=ruleValueType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPojoTypeRule());
+	        }
+       		set(
+       			$current, 
+       			"ident",
+        		lv_ident_2_0, 
+        		"ValueType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(this_COLON_3=RULE_COLON
+    { 
+    newLeafNode(this_COLON_3, grammarAccess.getPojoTypeAccess().getCOLONTerminalRuleCall_0_1_0()); 
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoTypeRule());
+	        }
+        }
+	otherlv_4=RULE_IDENT
+	{
+		newLeafNode(otherlv_4, grammarAccess.getPojoTypeAccess().getRefPojoDefinitionCrossReference_0_1_1_0()); 
+	}
+
+)
+))
+    |(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoTypeRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPojoTypeAccess().getTypeJvmTypeCrossReference_0_2_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))(this_LESS_THAN_6=RULE_LESS_THAN
+    { 
+    newLeafNode(this_LESS_THAN_6, grammarAccess.getPojoTypeAccess().getLESS_THANTerminalRuleCall_1_0()); 
+    }
+((this_COLON_7=RULE_COLON
+    { 
+    newLeafNode(this_COLON_7, grammarAccess.getPojoTypeAccess().getCOLONTerminalRuleCall_1_1_0_0()); 
+    }
+this_COLON_8=RULE_COLON
+    { 
+    newLeafNode(this_COLON_8, grammarAccess.getPojoTypeAccess().getCOLONTerminalRuleCall_1_1_0_1()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPojoTypeAccess().getGidentValueTypeParserRuleCall_1_1_0_2_0()); 
+	    }
+		lv_gident_9_0=ruleValueType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPojoTypeRule());
+	        }
+       		set(
+       			$current, 
+       			"gident",
+        		lv_gident_9_0, 
+        		"ValueType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(this_COLON_10=RULE_COLON
+    { 
+    newLeafNode(this_COLON_10, grammarAccess.getPojoTypeAccess().getCOLONTerminalRuleCall_1_1_1_0()); 
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoTypeRule());
+	        }
+        }
+	otherlv_11=RULE_IDENT
+	{
+		newLeafNode(otherlv_11, grammarAccess.getPojoTypeAccess().getGrefPojoDefinitionCrossReference_1_1_1_1_0()); 
+	}
+
+)
+))
+    |(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoTypeRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPojoTypeAccess().getGtypeJvmTypeCrossReference_1_1_2_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))this_MORE_THAN_13=RULE_MORE_THAN
+    { 
+    newLeafNode(this_MORE_THAN_13, grammarAccess.getPojoTypeAccess().getMORE_THANTerminalRuleCall_1_2()); 
+    }
+)?(
+(
+		lv_array_14_0=	'[]' 
+    {
+        newLeafNode(lv_array_14_0, grammarAccess.getPojoTypeAccess().getArrayLeftSquareBracketRightSquareBracketKeyword_2_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoTypeRule());
+	        }
+       		setWithLastConsumed($current, "array", true, "[]");
+	    }
+
+)
+)?)
+;
+
+
+
+
+
 // Entry rule entryRuleDatabaseCatalogAssignement
 entryRuleDatabaseCatalogAssignement returns [EObject current=null] 
 	:
@@ -1505,42 +1669,41 @@ ruleImplementsAssignement returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(this_COLON_0=RULE_COLON
-    { 
-    newLeafNode(this_COLON_0, grammarAccess.getImplementsAssignementAccess().getCOLONTerminalRuleCall_0()); 
-    }
+((
 (
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getImplementsAssignementRule());
-	        }
-        }
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsAssignementAccess().getToImplementJvmTypeCrossReference_1_0()); 
+	        newCompositeNode(grammarAccess.getImplementsAssignementAccess().getToImplementPojoTypeParserRuleCall_0_0()); 
 	    }
-		ruleQualifiedName		{ 
+		lv_toImplement_0_0=rulePojoType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getImplementsAssignementRule());
+	        }
+       		set(
+       			$current, 
+       			"toImplement",
+        		lv_toImplement_0_0, 
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)((this_WS_2=RULE_WS
+)((this_WS_1=RULE_WS
     { 
-    newLeafNode(this_WS_2, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_2_0()); 
+    newLeafNode(this_WS_1, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_1_0()); 
     }
-)+this_PLUS_3=RULE_PLUS
+)+this_PLUS_2=RULE_PLUS
     { 
-    newLeafNode(this_PLUS_3, grammarAccess.getImplementsAssignementAccess().getPLUSTerminalRuleCall_2_1()); 
+    newLeafNode(this_PLUS_2, grammarAccess.getImplementsAssignementAccess().getPLUSTerminalRuleCall_1_1()); 
     }
-((this_WS_4=RULE_WS
+((this_WS_3=RULE_WS
     { 
-    newLeafNode(this_WS_4, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_2_2_0()); 
+    newLeafNode(this_WS_3, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_1_2_0()); 
     }
 )+(
 (
-		lv_dbTables_5_0=RULE_IDENT
+		lv_dbTables_4_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbTables_5_0, grammarAccess.getImplementsAssignementAccess().getDbTablesIDENTTerminalRuleCall_2_2_1_0()); 
+			newLeafNode(lv_dbTables_4_0, grammarAccess.getImplementsAssignementAccess().getDbTablesIDENTTerminalRuleCall_1_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1549,28 +1712,28 @@ ruleImplementsAssignement returns [EObject current=null]
        		addWithLastConsumed(
        			$current, 
        			"dbTables",
-        		lv_dbTables_5_0, 
+        		lv_dbTables_4_0, 
         		"IDENT");
 	    }
 
 )
-))+)?((this_WS_6=RULE_WS
+))+)?((this_WS_5=RULE_WS
     { 
-    newLeafNode(this_WS_6, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_3_0()); 
+    newLeafNode(this_WS_5, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_2_0()); 
     }
-)+this_MINUS_7=RULE_MINUS
+)+this_MINUS_6=RULE_MINUS
     { 
-    newLeafNode(this_MINUS_7, grammarAccess.getImplementsAssignementAccess().getMINUSTerminalRuleCall_3_1()); 
+    newLeafNode(this_MINUS_6, grammarAccess.getImplementsAssignementAccess().getMINUSTerminalRuleCall_2_1()); 
     }
-((this_WS_8=RULE_WS
+((this_WS_7=RULE_WS
     { 
-    newLeafNode(this_WS_8, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_3_2_0()); 
+    newLeafNode(this_WS_7, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_2_2_0()); 
     }
 )+(
 (
-		lv_dbNotTables_9_0=RULE_IDENT
+		lv_dbNotTables_8_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbNotTables_9_0, grammarAccess.getImplementsAssignementAccess().getDbNotTablesIDENTTerminalRuleCall_3_2_1_0()); 
+			newLeafNode(lv_dbNotTables_8_0, grammarAccess.getImplementsAssignementAccess().getDbNotTablesIDENTTerminalRuleCall_2_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1579,7 +1742,7 @@ ruleImplementsAssignement returns [EObject current=null]
        		addWithLastConsumed(
        			$current, 
        			"dbNotTables",
-        		lv_dbNotTables_9_0, 
+        		lv_dbNotTables_8_0, 
         		"IDENT");
 	    }
 
@@ -1605,42 +1768,41 @@ ruleExtendsAssignement returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(this_COLON_0=RULE_COLON
-    { 
-    newLeafNode(this_COLON_0, grammarAccess.getExtendsAssignementAccess().getCOLONTerminalRuleCall_0()); 
-    }
+((
 (
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getExtendsAssignementRule());
-	        }
-        }
 		{ 
-	        newCompositeNode(grammarAccess.getExtendsAssignementAccess().getToExtendsJvmTypeCrossReference_1_0()); 
+	        newCompositeNode(grammarAccess.getExtendsAssignementAccess().getToExtendsPojoTypeParserRuleCall_0_0()); 
 	    }
-		ruleQualifiedName		{ 
+		lv_toExtends_0_0=rulePojoType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getExtendsAssignementRule());
+	        }
+       		set(
+       			$current, 
+       			"toExtends",
+        		lv_toExtends_0_0, 
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)((this_WS_2=RULE_WS
+)((this_WS_1=RULE_WS
     { 
-    newLeafNode(this_WS_2, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_2_0()); 
+    newLeafNode(this_WS_1, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_1_0()); 
     }
-)+this_PLUS_3=RULE_PLUS
+)+this_PLUS_2=RULE_PLUS
     { 
-    newLeafNode(this_PLUS_3, grammarAccess.getExtendsAssignementAccess().getPLUSTerminalRuleCall_2_1()); 
+    newLeafNode(this_PLUS_2, grammarAccess.getExtendsAssignementAccess().getPLUSTerminalRuleCall_1_1()); 
     }
-((this_WS_4=RULE_WS
+((this_WS_3=RULE_WS
     { 
-    newLeafNode(this_WS_4, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_2_2_0()); 
+    newLeafNode(this_WS_3, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_1_2_0()); 
     }
 )+(
 (
-		lv_dbTables_5_0=RULE_IDENT
+		lv_dbTables_4_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbTables_5_0, grammarAccess.getExtendsAssignementAccess().getDbTablesIDENTTerminalRuleCall_2_2_1_0()); 
+			newLeafNode(lv_dbTables_4_0, grammarAccess.getExtendsAssignementAccess().getDbTablesIDENTTerminalRuleCall_1_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1649,28 +1811,28 @@ ruleExtendsAssignement returns [EObject current=null]
        		addWithLastConsumed(
        			$current, 
        			"dbTables",
-        		lv_dbTables_5_0, 
+        		lv_dbTables_4_0, 
         		"IDENT");
 	    }
 
 )
-))+)?((this_WS_6=RULE_WS
+))+)?((this_WS_5=RULE_WS
     { 
-    newLeafNode(this_WS_6, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_3_0()); 
+    newLeafNode(this_WS_5, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_2_0()); 
     }
-)+this_MINUS_7=RULE_MINUS
+)+this_MINUS_6=RULE_MINUS
     { 
-    newLeafNode(this_MINUS_7, grammarAccess.getExtendsAssignementAccess().getMINUSTerminalRuleCall_3_1()); 
+    newLeafNode(this_MINUS_6, grammarAccess.getExtendsAssignementAccess().getMINUSTerminalRuleCall_2_1()); 
     }
-((this_WS_8=RULE_WS
+((this_WS_7=RULE_WS
     { 
-    newLeafNode(this_WS_8, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_3_2_0()); 
+    newLeafNode(this_WS_7, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_2_2_0()); 
     }
 )+(
 (
-		lv_dbNotTables_9_0=RULE_IDENT
+		lv_dbNotTables_8_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbNotTables_9_0, grammarAccess.getExtendsAssignementAccess().getDbNotTablesIDENTTerminalRuleCall_3_2_1_0()); 
+			newLeafNode(lv_dbNotTables_8_0, grammarAccess.getExtendsAssignementAccess().getDbNotTablesIDENTTerminalRuleCall_2_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1679,7 +1841,7 @@ ruleExtendsAssignement returns [EObject current=null]
        		addWithLastConsumed(
        			$current, 
        			"dbNotTables",
-        		lv_dbNotTables_9_0, 
+        		lv_dbNotTables_8_0, 
         		"IDENT");
 	    }
 
@@ -1705,42 +1867,41 @@ ruleImplementsAssignementGenerics returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(this_COLON_0=RULE_COLON
-    { 
-    newLeafNode(this_COLON_0, grammarAccess.getImplementsAssignementGenericsAccess().getCOLONTerminalRuleCall_0()); 
-    }
+((
 (
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getImplementsAssignementGenericsRule());
-	        }
-        }
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsAssignementGenericsAccess().getToImplementJvmTypeCrossReference_1_0()); 
+	        newCompositeNode(grammarAccess.getImplementsAssignementGenericsAccess().getToImplementPojoTypeParserRuleCall_0_0()); 
 	    }
-		ruleQualifiedName		{ 
+		lv_toImplement_0_0=rulePojoType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getImplementsAssignementGenericsRule());
+	        }
+       		set(
+       			$current, 
+       			"toImplement",
+        		lv_toImplement_0_0, 
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)((this_WS_2=RULE_WS
+)((this_WS_1=RULE_WS
     { 
-    newLeafNode(this_WS_2, grammarAccess.getImplementsAssignementGenericsAccess().getWSTerminalRuleCall_2_0()); 
+    newLeafNode(this_WS_1, grammarAccess.getImplementsAssignementGenericsAccess().getWSTerminalRuleCall_1_0()); 
     }
-)+this_PLUS_3=RULE_PLUS
+)+this_PLUS_2=RULE_PLUS
     { 
-    newLeafNode(this_PLUS_3, grammarAccess.getImplementsAssignementGenericsAccess().getPLUSTerminalRuleCall_2_1()); 
+    newLeafNode(this_PLUS_2, grammarAccess.getImplementsAssignementGenericsAccess().getPLUSTerminalRuleCall_1_1()); 
     }
-((this_WS_4=RULE_WS
+((this_WS_3=RULE_WS
     { 
-    newLeafNode(this_WS_4, grammarAccess.getImplementsAssignementGenericsAccess().getWSTerminalRuleCall_2_2_0()); 
+    newLeafNode(this_WS_3, grammarAccess.getImplementsAssignementGenericsAccess().getWSTerminalRuleCall_1_2_0()); 
     }
 )+(
 (
-		lv_dbTables_5_0=RULE_IDENT
+		lv_dbTables_4_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbTables_5_0, grammarAccess.getImplementsAssignementGenericsAccess().getDbTablesIDENTTerminalRuleCall_2_2_1_0()); 
+			newLeafNode(lv_dbTables_4_0, grammarAccess.getImplementsAssignementGenericsAccess().getDbTablesIDENTTerminalRuleCall_1_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1749,28 +1910,28 @@ ruleImplementsAssignementGenerics returns [EObject current=null]
        		addWithLastConsumed(
        			$current, 
        			"dbTables",
-        		lv_dbTables_5_0, 
+        		lv_dbTables_4_0, 
         		"IDENT");
 	    }
 
 )
-))+)?((this_WS_6=RULE_WS
+))+)?((this_WS_5=RULE_WS
     { 
-    newLeafNode(this_WS_6, grammarAccess.getImplementsAssignementGenericsAccess().getWSTerminalRuleCall_3_0()); 
+    newLeafNode(this_WS_5, grammarAccess.getImplementsAssignementGenericsAccess().getWSTerminalRuleCall_2_0()); 
     }
-)+this_MINUS_7=RULE_MINUS
+)+this_MINUS_6=RULE_MINUS
     { 
-    newLeafNode(this_MINUS_7, grammarAccess.getImplementsAssignementGenericsAccess().getMINUSTerminalRuleCall_3_1()); 
+    newLeafNode(this_MINUS_6, grammarAccess.getImplementsAssignementGenericsAccess().getMINUSTerminalRuleCall_2_1()); 
     }
-((this_WS_8=RULE_WS
+((this_WS_7=RULE_WS
     { 
-    newLeafNode(this_WS_8, grammarAccess.getImplementsAssignementGenericsAccess().getWSTerminalRuleCall_3_2_0()); 
+    newLeafNode(this_WS_7, grammarAccess.getImplementsAssignementGenericsAccess().getWSTerminalRuleCall_2_2_0()); 
     }
 )+(
 (
-		lv_dbNotTables_9_0=RULE_IDENT
+		lv_dbNotTables_8_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbNotTables_9_0, grammarAccess.getImplementsAssignementGenericsAccess().getDbNotTablesIDENTTerminalRuleCall_3_2_1_0()); 
+			newLeafNode(lv_dbNotTables_8_0, grammarAccess.getImplementsAssignementGenericsAccess().getDbNotTablesIDENTTerminalRuleCall_2_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1779,7 +1940,7 @@ ruleImplementsAssignementGenerics returns [EObject current=null]
        		addWithLastConsumed(
        			$current, 
        			"dbNotTables",
-        		lv_dbNotTables_9_0, 
+        		lv_dbNotTables_8_0, 
         		"IDENT");
 	    }
 
@@ -1805,42 +1966,41 @@ ruleExtendsAssignementGenerics returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(this_COLON_0=RULE_COLON
-    { 
-    newLeafNode(this_COLON_0, grammarAccess.getExtendsAssignementGenericsAccess().getCOLONTerminalRuleCall_0()); 
-    }
+((
 (
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getExtendsAssignementGenericsRule());
-	        }
-        }
 		{ 
-	        newCompositeNode(grammarAccess.getExtendsAssignementGenericsAccess().getToExtendsJvmTypeCrossReference_1_0()); 
+	        newCompositeNode(grammarAccess.getExtendsAssignementGenericsAccess().getToExtendsPojoTypeParserRuleCall_0_0()); 
 	    }
-		ruleQualifiedName		{ 
+		lv_toExtends_0_0=rulePojoType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getExtendsAssignementGenericsRule());
+	        }
+       		set(
+       			$current, 
+       			"toExtends",
+        		lv_toExtends_0_0, 
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)((this_WS_2=RULE_WS
+)((this_WS_1=RULE_WS
     { 
-    newLeafNode(this_WS_2, grammarAccess.getExtendsAssignementGenericsAccess().getWSTerminalRuleCall_2_0()); 
+    newLeafNode(this_WS_1, grammarAccess.getExtendsAssignementGenericsAccess().getWSTerminalRuleCall_1_0()); 
     }
-)+this_PLUS_3=RULE_PLUS
+)+this_PLUS_2=RULE_PLUS
     { 
-    newLeafNode(this_PLUS_3, grammarAccess.getExtendsAssignementGenericsAccess().getPLUSTerminalRuleCall_2_1()); 
+    newLeafNode(this_PLUS_2, grammarAccess.getExtendsAssignementGenericsAccess().getPLUSTerminalRuleCall_1_1()); 
     }
-((this_WS_4=RULE_WS
+((this_WS_3=RULE_WS
     { 
-    newLeafNode(this_WS_4, grammarAccess.getExtendsAssignementGenericsAccess().getWSTerminalRuleCall_2_2_0()); 
+    newLeafNode(this_WS_3, grammarAccess.getExtendsAssignementGenericsAccess().getWSTerminalRuleCall_1_2_0()); 
     }
 )+(
 (
-		lv_dbTables_5_0=RULE_IDENT
+		lv_dbTables_4_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbTables_5_0, grammarAccess.getExtendsAssignementGenericsAccess().getDbTablesIDENTTerminalRuleCall_2_2_1_0()); 
+			newLeafNode(lv_dbTables_4_0, grammarAccess.getExtendsAssignementGenericsAccess().getDbTablesIDENTTerminalRuleCall_1_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1849,28 +2009,28 @@ ruleExtendsAssignementGenerics returns [EObject current=null]
        		addWithLastConsumed(
        			$current, 
        			"dbTables",
-        		lv_dbTables_5_0, 
+        		lv_dbTables_4_0, 
         		"IDENT");
 	    }
 
 )
-))+)?((this_WS_6=RULE_WS
+))+)?((this_WS_5=RULE_WS
     { 
-    newLeafNode(this_WS_6, grammarAccess.getExtendsAssignementGenericsAccess().getWSTerminalRuleCall_3_0()); 
+    newLeafNode(this_WS_5, grammarAccess.getExtendsAssignementGenericsAccess().getWSTerminalRuleCall_2_0()); 
     }
-)+this_MINUS_7=RULE_MINUS
+)+this_MINUS_6=RULE_MINUS
     { 
-    newLeafNode(this_MINUS_7, grammarAccess.getExtendsAssignementGenericsAccess().getMINUSTerminalRuleCall_3_1()); 
+    newLeafNode(this_MINUS_6, grammarAccess.getExtendsAssignementGenericsAccess().getMINUSTerminalRuleCall_2_1()); 
     }
-((this_WS_8=RULE_WS
+((this_WS_7=RULE_WS
     { 
-    newLeafNode(this_WS_8, grammarAccess.getExtendsAssignementGenericsAccess().getWSTerminalRuleCall_3_2_0()); 
+    newLeafNode(this_WS_7, grammarAccess.getExtendsAssignementGenericsAccess().getWSTerminalRuleCall_2_2_0()); 
     }
 )+(
 (
-		lv_dbNotTables_9_0=RULE_IDENT
+		lv_dbNotTables_8_0=RULE_IDENT
 		{
-			newLeafNode(lv_dbNotTables_9_0, grammarAccess.getExtendsAssignementGenericsAccess().getDbNotTablesIDENTTerminalRuleCall_3_2_1_0()); 
+			newLeafNode(lv_dbNotTables_8_0, grammarAccess.getExtendsAssignementGenericsAccess().getDbNotTablesIDENTTerminalRuleCall_2_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1879,7 +2039,7 @@ ruleExtendsAssignementGenerics returns [EObject current=null]
        		addWithLastConsumed(
        			$current, 
        			"dbNotTables",
-        		lv_dbNotTables_9_0, 
+        		lv_dbNotTables_8_0, 
         		"IDENT");
 	    }
 
@@ -2581,77 +2741,57 @@ ruleDatabaseProperty returns [EObject current=null]
     { 
     newLeafNode(this_WS_18, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_7_1()); 
     }
-)+((((	RULE_COLON)=>this_COLON_19=RULE_COLON
-    { 
-    newLeafNode(this_COLON_19, grammarAccess.getDatabasePropertyAccess().getCOLONTerminalRuleCall_7_2_0_0()); 
-    }
-)(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbDriverxJvmTypeCrossReference_7_2_0_1_0()); 
-	    }
-		ruleQualifiedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-    |(
+)+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbDriverValueTypeParserRuleCall_7_2_1_0()); 
+	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbDriverPojoTypeParserRuleCall_7_2_0()); 
 	    }
-		lv_dbDriver_21_0=ruleValueType		{
+		lv_dbDriver_19_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"dbDriver",
-        		lv_dbDriver_21_0, 
-        		"ValueType");
+        		lv_dbDriver_19_0, 
+        		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)))
+))
     |((
 (
-		lv_name_22_0=	'ddl-create' 
+		lv_name_20_0=	'ddl-create' 
     {
-        newLeafNode(lv_name_22_0, grammarAccess.getDatabasePropertyAccess().getNameDdlCreateKeyword_8_0_0());
+        newLeafNode(lv_name_20_0, grammarAccess.getDatabasePropertyAccess().getNameDdlCreateKeyword_8_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_22_0, "ddl-create");
+       		setWithLastConsumed($current, "name", lv_name_20_0, "ddl-create");
 	    }
 
 )
-)(this_WS_23=RULE_WS
+)(this_WS_21=RULE_WS
     { 
-    newLeafNode(this_WS_23, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_8_1()); 
+    newLeafNode(this_WS_21, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_8_1()); 
     }
 )+(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbExecuteBeforeValueTypeParserRuleCall_8_2_0()); 
 	    }
-		lv_dbExecuteBefore_24_0=ruleValueType		{
+		lv_dbExecuteBefore_22_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"dbExecuteBefore",
-        		lv_dbExecuteBefore_24_0, 
+        		lv_dbExecuteBefore_22_0, 
         		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2660,36 +2800,36 @@ ruleDatabaseProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_25_0=	'ddl-drop' 
+		lv_name_23_0=	'ddl-drop' 
     {
-        newLeafNode(lv_name_25_0, grammarAccess.getDatabasePropertyAccess().getNameDdlDropKeyword_9_0_0());
+        newLeafNode(lv_name_23_0, grammarAccess.getDatabasePropertyAccess().getNameDdlDropKeyword_9_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_25_0, "ddl-drop");
+       		setWithLastConsumed($current, "name", lv_name_23_0, "ddl-drop");
 	    }
 
 )
-)(this_WS_26=RULE_WS
+)(this_WS_24=RULE_WS
     { 
-    newLeafNode(this_WS_26, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_9_1()); 
+    newLeafNode(this_WS_24, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_9_1()); 
     }
 )+(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbExecuteAfterValueTypeParserRuleCall_9_2_0()); 
 	    }
-		lv_dbExecuteAfter_27_0=ruleValueType		{
+		lv_dbExecuteAfter_25_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"dbExecuteAfter",
-        		lv_dbExecuteAfter_27_0, 
+        		lv_dbExecuteAfter_25_0, 
         		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2698,36 +2838,36 @@ ruleDatabaseProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_28_0=	'index-types' 
+		lv_name_26_0=	'index-types' 
     {
-        newLeafNode(lv_name_28_0, grammarAccess.getDatabasePropertyAccess().getNameIndexTypesKeyword_10_0_0());
+        newLeafNode(lv_name_26_0, grammarAccess.getDatabasePropertyAccess().getNameIndexTypesKeyword_10_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_28_0, "index-types");
+       		setWithLastConsumed($current, "name", lv_name_26_0, "index-types");
 	    }
 
 )
-)(this_WS_29=RULE_WS
+)(this_WS_27=RULE_WS
     { 
-    newLeafNode(this_WS_29, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_10_1()); 
+    newLeafNode(this_WS_27, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_10_1()); 
     }
 )+(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbIndexTypesValueTypeParserRuleCall_10_2_0()); 
 	    }
-		lv_dbIndexTypes_30_0=ruleValueType		{
+		lv_dbIndexTypes_28_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"dbIndexTypes",
-        		lv_dbIndexTypes_30_0, 
+        		lv_dbIndexTypes_28_0, 
         		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2736,84 +2876,84 @@ ruleDatabaseProperty returns [EObject current=null]
 ))
     |(
 (
-		lv_name_31_0=	'skip-indexes' 
+		lv_name_29_0=	'skip-indexes' 
     {
-        newLeafNode(lv_name_31_0, grammarAccess.getDatabasePropertyAccess().getNameSkipIndexesKeyword_11_0());
+        newLeafNode(lv_name_29_0, grammarAccess.getDatabasePropertyAccess().getNameSkipIndexesKeyword_11_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_31_0, "skip-indexes");
+       		setWithLastConsumed($current, "name", lv_name_29_0, "skip-indexes");
 	    }
 
 )
 )
     |(
 (
-		lv_name_32_0=	'skip-functions-procedures' 
+		lv_name_30_0=	'skip-functions-procedures' 
     {
-        newLeafNode(lv_name_32_0, grammarAccess.getDatabasePropertyAccess().getNameSkipFunctionsProceduresKeyword_12_0());
+        newLeafNode(lv_name_30_0, grammarAccess.getDatabasePropertyAccess().getNameSkipFunctionsProceduresKeyword_12_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_32_0, "skip-functions-procedures");
+       		setWithLastConsumed($current, "name", lv_name_30_0, "skip-functions-procedures");
 	    }
 
 )
 )
     |(
 (
-		lv_name_33_0=	'skip-check-constraints' 
+		lv_name_31_0=	'skip-check-constraints' 
     {
-        newLeafNode(lv_name_33_0, grammarAccess.getDatabasePropertyAccess().getNameSkipCheckConstraintsKeyword_13_0());
+        newLeafNode(lv_name_31_0, grammarAccess.getDatabasePropertyAccess().getNameSkipCheckConstraintsKeyword_13_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_33_0, "skip-check-constraints");
+       		setWithLastConsumed($current, "name", lv_name_31_0, "skip-check-constraints");
 	    }
 
 )
 )
     |((
 (
-		lv_name_34_0=	'is-of-type' 
+		lv_name_32_0=	'is-of-type' 
     {
-        newLeafNode(lv_name_34_0, grammarAccess.getDatabasePropertyAccess().getNameIsOfTypeKeyword_14_0_0());
+        newLeafNode(lv_name_32_0, grammarAccess.getDatabasePropertyAccess().getNameIsOfTypeKeyword_14_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_34_0, "is-of-type");
+       		setWithLastConsumed($current, "name", lv_name_32_0, "is-of-type");
 	    }
 
 )
-)(this_WS_35=RULE_WS
+)(this_WS_33=RULE_WS
     { 
-    newLeafNode(this_WS_35, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_14_1()); 
+    newLeafNode(this_WS_33, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_14_1()); 
     }
 )+(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbTypeDatabaseTypeAssignementParserRuleCall_14_2_0()); 
 	    }
-		lv_dbType_36_0=ruleDatabaseTypeAssignement		{
+		lv_dbType_34_0=ruleDatabaseTypeAssignement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"dbType",
-        		lv_dbType_36_0, 
+        		lv_dbType_34_0, 
         		"DatabaseTypeAssignement");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2822,36 +2962,36 @@ ruleDatabaseProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_37_0=	'show-database-info' 
+		lv_name_35_0=	'show-database-info' 
     {
-        newLeafNode(lv_name_37_0, grammarAccess.getDatabasePropertyAccess().getNameShowDatabaseInfoKeyword_15_0_0());
+        newLeafNode(lv_name_35_0, grammarAccess.getDatabasePropertyAccess().getNameShowDatabaseInfoKeyword_15_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_37_0, "show-database-info");
+       		setWithLastConsumed($current, "name", lv_name_35_0, "show-database-info");
 	    }
 
 )
-)(this_WS_38=RULE_WS
+)(this_WS_36=RULE_WS
     { 
-    newLeafNode(this_WS_38, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_15_1()); 
+    newLeafNode(this_WS_36, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_15_1()); 
     }
 )+(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbMetaInfoDatabaseMetaInfoAssignementParserRuleCall_15_2_0()); 
 	    }
-		lv_dbMetaInfo_39_0=ruleDatabaseMetaInfoAssignement		{
+		lv_dbMetaInfo_37_0=ruleDatabaseMetaInfoAssignement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"dbMetaInfo",
-        		lv_dbMetaInfo_39_0, 
+        		lv_dbMetaInfo_37_0, 
         		"DatabaseMetaInfoAssignement");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2860,36 +3000,36 @@ ruleDatabaseProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_40_0=	'show-driver-info' 
+		lv_name_38_0=	'show-driver-info' 
     {
-        newLeafNode(lv_name_40_0, grammarAccess.getDatabasePropertyAccess().getNameShowDriverInfoKeyword_16_0_0());
+        newLeafNode(lv_name_38_0, grammarAccess.getDatabasePropertyAccess().getNameShowDriverInfoKeyword_16_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_40_0, "show-driver-info");
+       		setWithLastConsumed($current, "name", lv_name_38_0, "show-driver-info");
 	    }
 
 )
-)(this_WS_41=RULE_WS
+)(this_WS_39=RULE_WS
     { 
-    newLeafNode(this_WS_41, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_16_1()); 
+    newLeafNode(this_WS_39, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_16_1()); 
     }
 )+(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbDriverInfoDriverMetaInfoAssignementParserRuleCall_16_2_0()); 
 	    }
-		lv_dbDriverInfo_42_0=ruleDriverMetaInfoAssignement		{
+		lv_dbDriverInfo_40_0=ruleDriverMetaInfoAssignement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"dbDriverInfo",
-        		lv_dbDriverInfo_42_0, 
+        		lv_dbDriverInfo_40_0, 
         		"DriverMetaInfoAssignement");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2898,36 +3038,36 @@ ruleDatabaseProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_43_0=	'show-driver-output' 
+		lv_name_41_0=	'show-driver-output' 
     {
-        newLeafNode(lv_name_43_0, grammarAccess.getDatabasePropertyAccess().getNameShowDriverOutputKeyword_17_0_0());
+        newLeafNode(lv_name_41_0, grammarAccess.getDatabasePropertyAccess().getNameShowDriverOutputKeyword_17_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_43_0, "show-driver-output");
+       		setWithLastConsumed($current, "name", lv_name_41_0, "show-driver-output");
 	    }
 
 )
-)((this_WS_44=RULE_WS
+)((this_WS_42=RULE_WS
     { 
-    newLeafNode(this_WS_44, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_17_1_0()); 
+    newLeafNode(this_WS_42, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_17_1_0()); 
     }
 )+(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbMethodsCallsDriverMethodOutputAssignementParserRuleCall_17_1_1_0()); 
 	    }
-		lv_dbMethodsCalls_45_0=ruleDriverMethodOutputAssignement		{
+		lv_dbMethodsCalls_43_0=ruleDriverMethodOutputAssignement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		add(
        			$current, 
        			"dbMethodsCalls",
-        		lv_dbMethodsCalls_45_0, 
+        		lv_dbMethodsCalls_43_0, 
         		"DriverMethodOutputAssignement");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2936,36 +3076,36 @@ ruleDatabaseProperty returns [EObject current=null]
 ))+)
     |((
 (
-		lv_name_46_0=	'debug-level' 
+		lv_name_44_0=	'debug-level' 
     {
-        newLeafNode(lv_name_46_0, grammarAccess.getDatabasePropertyAccess().getNameDebugLevelKeyword_18_0_0());
+        newLeafNode(lv_name_44_0, grammarAccess.getDatabasePropertyAccess().getNameDebugLevelKeyword_18_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_46_0, "debug-level");
+       		setWithLastConsumed($current, "name", lv_name_44_0, "debug-level");
 	    }
 
 )
-)(this_WS_47=RULE_WS
+)(this_WS_45=RULE_WS
     { 
-    newLeafNode(this_WS_47, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_18_1()); 
+    newLeafNode(this_WS_45, grammarAccess.getDatabasePropertyAccess().getWSTerminalRuleCall_18_1()); 
     }
 )+(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDebugDebugLevelAssignementParserRuleCall_18_2_0()); 
 	    }
-		lv_debug_48_0=ruleDebugLevelAssignement		{
+		lv_debug_46_0=ruleDebugLevelAssignement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
        		set(
        			$current, 
        			"debug",
-        		lv_debug_48_0, 
+        		lv_debug_46_0, 
         		"DebugLevelAssignement");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2974,48 +3114,48 @@ ruleDatabaseProperty returns [EObject current=null]
 ))
     |(
 (
-		lv_name_49_0=	'take-comments' 
+		lv_name_47_0=	'take-comments' 
     {
-        newLeafNode(lv_name_49_0, grammarAccess.getDatabasePropertyAccess().getNameTakeCommentsKeyword_19_0());
+        newLeafNode(lv_name_47_0, grammarAccess.getDatabasePropertyAccess().getNameTakeCommentsKeyword_19_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_49_0, "take-comments");
+       		setWithLastConsumed($current, "name", lv_name_47_0, "take-comments");
 	    }
 
 )
 )
     |(
 (
-		lv_name_50_0=	'lowercase-names' 
+		lv_name_48_0=	'lowercase-names' 
     {
-        newLeafNode(lv_name_50_0, grammarAccess.getDatabasePropertyAccess().getNameLowercaseNamesKeyword_20_0());
+        newLeafNode(lv_name_48_0, grammarAccess.getDatabasePropertyAccess().getNameLowercaseNamesKeyword_20_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_50_0, "lowercase-names");
+       		setWithLastConsumed($current, "name", lv_name_48_0, "lowercase-names");
 	    }
 
 )
 )
     |(
 (
-		lv_name_51_0=	'uppercase-names' 
+		lv_name_49_0=	'uppercase-names' 
     {
-        newLeafNode(lv_name_51_0, grammarAccess.getDatabasePropertyAccess().getNameUppercaseNamesKeyword_21_0());
+        newLeafNode(lv_name_49_0, grammarAccess.getDatabasePropertyAccess().getNameUppercaseNamesKeyword_21_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDatabasePropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_51_0, "uppercase-names");
+       		setWithLastConsumed($current, "name", lv_name_49_0, "uppercase-names");
 	    }
 
 )
@@ -12102,116 +12242,6 @@ ruleFeatureValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
     }
 )+
     ;
-
-
-
-
-
-// Entry rule entryRulePojoType
-entryRulePojoType returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getPojoTypeRule()); }
-	 iv_rulePojoType=rulePojoType 
-	 { $current=$iv_rulePojoType.current; } 
-	 EOF 
-;
-
-// Rule PojoType
-rulePojoType returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(((this_COLON_0=RULE_COLON
-    { 
-    newLeafNode(this_COLON_0, grammarAccess.getPojoTypeAccess().getCOLONTerminalRuleCall_0_0_0()); 
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoTypeRule());
-	        }
-        }
-	otherlv_1=RULE_IDENT
-	{
-		newLeafNode(otherlv_1, grammarAccess.getPojoTypeAccess().getRefPojoDefinitionCrossReference_0_0_1_0()); 
-	}
-
-)
-))
-    |(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoTypeRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getPojoTypeAccess().getTypeJvmTypeCrossReference_0_1_0()); 
-	    }
-		ruleQualifiedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))(this_LESS_THAN_3=RULE_LESS_THAN
-    { 
-    newLeafNode(this_LESS_THAN_3, grammarAccess.getPojoTypeAccess().getLESS_THANTerminalRuleCall_1_0()); 
-    }
-((this_COLON_4=RULE_COLON
-    { 
-    newLeafNode(this_COLON_4, grammarAccess.getPojoTypeAccess().getCOLONTerminalRuleCall_1_1_0_0()); 
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoTypeRule());
-	        }
-        }
-	otherlv_5=RULE_IDENT
-	{
-		newLeafNode(otherlv_5, grammarAccess.getPojoTypeAccess().getGrefPojoDefinitionCrossReference_1_1_0_1_0()); 
-	}
-
-)
-))
-    |(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoTypeRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getPojoTypeAccess().getGtypeJvmTypeCrossReference_1_1_1_0()); 
-	    }
-		ruleQualifiedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))this_MORE_THAN_7=RULE_MORE_THAN
-    { 
-    newLeafNode(this_MORE_THAN_7, grammarAccess.getPojoTypeAccess().getMORE_THANTerminalRuleCall_1_2()); 
-    }
-)?(
-(
-		lv_array_8_0=	'[]' 
-    {
-        newLeafNode(lv_array_8_0, grammarAccess.getPojoTypeAccess().getArrayLeftSquareBracketRightSquareBracketKeyword_2_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoTypeRule());
-	        }
-       		setWithLastConsumed($current, "array", true, "[]");
-	    }
-
-)
-)?)
-;
 
 
 
