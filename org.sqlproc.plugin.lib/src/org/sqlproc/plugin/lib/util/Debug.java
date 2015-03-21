@@ -1,4 +1,4 @@
-package org.sqlproc.meta.util;
+package org.sqlproc.plugin.lib.util;
 
 import org.apache.log4j.Logger;
 

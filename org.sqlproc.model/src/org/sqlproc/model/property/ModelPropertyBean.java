@@ -31,12 +31,12 @@ import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.Property;
 import org.sqlproc.model.processorModel.PropertyCondition;
 import org.sqlproc.model.processorModel.ValueType;
-import org.sqlproc.model.util.Utils;
 import org.sqlproc.plugin.lib.property.ImplementsExtends;
 import org.sqlproc.plugin.lib.property.ModelProperty;
 import org.sqlproc.plugin.lib.property.PairValues;
 import org.sqlproc.plugin.lib.property.PojoAttrType;
 import org.sqlproc.plugin.lib.property.PojoEntityType;
+import org.sqlproc.plugin.lib.util.CommonUtils;
 
 import com.google.inject.Singleton;
 
@@ -324,7 +324,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 					        + " and rootASTElement " + rootASTElement + " and msg " + msg);
 					return;
 				}
-				String dir = Utils.resourceDir(resource);
+				String dir = CommonUtils.resourceDir(resource);
 				if (dir == null) {
 					LOGGER.error("LOADED RESOURCE URI IS NOT VALID " + resource.getURI());
 					return;
@@ -1846,6 +1846,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 		return (modelValues != null) ? modelValues.dbUppercaseNames : false;
 	}
 
+	@Override
+	public String getModelDir(EObject model) {
+		ModelValues modelValues = getModelValues(model);
+		return (modelValues != null) ? modelValues.dir : null;
+	}
+
 	public ModelValues getModelValues(EObject model) {
 		if (this.modelValues != null)
 			return this.modelValues;
@@ -1860,7 +1866,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			LOGGER.error("UKNOWN RESOURCE FOR " + artifacts);
 			return null;
 		}
-		String dir = Utils.resourceDir(artifacts.eResource());
+		String dir = CommonUtils.resourceDir(artifacts.eResource());
 		if (dir == null) {
 			LOGGER.error("LOADED RESOURCE URI IS NOT VALID " + artifacts.eResource().getURI());
 			return null;

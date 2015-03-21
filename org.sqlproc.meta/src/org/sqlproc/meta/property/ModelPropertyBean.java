@@ -31,7 +31,12 @@ import org.sqlproc.meta.processorMeta.PojogenProperty;
 import org.sqlproc.meta.processorMeta.Property;
 import org.sqlproc.meta.processorMeta.PropertyCondition;
 import org.sqlproc.meta.processorMeta.ValueType;
-import org.sqlproc.meta.util.Utils;
+import org.sqlproc.plugin.lib.property.ImplementsExtends;
+import org.sqlproc.plugin.lib.property.ModelProperty;
+import org.sqlproc.plugin.lib.property.PairValues;
+import org.sqlproc.plugin.lib.property.PojoAttrType;
+import org.sqlproc.plugin.lib.property.PojoEntityType;
+import org.sqlproc.plugin.lib.util.CommonUtils;
 
 import com.google.inject.Singleton;
 
@@ -173,16 +178,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 	public static final String DAOGEN_PACKAGE = "package";
 
 	public static final String STANDARD = "___GLOBAL";
-
-	public static class PairValues {
-		public String value1;
-		public String value2;
-
-		public PairValues(String value1, String value2) {
-			this.value1 = value1;
-			this.value2 = value2;
-		}
-	}
 
 	public static class ModelValues {
 		public boolean doResolvePojo;
@@ -329,7 +324,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 					        + " and rootASTElement " + rootASTElement + " and msg " + msg);
 					return;
 				}
-				String dir = Utils.resourceDir(resource);
+				String dir = CommonUtils.resourceDir(resource);
 				if (dir == null) {
 					LOGGER.error("LOADED RESOURCE URI IS NOT VALID " + resource.getURI());
 					return;
@@ -786,7 +781,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			// modelValues.sqlTypes = new HashMap<String, PojoAttrType>();
 			for (int i = 0, m = property.getSqlTypes().size(); i < m; i++) {
 				String sqlType = getPropertyValue(property.getSqlTypes().get(i).getSqlType());
-				PojoAttrType type = new PojoAttrType(null, sqlType, property.getSqlTypes().get(i).getType());
+				PojoAttrTypeImpl type = new PojoAttrTypeImpl(null, sqlType, property.getSqlTypes().get(i).getType());
 				modelValues.sqlTypes.put(sqlType, type);
 			}
 		} else if (POJOGEN_TYPE_IN_TABLE.equals(property.getName())) {
@@ -796,7 +791,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 				modelValues.tableTypes.put(property.getDbTable(), new HashMap<String, PojoAttrType>());
 			for (int i = 0, m = property.getSqlTypes().size(); i < m; i++) {
 				String sqlType = getPropertyValue(property.getSqlTypes().get(i).getSqlType());
-				PojoAttrType type = new PojoAttrType(null, sqlType, property.getSqlTypes().get(i).getType());
+				PojoAttrTypeImpl type = new PojoAttrTypeImpl(null, sqlType, property.getSqlTypes().get(i).getType());
 				modelValues.tableTypes.get(property.getDbTable()).put(sqlType, type);
 			}
 		} else if (POJOGEN_TYPE_FOR_COLUMNS.equals(property.getName())) {
@@ -805,8 +800,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			if (!modelValues.columnTypes.containsKey(property.getDbTable()))
 				modelValues.columnTypes.put(property.getDbTable(), new HashMap<String, PojoAttrType>());
 			for (int i = 0, m = property.getColumnTypes().size(); i < m; i++) {
-				PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
-				        .getColumnTypes().get(i).getType());
+				PojoAttrTypeImpl type = new PojoAttrTypeImpl(property.getColumnTypes().get(i).getDbColumn(), null,
+				        property.getColumnTypes().get(i).getType());
 				modelValues.columnTypes.get(property.getDbTable()).put(property.getColumnTypes().get(i).getDbColumn(),
 				        type);
 			}
@@ -816,8 +811,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			if (!modelValues.procedureTypes.containsKey(property.getDbProcedure()))
 				modelValues.procedureTypes.put(property.getDbProcedure(), new HashMap<String, PojoAttrType>());
 			for (int i = 0, m = property.getColumnTypes().size(); i < m; i++) {
-				PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
-				        .getColumnTypes().get(i).getType());
+				PojoAttrTypeImpl type = new PojoAttrTypeImpl(property.getColumnTypes().get(i).getDbColumn(), null,
+				        property.getColumnTypes().get(i).getType());
 				modelValues.procedureTypes.get(property.getDbProcedure()).put(
 				        property.getColumnTypes().get(i).getDbColumn(), type);
 			}
@@ -827,8 +822,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			if (!modelValues.functionTypes.containsKey(property.getDbFunction()))
 				modelValues.functionTypes.put(property.getDbFunction(), new HashMap<String, PojoAttrType>());
 			for (int i = 0, m = property.getColumnTypes().size(); i < m; i++) {
-				PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
-				        .getColumnTypes().get(i).getType());
+				PojoAttrTypeImpl type = new PojoAttrTypeImpl(property.getColumnTypes().get(i).getDbColumn(), null,
+				        property.getColumnTypes().get(i).getType());
 				modelValues.functionTypes.get(property.getDbFunction()).put(
 				        property.getColumnTypes().get(i).getDbColumn(), type);
 			}
@@ -896,8 +891,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			if (!modelValues.createColumns.containsKey(property.getDbTable()))
 				modelValues.createColumns.put(property.getDbTable(), new HashMap<String, PojoAttrType>());
 			for (int i = 0, m = property.getColumnTypes().size(); i < m; i++) {
-				PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
-				        .getColumnTypes().get(i).getType());
+				PojoAttrTypeImpl type = new PojoAttrTypeImpl(property.getColumnTypes().get(i).getDbColumn(), null,
+				        property.getColumnTypes().get(i).getType());
 				modelValues.createColumns.get(property.getDbTable()).put(
 				        property.getColumnTypes().get(i).getDbColumn(), type);
 			}
@@ -1001,23 +996,23 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 		} else if (POJOGEN_IMPLEMENTS_INTERFACES.equals(property.getName())) {
 			// if (modelValues.toImplements == null)
 			// modelValues.toImplements = new HashMap<String, JvmType>();
-			ImplementsExtends ie = new ImplementsExtends(property.getToImplements().getToImplement(), false, property
-			        .getToImplements().getDbTables(), property.getToImplements().getDbNotTables());
+			ImplementsExtendsImpl ie = new ImplementsExtendsImpl(property.getToImplements().getToImplement(), false,
+			        property.getToImplements().getDbTables(), property.getToImplements().getDbNotTables());
 			modelValues.toImplements.put(ie.getIdentifier(), ie);
 		} else if (POJOGEN_EXTENDS_CLASS.equals(property.getName())) {
-			ImplementsExtends ie = new ImplementsExtends(property.getToExtends().getToExtends(), false, property
-			        .getToExtends().getDbTables(), property.getToExtends().getDbNotTables());
+			ImplementsExtendsImpl ie = new ImplementsExtendsImpl(property.getToExtends().getToExtends(), false,
+			        property.getToExtends().getDbTables(), property.getToExtends().getDbNotTables());
 			modelValues.toExtends = ie;
 		} else if (POJOGEN_IMPLEMENTS_INTERFACES_GENERICS.equals(property.getName())) {
 			// if (modelValues.toImplements == null)
 			// modelValues.toImplements = new HashMap<String, JvmType>();
-			ImplementsExtends ie = new ImplementsExtends(property.getToImplementsGenerics().getToImplement(), true,
-			        property.getToImplementsGenerics().getDbTables(), property.getToImplementsGenerics()
+			ImplementsExtendsImpl ie = new ImplementsExtendsImpl(property.getToImplementsGenerics().getToImplement(),
+			        true, property.getToImplementsGenerics().getDbTables(), property.getToImplementsGenerics()
 			                .getDbNotTables());
 			modelValues.toImplements.put(ie.getIdentifier(), ie);
 		} else if (POJOGEN_EXTENDS_CLASS_GENERICS.equals(property.getName())) {
-			ImplementsExtends ie = new ImplementsExtends(property.getToExtendsGenerics().getToExtends(), true, property
-			        .getToExtendsGenerics().getDbTables(), property.getToExtendsGenerics().getDbNotTables());
+			ImplementsExtendsImpl ie = new ImplementsExtendsImpl(property.getToExtendsGenerics().getToExtends(), true,
+			        property.getToExtendsGenerics().getDbTables(), property.getToExtendsGenerics().getDbNotTables());
 			modelValues.toExtends = ie;
 		} else if (POJOGEN_JOIN_TABLES.equals(property.getName())) {
 			// if (modelValues.joinTables == null)
@@ -1067,13 +1062,13 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			}
 		} else if (POJOGEN_POJOS_FOR_PROCEDURES.equals(property.getName())) {
 			for (int i = 0, m = property.getProcPojos().size(); i < m; i++) {
-				modelValues.pojosForProcedures.put(property.getProcPojos().get(i).getDbProcedure(), new PojoEntityType(
-				        property.getProcPojos().get(i).getPojo()));
+				modelValues.pojosForProcedures.put(property.getProcPojos().get(i).getDbProcedure(),
+				        new PojoEntityTypeImpl(property.getProcPojos().get(i).getPojo()));
 			}
 		} else if (POJOGEN_POJOS_FOR_FUNCTIONS.equals(property.getName())) {
 			for (int i = 0, m = property.getFunPojos().size(); i < m; i++) {
-				modelValues.pojosForFunctions.put(property.getFunPojos().get(i).getDbFunction(), new PojoEntityType(
-				        property.getFunPojos().get(i).getPojo()));
+				modelValues.pojosForFunctions.put(property.getFunPojos().get(i).getDbFunction(),
+				        new PojoEntityTypeImpl(property.getFunPojos().get(i).getPojo()));
 			}
 		} else if (POJOGEN_ACTIVE_FILTER.equals(property.getName())) {
 			modelValues.activeFilter = getPropertyValue(property.getActiveFilter());
@@ -1204,26 +1199,27 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 				modelValues.daoOnlyTables.add(property.getDbTables().get(i));
 			}
 		} else if (DAOGEN_IMPLEMENTS_INTERFACES.equals(property.getName())) {
-			ImplementsExtends ie = new ImplementsExtends(property.getToImplements().getToImplement(), false, property
-			        .getToImplements().getDbTables(), property.getToImplements().getDbNotTables());
+			ImplementsExtendsImpl ie = new ImplementsExtendsImpl(property.getToImplements().getToImplement(), false,
+			        property.getToImplements().getDbTables(), property.getToImplements().getDbNotTables());
 			modelValues.daoToImplements.put(ie.getIdentifier(), ie);
 		} else if (DAOGEN_EXTENDS_CLASS.equals(property.getName())) {
-			ImplementsExtends ie = new ImplementsExtends(property.getToExtends().getToExtends(), false, property
-			        .getToExtends().getDbTables(), property.getToExtends().getDbNotTables());
+			ImplementsExtendsImpl ie = new ImplementsExtendsImpl(property.getToExtends().getToExtends(), false,
+			        property.getToExtends().getDbTables(), property.getToExtends().getDbNotTables());
 			modelValues.daoToExtends = ie;
 		} else if (DAOGEN_IMPLEMENTS_INTERFACES_GENERICS.equals(property.getName())) {
-			ImplementsExtends ie = new ImplementsExtends(property.getToImplementsGenerics().getToImplement(), true,
-			        property.getToImplementsGenerics().getDbTables(), property.getToImplementsGenerics()
+			ImplementsExtendsImpl ie = new ImplementsExtendsImpl(property.getToImplementsGenerics().getToImplement(),
+			        true, property.getToImplementsGenerics().getDbTables(), property.getToImplementsGenerics()
 			                .getDbNotTables());
 			modelValues.daoToImplements.put(ie.getIdentifier(), ie);
 		} else if (DAOGEN_EXTENDS_CLASS_GENERICS.equals(property.getName())) {
-			ImplementsExtends ie = new ImplementsExtends(property.getToExtendsGenerics().getToExtends(), true, property
-			        .getToExtendsGenerics().getDbTables(), property.getToExtendsGenerics().getDbNotTables());
+			ImplementsExtendsImpl ie = new ImplementsExtendsImpl(property.getToExtendsGenerics().getToExtends(), true,
+			        property.getToExtendsGenerics().getDbTables(), property.getToExtendsGenerics().getDbNotTables());
 			modelValues.daoToExtends = ie;
 		} else if (DAOGEN_MAKE_IT_FINAL.equals(property.getName())) {
 			modelValues.daoMakeItFinal = true;
 		} else if (DAOGEN_FUNCTION_RESULT.equals(property.getName())) {
-			modelValues.daoFunctionsResult.put(property.getDbFunction(), new PojoEntityType(property.getResultType()));
+			modelValues.daoFunctionsResult.put(property.getDbFunction(),
+			        new PojoEntityTypeImpl(property.getResultType()));
 		} else if (DAOGEN_DEBUG_LEVEL.equals(property.getName()) && property.getDebug().getDebug() != null) {
 			modelValues.daoDebugLevel = property.getDebug().getDebug();
 			modelValues.daoDebugScope = getPropertyValue(property.getDebug().getScope());
@@ -1851,6 +1847,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 	}
 
 	@Override
+	public String getModelDir(EObject model) {
+		ModelValues modelValues = getModelValues(model);
+		return (modelValues != null) ? modelValues.dir : null;
+	}
+
 	public ModelValues getModelValues(EObject model) {
 		if (this.modelValues != null)
 			return this.modelValues;
@@ -1865,7 +1866,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			LOGGER.error("UKNOWN RESOURCE FOR " + artifacts);
 			return null;
 		}
-		String dir = Utils.resourceDir(artifacts.eResource());
+		String dir = CommonUtils.resourceDir(artifacts.eResource());
 		if (dir == null) {
 			LOGGER.error("LOADED RESOURCE URI IS NOT VALID " + artifacts.eResource().getURI());
 			return null;

@@ -206,4 +206,6 @@ public interface ModelProperty extends Adapter {
 	String getDbUrl(EObject model);
 
 	String getDbUsername(EObject model);
+
+	String getModelDir(EObject model);
 }

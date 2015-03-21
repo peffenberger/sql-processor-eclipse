@@ -23,5 +23,6 @@ Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.sqlproc.plugin.lib.property,
- org.sqlproc.plugin.lib.resolver
+ org.sqlproc.plugin.lib.resolver,
+ org.sqlproc.plugin.lib.util
 

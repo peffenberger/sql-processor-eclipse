@@ -66,6 +66,7 @@ import org.sqlproc.model.processorModel.DaoDirectivePojo
 import org.sqlproc.model.processorModel.DaoFunProcDirective
 import org.sqlproc.model.util.Utils
 import org.sqlproc.model.processorModel.PackageDirectiveImplementation
+import org.sqlproc.plugin.lib.util.CommonUtils
 
 class ProcessorGeneratorUtils {
 
@@ -314,7 +315,7 @@ class ProcessorGeneratorUtils {
     		return superType as PojoEntity
     	val Package pkg = getContainerOfType(pojo, Package)
     	val name = superType.simpleName
-    	val AnnotatedEntity _pojo =  Utils.getContentsOfType(pkg, AnnotatedEntity).findFirst[p|p.entity.name == name]
+    	val AnnotatedEntity _pojo =  CommonUtils.getContentsOfType(pkg, AnnotatedEntity).findFirst[p|p.entity.name == name]
     	if (_pojo != null)
     		return _pojo.entity as PojoEntity
     	return null

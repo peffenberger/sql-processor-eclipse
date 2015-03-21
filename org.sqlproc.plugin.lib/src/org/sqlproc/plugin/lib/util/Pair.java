@@ -1,4 +1,4 @@
-package org.sqlproc.model.util;
+package org.sqlproc.plugin.lib.util;
 
 public class Pair<T, U> {
 

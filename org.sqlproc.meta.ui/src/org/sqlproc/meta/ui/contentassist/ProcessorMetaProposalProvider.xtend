@@ -3,7 +3,7 @@
  */
 package org.sqlproc.meta.ui.contentassist
 
-import static org.sqlproc.meta.util.Constants.*
+import static org.sqlproc.plugin.lib.util.Constants.*
 
 import java.lang.reflect.ParameterizedType
 import java.util.Collection
@@ -35,15 +35,15 @@ import org.sqlproc.meta.processorMeta.PojogenProperty
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage
 import org.sqlproc.meta.processorMeta.ShowColumnTypeAssignement
 import org.sqlproc.meta.processorMeta.TableDefinition
-import org.sqlproc.meta.resolver.DbResolver
-import org.sqlproc.meta.resolver.DbResolver.DbType
-import org.sqlproc.meta.resolver.PojoResolver
 import org.sqlproc.meta.util.Utils
+import org.sqlproc.plugin.lib.resolver.DbResolver.DbType
 
 import com.google.inject.Inject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import org.eclipse.emf.common.util.URI
+import org.sqlproc.plugin.lib.resolver.PojoResolver
+import org.sqlproc.plugin.lib.resolver.DbResolver
 
 /**
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant

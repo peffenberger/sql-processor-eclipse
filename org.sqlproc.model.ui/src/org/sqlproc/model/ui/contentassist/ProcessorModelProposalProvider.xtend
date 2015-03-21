@@ -3,7 +3,7 @@
  */
 package org.sqlproc.model.ui.contentassist
 
-import static org.sqlproc.model.util.Constants.*
+import static org.sqlproc.plugin.lib.util.Constants.*
 
 import java.lang.reflect.ParameterizedType
 import java.util.Collection
@@ -36,10 +36,8 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement
 import org.sqlproc.model.processorModel.TableDefinition
 import org.sqlproc.model.processorModel.Property
-import org.sqlproc.model.resolver.DbResolver
-import org.sqlproc.model.resolver.DbResolver.DbType
-import org.sqlproc.model.resolver.PojoResolver
 import org.sqlproc.model.util.Utils
+import org.sqlproc.plugin.lib.resolver.DbResolver.DbType
 
 import com.google.inject.Inject
 
@@ -50,6 +48,8 @@ import org.sqlproc.model.processorModel.PojoDirective
 import java.util.TreeMap
 import org.eclipse.xtext.CrossReference
 import org.eclipse.emf.common.util.URI
+import org.sqlproc.plugin.lib.resolver.PojoResolver
+import org.sqlproc.plugin.lib.resolver.DbResolver
 
 /**
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant

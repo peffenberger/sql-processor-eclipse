@@ -4,37 +4,37 @@
 package org.sqlproc.meta;
 
 import org.eclipse.xtext.resource.IResourceFactory;
-import org.sqlproc.meta.property.ModelProperty;
 import org.sqlproc.meta.property.ModelPropertyBean;
-import org.sqlproc.meta.resolver.DbResolver;
-import org.sqlproc.meta.resolver.DbResolverBean;
-import org.sqlproc.meta.resolver.PojoResolverFactory;
-import org.sqlproc.meta.resolver.PojoResolverFactoryBean;
+import org.sqlproc.plugin.lib.property.ModelProperty;
+import org.sqlproc.plugin.lib.resolver.DbResolver;
+import org.sqlproc.plugin.lib.resolver.DbResolverBean;
+import org.sqlproc.plugin.lib.resolver.PojoResolverFactory;
+import org.sqlproc.plugin.lib.resolver.PojoResolverFactoryBean;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 public class ProcessorMetaRuntimeModule extends org.sqlproc.meta.AbstractProcessorMetaRuntimeModule {
 
-    public Class<? extends ModelProperty> bindModelProperty() {
-        return ModelPropertyBean.class;
-    }
+	public Class<? extends ModelProperty> bindModelProperty() {
+		return ModelPropertyBean.class;
+	}
 
-    @Override
-    public Class<? extends org.eclipse.xtext.naming.IQualifiedNameProvider> bindIQualifiedNameProvider() {
-        return ProcessorNameProvider.class;
-    }
+	@Override
+	public Class<? extends org.eclipse.xtext.naming.IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return ProcessorNameProvider.class;
+	}
 
-    public Class<? extends PojoResolverFactory> bindPojoResolverFactory() {
-        return PojoResolverFactoryBean.class;
-    }
+	public Class<? extends PojoResolverFactory> bindPojoResolverFactory() {
+		return PojoResolverFactoryBean.class;
+	}
 
-    public Class<? extends DbResolver> bindDbResolver() {
-        return DbResolverBean.class;
-    }
+	public Class<? extends DbResolver> bindDbResolver() {
+		return DbResolverBean.class;
+	}
 
-    @Override
-    public Class<? extends IResourceFactory> bindIResourceFactory() {
-        return ProcessorResourceFactory.class;
-    }
+	@Override
+	public Class<? extends IResourceFactory> bindIResourceFactory() {
+		return ProcessorResourceFactory.class;
+	}
 }

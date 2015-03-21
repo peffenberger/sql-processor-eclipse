@@ -4,7 +4,7 @@
 package org.sqlproc.meta.validation
 import org.eclipse.xtext.validation.Check
 
-import static org.sqlproc.meta.util.Constants.*
+import static org.sqlproc.plugin.lib.util.Constants.*
 
 import java.lang.reflect.Modifier
 import java.lang.reflect.ParameterizedType
@@ -31,9 +31,6 @@ import org.sqlproc.meta.processorMeta.ProcedureDefinition
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage
 import org.sqlproc.meta.processorMeta.Property
 import org.sqlproc.meta.processorMeta.TableDefinition
-import org.sqlproc.meta.property.ModelProperty
-import org.sqlproc.meta.resolver.DbResolver
-import org.sqlproc.meta.resolver.PojoResolverFactory
 import org.sqlproc.meta.util.Utils
 
 import com.google.inject.Inject
@@ -41,6 +38,9 @@ import com.google.inject.Inject
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
 import org.eclipse.emf.common.util.URI
+import org.sqlproc.plugin.lib.resolver.PojoResolverFactory
+import org.sqlproc.plugin.lib.resolver.DbResolver
+import org.sqlproc.plugin.lib.property.ModelProperty
 
 enum ValidationResult {
 	OK, WARNING, ERROR
