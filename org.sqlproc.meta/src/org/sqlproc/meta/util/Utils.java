@@ -19,8 +19,10 @@ import org.sqlproc.meta.processorMeta.MappingColumn;
 import org.sqlproc.meta.processorMeta.MappingRule;
 import org.sqlproc.meta.processorMeta.MetaStatement;
 import org.sqlproc.meta.processorMeta.PojoDefinition;
+import org.sqlproc.meta.processorMeta.PojoType;
 import org.sqlproc.meta.processorMeta.ProcedureDefinition;
 import org.sqlproc.meta.processorMeta.TableDefinition;
+import org.sqlproc.meta.processorMeta.ValueType;
 import org.sqlproc.plugin.lib.util.CommonUtils;
 
 public class Utils extends CommonUtils {
@@ -148,8 +150,8 @@ public class Utils extends CommonUtils {
 		return null;
 	}
 
-	public static List<TableDefinition> findTables(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
-	        IScope scope) {
+	public static List<TableDefinition> findTablesDef(IQualifiedNameConverter qualifiedNameConverter,
+	        Artifacts artifacts, IScope scope) {
 		List<TableDefinition> tables = new ArrayList<TableDefinition>();
 		Iterable<IEObjectDescription> iterable = scope.getAllElements();
 		for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
@@ -161,7 +163,7 @@ public class Utils extends CommonUtils {
 		return tables;
 	}
 
-	public static List<FunctionDefinition> findFunctions(IQualifiedNameConverter qualifiedNameConverter,
+	public static List<FunctionDefinition> findFunctionsDef(IQualifiedNameConverter qualifiedNameConverter,
 	        Artifacts artifacts, IScope scope) {
 		List<FunctionDefinition> functions = new ArrayList<FunctionDefinition>();
 		Iterable<IEObjectDescription> iterable = scope.getAllElements();
@@ -174,7 +176,7 @@ public class Utils extends CommonUtils {
 		return functions;
 	}
 
-	public static List<ProcedureDefinition> findProcedures(IQualifiedNameConverter qualifiedNameConverter,
+	public static List<ProcedureDefinition> findProceduresDef(IQualifiedNameConverter qualifiedNameConverter,
 	        Artifacts artifacts, IScope scope) {
 		List<ProcedureDefinition> procedures = new ArrayList<ProcedureDefinition>();
 		Iterable<IEObjectDescription> iterable = scope.getAllElements();
@@ -183,6 +185,45 @@ public class Utils extends CommonUtils {
 			EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
 			if (obj instanceof ProcedureDefinition)
 				procedures.add((ProcedureDefinition) obj);
+		}
+		return procedures;
+	}
+
+	public static List<String> findTables(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
+	        IScope scope) {
+		List<String> tables = new ArrayList<String>();
+		Iterable<IEObjectDescription> iterable = scope.getAllElements();
+		for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
+			IEObjectDescription description = iter.next();
+			EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
+			if (obj instanceof TableDefinition)
+				tables.add(((TableDefinition) obj).getTable());
+		}
+		return tables;
+	}
+
+	public static List<String> findFunctions(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
+	        IScope scope) {
+		List<String> functions = new ArrayList<String>();
+		Iterable<IEObjectDescription> iterable = scope.getAllElements();
+		for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
+			IEObjectDescription description = iter.next();
+			EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
+			if (obj instanceof FunctionDefinition)
+				functions.add(((FunctionDefinition) obj).getTable());
+		}
+		return functions;
+	}
+
+	public static List<String> findProcedures(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
+	        IScope scope) {
+		List<String> procedures = new ArrayList<String>();
+		Iterable<IEObjectDescription> iterable = scope.getAllElements();
+		for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
+			IEObjectDescription description = iter.next();
+			EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
+			if (obj instanceof ProcedureDefinition)
+				procedures.add(((ProcedureDefinition) obj).getTable());
 		}
 		return procedures;
 	}
@@ -256,5 +297,56 @@ public class Utils extends CommonUtils {
 		if (Character.isUpperCase(c))
 			return name;
 		return name.substring(0, 1).toUpperCase() + name.substring(1);
+	}
+
+	public static String getPropertyValue(String value) {
+		if (value == null)
+			return null;
+		value = value.trim();
+		if (value.startsWith("\""))
+			value = value.substring(1);
+		if (value.endsWith("\""))
+			value = value.substring(0, value.length() - 1);
+		return value;
+	}
+
+	public static String getPropertyValue(ValueType pv) {
+		if (pv == null)
+			return null;
+		String s = pv.getValue();
+		if (s != null) {
+			s = s.trim();
+			if (s.startsWith("\""))
+				s = s.substring(1);
+			if (s.endsWith("\""))
+				s = s.substring(0, s.length() - 1);
+			return s;
+		} else if (pv.getId() != null)
+			return pv.getId();
+		else
+			return "" + pv.getNumber();
+	}
+
+	public static String getPropertyValueRegex(ValueType pv) {
+		String s = getPropertyValue(pv);
+		if (s == null)
+			return null;
+		String s2 = s.replaceAll("\\\\\\\\", "\\\\");
+		return s2;
+	}
+
+	public static String getPropertyValue(PojoType pv) {
+		if (pv == null)
+			return null;
+		if (pv.getType() != null)
+			return pv.getType().getQualifiedName();
+		if (pv.getIdent() != null)
+			return getPropertyValue(pv.getIdent());
+		if (pv.getRef() != null) {
+			if (pv.getRef().getClassx() != null)
+				return pv.getRef().getClassx().getQualifiedName();
+			return pv.getRef().getClass_();
+		}
+		return null;
 	}
 }

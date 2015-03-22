@@ -36,20 +36,33 @@ public class TablePojoGenerator extends TableBaseGenerator {
 
 	protected Artifacts artifacts;
 	protected Annotations entityAnnotations;
-
-	public TablePojoGenerator() {
-	}
+	protected Map<String, String> finalEntities;
+	protected Map<String, Map<String, String>> finalEntitiesFeatures;
+	protected Set<String> entityImports;
 
 	public TablePojoGenerator(ModelProperty modelProperty, Artifacts artifacts, Map<String, String> finalEntities,
 	        Map<String, Map<String, String>> finalEntitiesFeatures, Annotations entityAnnotations,
 	        Set<String> entityImports, List<String> dbSequences, DbType dbType) {
-		super(modelProperty, artifacts, finalEntities, finalEntitiesFeatures, entityImports, dbSequences, dbType);
+		super(modelProperty, artifacts, dbSequences, dbType);
 
 		this.artifacts = artifacts;
 		this.entityAnnotations = entityAnnotations;
+		this.finalEntities = finalEntities;
+		this.finalEntitiesFeatures = finalEntitiesFeatures;
+		this.entityImports = entityImports;
+
+		if (doGenerateValidationAnnotations) {
+			if (this.entityImports == null)
+				this.entityImports = new HashSet<String>();
+			this.entityImports.add(ANNOTATION_NOT_NULL);
+			this.entityImports.add(ANNOTATION_SIZE);
+		}
 
 		if (debug.debug) {
 			System.out.println("entityAnnotations " + this.entityAnnotations);
+			System.out.println("finalEntities " + this.finalEntities);
+			System.out.println("finalEntitiesFeatures " + this.finalEntitiesFeatures);
+			System.out.println("entityImports " + this.entityImports);
 		}
 	}
 

@@ -15,22 +15,28 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.eclipse.xtext.resource.IEObjectDescription;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
+import org.eclipse.xtext.serializer.ISerializer;
 import org.sqlproc.meta.processorMeta.Artifacts;
+import org.sqlproc.meta.processorMeta.MetaStatement;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 import org.sqlproc.meta.processorMeta.TableDefinition;
 import org.sqlproc.meta.property.ModelPropertyBean;
+import org.sqlproc.meta.util.Utils;
+import org.sqlproc.plugin.lib.generator.TableBaseGenerator;
 import org.sqlproc.plugin.lib.property.ModelProperty;
 import org.sqlproc.plugin.lib.property.PairValues;
 import org.sqlproc.plugin.lib.property.PojoAttribute;
 import org.sqlproc.plugin.lib.property.PojoEntityType;
+import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.resolver.DbResolver.DbType;
 import org.sqlproc.plugin.lib.util.Constants;
 import org.sqlproc.plugin.lib.util.Debug;
 import org.sqlproc.plugin.lib.util.SqlFeature;
 
-public class TableMetaGenerator extends TablePojoGenerator {
+public class TableMetaGenerator extends TableBaseGenerator {
 
 	protected Logger LOGGER = Logger.getLogger(TableMetaGenerator.class);
 	private Debug debug = new Debug(LOGGER);
@@ -69,13 +75,9 @@ public class TableMetaGenerator extends TablePojoGenerator {
 		INSERT, GET, UPDATE, DELETE, SELECT
 	}
 
-	public TableMetaGenerator() {
-		super();
-	}
-
 	public TableMetaGenerator(ModelProperty modelProperty, Artifacts artifacts, IScopeProvider scopeProvider,
 	        Map<String, String> finalMetas, List<String> dbSequences, DbType dbType) {
-		super(modelProperty, artifacts, null, Collections.<String, String> emptyMap(), /* null, */dbSequences, dbType);
+		super(modelProperty, artifacts, dbSequences, dbType);
 		this.scopeProvider = scopeProvider;
 		this.artifacts = artifacts;
 		this.finalMetas = finalMetas;
@@ -237,7 +239,7 @@ public class TableMetaGenerator extends TablePojoGenerator {
 
 	public String getMetaDefinitions(ModelProperty modelProperty, Artifacts artifacts) {
 		String result = getMetaDefinitions();
-		return replaceAll(modelProperty, result, artifacts);
+		return Utils.replaceAll(modelProperty, result, artifacts);
 	}
 
 	public String getMetaDefinitions() {
@@ -992,12 +994,12 @@ public class TableMetaGenerator extends TablePojoGenerator {
 		if (dispName == null) {
 			PojoEntityType ptype = pojosForProcedures.get(pojo);
 			if (ptype != null)
-				dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType().getSimpleName();
+				dispName = ptype.getSimpleName();
 		}
 		if (dispName == null) {
 			PojoEntityType ptype = pojosForFunctions.get(pojo);
 			if (ptype != null)
-				dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType().getSimpleName();
+				dispName = ptype.getSimpleName();
 		}
 		if (pojoName == null)
 			pojoName = pojo;
@@ -1590,7 +1592,7 @@ public class TableMetaGenerator extends TablePojoGenerator {
 			header.statementName = header.statementName + "_" + suffix;
 		}
 		if (finalMetas.containsKey(header.statementName)) {
-			buffer.append("\n").append(getFinalContent(finalMetas.get(header.statementName)));
+			buffer.append("\n").append(Utils.getFinalContent(finalMetas.get(header.statementName)));
 			return null;
 		}
 		buffer.append("\n").append(header.statementName);
@@ -2108,5 +2110,43 @@ public class TableMetaGenerator extends TablePojoGenerator {
 		public String toString() {
 			return "Filter [filters=" + filters + "]";
 		}
+	}
+
+	protected boolean addDefinitions(IScopeProvider scopeProvider, DbResolver dbResolver) {
+		try {
+			List<String> tables = Utils.findTables(null, artifacts,
+			        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES));
+			List<String> procedures = Utils.findProcedures(null, artifacts,
+			        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__PROCEDURES));
+			List<String> functions = Utils.findFunctions(null, artifacts,
+			        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__FUNCTIONS));
+			return super.addDefinitions(dbResolver, scopeProvider, tables, procedures, functions);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public static String generateMeta(Artifacts artifacts, List<MetaStatement> statements, ISerializer serializer,
+	        DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty) {
+		if (artifacts == null || !dbResolver.isResolveDb(artifacts))
+			return null;
+
+		Map<String, String> finalMetas = new HashMap<String, String>();
+		for (MetaStatement meta : statements) {
+			if (serializer == null)
+				serializer = ((XtextResource) meta.eResource()).getSerializer();
+			if (Utils.isFinal(meta)) {
+				finalMetas.put(meta.getName(), serializer.serialize(meta));
+			}
+		}
+
+		List<String> dbSequences = dbResolver.getSequences(artifacts);
+		DbType dbType = Utils.getDbType(dbResolver, artifacts);
+		TableMetaGenerator generator = new TableMetaGenerator(modelProperty, artifacts, scopeProvider, finalMetas,
+		        dbSequences, dbType);
+		if (generator.addDefinitions(scopeProvider, dbResolver))
+			return generator.getMetaDefinitions(modelProperty, artifacts);
+		return null;
 	}
 }

@@ -6,9 +6,7 @@ package org.sqlproc.meta.generator;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -17,7 +15,6 @@ import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
-import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
@@ -26,9 +23,7 @@ import org.sqlproc.meta.processorMeta.Artifacts;
 import org.sqlproc.meta.processorMeta.MetaStatement;
 import org.sqlproc.meta.property.ModelPropertyBean;
 import org.sqlproc.meta.property.ModelPropertyBean.ModelValues;
-import org.sqlproc.meta.util.Utils;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
-import org.sqlproc.plugin.lib.resolver.DbResolver.DbType;
 import org.sqlproc.plugin.lib.resolver.DbResolverBean;
 
 import com.google.common.io.Files;
@@ -185,8 +180,8 @@ public class Main {
 		}
 
 		System.out.println("Going to generate " + sql);
-		String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions, statements,
-		        ((XtextResource) controlResource).getSerializer());
+		String metaDefinitions = TableMetaGenerator.generateMeta(definitions, statements,
+		        ((XtextResource) controlResource).getSerializer(), dbResolver, scopeProvider, modelProperty);
 		fileAccess.generateFile(sql, metaDefinitions);
 		System.out.println(sql + " generation finished.");
 	}
@@ -209,26 +204,5 @@ public class Main {
 			}
 		}
 		return !isError;
-	}
-
-	protected String getMetaDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
-	        List<MetaStatement> statements, ISerializer serializer) {
-
-		if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-			Map<String, String> finalMetas = new HashMap<String, String>();
-			for (MetaStatement meta : statements) {
-				if (Utils.isFinal(meta)) {
-					finalMetas.put(meta.getName(), serializer.serialize(meta));
-				}
-			}
-			// List<String> tables = dbResolver.getTables(artifacts);
-			List<String> dbSequences = dbResolver.getSequences(artifacts);
-			DbType dbType = Utils.getDbType(dbResolver, artifacts);
-			TableMetaGenerator generator = new TableMetaGenerator(modelProperty, artifacts, scopeProvider, finalMetas,
-			        dbSequences, dbType);
-			if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
-				return generator.getMetaDefinitions(modelProperty, artifacts);
-		}
-		return null;
 	}
 }

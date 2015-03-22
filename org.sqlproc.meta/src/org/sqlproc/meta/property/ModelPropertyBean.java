@@ -26,11 +26,10 @@ import org.sqlproc.meta.processorMeta.JoinTableAssignement;
 import org.sqlproc.meta.processorMeta.ManyToManyAssignement;
 import org.sqlproc.meta.processorMeta.MetaTypeAssignement;
 import org.sqlproc.meta.processorMeta.MetagenProperty;
-import org.sqlproc.meta.processorMeta.PojoType;
 import org.sqlproc.meta.processorMeta.PojogenProperty;
 import org.sqlproc.meta.processorMeta.Property;
 import org.sqlproc.meta.processorMeta.PropertyCondition;
-import org.sqlproc.meta.processorMeta.ValueType;
+import org.sqlproc.meta.util.Utils;
 import org.sqlproc.plugin.lib.property.ImplementsExtends;
 import org.sqlproc.plugin.lib.property.ModelProperty;
 import org.sqlproc.plugin.lib.property.PairValues;
@@ -383,7 +382,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 		if (condition == null || condition.getName() == null || condition.getValue() == null)
 			return false;
 		String envValue = System.getenv(condition.getName());
-		String propValue = getPropertyValue(condition.getValue());
+		String propValue = Utils.getPropertyValue(condition.getValue());
 		if (envValue == null || propValue == null || !envValue.equals(propValue))
 			return false;
 		return true;
@@ -643,11 +642,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			modelValues.doResolvePojo = false;
 		} else if (REPLACE_ALL_REGEX.equals(property.getName())) {
 			if (property.getRegex() != null && property.getReplaceId() != null)
-				modelValues.replaceAllRegex.put(property.getReplaceId(), getPropertyValueRegex(property.getRegex()));
+				modelValues.replaceAllRegex.put(property.getReplaceId(),
+				        Utils.getPropertyValueRegex(property.getRegex()));
 		} else if (REPLACE_ALL_REPLACEMENT.equals(property.getName())) {
 			if (property.getReplacement() != null && property.getReplaceId() != null)
 				modelValues.replaceAllReplacement.put(property.getReplaceId(),
-				        getPropertyValueRegex(property.getReplacement()));
+				        Utils.getPropertyValueRegex(property.getReplacement()));
 		} else if (COMPRESS_META_DIRECTIVES.equals(property.getName())) {
 			modelValues.doCompressMetaDirectives = true;
 		}
@@ -678,29 +678,29 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 		} else if (DATABASE_IS_OFFLINE.equals(property.getName())) {
 			modelValues.doResolveDb = false;
 		} else if (DATABASE_HAS_URL.equals(property.getName())) {
-			modelValues.dbUrl = getPropertyValue(property.getDbUrl());
+			modelValues.dbUrl = Utils.getPropertyValue(property.getDbUrl());
 		} else if (DATABASE_LOGIN_USERNAME.equals(property.getName())) {
-			modelValues.dbUsername = getPropertyValue(property.getDbUsername());
+			modelValues.dbUsername = Utils.getPropertyValue(property.getDbUsername());
 		} else if (DATABASE_LOGIN_PASSWORD.equals(property.getName())) {
-			modelValues.dbPassword = getPropertyValue(property.getDbPassword());
+			modelValues.dbPassword = Utils.getPropertyValue(property.getDbPassword());
 		} else if (DATABASE_IN_CATALOG.equals(property.getName())) {
 			if (property.getDbCatalog() != null)
-				modelValues.dbCatalog = getPropertyValue(property.getDbCatalog().getDbCatalog());
+				modelValues.dbCatalog = Utils.getPropertyValue(property.getDbCatalog().getDbCatalog());
 			else
 				modelValues.dbCatalog = null;
 		} else if (DATABASE_ACTIVE_SCHEMA.equals(property.getName())) {
 			if (property.getDbSchema() != null)
-				modelValues.dbSchema = getPropertyValue(property.getDbSchema().getDbSchema());
+				modelValues.dbSchema = Utils.getPropertyValue(property.getDbSchema().getDbSchema());
 			else
 				modelValues.dbSchema = null;
 		} else if (DATABASE_JDBC_DRIVER.equals(property.getName())) {
-			modelValues.dbDriver = getPropertyValue(property.getDbDriver());
+			modelValues.dbDriver = Utils.getPropertyValue(property.getDbDriver());
 		} else if (DATABASE_EXECUTE_BEFORE.equals(property.getName())) {
-			modelValues.dbSqlsBefore = getPropertyValue(property.getDbExecuteBefore());
+			modelValues.dbSqlsBefore = Utils.getPropertyValue(property.getDbExecuteBefore());
 		} else if (DATABASE_EXECUTE_AFTER.equals(property.getName())) {
-			modelValues.dbSqlsAfter = getPropertyValue(property.getDbExecuteAfter());
+			modelValues.dbSqlsAfter = Utils.getPropertyValue(property.getDbExecuteAfter());
 		} else if (DATABASE_INDEX_TYPES.equals(property.getName())) {
-			modelValues.dbIndexTypes = getPropertyValue(property.getDbIndexTypes());
+			modelValues.dbIndexTypes = Utils.getPropertyValue(property.getDbIndexTypes());
 		} else if (DATABASE_SKIP_INDEXES.equals(property.getName())) {
 			modelValues.dbSkipIndexes = true;
 		} else if (DATABASE_SKIP_PROCEDURES.equals(property.getName())) {
@@ -709,12 +709,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			modelValues.dbSkipCheckConstraints = true;
 		} else if (DATABASE_OF_TYPE.equals(property.getName())) {
 			if (property.getDbType() != null)
-				modelValues.dbType = getPropertyValue(property.getDbType().getDbType());
+				modelValues.dbType = Utils.getPropertyValue(property.getDbType().getDbType());
 			else
 				modelValues.dbType = null;
 		} else if (DATABASE_DEBUG_LEVEL.equals(property.getName()) && property.getDebug() != null) {
 			modelValues.dbDebugLevel = property.getDebug().getDebug();
-			modelValues.dbDebugScope = getPropertyValue(property.getDebug().getScope());
+			modelValues.dbDebugScope = Utils.getPropertyValue(property.getDebug().getScope());
 		} else if (DATABASE_TAKE_COMMENTS.equals(property.getName())) {
 			modelValues.dbTakeComments = true;
 		} else if (DATABASE_LOWERCASE_NAMES.equals(property.getName())) {
@@ -736,23 +736,23 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			} else if (DATABASE_IS_OFFLINE.equals(name)) {
 				modelValues.doResolveDb = value.equalsIgnoreCase("true");
 			} else if (DATABASE_HAS_URL.equals(name)) {
-				modelValues.dbUrl = getPropertyValue(value);
+				modelValues.dbUrl = Utils.getPropertyValue(value);
 			} else if (DATABASE_LOGIN_USERNAME.equals(name)) {
-				modelValues.dbUsername = getPropertyValue(value);
+				modelValues.dbUsername = Utils.getPropertyValue(value);
 			} else if (DATABASE_LOGIN_PASSWORD.equals(name)) {
-				modelValues.dbPassword = getPropertyValue(value);
+				modelValues.dbPassword = Utils.getPropertyValue(value);
 			} else if (DATABASE_IN_CATALOG.equals(name)) {
-				modelValues.dbCatalog = getPropertyValue(value);
+				modelValues.dbCatalog = Utils.getPropertyValue(value);
 			} else if (DATABASE_ACTIVE_SCHEMA.equals(name)) {
-				modelValues.dbSchema = getPropertyValue(value);
+				modelValues.dbSchema = Utils.getPropertyValue(value);
 			} else if (DATABASE_JDBC_DRIVER.equals(name)) {
-				modelValues.dbDriver = getPropertyValue(value);
+				modelValues.dbDriver = Utils.getPropertyValue(value);
 			} else if (DATABASE_EXECUTE_BEFORE.equals(name)) {
-				modelValues.dbSqlsBefore = getPropertyValue(value);
+				modelValues.dbSqlsBefore = Utils.getPropertyValue(value);
 			} else if (DATABASE_EXECUTE_AFTER.equals(name)) {
-				modelValues.dbSqlsAfter = getPropertyValue(value);
+				modelValues.dbSqlsAfter = Utils.getPropertyValue(value);
 			} else if (DATABASE_INDEX_TYPES.equals(name)) {
-				modelValues.dbIndexTypes = getPropertyValue(value);
+				modelValues.dbIndexTypes = Utils.getPropertyValue(value);
 			} else if (DATABASE_SKIP_INDEXES.equals(name)) {
 				modelValues.dbSkipIndexes = value.equalsIgnoreCase("true");
 			} else if (DATABASE_SKIP_PROCEDURES.equals(name)) {
@@ -760,9 +760,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			} else if (DATABASE_SKIP_CHECK_CONSTRAINTS.equals(name)) {
 				modelValues.dbSkipCheckConstraints = value.equalsIgnoreCase("true");
 			} else if (DATABASE_OF_TYPE.equals(name)) {
-				modelValues.dbType = getPropertyValue(value);
+				modelValues.dbType = Utils.getPropertyValue(value);
 			} else if (DATABASE_DEBUG_LEVEL.equals(name)) {
-				modelValues.dbDebugLevel = getPropertyValue(value);
+				modelValues.dbDebugLevel = Utils.getPropertyValue(value);
 			} else if (DATABASE_TAKE_COMMENTS.equals(name)) {
 				modelValues.dbTakeComments = value.equalsIgnoreCase("true");
 			} else if (DATABASE_LOWERCASE_NAMES.equals(name)) {
@@ -780,7 +780,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			// if (modelValues.sqlTypes == null)
 			// modelValues.sqlTypes = new HashMap<String, PojoAttrType>();
 			for (int i = 0, m = property.getSqlTypes().size(); i < m; i++) {
-				String sqlType = getPropertyValue(property.getSqlTypes().get(i).getSqlType());
+				String sqlType = Utils.getPropertyValue(property.getSqlTypes().get(i).getSqlType());
 				PojoAttrTypeImpl type = new PojoAttrTypeImpl(null, sqlType, property.getSqlTypes().get(i).getType());
 				modelValues.sqlTypes.put(sqlType, type);
 			}
@@ -790,7 +790,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			if (!modelValues.tableTypes.containsKey(property.getDbTable()))
 				modelValues.tableTypes.put(property.getDbTable(), new HashMap<String, PojoAttrType>());
 			for (int i = 0, m = property.getSqlTypes().size(); i < m; i++) {
-				String sqlType = getPropertyValue(property.getSqlTypes().get(i).getSqlType());
+				String sqlType = Utils.getPropertyValue(property.getSqlTypes().get(i).getSqlType());
 				PojoAttrTypeImpl type = new PojoAttrTypeImpl(null, sqlType, property.getSqlTypes().get(i).getType());
 				modelValues.tableTypes.get(property.getDbTable()).put(sqlType, type);
 			}
@@ -990,7 +990,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 				modelValues.generateMethods.add(property.getMethods().get(i));
 			}
 		} else if (POJOGEN_GENERATE_OPERATORS.equals(property.getName())) {
-			modelValues.generateOperators = getPropertyValue(property.getOperatorsSuffix());
+			modelValues.generateOperators = Utils.getPropertyValue(property.getOperatorsSuffix());
 			if (modelValues.generateOperators == null)
 				modelValues.generateOperators = "operators";
 		} else if (POJOGEN_IMPLEMENTS_INTERFACES.equals(property.getName())) {
@@ -1051,7 +1051,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			}
 		} else if (POJOGEN_DEBUG_LEVEL.equals(property.getName()) && property.getDebug().getDebug() != null) {
 			modelValues.debugLevel = property.getDebug().getDebug();
-			modelValues.debugScope = getPropertyValue(property.getDebug().getScope());
+			modelValues.debugScope = Utils.getPropertyValue(property.getDebug().getScope());
 		} else if (POJOGEN_PRESERVE_FOREIGN_KEYS.equals(property.getName())) {
 			if (property.getDbTables().isEmpty()) {
 				modelValues.preserveForeignKeys.add("_ALL_");
@@ -1071,9 +1071,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 				        new PojoEntityTypeImpl(property.getFunPojos().get(i).getPojo()));
 			}
 		} else if (POJOGEN_ACTIVE_FILTER.equals(property.getName())) {
-			modelValues.activeFilter = getPropertyValue(property.getActiveFilter());
+			modelValues.activeFilter = Utils.getPropertyValue(property.getActiveFilter());
 		} else if (POJOGEN_PACKAGE.equals(property.getName())) {
-			modelValues.pckg = getPropertyValue(property.getPckg());
+			modelValues.pckg = Utils.getPropertyValue(property.getPckg());
 		} else if (POJOGEN_ENUM_FOR_CHECK_CONSTRAINTS.equals(property.getName())) {
 			for (int i = 0, m = property.getDbCheckConstraints().size(); i < m; i++) {
 				if (i == 0)
@@ -1164,7 +1164,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			modelValues.metaProceduresResultSet.put(property.getDbProcedure(), property.getDbTable());
 		} else if (METAGEN_DEBUG_LEVEL.equals(property.getName()) && property.getDebug() != null) {
 			modelValues.metaDebugLevel = property.getDebug().getDebug();
-			modelValues.metaDebugScope = getPropertyValue(property.getDebug().getScope());
+			modelValues.metaDebugScope = Utils.getPropertyValue(property.getDebug().getScope());
 		} else if (METAGEN_GENERATE_OPERATORS.equals(property.getName())) {
 			modelValues.metaGenerateOperators = true;
 		} else if (METAGEN_OPTIMIZE_INSERT.equals(property.getName())) {
@@ -1179,11 +1179,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			if (!modelValues.metaOptionalFeatures.containsKey(property.getDbStatement()))
 				modelValues.metaOptionalFeatures.put(property.getDbStatement(), new HashSet<String>());
 			for (int i = 0, m = property.getOptionalFeatures().size(); i < m; i++) {
-				String optionalFeature = getPropertyValue(property.getOptionalFeatures().get(i));
+				String optionalFeature = Utils.getPropertyValue(property.getOptionalFeatures().get(i));
 				modelValues.metaOptionalFeatures.get(property.getDbStatement()).add(optionalFeature);
 			}
 		} else if (METAGEN_ACTIVE_FILTER.equals(property.getName())) {
-			modelValues.metaActiveFilter = getPropertyValue(property.getActiveFilter());
+			modelValues.metaActiveFilter = Utils.getPropertyValue(property.getActiveFilter());
 		}
 	}
 
@@ -1222,11 +1222,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			        new PojoEntityTypeImpl(property.getResultType()));
 		} else if (DAOGEN_DEBUG_LEVEL.equals(property.getName()) && property.getDebug().getDebug() != null) {
 			modelValues.daoDebugLevel = property.getDebug().getDebug();
-			modelValues.daoDebugScope = getPropertyValue(property.getDebug().getScope());
+			modelValues.daoDebugScope = Utils.getPropertyValue(property.getDebug().getScope());
 		} else if (DAOGEN_ACTIVE_FILTER.equals(property.getName())) {
-			modelValues.daoActiveFilter = getPropertyValue(property.getActiveFilter());
+			modelValues.daoActiveFilter = Utils.getPropertyValue(property.getActiveFilter());
 		} else if (DAOGEN_PACKAGE.equals(property.getName())) {
-			modelValues.daoPckg = getPropertyValue(property.getPckg());
+			modelValues.daoPckg = Utils.getPropertyValue(property.getPckg());
 		}
 	}
 
@@ -1877,56 +1877,5 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 	@Override
 	public String toString() {
 		return "ModelPropertyBean [dirs2models=" + dirs2models + "]";
-	}
-
-	private static String getPropertyValue(String value) {
-		if (value == null)
-			return null;
-		value = value.trim();
-		if (value.startsWith("\""))
-			value = value.substring(1);
-		if (value.endsWith("\""))
-			value = value.substring(0, value.length() - 1);
-		return value;
-	}
-
-	private static String getPropertyValue(ValueType pv) {
-		if (pv == null)
-			return null;
-		String s = pv.getValue();
-		if (s != null) {
-			s = s.trim();
-			if (s.startsWith("\""))
-				s = s.substring(1);
-			if (s.endsWith("\""))
-				s = s.substring(0, s.length() - 1);
-			return s;
-		} else if (pv.getId() != null)
-			return pv.getId();
-		else
-			return "" + pv.getNumber();
-	}
-
-	private static String getPropertyValueRegex(ValueType pv) {
-		String s = getPropertyValue(pv);
-		if (s == null)
-			return null;
-		String s2 = s.replaceAll("\\\\\\\\", "\\\\");
-		return s2;
-	}
-
-	private static String getPropertyValue(PojoType pv) {
-		if (pv == null)
-			return null;
-		if (pv.getType() != null)
-			return pv.getType().getQualifiedName();
-		if (pv.getIdent() != null)
-			return getPropertyValue(pv.getIdent());
-		if (pv.getRef() != null) {
-			if (pv.getRef().getClassx() != null)
-				return pv.getRef().getClassx().getQualifiedName();
-			return pv.getRef().getClass_();
-		}
-		return null;
 	}
 }

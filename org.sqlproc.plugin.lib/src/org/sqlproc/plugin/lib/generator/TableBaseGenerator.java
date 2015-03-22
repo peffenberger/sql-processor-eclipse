@@ -71,9 +71,6 @@ public class TableBaseGenerator {
 	protected static final String ANNOTATION_SIZE = "javax.validation.constraints.Size";
 
 	protected EObject model;
-	protected Map<String, String> finalEntities;
-	protected Map<String, Map<String, String>> finalEntitiesFeatures;
-	protected Set<String> entityImports;
 	protected boolean doCompressMetaDirectives;
 	protected Map<String, PojoAttrType> sqlTypes = new HashMap<String, PojoAttrType>();
 	protected Map<String, Map<String, PojoAttrType>> tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
@@ -131,19 +128,10 @@ public class TableBaseGenerator {
 	protected Map<String, String> metaFunctionsResult = new HashMap<String, String>();
 	protected Map<String, String> metaProceduresResult = new HashMap<String, String>();
 
-	public TableBaseGenerator() {
-	}
-
-	public TableBaseGenerator(ModelProperty modelProperty, EObject model, Map<String, String> finalEntities,
-	        Map<String, Map<String, String>> finalEntitiesFeatures, Set<String> entityImports,
-	        List<String> dbSequences, DbType dbType) {
+	public TableBaseGenerator(ModelProperty modelProperty, EObject model, List<String> dbSequences, DbType dbType) {
 
 		this.model = model;
 		debug = new Debug(modelProperty.getDebugLevel(model), modelProperty.getDebugScope(model), LOGGER);
-
-		this.finalEntities = finalEntities;
-		this.finalEntitiesFeatures = finalEntitiesFeatures;
-		this.entityImports = entityImports;
 
 		this.doCompressMetaDirectives = modelProperty.isCompressMetaDirectives(model);
 		Map<String, PojoAttrType> sqlTypes = modelProperty.getSqlTypes(model);
@@ -301,17 +289,7 @@ public class TableBaseGenerator {
 			this.metaFunctionsResult.putAll(metaFunctionsResult);
 		}
 
-		if (doGenerateValidationAnnotations) {
-			if (this.entityImports == null)
-				this.entityImports = new HashSet<String>();
-			this.entityImports.add(ANNOTATION_NOT_NULL);
-			this.entityImports.add(ANNOTATION_SIZE);
-		}
-
 		if (debug.debug) {
-			System.out.println("finalEntities " + this.finalEntities);
-			System.out.println("finalEntitiesFeatures " + this.finalEntitiesFeatures);
-			System.out.println("entityImports " + this.entityImports);
 			System.out.println("doCompressMetaDirectives " + this.doCompressMetaDirectives);
 			System.out.println("sqlTypes " + this.sqlTypes);
 			System.out.println("tableTypes " + this.tableTypes);

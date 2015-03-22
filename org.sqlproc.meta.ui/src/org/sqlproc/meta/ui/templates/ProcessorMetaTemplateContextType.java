@@ -1,9 +1,7 @@
 package org.sqlproc.meta.ui.templates;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
@@ -13,14 +11,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.templates.SimpleTemplateVariableResolver;
 import org.eclipse.jface.text.templates.TemplateContext;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
-import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContext;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
 import org.eclipse.xtext.util.Strings;
 import org.sqlproc.meta.generator.TableMetaGenerator;
-import org.sqlproc.meta.generator.TablePojoGenerator;
 import org.sqlproc.meta.processorMeta.Artifacts;
 import org.sqlproc.meta.processorMeta.FunctionDefinition;
 import org.sqlproc.meta.processorMeta.MetaStatement;
@@ -30,9 +25,7 @@ import org.sqlproc.meta.processorMeta.TableDefinition;
 import org.sqlproc.meta.util.Utils;
 import org.sqlproc.plugin.lib.property.ModelProperty;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
-import org.sqlproc.plugin.lib.resolver.DbResolver.DbType;
 import org.sqlproc.plugin.lib.resolver.PojoResolver;
-import org.sqlproc.plugin.lib.util.CommonUtils;
 import org.sqlproc.plugin.lib.util.Constants;
 
 import com.google.inject.Inject;
@@ -605,7 +598,7 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
 		protected String resolve(TemplateContext context) {
 			Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
 			if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-				List<TableDefinition> tablesPresented = Utils.findTables(null, artifacts,
+				List<TableDefinition> tablesPresented = Utils.findTablesDef(null, artifacts,
 				        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES));
 				List<String> tables = dbResolver.getTables(artifacts);
 				return getTablesDefinitions(tables, tablesPresented);
@@ -631,7 +624,7 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
 		protected String resolve(TemplateContext context) {
 			Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
 			if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-				List<ProcedureDefinition> proceduresPresented = Utils.findProcedures(null, artifacts,
+				List<ProcedureDefinition> proceduresPresented = Utils.findProceduresDef(null, artifacts,
 				        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__PROCEDURES));
 				List<String> procedures = dbResolver.getProcedures(artifacts);
 				return getProceduresDefinitions(procedures, proceduresPresented);
@@ -657,7 +650,7 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
 		protected String resolve(TemplateContext context) {
 			Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
 			if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-				List<FunctionDefinition> functionsPresented = Utils.findFunctions(null, artifacts,
+				List<FunctionDefinition> functionsPresented = Utils.findFunctionsDef(null, artifacts,
 				        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__FUNCTIONS));
 				List<String> functions = dbResolver.getFunctions(artifacts);
 				return getFunctionsDefinitions(functions, functionsPresented);
@@ -682,24 +675,10 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
 		@Override
 		protected String resolve(TemplateContext context) {
 			Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
-			if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-
-				Map<String, String> finalMetas = new HashMap<String, String>();
-				for (MetaStatement meta : artifacts.getStatements()) {
-					if (Utils.isFinal(meta)) {
-						ISerializer serializer = ((XtextResource) meta.eResource()).getSerializer();
-						finalMetas.put(meta.getName(), serializer.serialize(meta));
-					}
-				}
-
-				// List<String> tables = dbResolver.getTables(artifacts);
-				List<String> dbSequences = dbResolver.getSequences(artifacts);
-				DbType dbType = CommonUtils.getDbType(dbResolver, artifacts);
-				TableMetaGenerator generator = new TableMetaGenerator(modelProperty, artifacts, scopeProvider,
-				        finalMetas, dbSequences, dbType);
-				if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
-					return generator.getMetaDefinitions(modelProperty, artifacts);
-			}
+			String metas = TableMetaGenerator.generateMeta(artifacts, artifacts.getStatements(), null, dbResolver,
+			        scopeProvider, modelProperty);
+			if (metas != null)
+				return metas;
 			return super.resolve(context);
 		}
 

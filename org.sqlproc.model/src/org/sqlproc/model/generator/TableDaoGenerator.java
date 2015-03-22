@@ -53,10 +53,6 @@ public class TableDaoGenerator extends TablePojoGenerator {
 	protected Filter daoActiveFilter = null;
 	protected String daoPackage;
 
-	public TableDaoGenerator() {
-		super();
-	}
-
 	public TableDaoGenerator(ModelProperty modelProperty, Artifacts artifacts, IScopeProvider scopeProvider,
 	        Map<String, String> finalDaos, Map<String, Map<String, String>> finalDaosFeatures,
 	        Annotations daoAnnotations, Set<String> daoImports, List<String> dbSequences, DbType dbType) {
