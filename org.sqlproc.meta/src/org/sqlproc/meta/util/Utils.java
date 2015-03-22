@@ -21,8 +21,9 @@ import org.sqlproc.meta.processorMeta.MetaStatement;
 import org.sqlproc.meta.processorMeta.PojoDefinition;
 import org.sqlproc.meta.processorMeta.ProcedureDefinition;
 import org.sqlproc.meta.processorMeta.TableDefinition;
+import org.sqlproc.plugin.lib.util.CommonUtils;
 
-public class Utils {
+public class Utils extends CommonUtils {
 
 	public static String getTokenFromModifier(MetaStatement statement, String tokenName) {
 		if (statement.getModifiers() == null || statement.getModifiers().isEmpty()) {

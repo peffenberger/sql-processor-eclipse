@@ -26,10 +26,10 @@ import org.sqlproc.meta.processorMeta.Artifacts;
 import org.sqlproc.meta.processorMeta.MetaStatement;
 import org.sqlproc.meta.property.ModelPropertyBean;
 import org.sqlproc.meta.property.ModelPropertyBean.ModelValues;
-import org.sqlproc.meta.resolver.DbResolver;
-import org.sqlproc.meta.resolver.DbResolver.DbType;
-import org.sqlproc.meta.resolver.DbResolverBean;
 import org.sqlproc.meta.util.Utils;
+import org.sqlproc.plugin.lib.resolver.DbResolver;
+import org.sqlproc.plugin.lib.resolver.DbResolver.DbType;
+import org.sqlproc.plugin.lib.resolver.DbResolverBean;
 
 import com.google.common.io.Files;
 import com.google.inject.Inject;
@@ -38,197 +38,197 @@ import com.google.inject.Provider;
 
 public class Main {
 
-    @Inject
-    private Provider<ResourceSet> resourceSetProvider;
-    @Inject
-    private IResourceValidator validator;
-    @Inject
-    private JavaIoFileSystemAccess fileAccess;
-    @Inject
-    IScopeProvider scopeProvider;
+	@Inject
+	private Provider<ResourceSet> resourceSetProvider;
+	@Inject
+	private IResourceValidator validator;
+	@Inject
+	private JavaIoFileSystemAccess fileAccess;
+	@Inject
+	IScopeProvider scopeProvider;
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-        String target = null;
-        String source = null;
-        String control = null;
-        String sql = null;
-        String ddl = null;
-        boolean merge = true;
-        boolean generate = true;
-        for (int i = 0; i < args.length; i++) {
-            String arg = args[i];
-            if ("-target".equals(arg) && i < args.length - 1)
-                target = args[++i];
-            else if ("-source".equals(arg) && i < args.length - 1)
-                source = args[++i];
-            else if ("-control".equals(arg) && i < args.length - 1)
-                control = args[++i];
-            else if ("-sql".equals(arg) && i < args.length - 1)
-                sql = args[++i];
-            else if ("-ddl".equals(arg) && i < args.length - 1)
-                ddl = args[++i];
-            else if ("-nomerge".equals(arg))
-                merge = false;
-            else if ("-verify".equals(arg))
-                generate = false;
-            else {
-                usage(arg);
-                return;
-            }
-        }
-        if (control == null || sql == null) {
-            usage(null);
-            return;
-        }
+		String target = null;
+		String source = null;
+		String control = null;
+		String sql = null;
+		String ddl = null;
+		boolean merge = true;
+		boolean generate = true;
+		for (int i = 0; i < args.length; i++) {
+			String arg = args[i];
+			if ("-target".equals(arg) && i < args.length - 1)
+				target = args[++i];
+			else if ("-source".equals(arg) && i < args.length - 1)
+				source = args[++i];
+			else if ("-control".equals(arg) && i < args.length - 1)
+				control = args[++i];
+			else if ("-sql".equals(arg) && i < args.length - 1)
+				sql = args[++i];
+			else if ("-ddl".equals(arg) && i < args.length - 1)
+				ddl = args[++i];
+			else if ("-nomerge".equals(arg))
+				merge = false;
+			else if ("-verify".equals(arg))
+				generate = false;
+			else {
+				usage(arg);
+				return;
+			}
+		}
+		if (control == null || sql == null) {
+			usage(null);
+			return;
+		}
 
-        Injector injector = new org.sqlproc.meta.ProcessorMetaStandaloneSetup().createInjectorAndDoEMFRegistration();
-        Main main = injector.getInstance(Main.class);
+		Injector injector = new org.sqlproc.meta.ProcessorMetaStandaloneSetup().createInjectorAndDoEMFRegistration();
+		Main main = injector.getInstance(Main.class);
 
-        if (target == null)
-            target = "./";
-        else if (!target.endsWith("/"))
-            target = target + "/";
-        if (source == null)
-            source = "";
-        else if (!source.endsWith("/"))
-            source = source + "/";
+		if (target == null)
+			target = "./";
+		else if (!target.endsWith("/"))
+			target = target + "/";
+		if (source == null)
+			source = "";
+		else if (!source.endsWith("/"))
+			source = source + "/";
 
-        main.runGenerator(control, sql, ddl, source, target, merge);
-    }
+		main.runGenerator(control, sql, ddl, source, target, merge);
+	}
 
-    private static void usage(String arg) {
-        System.out.println();
-        if (arg != null)
-            System.out.println("Incorrect argument '" + arg + "'.");
-        else
-            System.out.println("Incorrect usage.");
-        System.out.println("META SQL models generation using control directives:");
-        System.out
-                .println("  java -jar sqlmeta.jar -control controlDirectivesFile -sql metaSqlsFile [-ddl ddlsFile] [-source sourceDir] [-target targetDir] [-nomerge]");
-        System.out.println("For example:");
-        System.out.println("  java -jar sqlmeta.jar -control definitions.meta -sql statements.meta");
-        System.out.println();
-        System.out.println("Arguments:");
-        System.out.println("  -target dirname - a target directory (eg. src-gen)");
-        System.out.println("  -source dirname - a source directory (eg. src/main/resources)");
-        System.out.println("  -control filename - a control directives file name");
-        System.out.println("  -sql filename - a META SQLs file name");
-        System.out.println("  -ddl filename - a DDLs file name");
-        System.out.println("  -nomerge - do not merge generated artefacts with existing ones");
-        System.out.println("  -verify - do not generate Java source files, only verify models files");
-        System.out.println();
-        System.exit(1);
-    }
+	private static void usage(String arg) {
+		System.out.println();
+		if (arg != null)
+			System.out.println("Incorrect argument '" + arg + "'.");
+		else
+			System.out.println("Incorrect usage.");
+		System.out.println("META SQL models generation using control directives:");
+		System.out
+		        .println("  java -jar sqlmeta.jar -control controlDirectivesFile -sql metaSqlsFile [-ddl ddlsFile] [-source sourceDir] [-target targetDir] [-nomerge]");
+		System.out.println("For example:");
+		System.out.println("  java -jar sqlmeta.jar -control definitions.meta -sql statements.meta");
+		System.out.println();
+		System.out.println("Arguments:");
+		System.out.println("  -target dirname - a target directory (eg. src-gen)");
+		System.out.println("  -source dirname - a source directory (eg. src/main/resources)");
+		System.out.println("  -control filename - a control directives file name");
+		System.out.println("  -sql filename - a META SQLs file name");
+		System.out.println("  -ddl filename - a DDLs file name");
+		System.out.println("  -nomerge - do not merge generated artefacts with existing ones");
+		System.out.println("  -verify - do not generate Java source files, only verify models files");
+		System.out.println();
+		System.exit(1);
+	}
 
-    protected void runGenerator(String control, String sql, String ddl, String source, String target, boolean merge)
-            throws IOException, ClassNotFoundException {
+	protected void runGenerator(String control, String sql, String ddl, String source, String target, boolean merge)
+	        throws IOException, ClassNotFoundException {
 
-        ResourceSet set = resourceSetProvider.get();
-        Resource controlResource = set.getResource(URI.createURI(getFile(source, control)), true);
-        set.getResources().add(controlResource);
-        Resource sqlResource = null;
-        if (merge) {
-            try {
-                sqlResource = set.getResource(URI.createURI(getFile(source, sql)), true);
-                set.getResources().add(sqlResource);
-            } catch (Exception ex) {
-                System.out.println("Can't read " + getFile(source, sql));
-            }
-        }
+		ResourceSet set = resourceSetProvider.get();
+		Resource controlResource = set.getResource(URI.createURI(getFile(source, control)), true);
+		set.getResources().add(controlResource);
+		Resource sqlResource = null;
+		if (merge) {
+			try {
+				sqlResource = set.getResource(URI.createURI(getFile(source, sql)), true);
+				set.getResources().add(sqlResource);
+			} catch (Exception ex) {
+				System.out.println("Can't read " + getFile(source, sql));
+			}
+		}
 
-        System.out.println("Going to validate " + controlResource);
-        boolean controlResourceIsOk = isValid(controlResource);
-        if (!controlResourceIsOk) {
-            System.exit(2);
-            return;
-        }
-        System.out.println("Validated " + controlResource);
-        if (merge && sqlResource != null) {
-            System.out.println("Going to validate " + sqlResource);
-            boolean sqlResourceIsOk = isValid(sqlResource);
-            if (!sqlResourceIsOk) {
-                System.exit(2);
-                return;
-            }
-            System.out.println("Validated " + sqlResource);
-        }
+		System.out.println("Going to validate " + controlResource);
+		boolean controlResourceIsOk = isValid(controlResource);
+		if (!controlResourceIsOk) {
+			System.exit(2);
+			return;
+		}
+		System.out.println("Validated " + controlResource);
+		if (merge && sqlResource != null) {
+			System.out.println("Going to validate " + sqlResource);
+			boolean sqlResourceIsOk = isValid(sqlResource);
+			if (!sqlResourceIsOk) {
+				System.exit(2);
+				return;
+			}
+			System.out.println("Validated " + sqlResource);
+		}
 
-        Artifacts definitions = (Artifacts) controlResource.getContents().get(0);
-        if (definitions.getProperties().isEmpty()) {
-            System.err.println("No control directive.");
-            System.exit(3);
-            return;
-        }
-        fileAccess.setOutputPath(target);
-        ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
-        modelValues.doResolveDb = true;
-        ModelPropertyBean modelProperty = new ModelPropertyBean(modelValues);
-        String sDbDriver = modelProperty.getModelValues(null).dbDriver;
-        Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
-        String dbSqlsBefore = null;
-        if (ddl != null) {
-            File file = new File(getFile(source, ddl));
-            dbSqlsBefore = new String(Files.toByteArray(file));
-        }
-        DbResolver dbResolver = new DbResolverBean(modelProperty, driverClass, dbSqlsBefore, null);
+		Artifacts definitions = (Artifacts) controlResource.getContents().get(0);
+		if (definitions.getProperties().isEmpty()) {
+			System.err.println("No control directive.");
+			System.exit(3);
+			return;
+		}
+		fileAccess.setOutputPath(target);
+		ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
+		modelValues.doResolveDb = true;
+		ModelPropertyBean modelProperty = new ModelPropertyBean(modelValues);
+		String sDbDriver = modelProperty.getModelValues(null).dbDriver;
+		Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
+		String dbSqlsBefore = null;
+		if (ddl != null) {
+			File file = new File(getFile(source, ddl));
+			dbSqlsBefore = new String(Files.toByteArray(file));
+		}
+		DbResolver dbResolver = new DbResolverBean(modelProperty, driverClass, dbSqlsBefore, null);
 
-        Artifacts sqls = null;
-        List<MetaStatement> statements = null;
-        if (!merge) {
-            statements = new ArrayList<MetaStatement>();
-        } else {
-            if (sqlResource != null) {
-                sqls = (Artifacts) sqlResource.getContents().get(0);
-                statements = sqls.getStatements();
-            }
-        }
+		Artifacts sqls = null;
+		List<MetaStatement> statements = null;
+		if (!merge) {
+			statements = new ArrayList<MetaStatement>();
+		} else {
+			if (sqlResource != null) {
+				sqls = (Artifacts) sqlResource.getContents().get(0);
+				statements = sqls.getStatements();
+			}
+		}
 
-        System.out.println("Going to generate " + sql);
-        String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions, statements,
-                ((XtextResource) controlResource).getSerializer());
-        fileAccess.generateFile(sql, metaDefinitions);
-        System.out.println(sql + " generation finished.");
-    }
+		System.out.println("Going to generate " + sql);
+		String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions, statements,
+		        ((XtextResource) controlResource).getSerializer());
+		fileAccess.generateFile(sql, metaDefinitions);
+		System.out.println(sql + " generation finished.");
+	}
 
-    protected String getFile(String source, String file) {
-        if (file.startsWith("/"))
-            return file;
-        return source + file;
-    }
+	protected String getFile(String source, String file) {
+		if (file.startsWith("/"))
+			return file;
+		return source + file;
+	}
 
-    protected boolean isValid(Resource resource) throws IOException {
-        boolean isError = false;
-        resource.load(null);
-        List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
-        if (!list.isEmpty()) {
-            for (Issue issue : list) {
-                System.err.println(issue);
-                if (issue.getSeverity() == Severity.ERROR)
-                    isError = true;
-            }
-        }
-        return !isError;
-    }
+	protected boolean isValid(Resource resource) throws IOException {
+		boolean isError = false;
+		resource.load(null);
+		List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
+		if (!list.isEmpty()) {
+			for (Issue issue : list) {
+				System.err.println(issue);
+				if (issue.getSeverity() == Severity.ERROR)
+					isError = true;
+			}
+		}
+		return !isError;
+	}
 
-    protected String getMetaDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
-            List<MetaStatement> statements, ISerializer serializer) {
+	protected String getMetaDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
+	        List<MetaStatement> statements, ISerializer serializer) {
 
-        if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-            Map<String, String> finalMetas = new HashMap<String, String>();
-            for (MetaStatement meta : statements) {
-                if (Utils.isFinal(meta)) {
-                    finalMetas.put(meta.getName(), serializer.serialize(meta));
-                }
-            }
-            // List<String> tables = dbResolver.getTables(artifacts);
-            List<String> dbSequences = dbResolver.getSequences(artifacts);
-            DbType dbType = Utils.getDbType(dbResolver, artifacts);
-            TableMetaGenerator generator = new TableMetaGenerator(modelProperty, artifacts, scopeProvider, finalMetas,
-                    dbSequences, dbType);
-            if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
-                return generator.getMetaDefinitions(modelProperty, artifacts);
-        }
-        return null;
-    }
+		if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
+			Map<String, String> finalMetas = new HashMap<String, String>();
+			for (MetaStatement meta : statements) {
+				if (Utils.isFinal(meta)) {
+					finalMetas.put(meta.getName(), serializer.serialize(meta));
+				}
+			}
+			// List<String> tables = dbResolver.getTables(artifacts);
+			List<String> dbSequences = dbResolver.getSequences(artifacts);
+			DbType dbType = Utils.getDbType(dbResolver, artifacts);
+			TableMetaGenerator generator = new TableMetaGenerator(modelProperty, artifacts, scopeProvider, finalMetas,
+			        dbSequences, dbType);
+			if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
+				return generator.getMetaDefinitions(modelProperty, artifacts);
+		}
+		return null;
+	}
 }
