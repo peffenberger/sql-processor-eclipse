@@ -2475,6 +2475,16 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getDaogenProperty_ImplPckg()
+  {
+    return (EAttribute)daogenPropertyEClass.getEStructuralFeatures().get(11);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPojoDefinition()
   {
     return pojoDefinitionEClass;
@@ -3859,6 +3869,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     createEReference(daogenPropertyEClass, DAOGEN_PROPERTY__DEBUG);
     createEReference(daogenPropertyEClass, DAOGEN_PROPERTY__ACTIVE_FILTER);
     createEAttribute(daogenPropertyEClass, DAOGEN_PROPERTY__PCKG);
+    createEAttribute(daogenPropertyEClass, DAOGEN_PROPERTY__IMPL_PCKG);
 
     pojoDefinitionEClass = createEClass(POJO_DEFINITION);
     createEAttribute(pojoDefinitionEClass, POJO_DEFINITION__NAME);
@@ -4259,6 +4270,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     initEReference(getDaogenProperty_Debug(), this.getDebugLevelAssignement(), null, "debug", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDaogenProperty_ActiveFilter(), this.getValueType(), null, "activeFilter", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDaogenProperty_Pckg(), ecorePackage.getEString(), "pckg", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDaogenProperty_ImplPckg(), ecorePackage.getEString(), "implPckg", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoDefinitionEClass, PojoDefinition.class, "PojoDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPojoDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, PojoDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

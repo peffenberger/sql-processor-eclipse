@@ -18,6 +18,7 @@ import org.sqlproc.model.services.ProcessorModelGrammarAccess;
 public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected ProcessorModelGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_PojoDefinition_ColonColonKeyword_2_0_0_q;
 	protected AbstractElementAlias match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q;
 	protected AbstractElementAlias match_XBlockExpression_SemicolonKeyword_2_1_q;
 	protected AbstractElementAlias match_XExpressionInClosure_SemicolonKeyword_1_1_q;
@@ -29,6 +30,7 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (ProcessorModelGrammarAccess) access;
+		match_PojoDefinition_ColonColonKeyword_2_0_0_q = new TokenAlias(false, true, grammarAccess.getPojoDefinitionAccess().getColonColonKeyword_2_0_0());
 		match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getXAnnotationAccess().getLeftParenthesisKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getXAnnotationAccess().getRightParenthesisKeyword_3_2()));
 		match_XBlockExpression_SemicolonKeyword_2_1_q = new TokenAlias(false, true, grammarAccess.getXBlockExpressionAccess().getSemicolonKeyword_2_1());
 		match_XExpressionInClosure_SemicolonKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getXExpressionInClosureAccess().getSemicolonKeyword_1_1());
@@ -108,7 +110,9 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if(match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q.equals(syntax))
+			if(match_PojoDefinition_ColonColonKeyword_2_0_0_q.equals(syntax))
+				emit_PojoDefinition_ColonColonKeyword_2_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q.equals(syntax))
 				emit_XAnnotation___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_XBlockExpression_SemicolonKeyword_2_1_q.equals(syntax))
 				emit_XBlockExpression_SemicolonKeyword_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -126,6 +130,14 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 		}
 	}
 
+	/**
+	 * Syntax:
+	 *     '::'?
+	 */
+	protected void emit_PojoDefinition_ColonColonKeyword_2_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * Syntax:
 	 *     ('(' ')')?

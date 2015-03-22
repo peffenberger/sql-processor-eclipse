@@ -52,6 +52,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
 	protected Map<String, PojoEntityType> daoFunctionsResult = new HashMap<String, PojoEntityType>();
 	protected Filter daoActiveFilter = null;
 	protected String daoPackage;
+	protected String daoImplPackage;
 
 	public TableDaoGenerator(ModelProperty modelProperty, Artifacts artifacts, IScopeProvider scopeProvider,
 	        Map<String, String> finalDaos, Map<String, Map<String, String>> finalDaosFeatures,
@@ -95,6 +96,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
 		}
 		this.daoActiveFilter = Filter.parse(modelProperty.getDaoActiveFilter(artifacts));
 		daoPackage = modelProperty.getDaoPackage(artifacts);
+		daoImplPackage = modelProperty.getDaoImplPackage(artifacts);
 
 		if (debug.debug) {
 			System.out.println("metaFunctionsResultSet " + this.metaFunctionsResultSet);
@@ -110,6 +112,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
 			System.out.println("daoFunctionsResult " + this.daoFunctionsResult);
 			System.out.println("daoActiveFilter " + this.daoActiveFilter);
 			System.out.println("daoPackage " + this.daoPackage);
+			System.out.println("daoImplPackage " + this.daoImplPackage);
 		}
 	}
 

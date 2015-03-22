@@ -2007,13 +2007,22 @@ public interface ProcessorModelPackage extends EPackage
   int DAOGEN_PROPERTY__PCKG = 10;
 
   /**
+   * The feature id for the '<em><b>Impl Pckg</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DAOGEN_PROPERTY__IMPL_PCKG = 11;
+
+  /**
    * The number of structural features of the '<em>Daogen Property</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DAOGEN_PROPERTY_FEATURE_COUNT = 11;
+  int DAOGEN_PROPERTY_FEATURE_COUNT = 12;
 
   /**
    * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.PojoDefinitionImpl <em>Pojo Definition</em>}' class.
@@ -6272,6 +6281,17 @@ public interface ProcessorModelPackage extends EPackage
   EAttribute getDaogenProperty_Pckg();
 
   /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.DaogenProperty#getImplPckg <em>Impl Pckg</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Impl Pckg</em>'.
+   * @see org.sqlproc.model.processorModel.DaogenProperty#getImplPckg()
+   * @see #getDaogenProperty()
+   * @generated
+   */
+  EAttribute getDaogenProperty_ImplPckg();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.PojoDefinition <em>Pojo Definition</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9537,6 +9557,14 @@ public interface ProcessorModelPackage extends EPackage
      * @generated
      */
     EAttribute DAOGEN_PROPERTY__PCKG = eINSTANCE.getDaogenProperty_Pckg();
+
+    /**
+     * The meta object literal for the '<em><b>Impl Pckg</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DAOGEN_PROPERTY__IMPL_PCKG = eINSTANCE.getDaogenProperty_ImplPckg();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.PojoDefinitionImpl <em>Pojo Definition</em>}' class.

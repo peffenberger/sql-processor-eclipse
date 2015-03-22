@@ -33,6 +33,7 @@
 'ignore-many-to-one'=97
 'ignore-one-to-many'=96
 'ignore-tables'=86
+'implementation-package'=136
 'implements-interfaces'=105
 'implements-interfaces-generics'=107
 'in-catalog'=61
@@ -166,6 +167,7 @@ T__132=132
 T__133=133
 T__134=134
 T__135=135
+T__136=136
 T__41=41
 T__42=42
 T__43=43

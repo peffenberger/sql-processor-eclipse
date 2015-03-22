@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.model.processorModel.DaogenProperty#getDebug <em>Debug</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.DaogenProperty#getActiveFilter <em>Active Filter</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.DaogenProperty#getPckg <em>Pckg</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.DaogenProperty#getImplPckg <em>Impl Pckg</em>}</li>
  * </ul>
  * </p>
  *
@@ -309,5 +310,31 @@ public interface DaogenProperty extends EObject
    * @generated
    */
   void setPckg(String value);
+
+  /**
+   * Returns the value of the '<em><b>Impl Pckg</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Impl Pckg</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Impl Pckg</em>' attribute.
+   * @see #setImplPckg(String)
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDaogenProperty_ImplPckg()
+   * @model
+   * @generated
+   */
+  String getImplPckg();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.DaogenProperty#getImplPckg <em>Impl Pckg</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Impl Pckg</em>' attribute.
+   * @see #getImplPckg()
+   * @generated
+   */
+  void setImplPckg(String value);
 
 } // DaogenProperty

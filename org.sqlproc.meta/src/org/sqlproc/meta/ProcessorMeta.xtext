@@ -164,10 +164,11 @@ DaogenProperty:
 	|name='debug-level' WS+ debug=DebugLevelAssignement
 	|name='active-filter' WS+ activeFilter=ValueType
 	|name='package' WS+ pckg=QualifiedName
+	|name='implementation-package' WS+ implPckg=QualifiedName
 	);
 
 PojoDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
-	'pojo' name=IDENT (class=(IDENT|IDENT_DOT) | COLON classx=[jvmTypes::JvmType|QualifiedName]) SEMICOLON;
+	'pojo' name=IDENT (COLON (COLON)? class=(IDENT|IDENT_DOT) | classx=[jvmTypes::JvmType|QualifiedName]) SEMICOLON;
 
 TableDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
 	'table' name=IDENT table=IDENT SEMICOLON;

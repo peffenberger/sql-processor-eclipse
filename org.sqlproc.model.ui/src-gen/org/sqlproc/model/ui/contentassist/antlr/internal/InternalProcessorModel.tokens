@@ -81,12 +81,12 @@
 '>'=31
 '>='=30
 '?'=133
-'?.'=225
+'?.'=226
 '?:'=38
 '@'=110
 '['=113
 ']'=111
-'abstract'=224
+'abstract'=225
 'active-filter'=204
 'active-schema'=150
 'as'=115
@@ -111,7 +111,7 @@
 'extends-class-generics'=196
 'extension'=53
 'false'=55
-'final'=223
+'final'=224
 'finally'=130
 'for'=121
 'function'=64
@@ -133,6 +133,7 @@
 'ignore-many-to-one'=185
 'ignore-one-to-many'=184
 'ignore-tables'=174
+'implementation-package'=223
 'implements'=72
 'implements-interfaces'=193
 'implements-interfaces-generics'=195
@@ -197,7 +198,7 @@
 'table-sequence'=207
 'take-comments'=163
 'throw'=127
-'true'=228
+'true'=229
 'try'=129
 'typeof'=126
 'types-for-columns'=168
@@ -207,11 +208,11 @@
 'types-sqltypes'=166
 'uppercase-names'=165
 'val'=49
-'var'=227
+'var'=228
 'version-column'=201
 'while'=122
 '{'=58
-'|'=226
+'|'=227
 '||'=17
 '}'=59
 RULE_ANY_OTHER=15
@@ -361,6 +362,7 @@ T__225=225
 T__226=226
 T__227=227
 T__228=228
+T__229=229
 T__22=22
 T__23=23
 T__24=24

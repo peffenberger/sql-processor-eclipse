@@ -3336,6 +3336,11 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNamePackageKeyword_10_0_0 = (Keyword)cNameAssignment_10_0.eContents().get(0);
 		private final Assignment cPckgAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
 		private final RuleCall cPckgQualifiedNameParserRuleCall_10_1_0 = (RuleCall)cPckgAssignment_10_1.eContents().get(0);
+		private final Group cGroup_11 = (Group)cAlternatives.eContents().get(11);
+		private final Assignment cNameAssignment_11_0 = (Assignment)cGroup_11.eContents().get(0);
+		private final Keyword cNameImplementationPackageKeyword_11_0_0 = (Keyword)cNameAssignment_11_0.eContents().get(0);
+		private final Assignment cImplPckgAssignment_11_1 = (Assignment)cGroup_11.eContents().get(1);
+		private final RuleCall cImplPckgQualifiedNameParserRuleCall_11_1_0 = (RuleCall)cImplPckgAssignment_11_1.eContents().get(0);
 		
 		//DaogenProperty:
 		//	name="ignore-tables" dbTables+=ValidID+ | name="only-tables" dbTables+=ValidID* | name="implements-interfaces"
@@ -3343,7 +3348,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="implements-interfaces-generics" toImplementsGenerics=ImplementsAssignementGenerics |
 		//	name="extends-class-generics" toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" |
 		//	name="function-result" dbFunction=ValidID resultType=PojoType | name="debug-level" debug=DebugLevelAssignement |
-		//	name="active-filter" activeFilter=ValueType | name="package" pckg=QualifiedName;
+		//	name="active-filter" activeFilter=ValueType | name="package" pckg=QualifiedName | name="implementation-package"
+		//	implPckg=QualifiedName;
 		public ParserRule getRule() { return rule; }
 
 		//name="ignore-tables" dbTables+=ValidID+ | name="only-tables" dbTables+=ValidID* | name="implements-interfaces"
@@ -3351,7 +3357,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//name="implements-interfaces-generics" toImplementsGenerics=ImplementsAssignementGenerics |
 		//name="extends-class-generics" toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" |
 		//name="function-result" dbFunction=ValidID resultType=PojoType | name="debug-level" debug=DebugLevelAssignement |
-		//name="active-filter" activeFilter=ValueType | name="package" pckg=QualifiedName
+		//name="active-filter" activeFilter=ValueType | name="package" pckg=QualifiedName | name="implementation-package"
+		//implPckg=QualifiedName
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="ignore-tables" dbTables+=ValidID+
@@ -3515,6 +3522,21 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 
 		//QualifiedName
 		public RuleCall getPckgQualifiedNameParserRuleCall_10_1_0() { return cPckgQualifiedNameParserRuleCall_10_1_0; }
+
+		//name="implementation-package" implPckg=QualifiedName
+		public Group getGroup_11() { return cGroup_11; }
+
+		//name="implementation-package"
+		public Assignment getNameAssignment_11_0() { return cNameAssignment_11_0; }
+
+		//"implementation-package"
+		public Keyword getNameImplementationPackageKeyword_11_0_0() { return cNameImplementationPackageKeyword_11_0_0; }
+
+		//implPckg=QualifiedName
+		public Assignment getImplPckgAssignment_11_1() { return cImplPckgAssignment_11_1; }
+
+		//QualifiedName
+		public RuleCall getImplPckgQualifiedNameParserRuleCall_11_1_0() { return cImplPckgQualifiedNameParserRuleCall_11_1_0; }
 	}
 
 	public class PojoDefinitionElements extends AbstractParserRuleElementFinder {
@@ -3524,19 +3546,19 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Assignment cClassAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
-		private final RuleCall cClassQualifiedNameParserRuleCall_2_0_0 = (RuleCall)cClassAssignment_2_0.eContents().get(0);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Keyword cColonKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
-		private final Assignment cClassxAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
-		private final RuleCall cClassxJvmParameterizedTypeReferenceParserRuleCall_2_1_1_0 = (RuleCall)cClassxAssignment_2_1_1.eContents().get(0);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Keyword cColonColonKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
+		private final Assignment cClassAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
+		private final RuleCall cClassQualifiedNameParserRuleCall_2_0_1_0 = (RuleCall)cClassAssignment_2_0_1.eContents().get(0);
+		private final Assignment cClassxAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final RuleCall cClassxJvmParameterizedTypeReferenceParserRuleCall_2_1_0 = (RuleCall)cClassxAssignment_2_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//PojoDefinition:
-		//	"pojo" name=ValidID (class=QualifiedName | ":" classx=JvmParameterizedTypeReference) ";";
+		//	"pojo" name=ValidID ("::"? class=QualifiedName | classx=JvmParameterizedTypeReference) ";";
 		public ParserRule getRule() { return rule; }
 
-		//"pojo" name=ValidID (class=QualifiedName | ":" classx=JvmParameterizedTypeReference) ";"
+		//"pojo" name=ValidID ("::"? class=QualifiedName | classx=JvmParameterizedTypeReference) ";"
 		public Group getGroup() { return cGroup; }
 
 		//"pojo"
@@ -3548,26 +3570,26 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//ValidID
 		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
 
-		//class=QualifiedName | ":" classx=JvmParameterizedTypeReference
+		//"::"? class=QualifiedName | classx=JvmParameterizedTypeReference
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
+		//"::"? class=QualifiedName
+		public Group getGroup_2_0() { return cGroup_2_0; }
+
+		//"::"?
+		public Keyword getColonColonKeyword_2_0_0() { return cColonColonKeyword_2_0_0; }
+
 		//class=QualifiedName
-		public Assignment getClassAssignment_2_0() { return cClassAssignment_2_0; }
+		public Assignment getClassAssignment_2_0_1() { return cClassAssignment_2_0_1; }
 
 		//QualifiedName
-		public RuleCall getClassQualifiedNameParserRuleCall_2_0_0() { return cClassQualifiedNameParserRuleCall_2_0_0; }
-
-		//":" classx=JvmParameterizedTypeReference
-		public Group getGroup_2_1() { return cGroup_2_1; }
-
-		//":"
-		public Keyword getColonKeyword_2_1_0() { return cColonKeyword_2_1_0; }
+		public RuleCall getClassQualifiedNameParserRuleCall_2_0_1_0() { return cClassQualifiedNameParserRuleCall_2_0_1_0; }
 
 		//classx=JvmParameterizedTypeReference
-		public Assignment getClassxAssignment_2_1_1() { return cClassxAssignment_2_1_1; }
+		public Assignment getClassxAssignment_2_1() { return cClassxAssignment_2_1; }
 
 		//JvmParameterizedTypeReference
-		public RuleCall getClassxJvmParameterizedTypeReferenceParserRuleCall_2_1_1_0() { return cClassxJvmParameterizedTypeReferenceParserRuleCall_2_1_1_0; }
+		public RuleCall getClassxJvmParameterizedTypeReferenceParserRuleCall_2_1_0() { return cClassxJvmParameterizedTypeReferenceParserRuleCall_2_1_0; }
 
 		//";"
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
@@ -6389,7 +6411,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="implements-interfaces-generics" toImplementsGenerics=ImplementsAssignementGenerics |
 	//	name="extends-class-generics" toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" |
 	//	name="function-result" dbFunction=ValidID resultType=PojoType | name="debug-level" debug=DebugLevelAssignement |
-	//	name="active-filter" activeFilter=ValueType | name="package" pckg=QualifiedName;
+	//	name="active-filter" activeFilter=ValueType | name="package" pckg=QualifiedName | name="implementation-package"
+	//	implPckg=QualifiedName;
 	public DaogenPropertyElements getDaogenPropertyAccess() {
 		return pDaogenProperty;
 	}
@@ -6399,7 +6422,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PojoDefinition:
-	//	"pojo" name=ValidID (class=QualifiedName | ":" classx=JvmParameterizedTypeReference) ";";
+	//	"pojo" name=ValidID ("::"? class=QualifiedName | classx=JvmParameterizedTypeReference) ";";
 	public PojoDefinitionElements getPojoDefinitionAccess() {
 		return pPojoDefinition;
 	}

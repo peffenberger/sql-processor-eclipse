@@ -163,10 +163,11 @@ DaogenProperty:
 	|name='debug-level' debug=DebugLevelAssignement
 	|name='active-filter' activeFilter=ValueType
 	|name='package' pckg=QualifiedName
+	|name='implementation-package' implPckg=QualifiedName
 	);
 
 PojoDefinition:
-	'pojo' name=ValidID (class=(QualifiedName) | ':' classx=JvmParameterizedTypeReference) ';';
+	'pojo' name=ValidID (':' (':')? class=(QualifiedName) | classx=JvmParameterizedTypeReference) ';';
 
 TableDefinition:
 	'table' name=ValidID table=ValidID ';';

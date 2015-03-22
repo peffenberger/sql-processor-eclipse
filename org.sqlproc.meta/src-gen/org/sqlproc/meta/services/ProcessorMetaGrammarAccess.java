@@ -4304,6 +4304,12 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_10_1 = (RuleCall)cGroup_10.eContents().get(1);
 		private final Assignment cPckgAssignment_10_2 = (Assignment)cGroup_10.eContents().get(2);
 		private final RuleCall cPckgQualifiedNameParserRuleCall_10_2_0 = (RuleCall)cPckgAssignment_10_2.eContents().get(0);
+		private final Group cGroup_11 = (Group)cAlternatives.eContents().get(11);
+		private final Assignment cNameAssignment_11_0 = (Assignment)cGroup_11.eContents().get(0);
+		private final Keyword cNameImplementationPackageKeyword_11_0_0 = (Keyword)cNameAssignment_11_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_11_1 = (RuleCall)cGroup_11.eContents().get(1);
+		private final Assignment cImplPckgAssignment_11_2 = (Assignment)cGroup_11.eContents().get(2);
+		private final RuleCall cImplPckgQualifiedNameParserRuleCall_11_2_0 = (RuleCall)cImplPckgAssignment_11_2.eContents().get(0);
 		
 		//DaogenProperty:
 		//	name="ignore-tables" (WS+ dbTables+=IDENT)+ | name="only-tables" (WS+ dbTables+=IDENT)* | name="implements-interfaces"
@@ -4311,7 +4317,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="implements-interfaces-generics" WS+ toImplementsGenerics=ImplementsAssignementGenerics |
 		//	name="extends-class-generics" WS+ toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" |
 		//	name="function-result" WS+ dbFunction=IDENT WS+ resultType=PojoType | name="debug-level" WS+
-		//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=ValueType | name="package" WS+ pckg=QualifiedName;
+		//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=ValueType | name="package" WS+ pckg=QualifiedName
+		//	| name="implementation-package" WS+ implPckg=QualifiedName;
 		public ParserRule getRule() { return rule; }
 
 		//name="ignore-tables" (WS+ dbTables+=IDENT)+ | name="only-tables" (WS+ dbTables+=IDENT)* | name="implements-interfaces"
@@ -4319,7 +4326,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//name="implements-interfaces-generics" WS+ toImplementsGenerics=ImplementsAssignementGenerics |
 		//name="extends-class-generics" WS+ toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" |
 		//name="function-result" WS+ dbFunction=IDENT WS+ resultType=PojoType | name="debug-level" WS+
-		//debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=ValueType | name="package" WS+ pckg=QualifiedName
+		//debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=ValueType | name="package" WS+ pckg=QualifiedName |
+		//name="implementation-package" WS+ implPckg=QualifiedName
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="ignore-tables" (WS+ dbTables+=IDENT)+
@@ -4522,6 +4530,24 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 
 		//QualifiedName
 		public RuleCall getPckgQualifiedNameParserRuleCall_10_2_0() { return cPckgQualifiedNameParserRuleCall_10_2_0; }
+
+		//name="implementation-package" WS+ implPckg=QualifiedName
+		public Group getGroup_11() { return cGroup_11; }
+
+		//name="implementation-package"
+		public Assignment getNameAssignment_11_0() { return cNameAssignment_11_0; }
+
+		//"implementation-package"
+		public Keyword getNameImplementationPackageKeyword_11_0_0() { return cNameImplementationPackageKeyword_11_0_0; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_11_1() { return cWSTerminalRuleCall_11_1; }
+
+		//implPckg=QualifiedName
+		public Assignment getImplPckgAssignment_11_2() { return cImplPckgAssignment_11_2; }
+
+		//QualifiedName
+		public RuleCall getImplPckgQualifiedNameParserRuleCall_11_2_0() { return cImplPckgQualifiedNameParserRuleCall_11_2_0; }
 	}
 
 	public class PojoDefinitionElements extends AbstractParserRuleElementFinder {
@@ -4531,22 +4557,23 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDENTTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Assignment cClassAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
-		private final Alternatives cClassAlternatives_2_0_0 = (Alternatives)cClassAssignment_2_0.eContents().get(0);
-		private final RuleCall cClassIDENTTerminalRuleCall_2_0_0_0 = (RuleCall)cClassAlternatives_2_0_0.eContents().get(0);
-		private final RuleCall cClassIDENT_DOTTerminalRuleCall_2_0_0_1 = (RuleCall)cClassAlternatives_2_0_0.eContents().get(1);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final RuleCall cCOLONTerminalRuleCall_2_1_0 = (RuleCall)cGroup_2_1.eContents().get(0);
-		private final Assignment cClassxAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
-		private final CrossReference cClassxJvmTypeCrossReference_2_1_1_0 = (CrossReference)cClassxAssignment_2_1_1.eContents().get(0);
-		private final RuleCall cClassxJvmTypeQualifiedNameParserRuleCall_2_1_1_0_1 = (RuleCall)cClassxJvmTypeCrossReference_2_1_1_0.eContents().get(1);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final RuleCall cCOLONTerminalRuleCall_2_0_0 = (RuleCall)cGroup_2_0.eContents().get(0);
+		private final RuleCall cCOLONTerminalRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
+		private final Assignment cClassAssignment_2_0_2 = (Assignment)cGroup_2_0.eContents().get(2);
+		private final Alternatives cClassAlternatives_2_0_2_0 = (Alternatives)cClassAssignment_2_0_2.eContents().get(0);
+		private final RuleCall cClassIDENTTerminalRuleCall_2_0_2_0_0 = (RuleCall)cClassAlternatives_2_0_2_0.eContents().get(0);
+		private final RuleCall cClassIDENT_DOTTerminalRuleCall_2_0_2_0_1 = (RuleCall)cClassAlternatives_2_0_2_0.eContents().get(1);
+		private final Assignment cClassxAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final CrossReference cClassxJvmTypeCrossReference_2_1_0 = (CrossReference)cClassxAssignment_2_1.eContents().get(0);
+		private final RuleCall cClassxJvmTypeQualifiedNameParserRuleCall_2_1_0_1 = (RuleCall)cClassxJvmTypeCrossReference_2_1_0.eContents().get(1);
 		private final RuleCall cSEMICOLONTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//PojoDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
-		//	"pojo" name=IDENT (class=(IDENT | IDENT_DOT) | COLON classx=[jvmTypes::JvmType|QualifiedName]) SEMICOLON;
+		//	"pojo" name=IDENT (COLON COLON? class=(IDENT | IDENT_DOT) | classx=[jvmTypes::JvmType|QualifiedName]) SEMICOLON;
 		public ParserRule getRule() { return rule; }
 
-		//"pojo" name=IDENT (class=(IDENT | IDENT_DOT) | COLON classx=[jvmTypes::JvmType|QualifiedName]) SEMICOLON
+		//"pojo" name=IDENT (COLON COLON? class=(IDENT | IDENT_DOT) | classx=[jvmTypes::JvmType|QualifiedName]) SEMICOLON
 		public Group getGroup() { return cGroup; }
 
 		//"pojo"
@@ -4558,35 +4585,38 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getNameIDENTTerminalRuleCall_1_0() { return cNameIDENTTerminalRuleCall_1_0; }
 
-		//class=(IDENT | IDENT_DOT) | COLON classx=[jvmTypes::JvmType|QualifiedName]
+		//COLON COLON? class=(IDENT | IDENT_DOT) | classx=[jvmTypes::JvmType|QualifiedName]
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
-		//class=(IDENT | IDENT_DOT)
-		public Assignment getClassAssignment_2_0() { return cClassAssignment_2_0; }
-
-		//IDENT | IDENT_DOT
-		public Alternatives getClassAlternatives_2_0_0() { return cClassAlternatives_2_0_0; }
-
-		//IDENT
-		public RuleCall getClassIDENTTerminalRuleCall_2_0_0_0() { return cClassIDENTTerminalRuleCall_2_0_0_0; }
-
-		//IDENT_DOT
-		public RuleCall getClassIDENT_DOTTerminalRuleCall_2_0_0_1() { return cClassIDENT_DOTTerminalRuleCall_2_0_0_1; }
-
-		//COLON classx=[jvmTypes::JvmType|QualifiedName]
-		public Group getGroup_2_1() { return cGroup_2_1; }
+		//COLON COLON? class=(IDENT | IDENT_DOT)
+		public Group getGroup_2_0() { return cGroup_2_0; }
 
 		//COLON
-		public RuleCall getCOLONTerminalRuleCall_2_1_0() { return cCOLONTerminalRuleCall_2_1_0; }
+		public RuleCall getCOLONTerminalRuleCall_2_0_0() { return cCOLONTerminalRuleCall_2_0_0; }
+
+		//COLON?
+		public RuleCall getCOLONTerminalRuleCall_2_0_1() { return cCOLONTerminalRuleCall_2_0_1; }
+
+		//class=(IDENT | IDENT_DOT)
+		public Assignment getClassAssignment_2_0_2() { return cClassAssignment_2_0_2; }
+
+		//IDENT | IDENT_DOT
+		public Alternatives getClassAlternatives_2_0_2_0() { return cClassAlternatives_2_0_2_0; }
+
+		//IDENT
+		public RuleCall getClassIDENTTerminalRuleCall_2_0_2_0_0() { return cClassIDENTTerminalRuleCall_2_0_2_0_0; }
+
+		//IDENT_DOT
+		public RuleCall getClassIDENT_DOTTerminalRuleCall_2_0_2_0_1() { return cClassIDENT_DOTTerminalRuleCall_2_0_2_0_1; }
 
 		//classx=[jvmTypes::JvmType|QualifiedName]
-		public Assignment getClassxAssignment_2_1_1() { return cClassxAssignment_2_1_1; }
+		public Assignment getClassxAssignment_2_1() { return cClassxAssignment_2_1; }
 
 		//[jvmTypes::JvmType|QualifiedName]
-		public CrossReference getClassxJvmTypeCrossReference_2_1_1_0() { return cClassxJvmTypeCrossReference_2_1_1_0; }
+		public CrossReference getClassxJvmTypeCrossReference_2_1_0() { return cClassxJvmTypeCrossReference_2_1_0; }
 
 		//QualifiedName
-		public RuleCall getClassxJvmTypeQualifiedNameParserRuleCall_2_1_1_0_1() { return cClassxJvmTypeQualifiedNameParserRuleCall_2_1_1_0_1; }
+		public RuleCall getClassxJvmTypeQualifiedNameParserRuleCall_2_1_0_1() { return cClassxJvmTypeQualifiedNameParserRuleCall_2_1_0_1; }
 
 		//SEMICOLON
 		public RuleCall getSEMICOLONTerminalRuleCall_3() { return cSEMICOLONTerminalRuleCall_3; }
@@ -8202,7 +8232,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="implements-interfaces-generics" WS+ toImplementsGenerics=ImplementsAssignementGenerics |
 	//	name="extends-class-generics" WS+ toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" |
 	//	name="function-result" WS+ dbFunction=IDENT WS+ resultType=PojoType | name="debug-level" WS+
-	//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=ValueType | name="package" WS+ pckg=QualifiedName;
+	//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=ValueType | name="package" WS+ pckg=QualifiedName
+	//	| name="implementation-package" WS+ implPckg=QualifiedName;
 	public DaogenPropertyElements getDaogenPropertyAccess() {
 		return pDaogenProperty;
 	}
@@ -8212,7 +8243,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PojoDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
-	//	"pojo" name=IDENT (class=(IDENT | IDENT_DOT) | COLON classx=[jvmTypes::JvmType|QualifiedName]) SEMICOLON;
+	//	"pojo" name=IDENT (COLON COLON? class=(IDENT | IDENT_DOT) | classx=[jvmTypes::JvmType|QualifiedName]) SEMICOLON;
 	public PojoDefinitionElements getPojoDefinitionAccess() {
 		return pPojoDefinition;
 	}

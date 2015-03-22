@@ -175,6 +175,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 	public static final String DAOGEN_DEBUG_LEVEL = "debug-level";
 	public static final String DAOGEN_ACTIVE_FILTER = "active-filter";
 	public static final String DAOGEN_PACKAGE = "package";
+	public static final String DAOGEN_IMPLEMENTATION_PACKAGE = "implementation-package";
 
 	public static final String STANDARD = "___GLOBAL";
 
@@ -282,6 +283,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 		public String daoDebugScope;
 		public String daoActiveFilter;
 		public String daoPckg;
+		public String daoImplPckg;
 
 		public Map<String, Set<String>> defaultAttrs = new HashMap<String, Set<String>>();
 		public Map<String, Set<String>> conditionalAttrs = new HashMap<String, Set<String>>();
@@ -620,6 +622,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 		modelValues.daoDebugScope = null;
 		modelValues.daoActiveFilter = null;
 		modelValues.daoPckg = null;
+		modelValues.daoImplPckg = null;
 		modelValues.defaultAttrs.put(DAOGEN, new HashSet<String>());
 		modelValues.conditionalAttrs.put(DAOGEN, new HashSet<String>());
 	}
@@ -1227,6 +1230,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 			modelValues.daoActiveFilter = Utils.getPropertyValue(property.getActiveFilter());
 		} else if (DAOGEN_PACKAGE.equals(property.getName())) {
 			modelValues.daoPckg = Utils.getPropertyValue(property.getPckg());
+		} else if (DAOGEN_IMPLEMENTATION_PACKAGE.equals(property.getName())) {
+			modelValues.daoImplPckg = Utils.getPropertyValue(property.getImplPckg());
 		}
 	}
 
@@ -1736,6 +1741,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 	public String getDaoPackage(EObject model) {
 		ModelValues modelValues = getModelValues(model);
 		return (modelValues != null) ? modelValues.daoPckg : null;
+	}
+
+	@Override
+	public String getDaoImplPackage(EObject model) {
+		ModelValues modelValues = getModelValues(model);
+		return (modelValues != null) ? modelValues.daoImplPckg : null;
 	}
 
 	@Override

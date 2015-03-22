@@ -28,6 +28,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_7_1_a;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_0_1_0_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_10_1_p;
+	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_11_1_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_1_1_0_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_2_1_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_3_1_p;
@@ -111,6 +112,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	protected AbstractElementAlias match_MetagenProperty_WSTerminalRuleCall_7_1_2_0_p;
 	protected AbstractElementAlias match_MetagenProperty_WSTerminalRuleCall_8_1_0_p;
 	protected AbstractElementAlias match_MetagenProperty_WSTerminalRuleCall_8_1_2_0_p;
+	protected AbstractElementAlias match_PojoDefinition_COLONTerminalRuleCall_2_0_1_q;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_0_1_0_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_10_1_0_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_11_1_0_p;
@@ -199,6 +201,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 		match_Artifacts_WSTerminalRuleCall_2_7_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_7_1());
 		match_DaogenProperty_WSTerminalRuleCall_0_1_0_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_0_1_0());
 		match_DaogenProperty_WSTerminalRuleCall_10_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_10_1());
+		match_DaogenProperty_WSTerminalRuleCall_11_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_11_1());
 		match_DaogenProperty_WSTerminalRuleCall_1_1_0_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_1_1_0());
 		match_DaogenProperty_WSTerminalRuleCall_2_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_2_1());
 		match_DaogenProperty_WSTerminalRuleCall_3_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_3_1());
@@ -282,6 +285,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 		match_MetagenProperty_WSTerminalRuleCall_7_1_2_0_p = new TokenAlias(true, false, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_7_1_2_0());
 		match_MetagenProperty_WSTerminalRuleCall_8_1_0_p = new TokenAlias(true, false, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_8_1_0());
 		match_MetagenProperty_WSTerminalRuleCall_8_1_2_0_p = new TokenAlias(true, false, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_8_1_2_0());
+		match_PojoDefinition_COLONTerminalRuleCall_2_0_1_q = new TokenAlias(false, true, grammarAccess.getPojoDefinitionAccess().getCOLONTerminalRuleCall_2_0_1());
 		match_PojogenProperty_WSTerminalRuleCall_0_1_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_0_1_0());
 		match_PojogenProperty_WSTerminalRuleCall_10_1_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_10_1_0());
 		match_PojogenProperty_WSTerminalRuleCall_11_1_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_11_1_0());
@@ -599,6 +603,8 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 				emit_DaogenProperty_WSTerminalRuleCall_0_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DaogenProperty_WSTerminalRuleCall_10_1_p.equals(syntax))
 				emit_DaogenProperty_WSTerminalRuleCall_10_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_DaogenProperty_WSTerminalRuleCall_11_1_p.equals(syntax))
+				emit_DaogenProperty_WSTerminalRuleCall_11_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DaogenProperty_WSTerminalRuleCall_1_1_0_p.equals(syntax))
 				emit_DaogenProperty_WSTerminalRuleCall_1_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DaogenProperty_WSTerminalRuleCall_2_1_p.equals(syntax))
@@ -765,6 +771,8 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 				emit_MetagenProperty_WSTerminalRuleCall_8_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_MetagenProperty_WSTerminalRuleCall_8_1_2_0_p.equals(syntax))
 				emit_MetagenProperty_WSTerminalRuleCall_8_1_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_PojoDefinition_COLONTerminalRuleCall_2_0_1_q.equals(syntax))
+				emit_PojoDefinition_COLONTerminalRuleCall_2_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PojogenProperty_WSTerminalRuleCall_0_1_0_p.equals(syntax))
 				emit_PojogenProperty_WSTerminalRuleCall_0_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PojogenProperty_WSTerminalRuleCall_10_1_0_p.equals(syntax))
@@ -1000,6 +1008,14 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     WS+
 	 */
 	protected void emit_DaogenProperty_WSTerminalRuleCall_10_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     WS+
+	 */
+	protected void emit_DaogenProperty_WSTerminalRuleCall_11_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1664,6 +1680,14 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     WS+
 	 */
 	protected void emit_MetagenProperty_WSTerminalRuleCall_8_1_2_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     COLON?
+	 */
+	protected void emit_PojoDefinition_COLONTerminalRuleCall_2_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

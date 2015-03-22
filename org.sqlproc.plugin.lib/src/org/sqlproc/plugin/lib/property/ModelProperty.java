@@ -208,4 +208,6 @@ public interface ModelProperty extends Adapter {
 	String getDbUsername(EObject model);
 
 	String getModelDir(EObject model);
+
+	String getDaoImplPackage(EObject model);
 }

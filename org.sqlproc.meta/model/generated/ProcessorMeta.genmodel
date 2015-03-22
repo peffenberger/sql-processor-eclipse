@@ -226,6 +226,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//DaogenProperty/debug"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//DaogenProperty/activeFilter"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//DaogenProperty/pckg"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//DaogenProperty/implPckg"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorMeta.ecore#//PojoDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//PojoDefinition/name"/>

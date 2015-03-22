@@ -68,6 +68,7 @@ public class MainUtils {
 		for (String ref : failedReferences) {
 			content = content.replaceAll(ref, "::" + ref);
 		}
+		content = content.replaceAll("::::", "::");
 		return content;
 	}
 

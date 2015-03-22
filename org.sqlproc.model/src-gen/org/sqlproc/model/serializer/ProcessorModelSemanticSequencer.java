@@ -2240,7 +2240,8 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         (name='function-result' dbFunction=ValidID resultType=PojoType) | 
 	 *         (name='debug-level' debug=DebugLevelAssignement) | 
 	 *         (name='active-filter' activeFilter=ValueType) | 
-	 *         (name='package' pckg=QualifiedName)
+	 *         (name='package' pckg=QualifiedName) | 
+	 *         (name='implementation-package' implPckg=QualifiedName)
 	 *     )
 	 */
 	protected void sequence_DaogenProperty(EObject context, DaogenProperty semanticObject) {

@@ -286,9 +286,11 @@ public class Main {
 		List<Package> daoPackages = null;
 		Package daoPackage = null;
 		String daoPackageName = null;
+		String daoImplPackageName = null;
 		if (dao != null) {
 			if (!merge) {
 				daoPackageName = modelProperty.getDaoPackage(null);
+				daoImplPackageName = modelProperty.getDaoImplPackage(null);
 			} else {
 				if (daoResource != null) {
 					daos = (Artifacts) daoResource.getContents().get(0);
@@ -296,9 +298,16 @@ public class Main {
 						daoPackages = daos.getPackages();
 						daoPackage = daoPackages.get(0);
 						daoPackageName = daoPackage.getName();
+						if (daoPackage.getDirectives() != null && !daoPackage.getDirectives().isEmpty()) {
+							for (PackageDirective dir : daoPackage.getDirectives()) {
+								if (dir instanceof PackageDirectiveImplementation)
+									daoImplPackageName = ((PackageDirectiveImplementation) dir).getImplementation();
+							}
+						}
 					}
 				} else {
 					daoPackageName = modelProperty.getDaoPackage(null);
+					daoImplPackageName = modelProperty.getDaoImplPackage(null);
 				}
 			}
 			if (daoPackage == null && daoPackageName == null) {
@@ -332,18 +341,11 @@ public class Main {
 
 		if (dao != null) {
 			System.out.println("Going to generate " + dao);
-			String daoPackageImplementation = null;
-			if (daoPackage != null && daoPackage.getDirectives() != null && !daoPackage.getDirectives().isEmpty()) {
-				for (PackageDirective dir : daoPackage.getDirectives()) {
-					if (dir instanceof PackageDirectiveImplementation)
-						daoPackageImplementation = ((PackageDirectiveImplementation) dir).getImplementation();
-				}
-			}
 			String daoDefinitions = TableDaoGenerator.generateDao(definitions, daoPackage, serializer, dbResolver,
 			        scopeProvider, modelProperty);
 			StringBuilder sb = new StringBuilder();
-			if (daoPackageImplementation != null)
-				sb.append("#Implementation(").append(daoPackageImplementation).append("\n");
+			if (daoImplPackageName != null)
+				sb.append("#Implementation(").append(daoImplPackageName).append(")\n");
 			sb.append("package ").append(daoPackageName).append(" {\n").append(daoDefinitions).append("}");
 			if (daoPackages != null && !daoPackages.isEmpty()) {
 				boolean first = true;

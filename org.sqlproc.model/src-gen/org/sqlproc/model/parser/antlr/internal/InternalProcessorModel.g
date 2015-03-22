@@ -6114,6 +6114,40 @@ ruleDaogenProperty returns [EObject current=null]
 	    }
 
 )
+))
+    |((
+(
+		lv_name_22_0=	'implementation-package' 
+    {
+        newLeafNode(lv_name_22_0, grammarAccess.getDaogenPropertyAccess().getNameImplementationPackageKeyword_11_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDaogenPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_22_0, "implementation-package");
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDaogenPropertyAccess().getImplPckgQualifiedNameParserRuleCall_11_1_0()); 
+	    }
+		lv_implPckg_23_0=ruleQualifiedName		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDaogenPropertyRule());
+	        }
+       		set(
+       			$current, 
+       			"implPckg",
+        		lv_implPckg_23_0, 
+        		"QualifiedName");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
 )))
 ;
 
@@ -6157,33 +6191,33 @@ rulePojoDefinition returns [EObject current=null]
 	    }
 
 )
-)((
+)(((	otherlv_2='::' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getPojoDefinitionAccess().getColonColonKeyword_2_0_0());
+    }
+)?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPojoDefinitionAccess().getClassQualifiedNameParserRuleCall_2_0_0()); 
+	        newCompositeNode(grammarAccess.getPojoDefinitionAccess().getClassQualifiedNameParserRuleCall_2_0_1_0()); 
 	    }
-		lv_class_2_0=ruleQualifiedName		{
+		lv_class_3_0=ruleQualifiedName		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPojoDefinitionRule());
 	        }
        		set(
        			$current, 
        			"class",
-        		lv_class_2_0, 
+        		lv_class_3_0, 
         		"QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)
-    |(	otherlv_3=':' 
-    {
-    	newLeafNode(otherlv_3, grammarAccess.getPojoDefinitionAccess().getColonKeyword_2_1_0());
-    }
-(
+))
+    |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPojoDefinitionAccess().getClassxJvmParameterizedTypeReferenceParserRuleCall_2_1_1_0()); 
+	        newCompositeNode(grammarAccess.getPojoDefinitionAccess().getClassxJvmParameterizedTypeReferenceParserRuleCall_2_1_0()); 
 	    }
 		lv_classx_4_0=ruleJvmParameterizedTypeReference		{
 	        if ($current==null) {
@@ -6198,7 +6232,7 @@ rulePojoDefinition returns [EObject current=null]
 	    }
 
 )
-)))	otherlv_5=';' 
+))	otherlv_5=';' 
     {
     	newLeafNode(otherlv_5, grammarAccess.getPojoDefinitionAccess().getSemicolonKeyword_3());
     }

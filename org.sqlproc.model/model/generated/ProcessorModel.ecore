@@ -306,6 +306,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="activeFilter" eType="#//ValueType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pckg" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implPckg" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
