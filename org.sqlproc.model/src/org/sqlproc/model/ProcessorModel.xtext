@@ -34,10 +34,10 @@ ManyToManyAssignement: pkColumn=ValidID '->' pkTable=ValidID ('->' fkColumn=Vali
 DebugLevelAssignement: debug=ValidID (scope=ValidID)?;
 ProcedurePojoAssignement: dbProcedure=ValidID '->' pojo=PojoType;
 FunctionPojoAssignement: dbFunction=ValidID '->' pojo=PojoType;
-ImplementsAssignement: ':' toImplement=PojoType ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
-ExtendsAssignement: ':' toExtends=PojoType ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
-ImplementsAssignementGenerics: ':' toImplement=PojoType ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
-ExtendsAssignementGenerics: ':' toExtends=PojoType ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
+ImplementsAssignement: toImplement=PojoType ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
+ExtendsAssignement: toExtends=PojoType ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
+ImplementsAssignementGenerics: toImplement=PojoType ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
+ExtendsAssignementGenerics: toExtends=PojoType ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
 
 PropertyCondition:
 	'{' name=ValidID '=' value=ValueType '}'

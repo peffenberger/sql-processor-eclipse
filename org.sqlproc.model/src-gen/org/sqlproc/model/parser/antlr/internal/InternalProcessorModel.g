@@ -1521,67 +1521,63 @@ ruleImplementsAssignement returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0=':' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getImplementsAssignementAccess().getColonKeyword_0());
-    }
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsAssignementAccess().getToImplementPojoTypeParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getImplementsAssignementAccess().getToImplementPojoTypeParserRuleCall_0_0()); 
 	    }
-		lv_toImplement_1_0=rulePojoType		{
+		lv_toImplement_0_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImplementsAssignementRule());
 	        }
        		set(
        			$current, 
        			"toImplement",
-        		lv_toImplement_1_0, 
+        		lv_toImplement_0_0, 
         		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_2='+' 
+)(	otherlv_1='+' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getImplementsAssignementAccess().getPlusSignKeyword_2_0());
+    	newLeafNode(otherlv_1, grammarAccess.getImplementsAssignementAccess().getPlusSignKeyword_1_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsAssignementAccess().getDbTablesValidIDParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getImplementsAssignementAccess().getDbTablesValidIDParserRuleCall_1_1_0()); 
 	    }
-		lv_dbTables_3_0=ruleValidID		{
+		lv_dbTables_2_0=ruleValidID		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImplementsAssignementRule());
 	        }
        		add(
        			$current, 
        			"dbTables",
-        		lv_dbTables_3_0, 
+        		lv_dbTables_2_0, 
         		"ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)+)?(	otherlv_4='-' 
+)+)?(	otherlv_3='-' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getImplementsAssignementAccess().getHyphenMinusKeyword_3_0());
+    	newLeafNode(otherlv_3, grammarAccess.getImplementsAssignementAccess().getHyphenMinusKeyword_2_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsAssignementAccess().getDbNotTablesValidIDParserRuleCall_3_1_0()); 
+	        newCompositeNode(grammarAccess.getImplementsAssignementAccess().getDbNotTablesValidIDParserRuleCall_2_1_0()); 
 	    }
-		lv_dbNotTables_5_0=ruleValidID		{
+		lv_dbNotTables_4_0=ruleValidID		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImplementsAssignementRule());
 	        }
        		add(
        			$current, 
        			"dbNotTables",
-        		lv_dbNotTables_5_0, 
+        		lv_dbNotTables_4_0, 
         		"ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1608,67 +1604,63 @@ ruleExtendsAssignement returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0=':' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getExtendsAssignementAccess().getColonKeyword_0());
-    }
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getExtendsAssignementAccess().getToExtendsPojoTypeParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getExtendsAssignementAccess().getToExtendsPojoTypeParserRuleCall_0_0()); 
 	    }
-		lv_toExtends_1_0=rulePojoType		{
+		lv_toExtends_0_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getExtendsAssignementRule());
 	        }
        		set(
        			$current, 
        			"toExtends",
-        		lv_toExtends_1_0, 
+        		lv_toExtends_0_0, 
         		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_2='+' 
+)(	otherlv_1='+' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getExtendsAssignementAccess().getPlusSignKeyword_2_0());
+    	newLeafNode(otherlv_1, grammarAccess.getExtendsAssignementAccess().getPlusSignKeyword_1_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getExtendsAssignementAccess().getDbTablesValidIDParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getExtendsAssignementAccess().getDbTablesValidIDParserRuleCall_1_1_0()); 
 	    }
-		lv_dbTables_3_0=ruleValidID		{
+		lv_dbTables_2_0=ruleValidID		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getExtendsAssignementRule());
 	        }
        		add(
        			$current, 
        			"dbTables",
-        		lv_dbTables_3_0, 
+        		lv_dbTables_2_0, 
         		"ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)+)?(	otherlv_4='-' 
+)+)?(	otherlv_3='-' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getExtendsAssignementAccess().getHyphenMinusKeyword_3_0());
+    	newLeafNode(otherlv_3, grammarAccess.getExtendsAssignementAccess().getHyphenMinusKeyword_2_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getExtendsAssignementAccess().getDbNotTablesValidIDParserRuleCall_3_1_0()); 
+	        newCompositeNode(grammarAccess.getExtendsAssignementAccess().getDbNotTablesValidIDParserRuleCall_2_1_0()); 
 	    }
-		lv_dbNotTables_5_0=ruleValidID		{
+		lv_dbNotTables_4_0=ruleValidID		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getExtendsAssignementRule());
 	        }
        		add(
        			$current, 
        			"dbNotTables",
-        		lv_dbNotTables_5_0, 
+        		lv_dbNotTables_4_0, 
         		"ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1695,67 +1687,63 @@ ruleImplementsAssignementGenerics returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0=':' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getImplementsAssignementGenericsAccess().getColonKeyword_0());
-    }
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsAssignementGenericsAccess().getToImplementPojoTypeParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getImplementsAssignementGenericsAccess().getToImplementPojoTypeParserRuleCall_0_0()); 
 	    }
-		lv_toImplement_1_0=rulePojoType		{
+		lv_toImplement_0_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImplementsAssignementGenericsRule());
 	        }
        		set(
        			$current, 
        			"toImplement",
-        		lv_toImplement_1_0, 
+        		lv_toImplement_0_0, 
         		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_2='+' 
+)(	otherlv_1='+' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getImplementsAssignementGenericsAccess().getPlusSignKeyword_2_0());
+    	newLeafNode(otherlv_1, grammarAccess.getImplementsAssignementGenericsAccess().getPlusSignKeyword_1_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsAssignementGenericsAccess().getDbTablesValidIDParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getImplementsAssignementGenericsAccess().getDbTablesValidIDParserRuleCall_1_1_0()); 
 	    }
-		lv_dbTables_3_0=ruleValidID		{
+		lv_dbTables_2_0=ruleValidID		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImplementsAssignementGenericsRule());
 	        }
        		add(
        			$current, 
        			"dbTables",
-        		lv_dbTables_3_0, 
+        		lv_dbTables_2_0, 
         		"ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)+)?(	otherlv_4='-' 
+)+)?(	otherlv_3='-' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getImplementsAssignementGenericsAccess().getHyphenMinusKeyword_3_0());
+    	newLeafNode(otherlv_3, grammarAccess.getImplementsAssignementGenericsAccess().getHyphenMinusKeyword_2_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsAssignementGenericsAccess().getDbNotTablesValidIDParserRuleCall_3_1_0()); 
+	        newCompositeNode(grammarAccess.getImplementsAssignementGenericsAccess().getDbNotTablesValidIDParserRuleCall_2_1_0()); 
 	    }
-		lv_dbNotTables_5_0=ruleValidID		{
+		lv_dbNotTables_4_0=ruleValidID		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImplementsAssignementGenericsRule());
 	        }
        		add(
        			$current, 
        			"dbNotTables",
-        		lv_dbNotTables_5_0, 
+        		lv_dbNotTables_4_0, 
         		"ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1782,67 +1770,63 @@ ruleExtendsAssignementGenerics returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0=':' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getExtendsAssignementGenericsAccess().getColonKeyword_0());
-    }
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getExtendsAssignementGenericsAccess().getToExtendsPojoTypeParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getExtendsAssignementGenericsAccess().getToExtendsPojoTypeParserRuleCall_0_0()); 
 	    }
-		lv_toExtends_1_0=rulePojoType		{
+		lv_toExtends_0_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getExtendsAssignementGenericsRule());
 	        }
        		set(
        			$current, 
        			"toExtends",
-        		lv_toExtends_1_0, 
+        		lv_toExtends_0_0, 
         		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_2='+' 
+)(	otherlv_1='+' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getExtendsAssignementGenericsAccess().getPlusSignKeyword_2_0());
+    	newLeafNode(otherlv_1, grammarAccess.getExtendsAssignementGenericsAccess().getPlusSignKeyword_1_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getExtendsAssignementGenericsAccess().getDbTablesValidIDParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getExtendsAssignementGenericsAccess().getDbTablesValidIDParserRuleCall_1_1_0()); 
 	    }
-		lv_dbTables_3_0=ruleValidID		{
+		lv_dbTables_2_0=ruleValidID		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getExtendsAssignementGenericsRule());
 	        }
        		add(
        			$current, 
        			"dbTables",
-        		lv_dbTables_3_0, 
+        		lv_dbTables_2_0, 
         		"ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)+)?(	otherlv_4='-' 
+)+)?(	otherlv_3='-' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getExtendsAssignementGenericsAccess().getHyphenMinusKeyword_3_0());
+    	newLeafNode(otherlv_3, grammarAccess.getExtendsAssignementGenericsAccess().getHyphenMinusKeyword_2_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getExtendsAssignementGenericsAccess().getDbNotTablesValidIDParserRuleCall_3_1_0()); 
+	        newCompositeNode(grammarAccess.getExtendsAssignementGenericsAccess().getDbNotTablesValidIDParserRuleCall_2_1_0()); 
 	    }
-		lv_dbNotTables_5_0=ruleValidID		{
+		lv_dbNotTables_4_0=ruleValidID		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getExtendsAssignementGenericsRule());
 	        }
        		add(
        			$current, 
        			"dbNotTables",
-        		lv_dbNotTables_5_0, 
+        		lv_dbNotTables_4_0, 
         		"ValidID");
 	        afterParserOrEnumRuleCall();
 	    }

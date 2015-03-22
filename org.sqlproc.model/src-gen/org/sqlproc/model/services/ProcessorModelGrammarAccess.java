@@ -778,225 +778,209 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	public class ImplementsAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ImplementsAssignement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cColonKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cToImplementAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cToImplementPojoTypeParserRuleCall_1_0 = (RuleCall)cToImplementAssignment_1.eContents().get(0);
+		private final Assignment cToImplementAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cToImplementPojoTypeParserRuleCall_0_0 = (RuleCall)cToImplementAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cPlusSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cDbTablesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cDbTablesValidIDParserRuleCall_1_1_0 = (RuleCall)cDbTablesAssignment_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cPlusSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cDbTablesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cDbTablesValidIDParserRuleCall_2_1_0 = (RuleCall)cDbTablesAssignment_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cHyphenMinusKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cDbNotTablesAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cDbNotTablesValidIDParserRuleCall_3_1_0 = (RuleCall)cDbNotTablesAssignment_3_1.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cDbNotTablesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cDbNotTablesValidIDParserRuleCall_2_1_0 = (RuleCall)cDbNotTablesAssignment_2_1.eContents().get(0);
 		
 		//ImplementsAssignement:
-		//	":" toImplement=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
+		//	toImplement=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
 		public ParserRule getRule() { return rule; }
 
-		//":" toImplement=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?
+		//toImplement=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?
 		public Group getGroup() { return cGroup; }
 
-		//":"
-		public Keyword getColonKeyword_0() { return cColonKeyword_0; }
-
 		//toImplement=PojoType
-		public Assignment getToImplementAssignment_1() { return cToImplementAssignment_1; }
+		public Assignment getToImplementAssignment_0() { return cToImplementAssignment_0; }
 
 		//PojoType
-		public RuleCall getToImplementPojoTypeParserRuleCall_1_0() { return cToImplementPojoTypeParserRuleCall_1_0; }
+		public RuleCall getToImplementPojoTypeParserRuleCall_0_0() { return cToImplementPojoTypeParserRuleCall_0_0; }
 
 		//("+" dbTables+=ValidID+)?
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_1() { return cGroup_1; }
 
 		//"+"
-		public Keyword getPlusSignKeyword_2_0() { return cPlusSignKeyword_2_0; }
+		public Keyword getPlusSignKeyword_1_0() { return cPlusSignKeyword_1_0; }
 
 		//dbTables+=ValidID+
-		public Assignment getDbTablesAssignment_2_1() { return cDbTablesAssignment_2_1; }
+		public Assignment getDbTablesAssignment_1_1() { return cDbTablesAssignment_1_1; }
 
 		//ValidID
-		public RuleCall getDbTablesValidIDParserRuleCall_2_1_0() { return cDbTablesValidIDParserRuleCall_2_1_0; }
+		public RuleCall getDbTablesValidIDParserRuleCall_1_1_0() { return cDbTablesValidIDParserRuleCall_1_1_0; }
 
 		//("-" dbNotTables+=ValidID+)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_2() { return cGroup_2; }
 
 		//"-"
-		public Keyword getHyphenMinusKeyword_3_0() { return cHyphenMinusKeyword_3_0; }
+		public Keyword getHyphenMinusKeyword_2_0() { return cHyphenMinusKeyword_2_0; }
 
 		//dbNotTables+=ValidID+
-		public Assignment getDbNotTablesAssignment_3_1() { return cDbNotTablesAssignment_3_1; }
+		public Assignment getDbNotTablesAssignment_2_1() { return cDbNotTablesAssignment_2_1; }
 
 		//ValidID
-		public RuleCall getDbNotTablesValidIDParserRuleCall_3_1_0() { return cDbNotTablesValidIDParserRuleCall_3_1_0; }
+		public RuleCall getDbNotTablesValidIDParserRuleCall_2_1_0() { return cDbNotTablesValidIDParserRuleCall_2_1_0; }
 	}
 
 	public class ExtendsAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExtendsAssignement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cColonKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cToExtendsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cToExtendsPojoTypeParserRuleCall_1_0 = (RuleCall)cToExtendsAssignment_1.eContents().get(0);
+		private final Assignment cToExtendsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cToExtendsPojoTypeParserRuleCall_0_0 = (RuleCall)cToExtendsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cPlusSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cDbTablesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cDbTablesValidIDParserRuleCall_1_1_0 = (RuleCall)cDbTablesAssignment_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cPlusSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cDbTablesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cDbTablesValidIDParserRuleCall_2_1_0 = (RuleCall)cDbTablesAssignment_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cHyphenMinusKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cDbNotTablesAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cDbNotTablesValidIDParserRuleCall_3_1_0 = (RuleCall)cDbNotTablesAssignment_3_1.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cDbNotTablesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cDbNotTablesValidIDParserRuleCall_2_1_0 = (RuleCall)cDbNotTablesAssignment_2_1.eContents().get(0);
 		
 		//ExtendsAssignement:
-		//	":" toExtends=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
+		//	toExtends=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
 		public ParserRule getRule() { return rule; }
 
-		//":" toExtends=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?
+		//toExtends=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?
 		public Group getGroup() { return cGroup; }
 
-		//":"
-		public Keyword getColonKeyword_0() { return cColonKeyword_0; }
-
 		//toExtends=PojoType
-		public Assignment getToExtendsAssignment_1() { return cToExtendsAssignment_1; }
+		public Assignment getToExtendsAssignment_0() { return cToExtendsAssignment_0; }
 
 		//PojoType
-		public RuleCall getToExtendsPojoTypeParserRuleCall_1_0() { return cToExtendsPojoTypeParserRuleCall_1_0; }
+		public RuleCall getToExtendsPojoTypeParserRuleCall_0_0() { return cToExtendsPojoTypeParserRuleCall_0_0; }
 
 		//("+" dbTables+=ValidID+)?
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_1() { return cGroup_1; }
 
 		//"+"
-		public Keyword getPlusSignKeyword_2_0() { return cPlusSignKeyword_2_0; }
+		public Keyword getPlusSignKeyword_1_0() { return cPlusSignKeyword_1_0; }
 
 		//dbTables+=ValidID+
-		public Assignment getDbTablesAssignment_2_1() { return cDbTablesAssignment_2_1; }
+		public Assignment getDbTablesAssignment_1_1() { return cDbTablesAssignment_1_1; }
 
 		//ValidID
-		public RuleCall getDbTablesValidIDParserRuleCall_2_1_0() { return cDbTablesValidIDParserRuleCall_2_1_0; }
+		public RuleCall getDbTablesValidIDParserRuleCall_1_1_0() { return cDbTablesValidIDParserRuleCall_1_1_0; }
 
 		//("-" dbNotTables+=ValidID+)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_2() { return cGroup_2; }
 
 		//"-"
-		public Keyword getHyphenMinusKeyword_3_0() { return cHyphenMinusKeyword_3_0; }
+		public Keyword getHyphenMinusKeyword_2_0() { return cHyphenMinusKeyword_2_0; }
 
 		//dbNotTables+=ValidID+
-		public Assignment getDbNotTablesAssignment_3_1() { return cDbNotTablesAssignment_3_1; }
+		public Assignment getDbNotTablesAssignment_2_1() { return cDbNotTablesAssignment_2_1; }
 
 		//ValidID
-		public RuleCall getDbNotTablesValidIDParserRuleCall_3_1_0() { return cDbNotTablesValidIDParserRuleCall_3_1_0; }
+		public RuleCall getDbNotTablesValidIDParserRuleCall_2_1_0() { return cDbNotTablesValidIDParserRuleCall_2_1_0; }
 	}
 
 	public class ImplementsAssignementGenericsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ImplementsAssignementGenerics");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cColonKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cToImplementAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cToImplementPojoTypeParserRuleCall_1_0 = (RuleCall)cToImplementAssignment_1.eContents().get(0);
+		private final Assignment cToImplementAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cToImplementPojoTypeParserRuleCall_0_0 = (RuleCall)cToImplementAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cPlusSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cDbTablesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cDbTablesValidIDParserRuleCall_1_1_0 = (RuleCall)cDbTablesAssignment_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cPlusSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cDbTablesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cDbTablesValidIDParserRuleCall_2_1_0 = (RuleCall)cDbTablesAssignment_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cHyphenMinusKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cDbNotTablesAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cDbNotTablesValidIDParserRuleCall_3_1_0 = (RuleCall)cDbNotTablesAssignment_3_1.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cDbNotTablesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cDbNotTablesValidIDParserRuleCall_2_1_0 = (RuleCall)cDbNotTablesAssignment_2_1.eContents().get(0);
 		
 		//ImplementsAssignementGenerics:
-		//	":" toImplement=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
+		//	toImplement=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
 		public ParserRule getRule() { return rule; }
 
-		//":" toImplement=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?
+		//toImplement=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?
 		public Group getGroup() { return cGroup; }
 
-		//":"
-		public Keyword getColonKeyword_0() { return cColonKeyword_0; }
-
 		//toImplement=PojoType
-		public Assignment getToImplementAssignment_1() { return cToImplementAssignment_1; }
+		public Assignment getToImplementAssignment_0() { return cToImplementAssignment_0; }
 
 		//PojoType
-		public RuleCall getToImplementPojoTypeParserRuleCall_1_0() { return cToImplementPojoTypeParserRuleCall_1_0; }
+		public RuleCall getToImplementPojoTypeParserRuleCall_0_0() { return cToImplementPojoTypeParserRuleCall_0_0; }
 
 		//("+" dbTables+=ValidID+)?
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_1() { return cGroup_1; }
 
 		//"+"
-		public Keyword getPlusSignKeyword_2_0() { return cPlusSignKeyword_2_0; }
+		public Keyword getPlusSignKeyword_1_0() { return cPlusSignKeyword_1_0; }
 
 		//dbTables+=ValidID+
-		public Assignment getDbTablesAssignment_2_1() { return cDbTablesAssignment_2_1; }
+		public Assignment getDbTablesAssignment_1_1() { return cDbTablesAssignment_1_1; }
 
 		//ValidID
-		public RuleCall getDbTablesValidIDParserRuleCall_2_1_0() { return cDbTablesValidIDParserRuleCall_2_1_0; }
+		public RuleCall getDbTablesValidIDParserRuleCall_1_1_0() { return cDbTablesValidIDParserRuleCall_1_1_0; }
 
 		//("-" dbNotTables+=ValidID+)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_2() { return cGroup_2; }
 
 		//"-"
-		public Keyword getHyphenMinusKeyword_3_0() { return cHyphenMinusKeyword_3_0; }
+		public Keyword getHyphenMinusKeyword_2_0() { return cHyphenMinusKeyword_2_0; }
 
 		//dbNotTables+=ValidID+
-		public Assignment getDbNotTablesAssignment_3_1() { return cDbNotTablesAssignment_3_1; }
+		public Assignment getDbNotTablesAssignment_2_1() { return cDbNotTablesAssignment_2_1; }
 
 		//ValidID
-		public RuleCall getDbNotTablesValidIDParserRuleCall_3_1_0() { return cDbNotTablesValidIDParserRuleCall_3_1_0; }
+		public RuleCall getDbNotTablesValidIDParserRuleCall_2_1_0() { return cDbNotTablesValidIDParserRuleCall_2_1_0; }
 	}
 
 	public class ExtendsAssignementGenericsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExtendsAssignementGenerics");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cColonKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cToExtendsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cToExtendsPojoTypeParserRuleCall_1_0 = (RuleCall)cToExtendsAssignment_1.eContents().get(0);
+		private final Assignment cToExtendsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cToExtendsPojoTypeParserRuleCall_0_0 = (RuleCall)cToExtendsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cPlusSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cDbTablesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cDbTablesValidIDParserRuleCall_1_1_0 = (RuleCall)cDbTablesAssignment_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cPlusSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cDbTablesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cDbTablesValidIDParserRuleCall_2_1_0 = (RuleCall)cDbTablesAssignment_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cHyphenMinusKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cDbNotTablesAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cDbNotTablesValidIDParserRuleCall_3_1_0 = (RuleCall)cDbNotTablesAssignment_3_1.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cDbNotTablesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cDbNotTablesValidIDParserRuleCall_2_1_0 = (RuleCall)cDbNotTablesAssignment_2_1.eContents().get(0);
 		
 		//ExtendsAssignementGenerics:
-		//	":" toExtends=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
+		//	toExtends=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
 		public ParserRule getRule() { return rule; }
 
-		//":" toExtends=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?
+		//toExtends=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?
 		public Group getGroup() { return cGroup; }
 
-		//":"
-		public Keyword getColonKeyword_0() { return cColonKeyword_0; }
-
 		//toExtends=PojoType
-		public Assignment getToExtendsAssignment_1() { return cToExtendsAssignment_1; }
+		public Assignment getToExtendsAssignment_0() { return cToExtendsAssignment_0; }
 
 		//PojoType
-		public RuleCall getToExtendsPojoTypeParserRuleCall_1_0() { return cToExtendsPojoTypeParserRuleCall_1_0; }
+		public RuleCall getToExtendsPojoTypeParserRuleCall_0_0() { return cToExtendsPojoTypeParserRuleCall_0_0; }
 
 		//("+" dbTables+=ValidID+)?
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_1() { return cGroup_1; }
 
 		//"+"
-		public Keyword getPlusSignKeyword_2_0() { return cPlusSignKeyword_2_0; }
+		public Keyword getPlusSignKeyword_1_0() { return cPlusSignKeyword_1_0; }
 
 		//dbTables+=ValidID+
-		public Assignment getDbTablesAssignment_2_1() { return cDbTablesAssignment_2_1; }
+		public Assignment getDbTablesAssignment_1_1() { return cDbTablesAssignment_1_1; }
 
 		//ValidID
-		public RuleCall getDbTablesValidIDParserRuleCall_2_1_0() { return cDbTablesValidIDParserRuleCall_2_1_0; }
+		public RuleCall getDbTablesValidIDParserRuleCall_1_1_0() { return cDbTablesValidIDParserRuleCall_1_1_0; }
 
 		//("-" dbNotTables+=ValidID+)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_2() { return cGroup_2; }
 
 		//"-"
-		public Keyword getHyphenMinusKeyword_3_0() { return cHyphenMinusKeyword_3_0; }
+		public Keyword getHyphenMinusKeyword_2_0() { return cHyphenMinusKeyword_2_0; }
 
 		//dbNotTables+=ValidID+
-		public Assignment getDbNotTablesAssignment_3_1() { return cDbNotTablesAssignment_3_1; }
+		public Assignment getDbNotTablesAssignment_2_1() { return cDbNotTablesAssignment_2_1; }
 
 		//ValidID
-		public RuleCall getDbNotTablesValidIDParserRuleCall_3_1_0() { return cDbNotTablesValidIDParserRuleCall_3_1_0; }
+		public RuleCall getDbNotTablesValidIDParserRuleCall_2_1_0() { return cDbNotTablesValidIDParserRuleCall_2_1_0; }
 	}
 
 	public class PropertyConditionElements extends AbstractParserRuleElementFinder {
@@ -6251,7 +6235,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImplementsAssignement:
-	//	":" toImplement=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
+	//	toImplement=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
 	public ImplementsAssignementElements getImplementsAssignementAccess() {
 		return pImplementsAssignement;
 	}
@@ -6261,7 +6245,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExtendsAssignement:
-	//	":" toExtends=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
+	//	toExtends=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
 	public ExtendsAssignementElements getExtendsAssignementAccess() {
 		return pExtendsAssignement;
 	}
@@ -6271,7 +6255,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImplementsAssignementGenerics:
-	//	":" toImplement=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
+	//	toImplement=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
 	public ImplementsAssignementGenericsElements getImplementsAssignementGenericsAccess() {
 		return pImplementsAssignementGenerics;
 	}
@@ -6281,7 +6265,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExtendsAssignementGenerics:
-	//	":" toExtends=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
+	//	toExtends=PojoType ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)?;
 	public ExtendsAssignementGenericsElements getExtendsAssignementGenericsAccess() {
 		return pExtendsAssignementGenerics;
 	}
