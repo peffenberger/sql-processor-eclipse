@@ -6,25 +6,25 @@ package org.sqlproc.meta.generator;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
+import org.eclipse.xtext.resource.IResourceFactory;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
-import org.eclipse.xtext.util.CancelIndicator;
-import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
-import org.eclipse.xtext.validation.Issue;
 import org.sqlproc.meta.processorMeta.Artifacts;
 import org.sqlproc.meta.processorMeta.MetaStatement;
 import org.sqlproc.meta.property.ModelPropertyBean;
 import org.sqlproc.meta.property.ModelPropertyBean.ModelValues;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.resolver.DbResolverBean;
+import org.sqlproc.plugin.lib.util.MainUtils;
 
 import com.google.common.io.Files;
 import com.google.inject.Inject;
@@ -41,6 +41,8 @@ public class Main {
 	private JavaIoFileSystemAccess fileAccess;
 	@Inject
 	IScopeProvider scopeProvider;
+	@Inject
+	private IResourceFactory resourceFactory;
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 
@@ -119,30 +121,39 @@ public class Main {
 	protected void runGenerator(String control, String sql, String ddl, String source, String target, boolean merge)
 	        throws IOException, ClassNotFoundException {
 
-		ResourceSet set = resourceSetProvider.get();
-		Resource controlResource = set.getResource(URI.createURI(getFile(source, control)), true);
-		set.getResources().add(controlResource);
+		ResourceSet resourceSet = resourceSetProvider.get();
+		Resource controlResource = resourceSet.getResource(URI.createURI(MainUtils.getFile(source, control)), true);
+		resourceSet.getResources().add(controlResource);
 		Resource sqlResource = null;
 		if (merge) {
 			try {
-				sqlResource = set.getResource(URI.createURI(getFile(source, sql)), true);
-				set.getResources().add(sqlResource);
+				sqlResource = resourceSet.getResource(URI.createURI(MainUtils.getFile(source, sql)), true);
+				resourceSet.getResources().add(sqlResource);
 			} catch (Exception ex) {
-				System.out.println("Can't read " + getFile(source, sql));
+				System.out.println("Can't read " + MainUtils.getFile(source, sql));
 			}
 		}
 
 		System.out.println("Going to validate " + controlResource);
-		boolean controlResourceIsOk = isValid(controlResource);
-		if (!controlResourceIsOk) {
+		Set<String> failedReferences = new HashSet<String>();
+		int controlResourceIsOk = MainUtils.isValid(controlResource, failedReferences, validator);
+		if (controlResourceIsOk == MainUtils.ERROR) {
 			System.exit(2);
 			return;
+		} else if (controlResourceIsOk == MainUtils.REFERENCE_ERROR) {
+			String controlResourceContent = MainUtils.handleResourceReferences(controlResource, failedReferences);
+			controlResource = MainUtils.reloadResourceFromString(controlResourceContent, resourceSet, resourceFactory);
+			controlResourceIsOk = MainUtils.isValid(controlResource, failedReferences, validator);
+			if (controlResourceIsOk != MainUtils.OK) {
+				System.exit(2);
+				return;
+			}
 		}
 		System.out.println("Validated " + controlResource);
 		if (merge && sqlResource != null) {
 			System.out.println("Going to validate " + sqlResource);
-			boolean sqlResourceIsOk = isValid(sqlResource);
-			if (!sqlResourceIsOk) {
+			int sqlResourceIsOk = MainUtils.isValid(sqlResource, null, validator);
+			if (sqlResourceIsOk != MainUtils.OK) {
 				System.exit(2);
 				return;
 			}
@@ -163,7 +174,7 @@ public class Main {
 		Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
 		String dbSqlsBefore = null;
 		if (ddl != null) {
-			File file = new File(getFile(source, ddl));
+			File file = new File(MainUtils.getFile(source, ddl));
 			dbSqlsBefore = new String(Files.toByteArray(file));
 		}
 		DbResolver dbResolver = new DbResolverBean(modelProperty, driverClass, dbSqlsBefore, null);
@@ -184,25 +195,5 @@ public class Main {
 		        ((XtextResource) controlResource).getSerializer(), dbResolver, scopeProvider, modelProperty);
 		fileAccess.generateFile(sql, metaDefinitions);
 		System.out.println(sql + " generation finished.");
-	}
-
-	protected String getFile(String source, String file) {
-		if (file.startsWith("/"))
-			return file;
-		return source + file;
-	}
-
-	protected boolean isValid(Resource resource) throws IOException {
-		boolean isError = false;
-		resource.load(null);
-		List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
-		if (!list.isEmpty()) {
-			for (Issue issue : list) {
-				System.err.println(issue);
-				if (issue.getSeverity() == Severity.ERROR)
-					isError = true;
-			}
-		}
-		return !isError;
 	}
 }
