@@ -56,4 +56,10 @@ public class PojoAttrTypeImpl implements PojoAttrType {
 		return "PojoAttrType [column=" + column + ", sqlType=" + sqlType + ", nativeType=" + nativeType + ", type="
 		        + type + "]";
 	}
+
+	@Override
+	public String getQualifiedName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

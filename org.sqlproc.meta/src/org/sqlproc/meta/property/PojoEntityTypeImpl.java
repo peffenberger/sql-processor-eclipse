@@ -11,4 +11,10 @@ public class PojoEntityTypeImpl implements PojoEntityType {
 		super();
 		this.type = type;
 	}
+
+	@Override
+	public String getSimpleName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

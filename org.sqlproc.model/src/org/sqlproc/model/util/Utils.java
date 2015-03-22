@@ -19,7 +19,7 @@ import org.sqlproc.model.processorModel.ProcedureDefinition;
 import org.sqlproc.model.processorModel.TableDefinition;
 import org.sqlproc.plugin.lib.util.CommonUtils;
 
-public class Utils {
+public class Utils extends CommonUtils {
 
 	public static List<String> findTables(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
 	        IScope scope) {

@@ -26,37 +26,19 @@ public class ImplementsExtendsImpl implements ImplementsExtends {
 		return null;
 	}
 
-	// TODO
-	// public JvmType getToImplement() {
-	// return toImplement;
-	// }
-	//
-	// public void setToImplement(JvmType toImplement) {
-	// this.toImplement = toImplement;
-	// }
-
+	@Override
 	public boolean isGenerics() {
 		return generics;
 	}
 
-	public void setGenerics(boolean generics) {
-		this.generics = generics;
-	}
-
+	@Override
 	public List<String> getDbTables() {
 		return dbTables;
 	}
 
-	public void setDbTables(List<String> dbTables) {
-		this.dbTables = dbTables;
-	}
-
+	@Override
 	public List<String> getDbNotTables() {
 		return dbNotTables;
-	}
-
-	public void setDbNotTables(List<String> dbNotTables) {
-		this.dbNotTables = dbNotTables;
 	}
 
 	@Override
