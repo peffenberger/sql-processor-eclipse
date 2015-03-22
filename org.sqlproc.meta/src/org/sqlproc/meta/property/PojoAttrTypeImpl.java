@@ -4,9 +4,11 @@ import org.eclipse.xtext.common.types.JvmPrimitiveType;
 import org.eclipse.xtext.common.types.JvmType;
 import org.sqlproc.meta.processorMeta.PojoDefinition;
 import org.sqlproc.meta.processorMeta.PojoType;
+import org.sqlproc.meta.util.Utils;
 import org.sqlproc.plugin.lib.property.PojoAttrType;
 
 public class PojoAttrTypeImpl implements PojoAttrType {
+	PojoType pojoType;
 	String column;
 	String sqlType;
 	boolean nativeType;
@@ -17,6 +19,7 @@ public class PojoAttrTypeImpl implements PojoAttrType {
 	PojoDefinition gref;
 
 	public PojoAttrTypeImpl(String column, String sqlType, PojoType pojoType) {
+		this.pojoType = pojoType;
 		this.column = column;
 		this.sqlType = sqlType;
 		this.type = pojoType.getType();
@@ -28,75 +31,20 @@ public class PojoAttrTypeImpl implements PojoAttrType {
 		this.gref = pojoType.getGref();
 	}
 
-	public String getColumn() {
-		return column;
-	}
-
-	public void setColumn(String column) {
-		this.column = column;
-	}
-
-	public String getSqlType() {
-		return sqlType;
-	}
-
-	public void setSqlType(String sqlType) {
-		this.sqlType = sqlType;
-	}
-
+	@Override
 	public boolean isNativeType() {
 		return nativeType;
 	}
 
-	public JvmType getType() {
-		return type;
-	}
-
-	public void setType(JvmType type) {
-		this.type = type;
-	}
-
-	public boolean isArray() {
-		return array;
-	}
-
-	public void setArray(boolean array) {
-		this.array = array;
-	}
-
-	public PojoDefinition getRef() {
-		return ref;
-	}
-
-	public void setRef(PojoDefinition ref) {
-		this.ref = ref;
-	}
-
-	public JvmType getGtype() {
-		return gtype;
-	}
-
-	public void setGtype(JvmType gtype) {
-		this.gtype = gtype;
-	}
-
-	public PojoDefinition getGref() {
-		return gref;
-	}
-
-	public void setGref(PojoDefinition gref) {
-		this.gref = gref;
+	@Override
+	public String getQualifiedName() {
+		return Utils.getPropertyValue(pojoType);
 	}
 
 	@Override
 	public String toString() {
-		return "PojoAttrType [column=" + column + ", sqlType=" + sqlType + ", nativeType=" + nativeType + ", type="
-		        + type + ", gtype=" + gtype + ", array=" + array + ", ref=" + ref + ", gref=" + gref + "]";
-	}
-
-	@Override
-	public String getQualifiedName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "PojoAttrTypeImpl [pojoType=" + pojoType + ", column=" + column + ", sqlType=" + sqlType
+		        + ", nativeType=" + nativeType + ", type=" + type + ", gtype=" + gtype + ", array=" + array + ", ref="
+		        + ref + ", gref=" + gref + "]";
 	}
 }

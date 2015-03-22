@@ -15,8 +15,10 @@ import org.eclipse.xtext.xtype.XImportDeclaration;
 import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.FunctionDefinition;
 import org.sqlproc.model.processorModel.Package;
+import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
 import org.sqlproc.model.processorModel.TableDefinition;
+import org.sqlproc.model.processorModel.ValueType;
 import org.sqlproc.plugin.lib.util.CommonUtils;
 
 public class Utils extends CommonUtils {
@@ -69,4 +71,56 @@ public class Utils extends CommonUtils {
 		}
 		return imports;
 	}
+
+	public static String getPropertyValue(String value) {
+		if (value == null)
+			return null;
+		value = value.trim();
+		if (value.startsWith("\""))
+			value = value.substring(1);
+		if (value.endsWith("\""))
+			value = value.substring(0, value.length() - 1);
+		return value;
+	}
+
+	public static String getPropertyValue(ValueType pv) {
+		if (pv == null)
+			return null;
+		String s = pv.getValue();
+		if (s != null) {
+			s = s.trim();
+			if (s.startsWith("\""))
+				s = s.substring(1);
+			if (s.endsWith("\""))
+				s = s.substring(0, s.length() - 1);
+			return s;
+		} else if (pv.getId() != null)
+			return pv.getId();
+		else
+			return "" + pv.getNumber();
+	}
+
+	public static String getPropertyValueRegex(ValueType pv) {
+		String s = getPropertyValue(pv);
+		if (s == null)
+			return null;
+		// String s2 = s.replaceAll("\\\\", "\\");
+		return s;
+	}
+
+	public static String getPropertyValue(PojoType pv) {
+		if (pv == null)
+			return null;
+		if (pv.getType() != null)
+			return pv.getType().getQualifiedName();
+		if (pv.getIdent() != null)
+			return getPropertyValue(pv.getIdent());
+		if (pv.getRef() != null) {
+			if (pv.getRef().getClassx() != null)
+				return pv.getRef().getClassx().getQualifiedName();
+			return pv.getRef().getClass_();
+		}
+		return null;
+	}
+
 }

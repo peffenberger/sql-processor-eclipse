@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sqlproc.model.processorModel.PojoType;
+import org.sqlproc.model.util.Utils;
 import org.sqlproc.plugin.lib.property.ImplementsExtends;
 
 public class ImplementsExtendsImpl implements ImplementsExtends {
@@ -21,9 +22,9 @@ public class ImplementsExtendsImpl implements ImplementsExtends {
 		this.dbNotTables.addAll(dbNotTables);
 	}
 
+	@Override
 	public String getIdentifier() {
-		// TODO
-		return null;
+		return Utils.getPropertyValue(toImplement);
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class ImplementsExtendsImpl implements ImplementsExtends {
 
 	@Override
 	public String toString() {
-		return "ImplementsExtends [toImplement=" + toImplement + ", generics=" + generics + ", dbTables=" + dbTables
-		        + ", dbNotTables=" + dbNotTables + "]";
+		return "ImplementsExtendsImpl [toImplement=" + toImplement + ", generics=" + generics + ", dbTables="
+		        + dbTables + ", dbNotTables=" + dbNotTables + "]";
 	}
 }

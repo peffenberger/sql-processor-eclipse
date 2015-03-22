@@ -18,12 +18,17 @@ public class PojoEntityTypeImpl implements PojoEntityType {
 		if (type.getType() != null)
 			return type.getType().getSimpleName();
 		if (type.getIdent() != null)
-			return Utils.getPropertyValue(type.getIdent());
+			return Utils.getSimpleName(Utils.getPropertyValue(type.getIdent()));
 		if (type.getRef() != null) {
 			if (type.getRef().getClassx() != null)
 				return type.getRef().getClassx().getSimpleName();
-			return type.getRef().getClass_();
+			return Utils.getSimpleName(type.getRef().getClass_());
 		}
 		return null;
+	}
+
+	@Override
+	public String toString() {
+		return "PojoEntityTypeImpl [type=" + type + "]";
 	}
 }

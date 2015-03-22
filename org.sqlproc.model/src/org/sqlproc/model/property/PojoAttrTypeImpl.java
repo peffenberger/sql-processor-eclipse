@@ -2,6 +2,7 @@ package org.sqlproc.model.property;
 
 import org.eclipse.xtext.common.types.JvmPrimitiveType;
 import org.sqlproc.model.processorModel.PojoType;
+import org.sqlproc.model.util.Utils;
 import org.sqlproc.plugin.lib.property.PojoAttrType;
 
 public class PojoAttrTypeImpl implements PojoAttrType {
@@ -15,51 +16,23 @@ public class PojoAttrTypeImpl implements PojoAttrType {
 		this.sqlType = sqlType;
 		this.type = type;
 		// JvmPrimitiveTypeImplCustom
-		this.nativeType = (type != null && type instanceof JvmPrimitiveType) ? true : false;
+		this.nativeType = (type != null && type.getType() != null && type.getType() instanceof JvmPrimitiveType) ? true
+		        : false;
 	}
 
-	public String getColumn() {
-		return column;
-	}
-
-	public void setColumn(String column) {
-		this.column = column;
-	}
-
-	public String getSqlType() {
-		return sqlType;
-	}
-
-	public void setSqlType(String sqlType) {
-		this.sqlType = sqlType;
-	}
-
+	@Override
 	public boolean isNativeType() {
 		return nativeType;
 	}
 
-	public void setNativeType(boolean nativeType) {
-		this.nativeType = nativeType;
+	@Override
+	public String getQualifiedName() {
+		return Utils.getPropertyValue(type);
 	}
-
-	// TODO
-	// public JvmParameterizedTypeReference getType() {
-	// return type;
-	// }
-	//
-	// public void setType(JvmParameterizedTypeReference type) {
-	// this.type = type;
-	// }
 
 	@Override
 	public String toString() {
-		return "PojoAttrType [column=" + column + ", sqlType=" + sqlType + ", nativeType=" + nativeType + ", type="
+		return "PojoAttrTypeImpl [column=" + column + ", sqlType=" + sqlType + ", nativeType=" + nativeType + ", type="
 		        + type + "]";
-	}
-
-	@Override
-	public String getQualifiedName() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

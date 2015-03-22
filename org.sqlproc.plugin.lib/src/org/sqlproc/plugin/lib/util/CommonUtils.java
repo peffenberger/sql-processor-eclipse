@@ -331,4 +331,13 @@ public class CommonUtils {
 			s = s.substring(1);
 		return s + "\n";
 	}
+
+	public static String getSimpleName(String qn) {
+		if (qn == null)
+			return null;
+		int ix = qn.lastIndexOf('.');
+		if (ix < 0)
+			return qn;
+		return qn.substring(ix + 1, qn.length());
+	}
 }
