@@ -73,18 +73,18 @@ public class MainUtils {
 	}
 
 	public static Resource reloadResourceFromString(String content, ResourceSet resourceSet,
-	        IResourceFactory resourceFactory) throws IOException {
+	        IResourceFactory resourceFactory, String suffix) throws IOException {
 		InputStream is = new LazyStringInputStream(content);
-		Resource resource = resourceFactory.createResource(computeUnusedUri(resourceSet));
+		Resource resource = resourceFactory.createResource(computeUnusedUri(resourceSet, suffix));
 		resourceSet.getResources().add(resource);
 		resource.load(is, null);
 		return resource;
 	}
 
-	public static URI computeUnusedUri(ResourceSet resourceSet) {
+	public static URI computeUnusedUri(ResourceSet resourceSet, String suffix) {
 		String name = "__synthetic";
 		for (int i = 0; i < Integer.MAX_VALUE; i++) {
-			URI syntheticUri = URI.createURI(name + i + ".model");
+			URI syntheticUri = URI.createURI(name + i + "." + suffix);
 			if (resourceSet.getResource(syntheticUri, false) == null)
 				return syntheticUri;
 		}

@@ -160,10 +160,14 @@ public class Main {
 
 		for (Resource resource : set2) {
 			System.out.println("Going to validate " + resource);
-			if (MainUtils.isValid(resource, null, validator) != MainUtils.OK) {
+			int resourceIsOk = MainUtils.isValid(resource, null, validator);
+			if (resourceIsOk == MainUtils.ERROR) {
 				System.exit(2);
 				return;
+			} else if (resourceIsOk == MainUtils.REFERENCE_ERROR) {
+				System.out.println("Trying to ignore this error!");
 			}
+
 			System.out.println("Validated " + resource);
 		}
 		System.out.println("Resource(s) validation finished.");
@@ -212,7 +216,9 @@ public class Main {
 			return;
 		} else if (controlResourceIsOk == MainUtils.REFERENCE_ERROR) {
 			String controlResourceContent = MainUtils.handleResourceReferences(controlResource, failedReferences);
-			controlResource = MainUtils.reloadResourceFromString(controlResourceContent, resourceSet, resourceFactory);
+			System.out.println(controlResourceContent);
+			controlResource = MainUtils.reloadResourceFromString(controlResourceContent, resourceSet, resourceFactory,
+			        "model");
 			controlResourceIsOk = MainUtils.isValid(controlResource, failedReferences, validator);
 			if (controlResourceIsOk != MainUtils.OK) {
 				System.exit(2);

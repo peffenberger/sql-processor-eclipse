@@ -143,7 +143,8 @@ public class Main {
 		} else if (controlResourceIsOk == MainUtils.REFERENCE_ERROR) {
 			String controlResourceContent = MainUtils.handleResourceReferences(controlResource, failedReferences);
 			System.out.println(controlResourceContent);
-			controlResource = MainUtils.reloadResourceFromString(controlResourceContent, resourceSet, resourceFactory);
+			controlResource = MainUtils.reloadResourceFromString(controlResourceContent, resourceSet, resourceFactory,
+			        "meta");
 			controlResourceIsOk = MainUtils.isValid(controlResource, failedReferences, validator);
 			if (controlResourceIsOk != MainUtils.OK) {
 				System.exit(2);
