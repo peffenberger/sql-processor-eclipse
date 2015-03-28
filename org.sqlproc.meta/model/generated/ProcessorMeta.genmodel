@@ -3,7 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sqlproc.meta/src-gen" editDirectory="/org.sqlproc.meta.edit/src"
     editorDirectory="/org.sqlproc.meta.editor/src" modelPluginID="org.sqlproc.meta"
     forceOverwrite="true" modelName="ProcessorMeta" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    complianceLevel="5.0" copyrightFields="false" editPluginID="org.sqlproc.meta.edit"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="org.sqlproc.meta.edit"
     editorPluginID="org.sqlproc.meta.editor" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
   <genPackages prefix="ProcessorMeta" basePackage="org.sqlproc.meta" disposableProviderFactory="true"
       fileExtensions="meta" ecorePackage="ProcessorMeta.ecore#/">

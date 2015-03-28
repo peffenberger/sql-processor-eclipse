@@ -4,6 +4,8 @@
 package org.sqlproc.model;
 
 import org.eclipse.xtext.resource.IResourceFactory;
+import org.eclipse.xtext.xbase.compiler.ErrorSafeExtensions;
+import org.sqlproc.model.generator.ProcessorModelErrorSafeExtensions;
 import org.sqlproc.model.generator.ProcessorModelGenerator;
 import org.sqlproc.model.property.ModelPropertyBean;
 import org.sqlproc.plugin.lib.property.ModelProperty;
@@ -17,40 +19,44 @@ import org.sqlproc.plugin.lib.resolver.PojoResolverFactoryBean;
  */
 public class ProcessorModelRuntimeModule extends org.sqlproc.model.AbstractProcessorModelRuntimeModule {
 
-	@Override
-	public Class<? extends org.eclipse.xtext.generator.IGenerator> bindIGenerator() {
-		return ProcessorModelGenerator.class;
-	}
+    @Override
+    public Class<? extends org.eclipse.xtext.generator.IGenerator> bindIGenerator() {
+        return ProcessorModelGenerator.class;
+    }
 
-	public Class<? extends ModelProperty> bindModelProperty() {
-		return ModelPropertyBean.class;
-	}
+    public Class<? extends ModelProperty> bindModelProperty() {
+        return ModelPropertyBean.class;
+    }
 
-	// @Override
-	// public Class<? extends org.eclipse.xtext.naming.IQualifiedNameProvider> bindIQualifiedNameProvider() {
-	// return ProcessorNameProvider.class;
-	// }
+    // @Override
+    // public Class<? extends org.eclipse.xtext.naming.IQualifiedNameProvider> bindIQualifiedNameProvider() {
+    // return ProcessorNameProvider.class;
+    // }
 
-	public Class<? extends PojoResolverFactory> bindPojoResolverFactory() {
-		return PojoResolverFactoryBean.class;
-	}
+    public Class<? extends PojoResolverFactory> bindPojoResolverFactory() {
+        return PojoResolverFactoryBean.class;
+    }
 
-	public Class<? extends DbResolver> bindDbResolver() {
-		return DbResolverBean.class;
-	}
+    public Class<? extends DbResolver> bindDbResolver() {
+        return DbResolverBean.class;
+    }
 
-	@Override
-	public Class<? extends IResourceFactory> bindIResourceFactory() {
-		return ProcessorResourceFactory.class;
-	}
+    @Override
+    public Class<? extends IResourceFactory> bindIResourceFactory() {
+        return ProcessorResourceFactory.class;
+    }
 
-	@Override
-	public Class<? extends org.eclipse.xtext.xbase.scoping.batch.XbaseBatchScopeProvider> bindXbaseBatchScopeProvider() {
-		return org.sqlproc.model.scoping.ProcessorModelScopeProvider.class;
-	}
+    @Override
+    public Class<? extends org.eclipse.xtext.xbase.scoping.batch.XbaseBatchScopeProvider> bindXbaseBatchScopeProvider() {
+        return org.sqlproc.model.scoping.ProcessorModelScopeProvider.class;
+    }
 
-	@Override
-	public Class<? extends org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {
-		return ProcesorModelResourceDescriptionStrategy.class;
-	}
+    @Override
+    public Class<? extends org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {
+        return ProcesorModelResourceDescriptionStrategy.class;
+    }
+
+    public Class<? extends ErrorSafeExtensions> bindErrorSafeExtensions() {
+        return ProcessorModelErrorSafeExtensions.class;
+    }
 }

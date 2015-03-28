@@ -8,3 +8,8 @@
 /ProcessorModelJvmModelInferrer.java
 /DaoJvmModelInferrer.java
 /PojoJvmModelInferrer.java
+/.DaoJvmModelInferrer.xtendbin
+/.EnumJvmModelInferrer.xtendbin
+/.PojoJvmModelInferrer.xtendbin
+/.ProcessorGeneratorUtils.xtendbin
+/.ProcessorModelJvmModelInferrer.xtendbin

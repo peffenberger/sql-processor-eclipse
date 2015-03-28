@@ -99,11 +99,13 @@ class PojoJvmModelInferrer {
    				superTypes += impl.implements.cloneWithProxies
    			}
    			val ext = entity.getExtends
-   			if (entity.superType != null)
+   			if (entity.superType != null) {
    				superTypes += entity.superType.cloneWithProxies
-   			else if (ext != null)
+   			}
+   			else if (ext != null) {
    				superTypes += ext.extends.cloneWithProxies
-   				
+			}
+						   				
    			if (sernum != null) {
    				superTypes += typeRef(SERIALIZABLE)
 				members += entity.toField('serialVersionUID', typeRef(long)) [

@@ -167,7 +167,7 @@ DaogenProperty:
 	);
 
 PojoDefinition:
-	'pojo' name=ValidID (':' (':')? class=(QualifiedName) | classx=JvmParameterizedTypeReference) ';';
+	'pojo' name=ValidID ((':' | '::')? class=(QualifiedName) | classx=JvmParameterizedTypeReference) ';';
 
 TableDefinition:
 	'table' name=ValidID table=ValidID ';';
