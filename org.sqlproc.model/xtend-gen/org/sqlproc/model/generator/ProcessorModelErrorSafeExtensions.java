@@ -13,7 +13,6 @@ import org.eclipse.xtext.xbase.compiler.output.ErrorTreeAppendable;
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.sqlproc.model.generator.BrokenTypeRefDetector;
 
 @SuppressWarnings("all")
@@ -24,19 +23,14 @@ public class ProcessorModelErrorSafeExtensions extends ErrorSafeExtensions {
   
   @Override
   protected ITreeAppendable openErrorAppendable(final ITreeAppendable parent, final ITreeAppendable child) {
-    ITreeAppendable _xblockexpression = null;
-    {
-      InputOutput.<String>println("HURA");
-      ITreeAppendable _xifexpression = null;
-      if ((!(child instanceof ErrorTreeAppendable))) {
-        ErrorTreeAppendable _errorChild = parent.errorChild();
-        _xifexpression = _errorChild.append(" ");
-      } else {
-        _xifexpression = child;
-      }
-      _xblockexpression = _xifexpression;
+    ITreeAppendable _xifexpression = null;
+    if ((!(child instanceof ErrorTreeAppendable))) {
+      ErrorTreeAppendable _errorChild = parent.errorChild();
+      _xifexpression = _errorChild.append(" ");
+    } else {
+      _xifexpression = child;
     }
-    return _xblockexpression;
+    return _xifexpression;
   }
   
   @Override

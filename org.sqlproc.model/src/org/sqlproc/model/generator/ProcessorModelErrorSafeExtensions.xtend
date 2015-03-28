@@ -18,7 +18,6 @@ class ProcessorModelErrorSafeExtensions extends ErrorSafeExtensions {
 	@Inject extension TypeReferenceSerializer 
 	
 	override protected openErrorAppendable(ITreeAppendable parent, ITreeAppendable child) {
-		println("HURA")
 		if(!(child instanceof ErrorTreeAppendable))
 			parent.errorChild().append(" ")
 		else 
