@@ -840,14 +840,14 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 		members += entity.toMethod(fname, listType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
 				if (logger.isTraceEnabled()) {
-					logger.trace("sql «fname»: " + «FOR in:params.ins SEPARATOR " + \" \" "»«in.simpleName»«ENDFOR» + " " + sqlControl);
+					logger.trace("sql «fname»: " + «FOR in:params.ins SEPARATOR " + \" \" "»«in.simpleName.toFirstLower»«ENDFOR» + " " + sqlControl);
 				}
 				«PROCEDURE_ENGINE» sqlFun«entity.name» = sqlEngineFactory.getCheckedProcedureEngine("FUN_«dbName(fname)»");
-				«getSimpleName(params.out)» list = sqlFun«entity.name».callQuery(sqlSession, «params.out.arguments.head.simpleName».class, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+				«getSimpleName(params.out)» list = sqlFun«entity.name».callQuery(sqlSession, «params.out.arguments.head.simpleName».class, «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», sqlControl);
 				if (logger.isTraceEnabled()) {
 					logger.trace("sql «fname» result: " + list);
 				}
@@ -857,27 +857,27 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		
 		members += entity.toMethod(fname, listType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
-				return «fname»(sqlSessionFactory.getSqlSession(), «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+				return «fname»(sqlSessionFactory.getSqlSession(), «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», sqlControl);
 			'''
    		]	
    		
 		members += entity.toMethod(fname, listType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			body = '''
-				return «fname»(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+				return «fname»(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», null);
    			'''
    		]	
    		
 		members += entity.toMethod(fname, listType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			body = '''
-				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», null);
    			'''
    		]	
 	}
@@ -891,25 +891,25 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 		members += entity.toMethod(fname, listType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
    		]	
    		
 		members += entity.toMethod(fname, listType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
    		]	
    		
 		members += entity.toMethod(fname, listType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
    		]	
    		
 		members += entity.toMethod(fname, listType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
    		]	
 	}
 
@@ -922,14 +922,14 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 		members += entity.toMethod(fname, listType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
 				if (logger.isTraceEnabled()) {
-					logger.trace("sql «fname»: " + «FOR in:params.ins SEPARATOR " + \" \" "»«in.simpleName»«ENDFOR» + " " + sqlControl);
+					logger.trace("sql «fname»: " + «FOR in:params.ins SEPARATOR " + \" \" "»«in.simpleName.toFirstLower»«ENDFOR» + " " + sqlControl);
 				}
 				«PROCEDURE_ENGINE» sqlProc«entity.name» = sqlEngineFactory.getCheckedProcedureEngine("PROC_«dbName(fname)»");
-				«getSimpleName(params.out)» list = sqlProc«entity.name».callQuery(sqlSession, «params.out.arguments.head.simpleName».class, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+				«getSimpleName(params.out)» list = sqlProc«entity.name».callQuery(sqlSession, «params.out.arguments.head.simpleName».class, «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», sqlControl);
 				if (logger.isTraceEnabled()) {
 					logger.trace("sql «fname» result: " + list);
 				}
@@ -939,27 +939,27 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		
 		members += entity.toMethod(fname, listType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
-				return «fname»(sqlSessionFactory.getSqlSession(), «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+				return «fname»(sqlSessionFactory.getSqlSession(), «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», sqlControl);
 			'''
    		]	
    		
 		members += entity.toMethod(fname, listType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			body = '''
-				return «fname»(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+				return «fname»(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», null);
    			'''
    		]	
    		
 		members += entity.toMethod(fname, listType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			body = '''
-				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», null);
    			'''
    		]	
    	}
@@ -973,25 +973,25 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 		members += entity.toMethod(fname, listType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
    		]	
    		
 		members += entity.toMethod(fname, listType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
    		]	
    		
 		members += entity.toMethod(fname, listType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
    		]	
    		
 		members += entity.toMethod(fname, listType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
    		]	
    	}
 
@@ -1004,14 +1004,14 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 		members += entity.toMethod(fname, outType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
 				if (logger.isTraceEnabled()) {
-					logger.trace("sql «fname»: " + «FOR in:params.ins SEPARATOR " + \" \" "»«in.simpleName»«ENDFOR» + " " + sqlControl);
+					logger.trace("sql «fname»: " + «FOR in:params.ins SEPARATOR " + \" \" "»«in.simpleName.toFirstLower»«ENDFOR» + " " + sqlControl);
 				}
 				«PROCEDURE_ENGINE» sqlFun«entity.name» = sqlEngineFactory.getCheckedProcedureEngine("FUN_«dbName(fname)»");
-				Object result = sqlFun«entity.name».callFunction(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+				Object result = sqlFun«entity.name».callFunction(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», sqlControl);
 				if (logger.isTraceEnabled()) {
 					logger.trace("sql «fname» result: " + result);
 				}
@@ -1021,27 +1021,27 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		
 		members += entity.toMethod(fname, outType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
-				return «fname»(sqlSessionFactory.getSqlSession(), «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+				return «fname»(sqlSessionFactory.getSqlSession(), «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», sqlControl);
 			'''
    		]	
    		
 		members += entity.toMethod(fname, outType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			body = '''
-				return «fname»(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+				return «fname»(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», null);
    			'''
    		]	
    		
 		members += entity.toMethod(fname, outType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			body = '''
-				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», null);
    			'''
    		]	
    	}
@@ -1055,25 +1055,25 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 		members += entity.toMethod(fname, outType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
    		]	
    		
 		members += entity.toMethod(fname, outType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
    		]	
    		
 		members += entity.toMethod(fname, outType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
    		]	
    		
 		members += entity.toMethod(fname, outType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
    		]	
    	}
 
@@ -1085,14 +1085,14 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 		members += entity.toMethod(fname, typeRef(int)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
 				if (logger.isTraceEnabled()) {
-					logger.trace("sql «fname»: " + «FOR in:params.ins SEPARATOR " + \" \" "»«in.simpleName»«ENDFOR» + " " + sqlControl);
+					logger.trace("sql «fname»: " + «FOR in:params.ins SEPARATOR " + \" \" "»«in.simpleName.toFirstLower»«ENDFOR» + " " + sqlControl);
 				}
 				«PROCEDURE_ENGINE» sqlProc«entity.name» = sqlEngineFactory.getCheckedProcedureEngine("PROC_«dbName(fname)»");
-				int count = sqlProc«entity.name».callUpdate(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+				int count = sqlProc«entity.name».callUpdate(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», sqlControl);
 				if (logger.isTraceEnabled()) {
 					logger.trace("sql «fname» result: " + count);
 				}
@@ -1102,27 +1102,27 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		
 		members += entity.toMethod(fname, typeRef(int)) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
-				return «fname»(sqlSessionFactory.getSqlSession(), «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+				return «fname»(sqlSessionFactory.getSqlSession(), «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», sqlControl);
 			'''
    		]	
    		
 		members += entity.toMethod(fname, typeRef(int)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			body = '''
-				return «fname»(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+				return «fname»(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», null);
    			'''
    		]	
    		
 		members += entity.toMethod(fname, typeRef(int)) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			body = '''
-				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», null);
    			'''
    		]	
    	}
@@ -1135,25 +1135,25 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 		members += entity.toMethod(fname, typeRef(int)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
    		]	
    		
 		members += entity.toMethod(fname, typeRef(int)) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
    		]	
    		
 		members += entity.toMethod(fname, typeRef(int)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
    		]	
    		
 		members += entity.toMethod(fname, typeRef(int)) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
    		]	
    	}
 
@@ -1166,14 +1166,14 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 		members += entity.toMethod(fname, outType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
 				if (logger.isTraceEnabled()) {
-					logger.trace("sql «fname»: " + «FOR in:params.ins SEPARATOR " + \" \" "»«in.simpleName»«ENDFOR» + " " + sqlControl);
+					logger.trace("sql «fname»: " + «FOR in:params.ins SEPARATOR " + \" \" "»«in.simpleName.toFirstLower»«ENDFOR» + " " + sqlControl);
 				}
 				«PROCEDURE_ENGINE» sqlProc«entity.name» = sqlEngineFactory.getCheckedProcedureEngine("FUN_«dbName(fname)»");
-				«LIST»<«params.ins.head.simpleName»> list = sqlFun«entity.name».query(sqlSession, «params.ins.head.simpleName».class, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+				«LIST»<«params.ins.head.simpleName»> list = sqlFun«entity.name».query(sqlSession, «params.ins.head.simpleName».class, «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», sqlControl);
 				if (logger.isTraceEnabled()) {
 					logger.trace("sql «fname» result: " + list);
 				}
@@ -1183,27 +1183,27 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		
 		members += entity.toMethod(fname, outType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
-				return «fname»(sqlSessionFactory.getSqlSession(), «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+				return «fname»(sqlSessionFactory.getSqlSession(), «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», sqlControl);
 			'''
    		]	
    		
 		members += entity.toMethod(fname, outType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			body = '''
-				return «fname»(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+				return «fname»(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», null);
    			'''
    		]	
    		
 		members += entity.toMethod(fname, outType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			body = '''
-				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», null);
    			'''
    		]	
    	}
@@ -1217,25 +1217,25 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 		members += entity.toMethod(fname, outType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
    		]	
    		
 		members += entity.toMethod(fname, outType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
    		]	
    		
 		members += entity.toMethod(fname, outType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
    		]	
    		
 		members += entity.toMethod(fname, outType) [
 			for (in : params.ins)
-				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+				parameters += entity.toParameter(in.simpleName.toFirstLower, typeRef(in.type))
    		]	
    	}
    	
