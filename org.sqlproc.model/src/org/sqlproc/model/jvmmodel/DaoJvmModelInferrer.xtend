@@ -1172,7 +1172,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 				if (logger.isTraceEnabled()) {
 					logger.trace("sql «fname»: " + «FOR in:params.ins SEPARATOR " + \" \" "»«in.simpleName.toFirstLower»«ENDFOR» + " " + sqlControl);
 				}
-				«PROCEDURE_ENGINE» sqlProc«entity.name» = sqlEngineFactory.getCheckedProcedureEngine("FUN_«dbName(fname)»");
+				«QUERY_ENGINE» sqlFun«entity.name» = sqlEngineFactory.getCheckedQueryEngine("FUN_«dbName(fname)»");
 				«LIST»<«params.ins.head.simpleName»> list = sqlFun«entity.name».query(sqlSession, «params.ins.head.simpleName».class, «FOR in:params.ins SEPARATOR ", "»«in.simpleName.toFirstLower»«ENDFOR», sqlControl);
 				if (logger.isTraceEnabled()) {
 					logger.trace("sql «fname» result: " + list);
