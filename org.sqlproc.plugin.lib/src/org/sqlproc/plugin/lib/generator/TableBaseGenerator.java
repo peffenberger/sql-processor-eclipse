@@ -2,6 +2,7 @@ package org.sqlproc.plugin.lib.generator;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.DatabaseMetaData;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -693,6 +694,31 @@ public class TableBaseGenerator {
     public static final String FAKE_FUN_PROC_COLUMN_NAME = "_result_";
     public static final String FUN_PROC_COLUMN_NAME = "RESULT";
 
+    /*
+     * Indicates that type of the column is unknown.
+     * 
+     * int procedureColumnUnknown = 0;
+     * 
+     * Indicates that the column stores IN parameters.
+     * 
+     * int procedureColumnIn = 1;
+     * 
+     * Indicates that the column stores INOUT parameters.
+     * 
+     * int procedureColumnInOut = 2;
+     * 
+     * Indicates that the column stores OUT parameters.
+     * 
+     * int procedureColumnOut = 4;
+     * 
+     * Indicates that the column stores return values.
+     * 
+     * int procedureColumnReturn = 5;
+     * 
+     * Indicates that the column stores results.
+     * 
+     * int procedureColumnResult = 3;
+     */
     public void addProcedureDefinition(String procedure, DbTable dbProcedure, List<DbColumn> dbProcColumns,
             boolean isFunction, String comment) {
         if (debug.debug) {
@@ -706,7 +732,7 @@ public class TableBaseGenerator {
         int ix = 0;
         for (DbColumn dbColumn : dbProcColumns) {
             ix++;
-            if ((dbColumn.getColumnType() == 3 || dbColumn.getColumnType() == 5)
+            if ((dbColumn.getColumnType() == DatabaseMetaData.procedureColumnResult || dbColumn.getColumnType() == DatabaseMetaData.procedureColumnReturn)
                     && (dbColumn.getName() == null || dbColumn.getName().trim().length() == 0
                             || dbColumn.getName().equalsIgnoreCase("returnValue")
                             || dbColumn.getName().equalsIgnoreCase("RETURN_VALUE")
@@ -722,7 +748,8 @@ public class TableBaseGenerator {
                 attribute = convertDbColumnDefault(procedure, dbColumn);
             if (attribute != null) {
                 if (!FAKE_FUN_PROC_COLUMN_NAME.equals(dbColumn.getName())
-                        && (dbColumn.getColumnType() == 3 || dbColumn.getColumnType() == 5))
+                        && (dbColumn.getColumnType() == DatabaseMetaData.procedureColumnResult || dbColumn
+                                .getColumnType() == DatabaseMetaData.procedureColumnReturn))
                     attributesResultSet.put(dbColumn.getName(), attribute);
                 else
                     attributes.put(dbColumn.getName(), attribute);
@@ -734,8 +761,9 @@ public class TableBaseGenerator {
                 // System.out.println("XXXXXX " + procedure + " " + metaType + " " + attribute.getClassName());
                 if (metaType != null)
                     metaFunctionsResult.put(procedure, metaType);
-            } else if (FAKE_FUN_PROC_COLUMN_NAME.equals(dbColumn.getName()) && attribute.getClassName() != null
-                    && (dbColumn.getColumnType() == 3 || dbColumn.getColumnType() == 5)) {
+            } else if (FAKE_FUN_PROC_COLUMN_NAME.equals(dbColumn.getName())
+                    && attribute.getClassName() != null
+                    && (dbColumn.getColumnType() == DatabaseMetaData.procedureColumnResult || dbColumn.getColumnType() == DatabaseMetaData.procedureColumnReturn)) {
                 String metaType = className2metaType(attribute.getClassName());
                 // System.out.println("XXXXXX " + procedure + " " + metaType + " " + attribute.getClassName());
                 if (metaType != null)
@@ -751,7 +779,7 @@ public class TableBaseGenerator {
                 PojoAttribute attribute = convertDbColumnDefinition(createColumn.getKey(), createColumn.getValue());
                 attributes.put(createColumn.getKey(), attribute);
                 attribute.setFunProcType(dbProcedure.getFtype());
-                attribute.setFunProcColumnType((short) 1);
+                attribute.setFunProcColumnType((short) DatabaseMetaData.procedureColumnIn);
             }
         }
         procedures.put(procedure, attributes);
@@ -761,6 +789,31 @@ public class TableBaseGenerator {
             functions.put(procedure, attributes);
     }
 
+    /*
+     * Indicates that type of the parameter or column is unknown.
+     * 
+     * int functionColumnUnknown = 0;
+     * 
+     * Indicates that the parameter or column is an IN parameter.
+     * 
+     * int functionColumnIn = 1;
+     * 
+     * Indicates that the parameter or column is an INOUT parameter.
+     * 
+     * int functionColumnInOut = 2;
+     * 
+     * Indicates that the parameter or column is an OUT parameter.
+     * 
+     * int functionColumnOut = 3;
+     * 
+     * Indicates that the parameter or column is a return value.
+     * 
+     * int functionReturn = 4;
+     * 
+     * Indicates that the parameter or column is a column in a result set.
+     * 
+     * int functionColumnResult = 5;
+     */
     public void addFunctionDefinition(String function, DbTable dbFunction, List<DbColumn> dbFunColumns, String comment) {
         if (debug.debug) {
             System.out.println("addFunctionDefinition: " + function + " dbFunction " + dbFunction);
@@ -788,14 +841,14 @@ public class TableBaseGenerator {
                 PojoAttribute attribute = convertDbColumnDefinition(createColumn.getKey(), createColumn.getValue());
                 attributes.put(createColumn.getKey(), attribute);
                 attribute.setFunProcType(dbFunction.getFtype());
-                attribute.setFunProcColumnType((short) 1);
+                attribute.setFunProcColumnType((short) DatabaseMetaData.functionColumnIn);
             }
         }
         if (dbType == DbType.DB2 && metaFunctionsResult.containsKey(function)) {
             PojoAttribute attribute = convertDbColumnDefinition(FUN_PROC_COLUMN_NAME, metaFunctionsResult.get(function));
             attributes.put(FUN_PROC_COLUMN_NAME, attribute);
             attribute.setFunProcType(dbFunction.getFtype());
-            attribute.setFunProcColumnType((short) 5);
+            attribute.setFunProcColumnType((short) DatabaseMetaData.functionColumnResult);
         }
         functions.put(function, attributes);
         if (comment != null)
