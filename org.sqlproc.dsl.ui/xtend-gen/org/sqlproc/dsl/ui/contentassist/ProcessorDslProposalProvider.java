@@ -152,14 +152,17 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   private final ArrayList<String> DEBUG_LEVELS = CollectionLiterals.<String>newArrayList("DEBUG", "INFO", "FATAL", "ERROR", "WARN", "TRACE");
   
+  @Override
   public void completeMetaStatement_Type(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     this.addProposalList(this.STATEMENT_TYPE, "STATEMENT_TYPE", context, acceptor, null);
   }
   
+  @Override
   public void completeMappingRule_Type(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     this.addProposalList(this.MAPPING_TYPE, "MAPPING_TYPE", context, acceptor, null);
   }
   
+  @Override
   public void completeOptionalFeature_Type(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     this.addProposalList(this.OPTION_TYPE, "OPTION_TYPE", context, acceptor, null);
   }
@@ -167,6 +170,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   public void addProposalList(final List<String> values, final String lexerRule, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor, final String prefix) {
     if (values!=null) {
       final Procedure1<String> _function = new Procedure1<String>() {
+        @Override
         public void apply(final String value) {
           IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
           String _elvis = null;
@@ -185,10 +189,12 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeMetaSql_Ftype(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     this.addProposalList(this.F_TYPES, "IDENT", context, acceptor, null);
   }
   
+  @Override
   public void completeExtendedColumnName_Name(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     final Column column = EcoreUtil2.<Column>getContainerOfType(model, Column.class);
     final StringBuilder partialName = new StringBuilder("");
@@ -198,6 +204,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
     if (_columns!=null) {
       final Function1<ExtendedColumn, Boolean> _function = new Function1<ExtendedColumn, Boolean>() {
+        @Override
         public Boolean apply(final ExtendedColumn it) {
           boolean _xblockexpression = false;
           {
@@ -231,6 +238,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeConstant_Name(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     String _prefix = context.getPrefix();
     boolean _completeUsage = this.completeUsage(model, assignment, context, acceptor, Constants.CONSTANT_USAGE, Constants.CONSTANT_USAGE_EXTENDED, _prefix, 
@@ -241,6 +249,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeIdentifier_Name(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     String _prefix = context.getPrefix();
     boolean _completeUsage = this.completeUsage(model, assignment, context, acceptor, Constants.IDENTIFIER_USAGE, Constants.IDENTIFIER_USAGE_EXTENDED, _prefix, false);
@@ -324,6 +333,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         return false;
       }
       final Function1<PropertyDescriptor, Boolean> _function = new Function1<PropertyDescriptor, Boolean>() {
+        @Override
         public Boolean apply(final PropertyDescriptor it) {
           String _name = it.getName();
           return Boolean.valueOf((!Objects.equal("class", _name)));
@@ -331,6 +341,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       };
       Iterable<PropertyDescriptor> _filter = IterableExtensions.<PropertyDescriptor>filter(((Iterable<PropertyDescriptor>)Conversions.doWrapArray(descriptors)), _function);
       final Procedure1<PropertyDescriptor> _function_1 = new Procedure1<PropertyDescriptor>() {
+        @Override
         public void apply(final PropertyDescriptor descriptor) {
           IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
           String _name = descriptor.getName();
@@ -355,6 +366,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         return false;
       }
       final Procedure1<PojoProperty> _function_2 = new Procedure1<PojoProperty>() {
+        @Override
         public void apply(final PojoProperty pojoProperty) {
           IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
           String _name = pojoProperty.getName();
@@ -374,6 +386,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeMappingColumnName_Name(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolvePojo = this.isResolvePojo(model);
     boolean _not = (!_isResolvePojo);
@@ -434,6 +447,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       cutPrefix = true;
       EList<ExtendedMappingItem> _items = mappingColumn.getItems();
       final Function1<ExtendedMappingItem, Boolean> _function = new Function1<ExtendedMappingItem, Boolean>() {
+        @Override
         public Boolean apply(final ExtendedMappingItem it) {
           boolean _xblockexpression = false;
           {
@@ -489,6 +503,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         super.completeMappingColumnName_Name(model, assignment, context, acceptor);
       } else {
         final Function1<PropertyDescriptor, Boolean> _function_1 = new Function1<PropertyDescriptor, Boolean>() {
+          @Override
           public Boolean apply(final PropertyDescriptor it) {
             String _name = it.getName();
             return Boolean.valueOf((!Objects.equal("class", _name)));
@@ -496,6 +511,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         };
         Iterable<PropertyDescriptor> _filter = IterableExtensions.<PropertyDescriptor>filter(((Iterable<PropertyDescriptor>)Conversions.doWrapArray(descriptors)), _function_1);
         final Procedure1<PropertyDescriptor> _function_2 = new Procedure1<PropertyDescriptor>() {
+          @Override
           public void apply(final PropertyDescriptor descriptor) {
             IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
             String _name = descriptor.getName();
@@ -520,6 +536,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         return;
       }
       final Procedure1<PojoProperty> _function_3 = new Procedure1<PojoProperty>() {
+        @Override
         public void apply(final PojoProperty property) {
           IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
           String _name = property.getName();
@@ -618,6 +635,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       final String _checkProperty = checkProperty;
       List<PojoProperty> _attributes = this._processorGeneratorUtils.attributes(baseEntity);
       final Function1<PojoProperty, Boolean> _function = new Function1<PojoProperty, Boolean>() {
+        @Override
         public Boolean apply(final PojoProperty it) {
           String _name = it.getName();
           return Boolean.valueOf(Objects.equal(_name, _checkProperty));
@@ -673,12 +691,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
     EList<PojoAnnotatedProperty> _features = pojoEntity.getFeatures();
     final Function1<PojoAnnotatedProperty, PojoProperty> _function = new Function1<PojoAnnotatedProperty, PojoProperty>() {
+      @Override
       public PojoProperty apply(final PojoAnnotatedProperty it) {
         return it.getFeature();
       }
     };
     List<PojoProperty> _map = ListExtensions.<PojoAnnotatedProperty, PojoProperty>map(_features, _function);
     final Procedure1<PojoProperty> _function_1 = new Procedure1<PojoProperty>() {
+      @Override
       public void apply(final PojoProperty it) {
         boolean _or = false;
         Entity _ref = it.getRef();
@@ -796,6 +816,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     final String _checkProperty = checkProperty;
     final PropertyDescriptor[] _converted_descriptors = (PropertyDescriptor[])descriptors;
     final Function1<PropertyDescriptor, Boolean> _function = new Function1<PropertyDescriptor, Boolean>() {
+      @Override
       public Boolean apply(final PropertyDescriptor descriptor) {
         String _name = descriptor.getName();
         return Boolean.valueOf(Objects.equal(_name, _checkProperty));
@@ -878,6 +899,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   public void acceptTables(final EObject model, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor, final String suffix) {
     List<String> _tables = this.dbResolver.getTables(model);
     final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
+      @Override
       public Boolean apply(final String it) {
         int _indexOf = it.indexOf("$");
         return Boolean.valueOf((_indexOf < 0));
@@ -885,6 +907,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     };
     Iterable<String> _filter = IterableExtensions.<String>filter(_tables, _function);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
+      @Override
       public void apply(final String table) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         final String proposal = _valueConverter.toString(table, "IDENT");
@@ -898,6 +921,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   public void acceptProcedures(final EObject model, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     List<String> _procedures = this.dbResolver.getProcedures(model);
     final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
+      @Override
       public Boolean apply(final String it) {
         int _indexOf = it.indexOf("$");
         return Boolean.valueOf((_indexOf < 0));
@@ -905,6 +929,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     };
     Iterable<String> _filter = IterableExtensions.<String>filter(_procedures, _function);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
+      @Override
       public void apply(final String table) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         final String proposal = _valueConverter.toString(table, "IDENT");
@@ -918,6 +943,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   public void acceptFunctions(final EObject model, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     List<String> _functions = this.dbResolver.getFunctions(model);
     final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
+      @Override
       public Boolean apply(final String it) {
         int _indexOf = it.indexOf("$");
         return Boolean.valueOf((_indexOf < 0));
@@ -925,6 +951,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     };
     Iterable<String> _filter = IterableExtensions.<String>filter(_functions, _function);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
+      @Override
       public void apply(final String table) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         final String proposal = _valueConverter.toString(table, "IDENT");
@@ -938,6 +965,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   public void acceptCheckConstraints(final EObject model, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     List<String> _checkConstraints = this.dbResolver.getCheckConstraints(model);
     final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
+      @Override
       public Boolean apply(final String it) {
         int _indexOf = it.indexOf("$");
         return Boolean.valueOf((_indexOf < 0));
@@ -945,6 +973,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     };
     Iterable<String> _filter = IterableExtensions.<String>filter(_checkConstraints, _function);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
+      @Override
       public void apply(final String table) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         final String proposal = _valueConverter.toString(table, "IDENT");
@@ -958,6 +987,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   public void acceptSequences(final EObject model, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     List<String> _sequences = this.dbResolver.getSequences(model);
     final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
+      @Override
       public Boolean apply(final String it) {
         int _indexOf = it.indexOf("$");
         return Boolean.valueOf((_indexOf < 0));
@@ -965,6 +995,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     };
     Iterable<String> _filter = IterableExtensions.<String>filter(_sequences, _function);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
+      @Override
       public void apply(final String table) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         final String proposal = _valueConverter.toString(table, "IDENT");
@@ -977,6 +1008,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   public void acceptColumns(final List<String> columns, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor, final String prefix, final String suffix) {
     final Procedure1<String> _function = new Procedure1<String>() {
+      @Override
       public void apply(final String column) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         final String proposal = _valueConverter.toString(column, "IDENT");
@@ -1003,6 +1035,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IterableExtensions.<String>forEach(columns, _function);
   }
   
+  @Override
   public void completeTableDefinition_Table(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1013,6 +1046,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptTables(model, context, acceptor, "");
   }
   
+  @Override
   public void completeProcedureDefinition_Table(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1023,6 +1057,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptProcedures(model, context, acceptor);
   }
   
+  @Override
   public void completeFunctionDefinition_Table(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1033,6 +1068,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptFunctions(model, context, acceptor);
   }
   
+  @Override
   public void complete_DatabaseColumn(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1075,6 +1111,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void complete_DatabaseTable(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1086,6 +1123,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(model, Artifacts.class);
     List<String> _tokensFromModifier = Utils.getTokensFromModifier(metaStatement, Constants.TABLE_USAGE);
     final Procedure1<String> _function = new Procedure1<String>() {
+      @Override
       public void apply(final String value) {
         IScopeProvider _scopeProvider = ProcessorDslProposalProvider.this.getScopeProvider();
         IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
@@ -1103,6 +1141,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IterableExtensions.<String>forEach(_tokensFromModifier, _function);
   }
   
+  @Override
   public void completePojogenProperty_DbTable(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1114,6 +1153,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptCheckConstraints(model, context, acceptor);
   }
   
+  @Override
   public void completePojogenProperty_DbProcedure(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1124,6 +1164,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptProcedures(model, context, acceptor);
   }
   
+  @Override
   public void completePojogenProperty_DbFunction(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1134,6 +1175,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptFunctions(model, context, acceptor);
   }
   
+  @Override
   public void completeTableAssignement_DbTable(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1144,6 +1186,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptTables(model, context, acceptor, "->");
   }
   
+  @Override
   public void completeInheritanceAssignement_DbTable(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1154,6 +1197,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptTables(model, context, acceptor, "->");
   }
   
+  @Override
   public void completePojogenProperty_DbTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1164,6 +1208,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptTables(model, context, acceptor, "");
   }
   
+  @Override
   public void completePojogenProperty_DbNotTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1174,6 +1219,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptTables(model, context, acceptor, "");
   }
   
+  @Override
   public void completeMetagenProperty_DbNotTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1184,6 +1230,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptTables(model, context, acceptor, "");
   }
   
+  @Override
   public void completePojogenProperty_DbColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1207,6 +1254,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completePojogenProperty_DbColumns(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1230,6 +1278,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeImplementsAssignement_DbTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1242,6 +1291,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptFunctions(model, context, acceptor);
   }
   
+  @Override
   public void completeExtendsAssignement_DbTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1254,6 +1304,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptFunctions(model, context, acceptor);
   }
   
+  @Override
   public void completeImplementsAssignement_DbNotTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1266,6 +1317,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptFunctions(model, context, acceptor);
   }
   
+  @Override
   public void completeExtendsAssignement_DbNotTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1278,6 +1330,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptFunctions(model, context, acceptor);
   }
   
+  @Override
   public void completeImplementsAssignementGenerics_DbTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1290,6 +1343,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptFunctions(model, context, acceptor);
   }
   
+  @Override
   public void completeExtendsAssignementGenerics_DbTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1302,6 +1356,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptFunctions(model, context, acceptor);
   }
   
+  @Override
   public void completeImplementsAssignementGenerics_DbNotTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1314,6 +1369,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptFunctions(model, context, acceptor);
   }
   
+  @Override
   public void completeExtendsAssignementGenerics_DbNotTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1326,6 +1382,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptFunctions(model, context, acceptor);
   }
   
+  @Override
   public void completeColumnTypeAssignement_DbColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1365,6 +1422,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeColumnAssignement_DbColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1391,6 +1449,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeImportAssignement_PkTable(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1425,6 +1484,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         String _dbTable_1 = prop.getDbTable();
         List<DbImport> _dbImports = this.dbResolver.getDbImports(model, _dbTable_1);
         final Procedure1<DbImport> _function = new Procedure1<DbImport>() {
+          @Override
           public void apply(final DbImport dbImport) {
             boolean _and = false;
             String _fkColumn = dbImport.getFkColumn();
@@ -1451,6 +1511,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeImportAssignement_PkColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1495,6 +1556,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         String _dbTable_1 = prop.getDbTable();
         List<DbImport> _dbImports = this.dbResolver.getDbImports(model, _dbTable_1);
         final Procedure1<DbImport> _function = new Procedure1<DbImport>() {
+          @Override
           public void apply(final DbImport dbImport) {
             boolean _and = false;
             String _fkColumn = dbImport.getFkColumn();
@@ -1534,6 +1596,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeImportAssignement_DbColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1557,6 +1620,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeExportAssignement_FkTable(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1591,6 +1655,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         String _dbTable_1 = prop.getDbTable();
         List<DbExport> _dbExports = this.dbResolver.getDbExports(model, _dbTable_1);
         final Procedure1<DbExport> _function = new Procedure1<DbExport>() {
+          @Override
           public void apply(final DbExport dbExport) {
             boolean _and = false;
             String _pkColumn = dbExport.getPkColumn();
@@ -1617,6 +1682,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeExportAssignement_FkColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1661,6 +1727,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
         String _dbTable_1 = prop.getDbTable();
         List<DbExport> _dbExports = this.dbResolver.getDbExports(model, _dbTable_1);
         final Procedure1<DbExport> _function = new Procedure1<DbExport>() {
+          @Override
           public void apply(final DbExport dbExport) {
             boolean _and = false;
             String _pkColumn = dbExport.getPkColumn();
@@ -1700,6 +1767,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeExportAssignement_DbColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1723,6 +1791,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeManyToManyAssignement_PkColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1746,6 +1815,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeManyToManyAssignement_PkTable(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1775,6 +1845,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
       String _dbTable_1 = prop.getDbTable();
       List<DbImport> _dbImports = this.dbResolver.getDbImports(model, _dbTable_1);
       final Procedure1<DbImport> _function = new Procedure1<DbImport>() {
+        @Override
         public void apply(final DbImport dbImport) {
           boolean _and = false;
           String _pkColumn = dbImport.getPkColumn();
@@ -1800,6 +1871,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeInheritanceAssignement_DbColumns(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1825,12 +1897,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   private final ArrayList<String> methods = CollectionLiterals.<String>newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", "enumInit", "index=");
   
+  @Override
   public void completePojogenProperty_Methods(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     if ((!(model instanceof PojogenProperty))) {
       super.completePojogenProperty_Methods(model, assignment, context, acceptor);
       return;
     }
     final Procedure1<String> _function = new Procedure1<String>() {
+      @Override
       public void apply(final String method) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         final String proposal = _valueConverter.toString(method, "IDENT");
@@ -1841,6 +1915,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IterableExtensions.<String>forEach(this.methods, _function);
   }
   
+  @Override
   public void completeShowColumnTypeAssignement_DbColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1880,6 +1955,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeShowColumnTypeAssignement_Type(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -1931,6 +2007,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
   }
   
+  @Override
   public void completeJoinTableAssignement_DbTable(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1941,6 +2018,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptTables(model, context, acceptor, "->");
   }
   
+  @Override
   public void completeJoinTableAssignement_DbTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -1953,6 +2031,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   public Set<PojoEntity> listEntities(final ResourceSet resourceSet, final IScope scope) {
     final Comparator<PojoEntity> _function = new Comparator<PojoEntity>() {
+      @Override
       public int compare(final PojoEntity o1, final PojoEntity o2) {
         String _name = o1.getName();
         String _name_1 = o2.getName();
@@ -1962,12 +2041,14 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     final TreeSet<PojoEntity> result = CollectionLiterals.<PojoEntity>newTreeSet(_function);
     Iterable<IEObjectDescription> _allElements = scope.getAllElements();
     final Procedure1<IEObjectDescription> _function_1 = new Procedure1<IEObjectDescription>() {
+      @Override
       public void apply(final IEObjectDescription description) {
         URI _eObjectURI = description.getEObjectURI();
         EObject _eObject = resourceSet.getEObject(_eObjectURI, true);
         final org.sqlproc.dsl.processorDsl.Package packageDeclaration = ((org.sqlproc.dsl.processorDsl.Package) _eObject);
         EList<AbstractPojoEntity> _elements = packageDeclaration.getElements();
         final Procedure1<AbstractPojoEntity> _function = new Procedure1<AbstractPojoEntity>() {
+          @Override
           public void apply(final AbstractPojoEntity aEntity) {
             if ((aEntity instanceof AnnotatedEntity)) {
               AnnotatedEntity ae = ((AnnotatedEntity) aEntity);
@@ -1988,6 +2069,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   public Set<PojoDefinition> listPojos(final ResourceSet resourceSet, final IScope scope) {
     final Comparator<PojoDefinition> _function = new Comparator<PojoDefinition>() {
+      @Override
       public int compare(final PojoDefinition o1, final PojoDefinition o2) {
         String _name = o1.getName();
         String _name_1 = o2.getName();
@@ -1997,6 +2079,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     final TreeSet<PojoDefinition> result = CollectionLiterals.<PojoDefinition>newTreeSet(_function);
     Iterable<IEObjectDescription> _allElements = scope.getAllElements();
     final Procedure1<IEObjectDescription> _function_1 = new Procedure1<IEObjectDescription>() {
+      @Override
       public void apply(final IEObjectDescription description) {
         URI _eObjectURI = description.getEObjectURI();
         EObject _eObject = resourceSet.getEObject(_eObjectURI, true);
@@ -2010,6 +2093,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
   
   public Set<TableDefinition> listTables(final ResourceSet resourceSet, final IScope scope) {
     final Comparator<TableDefinition> _function = new Comparator<TableDefinition>() {
+      @Override
       public int compare(final TableDefinition o1, final TableDefinition o2) {
         String _name = o1.getName();
         String _name_1 = o2.getName();
@@ -2019,6 +2103,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     final TreeSet<TableDefinition> result = CollectionLiterals.<TableDefinition>newTreeSet(_function);
     Iterable<IEObjectDescription> _allElements = scope.getAllElements();
     final Procedure1<IEObjectDescription> _function_1 = new Procedure1<IEObjectDescription>() {
+      @Override
       public void apply(final IEObjectDescription description) {
         URI _eObjectURI = description.getEObjectURI();
         EObject _eObject = resourceSet.getEObject(_eObjectURI, true);
@@ -2030,6 +2115,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     return result;
   }
   
+  @Override
   public void complete_StatementModifier(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     final MetaStatement metaStatement = EcoreUtil2.<MetaStatement>getContainerOfType(model, MetaStatement.class);
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(metaStatement, Artifacts.class);
@@ -2039,6 +2125,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
     final Set<PojoEntity> entities = this.listEntities(_resourceSet, _scope);
     final Procedure1<PojoEntity> _function = new Procedure1<PojoEntity>() {
+      @Override
       public void apply(final PojoEntity entity) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         String _name = entity.getName();
@@ -2058,6 +2145,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
     final Set<PojoDefinition> pojos = this.listPojos(_resourceSet_1, _scope_1);
     final Procedure1<PojoDefinition> _function_1 = new Procedure1<PojoDefinition>() {
+      @Override
       public void apply(final PojoDefinition pojo) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         String _name = pojo.getName();
@@ -2077,6 +2165,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IScope _scope_2 = _scopeProvider_2.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
     final Set<TableDefinition> tables = this.listTables(_resourceSet_2, _scope_2);
     final Procedure1<TableDefinition> _function_2 = new Procedure1<TableDefinition>() {
+      @Override
       public void apply(final TableDefinition table) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         String _name = table.getName();
@@ -2088,6 +2177,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IterableExtensions.<TableDefinition>forEach(tables, _function_2);
   }
   
+  @Override
   public void complete_MappingRuleModifier(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     final MappingRule mappingRule = EcoreUtil2.<MappingRule>getContainerOfType(model, MappingRule.class);
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(mappingRule, Artifacts.class);
@@ -2097,6 +2187,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IScope _scope = _scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__PACKAGES);
     final Set<PojoEntity> entities = this.listEntities(_resourceSet, _scope);
     final Procedure1<PojoEntity> _function = new Procedure1<PojoEntity>() {
+      @Override
       public void apply(final PojoEntity entity) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         String _name = entity.getName();
@@ -2112,6 +2203,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__POJOS);
     final Set<PojoDefinition> pojos = this.listPojos(_resourceSet_1, _scope_1);
     final Procedure1<PojoDefinition> _function_1 = new Procedure1<PojoDefinition>() {
+      @Override
       public void apply(final PojoDefinition pojo) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         String _name = pojo.getName();
@@ -2123,16 +2215,19 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IterableExtensions.<PojoDefinition>forEach(pojos, _function_1);
   }
   
+  @Override
   public void complete_Modifier(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     this.addProposalList(this.TYPES, "IDENT", context, acceptor, "type=");
     this.addProposalList(this.MODIFIERS, "IDENT", context, acceptor, null);
   }
   
+  @Override
   public void complete_MappingItemModifier(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     this.addProposalList(this.TYPES, "IDENT", context, acceptor, "type=");
     this.addProposalList(this.MODIFIERS, "IDENT", context, acceptor, null);
   }
   
+  @Override
   public void completeMetagenProperty_DbTable(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -2143,6 +2238,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptTables(model, context, acceptor, "");
   }
   
+  @Override
   public void completeMetagenProperty_DbTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -2153,6 +2249,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptTables(model, context, acceptor, "");
   }
   
+  @Override
   public void completeMetagenProperty_DbFunction(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -2163,6 +2260,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptFunctions(model, context, acceptor);
   }
   
+  @Override
   public void completeMetagenProperty_DbProcedure(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -2173,6 +2271,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptProcedures(model, context, acceptor);
   }
   
+  @Override
   public void completeMetagenProperty_Sequence(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -2183,6 +2282,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptSequences(model, context, acceptor);
   }
   
+  @Override
   public void completeMetaTypeAssignement_DbColumn(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -2202,6 +2302,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptColumns(_columns, context, acceptor, null, null);
   }
   
+  @Override
   public void completeDaogenProperty_DbTables(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -2212,6 +2313,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptTables(model, context, acceptor, "");
   }
   
+  @Override
   public void completeMetagenProperty_DbColumns(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -2231,6 +2333,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptColumns(_columns, context, acceptor, null, null);
   }
   
+  @Override
   public void completeDatabaseMetaInfoAssignement_DbMetaInfo(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -2245,6 +2348,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     acceptor.accept(_createCompletionProposal);
   }
   
+  @Override
   public void completeDriverMetaInfoAssignement_DbDriverInfo(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -2259,6 +2363,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     acceptor.accept(_createCompletionProposal);
   }
   
+  @Override
   public void completeDriverMethodOutputAssignement_DriverMethod(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -2274,6 +2379,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
     Set<String> _driverMethods = this.dbResolver.getDriverMethods(model);
     final Procedure1<String> _function = new Procedure1<String>() {
+      @Override
       public void apply(final String driverMetod) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         final String proposal = _valueConverter.toString(driverMetod, "PropertyValue");
@@ -2284,6 +2390,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IterableExtensions.<String>forEach(_driverMethods, _function);
   }
   
+  @Override
   public void completeDriverMethodOutputAssignement_CallOutput(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _or = false;
     boolean _isResolveDb = this.isResolveDb(model);
@@ -2313,6 +2420,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     acceptor.accept(_createCompletionProposal);
   }
   
+  @Override
   public void completeDatabaseTypeAssignement_DbType(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -2323,6 +2431,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     final String dbMetaInfo = this.dbResolver.getDbMetaInfo(model);
     DbResolver.DbType[] _fromDbMetaInfo = DbResolver.DbType.fromDbMetaInfo(dbMetaInfo);
     final Procedure1<DbResolver.DbType> _function = new Procedure1<DbResolver.DbType>() {
+      @Override
       public void apply(final DbResolver.DbType dbType) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         String _value = dbType.getValue();
@@ -2334,6 +2443,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IterableExtensions.<DbResolver.DbType>forEach(((Iterable<DbResolver.DbType>)Conversions.doWrapArray(_fromDbMetaInfo)), _function);
   }
   
+  @Override
   public void completeDatabaseCatalogAssignement_DbCatalog(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -2343,6 +2453,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
     List<String> _catalogs = this.dbResolver.getCatalogs(model);
     final Procedure1<String> _function = new Procedure1<String>() {
+      @Override
       public void apply(final String catalog) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         final String proposal = _valueConverter.toString(catalog, "IDENT");
@@ -2353,6 +2464,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IterableExtensions.<String>forEach(_catalogs, _function);
   }
   
+  @Override
   public void completeDatabaseSchemaAssignement_DbSchema(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -2362,6 +2474,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     }
     List<String> _schemas = this.dbResolver.getSchemas(model);
     final Procedure1<String> _function = new Procedure1<String>() {
+      @Override
       public void apply(final String schema) {
         IValueConverterService _valueConverter = ProcessorDslProposalProvider.this.getValueConverter();
         final String proposal = _valueConverter.toString(schema, "IDENT");
@@ -2372,10 +2485,12 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     IterableExtensions.<String>forEach(_schemas, _function);
   }
   
+  @Override
   public void completeDebugLevelAssignement_Debug(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     this.addProposalList(this.DEBUG_LEVELS, "DEBUG_LEVELS", context, acceptor, null);
   }
   
+  @Override
   public void completeProcedurePojoAssignement_DbProcedure(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -2386,6 +2501,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptProcedures(model, context, acceptor);
   }
   
+  @Override
   public void completeFunctionPojoAssignement_DbFunction(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);
@@ -2396,6 +2512,7 @@ public class ProcessorDslProposalProvider extends AbstractProcessorDslProposalPr
     this.acceptFunctions(model, context, acceptor);
   }
   
+  @Override
   public void completePojogenProperty_DbCheckConstraints(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     boolean _isResolveDb = this.isResolveDb(model);
     boolean _not = (!_isResolveDb);

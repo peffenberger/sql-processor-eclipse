@@ -42,6 +42,7 @@ public class ProcessorDslGenerator2 implements IGenerator2 {
   @Extension
   private ProcessorDaoGenerator _processorDaoGenerator;
   
+  @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
     TreeIterator<EObject> _allContents = resource.getAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
@@ -100,6 +101,7 @@ public class ProcessorDslGenerator2 implements IGenerator2 {
     }
   }
   
+  @Override
   public void doGenerate(final ResourceSet resource, final IFileSystemAccess fsa) {
     TreeIterator<Notifier> _allContents = resource.getAllContents();
     Iterable<Notifier> _iterable = IteratorExtensions.<Notifier>toIterable(_allContents);

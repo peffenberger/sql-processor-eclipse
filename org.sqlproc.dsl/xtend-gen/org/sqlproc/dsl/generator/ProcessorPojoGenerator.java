@@ -166,6 +166,7 @@ public class ProcessorPojoGenerator {
         {
           EList<EnumPropertyDirective> _directives = fe.getDirectives();
           final Function1<EnumPropertyDirective, Boolean> _function = new Function1<EnumPropertyDirective, Boolean>() {
+            @Override
             public Boolean apply(final EnumPropertyDirective x) {
               return Boolean.valueOf((x instanceof EnumPropertyDirectiveValues));
             }
@@ -518,6 +519,7 @@ public class ProcessorPojoGenerator {
     {
       EList<PojoAnnotatedProperty> _features_2 = e.getFeatures();
       final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
+        @Override
         public Boolean apply(final PojoAnnotatedProperty x) {
           PojoProperty _feature = x.getFeature();
           String _index = ProcessorPojoGenerator.this._processorGeneratorUtils.getIndex(_feature);
@@ -778,6 +780,7 @@ public class ProcessorPojoGenerator {
     {
       EList<PojoAnnotatedProperty> _features_11 = e.getFeatures();
       final Function1<PojoAnnotatedProperty, Boolean> _function_1 = new Function1<PojoAnnotatedProperty, Boolean>() {
+        @Override
         public Boolean apply(final PojoAnnotatedProperty x) {
           PojoProperty _feature = x.getFeature();
           return Boolean.valueOf(ProcessorPojoGenerator.this.isAttribute(_feature));
@@ -1534,6 +1537,7 @@ public class ProcessorPojoGenerator {
     {
       EList<PojoAnnotatedProperty> _features = e.getFeatures();
       final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
+        @Override
         public Boolean apply(final PojoAnnotatedProperty x) {
           PojoProperty _feature = x.getFeature();
           return Boolean.valueOf(ProcessorPojoGenerator.this.isAttribute(_feature));
@@ -2415,6 +2419,7 @@ public class ProcessorPojoGenerator {
     {
       EList<PojoAnnotatedProperty> _features = e.getFeatures();
       final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
+        @Override
         public Boolean apply(final PojoAnnotatedProperty x) {
           PojoProperty _feature = x.getFeature();
           return Boolean.valueOf(ProcessorPojoGenerator.this.isAttribute(_feature));
@@ -2922,6 +2927,7 @@ public class ProcessorPojoGenerator {
   public List<PojoAnnotatedProperty> listFeatures1(final PojoEntity e) {
     EList<PojoAnnotatedProperty> _features = e.getFeatures();
     final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
+      @Override
       public Boolean apply(final PojoAnnotatedProperty f) {
         PojoProperty _feature = f.getFeature();
         return Boolean.valueOf(ProcessorPojoGenerator.this._processorGeneratorUtils.isList(_feature));
@@ -2960,6 +2966,7 @@ public class ProcessorPojoGenerator {
   public List<PojoAnnotatedProperty> requiredFeatures1(final PojoEntity e) {
     EList<PojoAnnotatedProperty> _features = e.getFeatures();
     final Function1<PojoAnnotatedProperty, Boolean> _function = new Function1<PojoAnnotatedProperty, Boolean>() {
+      @Override
       public Boolean apply(final PojoAnnotatedProperty f) {
         PojoProperty _feature = f.getFeature();
         return Boolean.valueOf(ProcessorPojoGenerator.this._processorGeneratorUtils.isRequired(_feature));

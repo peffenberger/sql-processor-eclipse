@@ -25,6 +25,7 @@ public class ProcessorDslFormatter extends AbstractDeclarativeFormatter {
   @Extension
   private ProcessorDslGrammarAccess _processorDslGrammarAccess;
   
+  @Override
   protected void configureFormatting(final FormattingConfig c) {
     FormattingConfig.LinewrapLocator _setLinewrap = c.setLinewrap(0, 1, 2);
     TerminalRule _sL_COMMENTRule = this._processorDslGrammarAccess.getSL_COMMENTRule();
