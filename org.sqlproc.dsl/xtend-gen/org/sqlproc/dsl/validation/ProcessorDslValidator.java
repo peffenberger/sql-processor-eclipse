@@ -148,7 +148,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       if (!_notEquals) {
         _and = false;
       } else {
-        _and = (metaStmt != metaStatement);
+        boolean _tripleNotEquals = (metaStmt != metaStatement);
+        _and = _tripleNotEquals;
       }
       if (_and) {
         boolean _equalsStatement = this.equalsStatement(metaStatement, metaStmt);
@@ -182,7 +183,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       if (!_notEquals) {
         _and = false;
       } else {
-        _and = (rule != mappingRule);
+        boolean _tripleNotEquals = (rule != mappingRule);
+        _and = _tripleNotEquals;
       }
       if (_and) {
         boolean _equalsRule = this.equalsRule(mappingRule, rule);
@@ -274,7 +276,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       if (!_notEquals) {
         _and_1 = false;
       } else {
-        _and_1 = (definition != pojoDefinition);
+        boolean _tripleNotEquals = (definition != pojoDefinition);
+        _and_1 = _tripleNotEquals;
       }
       if (_and_1) {
         String _name = pojoDefinition.getName();
@@ -510,7 +513,6 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     }
     final ArrayList<String> filteredModifiers = CollectionLiterals.<String>newArrayList();
     final Procedure1<String> _function = new Procedure1<String>() {
-      @Override
       public void apply(final String modifier) {
         int _indexOf = modifier.indexOf("=");
         boolean _lessThan = (_indexOf < 0);
@@ -1239,7 +1241,6 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     final String _checkProperty = checkProperty;
     final PropertyDescriptor[] _converted_descriptors = (PropertyDescriptor[])descriptors;
     final Function1<PropertyDescriptor, Boolean> _function = new Function1<PropertyDescriptor, Boolean>() {
-      @Override
       public Boolean apply(final PropertyDescriptor descriptor) {
         String _name = descriptor.getName();
         return Boolean.valueOf(Objects.equal(_name, _checkProperty));
@@ -1453,7 +1454,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       if (!_notEquals) {
         _and = false;
       } else {
-        _and = (prop != property);
+        boolean _tripleNotEquals = (prop != property);
+        _and = _tripleNotEquals;
       }
       if (_and) {
         boolean _and_1 = false;
@@ -1529,7 +1531,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       if (!_notEquals) {
         _and = false;
       } else {
-        _and = (table != tableDefinition);
+        boolean _tripleNotEquals = (table != tableDefinition);
+        _and = _tripleNotEquals;
       }
       if (_and) {
         String _name = tableDefinition.getName();
@@ -1578,7 +1581,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       if (!_notEquals) {
         _and = false;
       } else {
-        _and = (procedure != procedureDefinition);
+        boolean _tripleNotEquals = (procedure != procedureDefinition);
+        _and = _tripleNotEquals;
       }
       if (_and) {
         String _name = procedureDefinition.getName();
@@ -1627,7 +1631,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       if (!_notEquals) {
         _and = false;
       } else {
-        _and = (function != functionDefinition);
+        boolean _tripleNotEquals = (function != functionDefinition);
+        _and = _tripleNotEquals;
       }
       if (_and) {
         String _name = functionDefinition.getName();
@@ -1715,7 +1720,6 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     final String tableName = databaseTable.getName();
     List<String> _tokensFromModifier = Utils.getTokensFromModifier(statement, Constants.TABLE_USAGE);
     final Function1<String, TableDefinition> _function = new Function1<String, TableDefinition>() {
-      @Override
       public TableDefinition apply(final String value) {
         IScope _scope = ProcessorDslValidator.this.scopeProvider.getScope(artifacts, ProcessorDslPackage.Literals.ARTIFACTS__TABLES);
         return Utils.findTable(ProcessorDslValidator.this.qualifiedNameConverter, artifacts, _scope, value);
@@ -1723,7 +1727,6 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
     };
     final List<TableDefinition> tableDefinitions = ListExtensions.<String, TableDefinition>map(_tokensFromModifier, _function);
     final Function1<TableDefinition, Boolean> _function_1 = new Function1<TableDefinition, Boolean>() {
-      @Override
       public Boolean apply(final TableDefinition it) {
         return Boolean.valueOf((!Objects.equal(it, null)));
       }
@@ -1766,7 +1769,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
           }
           if (_and) {
             final PojoEntity pentity = ((PojoEntity) entity);
-            if ((pentity != pojoEntity)) {
+            boolean _tripleNotEquals = (pentity != pojoEntity);
+            if (_tripleNotEquals) {
               String _name = pojoEntity.getName();
               String _name_1 = pentity.getName();
               boolean _equals = _name.equals(_name_1);
@@ -1795,7 +1799,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
         if (!_notEquals) {
           _and = false;
         } else {
-          _and = (property != pojoProperty);
+          boolean _tripleNotEquals = (property != pojoProperty);
+          _and = _tripleNotEquals;
         }
         if (_and) {
           String _name = pojoProperty.getName();
@@ -1863,7 +1868,8 @@ public class ProcessorDslValidator extends AbstractProcessorDslValidator {
       if (!_notEquals) {
         _and = false;
       } else {
-        _and = (property != enumProperty);
+        boolean _tripleNotEquals = (property != enumProperty);
+        _and = _tripleNotEquals;
       }
       if (_and) {
         String _name = enumProperty.getName();

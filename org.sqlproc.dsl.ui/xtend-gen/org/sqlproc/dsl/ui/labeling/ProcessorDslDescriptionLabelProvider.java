@@ -14,7 +14,6 @@ import org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider;
  */
 @SuppressWarnings("all")
 public class ProcessorDslDescriptionLabelProvider extends DefaultDescriptionLabelProvider {
-  @Override
   public Object text(final IEObjectDescription ele) {
     QualifiedName _name = ele.getName();
     return ("" + _name);

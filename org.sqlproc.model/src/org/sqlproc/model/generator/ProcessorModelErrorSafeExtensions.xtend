@@ -12,14 +12,15 @@ import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.common.types.JvmWildcardTypeReference
 import com.google.inject.Inject
 import org.eclipse.xtext.xbase.compiler.TypeReferenceSerializer
+import org.eclipse.emf.ecore.EObject
 
 class ProcessorModelErrorSafeExtensions extends ErrorSafeExtensions {
 	
 	@Inject extension TypeReferenceSerializer 
 	
-	override protected openErrorAppendable(ITreeAppendable parent, ITreeAppendable child) {
+	override protected openErrorAppendable(ITreeAppendable parent, ITreeAppendable child, EObject context) {
 		if(!(child instanceof ErrorTreeAppendable))
-			parent.errorChild().append(" ")
+			parent.errorChild(context).append(" ")
 		else 
 			child
 	}
@@ -37,14 +38,14 @@ class ProcessorModelErrorSafeExtensions extends ErrorSafeExtensions {
 				JvmUnknownTypeReference: appendable.append(typeRef.qualifiedName)
 				default: {
 					appendable.append('Object')
-					val errorChild = appendable.openErrorAppendable(appendable)
+					val errorChild = appendable.openErrorAppendable(appendable, typeRef)
 					errorChild.append("type is 'null'")
 					appendable.closeErrorAppendable(errorChild)
 				}
 			}
 		} else {
 			if(typeRef.accept(new BrokenTypeRefDetector)) {
-				val errorChild = appendable.openErrorAppendable(appendable)
+				val errorChild = appendable.openErrorAppendable(appendable, typeRef)
 				try {
 					serialize(typeRef, typeRef.eContainer, errorChild)
 				} catch(Exception ignoreMe) {}
