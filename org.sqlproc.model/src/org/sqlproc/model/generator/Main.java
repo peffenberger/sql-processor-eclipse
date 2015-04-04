@@ -75,7 +75,7 @@ public class Main {
         String dao = cmd.getOptionValue("dao");
         String models = cmd.getOptionValue("models");
         String ddl = cmd.getOptionValue("ddl");
-        boolean merge = cmd.hasOption("merge");
+        boolean nomerge = cmd.hasOption("nomerge");
         boolean verify = cmd.hasOption("verify");
         boolean debug = cmd.hasOption("debug");
         if (debug) {
@@ -107,7 +107,7 @@ public class Main {
         if (models != null) {
             main.generate(control, models, source, target, !verify);
         } else if (control != null) {
-            main.generate(control, pojo, dao, ddl, source, target, merge);
+            main.generate(control, pojo, dao, ddl, source, target, !nomerge);
         }
     }
 

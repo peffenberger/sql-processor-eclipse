@@ -68,7 +68,7 @@ public class Main {
         String sql = cmd.getOptionValue("sql");
         String metas = cmd.getOptionValue("metas");
         String ddl = cmd.getOptionValue("ddl");
-        boolean merge = cmd.hasOption("merge");
+        boolean nomerge = cmd.hasOption("nomerge");
         boolean verify = cmd.hasOption("verify");
         boolean debug = cmd.hasOption("debug");
         if (debug) {
@@ -100,7 +100,7 @@ public class Main {
         if (verify)
             main.verify(control, metas, source);
         else
-            main.generate(control, sql, ddl, source, target, merge);
+            main.generate(control, sql, ddl, source, target, !nomerge);
     }
 
     private static void usage(Options options) {
