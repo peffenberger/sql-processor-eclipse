@@ -88,7 +88,7 @@ public class Main {
         if (verify) {
             if (control == null || models == null)
                 usage(options);
-        } else if (control == null || pojo == null) {
+        } else if (control == null || (pojo == null && models == null)) {
             usage(options);
         }
 
