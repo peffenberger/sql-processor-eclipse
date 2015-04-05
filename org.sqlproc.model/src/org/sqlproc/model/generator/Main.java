@@ -29,6 +29,7 @@ import org.sqlproc.model.processorModel.PackageDirective;
 import org.sqlproc.model.processorModel.PackageDirectiveImplementation;
 import org.sqlproc.model.property.ModelPropertyBean;
 import org.sqlproc.model.property.ModelPropertyBean.ModelValues;
+import org.sqlproc.plugin.lib.property.ModelProperty;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.util.MainUtils;
 
@@ -51,6 +52,8 @@ public class Main {
     IScopeProvider scopeProvider;
     @Inject
     private IResourceFactory resourceFactory;
+    @Inject
+    private ModelProperty modelProperty;
     @Inject
     private DbResolver dbResolver;
 
@@ -153,8 +156,8 @@ public class Main {
             }
             ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
             modelValues.doResolveDb = true;
-            ModelPropertyBean modelProperty = new ModelPropertyBean(modelValues);
-            String sDbDriver = modelProperty.getModelValues(null).dbDriver;
+            modelProperty.init(modelValues);
+            String sDbDriver = modelProperty.getDbDriver(null);
             Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
             String dbSqlsBefore = null;
             if (ddl != null) {
@@ -253,8 +256,8 @@ public class Main {
         fileAccess.setOutputPath(target);
         ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
         modelValues.doResolveDb = true;
-        ModelPropertyBean modelProperty = new ModelPropertyBean(modelValues);
-        String sDbDriver = modelProperty.getModelValues(null).dbDriver;
+        modelProperty.init(modelValues);
+        String sDbDriver = modelProperty.getDbDriver(null);
         Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
         String dbSqlsBefore = null;
         if (ddl != null) {
