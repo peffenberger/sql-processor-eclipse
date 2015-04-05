@@ -24,7 +24,7 @@ public class Debug {
     public void trace(String m, String msg) {
         if (!isScopeActive(m))
             return;
-        if (trace || debug || info)
+        if (trace)
             System.out.println(m + " " + msg);
         else if (LOGGER.isTraceEnabled())
             LOGGER.trace(m + " " + msg);
@@ -33,7 +33,7 @@ public class Debug {
     public void trace(String m, String msg, Object object) {
         if (!isScopeActive(m))
             return;
-        if (trace || debug || info)
+        if (trace)
             System.out.println(m + " " + msg + " " + object);
         else if (LOGGER.isTraceEnabled())
             LOGGER.trace(m + " " + msg + " " + object);
@@ -42,7 +42,7 @@ public class Debug {
     public void debug(String m, String msg) {
         if (!isScopeActive(m))
             return;
-        if (debug || info)
+        if (trace || debug)
             System.out.println(m + " " + msg);
         else if (LOGGER.isDebugEnabled())
             LOGGER.debug(m + " " + msg);
@@ -51,7 +51,7 @@ public class Debug {
     public void debug(String m, String msg, Object object) {
         if (!isScopeActive(m))
             return;
-        if (debug || info)
+        if (trace || debug)
             System.out.println(m + " " + msg + " " + object);
         else if (LOGGER.isDebugEnabled())
             LOGGER.debug(m + " " + msg + " " + object);
@@ -60,7 +60,7 @@ public class Debug {
     public void info(String m, String msg) {
         if (!isScopeActive(m))
             return;
-        if (info)
+        if (trace || debug || info)
             System.out.println(msg);
         else if (LOGGER.isInfoEnabled())
             LOGGER.info(msg);

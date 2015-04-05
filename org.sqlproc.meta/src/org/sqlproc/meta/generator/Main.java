@@ -26,7 +26,6 @@ import org.sqlproc.meta.processorMeta.MetaStatement;
 import org.sqlproc.meta.property.ModelPropertyBean;
 import org.sqlproc.meta.property.ModelPropertyBean.ModelValues;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
-import org.sqlproc.plugin.lib.resolver.DbResolverBean;
 import org.sqlproc.plugin.lib.util.MainUtils;
 
 import com.google.common.io.Files;
@@ -46,6 +45,8 @@ public class Main {
     IScopeProvider scopeProvider;
     @Inject
     private IResourceFactory resourceFactory;
+    @Inject
+    private DbResolver dbResolver;
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, ParseException {
 
@@ -58,6 +59,7 @@ public class Main {
         options.addOption("ddl", true, "DDLs file name (eg. hsqldb.ddl)");
         options.addOption("nomerge", false, "do not merge generated artefacts with existing ones");
         options.addOption("verify", false, "do not generate META SQLs, only verify existing ones");
+        options.addOption("skipdb", false, "in the verification process skip database control");
         options.addOption("debug", false, "DEBUG output");
         CommandLineParser parser = new PosixParser();
         CommandLine cmd = parser.parse(options, args);
@@ -70,6 +72,7 @@ public class Main {
         String ddl = cmd.getOptionValue("ddl");
         boolean nomerge = cmd.hasOption("nomerge");
         boolean verify = cmd.hasOption("verify");
+        boolean skipdb = cmd.hasOption("skipdb");
         boolean debug = cmd.hasOption("debug");
         if (debug) {
             StringBuilder sb = new StringBuilder();
@@ -98,7 +101,7 @@ public class Main {
             source = source + "/";
 
         if (verify)
-            main.verify(control, metas, source);
+            main.verify(control, metas, source, skipdb, ddl);
         else
             main.generate(control, sql, ddl, source, target, !nomerge);
     }
@@ -111,7 +114,8 @@ public class Main {
         System.exit(1);
     }
 
-    protected void verify(String control, String metas, String source) throws IOException, ClassNotFoundException {
+    protected void verify(String control, String metas, String source, boolean skipdb, String ddl) throws IOException,
+            ClassNotFoundException {
 
         ResourceSet resourceSet = resourceSetProvider.get();
         Resource controlResource = resourceSet.getResource(URI.createURI(MainUtils.getFile(source, control)), true);
@@ -132,6 +136,26 @@ public class Main {
             System.exit(2);
         }
         System.out.println("Validated " + controlResource);
+
+        if (!skipdb) {
+            Artifacts definitions = (Artifacts) controlResource.getContents().get(0);
+            if (definitions.getProperties().isEmpty()) {
+                System.err.println("No control directive.");
+                System.exit(3);
+            }
+            ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
+            modelValues.doResolveDb = true;
+            ModelPropertyBean modelProperty = new ModelPropertyBean(modelValues);
+            String sDbDriver = modelProperty.getModelValues(null).dbDriver;
+            Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
+            String dbSqlsBefore = null;
+            if (ddl != null) {
+                File file = new File(MainUtils.getFile(source, ddl));
+                dbSqlsBefore = new String(Files.toByteArray(file));
+            }
+            dbResolver.init(modelProperty, driverClass, dbSqlsBefore, null);
+        }
+
         for (Resource sqlResource : sqlResources) {
             System.out.println("Going to validate " + sqlResource);
             int sqlResourceIsOk = MainUtils.isValid(sqlResource, null, validator);
@@ -199,7 +223,7 @@ public class Main {
             File file = new File(MainUtils.getFile(source, ddl));
             dbSqlsBefore = new String(Files.toByteArray(file));
         }
-        DbResolver dbResolver = new DbResolverBean(modelProperty, driverClass, dbSqlsBefore, null);
+        dbResolver.init(modelProperty, driverClass, dbSqlsBefore, null);
 
         Artifacts sqls = null;
         List<MetaStatement> statements = null;
