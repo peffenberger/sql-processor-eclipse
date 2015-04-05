@@ -1,6 +1,7 @@
 package org.sqlproc.plugin.lib.util;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -16,6 +17,8 @@ import org.eclipse.xtext.util.LazyStringInputStream;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
+
+import com.google.common.io.Files;
 
 public class MainUtils {
 
@@ -97,5 +100,13 @@ public class MainUtils {
         if (file.startsWith("/"))
             return file;
         return source + file;
+    }
+
+    public static String loadDdl(String source, String ddl) throws IOException {
+        if (ddl != null) {
+            File file = new File(MainUtils.getFile(source, ddl));
+            return new String(Files.toByteArray(file));
+        }
+        return null;
     }
 }

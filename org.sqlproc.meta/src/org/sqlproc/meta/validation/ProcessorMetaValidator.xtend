@@ -330,14 +330,12 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
     @Check
     def checkIdentifier(Identifier identifier) {
-    	println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
         if (!isResolvePojo(identifier))
             return
         val URI uri = identifier.eResource?.URI
         val identifierName = identifier.getName()
         val statement = identifier.getContainerOfType(typeof(MetaStatement))
         val artifacts = statement.getContainerOfType(typeof(Artifacts))
-    	println(identifier)
 
         val pojoName = Utils.getTokenFromModifier(statement, IDENTIFIER_USAGE)
         val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
