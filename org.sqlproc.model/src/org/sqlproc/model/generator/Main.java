@@ -1,6 +1,5 @@
 package org.sqlproc.model.generator;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,15 +30,18 @@ import org.sqlproc.model.property.ModelPropertyBean;
 import org.sqlproc.model.property.ModelPropertyBean.ModelValues;
 import org.sqlproc.plugin.lib.property.ModelProperty;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
+import org.sqlproc.plugin.lib.resolver.PojoResolverFactory;
+import org.sqlproc.plugin.lib.resolver.StandalonePojoResolverImpl;
 import org.sqlproc.plugin.lib.util.MainUtils;
 
-import com.google.common.io.Files;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Provider;
 
 public class Main {
 
+    @Inject
+    private PojoResolverFactory pojoResolverFactory;
     @Inject
     private Provider<ResourceSet> resourceSetProvider;
     @Inject
@@ -157,14 +159,9 @@ public class Main {
             ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
             modelValues.doResolveDb = true;
             modelProperty.init(modelValues);
-            String sDbDriver = modelProperty.getDbDriver(null);
-            Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
-            String dbSqlsBefore = null;
-            if (ddl != null) {
-                File file = new File(MainUtils.getFile(source, ddl));
-                dbSqlsBefore = new String(Files.toByteArray(file));
-            }
-            dbResolver.init(modelProperty, driverClass, dbSqlsBefore, null);
+            pojoResolverFactory.setPojoResolver(new StandalonePojoResolverImpl(modelProperty, source));
+            String dbSqlsBefore = MainUtils.loadDdl(source, ddl);
+            dbResolver.init(modelProperty, null, dbSqlsBefore, null);
         }
 
         for (Resource resource : modelsResources) {
@@ -196,6 +193,35 @@ public class Main {
         ResourceSet resourceSet = resourceSetProvider.get();
         Resource controlResource = resourceSet.getResource(URI.createURI(MainUtils.getFile(source, control)), true);
         resourceSet.getResources().add(controlResource);
+        System.out.println("Going to validate " + controlResource);
+        Set<String> failedReferences = new HashSet<String>();
+        int controlResourceIsOk = MainUtils.isValid(controlResource, failedReferences, validator);
+        if (controlResourceIsOk == MainUtils.ERROR) {
+            System.exit(2);
+        } else if (controlResourceIsOk == MainUtils.REFERENCE_ERROR) {
+            String controlResourceContent = MainUtils.handleResourceReferences(controlResource, failedReferences);
+            System.out.println(controlResourceContent);
+            controlResource = MainUtils.reloadResourceFromString(controlResourceContent, resourceSet, resourceFactory,
+                    "model");
+            controlResourceIsOk = MainUtils.isValid(controlResource, failedReferences, validator);
+            if (controlResourceIsOk != MainUtils.OK) {
+                System.exit(2);
+            }
+        }
+        System.out.println("Validated " + controlResource);
+
+        Artifacts definitions = (Artifacts) controlResource.getContents().get(0);
+        if (definitions.getProperties().isEmpty()) {
+            System.err.println("No control directive.");
+            System.exit(3);
+        }
+        ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
+        modelValues.doResolveDb = true;
+        modelProperty.init(modelValues);
+        pojoResolverFactory.setPojoResolver(new StandalonePojoResolverImpl(modelProperty, source));
+        String dbSqlsBefore = MainUtils.loadDdl(source, ddl);
+        dbResolver.init(modelProperty, null, dbSqlsBefore, null);
+
         Resource pojoResource = null;
         Resource daoResource = null;
         if (merge) {
@@ -214,23 +240,6 @@ public class Main {
                 }
             }
         }
-
-        System.out.println("Going to validate " + controlResource);
-        Set<String> failedReferences = new HashSet<String>();
-        int controlResourceIsOk = MainUtils.isValid(controlResource, failedReferences, validator);
-        if (controlResourceIsOk == MainUtils.ERROR) {
-            System.exit(2);
-        } else if (controlResourceIsOk == MainUtils.REFERENCE_ERROR) {
-            String controlResourceContent = MainUtils.handleResourceReferences(controlResource, failedReferences);
-            System.out.println(controlResourceContent);
-            controlResource = MainUtils.reloadResourceFromString(controlResourceContent, resourceSet, resourceFactory,
-                    "model");
-            controlResourceIsOk = MainUtils.isValid(controlResource, failedReferences, validator);
-            if (controlResourceIsOk != MainUtils.OK) {
-                System.exit(2);
-            }
-        }
-        System.out.println("Validated " + controlResource);
         if (merge && pojoResource != null) {
             System.out.println("Going to validate " + pojoResource);
             int pojoResourceIsOk = MainUtils.isValid(pojoResource, null, validator);
@@ -247,24 +256,6 @@ public class Main {
             }
             System.out.println("Validated " + daoResource);
         }
-
-        Artifacts definitions = (Artifacts) controlResource.getContents().get(0);
-        if (definitions.getProperties().isEmpty()) {
-            System.err.println("No control directive.");
-            System.exit(3);
-        }
-        fileAccess.setOutputPath(target);
-        ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
-        modelValues.doResolveDb = true;
-        modelProperty.init(modelValues);
-        String sDbDriver = modelProperty.getDbDriver(null);
-        Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
-        String dbSqlsBefore = null;
-        if (ddl != null) {
-            File file = new File(MainUtils.getFile(source, ddl));
-            dbSqlsBefore = new String(Files.toByteArray(file));
-        }
-        dbResolver.init(modelProperty, driverClass, dbSqlsBefore, null);
 
         Artifacts pojos = null;
         List<Package> pojoPackages = null;
@@ -324,6 +315,7 @@ public class Main {
         }
 
         ISerializer serializer = ((XtextResource) controlResource).getSerializer();
+        fileAccess.setOutputPath(target);
 
         {
             System.out.println("Going to generate " + pojo);
