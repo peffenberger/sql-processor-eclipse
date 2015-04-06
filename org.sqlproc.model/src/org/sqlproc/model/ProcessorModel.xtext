@@ -15,8 +15,8 @@ Artifacts: {Artifacts}
 ValueType: value = STRING | number = INT | id = QualifiedName;
 PojoType: '::' ident=ValueType | ':' ref=[PojoDefinition|ValidID] | type=JvmParameterizedTypeReference;
 
-DatabaseCatalogAssignement: dbCatalog=QualifiedName;
-DatabaseSchemaAssignement: dbSchema=QualifiedName;
+DatabaseCatalogAssignement: dbCatalog=ValueType;
+DatabaseSchemaAssignement: dbSchema=ValueType;
 DatabaseTypeAssignement: dbType=ValidID;
 DatabaseMetaInfoAssignement: dbMetaInfo=ValueType;
 DriverMetaInfoAssignement: dbDriverInfo=ValueType;

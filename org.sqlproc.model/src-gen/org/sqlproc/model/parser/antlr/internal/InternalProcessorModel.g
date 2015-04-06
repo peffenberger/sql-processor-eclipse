@@ -391,9 +391,9 @@ ruleDatabaseCatalogAssignement returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogQualifiedNameParserRuleCall_0()); 
+	        newCompositeNode(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogValueTypeParserRuleCall_0()); 
 	    }
-		lv_dbCatalog_0_0=ruleQualifiedName		{
+		lv_dbCatalog_0_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabaseCatalogAssignementRule());
 	        }
@@ -401,7 +401,7 @@ ruleDatabaseCatalogAssignement returns [EObject current=null]
        			$current, 
        			"dbCatalog",
         		lv_dbCatalog_0_0, 
-        		"QualifiedName");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -430,9 +430,9 @@ ruleDatabaseSchemaAssignement returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaQualifiedNameParserRuleCall_0()); 
+	        newCompositeNode(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaValueTypeParserRuleCall_0()); 
 	    }
-		lv_dbSchema_0_0=ruleQualifiedName		{
+		lv_dbSchema_0_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabaseSchemaAssignementRule());
 	        }
@@ -440,7 +440,7 @@ ruleDatabaseSchemaAssignement returns [EObject current=null]
        			$current, 
        			"dbSchema",
         		lv_dbSchema_0_0, 
-        		"QualifiedName");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 

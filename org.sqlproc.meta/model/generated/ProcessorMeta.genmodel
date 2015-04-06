@@ -32,10 +32,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//PojoType/array"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorMeta.ecore#//DatabaseCatalogAssignement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//DatabaseCatalogAssignement/dbCatalog"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//DatabaseCatalogAssignement/dbCatalog"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorMeta.ecore#//DatabaseSchemaAssignement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//DatabaseSchemaAssignement/dbSchema"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//DatabaseSchemaAssignement/dbSchema"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorMeta.ecore#//DatabaseTypeAssignement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//DatabaseTypeAssignement/dbType"/>

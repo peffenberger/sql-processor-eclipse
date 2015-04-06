@@ -585,7 +585,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     dbCatalog=QualifiedName
+	 *     dbCatalog=ValueType
 	 */
 	protected void sequence_DatabaseCatalogAssignement(EObject context, DatabaseCatalogAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -594,7 +594,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogQualifiedNameParserRuleCall_0(), semanticObject.getDbCatalog());
+		feeder.accept(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogValueTypeParserRuleCall_0(), semanticObject.getDbCatalog());
 		feeder.finish();
 	}
 	
@@ -658,7 +658,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     dbSchema=QualifiedName
+	 *     dbSchema=ValueType
 	 */
 	protected void sequence_DatabaseSchemaAssignement(EObject context, DatabaseSchemaAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -667,7 +667,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaQualifiedNameParserRuleCall_0(), semanticObject.getDbSchema());
+		feeder.accept(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaValueTypeParserRuleCall_0(), semanticObject.getDbSchema());
 		feeder.finish();
 	}
 	

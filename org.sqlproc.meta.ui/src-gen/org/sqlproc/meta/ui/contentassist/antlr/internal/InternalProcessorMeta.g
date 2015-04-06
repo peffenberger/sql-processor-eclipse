@@ -30976,8 +30976,8 @@ rule__DatabaseCatalogAssignement__DbCatalogAssignment
     }
 :
 (
-{ before(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogQualifiedNameParserRuleCall_0()); }
-	ruleQualifiedName{ after(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogQualifiedNameParserRuleCall_0()); }
+{ before(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogValueTypeParserRuleCall_0()); }
+	ruleValueType{ after(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogValueTypeParserRuleCall_0()); }
 )
 
 ;
@@ -30991,8 +30991,8 @@ rule__DatabaseSchemaAssignement__DbSchemaAssignment
     }
 :
 (
-{ before(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaQualifiedNameParserRuleCall_0()); }
-	ruleQualifiedName{ after(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaQualifiedNameParserRuleCall_0()); }
+{ before(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaValueTypeParserRuleCall_0()); }
+	ruleValueType{ after(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaValueTypeParserRuleCall_0()); }
 )
 
 ;

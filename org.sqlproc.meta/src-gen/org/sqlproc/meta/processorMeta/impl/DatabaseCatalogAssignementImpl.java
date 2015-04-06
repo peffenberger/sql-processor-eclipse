@@ -3,14 +3,17 @@
 package org.sqlproc.meta.processorMeta.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.meta.processorMeta.DatabaseCatalogAssignement;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
+import org.sqlproc.meta.processorMeta.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,24 +31,14 @@ import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 public class DatabaseCatalogAssignementImpl extends MinimalEObjectImpl.Container implements DatabaseCatalogAssignement
 {
   /**
-   * The default value of the '{@link #getDbCatalog() <em>Db Catalog</em>}' attribute.
+   * The cached value of the '{@link #getDbCatalog() <em>Db Catalog</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getDbCatalog()
    * @generated
    * @ordered
    */
-  protected static final String DB_CATALOG_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getDbCatalog() <em>Db Catalog</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDbCatalog()
-   * @generated
-   * @ordered
-   */
-  protected String dbCatalog = DB_CATALOG_EDEFAULT;
+  protected ValueType dbCatalog;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,7 +66,7 @@ public class DatabaseCatalogAssignementImpl extends MinimalEObjectImpl.Container
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getDbCatalog()
+  public ValueType getDbCatalog()
   {
     return dbCatalog;
   }
@@ -83,12 +76,53 @@ public class DatabaseCatalogAssignementImpl extends MinimalEObjectImpl.Container
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbCatalog(String newDbCatalog)
+  public NotificationChain basicSetDbCatalog(ValueType newDbCatalog, NotificationChain msgs)
   {
-    String oldDbCatalog = dbCatalog;
+    ValueType oldDbCatalog = dbCatalog;
     dbCatalog = newDbCatalog;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG, oldDbCatalog, dbCatalog));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG, oldDbCatalog, newDbCatalog);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDbCatalog(ValueType newDbCatalog)
+  {
+    if (newDbCatalog != dbCatalog)
+    {
+      NotificationChain msgs = null;
+      if (dbCatalog != null)
+        msgs = ((InternalEObject)dbCatalog).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG, null, msgs);
+      if (newDbCatalog != null)
+        msgs = ((InternalEObject)newDbCatalog).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG, null, msgs);
+      msgs = basicSetDbCatalog(newDbCatalog, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG, newDbCatalog, newDbCatalog));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ProcessorMetaPackage.DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG:
+        return basicSetDbCatalog(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -118,7 +152,7 @@ public class DatabaseCatalogAssignementImpl extends MinimalEObjectImpl.Container
     switch (featureID)
     {
       case ProcessorMetaPackage.DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG:
-        setDbCatalog((String)newValue);
+        setDbCatalog((ValueType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,7 +169,7 @@ public class DatabaseCatalogAssignementImpl extends MinimalEObjectImpl.Container
     switch (featureID)
     {
       case ProcessorMetaPackage.DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG:
-        setDbCatalog(DB_CATALOG_EDEFAULT);
+        setDbCatalog((ValueType)null);
         return;
     }
     super.eUnset(featureID);
@@ -152,26 +186,9 @@ public class DatabaseCatalogAssignementImpl extends MinimalEObjectImpl.Container
     switch (featureID)
     {
       case ProcessorMetaPackage.DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG:
-        return DB_CATALOG_EDEFAULT == null ? dbCatalog != null : !DB_CATALOG_EDEFAULT.equals(dbCatalog);
+        return dbCatalog != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (dbCatalog: ");
-    result.append(dbCatalog);
-    result.append(')');
-    return result.toString();
   }
 
 } //DatabaseCatalogAssignementImpl

@@ -3,14 +3,17 @@
 package org.sqlproc.meta.processorMeta.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.meta.processorMeta.DatabaseSchemaAssignement;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
+import org.sqlproc.meta.processorMeta.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,24 +31,14 @@ import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 public class DatabaseSchemaAssignementImpl extends MinimalEObjectImpl.Container implements DatabaseSchemaAssignement
 {
   /**
-   * The default value of the '{@link #getDbSchema() <em>Db Schema</em>}' attribute.
+   * The cached value of the '{@link #getDbSchema() <em>Db Schema</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getDbSchema()
    * @generated
    * @ordered
    */
-  protected static final String DB_SCHEMA_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getDbSchema() <em>Db Schema</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDbSchema()
-   * @generated
-   * @ordered
-   */
-  protected String dbSchema = DB_SCHEMA_EDEFAULT;
+  protected ValueType dbSchema;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,7 +66,7 @@ public class DatabaseSchemaAssignementImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getDbSchema()
+  public ValueType getDbSchema()
   {
     return dbSchema;
   }
@@ -83,12 +76,53 @@ public class DatabaseSchemaAssignementImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbSchema(String newDbSchema)
+  public NotificationChain basicSetDbSchema(ValueType newDbSchema, NotificationChain msgs)
   {
-    String oldDbSchema = dbSchema;
+    ValueType oldDbSchema = dbSchema;
     dbSchema = newDbSchema;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA, oldDbSchema, dbSchema));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA, oldDbSchema, newDbSchema);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDbSchema(ValueType newDbSchema)
+  {
+    if (newDbSchema != dbSchema)
+    {
+      NotificationChain msgs = null;
+      if (dbSchema != null)
+        msgs = ((InternalEObject)dbSchema).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA, null, msgs);
+      if (newDbSchema != null)
+        msgs = ((InternalEObject)newDbSchema).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA, null, msgs);
+      msgs = basicSetDbSchema(newDbSchema, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA, newDbSchema, newDbSchema));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ProcessorMetaPackage.DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA:
+        return basicSetDbSchema(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -118,7 +152,7 @@ public class DatabaseSchemaAssignementImpl extends MinimalEObjectImpl.Container 
     switch (featureID)
     {
       case ProcessorMetaPackage.DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA:
-        setDbSchema((String)newValue);
+        setDbSchema((ValueType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,7 +169,7 @@ public class DatabaseSchemaAssignementImpl extends MinimalEObjectImpl.Container 
     switch (featureID)
     {
       case ProcessorMetaPackage.DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA:
-        setDbSchema(DB_SCHEMA_EDEFAULT);
+        setDbSchema((ValueType)null);
         return;
     }
     super.eUnset(featureID);
@@ -152,26 +186,9 @@ public class DatabaseSchemaAssignementImpl extends MinimalEObjectImpl.Container 
     switch (featureID)
     {
       case ProcessorMetaPackage.DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA:
-        return DB_SCHEMA_EDEFAULT == null ? dbSchema != null : !DB_SCHEMA_EDEFAULT.equals(dbSchema);
+        return dbSchema != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (dbSchema: ");
-    result.append(dbSchema);
-    result.append(')');
-    return result.toString();
   }
 
 } //DatabaseSchemaAssignementImpl

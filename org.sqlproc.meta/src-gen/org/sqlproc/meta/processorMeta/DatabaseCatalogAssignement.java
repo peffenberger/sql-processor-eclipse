@@ -23,29 +23,29 @@ import org.eclipse.emf.ecore.EObject;
 public interface DatabaseCatalogAssignement extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Db Catalog</b></em>' attribute.
+   * Returns the value of the '<em><b>Db Catalog</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Db Catalog</em>' attribute isn't clear,
+   * If the meaning of the '<em>Db Catalog</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Catalog</em>' attribute.
-   * @see #setDbCatalog(String)
+   * @return the value of the '<em>Db Catalog</em>' containment reference.
+   * @see #setDbCatalog(ValueType)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getDatabaseCatalogAssignement_DbCatalog()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getDbCatalog();
+  ValueType getDbCatalog();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseCatalogAssignement#getDbCatalog <em>Db Catalog</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseCatalogAssignement#getDbCatalog <em>Db Catalog</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Db Catalog</em>' attribute.
+   * @param value the new value of the '<em>Db Catalog</em>' containment reference.
    * @see #getDbCatalog()
    * @generated
    */
-  void setDbCatalog(String value);
+  void setDbCatalog(ValueType value);
 
 } // DatabaseCatalogAssignement

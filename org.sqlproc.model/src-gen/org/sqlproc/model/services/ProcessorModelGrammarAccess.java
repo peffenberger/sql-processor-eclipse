@@ -186,33 +186,33 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	public class DatabaseCatalogAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DatabaseCatalogAssignement");
 		private final Assignment cDbCatalogAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cDbCatalogQualifiedNameParserRuleCall_0 = (RuleCall)cDbCatalogAssignment.eContents().get(0);
+		private final RuleCall cDbCatalogValueTypeParserRuleCall_0 = (RuleCall)cDbCatalogAssignment.eContents().get(0);
 		
 		//DatabaseCatalogAssignement:
-		//	dbCatalog=QualifiedName;
+		//	dbCatalog=ValueType;
 		public ParserRule getRule() { return rule; }
 
-		//dbCatalog=QualifiedName
+		//dbCatalog=ValueType
 		public Assignment getDbCatalogAssignment() { return cDbCatalogAssignment; }
 
-		//QualifiedName
-		public RuleCall getDbCatalogQualifiedNameParserRuleCall_0() { return cDbCatalogQualifiedNameParserRuleCall_0; }
+		//ValueType
+		public RuleCall getDbCatalogValueTypeParserRuleCall_0() { return cDbCatalogValueTypeParserRuleCall_0; }
 	}
 
 	public class DatabaseSchemaAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DatabaseSchemaAssignement");
 		private final Assignment cDbSchemaAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cDbSchemaQualifiedNameParserRuleCall_0 = (RuleCall)cDbSchemaAssignment.eContents().get(0);
+		private final RuleCall cDbSchemaValueTypeParserRuleCall_0 = (RuleCall)cDbSchemaAssignment.eContents().get(0);
 		
 		//DatabaseSchemaAssignement:
-		//	dbSchema=QualifiedName;
+		//	dbSchema=ValueType;
 		public ParserRule getRule() { return rule; }
 
-		//dbSchema=QualifiedName
+		//dbSchema=ValueType
 		public Assignment getDbSchemaAssignment() { return cDbSchemaAssignment; }
 
-		//QualifiedName
-		public RuleCall getDbSchemaQualifiedNameParserRuleCall_0() { return cDbSchemaQualifiedNameParserRuleCall_0; }
+		//ValueType
+		public RuleCall getDbSchemaValueTypeParserRuleCall_0() { return cDbSchemaValueTypeParserRuleCall_0; }
 	}
 
 	public class DatabaseTypeAssignementElements extends AbstractParserRuleElementFinder {
@@ -6075,7 +6075,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DatabaseCatalogAssignement:
-	//	dbCatalog=QualifiedName;
+	//	dbCatalog=ValueType;
 	public DatabaseCatalogAssignementElements getDatabaseCatalogAssignementAccess() {
 		return pDatabaseCatalogAssignement;
 	}
@@ -6085,7 +6085,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DatabaseSchemaAssignement:
-	//	dbSchema=QualifiedName;
+	//	dbSchema=ValueType;
 	public DatabaseSchemaAssignementElements getDatabaseSchemaAssignementAccess() {
 		return pDatabaseSchemaAssignement;
 	}

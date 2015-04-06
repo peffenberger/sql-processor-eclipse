@@ -1742,32 +1742,32 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDatabaseCatalogAssignement"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:531:1: ruleDatabaseCatalogAssignement returns [EObject current=null] : ( (lv_dbCatalog_0_0= ruleQualifiedName ) ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:531:1: ruleDatabaseCatalogAssignement returns [EObject current=null] : ( (lv_dbCatalog_0_0= ruleValueType ) ) ;
     public final EObject ruleDatabaseCatalogAssignement() throws RecognitionException {
         EObject current = null;
 
-        AntlrDatatypeRuleToken lv_dbCatalog_0_0 = null;
+        EObject lv_dbCatalog_0_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:534:28: ( ( (lv_dbCatalog_0_0= ruleQualifiedName ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:535:1: ( (lv_dbCatalog_0_0= ruleQualifiedName ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:534:28: ( ( (lv_dbCatalog_0_0= ruleValueType ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:535:1: ( (lv_dbCatalog_0_0= ruleValueType ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:535:1: ( (lv_dbCatalog_0_0= ruleQualifiedName ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:536:1: (lv_dbCatalog_0_0= ruleQualifiedName )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:535:1: ( (lv_dbCatalog_0_0= ruleValueType ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:536:1: (lv_dbCatalog_0_0= ruleValueType )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:536:1: (lv_dbCatalog_0_0= ruleQualifiedName )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:537:3: lv_dbCatalog_0_0= ruleQualifiedName
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:536:1: (lv_dbCatalog_0_0= ruleValueType )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:537:3: lv_dbCatalog_0_0= ruleValueType
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogQualifiedNameParserRuleCall_0()); 
+              	        newCompositeNode(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogValueTypeParserRuleCall_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleQualifiedName_in_ruleDatabaseCatalogAssignement1054);
-            lv_dbCatalog_0_0=ruleQualifiedName();
+            pushFollow(FollowSets000.FOLLOW_ruleValueType_in_ruleDatabaseCatalogAssignement1054);
+            lv_dbCatalog_0_0=ruleValueType();
 
             state._fsp--;
             if (state.failed) return current;
@@ -1780,7 +1780,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"dbCatalog",
                       		lv_dbCatalog_0_0, 
-                      		"QualifiedName");
+                      		"ValueType");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -1850,32 +1850,32 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDatabaseSchemaAssignement"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:570:1: ruleDatabaseSchemaAssignement returns [EObject current=null] : ( (lv_dbSchema_0_0= ruleQualifiedName ) ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:570:1: ruleDatabaseSchemaAssignement returns [EObject current=null] : ( (lv_dbSchema_0_0= ruleValueType ) ) ;
     public final EObject ruleDatabaseSchemaAssignement() throws RecognitionException {
         EObject current = null;
 
-        AntlrDatatypeRuleToken lv_dbSchema_0_0 = null;
+        EObject lv_dbSchema_0_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:573:28: ( ( (lv_dbSchema_0_0= ruleQualifiedName ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:574:1: ( (lv_dbSchema_0_0= ruleQualifiedName ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:573:28: ( ( (lv_dbSchema_0_0= ruleValueType ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:574:1: ( (lv_dbSchema_0_0= ruleValueType ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:574:1: ( (lv_dbSchema_0_0= ruleQualifiedName ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:575:1: (lv_dbSchema_0_0= ruleQualifiedName )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:574:1: ( (lv_dbSchema_0_0= ruleValueType ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:575:1: (lv_dbSchema_0_0= ruleValueType )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:575:1: (lv_dbSchema_0_0= ruleQualifiedName )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:576:3: lv_dbSchema_0_0= ruleQualifiedName
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:575:1: (lv_dbSchema_0_0= ruleValueType )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:576:3: lv_dbSchema_0_0= ruleValueType
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaQualifiedNameParserRuleCall_0()); 
+              	        newCompositeNode(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaValueTypeParserRuleCall_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleQualifiedName_in_ruleDatabaseSchemaAssignement1144);
-            lv_dbSchema_0_0=ruleQualifiedName();
+            pushFollow(FollowSets000.FOLLOW_ruleValueType_in_ruleDatabaseSchemaAssignement1144);
+            lv_dbSchema_0_0=ruleValueType();
 
             state._fsp--;
             if (state.failed) return current;
@@ -1888,7 +1888,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"dbSchema",
                       		lv_dbSchema_0_0, 
-                      		"QualifiedName");
+                      		"ValueType");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -40981,10 +40981,10 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_41_in_rulePojoType949 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleDatabaseCatalogAssignement_in_entryRuleDatabaseCatalogAssignement999 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleDatabaseCatalogAssignement1009 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDatabaseCatalogAssignement1054 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleValueType_in_ruleDatabaseCatalogAssignement1054 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleDatabaseSchemaAssignement_in_entryRuleDatabaseSchemaAssignement1089 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleDatabaseSchemaAssignement1099 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDatabaseSchemaAssignement1144 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleValueType_in_ruleDatabaseSchemaAssignement1144 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleDatabaseTypeAssignement_in_entryRuleDatabaseTypeAssignement1179 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleDatabaseTypeAssignement1189 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleDatabaseTypeAssignement1230 = new BitSet(new long[]{0x0000000000000002L});

@@ -232,7 +232,7 @@ public interface ProcessorModelPackage extends EPackage
   int DATABASE_CATALOG_ASSIGNEMENT = 3;
 
   /**
-   * The feature id for the '<em><b>Db Catalog</b></em>' attribute.
+   * The feature id for the '<em><b>Db Catalog</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -260,7 +260,7 @@ public interface ProcessorModelPackage extends EPackage
   int DATABASE_SCHEMA_ASSIGNEMENT = 4;
 
   /**
-   * The feature id for the '<em><b>Db Schema</b></em>' attribute.
+   * The feature id for the '<em><b>Db Schema</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -4495,15 +4495,15 @@ public interface ProcessorModelPackage extends EPackage
   EClass getDatabaseCatalogAssignement();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.DatabaseCatalogAssignement#getDbCatalog <em>Db Catalog</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.DatabaseCatalogAssignement#getDbCatalog <em>Db Catalog</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Db Catalog</em>'.
+   * @return the meta object for the containment reference '<em>Db Catalog</em>'.
    * @see org.sqlproc.model.processorModel.DatabaseCatalogAssignement#getDbCatalog()
    * @see #getDatabaseCatalogAssignement()
    * @generated
    */
-  EAttribute getDatabaseCatalogAssignement_DbCatalog();
+  EReference getDatabaseCatalogAssignement_DbCatalog();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.DatabaseSchemaAssignement <em>Database Schema Assignement</em>}'.
@@ -4516,15 +4516,15 @@ public interface ProcessorModelPackage extends EPackage
   EClass getDatabaseSchemaAssignement();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.DatabaseSchemaAssignement#getDbSchema <em>Db Schema</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.DatabaseSchemaAssignement#getDbSchema <em>Db Schema</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Db Schema</em>'.
+   * @return the meta object for the containment reference '<em>Db Schema</em>'.
    * @see org.sqlproc.model.processorModel.DatabaseSchemaAssignement#getDbSchema()
    * @see #getDatabaseSchemaAssignement()
    * @generated
    */
-  EAttribute getDatabaseSchemaAssignement_DbSchema();
+  EReference getDatabaseSchemaAssignement_DbSchema();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.DatabaseTypeAssignement <em>Database Type Assignement</em>}'.
@@ -8181,12 +8181,12 @@ public interface ProcessorModelPackage extends EPackage
     EClass DATABASE_CATALOG_ASSIGNEMENT = eINSTANCE.getDatabaseCatalogAssignement();
 
     /**
-     * The meta object literal for the '<em><b>Db Catalog</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Db Catalog</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG = eINSTANCE.getDatabaseCatalogAssignement_DbCatalog();
+    EReference DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG = eINSTANCE.getDatabaseCatalogAssignement_DbCatalog();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.DatabaseSchemaAssignementImpl <em>Database Schema Assignement</em>}' class.
@@ -8199,12 +8199,12 @@ public interface ProcessorModelPackage extends EPackage
     EClass DATABASE_SCHEMA_ASSIGNEMENT = eINSTANCE.getDatabaseSchemaAssignement();
 
     /**
-     * The meta object literal for the '<em><b>Db Schema</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Db Schema</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA = eINSTANCE.getDatabaseSchemaAssignement_DbSchema();
+    EReference DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA = eINSTANCE.getDatabaseSchemaAssignement_DbSchema();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.DatabaseTypeAssignementImpl <em>Database Type Assignement</em>}' class.

@@ -26,10 +26,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoType/type"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//DatabaseCatalogAssignement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DatabaseCatalogAssignement/dbCatalog"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DatabaseCatalogAssignement/dbCatalog"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//DatabaseSchemaAssignement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DatabaseSchemaAssignement/dbSchema"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DatabaseSchemaAssignement/dbSchema"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//DatabaseTypeAssignement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DatabaseTypeAssignement/dbType"/>
