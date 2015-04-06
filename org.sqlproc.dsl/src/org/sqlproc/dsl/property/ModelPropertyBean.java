@@ -263,8 +263,17 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     public ModelPropertyBean(ModelValues modelValues) {
-        this.modelValues = modelValues;
-        modelValues.dir = "XXX";
+        init(modelValues);
+    }
+
+    @Override
+    public void init(Object modelValues) {
+        if (modelValues == null || !(modelValues instanceof ModelValues))
+            this.modelValues = null;
+        else {
+            this.modelValues = (ModelValues) modelValues;
+            this.modelValues.dir = "XXX";
+        }
     }
 
     public void notifyChanged(Notification msg) {

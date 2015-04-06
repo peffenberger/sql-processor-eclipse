@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.sqlproc.dsl.property.ModelProperty;
 import org.sqlproc.dsl.resolver.DbResolverBean.DatabaseDirectives;
 
 public interface DbResolver {
@@ -137,4 +138,6 @@ public interface DbResolver {
     String getFunType(EObject model, String function, String column);
 
     boolean checkTableName(EObject model, String table);
+
+    void init(ModelProperty modelProperty, Class<?> driverClass, String dbSqlsBefore, String dbSqlsAfter);
 }

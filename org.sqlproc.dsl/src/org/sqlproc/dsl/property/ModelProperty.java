@@ -175,4 +175,6 @@ public interface ModelProperty extends Adapter {
     Map<String, String> getEnumForCheckConstraints(EObject model);
 
     boolean isCompressMetaDirectives(EObject model);
+
+    void init(Object modelValues);
 }

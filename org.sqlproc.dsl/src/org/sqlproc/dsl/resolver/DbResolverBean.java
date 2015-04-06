@@ -145,6 +145,11 @@ public class DbResolverBean implements DbResolver {
     }
 
     public DbResolverBean(ModelProperty modelProperty, Class<?> driverClass, String dbSqlsBefore, String dbSqlsAfter) {
+        init(modelProperty, driverClass, dbSqlsBefore, dbSqlsAfter);
+    }
+
+    @Override
+    public void init(ModelProperty modelProperty, Class<?> driverClass, String dbSqlsBefore, String dbSqlsAfter) {
         this.modelProperty = modelProperty;
         this.driverClass = driverClass;
         this.dbSqlsBefore = dbSqlsBefore;
