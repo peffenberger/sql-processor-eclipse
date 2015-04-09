@@ -137,6 +137,10 @@ public class TableBaseGenerator {
         Map<String, PojoAttrType> sqlTypes = modelProperty.getSqlTypes(model);
         if (sqlTypes != null) {
             this.sqlTypes.putAll(sqlTypes);
+            for (Entry<String, PojoAttrType> e : sqlTypes.entrySet()) {
+                this.sqlTypes.put(e.getKey().toLowerCase(), e.getValue());
+                this.sqlTypes.put(e.getKey().toUpperCase(), e.getValue());
+            }
         }
         Map<String, Map<String, PojoAttrType>> tableTypes = modelProperty.getTableTypes(model);
         if (tableTypes != null) {
