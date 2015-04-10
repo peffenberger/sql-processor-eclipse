@@ -6,6 +6,7 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -368,8 +369,8 @@ public class TablePojoGenerator extends TableBaseGenerator {
                     }
                 }
 
-                Set<String> pkeys = new TreeSet<String>();
-                Set<String> toStr = new TreeSet<String>();
+                Set<String> pkeys = new LinkedHashSet<String>();
+                Set<String> toStr = new LinkedHashSet<String>();
                 {
                     bufferPartial = new StringBuilder();
                     printComment(bufferPartial, comments.get(pojo), INDENT);
@@ -573,7 +574,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                     if (isSerializable || serializables.contains(pojo))
                         bufferMeta.append(nlindent()).append("#Serializable(1)");
                 }
-                Set<String> toStr = new TreeSet<String>();
+                Set<String> toStr = new LinkedHashSet<String>();
                 {
                     bufferPartial = new StringBuilder();
                     printComment(bufferPartial, comments.get(pojo), INDENT);
@@ -687,7 +688,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                         bufferMeta.append(nlindent()).append("#Serializable(1)");
                 }
 
-                Set<String> toStr = new TreeSet<String>();
+                Set<String> toStr = new LinkedHashSet<String>();
                 {
                     bufferPartial = new StringBuilder();
                     printComment(bufferPartial, comments.get(pojo), INDENT);

@@ -95,7 +95,7 @@ public class TableBaseGenerator {
     protected Map<String, Map<String, Map<String, List<String>>>> inheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
     protected Map<String, String> inheritanceColumns = new HashMap<String, String>();
     protected Set<String> generateMethods = new HashSet<String>();
-    protected Map<String, ImplementsExtends> toImplements = new HashMap<String, ImplementsExtends>();
+    protected Map<String, ImplementsExtends> toImplements = new TreeMap<String, ImplementsExtends>();
     protected ImplementsExtends toExtends = null;
     protected Map<String, List<String>> joinTables = new HashMap<String, List<String>>();
     protected boolean doGenerateWrappers;
@@ -617,7 +617,7 @@ public class TableBaseGenerator {
 
     public void resolveReferencesOnKeys() {
         for (String pojo : pojos.keySet()) {
-            Map<String, PojoAttribute> newAttributes = new HashMap<String, PojoAttribute>();
+            Map<String, PojoAttribute> newAttributes = new TreeMap<String, PojoAttribute>();
             for (Entry<String, PojoAttribute> entry : pojos.get(pojo).entrySet()) {
                 PojoAttribute attribute = entry.getValue();
                 if (attribute.getPkTable() != null) {
