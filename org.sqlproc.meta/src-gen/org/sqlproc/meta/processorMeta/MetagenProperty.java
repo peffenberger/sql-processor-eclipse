@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.meta.processorMeta.MetagenProperty#getDbNotTables <em>Db Not Tables</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.MetagenProperty#getDbTable <em>Db Table</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.MetagenProperty#getIdentity <em>Identity</em>}</li>
+ *   <li>{@link org.sqlproc.meta.processorMeta.MetagenProperty#getSqlTypes <em>Sql Types</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.MetagenProperty#getMetaTypes <em>Meta Types</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.MetagenProperty#getDbStatement <em>Db Statement</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.MetagenProperty#getDbColumns <em>Db Columns</em>}</li>
@@ -199,6 +200,22 @@ public interface MetagenProperty extends EObject
    * @generated
    */
   void setIdentity(String value);
+
+  /**
+   * Returns the value of the '<em><b>Sql Types</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.meta.processorMeta.SqlTypeAssignement}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Sql Types</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Sql Types</em>' containment reference list.
+   * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getMetagenProperty_SqlTypes()
+   * @model containment="true"
+   * @generated
+   */
+  EList<SqlTypeAssignement> getSqlTypes();
 
   /**
    * Returns the value of the '<em><b>Meta Types</b></em>' containment reference list.

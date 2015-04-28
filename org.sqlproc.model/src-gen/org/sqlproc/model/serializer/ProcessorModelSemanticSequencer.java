@@ -2722,6 +2722,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         (name='table-sequence' dbTable=ValidID sequence=ValidID type=ValidID?) | 
 	 *         (name='global-identity' (identity=ValidID type=ValidID?)? dbTables+=ValidID* dbNotTables+=ValidID*) | 
 	 *         (name='table-identity' dbTable=ValidID identity=ValidID type=ValidID?) | 
+	 *         (name='sqltype-meta-type' sqlTypes+=SqlTypeAssignement+) | 
 	 *         (name='column-meta-type' dbTable=ValidID metaTypes+=MetaTypeAssignement+) | 
 	 *         (name='statement-meta-type' dbStatement=ValidID metaTypes+=MetaTypeAssignement+) | 
 	 *         name='make-it-final' | 

@@ -1871,13 +1871,22 @@ public interface ProcessorMetaPackage extends EPackage
   int METAGEN_PROPERTY__IDENTITY = 6;
 
   /**
+   * The feature id for the '<em><b>Sql Types</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METAGEN_PROPERTY__SQL_TYPES = 7;
+
+  /**
    * The feature id for the '<em><b>Meta Types</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY__META_TYPES = 7;
+  int METAGEN_PROPERTY__META_TYPES = 8;
 
   /**
    * The feature id for the '<em><b>Db Statement</b></em>' attribute.
@@ -1886,7 +1895,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY__DB_STATEMENT = 8;
+  int METAGEN_PROPERTY__DB_STATEMENT = 9;
 
   /**
    * The feature id for the '<em><b>Db Columns</b></em>' attribute list.
@@ -1895,7 +1904,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY__DB_COLUMNS = 9;
+  int METAGEN_PROPERTY__DB_COLUMNS = 10;
 
   /**
    * The feature id for the '<em><b>Db Function</b></em>' attribute.
@@ -1904,7 +1913,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY__DB_FUNCTION = 10;
+  int METAGEN_PROPERTY__DB_FUNCTION = 11;
 
   /**
    * The feature id for the '<em><b>Db Procedure</b></em>' attribute.
@@ -1913,7 +1922,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY__DB_PROCEDURE = 11;
+  int METAGEN_PROPERTY__DB_PROCEDURE = 12;
 
   /**
    * The feature id for the '<em><b>Debug</b></em>' containment reference.
@@ -1922,7 +1931,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY__DEBUG = 12;
+  int METAGEN_PROPERTY__DEBUG = 13;
 
   /**
    * The feature id for the '<em><b>Optional Features</b></em>' containment reference list.
@@ -1931,7 +1940,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY__OPTIONAL_FEATURES = 13;
+  int METAGEN_PROPERTY__OPTIONAL_FEATURES = 14;
 
   /**
    * The feature id for the '<em><b>Active Filter</b></em>' containment reference.
@@ -1940,7 +1949,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY__ACTIVE_FILTER = 14;
+  int METAGEN_PROPERTY__ACTIVE_FILTER = 15;
 
   /**
    * The number of structural features of the '<em>Metagen Property</em>' class.
@@ -1949,7 +1958,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METAGEN_PROPERTY_FEATURE_COUNT = 15;
+  int METAGEN_PROPERTY_FEATURE_COUNT = 16;
 
   /**
    * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.DaogenPropertyImpl <em>Daogen Property</em>}' class.
@@ -5221,6 +5230,17 @@ public interface ProcessorMetaPackage extends EPackage
   EAttribute getMetagenProperty_Identity();
 
   /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.meta.processorMeta.MetagenProperty#getSqlTypes <em>Sql Types</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Sql Types</em>'.
+   * @see org.sqlproc.meta.processorMeta.MetagenProperty#getSqlTypes()
+   * @see #getMetagenProperty()
+   * @generated
+   */
+  EReference getMetagenProperty_SqlTypes();
+
+  /**
    * Returns the meta object for the containment reference list '{@link org.sqlproc.meta.processorMeta.MetagenProperty#getMetaTypes <em>Meta Types</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8095,6 +8115,14 @@ public interface ProcessorMetaPackage extends EPackage
      * @generated
      */
     EAttribute METAGEN_PROPERTY__IDENTITY = eINSTANCE.getMetagenProperty_Identity();
+
+    /**
+     * The meta object literal for the '<em><b>Sql Types</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference METAGEN_PROPERTY__SQL_TYPES = eINSTANCE.getMetagenProperty_SqlTypes();
 
     /**
      * The meta object literal for the '<em><b>Meta Types</b></em>' containment reference list feature.

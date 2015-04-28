@@ -1056,6 +1056,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *         (name='table-sequence' dbTable=IDENT sequence=IDENT type=IDENT?) | 
 	 *         (name='global-identity' (identity=IDENT type=IDENT?)? dbTables+=IDENT* dbNotTables+=IDENT*) | 
 	 *         (name='table-identity' dbTable=IDENT identity=IDENT type=IDENT?) | 
+	 *         (name='sqltype-meta-type' sqlTypes+=SqlTypeAssignement+) | 
 	 *         (name='column-meta-type' dbTable=IDENT metaTypes+=MetaTypeAssignement+) | 
 	 *         (name='statement-meta-type' dbStatement=IDENT metaTypes+=MetaTypeAssignement+) | 
 	 *         name='make-it-final' | 

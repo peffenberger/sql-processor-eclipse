@@ -44,11 +44,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 
     protected Logger LOGGER = Logger.getLogger(ModelPropertyBean.class);
 
-    public static final String RESOLVE_POJO_ON = "resolve-pojo-on";
-    public static final String RESOLVE_POJO_OFF = "resolve-pojo-off";
-    public static final String REPLACE_ALL_REGEX = "replace-all-regex";
-    public static final String REPLACE_ALL_REPLACEMENT = "replace-all-replacement";
-    public static final String COMPRESS_META_DIRECTIVES = "compress-meta-directives";
     public static final List<String> STANDARD_DIRECTIVES = new ArrayList<String>();
     static {
         STANDARD_DIRECTIVES.add(RESOLVE_POJO_ON);
@@ -58,26 +53,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         STANDARD_DIRECTIVES.add(COMPRESS_META_DIRECTIVES);
     }
 
-    public static final String DATABASE = "database";
-    public static final String DATABASE_IS_ONLINE = "is-online";
-    public static final String DATABASE_IS_OFFLINE = "is-offline";
-    public static final String DATABASE_HAS_URL = "has-url";
-    public static final String DATABASE_EXECUTE_BEFORE = "ddl-create";
-    public static final String DATABASE_EXECUTE_AFTER = "ddl-drop";
-    public static final String DATABASE_LOGIN_USERNAME = "login-username";
-    public static final String DATABASE_LOGIN_PASSWORD = "login-password";
-    public static final String DATABASE_IN_CATALOG = "in-catalog";
-    public static final String DATABASE_ACTIVE_SCHEMA = "active-schema";
-    public static final String DATABASE_JDBC_DRIVER = "jdbc-driver";
-    public static final String DATABASE_INDEX_TYPES = "index-types";
-    public static final String DATABASE_SKIP_INDEXES = "skip-indexes";
-    public static final String DATABASE_SKIP_CHECK_CONSTRAINTS = "skip-check-constraints";
-    public static final String DATABASE_SKIP_PROCEDURES = "skip-functions-procedures";
-    public static final String DATABASE_OF_TYPE = "is-of-type";
-    public static final String DATABASE_DEBUG_LEVEL = "debug-level";
-    public static final String DATABASE_TAKE_COMMENTS = "take-comments";
-    public static final String DATABASE_LOWERCASE_NAMES = "lowercase-names";
-    public static final String DATABASE_UPPERCASE_NAMES = "uppercase-names";
     public static final List<String> DATABASE_DIRECTIVES = new ArrayList<String>();
     static {
         DATABASE_DIRECTIVES.add(DATABASE_IS_ONLINE);
@@ -100,84 +75,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         DATABASE_DIRECTIVES.add(DATABASE_LOWERCASE_NAMES);
         DATABASE_DIRECTIVES.add(DATABASE_UPPERCASE_NAMES);
     }
-
-    public static final String POJOGEN = "pojogen";
-    public static final String POJOGEN_TYPE_SQLTYPES = "types-sqltypes";
-    public static final String POJOGEN_TYPE_IN_TABLE = "types-in-table";
-    public static final String POJOGEN_TYPE_FOR_COLUMNS = "types-for-columns";
-    public static final String POJOGEN_TYPE_FOR_PROCEDURE = "types-for-procedure";
-    public static final String POJOGEN_TYPE_FOR_FUNCTION = "types-for-function";
-    public static final String POJOGEN_IGNORE_TABLES = "ignore-tables";
-    public static final String POJOGEN_ONLY_TABLES = "only-tables";
-    public static final String POJOGEN_IGNORE_COLUMNS = "ignore-columns";
-    public static final String POJOGEN_REQUIRED_COLUMNS = "required-columns";
-    public static final String POJOGEN_NOT_REQUIRED_COLUMNS = "not-required-columns";
-    public static final String POJOGEN_CREATE_COLUMNS = "create-columns";
-    public static final String POJOGEN_RENAME_TABLES = "rename-tables";
-    public static final String POJOGEN_RENAME_COLUMNS = "rename-columns";
-    public static final String POJOGEN_IGNORE_EXPORTS = "ignore-one-to-many";
-    public static final String POJOGEN_IGNORE_IMPORTS = "ignore-many-to-one";
-    public static final String POJOGEN_CREATE_EXPORTS = "create-one-to-many";
-    public static final String POJOGEN_CREATE_IMPORTS = "create-many-to-one";
-    public static final String POJOGEN_INHERIT_IMPORTS = "inherit-many-to-one";
-    public static final String POJOGEN_MANY_TO_MANY_IMPORTS = "table-many-to-many";
-    public static final String POJOGEN_INHERITANCE = "inherit-discriminator";
-    public static final String POJOGEN_GENERATE_METHODS = "generate-methods";
-    public static final String POJOGEN_GENERATE_OPERATORS = "generate-operators";
-    public static final String POJOGEN_IMPLEMENTS_INTERFACES = "implements-interfaces";
-    public static final String POJOGEN_EXTENDS_CLASS = "extends-class";
-    public static final String POJOGEN_IMPLEMENTS_INTERFACES_GENERICS = "implements-interfaces-generics";
-    public static final String POJOGEN_EXTENDS_CLASS_GENERICS = "extends-class-generics";
-    public static final String POJOGEN_JOIN_TABLES = "join-tables";
-    public static final String POJOGEN_GENERATE_WRAPPERS = "generate-wrappers";
-    public static final String POJOGEN_GENERATE_VALIDATION_ANNOTATIONS = "generate-validation-annotations";
-    public static final String POJOGEN_NOT_ABSTRACT_TABLES_TABLES = "not-abstract-tables";
-    public static final String POJOGEN_MAKE_IT_FINAL = "make-it-final";
-    public static final String POJOGEN_VERSION_COLUMN = "version-column";
-    public static final String POJOGEN_DEBUG_LEVEL = "debug-level";
-    public static final String POJOGEN_PRESERVE_FOREIGN_KEYS = "preserve-foreign-keys";
-    public static final String POJOGEN_POJOS_FOR_PROCEDURES = "pojos-for-procedures";
-    public static final String POJOGEN_POJOS_FOR_FUNCTIONS = "pojos-for-functions";
-    public static final String POJOGEN_ACTIVE_FILTER = "active-filter";
-    public static final String POJOGEN_PACKAGE = "package";
-    public static final String POJOGEN_ENUM_FOR_CHECK_CONSTRAINTS = "enum-for-check-constraints";
-    public static final String METAGEN = "metagen";
-    public static final String METAGEN_GLOBAL_SEQUENCE = "global-sequence";
-    public static final String METAGEN_TABLE_SEQUENCE = "table-sequence";
-    public static final String METAGEN_GLOBAL_IDENTITY = "global-identity";
-    public static final String METAGEN_TABLE_IDENTITY = "table-identity";
-    public static final String METAGEN_COLUMN_META_TYPE = "column-meta-type";
-    public static final String METAGEN_STATEMENT_META_TYPE = "statement-meta-type";
-    public static final String METAGEN_MAKE_IT_FINAL = "make-it-final";
-    public static final String METAGEN_LIKE_COLUMNS = "like-columns";
-    public static final String METAGEN_NOT_LIKE_COLUMNS = "not-like-columns";
-    public static final String METAGEN_GENERATE_SEQUENCES = "generate-sequences";
-    public static final String METAGEN_GENERATE_IDENTITIES = "generate-identities";
-    public static final String METAGEN_GENERATE_IDGENERATORS = "generate-idgenerators";
-    public static final String METAGEN_GENERATE_INDIRECT_IDGENERATORS = "generate-default-idgenerators";
-    public static final String METAGEN_FUNCTION_RESULT = "function-result";
-    public static final String METAGEN_FUNCTION_RESULT_SET = "function-result-set";
-    public static final String METAGEN_PROCEDURE_RESULT_SET = "procedure-result-set";
-    public static final String METAGEN_DEBUG_LEVEL = "debug-level";
-    public static final String METAGEN_GENERATE_OPERATORS = "generate-operators";
-    public static final String METAGEN_OPTIMIZE_INSERT = "optimize-insert";
-    public static final String METAGEN_OPTIONAL_FEATURES = "optional-features";
-    public static final String METAGEN_ACTIVE_FILTER = "active-filter";
-    public static final String DAOGEN = "daogen";
-    public static final String DAOGEN_IGNORE_TABLES = "ignore-tables";
-    public static final String DAOGEN_ONLY_TABLES = "only-tables";
-    public static final String DAOGEN_IMPLEMENTS_INTERFACES = "implements-interfaces";
-    public static final String DAOGEN_EXTENDS_CLASS = "extends-class";
-    public static final String DAOGEN_IMPLEMENTS_INTERFACES_GENERICS = "implements-interfaces-generics";
-    public static final String DAOGEN_EXTENDS_CLASS_GENERICS = "extends-class-generics";
-    public static final String DAOGEN_MAKE_IT_FINAL = "make-it-final";
-    public static final String DAOGEN_FUNCTION_RESULT = "function-result";
-    public static final String DAOGEN_DEBUG_LEVEL = "debug-level";
-    public static final String DAOGEN_ACTIVE_FILTER = "active-filter";
-    public static final String DAOGEN_PACKAGE = "package";
-    public static final String DAOGEN_IMPLEMENTATION_PACKAGE = "implementation-package";
-
-    public static final String STANDARD = "___GLOBAL";
 
     public static class ModelValues {
         public boolean doResolvePojo;
@@ -250,6 +147,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, PairValues> metaTablesSequence;
         public PairValues metaGlobalIdentity;
         public Map<String, PairValues> metaTablesIdentity;
+        public Map<String, PojoAttrType> metaSqlTypes;
         public Map<String, Map<String, PairValues>> metaColumnsMetaTypes;
         public Map<String, Map<String, PairValues>> metaStatementsMetaTypes;
         public boolean metaMakeItFinal;
@@ -594,6 +492,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.metaTablesSequence = new HashMap<String, PairValues>();
         modelValues.metaGlobalIdentity = null;
         modelValues.metaTablesIdentity = new HashMap<String, PairValues>();
+        modelValues.metaSqlTypes = new HashMap<String, PojoAttrType>();
         modelValues.metaColumnsMetaTypes = new HashMap<String, Map<String, PairValues>>();
         modelValues.metaStatementsMetaTypes = new HashMap<String, Map<String, PairValues>>();
         modelValues.metaMakeItFinal = false;
@@ -1122,6 +1021,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         } else if (METAGEN_TABLE_SEQUENCE.equals(property.getName())) {
             modelValues.metaTablesSequence.put(property.getDbTable(),
                     new PairValues(property.getSequence(), property.getType()));
+        } else if (METAGEN_SQLTYPE_META_TYPE.equals(property.getName())) {
+            for (int i = 0, m = property.getSqlTypes().size(); i < m; i++) {
+                String sqlType = Utils.getPropertyValue(property.getSqlTypes().get(i).getSqlType());
+                PojoAttrTypeImpl type = new PojoAttrTypeImpl(null, sqlType, property.getSqlTypes().get(i).getType());
+                modelValues.metaSqlTypes.put(sqlType, type);
+            }
         } else if (METAGEN_COLUMN_META_TYPE.equals(property.getName())) {
             if (!modelValues.metaColumnsMetaTypes.containsKey(property.getDbTable()))
                 modelValues.metaColumnsMetaTypes.put(property.getDbTable(), new HashMap<String, PairValues>());
@@ -1556,6 +1461,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public Map<String, PairValues> getMetaTablesSequence(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.metaTablesSequence : Collections.<String, PairValues> emptyMap();
+    }
+
+    @Override
+    public Map<String, PojoAttrType> getMetaSqlTypes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaSqlTypes : Collections.<String, PojoAttrType> emptyMap();
     }
 
     @Override

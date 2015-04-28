@@ -23,6 +23,7 @@ import org.sqlproc.model.processorModel.DebugLevelAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
+import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.ValueType;
 
 /**
@@ -39,6 +40,7 @@ import org.sqlproc.model.processorModel.ValueType;
  *   <li>{@link org.sqlproc.model.processorModel.impl.MetagenPropertyImpl#getDbNotTables <em>Db Not Tables</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.MetagenPropertyImpl#getDbTable <em>Db Table</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.MetagenPropertyImpl#getIdentity <em>Identity</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.MetagenPropertyImpl#getSqlTypes <em>Sql Types</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.MetagenPropertyImpl#getMetaTypes <em>Meta Types</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.MetagenPropertyImpl#getDbStatement <em>Db Statement</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.MetagenPropertyImpl#getDbColumns <em>Db Columns</em>}</li>
@@ -173,6 +175,16 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected String identity = IDENTITY_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getSqlTypes() <em>Sql Types</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSqlTypes()
+   * @generated
+   * @ordered
+   */
+  protected EList<SqlTypeAssignement> sqlTypes;
 
   /**
    * The cached value of the '{@link #getMetaTypes() <em>Meta Types</em>}' containment reference list.
@@ -453,6 +465,20 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<SqlTypeAssignement> getSqlTypes()
+  {
+    if (sqlTypes == null)
+    {
+      sqlTypes = new EObjectContainmentEList<SqlTypeAssignement>(SqlTypeAssignement.class, this, ProcessorModelPackage.METAGEN_PROPERTY__SQL_TYPES);
+    }
+    return sqlTypes;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<MetaTypeAssignement> getMetaTypes()
   {
     if (metaTypes == null)
@@ -665,6 +691,8 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
+      case ProcessorModelPackage.METAGEN_PROPERTY__SQL_TYPES:
+        return ((InternalEList<?>)getSqlTypes()).basicRemove(otherEnd, msgs);
       case ProcessorModelPackage.METAGEN_PROPERTY__META_TYPES:
         return ((InternalEList<?>)getMetaTypes()).basicRemove(otherEnd, msgs);
       case ProcessorModelPackage.METAGEN_PROPERTY__DEBUG:
@@ -701,6 +729,8 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return getDbTable();
       case ProcessorModelPackage.METAGEN_PROPERTY__IDENTITY:
         return getIdentity();
+      case ProcessorModelPackage.METAGEN_PROPERTY__SQL_TYPES:
+        return getSqlTypes();
       case ProcessorModelPackage.METAGEN_PROPERTY__META_TYPES:
         return getMetaTypes();
       case ProcessorModelPackage.METAGEN_PROPERTY__DB_STATEMENT:
@@ -754,6 +784,10 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return;
       case ProcessorModelPackage.METAGEN_PROPERTY__IDENTITY:
         setIdentity((String)newValue);
+        return;
+      case ProcessorModelPackage.METAGEN_PROPERTY__SQL_TYPES:
+        getSqlTypes().clear();
+        getSqlTypes().addAll((Collection<? extends SqlTypeAssignement>)newValue);
         return;
       case ProcessorModelPackage.METAGEN_PROPERTY__META_TYPES:
         getMetaTypes().clear();
@@ -817,6 +851,9 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorModelPackage.METAGEN_PROPERTY__IDENTITY:
         setIdentity(IDENTITY_EDEFAULT);
         return;
+      case ProcessorModelPackage.METAGEN_PROPERTY__SQL_TYPES:
+        getSqlTypes().clear();
+        return;
       case ProcessorModelPackage.METAGEN_PROPERTY__META_TYPES:
         getMetaTypes().clear();
         return;
@@ -869,6 +906,8 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return DB_TABLE_EDEFAULT == null ? dbTable != null : !DB_TABLE_EDEFAULT.equals(dbTable);
       case ProcessorModelPackage.METAGEN_PROPERTY__IDENTITY:
         return IDENTITY_EDEFAULT == null ? identity != null : !IDENTITY_EDEFAULT.equals(identity);
+      case ProcessorModelPackage.METAGEN_PROPERTY__SQL_TYPES:
+        return sqlTypes != null && !sqlTypes.isEmpty();
       case ProcessorModelPackage.METAGEN_PROPERTY__META_TYPES:
         return metaTypes != null && !metaTypes.isEmpty();
       case ProcessorModelPackage.METAGEN_PROPERTY__DB_STATEMENT:

@@ -1005,6 +1005,7 @@ public class TableBaseGenerator {
         attribute.setPrimitive(sqlType.isNativeType());
         attribute.setClassName(sqlType.getQualifiedName());
         attribute.setSqlType(dbColumn.getSqlType());
+        attribute.setCompleteSqlType(dbColumn.getCompleteType());
         attribute.setSize(dbColumn.getSize());
         attribute.setComment(dbColumn.getComment());
         return attribute;
@@ -1149,6 +1150,7 @@ public class TableBaseGenerator {
                 attribute.setClassName("java.lang.Object");
         }
         attribute.setSqlType(dbColumn.getSqlType());
+        attribute.setCompleteSqlType(dbColumn.getCompleteType());
         attribute.setSize(dbColumn.getSize());
         attribute.setComment(dbColumn.getComment());
         return attribute;

@@ -133,6 +133,7 @@ MetagenProperty:
 	|name='table-sequence' WS+ dbTable=IDENT WS+ sequence=IDENT (WS+ type=IDENT)?
 	|name='global-identity' (WS+ identity=IDENT (type=IDENT)?)? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
 	|name='table-identity' WS+ dbTable=IDENT WS+ identity=IDENT (WS+ type=IDENT)?
+	|name='sqltype-meta-type' (sqlTypes+=SqlTypeAssignement)+
 	|name='column-meta-type' WS+ dbTable=IDENT (WS+ metaTypes+=MetaTypeAssignement)+
 	|name='statement-meta-type' WS+ dbStatement=IDENT (WS+ metaTypes+=MetaTypeAssignement)+
 	|name='make-it-final'

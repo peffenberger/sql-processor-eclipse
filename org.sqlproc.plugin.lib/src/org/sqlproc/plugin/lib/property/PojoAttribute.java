@@ -34,6 +34,7 @@ public class PojoAttribute {
     private Short funProcType;
     private Short funProcColumnType;
     private int sqlType;
+    private String completeSqlType;
     private int size;
     private String comment;
 
@@ -272,6 +273,14 @@ public class PojoAttribute {
         this.sqlType = sqlType;
     }
 
+    public String getCompleteSqlType() {
+        return completeSqlType;
+    }
+
+    public void setCompleteSqlType(String completeSqlType) {
+        this.completeSqlType = completeSqlType;
+    }
+
     public int getSize() {
         return size;
     }
@@ -309,11 +318,12 @@ public class PojoAttribute {
         return "PojoAttribute [dbName=" + dbName + ", primitive=" + primitive + ", required=" + required
                 + ", primaryKey=" + primaryKey + ", version=" + version + ", index=" + index + ", name=" + name
                 + ", className=" + className + ", ref=" + ref + ", dependencyClassName=" + dependencyClassName
-                + ", pkTable=" + pkTable + ", pkColumn=" + pkColumn + ", parentTable=" + parentTable + ", m2mTable="
-                + m2mTable + ", fkTables=" + fkTables + ", m2Tables=" + m2Tables + ", fkColumns=" + fkColumns
-                + ", oneToManyColumn=" + oneToManyColumn + ", oneToManyOppositeColumn=" + oneToManyOppositeColumn
-                + ", oneToManyTable=" + oneToManyTable + ", manyToManyColumn=" + manyToManyColumn
-                + ", manyToManyTable=" + manyToManyTable + ", funProcType=" + funProcType + ", funProcColumnType="
-                + funProcColumnType + ", sqlType=" + sqlType + ", size=" + size + "]";
+                + ", dependencyClassNameIsEnum=" + dependencyClassNameIsEnum + ", pkTable=" + pkTable + ", pkColumn="
+                + pkColumn + ", parentTable=" + parentTable + ", m2mTable=" + m2mTable + ", fkTables=" + fkTables
+                + ", m2Tables=" + m2Tables + ", fkColumns=" + fkColumns + ", oneToManyColumn=" + oneToManyColumn
+                + ", oneToManyOppositeColumn=" + oneToManyOppositeColumn + ", oneToManyTable=" + oneToManyTable
+                + ", manyToManyColumn=" + manyToManyColumn + ", manyToManyTable=" + manyToManyTable + ", funProcType="
+                + funProcType + ", funProcColumnType=" + funProcColumnType + ", sqlType=" + sqlType
+                + ", completeSqlType=" + completeSqlType + ", size=" + size + ", comment=" + comment + "]";
     }
 }
