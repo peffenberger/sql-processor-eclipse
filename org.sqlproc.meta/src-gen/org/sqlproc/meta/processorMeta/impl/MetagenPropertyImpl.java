@@ -20,10 +20,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sqlproc.meta.processorMeta.DebugLevelAssignement;
+import org.sqlproc.meta.processorMeta.MetaSqlTypeAssignement;
 import org.sqlproc.meta.processorMeta.MetaTypeAssignement;
 import org.sqlproc.meta.processorMeta.MetagenProperty;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
-import org.sqlproc.meta.processorMeta.SqlTypeAssignement;
 import org.sqlproc.meta.processorMeta.ValueType;
 
 /**
@@ -184,7 +184,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @generated
    * @ordered
    */
-  protected EList<SqlTypeAssignement> sqlTypes;
+  protected EList<MetaSqlTypeAssignement> sqlTypes;
 
   /**
    * The cached value of the '{@link #getMetaTypes() <em>Meta Types</em>}' containment reference list.
@@ -465,11 +465,11 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<SqlTypeAssignement> getSqlTypes()
+  public EList<MetaSqlTypeAssignement> getSqlTypes()
   {
     if (sqlTypes == null)
     {
-      sqlTypes = new EObjectContainmentEList<SqlTypeAssignement>(SqlTypeAssignement.class, this, ProcessorMetaPackage.METAGEN_PROPERTY__SQL_TYPES);
+      sqlTypes = new EObjectContainmentEList<MetaSqlTypeAssignement>(MetaSqlTypeAssignement.class, this, ProcessorMetaPackage.METAGEN_PROPERTY__SQL_TYPES);
     }
     return sqlTypes;
   }
@@ -787,7 +787,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return;
       case ProcessorMetaPackage.METAGEN_PROPERTY__SQL_TYPES:
         getSqlTypes().clear();
-        getSqlTypes().addAll((Collection<? extends SqlTypeAssignement>)newValue);
+        getSqlTypes().addAll((Collection<? extends MetaSqlTypeAssignement>)newValue);
         return;
       case ProcessorMetaPackage.METAGEN_PROPERTY__META_TYPES:
         getMetaTypes().clear();

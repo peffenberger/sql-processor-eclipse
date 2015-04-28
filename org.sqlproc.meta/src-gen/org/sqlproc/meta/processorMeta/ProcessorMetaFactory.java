@@ -293,6 +293,15 @@ public interface ProcessorMetaFactory extends EFactory
   PojogenProperty createPojogenProperty();
 
   /**
+   * Returns a new object of class '<em>Meta Sql Type Assignement</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Meta Sql Type Assignement</em>'.
+   * @generated
+   */
+  MetaSqlTypeAssignement createMetaSqlTypeAssignement();
+
+  /**
    * Returns a new object of class '<em>Meta Type Assignement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

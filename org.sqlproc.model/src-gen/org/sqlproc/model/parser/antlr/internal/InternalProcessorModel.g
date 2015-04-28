@@ -4678,6 +4678,89 @@ rulePojogenProperty returns [EObject current=null]
 
 
 
+// Entry rule entryRuleMetaSqlTypeAssignement
+entryRuleMetaSqlTypeAssignement returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getMetaSqlTypeAssignementRule()); }
+	 iv_ruleMetaSqlTypeAssignement=ruleMetaSqlTypeAssignement 
+	 { $current=$iv_ruleMetaSqlTypeAssignement.current; } 
+	 EOF 
+;
+
+// Rule MetaSqlTypeAssignement
+ruleMetaSqlTypeAssignement returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMetaSqlTypeAssignementAccess().getSqlTypeValueTypeParserRuleCall_0_0()); 
+	    }
+		lv_sqlType_0_0=ruleValueType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMetaSqlTypeAssignementRule());
+	        }
+       		set(
+       			$current, 
+       			"sqlType",
+        		lv_sqlType_0_0, 
+        		"ValueType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_1='->' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getMetaSqlTypeAssignementAccess().getHyphenMinusGreaterThanSignKeyword_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMetaSqlTypeAssignementAccess().getTypeValidIDParserRuleCall_2_0()); 
+	    }
+		lv_type_2_0=ruleValidID		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMetaSqlTypeAssignementRule());
+	        }
+       		set(
+       			$current, 
+       			"type",
+        		lv_type_2_0, 
+        		"ValidID");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_3='->' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getMetaSqlTypeAssignementAccess().getHyphenMinusGreaterThanSignKeyword_3_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMetaSqlTypeAssignementAccess().getExtensionValidIDParserRuleCall_3_1_0()); 
+	    }
+		lv_extension_4_0=ruleValidID		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMetaSqlTypeAssignementRule());
+	        }
+       		set(
+       			$current, 
+       			"extension",
+        		lv_extension_4_0, 
+        		"ValidID");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?)
+;
+
+
+
+
+
 // Entry rule entryRuleMetaTypeAssignement
 entryRuleMetaTypeAssignement returns [EObject current=null] 
 	:
@@ -5125,9 +5208,9 @@ ruleMetagenProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getSqlTypesSqlTypeAssignementParserRuleCall_4_1_0()); 
+	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getSqlTypesMetaSqlTypeAssignementParserRuleCall_4_1_0()); 
 	    }
-		lv_sqlTypes_23_0=ruleSqlTypeAssignement		{
+		lv_sqlTypes_23_0=ruleMetaSqlTypeAssignement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMetagenPropertyRule());
 	        }
@@ -5135,7 +5218,7 @@ ruleMetagenProperty returns [EObject current=null]
        			$current, 
        			"sqlTypes",
         		lv_sqlTypes_23_0, 
-        		"SqlTypeAssignement");
+        		"MetaSqlTypeAssignement");
 	        afterParserOrEnumRuleCall();
 	    }
 

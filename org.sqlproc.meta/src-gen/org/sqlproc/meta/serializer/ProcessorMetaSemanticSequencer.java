@@ -57,6 +57,7 @@ import org.sqlproc.meta.processorMeta.MappingColumnName;
 import org.sqlproc.meta.processorMeta.MappingItem;
 import org.sqlproc.meta.processorMeta.MappingRule;
 import org.sqlproc.meta.processorMeta.MetaSql;
+import org.sqlproc.meta.processorMeta.MetaSqlTypeAssignement;
 import org.sqlproc.meta.processorMeta.MetaStatement;
 import org.sqlproc.meta.processorMeta.MetaTypeAssignement;
 import org.sqlproc.meta.processorMeta.MetagenProperty;
@@ -349,6 +350,12 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ProcessorMetaPackage.META_SQL:
 				if(context == grammarAccess.getMetaSqlRule()) {
 					sequence_MetaSql(context, (MetaSql) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorMetaPackage.META_SQL_TYPE_ASSIGNEMENT:
+				if(context == grammarAccess.getMetaSqlTypeAssignementRule()) {
+					sequence_MetaSqlTypeAssignement(context, (MetaSqlTypeAssignement) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1017,6 +1024,15 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
+	 *     (sqlType=ValueType type=IDENT extension=IDENT?)
+	 */
+	protected void sequence_MetaSqlTypeAssignement(EObject context, MetaSqlTypeAssignement semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (
 	 *         (ifs+=IfSql ifs+=IfSql*) | 
 	 *         (type=QUESTI cond=IfSqlCond ifs+=IfSql ifs+=IfSql*) | 
@@ -1056,7 +1072,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *         (name='table-sequence' dbTable=IDENT sequence=IDENT type=IDENT?) | 
 	 *         (name='global-identity' (identity=IDENT type=IDENT?)? dbTables+=IDENT* dbNotTables+=IDENT*) | 
 	 *         (name='table-identity' dbTable=IDENT identity=IDENT type=IDENT?) | 
-	 *         (name='sqltype-meta-type' sqlTypes+=SqlTypeAssignement+) | 
+	 *         (name='sqltype-meta-type' sqlTypes+=MetaSqlTypeAssignement+) | 
 	 *         (name='column-meta-type' dbTable=IDENT metaTypes+=MetaTypeAssignement+) | 
 	 *         (name='statement-meta-type' dbStatement=IDENT metaTypes+=MetaTypeAssignement+) | 
 	 *         name='make-it-final' | 

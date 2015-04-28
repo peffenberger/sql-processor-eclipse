@@ -897,6 +897,34 @@ finally {
 
 
 
+// Entry rule entryRuleMetaSqlTypeAssignement
+entryRuleMetaSqlTypeAssignement 
+:
+{ before(grammarAccess.getMetaSqlTypeAssignementRule()); }
+	 ruleMetaSqlTypeAssignement
+{ after(grammarAccess.getMetaSqlTypeAssignementRule()); } 
+	 EOF 
+;
+
+// Rule MetaSqlTypeAssignement
+ruleMetaSqlTypeAssignement
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getMetaSqlTypeAssignementAccess().getGroup()); }
+(rule__MetaSqlTypeAssignement__Group__0)
+{ after(grammarAccess.getMetaSqlTypeAssignementAccess().getGroup()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleMetaTypeAssignement
 entryRuleMetaTypeAssignement 
 :
@@ -18889,6 +18917,194 @@ finally {
 
 
 
+rule__MetaSqlTypeAssignement__Group__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MetaSqlTypeAssignement__Group__0__Impl
+	rule__MetaSqlTypeAssignement__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetaSqlTypeAssignement__Group__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetaSqlTypeAssignementAccess().getSqlTypeAssignment_0()); }
+(rule__MetaSqlTypeAssignement__SqlTypeAssignment_0)
+{ after(grammarAccess.getMetaSqlTypeAssignementAccess().getSqlTypeAssignment_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__MetaSqlTypeAssignement__Group__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MetaSqlTypeAssignement__Group__1__Impl
+	rule__MetaSqlTypeAssignement__Group__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetaSqlTypeAssignement__Group__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetaSqlTypeAssignementAccess().getHyphenMinusGreaterThanSignKeyword_1()); }
+
+	'->' 
+
+{ after(grammarAccess.getMetaSqlTypeAssignementAccess().getHyphenMinusGreaterThanSignKeyword_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__MetaSqlTypeAssignement__Group__2
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MetaSqlTypeAssignement__Group__2__Impl
+	rule__MetaSqlTypeAssignement__Group__3
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetaSqlTypeAssignement__Group__2__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetaSqlTypeAssignementAccess().getTypeAssignment_2()); }
+(rule__MetaSqlTypeAssignement__TypeAssignment_2)
+{ after(grammarAccess.getMetaSqlTypeAssignementAccess().getTypeAssignment_2()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__MetaSqlTypeAssignement__Group__3
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MetaSqlTypeAssignement__Group__3__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetaSqlTypeAssignement__Group__3__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetaSqlTypeAssignementAccess().getGroup_3()); }
+(rule__MetaSqlTypeAssignement__Group_3__0)?
+{ after(grammarAccess.getMetaSqlTypeAssignementAccess().getGroup_3()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
+
+
+
+
+
+
+rule__MetaSqlTypeAssignement__Group_3__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MetaSqlTypeAssignement__Group_3__0__Impl
+	rule__MetaSqlTypeAssignement__Group_3__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetaSqlTypeAssignement__Group_3__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetaSqlTypeAssignementAccess().getHyphenMinusGreaterThanSignKeyword_3_0()); }
+
+	'->' 
+
+{ after(grammarAccess.getMetaSqlTypeAssignementAccess().getHyphenMinusGreaterThanSignKeyword_3_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__MetaSqlTypeAssignement__Group_3__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MetaSqlTypeAssignement__Group_3__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetaSqlTypeAssignement__Group_3__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetaSqlTypeAssignementAccess().getExtensionAssignment_3_1()); }
+(rule__MetaSqlTypeAssignement__ExtensionAssignment_3_1)
+{ after(grammarAccess.getMetaSqlTypeAssignementAccess().getExtensionAssignment_3_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
+
+
 rule__MetaTypeAssignement__Group__0
     @init {
 		int stackSize = keepStackSize();
@@ -20768,15 +20984,83 @@ rule__MetagenProperty__Group_4__1__Impl
 :
 (
 (
-{ before(grammarAccess.getMetagenPropertyAccess().getSqlTypesAssignment_4_1()); }
-(rule__MetagenProperty__SqlTypesAssignment_4_1)
-{ after(grammarAccess.getMetagenPropertyAccess().getSqlTypesAssignment_4_1()); }
+{ before(grammarAccess.getMetagenPropertyAccess().getGroup_4_1()); }
+(rule__MetagenProperty__Group_4_1__0)
+{ after(grammarAccess.getMetagenPropertyAccess().getGroup_4_1()); }
 )
 (
-{ before(grammarAccess.getMetagenPropertyAccess().getSqlTypesAssignment_4_1()); }
-(rule__MetagenProperty__SqlTypesAssignment_4_1)*
-{ after(grammarAccess.getMetagenPropertyAccess().getSqlTypesAssignment_4_1()); }
+{ before(grammarAccess.getMetagenPropertyAccess().getGroup_4_1()); }
+(rule__MetagenProperty__Group_4_1__0)*
+{ after(grammarAccess.getMetagenPropertyAccess().getGroup_4_1()); }
 )
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
+
+
+rule__MetagenProperty__Group_4_1__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MetagenProperty__Group_4_1__0__Impl
+	rule__MetagenProperty__Group_4_1__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetagenProperty__Group_4_1__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+(
+{ before(grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_4_1_0()); }
+(	RULE_WS)
+{ after(grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_4_1_0()); }
+)
+(
+{ before(grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_4_1_0()); }
+(	RULE_WS)*
+{ after(grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_4_1_0()); }
+)
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__MetagenProperty__Group_4_1__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MetagenProperty__Group_4_1__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetagenProperty__Group_4_1__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetagenPropertyAccess().getSqlTypesAssignment_4_1_1()); }
+(rule__MetagenProperty__SqlTypesAssignment_4_1_1)
+{ after(grammarAccess.getMetagenPropertyAccess().getSqlTypesAssignment_4_1_1()); }
 )
 
 ;
@@ -34763,6 +35047,51 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__MetaSqlTypeAssignement__SqlTypeAssignment_0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetaSqlTypeAssignementAccess().getSqlTypeValueTypeParserRuleCall_0_0()); }
+	ruleValueType{ after(grammarAccess.getMetaSqlTypeAssignementAccess().getSqlTypeValueTypeParserRuleCall_0_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetaSqlTypeAssignement__TypeAssignment_2
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetaSqlTypeAssignementAccess().getTypeIDENTTerminalRuleCall_2_0()); }
+	RULE_IDENT{ after(grammarAccess.getMetaSqlTypeAssignementAccess().getTypeIDENTTerminalRuleCall_2_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetaSqlTypeAssignement__ExtensionAssignment_3_1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetaSqlTypeAssignementAccess().getExtensionIDENTTerminalRuleCall_3_1_0()); }
+	RULE_IDENT{ after(grammarAccess.getMetaSqlTypeAssignementAccess().getExtensionIDENTTerminalRuleCall_3_1_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__MetaTypeAssignement__DbColumnAssignment_0
     @init {
 		int stackSize = keepStackSize();
@@ -35133,14 +35462,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__MetagenProperty__SqlTypesAssignment_4_1
+rule__MetagenProperty__SqlTypesAssignment_4_1_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getMetagenPropertyAccess().getSqlTypesSqlTypeAssignementParserRuleCall_4_1_0()); }
-	ruleSqlTypeAssignement{ after(grammarAccess.getMetagenPropertyAccess().getSqlTypesSqlTypeAssignementParserRuleCall_4_1_0()); }
+{ before(grammarAccess.getMetagenPropertyAccess().getSqlTypesMetaSqlTypeAssignementParserRuleCall_4_1_1_0()); }
+	ruleMetaSqlTypeAssignement{ after(grammarAccess.getMetagenPropertyAccess().getSqlTypesMetaSqlTypeAssignementParserRuleCall_4_1_1_0()); }
 )
 
 ;

@@ -321,5 +321,5 @@ public interface ModelProperty extends Adapter {
 
     void init(Object modelValues);
 
-    Map<String, PojoAttrType> getMetaSqlTypes(EObject model);
+    Map<String, PairValues> getMetaSqlTypes(EObject model);
 }

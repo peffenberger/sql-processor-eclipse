@@ -75,6 +75,7 @@ import org.sqlproc.model.processorModel.ImportAssignement;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
 import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
+import org.sqlproc.model.processorModel.MetaSqlTypeAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.PackageDirective;
@@ -201,6 +202,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.PROPERTY: return createProperty();
       case ProcessorModelPackage.DATABASE_PROPERTY: return createDatabaseProperty();
       case ProcessorModelPackage.POJOGEN_PROPERTY: return createPojogenProperty();
+      case ProcessorModelPackage.META_SQL_TYPE_ASSIGNEMENT: return createMetaSqlTypeAssignement();
       case ProcessorModelPackage.META_TYPE_ASSIGNEMENT: return createMetaTypeAssignement();
       case ProcessorModelPackage.METAGEN_PROPERTY: return createMetagenProperty();
       case ProcessorModelPackage.DAOGEN_PROPERTY: return createDaogenProperty();
@@ -611,6 +613,17 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
   {
     PojogenPropertyImpl pojogenProperty = new PojogenPropertyImpl();
     return pojogenProperty;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MetaSqlTypeAssignement createMetaSqlTypeAssignement()
+  {
+    MetaSqlTypeAssignementImpl metaSqlTypeAssignement = new MetaSqlTypeAssignementImpl();
+    return metaSqlTypeAssignement;
   }
 
   /**

@@ -74,6 +74,7 @@ import org.sqlproc.model.processorModel.ImportAssignement;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
 import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
+import org.sqlproc.model.processorModel.MetaSqlTypeAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.PackageDirective;
@@ -329,6 +330,11 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
       public Adapter casePojogenProperty(PojogenProperty object)
       {
         return createPojogenPropertyAdapter();
+      }
+      @Override
+      public Adapter caseMetaSqlTypeAssignement(MetaSqlTypeAssignement object)
+      {
+        return createMetaSqlTypeAssignementAdapter();
       }
       @Override
       public Adapter caseMetaTypeAssignement(MetaTypeAssignement object)
@@ -1183,6 +1189,21 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPojogenPropertyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.MetaSqlTypeAssignement <em>Meta Sql Type Assignement</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.MetaSqlTypeAssignement
+   * @generated
+   */
+  public Adapter createMetaSqlTypeAssignementAdapter()
   {
     return null;
   }

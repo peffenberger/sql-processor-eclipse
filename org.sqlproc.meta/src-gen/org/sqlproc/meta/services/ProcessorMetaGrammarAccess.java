@@ -3424,6 +3424,54 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getDbCheckConstraintsIDENTTerminalRuleCall_41_3_1_0() { return cDbCheckConstraintsIDENTTerminalRuleCall_41_3_1_0; }
 	}
 
+	public class MetaSqlTypeAssignementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MetaSqlTypeAssignement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cSqlTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cSqlTypeValueTypeParserRuleCall_0_0 = (RuleCall)cSqlTypeAssignment_0.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypeIDENTTerminalRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cExtensionAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cExtensionIDENTTerminalRuleCall_3_1_0 = (RuleCall)cExtensionAssignment_3_1.eContents().get(0);
+		
+		//MetaSqlTypeAssignement:
+		//	sqlType=ValueType "->" type=IDENT ("->" extension=IDENT)?;
+		public ParserRule getRule() { return rule; }
+
+		//sqlType=ValueType "->" type=IDENT ("->" extension=IDENT)?
+		public Group getGroup() { return cGroup; }
+
+		//sqlType=ValueType
+		public Assignment getSqlTypeAssignment_0() { return cSqlTypeAssignment_0; }
+
+		//ValueType
+		public RuleCall getSqlTypeValueTypeParserRuleCall_0_0() { return cSqlTypeValueTypeParserRuleCall_0_0; }
+
+		//"->"
+		public Keyword getHyphenMinusGreaterThanSignKeyword_1() { return cHyphenMinusGreaterThanSignKeyword_1; }
+
+		//type=IDENT
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+
+		//IDENT
+		public RuleCall getTypeIDENTTerminalRuleCall_2_0() { return cTypeIDENTTerminalRuleCall_2_0; }
+
+		//("->" extension=IDENT)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//"->"
+		public Keyword getHyphenMinusGreaterThanSignKeyword_3_0() { return cHyphenMinusGreaterThanSignKeyword_3_0; }
+
+		//extension=IDENT
+		public Assignment getExtensionAssignment_3_1() { return cExtensionAssignment_3_1; }
+
+		//IDENT
+		public RuleCall getExtensionIDENTTerminalRuleCall_3_1_0() { return cExtensionIDENTTerminalRuleCall_3_1_0; }
+	}
+
 	public class MetaTypeAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MetaTypeAssignement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -3549,8 +3597,10 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
 		private final Assignment cNameAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
 		private final Keyword cNameSqltypeMetaTypeKeyword_4_0_0 = (Keyword)cNameAssignment_4_0.eContents().get(0);
-		private final Assignment cSqlTypesAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cSqlTypesSqlTypeAssignementParserRuleCall_4_1_0 = (RuleCall)cSqlTypesAssignment_4_1.eContents().get(0);
+		private final Group cGroup_4_1 = (Group)cGroup_4.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_4_1_0 = (RuleCall)cGroup_4_1.eContents().get(0);
+		private final Assignment cSqlTypesAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
+		private final RuleCall cSqlTypesMetaSqlTypeAssignementParserRuleCall_4_1_1_0 = (RuleCall)cSqlTypesAssignment_4_1_1.eContents().get(0);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
 		private final Assignment cNameAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
 		private final Keyword cNameColumnMetaTypeKeyword_5_0_0 = (Keyword)cNameAssignment_5_0.eContents().get(0);
@@ -3667,7 +3717,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//	dbNotTables+=IDENT)+)? | name="table-sequence" WS+ dbTable=IDENT WS+ sequence=IDENT (WS+ type=IDENT)? |
 		//	name="global-identity" (WS+ identity=IDENT type=IDENT?)? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
 		//	dbNotTables+=IDENT)+)? | name="table-identity" WS+ dbTable=IDENT WS+ identity=IDENT (WS+ type=IDENT)? |
-		//	name="sqltype-meta-type" sqlTypes+=SqlTypeAssignement+ | name="column-meta-type" WS+ dbTable=IDENT (WS+
+		//	name="sqltype-meta-type" (WS+ sqlTypes+=MetaSqlTypeAssignement)+ | name="column-meta-type" WS+ dbTable=IDENT (WS+
 		//	metaTypes+=MetaTypeAssignement)+ | name="statement-meta-type" WS+ dbStatement=IDENT (WS+
 		//	metaTypes+=MetaTypeAssignement)+ | name="make-it-final" | name="like-columns" (WS+ dbTable=IDENT (WS+
 		//	dbColumns+=IDENT)+)? | name="not-like-columns" (WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+)? |
@@ -3683,7 +3733,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//dbNotTables+=IDENT)+)? | name="table-sequence" WS+ dbTable=IDENT WS+ sequence=IDENT (WS+ type=IDENT)? |
 		//name="global-identity" (WS+ identity=IDENT type=IDENT?)? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
 		//dbNotTables+=IDENT)+)? | name="table-identity" WS+ dbTable=IDENT WS+ identity=IDENT (WS+ type=IDENT)? |
-		//name="sqltype-meta-type" sqlTypes+=SqlTypeAssignement+ | name="column-meta-type" WS+ dbTable=IDENT (WS+
+		//name="sqltype-meta-type" (WS+ sqlTypes+=MetaSqlTypeAssignement)+ | name="column-meta-type" WS+ dbTable=IDENT (WS+
 		//metaTypes+=MetaTypeAssignement)+ | name="statement-meta-type" WS+ dbStatement=IDENT (WS+
 		//metaTypes+=MetaTypeAssignement)+ | name="make-it-final" | name="like-columns" (WS+ dbTable=IDENT (WS+
 		//dbColumns+=IDENT)+)? | name="not-like-columns" (WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+)? | name="generate-sequences"
@@ -3910,7 +3960,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getTypeIDENTTerminalRuleCall_3_5_1_0() { return cTypeIDENTTerminalRuleCall_3_5_1_0; }
 
-		//name="sqltype-meta-type" sqlTypes+=SqlTypeAssignement+
+		//name="sqltype-meta-type" (WS+ sqlTypes+=MetaSqlTypeAssignement)+
 		public Group getGroup_4() { return cGroup_4; }
 
 		//name="sqltype-meta-type"
@@ -3919,11 +3969,17 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//"sqltype-meta-type"
 		public Keyword getNameSqltypeMetaTypeKeyword_4_0_0() { return cNameSqltypeMetaTypeKeyword_4_0_0; }
 
-		//sqlTypes+=SqlTypeAssignement+
-		public Assignment getSqlTypesAssignment_4_1() { return cSqlTypesAssignment_4_1; }
+		//(WS+ sqlTypes+=MetaSqlTypeAssignement)+
+		public Group getGroup_4_1() { return cGroup_4_1; }
 
-		//SqlTypeAssignement
-		public RuleCall getSqlTypesSqlTypeAssignementParserRuleCall_4_1_0() { return cSqlTypesSqlTypeAssignementParserRuleCall_4_1_0; }
+		//WS+
+		public RuleCall getWSTerminalRuleCall_4_1_0() { return cWSTerminalRuleCall_4_1_0; }
+
+		//sqlTypes+=MetaSqlTypeAssignement
+		public Assignment getSqlTypesAssignment_4_1_1() { return cSqlTypesAssignment_4_1_1; }
+
+		//MetaSqlTypeAssignement
+		public RuleCall getSqlTypesMetaSqlTypeAssignementParserRuleCall_4_1_1_0() { return cSqlTypesMetaSqlTypeAssignementParserRuleCall_4_1_1_0; }
 
 		//name="column-meta-type" WS+ dbTable=IDENT (WS+ metaTypes+=MetaTypeAssignement)+
 		public Group getGroup_5() { return cGroup_5; }
@@ -7648,6 +7704,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	private final PropertyElements pProperty;
 	private final DatabasePropertyElements pDatabaseProperty;
 	private final PojogenPropertyElements pPojogenProperty;
+	private final MetaSqlTypeAssignementElements pMetaSqlTypeAssignement;
 	private final MetaTypeAssignementElements pMetaTypeAssignement;
 	private final MetagenPropertyElements pMetagenProperty;
 	private final DaogenPropertyElements pDaogenProperty;
@@ -7765,6 +7822,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		this.pProperty = new PropertyElements();
 		this.pDatabaseProperty = new DatabasePropertyElements();
 		this.pPojogenProperty = new PojogenPropertyElements();
+		this.pMetaSqlTypeAssignement = new MetaSqlTypeAssignementElements();
 		this.pMetaTypeAssignement = new MetaTypeAssignementElements();
 		this.pMetagenProperty = new MetagenPropertyElements();
 		this.pDaogenProperty = new DaogenPropertyElements();
@@ -8216,6 +8274,16 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		return getPojogenPropertyAccess().getRule();
 	}
 
+	//MetaSqlTypeAssignement:
+	//	sqlType=ValueType "->" type=IDENT ("->" extension=IDENT)?;
+	public MetaSqlTypeAssignementElements getMetaSqlTypeAssignementAccess() {
+		return pMetaSqlTypeAssignement;
+	}
+	
+	public ParserRule getMetaSqlTypeAssignementRule() {
+		return getMetaSqlTypeAssignementAccess().getRule();
+	}
+
 	//MetaTypeAssignement:
 	//	dbColumn=IDENT "->" type=IDENT ("->" extension=IDENT)?;
 	public MetaTypeAssignementElements getMetaTypeAssignementAccess() {
@@ -8231,7 +8299,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	//	dbNotTables+=IDENT)+)? | name="table-sequence" WS+ dbTable=IDENT WS+ sequence=IDENT (WS+ type=IDENT)? |
 	//	name="global-identity" (WS+ identity=IDENT type=IDENT?)? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
 	//	dbNotTables+=IDENT)+)? | name="table-identity" WS+ dbTable=IDENT WS+ identity=IDENT (WS+ type=IDENT)? |
-	//	name="sqltype-meta-type" sqlTypes+=SqlTypeAssignement+ | name="column-meta-type" WS+ dbTable=IDENT (WS+
+	//	name="sqltype-meta-type" (WS+ sqlTypes+=MetaSqlTypeAssignement)+ | name="column-meta-type" WS+ dbTable=IDENT (WS+
 	//	metaTypes+=MetaTypeAssignement)+ | name="statement-meta-type" WS+ dbStatement=IDENT (WS+
 	//	metaTypes+=MetaTypeAssignement)+ | name="make-it-final" | name="like-columns" (WS+ dbTable=IDENT (WS+
 	//	dbColumns+=IDENT)+)? | name="not-like-columns" (WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+)? |

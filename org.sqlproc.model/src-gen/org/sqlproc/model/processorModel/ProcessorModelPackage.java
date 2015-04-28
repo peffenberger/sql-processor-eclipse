@@ -1698,6 +1698,52 @@ public interface ProcessorModelPackage extends EPackage
   int POJOGEN_PROPERTY_FEATURE_COUNT = 32;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.MetaSqlTypeAssignementImpl <em>Meta Sql Type Assignement</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.model.processorModel.impl.MetaSqlTypeAssignementImpl
+   * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getMetaSqlTypeAssignement()
+   * @generated
+   */
+  int META_SQL_TYPE_ASSIGNEMENT = 30;
+
+  /**
+   * The feature id for the '<em><b>Sql Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int META_SQL_TYPE_ASSIGNEMENT__SQL_TYPE = 0;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int META_SQL_TYPE_ASSIGNEMENT__TYPE = 1;
+
+  /**
+   * The feature id for the '<em><b>Extension</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int META_SQL_TYPE_ASSIGNEMENT__EXTENSION = 2;
+
+  /**
+   * The number of structural features of the '<em>Meta Sql Type Assignement</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int META_SQL_TYPE_ASSIGNEMENT_FEATURE_COUNT = 3;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.MetaTypeAssignementImpl <em>Meta Type Assignement</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1705,7 +1751,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getMetaTypeAssignement()
    * @generated
    */
-  int META_TYPE_ASSIGNEMENT = 30;
+  int META_TYPE_ASSIGNEMENT = 31;
 
   /**
    * The feature id for the '<em><b>Db Column</b></em>' attribute.
@@ -1751,7 +1797,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getMetagenProperty()
    * @generated
    */
-  int METAGEN_PROPERTY = 31;
+  int METAGEN_PROPERTY = 32;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1914,7 +1960,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaogenProperty()
    * @generated
    */
-  int DAOGEN_PROPERTY = 32;
+  int DAOGEN_PROPERTY = 33;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2041,7 +2087,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDefinition()
    * @generated
    */
-  int POJO_DEFINITION = 33;
+  int POJO_DEFINITION = 34;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2087,7 +2133,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getTableDefinition()
    * @generated
    */
-  int TABLE_DEFINITION = 34;
+  int TABLE_DEFINITION = 35;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2124,7 +2170,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getProcedureDefinition()
    * @generated
    */
-  int PROCEDURE_DEFINITION = 35;
+  int PROCEDURE_DEFINITION = 36;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2161,7 +2207,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getFunctionDefinition()
    * @generated
    */
-  int FUNCTION_DEFINITION = 36;
+  int FUNCTION_DEFINITION = 37;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2198,7 +2244,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPackageDirective()
    * @generated
    */
-  int PACKAGE_DIRECTIVE = 37;
+  int PACKAGE_DIRECTIVE = 38;
 
   /**
    * The number of structural features of the '<em>Package Directive</em>' class.
@@ -2217,7 +2263,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPackage()
    * @generated
    */
-  int PACKAGE = 38;
+  int PACKAGE = 39;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -2272,7 +2318,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAbstractEntity()
    * @generated
    */
-  int ABSTRACT_ENTITY = 39;
+  int ABSTRACT_ENTITY = 40;
 
   /**
    * The number of structural features of the '<em>Abstract Entity</em>' class.
@@ -2291,7 +2337,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplementsExtendsDirective()
    * @generated
    */
-  int IMPLEMENTS_EXTENDS_DIRECTIVE = 40;
+  int IMPLEMENTS_EXTENDS_DIRECTIVE = 41;
 
   /**
    * The number of structural features of the '<em>Implements Extends Directive</em>' class.
@@ -2310,7 +2356,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplements()
    * @generated
    */
-  int IMPLEMENTS = 41;
+  int IMPLEMENTS = 42;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -2347,7 +2393,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getExtends()
    * @generated
    */
-  int EXTENDS = 42;
+  int EXTENDS = 43;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -2384,7 +2430,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotatedEntity()
    * @generated
    */
-  int ANNOTATED_ENTITY = 43;
+  int ANNOTATED_ENTITY = 44;
 
   /**
    * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -2421,7 +2467,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getEntity()
    * @generated
    */
-  int ENTITY = 44;
+  int ENTITY = 45;
 
   /**
    * The feature id for the '<em><b>Final</b></em>' attribute.
@@ -2467,7 +2513,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDirectiveProperties()
    * @generated
    */
-  int DIRECTIVE_PROPERTIES = 45;
+  int DIRECTIVE_PROPERTIES = 46;
 
   /**
    * The feature id for the '<em><b>Features</b></em>' reference list.
@@ -2495,7 +2541,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirective()
    * @generated
    */
-  int POJO_DIRECTIVE = 46;
+  int POJO_DIRECTIVE = 47;
 
   /**
    * The number of structural features of the '<em>Pojo Directive</em>' class.
@@ -2514,7 +2560,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoEntity()
    * @generated
    */
-  int POJO_ENTITY = 47;
+  int POJO_ENTITY = 48;
 
   /**
    * The feature id for the '<em><b>Final</b></em>' attribute.
@@ -2596,7 +2642,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoAttributeDirective()
    * @generated
    */
-  int POJO_ATTRIBUTE_DIRECTIVE = 48;
+  int POJO_ATTRIBUTE_DIRECTIVE = 49;
 
   /**
    * The number of structural features of the '<em>Pojo Attribute Directive</em>' class.
@@ -2615,7 +2661,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoAttribute()
    * @generated
    */
-  int POJO_ATTRIBUTE = 49;
+  int POJO_ATTRIBUTE = 50;
 
   /**
    * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -2706,7 +2752,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoProcedure()
    * @generated
    */
-  int POJO_PROCEDURE = 50;
+  int POJO_PROCEDURE = 51;
 
   /**
    * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -2788,7 +2834,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getEnumDirective()
    * @generated
    */
-  int ENUM_DIRECTIVE = 51;
+  int ENUM_DIRECTIVE = 52;
 
   /**
    * The number of structural features of the '<em>Enum Directive</em>' class.
@@ -2807,7 +2853,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getEnumEntity()
    * @generated
    */
-  int ENUM_ENTITY = 52;
+  int ENUM_ENTITY = 53;
 
   /**
    * The feature id for the '<em><b>Final</b></em>' attribute.
@@ -2871,7 +2917,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getEnumAttributeValue()
    * @generated
    */
-  int ENUM_ATTRIBUTE_VALUE = 53;
+  int ENUM_ATTRIBUTE_VALUE = 54;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2908,7 +2954,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getEnumAttributeDirective()
    * @generated
    */
-  int ENUM_ATTRIBUTE_DIRECTIVE = 54;
+  int ENUM_ATTRIBUTE_DIRECTIVE = 55;
 
   /**
    * The number of structural features of the '<em>Enum Attribute Directive</em>' class.
@@ -2927,7 +2973,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getEnumAttribute()
    * @generated
    */
-  int ENUM_ATTRIBUTE = 55;
+  int ENUM_ATTRIBUTE = 56;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -2991,7 +3037,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoDirectiveParameters()
    * @generated
    */
-  int DAO_DIRECTIVE_PARAMETERS = 56;
+  int DAO_DIRECTIVE_PARAMETERS = 57;
 
   /**
    * The feature id for the '<em><b>Out</b></em>' containment reference.
@@ -3028,7 +3074,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDescendantAssignment()
    * @generated
    */
-  int DESCENDANT_ASSIGNMENT = 57;
+  int DESCENDANT_ASSIGNMENT = 58;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -3065,7 +3111,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getFunProcType()
    * @generated
    */
-  int FUN_PROC_TYPE = 58;
+  int FUN_PROC_TYPE = 59;
 
   /**
    * The number of structural features of the '<em>Fun Proc Type</em>' class.
@@ -3084,7 +3130,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoDirective()
    * @generated
    */
-  int DAO_DIRECTIVE = 59;
+  int DAO_DIRECTIVE = 60;
 
   /**
    * The number of structural features of the '<em>Dao Directive</em>' class.
@@ -3103,7 +3149,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoEntity()
    * @generated
    */
-  int DAO_ENTITY = 60;
+  int DAO_ENTITY = 61;
 
   /**
    * The feature id for the '<em><b>Final</b></em>' attribute.
@@ -3185,7 +3231,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirective()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE = 61;
+  int ANNOTATION_DIRECTIVE = 62;
 
   /**
    * The number of structural features of the '<em>Annotation Directive</em>' class.
@@ -3204,7 +3250,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotation()
    * @generated
    */
-  int ANNOTATION = 62;
+  int ANNOTATION = 63;
 
   /**
    * The feature id for the '<em><b>Directives</b></em>' containment reference list.
@@ -3250,7 +3296,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPackageDirectiveImplementation()
    * @generated
    */
-  int PACKAGE_DIRECTIVE_IMPLEMENTATION = 63;
+  int PACKAGE_DIRECTIVE_IMPLEMENTATION = 64;
 
   /**
    * The feature id for the '<em><b>Implementation</b></em>' attribute.
@@ -3278,7 +3324,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplementsExtendsDirectiveGenerics()
    * @generated
    */
-  int IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS = 64;
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS = 65;
 
   /**
    * The number of structural features of the '<em>Implements Extends Directive Generics</em>' class.
@@ -3297,7 +3343,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplementsExtendsDirectiveOnlyPojos()
    * @generated
    */
-  int IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_POJOS = 65;
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_POJOS = 66;
 
   /**
    * The feature id for the '<em><b>Only Pojos</b></em>' reference list.
@@ -3325,7 +3371,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplementsExtendsDirectiveOnlyDaos()
    * @generated
    */
-  int IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS = 66;
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS = 67;
 
   /**
    * The feature id for the '<em><b>Only Daos</b></em>' reference list.
@@ -3353,7 +3399,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplementsExtendsDirectiveExceptPojos()
    * @generated
    */
-  int IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_POJOS = 67;
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_POJOS = 68;
 
   /**
    * The feature id for the '<em><b>Except Pojos</b></em>' reference list.
@@ -3381,7 +3427,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplementsExtendsDirectiveExceptDaos()
    * @generated
    */
-  int IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS = 68;
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS = 69;
 
   /**
    * The feature id for the '<em><b>Except Daos</b></em>' reference list.
@@ -3409,7 +3455,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirectiveToString()
    * @generated
    */
-  int POJO_DIRECTIVE_TO_STRING = 69;
+  int POJO_DIRECTIVE_TO_STRING = 70;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -3437,7 +3483,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirectiveIndex()
    * @generated
    */
-  int POJO_DIRECTIVE_INDEX = 70;
+  int POJO_DIRECTIVE_INDEX = 71;
 
   /**
    * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -3474,7 +3520,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirectiveOperators()
    * @generated
    */
-  int POJO_DIRECTIVE_OPERATORS = 71;
+  int POJO_DIRECTIVE_OPERATORS = 72;
 
   /**
    * The feature id for the '<em><b>Operators Suffix</b></em>' attribute.
@@ -3502,7 +3548,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirectiveSerializable()
    * @generated
    */
-  int POJO_DIRECTIVE_SERIALIZABLE = 72;
+  int POJO_DIRECTIVE_SERIALIZABLE = 73;
 
   /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
@@ -3530,7 +3576,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirectiveDiscriminator()
    * @generated
    */
-  int POJO_DIRECTIVE_DISCRIMINATOR = 73;
+  int POJO_DIRECTIVE_DISCRIMINATOR = 74;
 
   /**
    * The feature id for the '<em><b>Discriminator</b></em>' attribute.
@@ -3558,7 +3604,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirectiveEquals()
    * @generated
    */
-  int POJO_DIRECTIVE_EQUALS = 74;
+  int POJO_DIRECTIVE_EQUALS = 75;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -3586,7 +3632,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirectiveHashCode()
    * @generated
    */
-  int POJO_DIRECTIVE_HASH_CODE = 75;
+  int POJO_DIRECTIVE_HASH_CODE = 76;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -3614,7 +3660,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoAttributeDirectiveRequired()
    * @generated
    */
-  int POJO_ATTRIBUTE_DIRECTIVE_REQUIRED = 76;
+  int POJO_ATTRIBUTE_DIRECTIVE_REQUIRED = 77;
 
   /**
    * The number of structural features of the '<em>Pojo Attribute Directive Required</em>' class.
@@ -3633,7 +3679,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoAttributeDirectivePrimaryKey()
    * @generated
    */
-  int POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY = 77;
+  int POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY = 78;
 
   /**
    * The number of structural features of the '<em>Pojo Attribute Directive Primary Key</em>' class.
@@ -3652,7 +3698,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoAttributeDirectiveDiscriminator()
    * @generated
    */
-  int POJO_ATTRIBUTE_DIRECTIVE_DISCRIMINATOR = 78;
+  int POJO_ATTRIBUTE_DIRECTIVE_DISCRIMINATOR = 79;
 
   /**
    * The number of structural features of the '<em>Pojo Attribute Directive Discriminator</em>' class.
@@ -3671,7 +3717,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoAttributeDirectiveIndex()
    * @generated
    */
-  int POJO_ATTRIBUTE_DIRECTIVE_INDEX = 79;
+  int POJO_ATTRIBUTE_DIRECTIVE_INDEX = 80;
 
   /**
    * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -3699,7 +3745,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoAttributeDirectiveVersion()
    * @generated
    */
-  int POJO_ATTRIBUTE_DIRECTIVE_VERSION = 80;
+  int POJO_ATTRIBUTE_DIRECTIVE_VERSION = 81;
 
   /**
    * The number of structural features of the '<em>Pojo Attribute Directive Version</em>' class.
@@ -3718,7 +3764,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoAttributeDirectiveUpdateCol()
    * @generated
    */
-  int POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL = 81;
+  int POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL = 82;
 
   /**
    * The feature id for the '<em><b>Update Column1</b></em>' attribute.
@@ -3755,7 +3801,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoAttributeDirectiveCreateCol()
    * @generated
    */
-  int POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL = 82;
+  int POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL = 83;
 
   /**
    * The feature id for the '<em><b>Create Column1</b></em>' reference.
@@ -3792,7 +3838,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoAttributeDirectiveToInit()
    * @generated
    */
-  int POJO_ATTRIBUTE_DIRECTIVE_TO_INIT = 83;
+  int POJO_ATTRIBUTE_DIRECTIVE_TO_INIT = 84;
 
   /**
    * The number of structural features of the '<em>Pojo Attribute Directive To Init</em>' class.
@@ -3811,7 +3857,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoAttributeDirectiveEnumInit()
    * @generated
    */
-  int POJO_ATTRIBUTE_DIRECTIVE_ENUM_INIT = 84;
+  int POJO_ATTRIBUTE_DIRECTIVE_ENUM_INIT = 85;
 
   /**
    * The number of structural features of the '<em>Pojo Attribute Directive Enum Init</em>' class.
@@ -3830,7 +3876,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoAttributeDirectiveIsDef()
    * @generated
    */
-  int POJO_ATTRIBUTE_DIRECTIVE_IS_DEF = 85;
+  int POJO_ATTRIBUTE_DIRECTIVE_IS_DEF = 86;
 
   /**
    * The number of structural features of the '<em>Pojo Attribute Directive Is Def</em>' class.
@@ -3849,7 +3895,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoAttributeDirectiveEnumDef()
    * @generated
    */
-  int POJO_ATTRIBUTE_DIRECTIVE_ENUM_DEF = 86;
+  int POJO_ATTRIBUTE_DIRECTIVE_ENUM_DEF = 87;
 
   /**
    * The number of structural features of the '<em>Pojo Attribute Directive Enum Def</em>' class.
@@ -3868,7 +3914,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getEnumDirectiveSerializable()
    * @generated
    */
-  int ENUM_DIRECTIVE_SERIALIZABLE = 87;
+  int ENUM_DIRECTIVE_SERIALIZABLE = 88;
 
   /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
@@ -3896,7 +3942,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getEnumAttributeDirectiveValues()
    * @generated
    */
-  int ENUM_ATTRIBUTE_DIRECTIVE_VALUES = 88;
+  int ENUM_ATTRIBUTE_DIRECTIVE_VALUES = 89;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' containment reference list.
@@ -3924,7 +3970,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getFunctionCallQuery()
    * @generated
    */
-  int FUNCTION_CALL_QUERY = 89;
+  int FUNCTION_CALL_QUERY = 90;
 
   /**
    * The number of structural features of the '<em>Function Call Query</em>' class.
@@ -3943,7 +3989,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getProcedureCallQuery()
    * @generated
    */
-  int PROCEDURE_CALL_QUERY = 90;
+  int PROCEDURE_CALL_QUERY = 91;
 
   /**
    * The number of structural features of the '<em>Procedure Call Query</em>' class.
@@ -3962,7 +4008,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getFunctionCall()
    * @generated
    */
-  int FUNCTION_CALL = 91;
+  int FUNCTION_CALL = 92;
 
   /**
    * The number of structural features of the '<em>Function Call</em>' class.
@@ -3981,7 +4027,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getProcedureUpdate()
    * @generated
    */
-  int PROCEDURE_UPDATE = 92;
+  int PROCEDURE_UPDATE = 93;
 
   /**
    * The number of structural features of the '<em>Procedure Update</em>' class.
@@ -4000,7 +4046,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getFunctionQuery()
    * @generated
    */
-  int FUNCTION_QUERY = 93;
+  int FUNCTION_QUERY = 94;
 
   /**
    * The number of structural features of the '<em>Function Query</em>' class.
@@ -4019,7 +4065,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoDirectiveSerializable()
    * @generated
    */
-  int DAO_DIRECTIVE_SERIALIZABLE = 94;
+  int DAO_DIRECTIVE_SERIALIZABLE = 95;
 
   /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
@@ -4047,7 +4093,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoDirectiveDiscriminator()
    * @generated
    */
-  int DAO_DIRECTIVE_DISCRIMINATOR = 95;
+  int DAO_DIRECTIVE_DISCRIMINATOR = 96;
 
   /**
    * The feature id for the '<em><b>Ancestor</b></em>' reference.
@@ -4084,7 +4130,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoDirectiveCrud()
    * @generated
    */
-  int DAO_DIRECTIVE_CRUD = 96;
+  int DAO_DIRECTIVE_CRUD = 97;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' reference.
@@ -4112,7 +4158,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoDirectiveQuery()
    * @generated
    */
-  int DAO_DIRECTIVE_QUERY = 97;
+  int DAO_DIRECTIVE_QUERY = 98;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' reference.
@@ -4140,7 +4186,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoFunProcDirective()
    * @generated
    */
-  int DAO_FUN_PROC_DIRECTIVE = 98;
+  int DAO_FUN_PROC_DIRECTIVE = 99;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -4177,7 +4223,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoDirectivePojo()
    * @generated
    */
-  int DAO_DIRECTIVE_POJO = 99;
+  int DAO_DIRECTIVE_POJO = 100;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' reference.
@@ -4205,7 +4251,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirectiveConflict()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE_CONFLICT = 100;
+  int ANNOTATION_DIRECTIVE_CONFLICT = 101;
 
   /**
    * The number of structural features of the '<em>Annotation Directive Conflict</em>' class.
@@ -4224,7 +4270,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirectiveStatic()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE_STATIC = 101;
+  int ANNOTATION_DIRECTIVE_STATIC = 102;
 
   /**
    * The number of structural features of the '<em>Annotation Directive Static</em>' class.
@@ -4243,7 +4289,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirectiveConstructor()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE_CONSTRUCTOR = 102;
+  int ANNOTATION_DIRECTIVE_CONSTRUCTOR = 103;
 
   /**
    * The number of structural features of the '<em>Annotation Directive Constructor</em>' class.
@@ -4262,7 +4308,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirectiveStandard()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE_STANDARD = 103;
+  int ANNOTATION_DIRECTIVE_STANDARD = 104;
 
   /**
    * The number of structural features of the '<em>Annotation Directive Standard</em>' class.
@@ -4281,7 +4327,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirectiveSetter()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE_SETTER = 104;
+  int ANNOTATION_DIRECTIVE_SETTER = 105;
 
   /**
    * The number of structural features of the '<em>Annotation Directive Setter</em>' class.
@@ -4300,7 +4346,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirectiveGetter()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE_GETTER = 105;
+  int ANNOTATION_DIRECTIVE_GETTER = 106;
 
   /**
    * The number of structural features of the '<em>Annotation Directive Getter</em>' class.
@@ -4319,7 +4365,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirectiveAttribute()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE_ATTRIBUTE = 106;
+  int ANNOTATION_DIRECTIVE_ATTRIBUTE = 107;
 
   /**
    * The number of structural features of the '<em>Annotation Directive Attribute</em>' class.
@@ -5939,6 +5985,49 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    */
   EAttribute getPojogenProperty_DbCheckConstraints();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.model.processorModel.MetaSqlTypeAssignement <em>Meta Sql Type Assignement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Meta Sql Type Assignement</em>'.
+   * @see org.sqlproc.model.processorModel.MetaSqlTypeAssignement
+   * @generated
+   */
+  EClass getMetaSqlTypeAssignement();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.MetaSqlTypeAssignement#getSqlType <em>Sql Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Sql Type</em>'.
+   * @see org.sqlproc.model.processorModel.MetaSqlTypeAssignement#getSqlType()
+   * @see #getMetaSqlTypeAssignement()
+   * @generated
+   */
+  EReference getMetaSqlTypeAssignement_SqlType();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.MetaSqlTypeAssignement#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see org.sqlproc.model.processorModel.MetaSqlTypeAssignement#getType()
+   * @see #getMetaSqlTypeAssignement()
+   * @generated
+   */
+  EAttribute getMetaSqlTypeAssignement_Type();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.MetaSqlTypeAssignement#getExtension <em>Extension</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Extension</em>'.
+   * @see org.sqlproc.model.processorModel.MetaSqlTypeAssignement#getExtension()
+   * @see #getMetaSqlTypeAssignement()
+   * @generated
+   */
+  EAttribute getMetaSqlTypeAssignement_Extension();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.MetaTypeAssignement <em>Meta Type Assignement</em>}'.
@@ -9315,6 +9404,40 @@ public interface ProcessorModelPackage extends EPackage
      * @generated
      */
     EAttribute POJOGEN_PROPERTY__DB_CHECK_CONSTRAINTS = eINSTANCE.getPojogenProperty_DbCheckConstraints();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.MetaSqlTypeAssignementImpl <em>Meta Sql Type Assignement</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.model.processorModel.impl.MetaSqlTypeAssignementImpl
+     * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getMetaSqlTypeAssignement()
+     * @generated
+     */
+    EClass META_SQL_TYPE_ASSIGNEMENT = eINSTANCE.getMetaSqlTypeAssignement();
+
+    /**
+     * The meta object literal for the '<em><b>Sql Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference META_SQL_TYPE_ASSIGNEMENT__SQL_TYPE = eINSTANCE.getMetaSqlTypeAssignement_SqlType();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute META_SQL_TYPE_ASSIGNEMENT__TYPE = eINSTANCE.getMetaSqlTypeAssignement_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Extension</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute META_SQL_TYPE_ASSIGNEMENT__EXTENSION = eINSTANCE.getMetaSqlTypeAssignement_Extension();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.MetaTypeAssignementImpl <em>Meta Type Assignement</em>}' class.

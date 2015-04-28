@@ -2661,6 +2661,54 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getDbCheckConstraintsValidIDParserRuleCall_41_2_0() { return cDbCheckConstraintsValidIDParserRuleCall_41_2_0; }
 	}
 
+	public class MetaSqlTypeAssignementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MetaSqlTypeAssignement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cSqlTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cSqlTypeValueTypeParserRuleCall_0_0 = (RuleCall)cSqlTypeAssignment_0.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypeValidIDParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cExtensionAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cExtensionValidIDParserRuleCall_3_1_0 = (RuleCall)cExtensionAssignment_3_1.eContents().get(0);
+		
+		//MetaSqlTypeAssignement:
+		//	sqlType=ValueType "->" type=ValidID ("->" extension=ValidID)?;
+		public ParserRule getRule() { return rule; }
+
+		//sqlType=ValueType "->" type=ValidID ("->" extension=ValidID)?
+		public Group getGroup() { return cGroup; }
+
+		//sqlType=ValueType
+		public Assignment getSqlTypeAssignment_0() { return cSqlTypeAssignment_0; }
+
+		//ValueType
+		public RuleCall getSqlTypeValueTypeParserRuleCall_0_0() { return cSqlTypeValueTypeParserRuleCall_0_0; }
+
+		//"->"
+		public Keyword getHyphenMinusGreaterThanSignKeyword_1() { return cHyphenMinusGreaterThanSignKeyword_1; }
+
+		//type=ValidID
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+
+		//ValidID
+		public RuleCall getTypeValidIDParserRuleCall_2_0() { return cTypeValidIDParserRuleCall_2_0; }
+
+		//("->" extension=ValidID)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//"->"
+		public Keyword getHyphenMinusGreaterThanSignKeyword_3_0() { return cHyphenMinusGreaterThanSignKeyword_3_0; }
+
+		//extension=ValidID
+		public Assignment getExtensionAssignment_3_1() { return cExtensionAssignment_3_1; }
+
+		//ValidID
+		public RuleCall getExtensionValidIDParserRuleCall_3_1_0() { return cExtensionValidIDParserRuleCall_3_1_0; }
+	}
+
 	public class MetaTypeAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MetaTypeAssignement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -2765,7 +2813,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
 		private final Keyword cNameSqltypeMetaTypeKeyword_4_0_0 = (Keyword)cNameAssignment_4_0.eContents().get(0);
 		private final Assignment cSqlTypesAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cSqlTypesSqlTypeAssignementParserRuleCall_4_1_0 = (RuleCall)cSqlTypesAssignment_4_1.eContents().get(0);
+		private final RuleCall cSqlTypesMetaSqlTypeAssignementParserRuleCall_4_1_0 = (RuleCall)cSqlTypesAssignment_4_1.eContents().get(0);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
 		private final Assignment cNameAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
 		private final Keyword cNameColumnMetaTypeKeyword_5_0_0 = (Keyword)cNameAssignment_5_0.eContents().get(0);
@@ -2856,7 +2904,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="global-sequence" sequence=ValidID type=ValidID? ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)? |
 		//	name="table-sequence" dbTable=ValidID sequence=ValidID type=ValidID? | name="global-identity" (identity=ValidID
 		//	type=ValidID?)? ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)? | name="table-identity" dbTable=ValidID
-		//	identity=ValidID type=ValidID? | name="sqltype-meta-type" sqlTypes+=SqlTypeAssignement+ | name="column-meta-type"
+		//	identity=ValidID type=ValidID? | name="sqltype-meta-type" sqlTypes+=MetaSqlTypeAssignement+ | name="column-meta-type"
 		//	dbTable=ValidID metaTypes+=MetaTypeAssignement+ | name="statement-meta-type" dbStatement=ValidID
 		//	metaTypes+=MetaTypeAssignement+ | name="make-it-final" | name="like-columns" (dbTable=ValidID dbColumns+=ValidID+)? |
 		//	name="not-like-columns" (dbTable=ValidID dbColumns+=ValidID+)? | name="generate-sequences" |
@@ -2870,7 +2918,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//name="global-sequence" sequence=ValidID type=ValidID? ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)? |
 		//name="table-sequence" dbTable=ValidID sequence=ValidID type=ValidID? | name="global-identity" (identity=ValidID
 		//type=ValidID?)? ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)? | name="table-identity" dbTable=ValidID
-		//identity=ValidID type=ValidID? | name="sqltype-meta-type" sqlTypes+=SqlTypeAssignement+ | name="column-meta-type"
+		//identity=ValidID type=ValidID? | name="sqltype-meta-type" sqlTypes+=MetaSqlTypeAssignement+ | name="column-meta-type"
 		//dbTable=ValidID metaTypes+=MetaTypeAssignement+ | name="statement-meta-type" dbStatement=ValidID
 		//metaTypes+=MetaTypeAssignement+ | name="make-it-final" | name="like-columns" (dbTable=ValidID dbColumns+=ValidID+)? |
 		//name="not-like-columns" (dbTable=ValidID dbColumns+=ValidID+)? | name="generate-sequences" | name="generate-identities"
@@ -3028,7 +3076,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//ValidID
 		public RuleCall getTypeValidIDParserRuleCall_3_3_0() { return cTypeValidIDParserRuleCall_3_3_0; }
 
-		//name="sqltype-meta-type" sqlTypes+=SqlTypeAssignement+
+		//name="sqltype-meta-type" sqlTypes+=MetaSqlTypeAssignement+
 		public Group getGroup_4() { return cGroup_4; }
 
 		//name="sqltype-meta-type"
@@ -3037,11 +3085,11 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"sqltype-meta-type"
 		public Keyword getNameSqltypeMetaTypeKeyword_4_0_0() { return cNameSqltypeMetaTypeKeyword_4_0_0; }
 
-		//sqlTypes+=SqlTypeAssignement+
+		//sqlTypes+=MetaSqlTypeAssignement+
 		public Assignment getSqlTypesAssignment_4_1() { return cSqlTypesAssignment_4_1; }
 
-		//SqlTypeAssignement
-		public RuleCall getSqlTypesSqlTypeAssignementParserRuleCall_4_1_0() { return cSqlTypesSqlTypeAssignementParserRuleCall_4_1_0; }
+		//MetaSqlTypeAssignement
+		public RuleCall getSqlTypesMetaSqlTypeAssignementParserRuleCall_4_1_0() { return cSqlTypesMetaSqlTypeAssignementParserRuleCall_4_1_0; }
 
 		//name="column-meta-type" dbTable=ValidID metaTypes+=MetaTypeAssignement+
 		public Group getGroup_5() { return cGroup_5; }
@@ -5922,6 +5970,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	private final PropertyElements pProperty;
 	private final DatabasePropertyElements pDatabaseProperty;
 	private final PojogenPropertyElements pPojogenProperty;
+	private final MetaSqlTypeAssignementElements pMetaSqlTypeAssignement;
 	private final MetaTypeAssignementElements pMetaTypeAssignement;
 	private final MetagenPropertyElements pMetagenProperty;
 	private final DaogenPropertyElements pDaogenProperty;
@@ -5998,6 +6047,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		this.pProperty = new PropertyElements();
 		this.pDatabaseProperty = new DatabasePropertyElements();
 		this.pPojogenProperty = new PojogenPropertyElements();
+		this.pMetaSqlTypeAssignement = new MetaSqlTypeAssignementElements();
 		this.pMetaTypeAssignement = new MetaTypeAssignementElements();
 		this.pMetagenProperty = new MetagenPropertyElements();
 		this.pDaogenProperty = new DaogenPropertyElements();
@@ -6402,6 +6452,16 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		return getPojogenPropertyAccess().getRule();
 	}
 
+	//MetaSqlTypeAssignement:
+	//	sqlType=ValueType "->" type=ValidID ("->" extension=ValidID)?;
+	public MetaSqlTypeAssignementElements getMetaSqlTypeAssignementAccess() {
+		return pMetaSqlTypeAssignement;
+	}
+	
+	public ParserRule getMetaSqlTypeAssignementRule() {
+		return getMetaSqlTypeAssignementAccess().getRule();
+	}
+
 	//MetaTypeAssignement:
 	//	dbColumn=ValidID "->" type=ValidID ("->" extension=ValidID)?;
 	public MetaTypeAssignementElements getMetaTypeAssignementAccess() {
@@ -6416,7 +6476,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="global-sequence" sequence=ValidID type=ValidID? ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)? |
 	//	name="table-sequence" dbTable=ValidID sequence=ValidID type=ValidID? | name="global-identity" (identity=ValidID
 	//	type=ValidID?)? ("+" dbTables+=ValidID+)? ("-" dbNotTables+=ValidID+)? | name="table-identity" dbTable=ValidID
-	//	identity=ValidID type=ValidID? | name="sqltype-meta-type" sqlTypes+=SqlTypeAssignement+ | name="column-meta-type"
+	//	identity=ValidID type=ValidID? | name="sqltype-meta-type" sqlTypes+=MetaSqlTypeAssignement+ | name="column-meta-type"
 	//	dbTable=ValidID metaTypes+=MetaTypeAssignement+ | name="statement-meta-type" dbStatement=ValidID
 	//	metaTypes+=MetaTypeAssignement+ | name="make-it-final" | name="like-columns" (dbTable=ValidID dbColumns+=ValidID+)? |
 	//	name="not-like-columns" (dbTable=ValidID dbColumns+=ValidID+)? | name="generate-sequences" |

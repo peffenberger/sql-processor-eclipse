@@ -118,6 +118,7 @@ import org.sqlproc.model.processorModel.ImportAssignement;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
 import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
+import org.sqlproc.model.processorModel.MetaSqlTypeAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.PackageDirectiveImplementation;
@@ -511,6 +512,12 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 			case ProcessorModelPackage.MANY_TO_MANY_ASSIGNEMENT:
 				if(context == grammarAccess.getManyToManyAssignementRule()) {
 					sequence_ManyToManyAssignement(context, (ManyToManyAssignement) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.META_SQL_TYPE_ASSIGNEMENT:
+				if(context == grammarAccess.getMetaSqlTypeAssignementRule()) {
+					sequence_MetaSqlTypeAssignement(context, (MetaSqlTypeAssignement) semanticObject); 
 					return; 
 				}
 				else break;
@@ -2708,6 +2715,15 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
+	 *     (sqlType=ValueType type=ValidID extension=ValidID?)
+	 */
+	protected void sequence_MetaSqlTypeAssignement(EObject context, MetaSqlTypeAssignement semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (dbColumn=ValidID type=ValidID extension=ValidID?)
 	 */
 	protected void sequence_MetaTypeAssignement(EObject context, MetaTypeAssignement semanticObject) {
@@ -2722,7 +2738,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         (name='table-sequence' dbTable=ValidID sequence=ValidID type=ValidID?) | 
 	 *         (name='global-identity' (identity=ValidID type=ValidID?)? dbTables+=ValidID* dbNotTables+=ValidID*) | 
 	 *         (name='table-identity' dbTable=ValidID identity=ValidID type=ValidID?) | 
-	 *         (name='sqltype-meta-type' sqlTypes+=SqlTypeAssignement+) | 
+	 *         (name='sqltype-meta-type' sqlTypes+=MetaSqlTypeAssignement+) | 
 	 *         (name='column-meta-type' dbTable=ValidID metaTypes+=MetaTypeAssignement+) | 
 	 *         (name='statement-meta-type' dbStatement=ValidID metaTypes+=MetaTypeAssignement+) | 
 	 *         name='make-it-final' | 

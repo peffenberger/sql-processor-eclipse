@@ -72,6 +72,7 @@ import org.sqlproc.model.processorModel.ImportAssignement;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
 import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
+import org.sqlproc.model.processorModel.MetaSqlTypeAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.PackageDirective;
@@ -385,6 +386,13 @@ public class ProcessorModelSwitch<T> extends Switch<T>
       {
         PojogenProperty pojogenProperty = (PojogenProperty)theEObject;
         T result = casePojogenProperty(pojogenProperty);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorModelPackage.META_SQL_TYPE_ASSIGNEMENT:
+      {
+        MetaSqlTypeAssignement metaSqlTypeAssignement = (MetaSqlTypeAssignement)theEObject;
+        T result = caseMetaSqlTypeAssignement(metaSqlTypeAssignement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1457,6 +1465,22 @@ public class ProcessorModelSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePojogenProperty(PojogenProperty object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Meta Sql Type Assignement</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Meta Sql Type Assignement</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMetaSqlTypeAssignement(MetaSqlTypeAssignement object)
   {
     return null;
   }

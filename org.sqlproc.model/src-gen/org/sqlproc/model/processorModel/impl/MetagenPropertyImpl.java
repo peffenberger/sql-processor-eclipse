@@ -20,10 +20,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sqlproc.model.processorModel.DebugLevelAssignement;
+import org.sqlproc.model.processorModel.MetaSqlTypeAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
-import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.ValueType;
 
 /**
@@ -184,7 +184,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @generated
    * @ordered
    */
-  protected EList<SqlTypeAssignement> sqlTypes;
+  protected EList<MetaSqlTypeAssignement> sqlTypes;
 
   /**
    * The cached value of the '{@link #getMetaTypes() <em>Meta Types</em>}' containment reference list.
@@ -465,11 +465,11 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<SqlTypeAssignement> getSqlTypes()
+  public EList<MetaSqlTypeAssignement> getSqlTypes()
   {
     if (sqlTypes == null)
     {
-      sqlTypes = new EObjectContainmentEList<SqlTypeAssignement>(SqlTypeAssignement.class, this, ProcessorModelPackage.METAGEN_PROPERTY__SQL_TYPES);
+      sqlTypes = new EObjectContainmentEList<MetaSqlTypeAssignement>(MetaSqlTypeAssignement.class, this, ProcessorModelPackage.METAGEN_PROPERTY__SQL_TYPES);
     }
     return sqlTypes;
   }
@@ -787,7 +787,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return;
       case ProcessorModelPackage.METAGEN_PROPERTY__SQL_TYPES:
         getSqlTypes().clear();
-        getSqlTypes().addAll((Collection<? extends SqlTypeAssignement>)newValue);
+        getSqlTypes().addAll((Collection<? extends MetaSqlTypeAssignement>)newValue);
         return;
       case ProcessorModelPackage.METAGEN_PROPERTY__META_TYPES:
         getMetaTypes().clear();

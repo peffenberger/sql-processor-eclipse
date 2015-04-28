@@ -1752,6 +1752,52 @@ public interface ProcessorMetaPackage extends EPackage
   int POJOGEN_PROPERTY_FEATURE_COUNT = 32;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.MetaSqlTypeAssignementImpl <em>Meta Sql Type Assignement</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.meta.processorMeta.impl.MetaSqlTypeAssignementImpl
+   * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMetaSqlTypeAssignement()
+   * @generated
+   */
+  int META_SQL_TYPE_ASSIGNEMENT = 30;
+
+  /**
+   * The feature id for the '<em><b>Sql Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int META_SQL_TYPE_ASSIGNEMENT__SQL_TYPE = 0;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int META_SQL_TYPE_ASSIGNEMENT__TYPE = 1;
+
+  /**
+   * The feature id for the '<em><b>Extension</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int META_SQL_TYPE_ASSIGNEMENT__EXTENSION = 2;
+
+  /**
+   * The number of structural features of the '<em>Meta Sql Type Assignement</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int META_SQL_TYPE_ASSIGNEMENT_FEATURE_COUNT = 3;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.MetaTypeAssignementImpl <em>Meta Type Assignement</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1759,7 +1805,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMetaTypeAssignement()
    * @generated
    */
-  int META_TYPE_ASSIGNEMENT = 30;
+  int META_TYPE_ASSIGNEMENT = 31;
 
   /**
    * The feature id for the '<em><b>Db Column</b></em>' attribute.
@@ -1805,7 +1851,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMetagenProperty()
    * @generated
    */
-  int METAGEN_PROPERTY = 31;
+  int METAGEN_PROPERTY = 32;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1968,7 +2014,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getDaogenProperty()
    * @generated
    */
-  int DAOGEN_PROPERTY = 32;
+  int DAOGEN_PROPERTY = 33;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2095,7 +2141,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getPojoDefinition()
    * @generated
    */
-  int POJO_DEFINITION = 33;
+  int POJO_DEFINITION = 34;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2141,7 +2187,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getTableDefinition()
    * @generated
    */
-  int TABLE_DEFINITION = 34;
+  int TABLE_DEFINITION = 35;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2178,7 +2224,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getProcedureDefinition()
    * @generated
    */
-  int PROCEDURE_DEFINITION = 35;
+  int PROCEDURE_DEFINITION = 36;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2215,7 +2261,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getFunctionDefinition()
    * @generated
    */
-  int FUNCTION_DEFINITION = 36;
+  int FUNCTION_DEFINITION = 37;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2252,7 +2298,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMetaStatement()
    * @generated
    */
-  int META_STATEMENT = 37;
+  int META_STATEMENT = 38;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2307,7 +2353,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getSql()
    * @generated
    */
-  int SQL = 38;
+  int SQL = 39;
 
   /**
    * The feature id for the '<em><b>Sqls</b></em>' containment reference list.
@@ -2335,7 +2381,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getSqlFragment()
    * @generated
    */
-  int SQL_FRAGMENT = 39;
+  int SQL_FRAGMENT = 40;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2435,7 +2481,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMetaSql()
    * @generated
    */
-  int META_SQL = 40;
+  int META_SQL = 41;
 
   /**
    * The feature id for the '<em><b>Ifs</b></em>' containment reference list.
@@ -2499,7 +2545,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getIfSql()
    * @generated
    */
-  int IF_SQL = 41;
+  int IF_SQL = 42;
 
   /**
    * The feature id for the '<em><b>Sqls</b></em>' containment reference list.
@@ -2527,7 +2573,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getIfSqlFragment()
    * @generated
    */
-  int IF_SQL_FRAGMENT = 42;
+  int IF_SQL_FRAGMENT = 43;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2627,7 +2673,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getIfMetaSql()
    * @generated
    */
-  int IF_META_SQL = 43;
+  int IF_META_SQL = 44;
 
   /**
    * The feature id for the '<em><b>Ifs</b></em>' containment reference list.
@@ -2673,7 +2719,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getIfSqlCond()
    * @generated
    */
-  int IF_SQL_COND = 44;
+  int IF_SQL_COND = 45;
 
   /**
    * The feature id for the '<em><b>Bool1</b></em>' containment reference.
@@ -2719,7 +2765,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getIfSqlBool()
    * @generated
    */
-  int IF_SQL_BOOL = 45;
+  int IF_SQL_BOOL = 46;
 
   /**
    * The feature id for the '<em><b>Not</b></em>' attribute.
@@ -2774,7 +2820,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getOrdSql()
    * @generated
    */
-  int ORD_SQL = 46;
+  int ORD_SQL = 47;
 
   /**
    * The feature id for the '<em><b>Sqls</b></em>' containment reference list.
@@ -2802,7 +2848,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getOrdSql2()
    * @generated
    */
-  int ORD_SQL2 = 47;
+  int ORD_SQL2 = 48;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2857,7 +2903,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getColumn()
    * @generated
    */
-  int COLUMN = 48;
+  int COLUMN = 49;
 
   /**
    * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -2885,7 +2931,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getExtendedColumn()
    * @generated
    */
-  int EXTENDED_COLUMN = 49;
+  int EXTENDED_COLUMN = 50;
 
   /**
    * The feature id for the '<em><b>Col</b></em>' containment reference.
@@ -2922,7 +2968,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getExtendedColumnName()
    * @generated
    */
-  int EXTENDED_COLUMN_NAME = 50;
+  int EXTENDED_COLUMN_NAME = 51;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2950,7 +2996,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getConstant()
    * @generated
    */
-  int CONSTANT = 51;
+  int CONSTANT = 52;
 
   /**
    * The feature id for the '<em><b>Case</b></em>' attribute.
@@ -2996,7 +3042,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getIdentifier()
    * @generated
    */
-  int IDENTIFIER = 52;
+  int IDENTIFIER = 53;
 
   /**
    * The feature id for the '<em><b>Mode</b></em>' attribute.
@@ -3051,7 +3097,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getConstantOperator()
    * @generated
    */
-  int CONSTANT_OPERATOR = 53;
+  int CONSTANT_OPERATOR = 54;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3079,7 +3125,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getIdentifierOperator()
    * @generated
    */
-  int IDENTIFIER_OPERATOR = 54;
+  int IDENTIFIER_OPERATOR = 55;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3107,7 +3153,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getDatabaseColumn()
    * @generated
    */
-  int DATABASE_COLUMN = 55;
+  int DATABASE_COLUMN = 56;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3135,7 +3181,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getDatabaseTable()
    * @generated
    */
-  int DATABASE_TABLE = 56;
+  int DATABASE_TABLE = 57;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3163,7 +3209,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMappingRule()
    * @generated
    */
-  int MAPPING_RULE = 57;
+  int MAPPING_RULE = 58;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3218,7 +3264,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMapping()
    * @generated
    */
-  int MAPPING = 58;
+  int MAPPING = 59;
 
   /**
    * The feature id for the '<em><b>Mapping Items</b></em>' containment reference list.
@@ -3246,7 +3292,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMappingItem()
    * @generated
    */
-  int MAPPING_ITEM = 59;
+  int MAPPING_ITEM = 60;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3283,7 +3329,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMappingColumn()
    * @generated
    */
-  int MAPPING_COLUMN = 60;
+  int MAPPING_COLUMN = 61;
 
   /**
    * The feature id for the '<em><b>Items</b></em>' containment reference list.
@@ -3311,7 +3357,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getExtendedMappingItem()
    * @generated
    */
-  int EXTENDED_MAPPING_ITEM = 61;
+  int EXTENDED_MAPPING_ITEM = 62;
 
   /**
    * The feature id for the '<em><b>Attr</b></em>' containment reference.
@@ -3348,7 +3394,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMappingColumnName()
    * @generated
    */
-  int MAPPING_COLUMN_NAME = 62;
+  int MAPPING_COLUMN_NAME = 63;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3376,7 +3422,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getOptionalFeature()
    * @generated
    */
-  int OPTIONAL_FEATURE = 63;
+  int OPTIONAL_FEATURE = 64;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5098,6 +5144,49 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    */
   EAttribute getPojogenProperty_DbCheckConstraints();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.MetaSqlTypeAssignement <em>Meta Sql Type Assignement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Meta Sql Type Assignement</em>'.
+   * @see org.sqlproc.meta.processorMeta.MetaSqlTypeAssignement
+   * @generated
+   */
+  EClass getMetaSqlTypeAssignement();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.sqlproc.meta.processorMeta.MetaSqlTypeAssignement#getSqlType <em>Sql Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Sql Type</em>'.
+   * @see org.sqlproc.meta.processorMeta.MetaSqlTypeAssignement#getSqlType()
+   * @see #getMetaSqlTypeAssignement()
+   * @generated
+   */
+  EReference getMetaSqlTypeAssignement_SqlType();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.MetaSqlTypeAssignement#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see org.sqlproc.meta.processorMeta.MetaSqlTypeAssignement#getType()
+   * @see #getMetaSqlTypeAssignement()
+   * @generated
+   */
+  EAttribute getMetaSqlTypeAssignement_Type();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.MetaSqlTypeAssignement#getExtension <em>Extension</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Extension</em>'.
+   * @see org.sqlproc.meta.processorMeta.MetaSqlTypeAssignement#getExtension()
+   * @see #getMetaSqlTypeAssignement()
+   * @generated
+   */
+  EAttribute getMetaSqlTypeAssignement_Extension();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.MetaTypeAssignement <em>Meta Type Assignement</em>}'.
@@ -8015,6 +8104,40 @@ public interface ProcessorMetaPackage extends EPackage
      * @generated
      */
     EAttribute POJOGEN_PROPERTY__DB_CHECK_CONSTRAINTS = eINSTANCE.getPojogenProperty_DbCheckConstraints();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.MetaSqlTypeAssignementImpl <em>Meta Sql Type Assignement</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.meta.processorMeta.impl.MetaSqlTypeAssignementImpl
+     * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getMetaSqlTypeAssignement()
+     * @generated
+     */
+    EClass META_SQL_TYPE_ASSIGNEMENT = eINSTANCE.getMetaSqlTypeAssignement();
+
+    /**
+     * The meta object literal for the '<em><b>Sql Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference META_SQL_TYPE_ASSIGNEMENT__SQL_TYPE = eINSTANCE.getMetaSqlTypeAssignement_SqlType();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute META_SQL_TYPE_ASSIGNEMENT__TYPE = eINSTANCE.getMetaSqlTypeAssignement_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Extension</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute META_SQL_TYPE_ASSIGNEMENT__EXTENSION = eINSTANCE.getMetaSqlTypeAssignement_Extension();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.MetaTypeAssignementImpl <em>Meta Type Assignement</em>}' class.

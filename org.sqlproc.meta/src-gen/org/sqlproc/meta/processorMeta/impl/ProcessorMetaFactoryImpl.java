@@ -94,6 +94,7 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
       case ProcessorMetaPackage.PROPERTY: return createProperty();
       case ProcessorMetaPackage.DATABASE_PROPERTY: return createDatabaseProperty();
       case ProcessorMetaPackage.POJOGEN_PROPERTY: return createPojogenProperty();
+      case ProcessorMetaPackage.META_SQL_TYPE_ASSIGNEMENT: return createMetaSqlTypeAssignement();
       case ProcessorMetaPackage.META_TYPE_ASSIGNEMENT: return createMetaTypeAssignement();
       case ProcessorMetaPackage.METAGEN_PROPERTY: return createMetagenProperty();
       case ProcessorMetaPackage.DAOGEN_PROPERTY: return createDaogenProperty();
@@ -461,6 +462,17 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
   {
     PojogenPropertyImpl pojogenProperty = new PojogenPropertyImpl();
     return pojogenProperty;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MetaSqlTypeAssignement createMetaSqlTypeAssignement()
+  {
+    MetaSqlTypeAssignementImpl metaSqlTypeAssignement = new MetaSqlTypeAssignementImpl();
+    return metaSqlTypeAssignement;
   }
 
   /**

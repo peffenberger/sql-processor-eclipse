@@ -259,6 +259,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbCheckConstraints" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MetaSqlTypeAssignement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sqlType" eType="#//ValueType"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extension" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MetaTypeAssignement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -275,7 +281,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbTable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sqlTypes" upperBound="-1"
-        eType="#//SqlTypeAssignement" containment="true"/>
+        eType="#//MetaSqlTypeAssignement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaTypes" upperBound="-1"
         eType="#//MetaTypeAssignement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbStatement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

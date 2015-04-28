@@ -203,7 +203,7 @@ public interface MetagenProperty extends EObject
 
   /**
    * Returns the value of the '<em><b>Sql Types</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.meta.processorMeta.SqlTypeAssignement}.
+   * The list contents are of type {@link org.sqlproc.meta.processorMeta.MetaSqlTypeAssignement}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Sql Types</em>' containment reference list isn't clear,
@@ -215,7 +215,7 @@ public interface MetagenProperty extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<SqlTypeAssignement> getSqlTypes();
+  EList<MetaSqlTypeAssignement> getSqlTypes();
 
   /**
    * Returns the value of the '<em><b>Meta Types</b></em>' containment reference list.

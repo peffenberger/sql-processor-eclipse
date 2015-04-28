@@ -232,6 +232,8 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_40(), "rule__PojogenProperty__Group_40__0");
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_41(), "rule__PojogenProperty__Group_41__0");
 					put(grammarAccess.getPojogenPropertyAccess().getGroup_41_3(), "rule__PojogenProperty__Group_41_3__0");
+					put(grammarAccess.getMetaSqlTypeAssignementAccess().getGroup(), "rule__MetaSqlTypeAssignement__Group__0");
+					put(grammarAccess.getMetaSqlTypeAssignementAccess().getGroup_3(), "rule__MetaSqlTypeAssignement__Group_3__0");
 					put(grammarAccess.getMetaTypeAssignementAccess().getGroup(), "rule__MetaTypeAssignement__Group__0");
 					put(grammarAccess.getMetaTypeAssignementAccess().getGroup_3(), "rule__MetaTypeAssignement__Group_3__0");
 					put(grammarAccess.getMetagenPropertyAccess().getGroup_0(), "rule__MetagenProperty__Group_0__0");
@@ -250,6 +252,7 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMetagenPropertyAccess().getGroup_3(), "rule__MetagenProperty__Group_3__0");
 					put(grammarAccess.getMetagenPropertyAccess().getGroup_3_5(), "rule__MetagenProperty__Group_3_5__0");
 					put(grammarAccess.getMetagenPropertyAccess().getGroup_4(), "rule__MetagenProperty__Group_4__0");
+					put(grammarAccess.getMetagenPropertyAccess().getGroup_4_1(), "rule__MetagenProperty__Group_4_1__0");
 					put(grammarAccess.getMetagenPropertyAccess().getGroup_5(), "rule__MetagenProperty__Group_5__0");
 					put(grammarAccess.getMetagenPropertyAccess().getGroup_5_3(), "rule__MetagenProperty__Group_5_3__0");
 					put(grammarAccess.getMetagenPropertyAccess().getGroup_6(), "rule__MetagenProperty__Group_6__0");
@@ -587,6 +590,9 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojogenPropertyAccess().getNameAssignment_41_0(), "rule__PojogenProperty__NameAssignment_41_0");
 					put(grammarAccess.getPojogenPropertyAccess().getEnumNameAssignment_41_2(), "rule__PojogenProperty__EnumNameAssignment_41_2");
 					put(grammarAccess.getPojogenPropertyAccess().getDbCheckConstraintsAssignment_41_3_1(), "rule__PojogenProperty__DbCheckConstraintsAssignment_41_3_1");
+					put(grammarAccess.getMetaSqlTypeAssignementAccess().getSqlTypeAssignment_0(), "rule__MetaSqlTypeAssignement__SqlTypeAssignment_0");
+					put(grammarAccess.getMetaSqlTypeAssignementAccess().getTypeAssignment_2(), "rule__MetaSqlTypeAssignement__TypeAssignment_2");
+					put(grammarAccess.getMetaSqlTypeAssignementAccess().getExtensionAssignment_3_1(), "rule__MetaSqlTypeAssignement__ExtensionAssignment_3_1");
 					put(grammarAccess.getMetaTypeAssignementAccess().getDbColumnAssignment_0(), "rule__MetaTypeAssignement__DbColumnAssignment_0");
 					put(grammarAccess.getMetaTypeAssignementAccess().getTypeAssignment_2(), "rule__MetaTypeAssignement__TypeAssignment_2");
 					put(grammarAccess.getMetaTypeAssignementAccess().getExtensionAssignment_3_1(), "rule__MetaTypeAssignement__ExtensionAssignment_3_1");
@@ -609,7 +615,7 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMetagenPropertyAccess().getIdentityAssignment_3_4(), "rule__MetagenProperty__IdentityAssignment_3_4");
 					put(grammarAccess.getMetagenPropertyAccess().getTypeAssignment_3_5_1(), "rule__MetagenProperty__TypeAssignment_3_5_1");
 					put(grammarAccess.getMetagenPropertyAccess().getNameAssignment_4_0(), "rule__MetagenProperty__NameAssignment_4_0");
-					put(grammarAccess.getMetagenPropertyAccess().getSqlTypesAssignment_4_1(), "rule__MetagenProperty__SqlTypesAssignment_4_1");
+					put(grammarAccess.getMetagenPropertyAccess().getSqlTypesAssignment_4_1_1(), "rule__MetagenProperty__SqlTypesAssignment_4_1_1");
 					put(grammarAccess.getMetagenPropertyAccess().getNameAssignment_5_0(), "rule__MetagenProperty__NameAssignment_5_0");
 					put(grammarAccess.getMetagenPropertyAccess().getDbTableAssignment_5_2(), "rule__MetagenProperty__DbTableAssignment_5_2");
 					put(grammarAccess.getMetagenPropertyAccess().getMetaTypesAssignment_5_3_1(), "rule__MetagenProperty__MetaTypesAssignment_5_3_1");

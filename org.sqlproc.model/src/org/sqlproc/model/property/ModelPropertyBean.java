@@ -24,6 +24,7 @@ import org.sqlproc.model.processorModel.ImportAssignement;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
 import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
+import org.sqlproc.model.processorModel.MetaSqlTypeAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.PojogenProperty;
@@ -147,7 +148,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, PairValues> metaTablesSequence;
         public PairValues metaGlobalIdentity;
         public Map<String, PairValues> metaTablesIdentity;
-        public Map<String, PojoAttrType> metaSqlTypes;
+        public Map<String, PairValues> metaSqlTypes;
         public Map<String, Map<String, PairValues>> metaColumnsMetaTypes;
         public Map<String, Map<String, PairValues>> metaStatementsMetaTypes;
         public boolean metaMakeItFinal;
@@ -492,7 +493,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.metaTablesSequence = new HashMap<String, PairValues>();
         modelValues.metaGlobalIdentity = null;
         modelValues.metaTablesIdentity = new HashMap<String, PairValues>();
-        modelValues.metaSqlTypes = new HashMap<String, PojoAttrType>();
+        modelValues.metaSqlTypes = new HashMap<String, PairValues>();
         modelValues.metaColumnsMetaTypes = new HashMap<String, Map<String, PairValues>>();
         modelValues.metaStatementsMetaTypes = new HashMap<String, Map<String, PairValues>>();
         modelValues.metaMakeItFinal = false;
@@ -1024,8 +1025,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         } else if (METAGEN_SQLTYPE_META_TYPE.equals(property.getName())) {
             for (int i = 0, m = property.getSqlTypes().size(); i < m; i++) {
                 String sqlType = Utils.getPropertyValue(property.getSqlTypes().get(i).getSqlType());
-                PojoAttrTypeImpl type = new PojoAttrTypeImpl(null, sqlType, property.getSqlTypes().get(i).getType());
-                modelValues.metaSqlTypes.put(sqlType, type);
+                MetaSqlTypeAssignement metaType = property.getSqlTypes().get(i);
+                modelValues.metaSqlTypes.put(sqlType, new PairValues(metaType.getType(), metaType.getExtension()));
             }
         } else if (METAGEN_COLUMN_META_TYPE.equals(property.getName())) {
             if (!modelValues.metaColumnsMetaTypes.containsKey(property.getDbTable()))
@@ -1464,9 +1465,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public Map<String, PojoAttrType> getMetaSqlTypes(EObject model) {
+    public Map<String, PairValues> getMetaSqlTypes(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaSqlTypes : Collections.<String, PojoAttrType> emptyMap();
+        return (modelValues != null) ? modelValues.metaSqlTypes : Collections.<String, PairValues> emptyMap();
     }
 
     @Override

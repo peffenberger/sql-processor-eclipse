@@ -125,6 +125,7 @@ PojogenProperty:
 	|name='enum-for-check-constraints' enumName=ValidID (dbCheckConstraints+=ValidID)+
 	);
 
+MetaSqlTypeAssignement: sqlType=ValueType '->' type=ValidID ('->' extension=ValidID)?;
 MetaTypeAssignement: dbColumn=ValidID '->' type=ValidID ('->' extension=ValidID)?;
 
 MetagenProperty:
@@ -132,7 +133,7 @@ MetagenProperty:
 	|name='table-sequence' dbTable=ValidID sequence=ValidID (type=ValidID)?
 	|name='global-identity' (identity=ValidID (type=ValidID)?)? ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?
 	|name='table-identity' dbTable=ValidID identity=ValidID (type=ValidID)?
-	|name='sqltype-meta-type' (sqlTypes+=SqlTypeAssignement)+
+	|name='sqltype-meta-type' (sqlTypes+=MetaSqlTypeAssignement)+
 	|name='column-meta-type' dbTable=ValidID (metaTypes+=MetaTypeAssignement)+
 	|name='statement-meta-type' dbStatement=ValidID (metaTypes+=MetaTypeAssignement)+
 	|name='make-it-final'

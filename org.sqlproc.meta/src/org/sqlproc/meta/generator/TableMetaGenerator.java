@@ -28,7 +28,6 @@ import org.sqlproc.meta.util.Utils;
 import org.sqlproc.plugin.lib.generator.TableBaseGenerator;
 import org.sqlproc.plugin.lib.property.ModelProperty;
 import org.sqlproc.plugin.lib.property.PairValues;
-import org.sqlproc.plugin.lib.property.PojoAttrType;
 import org.sqlproc.plugin.lib.property.PojoAttribute;
 import org.sqlproc.plugin.lib.property.PojoEntityType;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
@@ -50,7 +49,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
     protected Map<String, PairValues> metaTablesSequence = new HashMap<String, PairValues>();
     protected PairValues metaGlobalIdentity;
     protected Map<String, PairValues> metaTablesIdentity = new HashMap<String, PairValues>();
-    protected Map<String, PojoAttrType> metaSqlTypes = new HashMap<String, PojoAttrType>();
+    protected Map<String, PairValues> metaSqlTypes = new HashMap<String, PairValues>();
     protected Map<String, Map<String, PairValues>> metaColumnsMetaTypes = new HashMap<String, Map<String, PairValues>>();
     protected Map<String, Map<String, PairValues>> metaStatementsMetaTypes = new HashMap<String, Map<String, PairValues>>();
     protected boolean metaMakeItFinal;
@@ -97,10 +96,10 @@ public class TableMetaGenerator extends TableBaseGenerator {
         if (tablesIdentity != null) {
             this.metaTablesIdentity.putAll(tablesIdentity);
         }
-        Map<String, PojoAttrType> metaSqlTypes = modelProperty.getMetaSqlTypes(model);
+        Map<String, PairValues> metaSqlTypes = modelProperty.getMetaSqlTypes(model);
         if (metaSqlTypes != null) {
             this.metaSqlTypes.putAll(metaSqlTypes);
-            for (Entry<String, PojoAttrType> e : metaSqlTypes.entrySet()) {
+            for (Entry<String, PairValues> e : metaSqlTypes.entrySet()) {
                 this.metaSqlTypes.put(e.getKey().toLowerCase(), e.getValue());
                 this.metaSqlTypes.put(e.getKey().toUpperCase(), e.getValue());
             }
@@ -694,8 +693,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
                         buffer.append("=").append(attr.sequence.value1);
                 }
             }
-            if (metaTypes(buffer, attr.tableName, attr.attributeName, statementName, attr.sequence == null)
-                    || attr.sequence != null)
+            if (metaTypes(buffer, attr.tableName, attr.attributeName, statementName, attr.completeSqlType,
+                    attr.sequence == null) || attr.sequence != null)
                 buffer.append(")");
             if (metaOptimizeInsert.contains(pojo) || metaOptimizeInsert.contains("_ALL_")) {
                 if (!pentry.getValue().isRequired())
@@ -775,8 +774,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
             }
             if (attr.attribute.isPrimaryKey() || assocTables.containsKey(colname))
                 buffer.append("(id");
-            if (metaTypes(buffer, attr.tableName, attr.attributeName, statementName, !attr.attribute.isPrimaryKey()
-                    && !assocTables.containsKey(colname))
+            if (metaTypes(buffer, attr.tableName, attr.attributeName, statementName, attr.completeSqlType,
+                    !attr.attribute.isPrimaryKey() && !assocTables.containsKey(colname))
                     || attr.attribute.isPrimaryKey() || assocTables.containsKey(colname))
                 buffer.append(")");
         } else {
@@ -833,7 +832,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
             if (attr.attribute.getPkTable() != null && attr.attribute.getRef() != null) {
                 buffer.append(".").append(columnToCamelCase(attr.attribute.getPkColumn()));
             }
-            if (metaTypes(buffer, attr.tableName, attr.attributeName, statementName, true))
+            if (metaTypes(buffer, attr.tableName, attr.attributeName, statementName, attr.completeSqlType, true))
                 buffer.append(")");
             buffer.append(" }");
             first = false;
@@ -859,7 +858,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
             if (attr.attribute.getPkTable() != null) {
                 buffer.append(".").append(columnToCamelCase(attr.attribute.getPkColumn()));
             }
-            if (!metaTypes(buffer, attr.tableName, attr.attributeName, statementName, true))
+            if (!metaTypes(buffer, attr.tableName, attr.attributeName, statementName, attr.completeSqlType, true))
                 buffer.append("(!empty)");
 
             else
@@ -898,7 +897,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
                 if (attr.attribute.getPkTable() != null && attr.attribute.getRef() != null) {
                     buffer.append(".").append(columnToCamelCase(attr.attribute.getPkColumn()));
                 }
-                boolean hasMetaType = metaTypes(buffer, attr.tableName, attr.attributeName, statementName, true);
+                boolean hasMetaType = metaTypes(buffer, attr.tableName, attr.attributeName, statementName,
+                        attr.completeSqlType, true);
                 if (isDef) {
                     if (!hasMetaType)
                         buffer.append("(");
@@ -951,7 +951,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
         return first;
     }
 
-    boolean metaTypes(StringBuilder buffer, String tableName, String attributeName, String statementName, boolean first) {
+    boolean metaTypes(StringBuilder buffer, String tableName, String attributeName, String statementName,
+            String completeSqlType, boolean first) {
         if (metaColumnsMetaTypes.containsKey(tableName)
                 && metaColumnsMetaTypes.get(tableName).containsKey(attributeName)) {
             PairValues metaType = metaColumnsMetaTypes.get(tableName).get(attributeName);
@@ -968,6 +969,18 @@ public class TableMetaGenerator extends TableBaseGenerator {
         } else if (metaStatementsMetaTypes.containsKey(statementName)
                 && metaStatementsMetaTypes.get(statementName).containsKey(attributeName)) {
             PairValues metaType = metaStatementsMetaTypes.get(statementName).get(attributeName);
+            if (first)
+                buffer.append("(");
+            else
+                buffer.append(",");
+            if (!"null".equalsIgnoreCase(metaType.value1))
+                buffer.append("type=").append(metaType.value1);
+            if (metaType.value2 != null) {
+                buffer.append(",").append(metaType.value2);
+            }
+            return true;
+        } else if (completeSqlType != null && metaSqlTypes.containsKey(completeSqlType)) {
+            PairValues metaType = metaSqlTypes.get(completeSqlType);
             if (first)
                 buffer.append("(");
             else
