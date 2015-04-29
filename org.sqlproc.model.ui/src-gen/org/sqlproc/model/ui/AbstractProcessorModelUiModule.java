@@ -332,9 +332,9 @@ public abstract class AbstractProcessorModelUiModule extends DefaultUiModule {
 	}
 
 	// contributed by org.eclipse.xtext.generator.xbase.XbaseGeneratorFragment
-	public Class<? extends  org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType> bindXtextTemplateContextType() {
-		return org.eclipse.xtext.xbase.ui.templates.XbaseTemplateContextType.class;
-	}
+//	public Class<? extends  org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType> bindXtextTemplateContextType() {
+//		return org.eclipse.xtext.xbase.ui.templates.XbaseTemplateContextType.class;
+//	}
 
 	// contributed by org.eclipse.xtext.ui.generator.templates.CodetemplatesGeneratorFragment
 	public com.google.inject.Provider<org.eclipse.xtext.ui.codetemplates.ui.preferences.TemplatesLanguageConfiguration> provideTemplatesLanguageConfiguration() {
