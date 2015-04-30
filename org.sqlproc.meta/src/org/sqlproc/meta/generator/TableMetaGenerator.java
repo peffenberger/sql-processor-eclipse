@@ -860,7 +860,6 @@ public class TableMetaGenerator extends TableBaseGenerator {
             }
             if (!metaTypes(buffer, attr.tableName, attr.attributeName, statementName, attr.completeSqlType, true))
                 buffer.append("(!empty)");
-
             else
                 buffer.append(")");
             buffer.append(" }");
@@ -905,7 +904,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
                     else
                         buffer.append(",");
                     buffer.append("call=isDef)");
-                }
+                } else if (hasMetaType)
+                	buffer.append(")");
             }
             buffer.append(" }");
             first = false;

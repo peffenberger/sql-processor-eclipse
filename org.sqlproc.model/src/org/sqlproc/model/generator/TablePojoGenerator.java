@@ -500,6 +500,8 @@ public class TablePojoGenerator extends TableBaseGenerator {
                                 toStr.add(name);
                         }
                         bufferPartial.append(' ').append(name);
+                        if (debug.debug)
+                        	bufferPartial.append(" // ").append(attribute.getCompleteSqlType());
                     }
                     // if (pojoExtends.containsKey(pojo)) {
                     // getParentAttrs(pojoExtends.get(pojo), null, null, toStr);
@@ -609,6 +611,13 @@ public class TablePojoGenerator extends TableBaseGenerator {
                             bufferPartial.append(entityAnnotations.getSetterAnnotationsDefinitions(realPojoName, name,
                                     serializer, true));
                         }
+                        if (!attribute.isVersion()
+                                && ((requiredColumns.containsKey(pojo) && requiredColumns.get(pojo).contains(
+                                        pentry.getKey())) || (attribute.isRequired() && !attribute.isPrimaryKey()))) {
+                            if (!notRequiredColumns.containsKey(pojo)
+                                    || !notRequiredColumns.get(pojo).contains(pentry.getKey()))
+                            	bufferPartial.append(nlindent2()).append("#Required");
+                        }
                         bufferPartial.append(NLINDENT).append(INDENT).append("#Attr ");
                         if (attribute.getDependencyClassName() != null) {
                             bufferPartial.append(attribute.getDependencyClassName());
@@ -622,13 +631,8 @@ public class TablePojoGenerator extends TableBaseGenerator {
                                 toStr.add(name);
                         }
                         bufferPartial.append(' ').append(name);
-                        if (!attribute.isVersion()
-                                && ((requiredColumns.containsKey(pojo) && requiredColumns.get(pojo).contains(
-                                        pentry.getKey())) || (attribute.isRequired() && !attribute.isPrimaryKey()))) {
-                            if (!notRequiredColumns.containsKey(pojo)
-                                    || !notRequiredColumns.get(pojo).contains(pentry.getKey()))
-                                bufferPartial.append(" required");
-                        }
+                        if (debug.debug)
+                        	bufferPartial.append(" // ").append(attribute.getCompleteSqlType());
                     }
                     // if (pojoExtends.containsKey(pojo)) {
                     // getParentAttrs(pojoExtends.get(pojo), null, null, toStr);
@@ -723,6 +727,13 @@ public class TablePojoGenerator extends TableBaseGenerator {
                             bufferPartial.append(entityAnnotations.getSetterAnnotationsDefinitions(realPojoName, name,
                                     serializer, true));
                         }
+                        if (!attribute.isVersion()
+                                && ((requiredColumns.containsKey(pojo) && requiredColumns.get(pojo).contains(
+                                        pentry.getKey())) || (attribute.isRequired() && !attribute.isPrimaryKey()))) {
+                            if (!notRequiredColumns.containsKey(pojo)
+                                    || !notRequiredColumns.get(pojo).contains(pentry.getKey()))
+                            	bufferPartial.append(nlindent2()).append("#Required");
+                        }
                         bufferPartial.append(NLINDENT).append(INDENT).append("#Attr ");
                         if (attribute.getDependencyClassName() != null) {
                             bufferPartial.append(attribute.getDependencyClassName());
@@ -736,13 +747,8 @@ public class TablePojoGenerator extends TableBaseGenerator {
                                 toStr.add(name);
                         }
                         bufferPartial.append(' ').append(name);
-                        if (!attribute.isVersion()
-                                && ((requiredColumns.containsKey(pojo) && requiredColumns.get(pojo).contains(
-                                        pentry.getKey())) || (attribute.isRequired() && !attribute.isPrimaryKey()))) {
-                            if (!notRequiredColumns.containsKey(pojo)
-                                    || !notRequiredColumns.get(pojo).contains(pentry.getKey()))
-                                bufferPartial.append(" required");
-                        }
+                        if (debug.debug)
+                        	bufferPartial.append(" // ").append(attribute.getCompleteSqlType());
                     }
                     // if (pojoExtends.containsKey(pojo)) {
                     // getParentAttrs(pojoExtends.get(pojo), null, null, toStr);
