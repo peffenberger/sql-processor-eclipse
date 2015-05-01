@@ -64,6 +64,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    	val CRUD_ENGINE = 'org.sqlproc.engine.SqlCrudEngine'
    	val QUERY_ENGINE = 'org.sqlproc.engine.SqlQueryEngine'
    	val PROCEDURE_ENGINE = 'org.sqlproc.engine.SqlProcedureEngine'
+   	val SQL_ROW_PROCESSOR = 'org.sqlproc.engine.SqlRowProcessor'
    	val MAP = 'java.util.Map'
    	val HASH_MAP = 'java.util.HashMap'
    	val LIST = 'java.util.List'
@@ -122,6 +123,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    					if (moreResultClasses == null)
    						moreResultClasses = entity.getMoreResultClasses
    					inferListIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+   					inferQueryIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferCountIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    				}
    				else if (dir instanceof DaoFunProcDirective) {
@@ -270,6 +272,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    					if (moreResultClasses == null)
    						moreResultClasses = entity.getMoreResultClasses
    					inferList(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+   					inferQuery(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferCount(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    				}
    				else if (dir instanceof DaoFunProcDirective) {
@@ -710,6 +713,91 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		
 		members += entity.toMethod('list', listType) [
 			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+   		]	
+	}
+
+   	def void inferQuery(DaoEntity entity, DaoDirectiveQuery dir, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
+   		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		val srpType = typeRef(SQL_ROW_PROCESSOR, typeRef(pojoType))
+   			
+		members += entity.toMethod('query', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			parameters += entity.toParameter("sqlRowProcessor", srpType)
+			body = '''
+				if (logger.isTraceEnabled()) {
+					logger.trace("sql query «pojoAttrName»: " + «pojoAttrName» + " " + sqlControl);
+				}
+				«QUERY_ENGINE» sqlEngine«pojo.name» = sqlEngineFactory.getCheckedQueryEngine("SELECT_«dbName(pojo.name)»");
+				«IF moreResultClasses.empty»//«ENDIF»sqlControl = getMoreResultClasses(«pojoAttrName», sqlControl);
+				int rownums = sqlEngine«pojo.name».query(sqlSession, «pojo.name».class, «pojoAttrName», sqlControl, sqlRowProcessor);
+				if (logger.isTraceEnabled()) {
+					logger.trace("sql query «pojoAttrName» size: " + rownums);
+				}
+				return rownums;
+   				'''
+   		]	
+   		
+		members += entity.toMethod('query', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			parameters += entity.toParameter("sqlRowProcessor", srpType)
+			body = '''
+				return query(sqlSessionFactory.getSqlSession(), «pojoAttrName», sqlControl, sqlRowProcessor);
+			'''
+   		]	
+   		
+		members += entity.toMethod('query', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlRowProcessor", srpType)
+			body = '''
+				return query(sqlSession, «pojoAttrName», null, sqlRowProcessor);
+   			'''
+   		]	
+   		
+		members += entity.toMethod('query', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlRowProcessor", srpType)
+			body = '''
+				return query(«pojoAttrName», null, sqlRowProcessor);
+   			'''
+   		]	
+	}
+
+   	def void inferQueryIfx(DaoEntity entity, DaoDirectiveQuery dir, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
+   		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		val srpType = typeRef(SQL_ROW_PROCESSOR, typeRef(pojoType))
+   			
+		members += entity.toMethod('query', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			parameters += entity.toParameter("sqlRowProcessor", srpType)
+   		]	
+   		
+		members += entity.toMethod('query', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			parameters += entity.toParameter("sqlRowProcessor", srpType)
+   		]	
+   		
+		members += entity.toMethod('query', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlRowProcessor", srpType)
+   		]	
+   		
+		members += entity.toMethod('query', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlRowProcessor", srpType)
    		]	
 	}
 
