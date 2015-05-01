@@ -905,7 +905,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
                         buffer.append(",");
                     buffer.append("call=isDef)");
                 } else if (hasMetaType)
-                	buffer.append(")");
+                    buffer.append(")");
             }
             buffer.append(" }");
             first = false;
@@ -966,7 +966,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
                 buffer.append(",").append(metaType.value2);
             }
             return true;
-        } else if (metaStatementsMetaTypes.containsKey(statementName)
+        } else if (statementName != null && metaStatementsMetaTypes.containsKey(statementName)
                 && metaStatementsMetaTypes.get(statementName).containsKey(attributeName)) {
             PairValues metaType = metaStatementsMetaTypes.get(statementName).get(attributeName);
             if (first)
@@ -1056,14 +1056,16 @@ public class TableMetaGenerator extends TableBaseGenerator {
             // System.out.println("  RRR " + pentry.getKey());
             if (FAKE_FUN_PROC_COLUMN_NAME.equals(pentry.getKey()))
                 continue;
-            if (ignoreColumns.containsKey(pojo) && ignoreColumns.get(pojo).contains(pentry.getKey()))
+            Attribute attr = getStatementAttribute(pojo, pentry.getKey(), pentry.getValue(), true);
+            if (attr == null)
                 continue;
-            PojoAttribute attribute = pentry.getValue();
-            String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(pentry.getKey()) : null;
+            String name = (columnNames.containsKey(attr.tableName)) ? columnNames.get(attr.tableName).get(
+                    attr.attributeName) : null;
             if (name == null)
-                name = attribute.getName();
+                name = attr.attribute.getName();
             else
                 name = columnToCamelCase(name);
+            PojoAttribute attribute = pentry.getValue();
             if (!first)
                 buffer.append(", ");
             else
@@ -1081,6 +1083,9 @@ public class TableMetaGenerator extends TableBaseGenerator {
                         buffer.append("=");
                 }
                 buffer.append(name);
+                if (metaTypes(buffer, attr.tableName, attr.attributeName, null, attr.completeSqlType,
+                        attr.sequence == null) || attr.sequence != null)
+                    buffer.append(")");
             }
         }
         buffer.append(")\n;");
@@ -1211,19 +1216,24 @@ public class TableMetaGenerator extends TableBaseGenerator {
             // System.out.println("  RRR " + pentry.getKey());
             if (FAKE_FUN_PROC_COLUMN_NAME.equals(pentry.getKey()) || FUN_PROC_COLUMN_NAME.equals(pentry.getKey()))
                 continue;
-            if (ignoreColumns.containsKey(pojo) && ignoreColumns.get(pojo).contains(pentry.getKey()))
+            Attribute attr = getStatementAttribute(pojo, pentry.getKey(), pentry.getValue(), true);
+            if (attr == null)
                 continue;
-            PojoAttribute attribute = pentry.getValue();
-            String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(pentry.getKey()) : null;
+            String name = (columnNames.containsKey(attr.tableName)) ? columnNames.get(attr.tableName).get(
+                    attr.attributeName) : null;
             if (name == null)
-                name = attribute.getName();
+                name = attr.attribute.getName();
             else
                 name = columnToCamelCase(name);
+            PojoAttribute attribute = pentry.getValue();
             if (!first)
                 buffer.append(", ");
             else
                 first = false;
             buffer.append(":").append(name);
+            if (metaTypes(buffer, attr.tableName, attr.attributeName, null, attr.completeSqlType, attr.sequence == null)
+                    || attr.sequence != null)
+                buffer.append(")");
         }
         buffer.append(") from SYSIBM.DUAL\n;");
         buffer.append("\n").append("FUN_").append(pojo.toUpperCase()).append("(OUT");
