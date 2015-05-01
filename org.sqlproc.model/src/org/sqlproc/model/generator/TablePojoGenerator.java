@@ -217,13 +217,16 @@ public class TablePojoGenerator extends TableBaseGenerator {
 
             for (Entry<String, List<EnumAttribute>> pentry : enums.entrySet()) {
                 String pojo = pentry.getKey();
+                String table = enumsTables.get(pojo);
                 // System.out.println("QQQQQ " + pojo);
-                if (!onlyTables.isEmpty() && !onlyTables.contains(pojo))
-                    continue;
-                if (ignoreTables.contains(pojo))
-                    continue;
-                if (!Filter.isTable(activeFilter, pojo))
-                    continue;
+                if (table != null) {
+                    if (!onlyTables.isEmpty() && !onlyTables.contains(table))
+                        continue;
+                    if (ignoreTables.contains(table))
+                        continue;
+                    if (!Filter.isTable(activeFilter, table))
+                        continue;
+                }
                 String pojoName = tableNames.get(pojo);
                 if (pojoName == null)
                     pojoName = pojo;
@@ -501,7 +504,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                         }
                         bufferPartial.append(' ').append(name);
                         if (debug.debug)
-                        	bufferPartial.append(" // ").append(attribute.getCompleteSqlType());
+                            bufferPartial.append(" // ").append(attribute.getCompleteSqlType());
                     }
                     // if (pojoExtends.containsKey(pojo)) {
                     // getParentAttrs(pojoExtends.get(pojo), null, null, toStr);
@@ -616,7 +619,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                                         pentry.getKey())) || (attribute.isRequired() && !attribute.isPrimaryKey()))) {
                             if (!notRequiredColumns.containsKey(pojo)
                                     || !notRequiredColumns.get(pojo).contains(pentry.getKey()))
-                            	bufferPartial.append(nlindent2()).append("#Required");
+                                bufferPartial.append(nlindent2()).append("#Required");
                         }
                         bufferPartial.append(NLINDENT).append(INDENT).append("#Attr ");
                         if (attribute.getDependencyClassName() != null) {
@@ -632,7 +635,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                         }
                         bufferPartial.append(' ').append(name);
                         if (debug.debug)
-                        	bufferPartial.append(" // ").append(attribute.getCompleteSqlType());
+                            bufferPartial.append(" // ").append(attribute.getCompleteSqlType());
                     }
                     // if (pojoExtends.containsKey(pojo)) {
                     // getParentAttrs(pojoExtends.get(pojo), null, null, toStr);
@@ -732,7 +735,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                                         pentry.getKey())) || (attribute.isRequired() && !attribute.isPrimaryKey()))) {
                             if (!notRequiredColumns.containsKey(pojo)
                                     || !notRequiredColumns.get(pojo).contains(pentry.getKey()))
-                            	bufferPartial.append(nlindent2()).append("#Required");
+                                bufferPartial.append(nlindent2()).append("#Required");
                         }
                         bufferPartial.append(NLINDENT).append(INDENT).append("#Attr ");
                         if (attribute.getDependencyClassName() != null) {
@@ -748,7 +751,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                         }
                         bufferPartial.append(' ').append(name);
                         if (debug.debug)
-                        	bufferPartial.append(" // ").append(attribute.getCompleteSqlType());
+                            bufferPartial.append(" // ").append(attribute.getCompleteSqlType());
                     }
                     // if (pojoExtends.containsKey(pojo)) {
                     // getParentAttrs(pojoExtends.get(pojo), null, null, toStr);

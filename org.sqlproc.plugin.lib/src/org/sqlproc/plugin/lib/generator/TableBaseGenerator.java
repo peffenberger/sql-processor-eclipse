@@ -122,6 +122,7 @@ public class TableBaseGenerator {
     protected Set<String> dbSequences = new TreeSet<String>();
     protected DbType dbType = null;
     protected Map<String, List<EnumAttribute>> enums = new TreeMap<String, List<EnumAttribute>>();
+    protected Map<String, String> enumsTables = new HashMap<String, String>();
     protected Map<String, String> comments = new HashMap<String, String>();
     protected String pojoPackage;
 
@@ -537,7 +538,7 @@ public class TableBaseGenerator {
                 if (enumForCheckConstraints.get(enumName).equals(name))
                     firstCheckConstraint = true;
             } else {
-                attribute.setDependencyClassName(tableToCamelCase(name));
+                attribute.setDependencyClassName(tableToCamelCase(getTableName(name)));
                 firstCheckConstraint = true;
             }
             attribute.setDependencyClassNameIsEnum(true);
@@ -547,6 +548,7 @@ public class TableBaseGenerator {
 
             List<EnumAttribute> attrs = new ArrayList<EnumAttribute>();
             enums.put(name, attrs);
+            enumsTables.put(name, check.getTable());
             EnumAttribute pattr = new EnumAttribute();
             pattr.setName("VALUE");
             pattr.setClassName(attribute.getClassName());
