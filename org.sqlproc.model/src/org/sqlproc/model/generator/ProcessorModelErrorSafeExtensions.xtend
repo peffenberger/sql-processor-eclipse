@@ -18,9 +18,9 @@ class ProcessorModelErrorSafeExtensions extends ErrorSafeExtensions {
 	
 	@Inject extension TypeReferenceSerializer 
 	
-	override protected openErrorAppendable(ITreeAppendable parent, ITreeAppendable child, EObject context) {
+	override protected openErrorAppendable(ITreeAppendable parent, ITreeAppendable child) {
 		if(!(child instanceof ErrorTreeAppendable))
-			parent.errorChild(context).append(" ")
+			parent.errorChild().append(" ")
 		else 
 			child
 	}
@@ -38,14 +38,14 @@ class ProcessorModelErrorSafeExtensions extends ErrorSafeExtensions {
 				JvmUnknownTypeReference: appendable.append(typeRef.qualifiedName)
 				default: {
 					appendable.append('Object')
-					val errorChild = appendable.openErrorAppendable(appendable, typeRef)
+					val errorChild = appendable.openErrorAppendable(appendable)
 					errorChild.append("type is 'null'")
 					appendable.closeErrorAppendable(errorChild)
 				}
 			}
 		} else {
 			if(typeRef.accept(new BrokenTypeRefDetector)) {
-				val errorChild = appendable.openErrorAppendable(appendable, typeRef)
+				val errorChild = appendable.openErrorAppendable(appendable)
 				try {
 					serialize(typeRef, typeRef.eContainer, errorChild)
 				} catch(Exception ignoreMe) {}

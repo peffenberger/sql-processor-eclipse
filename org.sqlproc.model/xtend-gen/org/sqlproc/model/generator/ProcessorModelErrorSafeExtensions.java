@@ -21,10 +21,11 @@ public class ProcessorModelErrorSafeExtensions extends ErrorSafeExtensions {
   @Extension
   private TypeReferenceSerializer _typeReferenceSerializer;
   
-  protected ITreeAppendable openErrorAppendable(final ITreeAppendable parent, final ITreeAppendable child, final EObject context) {
+  @Override
+  protected ITreeAppendable openErrorAppendable(final ITreeAppendable parent, final ITreeAppendable child) {
     ITreeAppendable _xifexpression = null;
     if ((!(child instanceof ErrorTreeAppendable))) {
-      ErrorTreeAppendable _errorChild = parent.errorChild(context);
+      ErrorTreeAppendable _errorChild = parent.errorChild();
       _xifexpression = _errorChild.append(" ");
     } else {
       _xifexpression = child;
@@ -32,6 +33,7 @@ public class ProcessorModelErrorSafeExtensions extends ErrorSafeExtensions {
     return _xifexpression;
   }
   
+  @Override
   protected ITreeAppendable closeErrorAppendable(final ITreeAppendable parent, final ITreeAppendable child) {
     ITreeAppendable _xblockexpression = null;
     {
@@ -50,6 +52,7 @@ public class ProcessorModelErrorSafeExtensions extends ErrorSafeExtensions {
     return _xblockexpression;
   }
   
+  @Override
   public void serializeSafely(final JvmTypeReference typeRef, final String surrogateType, final ITreeAppendable appendable) {
     boolean _or = false;
     boolean _equals = Objects.equal(typeRef, null);
@@ -79,7 +82,7 @@ public class ProcessorModelErrorSafeExtensions extends ErrorSafeExtensions {
       if (!_matched) {
         {
           appendable.append("Object");
-          final ITreeAppendable errorChild = this.openErrorAppendable(appendable, appendable, typeRef);
+          final ITreeAppendable errorChild = this.openErrorAppendable(appendable, appendable);
           errorChild.append("type is \'null\'");
           this.closeErrorAppendable(appendable, errorChild);
         }
@@ -88,7 +91,7 @@ public class ProcessorModelErrorSafeExtensions extends ErrorSafeExtensions {
       BrokenTypeRefDetector _brokenTypeRefDetector = new BrokenTypeRefDetector();
       Boolean _accept = typeRef.<Boolean>accept(_brokenTypeRefDetector);
       if ((_accept).booleanValue()) {
-        final ITreeAppendable errorChild = this.openErrorAppendable(appendable, appendable, typeRef);
+        final ITreeAppendable errorChild = this.openErrorAppendable(appendable, appendable);
         try {
           EObject _eContainer = typeRef.eContainer();
           this._typeReferenceSerializer.serialize(typeRef, _eContainer, errorChild);
