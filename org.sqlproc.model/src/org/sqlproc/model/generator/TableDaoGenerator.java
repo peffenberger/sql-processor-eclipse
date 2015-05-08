@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -32,6 +31,7 @@ import org.sqlproc.plugin.lib.property.PojoEntityType;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.resolver.DbResolver.DbType;
 import org.sqlproc.plugin.lib.util.Debug;
+import org.sqlproc.plugin.lib.util.Stats;
 
 public class TableDaoGenerator extends TablePojoGenerator {
 
@@ -57,9 +57,9 @@ public class TableDaoGenerator extends TablePojoGenerator {
 
     public TableDaoGenerator(ModelProperty modelProperty, Artifacts artifacts, IScopeProvider scopeProvider,
             Map<String, String> finalDaos, Map<String, Map<String, String>> finalDaosFeatures,
-            Annotations daoAnnotations, Set<String> daoImports, List<String> dbSequences, DbType dbType) {
+            Annotations daoAnnotations, Set<String> daoImports) {
         super(modelProperty, artifacts, Collections.<String, String> emptyMap(), Collections
-                .<String, Map<String, String>> emptyMap(), null, null, dbSequences, dbType);
+                .<String, Map<String, String>> emptyMap(), null, null);
 
         debug = new Debug(modelProperty.getDaoDebugLevel(artifacts), modelProperty.getDaoDebugScope(artifacts), LOGGER);
 
@@ -644,7 +644,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
     }
 
     public static String generateDao(Artifacts artifacts, Package packagex, ISerializer serializer,
-            DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty) {
+            DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty, Stats stats) {
         if (artifacts == null || !dbResolver.isResolveDb(artifacts))
             return null;
         if (serializer == null)
@@ -678,12 +678,9 @@ public class TableDaoGenerator extends TablePojoGenerator {
             }
         }
 
-        // List<String> tables = dbResolver.getTables(artifacts);
-        List<String> dbSequences = dbResolver.getSequences(artifacts);
-        DbType dbType = Utils.getDbType(dbResolver, artifacts);
         TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, scopeProvider, finalDaos,
-                finalFeatures, annotations, imports, dbSequences, dbType);
-        if (generator.addDefinitions(dbResolver, scopeProvider))
+                finalFeatures, annotations, imports);
+        if (generator.addDefinitions(dbResolver, scopeProvider, stats))
             return generator.getDaoDefinitions(modelProperty, artifacts, serializer);
         return null;
     }

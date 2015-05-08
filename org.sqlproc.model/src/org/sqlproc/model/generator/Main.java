@@ -33,6 +33,7 @@ import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.resolver.PojoResolverFactory;
 import org.sqlproc.plugin.lib.resolver.StandalonePojoResolverImpl;
 import org.sqlproc.plugin.lib.util.MainUtils;
+import org.sqlproc.plugin.lib.util.Stats;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -319,8 +320,9 @@ public class Main {
 
         {
             System.out.println("Going to generate " + pojo);
+            Stats stats = new Stats();
             String pojoDefinitions = TablePojoGenerator.generatePojo(definitions, pojoPackage, serializer, dbResolver,
-                    scopeProvider, modelProperty);
+                    scopeProvider, modelProperty, stats);
             StringBuilder sb = new StringBuilder();
             sb.append("package ").append(pojoPackageName).append(" {\n").append(pojoDefinitions).append("}");
             if (pojoPackages != null && !pojoPackages.isEmpty()) {
@@ -335,12 +337,14 @@ public class Main {
             }
             fileAccess.generateFile(pojo, "package " + pojoPackageName + " {\n" + pojoDefinitions + "}");
             System.out.println(pojo + " generation finished.");
+            System.out.println(stats.toString());
         }
 
         if (dao != null) {
             System.out.println("Going to generate " + dao);
+            Stats stats = new Stats();
             String daoDefinitions = TableDaoGenerator.generateDao(definitions, daoPackage, serializer, dbResolver,
-                    scopeProvider, modelProperty);
+                    scopeProvider, modelProperty, stats);
             StringBuilder sb = new StringBuilder();
             if (daoImplPackageName != null)
                 sb.append("#Implementation(").append(daoImplPackageName).append(")\n");
@@ -357,6 +361,7 @@ public class Main {
             }
             fileAccess.generateFile(dao, sb);
             System.out.println(dao + " generation finished.");
+            System.out.println(stats.toString());
         }
     }
 }

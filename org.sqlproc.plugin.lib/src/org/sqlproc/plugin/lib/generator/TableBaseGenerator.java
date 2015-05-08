@@ -34,7 +34,9 @@ import org.sqlproc.plugin.lib.resolver.DbIndex.DbIndexDetail;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.resolver.DbResolver.DbType;
 import org.sqlproc.plugin.lib.resolver.DbTable;
+import org.sqlproc.plugin.lib.util.CommonUtils;
 import org.sqlproc.plugin.lib.util.Debug;
+import org.sqlproc.plugin.lib.util.Stats;
 
 public class TableBaseGenerator {
 
@@ -129,7 +131,7 @@ public class TableBaseGenerator {
     protected Map<String, String> metaFunctionsResult = new HashMap<String, String>();
     protected Map<String, String> metaProceduresResult = new HashMap<String, String>();
 
-    public TableBaseGenerator(ModelProperty modelProperty, EObject model, List<String> dbSequences, DbType dbType) {
+    public TableBaseGenerator(ModelProperty modelProperty, EObject model) {
 
         this.model = model;
         debug = new Debug(modelProperty.getDebugLevel(model), modelProperty.getDebugScope(model), LOGGER);
@@ -286,8 +288,6 @@ public class TableBaseGenerator {
                 }
             }
         }
-        this.dbSequences.addAll(dbSequences);
-        this.dbType = dbType;
 
         Map<String, String> metaFunctionsResult = modelProperty.getMetaFunctionsResult(model);
         if (metaFunctionsResult != null) {
@@ -323,8 +323,6 @@ public class TableBaseGenerator {
             System.out.println("doGenerateWrappers " + this.doGenerateWrappers);
             System.out.println("doGenerateValidationAnnotations " + this.doGenerateValidationAnnotations);
             System.out.println("makeItFinal " + this.makeItFinal);
-            System.out.println("sequences " + this.dbSequences);
-            System.out.println("dbType " + this.dbType);
             System.out.println("metaFunctionsResult " + this.metaFunctionsResult);
             System.out.println("preserveForeignKeys " + this.preserveForeignKeys);
             System.out.println("pojosForProcedures " + this.pojosForProcedures);
@@ -1303,8 +1301,15 @@ public class TableBaseGenerator {
     }
 
     protected boolean addDefinitions(DbResolver dbResolver, IScopeProvider scopeProvider, List<String> tables,
-            List<String> procedures, List<String> functions) {
+            List<String> procedures, List<String> functions, Stats stats) {
         try {
+            this.dbSequences.addAll(dbResolver.getSequences(model));
+            this.dbType = CommonUtils.getDbType(dbResolver, model);
+            if (debug.debug) {
+                System.out.println("sequences " + this.dbSequences);
+                System.out.println("dbType " + this.dbType);
+            }
+
             if (tables == null && procedures == null && functions == null)
                 return false;
             if (tables != null) {
@@ -1318,13 +1323,20 @@ public class TableBaseGenerator {
                     if (dbColumns.isEmpty())
                         continue;
                     System.out.println("= table " + table);
+                    stats.nTables += 1;
+                    stats.nColumns += dbColumns.size();
                     List<String> dbPrimaryKeys = dbResolver.getDbPrimaryKeys(model, table);
+                    stats.nPrimaryKeys += dbPrimaryKeys.size();
                     List<DbExport> dbExports = dbResolver.getDbExports(model, table);
+                    stats.nExports += dbExports.size();
                     List<DbImport> dbImports = dbResolver.getDbImports(model, table);
+                    stats.nImports += dbImports.size();
                     List<DbIndex> dbIndexes = dbResolver.getDbIndexes(model, table);
+                    stats.nIndexes += dbIndexes.size();
                     List<DbTable> ltables = dbResolver.getDbTables(model, table);
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
                     List<DbCheckConstraint> dbCheckConstraints = dbResolver.getDbCheckConstraints(model, table);
+                    stats.nCheckConstraints += dbCheckConstraints.size();
                     addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes,
                             dbCheckConstraints, comment);
                     System.out.println("< table " + table);

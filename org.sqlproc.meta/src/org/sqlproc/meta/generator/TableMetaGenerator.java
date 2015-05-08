@@ -35,6 +35,7 @@ import org.sqlproc.plugin.lib.resolver.DbResolver.DbType;
 import org.sqlproc.plugin.lib.util.Constants;
 import org.sqlproc.plugin.lib.util.Debug;
 import org.sqlproc.plugin.lib.util.SqlFeature;
+import org.sqlproc.plugin.lib.util.Stats;
 
 public class TableMetaGenerator extends TableBaseGenerator {
 
@@ -77,8 +78,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
     }
 
     public TableMetaGenerator(ModelProperty modelProperty, Artifacts artifacts, IScopeProvider scopeProvider,
-            Map<String, String> finalMetas, List<String> dbSequences, DbType dbType) {
-        super(modelProperty, artifacts, dbSequences, dbType);
+            Map<String, String> finalMetas) {
+        super(modelProperty, artifacts);
         this.scopeProvider = scopeProvider;
         this.artifacts = artifacts;
         this.finalMetas = finalMetas;
@@ -2149,7 +2150,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
         }
     }
 
-    protected boolean addDefinitions(IScopeProvider scopeProvider, DbResolver dbResolver) {
+    protected boolean addDefinitions(IScopeProvider scopeProvider, DbResolver dbResolver, Stats stats) {
         try {
             List<String> tables = Utils.findTables(null, artifacts,
                     scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES));
@@ -2157,7 +2158,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
                     scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__PROCEDURES));
             List<String> functions = Utils.findFunctions(null, artifacts,
                     scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__FUNCTIONS));
-            return super.addDefinitions(dbResolver, scopeProvider, tables, procedures, functions);
+            return super.addDefinitions(dbResolver, scopeProvider, tables, procedures, functions, stats);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -2165,7 +2166,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
     }
 
     public static String generateMeta(Artifacts artifacts, List<MetaStatement> statements, ISerializer serializer,
-            DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty) {
+            DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty, Stats stats) {
         if (artifacts == null || !dbResolver.isResolveDb(artifacts))
             return null;
 
@@ -2178,11 +2179,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
             }
         }
 
-        List<String> dbSequences = dbResolver.getSequences(artifacts);
-        DbType dbType = Utils.getDbType(dbResolver, artifacts);
-        TableMetaGenerator generator = new TableMetaGenerator(modelProperty, artifacts, scopeProvider, finalMetas,
-                dbSequences, dbType);
-        if (generator.addDefinitions(scopeProvider, dbResolver))
+        TableMetaGenerator generator = new TableMetaGenerator(modelProperty, artifacts, scopeProvider, finalMetas);
+        if (generator.addDefinitions(scopeProvider, dbResolver, stats))
             return generator.getMetaDefinitions(modelProperty, artifacts);
         return null;
     }
