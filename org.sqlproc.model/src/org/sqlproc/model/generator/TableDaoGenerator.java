@@ -32,6 +32,7 @@ import org.sqlproc.plugin.lib.property.PojoEntityType;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.resolver.DbResolver.DbType;
 import org.sqlproc.plugin.lib.util.Debug;
+import org.sqlproc.plugin.lib.util.Stats;
 
 public class TableDaoGenerator extends TablePojoGenerator {
 
@@ -644,7 +645,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
     }
 
     public static String generateDao(Artifacts artifacts, Package packagex, ISerializer serializer,
-            DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty) {
+            DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty, Stats stats) {
         if (artifacts == null || !dbResolver.isResolveDb(artifacts))
             return null;
         if (serializer == null)
@@ -683,7 +684,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
         DbType dbType = Utils.getDbType(dbResolver, artifacts);
         TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, scopeProvider, finalDaos,
                 finalFeatures, annotations, imports, dbSequences, dbType);
-        if (generator.addDefinitions(dbResolver, scopeProvider))
+        if (generator.addDefinitions(dbResolver, scopeProvider, stats))
             return generator.getDaoDefinitions(modelProperty, artifacts, serializer);
         return null;
     }

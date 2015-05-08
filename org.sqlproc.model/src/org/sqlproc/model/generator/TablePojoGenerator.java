@@ -33,6 +33,7 @@ import org.sqlproc.plugin.lib.property.ModelProperty;
 import org.sqlproc.plugin.lib.property.PojoAttribute;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.resolver.DbResolver.DbType;
+import org.sqlproc.plugin.lib.util.Stats;
 
 public class TablePojoGenerator extends TableBaseGenerator {
 
@@ -786,7 +787,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
         }
     }
 
-    protected boolean addDefinitions(DbResolver dbResolver, IScopeProvider scopeProvider) {
+    protected boolean addDefinitions(DbResolver dbResolver, IScopeProvider scopeProvider, Stats stats) {
         try {
             List<String> tables = Utils.findTables(null, artifacts,
                     scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__TABLES));
@@ -794,7 +795,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                     scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__PROCEDURES));
             List<String> functions = Utils.findFunctions(null, artifacts,
                     scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__FUNCTIONS));
-            return super.addDefinitions(dbResolver, scopeProvider, tables, procedures, functions);
+            return super.addDefinitions(dbResolver, scopeProvider, tables, procedures, functions, stats);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -802,7 +803,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
     }
 
     public static String generatePojo(Artifacts artifacts, Package packagex, ISerializer serializer,
-            DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty) {
+            DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty, Stats stats) {
         if (artifacts == null || !dbResolver.isResolveDb(artifacts))
             return null;
         if (serializer == null)
@@ -855,7 +856,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
         DbType dbType = Utils.getDbType(dbResolver, artifacts);
         TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, finalEntities, finalFeatures,
                 annotations, imports, dbSequences, dbType);
-        if (generator.addDefinitions(dbResolver, scopeProvider))
+        if (generator.addDefinitions(dbResolver, scopeProvider, stats))
             return generator.getPojoDefinitions(modelProperty, artifacts, serializer);
         return null;
     }

@@ -29,6 +29,7 @@ import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.resolver.PojoResolverFactory;
 import org.sqlproc.plugin.lib.resolver.StandalonePojoResolverImpl;
 import org.sqlproc.plugin.lib.util.MainUtils;
+import org.sqlproc.plugin.lib.util.Stats;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -234,9 +235,11 @@ public class Main {
 
         fileAccess.setOutputPath(target);
         System.out.println("Going to generate " + sql);
+        Stats stats = new Stats();
         String metaDefinitions = TableMetaGenerator.generateMeta(definitions, statements,
-                ((XtextResource) controlResource).getSerializer(), dbResolver, scopeProvider, modelProperty);
+                ((XtextResource) controlResource).getSerializer(), dbResolver, scopeProvider, modelProperty, stats);
         fileAccess.generateFile(sql, metaDefinitions);
         System.out.println(sql + " generation finished.");
+        System.out.println(stats.toString());
     }
 }

@@ -35,6 +35,7 @@ import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.resolver.DbResolver.DbType;
 import org.sqlproc.plugin.lib.resolver.DbTable;
 import org.sqlproc.plugin.lib.util.Debug;
+import org.sqlproc.plugin.lib.util.Stats;
 
 public class TableBaseGenerator {
 
@@ -1303,7 +1304,7 @@ public class TableBaseGenerator {
     }
 
     protected boolean addDefinitions(DbResolver dbResolver, IScopeProvider scopeProvider, List<String> tables,
-            List<String> procedures, List<String> functions) {
+            List<String> procedures, List<String> functions, Stats stats) {
         try {
             if (tables == null && procedures == null && functions == null)
                 return false;
@@ -1318,13 +1319,20 @@ public class TableBaseGenerator {
                     if (dbColumns.isEmpty())
                         continue;
                     System.out.println("= table " + table);
+                    stats.nTables += 1;
+                    stats.nColumns += dbColumns.size();
                     List<String> dbPrimaryKeys = dbResolver.getDbPrimaryKeys(model, table);
+                    stats.nPrimaryKeys += dbPrimaryKeys.size();
                     List<DbExport> dbExports = dbResolver.getDbExports(model, table);
+                    stats.nExports += dbExports.size();
                     List<DbImport> dbImports = dbResolver.getDbImports(model, table);
+                    stats.nImports += dbImports.size();
                     List<DbIndex> dbIndexes = dbResolver.getDbIndexes(model, table);
+                    stats.nIndexes += dbIndexes.size();
                     List<DbTable> ltables = dbResolver.getDbTables(model, table);
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
                     List<DbCheckConstraint> dbCheckConstraints = dbResolver.getDbCheckConstraints(model, table);
+                    stats.nCheckConstraints += dbCheckConstraints.size();
                     addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes,
                             dbCheckConstraints, comment);
                     System.out.println("< table " + table);
