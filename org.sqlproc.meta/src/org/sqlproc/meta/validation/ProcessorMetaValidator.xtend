@@ -76,6 +76,9 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     def checkMetaSqlFtype(MetaSql metaSql) {
         if (metaSql.getFtype() == null)
             return;
+        if (CommonUtils.skipVerification(metaSql, modelProperty))
+            return;
+            
         if (!findInListIgnoreCase(F_TYPES, metaSql.getFtype())) {
             error("Invalid ftype : " + metaSql.getFtype(), ProcessorMetaPackage.Literals.META_SQL__FTYPE)
         }
@@ -93,9 +96,12 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     
     @Check
     def checkUniqueMetaStatement(MetaStatement metaStatement) {
-        if (!(metaStatement.rootContainer instanceof Artifacts))
-            return
-        val artifacts = metaStatement.rootContainer as Artifacts
+        if (CommonUtils.skipVerification(metaStatement, modelProperty))
+            return;
+        val artifacts = getArtifacts(metaStatement)
+        if (artifacts == null)
+            return;
+
         for (MetaStatement metaStmt : artifacts.getStatements()) {
             if (metaStmt != null && metaStmt !== metaStatement) {
 	            if (equalsStatement(metaStatement, metaStmt)) {
@@ -109,9 +115,12 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
     @Check
     def checkUniqueMappingRule(MappingRule mappingRule) {
-        if (!(mappingRule.rootContainer instanceof Artifacts))
-            return
-        val artifacts = mappingRule.rootContainer as Artifacts
+        if (CommonUtils.skipVerification(mappingRule, modelProperty))
+            return;
+        val artifacts = getArtifacts(mappingRule)
+        if (artifacts == null)
+            return;
+
         for (MappingRule rule : artifacts.getMappings()) {
             if (rule != null && rule !== mappingRule) {
 	            if (equalsRule(mappingRule, rule)) {
@@ -125,9 +134,12 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
     @Check
     def checkUniqueOptionalFeature(OptionalFeature optionalFeature) {
-        if (!(optionalFeature.rootContainer instanceof Artifacts))
-            return
-        val artifacts = optionalFeature.rootContainer as Artifacts
+        if (CommonUtils.skipVerification(optionalFeature, modelProperty))
+            return;
+        val artifacts = getArtifacts(optionalFeature)
+        if (artifacts == null)
+            return;
+
         for (OptionalFeature feature : artifacts.getFeatures()) {
             if (feature != null && feature != optionalFeature) {
 	            if (equalsFeature(optionalFeature, feature)) {
@@ -141,13 +153,16 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
     @Check
     def checkUniquePojoDefinition(PojoDefinition pojoDefinition) {
+        if (CommonUtils.skipVerification(pojoDefinition, modelProperty))
+            return;
+        val artifacts = getArtifacts(pojoDefinition)
+        if (artifacts == null)
+            return;
+            
     	val URI uri = pojoDefinition.eResource?.URI
         if (isResolvePojo(pojoDefinition) && !checkClass(getClass(pojoDefinition), uri))
             error("Class name : " + getClass(pojoDefinition) + " not exists",
                     ProcessorMetaPackage.Literals.POJO_DEFINITION__NAME)
-        if (!(pojoDefinition.rootContainer instanceof Artifacts))
-            return
-        val artifacts = pojoDefinition.rootContainer as Artifacts
         for (PojoDefinition definition : artifacts.getPojos()) {
             if (definition != null && definition !== pojoDefinition) {
 	            if (pojoDefinition.getName().equals(definition.getName())) {
@@ -258,7 +273,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     @Check
     def checkColumn(Column column) {
         if (!isResolvePojo(column))
-            return
+            return;
         val columnName = Utils.getName(column)
         if (Utils.isNumber(columnName))
             return;
@@ -267,7 +282,9 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
         val URI uri = column.eResource?.URI
         val statement = column.getContainerOfType(typeof(MetaStatement))
-        val artifacts = statement.getContainerOfType(typeof(Artifacts))
+        val artifacts = getArtifacts(statement)
+        if (artifacts == null)
+            return;
 
         val pojoName = Utils.getTokenFromModifier(statement, COLUMN_USAGE)
         val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
@@ -342,7 +359,9 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         val URI uri = identifier.eResource?.URI
         val identifierName = identifier.getName()
         val statement = identifier.getContainerOfType(typeof(MetaStatement))
-        val artifacts = statement.getContainerOfType(typeof(Artifacts))
+        val artifacts = getArtifacts(statement)
+        if (artifacts == null)
+            return;
 
         val pojoName = Utils.getTokenFromModifier(statement, IDENTIFIER_USAGE)
         val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
@@ -375,7 +394,9 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
         val URI uri = constant.eResource?.URI
         val statement = constant.getContainerOfType(typeof(MetaStatement))
-        val artifacts = statement.getContainerOfType(typeof(Artifacts))
+        val artifacts = getArtifacts(constant)
+        if (artifacts == null)
+            return;
 
         val pojoName = Utils.getTokenFromModifier(statement, CONSTANT_USAGE)
         val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
@@ -402,7 +423,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     @Check
     def checkMappingColumn(MappingColumn column) {
         if (!isResolvePojo(column))
-            return
+            return;
         val columnName = Utils.getName(column)
         if (Utils.isNumber(columnName))
             return;
@@ -411,7 +432,9 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
         val URI uri = column.eResource?.URI
         val rule = column.getContainerOfType(typeof(MetaStatement))
-        val artifacts = rule.getContainerOfType(typeof(Artifacts))
+        val artifacts = getArtifacts(rule)
+        if (artifacts == null)
+            return;
 
         val pojoName = Utils.getTokenFromModifier(rule, MAPPING_USAGE)
         val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
@@ -441,8 +464,10 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             return;
         if (CommonUtils.skipVerification(statement, modelProperty))
             return;
+        val artifacts = getArtifacts(statement)
+        if (artifacts == null)
+            return;
 
-        val artifacts = statement.getContainerOfType(typeof(Artifacts))
         var index = 0
         for (String modifier : statement.getModifiers()) {
             var ix = modifier.indexOf('=')
@@ -492,8 +517,10 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             return;
         if (CommonUtils.skipVerification(rule, modelProperty))
             return;
+        val artifacts = getArtifacts(rule)
+        if (artifacts == null)
+            return;
 
-        val artifacts = rule.getContainerOfType(typeof(Artifacts))
         var index = 0
         for (String modifier : rule.getModifiers()) {
             var ix = modifier.indexOf('=')
@@ -610,9 +637,12 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
     @Check
     def checkUniqueProperty(Property property) {
-        if (!(property.rootContainer instanceof Artifacts))
-            return
-        val artifacts = property.rootContainer as Artifacts
+        if (CommonUtils.skipVerification(property, modelProperty))
+            return;
+        val artifacts = getArtifacts(property)
+        if (artifacts == null)
+            return;
+
         for (Property prop : artifacts.getProperties()) {
             if (prop != null && prop !== property) {
 	            if (prop.getName().equals(property.getName()) && !prop.getName().startsWith("pojogen")
@@ -627,9 +657,12 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
     @Check
     def checkTableDefinition(TableDefinition tableDefinition) {
-        if (!(tableDefinition.rootContainer instanceof Artifacts))
-            return
-        val artifacts = tableDefinition.rootContainer as Artifacts
+        if (CommonUtils.skipVerification(tableDefinition, modelProperty))
+            return;
+        val artifacts = getArtifacts(tableDefinition)
+        if (artifacts == null)
+            return;
+
         for (TableDefinition table : artifacts.getTables()) {
             if (table != null && table !== tableDefinition) {
 	            if (tableDefinition.getName().equals(table.getName())) {
@@ -647,9 +680,12 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
     @Check
     def checkProcedureDefinition(ProcedureDefinition procedureDefinition) {
-        if (!(procedureDefinition.rootContainer instanceof Artifacts))
-            return
-        val artifacts = procedureDefinition.rootContainer as Artifacts
+        if (CommonUtils.skipVerification(procedureDefinition, modelProperty))
+            return;
+        val artifacts = getArtifacts(procedureDefinition)
+        if (artifacts == null)
+            return;
+
         for (ProcedureDefinition procedure : artifacts.getProcedures()) {
             if (procedure != null && procedure !== procedureDefinition) {
 	            if (procedureDefinition.getName().equals(procedure.getName())) {
@@ -668,9 +704,12 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
     @Check
     def checkFunctionDefinition(FunctionDefinition functionDefinition) {
-        if (!(functionDefinition.rootContainer instanceof Artifacts))
-            return
-        val artifacts = functionDefinition.rootContainer as Artifacts
+        if (CommonUtils.skipVerification(functionDefinition, modelProperty))
+            return;
+        val artifacts = getArtifacts(functionDefinition)
+        if (artifacts == null)
+            return;
+
         for (FunctionDefinition function : artifacts.getFunctions()) {
             if (function != null && function !== functionDefinition) {
 	            if (functionDefinition.getName().equals(function.getName())) {
@@ -685,7 +724,10 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     @Check
     def checkDatabaseColumn(DatabaseColumn databaseColumn) {
         if (!isResolveDb(databaseColumn))
-            return
+            return;
+        if (CommonUtils.skipVerification(databaseColumn, modelProperty))
+            return;
+            
         var prefix = databaseColumn.getName()
         var columnName = null as String
         val pos = prefix.indexOf('.')
@@ -698,7 +740,10 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         }
 
         val statement = databaseColumn.getContainerOfType(typeof(MetaStatement))
-        val artifacts = statement.getContainerOfType(typeof(Artifacts))
+        val artifacts = getArtifacts(statement)
+        if (artifacts == null)
+            return;
+
         val value = Utils.getTokenFromModifier(statement, TABLE_USAGE, prefix)
         val tableDefinition = if (value != null) Utils.findTable(qualifiedNameConverter, artifacts,
                 scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES), value)
@@ -712,9 +757,14 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     @Check
     def checkDatabaseTable(DatabaseTable databaseTable) {
         if (!isResolveDb(databaseTable))
-            return
+            return;
+        if (CommonUtils.skipVerification(databaseTable, modelProperty))
+            return;
+
         val statement = databaseTable.getContainerOfType(typeof(MetaStatement))
-        val artifacts = statement.getContainerOfType(typeof(Artifacts))
+        val artifacts = getArtifacts(statement)
+        if (artifacts == null)
+            return;
 
         val tableName = databaseTable.getName()
         val tableDefinitions = Utils.getTokensFromModifier(statement, TABLE_USAGE).map[value |
@@ -727,4 +777,10 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         }
     }
     
+    def Artifacts getArtifacts(EObject model) {
+        val root = model.rootContainer
+        if (!(root instanceof Artifacts))
+            return null;
+        return root as Artifacts
+    }
 }

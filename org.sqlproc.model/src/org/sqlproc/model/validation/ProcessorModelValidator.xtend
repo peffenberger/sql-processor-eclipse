@@ -29,6 +29,7 @@ import org.sqlproc.model.processorModel.EnumEntity
 import org.sqlproc.model.processorModel.DaoEntity
 import org.sqlproc.model.processorModel.PojoAttribute
 import org.sqlproc.model.processorModel.Entity
+import org.sqlproc.plugin.lib.util.CommonUtils
 
 /**
  * Custom validation rules. 
@@ -54,13 +55,16 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
 
     @Check
     def checkUniquePojoDefinition(PojoDefinition pojoDefinition) {
+    	if (CommonUtils.skipVerification(pojoDefinition, modelProperty))
+            return;
+    	
     	val URI uri = pojoDefinition.eResource?.URI
         if (isResolvePojo(pojoDefinition) && !checkClass(getClass(pojoDefinition), uri))
             error("Class name : " + getClass(pojoDefinition) + " not exists",
                     ProcessorModelPackage.Literals.POJO_DEFINITION__NAME)
-        if (!(pojoDefinition.rootContainer instanceof Artifacts))
-            return
-        val artifacts = pojoDefinition.rootContainer as Artifacts
+        val artifacts = getArtifacts(pojoDefinition)
+        if (artifacts == null)
+            return;
         for (PojoDefinition definition : artifacts.getPojos()) {
             if (definition != null && definition !== pojoDefinition) {
 	            if (pojoDefinition.getName().equals(definition.getName())) {
@@ -101,9 +105,12 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
 
     @Check
     def checkUniqueProperty(Property property) {
-        if (!(property.rootContainer instanceof Artifacts))
-            return
-        val artifacts = property.rootContainer as Artifacts
+        if (CommonUtils.skipVerification(property, modelProperty))
+            return;
+        val artifacts = getArtifacts(property)
+        if (artifacts == null)
+            return;
+
         for (Property prop : artifacts.getProperties()) {
             if (prop != null && prop !== property) {
 	            if (prop.getName().equals(property.getName()) && !prop.getName().startsWith("pojogen")
@@ -118,9 +125,12 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
 
     @Check
     def checkTableDefinition(TableDefinition tableDefinition) {
-        if (!(tableDefinition.rootContainer instanceof Artifacts))
-            return
-        val artifacts = tableDefinition.rootContainer as Artifacts
+        if (CommonUtils.skipVerification(tableDefinition, modelProperty))
+            return;
+        val artifacts = getArtifacts(tableDefinition)
+        if (artifacts == null)
+            return;
+
         for (TableDefinition table : artifacts.getTables()) {
             if (table != null && table !== tableDefinition) {
 	            if (tableDefinition.getName().equals(table.getName())) {
@@ -138,9 +148,12 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
 
     @Check
     def checkProcedureDefinition(ProcedureDefinition procedureDefinition) {
-        if (!(procedureDefinition.rootContainer instanceof Artifacts))
-            return
-        val artifacts = procedureDefinition.rootContainer as Artifacts
+        if (CommonUtils.skipVerification(procedureDefinition, modelProperty))
+            return;
+        val artifacts = getArtifacts(procedureDefinition)
+        if (artifacts == null)
+            return;
+
         for (ProcedureDefinition procedure : artifacts.getProcedures()) {
             if (procedure != null && procedure !== procedureDefinition) {
 	            if (procedureDefinition.getName().equals(procedure.getName())) {
@@ -159,9 +172,12 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
 
     @Check
     def checkFunctionDefinition(FunctionDefinition functionDefinition) {
-        if (!(functionDefinition.rootContainer instanceof Artifacts))
-            return
-        val artifacts = functionDefinition.rootContainer as Artifacts
+        if (CommonUtils.skipVerification(functionDefinition, modelProperty))
+            return;
+        val artifacts = getArtifacts(functionDefinition)
+        if (artifacts == null)
+            return;
+
         for (FunctionDefinition function : artifacts.getFunctions()) {
             if (function != null && function !== functionDefinition) {
 	            if (functionDefinition.getName().equals(function.getName())) {
@@ -175,9 +191,12 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
     
     @Check
     def checkUniquePojoEntity(PojoEntity pojoEntity) {
-        if (!(pojoEntity.rootContainer instanceof Artifacts))
-            return
-        val artifacts = pojoEntity.rootContainer as Artifacts
+        if (CommonUtils.skipVerification(pojoEntity, modelProperty))
+            return;
+        val artifacts = getArtifacts(pojoEntity)
+        if (artifacts == null)
+            return;
+
         for (Package pkg : artifacts.getPackages()) {
             if (pkg != null) {
 	            for (AbstractEntity entity : pkg.getElements()) {
@@ -200,9 +219,12 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
 
     @Check
     def checkUniqueEnumEntity(EnumEntity enumEntity) {
-        if (!(enumEntity.rootContainer instanceof Artifacts))
-            return
-        val artifacts = enumEntity.rootContainer as Artifacts
+        if (CommonUtils.skipVerification(enumEntity, modelProperty))
+            return;
+        val artifacts = getArtifacts(enumEntity)
+        if (artifacts == null)
+            return;
+
         for (Package pkg : artifacts.getPackages()) {
             if (pkg != null) {
 	            for (AbstractEntity entity : pkg.getElements()) {
@@ -225,9 +247,12 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
 
     @Check
     def checkUniqueDaoEntity(DaoEntity daoEntity) {
-        if (!(daoEntity.rootContainer instanceof Artifacts))
-            return
-        val artifacts = daoEntity.rootContainer as Artifacts
+        if (CommonUtils.skipVerification(daoEntity, modelProperty))
+            return;
+        val artifacts = getArtifacts(daoEntity)
+        if (artifacts == null)
+            return;
+
         for (Package pkg : artifacts.getPackages()) {
             if (pkg != null) {
 	            for (AbstractEntity entity : pkg.getElements()) {
@@ -250,6 +275,9 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
 
     @Check
     def checkUniquePojoAttribute(PojoAttribute pojoProperty) {
+        if (CommonUtils.skipVerification(pojoProperty, modelProperty))
+            return;
+            
         val entity = pojoProperty.getContainerOfType(typeof(Entity))
         if (entity != null) {
         	if (entity instanceof PojoEntity) {
@@ -274,5 +302,12 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
 		        }
 	        }
         }
+    }
+    
+    def Artifacts getArtifacts(EObject model) {
+        val root = model.rootContainer
+        if (!(root instanceof Artifacts))
+            return null;
+        return root as Artifacts
     }
 }
