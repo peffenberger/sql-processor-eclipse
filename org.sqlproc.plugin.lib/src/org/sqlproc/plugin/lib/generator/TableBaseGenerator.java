@@ -1319,20 +1319,20 @@ public class TableBaseGenerator {
                     if (dbColumns.isEmpty())
                         continue;
                     System.out.println("= table " + table);
-                    stats.nTables += 1;
-                    stats.nColumns += dbColumns.size();
+                    stats.tables += 1;
+                    stats.columns += dbColumns.size();
                     List<String> dbPrimaryKeys = dbResolver.getDbPrimaryKeys(model, table);
-                    stats.nPrimaryKeys += dbPrimaryKeys.size();
+                    stats.primaryKeys += dbPrimaryKeys.size();
                     List<DbExport> dbExports = dbResolver.getDbExports(model, table);
-                    stats.nExports += dbExports.size();
+                    stats.exports += dbExports.size();
                     List<DbImport> dbImports = dbResolver.getDbImports(model, table);
-                    stats.nImports += dbImports.size();
+                    stats.imports += dbImports.size();
                     List<DbIndex> dbIndexes = dbResolver.getDbIndexes(model, table);
-                    stats.nIndexes += dbIndexes.size();
+                    stats.indexes += dbIndexes.size();
                     List<DbTable> ltables = dbResolver.getDbTables(model, table);
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
                     List<DbCheckConstraint> dbCheckConstraints = dbResolver.getDbCheckConstraints(model, table);
-                    stats.nCheckConstraints += dbCheckConstraints.size();
+                    stats.checkConstraints += dbCheckConstraints.size();
                     addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes,
                             dbCheckConstraints, comment);
                     System.out.println("< table " + table);
@@ -1350,7 +1350,9 @@ public class TableBaseGenerator {
                     if (dbProcedures.isEmpty())
                         continue;
                     System.out.println("= procedure " + procedure);
+                    stats.procedures += 1;
                     List<DbColumn> dbProcColumns = dbResolver.getDbProcColumns(model, procedure);
+                    stats.procColumns += dbProcColumns.size();
                     List<DbTable> ltables = dbResolver.getDbProcedures(model, procedure);
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
                     addProcedureDefinition(procedure, dbProcedures.get(0), dbProcColumns,
@@ -1367,7 +1369,9 @@ public class TableBaseGenerator {
                     if (dbFunctions.isEmpty())
                         continue;
                     System.out.println("= function " + function);
+                    stats.functions += 1;
                     List<DbColumn> dbFunColumns = dbResolver.getDbFunColumns(model, function);
+                    stats.funColumns += dbFunColumns.size();
                     List<DbTable> ltables = dbResolver.getDbFunctions(model, function);
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
                     addFunctionDefinition(function, dbFunctions.get(0), dbFunColumns, comment);
