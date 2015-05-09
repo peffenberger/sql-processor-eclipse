@@ -2,14 +2,21 @@
  */
 package org.sqlproc.model.processorModel.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sqlproc.model.processorModel.DaogenProperty;
 import org.sqlproc.model.processorModel.DatabaseProperty;
@@ -36,6 +43,8 @@ import org.sqlproc.model.processorModel.ValueType;
  *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getReplaceId <em>Replace Id</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getRegex <em>Regex</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getReplacement <em>Replacement</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getDoVerifyResources <em>Do Verify Resources</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getDoNotVerifyResources <em>Do Not Verify Resources</em>}</li>
  * </ul>
  * </p>
  *
@@ -152,6 +161,26 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @ordered
    */
   protected ValueType replacement;
+
+  /**
+   * The cached value of the '{@link #getDoVerifyResources() <em>Do Verify Resources</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDoVerifyResources()
+   * @generated
+   * @ordered
+   */
+  protected EList<ValueType> doVerifyResources;
+
+  /**
+   * The cached value of the '{@link #getDoNotVerifyResources() <em>Do Not Verify Resources</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDoNotVerifyResources()
+   * @generated
+   * @ordered
+   */
+  protected EList<ValueType> doNotVerifyResources;
 
   /**
    * <!-- begin-user-doc -->
@@ -561,6 +590,34 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<ValueType> getDoVerifyResources()
+  {
+    if (doVerifyResources == null)
+    {
+      doVerifyResources = new EObjectContainmentEList<ValueType>(ValueType.class, this, ProcessorModelPackage.PROPERTY__DO_VERIFY_RESOURCES);
+    }
+    return doVerifyResources;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<ValueType> getDoNotVerifyResources()
+  {
+    if (doNotVerifyResources == null)
+    {
+      doNotVerifyResources = new EObjectContainmentEList<ValueType>(ValueType.class, this, ProcessorModelPackage.PROPERTY__DO_NOT_VERIFY_RESOURCES);
+    }
+    return doNotVerifyResources;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -580,6 +637,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return basicSetRegex(null, msgs);
       case ProcessorModelPackage.PROPERTY__REPLACEMENT:
         return basicSetReplacement(null, msgs);
+      case ProcessorModelPackage.PROPERTY__DO_VERIFY_RESOURCES:
+        return ((InternalEList<?>)getDoVerifyResources()).basicRemove(otherEnd, msgs);
+      case ProcessorModelPackage.PROPERTY__DO_NOT_VERIFY_RESOURCES:
+        return ((InternalEList<?>)getDoNotVerifyResources()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -612,6 +673,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return getRegex();
       case ProcessorModelPackage.PROPERTY__REPLACEMENT:
         return getReplacement();
+      case ProcessorModelPackage.PROPERTY__DO_VERIFY_RESOURCES:
+        return getDoVerifyResources();
+      case ProcessorModelPackage.PROPERTY__DO_NOT_VERIFY_RESOURCES:
+        return getDoNotVerifyResources();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -621,6 +686,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -652,6 +718,14 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return;
       case ProcessorModelPackage.PROPERTY__REPLACEMENT:
         setReplacement((ValueType)newValue);
+        return;
+      case ProcessorModelPackage.PROPERTY__DO_VERIFY_RESOURCES:
+        getDoVerifyResources().clear();
+        getDoVerifyResources().addAll((Collection<? extends ValueType>)newValue);
+        return;
+      case ProcessorModelPackage.PROPERTY__DO_NOT_VERIFY_RESOURCES:
+        getDoNotVerifyResources().clear();
+        getDoNotVerifyResources().addAll((Collection<? extends ValueType>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -694,6 +768,12 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
       case ProcessorModelPackage.PROPERTY__REPLACEMENT:
         setReplacement((ValueType)null);
         return;
+      case ProcessorModelPackage.PROPERTY__DO_VERIFY_RESOURCES:
+        getDoVerifyResources().clear();
+        return;
+      case ProcessorModelPackage.PROPERTY__DO_NOT_VERIFY_RESOURCES:
+        getDoNotVerifyResources().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -726,6 +806,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return regex != null;
       case ProcessorModelPackage.PROPERTY__REPLACEMENT:
         return replacement != null;
+      case ProcessorModelPackage.PROPERTY__DO_VERIFY_RESOURCES:
+        return doVerifyResources != null && !doVerifyResources.isEmpty();
+      case ProcessorModelPackage.PROPERTY__DO_NOT_VERIFY_RESOURCES:
+        return doNotVerifyResources != null && !doNotVerifyResources.isEmpty();
     }
     return super.eIsSet(featureID);
   }

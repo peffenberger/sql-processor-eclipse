@@ -2,6 +2,8 @@
  */
 package org.sqlproc.model.processorModel;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -21,6 +23,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.model.processorModel.Property#getReplaceId <em>Replace Id</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Property#getRegex <em>Regex</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Property#getReplacement <em>Replacement</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.Property#getDoVerifyResources <em>Do Verify Resources</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.Property#getDoNotVerifyResources <em>Do Not Verify Resources</em>}</li>
  * </ul>
  * </p>
  *
@@ -263,5 +267,37 @@ public interface Property extends EObject
    * @generated
    */
   void setReplacement(ValueType value);
+
+  /**
+   * Returns the value of the '<em><b>Do Verify Resources</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.model.processorModel.ValueType}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Do Verify Resources</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Do Verify Resources</em>' containment reference list.
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getProperty_DoVerifyResources()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ValueType> getDoVerifyResources();
+
+  /**
+   * Returns the value of the '<em><b>Do Not Verify Resources</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.model.processorModel.ValueType}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Do Not Verify Resources</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Do Not Verify Resources</em>' containment reference list.
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getProperty_DoNotVerifyResources()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ValueType> getDoNotVerifyResources();
 
 } // Property

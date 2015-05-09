@@ -1282,13 +1282,31 @@ public interface ProcessorMetaPackage extends EPackage
   int PROPERTY__REPLACEMENT = 8;
 
   /**
+   * The feature id for the '<em><b>Do Verify Resources</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY__DO_VERIFY_RESOURCES = 9;
+
+  /**
+   * The feature id for the '<em><b>Do Not Verify Resources</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY__DO_NOT_VERIFY_RESOURCES = 10;
+
+  /**
    * The number of structural features of the '<em>Property</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_FEATURE_COUNT = 9;
+  int PROPERTY_FEATURE_COUNT = 11;
 
   /**
    * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.DatabasePropertyImpl <em>Database Property</em>}' class.
@@ -4609,6 +4627,28 @@ public interface ProcessorMetaPackage extends EPackage
   EReference getProperty_Replacement();
 
   /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.meta.processorMeta.Property#getDoVerifyResources <em>Do Verify Resources</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Do Verify Resources</em>'.
+   * @see org.sqlproc.meta.processorMeta.Property#getDoVerifyResources()
+   * @see #getProperty()
+   * @generated
+   */
+  EReference getProperty_DoVerifyResources();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.sqlproc.meta.processorMeta.Property#getDoNotVerifyResources <em>Do Not Verify Resources</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Do Not Verify Resources</em>'.
+   * @see org.sqlproc.meta.processorMeta.Property#getDoNotVerifyResources()
+   * @see #getProperty()
+   * @generated
+   */
+  EReference getProperty_DoNotVerifyResources();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.DatabaseProperty <em>Database Property</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -7708,6 +7748,22 @@ public interface ProcessorMetaPackage extends EPackage
      * @generated
      */
     EReference PROPERTY__REPLACEMENT = eINSTANCE.getProperty_Replacement();
+
+    /**
+     * The meta object literal for the '<em><b>Do Verify Resources</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROPERTY__DO_VERIFY_RESOURCES = eINSTANCE.getProperty_DoVerifyResources();
+
+    /**
+     * The meta object literal for the '<em><b>Do Not Verify Resources</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROPERTY__DO_NOT_VERIFY_RESOURCES = eINSTANCE.getProperty_DoNotVerifyResources();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.DatabasePropertyImpl <em>Database Property</em>}' class.
