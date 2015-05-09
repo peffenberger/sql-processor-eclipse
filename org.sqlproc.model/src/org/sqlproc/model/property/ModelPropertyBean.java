@@ -278,8 +278,8 @@ public class ModelPropertyBean extends ModelProperty {
             }
             if (property.getDoNotVerifyResources() != null) {
                 for (int i = 0, m = property.getDoNotVerifyResources().size(); i < m; i++) {
-                    modelValues.doVerifyResources
-                            .add(Utils.getPropertyValue(property.getDoNotVerifyResources().get(i)));
+                    modelValues.doNotVerifyResources.add(Utils.getPropertyValue(property.getDoNotVerifyResources().get(
+                            i)));
                 }
             }
         }

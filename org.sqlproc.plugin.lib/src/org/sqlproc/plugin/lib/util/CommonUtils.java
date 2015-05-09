@@ -7,7 +7,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.util.Strings;
@@ -365,36 +364,11 @@ public class CommonUtils {
         return value;
     }
 
-    public static boolean skipVerification(EObject model, URI uri, ModelProperty modelProperty) {
-        boolean result = _skipVerification(model, uri, modelProperty);
-        System.out.println(uri.toString() + "->" + result);
+    public static boolean skipVerification(EObject model, ModelProperty modelProperty) {
+        if (modelProperty == null)
+            assert false;
+        boolean result = modelProperty.skipVerification(model);
+        System.out.println(model.toString() + "->" + result);
         return result;
-    }
-
-    public static boolean _skipVerification(EObject model, URI uri, ModelProperty modelProperty) {
-        if (uri == null || modelProperty == null)
-            return true;
-        String suri = uri.toString();
-        Set<String> doVerifyResources = modelProperty.getDoVerifyResources(model);
-        Set<String> doNotVerifyResources = modelProperty.getDoNotVerifyResources(model);
-        if ((doVerifyResources == null || doVerifyResources.isEmpty())
-                && (doNotVerifyResources == null || doNotVerifyResources.isEmpty()))
-            return false;
-        if (doVerifyResources != null && !doVerifyResources.isEmpty()) {
-            for (String res : doVerifyResources) {
-                if (suri.indexOf(res) >= 0)
-                    return false;
-            }
-            return true;
-        }
-        if (doNotVerifyResources != null && !doNotVerifyResources.isEmpty()) {
-            for (String res : doVerifyResources) {
-                if (suri.indexOf(res) >= 0)
-                    return true;
-            }
-            return false;
-        }
-        assert false;
-        return true;
     }
 }

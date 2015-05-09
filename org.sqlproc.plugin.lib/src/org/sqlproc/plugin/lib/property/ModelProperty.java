@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.sqlproc.plugin.lib.util.CommonUtils;
 
@@ -162,6 +163,7 @@ public abstract class ModelProperty extends AdapterImpl {
     }
 
     public static class ModelValues {
+        public boolean initialized;
         public boolean doResolvePojo;
         public boolean doResolveDb;
         public Map<String, String> replaceAllRegex;
@@ -1044,6 +1046,39 @@ public abstract class ModelProperty extends AdapterImpl {
     @Override
     public String toString() {
         return "ModelPropertyBean [dirs2models=" + dirs2models + "]";
+    }
+
+    public boolean skipVerification(EObject model) {
+        if (model == null)
+            return true;
+        URI uri = (model.eResource() != null) ? model.eResource().getURI() : null;
+        if (uri == null)
+            return true;
+
+        ModelValues modelValues = getModelValues(model);
+        if (modelValues == null || !modelValues.initialized)
+            return true;
+        String suri = uri.toString();
+
+        if ((modelValues.doVerifyResources == null || modelValues.doVerifyResources.isEmpty())
+                && (modelValues.doNotVerifyResources == null || modelValues.doNotVerifyResources.isEmpty()))
+            return false;
+        if (modelValues.doVerifyResources != null && !modelValues.doVerifyResources.isEmpty()) {
+            for (String res : modelValues.doVerifyResources) {
+                if (suri.indexOf(res) >= 0)
+                    return false;
+            }
+            return true;
+        }
+        if (modelValues.doNotVerifyResources != null && !modelValues.doNotVerifyResources.isEmpty()) {
+            for (String res : modelValues.doNotVerifyResources) {
+                if (suri.indexOf(res) >= 0)
+                    return true;
+            }
+            return false;
+        }
+        assert false;
+        return true;
     }
 
     public abstract ModelValues getModelValues(EObject model);

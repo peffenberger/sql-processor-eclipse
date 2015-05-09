@@ -261,12 +261,13 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             return
         val columnName = Utils.getName(column)
         if (Utils.isNumber(columnName))
-            return
+            return;
+        if (CommonUtils.skipVerification(column, modelProperty))
+            return;
+
         val URI uri = column.eResource?.URI
         val statement = column.getContainerOfType(typeof(MetaStatement))
         val artifacts = statement.getContainerOfType(typeof(Artifacts))
-        if (CommonUtils.skipVerification(artifacts, uri, modelProperty))
-            return;
 
         val pojoName = Utils.getTokenFromModifier(statement, COLUMN_USAGE)
         val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
@@ -334,13 +335,14 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     @Check
     def checkIdentifier(Identifier identifier) {
         if (!isResolvePojo(identifier))
-            return
+            return;
+        if (CommonUtils.skipVerification(identifier, modelProperty))
+            return;
+
         val URI uri = identifier.eResource?.URI
         val identifierName = identifier.getName()
         val statement = identifier.getContainerOfType(typeof(MetaStatement))
         val artifacts = statement.getContainerOfType(typeof(Artifacts))
-        if (CommonUtils.skipVerification(artifacts, uri, modelProperty))
-            return;
 
         val pojoName = Utils.getTokenFromModifier(statement, IDENTIFIER_USAGE)
         val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
@@ -367,12 +369,13 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     @Check
     def checkConstant(Constant constant) {
         if (!isResolvePojo(constant))
-            return
+            return;
+        if (CommonUtils.skipVerification(constant, modelProperty))
+            return;
+
         val URI uri = constant.eResource?.URI
         val statement = constant.getContainerOfType(typeof(MetaStatement))
         val artifacts = statement.getContainerOfType(typeof(Artifacts))
-        if (CommonUtils.skipVerification(artifacts, uri, modelProperty))
-            return;
 
         val pojoName = Utils.getTokenFromModifier(statement, CONSTANT_USAGE)
         val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
@@ -402,12 +405,13 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             return
         val columnName = Utils.getName(column)
         if (Utils.isNumber(columnName))
-            return
+            return;
+        if (CommonUtils.skipVerification(column, modelProperty))
+            return;
+
         val URI uri = column.eResource?.URI
         val rule = column.getContainerOfType(typeof(MetaStatement))
         val artifacts = rule.getContainerOfType(typeof(Artifacts))
-        if (CommonUtils.skipVerification(artifacts, uri, modelProperty))
-            return;
 
         val pojoName = Utils.getTokenFromModifier(rule, MAPPING_USAGE)
         val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
@@ -433,13 +437,12 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
     @Check
     def checkMetaStatement(MetaStatement statement) {
-        val artifacts = statement.getContainerOfType(typeof(Artifacts))
-        if (CommonUtils.skipVerification(artifacts, statement.eResource?.URI, modelProperty))
+        if (statement.getModifiers() == null || statement.getModifiers().isEmpty())
+            return;
+        if (CommonUtils.skipVerification(statement, modelProperty))
             return;
 
-        if (statement.getModifiers() == null || statement.getModifiers().isEmpty())
-            return
-
+        val artifacts = statement.getContainerOfType(typeof(Artifacts))
         var index = 0
         for (String modifier : statement.getModifiers()) {
             var ix = modifier.indexOf('=')
@@ -486,11 +489,11 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     @Check
     def checkMappingRule(MappingRule rule) {
         if (rule.getModifiers() == null || rule.getModifiers().isEmpty())
-            return
-        val artifacts = rule.getContainerOfType(typeof(Artifacts))
-        if (CommonUtils.skipVerification(artifacts, rule.eResource?.URI, modelProperty))
             return;
-            
+        if (CommonUtils.skipVerification(rule, modelProperty))
+            return;
+
+        val artifacts = rule.getContainerOfType(typeof(Artifacts))
         var index = 0
         for (String modifier : rule.getModifiers()) {
             var ix = modifier.indexOf('=')

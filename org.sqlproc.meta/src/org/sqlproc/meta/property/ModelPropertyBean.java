@@ -143,6 +143,7 @@ public class ModelPropertyBean extends ModelProperty {
             modelValues = new ModelValues();
 
         modelValues.initModel();
+        modelValues.initialized = false;
 
         boolean firstDatabase = true;
         boolean firstPojogen = true;
@@ -242,6 +243,7 @@ public class ModelPropertyBean extends ModelProperty {
             e.printStackTrace();
         }
 
+        modelValues.initialized = true;
         return modelValues;
     }
 
@@ -278,8 +280,8 @@ public class ModelPropertyBean extends ModelProperty {
             }
             if (property.getDoNotVerifyResources() != null) {
                 for (int i = 0, m = property.getDoNotVerifyResources().size(); i < m; i++) {
-                    modelValues.doVerifyResources
-                            .add(Utils.getPropertyValue(property.getDoNotVerifyResources().get(i)));
+                    modelValues.doNotVerifyResources.add(Utils.getPropertyValue(property.getDoNotVerifyResources().get(
+                            i)));
                 }
             }
         }
@@ -757,10 +759,9 @@ public class ModelPropertyBean extends ModelProperty {
         if (this.modelValues != null)
             return this.modelValues;
 
-        EObject emodel = (EObject) model;
-        Artifacts artifacts = EcoreUtil2.getContainerOfType(emodel, Artifacts.class);
+        Artifacts artifacts = EcoreUtil2.getContainerOfType(model, Artifacts.class);
         if (artifacts == null) {
-            LOGGER.error("UKNOWN ARTIFACTS FOR " + emodel);
+            LOGGER.error("UKNOWN ARTIFACTS FOR " + model);
             return null;
         }
         if (artifacts.eResource() == null) {
