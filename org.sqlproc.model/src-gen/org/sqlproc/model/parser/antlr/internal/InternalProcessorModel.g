@@ -2266,16 +2266,16 @@ ruleProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_20_0=	'verify-resources' 
+		lv_name_20_0=	'validate-resources' 
     {
-        newLeafNode(lv_name_20_0, grammarAccess.getPropertyAccess().getNameVerifyResourcesKeyword_1_9_0_0());
+        newLeafNode(lv_name_20_0, grammarAccess.getPropertyAccess().getNameValidateResourcesKeyword_1_9_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getPropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_20_0, "verify-resources");
+       		setWithLastConsumed($current, "name", lv_name_20_0, "validate-resources");
 	    }
 
 )

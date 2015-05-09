@@ -2939,7 +2939,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     condition=PropertyCondition (ambiguity) name='replace-text'
 	 *     condition=PropertyCondition (ambiguity) name='resolve-pojo-off'
 	 *     condition=PropertyCondition (ambiguity) name='resolve-pojo-on'
-	 *     condition=PropertyCondition (ambiguity) name='verify-resources'
+	 *     condition=PropertyCondition (ambiguity) name='validate-resources'
 	 */
 	protected void emit_Property_WSTerminalRuleCall_0_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -3016,7 +3016,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     WS+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     name='verify-resources' (ambiguity) PLUS WS+ doVerifyResources+=ValueType
+	 *     name='validate-resources' (ambiguity) PLUS WS+ doVerifyResources+=ValueType
 	 */
 	protected void emit_Property_WSTerminalRuleCall_1_9_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -3028,7 +3028,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     doVerifyResources+=ValueType (ambiguity) doVerifyResources+=ValueType
-	 *     name='verify-resources' WS+ PLUS (ambiguity) doVerifyResources+=ValueType
+	 *     name='validate-resources' WS+ PLUS (ambiguity) doVerifyResources+=ValueType
 	 */
 	protected void emit_Property_WSTerminalRuleCall_1_9_1_2_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -3040,7 +3040,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     doVerifyResources+=ValueType (ambiguity) MINUS WS+ doNotVerifyResources+=ValueType
-	 *     name='verify-resources' (ambiguity) MINUS WS+ doNotVerifyResources+=ValueType
+	 *     name='validate-resources' (ambiguity) MINUS WS+ doNotVerifyResources+=ValueType
 	 */
 	protected void emit_Property_WSTerminalRuleCall_1_9_2_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -3053,7 +3053,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 * This ambiguous syntax occurs at:
 	 *     doNotVerifyResources+=ValueType (ambiguity) doNotVerifyResources+=ValueType
 	 *     doVerifyResources+=ValueType WS+ MINUS (ambiguity) doNotVerifyResources+=ValueType
-	 *     name='verify-resources' WS+ MINUS (ambiguity) doNotVerifyResources+=ValueType
+	 *     name='validate-resources' WS+ MINUS (ambiguity) doNotVerifyResources+=ValueType
 	 */
 	protected void emit_Property_WSTerminalRuleCall_1_9_2_2_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

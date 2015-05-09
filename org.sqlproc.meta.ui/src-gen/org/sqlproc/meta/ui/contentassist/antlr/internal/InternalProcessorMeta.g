@@ -33091,16 +33091,16 @@ rule__Property__NameAssignment_1_9_0
     }
 :
 (
-{ before(grammarAccess.getPropertyAccess().getNameVerifyResourcesKeyword_1_9_0_0()); }
+{ before(grammarAccess.getPropertyAccess().getNameValidateResourcesKeyword_1_9_0_0()); }
 (
-{ before(grammarAccess.getPropertyAccess().getNameVerifyResourcesKeyword_1_9_0_0()); }
+{ before(grammarAccess.getPropertyAccess().getNameValidateResourcesKeyword_1_9_0_0()); }
 
-	'verify-resources' 
+	'validate-resources' 
 
-{ after(grammarAccess.getPropertyAccess().getNameVerifyResourcesKeyword_1_9_0_0()); }
+{ after(grammarAccess.getPropertyAccess().getNameValidateResourcesKeyword_1_9_0_0()); }
 )
 
-{ after(grammarAccess.getPropertyAccess().getNameVerifyResourcesKeyword_1_9_0_0()); }
+{ after(grammarAccess.getPropertyAccess().getNameValidateResourcesKeyword_1_9_0_0()); }
 )
 
 ;

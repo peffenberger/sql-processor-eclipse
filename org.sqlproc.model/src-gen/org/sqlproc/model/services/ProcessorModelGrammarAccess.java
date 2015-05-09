@@ -1076,7 +1076,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReplacementValueTypeParserRuleCall_1_8_2_0 = (RuleCall)cReplacementAssignment_1_8_2.eContents().get(0);
 		private final Group cGroup_1_9 = (Group)cAlternatives_1.eContents().get(9);
 		private final Assignment cNameAssignment_1_9_0 = (Assignment)cGroup_1_9.eContents().get(0);
-		private final Keyword cNameVerifyResourcesKeyword_1_9_0_0 = (Keyword)cNameAssignment_1_9_0.eContents().get(0);
+		private final Keyword cNameValidateResourcesKeyword_1_9_0_0 = (Keyword)cNameAssignment_1_9_0.eContents().get(0);
 		private final Group cGroup_1_9_1 = (Group)cGroup_1_9.eContents().get(1);
 		private final Keyword cPlusSignKeyword_1_9_1_0 = (Keyword)cGroup_1_9_1.eContents().get(0);
 		private final Assignment cDoVerifyResourcesAssignment_1_9_1_1 = (Assignment)cGroup_1_9_1.eContents().get(1);
@@ -1094,7 +1094,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//	database=DatabaseProperty | name="pojogen-" pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty |
 		//	name="daogen-" daogen=DaogenProperty | name="replace-all-regex" replaceId=ValidID regex=ValueType |
 		//	name="replace-all-replacement" replaceId=ValidID replacement=ValueType | name="replace-text" regex=ValueType
-		//	replacement=ValueType | name="verify-resources" ("+" doVerifyResources+=ValueType+)? ("-"
+		//	replacement=ValueType | name="validate-resources" ("+" doVerifyResources+=ValueType+)? ("-"
 		//	doNotVerifyResources+=ValueType+)? | name="compress-meta-directives") ";";
 		@Override public ParserRule getRule() { return rule; }
 
@@ -1102,7 +1102,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//database=DatabaseProperty | name="pojogen-" pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty |
 		//name="daogen-" daogen=DaogenProperty | name="replace-all-regex" replaceId=ValidID regex=ValueType |
 		//name="replace-all-replacement" replaceId=ValidID replacement=ValueType | name="replace-text" regex=ValueType
-		//replacement=ValueType | name="verify-resources" ("+" doVerifyResources+=ValueType+)? ("-"
+		//replacement=ValueType | name="validate-resources" ("+" doVerifyResources+=ValueType+)? ("-"
 		//doNotVerifyResources+=ValueType+)? | name="compress-meta-directives") ";"
 		public Group getGroup() { return cGroup; }
 
@@ -1115,7 +1115,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
 		//pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
 		//name="replace-all-regex" replaceId=ValidID regex=ValueType | name="replace-all-replacement" replaceId=ValidID
-		//replacement=ValueType | name="replace-text" regex=ValueType replacement=ValueType | name="verify-resources" ("+"
+		//replacement=ValueType | name="replace-text" regex=ValueType replacement=ValueType | name="validate-resources" ("+"
 		//doVerifyResources+=ValueType+)? ("-" doNotVerifyResources+=ValueType+)? | name="compress-meta-directives"
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
@@ -1254,14 +1254,14 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//ValueType
 		public RuleCall getReplacementValueTypeParserRuleCall_1_8_2_0() { return cReplacementValueTypeParserRuleCall_1_8_2_0; }
 
-		//name="verify-resources" ("+" doVerifyResources+=ValueType+)? ("-" doNotVerifyResources+=ValueType+)?
+		//name="validate-resources" ("+" doVerifyResources+=ValueType+)? ("-" doNotVerifyResources+=ValueType+)?
 		public Group getGroup_1_9() { return cGroup_1_9; }
 
-		//name="verify-resources"
+		//name="validate-resources"
 		public Assignment getNameAssignment_1_9_0() { return cNameAssignment_1_9_0; }
 
-		//"verify-resources"
-		public Keyword getNameVerifyResourcesKeyword_1_9_0_0() { return cNameVerifyResourcesKeyword_1_9_0_0; }
+		//"validate-resources"
+		public Keyword getNameValidateResourcesKeyword_1_9_0_0() { return cNameValidateResourcesKeyword_1_9_0_0; }
 
 		//("+" doVerifyResources+=ValueType+)?
 		public Group getGroup_1_9_1() { return cGroup_1_9_1; }
@@ -6466,7 +6466,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	database=DatabaseProperty | name="pojogen-" pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty |
 	//	name="daogen-" daogen=DaogenProperty | name="replace-all-regex" replaceId=ValidID regex=ValueType |
 	//	name="replace-all-replacement" replaceId=ValidID replacement=ValueType | name="replace-text" regex=ValueType
-	//	replacement=ValueType | name="verify-resources" ("+" doVerifyResources+=ValueType+)? ("-"
+	//	replacement=ValueType | name="validate-resources" ("+" doVerifyResources+=ValueType+)? ("-"
 	//	doNotVerifyResources+=ValueType+)? | name="compress-meta-directives") ";";
 	public PropertyElements getPropertyAccess() {
 		return pProperty;

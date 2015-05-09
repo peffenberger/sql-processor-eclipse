@@ -272,7 +272,7 @@ public class ModelPropertyBean extends ModelProperty {
             }
         } else if (COMPRESS_META_DIRECTIVES.equals(property.getName())) {
             modelValues.doCompressMetaDirectives = true;
-        } else if (VERIFY_RESOURCES.equals(property.getName())) {
+        } else if (VALIDATE_RESOURCES.equals(property.getName())) {
             if (property.getDoVerifyResources() != null) {
                 for (int i = 0, m = property.getDoVerifyResources().size(); i < m; i++) {
                     modelValues.doVerifyResources.add(Utils.getPropertyValue(property.getDoVerifyResources().get(i)));

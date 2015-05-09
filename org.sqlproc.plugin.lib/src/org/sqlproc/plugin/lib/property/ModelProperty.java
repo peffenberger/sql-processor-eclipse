@@ -22,7 +22,7 @@ public abstract class ModelProperty extends AdapterImpl {
     public static final String REPLACE_ALL_REPLACEMENT = "replace-all-replacement";
     public static final String REPLACE_TEXT = "replace-text";
     public static final String COMPRESS_META_DIRECTIVES = "compress-meta-directives";
-    public static final String VERIFY_RESOURCES = "verify-resources";
+    public static final String VALIDATE_RESOURCES = "validate-resources";
 
     public static final String DATABASE = "database";
     public static final String DATABASE_IS_ONLINE = "is-online";
@@ -136,7 +136,7 @@ public abstract class ModelProperty extends AdapterImpl {
         STANDARD_DIRECTIVES.add(REPLACE_ALL_REPLACEMENT);
         STANDARD_DIRECTIVES.add(COMPRESS_META_DIRECTIVES);
         STANDARD_DIRECTIVES.add(REPLACE_TEXT);
-        STANDARD_DIRECTIVES.add(VERIFY_RESOURCES);
+        STANDARD_DIRECTIVES.add(VALIDATE_RESOURCES);
     }
 
     public static final List<String> DATABASE_DIRECTIVES = new ArrayList<String>();
@@ -1054,7 +1054,6 @@ public abstract class ModelProperty extends AdapterImpl {
         URI uri = (model.eResource() != null) ? model.eResource().getURI() : null;
         if (uri == null)
             return true;
-
         ModelValues modelValues = getModelValues(model);
         if (modelValues == null || !modelValues.initialized)
             return true;

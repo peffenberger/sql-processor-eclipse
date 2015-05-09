@@ -95,7 +95,7 @@
 'types-in-table'=77
 'types-sqltypes'=76
 'uppercase-names'=75
-'verify-resources'=52
+'validate-resources'=52
 'version-column'=111
 RULE_AND=33
 RULE_AT=22

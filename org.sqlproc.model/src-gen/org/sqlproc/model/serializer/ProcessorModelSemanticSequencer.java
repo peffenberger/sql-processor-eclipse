@@ -1965,7 +1965,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *             (name='replace-all-regex' replaceId=ValidID regex=ValueType) | 
 	 *             (name='replace-all-replacement' replaceId=ValidID replacement=ValueType) | 
 	 *             (name='replace-text' regex=ValueType replacement=ValueType) | 
-	 *             (name='verify-resources' doVerifyResources+=ValueType* doNotVerifyResources+=ValueType*) | 
+	 *             (name='validate-resources' doVerifyResources+=ValueType* doNotVerifyResources+=ValueType*) | 
 	 *             name='compress-meta-directives'
 	 *         )
 	 *     )
