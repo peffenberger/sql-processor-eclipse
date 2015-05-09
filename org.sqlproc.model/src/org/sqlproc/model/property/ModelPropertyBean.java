@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -252,15 +253,35 @@ public class ModelPropertyBean extends ModelProperty {
         } else if (RESOLVE_POJO_OFF.equals(property.getName())) {
             modelValues.doResolvePojo = false;
         } else if (REPLACE_ALL_REGEX.equals(property.getName())) {
-            if (property.getRegex() != null && property.getReplaceId() != null)
+            if (property.getRegex() != null && property.getReplaceId() != null) {
                 modelValues.replaceAllRegex.put(property.getReplaceId(),
                         Utils.getPropertyValueRegex(property.getRegex()));
+            }
         } else if (REPLACE_ALL_REPLACEMENT.equals(property.getName())) {
-            if (property.getReplacement() != null && property.getReplaceId() != null)
+            if (property.getReplacement() != null && property.getReplaceId() != null) {
                 modelValues.replaceAllReplacement.put(property.getReplaceId(),
                         Utils.getPropertyValueRegex(property.getReplacement()));
+            }
+        } else if (REPLACE_ALL.equals(property.getName())) {
+            if (property.getReplacement() != null && property.getRegex() != null) {
+                String uuid = UUID.randomUUID().toString();
+                modelValues.replaceAllRegex.put(uuid, Utils.getPropertyValueRegex(property.getRegex()));
+                modelValues.replaceAllReplacement.put(uuid, Utils.getPropertyValueRegex(property.getReplacement()));
+            }
         } else if (COMPRESS_META_DIRECTIVES.equals(property.getName())) {
             modelValues.doCompressMetaDirectives = true;
+        } else if (VERIFY_RESOURCES.equals(property.getName())) {
+            if (property.getDoVerifyResources() != null) {
+                for (int i = 0, m = property.getDoVerifyResources().size(); i < m; i++) {
+                    modelValues.doVerifyResources.add(Utils.getPropertyValue(property.getDoVerifyResources().get(i)));
+                }
+            }
+            if (property.getDoNotVerifyResources() != null) {
+                for (int i = 0, m = property.getDoNotVerifyResources().size(); i < m; i++) {
+                    modelValues.doVerifyResources
+                            .add(Utils.getPropertyValue(property.getDoNotVerifyResources().get(i)));
+                }
+            }
         }
     }
 

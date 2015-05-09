@@ -19,7 +19,9 @@ public abstract class ModelProperty extends AdapterImpl {
     public static final String RESOLVE_POJO_OFF = "resolve-pojo-off";
     public static final String REPLACE_ALL_REGEX = "replace-all-regex";
     public static final String REPLACE_ALL_REPLACEMENT = "replace-all-replacement";
+    public static final String REPLACE_ALL = "replace-all";
     public static final String COMPRESS_META_DIRECTIVES = "compress-meta-directives";
+    public static final String VERIFY_RESOURCES = "verify-resources";
 
     public static final String DATABASE = "database";
     public static final String DATABASE_IS_ONLINE = "is-online";
@@ -132,6 +134,8 @@ public abstract class ModelProperty extends AdapterImpl {
         STANDARD_DIRECTIVES.add(REPLACE_ALL_REGEX);
         STANDARD_DIRECTIVES.add(REPLACE_ALL_REPLACEMENT);
         STANDARD_DIRECTIVES.add(COMPRESS_META_DIRECTIVES);
+        STANDARD_DIRECTIVES.add(REPLACE_ALL);
+        STANDARD_DIRECTIVES.add(VERIFY_RESOURCES);
     }
 
     public static final List<String> DATABASE_DIRECTIVES = new ArrayList<String>();
@@ -163,6 +167,8 @@ public abstract class ModelProperty extends AdapterImpl {
         public Map<String, String> replaceAllRegex;
         public Map<String, String> replaceAllReplacement;
         public boolean doCompressMetaDirectives;
+        public Set<String> doVerifyResources;
+        public Set<String> doNotVerifyResources;
         public String dbDriver;
         public String dbUrl;
         public String dbUsername;
@@ -272,6 +278,8 @@ public abstract class ModelProperty extends AdapterImpl {
             replaceAllRegex = new HashMap<String, String>();
             replaceAllReplacement = new HashMap<String, String>();
             doCompressMetaDirectives = false;
+            doVerifyResources = new HashSet<String>();
+            doNotVerifyResources = new HashSet<String>();
             defaultAttrs.put(STANDARD, new HashSet<String>());
             conditionalAttrs.put(STANDARD, new HashSet<String>());
             systemEnvAttrs.put(STANDARD, new HashSet<String>());
@@ -503,6 +511,16 @@ public abstract class ModelProperty extends AdapterImpl {
             }
         }
         return result;
+    }
+
+    public Set<String> getDoVerifyResources(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.doVerifyResources : Collections.<String> emptySet();
+    }
+
+    public Set<String> getDoNotVerifyResources(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.doNotVerifyResources : Collections.<String> emptySet();
     }
 
     public boolean isCompressMetaDirectives(EObject model) {
