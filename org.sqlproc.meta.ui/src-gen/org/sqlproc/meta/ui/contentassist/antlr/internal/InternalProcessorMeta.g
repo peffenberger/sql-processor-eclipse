@@ -33038,16 +33038,16 @@ rule__Property__NameAssignment_1_8_0
     }
 :
 (
-{ before(grammarAccess.getPropertyAccess().getNameReplaceAllKeyword_1_8_0_0()); }
+{ before(grammarAccess.getPropertyAccess().getNameReplaceTextKeyword_1_8_0_0()); }
 (
-{ before(grammarAccess.getPropertyAccess().getNameReplaceAllKeyword_1_8_0_0()); }
+{ before(grammarAccess.getPropertyAccess().getNameReplaceTextKeyword_1_8_0_0()); }
 
-	'replace-all' 
+	'replace-text' 
 
-{ after(grammarAccess.getPropertyAccess().getNameReplaceAllKeyword_1_8_0_0()); }
+{ after(grammarAccess.getPropertyAccess().getNameReplaceTextKeyword_1_8_0_0()); }
 )
 
-{ after(grammarAccess.getPropertyAccess().getNameReplaceAllKeyword_1_8_0_0()); }
+{ after(grammarAccess.getPropertyAccess().getNameReplaceTextKeyword_1_8_0_0()); }
 )
 
 ;

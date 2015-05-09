@@ -2462,16 +2462,16 @@ ruleProperty returns [EObject current=null]
 ))
     |((
 (
-		lv_name_22_0=	'replace-all' 
+		lv_name_22_0=	'replace-text' 
     {
-        newLeafNode(lv_name_22_0, grammarAccess.getPropertyAccess().getNameReplaceAllKeyword_1_8_0_0());
+        newLeafNode(lv_name_22_0, grammarAccess.getPropertyAccess().getNameReplaceTextKeyword_1_8_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getPropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_22_0, "replace-all");
+       		setWithLastConsumed($current, "name", lv_name_22_0, "replace-text");
 	    }
 
 )

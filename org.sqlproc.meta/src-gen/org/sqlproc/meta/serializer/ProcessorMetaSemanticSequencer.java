@@ -1077,7 +1077,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *             (name='daogen-' daogen=DaogenProperty) | 
 	 *             (name='replace-all-regex' replaceId=IDENT regex=ValueType) | 
 	 *             (name='replace-all-replacement' replaceId=IDENT replacement=ValueType) | 
-	 *             (name='replace-all' regex=ValueType replacement=ValueType) | 
+	 *             (name='replace-text' regex=ValueType replacement=ValueType) | 
 	 *             (name='verify-resources' doVerifyResources+=ValueType* doNotVerifyResources+=ValueType*) | 
 	 *             name='compress-meta-directives'
 	 *         )

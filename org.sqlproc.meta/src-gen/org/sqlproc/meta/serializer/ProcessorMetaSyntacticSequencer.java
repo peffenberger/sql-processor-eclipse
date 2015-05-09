@@ -2934,9 +2934,9 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     condition=PropertyCondition (ambiguity) name='database-'
 	 *     condition=PropertyCondition (ambiguity) name='metagen-'
 	 *     condition=PropertyCondition (ambiguity) name='pojogen-'
-	 *     condition=PropertyCondition (ambiguity) name='replace-all'
 	 *     condition=PropertyCondition (ambiguity) name='replace-all-regex'
 	 *     condition=PropertyCondition (ambiguity) name='replace-all-replacement'
+	 *     condition=PropertyCondition (ambiguity) name='replace-text'
 	 *     condition=PropertyCondition (ambiguity) name='resolve-pojo-off'
 	 *     condition=PropertyCondition (ambiguity) name='resolve-pojo-on'
 	 *     condition=PropertyCondition (ambiguity) name='verify-resources'
@@ -2994,7 +2994,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     WS+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     name='replace-all' (ambiguity) regex=ValueType
+	 *     name='replace-text' (ambiguity) regex=ValueType
 	 */
 	protected void emit_Property_WSTerminalRuleCall_1_8_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

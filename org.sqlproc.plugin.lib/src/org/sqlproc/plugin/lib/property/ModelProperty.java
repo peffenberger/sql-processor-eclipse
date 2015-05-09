@@ -20,7 +20,7 @@ public abstract class ModelProperty extends AdapterImpl {
     public static final String RESOLVE_POJO_OFF = "resolve-pojo-off";
     public static final String REPLACE_ALL_REGEX = "replace-all-regex";
     public static final String REPLACE_ALL_REPLACEMENT = "replace-all-replacement";
-    public static final String REPLACE_ALL = "replace-all";
+    public static final String REPLACE_TEXT = "replace-text";
     public static final String COMPRESS_META_DIRECTIVES = "compress-meta-directives";
     public static final String VERIFY_RESOURCES = "verify-resources";
 
@@ -135,7 +135,7 @@ public abstract class ModelProperty extends AdapterImpl {
         STANDARD_DIRECTIVES.add(REPLACE_ALL_REGEX);
         STANDARD_DIRECTIVES.add(REPLACE_ALL_REPLACEMENT);
         STANDARD_DIRECTIVES.add(COMPRESS_META_DIRECTIVES);
-        STANDARD_DIRECTIVES.add(REPLACE_ALL);
+        STANDARD_DIRECTIVES.add(REPLACE_TEXT);
         STANDARD_DIRECTIVES.add(VERIFY_RESOURCES);
     }
 

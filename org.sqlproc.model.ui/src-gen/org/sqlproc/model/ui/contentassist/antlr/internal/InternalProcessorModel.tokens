@@ -172,9 +172,9 @@
 'procedure-result-set'=223
 'rename-columns'=185
 'rename-tables'=184
-'replace-all'=143
 'replace-all-regex'=141
 'replace-all-replacement'=142
+'replace-text'=143
 'required-columns'=181
 'resolve-pojo-off'=136
 'resolve-pojo-on'=135

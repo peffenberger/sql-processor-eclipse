@@ -67,9 +67,9 @@
 'procedure-result-set'=136
 'rename-columns'=97
 'rename-tables'=96
-'replace-all'=55
 'replace-all-regex'=53
 'replace-all-replacement'=54
+'replace-text'=55
 'required-columns'=93
 'resolve-pojo-off'=48
 'resolve-pojo-on'=47

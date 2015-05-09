@@ -1372,7 +1372,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReplacementValueTypeParserRuleCall_1_7_4_0 = (RuleCall)cReplacementAssignment_1_7_4.eContents().get(0);
 		private final Group cGroup_1_8 = (Group)cAlternatives_1.eContents().get(8);
 		private final Assignment cNameAssignment_1_8_0 = (Assignment)cGroup_1_8.eContents().get(0);
-		private final Keyword cNameReplaceAllKeyword_1_8_0_0 = (Keyword)cNameAssignment_1_8_0.eContents().get(0);
+		private final Keyword cNameReplaceTextKeyword_1_8_0_0 = (Keyword)cNameAssignment_1_8_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_1_8_1 = (RuleCall)cGroup_1_8.eContents().get(1);
 		private final Assignment cRegexAssignment_1_8_2 = (Assignment)cGroup_1_8.eContents().get(2);
 		private final RuleCall cRegexValueTypeParserRuleCall_1_8_2_0 = (RuleCall)cRegexAssignment_1_8_2.eContents().get(0);
@@ -1404,7 +1404,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//	(condition=PropertyCondition WS*)? (name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-"
 		//	database=DatabaseProperty | name="pojogen-" pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty |
 		//	name="daogen-" daogen=DaogenProperty | name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType |
-		//	name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=ValueType | name="replace-all" WS+ regex=ValueType
+		//	name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=ValueType | name="replace-text" WS+ regex=ValueType
 		//	WS+ replacement=ValueType | name="verify-resources" (WS+ PLUS (WS+ doVerifyResources+=ValueType)+)? (WS+ MINUS (WS+
 		//	doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives") SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
@@ -1412,7 +1412,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//(condition=PropertyCondition WS*)? (name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-"
 		//database=DatabaseProperty | name="pojogen-" pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty |
 		//name="daogen-" daogen=DaogenProperty | name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType |
-		//name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=ValueType | name="replace-all" WS+ regex=ValueType
+		//name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=ValueType | name="replace-text" WS+ regex=ValueType
 		//WS+ replacement=ValueType | name="verify-resources" (WS+ PLUS (WS+ doVerifyResources+=ValueType)+)? (WS+ MINUS (WS+
 		//doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives") SEMICOLON
 		public Group getGroup() { return cGroup; }
@@ -1432,7 +1432,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
 		//pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
 		//name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType | name="replace-all-replacement" WS+ replaceId=IDENT
-		//WS+ replacement=ValueType | name="replace-all" WS+ regex=ValueType WS+ replacement=ValueType | name="verify-resources"
+		//WS+ replacement=ValueType | name="replace-text" WS+ regex=ValueType WS+ replacement=ValueType | name="verify-resources"
 		//(WS+ PLUS (WS+ doVerifyResources+=ValueType)+)? (WS+ MINUS (WS+ doNotVerifyResources+=ValueType)+)? |
 		//name="compress-meta-directives"
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
@@ -1563,14 +1563,14 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//ValueType
 		public RuleCall getReplacementValueTypeParserRuleCall_1_7_4_0() { return cReplacementValueTypeParserRuleCall_1_7_4_0; }
 
-		//name="replace-all" WS+ regex=ValueType WS+ replacement=ValueType
+		//name="replace-text" WS+ regex=ValueType WS+ replacement=ValueType
 		public Group getGroup_1_8() { return cGroup_1_8; }
 
-		//name="replace-all"
+		//name="replace-text"
 		public Assignment getNameAssignment_1_8_0() { return cNameAssignment_1_8_0; }
 
-		//"replace-all"
-		public Keyword getNameReplaceAllKeyword_1_8_0_0() { return cNameReplaceAllKeyword_1_8_0_0; }
+		//"replace-text"
+		public Keyword getNameReplaceTextKeyword_1_8_0_0() { return cNameReplaceTextKeyword_1_8_0_0; }
 
 		//WS+
 		public RuleCall getWSTerminalRuleCall_1_8_1() { return cWSTerminalRuleCall_1_8_1; }
@@ -8316,7 +8316,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	//	(condition=PropertyCondition WS*)? (name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-"
 	//	database=DatabaseProperty | name="pojogen-" pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty |
 	//	name="daogen-" daogen=DaogenProperty | name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType |
-	//	name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=ValueType | name="replace-all" WS+ regex=ValueType
+	//	name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=ValueType | name="replace-text" WS+ regex=ValueType
 	//	WS+ replacement=ValueType | name="verify-resources" (WS+ PLUS (WS+ doVerifyResources+=ValueType)+)? (WS+ MINUS (WS+
 	//	doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives") SEMICOLON;
 	public PropertyElements getPropertyAccess() {

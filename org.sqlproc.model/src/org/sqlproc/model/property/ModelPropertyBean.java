@@ -262,7 +262,7 @@ public class ModelPropertyBean extends ModelProperty {
                 modelValues.replaceAllReplacement.put(property.getReplaceId(),
                         Utils.getPropertyValueRegex(property.getReplacement()));
             }
-        } else if (REPLACE_ALL.equals(property.getName())) {
+        } else if (REPLACE_TEXT.equals(property.getName())) {
             if (property.getReplacement() != null && property.getRegex() != null) {
                 String uuid = UUID.randomUUID().toString();
                 modelValues.replaceAllRegex.put(uuid, Utils.getPropertyValueRegex(property.getRegex()));
