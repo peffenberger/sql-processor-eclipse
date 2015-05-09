@@ -23,7 +23,6 @@ import org.eclipse.xtext.validation.IResourceValidator;
 import org.sqlproc.meta.processorMeta.Artifacts;
 import org.sqlproc.meta.processorMeta.MetaStatement;
 import org.sqlproc.meta.property.ModelPropertyBean;
-import org.sqlproc.meta.property.ModelPropertyBean.ModelValues;
 import org.sqlproc.plugin.lib.property.ModelProperty;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.resolver.PojoResolverFactory;
@@ -151,7 +150,7 @@ public class Main {
                 System.err.println("No control directive.");
                 System.exit(3);
             }
-            ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
+            ModelProperty.ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
             modelValues.doResolveDb = true;
             modelProperty.init(modelValues);
             pojoResolverFactory.setPojoResolver(new StandalonePojoResolverImpl(modelProperty, source));
@@ -197,7 +196,7 @@ public class Main {
             System.err.println("No control directive.");
             System.exit(3);
         }
-        ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
+        ModelProperty.ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
         modelValues.doResolveDb = true;
         modelProperty.init(modelValues);
         pojoResolverFactory.setPojoResolver(new StandalonePojoResolverImpl(modelProperty, source));

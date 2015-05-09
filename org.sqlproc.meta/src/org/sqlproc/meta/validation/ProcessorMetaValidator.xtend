@@ -262,6 +262,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         if (Utils.isNumber(columnName))
             return
         val URI uri = column.eResource?.URI
+        println(uri)
         val statement = column.getContainerOfType(typeof(MetaStatement))
         val artifacts = statement.getContainerOfType(typeof(Artifacts))
 

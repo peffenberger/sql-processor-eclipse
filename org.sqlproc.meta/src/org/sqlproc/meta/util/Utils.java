@@ -299,29 +299,6 @@ public class Utils extends CommonUtils {
         return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 
-    public static String getPropertyValue(String value) {
-        String s = _getPropertyValue(value);
-        if (s == null)
-            return null;
-        if (s.startsWith("$$")) {
-            String ss = System.getenv(s.substring(2));
-            if (ss != null)
-                s = ss;
-        }
-        return s;
-    }
-
-    public static String _getPropertyValue(String value) {
-        if (value == null)
-            return null;
-        value = value.trim();
-        if (value.startsWith("\""))
-            value = value.substring(1);
-        if (value.endsWith("\""))
-            value = value.substring(0, value.length() - 1);
-        return value;
-    }
-
     public static String getPropertyValue(ValueType pv) {
         String s = _getPropertyValue(pv);
         if (s == null)

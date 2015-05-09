@@ -1,13 +1,19 @@
 package org.sqlproc.plugin.lib.property;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.notify.Adapter;
+import org.apache.log4j.Logger;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.sqlproc.plugin.lib.util.CommonUtils;
 
-public interface ModelProperty extends Adapter {
+public abstract class ModelProperty extends AdapterImpl {
 
     public static final String RESOLVE_POJO_ON = "resolve-pojo-on";
     public static final String RESOLVE_POJO_OFF = "resolve-pojo-off";
@@ -66,7 +72,7 @@ public interface ModelProperty extends Adapter {
     public static final String POJOGEN_JOIN_TABLES = "join-tables";
     public static final String POJOGEN_GENERATE_WRAPPERS = "generate-wrappers";
     public static final String POJOGEN_GENERATE_VALIDATION_ANNOTATIONS = "generate-validation-annotations";
-    public static final String POJOGEN_NOT_ABSTRACT_TABLES_TABLES = "not-abstract-tables";
+    public static final String POJOGEN_NOT_ABSTRACT_TABLES_TABLES = "not-public abstract-tables";
     public static final String POJOGEN_MAKE_IT_FINAL = "make-it-final";
     public static final String POJOGEN_VERSION_COLUMN = "version-column";
     public static final String POJOGEN_DEBUG_LEVEL = "debug-level";
@@ -117,209 +123,910 @@ public interface ModelProperty extends Adapter {
 
     public static final String STANDARD = "___GLOBAL";
 
-    boolean isDoResolvePojo(EObject model);
-
-    boolean isDoResolveDb(EObject model);
-
-    Map<String, PojoAttrType> getSqlTypes(EObject model);
-
-    Map<String, Map<String, PojoAttrType>> getTableTypes(EObject model);
-
-    Map<String, Map<String, PojoAttrType>> getColumnTypes(EObject model);
-
-    Map<String, Map<String, String>> getColumnNames(EObject model);
-
-    Map<String, String> getTableNames(EObject model);
-
-    Set<String> getIgnoreTables(EObject model);
-
-    Map<String, Set<String>> getIgnoreColumns(EObject model);
-
-    Map<String, Map<String, Map<String, String>>> getIgnoreExports(EObject model);
-
-    Map<String, Map<String, Map<String, String>>> getIgnoreImports(EObject model);
-
-    Map<String, Map<String, Map<String, String>>> getCreateExports(EObject model);
-
-    Map<String, Map<String, Map<String, String>>> getCreateImports(EObject model);
-
-    Map<String, Map<String, PojoAttrType>> getCreateColumns(EObject model);
-
-    Map<String, Map<String, Map<String, String>>> getInheritImports(EObject model);
-
-    Map<String, Map<String, Map<String, String>>> getManyToManyImports(EObject model);
-
-    Map<String, Map<String, Map<String, List<String>>>> getInheritance(EObject model);
-
-    Map<String, Set<String>> getRequiredColumns(EObject model);
-
-    Map<String, Set<String>> getNotRequiredColumns(EObject model);
-
-    Map<String, String> getInheritanceColumns(EObject model);
-
-    Set<String> getGenerateMethods(EObject model);
-
-    Map<String, ImplementsExtends> getToImplements(EObject model);
-
-    ImplementsExtends getToExtends(EObject model);
-
-    Set<String> getOnlyTables(EObject model);
-
-    Map<String, List<String>> getJoinTables(EObject model);
-
-    boolean isDoGenerateWrappers(EObject model);
-
-    PairValues getMetaGlobalIdentity(EObject model);
-
-    PairValues getMetaGlobalSequence(EObject model);
-
-    Map<String, PairValues> getMetaTablesIdentity(EObject model);
-
-    Map<String, PairValues> getMetaTablesSequence(EObject model);
-
-    Map<String, Map<String, PairValues>> getMetaColumnsMetaTypes(EObject model);
-
-    Map<String, Map<String, PairValues>> getMetaStatementsMetaTypes(EObject model);
-
-    Set<String> getNotAbstractTables(EObject model);
-
-    Set<String> getDaoIgnoreTables(EObject model);
-
-    Set<String> getDaoOnlyTables(EObject model);
-
-    ImplementsExtends getDaoToExtends(EObject model);
-
-    Map<String, ImplementsExtends> getDaoToImplements(EObject model);
-
-    boolean isMakeItFinal(EObject model);
-
-    boolean isDaoMakeItFinal(EObject model);
-
-    boolean isMetaMakeItFinal(EObject model);
-
-    Map<String, Set<String>> getVersionColumns(EObject model);
-
-    String getVersionColumn(EObject model);
-
-    Map<String, Set<String>> getMetaLikeColumns(EObject model);
-
-    Map<String, Set<String>> getMetaNotLikeColumns(EObject model);
-
-    boolean isMetaGenerateIdentities(EObject model);
-
-    boolean isMetaGenerateSequences(EObject model);
-
-    Map<String, String> getMetaFunctionsResult(EObject model);
-
-    Map<String, String> getMetaFunctionsResultSet(EObject model);
-
-    Map<String, String> getMetaProceduresResultSet(EObject model);
-
-    Map<String, PojoEntityType> getDaoFunctionsResult(EObject model);
-
-    String getDebugLevel(EObject model);
-
-    String getMetaDebugLevel(EObject model);
-
-    String getDaoDebugLevel(EObject model);
-
-    String getGenerateOperators(EObject model);
-
-    boolean isMetaGenerateOperators(EObject model);
-
-    Set<String> getPreserveForeignKeys(EObject model);
-
-    Set<String> getMetaOptimizeInsert(EObject model);
-
-    Map<String, Set<String>> getMetaOptionalFeatures(EObject model);
-
-    Map<String, Map<String, PojoAttrType>> getProcedureTypes(EObject model);
-
-    Map<String, Map<String, PojoAttrType>> getFunctionTypes(EObject model);
-
-    Map<String, PojoEntityType> getPojosForFunctions(EObject model);
-
-    Map<String, PojoEntityType> getPojosForProcedures(EObject model);
-
-    Map<String, String> getReplaceAll(EObject model);
-
-    boolean isDoGenerateValidationAnnotations(EObject model);
-
-    Map<String, Set<String>> getNotVersionColumns(EObject model);
-
-    Set<String> getMetaGlobalSequenceForTables(EObject model);
-
-    Set<String> getMetaGlobalSequenceNotForTables(EObject model);
-
-    Set<String> getMetaGlobalIdentityForTables(EObject model);
-
-    Set<String> getMetaGlobalIdentityNotForTables(EObject model);
-
-    String getActiveFilter(EObject model);
-
-    String getMetaActiveFilter(EObject model);
-
-    String getDaoActiveFilter(EObject model);
-
-    boolean isMetaGenerateIdGenerators(EObject model);
-
-    boolean isMetaGenerateIndirectIdGenerators(EObject model);
-
-    String getMetaDebugScope(EObject model);
-
-    String getDaoDebugScope(EObject model);
-
-    String getDebugScope(EObject model);
-
-    String getPackage(EObject model);
-
-    String getDaoPackage(EObject model);
-
-    Map<String, String> getEnumForCheckConstraints(EObject model);
-
-    boolean isCompressMetaDirectives(EObject model);
-
-    String getDbPassword(EObject model);
-
-    String getDbCatalog(EObject model);
-
-    String getDbSchema(EObject model);
-
-    String getDbSqlsBefore(EObject model);
-
-    String getDbSqlsAfter(EObject model);
-
-    String getDbIndexTypes(EObject model);
-
-    boolean getDbSkipIndexes(EObject model);
-
-    boolean getDbSkipProcedures(EObject model);
-
-    boolean getDbSkipCheckConstraints(EObject model);
-
-    String getDbType(EObject model);
-
-    String getDbDebugLevel(EObject model);
-
-    String getDbDebugScope(EObject model);
-
-    boolean getDbTakeComments(EObject model);
-
-    boolean getDbLowercaseNames(EObject model);
-
-    boolean getDbUppercaseNames(EObject model);
-
-    String getDbDriver(EObject model);
-
-    String getDbUrl(EObject model);
-
-    String getDbUsername(EObject model);
-
-    String getModelDir(EObject model);
-
-    String getDaoImplPackage(EObject model);
-
-    void init(Object modelValues);
-
-    Map<String, PairValues> getMetaSqlTypes(EObject model);
+    protected Logger LOGGER = Logger.getLogger(ModelProperty.class);
+
+    public static final List<String> STANDARD_DIRECTIVES = new ArrayList<String>();
+    static {
+        STANDARD_DIRECTIVES.add(RESOLVE_POJO_ON);
+        STANDARD_DIRECTIVES.add(RESOLVE_POJO_OFF);
+        STANDARD_DIRECTIVES.add(REPLACE_ALL_REGEX);
+        STANDARD_DIRECTIVES.add(REPLACE_ALL_REPLACEMENT);
+        STANDARD_DIRECTIVES.add(COMPRESS_META_DIRECTIVES);
+    }
+
+    public static final List<String> DATABASE_DIRECTIVES = new ArrayList<String>();
+    static {
+        DATABASE_DIRECTIVES.add(DATABASE_IS_ONLINE);
+        DATABASE_DIRECTIVES.add(DATABASE_IS_OFFLINE);
+        DATABASE_DIRECTIVES.add(DATABASE_HAS_URL);
+        DATABASE_DIRECTIVES.add(DATABASE_EXECUTE_BEFORE);
+        DATABASE_DIRECTIVES.add(DATABASE_EXECUTE_AFTER);
+        DATABASE_DIRECTIVES.add(DATABASE_LOGIN_USERNAME);
+        DATABASE_DIRECTIVES.add(DATABASE_LOGIN_PASSWORD);
+        DATABASE_DIRECTIVES.add(DATABASE_IN_CATALOG);
+        DATABASE_DIRECTIVES.add(DATABASE_ACTIVE_SCHEMA);
+        DATABASE_DIRECTIVES.add(DATABASE_JDBC_DRIVER);
+        DATABASE_DIRECTIVES.add(DATABASE_INDEX_TYPES);
+        DATABASE_DIRECTIVES.add(DATABASE_SKIP_INDEXES);
+        DATABASE_DIRECTIVES.add(DATABASE_SKIP_CHECK_CONSTRAINTS);
+        DATABASE_DIRECTIVES.add(DATABASE_SKIP_PROCEDURES);
+        DATABASE_DIRECTIVES.add(DATABASE_OF_TYPE);
+        DATABASE_DIRECTIVES.add(DATABASE_DEBUG_LEVEL);
+        DATABASE_DIRECTIVES.add(DATABASE_TAKE_COMMENTS);
+        DATABASE_DIRECTIVES.add(DATABASE_LOWERCASE_NAMES);
+        DATABASE_DIRECTIVES.add(DATABASE_UPPERCASE_NAMES);
+    }
+
+    public static class ModelValues {
+        public boolean doResolvePojo;
+        public boolean doResolveDb;
+        public Map<String, String> replaceAllRegex;
+        public Map<String, String> replaceAllReplacement;
+        public boolean doCompressMetaDirectives;
+        public String dbDriver;
+        public String dbUrl;
+        public String dbUsername;
+        public String dbPassword;
+        public String dbCatalog;
+        public String dbSchema;
+        public String dbSqlsBefore;
+        public String dbSqlsAfter;
+        public String dbIndexTypes;
+        public boolean dbSkipIndexes;
+        public boolean dbSkipProcedures;
+        public boolean dbSkipCheckConstraints;
+        public String dbType;
+        public String dbDebugLevel;
+        public String dbDebugScope;
+        public boolean dbTakeComments;
+        public boolean dbLowercaseNames;
+        public boolean dbUppercaseNames;
+        public String dir;
+        public Map<String, PojoAttrType> sqlTypes;
+        public Map<String, Map<String, PojoAttrType>> tableTypes;
+        public Map<String, Map<String, PojoAttrType>> columnTypes;
+        public Map<String, Map<String, PojoAttrType>> procedureTypes;
+        public Map<String, Map<String, PojoAttrType>> functionTypes;
+        public Map<String, String> tableNames;
+        public Map<String, Map<String, String>> columnNames;
+        public Set<String> ignoreTables;
+        public Set<String> onlyTables;
+        public Set<String> notAbstractTables;
+        public Map<String, Set<String>> ignoreColumns;
+        public Map<String, Set<String>> requiredColumns;
+        public Map<String, Set<String>> notRequiredColumns;
+        public Map<String, Map<String, PojoAttrType>> createColumns;
+        public Map<String, Map<String, Map<String, String>>> ignoreExports;
+        public Map<String, Map<String, Map<String, String>>> ignoreImports;
+        public Map<String, Map<String, Map<String, String>>> createExports;
+        public Map<String, Map<String, Map<String, String>>> createImports;
+        public Map<String, Map<String, Map<String, String>>> inheritImports;
+        public Map<String, Map<String, Map<String, String>>> manyToManyImports;
+        public Map<String, Map<String, Map<String, List<String>>>> inheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
+        public Map<String, String> inheritanceColumns;
+        public Set<String> generateMethods;
+        public String generateOperators;
+        public Map<String, ImplementsExtends> toImplements;
+        public ImplementsExtends toExtends;
+        public Map<String, List<String>> joinTables;
+        public boolean doGenerateWrappers;
+        public boolean doGenerateValidationAnnotations;
+        public boolean makeItFinal;
+        public String versionColumn;
+        public Map<String, Set<String>> versionColumns;
+        public Map<String, Set<String>> notVersionColumns;
+        public String debugLevel;
+        public String debugScope;
+        public Set<String> preserveForeignKeys;
+        public Map<String, PojoEntityType> pojosForProcedures;
+        public Map<String, PojoEntityType> pojosForFunctions;
+        public String activeFilter;
+        public String pckg;
+        public Map<String, String> enumForCheckConstraints;
+
+        public PairValues metaGlobalSequence;
+        public Map<String, PairValues> metaTablesSequence;
+        public PairValues metaGlobalIdentity;
+        public Map<String, PairValues> metaTablesIdentity;
+        public Map<String, PairValues> metaSqlTypes;
+        public Map<String, Map<String, PairValues>> metaColumnsMetaTypes;
+        public Map<String, Map<String, PairValues>> metaStatementsMetaTypes;
+        public boolean metaMakeItFinal;
+        public Map<String, Set<String>> metaLikeColumns;
+        public Map<String, Set<String>> metaNotLikeColumns;
+        public boolean metaGenerateSequences;
+        public Set<String> metaGlobalSequenceForTables;
+        public Set<String> metaGlobalSequenceNotForTables;
+        public boolean metaGenerateIdentities;
+        public Set<String> metaGlobalIdentityForTables;
+        public Set<String> metaGlobalIdentityNotForTables;
+        public boolean metaGenerateIdGenerators;
+        public boolean metaGenerateIndirectIdGenerators;
+        public Map<String, String> metaFunctionsResult;
+        public Map<String, String> metaFunctionsResultSet;
+        public Map<String, String> metaProceduresResultSet;
+        public String metaDebugLevel;
+        public String metaDebugScope;
+        public boolean metaGenerateOperators;
+        public Set<String> metaOptimizeInsert;
+        public Map<String, Set<String>> metaOptionalFeatures;
+        public String metaActiveFilter;
+
+        public Set<String> daoIgnoreTables;
+        public Set<String> daoOnlyTables;
+        public Map<String, ImplementsExtends> daoToImplements;
+        public ImplementsExtends daoToExtends;
+        public boolean daoMakeItFinal;
+        public Map<String, PojoEntityType> daoFunctionsResult;
+        public String daoDebugLevel;
+        public String daoDebugScope;
+        public String daoActiveFilter;
+        public String daoPckg;
+        public String daoImplPckg;
+
+        public Map<String, Set<String>> defaultAttrs = new HashMap<String, Set<String>>();
+        public Map<String, Set<String>> conditionalAttrs = new HashMap<String, Set<String>>();
+        public Map<String, Set<String>> systemEnvAttrs = new HashMap<String, Set<String>>();
+
+        public void initModel() {
+            replaceAllRegex = new HashMap<String, String>();
+            replaceAllReplacement = new HashMap<String, String>();
+            doCompressMetaDirectives = false;
+            defaultAttrs.put(STANDARD, new HashSet<String>());
+            conditionalAttrs.put(STANDARD, new HashSet<String>());
+            systemEnvAttrs.put(STANDARD, new HashSet<String>());
+        }
+
+        public void initDatabaseModel() {
+            doResolveDb = false;
+            dbDriver = null;
+            dbUrl = null;
+            dbUsername = null;
+            dbPassword = null;
+            dbCatalog = null;
+            dbSchema = null;
+            dbSqlsBefore = null;
+            dbSqlsAfter = null;
+            dbIndexTypes = null;
+            dbSkipIndexes = false;
+            dbSkipProcedures = false;
+            dbSkipCheckConstraints = false;
+            dbType = null;
+            dbDebugLevel = null;
+            dbDebugScope = null;
+            dbTakeComments = false;
+            dbLowercaseNames = false;
+            dbUppercaseNames = false;
+            defaultAttrs.put(DATABASE, new HashSet<String>());
+            conditionalAttrs.put(DATABASE, new HashSet<String>());
+            systemEnvAttrs.put(DATABASE, new HashSet<String>());
+        }
+
+        public void initPojogenModel() {
+            sqlTypes = new HashMap<String, PojoAttrType>();
+            tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
+            columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
+            procedureTypes = new HashMap<String, Map<String, PojoAttrType>>();
+            functionTypes = new HashMap<String, Map<String, PojoAttrType>>();
+            tableNames = new HashMap<String, String>();
+            columnNames = new HashMap<String, Map<String, String>>();
+            ignoreTables = new HashSet<String>();
+            onlyTables = new HashSet<String>();
+            notAbstractTables = new HashSet<String>();
+            ignoreColumns = new HashMap<String, Set<String>>();
+            requiredColumns = new HashMap<String, Set<String>>();
+            notRequiredColumns = new HashMap<String, Set<String>>();
+            createColumns = new HashMap<String, Map<String, PojoAttrType>>();
+            ignoreExports = new HashMap<String, Map<String, Map<String, String>>>();
+            ignoreImports = new HashMap<String, Map<String, Map<String, String>>>();
+            createExports = new HashMap<String, Map<String, Map<String, String>>>();
+            createImports = new HashMap<String, Map<String, Map<String, String>>>();
+            inheritImports = new HashMap<String, Map<String, Map<String, String>>>();
+            manyToManyImports = new HashMap<String, Map<String, Map<String, String>>>();
+            inheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
+            inheritanceColumns = new HashMap<String, String>();
+            generateMethods = new HashSet<String>();
+            generateOperators = null;
+            toImplements = new HashMap<String, ImplementsExtends>();
+            toExtends = null;
+            joinTables = new HashMap<String, List<String>>();
+            doGenerateWrappers = false;
+            doGenerateValidationAnnotations = false;
+            makeItFinal = false;
+            versionColumn = null;
+            versionColumns = new HashMap<String, Set<String>>();
+            notVersionColumns = new HashMap<String, Set<String>>();
+            debugLevel = null;
+            debugScope = null;
+            preserveForeignKeys = new HashSet<String>();
+            pojosForProcedures = new HashMap<String, PojoEntityType>();
+            pojosForFunctions = new HashMap<String, PojoEntityType>();
+            activeFilter = null;
+            pckg = null;
+            enumForCheckConstraints = new HashMap<String, String>();
+            defaultAttrs.put(POJOGEN, new HashSet<String>());
+            conditionalAttrs.put(POJOGEN, new HashSet<String>());
+        }
+
+        public void initMetagenModel() {
+            metaGlobalSequence = null;
+            metaTablesSequence = new HashMap<String, PairValues>();
+            metaGlobalIdentity = null;
+            metaTablesIdentity = new HashMap<String, PairValues>();
+            metaSqlTypes = new HashMap<String, PairValues>();
+            metaColumnsMetaTypes = new HashMap<String, Map<String, PairValues>>();
+            metaStatementsMetaTypes = new HashMap<String, Map<String, PairValues>>();
+            metaMakeItFinal = false;
+            metaLikeColumns = new HashMap<String, Set<String>>();
+            metaNotLikeColumns = new HashMap<String, Set<String>>();
+            metaGenerateSequences = false;
+            metaGlobalSequenceForTables = new HashSet<String>();
+            metaGlobalSequenceNotForTables = new HashSet<String>();
+            metaGenerateIdentities = false;
+            metaGlobalIdentityForTables = new HashSet<String>();
+            metaGlobalIdentityNotForTables = new HashSet<String>();
+            metaGenerateIdGenerators = false;
+            metaGenerateIndirectIdGenerators = false;
+            metaFunctionsResult = new HashMap<String, String>();
+            metaFunctionsResultSet = new HashMap<String, String>();
+            metaProceduresResultSet = new HashMap<String, String>();
+            metaDebugLevel = null;
+            metaDebugScope = null;
+            metaGenerateOperators = false;
+            metaOptimizeInsert = new HashSet<String>();
+            metaOptionalFeatures = new HashMap<String, Set<String>>();
+            metaActiveFilter = null;
+            defaultAttrs.put(METAGEN, new HashSet<String>());
+            conditionalAttrs.put(METAGEN, new HashSet<String>());
+        }
+
+        public void initDaogenModel() {
+            daoIgnoreTables = new HashSet<String>();
+            daoOnlyTables = new HashSet<String>();
+            daoToImplements = new HashMap<String, ImplementsExtends>();
+            daoToExtends = null;
+            daoMakeItFinal = false;
+            daoFunctionsResult = new HashMap<String, PojoEntityType>();
+            daoDebugLevel = null;
+            daoDebugScope = null;
+            daoActiveFilter = null;
+            daoPckg = null;
+            daoImplPckg = null;
+            defaultAttrs.put(DAOGEN, new HashSet<String>());
+            conditionalAttrs.put(DAOGEN, new HashSet<String>());
+        }
+
+        public void setStandardValuesFromEnv() {
+            for (String name : STANDARD_DIRECTIVES) {
+                String envName = getEnvName(null, name);
+                String value = System.getenv(envName);
+                if (value == null)
+                    continue;
+                systemEnvAttrs.get(STANDARD).add(name);
+                if (RESOLVE_POJO_ON.equals(name)) {
+                    doResolvePojo = true;
+                } else if (RESOLVE_POJO_OFF.equals(name)) {
+                    doResolvePojo = false;
+                } else if (COMPRESS_META_DIRECTIVES.equals(name)) {
+                    doCompressMetaDirectives = true;
+                }
+            }
+        }
+
+        public void setDatabaseValuesFromEnv() {
+            for (String name : DATABASE_DIRECTIVES) {
+                String envName = getEnvName(DATABASE, name);
+                String value = System.getenv(envName);
+                if (value == null)
+                    continue;
+                systemEnvAttrs.get(DATABASE).add(name);
+                if (DATABASE_IS_ONLINE.equals(name)) {
+                    doResolveDb = value.equalsIgnoreCase("true");
+                } else if (DATABASE_IS_OFFLINE.equals(name)) {
+                    doResolveDb = value.equalsIgnoreCase("true");
+                } else if (DATABASE_HAS_URL.equals(name)) {
+                    dbUrl = CommonUtils.getPropertyValue(value);
+                } else if (DATABASE_LOGIN_USERNAME.equals(name)) {
+                    dbUsername = CommonUtils.getPropertyValue(value);
+                } else if (DATABASE_LOGIN_PASSWORD.equals(name)) {
+                    dbPassword = CommonUtils.getPropertyValue(value);
+                } else if (DATABASE_IN_CATALOG.equals(name)) {
+                    dbCatalog = CommonUtils.getPropertyValue(value);
+                } else if (DATABASE_ACTIVE_SCHEMA.equals(name)) {
+                    dbSchema = CommonUtils.getPropertyValue(value);
+                } else if (DATABASE_JDBC_DRIVER.equals(name)) {
+                    dbDriver = CommonUtils.getPropertyValue(value);
+                } else if (DATABASE_EXECUTE_BEFORE.equals(name)) {
+                    dbSqlsBefore = CommonUtils.getPropertyValue(value);
+                } else if (DATABASE_EXECUTE_AFTER.equals(name)) {
+                    dbSqlsAfter = CommonUtils.getPropertyValue(value);
+                } else if (DATABASE_INDEX_TYPES.equals(name)) {
+                    dbIndexTypes = CommonUtils.getPropertyValue(value);
+                } else if (DATABASE_SKIP_INDEXES.equals(name)) {
+                    dbSkipIndexes = value.equalsIgnoreCase("true");
+                } else if (DATABASE_SKIP_PROCEDURES.equals(name)) {
+                    dbSkipProcedures = value.equalsIgnoreCase("true");
+                } else if (DATABASE_SKIP_CHECK_CONSTRAINTS.equals(name)) {
+                    dbSkipCheckConstraints = value.equalsIgnoreCase("true");
+                } else if (DATABASE_OF_TYPE.equals(name)) {
+                    dbType = CommonUtils.getPropertyValue(value);
+                } else if (DATABASE_DEBUG_LEVEL.equals(name)) {
+                    dbDebugLevel = CommonUtils.getPropertyValue(value);
+                } else if (DATABASE_TAKE_COMMENTS.equals(name)) {
+                    dbTakeComments = value.equalsIgnoreCase("true");
+                } else if (DATABASE_LOWERCASE_NAMES.equals(name)) {
+                    dbLowercaseNames = value.equalsIgnoreCase("true");
+                } else if (DATABASE_UPPERCASE_NAMES.equals(name)) {
+                    dbUppercaseNames = value.equalsIgnoreCase("true");
+                }
+            }
+        }
+    }
+
+    protected ModelValues modelValues = null;
+    protected Map<String, ModelValues> dirs2models = new HashMap<String, ModelValues>();
+
+    public ModelProperty() {
+    }
+
+    public ModelProperty(ModelValues modelValues) {
+        init(modelValues);
+    }
+
+    public void init(Object modelValues) {
+        if (modelValues == null || !(modelValues instanceof ModelValues))
+            this.modelValues = null;
+        else {
+            this.modelValues = (ModelValues) modelValues;
+            this.modelValues.dir = "XXX";
+        }
+    }
+
+    public boolean isDoResolvePojo(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.doResolvePojo : false;
+    }
+
+    public boolean isDoResolveDb(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.doResolveDb : false;
+    }
+
+    public Map<String, String> getReplaceAll(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        if (modelValues == null || modelValues.replaceAllRegex == null || modelValues.replaceAllReplacement == null)
+            return Collections.<String, String> emptyMap();
+        Map<String, String> result = new HashMap<String, String>();
+        for (String replaceId : modelValues.replaceAllRegex.keySet()) {
+            if (modelValues.replaceAllReplacement.containsKey(replaceId)) {
+                result.put(modelValues.replaceAllRegex.get(replaceId), modelValues.replaceAllReplacement.get(replaceId));
+            }
+        }
+        return result;
+    }
+
+    public boolean isCompressMetaDirectives(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.doCompressMetaDirectives : false;
+    }
+
+    public Map<String, PojoAttrType> getSqlTypes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.sqlTypes : Collections.<String, PojoAttrType> emptyMap();
+    }
+
+    public Map<String, Map<String, PojoAttrType>> getTableTypes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.tableTypes : Collections
+                .<String, Map<String, PojoAttrType>> emptyMap();
+    }
+
+    public Map<String, Map<String, PojoAttrType>> getColumnTypes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.columnTypes : Collections
+                .<String, Map<String, PojoAttrType>> emptyMap();
+    }
+
+    public Map<String, Map<String, PojoAttrType>> getProcedureTypes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.procedureTypes : Collections
+                .<String, Map<String, PojoAttrType>> emptyMap();
+    }
+
+    public Map<String, Map<String, PojoAttrType>> getFunctionTypes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.functionTypes : Collections
+                .<String, Map<String, PojoAttrType>> emptyMap();
+    }
+
+    public Map<String, String> getTableNames(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.tableNames : Collections.<String, String> emptyMap();
+    }
+
+    public Map<String, Map<String, String>> getColumnNames(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.columnNames : Collections.<String, Map<String, String>> emptyMap();
+    }
+
+    public Set<String> getIgnoreTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.ignoreTables : Collections.<String> emptySet();
+    }
+
+    public Set<String> getOnlyTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.onlyTables : Collections.<String> emptySet();
+    }
+
+    public Set<String> getNotAbstractTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.notAbstractTables : Collections.<String> emptySet();
+    }
+
+    public Map<String, Set<String>> getIgnoreColumns(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.ignoreColumns : Collections.<String, Set<String>> emptyMap();
+    }
+
+    public Map<String, Set<String>> getRequiredColumns(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.requiredColumns : Collections.<String, Set<String>> emptyMap();
+    }
+
+    public Map<String, Set<String>> getNotRequiredColumns(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.notRequiredColumns : Collections.<String, Set<String>> emptyMap();
+    }
+
+    public Map<String, Map<String, PojoAttrType>> getCreateColumns(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.createColumns : Collections
+                .<String, Map<String, PojoAttrType>> emptyMap();
+    }
+
+    public Map<String, Map<String, Map<String, String>>> getIgnoreExports(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.ignoreExports : Collections
+                .<String, Map<String, Map<String, String>>> emptyMap();
+    }
+
+    public Map<String, Map<String, Map<String, String>>> getIgnoreImports(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.ignoreImports : Collections
+                .<String, Map<String, Map<String, String>>> emptyMap();
+    }
+
+    public Map<String, Map<String, Map<String, String>>> getCreateExports(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.createExports : Collections
+                .<String, Map<String, Map<String, String>>> emptyMap();
+    }
+
+    public Map<String, Map<String, Map<String, String>>> getCreateImports(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.createImports : Collections
+                .<String, Map<String, Map<String, String>>> emptyMap();
+    }
+
+    public Map<String, Map<String, Map<String, String>>> getInheritImports(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.inheritImports : Collections
+                .<String, Map<String, Map<String, String>>> emptyMap();
+    }
+
+    public Map<String, Map<String, Map<String, String>>> getManyToManyImports(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.manyToManyImports : Collections
+                .<String, Map<String, Map<String, String>>> emptyMap();
+    }
+
+    public Map<String, Map<String, Map<String, List<String>>>> getInheritance(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.inheritance : Collections
+                .<String, Map<String, Map<String, List<String>>>> emptyMap();
+    }
+
+    public Map<String, String> getInheritanceColumns(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.inheritanceColumns : Collections.<String, String> emptyMap();
+    }
+
+    public Set<String> getGenerateMethods(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.generateMethods : Collections.<String> emptySet();
+    }
+
+    public String getGenerateOperators(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.generateOperators : null;
+    }
+
+    public Map<String, ImplementsExtends> getToImplements(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.toImplements : Collections.<String, ImplementsExtends> emptyMap();
+    }
+
+    public ImplementsExtends getToExtends(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.toExtends : null;
+    }
+
+    public Map<String, List<String>> getJoinTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.joinTables : Collections.<String, List<String>> emptyMap();
+    }
+
+    public boolean isDoGenerateWrappers(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.doGenerateWrappers : false;
+    }
+
+    public boolean isDoGenerateValidationAnnotations(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.doGenerateValidationAnnotations : false;
+    }
+
+    public boolean isMakeItFinal(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.makeItFinal : false;
+    }
+
+    public String getVersionColumn(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.versionColumn : null;
+    }
+
+    public Map<String, Set<String>> getVersionColumns(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.versionColumns : Collections.<String, Set<String>> emptyMap();
+    }
+
+    public Map<String, Set<String>> getNotVersionColumns(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.notVersionColumns : Collections.<String, Set<String>> emptyMap();
+    }
+
+    public String getDebugLevel(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.debugLevel : null;
+    }
+
+    public String getDebugScope(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.debugScope : null;
+    }
+
+    public Set<String> getPreserveForeignKeys(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.preserveForeignKeys : Collections.<String> emptySet();
+    }
+
+    public PairValues getMetaGlobalIdentity(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGlobalIdentity : null;
+    }
+
+    public Map<String, PojoEntityType> getPojosForProcedures(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.pojosForProcedures : Collections.<String, PojoEntityType> emptyMap();
+    }
+
+    public Map<String, PojoEntityType> getPojosForFunctions(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.pojosForFunctions : Collections.<String, PojoEntityType> emptyMap();
+    }
+
+    public String getActiveFilter(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.activeFilter : null;
+    }
+
+    public String getPackage(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.pckg : null;
+    }
+
+    public Map<String, String> getEnumForCheckConstraints(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.enumForCheckConstraints : Collections.<String, String> emptyMap();
+    }
+
+    public Map<String, PairValues> getMetaTablesIdentity(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaTablesIdentity : Collections.<String, PairValues> emptyMap();
+    }
+
+    public PairValues getMetaGlobalSequence(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGlobalSequence : null;
+    }
+
+    public Map<String, PairValues> getMetaTablesSequence(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaTablesSequence : Collections.<String, PairValues> emptyMap();
+    }
+
+    public Map<String, PairValues> getMetaSqlTypes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaSqlTypes : Collections.<String, PairValues> emptyMap();
+    }
+
+    public Map<String, Map<String, PairValues>> getMetaColumnsMetaTypes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaColumnsMetaTypes : Collections
+                .<String, Map<String, PairValues>> emptyMap();
+    }
+
+    public Map<String, Map<String, PairValues>> getMetaStatementsMetaTypes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaStatementsMetaTypes : Collections
+                .<String, Map<String, PairValues>> emptyMap();
+    }
+
+    public boolean isMetaMakeItFinal(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaMakeItFinal : false;
+    }
+
+    public Map<String, Set<String>> getMetaLikeColumns(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaLikeColumns : Collections.<String, Set<String>> emptyMap();
+    }
+
+    public Map<String, Set<String>> getMetaNotLikeColumns(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaNotLikeColumns : Collections.<String, Set<String>> emptyMap();
+    }
+
+    public boolean isMetaGenerateSequences(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGenerateSequences : false;
+    }
+
+    public Set<String> getMetaGlobalSequenceForTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGlobalSequenceForTables : Collections.<String> emptySet();
+    }
+
+    public Set<String> getMetaGlobalSequenceNotForTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGlobalSequenceNotForTables : Collections.<String> emptySet();
+    }
+
+    public boolean isMetaGenerateIdentities(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGenerateIdentities : false;
+    }
+
+    public Set<String> getMetaGlobalIdentityForTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGlobalIdentityForTables : Collections.<String> emptySet();
+    }
+
+    public Set<String> getMetaGlobalIdentityNotForTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGlobalIdentityNotForTables : Collections.<String> emptySet();
+    }
+
+    public boolean isMetaGenerateIdGenerators(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGenerateIdGenerators : false;
+    }
+
+    public boolean isMetaGenerateIndirectIdGenerators(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGenerateIndirectIdGenerators : false;
+    }
+
+    public Map<String, String> getMetaFunctionsResult(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaFunctionsResult : Collections.<String, String> emptyMap();
+    }
+
+    public Map<String, String> getMetaFunctionsResultSet(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaFunctionsResultSet : Collections.<String, String> emptyMap();
+    }
+
+    public Map<String, String> getMetaProceduresResultSet(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaProceduresResultSet : Collections.<String, String> emptyMap();
+    }
+
+    public String getMetaDebugLevel(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaDebugLevel : null;
+    }
+
+    public String getMetaDebugScope(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaDebugScope : null;
+    }
+
+    public boolean isMetaGenerateOperators(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaGenerateOperators : false;
+    }
+
+    public Set<String> getMetaOptimizeInsert(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaOptimizeInsert : Collections.<String> emptySet();
+    }
+
+    public Map<String, Set<String>> getMetaOptionalFeatures(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaOptionalFeatures : Collections.<String, Set<String>> emptyMap();
+    }
+
+    public String getMetaActiveFilter(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.metaActiveFilter : null;
+    }
+
+    public Set<String> getDaoIgnoreTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.daoIgnoreTables : Collections.<String> emptySet();
+    }
+
+    public Set<String> getDaoOnlyTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.daoOnlyTables : Collections.<String> emptySet();
+    }
+
+    public Map<String, ImplementsExtends> getDaoToImplements(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.daoToImplements : Collections.<String, ImplementsExtends> emptyMap();
+    }
+
+    public ImplementsExtends getDaoToExtends(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.daoToExtends : null;
+    }
+
+    public boolean isDaoMakeItFinal(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.daoMakeItFinal : false;
+    }
+
+    public Map<String, PojoEntityType> getDaoFunctionsResult(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.daoFunctionsResult : Collections.<String, PojoEntityType> emptyMap();
+    }
+
+    public String getDaoDebugLevel(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.daoDebugLevel : null;
+    }
+
+    public String getDaoDebugScope(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.daoDebugScope : null;
+    }
+
+    public String getDaoActiveFilter(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.daoActiveFilter : null;
+    }
+
+    public String getDaoPackage(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.daoPckg : null;
+    }
+
+    public String getDaoImplPackage(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.daoImplPckg : null;
+    }
+
+    public String getDbDriver(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbDriver : null;
+    }
+
+    public String getDbUrl(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbUrl : null;
+    }
+
+    public String getDbUsername(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbUsername : null;
+    }
+
+    public String getDbPassword(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbPassword : null;
+    }
+
+    public String getDbCatalog(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbCatalog : null;
+    }
+
+    public String getDbSchema(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbSchema : null;
+    }
+
+    public String getDbSqlsBefore(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbSqlsBefore : null;
+    }
+
+    public String getDbSqlsAfter(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbSqlsAfter : null;
+    }
+
+    public String getDbIndexTypes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbIndexTypes : null;
+    }
+
+    public boolean getDbSkipIndexes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbSkipIndexes : false;
+    }
+
+    public boolean getDbSkipProcedures(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbSkipProcedures : false;
+    }
+
+    public boolean getDbSkipCheckConstraints(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbSkipCheckConstraints : false;
+    }
+
+    public String getDbType(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbType : null;
+    }
+
+    public String getDbDebugLevel(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbDebugLevel : null;
+    }
+
+    public String getDbDebugScope(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbDebugScope : null;
+    }
+
+    public boolean getDbTakeComments(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbTakeComments : false;
+    }
+
+    public boolean getDbLowercaseNames(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbLowercaseNames : false;
+    }
+
+    public boolean getDbUppercaseNames(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbUppercaseNames : false;
+    }
+
+    public String getModelDir(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dir : null;
+    }
+
+    public static String getEnvName(String category, String name) {
+        StringBuilder sb = new StringBuilder();
+        if (category != null) {
+            sb.append(category).append("_");
+        }
+        sb.append(name.replaceAll("-", "_"));
+        return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "ModelPropertyBean [dirs2models=" + dirs2models + "]";
+    }
+
+    public abstract ModelValues getModelValues(EObject model);
 }
