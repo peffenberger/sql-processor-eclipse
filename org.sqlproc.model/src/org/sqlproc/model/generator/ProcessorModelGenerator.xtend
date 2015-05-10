@@ -36,20 +36,20 @@ class ProcessorModelGenerator extends JvmModelGenerator {
 		}
 	}
 
-//	override dispatch void toJavaLiteral(JvmCustomAnnotationValue it, ITreeAppendable appendable, GeneratorConfig config) {
-//		if(values.empty)
-//			appendable.append('{}')
-//		else 
-//			appendable.forEachWithShortcut(values.filter(XExpression), [
-//				//println(it)
-//				if (it instanceof XStringLiteral) {
-//					appendable.append('"' + doConvertToJavaString(it.value) + '"')
-//				} else if (it instanceof XNumberLiteral) {
-//					appendable.append(it.value)
-//				}
-//				else {
-//					compiler.toJavaExpression(it, appendable)
-//				}
-//			])
-//	}
+	override def dispatch void toJavaLiteral(JvmCustomAnnotationValue it, ITreeAppendable appendable, GeneratorConfig config) {
+		if(values.isEmpty)
+			appendable.append('{}')
+		else 
+			appendable.forEachWithShortcut(values.filter(XExpression), [
+				println(it)
+				if (it instanceof XStringLiteral) {
+					appendable.append('"' + doConvertToJavaString(it.value) + '"')
+				} else if (it instanceof XNumberLiteral) {
+					appendable.append(it.value)
+				}
+				else {
+					compiler.toJavaExpression(it, appendable)
+				}
+			])
+	}
 }
