@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.apache.log4j.Logger;
@@ -48,7 +49,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
     protected Set<String> daoImports;
     protected Set<String> daoIgnoreTables = new HashSet<String>();
     protected Set<String> daoOnlyTables = new HashSet<String>();
-    protected Map<String, ImplementsExtends> daoToImplements = new HashMap<String, ImplementsExtends>();
+    protected Map<String, ImplementsExtends> daoToImplements = new TreeMap<String, ImplementsExtends>();
     protected ImplementsExtends daoToExtends = null;
     protected boolean daoMakeItFinal;
     protected Map<String, PojoEntityType> daoFunctionsResult = new HashMap<String, PojoEntityType>();
