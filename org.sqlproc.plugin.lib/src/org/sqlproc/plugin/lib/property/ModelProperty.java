@@ -63,6 +63,7 @@ public abstract class ModelProperty extends AdapterImpl {
     public static final String POJOGEN_IGNORE_IMPORTS = "ignore-many-to-one";
     public static final String POJOGEN_CREATE_EXPORTS = "create-one-to-many";
     public static final String POJOGEN_CREATE_IMPORTS = "create-many-to-one";
+    public static final String POJOGEN_CREATE_121_IMPORTS = "create-one-to-one";
     public static final String POJOGEN_INHERIT_IMPORTS = "inherit-many-to-one";
     public static final String POJOGEN_MANY_TO_MANY_IMPORTS = "table-many-to-many";
     public static final String POJOGEN_INHERITANCE = "inherit-discriminator";
@@ -208,6 +209,7 @@ public abstract class ModelProperty extends AdapterImpl {
         public Map<String, Map<String, Map<String, String>>> ignoreImports;
         public Map<String, Map<String, Map<String, String>>> createExports;
         public Map<String, Map<String, Map<String, String>>> createImports;
+        public Map<String, Map<String, Map<String, String>>> create121Imports;
         public Map<String, Map<String, Map<String, String>>> inheritImports;
         public Map<String, Map<String, Map<String, String>>> manyToManyImports;
         public Map<String, Map<String, Map<String, List<String>>>> inheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
@@ -331,6 +333,7 @@ public abstract class ModelProperty extends AdapterImpl {
             ignoreImports = new HashMap<String, Map<String, Map<String, String>>>();
             createExports = new HashMap<String, Map<String, Map<String, String>>>();
             createImports = new HashMap<String, Map<String, Map<String, String>>>();
+            create121Imports = new HashMap<String, Map<String, Map<String, String>>>();
             inheritImports = new HashMap<String, Map<String, Map<String, String>>>();
             manyToManyImports = new HashMap<String, Map<String, Map<String, String>>>();
             inheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
@@ -626,6 +629,12 @@ public abstract class ModelProperty extends AdapterImpl {
     public Map<String, Map<String, Map<String, String>>> getCreateImports(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.createImports : Collections
+                .<String, Map<String, Map<String, String>>> emptyMap();
+    }
+
+    public Map<String, Map<String, Map<String, String>>> getCreate121Imports(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.create121Imports : Collections
                 .<String, Map<String, Map<String, String>>> emptyMap();
     }
 

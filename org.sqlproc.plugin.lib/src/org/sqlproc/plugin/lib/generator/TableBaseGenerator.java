@@ -91,6 +91,7 @@ public class TableBaseGenerator {
     protected Map<String, Map<String, Map<String, String>>> ignoreImports = new HashMap<String, Map<String, Map<String, String>>>();
     protected Map<String, Map<String, Map<String, String>>> createExports = new HashMap<String, Map<String, Map<String, String>>>();
     protected Map<String, Map<String, Map<String, String>>> createImports = new HashMap<String, Map<String, Map<String, String>>>();
+    protected Map<String, Map<String, Map<String, String>>> create121Imports = new HashMap<String, Map<String, Map<String, String>>>();
     protected Map<String, Map<String, Map<String, String>>> inheritImports = new HashMap<String, Map<String, Map<String, String>>>();
     protected Map<String, Map<String, Map<String, String>>> manyToManyImports = new HashMap<String, Map<String, Map<String, String>>>();
     protected Map<String, Map<String, Map<String, List<String>>>> inheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
@@ -212,6 +213,10 @@ public class TableBaseGenerator {
         if (createImports != null) {
             this.createImports.putAll(createImports);
         }
+        Map<String, Map<String, Map<String, String>>> create121Imports = modelProperty.getCreateImports(model);
+        if (create121Imports != null) {
+            this.create121Imports.putAll(create121Imports);
+        }
         Map<String, Map<String, Map<String, String>>> inheritImports = modelProperty.getInheritImports(model);
         if (inheritImports != null) {
             this.inheritImports.putAll(inheritImports);
@@ -312,6 +317,7 @@ public class TableBaseGenerator {
             System.out.println("ignoreImports " + this.ignoreImports);
             System.out.println("createExports " + this.createExports);
             System.out.println("createImports " + this.createImports);
+            System.out.println("create121Imports " + this.create121Imports);
             System.out.println("inheritImports " + this.inheritImports);
             System.out.println("manyToManyImports " + this.manyToManyImports);
             System.out.println("inheritance " + this.inheritance);

@@ -476,6 +476,16 @@ public class ModelPropertyBean extends ModelProperty {
                     imports.put(_import.getDbColumn(), new HashMap<String, String>());
                 imports.get(_import.getDbColumn()).put(_import.getPkTable(), _import.getPkColumn());
             }
+        } else if (POJOGEN_CREATE_121_IMPORTS.equals(property.getName())) {
+            if (!modelValues.create121Imports.containsKey(property.getDbTable()))
+                modelValues.create121Imports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
+            Map<String, Map<String, String>> imports = modelValues.create121Imports.get(property.getDbTable());
+            for (int i = 0, m = property.getImports().size(); i < m; i++) {
+                ImportAssignement _import = property.getImports().get(i);
+                if (!imports.containsKey(_import.getDbColumn()))
+                    imports.put(_import.getDbColumn(), new HashMap<String, String>());
+                imports.get(_import.getDbColumn()).put(_import.getPkTable(), _import.getPkColumn());
+            }
         } else if (POJOGEN_INHERIT_IMPORTS.equals(property.getName())) {
             if (!modelValues.inheritImports.containsKey(property.getDbTable()))
                 modelValues.inheritImports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
