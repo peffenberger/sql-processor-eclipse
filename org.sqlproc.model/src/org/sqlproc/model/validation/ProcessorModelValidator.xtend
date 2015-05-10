@@ -115,7 +115,7 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
             if (prop != null && prop !== property) {
 	            if (prop.getName().equals(property.getName()) && !prop.getName().startsWith("pojogen")
 	                    && !prop.getName().startsWith("database") && !prop.getName().startsWith("metagen")
-	                    && !prop.getName().startsWith("daogen") && !prop.getName().startsWith("replace-all")) {
+	                    && !prop.getName().startsWith("daogen") && !prop.getName().startsWith("replace-text")) {
 	                error("Duplicate name : " + property.getName(), ProcessorModelPackage.Literals.PROPERTY__NAME)
 	                return
 	            }
