@@ -1129,6 +1129,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
                         .append(tableToCamelCase(outPojoName));
                 buffer.append(")=\n ");
                 for (Map.Entry<String, PojoAttribute> pentry : pojos.get(outPojo).entrySet()) {
+                    if (pentry.getValue().getOne2one() != null)
+                        continue;
                     // System.out.println("  RRR " + pentry.getKey());
                     if (ignoreColumns.containsKey(outPojo) && ignoreColumns.get(outPojo).contains(pentry.getKey()))
                         continue;
