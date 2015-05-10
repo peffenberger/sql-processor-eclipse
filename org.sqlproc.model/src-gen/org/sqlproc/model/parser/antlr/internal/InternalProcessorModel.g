@@ -4078,16 +4078,16 @@ rulePojogenProperty returns [EObject current=null]
 )+)
     |((
 (
-		lv_name_63_0=	'create-one-to-one' 
+		lv_name_63_0=	'association-one-to-one' 
     {
-        newLeafNode(lv_name_63_0, grammarAccess.getPojogenPropertyAccess().getNameCreateOneToOneKeyword_23_0_0());
+        newLeafNode(lv_name_63_0, grammarAccess.getPojogenPropertyAccess().getNameAssociationOneToOneKeyword_23_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getPojogenPropertyRule());
 	        }
-       		setWithLastConsumed($current, "name", lv_name_63_0, "create-one-to-one");
+       		setWithLastConsumed($current, "name", lv_name_63_0, "association-one-to-one");
 	    }
 
 )

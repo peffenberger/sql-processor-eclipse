@@ -2,12 +2,12 @@
 '[]'=46
 'active-filter'=119
 'active-schema'=64
+'association-one-to-one'=103
 'column-meta-type'=127
 'compress-meta-directives'=57
 'create-columns'=95
 'create-many-to-one'=102
 'create-one-to-many'=101
-'create-one-to-one'=103
 'daogen-'=52
 'database-'=49
 'ddl-create'=66

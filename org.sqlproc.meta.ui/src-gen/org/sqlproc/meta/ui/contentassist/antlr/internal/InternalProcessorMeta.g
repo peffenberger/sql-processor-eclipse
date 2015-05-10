@@ -35223,16 +35223,16 @@ rule__PojogenProperty__NameAssignment_23_0
     }
 :
 (
-{ before(grammarAccess.getPojogenPropertyAccess().getNameCreateOneToOneKeyword_23_0_0()); }
+{ before(grammarAccess.getPojogenPropertyAccess().getNameAssociationOneToOneKeyword_23_0_0()); }
 (
-{ before(grammarAccess.getPojogenPropertyAccess().getNameCreateOneToOneKeyword_23_0_0()); }
+{ before(grammarAccess.getPojogenPropertyAccess().getNameAssociationOneToOneKeyword_23_0_0()); }
 
-	'create-one-to-one' 
+	'association-one-to-one' 
 
-{ after(grammarAccess.getPojogenPropertyAccess().getNameCreateOneToOneKeyword_23_0_0()); }
+{ after(grammarAccess.getPojogenPropertyAccess().getNameAssociationOneToOneKeyword_23_0_0()); }
 )
 
-{ after(grammarAccess.getPojogenPropertyAccess().getNameCreateOneToOneKeyword_23_0_0()); }
+{ after(grammarAccess.getPojogenPropertyAccess().getNameAssociationOneToOneKeyword_23_0_0()); }
 )
 
 ;

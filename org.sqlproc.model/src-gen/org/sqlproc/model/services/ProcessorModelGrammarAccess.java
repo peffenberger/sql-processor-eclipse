@@ -1823,7 +1823,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cImportsImportAssignementParserRuleCall_22_2_0 = (RuleCall)cImportsAssignment_22_2.eContents().get(0);
 		private final Group cGroup_23 = (Group)cAlternatives.eContents().get(23);
 		private final Assignment cNameAssignment_23_0 = (Assignment)cGroup_23.eContents().get(0);
-		private final Keyword cNameCreateOneToOneKeyword_23_0_0 = (Keyword)cNameAssignment_23_0.eContents().get(0);
+		private final Keyword cNameAssociationOneToOneKeyword_23_0_0 = (Keyword)cNameAssignment_23_0.eContents().get(0);
 		private final Assignment cDbTableAssignment_23_1 = (Assignment)cGroup_23.eContents().get(1);
 		private final RuleCall cDbTableValidIDParserRuleCall_23_1_0 = (RuleCall)cDbTableAssignment_23_1.eContents().get(0);
 		private final Assignment cImportsAssignment_23_2 = (Assignment)cGroup_23.eContents().get(2);
@@ -1949,7 +1949,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//	| name="inherit-many-to-one" dbTable=ValidID imports+=ImportAssignement+ // imports
 		//	| name="create-one-to-many" dbTable=ValidID exports+=ExportAssignement+ // exports
 		//	| name="create-many-to-one" dbTable=ValidID imports+=ImportAssignement+ // imports
-		//	| name="create-one-to-one" dbTable=ValidID imports+=ImportAssignement+ // imports
+		//	| name="association-one-to-one" dbTable=ValidID imports+=ImportAssignement+ // imports
 		//	| name="table-many-to-many" dbTable=ValidID many2s+=ManyToManyAssignement+ | name="inherit-discriminator"
 		//	dbTable=ValidID dbColumn=ValidID inheritance+=InheritanceAssignement+ | name="generate-methods" methods+=ValidID+ |
 		//	name="generate-operators" operatorsSuffix=ValidID? | name="implements-interfaces" toImplements=ImplementsAssignement |
@@ -1979,7 +1979,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//| name="inherit-many-to-one" dbTable=ValidID imports+=ImportAssignement+ // imports
 		//| name="create-one-to-many" dbTable=ValidID exports+=ExportAssignement+ // exports
 		//| name="create-many-to-one" dbTable=ValidID imports+=ImportAssignement+ // imports
-		//| name="create-one-to-one" dbTable=ValidID imports+=ImportAssignement+ // imports
+		//| name="association-one-to-one" dbTable=ValidID imports+=ImportAssignement+ // imports
 		//| name="table-many-to-many" dbTable=ValidID many2s+=ManyToManyAssignement+ | name="inherit-discriminator"
 		//dbTable=ValidID dbColumn=ValidID inheritance+=InheritanceAssignement+ | name="generate-methods" methods+=ValidID+ |
 		//name="generate-operators" operatorsSuffix=ValidID? | name="implements-interfaces" toImplements=ImplementsAssignement |
@@ -2440,14 +2440,14 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//ImportAssignement
 		public RuleCall getImportsImportAssignementParserRuleCall_22_2_0() { return cImportsImportAssignementParserRuleCall_22_2_0; }
 
-		//name="create-one-to-one" dbTable=ValidID imports+=ImportAssignement+ // imports
+		//name="association-one-to-one" dbTable=ValidID imports+=ImportAssignement+ // imports
 		public Group getGroup_23() { return cGroup_23; }
 
-		//name="create-one-to-one"
+		//name="association-one-to-one"
 		public Assignment getNameAssignment_23_0() { return cNameAssignment_23_0; }
 
-		//"create-one-to-one"
-		public Keyword getNameCreateOneToOneKeyword_23_0_0() { return cNameCreateOneToOneKeyword_23_0_0; }
+		//"association-one-to-one"
+		public Keyword getNameAssociationOneToOneKeyword_23_0_0() { return cNameAssociationOneToOneKeyword_23_0_0; }
 
 		//dbTable=ValidID
 		public Assignment getDbTableAssignment_23_1() { return cDbTableAssignment_23_1; }
@@ -6542,7 +6542,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	| name="inherit-many-to-one" dbTable=ValidID imports+=ImportAssignement+ // imports
 	//	| name="create-one-to-many" dbTable=ValidID exports+=ExportAssignement+ // exports
 	//	| name="create-many-to-one" dbTable=ValidID imports+=ImportAssignement+ // imports
-	//	| name="create-one-to-one" dbTable=ValidID imports+=ImportAssignement+ // imports
+	//	| name="association-one-to-one" dbTable=ValidID imports+=ImportAssignement+ // imports
 	//	| name="table-many-to-many" dbTable=ValidID many2s+=ManyToManyAssignement+ | name="inherit-discriminator"
 	//	dbTable=ValidID dbColumn=ValidID inheritance+=InheritanceAssignement+ | name="generate-methods" methods+=ValidID+ |
 	//	name="generate-operators" operatorsSuffix=ValidID? | name="implements-interfaces" toImplements=ImplementsAssignement |

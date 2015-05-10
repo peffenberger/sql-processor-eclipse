@@ -106,7 +106,7 @@ PojogenProperty:
 	|name='inherit-many-to-one' dbTable=ValidID (imports+=ImportAssignement)+ // imports
 	|name='create-one-to-many' dbTable=ValidID (exports+=ExportAssignement)+ // exports
 	|name='create-many-to-one' dbTable=ValidID (imports+=ImportAssignement)+ // imports
-	|name='create-one-to-one' dbTable=ValidID (imports+=ImportAssignement)+ // imports
+	|name='association-one-to-one' dbTable=ValidID (imports+=ImportAssignement)+ // imports
 	|name='table-many-to-many' dbTable=ValidID (many2s+=ManyToManyAssignement)+
 	|name='inherit-discriminator' dbTable=ValidID dbColumn=ValidID (inheritance+=InheritanceAssignement)+
 	|name='generate-methods' (methods+=ValidID)+

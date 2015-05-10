@@ -90,6 +90,7 @@
 'active-filter'=97
 'active-schema'=42
 'as'=202
+'association-one-to-one'=81
 'case'=212
 'catch'=231
 'column-meta-type'=105
@@ -97,7 +98,6 @@
 'create-columns'=73
 'create-many-to-one'=80
 'create-one-to-many'=79
-'create-one-to-one'=81
 'daogen-'=29
 'database-'=26
 'ddl-create'=44

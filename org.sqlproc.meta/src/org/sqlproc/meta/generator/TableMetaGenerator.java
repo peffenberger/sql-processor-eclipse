@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -719,9 +720,9 @@ public class TableMetaGenerator extends TableBaseGenerator {
         for (Map.Entry<String, PojoAttribute> pentry : pojos.get(pojo).entrySet()) {
             if (discriminator != null && discriminator.equals(pentry.getKey()))
                 continue;
-            if (inherTables.containsKey(pentry.getValue().getPkTable()))
+            if (pentry.getValue().getPkTable() != null && inherTables.containsKey(pentry.getValue().getPkTable()))
                 continue;
-            if (discrTables.containsKey(pentry.getValue().getPkTable()))
+            if (pentry.getValue().getPkTable() != null && discrTables.containsKey(pentry.getValue().getPkTable()))
                 continue;
             Attribute attr = getStatementAttribute(pojo, pentry.getKey(), pentry.getValue(), false);
             first = selectColumn(pentry.getKey(), attr, buffer, pojo, first, statementName, tablePrefix, pojoPrefix,
@@ -1292,10 +1293,10 @@ public class TableMetaGenerator extends TableBaseGenerator {
         Table table = new Table();
         Table extendTable = new Table();
         String statementName;
-        Map<String, Table> assocTables = new HashMap<String, Table>();
-        Map<String, Table> m2mTables = new HashMap<String, Table>();
-        Map<String, Table> discrTables = new HashMap<String, Table>();
-        Map<String, List<Table>> inherTables = new HashMap<String, List<Table>>();
+        Map<String, Table> assocTables = new TreeMap<String, Table>();
+        Map<String, Table> m2mTables = new TreeMap<String, Table>();
+        Map<String, Table> discrTables = new TreeMap<String, Table>();
+        Map<String, List<Table>> inherTables = new TreeMap<String, List<Table>>();
         String version;
     }
 

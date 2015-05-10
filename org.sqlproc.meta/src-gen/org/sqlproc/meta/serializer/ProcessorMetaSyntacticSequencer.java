@@ -2459,7 +2459,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     WS+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     name='create-one-to-one' (ambiguity) dbTable=IDENT
+	 *     name='association-one-to-one' (ambiguity) dbTable=IDENT
 	 */
 	protected void emit_PojogenProperty_WSTerminalRuleCall_23_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

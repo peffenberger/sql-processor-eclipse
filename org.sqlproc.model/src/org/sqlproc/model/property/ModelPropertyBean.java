@@ -475,14 +475,35 @@ public class ModelPropertyBean extends ModelProperty {
                 imports.get(_import.getDbColumn()).put(_import.getPkTable(), _import.getPkColumn());
             }
         } else if (POJOGEN_CREATE_121_IMPORTS.equals(property.getName())) {
+            // pojogen-ignore-one-to-many PERSON ID->PERSON_DETAIL->ID;
+            // pojogen-ignore-many-to-one PERSON_DETAIL ID->PERSON->ID;
+            // pojogen-association-one-to-one PERSON ID->PERSON_DETAIL->ID;
             if (!modelValues.create121Imports.containsKey(property.getDbTable()))
                 modelValues.create121Imports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
             Map<String, Map<String, String>> imports = modelValues.create121Imports.get(property.getDbTable());
+            if (!modelValues.ignoreExports.containsKey(property.getDbTable()))
+                modelValues.ignoreExports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
+            Map<String, Map<String, String>> exports = modelValues.ignoreExports.get(property.getDbTable());
             for (int i = 0, m = property.getImports().size(); i < m; i++) {
                 ImportAssignement _import = property.getImports().get(i);
                 if (!imports.containsKey(_import.getDbColumn()))
                     imports.put(_import.getDbColumn(), new HashMap<String, String>());
                 imports.get(_import.getDbColumn()).put(_import.getPkTable(), _import.getPkColumn());
+                if (!exports.containsKey(_import.getDbColumn()))
+                    exports.put(_import.getDbColumn(), new HashMap<String, String>());
+                exports.get(_import.getDbColumn()).put(_import.getPkTable(), _import.getPkColumn());
+                if (!modelValues.ignoreImports.containsKey(_import.getPkTable()))
+                    modelValues.ignoreImports.put(_import.getPkTable(), new HashMap<String, Map<String, String>>());
+                Map<String, Map<String, String>> _imports = modelValues.ignoreImports.get(_import.getPkTable());
+                if (!_imports.containsKey(_import.getPkColumn()))
+                    _imports.put(_import.getPkColumn(), new HashMap<String, String>());
+                _imports.get(_import.getPkColumn()).put(property.getDbTable(), _import.getDbColumn());
+                if (!modelValues.create121Imports.containsKey(_import.getPkTable()))
+                    modelValues.create121Imports.put(_import.getPkTable(), new HashMap<String, Map<String, String>>());
+                Map<String, Map<String, String>> _imports121 = modelValues.create121Imports.get(_import.getPkTable());
+                if (!_imports121.containsKey(_import.getPkColumn()))
+                    _imports121.put(_import.getPkColumn(), new HashMap<String, String>());
+                _imports121.get(_import.getPkColumn()).put(property.getDbTable(), _import.getDbColumn());
             }
         } else if (POJOGEN_INHERIT_IMPORTS.equals(property.getName())) {
             if (!modelValues.inheritImports.containsKey(property.getDbTable()))

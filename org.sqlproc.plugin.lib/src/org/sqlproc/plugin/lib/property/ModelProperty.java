@@ -63,7 +63,7 @@ public abstract class ModelProperty extends AdapterImpl {
     public static final String POJOGEN_IGNORE_IMPORTS = "ignore-many-to-one";
     public static final String POJOGEN_CREATE_EXPORTS = "create-one-to-many";
     public static final String POJOGEN_CREATE_IMPORTS = "create-many-to-one";
-    public static final String POJOGEN_CREATE_121_IMPORTS = "create-one-to-one";
+    public static final String POJOGEN_CREATE_121_IMPORTS = "association-one-to-one";
     public static final String POJOGEN_INHERIT_IMPORTS = "inherit-many-to-one";
     public static final String POJOGEN_MANY_TO_MANY_IMPORTS = "table-many-to-many";
     public static final String POJOGEN_INHERITANCE = "inherit-discriminator";

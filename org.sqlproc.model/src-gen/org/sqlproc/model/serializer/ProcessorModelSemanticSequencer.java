@@ -1868,7 +1868,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         (name='inherit-many-to-one' dbTable=ValidID imports+=ImportAssignement+) | 
 	 *         (name='create-one-to-many' dbTable=ValidID exports+=ExportAssignement+) | 
 	 *         (name='create-many-to-one' dbTable=ValidID imports+=ImportAssignement+) | 
-	 *         (name='create-one-to-one' dbTable=ValidID imports+=ImportAssignement+) | 
+	 *         (name='association-one-to-one' dbTable=ValidID imports+=ImportAssignement+) | 
 	 *         (name='table-many-to-many' dbTable=ValidID many2s+=ManyToManyAssignement+) | 
 	 *         (name='inherit-discriminator' dbTable=ValidID dbColumn=ValidID inheritance+=InheritanceAssignement+) | 
 	 *         (name='generate-methods' methods+=ValidID+) | 

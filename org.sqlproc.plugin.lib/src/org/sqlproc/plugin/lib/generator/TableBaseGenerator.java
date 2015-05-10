@@ -213,7 +213,7 @@ public class TableBaseGenerator {
         if (createImports != null) {
             this.createImports.putAll(createImports);
         }
-        Map<String, Map<String, Map<String, String>>> create121Imports = modelProperty.getCreateImports(model);
+        Map<String, Map<String, Map<String, String>>> create121Imports = modelProperty.getCreate121Imports(model);
         if (create121Imports != null) {
             this.create121Imports.putAll(create121Imports);
         }
@@ -391,6 +391,26 @@ public class TableBaseGenerator {
         pojos.put(table, attributes);
         if (comment != null)
             comments.put(table, comment);
+
+        // pojogen-ignore-one-to-many PERSON ID->PERSON_DETAIL->ID;
+        // pojogen-ignore-many-to-one PERSON_DETAIL ID->PERSON->ID;
+        // pojogen-create-columns PERSON PERSON_DETAIL->java.lang.Long;
+        // pojogen-create-many-to-one PERSON PERSON_DETAIL->PERSON_DETAIL->ID;
+        // pojogen-create-columns PERSON_DETAIL PERSON->java.lang.Long;
+        // pojogen-create-many-to-one PERSON_DETAIL PERSON->PERSON->ID;
+        // pojogen-create-one-to-one PERSON ID->PERSON_DETAIL->ID;
+        if (create121Imports.containsKey(table)) {
+            for (Map.Entry<String, Map<String, String>> pentry : create121Imports.get(table).entrySet()) {
+                for (Entry<String, String> pkEntry : pentry.getValue().entrySet()) {
+                    PojoAttribute attribute = convertDbColumnDefinition(pkEntry.getKey(),
+                            attributes.get(pentry.getKey()));
+                    attribute.setPkTable(pkEntry.getKey());
+                    attribute.setPkColumn(pkEntry.getValue());
+                    attributes.put(pkEntry.getKey(), attribute);
+                }
+            }
+        }
+
         for (DbImport dbImport : dbImports) {
             if (ignoreImports.containsKey(table)
                     && (ignoreImports.get(table) == null || ignoreImports.get(table)
@@ -625,6 +645,7 @@ public class TableBaseGenerator {
     }
 
     public void resolveReferencesOnKeys() {
+
         for (String pojo : pojos.keySet()) {
             Map<String, PojoAttribute> newAttributes = new TreeMap<String, PojoAttribute>();
             for (Entry<String, PojoAttribute> entry : pojos.get(pojo).entrySet()) {
@@ -993,6 +1014,14 @@ public class TableBaseGenerator {
         attribute.setName(columnToCamelCase(dbName));
         attribute.setPrimitive(false);
         attribute.setClassName(metaType2className(metaType));
+        return attribute;
+    }
+
+    protected PojoAttribute convertDbColumnDefinition(String dbName, PojoAttribute pkAttribute) {
+        PojoAttribute attribute = new PojoAttribute(dbName);
+        attribute.setName(columnToCamelCase(dbName));
+        attribute.setPrimitive(pkAttribute.isPrimitive());
+        attribute.setClassName(pkAttribute.getClassName());
         return attribute;
     }
 

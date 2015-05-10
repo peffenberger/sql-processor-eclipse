@@ -2299,7 +2299,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cImportsImportAssignementParserRuleCall_22_3_1_0 = (RuleCall)cImportsAssignment_22_3_1.eContents().get(0);
 		private final Group cGroup_23 = (Group)cAlternatives.eContents().get(23);
 		private final Assignment cNameAssignment_23_0 = (Assignment)cGroup_23.eContents().get(0);
-		private final Keyword cNameCreateOneToOneKeyword_23_0_0 = (Keyword)cNameAssignment_23_0.eContents().get(0);
+		private final Keyword cNameAssociationOneToOneKeyword_23_0_0 = (Keyword)cNameAssignment_23_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_23_1 = (RuleCall)cGroup_23.eContents().get(1);
 		private final Assignment cDbTableAssignment_23_2 = (Assignment)cGroup_23.eContents().get(2);
 		private final RuleCall cDbTableIDENTTerminalRuleCall_23_2_0 = (RuleCall)cDbTableAssignment_23_2.eContents().get(0);
@@ -2462,7 +2462,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//	| name="inherit-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 		//	| name="create-one-to-many" WS+ dbTable=IDENT (WS+ exports+=ExportAssignement)+ // exports
 		//	| name="create-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
-		//	| name="create-one-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
+		//	| name="association-one-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 		//	| name="table-many-to-many" WS+ dbTable=IDENT (WS+ many2s+=ManyToManyAssignement)+ | name="inherit-discriminator" WS+
 		//	dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+ | name="generate-methods" (WS+
 		//	methods+=IDENT)+ | name="generate-operators" (WS+ operatorsSuffix=IDENT)? | name="implements-interfaces" WS+
@@ -2494,7 +2494,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//| name="inherit-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 		//| name="create-one-to-many" WS+ dbTable=IDENT (WS+ exports+=ExportAssignement)+ // exports
 		//| name="create-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
-		//| name="create-one-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
+		//| name="association-one-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 		//| name="table-many-to-many" WS+ dbTable=IDENT (WS+ many2s+=ManyToManyAssignement)+ | name="inherit-discriminator" WS+
 		//dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+ | name="generate-methods" (WS+
 		//methods+=IDENT)+ | name="generate-operators" (WS+ operatorsSuffix=IDENT)? | name="implements-interfaces" WS+
@@ -3136,14 +3136,14 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//ImportAssignement
 		public RuleCall getImportsImportAssignementParserRuleCall_22_3_1_0() { return cImportsImportAssignementParserRuleCall_22_3_1_0; }
 
-		//name="create-one-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
+		//name="association-one-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 		public Group getGroup_23() { return cGroup_23; }
 
-		//name="create-one-to-one"
+		//name="association-one-to-one"
 		public Assignment getNameAssignment_23_0() { return cNameAssignment_23_0; }
 
-		//"create-one-to-one"
-		public Keyword getNameCreateOneToOneKeyword_23_0_0() { return cNameCreateOneToOneKeyword_23_0_0; }
+		//"association-one-to-one"
+		public Keyword getNameAssociationOneToOneKeyword_23_0_0() { return cNameAssociationOneToOneKeyword_23_0_0; }
 
 		//WS+
 		public RuleCall getWSTerminalRuleCall_23_1() { return cWSTerminalRuleCall_23_1; }
@@ -8406,7 +8406,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	//	| name="inherit-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 	//	| name="create-one-to-many" WS+ dbTable=IDENT (WS+ exports+=ExportAssignement)+ // exports
 	//	| name="create-many-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
-	//	| name="create-one-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
+	//	| name="association-one-to-one" WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
 	//	| name="table-many-to-many" WS+ dbTable=IDENT (WS+ many2s+=ManyToManyAssignement)+ | name="inherit-discriminator" WS+
 	//	dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+ | name="generate-methods" (WS+
 	//	methods+=IDENT)+ | name="generate-operators" (WS+ operatorsSuffix=IDENT)? | name="implements-interfaces" WS+
