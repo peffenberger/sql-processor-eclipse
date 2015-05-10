@@ -1022,6 +1022,7 @@ public class TableBaseGenerator {
         attribute.setName(columnToCamelCase(dbName));
         attribute.setPrimitive(pkAttribute.isPrimitive());
         attribute.setClassName(pkAttribute.getClassName());
+        attribute.setOne2one(pkAttribute.getDbName());
         return attribute;
     }
 

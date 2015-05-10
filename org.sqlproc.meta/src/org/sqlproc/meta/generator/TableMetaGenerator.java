@@ -572,6 +572,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
             PojoAttribute attribute = pentry.getValue();
             if (attribute.getClassName().startsWith(COLLECTION_LIST))
                 continue;
+            if (attribute.getOne2one() != null)
+                continue;
             String name = null;
             if (metaOptimizeInsert.contains(pojo) || metaOptimizeInsert.contains("_ALL_")) {
                 if (!attribute.isRequired()) {
@@ -650,6 +652,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
 
     boolean pojoColumns(StringBuilder buffer, String pojo, boolean first, String statementName) {
         for (Map.Entry<String, PojoAttribute> pentry : pojos.get(pojo).entrySet()) {
+            if (pentry.getValue().getOne2one() != null)
+                continue;
             Attribute attr = getStatementAttribute(pojo, pentry.getKey(), pentry.getValue(), true);
             if (attr == null)
                 continue;
@@ -724,6 +728,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
                 continue;
             if (pentry.getValue().getPkTable() != null && discrTables.containsKey(pentry.getValue().getPkTable()))
                 continue;
+            if (pentry.getValue().getOne2one() != null)
+                continue;
             Attribute attr = getStatementAttribute(pojo, pentry.getKey(), pentry.getValue(), false);
             first = selectColumn(pentry.getKey(), attr, buffer, pojo, first, statementName, tablePrefix, pojoPrefix,
                     notPrimaryKeys, assocTables, null, inherTables, null, false);
@@ -795,6 +801,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
             if (attr.attribute.isPrimaryKey() && notPrimaryKeys)
                 continue;
             if (attr.attribute.isVersion())
+                continue;
+            if (pentry.getValue().getOne2one() != null)
                 continue;
             boolean useLike = false;
             if (select) {
@@ -883,6 +891,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
             if (attr == null)
                 continue;
             if (attr.attribute.isPrimaryKey())
+                continue;
+            if (pentry.getValue().getOne2one() != null)
                 continue;
             String name = (columnNames.containsKey(attr.tableName)) ? columnNames.get(attr.tableName).get(
                     attr.attributeName) : null;
@@ -1343,7 +1353,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
                         header.table.tablePrefix = newPrefix(prefixes, header.table);
                     Table table = new Table();
                     table.setNames(attr.getPkTable());
-                    table.primaryKey = pentry.getKey();
+                    table.primaryKey = (attr.getOne2one() != null) ? attr.getOne2one() : pentry.getKey();
                     table.tableKey = attr.getPkColumn();
                     table.tablePrefix = newPrefix(prefixes, table);
                     table.attrName = attrName(pojo, pentry.getKey(), attr);

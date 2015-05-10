@@ -37,6 +37,7 @@ public class PojoAttribute {
     private String completeSqlType;
     private int size;
     private String comment;
+    private String one2one;
 
     public PojoAttribute(String dbName) {
         this.dbName = dbName;
@@ -313,6 +314,14 @@ public class PojoAttribute {
         this.dependencyClassNameIsEnum = dependencyClassNameIsEnum;
     }
 
+    public String getOne2one() {
+        return one2one;
+    }
+
+    public void setOne2one(String one2one) {
+        this.one2one = one2one;
+    }
+
     @Override
     public String toString() {
         return "PojoAttribute [dbName=" + dbName + ", primitive=" + primitive + ", required=" + required
@@ -324,6 +333,7 @@ public class PojoAttribute {
                 + ", oneToManyOppositeColumn=" + oneToManyOppositeColumn + ", oneToManyTable=" + oneToManyTable
                 + ", manyToManyColumn=" + manyToManyColumn + ", manyToManyTable=" + manyToManyTable + ", funProcType="
                 + funProcType + ", funProcColumnType=" + funProcColumnType + ", sqlType=" + sqlType
-                + ", completeSqlType=" + completeSqlType + ", size=" + size + ", comment=" + comment + "]";
+                + ", completeSqlType=" + completeSqlType + ", size=" + size + ", comment=" + comment + ", one2one="
+                + one2one + "]";
     }
 }
