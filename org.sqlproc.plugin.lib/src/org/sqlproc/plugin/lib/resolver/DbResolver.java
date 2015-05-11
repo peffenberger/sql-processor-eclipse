@@ -12,6 +12,8 @@ import org.sqlproc.plugin.lib.resolver.DbResolverBean.DatabaseDirectives;
 
 public interface DbResolver {
 
+    public static final String IGNORE = "@Ignore";
+
     public enum DbType {
         ORACLE("Oracle"), MY_SQL("MySQL"), HSQLDB("HSQLDB"), POSTGRESQL("PostgreSQL"), INFORMIX("Informix"), DB2("DB2"), MS_SQL(
                 "MSSQL");

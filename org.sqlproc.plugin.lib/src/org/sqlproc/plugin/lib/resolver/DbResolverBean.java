@@ -644,6 +644,8 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getTables(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, null,
                         new String[] { "TABLE", "VIEW" });
                 while (result.next()) {
+                    if (ignore(result))
+                        continue;
                     tablesForModel.add(name(modelDatabaseValues, result.getString("TABLE_NAME")));
                 }
             } catch (SQLException e) {
@@ -684,6 +686,8 @@ public class DbResolverBean implements DbResolver {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
                 result = meta.getProcedures(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, null);
                 while (result.next()) {
+                    if (ignore(result))
+                        continue;
                     String name = result.getString("PROCEDURE_NAME");
                     if (dbType == DbType.MS_SQL) {
                         int ix = name.lastIndexOf(";");
@@ -2391,6 +2395,13 @@ public class DbResolverBean implements DbResolver {
         }
         // System.out.println(">>>origName " + s + " -> " + ss);
         return ss;
+    }
+
+    private boolean ignore(ResultSet result) throws SQLException {
+        String remark = result.getString("REMARKS");
+        if (remark != null && remark.indexOf(IGNORE) >= 0)
+            return true;
+        return false;
     }
 
     @Override
