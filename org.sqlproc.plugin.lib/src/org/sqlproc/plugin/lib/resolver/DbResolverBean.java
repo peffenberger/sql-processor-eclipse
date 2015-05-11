@@ -736,6 +736,8 @@ public class DbResolverBean implements DbResolver {
                 DatabaseMetaData meta = modelDatabaseValues.connection.getMetaData();
                 result = meta.getFunctions(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema, null);
                 while (result.next()) {
+                    if (ignore(result))
+                        continue;
                     String name = result.getString("FUNCTION_NAME");
                     if (dbType == DbType.MS_SQL) {
                         int ix = name.lastIndexOf(";");
@@ -829,6 +831,8 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema,
                         origName(model, modelDatabaseValues, table), null);
                 while (result.next()) {
+                    if (ignore(result))
+                        continue;
                     columnsForModel.add(name(modelDatabaseValues, result.getString("COLUMN_NAME")));
                 }
             } catch (SQLException e) {
@@ -891,6 +895,8 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getProcedureColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema,
                         origName(model, modelDatabaseValues, table), null);
                 while (result.next()) {
+                    if (ignore(result))
+                        continue;
                     String name = result.getString("COLUMN_NAME");
                     if (dbType == DbType.MS_SQL) {
                         if (name.startsWith("@"))
@@ -960,6 +966,8 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getFunctionColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema,
                         origName(model, modelDatabaseValues, table), null);
                 while (result.next()) {
+                    if (ignore(result))
+                        continue;
                     String name = result.getString("COLUMN_NAME");
                     if (dbType == DbType.MS_SQL) {
                         if (name.startsWith("@"))
@@ -1035,6 +1043,8 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getTables(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema,
                         origName(model, modelDatabaseValues, table), null);
                 while (result.next()) {
+                    if (ignore(result))
+                        continue;
                     DbTable dbTable = new DbTable();
                     dbTable.setName(name(modelDatabaseValues, result.getString("TABLE_NAME")));
                     dbTable.setType(result.getString("TABLE_TYPE"));
@@ -1095,6 +1105,8 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema,
                         origName(model, modelDatabaseValues, table), null);
                 while (result.next()) {
+                    if (ignore(result))
+                        continue;
                     DbColumn dbColumn = new DbColumn();
                     dbColumn.setName(name(modelDatabaseValues, result.getString("COLUMN_NAME")));
                     dbColumn.setType(result.getString("TYPE_NAME"));
@@ -1175,6 +1187,8 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getProcedures(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema,
                         origName(model, modelDatabaseValues, table));
                 while (result.next()) {
+                    if (ignore(result))
+                        continue;
                     String name = result.getString("PROCEDURE_NAME");
                     if (dbType == DbType.MS_SQL) {
                         int ix = name.lastIndexOf(";");
@@ -1242,6 +1256,8 @@ public class DbResolverBean implements DbResolver {
                 result = meta.getProcedureColumns(modelDatabaseValues.dbCatalog, modelDatabaseValues.dbSchema,
                         origName(model, modelDatabaseValues, procedure), null);
                 while (result.next()) {
+                    if (ignore(result))
+                        continue;
                     DbColumn dbColumn = new DbColumn();
                     String name = result.getString("COLUMN_NAME");
                     if (dbType == DbType.MS_SQL) {
@@ -1334,6 +1350,8 @@ public class DbResolverBean implements DbResolver {
                 // System.out.println("" + i + ": " + rmeta.getColumnLabel(i));
                 // }
                 while (result.next()) {
+                    if (ignore(result))
+                        continue;
                     String name = result.getString("FUNCTION_NAME");
                     if (dbType == DbType.MS_SQL) {
                         int ix = name.lastIndexOf(";");
@@ -1405,6 +1423,8 @@ public class DbResolverBean implements DbResolver {
                 // System.out.println("" + i + ": " + rmeta.getColumnLabel(i));
                 // }
                 while (result.next()) {
+                    if (ignore(result))
+                        continue;
                     String name = result.getString(dbType == DbType.DB2 ? "PARAMETER_NAME" : "COLUMN_NAME");
                     if (dbType == DbType.MS_SQL) {
                         if (name.startsWith("@"))
