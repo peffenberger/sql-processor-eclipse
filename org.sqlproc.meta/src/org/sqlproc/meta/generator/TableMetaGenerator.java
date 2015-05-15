@@ -386,6 +386,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
         if (header == null)
             return buffer;
         buffer.append("\n  select ");
+        if (select)
+            buffer.append("{? :onlyIds | %p.ID @id(id) |\n    ");
         String parentPojo = pojoDiscriminators.containsKey(header.table.tableName) ? pojoExtends
                 .get(header.table.tableName) : null;
         boolean first = selectColumns(buffer, pojo, true, header.statementName, header.table.tablePrefix, null, false,
@@ -395,8 +397,12 @@ public class TableMetaGenerator extends TableBaseGenerator {
                     false, header.assocTables, null, header.discrTables, header.inherTables, null);
         if (header.table.tablePrefix != null) {
             if (header.extendTable.tableName != null) {
-                if (!first)
-                    buffer.append("\n         ");
+                if (!first) {
+                    if (select)
+                        buffer.append("\n    ");
+                    else
+                        buffer.append("\n         ");
+                }
                 first = selectColumns(buffer, header.extendTable.tableName, first, header.statementName,
                         header.extendTable.tablePrefix, null, true, header.assocTables, null, header.discrTables,
                         header.inherTables, null);
@@ -404,8 +410,12 @@ public class TableMetaGenerator extends TableBaseGenerator {
             if (!header.assocTables.isEmpty()) {
                 for (Entry<String, Table> entry : header.assocTables.entrySet()) {
                     Table table = entry.getValue();
-                    if (!first)
-                        buffer.append("\n         ");
+                    if (!first) {
+                        if (select)
+                            buffer.append("\n    ");
+                        else
+                            buffer.append("\n         ");
+                    }
                     if (table.toInit)
                         buffer.append("{? :").append(table.attrName).append("(call=toInit) | ");
                     if (table.many2many) {
@@ -450,6 +460,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
                 }
             }
         }
+        if (select)
+            buffer.append("\n  }");
         buffer.append("\n  from %%").append(header.table.realTableName);
 
         if (header.table.tablePrefix != null) {
@@ -505,6 +517,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
         else if (header.extendTable.tableName != null)
             whereColumns(buffer, header.extendTable.tableName, first, header.statementName,
                     header.extendTable.tablePrefix, true, select);
+        if (select)
+            buffer.append("\n    {& %p.ID in :ids }");
         buffer.append("\n  }");
         if (select) {
             if (generateMethods.contains(METHOD_INDEX) && indexes.containsKey(pojo))
