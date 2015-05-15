@@ -59,15 +59,19 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    	val SESSION_FACTORY = 'org.sqlproc.engine.SqlSessionFactory'
    	val SQL_SESSION = 'org.sqlproc.engine.SqlSession'
    	val SQL_CONTROL = 'org.sqlproc.engine.SqlControl'
+   	val SQL_RUNTIME_EXCEPTION = 'org.sqlproc.engine.SqlRuntimeException'
    	val LOGGER = 'org.slf4j.Logger'
    	val LOGGER_FACTORY = 'org.slf4j.LoggerFactory'
    	val CRUD_ENGINE = 'org.sqlproc.engine.SqlCrudEngine'
    	val QUERY_ENGINE = 'org.sqlproc.engine.SqlQueryEngine'
    	val PROCEDURE_ENGINE = 'org.sqlproc.engine.SqlProcedureEngine'
    	val SQL_ROW_PROCESSOR = 'org.sqlproc.engine.SqlRowProcessor'
+   	val SET = 'java.util.Set'
+   	val HASH_SET = 'java.util.HashSet'
    	val MAP = 'java.util.Map'
    	val HASH_MAP = 'java.util.HashMap'
    	val LIST = 'java.util.List'
+   	val ARRAY_LIST = 'java.util.ArrayList'
    	val SQL_STANDARD_CONTROL = 'org.sqlproc.engine.impl.SqlStandardControl'
 
    	def void inferDaoIfx(DaoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
@@ -124,6 +128,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    						moreResultClasses = entity.getMoreResultClasses
    					inferListIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferQueryIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+   					inferListFromToIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferCountIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    				}
    				else if (dir instanceof DaoFunProcDirective) {
@@ -273,6 +278,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    						moreResultClasses = entity.getMoreResultClasses
    					inferList(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferQuery(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+   					inferListFromTo(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferCount(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    				}
    				else if (dir instanceof DaoFunProcDirective) {
@@ -712,6 +718,108 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		]	
    		
 		members += entity.toMethod('list', listType) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+   		]	
+	}
+
+   	def void inferListFromTo(DaoEntity entity, DaoDirectiveQuery dir, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
+   		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		val listType = typeRef(java.util.List, typeRef(pojoType))
+   			
+		members += entity.toMethod('listFromTo', listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				if (sqlControl == null || sqlControl.getFirstResult() == null || sqlControl.getMaxResults() == null || «pojoAttrName» == null)
+					return list(sqlSession, «pojoAttrName», sqlControl);
+
+				if (logger.isTraceEnabled()) {
+					logger.trace("sql list «pojoAttrName»: " + «pojoAttrName» + " " + sqlControl);
+				}
+				«QUERY_ENGINE» sqlEngine«pojo.name» = sqlEngineFactory.getCheckedQueryEngine("SELECT_«dbName(pojo.name)»");
+				«IF moreResultClasses.empty»//«ENDIF»sqlControl = getMoreResultClasses(«pojoAttrName», sqlControl);
+				«pojoAttrName».setOnlyIds(true);
+				«SET»<String> initAssociations = «pojoAttrName».getInitAssociations();
+				«pojoAttrName».setInitAssociations(new «HASH_SET»<String>());
+				final «LIST»<Long> ids = sqlEngine«pojo.name».query(sqlSession, Long.class, «pojoAttrName», sqlControl);
+				«pojoAttrName».setInitAssociations(initAssociations);
+
+				List<«pojo.name»> «pojoAttrName»List = new «ARRAY_LIST»<«pojo.name»>();
+				if (!ids.isEmpty()) {
+					«SQL_STANDARD_CONTROL» sqlc = new «SQL_STANDARD_CONTROL»(sqlControl);
+					sqlc.setFirstResult(0);
+					sqlc.setMaxResults(0);
+					final «Map»<Long, «pojo.name»> map = new «HASH_MAP»<Long, «pojo.name»>();
+					final SqlRowProcessor<«pojo.name»> sqlRowProcessor = new SqlRowProcessor<«pojo.name»>() {
+						@Override
+						public boolean processRow(«pojo.name» result, int rownum) throws «SQL_RUNTIME_EXCEPTION» {
+							map.put(result.getId(), result);
+							return true;
+						}
+					};
+					sqlEngine«pojo.name».query(sqlSession, «pojo.name».class, new «pojo.name»()._setIds(ids), sqlc, sqlRowProcessor);
+					for (Long id : ids)
+						«pojoAttrName»List.add(map.get(id));
+				}
+				if (logger.isTraceEnabled()) {
+					logger.trace("sql list «pojoAttrName» size: " + ((«pojoAttrName»List != null) ? «pojoAttrName»List.size() : "null"));
+				}
+				return «pojoAttrName»List;
+   				'''
+   		]	
+   		
+		members += entity.toMethod('listFromTo', listType) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				return listFromTo(sqlSessionFactory.getSqlSession(), «pojoAttrName», sqlControl);
+			'''
+   		]	
+   		
+		members += entity.toMethod('listFromTo', listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			body = '''
+				return listFromTo(sqlSession, «pojoAttrName», null);
+   			'''
+   		]	
+   		
+		members += entity.toMethod('listFromTo', listType) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			body = '''
+				return listFromTo(«pojoAttrName», null);
+   			'''
+   		]	
+	}
+
+   	def void inferListFromToIfx(DaoEntity entity, DaoDirectiveQuery dir, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
+   		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		val listType = typeRef(java.util.List, typeRef(pojoType))
+   			
+		members += entity.toMethod('listFromTo', listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod('listFromTo', listType) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod('listFromTo', listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+   		]	
+   		
+		members += entity.toMethod('listFromTo', listType) [
 			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
    		]	
 	}

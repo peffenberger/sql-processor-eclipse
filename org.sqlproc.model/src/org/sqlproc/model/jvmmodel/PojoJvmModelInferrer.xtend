@@ -408,6 +408,19 @@ class PojoJvmModelInferrer {
 				members += entity.toField('initAssociations', identifierSetType) [
  					initializer = ''' new «HASH_SET»<String>()'''
 	   			]
+	   			members += entity.toMethod('getInitAssociations', identifierSetType.cloneWithProxies) [
+	   				addAnnotationsX(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						return this.initAssociations;
+   					'''
+   				]	
+	   			members += entity.toMethod('setInitAssociations', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("initAssociations", identifierSetType.cloneWithProxies)
+	   				addAnnotationsX(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						this.initAssociations = initAssociations;
+   					'''
+   				]	
 	   			members += entity.toMethod('setInit', typeRef(Void.TYPE)) [
    					parameters += entity.toParameter("associations", typeRef(toInitType).addArrayTypeDimension.cloneWithProxies)
 	   				varArgs = true

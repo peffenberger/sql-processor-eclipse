@@ -507,6 +507,8 @@ public class TablePojoGenerator extends TableBaseGenerator {
                         if (debug.debug)
                             bufferPartial.append(" // ").append(attribute.getCompleteSqlType());
                     }
+                    bufferPartial.append(NLINDENT).append(INDENT).append("#Attr boolean onlyIds");
+                    bufferPartial.append(NLINDENT).append(INDENT).append("#Attr java.util.List <Long> ids");
                     // if (pojoExtends.containsKey(pojo)) {
                     // getParentAttrs(pojoExtends.get(pojo), null, null, toStr);
                     // }
