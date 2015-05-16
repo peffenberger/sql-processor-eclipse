@@ -26,15 +26,22 @@ public class PojoDefinitionImpl implements PojoDefinition {
         }
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public String getClazz() {
         return clazz;
     }
 
     public JvmType getClassx() {
         return classx;
+    }
+
+    @Override
+    public String getQualifiedName() {
+        return (classx != null) ? classx.getQualifiedName() : clazz;
     }
 }

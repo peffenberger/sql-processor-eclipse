@@ -287,9 +287,8 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             return;
 
         val pojoName = Utils.getTokenFromModifier(statement, COLUMN_USAGE)
-        val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), pojoName)
-        val columnUsageClass = if (pojo != null) getClass(pojo)
+        val pojo = if (pojoName != null) modelProperty.getModelPojos(artifacts).get(pojoName)
+        val columnUsageClass = if (pojo != null) pojo.qualifiedName
         if (columnUsageClass != null) {
             switch (checkClassProperty(columnUsageClass, columnName, uri)) {
             case ValidationResult.WARNING:
@@ -364,9 +363,8 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             return;
 
         val pojoName = Utils.getTokenFromModifier(statement, IDENTIFIER_USAGE)
-        val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), pojoName)
-        val identifierUsageClass = if (pojo != null) getClass(pojo)
+        val pojo = if (pojoName != null) modelProperty.getModelPojos(artifacts).get(pojoName)
+        val identifierUsageClass = if (pojo != null) pojo.qualifiedName
         if (identifierUsageClass != null) {
             switch (checkClassProperty(identifierUsageClass, identifierName, uri)) {
             case ValidationResult.WARNING:
@@ -399,9 +397,8 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             return;
 
         val pojoName = Utils.getTokenFromModifier(statement, CONSTANT_USAGE)
-        val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), pojoName)
-        val constantUsageClass = if (pojo != null) getClass(pojo)
+        val pojo = if (pojoName != null) modelProperty.getModelPojos(artifacts).get(pojoName)
+        val constantUsageClass = if (pojo != null) pojo.qualifiedName
         if (constantUsageClass != null) {
             switch (checkClassProperty(constantUsageClass, constant.getName(),uri)) {
             case ValidationResult.WARNING:
@@ -437,9 +434,8 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             return;
 
         val pojoName = Utils.getTokenFromModifier(rule, MAPPING_USAGE)
-        val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), pojoName)
-        val mappingUsageClass = if (pojo != null) getClass(pojo)
+        val pojo = if (pojoName != null) modelProperty.getModelPojos(artifacts).get(pojoName)
+        val mappingUsageClass = if (pojo != null) pojo.qualifiedName
         if (mappingUsageClass != null) {
             switch (checkClassProperty(mappingUsageClass, columnName, uri)) {
             case ValidationResult.WARNING:
@@ -475,22 +471,19 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	            val key = modifier.substring(0, ix)
 	            var value = modifier.substring(ix + 1)
 	            if (IDENTIFIER_USAGE.equals(key)) {
-	                val pojo = Utils.findPojo(qualifiedNameConverter, artifacts,
-	                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), value)
+	                val pojo = modelProperty.getModelPojos(artifacts).get(value)
 	                if (pojo == null) {
 	                    error("Cannot find pojo : " + value + "[" + IDENTIFIER_USAGE + "]",
 	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
 	                }
 	            } else if (COLUMN_USAGE.equals(key)) {
-	                val pojo = Utils.findPojo(qualifiedNameConverter, artifacts,
-	                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), value)
+	                val pojo = modelProperty.getModelPojos(artifacts).get(value)
 	                if (pojo == null) {
 	                    error("Cannot find pojo : " + value + "[" + COLUMN_USAGE + "]",
 	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
 	                }
 	            } else if (CONSTANT_USAGE.equals(key)) {
-	                val pojo = Utils.findPojo(qualifiedNameConverter, artifacts,
-	                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), value)
+	                val pojo = modelProperty.getModelPojos(artifacts).get(value)
 	                if (pojo == null) {
 	                    error("Cannot find pojo : " + value + "[" + CONSTANT_USAGE + "]",
 	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
@@ -499,8 +492,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	                var ix1 = value.indexOf('=')
 	                if (ix1 >= 0)
 	                    value = value.substring(0, ix1)
-	                val table = Utils.findTable(qualifiedNameConverter, artifacts,
-	                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES), value)
+	                val table = modelProperty.getModelTables(artifacts).get(value)
 	                if (table == null) {
 	                    error("Cannot find table : " + value + "[" + TABLE_USAGE + "]",
 	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
@@ -528,8 +520,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	            val key = modifier.substring(0, ix)
 	            val value = modifier.substring(ix + 1)
 	            if (MAPPING_USAGE.equals(key)) {
-	                val pojo = Utils.findPojo(qualifiedNameConverter, artifacts,
-	                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), value)
+	            	val pojo = modelProperty.getModelPojos(artifacts).get(value)
 	                if (pojo == null) {
 	                    error("Cannot find pojo : " + value + "[" + MAPPING_USAGE + "]",
 	                            ProcessorMetaPackage.Literals.MAPPING_RULE__MODIFIERS, index)
@@ -745,8 +736,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             return;
 
         val value = Utils.getTokenFromModifier(statement, TABLE_USAGE, prefix)
-        val tableDefinition = if (value != null) Utils.findTable(qualifiedNameConverter, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES), value)
+        val tableDefinition = if (value != null) modelProperty.getModelTables(artifacts).get(value)
         val tableName = if (tableDefinition != null) tableDefinition.getTable()
         if (tableName == null || !dbResolver.checkColumn(databaseColumn, tableName, columnName)) {
             error("Cannot find column in DB : " + databaseColumn.getName() + "[" + tableName + "]",
@@ -768,8 +758,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
         val tableName = databaseTable.getName()
         val tableDefinitions = Utils.getTokensFromModifier(statement, TABLE_USAGE).map[value |
-        	Utils.findTable(qualifiedNameConverter, artifacts,
-                    scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES), value)
+        	modelProperty.getModelTables(artifacts).get(value)
         ]
         val tableDefinition = tableDefinitions.findFirst[it != null] 
         if (tableDefinition == null || !dbResolver.checkTable(databaseTable, tableName)) {

@@ -45,6 +45,7 @@ import org.eclipse.emf.common.util.URI
 import org.sqlproc.plugin.lib.resolver.PojoResolver
 import org.sqlproc.plugin.lib.resolver.DbResolver
 import org.sqlproc.plugin.lib.property.ModelProperty
+import org.sqlproc.plugin.lib.property.PojoDefinition
 
 /**
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
@@ -139,8 +140,7 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
         val artifacts = model.getContainerOfType(typeof(Artifacts))
 
         val pojoName = Utils.getTokenFromModifier(metaStatement, usageInFilter)
-        val pojoDefinition = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
-                getScopeProvider().getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), pojoName)
+        val pojoDefinition = if (pojoName != null) modelProperty.getModelPojos(artifacts).get(pojoName)
 
         if (pojoDefinition == null) {
             val proposal = getValueConverter().toString("Error: I can't load pojo for " + model, "IDENT")
@@ -153,7 +153,7 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
 
         if (pojoDefinition != null) {
 	        val URI uri = model.eResource?.URI
-            val clazz = getClassName(getClass(pojoDefinition), prefix, uri)
+            val clazz = getClassName(pojoDefinition.qualifiedName, prefix, uri)
             if (clazz == null)
                 return false
             val descriptors = pojoResolver.getPropertyDescriptors(clazz, uri)
@@ -179,8 +179,7 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
         val artifacts = model.getContainerOfType(typeof(Artifacts))
 
         val pojoName = Utils.getTokenFromModifier(mappingRule, MAPPING_USAGE)
-        val pojoDefinition = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
-                getScopeProvider().getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), pojoName)
+        val pojoDefinition = if (pojoName != null) modelProperty.getModelPojos(artifacts).get(pojoName)
 
         if (pojoDefinition == null) {
             val proposal = getValueConverter().toString("Error: I can't load pojo for " + model, "IDENT")
@@ -203,7 +202,7 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
 
         if (pojoDefinition != null) {
 	        val URI uri = model.eResource?.URI
-            val clazz = getClassName(getClass(pojoDefinition), prefix, uri)
+            val clazz = getClassName(pojoDefinition.qualifiedName, prefix, uri)
             if (clazz == null)
                 return
             val descriptors = pojoResolver.getPropertyDescriptors(clazz, uri)
@@ -231,10 +230,6 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
 
     def boolean isResolveDb(EObject model) {
         dbResolver.isResolveDb(model)
-    }
-
-    def getClass(PojoDefinitionModel pojo) {
-		return if (pojo.getClassx() != null) pojo.getClassx().getQualifiedName() else pojo.getClass_()
     }
 
     def isPrimitive(Class<?> clazz) {

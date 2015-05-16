@@ -5,4 +5,6 @@ public interface PojoDefinition {
     public String getName();
 
     public String getClazz();
+
+    public String getQualifiedName();
 }

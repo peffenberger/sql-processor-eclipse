@@ -16,15 +16,22 @@ public class PojoDefinitionImpl implements PojoDefinition {
         this.classx = classx;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public String getClazz() {
         return clazz;
     }
 
     public JvmParameterizedTypeReference getClassx() {
         return classx;
+    }
+
+    @Override
+    public String getQualifiedName() {
+        return (classx != null) ? classx.getQualifiedName() : clazz;
     }
 }
