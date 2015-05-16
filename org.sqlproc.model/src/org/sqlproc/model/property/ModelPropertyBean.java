@@ -17,6 +17,7 @@ import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.DaogenProperty;
 import org.sqlproc.model.processorModel.DatabaseProperty;
 import org.sqlproc.model.processorModel.ExportAssignement;
+import org.sqlproc.model.processorModel.FunctionDefinitionModel;
 import org.sqlproc.model.processorModel.ImportAssignement;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
 import org.sqlproc.model.processorModel.JoinTableAssignement;
@@ -24,9 +25,12 @@ import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetaSqlTypeAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
+import org.sqlproc.model.processorModel.PojoDefinitionModel;
 import org.sqlproc.model.processorModel.PojogenProperty;
+import org.sqlproc.model.processorModel.ProcedureDefinitionModel;
 import org.sqlproc.model.processorModel.Property;
 import org.sqlproc.model.processorModel.PropertyCondition;
+import org.sqlproc.model.processorModel.TableDefinitionModel;
 import org.sqlproc.model.util.Utils;
 import org.sqlproc.plugin.lib.property.ModelProperty;
 import org.sqlproc.plugin.lib.property.PairValues;
@@ -148,6 +152,7 @@ public class ModelPropertyBean extends ModelProperty {
         boolean firstPojogen = true;
         boolean firstMetagen = true;
         boolean firstDaogen = true;
+        boolean firstModel = true;
         try {
             for (Property property : artifacts.getProperties()) {
                 PropertyCondition condition = property.getCondition();
@@ -194,6 +199,39 @@ public class ModelPropertyBean extends ModelProperty {
                     setValue(modelValues, property);
                     modelValues.defaultAttrs.get(STANDARD).add(property.getName());
                 }
+            }
+
+            for (PojoDefinitionModel pojo : artifacts.getPojos()) {
+                if (firstModel) {
+                    firstModel = false;
+                    modelValues.initModelModel();
+                }
+                modelValues.modelPojos.put(pojo.getName(), new PojoDefinitionImpl(pojo.getName(), pojo.getClass_(),
+                        pojo.getClassx()));
+            }
+            for (TableDefinitionModel table : artifacts.getTables()) {
+                if (firstModel) {
+                    firstModel = false;
+                    modelValues.initModelModel();
+                }
+                modelValues.modelTables
+                        .put(table.getName(), new TableDefinitionImpl(table.getName(), table.getTable()));
+            }
+            for (ProcedureDefinitionModel procedure : artifacts.getProcedures()) {
+                if (firstModel) {
+                    firstModel = false;
+                    modelValues.initModelModel();
+                }
+                modelValues.modelProcedures.put(procedure.getName(), new ProcedureDefinitionImpl(procedure.getName(),
+                        procedure.getTable()));
+            }
+            for (FunctionDefinitionModel function : artifacts.getFunctions()) {
+                if (firstModel) {
+                    firstModel = false;
+                    modelValues.initModelModel();
+                }
+                modelValues.modelFunctions.put(function.getName(), new FunctionDefinitionImpl(function.getName(),
+                        function.getTable()));
             }
         } catch (RuntimeException e) {
             e.printStackTrace();

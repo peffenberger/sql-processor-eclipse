@@ -113,9 +113,9 @@ ruleArtifacts returns [EObject current=null]
     |((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getArtifactsAccess().getPojosPojoDefinitionParserRuleCall_2_1_0_0()); 
+	        newCompositeNode(grammarAccess.getArtifactsAccess().getPojosPojoDefinitionModelParserRuleCall_2_1_0_0()); 
 	    }
-		lv_pojos_4_0=rulePojoDefinition		{
+		lv_pojos_4_0=rulePojoDefinitionModel		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getArtifactsRule());
 	        }
@@ -123,7 +123,7 @@ ruleArtifacts returns [EObject current=null]
        			$current, 
        			"pojos",
         		lv_pojos_4_0, 
-        		"PojoDefinition");
+        		"PojoDefinitionModel");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -136,9 +136,9 @@ ruleArtifacts returns [EObject current=null]
     |((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getArtifactsAccess().getTablesTableDefinitionParserRuleCall_2_2_0_0()); 
+	        newCompositeNode(grammarAccess.getArtifactsAccess().getTablesTableDefinitionModelParserRuleCall_2_2_0_0()); 
 	    }
-		lv_tables_6_0=ruleTableDefinition		{
+		lv_tables_6_0=ruleTableDefinitionModel		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getArtifactsRule());
 	        }
@@ -146,7 +146,7 @@ ruleArtifacts returns [EObject current=null]
        			$current, 
        			"tables",
         		lv_tables_6_0, 
-        		"TableDefinition");
+        		"TableDefinitionModel");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -159,9 +159,9 @@ ruleArtifacts returns [EObject current=null]
     |((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getArtifactsAccess().getProceduresProcedureDefinitionParserRuleCall_2_3_0_0()); 
+	        newCompositeNode(grammarAccess.getArtifactsAccess().getProceduresProcedureDefinitionModelParserRuleCall_2_3_0_0()); 
 	    }
-		lv_procedures_8_0=ruleProcedureDefinition		{
+		lv_procedures_8_0=ruleProcedureDefinitionModel		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getArtifactsRule());
 	        }
@@ -169,7 +169,7 @@ ruleArtifacts returns [EObject current=null]
        			$current, 
        			"procedures",
         		lv_procedures_8_0, 
-        		"ProcedureDefinition");
+        		"ProcedureDefinitionModel");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -182,9 +182,9 @@ ruleArtifacts returns [EObject current=null]
     |((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getArtifactsAccess().getFunctionsFunctionDefinitionParserRuleCall_2_4_0_0()); 
+	        newCompositeNode(grammarAccess.getArtifactsAccess().getFunctionsFunctionDefinitionModelParserRuleCall_2_4_0_0()); 
 	    }
-		lv_functions_10_0=ruleFunctionDefinition		{
+		lv_functions_10_0=ruleFunctionDefinitionModel		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getArtifactsRule());
 	        }
@@ -192,7 +192,7 @@ ruleArtifacts returns [EObject current=null]
        			$current, 
        			"functions",
         		lv_functions_10_0, 
-        		"FunctionDefinition");
+        		"FunctionDefinitionModel");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -408,7 +408,7 @@ this_COLON_1=RULE_COLON
         }
 	otherlv_4=RULE_IDENT
 	{
-		newLeafNode(otherlv_4, grammarAccess.getPojoTypeAccess().getRefPojoDefinitionCrossReference_0_1_1_0()); 
+		newLeafNode(otherlv_4, grammarAccess.getPojoTypeAccess().getRefPojoDefinitionModelCrossReference_0_1_1_0()); 
 	}
 
 )
@@ -472,7 +472,7 @@ this_COLON_8=RULE_COLON
         }
 	otherlv_11=RULE_IDENT
 	{
-		newLeafNode(otherlv_11, grammarAccess.getPojoTypeAccess().getGrefPojoDefinitionCrossReference_1_1_1_1_0()); 
+		newLeafNode(otherlv_11, grammarAccess.getPojoTypeAccess().getGrefPojoDefinitionModelCrossReference_1_1_1_1_0()); 
 	}
 
 )
@@ -7220,40 +7220,40 @@ ruleDaogenProperty returns [EObject current=null]
 
 
 
-// Entry rule entryRulePojoDefinition
-entryRulePojoDefinition returns [EObject current=null] 
+// Entry rule entryRulePojoDefinitionModel
+entryRulePojoDefinitionModel returns [EObject current=null] 
 	@init { 
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
 	}
 	:
-	{ newCompositeNode(grammarAccess.getPojoDefinitionRule()); }
-	 iv_rulePojoDefinition=rulePojoDefinition 
-	 { $current=$iv_rulePojoDefinition.current; } 
+	{ newCompositeNode(grammarAccess.getPojoDefinitionModelRule()); }
+	 iv_rulePojoDefinitionModel=rulePojoDefinitionModel 
+	 { $current=$iv_rulePojoDefinitionModel.current; } 
 	 EOF 
 ;
 finally {
 	myHiddenTokenState.restore();
 }
 
-// Rule PojoDefinition
-rulePojoDefinition returns [EObject current=null] 
+// Rule PojoDefinitionModel
+rulePojoDefinitionModel returns [EObject current=null] 
     @init { enterRule(); 
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
     }
     @after { leaveRule(); }:
 (	otherlv_0='pojo' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getPojoDefinitionAccess().getPojoKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getPojoDefinitionModelAccess().getPojoKeyword_0());
     }
 (
 (
 		lv_name_1_0=RULE_IDENT
 		{
-			newLeafNode(lv_name_1_0, grammarAccess.getPojoDefinitionAccess().getNameIDENTTerminalRuleCall_1_0()); 
+			newLeafNode(lv_name_1_0, grammarAccess.getPojoDefinitionModelAccess().getNameIDENTTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoDefinitionRule());
+	            $current = createModelElement(grammarAccess.getPojoDefinitionModelRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -7265,22 +7265,22 @@ rulePojoDefinition returns [EObject current=null]
 )
 )((this_COLON_2=RULE_COLON
     { 
-    newLeafNode(this_COLON_2, grammarAccess.getPojoDefinitionAccess().getCOLONTerminalRuleCall_2_0_0()); 
+    newLeafNode(this_COLON_2, grammarAccess.getPojoDefinitionModelAccess().getCOLONTerminalRuleCall_2_0_0()); 
     }
 (this_COLON_3=RULE_COLON
     { 
-    newLeafNode(this_COLON_3, grammarAccess.getPojoDefinitionAccess().getCOLONTerminalRuleCall_2_0_1()); 
+    newLeafNode(this_COLON_3, grammarAccess.getPojoDefinitionModelAccess().getCOLONTerminalRuleCall_2_0_1()); 
     }
 )?(
 (
 (
 		lv_class_4_1=RULE_IDENT
 		{
-			newLeafNode(lv_class_4_1, grammarAccess.getPojoDefinitionAccess().getClassIDENTTerminalRuleCall_2_0_2_0_0()); 
+			newLeafNode(lv_class_4_1, grammarAccess.getPojoDefinitionModelAccess().getClassIDENTTerminalRuleCall_2_0_2_0_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoDefinitionRule());
+	            $current = createModelElement(grammarAccess.getPojoDefinitionModelRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -7291,11 +7291,11 @@ rulePojoDefinition returns [EObject current=null]
 
     |		lv_class_4_2=RULE_IDENT_DOT
 		{
-			newLeafNode(lv_class_4_2, grammarAccess.getPojoDefinitionAccess().getClassIDENT_DOTTerminalRuleCall_2_0_2_0_1()); 
+			newLeafNode(lv_class_4_2, grammarAccess.getPojoDefinitionModelAccess().getClassIDENT_DOTTerminalRuleCall_2_0_2_0_1()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoDefinitionRule());
+	            $current = createModelElement(grammarAccess.getPojoDefinitionModelRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -7312,11 +7312,11 @@ rulePojoDefinition returns [EObject current=null]
 (
 		{
 			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoDefinitionRule());
+	            $current = createModelElement(grammarAccess.getPojoDefinitionModelRule());
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getPojoDefinitionAccess().getClassxJvmTypeCrossReference_2_1_0()); 
+	        newCompositeNode(grammarAccess.getPojoDefinitionModelAccess().getClassxJvmTypeCrossReference_2_1_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
@@ -7325,7 +7325,7 @@ rulePojoDefinition returns [EObject current=null]
 )
 ))this_SEMICOLON_6=RULE_SEMICOLON
     { 
-    newLeafNode(this_SEMICOLON_6, grammarAccess.getPojoDefinitionAccess().getSEMICOLONTerminalRuleCall_3()); 
+    newLeafNode(this_SEMICOLON_6, grammarAccess.getPojoDefinitionModelAccess().getSEMICOLONTerminalRuleCall_3()); 
     }
 )
 ;
@@ -7337,40 +7337,40 @@ finally {
 
 
 
-// Entry rule entryRuleTableDefinition
-entryRuleTableDefinition returns [EObject current=null] 
+// Entry rule entryRuleTableDefinitionModel
+entryRuleTableDefinitionModel returns [EObject current=null] 
 	@init { 
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
 	}
 	:
-	{ newCompositeNode(grammarAccess.getTableDefinitionRule()); }
-	 iv_ruleTableDefinition=ruleTableDefinition 
-	 { $current=$iv_ruleTableDefinition.current; } 
+	{ newCompositeNode(grammarAccess.getTableDefinitionModelRule()); }
+	 iv_ruleTableDefinitionModel=ruleTableDefinitionModel 
+	 { $current=$iv_ruleTableDefinitionModel.current; } 
 	 EOF 
 ;
 finally {
 	myHiddenTokenState.restore();
 }
 
-// Rule TableDefinition
-ruleTableDefinition returns [EObject current=null] 
+// Rule TableDefinitionModel
+ruleTableDefinitionModel returns [EObject current=null] 
     @init { enterRule(); 
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
     }
     @after { leaveRule(); }:
 (	otherlv_0='table' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getTableDefinitionAccess().getTableKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getTableDefinitionModelAccess().getTableKeyword_0());
     }
 (
 (
 		lv_name_1_0=RULE_IDENT
 		{
-			newLeafNode(lv_name_1_0, grammarAccess.getTableDefinitionAccess().getNameIDENTTerminalRuleCall_1_0()); 
+			newLeafNode(lv_name_1_0, grammarAccess.getTableDefinitionModelAccess().getNameIDENTTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getTableDefinitionRule());
+	            $current = createModelElement(grammarAccess.getTableDefinitionModelRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -7384,11 +7384,11 @@ ruleTableDefinition returns [EObject current=null]
 (
 		lv_table_2_0=RULE_IDENT
 		{
-			newLeafNode(lv_table_2_0, grammarAccess.getTableDefinitionAccess().getTableIDENTTerminalRuleCall_2_0()); 
+			newLeafNode(lv_table_2_0, grammarAccess.getTableDefinitionModelAccess().getTableIDENTTerminalRuleCall_2_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getTableDefinitionRule());
+	            $current = createModelElement(grammarAccess.getTableDefinitionModelRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -7400,7 +7400,7 @@ ruleTableDefinition returns [EObject current=null]
 )
 )this_SEMICOLON_3=RULE_SEMICOLON
     { 
-    newLeafNode(this_SEMICOLON_3, grammarAccess.getTableDefinitionAccess().getSEMICOLONTerminalRuleCall_3()); 
+    newLeafNode(this_SEMICOLON_3, grammarAccess.getTableDefinitionModelAccess().getSEMICOLONTerminalRuleCall_3()); 
     }
 )
 ;
@@ -7412,40 +7412,40 @@ finally {
 
 
 
-// Entry rule entryRuleProcedureDefinition
-entryRuleProcedureDefinition returns [EObject current=null] 
+// Entry rule entryRuleProcedureDefinitionModel
+entryRuleProcedureDefinitionModel returns [EObject current=null] 
 	@init { 
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
 	}
 	:
-	{ newCompositeNode(grammarAccess.getProcedureDefinitionRule()); }
-	 iv_ruleProcedureDefinition=ruleProcedureDefinition 
-	 { $current=$iv_ruleProcedureDefinition.current; } 
+	{ newCompositeNode(grammarAccess.getProcedureDefinitionModelRule()); }
+	 iv_ruleProcedureDefinitionModel=ruleProcedureDefinitionModel 
+	 { $current=$iv_ruleProcedureDefinitionModel.current; } 
 	 EOF 
 ;
 finally {
 	myHiddenTokenState.restore();
 }
 
-// Rule ProcedureDefinition
-ruleProcedureDefinition returns [EObject current=null] 
+// Rule ProcedureDefinitionModel
+ruleProcedureDefinitionModel returns [EObject current=null] 
     @init { enterRule(); 
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
     }
     @after { leaveRule(); }:
 (	otherlv_0='procedure' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getProcedureDefinitionAccess().getProcedureKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getProcedureDefinitionModelAccess().getProcedureKeyword_0());
     }
 (
 (
 		lv_name_1_0=RULE_IDENT
 		{
-			newLeafNode(lv_name_1_0, grammarAccess.getProcedureDefinitionAccess().getNameIDENTTerminalRuleCall_1_0()); 
+			newLeafNode(lv_name_1_0, grammarAccess.getProcedureDefinitionModelAccess().getNameIDENTTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getProcedureDefinitionRule());
+	            $current = createModelElement(grammarAccess.getProcedureDefinitionModelRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -7459,11 +7459,11 @@ ruleProcedureDefinition returns [EObject current=null]
 (
 		lv_table_2_0=RULE_IDENT
 		{
-			newLeafNode(lv_table_2_0, grammarAccess.getProcedureDefinitionAccess().getTableIDENTTerminalRuleCall_2_0()); 
+			newLeafNode(lv_table_2_0, grammarAccess.getProcedureDefinitionModelAccess().getTableIDENTTerminalRuleCall_2_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getProcedureDefinitionRule());
+	            $current = createModelElement(grammarAccess.getProcedureDefinitionModelRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -7475,7 +7475,7 @@ ruleProcedureDefinition returns [EObject current=null]
 )
 )this_SEMICOLON_3=RULE_SEMICOLON
     { 
-    newLeafNode(this_SEMICOLON_3, grammarAccess.getProcedureDefinitionAccess().getSEMICOLONTerminalRuleCall_3()); 
+    newLeafNode(this_SEMICOLON_3, grammarAccess.getProcedureDefinitionModelAccess().getSEMICOLONTerminalRuleCall_3()); 
     }
 )
 ;
@@ -7487,40 +7487,40 @@ finally {
 
 
 
-// Entry rule entryRuleFunctionDefinition
-entryRuleFunctionDefinition returns [EObject current=null] 
+// Entry rule entryRuleFunctionDefinitionModel
+entryRuleFunctionDefinitionModel returns [EObject current=null] 
 	@init { 
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
 	}
 	:
-	{ newCompositeNode(grammarAccess.getFunctionDefinitionRule()); }
-	 iv_ruleFunctionDefinition=ruleFunctionDefinition 
-	 { $current=$iv_ruleFunctionDefinition.current; } 
+	{ newCompositeNode(grammarAccess.getFunctionDefinitionModelRule()); }
+	 iv_ruleFunctionDefinitionModel=ruleFunctionDefinitionModel 
+	 { $current=$iv_ruleFunctionDefinitionModel.current; } 
 	 EOF 
 ;
 finally {
 	myHiddenTokenState.restore();
 }
 
-// Rule FunctionDefinition
-ruleFunctionDefinition returns [EObject current=null] 
+// Rule FunctionDefinitionModel
+ruleFunctionDefinitionModel returns [EObject current=null] 
     @init { enterRule(); 
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
     }
     @after { leaveRule(); }:
 (	otherlv_0='function' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getFunctionDefinitionAccess().getFunctionKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getFunctionDefinitionModelAccess().getFunctionKeyword_0());
     }
 (
 (
 		lv_name_1_0=RULE_IDENT
 		{
-			newLeafNode(lv_name_1_0, grammarAccess.getFunctionDefinitionAccess().getNameIDENTTerminalRuleCall_1_0()); 
+			newLeafNode(lv_name_1_0, grammarAccess.getFunctionDefinitionModelAccess().getNameIDENTTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getFunctionDefinitionRule());
+	            $current = createModelElement(grammarAccess.getFunctionDefinitionModelRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -7534,11 +7534,11 @@ ruleFunctionDefinition returns [EObject current=null]
 (
 		lv_table_2_0=RULE_IDENT
 		{
-			newLeafNode(lv_table_2_0, grammarAccess.getFunctionDefinitionAccess().getTableIDENTTerminalRuleCall_2_0()); 
+			newLeafNode(lv_table_2_0, grammarAccess.getFunctionDefinitionModelAccess().getTableIDENTTerminalRuleCall_2_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getFunctionDefinitionRule());
+	            $current = createModelElement(grammarAccess.getFunctionDefinitionModelRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -7550,7 +7550,7 @@ ruleFunctionDefinition returns [EObject current=null]
 )
 )this_SEMICOLON_3=RULE_SEMICOLON
     { 
-    newLeafNode(this_SEMICOLON_3, grammarAccess.getFunctionDefinitionAccess().getSEMICOLONTerminalRuleCall_3()); 
+    newLeafNode(this_SEMICOLON_3, grammarAccess.getFunctionDefinitionModelAccess().getSEMICOLONTerminalRuleCall_3()); 
     }
 )
 ;

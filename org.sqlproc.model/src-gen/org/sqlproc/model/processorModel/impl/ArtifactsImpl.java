@@ -17,12 +17,12 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sqlproc.model.processorModel.Artifacts;
-import org.sqlproc.model.processorModel.FunctionDefinition;
-import org.sqlproc.model.processorModel.PojoDefinition;
-import org.sqlproc.model.processorModel.ProcedureDefinition;
+import org.sqlproc.model.processorModel.FunctionDefinitionModel;
+import org.sqlproc.model.processorModel.PojoDefinitionModel;
+import org.sqlproc.model.processorModel.ProcedureDefinitionModel;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
-import org.sqlproc.model.processorModel.TableDefinition;
+import org.sqlproc.model.processorModel.TableDefinitionModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -62,7 +62,7 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
    * @generated
    * @ordered
    */
-  protected EList<PojoDefinition> pojos;
+  protected EList<PojoDefinitionModel> pojos;
 
   /**
    * The cached value of the '{@link #getTables() <em>Tables</em>}' containment reference list.
@@ -72,7 +72,7 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
    * @generated
    * @ordered
    */
-  protected EList<TableDefinition> tables;
+  protected EList<TableDefinitionModel> tables;
 
   /**
    * The cached value of the '{@link #getProcedures() <em>Procedures</em>}' containment reference list.
@@ -82,7 +82,7 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
    * @generated
    * @ordered
    */
-  protected EList<ProcedureDefinition> procedures;
+  protected EList<ProcedureDefinitionModel> procedures;
 
   /**
    * The cached value of the '{@link #getFunctions() <em>Functions</em>}' containment reference list.
@@ -92,7 +92,7 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
    * @generated
    * @ordered
    */
-  protected EList<FunctionDefinition> functions;
+  protected EList<FunctionDefinitionModel> functions;
 
   /**
    * The cached value of the '{@link #getPackages() <em>Packages</em>}' containment reference list.
@@ -144,11 +144,11 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoDefinition> getPojos()
+  public EList<PojoDefinitionModel> getPojos()
   {
     if (pojos == null)
     {
-      pojos = new EObjectContainmentEList<PojoDefinition>(PojoDefinition.class, this, ProcessorModelPackage.ARTIFACTS__POJOS);
+      pojos = new EObjectContainmentEList<PojoDefinitionModel>(PojoDefinitionModel.class, this, ProcessorModelPackage.ARTIFACTS__POJOS);
     }
     return pojos;
   }
@@ -158,11 +158,11 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<TableDefinition> getTables()
+  public EList<TableDefinitionModel> getTables()
   {
     if (tables == null)
     {
-      tables = new EObjectContainmentEList<TableDefinition>(TableDefinition.class, this, ProcessorModelPackage.ARTIFACTS__TABLES);
+      tables = new EObjectContainmentEList<TableDefinitionModel>(TableDefinitionModel.class, this, ProcessorModelPackage.ARTIFACTS__TABLES);
     }
     return tables;
   }
@@ -172,11 +172,11 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ProcedureDefinition> getProcedures()
+  public EList<ProcedureDefinitionModel> getProcedures()
   {
     if (procedures == null)
     {
-      procedures = new EObjectContainmentEList<ProcedureDefinition>(ProcedureDefinition.class, this, ProcessorModelPackage.ARTIFACTS__PROCEDURES);
+      procedures = new EObjectContainmentEList<ProcedureDefinitionModel>(ProcedureDefinitionModel.class, this, ProcessorModelPackage.ARTIFACTS__PROCEDURES);
     }
     return procedures;
   }
@@ -186,11 +186,11 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<FunctionDefinition> getFunctions()
+  public EList<FunctionDefinitionModel> getFunctions()
   {
     if (functions == null)
     {
-      functions = new EObjectContainmentEList<FunctionDefinition>(FunctionDefinition.class, this, ProcessorModelPackage.ARTIFACTS__FUNCTIONS);
+      functions = new EObjectContainmentEList<FunctionDefinitionModel>(FunctionDefinitionModel.class, this, ProcessorModelPackage.ARTIFACTS__FUNCTIONS);
     }
     return functions;
   }
@@ -278,19 +278,19 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
         return;
       case ProcessorModelPackage.ARTIFACTS__POJOS:
         getPojos().clear();
-        getPojos().addAll((Collection<? extends PojoDefinition>)newValue);
+        getPojos().addAll((Collection<? extends PojoDefinitionModel>)newValue);
         return;
       case ProcessorModelPackage.ARTIFACTS__TABLES:
         getTables().clear();
-        getTables().addAll((Collection<? extends TableDefinition>)newValue);
+        getTables().addAll((Collection<? extends TableDefinitionModel>)newValue);
         return;
       case ProcessorModelPackage.ARTIFACTS__PROCEDURES:
         getProcedures().clear();
-        getProcedures().addAll((Collection<? extends ProcedureDefinition>)newValue);
+        getProcedures().addAll((Collection<? extends ProcedureDefinitionModel>)newValue);
         return;
       case ProcessorModelPackage.ARTIFACTS__FUNCTIONS:
         getFunctions().clear();
-        getFunctions().addAll((Collection<? extends FunctionDefinition>)newValue);
+        getFunctions().addAll((Collection<? extends FunctionDefinitionModel>)newValue);
         return;
       case ProcessorModelPackage.ARTIFACTS__PACKAGES:
         getPackages().clear();

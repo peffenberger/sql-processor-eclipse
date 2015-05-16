@@ -1,6 +1,7 @@
 package org.sqlproc.model.ui.templates;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -14,9 +15,10 @@ import org.sqlproc.model.generator.TableDaoGenerator;
 import org.sqlproc.model.generator.TablePojoGenerator;
 import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.Package;
-import org.sqlproc.model.processorModel.ProcessorModelPackage;
-import org.sqlproc.model.util.Utils;
+import org.sqlproc.plugin.lib.property.FunctionDefinition;
 import org.sqlproc.plugin.lib.property.ModelProperty;
+import org.sqlproc.plugin.lib.property.ProcedureDefinition;
+import org.sqlproc.plugin.lib.property.TableDefinition;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.resolver.PojoResolver;
 import org.sqlproc.plugin.lib.util.CommonUtils;
@@ -115,8 +117,7 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-                List<String> tablesPresented = Utils.findTables(null, artifacts,
-                        scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__TABLES));
+                Map<String, TableDefinition> tablesPresented = modelProperty.getModelTables(artifacts);
                 List<String> tables = dbResolver.getTables(artifacts);
                 return CommonUtils.getTablesDefinitions(tables, tablesPresented);
             }
@@ -141,8 +142,7 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-                List<String> proceduresPresented = Utils.findProcedures(null, artifacts,
-                        scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__PROCEDURES));
+                Map<String, ProcedureDefinition> proceduresPresented = modelProperty.getModelProcedures(artifacts);
                 List<String> procedures = dbResolver.getProcedures(artifacts);
                 return CommonUtils.getProceduresDefinitions(procedures, proceduresPresented);
             }
@@ -167,8 +167,7 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-                List<String> functionsPresented = Utils.findFunctions(null, artifacts,
-                        scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__FUNCTIONS));
+                Map<String, FunctionDefinition> functionsPresented = modelProperty.getModelFunctions(artifacts);
                 List<String> functions = dbResolver.getFunctions(artifacts);
                 return CommonUtils.getFunctionsDefinitions(functions, functionsPresented);
             }

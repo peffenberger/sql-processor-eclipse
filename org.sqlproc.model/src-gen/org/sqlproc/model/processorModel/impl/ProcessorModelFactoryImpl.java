@@ -59,7 +59,7 @@ import org.sqlproc.model.processorModel.ExtendsAssignementGenerics;
 import org.sqlproc.model.processorModel.FunProcType;
 import org.sqlproc.model.processorModel.FunctionCall;
 import org.sqlproc.model.processorModel.FunctionCallQuery;
-import org.sqlproc.model.processorModel.FunctionDefinition;
+import org.sqlproc.model.processorModel.FunctionDefinitionModel;
 import org.sqlproc.model.processorModel.FunctionPojoAssignement;
 import org.sqlproc.model.processorModel.FunctionQuery;
 import org.sqlproc.model.processorModel.Implements;
@@ -93,7 +93,7 @@ import org.sqlproc.model.processorModel.PojoAttributeDirectiveRequired;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveToInit;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveVersion;
-import org.sqlproc.model.processorModel.PojoDefinition;
+import org.sqlproc.model.processorModel.PojoDefinitionModel;
 import org.sqlproc.model.processorModel.PojoDirective;
 import org.sqlproc.model.processorModel.PojoDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.PojoDirectiveEquals;
@@ -107,7 +107,7 @@ import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
-import org.sqlproc.model.processorModel.ProcedureDefinition;
+import org.sqlproc.model.processorModel.ProcedureDefinitionModel;
 import org.sqlproc.model.processorModel.ProcedurePojoAssignement;
 import org.sqlproc.model.processorModel.ProcedureUpdate;
 import org.sqlproc.model.processorModel.ProcessorModelFactory;
@@ -117,7 +117,7 @@ import org.sqlproc.model.processorModel.PropertyCondition;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
-import org.sqlproc.model.processorModel.TableDefinition;
+import org.sqlproc.model.processorModel.TableDefinitionModel;
 import org.sqlproc.model.processorModel.ValueType;
 
 /**
@@ -206,10 +206,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.META_TYPE_ASSIGNEMENT: return createMetaTypeAssignement();
       case ProcessorModelPackage.METAGEN_PROPERTY: return createMetagenProperty();
       case ProcessorModelPackage.DAOGEN_PROPERTY: return createDaogenProperty();
-      case ProcessorModelPackage.POJO_DEFINITION: return createPojoDefinition();
-      case ProcessorModelPackage.TABLE_DEFINITION: return createTableDefinition();
-      case ProcessorModelPackage.PROCEDURE_DEFINITION: return createProcedureDefinition();
-      case ProcessorModelPackage.FUNCTION_DEFINITION: return createFunctionDefinition();
+      case ProcessorModelPackage.POJO_DEFINITION_MODEL: return createPojoDefinitionModel();
+      case ProcessorModelPackage.TABLE_DEFINITION_MODEL: return createTableDefinitionModel();
+      case ProcessorModelPackage.PROCEDURE_DEFINITION_MODEL: return createProcedureDefinitionModel();
+      case ProcessorModelPackage.FUNCTION_DEFINITION_MODEL: return createFunctionDefinitionModel();
       case ProcessorModelPackage.PACKAGE_DIRECTIVE: return createPackageDirective();
       case ProcessorModelPackage.PACKAGE: return createPackage();
       case ProcessorModelPackage.ABSTRACT_ENTITY: return createAbstractEntity();
@@ -664,10 +664,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDefinition createPojoDefinition()
+  public PojoDefinitionModel createPojoDefinitionModel()
   {
-    PojoDefinitionImpl pojoDefinition = new PojoDefinitionImpl();
-    return pojoDefinition;
+    PojoDefinitionModelImpl pojoDefinitionModel = new PojoDefinitionModelImpl();
+    return pojoDefinitionModel;
   }
 
   /**
@@ -675,10 +675,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public TableDefinition createTableDefinition()
+  public TableDefinitionModel createTableDefinitionModel()
   {
-    TableDefinitionImpl tableDefinition = new TableDefinitionImpl();
-    return tableDefinition;
+    TableDefinitionModelImpl tableDefinitionModel = new TableDefinitionModelImpl();
+    return tableDefinitionModel;
   }
 
   /**
@@ -686,10 +686,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public ProcedureDefinition createProcedureDefinition()
+  public ProcedureDefinitionModel createProcedureDefinitionModel()
   {
-    ProcedureDefinitionImpl procedureDefinition = new ProcedureDefinitionImpl();
-    return procedureDefinition;
+    ProcedureDefinitionModelImpl procedureDefinitionModel = new ProcedureDefinitionModelImpl();
+    return procedureDefinitionModel;
   }
 
   /**
@@ -697,10 +697,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public FunctionDefinition createFunctionDefinition()
+  public FunctionDefinitionModel createFunctionDefinitionModel()
   {
-    FunctionDefinitionImpl functionDefinition = new FunctionDefinitionImpl();
-    return functionDefinition;
+    FunctionDefinitionModelImpl functionDefinitionModel = new FunctionDefinitionModelImpl();
+    return functionDefinitionModel;
   }
 
   /**

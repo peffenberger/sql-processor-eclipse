@@ -65,12 +65,12 @@ public interface PojoType extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Ref</em>' reference.
-   * @see #setRef(PojoDefinition)
+   * @see #setRef(PojoDefinitionModel)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getPojoType_Ref()
    * @model
    * @generated
    */
-  PojoDefinition getRef();
+  PojoDefinitionModel getRef();
 
   /**
    * Sets the value of the '{@link org.sqlproc.meta.processorMeta.PojoType#getRef <em>Ref</em>}' reference.
@@ -80,7 +80,7 @@ public interface PojoType extends EObject
    * @see #getRef()
    * @generated
    */
-  void setRef(PojoDefinition value);
+  void setRef(PojoDefinitionModel value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' reference.
@@ -143,12 +143,12 @@ public interface PojoType extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Gref</em>' reference.
-   * @see #setGref(PojoDefinition)
+   * @see #setGref(PojoDefinitionModel)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getPojoType_Gref()
    * @model
    * @generated
    */
-  PojoDefinition getGref();
+  PojoDefinitionModel getGref();
 
   /**
    * Sets the value of the '{@link org.sqlproc.meta.processorMeta.PojoType#getGref <em>Gref</em>}' reference.
@@ -158,7 +158,7 @@ public interface PojoType extends EObject
    * @see #getGref()
    * @generated
    */
-  void setGref(PojoDefinition value);
+  void setGref(PojoDefinitionModel value);
 
   /**
    * Returns the value of the '<em><b>Gtype</b></em>' reference.

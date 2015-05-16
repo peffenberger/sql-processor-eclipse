@@ -49,7 +49,7 @@ public interface Artifacts extends EObject
 
   /**
    * Returns the value of the '<em><b>Pojos</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.meta.processorMeta.PojoDefinition}.
+   * The list contents are of type {@link org.sqlproc.meta.processorMeta.PojoDefinitionModel}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Pojos</em>' containment reference list isn't clear,
@@ -61,11 +61,11 @@ public interface Artifacts extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<PojoDefinition> getPojos();
+  EList<PojoDefinitionModel> getPojos();
 
   /**
    * Returns the value of the '<em><b>Tables</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.meta.processorMeta.TableDefinition}.
+   * The list contents are of type {@link org.sqlproc.meta.processorMeta.TableDefinitionModel}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Tables</em>' containment reference list isn't clear,
@@ -77,11 +77,11 @@ public interface Artifacts extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<TableDefinition> getTables();
+  EList<TableDefinitionModel> getTables();
 
   /**
    * Returns the value of the '<em><b>Procedures</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.meta.processorMeta.ProcedureDefinition}.
+   * The list contents are of type {@link org.sqlproc.meta.processorMeta.ProcedureDefinitionModel}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Procedures</em>' containment reference list isn't clear,
@@ -93,11 +93,11 @@ public interface Artifacts extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<ProcedureDefinition> getProcedures();
+  EList<ProcedureDefinitionModel> getProcedures();
 
   /**
    * Returns the value of the '<em><b>Functions</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.meta.processorMeta.FunctionDefinition}.
+   * The list contents are of type {@link org.sqlproc.meta.processorMeta.FunctionDefinitionModel}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Functions</em>' containment reference list isn't clear,
@@ -109,7 +109,7 @@ public interface Artifacts extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<FunctionDefinition> getFunctions();
+  EList<FunctionDefinitionModel> getFunctions();
 
   /**
    * Returns the value of the '<em><b>Statements</b></em>' containment reference list.

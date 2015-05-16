@@ -340,7 +340,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleArtifacts"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:82:1: ruleArtifacts returns [EObject current=null] : ( () ( ( (lv_properties_1_0= ruleProperty ) ) | ( (lv_pojos_2_0= rulePojoDefinition ) ) | ( (lv_tables_3_0= ruleTableDefinition ) ) | ( (lv_procedures_4_0= ruleProcedureDefinition ) ) | ( (lv_functions_5_0= ruleFunctionDefinition ) ) | ( (lv_packages_6_0= rulePackage ) ) )* ) ;
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:82:1: ruleArtifacts returns [EObject current=null] : ( () ( ( (lv_properties_1_0= ruleProperty ) ) | ( (lv_pojos_2_0= rulePojoDefinitionModel ) ) | ( (lv_tables_3_0= ruleTableDefinitionModel ) ) | ( (lv_procedures_4_0= ruleProcedureDefinitionModel ) ) | ( (lv_functions_5_0= ruleFunctionDefinitionModel ) ) | ( (lv_packages_6_0= rulePackage ) ) )* ) ;
     public final EObject ruleArtifacts() throws RecognitionException {
         EObject current = null;
 
@@ -360,11 +360,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:85:28: ( ( () ( ( (lv_properties_1_0= ruleProperty ) ) | ( (lv_pojos_2_0= rulePojoDefinition ) ) | ( (lv_tables_3_0= ruleTableDefinition ) ) | ( (lv_procedures_4_0= ruleProcedureDefinition ) ) | ( (lv_functions_5_0= ruleFunctionDefinition ) ) | ( (lv_packages_6_0= rulePackage ) ) )* ) )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:86:1: ( () ( ( (lv_properties_1_0= ruleProperty ) ) | ( (lv_pojos_2_0= rulePojoDefinition ) ) | ( (lv_tables_3_0= ruleTableDefinition ) ) | ( (lv_procedures_4_0= ruleProcedureDefinition ) ) | ( (lv_functions_5_0= ruleFunctionDefinition ) ) | ( (lv_packages_6_0= rulePackage ) ) )* )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:85:28: ( ( () ( ( (lv_properties_1_0= ruleProperty ) ) | ( (lv_pojos_2_0= rulePojoDefinitionModel ) ) | ( (lv_tables_3_0= ruleTableDefinitionModel ) ) | ( (lv_procedures_4_0= ruleProcedureDefinitionModel ) ) | ( (lv_functions_5_0= ruleFunctionDefinitionModel ) ) | ( (lv_packages_6_0= rulePackage ) ) )* ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:86:1: ( () ( ( (lv_properties_1_0= ruleProperty ) ) | ( (lv_pojos_2_0= rulePojoDefinitionModel ) ) | ( (lv_tables_3_0= ruleTableDefinitionModel ) ) | ( (lv_procedures_4_0= ruleProcedureDefinitionModel ) ) | ( (lv_functions_5_0= ruleFunctionDefinitionModel ) ) | ( (lv_packages_6_0= rulePackage ) ) )* )
             {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:86:1: ( () ( ( (lv_properties_1_0= ruleProperty ) ) | ( (lv_pojos_2_0= rulePojoDefinition ) ) | ( (lv_tables_3_0= ruleTableDefinition ) ) | ( (lv_procedures_4_0= ruleProcedureDefinition ) ) | ( (lv_functions_5_0= ruleFunctionDefinition ) ) | ( (lv_packages_6_0= rulePackage ) ) )* )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:86:2: () ( ( (lv_properties_1_0= ruleProperty ) ) | ( (lv_pojos_2_0= rulePojoDefinition ) ) | ( (lv_tables_3_0= ruleTableDefinition ) ) | ( (lv_procedures_4_0= ruleProcedureDefinition ) ) | ( (lv_functions_5_0= ruleFunctionDefinition ) ) | ( (lv_packages_6_0= rulePackage ) ) )*
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:86:1: ( () ( ( (lv_properties_1_0= ruleProperty ) ) | ( (lv_pojos_2_0= rulePojoDefinitionModel ) ) | ( (lv_tables_3_0= ruleTableDefinitionModel ) ) | ( (lv_procedures_4_0= ruleProcedureDefinitionModel ) ) | ( (lv_functions_5_0= ruleFunctionDefinitionModel ) ) | ( (lv_packages_6_0= rulePackage ) ) )* )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:86:2: () ( ( (lv_properties_1_0= ruleProperty ) ) | ( (lv_pojos_2_0= rulePojoDefinitionModel ) ) | ( (lv_tables_3_0= ruleTableDefinitionModel ) ) | ( (lv_procedures_4_0= ruleProcedureDefinitionModel ) ) | ( (lv_functions_5_0= ruleFunctionDefinitionModel ) ) | ( (lv_packages_6_0= rulePackage ) ) )*
             {
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:86:2: ()
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:87:2: 
@@ -384,7 +384,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:95:2: ( ( (lv_properties_1_0= ruleProperty ) ) | ( (lv_pojos_2_0= rulePojoDefinition ) ) | ( (lv_tables_3_0= ruleTableDefinition ) ) | ( (lv_procedures_4_0= ruleProcedureDefinition ) ) | ( (lv_functions_5_0= ruleFunctionDefinition ) ) | ( (lv_packages_6_0= rulePackage ) ) )*
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:95:2: ( ( (lv_properties_1_0= ruleProperty ) ) | ( (lv_pojos_2_0= rulePojoDefinitionModel ) ) | ( (lv_tables_3_0= ruleTableDefinitionModel ) ) | ( (lv_procedures_4_0= ruleProcedureDefinitionModel ) ) | ( (lv_functions_5_0= ruleFunctionDefinitionModel ) ) | ( (lv_packages_6_0= rulePackage ) ) )*
             loop1:
             do {
                 int alt1=7;
@@ -477,21 +477,21 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:114:6: ( (lv_pojos_2_0= rulePojoDefinition ) )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:114:6: ( (lv_pojos_2_0= rulePojoDefinitionModel ) )
             	    {
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:114:6: ( (lv_pojos_2_0= rulePojoDefinition ) )
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:115:1: (lv_pojos_2_0= rulePojoDefinition )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:114:6: ( (lv_pojos_2_0= rulePojoDefinitionModel ) )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:115:1: (lv_pojos_2_0= rulePojoDefinitionModel )
             	    {
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:115:1: (lv_pojos_2_0= rulePojoDefinition )
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:116:3: lv_pojos_2_0= rulePojoDefinition
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:115:1: (lv_pojos_2_0= rulePojoDefinitionModel )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:116:3: lv_pojos_2_0= rulePojoDefinitionModel
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getArtifactsAccess().getPojosPojoDefinitionParserRuleCall_1_1_0()); 
+            	      	        newCompositeNode(grammarAccess.getArtifactsAccess().getPojosPojoDefinitionModelParserRuleCall_1_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FollowSets000.FOLLOW_rulePojoDefinition_in_ruleArtifacts177);
-            	    lv_pojos_2_0=rulePojoDefinition();
+            	    pushFollow(FollowSets000.FOLLOW_rulePojoDefinitionModel_in_ruleArtifacts177);
+            	    lv_pojos_2_0=rulePojoDefinitionModel();
 
             	    state._fsp--;
             	    if (state.failed) return current;
@@ -504,7 +504,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"pojos",
             	              		lv_pojos_2_0, 
-            	              		"PojoDefinition");
+            	              		"PojoDefinitionModel");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -518,21 +518,21 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 3 :
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:133:6: ( (lv_tables_3_0= ruleTableDefinition ) )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:133:6: ( (lv_tables_3_0= ruleTableDefinitionModel ) )
             	    {
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:133:6: ( (lv_tables_3_0= ruleTableDefinition ) )
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:134:1: (lv_tables_3_0= ruleTableDefinition )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:133:6: ( (lv_tables_3_0= ruleTableDefinitionModel ) )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:134:1: (lv_tables_3_0= ruleTableDefinitionModel )
             	    {
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:134:1: (lv_tables_3_0= ruleTableDefinition )
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:135:3: lv_tables_3_0= ruleTableDefinition
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:134:1: (lv_tables_3_0= ruleTableDefinitionModel )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:135:3: lv_tables_3_0= ruleTableDefinitionModel
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getArtifactsAccess().getTablesTableDefinitionParserRuleCall_1_2_0()); 
+            	      	        newCompositeNode(grammarAccess.getArtifactsAccess().getTablesTableDefinitionModelParserRuleCall_1_2_0()); 
             	      	    
             	    }
-            	    pushFollow(FollowSets000.FOLLOW_ruleTableDefinition_in_ruleArtifacts204);
-            	    lv_tables_3_0=ruleTableDefinition();
+            	    pushFollow(FollowSets000.FOLLOW_ruleTableDefinitionModel_in_ruleArtifacts204);
+            	    lv_tables_3_0=ruleTableDefinitionModel();
 
             	    state._fsp--;
             	    if (state.failed) return current;
@@ -545,7 +545,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"tables",
             	              		lv_tables_3_0, 
-            	              		"TableDefinition");
+            	              		"TableDefinitionModel");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -559,21 +559,21 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 4 :
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:152:6: ( (lv_procedures_4_0= ruleProcedureDefinition ) )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:152:6: ( (lv_procedures_4_0= ruleProcedureDefinitionModel ) )
             	    {
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:152:6: ( (lv_procedures_4_0= ruleProcedureDefinition ) )
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:153:1: (lv_procedures_4_0= ruleProcedureDefinition )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:152:6: ( (lv_procedures_4_0= ruleProcedureDefinitionModel ) )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:153:1: (lv_procedures_4_0= ruleProcedureDefinitionModel )
             	    {
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:153:1: (lv_procedures_4_0= ruleProcedureDefinition )
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:154:3: lv_procedures_4_0= ruleProcedureDefinition
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:153:1: (lv_procedures_4_0= ruleProcedureDefinitionModel )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:154:3: lv_procedures_4_0= ruleProcedureDefinitionModel
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getArtifactsAccess().getProceduresProcedureDefinitionParserRuleCall_1_3_0()); 
+            	      	        newCompositeNode(grammarAccess.getArtifactsAccess().getProceduresProcedureDefinitionModelParserRuleCall_1_3_0()); 
             	      	    
             	    }
-            	    pushFollow(FollowSets000.FOLLOW_ruleProcedureDefinition_in_ruleArtifacts231);
-            	    lv_procedures_4_0=ruleProcedureDefinition();
+            	    pushFollow(FollowSets000.FOLLOW_ruleProcedureDefinitionModel_in_ruleArtifacts231);
+            	    lv_procedures_4_0=ruleProcedureDefinitionModel();
 
             	    state._fsp--;
             	    if (state.failed) return current;
@@ -586,7 +586,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"procedures",
             	              		lv_procedures_4_0, 
-            	              		"ProcedureDefinition");
+            	              		"ProcedureDefinitionModel");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -600,21 +600,21 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 5 :
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:171:6: ( (lv_functions_5_0= ruleFunctionDefinition ) )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:171:6: ( (lv_functions_5_0= ruleFunctionDefinitionModel ) )
             	    {
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:171:6: ( (lv_functions_5_0= ruleFunctionDefinition ) )
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:172:1: (lv_functions_5_0= ruleFunctionDefinition )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:171:6: ( (lv_functions_5_0= ruleFunctionDefinitionModel ) )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:172:1: (lv_functions_5_0= ruleFunctionDefinitionModel )
             	    {
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:172:1: (lv_functions_5_0= ruleFunctionDefinition )
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:173:3: lv_functions_5_0= ruleFunctionDefinition
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:172:1: (lv_functions_5_0= ruleFunctionDefinitionModel )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:173:3: lv_functions_5_0= ruleFunctionDefinitionModel
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getArtifactsAccess().getFunctionsFunctionDefinitionParserRuleCall_1_4_0()); 
+            	      	        newCompositeNode(grammarAccess.getArtifactsAccess().getFunctionsFunctionDefinitionModelParserRuleCall_1_4_0()); 
             	      	    
             	    }
-            	    pushFollow(FollowSets000.FOLLOW_ruleFunctionDefinition_in_ruleArtifacts258);
-            	    lv_functions_5_0=ruleFunctionDefinition();
+            	    pushFollow(FollowSets000.FOLLOW_ruleFunctionDefinitionModel_in_ruleArtifacts258);
+            	    lv_functions_5_0=ruleFunctionDefinitionModel();
 
             	    state._fsp--;
             	    if (state.failed) return current;
@@ -627,7 +627,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"functions",
             	              		lv_functions_5_0, 
-            	              		"FunctionDefinition");
+            	              		"FunctionDefinitionModel");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -1097,7 +1097,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     }
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getPojoTypeAccess().getRefPojoDefinitionCrossReference_1_1_0()); 
+                      	        newCompositeNode(grammarAccess.getPojoTypeAccess().getRefPojoDefinitionModelCrossReference_1_1_0()); 
                       	    
                     }
                     pushFollow(FollowSets000.FOLLOW_ruleValidID_in_rulePojoType587);
@@ -17595,30 +17595,30 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleDaogenProperty"
 
 
-    // $ANTLR start "entryRulePojoDefinition"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6440:1: entryRulePojoDefinition returns [EObject current=null] : iv_rulePojoDefinition= rulePojoDefinition EOF ;
-    public final EObject entryRulePojoDefinition() throws RecognitionException {
+    // $ANTLR start "entryRulePojoDefinitionModel"
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6440:1: entryRulePojoDefinitionModel returns [EObject current=null] : iv_rulePojoDefinitionModel= rulePojoDefinitionModel EOF ;
+    public final EObject entryRulePojoDefinitionModel() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_rulePojoDefinition = null;
+        EObject iv_rulePojoDefinitionModel = null;
 
 
         try {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6441:2: (iv_rulePojoDefinition= rulePojoDefinition EOF )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6442:2: iv_rulePojoDefinition= rulePojoDefinition EOF
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6441:2: (iv_rulePojoDefinitionModel= rulePojoDefinitionModel EOF )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6442:2: iv_rulePojoDefinitionModel= rulePojoDefinitionModel EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getPojoDefinitionRule()); 
+               newCompositeNode(grammarAccess.getPojoDefinitionModelRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_rulePojoDefinition_in_entryRulePojoDefinition11767);
-            iv_rulePojoDefinition=rulePojoDefinition();
+            pushFollow(FollowSets000.FOLLOW_rulePojoDefinitionModel_in_entryRulePojoDefinitionModel11767);
+            iv_rulePojoDefinitionModel=rulePojoDefinitionModel();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_rulePojoDefinition; 
+               current =iv_rulePojoDefinitionModel; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRulePojoDefinition11777); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRulePojoDefinitionModel11777); if (state.failed) return current;
 
             }
 
@@ -17632,12 +17632,12 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRulePojoDefinition"
+    // $ANTLR end "entryRulePojoDefinitionModel"
 
 
-    // $ANTLR start "rulePojoDefinition"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6449:1: rulePojoDefinition returns [EObject current=null] : (otherlv_0= 'pojo' ( (lv_name_1_0= ruleValidID ) ) ( ( (otherlv_2= ':' | otherlv_3= '::' )? ( (lv_class_4_0= ruleQualifiedName ) ) ) | ( (lv_classx_5_0= ruleJvmParameterizedTypeReference ) ) ) otherlv_6= ';' ) ;
-    public final EObject rulePojoDefinition() throws RecognitionException {
+    // $ANTLR start "rulePojoDefinitionModel"
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6449:1: rulePojoDefinitionModel returns [EObject current=null] : (otherlv_0= 'pojo' ( (lv_name_1_0= ruleValidID ) ) ( ( (otherlv_2= ':' | otherlv_3= '::' )? ( (lv_class_4_0= ruleQualifiedName ) ) ) | ( (lv_classx_5_0= ruleJvmParameterizedTypeReference ) ) ) otherlv_6= ';' ) ;
+    public final EObject rulePojoDefinitionModel() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
@@ -17660,10 +17660,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6453:1: (otherlv_0= 'pojo' ( (lv_name_1_0= ruleValidID ) ) ( ( (otherlv_2= ':' | otherlv_3= '::' )? ( (lv_class_4_0= ruleQualifiedName ) ) ) | ( (lv_classx_5_0= ruleJvmParameterizedTypeReference ) ) ) otherlv_6= ';' )
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6453:3: otherlv_0= 'pojo' ( (lv_name_1_0= ruleValidID ) ) ( ( (otherlv_2= ':' | otherlv_3= '::' )? ( (lv_class_4_0= ruleQualifiedName ) ) ) | ( (lv_classx_5_0= ruleJvmParameterizedTypeReference ) ) ) otherlv_6= ';'
             {
-            otherlv_0=(Token)match(input,119,FollowSets000.FOLLOW_119_in_rulePojoDefinition11814); if (state.failed) return current;
+            otherlv_0=(Token)match(input,119,FollowSets000.FOLLOW_119_in_rulePojoDefinitionModel11814); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_0, grammarAccess.getPojoDefinitionAccess().getPojoKeyword_0());
+                  	newLeafNode(otherlv_0, grammarAccess.getPojoDefinitionModelAccess().getPojoKeyword_0());
                   
             }
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6457:1: ( (lv_name_1_0= ruleValidID ) )
@@ -17674,10 +17674,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getPojoDefinitionAccess().getNameValidIDParserRuleCall_1_0()); 
+              	        newCompositeNode(grammarAccess.getPojoDefinitionModelAccess().getNameValidIDParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_rulePojoDefinition11835);
+            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_rulePojoDefinitionModel11835);
             lv_name_1_0=ruleValidID();
 
             state._fsp--;
@@ -17685,7 +17685,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getPojoDefinitionRule());
+              	            current = createModelElementForParent(grammarAccess.getPojoDefinitionModelRule());
               	        }
                      		set(
                      			current, 
@@ -17753,10 +17753,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                         case 1 :
                             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6475:6: otherlv_2= ':'
                             {
-                            otherlv_2=(Token)match(input,17,FollowSets000.FOLLOW_17_in_rulePojoDefinition11850); if (state.failed) return current;
+                            otherlv_2=(Token)match(input,17,FollowSets000.FOLLOW_17_in_rulePojoDefinitionModel11850); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
-                                  	newLeafNode(otherlv_2, grammarAccess.getPojoDefinitionAccess().getColonKeyword_2_0_0_0());
+                                  	newLeafNode(otherlv_2, grammarAccess.getPojoDefinitionModelAccess().getColonKeyword_2_0_0_0());
                                   
                             }
 
@@ -17765,10 +17765,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                         case 2 :
                             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6480:7: otherlv_3= '::'
                             {
-                            otherlv_3=(Token)match(input,16,FollowSets000.FOLLOW_16_in_rulePojoDefinition11868); if (state.failed) return current;
+                            otherlv_3=(Token)match(input,16,FollowSets000.FOLLOW_16_in_rulePojoDefinitionModel11868); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
-                                  	newLeafNode(otherlv_3, grammarAccess.getPojoDefinitionAccess().getColonColonKeyword_2_0_0_1());
+                                  	newLeafNode(otherlv_3, grammarAccess.getPojoDefinitionModelAccess().getColonColonKeyword_2_0_0_1());
                                   
                             }
 
@@ -17785,10 +17785,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getPojoDefinitionAccess().getClassQualifiedNameParserRuleCall_2_0_1_0()); 
+                      	        newCompositeNode(grammarAccess.getPojoDefinitionModelAccess().getClassQualifiedNameParserRuleCall_2_0_1_0()); 
                       	    
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleQualifiedName_in_rulePojoDefinition11891);
+                    pushFollow(FollowSets000.FOLLOW_ruleQualifiedName_in_rulePojoDefinitionModel11891);
                     lv_class_4_0=ruleQualifiedName();
 
                     state._fsp--;
@@ -17796,7 +17796,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                       	        if (current==null) {
-                      	            current = createModelElementForParent(grammarAccess.getPojoDefinitionRule());
+                      	            current = createModelElementForParent(grammarAccess.getPojoDefinitionModelRule());
                       	        }
                              		set(
                              			current, 
@@ -17829,10 +17829,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getPojoDefinitionAccess().getClassxJvmParameterizedTypeReferenceParserRuleCall_2_1_0()); 
+                      	        newCompositeNode(grammarAccess.getPojoDefinitionModelAccess().getClassxJvmParameterizedTypeReferenceParserRuleCall_2_1_0()); 
                       	    
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleJvmParameterizedTypeReference_in_rulePojoDefinition11919);
+                    pushFollow(FollowSets000.FOLLOW_ruleJvmParameterizedTypeReference_in_rulePojoDefinitionModel11919);
                     lv_classx_5_0=ruleJvmParameterizedTypeReference();
 
                     state._fsp--;
@@ -17840,7 +17840,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                       	        if (current==null) {
-                      	            current = createModelElementForParent(grammarAccess.getPojoDefinitionRule());
+                      	            current = createModelElementForParent(grammarAccess.getPojoDefinitionModelRule());
                       	        }
                              		set(
                              			current, 
@@ -17862,10 +17862,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,35,FollowSets000.FOLLOW_35_in_rulePojoDefinition11932); if (state.failed) return current;
+            otherlv_6=(Token)match(input,35,FollowSets000.FOLLOW_35_in_rulePojoDefinitionModel11932); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_6, grammarAccess.getPojoDefinitionAccess().getSemicolonKeyword_3());
+                  	newLeafNode(otherlv_6, grammarAccess.getPojoDefinitionModelAccess().getSemicolonKeyword_3());
                   
             }
 
@@ -17887,33 +17887,33 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "rulePojoDefinition"
+    // $ANTLR end "rulePojoDefinitionModel"
 
 
-    // $ANTLR start "entryRuleTableDefinition"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6533:1: entryRuleTableDefinition returns [EObject current=null] : iv_ruleTableDefinition= ruleTableDefinition EOF ;
-    public final EObject entryRuleTableDefinition() throws RecognitionException {
+    // $ANTLR start "entryRuleTableDefinitionModel"
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6533:1: entryRuleTableDefinitionModel returns [EObject current=null] : iv_ruleTableDefinitionModel= ruleTableDefinitionModel EOF ;
+    public final EObject entryRuleTableDefinitionModel() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleTableDefinition = null;
+        EObject iv_ruleTableDefinitionModel = null;
 
 
         try {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6534:2: (iv_ruleTableDefinition= ruleTableDefinition EOF )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6535:2: iv_ruleTableDefinition= ruleTableDefinition EOF
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6534:2: (iv_ruleTableDefinitionModel= ruleTableDefinitionModel EOF )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6535:2: iv_ruleTableDefinitionModel= ruleTableDefinitionModel EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getTableDefinitionRule()); 
+               newCompositeNode(grammarAccess.getTableDefinitionModelRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleTableDefinition_in_entryRuleTableDefinition11968);
-            iv_ruleTableDefinition=ruleTableDefinition();
+            pushFollow(FollowSets000.FOLLOW_ruleTableDefinitionModel_in_entryRuleTableDefinitionModel11968);
+            iv_ruleTableDefinitionModel=ruleTableDefinitionModel();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleTableDefinition; 
+               current =iv_ruleTableDefinitionModel; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleTableDefinition11978); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleTableDefinitionModel11978); if (state.failed) return current;
 
             }
 
@@ -17927,12 +17927,12 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleTableDefinition"
+    // $ANTLR end "entryRuleTableDefinitionModel"
 
 
-    // $ANTLR start "ruleTableDefinition"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6542:1: ruleTableDefinition returns [EObject current=null] : (otherlv_0= 'table' ( (lv_name_1_0= ruleValidID ) ) ( (lv_table_2_0= ruleValidID ) ) otherlv_3= ';' ) ;
-    public final EObject ruleTableDefinition() throws RecognitionException {
+    // $ANTLR start "ruleTableDefinitionModel"
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6542:1: ruleTableDefinitionModel returns [EObject current=null] : (otherlv_0= 'table' ( (lv_name_1_0= ruleValidID ) ) ( (lv_table_2_0= ruleValidID ) ) otherlv_3= ';' ) ;
+    public final EObject ruleTableDefinitionModel() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
@@ -17951,10 +17951,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6546:1: (otherlv_0= 'table' ( (lv_name_1_0= ruleValidID ) ) ( (lv_table_2_0= ruleValidID ) ) otherlv_3= ';' )
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6546:3: otherlv_0= 'table' ( (lv_name_1_0= ruleValidID ) ) ( (lv_table_2_0= ruleValidID ) ) otherlv_3= ';'
             {
-            otherlv_0=(Token)match(input,120,FollowSets000.FOLLOW_120_in_ruleTableDefinition12015); if (state.failed) return current;
+            otherlv_0=(Token)match(input,120,FollowSets000.FOLLOW_120_in_ruleTableDefinitionModel12015); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_0, grammarAccess.getTableDefinitionAccess().getTableKeyword_0());
+                  	newLeafNode(otherlv_0, grammarAccess.getTableDefinitionModelAccess().getTableKeyword_0());
                   
             }
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6550:1: ( (lv_name_1_0= ruleValidID ) )
@@ -17965,10 +17965,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getTableDefinitionAccess().getNameValidIDParserRuleCall_1_0()); 
+              	        newCompositeNode(grammarAccess.getTableDefinitionModelAccess().getNameValidIDParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleTableDefinition12036);
+            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleTableDefinitionModel12036);
             lv_name_1_0=ruleValidID();
 
             state._fsp--;
@@ -17976,7 +17976,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getTableDefinitionRule());
+              	            current = createModelElementForParent(grammarAccess.getTableDefinitionModelRule());
               	        }
                      		set(
                      			current, 
@@ -18000,10 +18000,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getTableDefinitionAccess().getTableValidIDParserRuleCall_2_0()); 
+              	        newCompositeNode(grammarAccess.getTableDefinitionModelAccess().getTableValidIDParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleTableDefinition12057);
+            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleTableDefinitionModel12057);
             lv_table_2_0=ruleValidID();
 
             state._fsp--;
@@ -18011,7 +18011,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getTableDefinitionRule());
+              	            current = createModelElementForParent(grammarAccess.getTableDefinitionModelRule());
               	        }
                      		set(
                      			current, 
@@ -18027,10 +18027,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,35,FollowSets000.FOLLOW_35_in_ruleTableDefinition12069); if (state.failed) return current;
+            otherlv_3=(Token)match(input,35,FollowSets000.FOLLOW_35_in_ruleTableDefinitionModel12069); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_3, grammarAccess.getTableDefinitionAccess().getSemicolonKeyword_3());
+                  	newLeafNode(otherlv_3, grammarAccess.getTableDefinitionModelAccess().getSemicolonKeyword_3());
                   
             }
 
@@ -18052,33 +18052,33 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleTableDefinition"
+    // $ANTLR end "ruleTableDefinitionModel"
 
 
-    // $ANTLR start "entryRuleProcedureDefinition"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6598:1: entryRuleProcedureDefinition returns [EObject current=null] : iv_ruleProcedureDefinition= ruleProcedureDefinition EOF ;
-    public final EObject entryRuleProcedureDefinition() throws RecognitionException {
+    // $ANTLR start "entryRuleProcedureDefinitionModel"
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6598:1: entryRuleProcedureDefinitionModel returns [EObject current=null] : iv_ruleProcedureDefinitionModel= ruleProcedureDefinitionModel EOF ;
+    public final EObject entryRuleProcedureDefinitionModel() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleProcedureDefinition = null;
+        EObject iv_ruleProcedureDefinitionModel = null;
 
 
         try {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6599:2: (iv_ruleProcedureDefinition= ruleProcedureDefinition EOF )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6600:2: iv_ruleProcedureDefinition= ruleProcedureDefinition EOF
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6599:2: (iv_ruleProcedureDefinitionModel= ruleProcedureDefinitionModel EOF )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6600:2: iv_ruleProcedureDefinitionModel= ruleProcedureDefinitionModel EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getProcedureDefinitionRule()); 
+               newCompositeNode(grammarAccess.getProcedureDefinitionModelRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleProcedureDefinition_in_entryRuleProcedureDefinition12105);
-            iv_ruleProcedureDefinition=ruleProcedureDefinition();
+            pushFollow(FollowSets000.FOLLOW_ruleProcedureDefinitionModel_in_entryRuleProcedureDefinitionModel12105);
+            iv_ruleProcedureDefinitionModel=ruleProcedureDefinitionModel();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleProcedureDefinition; 
+               current =iv_ruleProcedureDefinitionModel; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleProcedureDefinition12115); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleProcedureDefinitionModel12115); if (state.failed) return current;
 
             }
 
@@ -18092,12 +18092,12 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleProcedureDefinition"
+    // $ANTLR end "entryRuleProcedureDefinitionModel"
 
 
-    // $ANTLR start "ruleProcedureDefinition"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6607:1: ruleProcedureDefinition returns [EObject current=null] : (otherlv_0= 'procedure' ( (lv_name_1_0= ruleValidID ) ) ( (lv_table_2_0= ruleValidID ) ) otherlv_3= ';' ) ;
-    public final EObject ruleProcedureDefinition() throws RecognitionException {
+    // $ANTLR start "ruleProcedureDefinitionModel"
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6607:1: ruleProcedureDefinitionModel returns [EObject current=null] : (otherlv_0= 'procedure' ( (lv_name_1_0= ruleValidID ) ) ( (lv_table_2_0= ruleValidID ) ) otherlv_3= ';' ) ;
+    public final EObject ruleProcedureDefinitionModel() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
@@ -18116,10 +18116,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6611:1: (otherlv_0= 'procedure' ( (lv_name_1_0= ruleValidID ) ) ( (lv_table_2_0= ruleValidID ) ) otherlv_3= ';' )
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6611:3: otherlv_0= 'procedure' ( (lv_name_1_0= ruleValidID ) ) ( (lv_table_2_0= ruleValidID ) ) otherlv_3= ';'
             {
-            otherlv_0=(Token)match(input,121,FollowSets000.FOLLOW_121_in_ruleProcedureDefinition12152); if (state.failed) return current;
+            otherlv_0=(Token)match(input,121,FollowSets000.FOLLOW_121_in_ruleProcedureDefinitionModel12152); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_0, grammarAccess.getProcedureDefinitionAccess().getProcedureKeyword_0());
+                  	newLeafNode(otherlv_0, grammarAccess.getProcedureDefinitionModelAccess().getProcedureKeyword_0());
                   
             }
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6615:1: ( (lv_name_1_0= ruleValidID ) )
@@ -18130,10 +18130,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getProcedureDefinitionAccess().getNameValidIDParserRuleCall_1_0()); 
+              	        newCompositeNode(grammarAccess.getProcedureDefinitionModelAccess().getNameValidIDParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleProcedureDefinition12173);
+            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleProcedureDefinitionModel12173);
             lv_name_1_0=ruleValidID();
 
             state._fsp--;
@@ -18141,7 +18141,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getProcedureDefinitionRule());
+              	            current = createModelElementForParent(grammarAccess.getProcedureDefinitionModelRule());
               	        }
                      		set(
                      			current, 
@@ -18165,10 +18165,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getProcedureDefinitionAccess().getTableValidIDParserRuleCall_2_0()); 
+              	        newCompositeNode(grammarAccess.getProcedureDefinitionModelAccess().getTableValidIDParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleProcedureDefinition12194);
+            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleProcedureDefinitionModel12194);
             lv_table_2_0=ruleValidID();
 
             state._fsp--;
@@ -18176,7 +18176,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getProcedureDefinitionRule());
+              	            current = createModelElementForParent(grammarAccess.getProcedureDefinitionModelRule());
               	        }
                      		set(
                      			current, 
@@ -18192,10 +18192,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,35,FollowSets000.FOLLOW_35_in_ruleProcedureDefinition12206); if (state.failed) return current;
+            otherlv_3=(Token)match(input,35,FollowSets000.FOLLOW_35_in_ruleProcedureDefinitionModel12206); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_3, grammarAccess.getProcedureDefinitionAccess().getSemicolonKeyword_3());
+                  	newLeafNode(otherlv_3, grammarAccess.getProcedureDefinitionModelAccess().getSemicolonKeyword_3());
                   
             }
 
@@ -18217,33 +18217,33 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleProcedureDefinition"
+    // $ANTLR end "ruleProcedureDefinitionModel"
 
 
-    // $ANTLR start "entryRuleFunctionDefinition"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6663:1: entryRuleFunctionDefinition returns [EObject current=null] : iv_ruleFunctionDefinition= ruleFunctionDefinition EOF ;
-    public final EObject entryRuleFunctionDefinition() throws RecognitionException {
+    // $ANTLR start "entryRuleFunctionDefinitionModel"
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6663:1: entryRuleFunctionDefinitionModel returns [EObject current=null] : iv_ruleFunctionDefinitionModel= ruleFunctionDefinitionModel EOF ;
+    public final EObject entryRuleFunctionDefinitionModel() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleFunctionDefinition = null;
+        EObject iv_ruleFunctionDefinitionModel = null;
 
 
         try {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6664:2: (iv_ruleFunctionDefinition= ruleFunctionDefinition EOF )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6665:2: iv_ruleFunctionDefinition= ruleFunctionDefinition EOF
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6664:2: (iv_ruleFunctionDefinitionModel= ruleFunctionDefinitionModel EOF )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6665:2: iv_ruleFunctionDefinitionModel= ruleFunctionDefinitionModel EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getFunctionDefinitionRule()); 
+               newCompositeNode(grammarAccess.getFunctionDefinitionModelRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleFunctionDefinition_in_entryRuleFunctionDefinition12242);
-            iv_ruleFunctionDefinition=ruleFunctionDefinition();
+            pushFollow(FollowSets000.FOLLOW_ruleFunctionDefinitionModel_in_entryRuleFunctionDefinitionModel12242);
+            iv_ruleFunctionDefinitionModel=ruleFunctionDefinitionModel();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleFunctionDefinition; 
+               current =iv_ruleFunctionDefinitionModel; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleFunctionDefinition12252); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleFunctionDefinitionModel12252); if (state.failed) return current;
 
             }
 
@@ -18257,12 +18257,12 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleFunctionDefinition"
+    // $ANTLR end "entryRuleFunctionDefinitionModel"
 
 
-    // $ANTLR start "ruleFunctionDefinition"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6672:1: ruleFunctionDefinition returns [EObject current=null] : (otherlv_0= 'function' ( (lv_name_1_0= ruleValidID ) ) ( (lv_table_2_0= ruleValidID ) ) otherlv_3= ';' ) ;
-    public final EObject ruleFunctionDefinition() throws RecognitionException {
+    // $ANTLR start "ruleFunctionDefinitionModel"
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6672:1: ruleFunctionDefinitionModel returns [EObject current=null] : (otherlv_0= 'function' ( (lv_name_1_0= ruleValidID ) ) ( (lv_table_2_0= ruleValidID ) ) otherlv_3= ';' ) ;
+    public final EObject ruleFunctionDefinitionModel() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
@@ -18281,10 +18281,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6676:1: (otherlv_0= 'function' ( (lv_name_1_0= ruleValidID ) ) ( (lv_table_2_0= ruleValidID ) ) otherlv_3= ';' )
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6676:3: otherlv_0= 'function' ( (lv_name_1_0= ruleValidID ) ) ( (lv_table_2_0= ruleValidID ) ) otherlv_3= ';'
             {
-            otherlv_0=(Token)match(input,122,FollowSets000.FOLLOW_122_in_ruleFunctionDefinition12289); if (state.failed) return current;
+            otherlv_0=(Token)match(input,122,FollowSets000.FOLLOW_122_in_ruleFunctionDefinitionModel12289); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_0, grammarAccess.getFunctionDefinitionAccess().getFunctionKeyword_0());
+                  	newLeafNode(otherlv_0, grammarAccess.getFunctionDefinitionModelAccess().getFunctionKeyword_0());
                   
             }
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:6680:1: ( (lv_name_1_0= ruleValidID ) )
@@ -18295,10 +18295,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getNameValidIDParserRuleCall_1_0()); 
+              	        newCompositeNode(grammarAccess.getFunctionDefinitionModelAccess().getNameValidIDParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleFunctionDefinition12310);
+            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleFunctionDefinitionModel12310);
             lv_name_1_0=ruleValidID();
 
             state._fsp--;
@@ -18306,7 +18306,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+              	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionModelRule());
               	        }
                      		set(
                      			current, 
@@ -18330,10 +18330,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getTableValidIDParserRuleCall_2_0()); 
+              	        newCompositeNode(grammarAccess.getFunctionDefinitionModelAccess().getTableValidIDParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleFunctionDefinition12331);
+            pushFollow(FollowSets000.FOLLOW_ruleValidID_in_ruleFunctionDefinitionModel12331);
             lv_table_2_0=ruleValidID();
 
             state._fsp--;
@@ -18341,7 +18341,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+              	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionModelRule());
               	        }
                      		set(
                      			current, 
@@ -18357,10 +18357,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,35,FollowSets000.FOLLOW_35_in_ruleFunctionDefinition12343); if (state.failed) return current;
+            otherlv_3=(Token)match(input,35,FollowSets000.FOLLOW_35_in_ruleFunctionDefinitionModel12343); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_3, grammarAccess.getFunctionDefinitionAccess().getSemicolonKeyword_3());
+                  	newLeafNode(otherlv_3, grammarAccess.getFunctionDefinitionModelAccess().getSemicolonKeyword_3());
                   
             }
 
@@ -18382,7 +18382,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleFunctionDefinition"
+    // $ANTLR end "ruleFunctionDefinitionModel"
 
 
     // $ANTLR start "entryRulePackageDirective"
@@ -46698,7 +46698,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         {
         if ( state.backtracking==0 ) {
            
-          	        newCompositeNode(grammarAccess.getPojoDefinitionAccess().getClassQualifiedNameParserRuleCall_2_0_1_0()); 
+          	        newCompositeNode(grammarAccess.getPojoDefinitionModelAccess().getClassQualifiedNameParserRuleCall_2_0_1_0()); 
           	    
         }
         pushFollow(FollowSets002.FOLLOW_ruleQualifiedName_in_synpred205_InternalProcessorModel11891);
@@ -56459,10 +56459,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_ruleArtifacts_in_entryRuleArtifacts81 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleArtifacts91 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleProperty_in_ruleArtifacts150 = new BitSet(new long[]{0x00000007FF200002L,0x0F80000400000000L});
-        public static final BitSet FOLLOW_rulePojoDefinition_in_ruleArtifacts177 = new BitSet(new long[]{0x00000007FF200002L,0x0F80000400000000L});
-        public static final BitSet FOLLOW_ruleTableDefinition_in_ruleArtifacts204 = new BitSet(new long[]{0x00000007FF200002L,0x0F80000400000000L});
-        public static final BitSet FOLLOW_ruleProcedureDefinition_in_ruleArtifacts231 = new BitSet(new long[]{0x00000007FF200002L,0x0F80000400000000L});
-        public static final BitSet FOLLOW_ruleFunctionDefinition_in_ruleArtifacts258 = new BitSet(new long[]{0x00000007FF200002L,0x0F80000400000000L});
+        public static final BitSet FOLLOW_rulePojoDefinitionModel_in_ruleArtifacts177 = new BitSet(new long[]{0x00000007FF200002L,0x0F80000400000000L});
+        public static final BitSet FOLLOW_ruleTableDefinitionModel_in_ruleArtifacts204 = new BitSet(new long[]{0x00000007FF200002L,0x0F80000400000000L});
+        public static final BitSet FOLLOW_ruleProcedureDefinitionModel_in_ruleArtifacts231 = new BitSet(new long[]{0x00000007FF200002L,0x0F80000400000000L});
+        public static final BitSet FOLLOW_ruleFunctionDefinitionModel_in_ruleArtifacts258 = new BitSet(new long[]{0x00000007FF200002L,0x0F80000400000000L});
         public static final BitSet FOLLOW_rulePackage_in_ruleArtifacts285 = new BitSet(new long[]{0x00000007FF200002L,0x0F80000400000000L});
         public static final BitSet FOLLOW_ruleValueType_in_entryRuleValueType323 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleValueType333 = new BitSet(new long[]{0x0000000000000002L});
@@ -56883,33 +56883,33 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDaogenProperty11670 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_118_in_ruleDaogenProperty11696 = new BitSet(new long[]{0x0000000000000830L});
         public static final BitSet FOLLOW_ruleQualifiedName_in_ruleDaogenProperty11730 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rulePojoDefinition_in_entryRulePojoDefinition11767 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRulePojoDefinition11777 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_119_in_rulePojoDefinition11814 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_rulePojoDefinition11835 = new BitSet(new long[]{0x0000000000030830L});
-        public static final BitSet FOLLOW_17_in_rulePojoDefinition11850 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_16_in_rulePojoDefinition11868 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleQualifiedName_in_rulePojoDefinition11891 = new BitSet(new long[]{0x0000000800000000L});
-        public static final BitSet FOLLOW_ruleJvmParameterizedTypeReference_in_rulePojoDefinition11919 = new BitSet(new long[]{0x0000000800000000L});
-        public static final BitSet FOLLOW_35_in_rulePojoDefinition11932 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTableDefinition_in_entryRuleTableDefinition11968 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleTableDefinition11978 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_120_in_ruleTableDefinition12015 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleTableDefinition12036 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleTableDefinition12057 = new BitSet(new long[]{0x0000000800000000L});
-        public static final BitSet FOLLOW_35_in_ruleTableDefinition12069 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleProcedureDefinition_in_entryRuleProcedureDefinition12105 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleProcedureDefinition12115 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_121_in_ruleProcedureDefinition12152 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleProcedureDefinition12173 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleProcedureDefinition12194 = new BitSet(new long[]{0x0000000800000000L});
-        public static final BitSet FOLLOW_35_in_ruleProcedureDefinition12206 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleFunctionDefinition_in_entryRuleFunctionDefinition12242 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleFunctionDefinition12252 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_122_in_ruleFunctionDefinition12289 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleFunctionDefinition12310 = new BitSet(new long[]{0x0000000000000830L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleFunctionDefinition12331 = new BitSet(new long[]{0x0000000800000000L});
-        public static final BitSet FOLLOW_35_in_ruleFunctionDefinition12343 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePojoDefinitionModel_in_entryRulePojoDefinitionModel11767 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRulePojoDefinitionModel11777 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_119_in_rulePojoDefinitionModel11814 = new BitSet(new long[]{0x0000000000000830L});
+        public static final BitSet FOLLOW_ruleValidID_in_rulePojoDefinitionModel11835 = new BitSet(new long[]{0x0000000000030830L});
+        public static final BitSet FOLLOW_17_in_rulePojoDefinitionModel11850 = new BitSet(new long[]{0x0000000000000830L});
+        public static final BitSet FOLLOW_16_in_rulePojoDefinitionModel11868 = new BitSet(new long[]{0x0000000000000830L});
+        public static final BitSet FOLLOW_ruleQualifiedName_in_rulePojoDefinitionModel11891 = new BitSet(new long[]{0x0000000800000000L});
+        public static final BitSet FOLLOW_ruleJvmParameterizedTypeReference_in_rulePojoDefinitionModel11919 = new BitSet(new long[]{0x0000000800000000L});
+        public static final BitSet FOLLOW_35_in_rulePojoDefinitionModel11932 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTableDefinitionModel_in_entryRuleTableDefinitionModel11968 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleTableDefinitionModel11978 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_120_in_ruleTableDefinitionModel12015 = new BitSet(new long[]{0x0000000000000830L});
+        public static final BitSet FOLLOW_ruleValidID_in_ruleTableDefinitionModel12036 = new BitSet(new long[]{0x0000000000000830L});
+        public static final BitSet FOLLOW_ruleValidID_in_ruleTableDefinitionModel12057 = new BitSet(new long[]{0x0000000800000000L});
+        public static final BitSet FOLLOW_35_in_ruleTableDefinitionModel12069 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleProcedureDefinitionModel_in_entryRuleProcedureDefinitionModel12105 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleProcedureDefinitionModel12115 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_121_in_ruleProcedureDefinitionModel12152 = new BitSet(new long[]{0x0000000000000830L});
+        public static final BitSet FOLLOW_ruleValidID_in_ruleProcedureDefinitionModel12173 = new BitSet(new long[]{0x0000000000000830L});
+        public static final BitSet FOLLOW_ruleValidID_in_ruleProcedureDefinitionModel12194 = new BitSet(new long[]{0x0000000800000000L});
+        public static final BitSet FOLLOW_35_in_ruleProcedureDefinitionModel12206 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleFunctionDefinitionModel_in_entryRuleFunctionDefinitionModel12242 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleFunctionDefinitionModel12252 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_122_in_ruleFunctionDefinitionModel12289 = new BitSet(new long[]{0x0000000000000830L});
+        public static final BitSet FOLLOW_ruleValidID_in_ruleFunctionDefinitionModel12310 = new BitSet(new long[]{0x0000000000000830L});
+        public static final BitSet FOLLOW_ruleValidID_in_ruleFunctionDefinitionModel12331 = new BitSet(new long[]{0x0000000800000000L});
+        public static final BitSet FOLLOW_35_in_ruleFunctionDefinitionModel12343 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rulePackageDirective_in_entryRulePackageDirective12379 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRulePackageDirective12389 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_123_in_rulePackageDirective12438 = new BitSet(new long[]{0x0000000000000040L});

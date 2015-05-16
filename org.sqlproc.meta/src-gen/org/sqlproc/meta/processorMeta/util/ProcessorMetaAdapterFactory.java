@@ -245,24 +245,24 @@ public class ProcessorMetaAdapterFactory extends AdapterFactoryImpl
         return createDaogenPropertyAdapter();
       }
       @Override
-      public Adapter casePojoDefinition(PojoDefinition object)
+      public Adapter casePojoDefinitionModel(PojoDefinitionModel object)
       {
-        return createPojoDefinitionAdapter();
+        return createPojoDefinitionModelAdapter();
       }
       @Override
-      public Adapter caseTableDefinition(TableDefinition object)
+      public Adapter caseTableDefinitionModel(TableDefinitionModel object)
       {
-        return createTableDefinitionAdapter();
+        return createTableDefinitionModelAdapter();
       }
       @Override
-      public Adapter caseProcedureDefinition(ProcedureDefinition object)
+      public Adapter caseProcedureDefinitionModel(ProcedureDefinitionModel object)
       {
-        return createProcedureDefinitionAdapter();
+        return createProcedureDefinitionModelAdapter();
       }
       @Override
-      public Adapter caseFunctionDefinition(FunctionDefinition object)
+      public Adapter caseFunctionDefinitionModel(FunctionDefinitionModel object)
       {
-        return createFunctionDefinitionAdapter();
+        return createFunctionDefinitionModelAdapter();
       }
       @Override
       public Adapter caseMetaStatement(MetaStatement object)
@@ -932,61 +932,61 @@ public class ProcessorMetaAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.meta.processorMeta.PojoDefinition <em>Pojo Definition</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.meta.processorMeta.PojoDefinitionModel <em>Pojo Definition Model</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.meta.processorMeta.PojoDefinition
+   * @see org.sqlproc.meta.processorMeta.PojoDefinitionModel
    * @generated
    */
-  public Adapter createPojoDefinitionAdapter()
+  public Adapter createPojoDefinitionModelAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.meta.processorMeta.TableDefinition <em>Table Definition</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.meta.processorMeta.TableDefinitionModel <em>Table Definition Model</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.meta.processorMeta.TableDefinition
+   * @see org.sqlproc.meta.processorMeta.TableDefinitionModel
    * @generated
    */
-  public Adapter createTableDefinitionAdapter()
+  public Adapter createTableDefinitionModelAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.meta.processorMeta.ProcedureDefinition <em>Procedure Definition</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.meta.processorMeta.ProcedureDefinitionModel <em>Procedure Definition Model</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.meta.processorMeta.ProcedureDefinition
+   * @see org.sqlproc.meta.processorMeta.ProcedureDefinitionModel
    * @generated
    */
-  public Adapter createProcedureDefinitionAdapter()
+  public Adapter createProcedureDefinitionModelAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.meta.processorMeta.FunctionDefinition <em>Function Definition</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.meta.processorMeta.FunctionDefinitionModel <em>Function Definition Model</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.meta.processorMeta.FunctionDefinition
+   * @see org.sqlproc.meta.processorMeta.FunctionDefinitionModel
    * @generated
    */
-  public Adapter createFunctionDefinitionAdapter()
+  public Adapter createFunctionDefinitionModelAdapter()
   {
     return null;
   }

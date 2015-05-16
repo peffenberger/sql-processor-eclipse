@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.xtext.common.types.JvmType;
 
-import org.sqlproc.meta.processorMeta.PojoDefinition;
+import org.sqlproc.meta.processorMeta.PojoDefinitionModel;
 import org.sqlproc.meta.processorMeta.PojoType;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 import org.sqlproc.meta.processorMeta.ValueType;
@@ -57,7 +57,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * @generated
    * @ordered
    */
-  protected PojoDefinition ref;
+  protected PojoDefinitionModel ref;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' reference.
@@ -87,7 +87,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * @generated
    * @ordered
    */
-  protected PojoDefinition gref;
+  protected PojoDefinitionModel gref;
 
   /**
    * The cached value of the '{@link #getGtype() <em>Gtype</em>}' reference.
@@ -193,12 +193,12 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDefinition getRef()
+  public PojoDefinitionModel getRef()
   {
     if (ref != null && ref.eIsProxy())
     {
       InternalEObject oldRef = (InternalEObject)ref;
-      ref = (PojoDefinition)eResolveProxy(oldRef);
+      ref = (PojoDefinitionModel)eResolveProxy(oldRef);
       if (ref != oldRef)
       {
         if (eNotificationRequired())
@@ -213,7 +213,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDefinition basicGetRef()
+  public PojoDefinitionModel basicGetRef()
   {
     return ref;
   }
@@ -223,9 +223,9 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRef(PojoDefinition newRef)
+  public void setRef(PojoDefinitionModel newRef)
   {
-    PojoDefinition oldRef = ref;
+    PojoDefinitionModel oldRef = ref;
     ref = newRef;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.POJO_TYPE__REF, oldRef, ref));
@@ -327,12 +327,12 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDefinition getGref()
+  public PojoDefinitionModel getGref()
   {
     if (gref != null && gref.eIsProxy())
     {
       InternalEObject oldGref = (InternalEObject)gref;
-      gref = (PojoDefinition)eResolveProxy(oldGref);
+      gref = (PojoDefinitionModel)eResolveProxy(oldGref);
       if (gref != oldGref)
       {
         if (eNotificationRequired())
@@ -347,7 +347,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDefinition basicGetGref()
+  public PojoDefinitionModel basicGetGref()
   {
     return gref;
   }
@@ -357,9 +357,9 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setGref(PojoDefinition newGref)
+  public void setGref(PojoDefinitionModel newGref)
   {
-    PojoDefinition oldGref = gref;
+    PojoDefinitionModel oldGref = gref;
     gref = newGref;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.POJO_TYPE__GREF, oldGref, gref));
@@ -495,7 +495,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
         setIdent((ValueType)newValue);
         return;
       case ProcessorMetaPackage.POJO_TYPE__REF:
-        setRef((PojoDefinition)newValue);
+        setRef((PojoDefinitionModel)newValue);
         return;
       case ProcessorMetaPackage.POJO_TYPE__TYPE:
         setType((JvmType)newValue);
@@ -504,7 +504,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
         setGident((ValueType)newValue);
         return;
       case ProcessorMetaPackage.POJO_TYPE__GREF:
-        setGref((PojoDefinition)newValue);
+        setGref((PojoDefinitionModel)newValue);
         return;
       case ProcessorMetaPackage.POJO_TYPE__GTYPE:
         setGtype((JvmType)newValue);
@@ -530,7 +530,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
         setIdent((ValueType)null);
         return;
       case ProcessorMetaPackage.POJO_TYPE__REF:
-        setRef((PojoDefinition)null);
+        setRef((PojoDefinitionModel)null);
         return;
       case ProcessorMetaPackage.POJO_TYPE__TYPE:
         setType((JvmType)null);
@@ -539,7 +539,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
         setGident((ValueType)null);
         return;
       case ProcessorMetaPackage.POJO_TYPE__GREF:
-        setGref((PojoDefinition)null);
+        setGref((PojoDefinitionModel)null);
         return;
       case ProcessorMetaPackage.POJO_TYPE__GTYPE:
         setGtype((JvmType)null);

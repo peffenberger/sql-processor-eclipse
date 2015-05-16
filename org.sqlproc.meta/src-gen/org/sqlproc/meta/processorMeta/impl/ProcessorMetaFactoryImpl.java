@@ -98,10 +98,10 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
       case ProcessorMetaPackage.META_TYPE_ASSIGNEMENT: return createMetaTypeAssignement();
       case ProcessorMetaPackage.METAGEN_PROPERTY: return createMetagenProperty();
       case ProcessorMetaPackage.DAOGEN_PROPERTY: return createDaogenProperty();
-      case ProcessorMetaPackage.POJO_DEFINITION: return createPojoDefinition();
-      case ProcessorMetaPackage.TABLE_DEFINITION: return createTableDefinition();
-      case ProcessorMetaPackage.PROCEDURE_DEFINITION: return createProcedureDefinition();
-      case ProcessorMetaPackage.FUNCTION_DEFINITION: return createFunctionDefinition();
+      case ProcessorMetaPackage.POJO_DEFINITION_MODEL: return createPojoDefinitionModel();
+      case ProcessorMetaPackage.TABLE_DEFINITION_MODEL: return createTableDefinitionModel();
+      case ProcessorMetaPackage.PROCEDURE_DEFINITION_MODEL: return createProcedureDefinitionModel();
+      case ProcessorMetaPackage.FUNCTION_DEFINITION_MODEL: return createFunctionDefinitionModel();
       case ProcessorMetaPackage.META_STATEMENT: return createMetaStatement();
       case ProcessorMetaPackage.SQL: return createSql();
       case ProcessorMetaPackage.SQL_FRAGMENT: return createSqlFragment();
@@ -513,10 +513,10 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDefinition createPojoDefinition()
+  public PojoDefinitionModel createPojoDefinitionModel()
   {
-    PojoDefinitionImpl pojoDefinition = new PojoDefinitionImpl();
-    return pojoDefinition;
+    PojoDefinitionModelImpl pojoDefinitionModel = new PojoDefinitionModelImpl();
+    return pojoDefinitionModel;
   }
 
   /**
@@ -524,10 +524,10 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public TableDefinition createTableDefinition()
+  public TableDefinitionModel createTableDefinitionModel()
   {
-    TableDefinitionImpl tableDefinition = new TableDefinitionImpl();
-    return tableDefinition;
+    TableDefinitionModelImpl tableDefinitionModel = new TableDefinitionModelImpl();
+    return tableDefinitionModel;
   }
 
   /**
@@ -535,10 +535,10 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public ProcedureDefinition createProcedureDefinition()
+  public ProcedureDefinitionModel createProcedureDefinitionModel()
   {
-    ProcedureDefinitionImpl procedureDefinition = new ProcedureDefinitionImpl();
-    return procedureDefinition;
+    ProcedureDefinitionModelImpl procedureDefinitionModel = new ProcedureDefinitionModelImpl();
+    return procedureDefinitionModel;
   }
 
   /**
@@ -546,10 +546,10 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public FunctionDefinition createFunctionDefinition()
+  public FunctionDefinitionModel createFunctionDefinitionModel()
   {
-    FunctionDefinitionImpl functionDefinition = new FunctionDefinitionImpl();
-    return functionDefinition;
+    FunctionDefinitionModelImpl functionDefinitionModel = new FunctionDefinitionModelImpl();
+    return functionDefinitionModel;
   }
 
   /**

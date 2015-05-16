@@ -274,6 +274,11 @@ public abstract class ModelProperty extends AdapterImpl {
         public String daoPckg;
         public String daoImplPckg;
 
+        public Map<String, PojoDefinition> modelPojos;
+        public Map<String, TableDefinition> modelTables;
+        public Map<String, ProcedureDefinition> modelProcedures;
+        public Map<String, FunctionDefinition> modelFunctions;
+
         public Map<String, Set<String>> defaultAttrs = new HashMap<String, Set<String>>();
         public Map<String, Set<String>> conditionalAttrs = new HashMap<String, Set<String>>();
         public Map<String, Set<String>> systemEnvAttrs = new HashMap<String, Set<String>>();
@@ -407,6 +412,13 @@ public abstract class ModelProperty extends AdapterImpl {
             daoImplPckg = null;
             defaultAttrs.put(DAOGEN, new HashSet<String>());
             conditionalAttrs.put(DAOGEN, new HashSet<String>());
+        }
+
+        public void initModelModel() {
+            modelPojos = new HashMap<String, PojoDefinition>();
+            modelTables = new HashMap<String, TableDefinition>();
+            modelProcedures = new HashMap<String, ProcedureDefinition>();
+            modelFunctions = new HashMap<String, FunctionDefinition>();
         }
 
         public void setStandardValuesFromEnv() {
@@ -1041,6 +1053,27 @@ public abstract class ModelProperty extends AdapterImpl {
     public String getModelDir(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.dir : null;
+    }
+
+    public Map<String, PojoDefinition> getModelPojos(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.modelPojos : Collections.<String, PojoDefinition> emptyMap();
+    }
+
+    public Map<String, TableDefinition> getModelTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.modelTables : Collections.<String, TableDefinition> emptyMap();
+    }
+
+    public Map<String, ProcedureDefinition> getModelProcedures(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.modelProcedures : Collections
+                .<String, ProcedureDefinition> emptyMap();
+    }
+
+    public Map<String, FunctionDefinition> getModelFunctions(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.modelFunctions : Collections.<String, FunctionDefinition> emptyMap();
     }
 
     public static String getEnvName(String category, String name) {

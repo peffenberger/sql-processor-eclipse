@@ -1,9 +1,8 @@
 package org.sqlproc.meta.ui.templates;
 
-import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.TreeMap;
 
 import org.eclipse.emf.common.util.URI;
@@ -17,16 +16,17 @@ import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
 import org.eclipse.xtext.util.Strings;
 import org.sqlproc.meta.generator.TableMetaGenerator;
 import org.sqlproc.meta.processorMeta.Artifacts;
-import org.sqlproc.meta.processorMeta.FunctionDefinition;
 import org.sqlproc.meta.processorMeta.MetaStatement;
-import org.sqlproc.meta.processorMeta.ProcedureDefinition;
-import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
-import org.sqlproc.meta.processorMeta.TableDefinition;
 import org.sqlproc.meta.util.Utils;
+import org.sqlproc.plugin.lib.property.FunctionDefinition;
 import org.sqlproc.plugin.lib.property.ModelProperty;
+import org.sqlproc.plugin.lib.property.ProcedureDefinition;
+import org.sqlproc.plugin.lib.property.TableDefinition;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.resolver.PojoResolver;
+import org.sqlproc.plugin.lib.util.CommonUtils;
 import org.sqlproc.plugin.lib.util.Constants;
+import org.sqlproc.plugin.lib.util.Pair;
 import org.sqlproc.plugin.lib.util.Stats;
 
 import com.google.inject.Inject;
@@ -90,18 +90,16 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         return statement;
     }
 
-    protected TableDefinition getTableDefinition(MetaStatement statement) {
+    protected Pair<Artifacts, TableDefinition> getTableDefinition(MetaStatement statement) {
         if (statement == null)
             return null;
         Artifacts artifacts = EcoreUtil2.getContainerOfType(statement, Artifacts.class);
 
-        TableDefinition tableDefinition = null;
         List<String> vals = Utils.getTokensFromModifier(statement, Constants.TABLE_USAGE);
         for (String val : vals) {
-            tableDefinition = Utils.findTable(null, artifacts,
-                    scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES), val);
+            TableDefinition tableDefinition = modelProperty.getModelTables(artifacts).get(val);
             if (tableDefinition != null)
-                return tableDefinition;
+                return new Pair(artifacts, tableDefinition);
         }
 
         return null;
@@ -271,79 +269,6 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         return builder.toString();
     }
 
-    protected String getTablesDefinitions(List<String> tables, List<TableDefinition> tablesPresented) {
-        if (tables == null)
-            return null;
-        Set<String> set = new HashSet<String>();
-        if (tablesPresented != null) {
-            for (TableDefinition table : tablesPresented)
-                set.add(table.getTable());
-        }
-        TreeMap<String, String> map = new TreeMap<String, String>();
-        for (String table : tables) {
-            if (table.toUpperCase().startsWith("BIN$"))
-                continue;
-            if (set.contains(table))
-                continue;
-            map.put(toCamelCase(table), table);
-        }
-
-        StringBuilder builder = new StringBuilder();
-        for (Entry<String, String> table : map.entrySet()) {
-            builder.append("table ").append(table.getKey()).append(' ').append(table.getValue()).append(";\n");
-        }
-        return builder.toString();
-    }
-
-    protected String getProceduresDefinitions(List<String> procedures, List<ProcedureDefinition> proceduresPresented) {
-        if (procedures == null)
-            return null;
-        Set<String> set = new HashSet<String>();
-        if (proceduresPresented != null) {
-            for (ProcedureDefinition procedure : proceduresPresented)
-                set.add(procedure.getTable());
-        }
-        TreeMap<String, String> map = new TreeMap<String, String>();
-        for (String procedure : procedures) {
-            if (procedure.toUpperCase().startsWith("BIN$"))
-                continue;
-            if (set.contains(procedure))
-                continue;
-            map.put(toCamelCase(procedure), procedure);
-        }
-
-        StringBuilder builder = new StringBuilder();
-        for (Entry<String, String> procedure : map.entrySet()) {
-            builder.append("procedure ").append(procedure.getKey()).append(' ').append(procedure.getValue())
-                    .append(";\n");
-        }
-        return builder.toString();
-    }
-
-    protected String getFunctionsDefinitions(List<String> functions, List<FunctionDefinition> functionsPresented) {
-        if (functions == null)
-            return null;
-        Set<String> set = new HashSet<String>();
-        if (functionsPresented != null) {
-            for (FunctionDefinition function : functionsPresented)
-                set.add(function.getTable());
-        }
-        TreeMap<String, String> map = new TreeMap<String, String>();
-        for (String function : functions) {
-            if (function.toUpperCase().startsWith("BIN$"))
-                continue;
-            if (set.contains(function))
-                continue;
-            map.put(toCamelCase(function), function);
-        }
-
-        StringBuilder builder = new StringBuilder();
-        for (Entry<String, String> function : map.entrySet()) {
-            builder.append("function ").append(function.getKey()).append(' ').append(function.getValue()).append(";\n");
-        }
-        return builder.toString();
-    }
-
     /*
      * Template variable resolvers
      */
@@ -357,9 +282,9 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
 
         @Override
         protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                return "%%" + tableDefinition.getTable();
+            Pair<Artifacts, TableDefinition> pair = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
+            if (pair != null && dbResolver.isResolveDb(pair.getFirst())) {
+                return "%%" + pair.getSecond().getTable();
             }
             return super.resolve(context);
         }
@@ -380,9 +305,9 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
 
         @Override
         protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
+            Pair<Artifacts, TableDefinition> pair = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
+            if (pair != null && dbResolver.isResolveDb(pair.getFirst())) {
+                List<String> dbColumns = dbResolver.getColumns(pair.getFirst(), pair.getSecond().getTable());
                 return getSelectColumns(dbColumns);
             }
             return super.resolve(context);
@@ -404,9 +329,9 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
 
         @Override
         protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
+            Pair<Artifacts, TableDefinition> pair = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
+            if (pair != null && dbResolver.isResolveDb(pair.getFirst())) {
+                List<String> dbColumns = dbResolver.getColumns(pair.getFirst(), pair.getSecond().getTable());
                 return getPojoColumns(dbColumns);
             }
             return super.resolve(context);
@@ -428,9 +353,9 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
 
         @Override
         protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
+            Pair<Artifacts, TableDefinition> pair = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
+            if (pair != null && dbResolver.isResolveDb(pair.getFirst())) {
+                List<String> dbColumns = dbResolver.getColumns(pair.getFirst(), pair.getSecond().getTable());
                 return getInsertColumns(dbColumns);
             }
             return super.resolve(context);
@@ -452,9 +377,9 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
 
         @Override
         protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
+            Pair<Artifacts, TableDefinition> pair = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
+            if (pair != null && dbResolver.isResolveDb(pair.getFirst())) {
+                List<String> dbColumns = dbResolver.getColumns(pair.getFirst(), pair.getSecond().getTable());
                 return getUpdateColumns(dbColumns);
             }
             return super.resolve(context);
@@ -476,9 +401,9 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
 
         @Override
         protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
+            Pair<Artifacts, TableDefinition> pair = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
+            if (pair != null && dbResolver.isResolveDb(pair.getFirst())) {
+                List<String> dbColumns = dbResolver.getColumns(pair.getFirst(), pair.getSecond().getTable());
                 return getCondColumns(dbColumns);
             }
             return super.resolve(context);
@@ -500,9 +425,9 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
 
         @Override
         protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
+            Pair<Artifacts, TableDefinition> pair = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
+            if (pair != null && dbResolver.isResolveDb(pair.getFirst())) {
+                List<String> dbColumns = dbResolver.getColumns(pair.getFirst(), pair.getSecond().getTable());
                 return getVerUpdateColumns(dbColumns);
             }
             return super.resolve(context);
@@ -524,9 +449,9 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
 
         @Override
         protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
+            Pair<Artifacts, TableDefinition> pair = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
+            if (pair != null && dbResolver.isResolveDb(pair.getFirst())) {
+                List<String> dbColumns = dbResolver.getColumns(pair.getFirst(), pair.getSecond().getTable());
                 return getOptUpdateColumns(dbColumns);
             }
             return super.resolve(context);
@@ -548,9 +473,9 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
 
         @Override
         protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
+            Pair<Artifacts, TableDefinition> pair = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
+            if (pair != null && dbResolver.isResolveDb(pair.getFirst())) {
+                List<String> dbColumns = dbResolver.getColumns(pair.getFirst(), pair.getSecond().getTable());
                 return getOptCondColumns(dbColumns);
             }
             return super.resolve(context);
@@ -599,10 +524,9 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-                List<TableDefinition> tablesPresented = Utils.findTablesDef(null, artifacts,
-                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES));
+                Map<String, TableDefinition> tablesPresented = modelProperty.getModelTables(artifacts);
                 List<String> tables = dbResolver.getTables(artifacts);
-                return getTablesDefinitions(tables, tablesPresented);
+                return CommonUtils.getTablesDefinitions(tables, tablesPresented);
             }
             return super.resolve(context);
         }
@@ -625,10 +549,9 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-                List<ProcedureDefinition> proceduresPresented = Utils.findProceduresDef(null, artifacts,
-                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__PROCEDURES));
+                Map<String, ProcedureDefinition> proceduresPresented = modelProperty.getModelProcedures(artifacts);
                 List<String> procedures = dbResolver.getProcedures(artifacts);
-                return getProceduresDefinitions(procedures, proceduresPresented);
+                return CommonUtils.getProceduresDefinitions(procedures, proceduresPresented);
             }
             return super.resolve(context);
         }
@@ -651,10 +574,9 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-                List<FunctionDefinition> functionsPresented = Utils.findFunctionsDef(null, artifacts,
-                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__FUNCTIONS));
+                Map<String, FunctionDefinition> functionsPresented = modelProperty.getModelFunctions(artifacts);
                 List<String> functions = dbResolver.getFunctions(artifacts);
-                return getFunctionsDefinitions(functions, functionsPresented);
+                return CommonUtils.getFunctionsDefinitions(functions, functionsPresented);
             }
             return super.resolve(context);
         }

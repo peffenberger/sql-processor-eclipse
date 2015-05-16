@@ -39,7 +39,7 @@ import org.sqlproc.meta.processorMeta.ExtendedColumnName;
 import org.sqlproc.meta.processorMeta.ExtendedMappingItem;
 import org.sqlproc.meta.processorMeta.ExtendsAssignement;
 import org.sqlproc.meta.processorMeta.ExtendsAssignementGenerics;
-import org.sqlproc.meta.processorMeta.FunctionDefinition;
+import org.sqlproc.meta.processorMeta.FunctionDefinitionModel;
 import org.sqlproc.meta.processorMeta.FunctionPojoAssignement;
 import org.sqlproc.meta.processorMeta.Identifier;
 import org.sqlproc.meta.processorMeta.IdentifierOperator;
@@ -67,10 +67,10 @@ import org.sqlproc.meta.processorMeta.MetagenProperty;
 import org.sqlproc.meta.processorMeta.OptionalFeature;
 import org.sqlproc.meta.processorMeta.OrdSql;
 import org.sqlproc.meta.processorMeta.OrdSql2;
-import org.sqlproc.meta.processorMeta.PojoDefinition;
+import org.sqlproc.meta.processorMeta.PojoDefinitionModel;
 import org.sqlproc.meta.processorMeta.PojoType;
 import org.sqlproc.meta.processorMeta.PojogenProperty;
-import org.sqlproc.meta.processorMeta.ProcedureDefinition;
+import org.sqlproc.meta.processorMeta.ProcedureDefinitionModel;
 import org.sqlproc.meta.processorMeta.ProcedurePojoAssignement;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 import org.sqlproc.meta.processorMeta.Property;
@@ -80,7 +80,7 @@ import org.sqlproc.meta.processorMeta.Sql;
 import org.sqlproc.meta.processorMeta.SqlFragment;
 import org.sqlproc.meta.processorMeta.SqlTypeAssignement;
 import org.sqlproc.meta.processorMeta.TableAssignement;
-import org.sqlproc.meta.processorMeta.TableDefinition;
+import org.sqlproc.meta.processorMeta.TableDefinitionModel;
 import org.sqlproc.meta.processorMeta.ValueType;
 import org.sqlproc.meta.services.ProcessorMetaGrammarAccess;
 
@@ -162,8 +162,8 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS:
 				sequence_ExtendsAssignementGenerics(context, (ExtendsAssignementGenerics) semanticObject); 
 				return; 
-			case ProcessorMetaPackage.FUNCTION_DEFINITION:
-				sequence_FunctionDefinition(context, (FunctionDefinition) semanticObject); 
+			case ProcessorMetaPackage.FUNCTION_DEFINITION_MODEL:
+				sequence_FunctionDefinitionModel(context, (FunctionDefinitionModel) semanticObject); 
 				return; 
 			case ProcessorMetaPackage.FUNCTION_POJO_ASSIGNEMENT:
 				sequence_FunctionPojoAssignement(context, (FunctionPojoAssignement) semanticObject); 
@@ -246,8 +246,8 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ProcessorMetaPackage.ORD_SQL2:
 				sequence_OrdSql2(context, (OrdSql2) semanticObject); 
 				return; 
-			case ProcessorMetaPackage.POJO_DEFINITION:
-				sequence_PojoDefinition(context, (PojoDefinition) semanticObject); 
+			case ProcessorMetaPackage.POJO_DEFINITION_MODEL:
+				sequence_PojoDefinitionModel(context, (PojoDefinitionModel) semanticObject); 
 				return; 
 			case ProcessorMetaPackage.POJO_TYPE:
 				sequence_PojoType(context, (PojoType) semanticObject); 
@@ -255,8 +255,8 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ProcessorMetaPackage.POJOGEN_PROPERTY:
 				sequence_PojogenProperty(context, (PojogenProperty) semanticObject); 
 				return; 
-			case ProcessorMetaPackage.PROCEDURE_DEFINITION:
-				sequence_ProcedureDefinition(context, (ProcedureDefinition) semanticObject); 
+			case ProcessorMetaPackage.PROCEDURE_DEFINITION_MODEL:
+				sequence_ProcedureDefinitionModel(context, (ProcedureDefinitionModel) semanticObject); 
 				return; 
 			case ProcessorMetaPackage.PROCEDURE_POJO_ASSIGNEMENT:
 				sequence_ProcedurePojoAssignement(context, (ProcedurePojoAssignement) semanticObject); 
@@ -282,8 +282,8 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ProcessorMetaPackage.TABLE_ASSIGNEMENT:
 				sequence_TableAssignement(context, (TableAssignement) semanticObject); 
 				return; 
-			case ProcessorMetaPackage.TABLE_DEFINITION:
-				sequence_TableDefinition(context, (TableDefinition) semanticObject); 
+			case ProcessorMetaPackage.TABLE_DEFINITION_MODEL:
+				sequence_TableDefinitionModel(context, (TableDefinitionModel) semanticObject); 
 				return; 
 			case ProcessorMetaPackage.VALUE_TYPE:
 				sequence_ValueType(context, (ValueType) semanticObject); 
@@ -297,10 +297,10 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     (
 	 *         (
 	 *             properties+=Property | 
-	 *             pojos+=PojoDefinition | 
-	 *             tables+=TableDefinition | 
-	 *             procedures+=ProcedureDefinition | 
-	 *             functions+=FunctionDefinition | 
+	 *             pojos+=PojoDefinitionModel | 
+	 *             tables+=TableDefinitionModel | 
+	 *             procedures+=ProcedureDefinitionModel | 
+	 *             functions+=FunctionDefinitionModel | 
 	 *             statements+=MetaStatement | 
 	 *             mappings+=MappingRule | 
 	 *             features+=OptionalFeature
@@ -615,17 +615,17 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 * Constraint:
 	 *     (name=IDENT table=IDENT)
 	 */
-	protected void sequence_FunctionDefinition(EObject context, FunctionDefinition semanticObject) {
+	protected void sequence_FunctionDefinitionModel(EObject context, FunctionDefinitionModel semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorMetaPackage.Literals.FUNCTION_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorMetaPackage.Literals.FUNCTION_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, ProcessorMetaPackage.Literals.FUNCTION_DEFINITION__TABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorMetaPackage.Literals.FUNCTION_DEFINITION__TABLE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorMetaPackage.Literals.FUNCTION_DEFINITION_MODEL__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorMetaPackage.Literals.FUNCTION_DEFINITION_MODEL__NAME));
+			if(transientValues.isValueTransient(semanticObject, ProcessorMetaPackage.Literals.FUNCTION_DEFINITION_MODEL__TABLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorMetaPackage.Literals.FUNCTION_DEFINITION_MODEL__TABLE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getFunctionDefinitionAccess().getNameIDENTTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getFunctionDefinitionAccess().getTableIDENTTerminalRuleCall_2_0(), semanticObject.getTable());
+		feeder.accept(grammarAccess.getFunctionDefinitionModelAccess().getNameIDENTTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getFunctionDefinitionModelAccess().getTableIDENTTerminalRuleCall_2_0(), semanticObject.getTable());
 		feeder.finish();
 	}
 	
@@ -937,7 +937,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 * Constraint:
 	 *     (name=IDENT (class=IDENT | class=IDENT_DOT | classx=[JvmType|QualifiedName]))
 	 */
-	protected void sequence_PojoDefinition(EObject context, PojoDefinition semanticObject) {
+	protected void sequence_PojoDefinitionModel(EObject context, PojoDefinitionModel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -945,8 +945,8 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	/**
 	 * Constraint:
 	 *     (
-	 *         (ident=ValueType | ref=[PojoDefinition|IDENT] | type=[JvmType|QualifiedName]) 
-	 *         (gident=ValueType | gref=[PojoDefinition|IDENT] | gtype=[JvmType|QualifiedName])? 
+	 *         (ident=ValueType | ref=[PojoDefinitionModel|IDENT] | type=[JvmType|QualifiedName]) 
+	 *         (gident=ValueType | gref=[PojoDefinitionModel|IDENT] | gtype=[JvmType|QualifiedName])? 
 	 *         array?='[]'?
 	 *     )
 	 */
@@ -1012,17 +1012,17 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 * Constraint:
 	 *     (name=IDENT table=IDENT)
 	 */
-	protected void sequence_ProcedureDefinition(EObject context, ProcedureDefinition semanticObject) {
+	protected void sequence_ProcedureDefinitionModel(EObject context, ProcedureDefinitionModel semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorMetaPackage.Literals.PROCEDURE_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorMetaPackage.Literals.PROCEDURE_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, ProcessorMetaPackage.Literals.PROCEDURE_DEFINITION__TABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorMetaPackage.Literals.PROCEDURE_DEFINITION__TABLE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorMetaPackage.Literals.PROCEDURE_DEFINITION_MODEL__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorMetaPackage.Literals.PROCEDURE_DEFINITION_MODEL__NAME));
+			if(transientValues.isValueTransient(semanticObject, ProcessorMetaPackage.Literals.PROCEDURE_DEFINITION_MODEL__TABLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorMetaPackage.Literals.PROCEDURE_DEFINITION_MODEL__TABLE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getProcedureDefinitionAccess().getNameIDENTTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getProcedureDefinitionAccess().getTableIDENTTerminalRuleCall_2_0(), semanticObject.getTable());
+		feeder.accept(grammarAccess.getProcedureDefinitionModelAccess().getNameIDENTTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getProcedureDefinitionModelAccess().getTableIDENTTerminalRuleCall_2_0(), semanticObject.getTable());
 		feeder.finish();
 	}
 	
@@ -1178,17 +1178,17 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 * Constraint:
 	 *     (name=IDENT table=IDENT)
 	 */
-	protected void sequence_TableDefinition(EObject context, TableDefinition semanticObject) {
+	protected void sequence_TableDefinitionModel(EObject context, TableDefinitionModel semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorMetaPackage.Literals.TABLE_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorMetaPackage.Literals.TABLE_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, ProcessorMetaPackage.Literals.TABLE_DEFINITION__TABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorMetaPackage.Literals.TABLE_DEFINITION__TABLE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorMetaPackage.Literals.TABLE_DEFINITION_MODEL__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorMetaPackage.Literals.TABLE_DEFINITION_MODEL__NAME));
+			if(transientValues.isValueTransient(semanticObject, ProcessorMetaPackage.Literals.TABLE_DEFINITION_MODEL__TABLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorMetaPackage.Literals.TABLE_DEFINITION_MODEL__TABLE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getTableDefinitionAccess().getNameIDENTTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getTableDefinitionAccess().getTableIDENTTerminalRuleCall_2_0(), semanticObject.getTable());
+		feeder.accept(grammarAccess.getTableDefinitionModelAccess().getNameIDENTTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getTableDefinitionModelAccess().getTableIDENTTerminalRuleCall_2_0(), semanticObject.getTable());
 		feeder.finish();
 	}
 	

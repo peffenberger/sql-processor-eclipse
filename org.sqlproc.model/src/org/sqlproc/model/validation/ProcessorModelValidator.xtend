@@ -4,7 +4,7 @@
 package org.sqlproc.model.validation
 
 import org.eclipse.xtext.validation.Check
-import org.sqlproc.model.processorModel.PojoDefinition
+import org.sqlproc.model.processorModel.PojoDefinitionModel
 import org.sqlproc.model.processorModel.ProcessorModelPackage
 import org.eclipse.emf.common.util.URI
 import org.sqlproc.model.processorModel.Artifacts
@@ -17,9 +17,9 @@ import org.sqlproc.plugin.lib.property.ModelProperty
 import org.eclipse.emf.ecore.EObject
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
-import org.sqlproc.model.processorModel.FunctionDefinition
-import org.sqlproc.model.processorModel.ProcedureDefinition
-import org.sqlproc.model.processorModel.TableDefinition
+import org.sqlproc.model.processorModel.FunctionDefinitionModel
+import org.sqlproc.model.processorModel.ProcedureDefinitionModel
+import org.sqlproc.model.processorModel.TableDefinitionModel
 import org.sqlproc.model.processorModel.Property
 import org.sqlproc.model.processorModel.PojoEntity
 import org.sqlproc.model.processorModel.Package
@@ -30,6 +30,7 @@ import org.sqlproc.model.processorModel.DaoEntity
 import org.sqlproc.model.processorModel.PojoAttribute
 import org.sqlproc.model.processorModel.Entity
 import org.sqlproc.plugin.lib.util.CommonUtils
+import org.sqlproc.model.processorModel.PojoDefinitionModel
 
 /**
  * Custom validation rules. 
@@ -54,22 +55,22 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
     ModelProperty modelProperty
 
     @Check
-    def checkUniquePojoDefinition(PojoDefinition pojoDefinition) {
+    def checkUniquePojoDefinition(PojoDefinitionModel pojoDefinition) {
     	if (CommonUtils.skipVerification(pojoDefinition, modelProperty))
             return;
     	
     	val URI uri = pojoDefinition.eResource?.URI
         if (isResolvePojo(pojoDefinition) && !checkClass(getClass(pojoDefinition), uri))
             error("Class name : " + getClass(pojoDefinition) + " not exists",
-                    ProcessorModelPackage.Literals.POJO_DEFINITION__NAME)
+                    ProcessorModelPackage.Literals.POJO_DEFINITION_MODEL__NAME)
         val artifacts = getArtifacts(pojoDefinition)
         if (artifacts == null)
             return;
-        for (PojoDefinition definition : artifacts.getPojos()) {
+        for (PojoDefinitionModel definition : artifacts.getPojos()) {
             if (definition != null && definition !== pojoDefinition) {
 	            if (pojoDefinition.getName().equals(definition.getName())) {
 	                error("Duplicate name : " + pojoDefinition.getName(),
-	                        ProcessorModelPackage.Literals.POJO_DEFINITION__NAME)
+	                        ProcessorModelPackage.Literals.POJO_DEFINITION_MODEL__NAME)
 	                return
 	            }
             }
@@ -96,7 +97,7 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
         return dbResolver.isResolveDb(model)
     }
 
-    def String getClass(PojoDefinition pojo) {
+    def String getClass(PojoDefinitionModel pojo) {
         if (pojo.getClassx() != null)
             return pojo.getClassx().getQualifiedName()
         return pojo.getClass_()
@@ -124,41 +125,41 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
     }
 
     @Check
-    def checkTableDefinition(TableDefinition tableDefinition) {
+    def checkTableDefinition(TableDefinitionModel tableDefinition) {
         if (CommonUtils.skipVerification(tableDefinition, modelProperty))
             return;
         val artifacts = getArtifacts(tableDefinition)
         if (artifacts == null)
             return;
 
-        for (TableDefinition table : artifacts.getTables()) {
+        for (TableDefinitionModel table : artifacts.getTables()) {
             if (table != null && table !== tableDefinition) {
 	            if (tableDefinition.getName().equals(table.getName())) {
 	                error("Duplicate name : " + tableDefinition.getName() + "[table]",
-	                        ProcessorModelPackage.Literals.TABLE_DEFINITION__NAME)
+	                        ProcessorModelPackage.Literals.TABLE_DEFINITION_MODEL__NAME)
 	                return
 				}
 	           }
         }
         if (isResolveDb(tableDefinition) && !dbResolver.checkTable(tableDefinition, tableDefinition.getTable())) {
             error("Cannot find table in DB : " + tableDefinition.getTable(),
-                    ProcessorModelPackage.Literals.TABLE_DEFINITION__TABLE)
+                    ProcessorModelPackage.Literals.TABLE_DEFINITION_MODEL__TABLE)
         }
     }
 
     @Check
-    def checkProcedureDefinition(ProcedureDefinition procedureDefinition) {
+    def checkProcedureDefinition(ProcedureDefinitionModel procedureDefinition) {
         if (CommonUtils.skipVerification(procedureDefinition, modelProperty))
             return;
         val artifacts = getArtifacts(procedureDefinition)
         if (artifacts == null)
             return;
 
-        for (ProcedureDefinition procedure : artifacts.getProcedures()) {
+        for (ProcedureDefinitionModel procedure : artifacts.getProcedures()) {
             if (procedure != null && procedure !== procedureDefinition) {
 	            if (procedureDefinition.getName().equals(procedure.getName())) {
 	                error("Duplicate name : " + procedureDefinition.getName() + "[procedure]",
-	                        ProcessorModelPackage.Literals.PROCEDURE_DEFINITION__NAME)
+	                        ProcessorModelPackage.Literals.PROCEDURE_DEFINITION_MODEL__NAME)
 	                return
 	            }
 	        }
@@ -166,23 +167,23 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
         if (isResolveDb(procedureDefinition)
                 && !dbResolver.checkProcedure(procedureDefinition, procedureDefinition.getTable())) {
             error("Cannot find procedure in DB : " + procedureDefinition.getTable(),
-                    ProcessorModelPackage.Literals.PROCEDURE_DEFINITION__NAME)
+                    ProcessorModelPackage.Literals.PROCEDURE_DEFINITION_MODEL__NAME)
         }
     }
 
     @Check
-    def checkFunctionDefinition(FunctionDefinition functionDefinition) {
+    def checkFunctionDefinition(FunctionDefinitionModel functionDefinition) {
         if (CommonUtils.skipVerification(functionDefinition, modelProperty))
             return;
         val artifacts = getArtifacts(functionDefinition)
         if (artifacts == null)
             return;
 
-        for (FunctionDefinition function : artifacts.getFunctions()) {
+        for (FunctionDefinitionModel function : artifacts.getFunctions()) {
             if (function != null && function !== functionDefinition) {
 	            if (functionDefinition.getName().equals(function.getName())) {
 	                error("Duplicate name : " + functionDefinition.getName() + "[function]",
-	                        ProcessorModelPackage.Literals.FUNCTION_DEFINITION__NAME)
+	                        ProcessorModelPackage.Literals.FUNCTION_DEFINITION_MODEL__NAME)
 	                return
 	            }
 	    	}

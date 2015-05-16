@@ -30,11 +30,11 @@ import org.sqlproc.meta.processorMeta.MappingColumn
 import org.sqlproc.meta.processorMeta.MappingRule
 import org.sqlproc.meta.processorMeta.MetaStatement
 import org.sqlproc.meta.processorMeta.MetagenProperty
-import org.sqlproc.meta.processorMeta.PojoDefinition
+import org.sqlproc.meta.processorMeta.PojoDefinitionModel
 import org.sqlproc.meta.processorMeta.PojogenProperty
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage
 import org.sqlproc.meta.processorMeta.ShowColumnTypeAssignement
-import org.sqlproc.meta.processorMeta.TableDefinition
+import org.sqlproc.meta.processorMeta.TableDefinitionModel
 import org.sqlproc.meta.util.Utils
 import org.sqlproc.plugin.lib.resolver.DbResolver.DbType
 
@@ -44,6 +44,7 @@ import static extension org.eclipse.xtext.EcoreUtil2.*
 import org.eclipse.emf.common.util.URI
 import org.sqlproc.plugin.lib.resolver.PojoResolver
 import org.sqlproc.plugin.lib.resolver.DbResolver
+import org.sqlproc.plugin.lib.property.ModelProperty
 
 /**
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
@@ -58,6 +59,9 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
 
 	@Inject
 	IQualifiedNameConverter qualifiedNameConverter
+
+    @Inject
+    ModelProperty modelProperty;
 
 	val STATEMENT_TYPE = <String>newArrayList("QRY", "CRUD", "CALL")
 	val MAPPING_TYPE = <String>newArrayList("OUT")
@@ -229,7 +233,7 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
         dbResolver.isResolveDb(model)
     }
 
-    def getClass(PojoDefinition pojo) {
+    def getClass(PojoDefinitionModel pojo) {
 		return if (pojo.getClassx() != null) pojo.getClassx().getQualifiedName() else pojo.getClass_()
     }
 
@@ -353,28 +357,28 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
         ]
 	}
 
-    override completeTableDefinition_Table(EObject model, Assignment assignment, ContentAssistContext context,
+    override completeTableDefinitionModel_Table(EObject model, Assignment assignment, ContentAssistContext context,
             ICompletionProposalAcceptor acceptor) {
         if (!isResolveDb(model)) {
-            super.completeTableDefinition_Table(model, assignment, context, acceptor)
+            super.completeTableDefinitionModel_Table(model, assignment, context, acceptor)
             return
         }
         acceptTables(model, context, acceptor, "")
     }
 
-    override completeProcedureDefinition_Table(EObject model, Assignment assignment, ContentAssistContext context,
+    override completeProcedureDefinitionModel_Table(EObject model, Assignment assignment, ContentAssistContext context,
             ICompletionProposalAcceptor acceptor) {
         if (!isResolveDb(model)) {
-            super.completeProcedureDefinition_Table(model, assignment, context, acceptor)
+            super.completeProcedureDefinitionModel_Table(model, assignment, context, acceptor)
             return
         }
         acceptProcedures(model, context, acceptor)
     }
 
-    override completeFunctionDefinition_Table(EObject model, Assignment assignment, ContentAssistContext context,
+    override completeFunctionDefinitionModel_Table(EObject model, Assignment assignment, ContentAssistContext context,
             ICompletionProposalAcceptor acceptor) {
         if (!isResolveDb(model)) {
-            super.completeFunctionDefinition_Table(model, assignment, context, acceptor)
+            super.completeFunctionDefinitionModel_Table(model, assignment, context, acceptor)
             return
         }
         acceptFunctions(model, context, acceptor)
@@ -391,8 +395,7 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
         val metaStatement = model.getContainerOfType(typeof(MetaStatement))
         val artifacts = model.getContainerOfType(typeof(Artifacts))
         val value = Utils.getTokenFromModifier(metaStatement, TABLE_USAGE, prefix)
-        val tableDefinition = if (value != null) Utils.findTable(qualifiedNameConverter, artifacts,
-                getScopeProvider().getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES), value)
+        val tableDefinition = if (value != null) modelProperty.getModelTables(artifacts).get(value)
         if (tableDefinition != null && tableDefinition.table != null) {
         	acceptColumns(dbResolver.getColumns(model, tableDefinition.table), context, acceptor, prefix, null)
         }
@@ -407,8 +410,7 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
         val metaStatement = model.getContainerOfType(typeof(MetaStatement))
         val artifacts = model.getContainerOfType(typeof(Artifacts))
         Utils.getTokensFromModifier(metaStatement, TABLE_USAGE).forEach[value |
-            val tableDefinition = Utils.findTable(qualifiedNameConverter, artifacts,
-                    getScopeProvider().getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES), value)
+            val tableDefinition = modelProperty.getModelTables(artifacts).get(value)
             if (tableDefinition != null) {
                 val proposal = getValueConverter().toString(tableDefinition.getTable(), "IDENT")
                 acceptor.accept(createCompletionProposal(proposal, context))
@@ -859,19 +861,19 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
 		acceptTables(model, context, acceptor, "")
     }
     
-    def Set<PojoDefinition> listPojos(ResourceSet resourceSet, IScope scope) {
-        val result = <PojoDefinition>newTreeSet[o1, o2 | o1.name.compareTo(o2.name)]
+    def Set<PojoDefinitionModel> listPojos(ResourceSet resourceSet, IScope scope) {
+        val result = <PojoDefinitionModel>newTreeSet[o1, o2 | o1.name.compareTo(o2.name)]
         scope.getAllElements().forEach[description |
-            val pojo = resourceSet.getEObject(description.getEObjectURI(), true) as PojoDefinition
+            val pojo = resourceSet.getEObject(description.getEObjectURI(), true) as PojoDefinitionModel
             result.add(pojo)
         ]
         return result
     }
 
-    def Set<TableDefinition> listTables(ResourceSet resourceSet, IScope scope) {
-        val result = <TableDefinition>newTreeSet[o1, o2 | o1.name.compareTo(o2.name)]
+    def Set<TableDefinitionModel> listTables(ResourceSet resourceSet, IScope scope) {
+        val result = <TableDefinitionModel>newTreeSet[o1, o2 | o1.name.compareTo(o2.name)]
         scope.getAllElements().forEach[description |
-            val table = resourceSet.getEObject(description.getEObjectURI(), true) as TableDefinition
+            val table = resourceSet.getEObject(description.getEObjectURI(), true) as TableDefinitionModel
             result.add(table)
         ]
         return result

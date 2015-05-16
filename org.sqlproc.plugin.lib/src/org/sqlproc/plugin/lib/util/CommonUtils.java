@@ -3,6 +3,7 @@ package org.sqlproc.plugin.lib.util;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
@@ -10,7 +11,10 @@ import java.util.TreeMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.util.Strings;
+import org.sqlproc.plugin.lib.property.FunctionDefinition;
 import org.sqlproc.plugin.lib.property.ModelProperty;
+import org.sqlproc.plugin.lib.property.ProcedureDefinition;
+import org.sqlproc.plugin.lib.property.TableDefinition;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.resolver.DbResolver.DbType;
 
@@ -215,7 +219,7 @@ public class CommonUtils {
         return builder.toString();
     }
 
-    public static String getTablesDefinitions(List<String> tables, List<String> tablesPresented) {
+    public static String getTablesDefinitions(List<String> tables, Map<String, TableDefinition> tablesPresented) {
         if (tables == null)
             return null;
         Set<String> set = (tablesPresented != null) ? new HashSet<String>(tablesPresented) : new HashSet<String>();
@@ -235,7 +239,8 @@ public class CommonUtils {
         return builder.toString();
     }
 
-    public static String getProceduresDefinitions(List<String> procedures, List<String> proceduresPresented) {
+    public static String getProceduresDefinitions(List<String> procedures,
+            Map<String, ProcedureDefinition> proceduresPresented) {
         if (procedures == null)
             return null;
         Set<String> set = (proceduresPresented != null) ? new HashSet<String>(proceduresPresented)
@@ -257,7 +262,8 @@ public class CommonUtils {
         return builder.toString();
     }
 
-    public static String getFunctionsDefinitions(List<String> functions, List<String> functionsPresented) {
+    public static String getFunctionsDefinitions(List<String> functions,
+            Map<String, FunctionDefinition> functionsPresented) {
         if (functions == null)
             return null;
         Set<String> set = (functionsPresented != null) ? new HashSet<String>(functionsPresented)

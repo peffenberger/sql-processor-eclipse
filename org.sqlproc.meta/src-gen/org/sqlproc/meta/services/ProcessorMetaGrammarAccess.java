@@ -29,19 +29,19 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
 		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
 		private final Assignment cPojosAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
-		private final RuleCall cPojosPojoDefinitionParserRuleCall_2_1_0_0 = (RuleCall)cPojosAssignment_2_1_0.eContents().get(0);
+		private final RuleCall cPojosPojoDefinitionModelParserRuleCall_2_1_0_0 = (RuleCall)cPojosAssignment_2_1_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_2_1_1 = (RuleCall)cGroup_2_1.eContents().get(1);
 		private final Group cGroup_2_2 = (Group)cAlternatives_2.eContents().get(2);
 		private final Assignment cTablesAssignment_2_2_0 = (Assignment)cGroup_2_2.eContents().get(0);
-		private final RuleCall cTablesTableDefinitionParserRuleCall_2_2_0_0 = (RuleCall)cTablesAssignment_2_2_0.eContents().get(0);
+		private final RuleCall cTablesTableDefinitionModelParserRuleCall_2_2_0_0 = (RuleCall)cTablesAssignment_2_2_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_2_2_1 = (RuleCall)cGroup_2_2.eContents().get(1);
 		private final Group cGroup_2_3 = (Group)cAlternatives_2.eContents().get(3);
 		private final Assignment cProceduresAssignment_2_3_0 = (Assignment)cGroup_2_3.eContents().get(0);
-		private final RuleCall cProceduresProcedureDefinitionParserRuleCall_2_3_0_0 = (RuleCall)cProceduresAssignment_2_3_0.eContents().get(0);
+		private final RuleCall cProceduresProcedureDefinitionModelParserRuleCall_2_3_0_0 = (RuleCall)cProceduresAssignment_2_3_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_2_3_1 = (RuleCall)cGroup_2_3.eContents().get(1);
 		private final Group cGroup_2_4 = (Group)cAlternatives_2.eContents().get(4);
 		private final Assignment cFunctionsAssignment_2_4_0 = (Assignment)cGroup_2_4.eContents().get(0);
-		private final RuleCall cFunctionsFunctionDefinitionParserRuleCall_2_4_0_0 = (RuleCall)cFunctionsAssignment_2_4_0.eContents().get(0);
+		private final RuleCall cFunctionsFunctionDefinitionModelParserRuleCall_2_4_0_0 = (RuleCall)cFunctionsAssignment_2_4_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_2_4_1 = (RuleCall)cGroup_2_4.eContents().get(1);
 		private final Group cGroup_2_5 = (Group)cAlternatives_2.eContents().get(5);
 		private final Assignment cStatementsAssignment_2_5_0 = (Assignment)cGroup_2_5.eContents().get(0);
@@ -57,13 +57,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_2_7_1 = (RuleCall)cGroup_2_7.eContents().get(1);
 		
 		//Artifacts:
-		//	{Artifacts} WS* (properties+=Property WS* | pojos+=PojoDefinition WS* | tables+=TableDefinition WS* |
-		//	procedures+=ProcedureDefinition WS* | functions+=FunctionDefinition WS* | statements+=MetaStatement WS* |
+		//	{Artifacts} WS* (properties+=Property WS* | pojos+=PojoDefinitionModel WS* | tables+=TableDefinitionModel WS* |
+		//	procedures+=ProcedureDefinitionModel WS* | functions+=FunctionDefinitionModel WS* | statements+=MetaStatement WS* |
 		//	mappings+=MappingRule WS* | features+=OptionalFeature WS*)*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{Artifacts} WS* (properties+=Property WS* | pojos+=PojoDefinition WS* | tables+=TableDefinition WS* |
-		//procedures+=ProcedureDefinition WS* | functions+=FunctionDefinition WS* | statements+=MetaStatement WS* |
+		//{Artifacts} WS* (properties+=Property WS* | pojos+=PojoDefinitionModel WS* | tables+=TableDefinitionModel WS* |
+		//procedures+=ProcedureDefinitionModel WS* | functions+=FunctionDefinitionModel WS* | statements+=MetaStatement WS* |
 		//mappings+=MappingRule WS* | features+=OptionalFeature WS*)*
 		public Group getGroup() { return cGroup; }
 
@@ -73,9 +73,9 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS*
 		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
 
-		//(properties+=Property WS* | pojos+=PojoDefinition WS* | tables+=TableDefinition WS* | procedures+=ProcedureDefinition
-		//WS* | functions+=FunctionDefinition WS* | statements+=MetaStatement WS* | mappings+=MappingRule WS* |
-		//features+=OptionalFeature WS*)*
+		//(properties+=Property WS* | pojos+=PojoDefinitionModel WS* | tables+=TableDefinitionModel WS* |
+		//procedures+=ProcedureDefinitionModel WS* | functions+=FunctionDefinitionModel WS* | statements+=MetaStatement WS* |
+		//mappings+=MappingRule WS* | features+=OptionalFeature WS*)*
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//properties+=Property WS*
@@ -90,50 +90,50 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS*
 		public RuleCall getWSTerminalRuleCall_2_0_1() { return cWSTerminalRuleCall_2_0_1; }
 
-		//pojos+=PojoDefinition WS*
+		//pojos+=PojoDefinitionModel WS*
 		public Group getGroup_2_1() { return cGroup_2_1; }
 
-		//pojos+=PojoDefinition
+		//pojos+=PojoDefinitionModel
 		public Assignment getPojosAssignment_2_1_0() { return cPojosAssignment_2_1_0; }
 
-		//PojoDefinition
-		public RuleCall getPojosPojoDefinitionParserRuleCall_2_1_0_0() { return cPojosPojoDefinitionParserRuleCall_2_1_0_0; }
+		//PojoDefinitionModel
+		public RuleCall getPojosPojoDefinitionModelParserRuleCall_2_1_0_0() { return cPojosPojoDefinitionModelParserRuleCall_2_1_0_0; }
 
 		//WS*
 		public RuleCall getWSTerminalRuleCall_2_1_1() { return cWSTerminalRuleCall_2_1_1; }
 
-		//tables+=TableDefinition WS*
+		//tables+=TableDefinitionModel WS*
 		public Group getGroup_2_2() { return cGroup_2_2; }
 
-		//tables+=TableDefinition
+		//tables+=TableDefinitionModel
 		public Assignment getTablesAssignment_2_2_0() { return cTablesAssignment_2_2_0; }
 
-		//TableDefinition
-		public RuleCall getTablesTableDefinitionParserRuleCall_2_2_0_0() { return cTablesTableDefinitionParserRuleCall_2_2_0_0; }
+		//TableDefinitionModel
+		public RuleCall getTablesTableDefinitionModelParserRuleCall_2_2_0_0() { return cTablesTableDefinitionModelParserRuleCall_2_2_0_0; }
 
 		//WS*
 		public RuleCall getWSTerminalRuleCall_2_2_1() { return cWSTerminalRuleCall_2_2_1; }
 
-		//procedures+=ProcedureDefinition WS*
+		//procedures+=ProcedureDefinitionModel WS*
 		public Group getGroup_2_3() { return cGroup_2_3; }
 
-		//procedures+=ProcedureDefinition
+		//procedures+=ProcedureDefinitionModel
 		public Assignment getProceduresAssignment_2_3_0() { return cProceduresAssignment_2_3_0; }
 
-		//ProcedureDefinition
-		public RuleCall getProceduresProcedureDefinitionParserRuleCall_2_3_0_0() { return cProceduresProcedureDefinitionParserRuleCall_2_3_0_0; }
+		//ProcedureDefinitionModel
+		public RuleCall getProceduresProcedureDefinitionModelParserRuleCall_2_3_0_0() { return cProceduresProcedureDefinitionModelParserRuleCall_2_3_0_0; }
 
 		//WS*
 		public RuleCall getWSTerminalRuleCall_2_3_1() { return cWSTerminalRuleCall_2_3_1; }
 
-		//functions+=FunctionDefinition WS*
+		//functions+=FunctionDefinitionModel WS*
 		public Group getGroup_2_4() { return cGroup_2_4; }
 
-		//functions+=FunctionDefinition
+		//functions+=FunctionDefinitionModel
 		public Assignment getFunctionsAssignment_2_4_0() { return cFunctionsAssignment_2_4_0; }
 
-		//FunctionDefinition
-		public RuleCall getFunctionsFunctionDefinitionParserRuleCall_2_4_0_0() { return cFunctionsFunctionDefinitionParserRuleCall_2_4_0_0; }
+		//FunctionDefinitionModel
+		public RuleCall getFunctionsFunctionDefinitionModelParserRuleCall_2_4_0_0() { return cFunctionsFunctionDefinitionModelParserRuleCall_2_4_0_0; }
 
 		//WS*
 		public RuleCall getWSTerminalRuleCall_2_4_1() { return cWSTerminalRuleCall_2_4_1; }
@@ -223,8 +223,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_0_1 = (Group)cAlternatives_0.eContents().get(1);
 		private final RuleCall cCOLONTerminalRuleCall_0_1_0 = (RuleCall)cGroup_0_1.eContents().get(0);
 		private final Assignment cRefAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
-		private final CrossReference cRefPojoDefinitionCrossReference_0_1_1_0 = (CrossReference)cRefAssignment_0_1_1.eContents().get(0);
-		private final RuleCall cRefPojoDefinitionIDENTTerminalRuleCall_0_1_1_0_1 = (RuleCall)cRefPojoDefinitionCrossReference_0_1_1_0.eContents().get(1);
+		private final CrossReference cRefPojoDefinitionModelCrossReference_0_1_1_0 = (CrossReference)cRefAssignment_0_1_1.eContents().get(0);
+		private final RuleCall cRefPojoDefinitionModelIDENTTerminalRuleCall_0_1_1_0_1 = (RuleCall)cRefPojoDefinitionModelCrossReference_0_1_1_0.eContents().get(1);
 		private final Assignment cTypeAssignment_0_2 = (Assignment)cAlternatives_0.eContents().get(2);
 		private final CrossReference cTypeJvmTypeCrossReference_0_2_0 = (CrossReference)cTypeAssignment_0_2.eContents().get(0);
 		private final RuleCall cTypeJvmTypeQualifiedNameParserRuleCall_0_2_0_1 = (RuleCall)cTypeJvmTypeCrossReference_0_2_0.eContents().get(1);
@@ -239,8 +239,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1_1_1 = (Group)cAlternatives_1_1.eContents().get(1);
 		private final RuleCall cCOLONTerminalRuleCall_1_1_1_0 = (RuleCall)cGroup_1_1_1.eContents().get(0);
 		private final Assignment cGrefAssignment_1_1_1_1 = (Assignment)cGroup_1_1_1.eContents().get(1);
-		private final CrossReference cGrefPojoDefinitionCrossReference_1_1_1_1_0 = (CrossReference)cGrefAssignment_1_1_1_1.eContents().get(0);
-		private final RuleCall cGrefPojoDefinitionIDENTTerminalRuleCall_1_1_1_1_0_1 = (RuleCall)cGrefPojoDefinitionCrossReference_1_1_1_1_0.eContents().get(1);
+		private final CrossReference cGrefPojoDefinitionModelCrossReference_1_1_1_1_0 = (CrossReference)cGrefAssignment_1_1_1_1.eContents().get(0);
+		private final RuleCall cGrefPojoDefinitionModelIDENTTerminalRuleCall_1_1_1_1_0_1 = (RuleCall)cGrefPojoDefinitionModelCrossReference_1_1_1_1_0.eContents().get(1);
 		private final Assignment cGtypeAssignment_1_1_2 = (Assignment)cAlternatives_1_1.eContents().get(2);
 		private final CrossReference cGtypeJvmTypeCrossReference_1_1_2_0 = (CrossReference)cGtypeAssignment_1_1_2.eContents().get(0);
 		private final RuleCall cGtypeJvmTypeQualifiedNameParserRuleCall_1_1_2_0_1 = (RuleCall)cGtypeJvmTypeCrossReference_1_1_2_0.eContents().get(1);
@@ -249,17 +249,17 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cArrayLeftSquareBracketRightSquareBracketKeyword_2_0 = (Keyword)cArrayAssignment_2.eContents().get(0);
 		
 		//PojoType:
-		//	(COLON COLON ident=ValueType | COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName]) (LESS_THAN
-		//	(COLON COLON gident=ValueType | COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName])
-		//	MORE_THAN)? array?="[]"?;
+		//	(COLON COLON ident=ValueType | COLON ref=[PojoDefinitionModel|IDENT] | type=[jvmTypes::JvmType|QualifiedName])
+		//	(LESS_THAN (COLON COLON gident=ValueType | COLON gref=[PojoDefinitionModel|IDENT] |
+		//	gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)? array?="[]"?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//(COLON COLON ident=ValueType | COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName]) (LESS_THAN
-		//(COLON COLON gident=ValueType | COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName])
-		//MORE_THAN)? array?="[]"?
+		//(COLON COLON ident=ValueType | COLON ref=[PojoDefinitionModel|IDENT] | type=[jvmTypes::JvmType|QualifiedName])
+		//(LESS_THAN (COLON COLON gident=ValueType | COLON gref=[PojoDefinitionModel|IDENT] |
+		//gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)? array?="[]"?
 		public Group getGroup() { return cGroup; }
 
-		//COLON COLON ident=ValueType | COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName]
+		//COLON COLON ident=ValueType | COLON ref=[PojoDefinitionModel|IDENT] | type=[jvmTypes::JvmType|QualifiedName]
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
 		//COLON COLON ident=ValueType
@@ -277,20 +277,20 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//ValueType
 		public RuleCall getIdentValueTypeParserRuleCall_0_0_2_0() { return cIdentValueTypeParserRuleCall_0_0_2_0; }
 
-		//COLON ref=[PojoDefinition|IDENT]
+		//COLON ref=[PojoDefinitionModel|IDENT]
 		public Group getGroup_0_1() { return cGroup_0_1; }
 
 		//COLON
 		public RuleCall getCOLONTerminalRuleCall_0_1_0() { return cCOLONTerminalRuleCall_0_1_0; }
 
-		//ref=[PojoDefinition|IDENT]
+		//ref=[PojoDefinitionModel|IDENT]
 		public Assignment getRefAssignment_0_1_1() { return cRefAssignment_0_1_1; }
 
-		//[PojoDefinition|IDENT]
-		public CrossReference getRefPojoDefinitionCrossReference_0_1_1_0() { return cRefPojoDefinitionCrossReference_0_1_1_0; }
+		//[PojoDefinitionModel|IDENT]
+		public CrossReference getRefPojoDefinitionModelCrossReference_0_1_1_0() { return cRefPojoDefinitionModelCrossReference_0_1_1_0; }
 
 		//IDENT
-		public RuleCall getRefPojoDefinitionIDENTTerminalRuleCall_0_1_1_0_1() { return cRefPojoDefinitionIDENTTerminalRuleCall_0_1_1_0_1; }
+		public RuleCall getRefPojoDefinitionModelIDENTTerminalRuleCall_0_1_1_0_1() { return cRefPojoDefinitionModelIDENTTerminalRuleCall_0_1_1_0_1; }
 
 		//type=[jvmTypes::JvmType|QualifiedName]
 		public Assignment getTypeAssignment_0_2() { return cTypeAssignment_0_2; }
@@ -301,14 +301,14 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getTypeJvmTypeQualifiedNameParserRuleCall_0_2_0_1() { return cTypeJvmTypeQualifiedNameParserRuleCall_0_2_0_1; }
 
-		//(LESS_THAN (COLON COLON gident=ValueType | COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName])
-		//MORE_THAN)?
+		//(LESS_THAN (COLON COLON gident=ValueType | COLON gref=[PojoDefinitionModel|IDENT] |
+		//gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//LESS_THAN
 		public RuleCall getLESS_THANTerminalRuleCall_1_0() { return cLESS_THANTerminalRuleCall_1_0; }
 
-		//COLON COLON gident=ValueType | COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]
+		//COLON COLON gident=ValueType | COLON gref=[PojoDefinitionModel|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 
 		//COLON COLON gident=ValueType
@@ -326,20 +326,20 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//ValueType
 		public RuleCall getGidentValueTypeParserRuleCall_1_1_0_2_0() { return cGidentValueTypeParserRuleCall_1_1_0_2_0; }
 
-		//COLON gref=[PojoDefinition|IDENT]
+		//COLON gref=[PojoDefinitionModel|IDENT]
 		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
 
 		//COLON
 		public RuleCall getCOLONTerminalRuleCall_1_1_1_0() { return cCOLONTerminalRuleCall_1_1_1_0; }
 
-		//gref=[PojoDefinition|IDENT]
+		//gref=[PojoDefinitionModel|IDENT]
 		public Assignment getGrefAssignment_1_1_1_1() { return cGrefAssignment_1_1_1_1; }
 
-		//[PojoDefinition|IDENT]
-		public CrossReference getGrefPojoDefinitionCrossReference_1_1_1_1_0() { return cGrefPojoDefinitionCrossReference_1_1_1_1_0; }
+		//[PojoDefinitionModel|IDENT]
+		public CrossReference getGrefPojoDefinitionModelCrossReference_1_1_1_1_0() { return cGrefPojoDefinitionModelCrossReference_1_1_1_1_0; }
 
 		//IDENT
-		public RuleCall getGrefPojoDefinitionIDENTTerminalRuleCall_1_1_1_1_0_1() { return cGrefPojoDefinitionIDENTTerminalRuleCall_1_1_1_1_0_1; }
+		public RuleCall getGrefPojoDefinitionModelIDENTTerminalRuleCall_1_1_1_1_0_1() { return cGrefPojoDefinitionModelIDENTTerminalRuleCall_1_1_1_1_0_1; }
 
 		//gtype=[jvmTypes::JvmType|QualifiedName]
 		public Assignment getGtypeAssignment_1_1_2() { return cGtypeAssignment_1_1_2; }
@@ -4779,8 +4779,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getImplPckgQualifiedNameParserRuleCall_11_2_0() { return cImplPckgQualifiedNameParserRuleCall_11_2_0; }
 	}
 
-	public class PojoDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PojoDefinition");
+	public class PojoDefinitionModelElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PojoDefinitionModel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPojoKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -4798,7 +4798,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cClassxJvmTypeQualifiedNameParserRuleCall_2_1_0_1 = (RuleCall)cClassxJvmTypeCrossReference_2_1_0.eContents().get(1);
 		private final RuleCall cSEMICOLONTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
-		//PojoDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+		//PojoDefinitionModel hidden(ML_COMMENT, SL_COMMENT, WS):
 		//	"pojo" name=IDENT (COLON COLON? class=(IDENT | IDENT_DOT) | classx=[jvmTypes::JvmType|QualifiedName]) SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -4851,8 +4851,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getSEMICOLONTerminalRuleCall_3() { return cSEMICOLONTerminalRuleCall_3; }
 	}
 
-	public class TableDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TableDefinition");
+	public class TableDefinitionModelElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TableDefinitionModel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cTableKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -4861,7 +4861,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTableIDENTTerminalRuleCall_2_0 = (RuleCall)cTableAssignment_2.eContents().get(0);
 		private final RuleCall cSEMICOLONTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
-		//TableDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+		//TableDefinitionModel hidden(ML_COMMENT, SL_COMMENT, WS):
 		//	"table" name=IDENT table=IDENT SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -4887,8 +4887,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getSEMICOLONTerminalRuleCall_3() { return cSEMICOLONTerminalRuleCall_3; }
 	}
 
-	public class ProcedureDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ProcedureDefinition");
+	public class ProcedureDefinitionModelElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ProcedureDefinitionModel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cProcedureKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -4897,7 +4897,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTableIDENTTerminalRuleCall_2_0 = (RuleCall)cTableAssignment_2.eContents().get(0);
 		private final RuleCall cSEMICOLONTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
-		//ProcedureDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+		//ProcedureDefinitionModel hidden(ML_COMMENT, SL_COMMENT, WS):
 		//	"procedure" name=IDENT table=IDENT SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -4923,8 +4923,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getSEMICOLONTerminalRuleCall_3() { return cSEMICOLONTerminalRuleCall_3; }
 	}
 
-	public class FunctionDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FunctionDefinition");
+	public class FunctionDefinitionModelElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FunctionDefinitionModel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cFunctionKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -4933,7 +4933,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTableIDENTTerminalRuleCall_2_0 = (RuleCall)cTableAssignment_2.eContents().get(0);
 		private final RuleCall cSEMICOLONTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
-		//FunctionDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+		//FunctionDefinitionModel hidden(ML_COMMENT, SL_COMMENT, WS):
 		//	"function" name=IDENT table=IDENT SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -7859,10 +7859,10 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	private final MetaTypeAssignementElements pMetaTypeAssignement;
 	private final MetagenPropertyElements pMetagenProperty;
 	private final DaogenPropertyElements pDaogenProperty;
-	private final PojoDefinitionElements pPojoDefinition;
-	private final TableDefinitionElements pTableDefinition;
-	private final ProcedureDefinitionElements pProcedureDefinition;
-	private final FunctionDefinitionElements pFunctionDefinition;
+	private final PojoDefinitionModelElements pPojoDefinitionModel;
+	private final TableDefinitionModelElements pTableDefinitionModel;
+	private final ProcedureDefinitionModelElements pProcedureDefinitionModel;
+	private final FunctionDefinitionModelElements pFunctionDefinitionModel;
 	private final MetaStatementElements pMetaStatement;
 	private final SqlElements pSql;
 	private final SqlFragmentElements pSqlFragment;
@@ -7977,10 +7977,10 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		this.pMetaTypeAssignement = new MetaTypeAssignementElements();
 		this.pMetagenProperty = new MetagenPropertyElements();
 		this.pDaogenProperty = new DaogenPropertyElements();
-		this.pPojoDefinition = new PojoDefinitionElements();
-		this.pTableDefinition = new TableDefinitionElements();
-		this.pProcedureDefinition = new ProcedureDefinitionElements();
-		this.pFunctionDefinition = new FunctionDefinitionElements();
+		this.pPojoDefinitionModel = new PojoDefinitionModelElements();
+		this.pTableDefinitionModel = new TableDefinitionModelElements();
+		this.pProcedureDefinitionModel = new ProcedureDefinitionModelElements();
+		this.pFunctionDefinitionModel = new FunctionDefinitionModelElements();
 		this.pMetaStatement = new MetaStatementElements();
 		this.pSql = new SqlElements();
 		this.pSqlFragment = new SqlFragmentElements();
@@ -8081,8 +8081,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Artifacts:
-	//	{Artifacts} WS* (properties+=Property WS* | pojos+=PojoDefinition WS* | tables+=TableDefinition WS* |
-	//	procedures+=ProcedureDefinition WS* | functions+=FunctionDefinition WS* | statements+=MetaStatement WS* |
+	//	{Artifacts} WS* (properties+=Property WS* | pojos+=PojoDefinitionModel WS* | tables+=TableDefinitionModel WS* |
+	//	procedures+=ProcedureDefinitionModel WS* | functions+=FunctionDefinitionModel WS* | statements+=MetaStatement WS* |
 	//	mappings+=MappingRule WS* | features+=OptionalFeature WS*)*;
 	public ArtifactsElements getArtifactsAccess() {
 		return pArtifacts;
@@ -8103,9 +8103,9 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PojoType:
-	//	(COLON COLON ident=ValueType | COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName]) (LESS_THAN
-	//	(COLON COLON gident=ValueType | COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName])
-	//	MORE_THAN)? array?="[]"?;
+	//	(COLON COLON ident=ValueType | COLON ref=[PojoDefinitionModel|IDENT] | type=[jvmTypes::JvmType|QualifiedName])
+	//	(LESS_THAN (COLON COLON gident=ValueType | COLON gref=[PojoDefinitionModel|IDENT] |
+	//	gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)? array?="[]"?;
 	public PojoTypeElements getPojoTypeAccess() {
 		return pPojoType;
 	}
@@ -8486,44 +8486,44 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		return getDaogenPropertyAccess().getRule();
 	}
 
-	//PojoDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+	//PojoDefinitionModel hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"pojo" name=IDENT (COLON COLON? class=(IDENT | IDENT_DOT) | classx=[jvmTypes::JvmType|QualifiedName]) SEMICOLON;
-	public PojoDefinitionElements getPojoDefinitionAccess() {
-		return pPojoDefinition;
+	public PojoDefinitionModelElements getPojoDefinitionModelAccess() {
+		return pPojoDefinitionModel;
 	}
 	
-	public ParserRule getPojoDefinitionRule() {
-		return getPojoDefinitionAccess().getRule();
+	public ParserRule getPojoDefinitionModelRule() {
+		return getPojoDefinitionModelAccess().getRule();
 	}
 
-	//TableDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+	//TableDefinitionModel hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"table" name=IDENT table=IDENT SEMICOLON;
-	public TableDefinitionElements getTableDefinitionAccess() {
-		return pTableDefinition;
+	public TableDefinitionModelElements getTableDefinitionModelAccess() {
+		return pTableDefinitionModel;
 	}
 	
-	public ParserRule getTableDefinitionRule() {
-		return getTableDefinitionAccess().getRule();
+	public ParserRule getTableDefinitionModelRule() {
+		return getTableDefinitionModelAccess().getRule();
 	}
 
-	//ProcedureDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+	//ProcedureDefinitionModel hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"procedure" name=IDENT table=IDENT SEMICOLON;
-	public ProcedureDefinitionElements getProcedureDefinitionAccess() {
-		return pProcedureDefinition;
+	public ProcedureDefinitionModelElements getProcedureDefinitionModelAccess() {
+		return pProcedureDefinitionModel;
 	}
 	
-	public ParserRule getProcedureDefinitionRule() {
-		return getProcedureDefinitionAccess().getRule();
+	public ParserRule getProcedureDefinitionModelRule() {
+		return getProcedureDefinitionModelAccess().getRule();
 	}
 
-	//FunctionDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+	//FunctionDefinitionModel hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"function" name=IDENT table=IDENT SEMICOLON;
-	public FunctionDefinitionElements getFunctionDefinitionAccess() {
-		return pFunctionDefinition;
+	public FunctionDefinitionModelElements getFunctionDefinitionModelAccess() {
+		return pFunctionDefinitionModel;
 	}
 	
-	public ParserRule getFunctionDefinitionRule() {
-		return getFunctionDefinitionAccess().getRule();
+	public ParserRule getFunctionDefinitionModelRule() {
+		return getFunctionDefinitionModelAccess().getRule();
 	}
 
 	//MetaStatement:

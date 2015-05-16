@@ -236,22 +236,22 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//DaogenProperty/pckg"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//DaogenProperty/implPckg"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorMeta.ecore#//PojoDefinition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//PojoDefinition/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//PojoDefinition/class"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoDefinition/classx"/>
+    <genClasses ecoreClass="ProcessorMeta.ecore#//PojoDefinitionModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//PojoDefinitionModel/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//PojoDefinitionModel/class"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoDefinitionModel/classx"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorMeta.ecore#//TableDefinition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//TableDefinition/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//TableDefinition/table"/>
+    <genClasses ecoreClass="ProcessorMeta.ecore#//TableDefinitionModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//TableDefinitionModel/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//TableDefinitionModel/table"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorMeta.ecore#//ProcedureDefinition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ProcedureDefinition/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ProcedureDefinition/table"/>
+    <genClasses ecoreClass="ProcessorMeta.ecore#//ProcedureDefinitionModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ProcedureDefinitionModel/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ProcedureDefinitionModel/table"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorMeta.ecore#//FunctionDefinition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//FunctionDefinition/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//FunctionDefinition/table"/>
+    <genClasses ecoreClass="ProcessorMeta.ecore#//FunctionDefinitionModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//FunctionDefinitionModel/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//FunctionDefinitionModel/table"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorMeta.ecore#//MetaStatement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//MetaStatement/name"/>

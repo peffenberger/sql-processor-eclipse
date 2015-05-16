@@ -34,7 +34,7 @@ import org.sqlproc.meta.processorMeta.ExtendedColumnName;
 import org.sqlproc.meta.processorMeta.ExtendedMappingItem;
 import org.sqlproc.meta.processorMeta.ExtendsAssignement;
 import org.sqlproc.meta.processorMeta.ExtendsAssignementGenerics;
-import org.sqlproc.meta.processorMeta.FunctionDefinition;
+import org.sqlproc.meta.processorMeta.FunctionDefinitionModel;
 import org.sqlproc.meta.processorMeta.FunctionPojoAssignement;
 import org.sqlproc.meta.processorMeta.Identifier;
 import org.sqlproc.meta.processorMeta.IdentifierOperator;
@@ -62,10 +62,10 @@ import org.sqlproc.meta.processorMeta.MetagenProperty;
 import org.sqlproc.meta.processorMeta.OptionalFeature;
 import org.sqlproc.meta.processorMeta.OrdSql;
 import org.sqlproc.meta.processorMeta.OrdSql2;
-import org.sqlproc.meta.processorMeta.PojoDefinition;
+import org.sqlproc.meta.processorMeta.PojoDefinitionModel;
 import org.sqlproc.meta.processorMeta.PojoType;
 import org.sqlproc.meta.processorMeta.PojogenProperty;
-import org.sqlproc.meta.processorMeta.ProcedureDefinition;
+import org.sqlproc.meta.processorMeta.ProcedureDefinitionModel;
 import org.sqlproc.meta.processorMeta.ProcedurePojoAssignement;
 import org.sqlproc.meta.processorMeta.ProcessorMetaFactory;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
@@ -76,7 +76,7 @@ import org.sqlproc.meta.processorMeta.Sql;
 import org.sqlproc.meta.processorMeta.SqlFragment;
 import org.sqlproc.meta.processorMeta.SqlTypeAssignement;
 import org.sqlproc.meta.processorMeta.TableAssignement;
-import org.sqlproc.meta.processorMeta.TableDefinition;
+import org.sqlproc.meta.processorMeta.TableDefinitionModel;
 import org.sqlproc.meta.processorMeta.ValueType;
 
 /**
@@ -330,28 +330,28 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass pojoDefinitionEClass = null;
+  private EClass pojoDefinitionModelEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass tableDefinitionEClass = null;
+  private EClass tableDefinitionModelEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass procedureDefinitionEClass = null;
+  private EClass procedureDefinitionModelEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass functionDefinitionEClass = null;
+  private EClass functionDefinitionModelEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2563,9 +2563,9 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getPojoDefinition()
+  public EClass getPojoDefinitionModel()
   {
-    return pojoDefinitionEClass;
+    return pojoDefinitionModelEClass;
   }
 
   /**
@@ -2573,9 +2573,9 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoDefinition_Name()
+  public EAttribute getPojoDefinitionModel_Name()
   {
-    return (EAttribute)pojoDefinitionEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)pojoDefinitionModelEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2583,9 +2583,9 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoDefinition_Class()
+  public EAttribute getPojoDefinitionModel_Class()
   {
-    return (EAttribute)pojoDefinitionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)pojoDefinitionModelEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2593,9 +2593,9 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoDefinition_Classx()
+  public EReference getPojoDefinitionModel_Classx()
   {
-    return (EReference)pojoDefinitionEClass.getEStructuralFeatures().get(2);
+    return (EReference)pojoDefinitionModelEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2603,9 +2603,9 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getTableDefinition()
+  public EClass getTableDefinitionModel()
   {
-    return tableDefinitionEClass;
+    return tableDefinitionModelEClass;
   }
 
   /**
@@ -2613,9 +2613,9 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getTableDefinition_Name()
+  public EAttribute getTableDefinitionModel_Name()
   {
-    return (EAttribute)tableDefinitionEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)tableDefinitionModelEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2623,9 +2623,9 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getTableDefinition_Table()
+  public EAttribute getTableDefinitionModel_Table()
   {
-    return (EAttribute)tableDefinitionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)tableDefinitionModelEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2633,9 +2633,9 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getProcedureDefinition()
+  public EClass getProcedureDefinitionModel()
   {
-    return procedureDefinitionEClass;
+    return procedureDefinitionModelEClass;
   }
 
   /**
@@ -2643,9 +2643,9 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getProcedureDefinition_Name()
+  public EAttribute getProcedureDefinitionModel_Name()
   {
-    return (EAttribute)procedureDefinitionEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)procedureDefinitionModelEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2653,9 +2653,9 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getProcedureDefinition_Table()
+  public EAttribute getProcedureDefinitionModel_Table()
   {
-    return (EAttribute)procedureDefinitionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)procedureDefinitionModelEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2663,9 +2663,9 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getFunctionDefinition()
+  public EClass getFunctionDefinitionModel()
   {
-    return functionDefinitionEClass;
+    return functionDefinitionModelEClass;
   }
 
   /**
@@ -2673,9 +2673,9 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFunctionDefinition_Name()
+  public EAttribute getFunctionDefinitionModel_Name()
   {
-    return (EAttribute)functionDefinitionEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)functionDefinitionModelEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2683,9 +2683,9 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFunctionDefinition_Table()
+  public EAttribute getFunctionDefinitionModel_Table()
   {
-    return (EAttribute)functionDefinitionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)functionDefinitionModelEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3957,22 +3957,22 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     createEAttribute(daogenPropertyEClass, DAOGEN_PROPERTY__PCKG);
     createEAttribute(daogenPropertyEClass, DAOGEN_PROPERTY__IMPL_PCKG);
 
-    pojoDefinitionEClass = createEClass(POJO_DEFINITION);
-    createEAttribute(pojoDefinitionEClass, POJO_DEFINITION__NAME);
-    createEAttribute(pojoDefinitionEClass, POJO_DEFINITION__CLASS);
-    createEReference(pojoDefinitionEClass, POJO_DEFINITION__CLASSX);
+    pojoDefinitionModelEClass = createEClass(POJO_DEFINITION_MODEL);
+    createEAttribute(pojoDefinitionModelEClass, POJO_DEFINITION_MODEL__NAME);
+    createEAttribute(pojoDefinitionModelEClass, POJO_DEFINITION_MODEL__CLASS);
+    createEReference(pojoDefinitionModelEClass, POJO_DEFINITION_MODEL__CLASSX);
 
-    tableDefinitionEClass = createEClass(TABLE_DEFINITION);
-    createEAttribute(tableDefinitionEClass, TABLE_DEFINITION__NAME);
-    createEAttribute(tableDefinitionEClass, TABLE_DEFINITION__TABLE);
+    tableDefinitionModelEClass = createEClass(TABLE_DEFINITION_MODEL);
+    createEAttribute(tableDefinitionModelEClass, TABLE_DEFINITION_MODEL__NAME);
+    createEAttribute(tableDefinitionModelEClass, TABLE_DEFINITION_MODEL__TABLE);
 
-    procedureDefinitionEClass = createEClass(PROCEDURE_DEFINITION);
-    createEAttribute(procedureDefinitionEClass, PROCEDURE_DEFINITION__NAME);
-    createEAttribute(procedureDefinitionEClass, PROCEDURE_DEFINITION__TABLE);
+    procedureDefinitionModelEClass = createEClass(PROCEDURE_DEFINITION_MODEL);
+    createEAttribute(procedureDefinitionModelEClass, PROCEDURE_DEFINITION_MODEL__NAME);
+    createEAttribute(procedureDefinitionModelEClass, PROCEDURE_DEFINITION_MODEL__TABLE);
 
-    functionDefinitionEClass = createEClass(FUNCTION_DEFINITION);
-    createEAttribute(functionDefinitionEClass, FUNCTION_DEFINITION__NAME);
-    createEAttribute(functionDefinitionEClass, FUNCTION_DEFINITION__TABLE);
+    functionDefinitionModelEClass = createEClass(FUNCTION_DEFINITION_MODEL);
+    createEAttribute(functionDefinitionModelEClass, FUNCTION_DEFINITION_MODEL__NAME);
+    createEAttribute(functionDefinitionModelEClass, FUNCTION_DEFINITION_MODEL__TABLE);
 
     metaStatementEClass = createEClass(META_STATEMENT);
     createEAttribute(metaStatementEClass, META_STATEMENT__NAME);
@@ -4139,10 +4139,10 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     // Initialize classes and features; add operations and parameters
     initEClass(artifactsEClass, Artifacts.class, "Artifacts", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getArtifacts_Properties(), this.getProperty(), null, "properties", null, 0, -1, Artifacts.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getArtifacts_Pojos(), this.getPojoDefinition(), null, "pojos", null, 0, -1, Artifacts.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getArtifacts_Tables(), this.getTableDefinition(), null, "tables", null, 0, -1, Artifacts.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getArtifacts_Procedures(), this.getProcedureDefinition(), null, "procedures", null, 0, -1, Artifacts.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getArtifacts_Functions(), this.getFunctionDefinition(), null, "functions", null, 0, -1, Artifacts.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArtifacts_Pojos(), this.getPojoDefinitionModel(), null, "pojos", null, 0, -1, Artifacts.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArtifacts_Tables(), this.getTableDefinitionModel(), null, "tables", null, 0, -1, Artifacts.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArtifacts_Procedures(), this.getProcedureDefinitionModel(), null, "procedures", null, 0, -1, Artifacts.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArtifacts_Functions(), this.getFunctionDefinitionModel(), null, "functions", null, 0, -1, Artifacts.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getArtifacts_Statements(), this.getMetaStatement(), null, "statements", null, 0, -1, Artifacts.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getArtifacts_Mappings(), this.getMappingRule(), null, "mappings", null, 0, -1, Artifacts.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getArtifacts_Features(), this.getOptionalFeature(), null, "features", null, 0, -1, Artifacts.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4154,10 +4154,10 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
 
     initEClass(pojoTypeEClass, PojoType.class, "PojoType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPojoType_Ident(), this.getValueType(), null, "ident", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoType_Ref(), this.getPojoDefinition(), null, "ref", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoType_Ref(), this.getPojoDefinitionModel(), null, "ref", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoType_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoType_Gident(), this.getValueType(), null, "gident", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoType_Gref(), this.getPojoDefinition(), null, "gref", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoType_Gref(), this.getPojoDefinitionModel(), null, "gref", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoType_Gtype(), theTypesPackage.getJvmType(), null, "gtype", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojoType_Array(), ecorePackage.getEBoolean(), "array", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -4366,22 +4366,22 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     initEAttribute(getDaogenProperty_Pckg(), ecorePackage.getEString(), "pckg", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDaogenProperty_ImplPckg(), ecorePackage.getEString(), "implPckg", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(pojoDefinitionEClass, PojoDefinition.class, "PojoDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPojoDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, PojoDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoDefinition_Class(), ecorePackage.getEString(), "class", null, 0, 1, PojoDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPojoDefinition_Classx(), theTypesPackage.getJvmType(), null, "classx", null, 0, 1, PojoDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(pojoDefinitionModelEClass, PojoDefinitionModel.class, "PojoDefinitionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPojoDefinitionModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, PojoDefinitionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPojoDefinitionModel_Class(), ecorePackage.getEString(), "class", null, 0, 1, PojoDefinitionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoDefinitionModel_Classx(), theTypesPackage.getJvmType(), null, "classx", null, 0, 1, PojoDefinitionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(tableDefinitionEClass, TableDefinition.class, "TableDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTableDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, TableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getTableDefinition_Table(), ecorePackage.getEString(), "table", null, 0, 1, TableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(tableDefinitionModelEClass, TableDefinitionModel.class, "TableDefinitionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTableDefinitionModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, TableDefinitionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTableDefinitionModel_Table(), ecorePackage.getEString(), "table", null, 0, 1, TableDefinitionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(procedureDefinitionEClass, ProcedureDefinition.class, "ProcedureDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getProcedureDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, ProcedureDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getProcedureDefinition_Table(), ecorePackage.getEString(), "table", null, 0, 1, ProcedureDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(procedureDefinitionModelEClass, ProcedureDefinitionModel.class, "ProcedureDefinitionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getProcedureDefinitionModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, ProcedureDefinitionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getProcedureDefinitionModel_Table(), ecorePackage.getEString(), "table", null, 0, 1, ProcedureDefinitionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(functionDefinitionEClass, FunctionDefinition.class, "FunctionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFunctionDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFunctionDefinition_Table(), ecorePackage.getEString(), "table", null, 0, 1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(functionDefinitionModelEClass, FunctionDefinitionModel.class, "FunctionDefinitionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFunctionDefinitionModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionDefinitionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFunctionDefinitionModel_Table(), ecorePackage.getEString(), "table", null, 0, 1, FunctionDefinitionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(metaStatementEClass, MetaStatement.class, "MetaStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMetaStatement_Name(), ecorePackage.getEString(), "name", null, 0, 1, MetaStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

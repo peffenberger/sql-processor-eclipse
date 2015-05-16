@@ -29,12 +29,12 @@ import org.sqlproc.model.processorModel.InheritanceAssignement
 import org.sqlproc.model.processorModel.ManyToManyAssignement
 import org.sqlproc.model.processorModel.MetagenProperty
 import org.sqlproc.model.processorModel.Package
-import org.sqlproc.model.processorModel.PojoDefinition
+import org.sqlproc.model.processorModel.PojoDefinitionModel
 import org.sqlproc.model.processorModel.PojoEntity
 import org.sqlproc.model.processorModel.PojogenProperty
 import org.sqlproc.model.processorModel.ProcessorModelPackage
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement
-import org.sqlproc.model.processorModel.TableDefinition
+import org.sqlproc.model.processorModel.TableDefinitionModel
 import org.sqlproc.model.processorModel.Property
 import org.sqlproc.model.util.Utils
 import org.sqlproc.plugin.lib.resolver.DbResolver.DbType
@@ -92,7 +92,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 		dbResolver.isResolveDb(model)
 	}
 
-	def getClass(PojoDefinition pojo) {
+	def getClass(PojoDefinitionModel pojo) {
 		return if(pojo.getClassx() != null) pojo.getClassx().getQualifiedName() else pojo.getClass_()
 	}
 
@@ -217,28 +217,28 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 		]
 	}
 
-	override completeTableDefinition_Table(EObject model, Assignment assignment, ContentAssistContext context,
+	override completeTableDefinitionModel_Table(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model)) {
-			super.completeTableDefinition_Table(model, assignment, context, acceptor)
+			super.completeTableDefinitionModel_Table(model, assignment, context, acceptor)
 			return
 		}
 		acceptTables(model, context, acceptor, "")
 	}
 
-	override completeProcedureDefinition_Table(EObject model, Assignment assignment, ContentAssistContext context,
+	override completeProcedureDefinitionModel_Table(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model)) {
-			super.completeProcedureDefinition_Table(model, assignment, context, acceptor)
+			super.completeProcedureDefinitionModel_Table(model, assignment, context, acceptor)
 			return
 		}
 		acceptProcedures(model, context, acceptor)
 	}
 
-	override completeFunctionDefinition_Table(EObject model, Assignment assignment, ContentAssistContext context,
+	override completeFunctionDefinitionModel_Table(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model)) {
-			super.completeFunctionDefinition_Table(model, assignment, context, acceptor)
+			super.completeFunctionDefinitionModel_Table(model, assignment, context, acceptor)
 			return
 		}
 		acceptFunctions(model, context, acceptor)
@@ -700,25 +700,25 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 		]
 		return result
 	}
-
-	def Set<PojoDefinition> listPojos(ResourceSet resourceSet, IScope scope) {
-		val result = <PojoDefinition>newTreeSet[o1, o2|o1.name.compareTo(o2.name)]
+/*
+	def Set<PojoDefinitionModel> listPojos(ResourceSet resourceSet, IScope scope) {
+		val result = <PojoDefinitionModel>newTreeSet[o1, o2|o1.name.compareTo(o2.name)]
 		scope.getAllElements().forEach [ description |
-			val pojo = resourceSet.getEObject(description.getEObjectURI(), true) as PojoDefinition
+			val pojo = resourceSet.getEObject(description.getEObjectURI(), true) as PojoDefinitionModel
 			result.add(pojo)
 		]
 		return result
 	}
 
-	def Set<TableDefinition> listTables(ResourceSet resourceSet, IScope scope) {
-		val result = <TableDefinition>newTreeSet[o1, o2|o1.name.compareTo(o2.name)]
+	def Set<TableDefinitionModel> listTables(ResourceSet resourceSet, IScope scope) {
+		val result = <TableDefinitionModel>newTreeSet[o1, o2|o1.name.compareTo(o2.name)]
 		scope.getAllElements().forEach [ description |
-			val table = resourceSet.getEObject(description.getEObjectURI(), true) as TableDefinition
+			val table = resourceSet.getEObject(description.getEObjectURI(), true) as TableDefinitionModel
 			result.add(table)
 		]
 		return result
 	}
-
+*/
 	override completeMetagenProperty_DbTable(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
 		if (!isResolveDb(model)) {

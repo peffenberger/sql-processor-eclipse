@@ -2152,14 +2152,14 @@ public interface ProcessorMetaPackage extends EPackage
   int DAOGEN_PROPERTY_FEATURE_COUNT = 12;
 
   /**
-   * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.PojoDefinitionImpl <em>Pojo Definition</em>}' class.
+   * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.PojoDefinitionModelImpl <em>Pojo Definition Model</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.sqlproc.meta.processorMeta.impl.PojoDefinitionImpl
-   * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getPojoDefinition()
+   * @see org.sqlproc.meta.processorMeta.impl.PojoDefinitionModelImpl
+   * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getPojoDefinitionModel()
    * @generated
    */
-  int POJO_DEFINITION = 34;
+  int POJO_DEFINITION_MODEL = 34;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2168,7 +2168,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_DEFINITION__NAME = 0;
+  int POJO_DEFINITION_MODEL__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Class</b></em>' attribute.
@@ -2177,7 +2177,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_DEFINITION__CLASS = 1;
+  int POJO_DEFINITION_MODEL__CLASS = 1;
 
   /**
    * The feature id for the '<em><b>Classx</b></em>' reference.
@@ -2186,26 +2186,26 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_DEFINITION__CLASSX = 2;
+  int POJO_DEFINITION_MODEL__CLASSX = 2;
 
   /**
-   * The number of structural features of the '<em>Pojo Definition</em>' class.
+   * The number of structural features of the '<em>Pojo Definition Model</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_DEFINITION_FEATURE_COUNT = 3;
+  int POJO_DEFINITION_MODEL_FEATURE_COUNT = 3;
 
   /**
-   * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.TableDefinitionImpl <em>Table Definition</em>}' class.
+   * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.TableDefinitionModelImpl <em>Table Definition Model</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.sqlproc.meta.processorMeta.impl.TableDefinitionImpl
-   * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getTableDefinition()
+   * @see org.sqlproc.meta.processorMeta.impl.TableDefinitionModelImpl
+   * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getTableDefinitionModel()
    * @generated
    */
-  int TABLE_DEFINITION = 35;
+  int TABLE_DEFINITION_MODEL = 35;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2214,7 +2214,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TABLE_DEFINITION__NAME = 0;
+  int TABLE_DEFINITION_MODEL__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Table</b></em>' attribute.
@@ -2223,26 +2223,26 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TABLE_DEFINITION__TABLE = 1;
+  int TABLE_DEFINITION_MODEL__TABLE = 1;
 
   /**
-   * The number of structural features of the '<em>Table Definition</em>' class.
+   * The number of structural features of the '<em>Table Definition Model</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TABLE_DEFINITION_FEATURE_COUNT = 2;
+  int TABLE_DEFINITION_MODEL_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.ProcedureDefinitionImpl <em>Procedure Definition</em>}' class.
+   * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.ProcedureDefinitionModelImpl <em>Procedure Definition Model</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.sqlproc.meta.processorMeta.impl.ProcedureDefinitionImpl
-   * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getProcedureDefinition()
+   * @see org.sqlproc.meta.processorMeta.impl.ProcedureDefinitionModelImpl
+   * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getProcedureDefinitionModel()
    * @generated
    */
-  int PROCEDURE_DEFINITION = 36;
+  int PROCEDURE_DEFINITION_MODEL = 36;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2251,7 +2251,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROCEDURE_DEFINITION__NAME = 0;
+  int PROCEDURE_DEFINITION_MODEL__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Table</b></em>' attribute.
@@ -2260,26 +2260,26 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROCEDURE_DEFINITION__TABLE = 1;
+  int PROCEDURE_DEFINITION_MODEL__TABLE = 1;
 
   /**
-   * The number of structural features of the '<em>Procedure Definition</em>' class.
+   * The number of structural features of the '<em>Procedure Definition Model</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROCEDURE_DEFINITION_FEATURE_COUNT = 2;
+  int PROCEDURE_DEFINITION_MODEL_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.FunctionDefinitionImpl <em>Function Definition</em>}' class.
+   * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.FunctionDefinitionModelImpl <em>Function Definition Model</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.sqlproc.meta.processorMeta.impl.FunctionDefinitionImpl
-   * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getFunctionDefinition()
+   * @see org.sqlproc.meta.processorMeta.impl.FunctionDefinitionModelImpl
+   * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getFunctionDefinitionModel()
    * @generated
    */
-  int FUNCTION_DEFINITION = 37;
+  int FUNCTION_DEFINITION_MODEL = 37;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2288,7 +2288,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION_DEFINITION__NAME = 0;
+  int FUNCTION_DEFINITION_MODEL__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Table</b></em>' attribute.
@@ -2297,16 +2297,16 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION_DEFINITION__TABLE = 1;
+  int FUNCTION_DEFINITION_MODEL__TABLE = 1;
 
   /**
-   * The number of structural features of the '<em>Function Definition</em>' class.
+   * The number of structural features of the '<em>Function Definition Model</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_DEFINITION_FEATURE_COUNT = 2;
+  int FUNCTION_DEFINITION_MODEL_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.MetaStatementImpl <em>Meta Statement</em>}' class.
@@ -5600,143 +5600,143 @@ public interface ProcessorMetaPackage extends EPackage
   EAttribute getDaogenProperty_ImplPckg();
 
   /**
-   * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.PojoDefinition <em>Pojo Definition</em>}'.
+   * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.PojoDefinitionModel <em>Pojo Definition Model</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Pojo Definition</em>'.
-   * @see org.sqlproc.meta.processorMeta.PojoDefinition
+   * @return the meta object for class '<em>Pojo Definition Model</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoDefinitionModel
    * @generated
    */
-  EClass getPojoDefinition();
+  EClass getPojoDefinitionModel();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.PojoDefinition#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.PojoDefinitionModel#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.sqlproc.meta.processorMeta.PojoDefinition#getName()
-   * @see #getPojoDefinition()
+   * @see org.sqlproc.meta.processorMeta.PojoDefinitionModel#getName()
+   * @see #getPojoDefinitionModel()
    * @generated
    */
-  EAttribute getPojoDefinition_Name();
+  EAttribute getPojoDefinitionModel_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.PojoDefinition#getClass_ <em>Class</em>}'.
+   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.PojoDefinitionModel#getClass_ <em>Class</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Class</em>'.
-   * @see org.sqlproc.meta.processorMeta.PojoDefinition#getClass_()
-   * @see #getPojoDefinition()
+   * @see org.sqlproc.meta.processorMeta.PojoDefinitionModel#getClass_()
+   * @see #getPojoDefinitionModel()
    * @generated
    */
-  EAttribute getPojoDefinition_Class();
+  EAttribute getPojoDefinitionModel_Class();
 
   /**
-   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoDefinition#getClassx <em>Classx</em>}'.
+   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoDefinitionModel#getClassx <em>Classx</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Classx</em>'.
-   * @see org.sqlproc.meta.processorMeta.PojoDefinition#getClassx()
-   * @see #getPojoDefinition()
+   * @see org.sqlproc.meta.processorMeta.PojoDefinitionModel#getClassx()
+   * @see #getPojoDefinitionModel()
    * @generated
    */
-  EReference getPojoDefinition_Classx();
+  EReference getPojoDefinitionModel_Classx();
 
   /**
-   * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.TableDefinition <em>Table Definition</em>}'.
+   * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.TableDefinitionModel <em>Table Definition Model</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Table Definition</em>'.
-   * @see org.sqlproc.meta.processorMeta.TableDefinition
+   * @return the meta object for class '<em>Table Definition Model</em>'.
+   * @see org.sqlproc.meta.processorMeta.TableDefinitionModel
    * @generated
    */
-  EClass getTableDefinition();
+  EClass getTableDefinitionModel();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.TableDefinition#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.sqlproc.meta.processorMeta.TableDefinition#getName()
-   * @see #getTableDefinition()
-   * @generated
-   */
-  EAttribute getTableDefinition_Name();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.TableDefinition#getTable <em>Table</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Table</em>'.
-   * @see org.sqlproc.meta.processorMeta.TableDefinition#getTable()
-   * @see #getTableDefinition()
-   * @generated
-   */
-  EAttribute getTableDefinition_Table();
-
-  /**
-   * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.ProcedureDefinition <em>Procedure Definition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Procedure Definition</em>'.
-   * @see org.sqlproc.meta.processorMeta.ProcedureDefinition
-   * @generated
-   */
-  EClass getProcedureDefinition();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.ProcedureDefinition#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.TableDefinitionModel#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.sqlproc.meta.processorMeta.ProcedureDefinition#getName()
-   * @see #getProcedureDefinition()
+   * @see org.sqlproc.meta.processorMeta.TableDefinitionModel#getName()
+   * @see #getTableDefinitionModel()
    * @generated
    */
-  EAttribute getProcedureDefinition_Name();
+  EAttribute getTableDefinitionModel_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.ProcedureDefinition#getTable <em>Table</em>}'.
+   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.TableDefinitionModel#getTable <em>Table</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Table</em>'.
-   * @see org.sqlproc.meta.processorMeta.ProcedureDefinition#getTable()
-   * @see #getProcedureDefinition()
+   * @see org.sqlproc.meta.processorMeta.TableDefinitionModel#getTable()
+   * @see #getTableDefinitionModel()
    * @generated
    */
-  EAttribute getProcedureDefinition_Table();
+  EAttribute getTableDefinitionModel_Table();
 
   /**
-   * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.FunctionDefinition <em>Function Definition</em>}'.
+   * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.ProcedureDefinitionModel <em>Procedure Definition Model</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Function Definition</em>'.
-   * @see org.sqlproc.meta.processorMeta.FunctionDefinition
+   * @return the meta object for class '<em>Procedure Definition Model</em>'.
+   * @see org.sqlproc.meta.processorMeta.ProcedureDefinitionModel
    * @generated
    */
-  EClass getFunctionDefinition();
+  EClass getProcedureDefinitionModel();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.FunctionDefinition#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.ProcedureDefinitionModel#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.sqlproc.meta.processorMeta.FunctionDefinition#getName()
-   * @see #getFunctionDefinition()
+   * @see org.sqlproc.meta.processorMeta.ProcedureDefinitionModel#getName()
+   * @see #getProcedureDefinitionModel()
    * @generated
    */
-  EAttribute getFunctionDefinition_Name();
+  EAttribute getProcedureDefinitionModel_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.FunctionDefinition#getTable <em>Table</em>}'.
+   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.ProcedureDefinitionModel#getTable <em>Table</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Table</em>'.
-   * @see org.sqlproc.meta.processorMeta.FunctionDefinition#getTable()
-   * @see #getFunctionDefinition()
+   * @see org.sqlproc.meta.processorMeta.ProcedureDefinitionModel#getTable()
+   * @see #getProcedureDefinitionModel()
    * @generated
    */
-  EAttribute getFunctionDefinition_Table();
+  EAttribute getProcedureDefinitionModel_Table();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.FunctionDefinitionModel <em>Function Definition Model</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Function Definition Model</em>'.
+   * @see org.sqlproc.meta.processorMeta.FunctionDefinitionModel
+   * @generated
+   */
+  EClass getFunctionDefinitionModel();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.FunctionDefinitionModel#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.sqlproc.meta.processorMeta.FunctionDefinitionModel#getName()
+   * @see #getFunctionDefinitionModel()
+   * @generated
+   */
+  EAttribute getFunctionDefinitionModel_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.FunctionDefinitionModel#getTable <em>Table</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Table</em>'.
+   * @see org.sqlproc.meta.processorMeta.FunctionDefinitionModel#getTable()
+   * @see #getFunctionDefinitionModel()
+   * @generated
+   */
+  EAttribute getFunctionDefinitionModel_Table();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.MetaStatement <em>Meta Statement</em>}'.
@@ -8474,14 +8474,14 @@ public interface ProcessorMetaPackage extends EPackage
     EAttribute DAOGEN_PROPERTY__IMPL_PCKG = eINSTANCE.getDaogenProperty_ImplPckg();
 
     /**
-     * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.PojoDefinitionImpl <em>Pojo Definition</em>}' class.
+     * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.PojoDefinitionModelImpl <em>Pojo Definition Model</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.sqlproc.meta.processorMeta.impl.PojoDefinitionImpl
-     * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getPojoDefinition()
+     * @see org.sqlproc.meta.processorMeta.impl.PojoDefinitionModelImpl
+     * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getPojoDefinitionModel()
      * @generated
      */
-    EClass POJO_DEFINITION = eINSTANCE.getPojoDefinition();
+    EClass POJO_DEFINITION_MODEL = eINSTANCE.getPojoDefinitionModel();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -8489,7 +8489,7 @@ public interface ProcessorMetaPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute POJO_DEFINITION__NAME = eINSTANCE.getPojoDefinition_Name();
+    EAttribute POJO_DEFINITION_MODEL__NAME = eINSTANCE.getPojoDefinitionModel_Name();
 
     /**
      * The meta object literal for the '<em><b>Class</b></em>' attribute feature.
@@ -8497,7 +8497,7 @@ public interface ProcessorMetaPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute POJO_DEFINITION__CLASS = eINSTANCE.getPojoDefinition_Class();
+    EAttribute POJO_DEFINITION_MODEL__CLASS = eINSTANCE.getPojoDefinitionModel_Class();
 
     /**
      * The meta object literal for the '<em><b>Classx</b></em>' reference feature.
@@ -8505,43 +8505,17 @@ public interface ProcessorMetaPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference POJO_DEFINITION__CLASSX = eINSTANCE.getPojoDefinition_Classx();
+    EReference POJO_DEFINITION_MODEL__CLASSX = eINSTANCE.getPojoDefinitionModel_Classx();
 
     /**
-     * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.TableDefinitionImpl <em>Table Definition</em>}' class.
+     * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.TableDefinitionModelImpl <em>Table Definition Model</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.sqlproc.meta.processorMeta.impl.TableDefinitionImpl
-     * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getTableDefinition()
+     * @see org.sqlproc.meta.processorMeta.impl.TableDefinitionModelImpl
+     * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getTableDefinitionModel()
      * @generated
      */
-    EClass TABLE_DEFINITION = eINSTANCE.getTableDefinition();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TABLE_DEFINITION__NAME = eINSTANCE.getTableDefinition_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TABLE_DEFINITION__TABLE = eINSTANCE.getTableDefinition_Table();
-
-    /**
-     * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.ProcedureDefinitionImpl <em>Procedure Definition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.sqlproc.meta.processorMeta.impl.ProcedureDefinitionImpl
-     * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getProcedureDefinition()
-     * @generated
-     */
-    EClass PROCEDURE_DEFINITION = eINSTANCE.getProcedureDefinition();
+    EClass TABLE_DEFINITION_MODEL = eINSTANCE.getTableDefinitionModel();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -8549,7 +8523,7 @@ public interface ProcessorMetaPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PROCEDURE_DEFINITION__NAME = eINSTANCE.getProcedureDefinition_Name();
+    EAttribute TABLE_DEFINITION_MODEL__NAME = eINSTANCE.getTableDefinitionModel_Name();
 
     /**
      * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
@@ -8557,17 +8531,17 @@ public interface ProcessorMetaPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PROCEDURE_DEFINITION__TABLE = eINSTANCE.getProcedureDefinition_Table();
+    EAttribute TABLE_DEFINITION_MODEL__TABLE = eINSTANCE.getTableDefinitionModel_Table();
 
     /**
-     * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.FunctionDefinitionImpl <em>Function Definition</em>}' class.
+     * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.ProcedureDefinitionModelImpl <em>Procedure Definition Model</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.sqlproc.meta.processorMeta.impl.FunctionDefinitionImpl
-     * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getFunctionDefinition()
+     * @see org.sqlproc.meta.processorMeta.impl.ProcedureDefinitionModelImpl
+     * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getProcedureDefinitionModel()
      * @generated
      */
-    EClass FUNCTION_DEFINITION = eINSTANCE.getFunctionDefinition();
+    EClass PROCEDURE_DEFINITION_MODEL = eINSTANCE.getProcedureDefinitionModel();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -8575,7 +8549,7 @@ public interface ProcessorMetaPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FUNCTION_DEFINITION__NAME = eINSTANCE.getFunctionDefinition_Name();
+    EAttribute PROCEDURE_DEFINITION_MODEL__NAME = eINSTANCE.getProcedureDefinitionModel_Name();
 
     /**
      * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
@@ -8583,7 +8557,33 @@ public interface ProcessorMetaPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FUNCTION_DEFINITION__TABLE = eINSTANCE.getFunctionDefinition_Table();
+    EAttribute PROCEDURE_DEFINITION_MODEL__TABLE = eINSTANCE.getProcedureDefinitionModel_Table();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.FunctionDefinitionModelImpl <em>Function Definition Model</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.meta.processorMeta.impl.FunctionDefinitionModelImpl
+     * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getFunctionDefinitionModel()
+     * @generated
+     */
+    EClass FUNCTION_DEFINITION_MODEL = eINSTANCE.getFunctionDefinitionModel();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FUNCTION_DEFINITION_MODEL__NAME = eINSTANCE.getFunctionDefinitionModel_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FUNCTION_DEFINITION_MODEL__TABLE = eINSTANCE.getFunctionDefinitionModel_Table();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.MetaStatementImpl <em>Meta Statement</em>}' class.

@@ -23,7 +23,6 @@ import org.sqlproc.model.processorModel.EnumEntity;
 import org.sqlproc.model.processorModel.Package;
 import org.sqlproc.model.processorModel.PojoEntity;
 import org.sqlproc.model.processorModel.PojoProcedure;
-import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.util.Annotations;
 import org.sqlproc.model.util.Utils;
 import org.sqlproc.plugin.lib.generator.TableBaseGenerator;
@@ -786,21 +785,6 @@ public class TablePojoGenerator extends TableBaseGenerator {
             ex.printStackTrace(printWriter);
             String s = writer.toString();
             return s;
-        }
-    }
-
-    protected boolean addDefinitions(DbResolver dbResolver, IScopeProvider scopeProvider, Stats stats) {
-        try {
-            List<String> tables = Utils.findTables(null, artifacts,
-                    scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__TABLES));
-            List<String> procedures = Utils.findProcedures(null, artifacts,
-                    scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__PROCEDURES));
-            List<String> functions = Utils.findFunctions(null, artifacts,
-                    scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__FUNCTIONS));
-            return super.addDefinitions(dbResolver, scopeProvider, tables, procedures, functions, stats);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
         }
     }
 

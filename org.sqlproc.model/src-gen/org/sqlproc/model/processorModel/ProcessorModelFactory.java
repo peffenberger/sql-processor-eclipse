@@ -329,40 +329,40 @@ public interface ProcessorModelFactory extends EFactory
   DaogenProperty createDaogenProperty();
 
   /**
-   * Returns a new object of class '<em>Pojo Definition</em>'.
+   * Returns a new object of class '<em>Pojo Definition Model</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Definition</em>'.
+   * @return a new object of class '<em>Pojo Definition Model</em>'.
    * @generated
    */
-  PojoDefinition createPojoDefinition();
+  PojoDefinitionModel createPojoDefinitionModel();
 
   /**
-   * Returns a new object of class '<em>Table Definition</em>'.
+   * Returns a new object of class '<em>Table Definition Model</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Table Definition</em>'.
+   * @return a new object of class '<em>Table Definition Model</em>'.
    * @generated
    */
-  TableDefinition createTableDefinition();
+  TableDefinitionModel createTableDefinitionModel();
 
   /**
-   * Returns a new object of class '<em>Procedure Definition</em>'.
+   * Returns a new object of class '<em>Procedure Definition Model</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Procedure Definition</em>'.
+   * @return a new object of class '<em>Procedure Definition Model</em>'.
    * @generated
    */
-  ProcedureDefinition createProcedureDefinition();
+  ProcedureDefinitionModel createProcedureDefinitionModel();
 
   /**
-   * Returns a new object of class '<em>Function Definition</em>'.
+   * Returns a new object of class '<em>Function Definition Model</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Function Definition</em>'.
+   * @return a new object of class '<em>Function Definition Model</em>'.
    * @generated
    */
-  FunctionDefinition createFunctionDefinition();
+  FunctionDefinitionModel createFunctionDefinitionModel();
 
   /**
    * Returns a new object of class '<em>Package Directive</em>'.

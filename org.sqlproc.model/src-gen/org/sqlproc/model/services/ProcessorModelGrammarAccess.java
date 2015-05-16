@@ -28,30 +28,30 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cPropertiesAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
 		private final RuleCall cPropertiesPropertyParserRuleCall_1_0_0 = (RuleCall)cPropertiesAssignment_1_0.eContents().get(0);
 		private final Assignment cPojosAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
-		private final RuleCall cPojosPojoDefinitionParserRuleCall_1_1_0 = (RuleCall)cPojosAssignment_1_1.eContents().get(0);
+		private final RuleCall cPojosPojoDefinitionModelParserRuleCall_1_1_0 = (RuleCall)cPojosAssignment_1_1.eContents().get(0);
 		private final Assignment cTablesAssignment_1_2 = (Assignment)cAlternatives_1.eContents().get(2);
-		private final RuleCall cTablesTableDefinitionParserRuleCall_1_2_0 = (RuleCall)cTablesAssignment_1_2.eContents().get(0);
+		private final RuleCall cTablesTableDefinitionModelParserRuleCall_1_2_0 = (RuleCall)cTablesAssignment_1_2.eContents().get(0);
 		private final Assignment cProceduresAssignment_1_3 = (Assignment)cAlternatives_1.eContents().get(3);
-		private final RuleCall cProceduresProcedureDefinitionParserRuleCall_1_3_0 = (RuleCall)cProceduresAssignment_1_3.eContents().get(0);
+		private final RuleCall cProceduresProcedureDefinitionModelParserRuleCall_1_3_0 = (RuleCall)cProceduresAssignment_1_3.eContents().get(0);
 		private final Assignment cFunctionsAssignment_1_4 = (Assignment)cAlternatives_1.eContents().get(4);
-		private final RuleCall cFunctionsFunctionDefinitionParserRuleCall_1_4_0 = (RuleCall)cFunctionsAssignment_1_4.eContents().get(0);
+		private final RuleCall cFunctionsFunctionDefinitionModelParserRuleCall_1_4_0 = (RuleCall)cFunctionsAssignment_1_4.eContents().get(0);
 		private final Assignment cPackagesAssignment_1_5 = (Assignment)cAlternatives_1.eContents().get(5);
 		private final RuleCall cPackagesPackageParserRuleCall_1_5_0 = (RuleCall)cPackagesAssignment_1_5.eContents().get(0);
 		
 		//Artifacts:
-		//	{Artifacts} (properties+=Property | pojos+=PojoDefinition | tables+=TableDefinition | procedures+=ProcedureDefinition
-		//	| functions+=FunctionDefinition | packages+=Package)*;
+		//	{Artifacts} (properties+=Property | pojos+=PojoDefinitionModel | tables+=TableDefinitionModel |
+		//	procedures+=ProcedureDefinitionModel | functions+=FunctionDefinitionModel | packages+=Package)*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{Artifacts} (properties+=Property | pojos+=PojoDefinition | tables+=TableDefinition | procedures+=ProcedureDefinition |
-		//functions+=FunctionDefinition | packages+=Package)*
+		//{Artifacts} (properties+=Property | pojos+=PojoDefinitionModel | tables+=TableDefinitionModel |
+		//procedures+=ProcedureDefinitionModel | functions+=FunctionDefinitionModel | packages+=Package)*
 		public Group getGroup() { return cGroup; }
 
 		//{Artifacts}
 		public Action getArtifactsAction_0() { return cArtifactsAction_0; }
 
-		//(properties+=Property | pojos+=PojoDefinition | tables+=TableDefinition | procedures+=ProcedureDefinition |
-		//functions+=FunctionDefinition | packages+=Package)*
+		//(properties+=Property | pojos+=PojoDefinitionModel | tables+=TableDefinitionModel | procedures+=ProcedureDefinitionModel
+		//| functions+=FunctionDefinitionModel | packages+=Package)*
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//properties+=Property
@@ -60,29 +60,29 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//Property
 		public RuleCall getPropertiesPropertyParserRuleCall_1_0_0() { return cPropertiesPropertyParserRuleCall_1_0_0; }
 
-		//pojos+=PojoDefinition
+		//pojos+=PojoDefinitionModel
 		public Assignment getPojosAssignment_1_1() { return cPojosAssignment_1_1; }
 
-		//PojoDefinition
-		public RuleCall getPojosPojoDefinitionParserRuleCall_1_1_0() { return cPojosPojoDefinitionParserRuleCall_1_1_0; }
+		//PojoDefinitionModel
+		public RuleCall getPojosPojoDefinitionModelParserRuleCall_1_1_0() { return cPojosPojoDefinitionModelParserRuleCall_1_1_0; }
 
-		//tables+=TableDefinition
+		//tables+=TableDefinitionModel
 		public Assignment getTablesAssignment_1_2() { return cTablesAssignment_1_2; }
 
-		//TableDefinition
-		public RuleCall getTablesTableDefinitionParserRuleCall_1_2_0() { return cTablesTableDefinitionParserRuleCall_1_2_0; }
+		//TableDefinitionModel
+		public RuleCall getTablesTableDefinitionModelParserRuleCall_1_2_0() { return cTablesTableDefinitionModelParserRuleCall_1_2_0; }
 
-		//procedures+=ProcedureDefinition
+		//procedures+=ProcedureDefinitionModel
 		public Assignment getProceduresAssignment_1_3() { return cProceduresAssignment_1_3; }
 
-		//ProcedureDefinition
-		public RuleCall getProceduresProcedureDefinitionParserRuleCall_1_3_0() { return cProceduresProcedureDefinitionParserRuleCall_1_3_0; }
+		//ProcedureDefinitionModel
+		public RuleCall getProceduresProcedureDefinitionModelParserRuleCall_1_3_0() { return cProceduresProcedureDefinitionModelParserRuleCall_1_3_0; }
 
-		//functions+=FunctionDefinition
+		//functions+=FunctionDefinitionModel
 		public Assignment getFunctionsAssignment_1_4() { return cFunctionsAssignment_1_4; }
 
-		//FunctionDefinition
-		public RuleCall getFunctionsFunctionDefinitionParserRuleCall_1_4_0() { return cFunctionsFunctionDefinitionParserRuleCall_1_4_0; }
+		//FunctionDefinitionModel
+		public RuleCall getFunctionsFunctionDefinitionModelParserRuleCall_1_4_0() { return cFunctionsFunctionDefinitionModelParserRuleCall_1_4_0; }
 
 		//packages+=Package
 		public Assignment getPackagesAssignment_1_5() { return cPackagesAssignment_1_5; }
@@ -137,16 +137,16 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Keyword cColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cRefAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final CrossReference cRefPojoDefinitionCrossReference_1_1_0 = (CrossReference)cRefAssignment_1_1.eContents().get(0);
-		private final RuleCall cRefPojoDefinitionValidIDParserRuleCall_1_1_0_1 = (RuleCall)cRefPojoDefinitionCrossReference_1_1_0.eContents().get(1);
+		private final CrossReference cRefPojoDefinitionModelCrossReference_1_1_0 = (CrossReference)cRefAssignment_1_1.eContents().get(0);
+		private final RuleCall cRefPojoDefinitionModelValidIDParserRuleCall_1_1_0_1 = (RuleCall)cRefPojoDefinitionModelCrossReference_1_1_0.eContents().get(1);
 		private final Assignment cTypeAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final RuleCall cTypeJvmParameterizedTypeReferenceParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		
 		//PojoType:
-		//	"::" ident=ValueType | ":" ref=[PojoDefinition|ValidID] | type=JvmParameterizedTypeReference;
+		//	"::" ident=ValueType | ":" ref=[PojoDefinitionModel|ValidID] | type=JvmParameterizedTypeReference;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"::" ident=ValueType | ":" ref=[PojoDefinition|ValidID] | type=JvmParameterizedTypeReference
+		//"::" ident=ValueType | ":" ref=[PojoDefinitionModel|ValidID] | type=JvmParameterizedTypeReference
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"::" ident=ValueType
@@ -161,20 +161,20 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//ValueType
 		public RuleCall getIdentValueTypeParserRuleCall_0_1_0() { return cIdentValueTypeParserRuleCall_0_1_0; }
 
-		//":" ref=[PojoDefinition|ValidID]
+		//":" ref=[PojoDefinitionModel|ValidID]
 		public Group getGroup_1() { return cGroup_1; }
 
 		//":"
 		public Keyword getColonKeyword_1_0() { return cColonKeyword_1_0; }
 
-		//ref=[PojoDefinition|ValidID]
+		//ref=[PojoDefinitionModel|ValidID]
 		public Assignment getRefAssignment_1_1() { return cRefAssignment_1_1; }
 
-		//[PojoDefinition|ValidID]
-		public CrossReference getRefPojoDefinitionCrossReference_1_1_0() { return cRefPojoDefinitionCrossReference_1_1_0; }
+		//[PojoDefinitionModel|ValidID]
+		public CrossReference getRefPojoDefinitionModelCrossReference_1_1_0() { return cRefPojoDefinitionModelCrossReference_1_1_0; }
 
 		//ValidID
-		public RuleCall getRefPojoDefinitionValidIDParserRuleCall_1_1_0_1() { return cRefPojoDefinitionValidIDParserRuleCall_1_1_0_1; }
+		public RuleCall getRefPojoDefinitionModelValidIDParserRuleCall_1_1_0_1() { return cRefPojoDefinitionModelValidIDParserRuleCall_1_1_0_1; }
 
 		//type=JvmParameterizedTypeReference
 		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
@@ -3714,8 +3714,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getImplPckgQualifiedNameParserRuleCall_11_1_0() { return cImplPckgQualifiedNameParserRuleCall_11_1_0; }
 	}
 
-	public class PojoDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PojoDefinition");
+	public class PojoDefinitionModelElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PojoDefinitionModel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPojoKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -3731,7 +3731,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cClassxJvmParameterizedTypeReferenceParserRuleCall_2_1_0 = (RuleCall)cClassxAssignment_2_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//PojoDefinition:
+		//PojoDefinitionModel:
 		//	"pojo" name=ValidID ((":" | "::")? class=QualifiedName | classx=JvmParameterizedTypeReference) ";";
 		@Override public ParserRule getRule() { return rule; }
 
@@ -3778,8 +3778,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 
-	public class TableDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TableDefinition");
+	public class TableDefinitionModelElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TableDefinitionModel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cTableKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -3788,7 +3788,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTableValidIDParserRuleCall_2_0 = (RuleCall)cTableAssignment_2.eContents().get(0);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//TableDefinition:
+		//TableDefinitionModel:
 		//	"table" name=ValidID table=ValidID ";";
 		@Override public ParserRule getRule() { return rule; }
 
@@ -3814,8 +3814,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 
-	public class ProcedureDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ProcedureDefinition");
+	public class ProcedureDefinitionModelElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ProcedureDefinitionModel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cProcedureKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -3824,7 +3824,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTableValidIDParserRuleCall_2_0 = (RuleCall)cTableAssignment_2.eContents().get(0);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//ProcedureDefinition:
+		//ProcedureDefinitionModel:
 		//	"procedure" name=ValidID table=ValidID ";";
 		@Override public ParserRule getRule() { return rule; }
 
@@ -3850,8 +3850,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 
-	public class FunctionDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FunctionDefinition");
+	public class FunctionDefinitionModelElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FunctionDefinitionModel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cFunctionKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -3860,7 +3860,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTableValidIDParserRuleCall_2_0 = (RuleCall)cTableAssignment_2.eContents().get(0);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//FunctionDefinition:
+		//FunctionDefinitionModel:
 		//	"function" name=ValidID table=ValidID ";";
 		@Override public ParserRule getRule() { return rule; }
 
@@ -6081,10 +6081,10 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	private final MetaTypeAssignementElements pMetaTypeAssignement;
 	private final MetagenPropertyElements pMetagenProperty;
 	private final DaogenPropertyElements pDaogenProperty;
-	private final PojoDefinitionElements pPojoDefinition;
-	private final TableDefinitionElements pTableDefinition;
-	private final ProcedureDefinitionElements pProcedureDefinition;
-	private final FunctionDefinitionElements pFunctionDefinition;
+	private final PojoDefinitionModelElements pPojoDefinitionModel;
+	private final TableDefinitionModelElements pTableDefinitionModel;
+	private final ProcedureDefinitionModelElements pProcedureDefinitionModel;
+	private final FunctionDefinitionModelElements pFunctionDefinitionModel;
 	private final PackageDirectiveElements pPackageDirective;
 	private final PackageElements pPackage;
 	private final AbstractEntityElements pAbstractEntity;
@@ -6158,10 +6158,10 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		this.pMetaTypeAssignement = new MetaTypeAssignementElements();
 		this.pMetagenProperty = new MetagenPropertyElements();
 		this.pDaogenProperty = new DaogenPropertyElements();
-		this.pPojoDefinition = new PojoDefinitionElements();
-		this.pTableDefinition = new TableDefinitionElements();
-		this.pProcedureDefinition = new ProcedureDefinitionElements();
-		this.pFunctionDefinition = new FunctionDefinitionElements();
+		this.pPojoDefinitionModel = new PojoDefinitionModelElements();
+		this.pTableDefinitionModel = new TableDefinitionModelElements();
+		this.pProcedureDefinitionModel = new ProcedureDefinitionModelElements();
+		this.pFunctionDefinitionModel = new FunctionDefinitionModelElements();
 		this.pPackageDirective = new PackageDirectiveElements();
 		this.pPackage = new PackageElements();
 		this.pAbstractEntity = new AbstractEntityElements();
@@ -6221,8 +6221,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Artifacts:
-	//	{Artifacts} (properties+=Property | pojos+=PojoDefinition | tables+=TableDefinition | procedures+=ProcedureDefinition
-	//	| functions+=FunctionDefinition | packages+=Package)*;
+	//	{Artifacts} (properties+=Property | pojos+=PojoDefinitionModel | tables+=TableDefinitionModel |
+	//	procedures+=ProcedureDefinitionModel | functions+=FunctionDefinitionModel | packages+=Package)*;
 	public ArtifactsElements getArtifactsAccess() {
 		return pArtifacts;
 	}
@@ -6242,7 +6242,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PojoType:
-	//	"::" ident=ValueType | ":" ref=[PojoDefinition|ValidID] | type=JvmParameterizedTypeReference;
+	//	"::" ident=ValueType | ":" ref=[PojoDefinitionModel|ValidID] | type=JvmParameterizedTypeReference;
 	public PojoTypeElements getPojoTypeAccess() {
 		return pPojoType;
 	}
@@ -6619,44 +6619,44 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		return getDaogenPropertyAccess().getRule();
 	}
 
-	//PojoDefinition:
+	//PojoDefinitionModel:
 	//	"pojo" name=ValidID ((":" | "::")? class=QualifiedName | classx=JvmParameterizedTypeReference) ";";
-	public PojoDefinitionElements getPojoDefinitionAccess() {
-		return pPojoDefinition;
+	public PojoDefinitionModelElements getPojoDefinitionModelAccess() {
+		return pPojoDefinitionModel;
 	}
 	
-	public ParserRule getPojoDefinitionRule() {
-		return getPojoDefinitionAccess().getRule();
+	public ParserRule getPojoDefinitionModelRule() {
+		return getPojoDefinitionModelAccess().getRule();
 	}
 
-	//TableDefinition:
+	//TableDefinitionModel:
 	//	"table" name=ValidID table=ValidID ";";
-	public TableDefinitionElements getTableDefinitionAccess() {
-		return pTableDefinition;
+	public TableDefinitionModelElements getTableDefinitionModelAccess() {
+		return pTableDefinitionModel;
 	}
 	
-	public ParserRule getTableDefinitionRule() {
-		return getTableDefinitionAccess().getRule();
+	public ParserRule getTableDefinitionModelRule() {
+		return getTableDefinitionModelAccess().getRule();
 	}
 
-	//ProcedureDefinition:
+	//ProcedureDefinitionModel:
 	//	"procedure" name=ValidID table=ValidID ";";
-	public ProcedureDefinitionElements getProcedureDefinitionAccess() {
-		return pProcedureDefinition;
+	public ProcedureDefinitionModelElements getProcedureDefinitionModelAccess() {
+		return pProcedureDefinitionModel;
 	}
 	
-	public ParserRule getProcedureDefinitionRule() {
-		return getProcedureDefinitionAccess().getRule();
+	public ParserRule getProcedureDefinitionModelRule() {
+		return getProcedureDefinitionModelAccess().getRule();
 	}
 
-	//FunctionDefinition:
+	//FunctionDefinitionModel:
 	//	"function" name=ValidID table=ValidID ";";
-	public FunctionDefinitionElements getFunctionDefinitionAccess() {
-		return pFunctionDefinition;
+	public FunctionDefinitionModelElements getFunctionDefinitionModelAccess() {
+		return pFunctionDefinitionModel;
 	}
 	
-	public ParserRule getFunctionDefinitionRule() {
-		return getFunctionDefinitionAccess().getRule();
+	public ParserRule getFunctionDefinitionModelRule() {
+		return getFunctionDefinitionModelAccess().getRule();
 	}
 
 	//PackageDirective:

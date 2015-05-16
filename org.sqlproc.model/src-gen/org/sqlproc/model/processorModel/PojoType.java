@@ -61,12 +61,12 @@ public interface PojoType extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Ref</em>' reference.
-   * @see #setRef(PojoDefinition)
+   * @see #setRef(PojoDefinitionModel)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoType_Ref()
    * @model
    * @generated
    */
-  PojoDefinition getRef();
+  PojoDefinitionModel getRef();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoType#getRef <em>Ref</em>}' reference.
@@ -76,7 +76,7 @@ public interface PojoType extends EObject
    * @see #getRef()
    * @generated
    */
-  void setRef(PojoDefinition value);
+  void setRef(PojoDefinitionModel value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.

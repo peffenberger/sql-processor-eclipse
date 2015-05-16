@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 
-import org.sqlproc.model.processorModel.PojoDefinition;
+import org.sqlproc.model.processorModel.PojoDefinitionModel;
 import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.ValueType;
@@ -53,7 +53,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * @generated
    * @ordered
    */
-  protected PojoDefinition ref;
+  protected PojoDefinitionModel ref;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -139,12 +139,12 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDefinition getRef()
+  public PojoDefinitionModel getRef()
   {
     if (ref != null && ref.eIsProxy())
     {
       InternalEObject oldRef = (InternalEObject)ref;
-      ref = (PojoDefinition)eResolveProxy(oldRef);
+      ref = (PojoDefinitionModel)eResolveProxy(oldRef);
       if (ref != oldRef)
       {
         if (eNotificationRequired())
@@ -159,7 +159,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDefinition basicGetRef()
+  public PojoDefinitionModel basicGetRef()
   {
     return ref;
   }
@@ -169,9 +169,9 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRef(PojoDefinition newRef)
+  public void setRef(PojoDefinitionModel newRef)
   {
-    PojoDefinition oldRef = ref;
+    PojoDefinitionModel oldRef = ref;
     ref = newRef;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_TYPE__REF, oldRef, ref));
@@ -278,7 +278,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
         setIdent((ValueType)newValue);
         return;
       case ProcessorModelPackage.POJO_TYPE__REF:
-        setRef((PojoDefinition)newValue);
+        setRef((PojoDefinitionModel)newValue);
         return;
       case ProcessorModelPackage.POJO_TYPE__TYPE:
         setType((JvmParameterizedTypeReference)newValue);
@@ -301,7 +301,7 @@ public class PojoTypeImpl extends MinimalEObjectImpl.Container implements PojoTy
         setIdent((ValueType)null);
         return;
       case ProcessorModelPackage.POJO_TYPE__REF:
-        setRef((PojoDefinition)null);
+        setRef((PojoDefinitionModel)null);
         return;
       case ProcessorModelPackage.POJO_TYPE__TYPE:
         setType((JvmParameterizedTypeReference)null);

@@ -116,7 +116,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	protected AbstractElementAlias match_MetagenProperty_WSTerminalRuleCall_8_1_2_0_p;
 	protected AbstractElementAlias match_MetagenProperty_WSTerminalRuleCall_9_1_0_p;
 	protected AbstractElementAlias match_MetagenProperty_WSTerminalRuleCall_9_1_2_0_p;
-	protected AbstractElementAlias match_PojoDefinition_COLONTerminalRuleCall_2_0_1_q;
+	protected AbstractElementAlias match_PojoDefinitionModel_COLONTerminalRuleCall_2_0_1_q;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_0_1_0_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_10_1_0_p;
 	protected AbstractElementAlias match_PojogenProperty_WSTerminalRuleCall_11_1_0_p;
@@ -298,7 +298,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 		match_MetagenProperty_WSTerminalRuleCall_8_1_2_0_p = new TokenAlias(true, false, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_8_1_2_0());
 		match_MetagenProperty_WSTerminalRuleCall_9_1_0_p = new TokenAlias(true, false, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_9_1_0());
 		match_MetagenProperty_WSTerminalRuleCall_9_1_2_0_p = new TokenAlias(true, false, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_9_1_2_0());
-		match_PojoDefinition_COLONTerminalRuleCall_2_0_1_q = new TokenAlias(false, true, grammarAccess.getPojoDefinitionAccess().getCOLONTerminalRuleCall_2_0_1());
+		match_PojoDefinitionModel_COLONTerminalRuleCall_2_0_1_q = new TokenAlias(false, true, grammarAccess.getPojoDefinitionModelAccess().getCOLONTerminalRuleCall_2_0_1());
 		match_PojogenProperty_WSTerminalRuleCall_0_1_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_0_1_0());
 		match_PojogenProperty_WSTerminalRuleCall_10_1_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_10_1_0());
 		match_PojogenProperty_WSTerminalRuleCall_11_1_0_p = new TokenAlias(true, false, grammarAccess.getPojogenPropertyAccess().getWSTerminalRuleCall_11_1_0());
@@ -794,8 +794,8 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 				emit_MetagenProperty_WSTerminalRuleCall_9_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_MetagenProperty_WSTerminalRuleCall_9_1_2_0_p.equals(syntax))
 				emit_MetagenProperty_WSTerminalRuleCall_9_1_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_PojoDefinition_COLONTerminalRuleCall_2_0_1_q.equals(syntax))
-				emit_PojoDefinition_COLONTerminalRuleCall_2_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_PojoDefinitionModel_COLONTerminalRuleCall_2_0_1_q.equals(syntax))
+				emit_PojoDefinitionModel_COLONTerminalRuleCall_2_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PojogenProperty_WSTerminalRuleCall_0_1_0_p.equals(syntax))
 				emit_PojogenProperty_WSTerminalRuleCall_0_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PojogenProperty_WSTerminalRuleCall_10_1_0_p.equals(syntax))
@@ -969,13 +969,13 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) (rule start)
 	 *     (rule start) (ambiguity) features+=OptionalFeature
-	 *     (rule start) (ambiguity) functions+=FunctionDefinition
+	 *     (rule start) (ambiguity) functions+=FunctionDefinitionModel
 	 *     (rule start) (ambiguity) mappings+=MappingRule
-	 *     (rule start) (ambiguity) pojos+=PojoDefinition
-	 *     (rule start) (ambiguity) procedures+=ProcedureDefinition
+	 *     (rule start) (ambiguity) pojos+=PojoDefinitionModel
+	 *     (rule start) (ambiguity) procedures+=ProcedureDefinitionModel
 	 *     (rule start) (ambiguity) properties+=Property
 	 *     (rule start) (ambiguity) statements+=MetaStatement
-	 *     (rule start) (ambiguity) tables+=TableDefinition
+	 *     (rule start) (ambiguity) tables+=TableDefinitionModel
 	 */
 	protected void emit_Artifacts_WSTerminalRuleCall_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -988,13 +988,13 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 * This ambiguous syntax occurs at:
 	 *     properties+=Property (ambiguity) (rule end)
 	 *     properties+=Property (ambiguity) features+=OptionalFeature
-	 *     properties+=Property (ambiguity) functions+=FunctionDefinition
+	 *     properties+=Property (ambiguity) functions+=FunctionDefinitionModel
 	 *     properties+=Property (ambiguity) mappings+=MappingRule
-	 *     properties+=Property (ambiguity) pojos+=PojoDefinition
-	 *     properties+=Property (ambiguity) procedures+=ProcedureDefinition
+	 *     properties+=Property (ambiguity) pojos+=PojoDefinitionModel
+	 *     properties+=Property (ambiguity) procedures+=ProcedureDefinitionModel
 	 *     properties+=Property (ambiguity) properties+=Property
 	 *     properties+=Property (ambiguity) statements+=MetaStatement
-	 *     properties+=Property (ambiguity) tables+=TableDefinition
+	 *     properties+=Property (ambiguity) tables+=TableDefinitionModel
 	 */
 	protected void emit_Artifacts_WSTerminalRuleCall_2_0_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1005,15 +1005,15 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     WS*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     pojos+=PojoDefinition (ambiguity) (rule end)
-	 *     pojos+=PojoDefinition (ambiguity) features+=OptionalFeature
-	 *     pojos+=PojoDefinition (ambiguity) functions+=FunctionDefinition
-	 *     pojos+=PojoDefinition (ambiguity) mappings+=MappingRule
-	 *     pojos+=PojoDefinition (ambiguity) pojos+=PojoDefinition
-	 *     pojos+=PojoDefinition (ambiguity) procedures+=ProcedureDefinition
-	 *     pojos+=PojoDefinition (ambiguity) properties+=Property
-	 *     pojos+=PojoDefinition (ambiguity) statements+=MetaStatement
-	 *     pojos+=PojoDefinition (ambiguity) tables+=TableDefinition
+	 *     pojos+=PojoDefinitionModel (ambiguity) (rule end)
+	 *     pojos+=PojoDefinitionModel (ambiguity) features+=OptionalFeature
+	 *     pojos+=PojoDefinitionModel (ambiguity) functions+=FunctionDefinitionModel
+	 *     pojos+=PojoDefinitionModel (ambiguity) mappings+=MappingRule
+	 *     pojos+=PojoDefinitionModel (ambiguity) pojos+=PojoDefinitionModel
+	 *     pojos+=PojoDefinitionModel (ambiguity) procedures+=ProcedureDefinitionModel
+	 *     pojos+=PojoDefinitionModel (ambiguity) properties+=Property
+	 *     pojos+=PojoDefinitionModel (ambiguity) statements+=MetaStatement
+	 *     pojos+=PojoDefinitionModel (ambiguity) tables+=TableDefinitionModel
 	 */
 	protected void emit_Artifacts_WSTerminalRuleCall_2_1_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1024,15 +1024,15 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     WS*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     tables+=TableDefinition (ambiguity) (rule end)
-	 *     tables+=TableDefinition (ambiguity) features+=OptionalFeature
-	 *     tables+=TableDefinition (ambiguity) functions+=FunctionDefinition
-	 *     tables+=TableDefinition (ambiguity) mappings+=MappingRule
-	 *     tables+=TableDefinition (ambiguity) pojos+=PojoDefinition
-	 *     tables+=TableDefinition (ambiguity) procedures+=ProcedureDefinition
-	 *     tables+=TableDefinition (ambiguity) properties+=Property
-	 *     tables+=TableDefinition (ambiguity) statements+=MetaStatement
-	 *     tables+=TableDefinition (ambiguity) tables+=TableDefinition
+	 *     tables+=TableDefinitionModel (ambiguity) (rule end)
+	 *     tables+=TableDefinitionModel (ambiguity) features+=OptionalFeature
+	 *     tables+=TableDefinitionModel (ambiguity) functions+=FunctionDefinitionModel
+	 *     tables+=TableDefinitionModel (ambiguity) mappings+=MappingRule
+	 *     tables+=TableDefinitionModel (ambiguity) pojos+=PojoDefinitionModel
+	 *     tables+=TableDefinitionModel (ambiguity) procedures+=ProcedureDefinitionModel
+	 *     tables+=TableDefinitionModel (ambiguity) properties+=Property
+	 *     tables+=TableDefinitionModel (ambiguity) statements+=MetaStatement
+	 *     tables+=TableDefinitionModel (ambiguity) tables+=TableDefinitionModel
 	 */
 	protected void emit_Artifacts_WSTerminalRuleCall_2_2_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1043,15 +1043,15 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     WS*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     procedures+=ProcedureDefinition (ambiguity) (rule end)
-	 *     procedures+=ProcedureDefinition (ambiguity) features+=OptionalFeature
-	 *     procedures+=ProcedureDefinition (ambiguity) functions+=FunctionDefinition
-	 *     procedures+=ProcedureDefinition (ambiguity) mappings+=MappingRule
-	 *     procedures+=ProcedureDefinition (ambiguity) pojos+=PojoDefinition
-	 *     procedures+=ProcedureDefinition (ambiguity) procedures+=ProcedureDefinition
-	 *     procedures+=ProcedureDefinition (ambiguity) properties+=Property
-	 *     procedures+=ProcedureDefinition (ambiguity) statements+=MetaStatement
-	 *     procedures+=ProcedureDefinition (ambiguity) tables+=TableDefinition
+	 *     procedures+=ProcedureDefinitionModel (ambiguity) (rule end)
+	 *     procedures+=ProcedureDefinitionModel (ambiguity) features+=OptionalFeature
+	 *     procedures+=ProcedureDefinitionModel (ambiguity) functions+=FunctionDefinitionModel
+	 *     procedures+=ProcedureDefinitionModel (ambiguity) mappings+=MappingRule
+	 *     procedures+=ProcedureDefinitionModel (ambiguity) pojos+=PojoDefinitionModel
+	 *     procedures+=ProcedureDefinitionModel (ambiguity) procedures+=ProcedureDefinitionModel
+	 *     procedures+=ProcedureDefinitionModel (ambiguity) properties+=Property
+	 *     procedures+=ProcedureDefinitionModel (ambiguity) statements+=MetaStatement
+	 *     procedures+=ProcedureDefinitionModel (ambiguity) tables+=TableDefinitionModel
 	 */
 	protected void emit_Artifacts_WSTerminalRuleCall_2_3_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1062,15 +1062,15 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     WS*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     functions+=FunctionDefinition (ambiguity) (rule end)
-	 *     functions+=FunctionDefinition (ambiguity) features+=OptionalFeature
-	 *     functions+=FunctionDefinition (ambiguity) functions+=FunctionDefinition
-	 *     functions+=FunctionDefinition (ambiguity) mappings+=MappingRule
-	 *     functions+=FunctionDefinition (ambiguity) pojos+=PojoDefinition
-	 *     functions+=FunctionDefinition (ambiguity) procedures+=ProcedureDefinition
-	 *     functions+=FunctionDefinition (ambiguity) properties+=Property
-	 *     functions+=FunctionDefinition (ambiguity) statements+=MetaStatement
-	 *     functions+=FunctionDefinition (ambiguity) tables+=TableDefinition
+	 *     functions+=FunctionDefinitionModel (ambiguity) (rule end)
+	 *     functions+=FunctionDefinitionModel (ambiguity) features+=OptionalFeature
+	 *     functions+=FunctionDefinitionModel (ambiguity) functions+=FunctionDefinitionModel
+	 *     functions+=FunctionDefinitionModel (ambiguity) mappings+=MappingRule
+	 *     functions+=FunctionDefinitionModel (ambiguity) pojos+=PojoDefinitionModel
+	 *     functions+=FunctionDefinitionModel (ambiguity) procedures+=ProcedureDefinitionModel
+	 *     functions+=FunctionDefinitionModel (ambiguity) properties+=Property
+	 *     functions+=FunctionDefinitionModel (ambiguity) statements+=MetaStatement
+	 *     functions+=FunctionDefinitionModel (ambiguity) tables+=TableDefinitionModel
 	 */
 	protected void emit_Artifacts_WSTerminalRuleCall_2_4_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1083,13 +1083,13 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 * This ambiguous syntax occurs at:
 	 *     statements+=MetaStatement (ambiguity) (rule end)
 	 *     statements+=MetaStatement (ambiguity) features+=OptionalFeature
-	 *     statements+=MetaStatement (ambiguity) functions+=FunctionDefinition
+	 *     statements+=MetaStatement (ambiguity) functions+=FunctionDefinitionModel
 	 *     statements+=MetaStatement (ambiguity) mappings+=MappingRule
-	 *     statements+=MetaStatement (ambiguity) pojos+=PojoDefinition
-	 *     statements+=MetaStatement (ambiguity) procedures+=ProcedureDefinition
+	 *     statements+=MetaStatement (ambiguity) pojos+=PojoDefinitionModel
+	 *     statements+=MetaStatement (ambiguity) procedures+=ProcedureDefinitionModel
 	 *     statements+=MetaStatement (ambiguity) properties+=Property
 	 *     statements+=MetaStatement (ambiguity) statements+=MetaStatement
-	 *     statements+=MetaStatement (ambiguity) tables+=TableDefinition
+	 *     statements+=MetaStatement (ambiguity) tables+=TableDefinitionModel
 	 */
 	protected void emit_Artifacts_WSTerminalRuleCall_2_5_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1102,13 +1102,13 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 * This ambiguous syntax occurs at:
 	 *     mappings+=MappingRule (ambiguity) (rule end)
 	 *     mappings+=MappingRule (ambiguity) features+=OptionalFeature
-	 *     mappings+=MappingRule (ambiguity) functions+=FunctionDefinition
+	 *     mappings+=MappingRule (ambiguity) functions+=FunctionDefinitionModel
 	 *     mappings+=MappingRule (ambiguity) mappings+=MappingRule
-	 *     mappings+=MappingRule (ambiguity) pojos+=PojoDefinition
-	 *     mappings+=MappingRule (ambiguity) procedures+=ProcedureDefinition
+	 *     mappings+=MappingRule (ambiguity) pojos+=PojoDefinitionModel
+	 *     mappings+=MappingRule (ambiguity) procedures+=ProcedureDefinitionModel
 	 *     mappings+=MappingRule (ambiguity) properties+=Property
 	 *     mappings+=MappingRule (ambiguity) statements+=MetaStatement
-	 *     mappings+=MappingRule (ambiguity) tables+=TableDefinition
+	 *     mappings+=MappingRule (ambiguity) tables+=TableDefinitionModel
 	 */
 	protected void emit_Artifacts_WSTerminalRuleCall_2_6_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1121,13 +1121,13 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 * This ambiguous syntax occurs at:
 	 *     features+=OptionalFeature (ambiguity) (rule end)
 	 *     features+=OptionalFeature (ambiguity) features+=OptionalFeature
-	 *     features+=OptionalFeature (ambiguity) functions+=FunctionDefinition
+	 *     features+=OptionalFeature (ambiguity) functions+=FunctionDefinitionModel
 	 *     features+=OptionalFeature (ambiguity) mappings+=MappingRule
-	 *     features+=OptionalFeature (ambiguity) pojos+=PojoDefinition
-	 *     features+=OptionalFeature (ambiguity) procedures+=ProcedureDefinition
+	 *     features+=OptionalFeature (ambiguity) pojos+=PojoDefinitionModel
+	 *     features+=OptionalFeature (ambiguity) procedures+=ProcedureDefinitionModel
 	 *     features+=OptionalFeature (ambiguity) properties+=Property
 	 *     features+=OptionalFeature (ambiguity) statements+=MetaStatement
-	 *     features+=OptionalFeature (ambiguity) tables+=TableDefinition
+	 *     features+=OptionalFeature (ambiguity) tables+=TableDefinitionModel
 	 */
 	protected void emit_Artifacts_WSTerminalRuleCall_2_7_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2149,7 +2149,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     name=IDENT COLON (ambiguity) class=IDENT
 	 *     name=IDENT COLON (ambiguity) class=IDENT_DOT
 	 */
-	protected void emit_PojoDefinition_COLONTerminalRuleCall_2_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PojoDefinitionModel_COLONTerminalRuleCall_2_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

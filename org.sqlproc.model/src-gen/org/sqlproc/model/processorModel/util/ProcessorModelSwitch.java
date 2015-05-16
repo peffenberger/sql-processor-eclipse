@@ -56,7 +56,7 @@ import org.sqlproc.model.processorModel.ExtendsAssignementGenerics;
 import org.sqlproc.model.processorModel.FunProcType;
 import org.sqlproc.model.processorModel.FunctionCall;
 import org.sqlproc.model.processorModel.FunctionCallQuery;
-import org.sqlproc.model.processorModel.FunctionDefinition;
+import org.sqlproc.model.processorModel.FunctionDefinitionModel;
 import org.sqlproc.model.processorModel.FunctionPojoAssignement;
 import org.sqlproc.model.processorModel.FunctionQuery;
 import org.sqlproc.model.processorModel.Implements;
@@ -90,7 +90,7 @@ import org.sqlproc.model.processorModel.PojoAttributeDirectiveRequired;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveToInit;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveVersion;
-import org.sqlproc.model.processorModel.PojoDefinition;
+import org.sqlproc.model.processorModel.PojoDefinitionModel;
 import org.sqlproc.model.processorModel.PojoDirective;
 import org.sqlproc.model.processorModel.PojoDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.PojoDirectiveEquals;
@@ -104,7 +104,7 @@ import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
-import org.sqlproc.model.processorModel.ProcedureDefinition;
+import org.sqlproc.model.processorModel.ProcedureDefinitionModel;
 import org.sqlproc.model.processorModel.ProcedurePojoAssignement;
 import org.sqlproc.model.processorModel.ProcedureUpdate;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
@@ -113,7 +113,7 @@ import org.sqlproc.model.processorModel.PropertyCondition;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
-import org.sqlproc.model.processorModel.TableDefinition;
+import org.sqlproc.model.processorModel.TableDefinitionModel;
 import org.sqlproc.model.processorModel.ValueType;
 
 /**
@@ -417,31 +417,31 @@ public class ProcessorModelSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorModelPackage.POJO_DEFINITION:
+      case ProcessorModelPackage.POJO_DEFINITION_MODEL:
       {
-        PojoDefinition pojoDefinition = (PojoDefinition)theEObject;
-        T result = casePojoDefinition(pojoDefinition);
+        PojoDefinitionModel pojoDefinitionModel = (PojoDefinitionModel)theEObject;
+        T result = casePojoDefinitionModel(pojoDefinitionModel);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorModelPackage.TABLE_DEFINITION:
+      case ProcessorModelPackage.TABLE_DEFINITION_MODEL:
       {
-        TableDefinition tableDefinition = (TableDefinition)theEObject;
-        T result = caseTableDefinition(tableDefinition);
+        TableDefinitionModel tableDefinitionModel = (TableDefinitionModel)theEObject;
+        T result = caseTableDefinitionModel(tableDefinitionModel);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorModelPackage.PROCEDURE_DEFINITION:
+      case ProcessorModelPackage.PROCEDURE_DEFINITION_MODEL:
       {
-        ProcedureDefinition procedureDefinition = (ProcedureDefinition)theEObject;
-        T result = caseProcedureDefinition(procedureDefinition);
+        ProcedureDefinitionModel procedureDefinitionModel = (ProcedureDefinitionModel)theEObject;
+        T result = caseProcedureDefinitionModel(procedureDefinitionModel);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorModelPackage.FUNCTION_DEFINITION:
+      case ProcessorModelPackage.FUNCTION_DEFINITION_MODEL:
       {
-        FunctionDefinition functionDefinition = (FunctionDefinition)theEObject;
-        T result = caseFunctionDefinition(functionDefinition);
+        FunctionDefinitionModel functionDefinitionModel = (FunctionDefinitionModel)theEObject;
+        T result = caseFunctionDefinitionModel(functionDefinitionModel);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1534,65 +1534,65 @@ public class ProcessorModelSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Pojo Definition</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Definition Model</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pojo Definition</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Definition Model</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePojoDefinition(PojoDefinition object)
+  public T casePojoDefinitionModel(PojoDefinitionModel object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Table Definition</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Table Definition Model</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Table Definition</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Table Definition Model</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTableDefinition(TableDefinition object)
+  public T caseTableDefinitionModel(TableDefinitionModel object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Procedure Definition</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Procedure Definition Model</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Procedure Definition</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Procedure Definition Model</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseProcedureDefinition(ProcedureDefinition object)
+  public T caseProcedureDefinitionModel(ProcedureDefinitionModel object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Function Definition</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Function Definition Model</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Function Definition</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Function Definition Model</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseFunctionDefinition(FunctionDefinition object)
+  public T caseFunctionDefinitionModel(FunctionDefinitionModel object)
   {
     return null;
   }

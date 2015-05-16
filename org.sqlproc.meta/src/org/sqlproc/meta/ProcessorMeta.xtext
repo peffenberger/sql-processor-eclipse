@@ -6,15 +6,15 @@ import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
 generate processorMeta "http://www.sqlproc.org/meta/ProcessorMeta"
 
 Artifacts: {Artifacts}
-    WS* (properties+=Property WS*|pojos+=PojoDefinition WS*|tables+=TableDefinition WS*
-    	|procedures+=ProcedureDefinition WS*|functions+=FunctionDefinition WS*
+    WS* (properties+=Property WS*|pojos+=PojoDefinitionModel WS*|tables+=TableDefinitionModel WS*
+    	|procedures+=ProcedureDefinitionModel WS*|functions+=FunctionDefinitionModel WS*
     	|statements+=MetaStatement WS*|mappings+=MappingRule WS*|features+=OptionalFeature WS*
     )*;
 
 ValueType: value = STRING_VALUE | number = NUMBER | id = QualifiedName;
 PojoType:
-	(COLON COLON ident=ValueType | COLON ref=[PojoDefinition|IDENT] | type=[jvmTypes::JvmType|QualifiedName])
-	(LESS_THAN (COLON COLON gident=ValueType | COLON gref=[PojoDefinition|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)? (array ?= '[]')?;
+	(COLON COLON ident=ValueType | COLON ref=[PojoDefinitionModel|IDENT] | type=[jvmTypes::JvmType|QualifiedName])
+	(LESS_THAN (COLON COLON gident=ValueType | COLON gref=[PojoDefinitionModel|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)? (array ?= '[]')?;
 
 DatabaseCatalogAssignement: dbCatalog=ValueType;
 DatabaseSchemaAssignement: dbSchema=ValueType;
@@ -172,16 +172,16 @@ DaogenProperty:
 	|name='implementation-package' WS+ implPckg=QualifiedName
 	);
 
-PojoDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+PojoDefinitionModel hidden(ML_COMMENT, SL_COMMENT, WS):
 	'pojo' name=IDENT (COLON (COLON)? class=(IDENT|IDENT_DOT) | classx=[jvmTypes::JvmType|QualifiedName]) SEMICOLON;
 
-TableDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+TableDefinitionModel hidden(ML_COMMENT, SL_COMMENT, WS):
 	'table' name=IDENT table=IDENT SEMICOLON;
 
-ProcedureDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+ProcedureDefinitionModel hidden(ML_COMMENT, SL_COMMENT, WS):
 	'procedure' name=IDENT table=IDENT SEMICOLON;
 
-FunctionDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+FunctionDefinitionModel hidden(ML_COMMENT, SL_COMMENT, WS):
 	'function' name=IDENT table=IDENT SEMICOLON;
 
 MetaStatement:

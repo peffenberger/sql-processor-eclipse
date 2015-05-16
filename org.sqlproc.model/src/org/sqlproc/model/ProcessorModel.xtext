@@ -5,15 +5,15 @@ import "http://www.eclipse.org/Xtext/Xbase/XAnnotations"
 
 Artifacts: {Artifacts}
 	( properties+=Property 
-	| pojos+=PojoDefinition 
-	| tables+=TableDefinition
-    | procedures+=ProcedureDefinition 
-    | functions+=FunctionDefinition
+	| pojos+=PojoDefinitionModel
+	| tables+=TableDefinitionModel
+    | procedures+=ProcedureDefinitionModel 
+    | functions+=FunctionDefinitionModel
     | packages+=Package
     )*;
 
 ValueType: value = STRING | number = INT | id = QualifiedName;
-PojoType: '::' ident=ValueType | ':' ref=[PojoDefinition|ValidID] | type=JvmParameterizedTypeReference;
+PojoType: '::' ident=ValueType | ':' ref=[PojoDefinitionModel|ValidID] | type=JvmParameterizedTypeReference;
 
 DatabaseCatalogAssignement: dbCatalog=ValueType;
 DatabaseSchemaAssignement: dbSchema=ValueType;
@@ -171,16 +171,16 @@ DaogenProperty:
 	|name='implementation-package' implPckg=QualifiedName
 	);
 
-PojoDefinition:
+PojoDefinitionModel:
 	'pojo' name=ValidID ((':' | '::')? class=(QualifiedName) | classx=JvmParameterizedTypeReference) ';';
 
-TableDefinition:
+TableDefinitionModel:
 	'table' name=ValidID table=ValidID ';';
 
-ProcedureDefinition:
+ProcedureDefinitionModel:
 	'procedure' name=ValidID table=ValidID ';';
 
-FunctionDefinition:
+FunctionDefinitionModel:
 	'function' name=ValidID table=ValidID ';';
 
 PackageDirective: 

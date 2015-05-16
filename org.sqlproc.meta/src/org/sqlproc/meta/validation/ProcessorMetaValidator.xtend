@@ -19,18 +19,18 @@ import org.sqlproc.meta.processorMeta.Column
 import org.sqlproc.meta.processorMeta.Constant
 import org.sqlproc.meta.processorMeta.DatabaseColumn
 import org.sqlproc.meta.processorMeta.DatabaseTable
-import org.sqlproc.meta.processorMeta.FunctionDefinition
+import org.sqlproc.meta.processorMeta.FunctionDefinitionModel
 import org.sqlproc.meta.processorMeta.Identifier
 import org.sqlproc.meta.processorMeta.MappingColumn
 import org.sqlproc.meta.processorMeta.MappingRule
 import org.sqlproc.meta.processorMeta.MetaSql
 import org.sqlproc.meta.processorMeta.MetaStatement
 import org.sqlproc.meta.processorMeta.OptionalFeature
-import org.sqlproc.meta.processorMeta.PojoDefinition
-import org.sqlproc.meta.processorMeta.ProcedureDefinition
+import org.sqlproc.meta.processorMeta.PojoDefinitionModel
+import org.sqlproc.meta.processorMeta.ProcedureDefinitionModel
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage
 import org.sqlproc.meta.processorMeta.Property
-import org.sqlproc.meta.processorMeta.TableDefinition
+import org.sqlproc.meta.processorMeta.TableDefinitionModel
 import org.sqlproc.meta.util.Utils
 
 import com.google.inject.Inject
@@ -152,7 +152,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     }
 
     @Check
-    def checkUniquePojoDefinition(PojoDefinition pojoDefinition) {
+    def checkUniquePojoDefinition(PojoDefinitionModel pojoDefinition) {
         if (CommonUtils.skipVerification(pojoDefinition, modelProperty))
             return;
         val artifacts = getArtifacts(pojoDefinition)
@@ -162,12 +162,12 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     	val URI uri = pojoDefinition.eResource?.URI
         if (isResolvePojo(pojoDefinition) && !checkClass(getClass(pojoDefinition), uri))
             error("Class name : " + getClass(pojoDefinition) + " not exists",
-                    ProcessorMetaPackage.Literals.POJO_DEFINITION__NAME)
-        for (PojoDefinition definition : artifacts.getPojos()) {
+                    ProcessorMetaPackage.Literals.POJO_DEFINITION_MODEL__NAME)
+        for (PojoDefinitionModel definition : artifacts.getPojos()) {
             if (definition != null && definition !== pojoDefinition) {
 	            if (pojoDefinition.getName().equals(definition.getName())) {
 	                error("Duplicate name : " + pojoDefinition.getName(),
-	                        ProcessorMetaPackage.Literals.POJO_DEFINITION__NAME)
+	                        ProcessorMetaPackage.Literals.POJO_DEFINITION_MODEL__NAME)
 	                return
 	            }
             }
@@ -264,7 +264,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         return dbResolver.isResolveDb(model)
     }
 
-    def String getClass(PojoDefinition pojo) {
+    def String getClass(PojoDefinitionModel pojo) {
         if (pojo.getClassx() != null)
             return pojo.getClassx().getQualifiedName()
         return pojo.getClass_()
@@ -656,41 +656,41 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     }
 
     @Check
-    def checkTableDefinition(TableDefinition tableDefinition) {
+    def checkTableDefinition(TableDefinitionModel tableDefinition) {
         if (CommonUtils.skipVerification(tableDefinition, modelProperty))
             return;
         val artifacts = getArtifacts(tableDefinition)
         if (artifacts == null)
             return;
 
-        for (TableDefinition table : artifacts.getTables()) {
+        for (TableDefinitionModel table : artifacts.getTables()) {
             if (table != null && table !== tableDefinition) {
 	            if (tableDefinition.getName().equals(table.getName())) {
 	                error("Duplicate name : " + tableDefinition.getName() + "[table]",
-	                        ProcessorMetaPackage.Literals.TABLE_DEFINITION__NAME)
+	                        ProcessorMetaPackage.Literals.TABLE_DEFINITION_MODEL__NAME)
 	                return
 				}
 	           }
         }
         if (isResolveDb(tableDefinition) && !dbResolver.checkTable(tableDefinition, tableDefinition.getTable())) {
             error("Cannot find table in DB : " + tableDefinition.getTable(),
-                    ProcessorMetaPackage.Literals.TABLE_DEFINITION__TABLE)
+                    ProcessorMetaPackage.Literals.TABLE_DEFINITION_MODEL__TABLE)
         }
     }
 
     @Check
-    def checkProcedureDefinition(ProcedureDefinition procedureDefinition) {
+    def checkProcedureDefinition(ProcedureDefinitionModel procedureDefinition) {
         if (CommonUtils.skipVerification(procedureDefinition, modelProperty))
             return;
         val artifacts = getArtifacts(procedureDefinition)
         if (artifacts == null)
             return;
 
-        for (ProcedureDefinition procedure : artifacts.getProcedures()) {
+        for (ProcedureDefinitionModel procedure : artifacts.getProcedures()) {
             if (procedure != null && procedure !== procedureDefinition) {
 	            if (procedureDefinition.getName().equals(procedure.getName())) {
 	                error("Duplicate name : " + procedureDefinition.getName() + "[procedure]",
-	                        ProcessorMetaPackage.Literals.PROCEDURE_DEFINITION__NAME)
+	                        ProcessorMetaPackage.Literals.PROCEDURE_DEFINITION_MODEL__NAME)
 	                return
 	            }
 	        }
@@ -698,23 +698,23 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         if (isResolveDb(procedureDefinition)
                 && !dbResolver.checkProcedure(procedureDefinition, procedureDefinition.getTable())) {
             error("Cannot find procedure in DB : " + procedureDefinition.getTable(),
-                    ProcessorMetaPackage.Literals.PROCEDURE_DEFINITION__NAME)
+                    ProcessorMetaPackage.Literals.PROCEDURE_DEFINITION_MODEL__NAME)
         }
     }
 
     @Check
-    def checkFunctionDefinition(FunctionDefinition functionDefinition) {
+    def checkFunctionDefinition(FunctionDefinitionModel functionDefinition) {
         if (CommonUtils.skipVerification(functionDefinition, modelProperty))
             return;
         val artifacts = getArtifacts(functionDefinition)
         if (artifacts == null)
             return;
 
-        for (FunctionDefinition function : artifacts.getFunctions()) {
+        for (FunctionDefinitionModel function : artifacts.getFunctions()) {
             if (function != null && function !== functionDefinition) {
 	            if (functionDefinition.getName().equals(function.getName())) {
 	                error("Duplicate name : " + functionDefinition.getName() + "[function]",
-	                        ProcessorMetaPackage.Literals.FUNCTION_DEFINITION__NAME)
+	                        ProcessorMetaPackage.Literals.FUNCTION_DEFINITION_MODEL__NAME)
 	                return
 	            }
 	    	}

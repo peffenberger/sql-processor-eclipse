@@ -106,7 +106,7 @@ import org.sqlproc.model.processorModel.ExtendsAssignement;
 import org.sqlproc.model.processorModel.ExtendsAssignementGenerics;
 import org.sqlproc.model.processorModel.FunctionCall;
 import org.sqlproc.model.processorModel.FunctionCallQuery;
-import org.sqlproc.model.processorModel.FunctionDefinition;
+import org.sqlproc.model.processorModel.FunctionDefinitionModel;
 import org.sqlproc.model.processorModel.FunctionPojoAssignement;
 import org.sqlproc.model.processorModel.FunctionQuery;
 import org.sqlproc.model.processorModel.Implements;
@@ -137,7 +137,7 @@ import org.sqlproc.model.processorModel.PojoAttributeDirectiveRequired;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveToInit;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveVersion;
-import org.sqlproc.model.processorModel.PojoDefinition;
+import org.sqlproc.model.processorModel.PojoDefinitionModel;
 import org.sqlproc.model.processorModel.PojoDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.PojoDirectiveEquals;
 import org.sqlproc.model.processorModel.PojoDirectiveHashCode;
@@ -150,7 +150,7 @@ import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
-import org.sqlproc.model.processorModel.ProcedureDefinition;
+import org.sqlproc.model.processorModel.ProcedureDefinitionModel;
 import org.sqlproc.model.processorModel.ProcedurePojoAssignement;
 import org.sqlproc.model.processorModel.ProcedureUpdate;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
@@ -159,7 +159,7 @@ import org.sqlproc.model.processorModel.PropertyCondition;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
-import org.sqlproc.model.processorModel.TableDefinition;
+import org.sqlproc.model.processorModel.TableDefinitionModel;
 import org.sqlproc.model.processorModel.ValueType;
 import org.sqlproc.model.services.ProcessorModelGrammarAccess;
 
@@ -298,8 +298,8 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 			case ProcessorModelPackage.FUNCTION_CALL_QUERY:
 				sequence_FunProcType(context, (FunctionCallQuery) semanticObject); 
 				return; 
-			case ProcessorModelPackage.FUNCTION_DEFINITION:
-				sequence_FunctionDefinition(context, (FunctionDefinition) semanticObject); 
+			case ProcessorModelPackage.FUNCTION_DEFINITION_MODEL:
+				sequence_FunctionDefinitionModel(context, (FunctionDefinitionModel) semanticObject); 
 				return; 
 			case ProcessorModelPackage.FUNCTION_POJO_ASSIGNEMENT:
 				sequence_FunctionPojoAssignement(context, (FunctionPojoAssignement) semanticObject); 
@@ -394,8 +394,8 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 			case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_VERSION:
 				sequence_PojoAttributeDirective(context, (PojoAttributeDirectiveVersion) semanticObject); 
 				return; 
-			case ProcessorModelPackage.POJO_DEFINITION:
-				sequence_PojoDefinition(context, (PojoDefinition) semanticObject); 
+			case ProcessorModelPackage.POJO_DEFINITION_MODEL:
+				sequence_PojoDefinitionModel(context, (PojoDefinitionModel) semanticObject); 
 				return; 
 			case ProcessorModelPackage.POJO_DIRECTIVE_DISCRIMINATOR:
 				sequence_PojoDirective(context, (PojoDirectiveDiscriminator) semanticObject); 
@@ -433,8 +433,8 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 			case ProcessorModelPackage.PROCEDURE_CALL_QUERY:
 				sequence_FunProcType(context, (ProcedureCallQuery) semanticObject); 
 				return; 
-			case ProcessorModelPackage.PROCEDURE_DEFINITION:
-				sequence_ProcedureDefinition(context, (ProcedureDefinition) semanticObject); 
+			case ProcessorModelPackage.PROCEDURE_DEFINITION_MODEL:
+				sequence_ProcedureDefinitionModel(context, (ProcedureDefinitionModel) semanticObject); 
 				return; 
 			case ProcessorModelPackage.PROCEDURE_POJO_ASSIGNEMENT:
 				sequence_ProcedurePojoAssignement(context, (ProcedurePojoAssignement) semanticObject); 
@@ -457,8 +457,8 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 			case ProcessorModelPackage.TABLE_ASSIGNEMENT:
 				sequence_TableAssignement(context, (TableAssignement) semanticObject); 
 				return; 
-			case ProcessorModelPackage.TABLE_DEFINITION:
-				sequence_TableDefinition(context, (TableDefinition) semanticObject); 
+			case ProcessorModelPackage.TABLE_DEFINITION_MODEL:
+				sequence_TableDefinitionModel(context, (TableDefinitionModel) semanticObject); 
 				return; 
 			case ProcessorModelPackage.VALUE_TYPE:
 				sequence_ValueType(context, (ValueType) semanticObject); 
@@ -839,10 +839,10 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *     (
 	 *         (
 	 *             properties+=Property | 
-	 *             pojos+=PojoDefinition | 
-	 *             tables+=TableDefinition | 
-	 *             procedures+=ProcedureDefinition | 
-	 *             functions+=FunctionDefinition | 
+	 *             pojos+=PojoDefinitionModel | 
+	 *             tables+=TableDefinitionModel | 
+	 *             procedures+=ProcedureDefinitionModel | 
+	 *             functions+=FunctionDefinitionModel | 
 	 *             packages+=Package
 	 *         )*
 	 *     )
@@ -1321,17 +1321,17 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 * Constraint:
 	 *     (name=ValidID table=ValidID)
 	 */
-	protected void sequence_FunctionDefinition(EObject context, FunctionDefinition semanticObject) {
+	protected void sequence_FunctionDefinitionModel(EObject context, FunctionDefinitionModel semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.FUNCTION_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.FUNCTION_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.FUNCTION_DEFINITION__TABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.FUNCTION_DEFINITION__TABLE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.FUNCTION_DEFINITION_MODEL__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.FUNCTION_DEFINITION_MODEL__NAME));
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.FUNCTION_DEFINITION_MODEL__TABLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.FUNCTION_DEFINITION_MODEL__TABLE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getFunctionDefinitionAccess().getNameValidIDParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getFunctionDefinitionAccess().getTableValidIDParserRuleCall_2_0(), semanticObject.getTable());
+		feeder.accept(grammarAccess.getFunctionDefinitionModelAccess().getNameValidIDParserRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getFunctionDefinitionModelAccess().getTableValidIDParserRuleCall_2_0(), semanticObject.getTable());
 		feeder.finish();
 	}
 	
@@ -1686,7 +1686,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 * Constraint:
 	 *     (name=ValidID (class=QualifiedName | classx=JvmParameterizedTypeReference))
 	 */
-	protected void sequence_PojoDefinition(EObject context, PojoDefinition semanticObject) {
+	protected void sequence_PojoDefinitionModel(EObject context, PojoDefinitionModel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1835,7 +1835,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (ident=ValueType | ref=[PojoDefinition|ValidID] | type=JvmParameterizedTypeReference)
+	 *     (ident=ValueType | ref=[PojoDefinitionModel|ValidID] | type=JvmParameterizedTypeReference)
 	 */
 	protected void sequence_PojoType(EObject context, PojoType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1899,17 +1899,17 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 * Constraint:
 	 *     (name=ValidID table=ValidID)
 	 */
-	protected void sequence_ProcedureDefinition(EObject context, ProcedureDefinition semanticObject) {
+	protected void sequence_ProcedureDefinitionModel(EObject context, ProcedureDefinitionModel semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.PROCEDURE_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.PROCEDURE_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.PROCEDURE_DEFINITION__TABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.PROCEDURE_DEFINITION__TABLE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.PROCEDURE_DEFINITION_MODEL__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.PROCEDURE_DEFINITION_MODEL__NAME));
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.PROCEDURE_DEFINITION_MODEL__TABLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.PROCEDURE_DEFINITION_MODEL__TABLE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getProcedureDefinitionAccess().getNameValidIDParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getProcedureDefinitionAccess().getTableValidIDParserRuleCall_2_0(), semanticObject.getTable());
+		feeder.accept(grammarAccess.getProcedureDefinitionModelAccess().getNameValidIDParserRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getProcedureDefinitionModelAccess().getTableValidIDParserRuleCall_2_0(), semanticObject.getTable());
 		feeder.finish();
 	}
 	
@@ -2037,17 +2037,17 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 * Constraint:
 	 *     (name=ValidID table=ValidID)
 	 */
-	protected void sequence_TableDefinition(EObject context, TableDefinition semanticObject) {
+	protected void sequence_TableDefinitionModel(EObject context, TableDefinitionModel semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.TABLE_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.TABLE_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.TABLE_DEFINITION__TABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.TABLE_DEFINITION__TABLE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.TABLE_DEFINITION_MODEL__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.TABLE_DEFINITION_MODEL__NAME));
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.TABLE_DEFINITION_MODEL__TABLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.TABLE_DEFINITION_MODEL__TABLE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getTableDefinitionAccess().getNameValidIDParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getTableDefinitionAccess().getTableValidIDParserRuleCall_2_0(), semanticObject.getTable());
+		feeder.accept(grammarAccess.getTableDefinitionModelAccess().getNameValidIDParserRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getTableDefinitionModelAccess().getTableValidIDParserRuleCall_2_0(), semanticObject.getTable());
 		feeder.finish();
 	}
 	

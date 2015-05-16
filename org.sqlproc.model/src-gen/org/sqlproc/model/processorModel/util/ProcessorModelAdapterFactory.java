@@ -58,7 +58,7 @@ import org.sqlproc.model.processorModel.ExtendsAssignementGenerics;
 import org.sqlproc.model.processorModel.FunProcType;
 import org.sqlproc.model.processorModel.FunctionCall;
 import org.sqlproc.model.processorModel.FunctionCallQuery;
-import org.sqlproc.model.processorModel.FunctionDefinition;
+import org.sqlproc.model.processorModel.FunctionDefinitionModel;
 import org.sqlproc.model.processorModel.FunctionPojoAssignement;
 import org.sqlproc.model.processorModel.FunctionQuery;
 import org.sqlproc.model.processorModel.Implements;
@@ -92,7 +92,7 @@ import org.sqlproc.model.processorModel.PojoAttributeDirectiveRequired;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveToInit;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveVersion;
-import org.sqlproc.model.processorModel.PojoDefinition;
+import org.sqlproc.model.processorModel.PojoDefinitionModel;
 import org.sqlproc.model.processorModel.PojoDirective;
 import org.sqlproc.model.processorModel.PojoDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.PojoDirectiveEquals;
@@ -106,7 +106,7 @@ import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
-import org.sqlproc.model.processorModel.ProcedureDefinition;
+import org.sqlproc.model.processorModel.ProcedureDefinitionModel;
 import org.sqlproc.model.processorModel.ProcedurePojoAssignement;
 import org.sqlproc.model.processorModel.ProcedureUpdate;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
@@ -115,7 +115,7 @@ import org.sqlproc.model.processorModel.PropertyCondition;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
-import org.sqlproc.model.processorModel.TableDefinition;
+import org.sqlproc.model.processorModel.TableDefinitionModel;
 import org.sqlproc.model.processorModel.ValueType;
 
 /**
@@ -352,24 +352,24 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
         return createDaogenPropertyAdapter();
       }
       @Override
-      public Adapter casePojoDefinition(PojoDefinition object)
+      public Adapter casePojoDefinitionModel(PojoDefinitionModel object)
       {
-        return createPojoDefinitionAdapter();
+        return createPojoDefinitionModelAdapter();
       }
       @Override
-      public Adapter caseTableDefinition(TableDefinition object)
+      public Adapter caseTableDefinitionModel(TableDefinitionModel object)
       {
-        return createTableDefinitionAdapter();
+        return createTableDefinitionModelAdapter();
       }
       @Override
-      public Adapter caseProcedureDefinition(ProcedureDefinition object)
+      public Adapter caseProcedureDefinitionModel(ProcedureDefinitionModel object)
       {
-        return createProcedureDefinitionAdapter();
+        return createProcedureDefinitionModelAdapter();
       }
       @Override
-      public Adapter caseFunctionDefinition(FunctionDefinition object)
+      public Adapter caseFunctionDefinitionModel(FunctionDefinitionModel object)
       {
-        return createFunctionDefinitionAdapter();
+        return createFunctionDefinitionModelAdapter();
       }
       @Override
       public Adapter casePackageDirective(PackageDirective object)
@@ -1254,61 +1254,61 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.PojoDefinition <em>Pojo Definition</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.PojoDefinitionModel <em>Pojo Definition Model</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.model.processorModel.PojoDefinition
+   * @see org.sqlproc.model.processorModel.PojoDefinitionModel
    * @generated
    */
-  public Adapter createPojoDefinitionAdapter()
+  public Adapter createPojoDefinitionModelAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.TableDefinition <em>Table Definition</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.TableDefinitionModel <em>Table Definition Model</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.model.processorModel.TableDefinition
+   * @see org.sqlproc.model.processorModel.TableDefinitionModel
    * @generated
    */
-  public Adapter createTableDefinitionAdapter()
+  public Adapter createTableDefinitionModelAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.ProcedureDefinition <em>Procedure Definition</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.ProcedureDefinitionModel <em>Procedure Definition Model</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.model.processorModel.ProcedureDefinition
+   * @see org.sqlproc.model.processorModel.ProcedureDefinitionModel
    * @generated
    */
-  public Adapter createProcedureDefinitionAdapter()
+  public Adapter createProcedureDefinitionModelAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.FunctionDefinition <em>Function Definition</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.FunctionDefinitionModel <em>Function Definition Model</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.model.processorModel.FunctionDefinition
+   * @see org.sqlproc.model.processorModel.FunctionDefinitionModel
    * @generated
    */
-  public Adapter createFunctionDefinitionAdapter()
+  public Adapter createFunctionDefinitionModelAdapter()
   {
     return null;
   }
