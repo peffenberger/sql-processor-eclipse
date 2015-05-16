@@ -1296,7 +1296,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
         }
 
         String getTableName() {
-            TableDefinition tableDefinition = modelTables.get((realTableName != null) ? realTableName : tableName);
+            TableDefinition tableDefinition = modelTablesInv.get((realTableName != null) ? realTableName : tableName);
             if (tableDefinition != null)
                 return tableDefinition.getName();
             else

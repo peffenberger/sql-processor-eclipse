@@ -135,10 +135,13 @@ public class TableBaseGenerator {
     protected Map<String, String> metaFunctionsResult = new HashMap<String, String>();
     protected Map<String, String> metaProceduresResult = new HashMap<String, String>();
 
-    protected Map<String, PojoDefinition> modelPojos;
-    protected Map<String, TableDefinition> modelTables;
-    protected Map<String, ProcedureDefinition> modelProcedures;
-    protected Map<String, FunctionDefinition> modelFunctions;
+    protected Map<String, PojoDefinition> modelPojos = new TreeMap<String, PojoDefinition>();
+    protected Map<String, TableDefinition> modelTables = new TreeMap<String, TableDefinition>();
+    protected Map<String, ProcedureDefinition> modelProcedures = new TreeMap<String, ProcedureDefinition>();
+    protected Map<String, FunctionDefinition> modelFunctions = new TreeMap<String, FunctionDefinition>();
+    protected Map<String, TableDefinition> modelTablesInv = new TreeMap<String, TableDefinition>();
+    protected Map<String, ProcedureDefinition> modelProceduresInv = new TreeMap<String, ProcedureDefinition>();
+    protected Map<String, FunctionDefinition> modelFunctionsInv = new TreeMap<String, FunctionDefinition>();
 
     public TableBaseGenerator(ModelProperty modelProperty, EObject model, List<String> dbSequences, DbType dbType) {
 
@@ -316,14 +319,20 @@ public class TableBaseGenerator {
         Map<String, TableDefinition> modelTables = modelProperty.getModelTables(model);
         if (modelTables != null) {
             this.modelTables.putAll(modelTables);
+            for (TableDefinition def : modelTables.values())
+                this.modelTablesInv.put(def.getTable(), def);
         }
         Map<String, ProcedureDefinition> modelProcedures = modelProperty.getModelProcedures(model);
         if (modelProcedures != null) {
             this.modelProcedures.putAll(modelProcedures);
+            for (ProcedureDefinition def : modelProcedures.values())
+                this.modelProceduresInv.put(def.getProcedure(), def);
         }
         Map<String, FunctionDefinition> modelFunctions = modelProperty.getModelFunctions(model);
         if (modelFunctions != null) {
             this.modelFunctions.putAll(modelFunctions);
+            for (FunctionDefinition def : modelFunctions.values())
+                this.modelFunctionsInv.put(def.getFunction(), def);
         }
 
         if (debug.debug) {
