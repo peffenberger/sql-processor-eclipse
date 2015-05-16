@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -15,15 +14,11 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
-import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.sqlproc.meta.processorMeta.Artifacts;
 import org.sqlproc.meta.processorMeta.MetaStatement;
-import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
-import org.sqlproc.meta.processorMeta.TableDefinition;
 import org.sqlproc.meta.property.ModelPropertyBean;
 import org.sqlproc.meta.util.Utils;
 import org.sqlproc.plugin.lib.generator.TableBaseGenerator;
@@ -31,6 +26,7 @@ import org.sqlproc.plugin.lib.property.ModelProperty;
 import org.sqlproc.plugin.lib.property.PairValues;
 import org.sqlproc.plugin.lib.property.PojoAttribute;
 import org.sqlproc.plugin.lib.property.PojoEntityType;
+import org.sqlproc.plugin.lib.property.TableDefinition;
 import org.sqlproc.plugin.lib.resolver.DbResolver;
 import org.sqlproc.plugin.lib.resolver.DbResolver.DbType;
 import org.sqlproc.plugin.lib.util.Constants;
@@ -1300,7 +1296,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
         }
 
         String getTableName() {
-            TableDefinition tableDefinition = getTableDefinition((realTableName != null) ? realTableName : tableName);
+            TableDefinition tableDefinition = modelTables.get((realTableName != null) ? realTableName : tableName);
             if (tableDefinition != null)
                 return tableDefinition.getName();
             else
@@ -1890,22 +1886,6 @@ public class TableMetaGenerator extends TableBaseGenerator {
         return null;
     }
 
-    TableDefinition getTableDefinition(String tableName) {
-        IScope scope = scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES);
-        Iterable<IEObjectDescription> iterable = scope.getAllElements();
-        for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
-            IEObjectDescription description = iter.next();
-            if (ProcessorMetaPackage.Literals.TABLE_DEFINITION.getName().equals(description.getEClass().getName())) {
-                TableDefinition tableDefinition = (TableDefinition) artifacts.eResource().getResourceSet()
-                        .getEObject(description.getEObjectURI(), true);
-                if (tableName.equals(tableDefinition.getTable())) {
-                    return tableDefinition;
-                }
-            }
-        }
-        return null;
-    }
-
     StringBuilder metaSequenceDefinition(String sequenceName, Map<String, StringBuilder> sequences) {
         StringBuilder buffer = new StringBuilder();
         String sequence = null;
@@ -2177,21 +2157,6 @@ public class TableMetaGenerator extends TableBaseGenerator {
         }
     }
 
-    protected boolean addDefinitions(IScopeProvider scopeProvider, DbResolver dbResolver, Stats stats) {
-        try {
-            List<String> tables = Utils.findTables(null, artifacts,
-                    scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES));
-            List<String> procedures = Utils.findProcedures(null, artifacts,
-                    scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__PROCEDURES));
-            List<String> functions = Utils.findFunctions(null, artifacts,
-                    scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__FUNCTIONS));
-            return super.addDefinitions(dbResolver, scopeProvider, tables, procedures, functions, stats);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
     public static String generateMeta(Artifacts artifacts, List<MetaStatement> statements, ISerializer serializer,
             DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty, Stats stats) {
         if (artifacts == null || !dbResolver.isResolveDb(artifacts))
@@ -2210,7 +2175,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
         DbType dbType = Utils.getDbType(dbResolver, artifacts);
         TableMetaGenerator generator = new TableMetaGenerator(modelProperty, artifacts, scopeProvider, finalMetas,
                 dbSequences, dbType);
-        if (generator.addDefinitions(scopeProvider, dbResolver, stats))
+        if (generator.addDefinitions(dbResolver, scopeProvider, stats))
             return generator.getMetaDefinitions(modelProperty, artifacts);
         return null;
     }

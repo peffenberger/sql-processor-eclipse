@@ -1,27 +1,15 @@
 package org.sqlproc.meta.util;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.naming.IQualifiedNameConverter;
-import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.scoping.IScope;
-import org.sqlproc.meta.processorMeta.Artifacts;
 import org.sqlproc.meta.processorMeta.Column;
 import org.sqlproc.meta.processorMeta.ExtendedColumn;
 import org.sqlproc.meta.processorMeta.ExtendedMappingItem;
-import org.sqlproc.meta.processorMeta.FunctionDefinition;
 import org.sqlproc.meta.processorMeta.MappingColumn;
 import org.sqlproc.meta.processorMeta.MappingRule;
 import org.sqlproc.meta.processorMeta.MetaStatement;
-import org.sqlproc.meta.processorMeta.PojoDefinition;
 import org.sqlproc.meta.processorMeta.PojoType;
-import org.sqlproc.meta.processorMeta.ProcedureDefinition;
-import org.sqlproc.meta.processorMeta.TableDefinition;
 import org.sqlproc.meta.processorMeta.ValueType;
 import org.sqlproc.plugin.lib.util.CommonUtils;
 
@@ -107,126 +95,126 @@ public class Utils extends CommonUtils {
         return result;
     }
 
-    public static PojoDefinition findPojo(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
-            IScope scope, String name) {
-        Iterable<IEObjectDescription> iterable = scope.getAllElements();
-        for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
-            IEObjectDescription description = iter.next();
-            if ((qualifiedNameConverter != null && qualifiedNameConverter.toQualifiedName(name).equals(
-                    description.getName()))
-                    || name.equals(description.getName().toString())) {
-                return (PojoDefinition) artifacts.eResource().getResourceSet()
-                        .getEObject(description.getEObjectURI(), true);
-            }
-        }
-        return null;
-    }
-
-    public static Map<String, PojoDefinition> findPojos(IQualifiedNameConverter qualifiedNameConverter,
-            Artifacts artifacts, IScope scope) {
-        Map<String, PojoDefinition> pojos = new HashMap<String, PojoDefinition>();
-        Iterable<IEObjectDescription> iterable = scope.getAllElements();
-        for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
-            IEObjectDescription description = iter.next();
-            EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
-            if (obj instanceof PojoDefinition)
-                pojos.put(((PojoDefinition) obj).getName(), (PojoDefinition) obj);
-        }
-        return pojos;
-    }
-
-    public static TableDefinition findTable(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
-            IScope scope, String name) {
-        Iterable<IEObjectDescription> iterable = scope.getAllElements();
-        for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
-            IEObjectDescription description = iter.next();
-            if ((qualifiedNameConverter != null && qualifiedNameConverter.toQualifiedName(name).equals(
-                    description.getName()))
-                    || name.equals(description.getName().toString())) {
-                return (TableDefinition) artifacts.eResource().getResourceSet()
-                        .getEObject(description.getEObjectURI(), true);
-            }
-        }
-        return null;
-    }
-
-    public static List<TableDefinition> findTablesDef(IQualifiedNameConverter qualifiedNameConverter,
-            Artifacts artifacts, IScope scope) {
-        List<TableDefinition> tables = new ArrayList<TableDefinition>();
-        Iterable<IEObjectDescription> iterable = scope.getAllElements();
-        for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
-            IEObjectDescription description = iter.next();
-            EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
-            if (obj instanceof TableDefinition)
-                tables.add((TableDefinition) obj);
-        }
-        return tables;
-    }
-
-    public static List<FunctionDefinition> findFunctionsDef(IQualifiedNameConverter qualifiedNameConverter,
-            Artifacts artifacts, IScope scope) {
-        List<FunctionDefinition> functions = new ArrayList<FunctionDefinition>();
-        Iterable<IEObjectDescription> iterable = scope.getAllElements();
-        for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
-            IEObjectDescription description = iter.next();
-            EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
-            if (obj instanceof FunctionDefinition)
-                functions.add((FunctionDefinition) obj);
-        }
-        return functions;
-    }
-
-    public static List<ProcedureDefinition> findProceduresDef(IQualifiedNameConverter qualifiedNameConverter,
-            Artifacts artifacts, IScope scope) {
-        List<ProcedureDefinition> procedures = new ArrayList<ProcedureDefinition>();
-        Iterable<IEObjectDescription> iterable = scope.getAllElements();
-        for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
-            IEObjectDescription description = iter.next();
-            EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
-            if (obj instanceof ProcedureDefinition)
-                procedures.add((ProcedureDefinition) obj);
-        }
-        return procedures;
-    }
-
-    public static List<String> findTables(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
-            IScope scope) {
-        List<String> tables = new ArrayList<String>();
-        Iterable<IEObjectDescription> iterable = scope.getAllElements();
-        for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
-            IEObjectDescription description = iter.next();
-            EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
-            if (obj instanceof TableDefinition)
-                tables.add(((TableDefinition) obj).getTable());
-        }
-        return tables;
-    }
-
-    public static List<String> findFunctions(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
-            IScope scope) {
-        List<String> functions = new ArrayList<String>();
-        Iterable<IEObjectDescription> iterable = scope.getAllElements();
-        for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
-            IEObjectDescription description = iter.next();
-            EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
-            if (obj instanceof FunctionDefinition)
-                functions.add(((FunctionDefinition) obj).getTable());
-        }
-        return functions;
-    }
-
-    public static List<String> findProcedures(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
-            IScope scope) {
-        List<String> procedures = new ArrayList<String>();
-        Iterable<IEObjectDescription> iterable = scope.getAllElements();
-        for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
-            IEObjectDescription description = iter.next();
-            EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
-            if (obj instanceof ProcedureDefinition)
-                procedures.add(((ProcedureDefinition) obj).getTable());
-        }
-        return procedures;
-    }
+    // public static PojoDefinition findPojo(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
+    // IScope scope, String name) {
+    // Iterable<IEObjectDescription> iterable = scope.getAllElements();
+    // for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
+    // IEObjectDescription description = iter.next();
+    // if ((qualifiedNameConverter != null && qualifiedNameConverter.toQualifiedName(name).equals(
+    // description.getName()))
+    // || name.equals(description.getName().toString())) {
+    // return (PojoDefinition) artifacts.eResource().getResourceSet()
+    // .getEObject(description.getEObjectURI(), true);
+    // }
+    // }
+    // return null;
+    // }
+    //
+    // public static Map<String, PojoDefinition> findPojos(IQualifiedNameConverter qualifiedNameConverter,
+    // Artifacts artifacts, IScope scope) {
+    // Map<String, PojoDefinition> pojos = new HashMap<String, PojoDefinition>();
+    // Iterable<IEObjectDescription> iterable = scope.getAllElements();
+    // for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
+    // IEObjectDescription description = iter.next();
+    // EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
+    // if (obj instanceof PojoDefinition)
+    // pojos.put(((PojoDefinition) obj).getName(), (PojoDefinition) obj);
+    // }
+    // return pojos;
+    // }
+    //
+    // public static TableDefinition findTable(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
+    // IScope scope, String name) {
+    // Iterable<IEObjectDescription> iterable = scope.getAllElements();
+    // for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
+    // IEObjectDescription description = iter.next();
+    // if ((qualifiedNameConverter != null && qualifiedNameConverter.toQualifiedName(name).equals(
+    // description.getName()))
+    // || name.equals(description.getName().toString())) {
+    // return (TableDefinition) artifacts.eResource().getResourceSet()
+    // .getEObject(description.getEObjectURI(), true);
+    // }
+    // }
+    // return null;
+    // }
+    //
+    // public static List<TableDefinition> findTablesDef(IQualifiedNameConverter qualifiedNameConverter,
+    // Artifacts artifacts, IScope scope) {
+    // List<TableDefinition> tables = new ArrayList<TableDefinition>();
+    // Iterable<IEObjectDescription> iterable = scope.getAllElements();
+    // for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
+    // IEObjectDescription description = iter.next();
+    // EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
+    // if (obj instanceof TableDefinition)
+    // tables.add((TableDefinition) obj);
+    // }
+    // return tables;
+    // }
+    //
+    // public static List<FunctionDefinition> findFunctionsDef(IQualifiedNameConverter qualifiedNameConverter,
+    // Artifacts artifacts, IScope scope) {
+    // List<FunctionDefinition> functions = new ArrayList<FunctionDefinition>();
+    // Iterable<IEObjectDescription> iterable = scope.getAllElements();
+    // for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
+    // IEObjectDescription description = iter.next();
+    // EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
+    // if (obj instanceof FunctionDefinition)
+    // functions.add((FunctionDefinition) obj);
+    // }
+    // return functions;
+    // }
+    //
+    // public static List<ProcedureDefinition> findProceduresDef(IQualifiedNameConverter qualifiedNameConverter,
+    // Artifacts artifacts, IScope scope) {
+    // List<ProcedureDefinition> procedures = new ArrayList<ProcedureDefinition>();
+    // Iterable<IEObjectDescription> iterable = scope.getAllElements();
+    // for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
+    // IEObjectDescription description = iter.next();
+    // EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
+    // if (obj instanceof ProcedureDefinition)
+    // procedures.add((ProcedureDefinition) obj);
+    // }
+    // return procedures;
+    // }
+    //
+    // public static List<String> findTables(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
+    // IScope scope) {
+    // List<String> tables = new ArrayList<String>();
+    // Iterable<IEObjectDescription> iterable = scope.getAllElements();
+    // for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
+    // IEObjectDescription description = iter.next();
+    // EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
+    // if (obj instanceof TableDefinition)
+    // tables.add(((TableDefinition) obj).getTable());
+    // }
+    // return tables;
+    // }
+    //
+    // public static List<String> findFunctions(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
+    // IScope scope) {
+    // List<String> functions = new ArrayList<String>();
+    // Iterable<IEObjectDescription> iterable = scope.getAllElements();
+    // for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
+    // IEObjectDescription description = iter.next();
+    // EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
+    // if (obj instanceof FunctionDefinition)
+    // functions.add(((FunctionDefinition) obj).getTable());
+    // }
+    // return functions;
+    // }
+    //
+    // public static List<String> findProcedures(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
+    // IScope scope) {
+    // List<String> procedures = new ArrayList<String>();
+    // Iterable<IEObjectDescription> iterable = scope.getAllElements();
+    // for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
+    // IEObjectDescription description = iter.next();
+    // EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
+    // if (obj instanceof ProcedureDefinition)
+    // procedures.add(((ProcedureDefinition) obj).getTable());
+    // }
+    // return procedures;
+    // }
 
     public static String constName(String name) {
         String result = "";

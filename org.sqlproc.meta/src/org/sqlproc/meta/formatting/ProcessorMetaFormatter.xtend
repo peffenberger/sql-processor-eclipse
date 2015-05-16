@@ -30,10 +30,10 @@ class ProcessorMetaFormatter extends AbstractDeclarativeFormatter {
 
         c.setLinewrap(1, 1, 2).after(artifactsRule);
         c.setLinewrap(1, 1, 2).after(propertyRule);
-        c.setLinewrap(1, 1, 2).after(pojoDefinitionRule);
-        c.setLinewrap(1, 1, 2).after(tableDefinitionRule);
-        c.setLinewrap(1, 1, 2).after(procedureDefinitionRule);
-        c.setLinewrap(1, 1, 2).after(functionDefinitionRule);
+        c.setLinewrap(1, 1, 2).after(pojoDefinitionModelRule);
+        c.setLinewrap(1, 1, 2).after(tableDefinitionModelRule);
+        c.setLinewrap(1, 1, 2).after(procedureDefinitionModelRule);
+        c.setLinewrap(1, 1, 2).after(functionDefinitionModelRule);
         c.setLinewrap(1, 1, 2).after(metaStatementRule);
         c.setLinewrap(1, 1, 2).after(mappingRuleRule);
         c.setLinewrap(1, 1, 2).after(optionalFeatureRule);

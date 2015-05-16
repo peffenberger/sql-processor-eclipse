@@ -1,11 +1,9 @@
 package org.sqlproc.plugin.lib.util;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.TreeMap;
 
 import org.eclipse.emf.ecore.EObject;
@@ -222,19 +220,23 @@ public class CommonUtils {
     public static String getTablesDefinitions(List<String> tables, Map<String, TableDefinition> tablesPresented) {
         if (tables == null)
             return null;
-        Set<String> set = (tablesPresented != null) ? new HashSet<String>(tablesPresented) : new HashSet<String>();
-        TreeMap<String, String> map = new TreeMap<String, String>();
+        Map<String, String> map = new TreeMap<String, String>();
+        if (tablesPresented != null) {
+            for (TableDefinition def : tablesPresented.values()) {
+                map.put(def.getTable(), def.getName());
+            }
+        }
         for (String table : tables) {
             if (table.toUpperCase().startsWith("BIN$"))
                 continue;
-            if (set.contains(table))
+            if (map.containsKey(table))
                 continue;
-            map.put(toCamelCase(table), table);
+            map.put(table, toCamelCase(table));
         }
 
         StringBuilder builder = new StringBuilder();
         for (Entry<String, String> table : map.entrySet()) {
-            builder.append("table ").append(table.getKey()).append(' ').append(table.getValue()).append(";\n");
+            builder.append("table ").append(table.getValue()).append(' ').append(table.getKey()).append(";\n");
         }
         return builder.toString();
     }
@@ -243,20 +245,23 @@ public class CommonUtils {
             Map<String, ProcedureDefinition> proceduresPresented) {
         if (procedures == null)
             return null;
-        Set<String> set = (proceduresPresented != null) ? new HashSet<String>(proceduresPresented)
-                : new HashSet<String>();
-        TreeMap<String, String> map = new TreeMap<String, String>();
+        Map<String, String> map = new TreeMap<String, String>();
+        if (proceduresPresented != null) {
+            for (ProcedureDefinition def : proceduresPresented.values()) {
+                map.put(def.getProcedure(), def.getName());
+            }
+        }
         for (String procedure : procedures) {
             if (procedure.toUpperCase().startsWith("BIN$"))
                 continue;
-            if (set.contains(procedure))
+            if (map.containsKey(procedure))
                 continue;
-            map.put(toCamelCase(procedure), procedure);
+            map.put(procedure, toCamelCase(procedure));
         }
 
         StringBuilder builder = new StringBuilder();
         for (Entry<String, String> procedure : map.entrySet()) {
-            builder.append("procedure ").append(procedure.getKey()).append(' ').append(procedure.getValue())
+            builder.append("procedure ").append(procedure.getValue()).append(' ').append(procedure.getKey())
                     .append(";\n");
         }
         return builder.toString();
@@ -266,20 +271,23 @@ public class CommonUtils {
             Map<String, FunctionDefinition> functionsPresented) {
         if (functions == null)
             return null;
-        Set<String> set = (functionsPresented != null) ? new HashSet<String>(functionsPresented)
-                : new HashSet<String>();
-        TreeMap<String, String> map = new TreeMap<String, String>();
+        Map<String, String> map = new TreeMap<String, String>();
+        if (functionsPresented != null) {
+            for (FunctionDefinition def : functionsPresented.values()) {
+                map.put(def.getFunction(), def.getName());
+            }
+        }
         for (String function : functions) {
             if (function.toUpperCase().startsWith("BIN$"))
                 continue;
-            if (set.contains(function))
+            if (map.containsKey(function))
                 continue;
-            map.put(toCamelCase(function), function);
+            map.put(function, toCamelCase(function));
         }
 
         StringBuilder builder = new StringBuilder();
         for (Entry<String, String> function : map.entrySet()) {
-            builder.append("function ").append(function.getKey()).append(' ').append(function.getValue()).append(";\n");
+            builder.append("function ").append(function.getValue()).append(' ').append(function.getKey()).append(";\n");
         }
         return builder.toString();
     }
