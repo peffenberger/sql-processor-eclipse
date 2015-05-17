@@ -40,9 +40,6 @@ public class TableDaoGenerator extends TablePojoGenerator {
     protected Logger LOGGER = Logger.getLogger(TableDaoGenerator.class);
     private Debug debug = new Debug(LOGGER);
 
-    protected Map<String, String> metaFunctionsResultSet = new HashMap<String, String>();
-    protected Map<String, String> metaProceduresResultSet = new HashMap<String, String>();
-
     protected Map<String, String> finalDaos;
     protected Map<String, Map<String, String>> finalDaosFeatures;
     protected Annotations daoAnnotations;
@@ -64,15 +61,6 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 .<String, Map<String, String>> emptyMap(), null, null, dbSequences, dbType);
 
         debug = new Debug(modelProperty.getDaoDebugLevel(artifacts), modelProperty.getDaoDebugScope(artifacts), LOGGER);
-
-        Map<String, String> metaFunctionsResultSet = modelProperty.getMetaFunctionsResultSet(artifacts);
-        if (metaFunctionsResultSet != null) {
-            this.metaFunctionsResultSet.putAll(metaFunctionsResultSet);
-        }
-        Map<String, String> metaProceduresResultSet = modelProperty.getMetaProceduresResultSet(artifacts);
-        if (metaProceduresResultSet != null) {
-            this.metaProceduresResultSet.putAll(metaProceduresResultSet);
-        }
 
         this.finalDaos = finalDaos;
         this.finalDaosFeatures = finalDaosFeatures;
@@ -104,8 +92,6 @@ public class TableDaoGenerator extends TablePojoGenerator {
         daoImplPackage = modelProperty.getDaoImplPackage(artifacts);
 
         if (debug.debug) {
-            System.out.println("metaFunctionsResultSet " + this.metaFunctionsResultSet);
-            System.out.println("metaProceduresResultSet " + this.metaProceduresResultSet);
             System.out.println("finalDaos " + this.finalDaos);
             System.out.println("finalDaosFeatures " + this.finalDaosFeatures);
             System.out.println("daoAnnotations " + this.daoAnnotations);
@@ -274,7 +260,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 // System.out.println("QQQQQ " + pojo);
                 if (!daoOnlyTables.isEmpty() && !daoOnlyTables.contains(pojo))
                     continue;
-                if (daoIgnoreTables.contains(pojo))
+                if (daoIgnoreTables.contains(pojo) || metaProceduresResultSet.values().contains(pojo))
                     continue;
                 if (!Filter.isTable(daoActiveFilter, pojo))
                     continue;
@@ -395,6 +381,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                     Map<String, PojoAttribute> attributes = procedures.get(procedure);
                     if (metaProceduresResultSet.containsKey(procedure)) {
                         String name = metaProceduresResultSet.get(procedure);
+                        // TODO
                         if (tableNames.containsKey(name))
                             name = tableNames.get(name);
                         bufferMeta.append(nlindent()).append("#ProcedureCallQuery(").append(COLLECTION_LIST)

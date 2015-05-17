@@ -63,8 +63,6 @@ public class TableMetaGenerator extends TableBaseGenerator {
     protected boolean metaGenerateIndirectIdGenerators;
     protected Map<String, StringBuilder> sequences = null;
     protected Map<String, StringBuilder> identities = null;
-    protected Map<String, String> metaFunctionsResultSet = new HashMap<String, String>();
-    protected Map<String, String> metaProceduresResultSet = new HashMap<String, String>();
     protected boolean metaGenerateOperators = false;
     protected Set<String> metaOptimizeInsert = new HashSet<String>();
     protected Map<String, Set<String>> metaOptionalFeatures = new HashMap<String, Set<String>>();
@@ -174,14 +172,6 @@ public class TableMetaGenerator extends TableBaseGenerator {
                 metaIdentityDefinition(null, identities);
             }
         }
-        Map<String, String> metaFunctionsResultSet = modelProperty.getMetaFunctionsResultSet(artifacts);
-        if (metaFunctionsResultSet != null) {
-            this.metaFunctionsResultSet.putAll(metaFunctionsResultSet);
-        }
-        Map<String, String> metaProceduresResultSet = modelProperty.getMetaProceduresResultSet(artifacts);
-        if (metaProceduresResultSet != null) {
-            this.metaProceduresResultSet.putAll(metaProceduresResultSet);
-        }
         this.metaGenerateOperators = modelProperty.isMetaGenerateOperators(artifacts);
         Set<String> metaOptimizeInsert = modelProperty.getMetaOptimizeInsert(artifacts);
         if (metaOptimizeInsert != null) {
@@ -236,8 +226,6 @@ public class TableMetaGenerator extends TableBaseGenerator {
             System.out.println("metaGlobalIdentityNotForTables " + this.metaGlobalIdentityNotForTables);
             System.out.println("metaGenerateIdGenerators " + this.metaGenerateIdGenerators);
             System.out.println("metaGenerateIndirectIdGenerators " + this.metaGenerateIndirectIdGenerators);
-            System.out.println("metaFunctionsResultSet " + this.metaFunctionsResultSet);
-            System.out.println("metaProceduresResultSet " + this.metaProceduresResultSet);
             System.out.println("metaGenerateOperators " + this.metaGenerateOperators);
             System.out.println("metaOptimizeInsert " + this.metaOptimizeInsert);
             System.out.println("metaOptionalFeatures " + this.metaOptionalFeatures);
@@ -302,6 +290,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
                 if (ignoreTables.contains(pojo))
                     continue;
                 if (pojoInheritanceDiscriminator.containsKey(pojo))
+                    continue;
+                if (metaProceduresResultSet.values().contains(pojo))
                     continue;
                 if (!MetaFilter.isTable(metaActiveFilter, pojo))
                     continue;
@@ -1128,6 +1118,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
             buffer.append(")\n;");
         } else if (!isFunction && metaProceduresResultSet.containsKey(pojo)) {
             String outPojo = metaProceduresResultSet.get(pojo);
+            // TODO
             if (pojos.containsKey(outPojo)) {
                 buffer.append("\n").append(((isFunction) ? "FUN_" : "PROC_")).append(pojo.toUpperCase()).append("(OUT");
                 if (metaMakeItFinal)
@@ -1163,6 +1154,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
             }
         } else if (isFunction && metaFunctionsResultSet.containsKey(pojo)) {
             String outPojo = metaFunctionsResultSet.get(pojo);
+            // TODO
             if (pojos.containsKey(outPojo)) {
                 buffer.append("\n").append(((isFunction) ? "FUN_" : "PROC_")).append(pojo.toUpperCase()).append("(OUT");
                 if (metaMakeItFinal)
@@ -1249,7 +1241,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
                 name = attr.attribute.getName();
             else
                 name = columnToCamelCase(name);
-            PojoAttribute attribute = pentry.getValue();
+            // PojoAttribute attribute = pentry.getValue();
             if (!first)
                 buffer.append(", ");
             else

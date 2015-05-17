@@ -88,6 +88,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    			return
    		}
    		
+   		val primaryKey = pojo.primaryKey
    		val simpleName = entity.name
    		val sernum = entity.sernum
    		
@@ -128,7 +129,8 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    						moreResultClasses = entity.getMoreResultClasses
    					inferListIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferQueryIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
-   					inferListFromToIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+   					if (primaryKey != null)
+   						inferListFromToIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferCountIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    				}
    				else if (dir instanceof DaoFunProcDirective) {
@@ -180,6 +182,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    			return
    		}
    		
+   		val primaryKey = pojo.primaryKey
    		val simpleName = entity.name
    		val sernum = entity.sernum
    		
@@ -278,7 +281,8 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    						moreResultClasses = entity.getMoreResultClasses
    					inferList(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferQuery(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
-   					inferListFromTo(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+   					if (primaryKey != null)
+   						inferListFromTo(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses, primaryKey)
    					inferCount(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    				}
    				else if (dir instanceof DaoFunProcDirective) {
@@ -724,10 +728,11 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 
    	def void inferListFromTo(DaoEntity entity, DaoDirectiveQuery dir, JvmGenericType entityType, String simpleName, 
    		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
-   		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
+   		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses, PojoAttribute primaryKey
    	) {
    		val pojoAttrName = pojo.name.toFirstLower
    		val listType = typeRef(java.util.List, typeRef(pojoType))
+   		val pkType = primaryKey.type ?: primaryKey.initExpr?.inferredType ?: typeRef(String)
    			
 		members += entity.toMethod('listFromTo', listType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
@@ -745,7 +750,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 				«pojoAttrName».setOnlyIds(true);
 				«SET»<String> initAssociations = «pojoAttrName».getInitAssociations();
 				«pojoAttrName».setInitAssociations(new «HASH_SET»<String>());
-				final «LIST»<Long> ids = sqlEngine«pojo.name».query(sqlSession, Long.class, «pojoAttrName», sqlControl);
+				final «LIST»<«pkType.qualifiedName»> ids = sqlEngine«pojo.name».query(sqlSession, «pkType.qualifiedName».class, «pojoAttrName», sqlControl);
 				«pojoAttrName».setInitAssociations(initAssociations);
 
 				List<«pojo.name»> «pojoAttrName»List = new «ARRAY_LIST»<«pojo.name»>();
@@ -753,7 +758,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 					«SQL_STANDARD_CONTROL» sqlc = new «SQL_STANDARD_CONTROL»(sqlControl);
 					sqlc.setFirstResult(0);
 					sqlc.setMaxResults(0);
-					final «Map»<Long, «pojo.name»> map = new «HASH_MAP»<Long, «pojo.name»>();
+					final «Map»<«pkType.qualifiedName», «pojo.name»> map = new «HASH_MAP»<«pkType.qualifiedName», «pojo.name»>();
 					final SqlRowProcessor<«pojo.name»> sqlRowProcessor = new SqlRowProcessor<«pojo.name»>() {
 						@Override
 						public boolean processRow(«pojo.name» result, int rownum) throws «SQL_RUNTIME_EXCEPTION» {
@@ -762,7 +767,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 						}
 					};
 					sqlEngine«pojo.name».query(sqlSession, «pojo.name».class, new «pojo.name»()._setIds(ids), sqlc, sqlRowProcessor);
-					for (Long id : ids)
+					for («pkType.qualifiedName» id : ids)
 						«pojoAttrName»List.add(map.get(id));
 				}
 				if (logger.isTraceEnabled()) {

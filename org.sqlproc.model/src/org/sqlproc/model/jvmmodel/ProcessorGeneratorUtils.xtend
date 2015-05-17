@@ -156,7 +156,6 @@ class ProcessorGeneratorUtils {
 		return if(d != null) true else false
 	}
 
-
     def dispatch String constName(PojoAttribute attr) {
         return constantName(attr.name)
     }
@@ -450,6 +449,16 @@ class ProcessorGeneratorUtils {
 			return null
 		return se.getAttribute(name)
     }
+	
+	def PojoAttribute getPrimaryKey(PojoEntity pojo) {
+		val result = pojo.attributes.findFirst(f|f.isPrimaryKey)
+		if (result != null)
+			return result
+		val se = pojo.superType
+		if (se == null || !(se instanceof PojoEntity))
+			return null
+		return getPrimaryKey(se as PojoEntity)
+	}
 
 	// EnumEntity
 

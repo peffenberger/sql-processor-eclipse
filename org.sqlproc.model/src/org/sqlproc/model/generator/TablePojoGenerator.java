@@ -392,6 +392,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                     // Set<String> isDef = new HashSet<String>();
                     // Set<String> toInit = new HashSet<String>();
                     Map<String, PojoAttribute> addedAttributes = new LinkedHashMap<String, PojoAttribute>();
+                    PojoAttribute pkAttribute = null;
                     for (Map.Entry<String, PojoAttribute> pentry : pojos.get(pojo).entrySet()) {
                         // System.out.println("  RRR " + pentry.getKey());
                         if (ignoreColumns.containsKey(pojo) && ignoreColumns.get(pojo).contains(pentry.getKey()))
@@ -466,6 +467,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                                     bufferMetaAttr.append(nlindent2()).append("#Required");
                             }
                             if (attribute.isPrimaryKey()) {
+                                pkAttribute = attribute;
                                 bufferMetaAttr.append(nlindent2()).append("#PrimaryKey");
                                 pkeys.add(name);
                             }
@@ -506,8 +508,11 @@ public class TablePojoGenerator extends TableBaseGenerator {
                         if (debug.debug)
                             bufferPartial.append(" // ").append(attribute.getCompleteSqlType());
                     }
-                    bufferPartial.append(NLINDENT).append(INDENT).append("#Attr boolean onlyIds");
-                    bufferPartial.append(NLINDENT).append(INDENT).append("#Attr java.util.List <Long> ids");
+                    if (pkAttribute != null) {
+                        bufferPartial.append(NLINDENT).append(INDENT).append("#Attr boolean onlyIds");
+                        bufferPartial.append(NLINDENT).append(INDENT).append("#Attr java.util.List <")
+                                .append(pkAttribute.getClassName()).append("> ids");
+                    }
                     // if (pojoExtends.containsKey(pojo)) {
                     // getParentAttrs(pojoExtends.get(pojo), null, null, toStr);
                     // }

@@ -134,6 +134,8 @@ public class TableBaseGenerator {
 
     protected Map<String, String> metaFunctionsResult = new HashMap<String, String>();
     protected Map<String, String> metaProceduresResult = new HashMap<String, String>();
+    protected Map<String, String> metaFunctionsResultSet = new HashMap<String, String>();
+    protected Map<String, String> metaProceduresResultSet = new HashMap<String, String>();
 
     protected Map<String, PojoDefinition> modelPojos = new TreeMap<String, PojoDefinition>();
     protected Map<String, TableDefinition> modelTables = new TreeMap<String, TableDefinition>();
@@ -311,6 +313,14 @@ public class TableBaseGenerator {
         if (metaFunctionsResult != null) {
             this.metaFunctionsResult.putAll(metaFunctionsResult);
         }
+        Map<String, String> metaFunctionsResultSet = modelProperty.getMetaFunctionsResultSet(model);
+        if (metaFunctionsResultSet != null) {
+            this.metaFunctionsResultSet.putAll(metaFunctionsResultSet);
+        }
+        Map<String, String> metaProceduresResultSet = modelProperty.getMetaProceduresResultSet(model);
+        if (metaProceduresResultSet != null) {
+            this.metaProceduresResultSet.putAll(metaProceduresResultSet);
+        }
 
         Map<String, PojoDefinition> modelPojos = modelProperty.getModelPojos(model);
         if (modelPojos != null) {
@@ -368,6 +378,8 @@ public class TableBaseGenerator {
             System.out.println("sequences " + this.dbSequences);
             System.out.println("dbType " + this.dbType);
             System.out.println("metaFunctionsResult " + this.metaFunctionsResult);
+            System.out.println("metaFunctionsResultSet " + this.metaFunctionsResultSet);
+            System.out.println("metaProceduresResultSet " + this.metaProceduresResultSet);
             System.out.println("preserveForeignKeys " + this.preserveForeignKeys);
             System.out.println("pojosForProcedures " + this.pojosForProcedures);
             System.out.println("pojosForFunctions " + this.pojosForFunctions);
@@ -765,6 +777,13 @@ public class TableBaseGenerator {
     public static final String FAKE_FUN_PROC_COLUMN_NAME = "_result_";
     public static final String FUN_PROC_COLUMN_NAME = "RESULT";
 
+    // procedureColumnUnknown - nobody knows 0
+    // procedureColumnIn - IN parameter 1
+    // procedureColumnInOut - INOUT parameter 2
+    // procedureColumnOut - OUT parameter 4
+    // procedureColumnReturn - procedure return value 5
+    // procedureColumnResult - result column in ResultSet 3
+
     public void addProcedureDefinition(String procedure, DbTable dbProcedure, List<DbColumn> dbProcColumns,
             boolean isFunction, String comment) {
         if (debug.debug) {
@@ -781,8 +800,7 @@ public class TableBaseGenerator {
             if ((dbColumn.getColumnType() == 3 || dbColumn.getColumnType() == 5)
                     && (dbColumn.getName() == null || dbColumn.getName().trim().length() == 0
                             || dbColumn.getName().equalsIgnoreCase("returnValue")
-                            || dbColumn.getName().equalsIgnoreCase("RETURN_VALUE")
-                            || dbColumn.getName().equalsIgnoreCase(FAKE_FUN_PROC_COLUMN_NAME) || dbColumn.getName()
+                            || dbColumn.getName().equalsIgnoreCase("RETURN_VALUE") || dbColumn.getName()
                             .equalsIgnoreCase("null"))) {
                 dbColumn.setName(FAKE_FUN_PROC_COLUMN_NAME);
             }
@@ -815,8 +833,10 @@ public class TableBaseGenerator {
             }
         }
         if (!attributesResultSet.isEmpty()) {
-            // TODO
             System.out.println("TODO " + procedure + " returns " + attributesResultSet);
+            String procedureResult = procedure + "_RESULT";
+            pojos.put(procedureResult, attributesResultSet);
+            metaProceduresResultSet.put(procedure, procedureResult);
         }
         if (createColumns.containsKey(procedure)) {
             for (Map.Entry<String, PojoAttrType> createColumn : createColumns.get(procedure).entrySet()) {
@@ -832,6 +852,13 @@ public class TableBaseGenerator {
         if ((dbType == DbType.POSTGRESQL || dbType == DbType.INFORMIX) && isFunction)
             functions.put(procedure, attributes);
     }
+
+    // functionColumnUnknown - nobody knows 0
+    // functionColumnIn - IN parameter 1
+    // functionColumnInOut - INOUT parameter 2
+    // functionColumnOut - OUT parameter 3
+    // functionColumnReturn - function return value 4
+    // functionColumnResult - Indicates that the parameter or column is a column in the ResultSet 5
 
     public void addFunctionDefinition(String function, DbTable dbFunction, List<DbColumn> dbFunColumns, String comment) {
         if (debug.debug) {
