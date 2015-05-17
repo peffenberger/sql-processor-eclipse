@@ -389,7 +389,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
         if (header.table.tablePrefix != null) {
             if (header.extendTable.tableName != null) {
                 if (!first) {
-                    if (select)
+                    if (doGenerateFromTo && select)
                         buffer.append("\n    ");
                     else
                         buffer.append("\n         ");
@@ -402,7 +402,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
                 for (Entry<String, Table> entry : header.assocTables.entrySet()) {
                     Table table = entry.getValue();
                     if (!first) {
-                        if (select)
+                        if (doGenerateFromTo && select)
                             buffer.append("\n    ");
                         else
                             buffer.append("\n         ");
