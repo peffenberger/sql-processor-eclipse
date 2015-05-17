@@ -56,6 +56,7 @@ Property: (condition=PropertyCondition WS*)?
 	|name='replace-text' WS+ regex=ValueType WS+ replacement=ValueType
 	|name='validate-resources' (WS+ PLUS (WS+ doVerifyResources+=ValueType)+)? (WS+ MINUS (WS+ doNotVerifyResources+=ValueType)+)?
 	|name='compress-meta-directives'
+	|name='generate-from-to'
 	) SEMICOLON;
 
 DatabaseProperty:

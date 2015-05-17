@@ -2611,9 +2611,25 @@ ruleProperty returns [EObject current=null]
 	    }
 
 )
-))this_SEMICOLON_37=RULE_SEMICOLON
+)
+    |(
+(
+		lv_name_37_0=	'generate-from-to' 
+    {
+        newLeafNode(lv_name_37_0, grammarAccess.getPropertyAccess().getNameGenerateFromToKeyword_1_11_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_37_0, "generate-from-to");
+	    }
+
+)
+))this_SEMICOLON_38=RULE_SEMICOLON
     { 
-    newLeafNode(this_SEMICOLON_37, grammarAccess.getPropertyAccess().getSEMICOLONTerminalRuleCall_2()); 
+    newLeafNode(this_SEMICOLON_38, grammarAccess.getPropertyAccess().getSEMICOLONTerminalRuleCall_2()); 
     }
 )
 ;

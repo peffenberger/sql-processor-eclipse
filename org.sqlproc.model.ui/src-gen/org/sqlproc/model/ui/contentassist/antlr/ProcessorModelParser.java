@@ -612,6 +612,7 @@ public class ProcessorModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyAccess().getDoVerifyResourcesAssignment_1_9_1_1(), "rule__Property__DoVerifyResourcesAssignment_1_9_1_1");
 					put(grammarAccess.getPropertyAccess().getDoNotVerifyResourcesAssignment_1_9_2_1(), "rule__Property__DoNotVerifyResourcesAssignment_1_9_2_1");
 					put(grammarAccess.getPropertyAccess().getNameAssignment_1_10(), "rule__Property__NameAssignment_1_10");
+					put(grammarAccess.getPropertyAccess().getNameAssignment_1_11(), "rule__Property__NameAssignment_1_11");
 					put(grammarAccess.getDatabasePropertyAccess().getNameAssignment_0(), "rule__DatabaseProperty__NameAssignment_0");
 					put(grammarAccess.getDatabasePropertyAccess().getNameAssignment_1(), "rule__DatabaseProperty__NameAssignment_1");
 					put(grammarAccess.getDatabasePropertyAccess().getNameAssignment_2_0(), "rule__DatabaseProperty__NameAssignment_2_0");

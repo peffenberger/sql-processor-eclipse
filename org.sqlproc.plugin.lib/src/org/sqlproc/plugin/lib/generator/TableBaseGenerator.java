@@ -77,6 +77,7 @@ public class TableBaseGenerator {
 
     protected EObject model;
     protected boolean doCompressMetaDirectives;
+    protected boolean doGenerateFromTo;
     protected Map<String, PojoAttrType> sqlTypes = new HashMap<String, PojoAttrType>();
     protected Map<String, Map<String, PojoAttrType>> tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
     protected Map<String, Map<String, PojoAttrType>> columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
@@ -151,6 +152,7 @@ public class TableBaseGenerator {
         debug = new Debug(modelProperty.getDebugLevel(model), modelProperty.getDebugScope(model), LOGGER);
 
         this.doCompressMetaDirectives = modelProperty.isCompressMetaDirectives(model);
+        this.doGenerateFromTo = modelProperty.isGenerateFromTo(model);
         Map<String, PojoAttrType> sqlTypes = modelProperty.getSqlTypes(model);
         if (sqlTypes != null) {
             this.sqlTypes.putAll(sqlTypes);

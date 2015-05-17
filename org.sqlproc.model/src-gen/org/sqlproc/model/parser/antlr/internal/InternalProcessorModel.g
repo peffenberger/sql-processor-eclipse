@@ -2339,9 +2339,25 @@ ruleProperty returns [EObject current=null]
 	    }
 
 )
-))	otherlv_26=';' 
+)
+    |(
+(
+		lv_name_26_0=	'generate-from-to' 
     {
-    	newLeafNode(otherlv_26, grammarAccess.getPropertyAccess().getSemicolonKeyword_2());
+        newLeafNode(lv_name_26_0, grammarAccess.getPropertyAccess().getNameGenerateFromToKeyword_1_11_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_26_0, "generate-from-to");
+	    }
+
+)
+))	otherlv_27=';' 
+    {
+    	newLeafNode(otherlv_27, grammarAccess.getPropertyAccess().getSemicolonKeyword_2());
     }
 )
 ;

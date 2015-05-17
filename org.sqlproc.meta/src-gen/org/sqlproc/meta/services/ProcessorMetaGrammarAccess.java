@@ -1398,6 +1398,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDoNotVerifyResourcesValueTypeParserRuleCall_1_9_2_2_1_0 = (RuleCall)cDoNotVerifyResourcesAssignment_1_9_2_2_1.eContents().get(0);
 		private final Assignment cNameAssignment_1_10 = (Assignment)cAlternatives_1.eContents().get(10);
 		private final Keyword cNameCompressMetaDirectivesKeyword_1_10_0 = (Keyword)cNameAssignment_1_10.eContents().get(0);
+		private final Assignment cNameAssignment_1_11 = (Assignment)cAlternatives_1.eContents().get(11);
+		private final Keyword cNameGenerateFromToKeyword_1_11_0 = (Keyword)cNameAssignment_1_11.eContents().get(0);
 		private final RuleCall cSEMICOLONTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
 		//Property:
@@ -1406,7 +1408,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="daogen-" daogen=DaogenProperty | name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType |
 		//	name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=ValueType | name="replace-text" WS+ regex=ValueType
 		//	WS+ replacement=ValueType | name="validate-resources" (WS+ PLUS (WS+ doVerifyResources+=ValueType)+)? (WS+ MINUS (WS+
-		//	doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives") SEMICOLON;
+		//	doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives" | name="generate-from-to") SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 
 		//(condition=PropertyCondition WS*)? (name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-"
@@ -1414,7 +1416,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//name="daogen-" daogen=DaogenProperty | name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType |
 		//name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=ValueType | name="replace-text" WS+ regex=ValueType
 		//WS+ replacement=ValueType | name="validate-resources" (WS+ PLUS (WS+ doVerifyResources+=ValueType)+)? (WS+ MINUS (WS+
-		//doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives") SEMICOLON
+		//doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives" | name="generate-from-to") SEMICOLON
 		public Group getGroup() { return cGroup; }
 
 		//(condition=PropertyCondition WS*)?
@@ -1434,7 +1436,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType | name="replace-all-replacement" WS+ replaceId=IDENT
 		//WS+ replacement=ValueType | name="replace-text" WS+ regex=ValueType WS+ replacement=ValueType |
 		//name="validate-resources" (WS+ PLUS (WS+ doVerifyResources+=ValueType)+)? (WS+ MINUS (WS+
-		//doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives"
+		//doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives" | name="generate-from-to"
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//name="resolve-pojo-on"
@@ -1647,6 +1649,12 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"compress-meta-directives"
 		public Keyword getNameCompressMetaDirectivesKeyword_1_10_0() { return cNameCompressMetaDirectivesKeyword_1_10_0; }
+
+		//name="generate-from-to"
+		public Assignment getNameAssignment_1_11() { return cNameAssignment_1_11; }
+
+		//"generate-from-to"
+		public Keyword getNameGenerateFromToKeyword_1_11_0() { return cNameGenerateFromToKeyword_1_11_0; }
 
 		//SEMICOLON
 		public RuleCall getSEMICOLONTerminalRuleCall_2() { return cSEMICOLONTerminalRuleCall_2; }
@@ -8360,7 +8368,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="daogen-" daogen=DaogenProperty | name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType |
 	//	name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=ValueType | name="replace-text" WS+ regex=ValueType
 	//	WS+ replacement=ValueType | name="validate-resources" (WS+ PLUS (WS+ doVerifyResources+=ValueType)+)? (WS+ MINUS (WS+
-	//	doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives") SEMICOLON;
+	//	doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives" | name="generate-from-to") SEMICOLON;
 	public PropertyElements getPropertyAccess() {
 		return pProperty;
 	}

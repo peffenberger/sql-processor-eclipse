@@ -1087,6 +1087,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDoNotVerifyResourcesValueTypeParserRuleCall_1_9_2_1_0 = (RuleCall)cDoNotVerifyResourcesAssignment_1_9_2_1.eContents().get(0);
 		private final Assignment cNameAssignment_1_10 = (Assignment)cAlternatives_1.eContents().get(10);
 		private final Keyword cNameCompressMetaDirectivesKeyword_1_10_0 = (Keyword)cNameAssignment_1_10.eContents().get(0);
+		private final Assignment cNameAssignment_1_11 = (Assignment)cAlternatives_1.eContents().get(11);
+		private final Keyword cNameGenerateFromToKeyword_1_11_0 = (Keyword)cNameAssignment_1_11.eContents().get(0);
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//Property:
@@ -1095,7 +1097,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="daogen-" daogen=DaogenProperty | name="replace-all-regex" replaceId=ValidID regex=ValueType |
 		//	name="replace-all-replacement" replaceId=ValidID replacement=ValueType | name="replace-text" regex=ValueType
 		//	replacement=ValueType | name="validate-resources" ("+" doVerifyResources+=ValueType+)? ("-"
-		//	doNotVerifyResources+=ValueType+)? | name="compress-meta-directives") ";";
+		//	doNotVerifyResources+=ValueType+)? | name="compress-meta-directives" | name="generate-from-to") ";";
 		@Override public ParserRule getRule() { return rule; }
 
 		//condition=PropertyCondition? (name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-"
@@ -1103,7 +1105,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//name="daogen-" daogen=DaogenProperty | name="replace-all-regex" replaceId=ValidID regex=ValueType |
 		//name="replace-all-replacement" replaceId=ValidID replacement=ValueType | name="replace-text" regex=ValueType
 		//replacement=ValueType | name="validate-resources" ("+" doVerifyResources+=ValueType+)? ("-"
-		//doNotVerifyResources+=ValueType+)? | name="compress-meta-directives") ";"
+		//doNotVerifyResources+=ValueType+)? | name="compress-meta-directives" | name="generate-from-to") ";"
 		public Group getGroup() { return cGroup; }
 
 		//condition=PropertyCondition?
@@ -1116,7 +1118,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
 		//name="replace-all-regex" replaceId=ValidID regex=ValueType | name="replace-all-replacement" replaceId=ValidID
 		//replacement=ValueType | name="replace-text" regex=ValueType replacement=ValueType | name="validate-resources" ("+"
-		//doVerifyResources+=ValueType+)? ("-" doNotVerifyResources+=ValueType+)? | name="compress-meta-directives"
+		//doVerifyResources+=ValueType+)? ("-" doNotVerifyResources+=ValueType+)? | name="compress-meta-directives" |
+		//name="generate-from-to"
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//name="resolve-pojo-on"
@@ -1292,6 +1295,12 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"compress-meta-directives"
 		public Keyword getNameCompressMetaDirectivesKeyword_1_10_0() { return cNameCompressMetaDirectivesKeyword_1_10_0; }
+
+		//name="generate-from-to"
+		public Assignment getNameAssignment_1_11() { return cNameAssignment_1_11; }
+
+		//"generate-from-to"
+		public Keyword getNameGenerateFromToKeyword_1_11_0() { return cNameGenerateFromToKeyword_1_11_0; }
 
 		//";"
 		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
@@ -6530,7 +6539,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="daogen-" daogen=DaogenProperty | name="replace-all-regex" replaceId=ValidID regex=ValueType |
 	//	name="replace-all-replacement" replaceId=ValidID replacement=ValueType | name="replace-text" regex=ValueType
 	//	replacement=ValueType | name="validate-resources" ("+" doVerifyResources+=ValueType+)? ("-"
-	//	doNotVerifyResources+=ValueType+)? | name="compress-meta-directives") ";";
+	//	doNotVerifyResources+=ValueType+)? | name="compress-meta-directives" | name="generate-from-to") ";";
 	public PropertyElements getPropertyAccess() {
 		return pProperty;
 	}

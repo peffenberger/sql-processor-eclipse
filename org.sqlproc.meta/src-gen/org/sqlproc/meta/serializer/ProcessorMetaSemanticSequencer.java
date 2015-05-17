@@ -1080,7 +1080,8 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *             (name='replace-all-replacement' replaceId=IDENT replacement=ValueType) | 
 	 *             (name='replace-text' regex=ValueType replacement=ValueType) | 
 	 *             (name='validate-resources' doVerifyResources+=ValueType* doNotVerifyResources+=ValueType*) | 
-	 *             name='compress-meta-directives'
+	 *             name='compress-meta-directives' | 
+	 *             name='generate-from-to'
 	 *         )
 	 *     )
 	 */

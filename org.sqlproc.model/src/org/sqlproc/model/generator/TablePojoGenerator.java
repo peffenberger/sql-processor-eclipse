@@ -393,6 +393,8 @@ public class TablePojoGenerator extends TableBaseGenerator {
                     // Set<String> toInit = new HashSet<String>();
                     Map<String, PojoAttribute> addedAttributes = new LinkedHashMap<String, PojoAttribute>();
                     PojoAttribute pkAttribute = null;
+                    // TODO
+                    // boolean morePkAttributes = false;
                     for (Map.Entry<String, PojoAttribute> pentry : pojos.get(pojo).entrySet()) {
                         // System.out.println("  RRR " + pentry.getKey());
                         if (ignoreColumns.containsKey(pojo) && ignoreColumns.get(pojo).contains(pentry.getKey()))
@@ -467,14 +469,17 @@ public class TablePojoGenerator extends TableBaseGenerator {
                                     bufferMetaAttr.append(nlindent2()).append("#Required");
                             }
                             if (attribute.isPrimaryKey()) {
-                                pkAttribute = attribute;
                                 bufferMetaAttr.append(nlindent2()).append("#PrimaryKey");
-                                if (attribute.getDependencyPojo() != null) {
-                                    PojoAttribute depPkAttribute = getPrimaryKey(attribute.getDependencyPojo());
-                                    if (depPkAttribute != null)
-                                        bufferMetaAttr.append("(")
-                                                .append(columnToCamelCase(depPkAttribute.getDbName())).append(",")
-                                                .append(depPkAttribute.getClassName()).append(")");
+                                if (doGenerateFromTo) {
+                                    if (pkAttribute == null)
+                                        pkAttribute = attribute;
+                                    if (attribute.getDependencyPojo() != null) {
+                                        PojoAttribute depPkAttribute = getPrimaryKey(attribute.getDependencyPojo());
+                                        if (depPkAttribute != null)
+                                            bufferMetaAttr.append("(")
+                                                    .append(columnToCamelCase(depPkAttribute.getDbName())).append(",")
+                                                    .append(depPkAttribute.getClassName()).append(")");
+                                    }
                                 }
                                 pkeys.add(name);
                             }

@@ -4323,6 +4323,12 @@ rule__Property__Alternatives_1
 { after(grammarAccess.getPropertyAccess().getNameAssignment_1_10()); }
 )
 
+    |(
+{ before(grammarAccess.getPropertyAccess().getNameAssignment_1_11()); }
+(rule__Property__NameAssignment_1_11)
+{ after(grammarAccess.getPropertyAccess().getNameAssignment_1_11()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -43928,6 +43934,29 @@ rule__Property__NameAssignment_1_10
 )
 
 { after(grammarAccess.getPropertyAccess().getNameCompressMetaDirectivesKeyword_1_10_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Property__NameAssignment_1_11
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getPropertyAccess().getNameGenerateFromToKeyword_1_11_0()); }
+(
+{ before(grammarAccess.getPropertyAccess().getNameGenerateFromToKeyword_1_11_0()); }
+
+	'generate-from-to' 
+
+{ after(grammarAccess.getPropertyAccess().getNameGenerateFromToKeyword_1_11_0()); }
+)
+
+{ after(grammarAccess.getPropertyAccess().getNameGenerateFromToKeyword_1_11_0()); }
 )
 
 ;

@@ -23,6 +23,7 @@ public abstract class ModelProperty extends AdapterImpl {
     public static final String REPLACE_TEXT = "replace-text";
     public static final String COMPRESS_META_DIRECTIVES = "compress-meta-directives";
     public static final String VALIDATE_RESOURCES = "validate-resources";
+    public static final String GENERAT_FROM_TO = "generate-from-to";
 
     public static final String DATABASE = "database";
     public static final String DATABASE_IS_ONLINE = "is-online";
@@ -138,6 +139,7 @@ public abstract class ModelProperty extends AdapterImpl {
         STANDARD_DIRECTIVES.add(COMPRESS_META_DIRECTIVES);
         STANDARD_DIRECTIVES.add(REPLACE_TEXT);
         STANDARD_DIRECTIVES.add(VALIDATE_RESOURCES);
+        STANDARD_DIRECTIVES.add(GENERAT_FROM_TO);
     }
 
     public static final List<String> DATABASE_DIRECTIVES = new ArrayList<String>();
@@ -172,6 +174,7 @@ public abstract class ModelProperty extends AdapterImpl {
         public boolean doCompressMetaDirectives;
         public Set<String> doVerifyResources;
         public Set<String> doNotVerifyResources;
+        public boolean doGenerateFromTo;
         public String dbDriver;
         public String dbUrl;
         public String dbUsername;
@@ -289,6 +292,7 @@ public abstract class ModelProperty extends AdapterImpl {
             doCompressMetaDirectives = false;
             doVerifyResources = new HashSet<String>();
             doNotVerifyResources = new HashSet<String>();
+            doGenerateFromTo = false;
             defaultAttrs.put(STANDARD, new HashSet<String>());
             conditionalAttrs.put(STANDARD, new HashSet<String>());
             systemEnvAttrs.put(STANDARD, new HashSet<String>());
@@ -434,6 +438,8 @@ public abstract class ModelProperty extends AdapterImpl {
                     doResolvePojo = false;
                 } else if (COMPRESS_META_DIRECTIVES.equals(name)) {
                     doCompressMetaDirectives = true;
+                } else if (GENERAT_FROM_TO.equals(name)) {
+                    doGenerateFromTo = true;
                 }
             }
         }
@@ -543,6 +549,11 @@ public abstract class ModelProperty extends AdapterImpl {
     public boolean isCompressMetaDirectives(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.doCompressMetaDirectives : false;
+    }
+
+    public boolean isGenerateFromTo(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.doGenerateFromTo : false;
     }
 
     public Map<String, PojoAttrType> getSqlTypes(EObject model) {

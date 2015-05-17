@@ -2963,6 +2963,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     condition=PropertyCondition (ambiguity) name='compress-meta-directives'
 	 *     condition=PropertyCondition (ambiguity) name='daogen-'
 	 *     condition=PropertyCondition (ambiguity) name='database-'
+	 *     condition=PropertyCondition (ambiguity) name='generate-from-to'
 	 *     condition=PropertyCondition (ambiguity) name='metagen-'
 	 *     condition=PropertyCondition (ambiguity) name='pojogen-'
 	 *     condition=PropertyCondition (ambiguity) name='replace-all-regex'
