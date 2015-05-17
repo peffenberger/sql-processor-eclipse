@@ -8083,10 +8083,10 @@ rulePojoAttributeDirective returns [EObject current=null]
 	    }
 
 )
-)(
+)((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getNameValidIDParserRuleCall_1_2_1_0()); 
+	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getNameValidIDParserRuleCall_1_2_1_0_0()); 
 	    }
 		lv_name_5_0=ruleValidID		{
 	        if ($current==null) {
@@ -8103,12 +8103,12 @@ rulePojoAttributeDirective returns [EObject current=null]
 )
 )this_COMMA_6=RULE_COMMA
     { 
-    newLeafNode(this_COMMA_6, grammarAccess.getPojoAttributeDirectiveAccess().getCOMMATerminalRuleCall_1_2_2()); 
+    newLeafNode(this_COMMA_6, grammarAccess.getPojoAttributeDirectiveAccess().getCOMMATerminalRuleCall_1_2_1_1()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getTypeValidIDParserRuleCall_1_2_3_0()); 
+	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getTypeValidIDParserRuleCall_1_2_1_2_0()); 
 	    }
 		lv_type_7_0=ruleValidID		{
 	        if ($current==null) {
@@ -8123,9 +8123,9 @@ rulePojoAttributeDirective returns [EObject current=null]
 	    }
 
 )
-)this_RPAREN_8=RULE_RPAREN
+))?this_RPAREN_8=RULE_RPAREN
     { 
-    newLeafNode(this_RPAREN_8, grammarAccess.getPojoAttributeDirectiveAccess().getRPARENTerminalRuleCall_1_2_4()); 
+    newLeafNode(this_RPAREN_8, grammarAccess.getPojoAttributeDirectiveAccess().getRPARENTerminalRuleCall_1_2_2()); 
     }
 )?)
     |((

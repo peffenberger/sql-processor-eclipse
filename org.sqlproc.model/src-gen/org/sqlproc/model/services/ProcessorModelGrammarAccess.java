@@ -4773,12 +4773,13 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
 		private final Assignment cFromToAssignment_1_2_0 = (Assignment)cGroup_1_2.eContents().get(0);
 		private final RuleCall cFromToLPARENTerminalRuleCall_1_2_0_0 = (RuleCall)cFromToAssignment_1_2_0.eContents().get(0);
-		private final Assignment cNameAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
-		private final RuleCall cNameValidIDParserRuleCall_1_2_1_0 = (RuleCall)cNameAssignment_1_2_1.eContents().get(0);
-		private final RuleCall cCOMMATerminalRuleCall_1_2_2 = (RuleCall)cGroup_1_2.eContents().get(2);
-		private final Assignment cTypeAssignment_1_2_3 = (Assignment)cGroup_1_2.eContents().get(3);
-		private final RuleCall cTypeValidIDParserRuleCall_1_2_3_0 = (RuleCall)cTypeAssignment_1_2_3.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_1_2_4 = (RuleCall)cGroup_1_2.eContents().get(4);
+		private final Group cGroup_1_2_1 = (Group)cGroup_1_2.eContents().get(1);
+		private final Assignment cNameAssignment_1_2_1_0 = (Assignment)cGroup_1_2_1.eContents().get(0);
+		private final RuleCall cNameValidIDParserRuleCall_1_2_1_0_0 = (RuleCall)cNameAssignment_1_2_1_0.eContents().get(0);
+		private final RuleCall cCOMMATerminalRuleCall_1_2_1_1 = (RuleCall)cGroup_1_2_1.eContents().get(1);
+		private final Assignment cTypeAssignment_1_2_1_2 = (Assignment)cGroup_1_2_1.eContents().get(2);
+		private final RuleCall cTypeValidIDParserRuleCall_1_2_1_2_0 = (RuleCall)cTypeAssignment_1_2_1_2.eContents().get(0);
+		private final RuleCall cRPARENTerminalRuleCall_1_2_2 = (RuleCall)cGroup_1_2.eContents().get(2);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
 		private final Action cPojoAttributeDirectiveDiscriminatorAction_2_0 = (Action)cGroup_2.eContents().get(0);
 		private final Keyword cInheritanceDiscriminatorKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
@@ -4829,7 +4830,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PojoAttributeDirective:
 		//	{PojoAttributeDirectiveRequired} "#Required" | {PojoAttributeDirectivePrimaryKey} "#PrimaryKey" (fromTo=LPAREN
-		//	name=ValidID COMMA type=ValidID RPAREN)? | {PojoAttributeDirectiveDiscriminator} "#InheritanceDiscriminator" |
+		//	(name=ValidID COMMA type=ValidID)? RPAREN)? | {PojoAttributeDirectiveDiscriminator} "#InheritanceDiscriminator" |
 		//	{PojoAttributeDirectiveIndex} "#Index" LPAREN index=INT RPAREN | {PojoAttributeDirectiveVersion} "#Version" |
 		//	{PojoAttributeDirectiveUpdateCol} "#UpdateCol" LPAREN updateColumn1=ValidID COMMA
 		//	updateColumn2=[PojoAttribute|ValidID] RPAREN | {PojoAttributeDirectiveCreateCol} "#CreateCol" LPAREN
@@ -4839,7 +4840,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		@Override public ParserRule getRule() { return rule; }
 
 		//{PojoAttributeDirectiveRequired} "#Required" | {PojoAttributeDirectivePrimaryKey} "#PrimaryKey" (fromTo=LPAREN
-		//name=ValidID COMMA type=ValidID RPAREN)? | {PojoAttributeDirectiveDiscriminator} "#InheritanceDiscriminator" |
+		//(name=ValidID COMMA type=ValidID)? RPAREN)? | {PojoAttributeDirectiveDiscriminator} "#InheritanceDiscriminator" |
 		//{PojoAttributeDirectiveIndex} "#Index" LPAREN index=INT RPAREN | {PojoAttributeDirectiveVersion} "#Version" |
 		//{PojoAttributeDirectiveUpdateCol} "#UpdateCol" LPAREN updateColumn1=ValidID COMMA updateColumn2=[PojoAttribute|ValidID]
 		//RPAREN | {PojoAttributeDirectiveCreateCol} "#CreateCol" LPAREN createColumn1=[PojoAttribute|ValidID] COMMA
@@ -4856,7 +4857,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"#Required"
 		public Keyword getRequiredKeyword_0_1() { return cRequiredKeyword_0_1; }
 
-		//{PojoAttributeDirectivePrimaryKey} "#PrimaryKey" (fromTo=LPAREN name=ValidID COMMA type=ValidID RPAREN)?
+		//{PojoAttributeDirectivePrimaryKey} "#PrimaryKey" (fromTo=LPAREN (name=ValidID COMMA type=ValidID)? RPAREN)?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{PojoAttributeDirectivePrimaryKey}
@@ -4865,7 +4866,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"#PrimaryKey"
 		public Keyword getPrimaryKeyKeyword_1_1() { return cPrimaryKeyKeyword_1_1; }
 
-		//(fromTo=LPAREN name=ValidID COMMA type=ValidID RPAREN)?
+		//(fromTo=LPAREN (name=ValidID COMMA type=ValidID)? RPAREN)?
 		public Group getGroup_1_2() { return cGroup_1_2; }
 
 		//fromTo=LPAREN
@@ -4874,23 +4875,26 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//LPAREN
 		public RuleCall getFromToLPARENTerminalRuleCall_1_2_0_0() { return cFromToLPARENTerminalRuleCall_1_2_0_0; }
 
+		//(name=ValidID COMMA type=ValidID)?
+		public Group getGroup_1_2_1() { return cGroup_1_2_1; }
+
 		//name=ValidID
-		public Assignment getNameAssignment_1_2_1() { return cNameAssignment_1_2_1; }
+		public Assignment getNameAssignment_1_2_1_0() { return cNameAssignment_1_2_1_0; }
 
 		//ValidID
-		public RuleCall getNameValidIDParserRuleCall_1_2_1_0() { return cNameValidIDParserRuleCall_1_2_1_0; }
+		public RuleCall getNameValidIDParserRuleCall_1_2_1_0_0() { return cNameValidIDParserRuleCall_1_2_1_0_0; }
 
 		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_1_2_2() { return cCOMMATerminalRuleCall_1_2_2; }
+		public RuleCall getCOMMATerminalRuleCall_1_2_1_1() { return cCOMMATerminalRuleCall_1_2_1_1; }
 
 		//type=ValidID
-		public Assignment getTypeAssignment_1_2_3() { return cTypeAssignment_1_2_3; }
+		public Assignment getTypeAssignment_1_2_1_2() { return cTypeAssignment_1_2_1_2; }
 
 		//ValidID
-		public RuleCall getTypeValidIDParserRuleCall_1_2_3_0() { return cTypeValidIDParserRuleCall_1_2_3_0; }
+		public RuleCall getTypeValidIDParserRuleCall_1_2_1_2_0() { return cTypeValidIDParserRuleCall_1_2_1_2_0; }
 
 		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_1_2_4() { return cRPARENTerminalRuleCall_1_2_4; }
+		public RuleCall getRPARENTerminalRuleCall_1_2_2() { return cRPARENTerminalRuleCall_1_2_2; }
 
 		//{PojoAttributeDirectiveDiscriminator} "#InheritanceDiscriminator"
 		public Group getGroup_2() { return cGroup_2; }
@@ -6830,7 +6834,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 
 	//PojoAttributeDirective:
 	//	{PojoAttributeDirectiveRequired} "#Required" | {PojoAttributeDirectivePrimaryKey} "#PrimaryKey" (fromTo=LPAREN
-	//	name=ValidID COMMA type=ValidID RPAREN)? | {PojoAttributeDirectiveDiscriminator} "#InheritanceDiscriminator" |
+	//	(name=ValidID COMMA type=ValidID)? RPAREN)? | {PojoAttributeDirectiveDiscriminator} "#InheritanceDiscriminator" |
 	//	{PojoAttributeDirectiveIndex} "#Index" LPAREN index=INT RPAREN | {PojoAttributeDirectiveVersion} "#Version" |
 	//	{PojoAttributeDirectiveUpdateCol} "#UpdateCol" LPAREN updateColumn1=ValidID COMMA
 	//	updateColumn2=[PojoAttribute|ValidID] RPAREN | {PojoAttributeDirectiveCreateCol} "#CreateCol" LPAREN

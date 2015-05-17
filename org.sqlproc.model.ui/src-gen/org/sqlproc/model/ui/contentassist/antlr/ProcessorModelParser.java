@@ -277,6 +277,7 @@ public class ProcessorModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getGroup_0(), "rule__PojoAttributeDirective__Group_0__0");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getGroup_1(), "rule__PojoAttributeDirective__Group_1__0");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getGroup_1_2(), "rule__PojoAttributeDirective__Group_1_2__0");
+					put(grammarAccess.getPojoAttributeDirectiveAccess().getGroup_1_2_1(), "rule__PojoAttributeDirective__Group_1_2_1__0");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getGroup_2(), "rule__PojoAttributeDirective__Group_2__0");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getGroup_3(), "rule__PojoAttributeDirective__Group_3__0");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getGroup_4(), "rule__PojoAttributeDirective__Group_4__0");
@@ -888,8 +889,8 @@ public class ProcessorModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoEntityAccess().getAttributesAssignment_7(), "rule__PojoEntity__AttributesAssignment_7");
 					put(grammarAccess.getPojoEntityAccess().getProceduresAssignment_8(), "rule__PojoEntity__ProceduresAssignment_8");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getFromToAssignment_1_2_0(), "rule__PojoAttributeDirective__FromToAssignment_1_2_0");
-					put(grammarAccess.getPojoAttributeDirectiveAccess().getNameAssignment_1_2_1(), "rule__PojoAttributeDirective__NameAssignment_1_2_1");
-					put(grammarAccess.getPojoAttributeDirectiveAccess().getTypeAssignment_1_2_3(), "rule__PojoAttributeDirective__TypeAssignment_1_2_3");
+					put(grammarAccess.getPojoAttributeDirectiveAccess().getNameAssignment_1_2_1_0(), "rule__PojoAttributeDirective__NameAssignment_1_2_1_0");
+					put(grammarAccess.getPojoAttributeDirectiveAccess().getTypeAssignment_1_2_1_2(), "rule__PojoAttributeDirective__TypeAssignment_1_2_1_2");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getIndexAssignment_3_3(), "rule__PojoAttributeDirective__IndexAssignment_3_3");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1Assignment_5_3(), "rule__PojoAttributeDirective__UpdateColumn1Assignment_5_3");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn2Assignment_5_5(), "rule__PojoAttributeDirective__UpdateColumn2Assignment_5_5");
