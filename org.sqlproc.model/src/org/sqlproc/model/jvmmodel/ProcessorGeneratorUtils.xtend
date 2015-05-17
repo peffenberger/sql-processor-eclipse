@@ -122,8 +122,13 @@ class ProcessorGeneratorUtils {
 		return if(d != null) true else false
 	}
 
+	def PojoAttributeDirectivePrimaryKey getPrimaryKeyDir(PojoAttribute f) {
+		val d = f.directives?.findFirst[x|x instanceof PojoAttributeDirectivePrimaryKey] as PojoAttributeDirectivePrimaryKey
+		return d
+	}
+
 	def isOptLock(PojoAttribute f) {
-		val d = f.directives?.findFirst[x|x instanceof PojoAttributeDirectiveVersion]
+		val d = f.directives?.findFirst[x|x instanceof PojoAttributeDirectiveVersion] 
 		return if(d != null) true else false
 	}
 

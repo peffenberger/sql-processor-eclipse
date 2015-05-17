@@ -732,9 +732,10 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    	) {
    		val pojoAttrName = pojo.name.toFirstLower
    		val listType = typeRef(java.util.List, typeRef(pojoType))
-   		val pkType = primaryKey.type ?: primaryKey.initExpr?.inferredType ?: typeRef(String)
+		val pkDir = primaryKey.primaryKeyDir
+		val pkType = if (pkDir.type != null) pkDir.type else (primaryKey.type ?: primaryKey.initExpr?.inferredType ?: typeRef(String)).qualifiedName
+		val pkGetDep = if (pkDir.name != null) ".get"+pkDir.name.toFirstUpper+"()" else ""
 			
-			   			
 		members += entity.toMethod('listFromTo', listType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
@@ -751,7 +752,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 				«pojoAttrName».setOnlyIds(true);
 				«SET»<String> initAssociations = «pojoAttrName».getInitAssociations();
 				«pojoAttrName».setInitAssociations(new «HASH_SET»<String>());
-				final «LIST»<«pkType.qualifiedName»> ids = sqlEngine«pojo.name».query(sqlSession, «pkType.qualifiedName».class, «pojoAttrName», sqlControl);
+				final «LIST»<«pkType»> ids = sqlEngine«pojo.name».query(sqlSession, «pkType».class, «pojoAttrName», sqlControl);
 				«pojoAttrName».setInitAssociations(initAssociations);
 
 				List<«pojo.name»> «pojoAttrName»List = new «ARRAY_LIST»<«pojo.name»>();
@@ -759,16 +760,16 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 					«SQL_STANDARD_CONTROL» sqlc = new «SQL_STANDARD_CONTROL»(sqlControl);
 					sqlc.setFirstResult(0);
 					sqlc.setMaxResults(0);
-					final «Map»<«pkType.qualifiedName», «pojo.name»> map = new «HASH_MAP»<«pkType.qualifiedName», «pojo.name»>();
+					final «Map»<«pkType», «pojo.name»> map = new «HASH_MAP»<«pkType», «pojo.name»>();
 					final SqlRowProcessor<«pojo.name»> sqlRowProcessor = new SqlRowProcessor<«pojo.name»>() {
 						@Override
 						public boolean processRow(«pojo.name» result, int rownum) throws «SQL_RUNTIME_EXCEPTION» {
-							map.put(result.get«primaryKey.name.toFirstUpper»(), result);
+							map.put(result.get«primaryKey.name.toFirstUpper»()«pkGetDep», result);
 							return true;
 						}
 					};
 					sqlEngine«pojo.name».query(sqlSession, «pojo.name».class, new «pojo.name»()._setIds(ids), sqlc, sqlRowProcessor);
-					for («pkType.qualifiedName» id : ids)
+					for («pkType» id : ids)
 						«pojoAttrName»List.add(map.get(id));
 				}
 				if (logger.isTraceEnabled()) {
