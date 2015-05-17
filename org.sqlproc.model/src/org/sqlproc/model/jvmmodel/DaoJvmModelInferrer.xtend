@@ -129,7 +129,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    						moreResultClasses = entity.getMoreResultClasses
    					inferListIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferQueryIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
-   					if (primaryKey != null)
+   					if (primaryKey != null && !pojo.toInitAttributes.isEmpty)
    						inferListFromToIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferCountIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    				}
@@ -281,7 +281,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    						moreResultClasses = entity.getMoreResultClasses
    					inferList(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferQuery(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
-   					if (primaryKey != null)
+   					if (primaryKey != null && !pojo.toInitAttributes.isEmpty)
    						inferListFromTo(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses, primaryKey)
    					inferCount(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    				}
