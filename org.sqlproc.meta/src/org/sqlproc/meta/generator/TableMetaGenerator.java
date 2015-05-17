@@ -451,7 +451,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
                 }
             }
         }
-        if (select)
+        if (doGenerateFromTo && select)
             buffer.append("\n  }");
         buffer.append("\n  from %%").append(header.table.realTableName);
 
