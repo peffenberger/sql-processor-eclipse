@@ -524,7 +524,10 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveRequired" eSuperTypes="#//PojoAttributeDirective"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectivePrimaryKey" eSuperTypes="#//PojoAttributeDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectivePrimaryKey" eSuperTypes="#//PojoAttributeDirective">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveDiscriminator"
       eSuperTypes="#//PojoAttributeDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveIndex" eSuperTypes="#//PojoAttributeDirective">

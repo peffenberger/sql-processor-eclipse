@@ -381,7 +381,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDirectiveHashCode/proplist"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveRequired"/>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectivePrimaryKey"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectivePrimaryKey">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttributeDirectivePrimaryKey/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttributeDirectivePrimaryKey/type"/>
+    </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveDiscriminator"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveIndex">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttributeDirectiveIndex/index"/>

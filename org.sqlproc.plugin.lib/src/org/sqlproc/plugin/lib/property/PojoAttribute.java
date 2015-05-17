@@ -18,6 +18,7 @@ public class PojoAttribute {
     private String className;
     private String ref;
     private String dependencyClassName;
+    private String dependencyPojo;
     private boolean dependencyClassNameIsEnum;
     private String pkTable;
     private String pkColumn;
@@ -320,6 +321,14 @@ public class PojoAttribute {
 
     public void setOne2one(String one2one) {
         this.one2one = one2one;
+    }
+
+    public String getDependencyPojo() {
+        return dependencyPojo;
+    }
+
+    public void setDependencyPojo(String dependencyPojo) {
+        this.dependencyPojo = dependencyPojo;
     }
 
     @Override

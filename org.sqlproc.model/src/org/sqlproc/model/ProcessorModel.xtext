@@ -253,7 +253,7 @@ PojoEntity:
 
 PojoAttributeDirective: 
 	{PojoAttributeDirectiveRequired} '#Required'
-	| {PojoAttributeDirectivePrimaryKey} '#PrimaryKey'
+	| {PojoAttributeDirectivePrimaryKey} '#PrimaryKey' (LPAREN name=ValidID COMMA type=ValidID RPAREN)?
 	| {PojoAttributeDirectiveDiscriminator} '#InheritanceDiscriminator'
 	| {PojoAttributeDirectiveIndex} '#Index' LPAREN index=INT RPAREN
 	| {PojoAttributeDirectiveVersion} '#Version'

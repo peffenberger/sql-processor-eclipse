@@ -469,6 +469,13 @@ public class TablePojoGenerator extends TableBaseGenerator {
                             if (attribute.isPrimaryKey()) {
                                 pkAttribute = attribute;
                                 bufferMetaAttr.append(nlindent2()).append("#PrimaryKey");
+                                if (attribute.getDependencyPojo() != null) {
+                                    PojoAttribute depPkAttribute = getPrimaryKey(attribute.getDependencyPojo());
+                                    if (depPkAttribute != null)
+                                        bufferMetaAttr.append("(")
+                                                .append(columnToCamelCase(depPkAttribute.getDbName())).append(",")
+                                                .append(depPkAttribute.getClassName()).append(")");
+                                }
                                 pkeys.add(name);
                             }
                             if (!generateMethods.contains(METHOD_INDEX) && attribute.getIndex() != null) {
@@ -791,6 +798,18 @@ public class TablePojoGenerator extends TableBaseGenerator {
             String s = writer.toString();
             return s;
         }
+    }
+
+    protected PojoAttribute getPrimaryKey(String pojo) {
+        for (Map.Entry<String, PojoAttribute> pentry : pojos.get(pojo).entrySet()) {
+            PojoAttribute attr = pentry.getValue();
+            if (attr == null)
+                continue;
+            if (attr.isPrimaryKey()) {
+                return attr;
+            }
+        }
+        return null;
     }
 
     public static String generatePojo(Artifacts artifacts, Package packagex, ISerializer serializer,

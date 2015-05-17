@@ -733,7 +733,8 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		val pojoAttrName = pojo.name.toFirstLower
    		val listType = typeRef(java.util.List, typeRef(pojoType))
    		val pkType = primaryKey.type ?: primaryKey.initExpr?.inferredType ?: typeRef(String)
-   			
+			
+			   			
 		members += entity.toMethod('listFromTo', listType) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
 			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))

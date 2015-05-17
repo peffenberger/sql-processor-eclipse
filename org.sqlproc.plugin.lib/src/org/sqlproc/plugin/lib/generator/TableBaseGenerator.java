@@ -703,6 +703,7 @@ public class TableBaseGenerator {
                 if (attribute.getPkTable() != null) {
                     if (pojos.containsKey(attribute.getPkTable())) {
                         attribute.setDependencyClassName(tableToCamelCase(getTableName(attribute.getPkTable())));
+                        attribute.setDependencyPojo(attribute.getPkTable());
                         attribute.setRef(attribute.getPkTable());
                         if (attribute.getName().length() >= 3) {
                             if (attribute.getName().startsWith("id")) {

@@ -1611,7 +1611,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     {PojoAttributeDirectivePrimaryKey}
+	 *     ((name=ValidID type=ValidID)?)
 	 */
 	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectivePrimaryKey semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

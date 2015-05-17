@@ -4054,6 +4054,26 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getPojoAttributeDirectivePrimaryKey_Name()
+  {
+    return (EAttribute)pojoAttributeDirectivePrimaryKeyEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPojoAttributeDirectivePrimaryKey_Type()
+  {
+    return (EAttribute)pojoAttributeDirectivePrimaryKeyEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPojoAttributeDirectiveDiscriminator()
   {
     return pojoAttributeDirectiveDiscriminatorEClass;
@@ -4906,6 +4926,8 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     pojoAttributeDirectiveRequiredEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE_REQUIRED);
 
     pojoAttributeDirectivePrimaryKeyEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY);
+    createEAttribute(pojoAttributeDirectivePrimaryKeyEClass, POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__NAME);
+    createEAttribute(pojoAttributeDirectivePrimaryKeyEClass, POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__TYPE);
 
     pojoAttributeDirectiveDiscriminatorEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE_DISCRIMINATOR);
 
@@ -5455,6 +5477,8 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEClass(pojoAttributeDirectiveRequiredEClass, PojoAttributeDirectiveRequired.class, "PojoAttributeDirectiveRequired", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(pojoAttributeDirectivePrimaryKeyEClass, PojoAttributeDirectivePrimaryKey.class, "PojoAttributeDirectivePrimaryKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPojoAttributeDirectivePrimaryKey_Name(), ecorePackage.getEString(), "name", null, 0, 1, PojoAttributeDirectivePrimaryKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPojoAttributeDirectivePrimaryKey_Type(), ecorePackage.getEString(), "type", null, 0, 1, PojoAttributeDirectivePrimaryKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoAttributeDirectiveDiscriminatorEClass, PojoAttributeDirectiveDiscriminator.class, "PojoAttributeDirectiveDiscriminator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
