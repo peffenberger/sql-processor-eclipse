@@ -762,7 +762,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 					final SqlRowProcessor<«pojo.name»> sqlRowProcessor = new SqlRowProcessor<«pojo.name»>() {
 						@Override
 						public boolean processRow(«pojo.name» result, int rownum) throws «SQL_RUNTIME_EXCEPTION» {
-							map.put(result.getId(), result);
+							map.put(result.get«primaryKey.name.toFirstUpper»(), result);
 							return true;
 						}
 					};

@@ -520,6 +520,21 @@ class PojoJvmModelInferrer {
    					'''
    				]	
    			}
+   			else {
+				val identifierSetType = typeRef(java.util.Set, typeRef(String))
+	   			members += entity.toMethod('getInitAssociations', identifierSetType.cloneWithProxies) [
+	   				addAnnotationsX(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						return null;
+   					'''
+   				]	
+	   			members += entity.toMethod('setInitAssociations', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("initAssociations", identifierSetType.cloneWithProxies)
+	   				addAnnotationsX(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+   					'''
+   				]	
+   			}
 
    			val enumInitList = entity.enumInitAttributes
    			if (!enumInitList.isEmpty) {
