@@ -451,6 +451,8 @@ class ProcessorGeneratorUtils {
     }
 	
 	def PojoAttribute getPrimaryKey(PojoEntity pojo) {
+		if (pojo == null)
+			return null;
 		val result = pojo.attributes.findFirst(f|f.isPrimaryKey)
 		if (result != null)
 			return result

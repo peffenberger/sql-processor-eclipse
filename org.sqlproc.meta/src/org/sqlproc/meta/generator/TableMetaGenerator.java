@@ -258,16 +258,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
             }
             if (metaGenerateIdentities && dbType == DbType.POSTGRESQL) {
                 for (String pojo : pojos.keySet()) {
-                    String primaryKey = null;
-                    for (Map.Entry<String, PojoAttribute> pentry : pojos.get(pojo).entrySet()) {
-                        PojoAttribute attr = pentry.getValue();
-                        if (attr == null)
-                            continue;
-                        if (attr.isPrimaryKey()) {
-                            primaryKey = attr.getDbName();
-                            break;
-                        }
-                    }
+                    String primaryKey = getPrimaryKey(pojo);
                     if (primaryKey != null)
                         metaIdentityDefinition(pojo, primaryKey, identities);
                 }
@@ -366,14 +357,28 @@ public class TableMetaGenerator extends TableBaseGenerator {
         return buffer;
     }
 
+    String getPrimaryKey(String pojo) {
+        for (Map.Entry<String, PojoAttribute> pentry : pojos.get(pojo).entrySet()) {
+            PojoAttribute attr = pentry.getValue();
+            if (attr == null)
+                continue;
+            if (attr.isPrimaryKey()) {
+                return attr.getDbName();
+            }
+        }
+        return null;
+    }
+
     StringBuilder metaGetSelectDefinition(String pojo, boolean select) {
         StringBuilder buffer = new StringBuilder();
         Header header = getStatementHeader(pojo, buffer, (select) ? StatementType.SELECT : StatementType.GET, null);
         if (header == null)
             return buffer;
+        String primaryKey = getPrimaryKey(pojo);
         buffer.append("\n  select ");
         if (select)
-            buffer.append("{? :onlyIds | %p.ID @id(id) |\n    ");
+            buffer.append("{? :onlyIds | %").append(header.table.tablePrefix).append(".").append(primaryKey)
+                    .append(" @id(id) |\n    ");
         String parentPojo = pojoDiscriminators.containsKey(header.table.tableName) ? pojoExtends
                 .get(header.table.tableName) : null;
         boolean first = selectColumns(buffer, pojo, true, header.statementName, header.table.tablePrefix, null, false,
@@ -504,7 +509,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
             whereColumns(buffer, header.extendTable.tableName, first, header.statementName,
                     header.extendTable.tablePrefix, true, select);
         if (select)
-            buffer.append("\n    {& %p.ID in :ids }");
+            buffer.append("\n    {& %").append(header.table.tablePrefix).append(".").append(primaryKey)
+                    .append(" in :ids }");
         buffer.append("\n  }");
         if (select) {
             if (generateMethods.contains(METHOD_INDEX) && indexes.containsKey(pojo))
@@ -1118,7 +1124,6 @@ public class TableMetaGenerator extends TableBaseGenerator {
             buffer.append(")\n;");
         } else if (!isFunction && metaProceduresResultSet.containsKey(pojo)) {
             String outPojo = metaProceduresResultSet.get(pojo);
-            // TODO
             if (pojos.containsKey(outPojo)) {
                 buffer.append("\n").append(((isFunction) ? "FUN_" : "PROC_")).append(pojo.toUpperCase()).append("(OUT");
                 if (metaMakeItFinal)
@@ -1154,7 +1159,6 @@ public class TableMetaGenerator extends TableBaseGenerator {
             }
         } else if (isFunction && metaFunctionsResultSet.containsKey(pojo)) {
             String outPojo = metaFunctionsResultSet.get(pojo);
-            // TODO
             if (pojos.containsKey(outPojo)) {
                 buffer.append("\n").append(((isFunction) ? "FUN_" : "PROC_")).append(pojo.toUpperCase()).append("(OUT");
                 if (metaMakeItFinal)
