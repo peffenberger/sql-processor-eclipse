@@ -382,6 +382,7 @@
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveRequired"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectivePrimaryKey">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttributeDirectivePrimaryKey/fromTo"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttributeDirectivePrimaryKey/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttributeDirectivePrimaryKey/type"/>
     </genClasses>

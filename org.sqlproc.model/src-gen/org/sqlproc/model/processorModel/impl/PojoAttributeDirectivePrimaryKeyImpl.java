@@ -18,6 +18,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAttributeDirectivePrimaryKeyImpl#getFromTo <em>From To</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAttributeDirectivePrimaryKeyImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAttributeDirectivePrimaryKeyImpl#getType <em>Type</em>}</li>
  * </ul>
@@ -27,6 +28,26 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  */
 public class PojoAttributeDirectivePrimaryKeyImpl extends PojoAttributeDirectiveImpl implements PojoAttributeDirectivePrimaryKey
 {
+  /**
+   * The default value of the '{@link #getFromTo() <em>From To</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFromTo()
+   * @generated
+   * @ordered
+   */
+  protected static final String FROM_TO_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getFromTo() <em>From To</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFromTo()
+   * @generated
+   * @ordered
+   */
+  protected String fromTo = FROM_TO_EDEFAULT;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -93,6 +114,29 @@ public class PojoAttributeDirectivePrimaryKeyImpl extends PojoAttributeDirective
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getFromTo()
+  {
+    return fromTo;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFromTo(String newFromTo)
+  {
+    String oldFromTo = fromTo;
+    fromTo = newFromTo;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__FROM_TO, oldFromTo, fromTo));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getName()
   {
     return name;
@@ -144,6 +188,8 @@ public class PojoAttributeDirectivePrimaryKeyImpl extends PojoAttributeDirective
   {
     switch (featureID)
     {
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__FROM_TO:
+        return getFromTo();
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__NAME:
         return getName();
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__TYPE:
@@ -162,6 +208,9 @@ public class PojoAttributeDirectivePrimaryKeyImpl extends PojoAttributeDirective
   {
     switch (featureID)
     {
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__FROM_TO:
+        setFromTo((String)newValue);
+        return;
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__NAME:
         setName((String)newValue);
         return;
@@ -182,6 +231,9 @@ public class PojoAttributeDirectivePrimaryKeyImpl extends PojoAttributeDirective
   {
     switch (featureID)
     {
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__FROM_TO:
+        setFromTo(FROM_TO_EDEFAULT);
+        return;
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -202,6 +254,8 @@ public class PojoAttributeDirectivePrimaryKeyImpl extends PojoAttributeDirective
   {
     switch (featureID)
     {
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__FROM_TO:
+        return FROM_TO_EDEFAULT == null ? fromTo != null : !FROM_TO_EDEFAULT.equals(fromTo);
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__TYPE:
@@ -221,7 +275,9 @@ public class PojoAttributeDirectivePrimaryKeyImpl extends PojoAttributeDirective
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    result.append(" (fromTo: ");
+    result.append(fromTo);
+    result.append(", name: ");
     result.append(name);
     result.append(", type: ");
     result.append(type);

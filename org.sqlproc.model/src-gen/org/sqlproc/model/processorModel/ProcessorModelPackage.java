@@ -3700,13 +3700,22 @@ public interface ProcessorModelPackage extends EPackage
   int POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY = 78;
 
   /**
+   * The feature id for the '<em><b>From To</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__FROM_TO = POJO_ATTRIBUTE_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__NAME = POJO_ATTRIBUTE_DIRECTIVE_FEATURE_COUNT + 0;
+  int POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__NAME = POJO_ATTRIBUTE_DIRECTIVE_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -3715,7 +3724,7 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__TYPE = POJO_ATTRIBUTE_DIRECTIVE_FEATURE_COUNT + 1;
+  int POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__TYPE = POJO_ATTRIBUTE_DIRECTIVE_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Pojo Attribute Directive Primary Key</em>' class.
@@ -3724,7 +3733,7 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY_FEATURE_COUNT = POJO_ATTRIBUTE_DIRECTIVE_FEATURE_COUNT + 2;
+  int POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY_FEATURE_COUNT = POJO_ATTRIBUTE_DIRECTIVE_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.PojoAttributeDirectiveDiscriminatorImpl <em>Pojo Attribute Directive Discriminator</em>}' class.
@@ -7734,6 +7743,17 @@ public interface ProcessorModelPackage extends EPackage
   EClass getPojoAttributeDirectivePrimaryKey();
 
   /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.PojoAttributeDirectivePrimaryKey#getFromTo <em>From To</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>From To</em>'.
+   * @see org.sqlproc.model.processorModel.PojoAttributeDirectivePrimaryKey#getFromTo()
+   * @see #getPojoAttributeDirectivePrimaryKey()
+   * @generated
+   */
+  EAttribute getPojoAttributeDirectivePrimaryKey_FromTo();
+
+  /**
    * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.PojoAttributeDirectivePrimaryKey#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -10862,6 +10882,14 @@ public interface ProcessorModelPackage extends EPackage
      * @generated
      */
     EClass POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY = eINSTANCE.getPojoAttributeDirectivePrimaryKey();
+
+    /**
+     * The meta object literal for the '<em><b>From To</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY__FROM_TO = eINSTANCE.getPojoAttributeDirectivePrimaryKey_FromTo();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.

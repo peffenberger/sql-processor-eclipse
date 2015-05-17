@@ -8065,11 +8065,25 @@ rulePojoAttributeDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_3, grammarAccess.getPojoAttributeDirectiveAccess().getPrimaryKeyKeyword_1_1());
     }
-(this_LPAREN_4=RULE_LPAREN
-    { 
-    newLeafNode(this_LPAREN_4, grammarAccess.getPojoAttributeDirectiveAccess().getLPARENTerminalRuleCall_1_2_0()); 
-    }
+((
 (
+		lv_fromTo_4_0=RULE_LPAREN
+		{
+			newLeafNode(lv_fromTo_4_0, grammarAccess.getPojoAttributeDirectiveAccess().getFromToLPARENTerminalRuleCall_1_2_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoAttributeDirectiveRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"fromTo",
+        		lv_fromTo_4_0, 
+        		"LPAREN");
+	    }
+
+)
+)(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getNameValidIDParserRuleCall_1_2_1_0()); 

@@ -474,11 +474,22 @@ public class TablePojoGenerator extends TableBaseGenerator {
                                     if (pkAttribute == null)
                                         pkAttribute = attribute;
                                     if (attribute.getDependencyPojo() != null) {
-                                        PojoAttribute depPkAttribute = getPrimaryKey(attribute.getDependencyPojo());
-                                        if (depPkAttribute != null)
-                                            bufferMetaAttr.append("(")
-                                                    .append(columnToCamelCase(depPkAttribute.getDbName())).append(",")
-                                                    .append(depPkAttribute.getClassName()).append(")");
+                                        if (attribute.isDependencyClassNameIsEnum()) {
+                                            List<EnumAttribute> enumAttrs = enums.get(attribute.getDependencyPojo());
+                                            if (enumAttrs != null)
+                                                bufferMetaAttr.append("(value,")
+                                                        .append(enumAttrs.get(0).getClassName()).append(")");
+                                        } else {
+                                            PojoAttribute depPkAttribute = getPrimaryKey(attribute.getDependencyPojo());
+                                            if (depPkAttribute != null)
+                                                bufferMetaAttr.append("(")
+                                                        .append(columnToCamelCase(depPkAttribute.getDbName()))
+                                                        .append(",").append(depPkAttribute.getClassName()).append(")");
+                                        }
+                                    } else if (attribute.isDependencyClassNameIsEnum()) {
+                                        bufferMetaAttr.append("(value,").append("").append(")");
+                                    } else {
+                                        bufferMetaAttr.append("()");
                                     }
                                 }
                                 pkeys.add(name);

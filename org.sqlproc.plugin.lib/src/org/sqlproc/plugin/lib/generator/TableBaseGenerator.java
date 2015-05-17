@@ -618,6 +618,7 @@ public class TableBaseGenerator {
                     firstCheckConstraint = true;
             } else {
                 attribute.setDependencyClassName(tableToCamelCase(getTableName(name)));
+                attribute.setDependencyPojo(name);
                 firstCheckConstraint = true;
             }
             attribute.setDependencyClassNameIsEnum(true);

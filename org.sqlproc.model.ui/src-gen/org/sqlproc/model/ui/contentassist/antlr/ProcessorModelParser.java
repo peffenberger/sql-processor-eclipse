@@ -887,6 +887,7 @@ public class ProcessorModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoEntityAccess().getSuperTypeAssignment_5_1(), "rule__PojoEntity__SuperTypeAssignment_5_1");
 					put(grammarAccess.getPojoEntityAccess().getAttributesAssignment_7(), "rule__PojoEntity__AttributesAssignment_7");
 					put(grammarAccess.getPojoEntityAccess().getProceduresAssignment_8(), "rule__PojoEntity__ProceduresAssignment_8");
+					put(grammarAccess.getPojoAttributeDirectiveAccess().getFromToAssignment_1_2_0(), "rule__PojoAttributeDirective__FromToAssignment_1_2_0");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getNameAssignment_1_2_1(), "rule__PojoAttributeDirective__NameAssignment_1_2_1");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getTypeAssignment_1_2_3(), "rule__PojoAttributeDirective__TypeAssignment_1_2_3");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getIndexAssignment_3_3(), "rule__PojoAttributeDirective__IndexAssignment_3_3");

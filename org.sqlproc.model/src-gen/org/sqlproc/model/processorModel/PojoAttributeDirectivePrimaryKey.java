@@ -11,6 +11,7 @@ package org.sqlproc.model.processorModel;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.sqlproc.model.processorModel.PojoAttributeDirectivePrimaryKey#getFromTo <em>From To</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.PojoAttributeDirectivePrimaryKey#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.PojoAttributeDirectivePrimaryKey#getType <em>Type</em>}</li>
  * </ul>
@@ -22,6 +23,32 @@ package org.sqlproc.model.processorModel;
  */
 public interface PojoAttributeDirectivePrimaryKey extends PojoAttributeDirective
 {
+  /**
+   * Returns the value of the '<em><b>From To</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>From To</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>From To</em>' attribute.
+   * @see #setFromTo(String)
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoAttributeDirectivePrimaryKey_FromTo()
+   * @model
+   * @generated
+   */
+  String getFromTo();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoAttributeDirectivePrimaryKey#getFromTo <em>From To</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>From To</em>' attribute.
+   * @see #getFromTo()
+   * @generated
+   */
+  void setFromTo(String value);
+
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->

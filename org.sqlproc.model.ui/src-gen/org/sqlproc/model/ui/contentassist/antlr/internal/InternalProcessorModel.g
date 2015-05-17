@@ -22183,9 +22183,9 @@ rule__PojoAttributeDirective__Group_1_2__0__Impl
     }
 :
 (
-{ before(grammarAccess.getPojoAttributeDirectiveAccess().getLPARENTerminalRuleCall_1_2_0()); }
-	RULE_LPAREN
-{ after(grammarAccess.getPojoAttributeDirectiveAccess().getLPARENTerminalRuleCall_1_2_0()); }
+{ before(grammarAccess.getPojoAttributeDirectiveAccess().getFromToAssignment_1_2_0()); }
+(rule__PojoAttributeDirective__FromToAssignment_1_2_0)
+{ after(grammarAccess.getPojoAttributeDirectiveAccess().getFromToAssignment_1_2_0()); }
 )
 
 ;
@@ -48915,6 +48915,21 @@ rule__PojoEntity__ProceduresAssignment_8
 (
 { before(grammarAccess.getPojoEntityAccess().getProceduresPojoProcedureParserRuleCall_8_0()); }
 	rulePojoProcedure{ after(grammarAccess.getPojoEntityAccess().getProceduresPojoProcedureParserRuleCall_8_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__PojoAttributeDirective__FromToAssignment_1_2_0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getPojoAttributeDirectiveAccess().getFromToLPARENTerminalRuleCall_1_2_0_0()); }
+	RULE_LPAREN{ after(grammarAccess.getPojoAttributeDirectiveAccess().getFromToLPARENTerminalRuleCall_1_2_0_0()); }
 )
 
 ;
