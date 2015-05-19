@@ -96,6 +96,7 @@ PojogenProperty:
 	|name='ignore-tables' (WS+ dbTables+=IDENT)+
 	|name='only-tables' (WS+ dbTables+=IDENT)+
 	|name='not-abstract-tables' (WS+ dbTables+=IDENT)+
+	|name='create-tables' (WS+ dbTables+=IDENT)+
 	|name='join-tables' (WS+ joinTables+=JoinTableAssignement)+
 	|name='ignore-columns' WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+
 	|name='required-columns' WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+

@@ -88,6 +88,7 @@ public class TableBaseGenerator {
     protected Set<String> ignoreTables = new HashSet<String>();
     protected Set<String> onlyTables = new HashSet<String>();
     protected Set<String> notAbstractTables = new HashSet<String>();
+    protected Set<String> createTables = new HashSet<String>();
     protected Map<String, Set<String>> ignoreColumns = new HashMap<String, Set<String>>();
     protected Map<String, Set<String>> requiredColumns = new HashMap<String, Set<String>>();
     protected Map<String, Set<String>> notRequiredColumns = new HashMap<String, Set<String>>();
@@ -196,6 +197,10 @@ public class TableBaseGenerator {
         Set<String> notAbstractTables = modelProperty.getNotAbstractTables(model);
         if (onlyTables != null) {
             this.notAbstractTables.addAll(notAbstractTables);
+        }
+        Set<String> createTables = modelProperty.getCreateTables(model);
+        if (createTables != null) {
+            this.createTables.addAll(createTables);
         }
         Map<String, Set<String>> ignoreColumns = modelProperty.getIgnoreColumns(model);
         if (ignoreColumns != null) {
@@ -358,6 +363,8 @@ public class TableBaseGenerator {
             System.out.println("columnNames " + this.columnNames);
             System.out.println("ignoreTables " + this.ignoreTables);
             System.out.println("onlyTables " + this.onlyTables);
+            System.out.println("notAbstractTables " + this.notAbstractTables);
+            System.out.println("createTables " + this.createTables);
             System.out.println("ignoreColumns " + this.ignoreColumns);
             System.out.println("createColumns " + this.createColumns);
             System.out.println("ignoreExports " + this.ignoreExports);

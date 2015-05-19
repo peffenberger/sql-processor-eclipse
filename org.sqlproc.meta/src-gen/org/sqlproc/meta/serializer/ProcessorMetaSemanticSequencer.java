@@ -969,6 +969,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *         (name='ignore-tables' dbTables+=IDENT+) | 
 	 *         (name='only-tables' dbTables+=IDENT+) | 
 	 *         (name='not-abstract-tables' dbTables+=IDENT+) | 
+	 *         (name='create-tables' dbTables+=IDENT+) | 
 	 *         (name='join-tables' joinTables+=JoinTableAssignement+) | 
 	 *         (name='ignore-columns' dbTable=IDENT dbColumns+=IDENT+) | 
 	 *         (name='required-columns' dbTable=IDENT dbColumns+=IDENT+) | 

@@ -1856,6 +1856,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         (name='ignore-tables' dbTables+=ValidID+) | 
 	 *         (name='only-tables' dbTables+=ValidID+) | 
 	 *         (name='not-abstract-tables' dbTables+=ValidID+) | 
+	 *         (name='create-tables' dbTables+=ValidID+) | 
 	 *         (name='join-tables' joinTables+=JoinTableAssignement+) | 
 	 *         (name='ignore-columns' dbTable=ValidID dbColumns+=ValidID+) | 
 	 *         (name='required-columns' dbTable=ValidID dbColumns+=ValidID+) | 

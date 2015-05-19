@@ -448,6 +448,10 @@ public class ModelPropertyBean extends ModelProperty {
             for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
                 modelValues.notAbstractTables.add(property.getDbTables().get(i));
             }
+        } else if (POJOGEN_CREATE_TABLES.equals(property.getName())) {
+            for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
+                modelValues.createTables.add(property.getDbTables().get(i));
+            }
         } else if (POJOGEN_IGNORE_COLUMNS.equals(property.getName())) {
             if (!modelValues.ignoreColumns.containsKey(property.getDbTable()))
                 modelValues.ignoreColumns.put(property.getDbTable(), new HashSet<String>());

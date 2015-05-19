@@ -54,6 +54,7 @@ public abstract class ModelProperty extends AdapterImpl {
     public static final String POJOGEN_TYPE_FOR_FUNCTION = "types-for-function";
     public static final String POJOGEN_IGNORE_TABLES = "ignore-tables";
     public static final String POJOGEN_ONLY_TABLES = "only-tables";
+    public static final String POJOGEN_CREATE_TABLES = "create-tables";
     public static final String POJOGEN_IGNORE_COLUMNS = "ignore-columns";
     public static final String POJOGEN_REQUIRED_COLUMNS = "required-columns";
     public static final String POJOGEN_NOT_REQUIRED_COLUMNS = "not-required-columns";
@@ -204,6 +205,7 @@ public abstract class ModelProperty extends AdapterImpl {
         public Set<String> ignoreTables;
         public Set<String> onlyTables;
         public Set<String> notAbstractTables;
+        public Set<String> createTables;
         public Map<String, Set<String>> ignoreColumns;
         public Map<String, Set<String>> requiredColumns;
         public Map<String, Set<String>> notRequiredColumns;
@@ -334,6 +336,7 @@ public abstract class ModelProperty extends AdapterImpl {
             ignoreTables = new HashSet<String>();
             onlyTables = new HashSet<String>();
             notAbstractTables = new HashSet<String>();
+            createTables = new HashSet<String>();
             ignoreColumns = new HashMap<String, Set<String>>();
             requiredColumns = new HashMap<String, Set<String>>();
             notRequiredColumns = new HashMap<String, Set<String>>();
@@ -608,6 +611,11 @@ public abstract class ModelProperty extends AdapterImpl {
     public Set<String> getNotAbstractTables(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.notAbstractTables : Collections.<String> emptySet();
+    }
+
+    public Set<String> getCreateTables(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.createTables : Collections.<String> emptySet();
     }
 
     public Map<String, Set<String>> getIgnoreColumns(EObject model) {

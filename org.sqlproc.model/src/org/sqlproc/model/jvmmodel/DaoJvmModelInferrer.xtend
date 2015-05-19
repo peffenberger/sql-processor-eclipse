@@ -762,6 +762,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 					«SQL_STANDARD_CONTROL» sqlc = new «SQL_STANDARD_CONTROL»(sqlControl);
 					sqlc.setFirstResult(0);
 					sqlc.setMaxResults(0);
+					sqlc.setOrder(null);
 					final «Map»<«pkType», «pojo.name»> map = new «HASH_MAP»<«pkType», «pojo.name»>();
 					final SqlRowProcessor<«pojo.name»> sqlRowProcessor = new SqlRowProcessor<«pojo.name»>() {
 						@Override
