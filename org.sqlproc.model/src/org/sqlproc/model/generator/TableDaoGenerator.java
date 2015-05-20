@@ -260,7 +260,8 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 // System.out.println("QQQQQ " + pojo);
                 if (!daoOnlyTables.isEmpty() && !daoOnlyTables.contains(pojo))
                     continue;
-                if (daoIgnoreTables.contains(pojo) || metaProceduresResultSet.values().contains(pojo))
+                if (daoIgnoreTables.contains(pojo)
+                        || (metaProceduresResultSet.values().contains(pojo) && !tables.contains(pojo)))
                     continue;
                 if (!Filter.isTable(daoActiveFilter, pojo))
                     continue;

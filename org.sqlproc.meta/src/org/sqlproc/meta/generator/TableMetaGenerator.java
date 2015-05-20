@@ -282,7 +282,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
                     continue;
                 if (pojoInheritanceDiscriminator.containsKey(pojo))
                     continue;
-                if (metaProceduresResultSet.values().contains(pojo))
+                if (metaProceduresResultSet.values().contains(pojo) && !tables.contains(pojo))
                     continue;
                 if (!MetaFilter.isTable(metaActiveFilter, pojo))
                     continue;

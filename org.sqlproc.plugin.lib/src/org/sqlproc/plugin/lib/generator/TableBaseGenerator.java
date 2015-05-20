@@ -120,6 +120,7 @@ public class TableBaseGenerator {
     protected Filter activeFilter = null;
     protected Map<String, String> enumForCheckConstraints = new HashMap<String, String>();
 
+    protected Set<String> tables = new HashSet<String>();
     protected Map<String, Map<String, PojoAttribute>> pojos = new TreeMap<String, Map<String, PojoAttribute>>();
     protected Map<String, Map<String, PojoAttribute>> procedures = new TreeMap<String, Map<String, PojoAttribute>>();
     protected Map<String, Map<String, PojoAttribute>> functions = new TreeMap<String, Map<String, PojoAttribute>>();
@@ -408,6 +409,7 @@ public class TableBaseGenerator {
             addTableDefinition(table, Collections.<DbColumn> emptyList(), Collections.<String> emptyList(),
                     Collections.<DbExport> emptyList(), Collections.<DbImport> emptyList(),
                     Collections.<DbIndex> emptyList(), Collections.<DbCheckConstraint> emptyList(), null);
+            tables.remove(table);
         }
     }
 
@@ -455,6 +457,7 @@ public class TableBaseGenerator {
             }
         }
         pojos.put(table, attributes);
+        tables.add(table);
         if (comment != null)
             comments.put(table, comment);
 
