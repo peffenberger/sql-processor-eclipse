@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -401,6 +402,12 @@ public class TableBaseGenerator {
             System.out.println("modelTables " + this.modelTables);
             System.out.println("modelProcedures " + this.modelProcedures);
             System.out.println("modelFunctions " + this.modelFunctions);
+        }
+
+        for (String table : createTables) {
+            addTableDefinition(table, Collections.<DbColumn> emptyList(), Collections.<String> emptyList(),
+                    Collections.<DbExport> emptyList(), Collections.<DbImport> emptyList(),
+                    Collections.<DbIndex> emptyList(), Collections.<DbCheckConstraint> emptyList(), null);
         }
     }
 
