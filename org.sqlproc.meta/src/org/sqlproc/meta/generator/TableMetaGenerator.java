@@ -377,7 +377,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
         String primaryKey = getPrimaryKey(pojo);
         buffer.append("\n  select ");
         if (doGenerateFromTo && select && primaryKey != null)
-            buffer.append("{? :onlyIds | %").append(header.table.tablePrefix).append(".").append(primaryKey)
+            buffer.append("{? :onlyIds | %").append(tablePrefix(header.table.tablePrefix)).append(primaryKey)
                     .append(" @id(id) |\n    ");
         String parentPojo = pojoDiscriminators.containsKey(header.table.tableName) ? pojoExtends
                 .get(header.table.tableName) : null;
@@ -509,7 +509,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
             whereColumns(buffer, header.extendTable.tableName, first, header.statementName,
                     header.extendTable.tablePrefix, true, select);
         if (doGenerateFromTo && select && primaryKey != null)
-            buffer.append("\n    {& %").append(header.table.tablePrefix).append(".").append(primaryKey)
+            buffer.append("\n    {& %").append(tablePrefix(header.table.tablePrefix)).append(primaryKey)
                     .append(" in :ids }");
         buffer.append("\n  }");
         if (select) {
@@ -2061,6 +2061,12 @@ public class TableMetaGenerator extends TableBaseGenerator {
         if (ix >= 0)
             pattern = pattern.substring(0, ix) + column + pattern.substring(ix + 2);
         return pattern;
+    }
+
+    private String tablePrefix(String prefix) {
+        if (prefix == null)
+            return "";
+        return prefix + ".";
     }
 
     // meta filter only-insert,get,update,delete,select,call add-filter XXXX
