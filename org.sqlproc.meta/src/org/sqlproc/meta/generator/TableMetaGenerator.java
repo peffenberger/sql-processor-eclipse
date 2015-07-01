@@ -376,7 +376,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
             return buffer;
         String primaryKey = getPrimaryKey(pojo);
         buffer.append("\n  select ");
-        if (doGenerateFromTo && select)
+        if (doGenerateFromTo && select && primaryKey != null)
             buffer.append("{? :onlyIds | %").append(header.table.tablePrefix).append(".").append(primaryKey)
                     .append(" @id(id) |\n    ");
         String parentPojo = pojoDiscriminators.containsKey(header.table.tableName) ? pojoExtends
@@ -389,7 +389,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
         if (header.table.tablePrefix != null) {
             if (header.extendTable.tableName != null) {
                 if (!first) {
-                    if (doGenerateFromTo && select)
+                    if (doGenerateFromTo && select && primaryKey != null)
                         buffer.append("\n    ");
                     else
                         buffer.append("\n         ");
@@ -402,7 +402,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
                 for (Entry<String, Table> entry : header.assocTables.entrySet()) {
                     Table table = entry.getValue();
                     if (!first) {
-                        if (doGenerateFromTo && select)
+                        if (doGenerateFromTo && select && primaryKey != null)
                             buffer.append("\n    ");
                         else
                             buffer.append("\n         ");
@@ -451,7 +451,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
                 }
             }
         }
-        if (doGenerateFromTo && select)
+        if (doGenerateFromTo && select && primaryKey != null)
             buffer.append("\n  }");
         buffer.append("\n  from %%").append(header.table.realTableName);
 
@@ -508,7 +508,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
         else if (header.extendTable.tableName != null)
             whereColumns(buffer, header.extendTable.tableName, first, header.statementName,
                     header.extendTable.tablePrefix, true, select);
-        if (doGenerateFromTo && select)
+        if (doGenerateFromTo && select && primaryKey != null)
             buffer.append("\n    {& %").append(header.table.tablePrefix).append(".").append(primaryKey)
                     .append(" in :ids }");
         buffer.append("\n  }");

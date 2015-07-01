@@ -41,7 +41,6 @@ class ProcessorModelGenerator extends JvmModelGenerator {
 			appendable.append('{}')
 		else 
 			appendable.forEachWithShortcut(values.filter(XExpression), [
-				println(it)
 				if (it instanceof XStringLiteral) {
 					appendable.append('"' + doConvertToJavaString(it.value) + '"')
 				} else if (it instanceof XNumberLiteral) {
