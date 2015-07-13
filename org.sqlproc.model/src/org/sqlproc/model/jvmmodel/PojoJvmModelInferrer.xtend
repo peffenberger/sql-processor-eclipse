@@ -49,8 +49,6 @@ class PojoJvmModelInferrer {
    	val SERIALIZABLE = 'java.io.Serializable'
    	val HASH_MAP = 'java.util.HashMap'
    	val HASH_SET = 'java.util.HashSet'
-   	val PROPERTY_UTILS = 'org.apache.commons.beanutils.PropertyUtils'
-   	val INVOCATION_TARGET_EXCEPTION = 'java.lang.reflect.InvocationTargetException'
    	val POJO = 'org.sqlproc.engine.annotation.Pojo'
 
 	/**
@@ -365,20 +363,14 @@ class PojoJvmModelInferrer {
    				]	
 	   			members += entity.toMethod('isDef', typeRef(Boolean)) [
    					parameters += entity.toParameter("attrName", typeRef(String))
+   					parameters += entity.toParameter("isAttrNotNull", typeRef(Boolean))
    					body = '''
 						if (attrName == null)
 							throw new IllegalArgumentException();
 						if (nullValues.contains(attrName))
 							return true;
-						try {
-							Object result = «PROPERTY_UTILS».getSimpleProperty(this, attrName);
-							return (result != null) ? true : false;
-						} catch (IllegalAccessException e) {
-							throw new RuntimeException(e);
-						} catch («INVOCATION_TARGET_EXCEPTION» e) {
-							throw new RuntimeException(e);
-						} catch (NoSuchMethodException e) {
-						}
+						if (isAttrNotNull != null)
+							return isAttrNotNull;
 						return false;
    					'''
    				]	
