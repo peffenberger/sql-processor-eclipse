@@ -348,6 +348,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                         bufferMeta.append(nlindent()).append("#Serializable(1)");
                     if (generateMethods.contains(METHOD_INDEX) && indexes.containsKey(pojo)) {
                         List<Map<PojoAttribute, Boolean>> mainList = indexes.get(pojo);
+                        TreeSet<String> bfIndexes = new TreeSet<String>();
                         for (int i = 0, l = mainList.size(); i < l; i++) {
                             StringBuilder sb = new StringBuilder();
                             for (PojoAttribute attr : mainList.get(i).keySet()) {
@@ -366,8 +367,13 @@ public class TablePojoGenerator extends TableBaseGenerator {
                                     name = columnToCamelCase(name);
                                 sb.append(",").append(name);
                             }
-                            if (sb != null)
-                                bufferMeta.append(nlindent()).append("#Index(").append(i + 1).append(sb).append(")");
+                            if (sb != null) {
+                                // bufferMeta.append(nlindent()).append("#Index(").append(i + 1).append(sb).append(")");
+                                bfIndexes.add("" + (i + 1) + sb.toString());
+                            }
+                        }
+                        for (String s : bfIndexes) {
+                            bufferMeta.append(nlindent()).append("#Index(").append(s).append(")");
                         }
                     }
                 }
