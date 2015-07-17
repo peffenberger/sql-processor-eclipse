@@ -2,7 +2,7 @@
 <feature
       id="org.sqlproc.meta.site"
       label="SQL Processor Meta Query Language Plugin Feature"
-      version="2.3.2"
+      version="2.3.3"
       provider-name="SQL Processor Team">
 
    <url>

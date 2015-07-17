@@ -78,7 +78,7 @@ public abstract class ModelProperty extends AdapterImpl {
     public static final String POJOGEN_JOIN_TABLES = "join-tables";
     public static final String POJOGEN_GENERATE_WRAPPERS = "generate-wrappers";
     public static final String POJOGEN_GENERATE_VALIDATION_ANNOTATIONS = "generate-validation-annotations";
-    public static final String POJOGEN_NOT_ABSTRACT_TABLES_TABLES = "not-public abstract-tables";
+    public static final String POJOGEN_NOT_ABSTRACT_TABLES_TABLES = "not-abstract-tables";
     public static final String POJOGEN_MAKE_IT_FINAL = "make-it-final";
     public static final String POJOGEN_VERSION_COLUMN = "version-column";
     public static final String POJOGEN_DEBUG_LEVEL = "debug-level";
