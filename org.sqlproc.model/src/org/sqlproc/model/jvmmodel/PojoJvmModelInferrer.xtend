@@ -143,7 +143,7 @@ class PojoJvmModelInferrer {
 	   				body = '''
 	   				super(«FOR attr : entity.parentRequiredAttributes SEPARATOR ","»«attr.name»«ENDFOR»);
 	   				«FOR attr : entity.requiredAttributes»
-	   				set«attr.name.toFirstUpper»(«attr.name»);
+	   				set«_toFirstUpper(attr.name)»(«attr.name»);
 					«ENDFOR»
 					'''
 	   			]
@@ -686,5 +686,27 @@ class PojoJvmModelInferrer {
 //		println(annotation)
 		addAnnotation(target, annotation);
 	}
+
+    def String toFirstUpper(String s) {
+        if (s == null || s.length() == 0)
+            return s;
+        if (Character.isUpperCase(s.charAt(0)))
+            return s;
+        if (s.length() == 1)
+            return s.toUpperCase();
+        return s.substring(0, 1).toUpperCase() + s.substring(1);
+    }
+
+    def String _toFirstUpper(String name) {
+        val l = name.length();
+        if (l == 0)
+            return name;
+        if (l == 1)
+            return name.toUpperCase();
+        val c = name.charAt(1);
+        if (Character.isUpperCase(c))
+            return name;
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
+    }
 }
 
