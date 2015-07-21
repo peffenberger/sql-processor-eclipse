@@ -23,7 +23,8 @@ public abstract class ModelProperty extends AdapterImpl {
     public static final String REPLACE_TEXT = "replace-text";
     public static final String COMPRESS_META_DIRECTIVES = "compress-meta-directives";
     public static final String VALIDATE_RESOURCES = "validate-resources";
-    public static final String GENERAT_FROM_TO = "generate-from-to";
+    public static final String GENERATE_FROM_TO = "generate-from-to";
+    public static final String CASE_FORMAT_LIBRARY = "case-format-library";
 
     public static final String DATABASE = "database";
     public static final String DATABASE_IS_ONLINE = "is-online";
@@ -140,7 +141,8 @@ public abstract class ModelProperty extends AdapterImpl {
         STANDARD_DIRECTIVES.add(COMPRESS_META_DIRECTIVES);
         STANDARD_DIRECTIVES.add(REPLACE_TEXT);
         STANDARD_DIRECTIVES.add(VALIDATE_RESOURCES);
-        STANDARD_DIRECTIVES.add(GENERAT_FROM_TO);
+        STANDARD_DIRECTIVES.add(GENERATE_FROM_TO);
+        STANDARD_DIRECTIVES.add(CASE_FORMAT_LIBRARY);
     }
 
     public static final List<String> DATABASE_DIRECTIVES = new ArrayList<String>();
@@ -176,6 +178,7 @@ public abstract class ModelProperty extends AdapterImpl {
         public Set<String> doVerifyResources;
         public Set<String> doNotVerifyResources;
         public boolean doGenerateFromTo;
+        public String caseFormatLibrary;
         public String dbDriver;
         public String dbUrl;
         public String dbUsername;
@@ -295,6 +298,7 @@ public abstract class ModelProperty extends AdapterImpl {
             doVerifyResources = new HashSet<String>();
             doNotVerifyResources = new HashSet<String>();
             doGenerateFromTo = false;
+            caseFormatLibrary = null;
             defaultAttrs.put(STANDARD, new HashSet<String>());
             conditionalAttrs.put(STANDARD, new HashSet<String>());
             systemEnvAttrs.put(STANDARD, new HashSet<String>());
@@ -441,8 +445,10 @@ public abstract class ModelProperty extends AdapterImpl {
                     doResolvePojo = false;
                 } else if (COMPRESS_META_DIRECTIVES.equals(name)) {
                     doCompressMetaDirectives = true;
-                } else if (GENERAT_FROM_TO.equals(name)) {
+                } else if (GENERATE_FROM_TO.equals(name)) {
                     doGenerateFromTo = true;
+                } else if (CASE_FORMAT_LIBRARY.equals(name)) {
+                    caseFormatLibrary = CommonUtils.getPropertyValue(value);
                 }
             }
         }
@@ -557,6 +563,11 @@ public abstract class ModelProperty extends AdapterImpl {
     public boolean isGenerateFromTo(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.doGenerateFromTo : false;
+    }
+
+    public String getCaseFormatLibrary(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.caseFormatLibrary : null;
     }
 
     public Map<String, PojoAttrType> getSqlTypes(EObject model) {

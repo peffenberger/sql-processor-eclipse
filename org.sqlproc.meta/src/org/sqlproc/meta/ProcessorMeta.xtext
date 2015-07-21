@@ -57,6 +57,7 @@ Property: (condition=PropertyCondition WS*)?
 	|name='validate-resources' (WS+ PLUS (WS+ doVerifyResources+=ValueType)+)? (WS+ MINUS (WS+ doNotVerifyResources+=ValueType)+)?
 	|name='compress-meta-directives'
 	|name='generate-from-to'
+	|name='case-format-library' WS+ caseFormatLibrary=ValueType
 	) SEMICOLON;
 
 DatabaseProperty:

@@ -4329,6 +4329,12 @@ rule__Property__Alternatives_1
 { after(grammarAccess.getPropertyAccess().getNameAssignment_1_11()); }
 )
 
+    |(
+{ before(grammarAccess.getPropertyAccess().getGroup_1_12()); }
+(rule__Property__Group_1_12__0)
+{ after(grammarAccess.getPropertyAccess().getGroup_1_12()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -10512,6 +10518,67 @@ rule__Property__Group_1_9_2__1__Impl
 (rule__Property__DoNotVerifyResourcesAssignment_1_9_2_1)*
 { after(grammarAccess.getPropertyAccess().getDoNotVerifyResourcesAssignment_1_9_2_1()); }
 )
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
+
+
+rule__Property__Group_1_12__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Property__Group_1_12__0__Impl
+	rule__Property__Group_1_12__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Property__Group_1_12__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getPropertyAccess().getNameAssignment_1_12_0()); }
+(rule__Property__NameAssignment_1_12_0)
+{ after(grammarAccess.getPropertyAccess().getNameAssignment_1_12_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__Property__Group_1_12__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Property__Group_1_12__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Property__Group_1_12__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getPropertyAccess().getCaseFormatLibraryAssignment_1_12_1()); }
+(rule__Property__CaseFormatLibraryAssignment_1_12_1)
+{ after(grammarAccess.getPropertyAccess().getCaseFormatLibraryAssignment_1_12_1()); }
 )
 
 ;
@@ -44061,6 +44128,44 @@ rule__Property__NameAssignment_1_11
 )
 
 { after(grammarAccess.getPropertyAccess().getNameGenerateFromToKeyword_1_11_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Property__NameAssignment_1_12_0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getPropertyAccess().getNameCaseFormatLibraryKeyword_1_12_0_0()); }
+(
+{ before(grammarAccess.getPropertyAccess().getNameCaseFormatLibraryKeyword_1_12_0_0()); }
+
+	'case-format-library' 
+
+{ after(grammarAccess.getPropertyAccess().getNameCaseFormatLibraryKeyword_1_12_0_0()); }
+)
+
+{ after(grammarAccess.getPropertyAccess().getNameCaseFormatLibraryKeyword_1_12_0_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Property__CaseFormatLibraryAssignment_1_12_1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getPropertyAccess().getCaseFormatLibraryValueTypeParserRuleCall_1_12_1_0()); }
+	ruleValueType{ after(grammarAccess.getPropertyAccess().getCaseFormatLibraryValueTypeParserRuleCall_1_12_1_0()); }
 )
 
 ;

@@ -1969,7 +1969,8 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *             (name='replace-text' regex=ValueType replacement=ValueType) | 
 	 *             (name='validate-resources' doVerifyResources+=ValueType* doNotVerifyResources+=ValueType*) | 
 	 *             name='compress-meta-directives' | 
-	 *             name='generate-from-to'
+	 *             name='generate-from-to' | 
+	 *             (name='case-format-library' caseFormatLibrary=ValueType)
 	 *         )
 	 *     )
 	 */

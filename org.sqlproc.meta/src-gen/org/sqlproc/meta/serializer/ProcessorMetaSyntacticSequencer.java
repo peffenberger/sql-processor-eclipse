@@ -189,6 +189,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	protected AbstractElementAlias match_PropertyCondition_WSTerminalRuleCall_5_p;
 	protected AbstractElementAlias match_PropertyCondition_WSTerminalRuleCall_7_a;
 	protected AbstractElementAlias match_Property_WSTerminalRuleCall_0_1_a;
+	protected AbstractElementAlias match_Property_WSTerminalRuleCall_1_12_1_p;
 	protected AbstractElementAlias match_Property_WSTerminalRuleCall_1_6_1_p;
 	protected AbstractElementAlias match_Property_WSTerminalRuleCall_1_6_3_p;
 	protected AbstractElementAlias match_Property_WSTerminalRuleCall_1_7_1_p;
@@ -372,6 +373,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 		match_PropertyCondition_WSTerminalRuleCall_5_p = new TokenAlias(true, false, grammarAccess.getPropertyConditionAccess().getWSTerminalRuleCall_5());
 		match_PropertyCondition_WSTerminalRuleCall_7_a = new TokenAlias(true, true, grammarAccess.getPropertyConditionAccess().getWSTerminalRuleCall_7());
 		match_Property_WSTerminalRuleCall_0_1_a = new TokenAlias(true, true, grammarAccess.getPropertyAccess().getWSTerminalRuleCall_0_1());
+		match_Property_WSTerminalRuleCall_1_12_1_p = new TokenAlias(true, false, grammarAccess.getPropertyAccess().getWSTerminalRuleCall_1_12_1());
 		match_Property_WSTerminalRuleCall_1_6_1_p = new TokenAlias(true, false, grammarAccess.getPropertyAccess().getWSTerminalRuleCall_1_6_1());
 		match_Property_WSTerminalRuleCall_1_6_3_p = new TokenAlias(true, false, grammarAccess.getPropertyAccess().getWSTerminalRuleCall_1_6_3());
 		match_Property_WSTerminalRuleCall_1_7_1_p = new TokenAlias(true, false, grammarAccess.getPropertyAccess().getWSTerminalRuleCall_1_7_1());
@@ -942,6 +944,8 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 				emit_PropertyCondition_WSTerminalRuleCall_7_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Property_WSTerminalRuleCall_0_1_a.equals(syntax))
 				emit_Property_WSTerminalRuleCall_0_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Property_WSTerminalRuleCall_1_12_1_p.equals(syntax))
+				emit_Property_WSTerminalRuleCall_1_12_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Property_WSTerminalRuleCall_1_6_1_p.equals(syntax))
 				emit_Property_WSTerminalRuleCall_1_6_1_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Property_WSTerminalRuleCall_1_6_3_p.equals(syntax))
@@ -2976,6 +2980,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     WS*
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     condition=PropertyCondition (ambiguity) name='case-format-library'
 	 *     condition=PropertyCondition (ambiguity) name='compress-meta-directives'
 	 *     condition=PropertyCondition (ambiguity) name='daogen-'
 	 *     condition=PropertyCondition (ambiguity) name='database-'
@@ -2990,6 +2995,17 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     condition=PropertyCondition (ambiguity) name='validate-resources'
 	 */
 	protected void emit_Property_WSTerminalRuleCall_0_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     WS+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     name='case-format-library' (ambiguity) caseFormatLibrary=ValueType
+	 */
+	protected void emit_Property_WSTerminalRuleCall_1_12_1_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

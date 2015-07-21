@@ -2627,9 +2627,47 @@ ruleProperty returns [EObject current=null]
 	    }
 
 )
-))this_SEMICOLON_38=RULE_SEMICOLON
+)
+    |((
+(
+		lv_name_38_0=	'case-format-library' 
+    {
+        newLeafNode(lv_name_38_0, grammarAccess.getPropertyAccess().getNameCaseFormatLibraryKeyword_1_12_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_38_0, "case-format-library");
+	    }
+
+)
+)(this_WS_39=RULE_WS
     { 
-    newLeafNode(this_SEMICOLON_38, grammarAccess.getPropertyAccess().getSEMICOLONTerminalRuleCall_2()); 
+    newLeafNode(this_WS_39, grammarAccess.getPropertyAccess().getWSTerminalRuleCall_1_12_1()); 
+    }
+)+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPropertyAccess().getCaseFormatLibraryValueTypeParserRuleCall_1_12_2_0()); 
+	    }
+		lv_caseFormatLibrary_40_0=ruleValueType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPropertyRule());
+	        }
+       		set(
+       			$current, 
+       			"caseFormatLibrary",
+        		lv_caseFormatLibrary_40_0, 
+        		"ValueType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)))this_SEMICOLON_41=RULE_SEMICOLON
+    { 
+    newLeafNode(this_SEMICOLON_41, grammarAccess.getPropertyAccess().getSEMICOLONTerminalRuleCall_2()); 
     }
 )
 ;

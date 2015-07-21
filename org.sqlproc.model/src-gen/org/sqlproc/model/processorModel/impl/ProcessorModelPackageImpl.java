@@ -1984,6 +1984,16 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getProperty_CaseFormatLibrary()
+  {
+    return (EReference)propertyEClass.getEStructuralFeatures().get(11);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getDatabaseProperty()
   {
     return databasePropertyEClass;
@@ -4678,6 +4688,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     createEReference(propertyEClass, PROPERTY__REPLACEMENT);
     createEReference(propertyEClass, PROPERTY__DO_VERIFY_RESOURCES);
     createEReference(propertyEClass, PROPERTY__DO_NOT_VERIFY_RESOURCES);
+    createEReference(propertyEClass, PROPERTY__CASE_FORMAT_LIBRARY);
 
     databasePropertyEClass = createEClass(DATABASE_PROPERTY);
     createEAttribute(databasePropertyEClass, DATABASE_PROPERTY__NAME);
@@ -5230,6 +5241,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEReference(getProperty_Replacement(), this.getValueType(), null, "replacement", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProperty_DoVerifyResources(), this.getValueType(), null, "doVerifyResources", null, 0, -1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProperty_DoNotVerifyResources(), this.getValueType(), null, "doNotVerifyResources", null, 0, -1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProperty_CaseFormatLibrary(), this.getValueType(), null, "caseFormatLibrary", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(databasePropertyEClass, DatabaseProperty.class, "DatabaseProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDatabaseProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

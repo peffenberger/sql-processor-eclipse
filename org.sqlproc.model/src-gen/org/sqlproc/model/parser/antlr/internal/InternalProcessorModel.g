@@ -2355,9 +2355,43 @@ ruleProperty returns [EObject current=null]
 	    }
 
 )
-))	otherlv_27=';' 
+)
+    |((
+(
+		lv_name_27_0=	'case-format-library' 
     {
-    	newLeafNode(otherlv_27, grammarAccess.getPropertyAccess().getSemicolonKeyword_2());
+        newLeafNode(lv_name_27_0, grammarAccess.getPropertyAccess().getNameCaseFormatLibraryKeyword_1_12_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPropertyRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_27_0, "case-format-library");
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPropertyAccess().getCaseFormatLibraryValueTypeParserRuleCall_1_12_1_0()); 
+	    }
+		lv_caseFormatLibrary_28_0=ruleValueType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPropertyRule());
+	        }
+       		set(
+       			$current, 
+       			"caseFormatLibrary",
+        		lv_caseFormatLibrary_28_0, 
+        		"ValueType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)))	otherlv_29=';' 
+    {
+    	newLeafNode(otherlv_29, grammarAccess.getPropertyAccess().getSemicolonKeyword_2());
     }
 )
 ;

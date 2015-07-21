@@ -152,6 +152,7 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyAccess().getGroup_1_9_1_2(), "rule__Property__Group_1_9_1_2__0");
 					put(grammarAccess.getPropertyAccess().getGroup_1_9_2(), "rule__Property__Group_1_9_2__0");
 					put(grammarAccess.getPropertyAccess().getGroup_1_9_2_2(), "rule__Property__Group_1_9_2_2__0");
+					put(grammarAccess.getPropertyAccess().getGroup_1_12(), "rule__Property__Group_1_12__0");
 					put(grammarAccess.getDatabasePropertyAccess().getGroup_2(), "rule__DatabaseProperty__Group_2__0");
 					put(grammarAccess.getDatabasePropertyAccess().getGroup_3(), "rule__DatabaseProperty__Group_3__0");
 					put(grammarAccess.getDatabasePropertyAccess().getGroup_4(), "rule__DatabaseProperty__Group_4__0");
@@ -467,6 +468,8 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyAccess().getDoNotVerifyResourcesAssignment_1_9_2_2_1(), "rule__Property__DoNotVerifyResourcesAssignment_1_9_2_2_1");
 					put(grammarAccess.getPropertyAccess().getNameAssignment_1_10(), "rule__Property__NameAssignment_1_10");
 					put(grammarAccess.getPropertyAccess().getNameAssignment_1_11(), "rule__Property__NameAssignment_1_11");
+					put(grammarAccess.getPropertyAccess().getNameAssignment_1_12_0(), "rule__Property__NameAssignment_1_12_0");
+					put(grammarAccess.getPropertyAccess().getCaseFormatLibraryAssignment_1_12_2(), "rule__Property__CaseFormatLibraryAssignment_1_12_2");
 					put(grammarAccess.getDatabasePropertyAccess().getNameAssignment_0(), "rule__DatabaseProperty__NameAssignment_0");
 					put(grammarAccess.getDatabasePropertyAccess().getNameAssignment_1(), "rule__DatabaseProperty__NameAssignment_1");
 					put(grammarAccess.getDatabasePropertyAccess().getNameAssignment_2_0(), "rule__DatabaseProperty__NameAssignment_2_0");

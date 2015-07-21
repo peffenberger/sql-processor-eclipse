@@ -42,6 +42,8 @@ import org.sqlproc.plugin.lib.resolver.DbTable;
 import org.sqlproc.plugin.lib.util.Debug;
 import org.sqlproc.plugin.lib.util.Stats;
 
+import com.google.common.base.CaseFormat;
+
 public class TableBaseGenerator {
 
     protected Logger LOGGER = Logger.getLogger(TableBaseGenerator.class);
@@ -79,6 +81,7 @@ public class TableBaseGenerator {
     protected EObject model;
     protected boolean doCompressMetaDirectives;
     protected boolean doGenerateFromTo;
+    protected String caseFormatLibrary;
     protected Map<String, PojoAttrType> sqlTypes = new HashMap<String, PojoAttrType>();
     protected Map<String, Map<String, PojoAttrType>> tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
     protected Map<String, Map<String, PojoAttrType>> columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
@@ -156,6 +159,7 @@ public class TableBaseGenerator {
 
         this.doCompressMetaDirectives = modelProperty.isCompressMetaDirectives(model);
         this.doGenerateFromTo = modelProperty.isGenerateFromTo(model);
+        this.caseFormatLibrary = modelProperty.getCaseFormatLibrary(model);
         Map<String, PojoAttrType> sqlTypes = modelProperty.getSqlTypes(model);
         if (sqlTypes != null) {
             this.sqlTypes.putAll(sqlTypes);
@@ -1033,7 +1037,20 @@ public class TableBaseGenerator {
         }
     }
 
+    protected static final String LIBRARY_GUAVA = "GUAVA";
+
+    // TODO
     protected String tableToCamelCase(String value) {
+        if (LIBRARY_GUAVA.equalsIgnoreCase(caseFormatLibrary)) {
+            if (Character.isUpperCase(value.charAt(0)))
+                return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, value);
+            else
+                return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, value);
+        } else
+            return _tableToCamelCase(value);
+    }
+
+    protected String _tableToCamelCase(String value) {
         if (value == null)
             return null;
         String[] parts = value.split("_");
@@ -1054,7 +1071,18 @@ public class TableBaseGenerator {
         return camelCaseString;
     }
 
+    // TODO
     protected String columnToCamelCase(String value) {
+        if (LIBRARY_GUAVA.equalsIgnoreCase(caseFormatLibrary)) {
+            if (Character.isUpperCase(value.charAt(0)))
+                return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, value);
+            else
+                return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, value);
+        } else
+            return _columnToCamelCase(value);
+    }
+
+    protected String _columnToCamelCase(String value) {
         if (value == null)
             return null;
         String[] parts = value.split("_");
@@ -1071,7 +1099,18 @@ public class TableBaseGenerator {
         return camelCaseString;
     }
 
+    // TODO
     protected String columnToDbConv(String value) {
+        if (LIBRARY_GUAVA.equalsIgnoreCase(caseFormatLibrary)) {
+            if (Character.isUpperCase(value.charAt(0)))
+                return CaseFormat.UPPER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, value);
+            else
+                return CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, value);
+        } else
+            return _columnToDbConv(value);
+    }
+
+    protected String _columnToDbConv(String value) {
         if (value == null)
             return null;
         String result = "";

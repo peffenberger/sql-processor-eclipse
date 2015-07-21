@@ -1300,13 +1300,22 @@ public interface ProcessorMetaPackage extends EPackage
   int PROPERTY__DO_NOT_VERIFY_RESOURCES = 10;
 
   /**
+   * The feature id for the '<em><b>Case Format Library</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY__CASE_FORMAT_LIBRARY = 11;
+
+  /**
    * The number of structural features of the '<em>Property</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_FEATURE_COUNT = 11;
+  int PROPERTY_FEATURE_COUNT = 12;
 
   /**
    * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.DatabasePropertyImpl <em>Database Property</em>}' class.
@@ -4649,6 +4658,17 @@ public interface ProcessorMetaPackage extends EPackage
   EReference getProperty_DoNotVerifyResources();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.sqlproc.meta.processorMeta.Property#getCaseFormatLibrary <em>Case Format Library</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Case Format Library</em>'.
+   * @see org.sqlproc.meta.processorMeta.Property#getCaseFormatLibrary()
+   * @see #getProperty()
+   * @generated
+   */
+  EReference getProperty_CaseFormatLibrary();
+
+  /**
    * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.DatabaseProperty <em>Database Property</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -7764,6 +7784,14 @@ public interface ProcessorMetaPackage extends EPackage
      * @generated
      */
     EReference PROPERTY__DO_NOT_VERIFY_RESOURCES = eINSTANCE.getProperty_DoNotVerifyResources();
+
+    /**
+     * The meta object literal for the '<em><b>Case Format Library</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROPERTY__CASE_FORMAT_LIBRARY = eINSTANCE.getProperty_CaseFormatLibrary();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.DatabasePropertyImpl <em>Database Property</em>}' class.

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.model.processorModel.Property#getReplacement <em>Replacement</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Property#getDoVerifyResources <em>Do Verify Resources</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Property#getDoNotVerifyResources <em>Do Not Verify Resources</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.Property#getCaseFormatLibrary <em>Case Format Library</em>}</li>
  * </ul>
  * </p>
  *
@@ -299,5 +300,31 @@ public interface Property extends EObject
    * @generated
    */
   EList<ValueType> getDoNotVerifyResources();
+
+  /**
+   * Returns the value of the '<em><b>Case Format Library</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Case Format Library</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Case Format Library</em>' containment reference.
+   * @see #setCaseFormatLibrary(ValueType)
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getProperty_CaseFormatLibrary()
+   * @model containment="true"
+   * @generated
+   */
+  ValueType getCaseFormatLibrary();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.Property#getCaseFormatLibrary <em>Case Format Library</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Case Format Library</em>' containment reference.
+   * @see #getCaseFormatLibrary()
+   * @generated
+   */
+  void setCaseFormatLibrary(ValueType value);
 
 } // Property

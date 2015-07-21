@@ -1400,6 +1400,12 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNameCompressMetaDirectivesKeyword_1_10_0 = (Keyword)cNameAssignment_1_10.eContents().get(0);
 		private final Assignment cNameAssignment_1_11 = (Assignment)cAlternatives_1.eContents().get(11);
 		private final Keyword cNameGenerateFromToKeyword_1_11_0 = (Keyword)cNameAssignment_1_11.eContents().get(0);
+		private final Group cGroup_1_12 = (Group)cAlternatives_1.eContents().get(12);
+		private final Assignment cNameAssignment_1_12_0 = (Assignment)cGroup_1_12.eContents().get(0);
+		private final Keyword cNameCaseFormatLibraryKeyword_1_12_0_0 = (Keyword)cNameAssignment_1_12_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1_12_1 = (RuleCall)cGroup_1_12.eContents().get(1);
+		private final Assignment cCaseFormatLibraryAssignment_1_12_2 = (Assignment)cGroup_1_12.eContents().get(2);
+		private final RuleCall cCaseFormatLibraryValueTypeParserRuleCall_1_12_2_0 = (RuleCall)cCaseFormatLibraryAssignment_1_12_2.eContents().get(0);
 		private final RuleCall cSEMICOLONTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
 		//Property:
@@ -1408,7 +1414,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="daogen-" daogen=DaogenProperty | name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType |
 		//	name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=ValueType | name="replace-text" WS+ regex=ValueType
 		//	WS+ replacement=ValueType | name="validate-resources" (WS+ PLUS (WS+ doVerifyResources+=ValueType)+)? (WS+ MINUS (WS+
-		//	doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives" | name="generate-from-to") SEMICOLON;
+		//	doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives" | name="generate-from-to" |
+		//	name="case-format-library" WS+ caseFormatLibrary=ValueType) SEMICOLON;
 		@Override public ParserRule getRule() { return rule; }
 
 		//(condition=PropertyCondition WS*)? (name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-"
@@ -1416,7 +1423,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//name="daogen-" daogen=DaogenProperty | name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType |
 		//name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=ValueType | name="replace-text" WS+ regex=ValueType
 		//WS+ replacement=ValueType | name="validate-resources" (WS+ PLUS (WS+ doVerifyResources+=ValueType)+)? (WS+ MINUS (WS+
-		//doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives" | name="generate-from-to") SEMICOLON
+		//doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives" | name="generate-from-to" |
+		//name="case-format-library" WS+ caseFormatLibrary=ValueType) SEMICOLON
 		public Group getGroup() { return cGroup; }
 
 		//(condition=PropertyCondition WS*)?
@@ -1436,7 +1444,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType | name="replace-all-replacement" WS+ replaceId=IDENT
 		//WS+ replacement=ValueType | name="replace-text" WS+ regex=ValueType WS+ replacement=ValueType |
 		//name="validate-resources" (WS+ PLUS (WS+ doVerifyResources+=ValueType)+)? (WS+ MINUS (WS+
-		//doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives" | name="generate-from-to"
+		//doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives" | name="generate-from-to" |
+		//name="case-format-library" WS+ caseFormatLibrary=ValueType
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//name="resolve-pojo-on"
@@ -1655,6 +1664,24 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"generate-from-to"
 		public Keyword getNameGenerateFromToKeyword_1_11_0() { return cNameGenerateFromToKeyword_1_11_0; }
+
+		//name="case-format-library" WS+ caseFormatLibrary=ValueType
+		public Group getGroup_1_12() { return cGroup_1_12; }
+
+		//name="case-format-library"
+		public Assignment getNameAssignment_1_12_0() { return cNameAssignment_1_12_0; }
+
+		//"case-format-library"
+		public Keyword getNameCaseFormatLibraryKeyword_1_12_0_0() { return cNameCaseFormatLibraryKeyword_1_12_0_0; }
+
+		//WS+
+		public RuleCall getWSTerminalRuleCall_1_12_1() { return cWSTerminalRuleCall_1_12_1; }
+
+		//caseFormatLibrary=ValueType
+		public Assignment getCaseFormatLibraryAssignment_1_12_2() { return cCaseFormatLibraryAssignment_1_12_2; }
+
+		//ValueType
+		public RuleCall getCaseFormatLibraryValueTypeParserRuleCall_1_12_2_0() { return cCaseFormatLibraryValueTypeParserRuleCall_1_12_2_0; }
 
 		//SEMICOLON
 		public RuleCall getSEMICOLONTerminalRuleCall_2() { return cSEMICOLONTerminalRuleCall_2; }
@@ -8398,7 +8425,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="daogen-" daogen=DaogenProperty | name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType |
 	//	name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=ValueType | name="replace-text" WS+ regex=ValueType
 	//	WS+ replacement=ValueType | name="validate-resources" (WS+ PLUS (WS+ doVerifyResources+=ValueType)+)? (WS+ MINUS (WS+
-	//	doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives" | name="generate-from-to") SEMICOLON;
+	//	doNotVerifyResources+=ValueType)+)? | name="compress-meta-directives" | name="generate-from-to" |
+	//	name="case-format-library" WS+ caseFormatLibrary=ValueType) SEMICOLON;
 	public PropertyElements getPropertyAccess() {
 		return pProperty;
 	}

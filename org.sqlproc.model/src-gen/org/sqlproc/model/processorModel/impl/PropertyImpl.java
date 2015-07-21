@@ -45,6 +45,7 @@ import org.sqlproc.model.processorModel.ValueType;
  *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getReplacement <em>Replacement</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getDoVerifyResources <em>Do Verify Resources</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getDoNotVerifyResources <em>Do Not Verify Resources</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getCaseFormatLibrary <em>Case Format Library</em>}</li>
  * </ul>
  * </p>
  *
@@ -181,6 +182,16 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @ordered
    */
   protected EList<ValueType> doNotVerifyResources;
+
+  /**
+   * The cached value of the '{@link #getCaseFormatLibrary() <em>Case Format Library</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCaseFormatLibrary()
+   * @generated
+   * @ordered
+   */
+  protected ValueType caseFormatLibrary;
 
   /**
    * <!-- begin-user-doc -->
@@ -618,6 +629,54 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
+  public ValueType getCaseFormatLibrary()
+  {
+    return caseFormatLibrary;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetCaseFormatLibrary(ValueType newCaseFormatLibrary, NotificationChain msgs)
+  {
+    ValueType oldCaseFormatLibrary = caseFormatLibrary;
+    caseFormatLibrary = newCaseFormatLibrary;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.PROPERTY__CASE_FORMAT_LIBRARY, oldCaseFormatLibrary, newCaseFormatLibrary);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCaseFormatLibrary(ValueType newCaseFormatLibrary)
+  {
+    if (newCaseFormatLibrary != caseFormatLibrary)
+    {
+      NotificationChain msgs = null;
+      if (caseFormatLibrary != null)
+        msgs = ((InternalEObject)caseFormatLibrary).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.PROPERTY__CASE_FORMAT_LIBRARY, null, msgs);
+      if (newCaseFormatLibrary != null)
+        msgs = ((InternalEObject)newCaseFormatLibrary).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.PROPERTY__CASE_FORMAT_LIBRARY, null, msgs);
+      msgs = basicSetCaseFormatLibrary(newCaseFormatLibrary, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.PROPERTY__CASE_FORMAT_LIBRARY, newCaseFormatLibrary, newCaseFormatLibrary));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -641,6 +700,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return ((InternalEList<?>)getDoVerifyResources()).basicRemove(otherEnd, msgs);
       case ProcessorModelPackage.PROPERTY__DO_NOT_VERIFY_RESOURCES:
         return ((InternalEList<?>)getDoNotVerifyResources()).basicRemove(otherEnd, msgs);
+      case ProcessorModelPackage.PROPERTY__CASE_FORMAT_LIBRARY:
+        return basicSetCaseFormatLibrary(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -677,6 +738,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return getDoVerifyResources();
       case ProcessorModelPackage.PROPERTY__DO_NOT_VERIFY_RESOURCES:
         return getDoNotVerifyResources();
+      case ProcessorModelPackage.PROPERTY__CASE_FORMAT_LIBRARY:
+        return getCaseFormatLibrary();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -727,6 +790,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         getDoNotVerifyResources().clear();
         getDoNotVerifyResources().addAll((Collection<? extends ValueType>)newValue);
         return;
+      case ProcessorModelPackage.PROPERTY__CASE_FORMAT_LIBRARY:
+        setCaseFormatLibrary((ValueType)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -774,6 +840,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
       case ProcessorModelPackage.PROPERTY__DO_NOT_VERIFY_RESOURCES:
         getDoNotVerifyResources().clear();
         return;
+      case ProcessorModelPackage.PROPERTY__CASE_FORMAT_LIBRARY:
+        setCaseFormatLibrary((ValueType)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -810,6 +879,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return doVerifyResources != null && !doVerifyResources.isEmpty();
       case ProcessorModelPackage.PROPERTY__DO_NOT_VERIFY_RESOURCES:
         return doNotVerifyResources != null && !doNotVerifyResources.isEmpty();
+      case ProcessorModelPackage.PROPERTY__CASE_FORMAT_LIBRARY:
+        return caseFormatLibrary != null;
     }
     return super.eIsSet(featureID);
   }
