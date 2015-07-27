@@ -42,6 +42,9 @@ import org.sqlproc.plugin.lib.resolver.PojoResolverFactory
 import org.sqlproc.plugin.lib.resolver.DbResolver
 import org.sqlproc.plugin.lib.property.ModelProperty
 import org.sqlproc.plugin.lib.util.CommonUtils
+import org.sqlproc.plugin.lib.property.PojoDefinition
+import org.sqlproc.plugin.lib.property.TableDefinition
+import java.util.TreeMap
 
 enum ValidationResult {
 	OK, WARNING, ERROR
@@ -113,6 +116,19 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         }
     }
 
+    def equalsStatement(MetaStatement statement1, MetaStatement statement2) {
+        if (statement1 == null && statement2 == null)
+            return true
+        if (statement1 == null || statement1.getName() == null)
+            return false
+        if (statement2 == null || statement2.getName() == null)
+            return false
+        if (statement1.getName().equals(statement2.getName()) && statement1.getType().equals(statement2.getType())) {
+            return equalsModifiers(statement1.getModifiers(), statement2.getModifiers())
+        }
+        return false
+    }
+
     @Check
     def checkUniqueMappingRule(MappingRule mappingRule) {
         if (CommonUtils.skipVerification(mappingRule, modelProperty))
@@ -132,6 +148,19 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         }
     }
 
+    def equalsRule(MappingRule rule1, MappingRule rule2) {
+        if (rule1 == null && rule2 == null)
+            return true
+        if (rule1 == null || rule1.getName() == null)
+            return false
+        if (rule2 == null || rule2.getName() == null)
+            return false
+        if (rule1.getName().equals(rule2.getName()) && rule1.getType().equals(rule2.getType())) {
+            return equalsModifiers(rule1.getModifiers(), rule2.getModifiers())
+        }
+        return false
+    }
+
     @Check
     def checkUniqueOptionalFeature(OptionalFeature optionalFeature) {
         if (CommonUtils.skipVerification(optionalFeature, modelProperty))
@@ -149,6 +178,19 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	            }
             }
         }
+    }
+
+    def equalsFeature(OptionalFeature feature1, OptionalFeature feature2) {
+        if (feature1 == null && feature2 == null)
+            return true
+        if (feature1 == null || feature1.getName() == null)
+            return false
+        if (feature2 == null || feature2.getName() == null)
+            return false
+        if (feature1.getName().equals(feature2.getName()) && feature1.getType().equals(feature2.getType())) {
+            return equalsModifiers(feature1.getModifiers(), feature2.getModifiers())
+        }
+        return false
     }
 
     @Check
@@ -172,46 +214,6 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	            }
             }
         }
-    }
-
-
-    def equalsStatement(MetaStatement statement1, MetaStatement statement2) {
-        if (statement1 == null && statement2 == null)
-            return true
-        if (statement1 == null || statement1.getName() == null)
-            return false
-        if (statement2 == null || statement2.getName() == null)
-            return false
-        if (statement1.getName().equals(statement2.getName()) && statement1.getType().equals(statement2.getType())) {
-            return equalsModifiers(statement1.getModifiers(), statement2.getModifiers())
-        }
-        return false
-    }
-
-    def equalsRule(MappingRule rule1, MappingRule rule2) {
-        if (rule1 == null && rule2 == null)
-            return true
-        if (rule1 == null || rule1.getName() == null)
-            return false
-        if (rule2 == null || rule2.getName() == null)
-            return false
-        if (rule1.getName().equals(rule2.getName()) && rule1.getType().equals(rule2.getType())) {
-            return equalsModifiers(rule1.getModifiers(), rule2.getModifiers())
-        }
-        return false
-    }
-
-    def equalsFeature(OptionalFeature feature1, OptionalFeature feature2) {
-        if (feature1 == null && feature2 == null)
-            return true
-        if (feature1 == null || feature1.getName() == null)
-            return false
-        if (feature2 == null || feature2.getName() == null)
-            return false
-        if (feature1.getName().equals(feature2.getName()) && feature1.getType().equals(feature2.getType())) {
-            return equalsModifiers(feature1.getModifiers(), feature2.getModifiers())
-        }
-        return false
     }
 
     def equalsModifiers(List<String> modifiers1, List<String> modifiers2) {
@@ -271,29 +273,141 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     }
 
     @Check
-    def checkColumn(Column column) {
+    def checkMetaStatement(MetaStatement statement) {
+        if (statement.getModifiers() == null || statement.getModifiers().isEmpty())
+            return;
+        if (CommonUtils.skipVerification(statement, modelProperty))
+            return;
+        val artifacts = getArtifacts(statement)
+        if (artifacts == null)
+            return;
+        val URI uri = statement.eResource?.URI
+
+        var index = 0
+        var String identPojoName
+        var PojoDefinition identPojo
+        var String colPojoName
+        var PojoDefinition colPojo
+        var String constPojoName
+        var PojoDefinition constPojo
+        val TreeMap<String, TableDefinition> tables = new TreeMap<String, TableDefinition>()
+        for (String modifier : statement.getModifiers()) {
+            var ix = modifier.indexOf('=')
+            if (ix > 0) {
+	            val key = modifier.substring(0, ix)
+	            var value = modifier.substring(ix + 1)
+	            if (IDENTIFIER_USAGE.equals(key)) {
+	                identPojo = modelProperty.getModelPojos(artifacts).get(value)
+	                if (identPojo == null) {
+	                    error("Cannot find pojo : " + value + "[" + IDENTIFIER_USAGE + "]",
+	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
+	                }
+	                else
+	                	identPojoName = value
+	            }
+				if (COLUMN_USAGE.equals(key)) {
+	                colPojo = modelProperty.getModelPojos(artifacts).get(value)
+	                if (colPojo == null) {
+	                    error("Cannot find pojo : " + value + "[" + COLUMN_USAGE + "]",
+	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
+	                }
+	                else
+	                	colPojoName = value
+	            }
+				if (CONSTANT_USAGE.equals(key)) {
+	                constPojo = modelProperty.getModelPojos(artifacts).get(value)
+	                if (constPojo == null) {
+	                    error("Cannot find pojo : " + value + "[" + CONSTANT_USAGE + "]",
+	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
+	                }
+	                else
+	                	constPojoName = value
+	            }
+				if (TABLE_USAGE.equals(key)) {
+	                var ix1 = value.indexOf('=')
+	                if (ix1 >= 0)
+	                    value = value.substring(0, ix1)
+	                val table = modelProperty.getModelTables(artifacts).get(value)
+	                if (table == null) {
+	                    error("Cannot find table : " + value + "[" + TABLE_USAGE + "]",
+	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
+	                }
+	                else
+	                	tables.put(value, table)
+	            }
+	            index = index + 1
+            }
+        }
+        
+        if (identPojo != null) {
+        	val identifiers = statement.getAllContentsOfType(typeof(Identifier))
+        	val pojo = identPojo
+        	val pojoName = identPojoName
+        	identifiers.forEach[identifier |
+        		checkIdentifier(identifier, pojo, pojoName, statement, artifacts, uri) 
+        	]
+        }
+
+        if (colPojo != null) {
+        	val columns = statement.getAllContentsOfType(typeof(Column))
+        	val pojo = colPojo
+        	val pojoName = colPojoName
+        	columns.forEach[column |
+        		checkColumn(column, pojo, pojoName, statement, artifacts, uri) 
+        	]
+        }
+
+        if (constPojo != null) {
+        	val constants = statement.getAllContentsOfType(typeof(Constant))
+        	val pojo = constPojo
+        	val pojoName = constPojoName
+        	constants.forEach[constant |
+        		checkConstant(constant, pojo, pojoName, statement, artifacts, uri) 
+        	]
+        }
+
+        if (!tables.isEmpty) {
+        	
+        }
+    }
+
+    def checkIdentifier(Identifier identifier, PojoDefinition pojo, String pojoName, MetaStatement statement, Artifacts artifacts, URI uri) {
+        if (!isResolvePojo(identifier))
+            return;
+
+        val identifierName = identifier.getName()
+        val identifierUsageClass = if (pojo != null) pojo.qualifiedName
+        if (identifierUsageClass != null) {
+            switch (checkClassProperty(identifierUsageClass, identifierName, uri)) {
+            case ValidationResult.WARNING:
+                warning("Problem property : " + identifierName + "[" + identifierUsageClass + "]",
+                        identifier, ProcessorMetaPackage.Literals.IDENTIFIER__NAME)
+            case ValidationResult.ERROR:
+		        error("Cannot find property : " + identifierName + "[" + identifierUsageClass + "]",
+					identifier, ProcessorMetaPackage.Literals.IDENTIFIER__NAME)
+            }
+            return
+        }
+
+        if (pojoResolverFactory.getPojoResolver() != null) {
+            error("Cannot check input form attribute : " + identifierName,
+                    ProcessorMetaPackage.Literals.IDENTIFIER__NAME)
+        }
+    }
+
+    def checkColumn(Column column, PojoDefinition pojo, String pojoName, MetaStatement statement, Artifacts artifacts, URI uri) {
         if (!isResolvePojo(column))
             return;
         val columnName = Utils.getName(column)
         if (Utils.isNumber(columnName))
             return;
-        if (CommonUtils.skipVerification(column, modelProperty))
-            return;
 
-        val URI uri = column.eResource?.URI
-        val statement = column.getContainerOfType(typeof(MetaStatement))
-        val artifacts = getArtifacts(statement)
-        if (artifacts == null)
-            return;
-
-        val pojoName = Utils.getTokenFromModifier(statement, COLUMN_USAGE)
-        val pojo = if (pojoName != null) modelProperty.getModelPojos(artifacts).get(pojoName)
         val columnUsageClass = if (pojo != null) pojo.qualifiedName
         if (columnUsageClass != null) {
             switch (checkClassProperty(columnUsageClass, columnName, uri)) {
             case ValidationResult.WARNING:
                 warning("Problem property : " + columnName + "[" + columnUsageClass + "]",
-                        ProcessorMetaPackage.Literals.COLUMN__COLUMNS)
+                        column, ProcessorMetaPackage.Literals.COLUMN__COLUMNS)
             case ValidationResult.ERROR:
             	checkColumnGType(statement, columnName, columnUsageClass)
             }
@@ -301,7 +415,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         }
 
         if (pojoResolverFactory.getPojoResolver() != null) {
-            error("Cannot check result class attribute : " + columnName, ProcessorMetaPackage.Literals.COLUMN__COLUMNS)
+            error("Cannot check result class attribute : " + columnName, column, ProcessorMetaPackage.Literals.COLUMN__COLUMNS)
         }
     }
     
@@ -347,66 +461,20 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 		error("Cannot find property : " + columnName + "[" + columnUsageClass + "]",
         	ProcessorMetaPackage.Literals.COLUMN__COLUMNS)
     }
-
-    @Check
-    def checkIdentifier(Identifier identifier) {
-        if (!isResolvePojo(identifier))
-            return;
-        if (CommonUtils.skipVerification(identifier, modelProperty))
-            return;
-
-        val URI uri = identifier.eResource?.URI
-        val identifierName = identifier.getName()
-        val statement = identifier.getContainerOfType(typeof(MetaStatement))
-        val artifacts = getArtifacts(statement)
-        if (artifacts == null)
-            return;
-
-        val pojoName = Utils.getTokenFromModifier(statement, IDENTIFIER_USAGE)
-        val pojo = if (pojoName != null) modelProperty.getModelPojos(artifacts).get(pojoName)
-        val identifierUsageClass = if (pojo != null) pojo.qualifiedName
-        if (identifierUsageClass != null) {
-            switch (checkClassProperty(identifierUsageClass, identifierName, uri)) {
-            case ValidationResult.WARNING:
-                warning("Problem property : " + identifierName + "[" + identifierUsageClass + "]",
-                        ProcessorMetaPackage.Literals.IDENTIFIER__NAME)
-            case ValidationResult.ERROR:
-		        error("Cannot find property : " + identifierName + "[" + identifierUsageClass + "]",
-					ProcessorMetaPackage.Literals.IDENTIFIER__NAME)
-            }
-            return
-        }
-
-        if (pojoResolverFactory.getPojoResolver() != null) {
-            error("Cannot check input form attribute : " + identifierName,
-                    ProcessorMetaPackage.Literals.IDENTIFIER__NAME)
-        }
-    }
     
-    @Check
-    def checkConstant(Constant constant) {
+    def checkConstant(Constant constant, PojoDefinition pojo, String pojoName, MetaStatement statement, Artifacts artifacts, URI uri) {
         if (!isResolvePojo(constant))
             return;
-        if (CommonUtils.skipVerification(constant, modelProperty))
-            return;
 
-        val URI uri = constant.eResource?.URI
-        val statement = constant.getContainerOfType(typeof(MetaStatement))
-        val artifacts = getArtifacts(constant)
-        if (artifacts == null)
-            return;
-
-        val pojoName = Utils.getTokenFromModifier(statement, CONSTANT_USAGE)
-        val pojo = if (pojoName != null) modelProperty.getModelPojos(artifacts).get(pojoName)
         val constantUsageClass = if (pojo != null) pojo.qualifiedName
         if (constantUsageClass != null) {
             switch (checkClassProperty(constantUsageClass, constant.getName(),uri)) {
             case ValidationResult.WARNING:
                 warning("Problem property : " + constant.getName() + "[" + constantUsageClass + "]",
-                        ProcessorMetaPackage.Literals.CONSTANT__NAME)
+                        constant, ProcessorMetaPackage.Literals.CONSTANT__NAME)
             case ValidationResult.ERROR:
                 error("Cannot find property : " + constant.getName() + "[" + constantUsageClass + "]",
-                        ProcessorMetaPackage.Literals.CONSTANT__NAME)
+                        constant, ProcessorMetaPackage.Literals.CONSTANT__NAME)
             }
             return
         }
@@ -451,55 +519,6 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         if (pojoResolverFactory.getPojoResolver() != null) {
             error("Cannot check result class attribute : " + columnName,
                     ProcessorMetaPackage.Literals.MAPPING_COLUMN__ITEMS)
-        }
-    }
-
-    @Check
-    def checkMetaStatement(MetaStatement statement) {
-        if (statement.getModifiers() == null || statement.getModifiers().isEmpty())
-            return;
-        if (CommonUtils.skipVerification(statement, modelProperty))
-            return;
-        val artifacts = getArtifacts(statement)
-        if (artifacts == null)
-            return;
-
-        var index = 0
-        for (String modifier : statement.getModifiers()) {
-            var ix = modifier.indexOf('=')
-            if (ix > 0) {
-	            val key = modifier.substring(0, ix)
-	            var value = modifier.substring(ix + 1)
-	            if (IDENTIFIER_USAGE.equals(key)) {
-	                val pojo = modelProperty.getModelPojos(artifacts).get(value)
-	                if (pojo == null) {
-	                    error("Cannot find pojo : " + value + "[" + IDENTIFIER_USAGE + "]",
-	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
-	                }
-	            } else if (COLUMN_USAGE.equals(key)) {
-	                val pojo = modelProperty.getModelPojos(artifacts).get(value)
-	                if (pojo == null) {
-	                    error("Cannot find pojo : " + value + "[" + COLUMN_USAGE + "]",
-	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
-	                }
-	            } else if (CONSTANT_USAGE.equals(key)) {
-	                val pojo = modelProperty.getModelPojos(artifacts).get(value)
-	                if (pojo == null) {
-	                    error("Cannot find pojo : " + value + "[" + CONSTANT_USAGE + "]",
-	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
-	                }
-	            } else if (TABLE_USAGE.equals(key)) {
-	                var ix1 = value.indexOf('=')
-	                if (ix1 >= 0)
-	                    value = value.substring(0, ix1)
-	                val table = modelProperty.getModelTables(artifacts).get(value)
-	                if (table == null) {
-	                    error("Cannot find table : " + value + "[" + TABLE_USAGE + "]",
-	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
-	                }
-	            }
-	            index = index + 1
-            }
         }
     }
 
@@ -590,19 +609,19 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             checkProperty = checkProperty.substring(0, pos1)
         }
         val _checkProperty = checkProperty
-        var innerDesriptor = descriptors.findFirst[descriptor |
+        var checkDesriptor = descriptors.findFirst[descriptor |
             descriptor.name == _checkProperty
         ]
-        if (innerDesriptor == null) {
+        if (checkDesriptor == null) {
             val clazz = pojoResolverFactory.getPojoResolver().loadClass(className, uri)
             if (clazz != null && Modifier.isAbstract(clazz.getModifiers()))
                 return ValidationResult.WARNING
             return ValidationResult.ERROR
         }
         if (innerProperty != null) {
-            var innerClass = innerDesriptor.getPropertyType()
+            var innerClass = checkDesriptor.getPropertyType()
             if (innerClass.isArray()) {
-                val type = innerDesriptor.getReadMethod().getGenericReturnType() as ParameterizedType
+                val type = checkDesriptor.getReadMethod().getGenericReturnType() as ParameterizedType
                 if (type.getActualTypeArguments() == null || type.getActualTypeArguments().length == 0)
                     return ValidationResult.WARNING
                 innerClass = type.getActualTypeArguments().head as Class<?>
@@ -610,7 +629,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
                     return ValidationResult.ERROR
                 return checkClassProperty(innerClass.getName(), innerProperty, uri)
             } else if (typeof(Collection).isAssignableFrom(innerClass)) {
-                val type = innerDesriptor.getReadMethod().getGenericReturnType() as ParameterizedType
+                val type = checkDesriptor.getReadMethod().getGenericReturnType() as ParameterizedType
                 if (type.getActualTypeArguments() == null || type.getActualTypeArguments().length == 0)
                     return ValidationResult.WARNING
                 innerClass = type.getActualTypeArguments().head as Class<?>
