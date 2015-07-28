@@ -290,7 +290,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         var PojoDefinition colPojo
         var String constPojoName
         var PojoDefinition constPojo
-        val TreeMap<String, TableDefinition> tables = new TreeMap<String, TableDefinition>()
+        val TreeMap<String, TableDefinition> tablesPojo = new TreeMap<String, TableDefinition>()
         for (String modifier : statement.getModifiers()) {
             var ix = modifier.indexOf('=')
             if (ix > 0) {
@@ -305,7 +305,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	                else
 	                	identPojoName = value
 	            }
-				if (COLUMN_USAGE.equals(key)) {
+				else if (COLUMN_USAGE.equals(key)) {
 	                colPojo = modelProperty.getModelPojos(artifacts).get(value)
 	                if (colPojo == null) {
 	                    error("Cannot find pojo : " + value + "[" + COLUMN_USAGE + "]",
@@ -314,7 +314,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	                else
 	                	colPojoName = value
 	            }
-				if (CONSTANT_USAGE.equals(key)) {
+				else if (CONSTANT_USAGE.equals(key)) {
 	                constPojo = modelProperty.getModelPojos(artifacts).get(value)
 	                if (constPojo == null) {
 	                    error("Cannot find pojo : " + value + "[" + CONSTANT_USAGE + "]",
@@ -323,7 +323,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	                else
 	                	constPojoName = value
 	            }
-				if (TABLE_USAGE.equals(key)) {
+				else if (TABLE_USAGE.equals(key)) {
 	                var ix1 = value.indexOf('=')
 	                if (ix1 >= 0)
 	                    value = value.substring(0, ix1)
@@ -333,7 +333,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
 	                }
 	                else
-	                	tables.put(value, table)
+	                	tablesPojo.put(value, table)
 	            }
 	            index = index + 1
             }
@@ -369,9 +369,25 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         	]
         }
 
-        if (!tables.isEmpty) {
-        	
-        }
+//        if (!tablesPojo.isEmpty) {
+//        	val tables = statement.getAllContentsOfType(typeof(DatabaseTable))
+//        	tables.forEach[table |
+//		        val tableName = table.getName()
+//		        val tableDefinition = tablesPojo.values.findFirst[it| it.table == tableName] 
+//		        if (tableDefinition == null || !dbResolver.checkTable(statement, tableName))
+//		            error("Cannot find table in DB : " + tableName, 
+//		            	table, ProcessorMetaPackage.Literals.DATABASE_TABLE__NAME)
+//        	]
+//        }
+//        else {
+//        	val tables = statement.getAllContentsOfType(typeof(DatabaseTable))
+//        	tables.forEach[table |
+//		        val tableName = table.getName()
+//		        if (!dbResolver.checkTable(statement, tableName))
+//		            error("Cannot find table in DB : " + tableName, 
+//		            	table, ProcessorMetaPackage.Literals.DATABASE_TABLE__NAME)
+//        	]
+//        }
     }
 
     def checkIdentifier(Identifier identifier, PojoDefinition pojo, String pojoName, MetaStatement statement, 
@@ -738,7 +754,29 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	    	}
         }
     }
+    
+	@Check
+    def checkDatabaseTable(DatabaseTable databaseTable) {
+        if (!isResolveDb(databaseTable))
+            return;
+        if (CommonUtils.skipVerification(databaseTable, modelProperty))
+            return;
 
+        val statement = databaseTable.getContainerOfType(typeof(MetaStatement))
+        val artifacts = getArtifacts(statement)
+        if (artifacts == null)
+            return;
+
+        val tableName = databaseTable.getName()
+        val tableDefinitions = Utils.getTokensFromModifier(statement, TABLE_USAGE).map[value |
+        	modelProperty.getModelTables(artifacts).get(value)
+        ]
+        val tableDefinition = tableDefinitions.findFirst[it | it.table == tableName] 
+        if (tableDefinition == null || !dbResolver.checkTable(databaseTable, tableName)) {
+            error("Cannot find table in DB : " + tableName, ProcessorMetaPackage.Literals.DATABASE_TABLE__NAME)
+        }
+    }
+    
     @Check
     def checkDatabaseColumn(DatabaseColumn databaseColumn) {
         if (!isResolveDb(databaseColumn))
@@ -768,28 +806,6 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         if (tableName == null || !dbResolver.checkColumn(databaseColumn, tableName, columnName)) {
             error("Cannot find column in DB : " + databaseColumn.getName() + "[" + tableName + "]",
                     ProcessorMetaPackage.Literals.DATABASE_COLUMN__NAME)
-        }
-    }
-
-    @Check
-    def checkDatabaseTable(DatabaseTable databaseTable) {
-        if (!isResolveDb(databaseTable))
-            return;
-        if (CommonUtils.skipVerification(databaseTable, modelProperty))
-            return;
-
-        val statement = databaseTable.getContainerOfType(typeof(MetaStatement))
-        val artifacts = getArtifacts(statement)
-        if (artifacts == null)
-            return;
-
-        val tableName = databaseTable.getName()
-        val tableDefinitions = Utils.getTokensFromModifier(statement, TABLE_USAGE).map[value |
-        	modelProperty.getModelTables(artifacts).get(value)
-        ]
-        val tableDefinition = tableDefinitions.findFirst[it != null] 
-        if (tableDefinition == null || !dbResolver.checkTable(databaseTable, tableName)) {
-            error("Cannot find table in DB : " + tableName, ProcessorMetaPackage.Literals.DATABASE_TABLE__NAME)
         }
     }
     
