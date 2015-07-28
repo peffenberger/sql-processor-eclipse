@@ -226,6 +226,26 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         }
     }
 
+    @Check
+    def checkUniqueProperty(Property property) {
+        if (CommonUtils.skipVerification(property, modelProperty))
+            return;
+        val artifacts = getArtifacts(property)
+        if (artifacts == null)
+            return;
+
+        for (Property prop : artifacts.getProperties()) {
+            if (prop != null && prop !== property) {
+	            if (prop.getName().equals(property.getName()) && !prop.getName().startsWith("pojogen")
+	                    && !prop.getName().startsWith("database") && !prop.getName().startsWith("metagen")
+	                    && !prop.getName().startsWith("daogen") && !prop.getName().startsWith("replace-text")) {
+	                error("Duplicate name : " + property.getName(), ProcessorMetaPackage.Literals.PROPERTY__NAME)
+	                return
+	            }
+            }
+        }
+    }
+
     def equalsModifiers(List<String> modifiers1, List<String> modifiers2) {
         val filteredModifiers1 = filteredModifiers(modifiers1)
         val filteredModifiers2 = filteredModifiers(modifiers2)
@@ -295,11 +315,12 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         var String constPojoName
         var PojoDefinition constPojo
         val TreeMap<String, TableDefinition> tablesPojo = new TreeMap<String, TableDefinition>()
+        val TreeMap<String, TableDefinition> tablesPrefixPojo = new TreeMap<String, TableDefinition>()
         for (String modifier : statement.getModifiers()) {
-            var ix = modifier.indexOf('=')
-            if (ix > 0) {
-	            val key = modifier.substring(0, ix)
-	            var value = modifier.substring(ix + 1)
+        	val String[] values = modifier.split("=")
+            if (values.length > 1) {
+	            val key = values.get(0)
+	            val value = values.get(1)
 	            if (IDENTIFIER_USAGE.equals(key)) {
 	                identPojo = modelProperty.getModelPojos(artifacts).get(value)
 	                if (identPojo == null) {
@@ -328,16 +349,16 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	                	constPojoName = value
 	            }
 				else if (TABLE_USAGE.equals(key)) {
-	                var ix1 = value.indexOf('=')
-	                if (ix1 >= 0)
-	                    value = value.substring(0, ix1)
+					val prefix = if (values.length > 2) values.get(2) else "_DEFAULT_"
 	                val table = modelProperty.getModelTables(artifacts).get(value)
 	                if (table == null) {
 	                    error("Cannot find table : " + value + "[" + TABLE_USAGE + "]",
 	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
 	                }
-	                else
+	                else {
 	                	tablesPojo.put(value, table)
+	                	tablesPrefixPojo.put(prefix, table)
+                	}
 	            }
 	            index = index + 1
             }
@@ -372,26 +393,36 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         		checkConstant(constant, pojo, pojoName, statement, artifacts, uri, descriptorsCache, classesCache) 
         	]
         }
+        
+        checkTablesColumns(tablesPojo, tablesPrefixPojo, statement)
+	}
+	
+	def checkTablesColumns(TreeMap<String, TableDefinition> tablesPojo, TreeMap<String, TableDefinition> tablesPrefixPojo,
+		MetaStatement statement
+	) {
+       	val tables = statement.getAllContentsOfType(typeof(DatabaseTable))
 
-//        if (!tablesPojo.isEmpty) {
-//        	val tables = statement.getAllContentsOfType(typeof(DatabaseTable))
-//        	tables.forEach[table |
-//		        val tableName = table.getName()
-//		        val tableDefinition = tablesPojo.values.findFirst[it| it.table == tableName] 
-//		        if (tableDefinition == null || !dbResolver.checkTable(statement, tableName))
-//		            error("Cannot find table in DB : " + tableName, 
-//		            	table, ProcessorMetaPackage.Literals.DATABASE_TABLE__NAME)
-//        	]
-//        }
-//        else {
-//        	val tables = statement.getAllContentsOfType(typeof(DatabaseTable))
-//        	tables.forEach[table |
-//		        val tableName = table.getName()
-//		        if (!dbResolver.checkTable(statement, tableName))
-//		            error("Cannot find table in DB : " + tableName, 
-//		            	table, ProcessorMetaPackage.Literals.DATABASE_TABLE__NAME)
-//        	]
-//        }
+       	tables.forEach[table |
+	        val tableName = table.getName()
+	        val tableDefinition = tablesPojo.values.findFirst[it| it.table == tableName] 
+	        if (tableDefinition == null || !dbResolver.checkTable(statement, tableName))
+	            error("Cannot find table in DB : " + tableName, 
+	            	table, ProcessorMetaPackage.Literals.DATABASE_TABLE__NAME)
+       	]
+
+       	val columns = statement.getAllContentsOfType(typeof(DatabaseColumn))
+       	columns.forEach[column |
+	        val pos = column.name.indexOf('.')
+	        val prefix = if (pos > 0) column.name.substring(0, pos) else "_DEFAULT_"
+	        val columnName = if (pos > 0) column.name.substring(pos + 1) else column.name
+	
+	        val tableDefinition = tablesPrefixPojo.get(prefix)
+	        val tableName = if (tableDefinition != null) tableDefinition.getTable()
+	        if (tableName == null || !dbResolver.checkColumn(column, tableName, columnName)) {
+	            error("Cannot find column in DB : " + column.getName() + "[" + tableName + "]",
+	                    column, ProcessorMetaPackage.Literals.DATABASE_COLUMN__NAME)
+	        }
+        ]
     }
 
     def checkIdentifier(Identifier identifier, PojoDefinition pojo, String pojoName, MetaStatement statement, 
@@ -683,26 +714,6 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     }
 
     @Check
-    def checkUniqueProperty(Property property) {
-        if (CommonUtils.skipVerification(property, modelProperty))
-            return;
-        val artifacts = getArtifacts(property)
-        if (artifacts == null)
-            return;
-
-        for (Property prop : artifacts.getProperties()) {
-            if (prop != null && prop !== property) {
-	            if (prop.getName().equals(property.getName()) && !prop.getName().startsWith("pojogen")
-	                    && !prop.getName().startsWith("database") && !prop.getName().startsWith("metagen")
-	                    && !prop.getName().startsWith("daogen") && !prop.getName().startsWith("replace-text")) {
-	                error("Duplicate name : " + property.getName(), ProcessorMetaPackage.Literals.PROPERTY__NAME)
-	                return
-	            }
-            }
-        }
-    }
-
-    @Check
     def checkTableDefinition(TableDefinitionModel tableDefinition) {
         if (CommonUtils.skipVerification(tableDefinition, modelProperty))
             return;
@@ -768,8 +779,8 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         }
     }
     
-	@Check
-    def checkDatabaseTable(DatabaseTable databaseTable) {
+	//@Check
+    def _checkDatabaseTable(DatabaseTable databaseTable) {
         if (!isResolveDb(databaseTable))
             return;
         if (CommonUtils.skipVerification(databaseTable, modelProperty))
@@ -790,8 +801,8 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         }
     }
     
-    @Check
-    def checkDatabaseColumn(DatabaseColumn databaseColumn) {
+    //@Check
+    def _checkDatabaseColumn(DatabaseColumn databaseColumn) {
         if (!isResolveDb(databaseColumn))
             return;
         if (CommonUtils.skipVerification(databaseColumn, modelProperty))
