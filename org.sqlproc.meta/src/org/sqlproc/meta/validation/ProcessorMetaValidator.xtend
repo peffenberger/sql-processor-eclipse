@@ -45,6 +45,9 @@ import org.sqlproc.plugin.lib.util.CommonUtils
 import org.sqlproc.plugin.lib.property.PojoDefinition
 import org.sqlproc.plugin.lib.property.TableDefinition
 import java.util.TreeMap
+import java.util.Map
+import java.beans.PropertyDescriptor
+import java.util.HashMap
 
 enum ValidationResult {
 	OK, WARNING, ERROR
@@ -192,6 +195,13 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         }
         return false
     }
+    
+    def checkClass(String className, URI uri) {
+        if (className == null || pojoResolverFactory.getPojoResolver() == null)
+            return true
+        val clazz = pojoResolverFactory.getPojoResolver().loadClass(className, uri)
+        return clazz != null
+    }
 
     @Check
     def checkUniquePojoDefinition(PojoDefinitionModel pojoDefinition) {
@@ -246,14 +256,6 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         return filteredModifiers
     }
 
-    def checkClass(String className, URI uri) {
-        if (className == null || pojoResolverFactory.getPojoResolver() == null)
-            return true
-
-        val clazz = pojoResolverFactory.getPojoResolver().loadClass(className, uri)
-        return clazz != null
-    }
-
     def isResolvePojo(EObject model) {
         if (pojoResolverFactory.getPojoResolver() == null
                 || !pojoResolverFactory.getPojoResolver().isResolvePojo(model))
@@ -282,6 +284,8 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         if (artifacts == null)
             return;
         val URI uri = statement.eResource?.URI
+        val Map<String, PropertyDescriptor[]> descriptorsCache = new HashMap<String, PropertyDescriptor[]>() 
+        val Map<String, Class<?>> classesCache = new HashMap<String, Class<?>>()
 
         var index = 0
         var String identPojoName
@@ -345,7 +349,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         	val pojoName = identPojoName
         	identifiers.forEach[identifier |
         		println("identifier for "+pojoName+" "+identifier)
-        		checkIdentifier(identifier, pojo, pojoName, statement, artifacts, uri) 
+        		checkIdentifier(identifier, pojo, pojoName, statement, artifacts, uri, descriptorsCache, classesCache) 
         	]
         }
 
@@ -355,7 +359,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         	val pojoName = colPojoName
         	columns.forEach[column |
         		println("column for "+pojoName+" "+column)
-        		checkColumn(column, pojo, pojoName, statement, artifacts, uri) 
+        		checkColumn(column, pojo, pojoName, statement, artifacts, uri, descriptorsCache, classesCache) 
         	]
         }
 
@@ -365,7 +369,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         	val pojoName = constPojoName
         	constants.forEach[constant |
         		println("constant for "+pojoName+" "+constant)
-        		checkConstant(constant, pojo, pojoName, statement, artifacts, uri) 
+        		checkConstant(constant, pojo, pojoName, statement, artifacts, uri, descriptorsCache, classesCache) 
         	]
         }
 
@@ -391,7 +395,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     }
 
     def checkIdentifier(Identifier identifier, PojoDefinition pojo, String pojoName, MetaStatement statement, 
-    	Artifacts artifacts, URI uri
+    	Artifacts artifacts, URI uri, Map<String, PropertyDescriptor[]> descriptorsCache, Map<String, Class<?>> classesCache
     ) {
         if (!isResolvePojo(identifier))
             return;
@@ -399,7 +403,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         val identifierName = identifier.getName()
         val identifierUsageClass = pojo.qualifiedName
         if (identifierUsageClass != null) {
-            switch (checkClassProperty(identifierUsageClass, identifierName, uri)) {
+            switch (checkClassProperty(identifierUsageClass, identifierName, uri, descriptorsCache, classesCache)) {
             case ValidationResult.WARNING:
                 warning("Problem property : " + identifierName + "[" + identifierUsageClass + "]",
                         identifier, ProcessorMetaPackage.Literals.IDENTIFIER__NAME)
@@ -417,7 +421,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     }
 
     def checkColumn(Column column, PojoDefinition pojo, String pojoName, MetaStatement statement, 
-    	Artifacts artifacts, URI uri
+    	Artifacts artifacts, URI uri, Map<String, PropertyDescriptor[]> descriptorsCache, Map<String, Class<?>> classesCache
     ) {
         if (!isResolvePojo(column))
             return;
@@ -427,7 +431,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
         val columnUsageClass = if (pojo != null) pojo.qualifiedName
         if (columnUsageClass != null) {
-            switch (checkClassProperty(columnUsageClass, columnName, uri)) {
+            switch (checkClassProperty(columnUsageClass, columnName, uri, descriptorsCache, classesCache)) {
             case ValidationResult.WARNING:
                 warning("Problem property : " + columnName + "[" + columnUsageClass + "]",
                         column, ProcessorMetaPackage.Literals.COLUMN__COLUMNS)
@@ -489,14 +493,14 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     }
     
     def checkConstant(Constant constant, PojoDefinition pojo, String pojoName, MetaStatement statement, 
-    	Artifacts artifacts, URI uri
+    	Artifacts artifacts, URI uri, Map<String, PropertyDescriptor[]> descriptorsCache, Map<String, Class<?>> classesCache
     ) {
         if (!isResolvePojo(constant))
             return;
 
         val constantUsageClass = if (pojo != null) pojo.qualifiedName
         if (constantUsageClass != null) {
-            switch (checkClassProperty(constantUsageClass, constant.getName(),uri)) {
+            switch (checkClassProperty(constantUsageClass, constant.getName(), uri, descriptorsCache, classesCache)) {
             case ValidationResult.WARNING:
                 warning("Problem property : " + constant.getName() + "[" + constantUsageClass + "]",
                         constant, ProcessorMetaPackage.Literals.CONSTANT__NAME)
@@ -523,6 +527,8 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         if (artifacts == null)
             return;
         val URI uri = rule.eResource?.URI
+        val Map<String, PropertyDescriptor[]> descriptorsCache = new HashMap<String, PropertyDescriptor[]>() 
+        val Map<String, Class<?>> classesCache = new HashMap<String, Class<?>>()
 
         var index = 0
         var String colPojoName
@@ -551,13 +557,13 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         	val pojoName = colPojoName
         	columns.forEach[column |
         		println("mapping column for "+pojoName+" "+column)
-        		checkMappingColumn(column, pojo, pojoName, rule, artifacts, uri) 
+        		checkMappingColumn(column, pojo, pojoName, rule, artifacts, uri, descriptorsCache, classesCache) 
         	]
         }
     }
 
     def checkMappingColumn(MappingColumn column, PojoDefinition pojo, String pojoName, MappingRule rule,
-    	Artifacts artifacts, URI uri
+    	Artifacts artifacts, URI uri, Map<String, PropertyDescriptor[]> descriptorsCache, Map<String, Class<?>> classesCache
     ) {
         if (!isResolvePojo(column))
             return;
@@ -567,7 +573,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
         val mappingUsageClass = pojo.qualifiedName
         if (mappingUsageClass != null) {
-            switch (checkClassProperty(mappingUsageClass, columnName, uri)) {
+            switch (checkClassProperty(mappingUsageClass, columnName, uri, descriptorsCache, classesCache)) {
             case ValidationResult.WARNING:
                 warning("Problem property : " + columnName + "[" + mappingUsageClass + "]",
                         column, ProcessorMetaPackage.Literals.MAPPING_COLUMN__ITEMS)
@@ -608,17 +614,22 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         return false
     }
 
-    def ValidationResult checkClassProperty(String className, String property, URI uri) {
+    def ValidationResult checkClassProperty(String className, String property, URI uri, 
+    	Map<String, PropertyDescriptor[]> descriptorsCache, Map<String, Class<?>> classesCache
+    ) {
         if (property == null || Utils.isNumber(property) || pojoResolverFactory.getPojoResolver() == null)
             return ValidationResult.OK
         if (className == null)
             return ValidationResult.ERROR
         //println(">>> "+className+" "+property+" "+uri)
-        var descriptors = pojoResolverFactory.getPojoResolver().getPropertyDescriptors(className, uri)
+        var descriptors = descriptorsCache.get(uri.toString()+className)
+        if (descriptors == null)
+        	descriptors = pojoResolverFactory.getPojoResolver().getPropertyDescriptors(className, uri)
         //println("<<< "+descriptors)
-        if (descriptors == null) {
+        if (descriptors == null)
             return ValidationResult.WARNING
-        }
+        else
+        	descriptorsCache.put(uri.toString()+className, descriptors)
         var checkProperty = property
         var pos1 = checkProperty.indexOf('=')
         if (pos1 > 0) {
@@ -637,7 +648,9 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             descriptor.name == _checkProperty
         ]
         if (checkDesriptor == null) {
-            val clazz = pojoResolverFactory.getPojoResolver().loadClass(className, uri)
+            var clazz = classesCache.get(uri.toString()+className)
+            if (clazz == null)
+            	clazz = pojoResolverFactory.getPojoResolver().loadClass(className, uri)
             if (clazz != null && Modifier.isAbstract(clazz.getModifiers()))
                 return ValidationResult.WARNING
             return ValidationResult.ERROR
@@ -651,7 +664,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
                 innerClass = type.getActualTypeArguments().head as Class<?>
                 if (isPrimitive(innerClass))
                     return ValidationResult.ERROR
-                return checkClassProperty(innerClass.getName(), innerProperty, uri)
+                return checkClassProperty(innerClass.getName(), innerProperty, uri, descriptorsCache, classesCache)
             } else if (typeof(Collection).isAssignableFrom(innerClass)) {
                 val type = checkDesriptor.getReadMethod().getGenericReturnType() as ParameterizedType
                 if (type.getActualTypeArguments() == null || type.getActualTypeArguments().length == 0)
@@ -659,11 +672,11 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
                 innerClass = type.getActualTypeArguments().head as Class<?>
                 if (isPrimitive(innerClass))
                     return ValidationResult.ERROR
-                return checkClassProperty(innerClass.getName(), innerProperty, uri)
+                return checkClassProperty(innerClass.getName(), innerProperty, uri, descriptorsCache, classesCache)
             } else {
                 if (isPrimitive(innerClass))
                     return ValidationResult.ERROR
-                return checkClassProperty(innerClass.getName(), innerProperty, uri)
+                return checkClassProperty(innerClass.getName(), innerProperty, uri, descriptorsCache, classesCache)
             }
         }
         return ValidationResult.OK
