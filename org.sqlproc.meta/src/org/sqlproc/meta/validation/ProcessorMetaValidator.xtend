@@ -369,7 +369,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         	val pojo = identPojo
         	val pojoName = identPojoName
         	identifiers.forEach[identifier |
-        		println("identifier for "+pojoName+" "+identifier)
+        		//println("identifier for "+pojoName+" "+identifier)
         		checkIdentifier(identifier, pojo, pojoName, statement, artifacts, uri, descriptorsCache, classesCache) 
         	]
         }
@@ -379,7 +379,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         	val pojo = colPojo
         	val pojoName = colPojoName
         	columns.forEach[column |
-        		println("column for "+pojoName+" "+column)
+        		//println("column for "+pojoName+" "+column)
         		checkColumn(column, pojo, pojoName, statement, artifacts, uri, descriptorsCache, classesCache) 
         	]
         }
@@ -389,12 +389,13 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         	val pojo = constPojo
         	val pojoName = constPojoName
         	constants.forEach[constant |
-        		println("constant for "+pojoName+" "+constant)
+        		//println("constant for "+pojoName+" "+constant)
         		checkConstant(constant, pojo, pojoName, statement, artifacts, uri, descriptorsCache, classesCache) 
         	]
         }
         
-        checkTablesColumns(tablesPojo, tablesPrefixPojo, statement)
+        if (isResolveDb(statement))
+	        checkTablesColumns(tablesPojo, tablesPrefixPojo, statement)
 	}
 	
 	def checkTablesColumns(TreeMap<String, TableDefinition> tablesPojo, TreeMap<String, TableDefinition> tablesPrefixPojo,
@@ -587,7 +588,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         	val pojo = colPojo
         	val pojoName = colPojoName
         	columns.forEach[column |
-        		println("mapping column for "+pojoName+" "+column)
+        		//println("mapping column for "+pojoName+" "+column)
         		checkMappingColumn(column, pojo, pojoName, rule, artifacts, uri, descriptorsCache, classesCache) 
         	]
         }
@@ -621,30 +622,6 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         }
     }
 
-    def isPrimitive(Class<?> clazz) {
-        if (clazz == null)
-            return true
-        if (clazz == typeof(String))
-            return true
-        if (clazz == typeof(java.util.Date))
-            return true
-        if (clazz == typeof(java.sql.Date))
-            return true
-        if (clazz == typeof(java.sql.Time))
-            return true
-        if (clazz == typeof(java.sql.Timestamp))
-            return true
-        if (clazz == typeof(java.sql.Blob))
-            return true
-        if (clazz == typeof(java.sql.Clob))
-            return true
-        if (clazz == typeof(java.math.BigDecimal))
-            return true
-        if (clazz == typeof(java.math.BigInteger))
-            return true
-        return false
-    }
-
     def ValidationResult checkClassProperty(String className, String property, URI uri, 
     	Map<String, PropertyDescriptor[]> descriptorsCache, Map<String, Class<?>> classesCache
     ) {
@@ -661,6 +638,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             return ValidationResult.WARNING
         else
         	descriptorsCache.put(uri.toString()+className, descriptors)
+        	
         var checkProperty = property
         var pos1 = checkProperty.indexOf('=')
         if (pos1 > 0) {
@@ -684,6 +662,8 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             	clazz = pojoResolverFactory.getPojoResolver().loadClass(className, uri)
             if (clazz != null && Modifier.isAbstract(clazz.getModifiers()))
                 return ValidationResult.WARNING
+            if (clazz != null && isPrimitive(clazz))
+            	return ValidationResult.OK
             return ValidationResult.ERROR
         }
         if (innerProperty != null) {
@@ -838,5 +818,43 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         if (!(root instanceof Artifacts))
             return null;
         return root as Artifacts
+    }
+
+    def isPrimitive(Class<?> clazz) {
+        if (clazz == null)
+            return true
+        if (clazz == typeof(String))
+            return true
+        if (clazz == typeof(Byte))
+            return true
+        if (clazz == typeof(Short))
+            return true
+        if (clazz == typeof(Integer))
+            return true
+        if (clazz == typeof(Long))
+            return true
+        if (clazz == typeof(Double))
+            return true
+        if (clazz == typeof(Float))
+            return true
+        if (clazz == typeof(Boolean))
+            return true
+        if (clazz == typeof(java.util.Date))
+            return true
+        if (clazz == typeof(java.sql.Date))
+            return true
+        if (clazz == typeof(java.sql.Time))
+            return true
+        if (clazz == typeof(java.sql.Timestamp))
+            return true
+        if (clazz == typeof(java.sql.Blob))
+            return true
+        if (clazz == typeof(java.sql.Clob))
+            return true
+        if (clazz == typeof(java.math.BigDecimal))
+            return true
+        if (clazz == typeof(java.math.BigInteger))
+            return true
+        return false
     }
 }
