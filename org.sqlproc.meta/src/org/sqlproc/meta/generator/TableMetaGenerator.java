@@ -1900,9 +1900,9 @@ public class TableMetaGenerator extends TableBaseGenerator {
             String name = (sequenceName != null) ? sequenceName : SqlFeature.DEFAULT_SEQ_NAME;
             if (!sequences.containsKey(name)) {
                 if (metaGenerateIdGenerators) {
-                    buffer.append("SEQ_");
+                    buffer.append("SEQ=");
                 } else if (metaGenerateIndirectIdGenerators) {
-                    buffer.append("IDGEN_");
+                    buffer.append("IDGEN=");
                 }
                 buffer.append(name);
                 buffer.append("(OPT");
@@ -1957,9 +1957,9 @@ public class TableMetaGenerator extends TableBaseGenerator {
             String name = (identityName != null) ? identityName : SqlFeature.IDSEL;
             if (!identities.containsKey(name)) {
                 if (metaGenerateIdGenerators) {
-                    buffer.append("IDSEL_");
+                    buffer.append("IDSEL=");
                 } else if (metaGenerateIndirectIdGenerators) {
-                    buffer.append("IDGEN_");
+                    buffer.append("IDGEN=");
                 }
                 buffer.append(name);
                 if (suffix != null)
@@ -1991,9 +1991,9 @@ public class TableMetaGenerator extends TableBaseGenerator {
                 if (metaGenerateIdGenerators) {
                     buffer.append("SEQ_");
                 } else if (metaGenerateIndirectIdGenerators) {
-                    buffer.append("IDGEN_");
+                    buffer.append("IDGEN=");
                 } else {
-                    buffer.append("SEQ_");
+                    buffer.append("SEQ=");
                 }
                 buffer.append(name);
                 buffer.append("(OPT");
@@ -2021,11 +2021,11 @@ public class TableMetaGenerator extends TableBaseGenerator {
             String name = table.toUpperCase();
             if (!identities.containsKey(name)) {
                 if (metaGenerateIdGenerators) {
-                    buffer.append("IDSEL_");
+                    buffer.append("IDSEL=");
                 } else if (metaGenerateIndirectIdGenerators) {
-                    buffer.append("IDGEN_");
+                    buffer.append("IDGEN=");
                 } else {
-                    buffer.append("IDSEL_");
+                    buffer.append("IDSEL=");
                 }
                 buffer.append(name);
                 buffer.append("(OPT");
