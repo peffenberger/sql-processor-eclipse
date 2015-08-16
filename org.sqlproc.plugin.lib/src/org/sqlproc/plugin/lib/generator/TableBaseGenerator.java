@@ -74,6 +74,8 @@ public class TableBaseGenerator {
     protected static final String METHOD_TO_INIT = "toInit";
     protected static final String METHOD_INDEX = "index";
     protected static final String ENUM_TO_INIT = "enumInit";
+    protected static final String PROC_ID = "procId";
+    protected static final String PROC_ID_SEP = "$$$$";
     protected static final String COLLECTION_LIST = "java.util.List";
     protected static final String ANNOTATION_NOT_NULL = "javax.validation.constraints.NotNull";
     protected static final String ANNOTATION_SIZE = "javax.validation.constraints.Size";

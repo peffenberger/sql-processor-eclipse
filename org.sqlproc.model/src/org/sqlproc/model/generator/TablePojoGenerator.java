@@ -368,18 +368,23 @@ public class TablePojoGenerator extends TableBaseGenerator {
                                 sb.append(",").append(name);
                             }
                             if (sb != null) {
-                                indSet.add("#Index(" + (i + 1) + sb.toString());
+                                indSet.add(sb.toString());
+                                // indSet.add("#Index(" + (i + 1) + sb.toString());
                                 // bufferMeta.append(nlindent()).append("#Index(").append(i + 1).append(sb).append(")");
                             }
                         }
+                        int i = 0;
                         for (String s : indSet) {
-                            bufferMeta.append(nlindent()).append(s).append(")");
+                            ++i;
+                            bufferMeta.append(nlindent()).append("#Index(").append(i).append(s).append(")");
                         }
                     }
                 }
 
                 Set<String> pkeys = new LinkedHashSet<String>();
                 Set<String> toStr = new LinkedHashSet<String>();
+                // TODO
+                Set<String> prodId = new LinkedHashSet<String>();
                 {
                     bufferPartial = new StringBuilder();
                     printComment(bufferPartial, comments.get(pojo), INDENT);
@@ -567,6 +572,11 @@ public class TablePojoGenerator extends TableBaseGenerator {
                 if (generateMethods.contains(METHOD_TO_STRING) && !toStr.isEmpty()) {
                     bufferMeta.append(nlindent()).append("#ToString(");
                     appendList(bufferMeta, toStr);
+                    bufferMeta.append(")");
+                }
+                if (generateMethods.contains(PROC_ID) && !prodId.isEmpty()) {
+                    bufferMeta.append(nlindent()).append("#ProcId(");
+                    appendList(bufferMeta, prodId);
                     bufferMeta.append(")");
                 }
                 if (bufferMeta.length() > 0 && bufferMeta.charAt(0) == ' ')
