@@ -948,23 +948,46 @@ public class TableMetaGenerator extends TableBaseGenerator {
 
     boolean index2Columns(StringBuilder buffer, String pojo, boolean first, String statementName, String prefix) {
         List<Map<PojoAttribute, Boolean>> mainList = indexes.get(pojo);
+        Map<String, String> indMap = new TreeMap<String, String>();
         for (int i = 0, l = mainList.size(); i < l; i++) {
-            buffer.append("\n  {#").append(i + 1).append(" order by");
+            StringBuilder sb = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
             boolean firstcol = true;
             for (Entry<PojoAttribute, Boolean> entry : mainList.get(i).entrySet()) {
+                if (entry.getKey().getDbName() != null) {
+                    if (ignoreColumns.containsKey(pojo) && ignoreColumns.get(pojo).contains(entry.getKey().getDbName())) {
+                        sb = null;
+                        break;
+                    }
+                }
+                String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(entry.getKey().getName())
+                        : null;
+                if (name == null)
+                    name = entry.getKey().getName();
+                else
+                    name = columnToCamelCase(name);
+                sb2.append(name);
                 if (firstcol)
                     firstcol = false;
                 else
-                    buffer.append(",");
-                buffer.append(" %");
+                    sb.append(",");
+                sb.append(" %");
                 if (prefix != null)
-                    buffer.append(prefix).append(".");
-                buffer.append(entry.getKey().getDbName());
+                    sb.append(prefix).append(".");
+                sb.append(entry.getKey().getDbName());
                 if (entry.getValue())
-                    buffer.append(" DESC");
+                    sb.append(" DESC");
             }
-            buffer.append(" }");
-            first = false;
+            if (sb != null) {
+                indMap.put(sb2.toString(), sb.toString());
+                first = false;
+            }
+        }
+        int i = 0;
+        System.out.println(indMap);
+        for (Entry<String, String> e : indMap.entrySet()) {
+            ++i;
+            buffer.append("\n  {#").append(i).append(" order by").append(e.getValue()).append(" }");
         }
         return first;
     }
