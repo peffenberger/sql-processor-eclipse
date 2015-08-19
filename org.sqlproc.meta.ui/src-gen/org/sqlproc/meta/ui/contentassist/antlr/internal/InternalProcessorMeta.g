@@ -3614,6 +3614,28 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__MetaSql__Alternatives_5_1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetaSqlAccess().getNUMBERTerminalRuleCall_5_1_0()); }
+	RULE_NUMBER
+{ after(grammarAccess.getMetaSqlAccess().getNUMBERTerminalRuleCall_5_1_0()); }
+)
+
+    |(
+{ before(grammarAccess.getMetaSqlAccess().getQualifiedNameParserRuleCall_5_1_1()); }
+	ruleQualifiedName
+{ after(grammarAccess.getMetaSqlAccess().getQualifiedNameParserRuleCall_5_1_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__IfSqlFragment__Alternatives
     @init {
 		int stackSize = keepStackSize();
@@ -27714,9 +27736,9 @@ rule__MetaSql__Group_5__1__Impl
     }
 :
 (
-{ before(grammarAccess.getMetaSqlAccess().getNUMBERTerminalRuleCall_5_1()); }
-	RULE_NUMBER
-{ after(grammarAccess.getMetaSqlAccess().getNUMBERTerminalRuleCall_5_1()); }
+{ before(grammarAccess.getMetaSqlAccess().getAlternatives_5_1()); }
+(rule__MetaSql__Alternatives_5_1)
+{ after(grammarAccess.getMetaSqlAccess().getAlternatives_5_1()); }
 )
 
 ;

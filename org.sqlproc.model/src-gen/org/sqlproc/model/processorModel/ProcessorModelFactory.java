@@ -41,6 +41,15 @@ public interface ProcessorModelFactory extends EFactory
   ValueType createValueType();
 
   /**
+   * Returns a new object of class '<em>Index Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Index Type</em>'.
+   * @generated
+   */
+  IndexType createIndexType();
+
+  /**
    * Returns a new object of class '<em>Pojo Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

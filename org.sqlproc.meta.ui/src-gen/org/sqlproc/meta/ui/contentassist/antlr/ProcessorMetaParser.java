@@ -53,6 +53,7 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSqlValueAccess().getAlternatives_0(), "rule__SqlValue__Alternatives_0");
 					put(grammarAccess.getSqlValueAccess().getAlternatives_1_0(), "rule__SqlValue__Alternatives_1_0");
 					put(grammarAccess.getMetaSqlAccess().getAlternatives(), "rule__MetaSql__Alternatives");
+					put(grammarAccess.getMetaSqlAccess().getAlternatives_5_1(), "rule__MetaSql__Alternatives_5_1");
 					put(grammarAccess.getIfSqlFragmentAccess().getAlternatives(), "rule__IfSqlFragment__Alternatives");
 					put(grammarAccess.getIfSqlFragmentAccess().getAlternatives_6_1(), "rule__IfSqlFragment__Alternatives_6_1");
 					put(grammarAccess.getIfSqlValueAccess().getAlternatives_0(), "rule__IfSqlValue__Alternatives_0");

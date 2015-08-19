@@ -39,6 +39,7 @@ public class ProcessorModelParser extends AbstractContentAssistParser {
 				{
 					put(grammarAccess.getArtifactsAccess().getAlternatives_1(), "rule__Artifacts__Alternatives_1");
 					put(grammarAccess.getValueTypeAccess().getAlternatives(), "rule__ValueType__Alternatives");
+					put(grammarAccess.getIndexTypeAccess().getAlternatives(), "rule__IndexType__Alternatives");
 					put(grammarAccess.getPojoTypeAccess().getAlternatives(), "rule__PojoType__Alternatives");
 					put(grammarAccess.getPropertyAccess().getAlternatives_1(), "rule__Property__Alternatives_1");
 					put(grammarAccess.getDatabasePropertyAccess().getAlternatives(), "rule__DatabaseProperty__Alternatives");
@@ -268,6 +269,7 @@ public class ProcessorModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDirectivePropertiesAccess().getGroup_1(), "rule__DirectiveProperties__Group_1__0");
 					put(grammarAccess.getPojoDirectiveAccess().getGroup_0(), "rule__PojoDirective__Group_0__0");
 					put(grammarAccess.getPojoDirectiveAccess().getGroup_1(), "rule__PojoDirective__Group_1__0");
+					put(grammarAccess.getPojoDirectiveAccess().getGroup_1_3(), "rule__PojoDirective__Group_1_3__0");
 					put(grammarAccess.getPojoDirectiveAccess().getGroup_2(), "rule__PojoDirective__Group_2__0");
 					put(grammarAccess.getPojoDirectiveAccess().getGroup_2_2(), "rule__PojoDirective__Group_2_2__0");
 					put(grammarAccess.getPojoDirectiveAccess().getGroup_3(), "rule__PojoDirective__Group_3__0");
@@ -282,6 +284,7 @@ public class ProcessorModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getGroup_1_2_1(), "rule__PojoAttributeDirective__Group_1_2_1__0");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getGroup_2(), "rule__PojoAttributeDirective__Group_2__0");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getGroup_3(), "rule__PojoAttributeDirective__Group_3__0");
+					put(grammarAccess.getPojoAttributeDirectiveAccess().getGroup_3_2(), "rule__PojoAttributeDirective__Group_3_2__0");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getGroup_4(), "rule__PojoAttributeDirective__Group_4__0");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getGroup_5(), "rule__PojoAttributeDirective__Group_5__0");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getGroup_6(), "rule__PojoAttributeDirective__Group_6__0");
@@ -537,6 +540,8 @@ public class ProcessorModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getValueTypeAccess().getValueAssignment_0(), "rule__ValueType__ValueAssignment_0");
 					put(grammarAccess.getValueTypeAccess().getNumberAssignment_1(), "rule__ValueType__NumberAssignment_1");
 					put(grammarAccess.getValueTypeAccess().getIdAssignment_2(), "rule__ValueType__IdAssignment_2");
+					put(grammarAccess.getIndexTypeAccess().getNumberAssignment_0(), "rule__IndexType__NumberAssignment_0");
+					put(grammarAccess.getIndexTypeAccess().getIdAssignment_1(), "rule__IndexType__IdAssignment_1");
 					put(grammarAccess.getPojoTypeAccess().getIdentAssignment_0_1(), "rule__PojoType__IdentAssignment_0_1");
 					put(grammarAccess.getPojoTypeAccess().getRefAssignment_1_1(), "rule__PojoType__RefAssignment_1_1");
 					put(grammarAccess.getPojoTypeAccess().getTypeAssignment_2(), "rule__PojoType__TypeAssignment_2");
@@ -880,8 +885,8 @@ public class ProcessorModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDirectivePropertiesAccess().getFeaturesAssignment_0(), "rule__DirectiveProperties__FeaturesAssignment_0");
 					put(grammarAccess.getDirectivePropertiesAccess().getFeaturesAssignment_1_1(), "rule__DirectiveProperties__FeaturesAssignment_1_1");
 					put(grammarAccess.getPojoDirectiveAccess().getProplistAssignment_0_3(), "rule__PojoDirective__ProplistAssignment_0_3");
-					put(grammarAccess.getPojoDirectiveAccess().getIndexAssignment_1_3(), "rule__PojoDirective__IndexAssignment_1_3");
-					put(grammarAccess.getPojoDirectiveAccess().getProplistAssignment_1_5(), "rule__PojoDirective__ProplistAssignment_1_5");
+					put(grammarAccess.getPojoDirectiveAccess().getIndexAssignment_1_3_0(), "rule__PojoDirective__IndexAssignment_1_3_0");
+					put(grammarAccess.getPojoDirectiveAccess().getProplistAssignment_1_4(), "rule__PojoDirective__ProplistAssignment_1_4");
 					put(grammarAccess.getPojoDirectiveAccess().getOperatorsSuffixAssignment_2_2_1(), "rule__PojoDirective__OperatorsSuffixAssignment_2_2_1");
 					put(grammarAccess.getPojoDirectiveAccess().getSernumAssignment_3_3(), "rule__PojoDirective__SernumAssignment_3_3");
 					put(grammarAccess.getPojoDirectiveAccess().getDiscriminatorAssignment_4_3(), "rule__PojoDirective__DiscriminatorAssignment_4_3");
@@ -897,7 +902,7 @@ public class ProcessorModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getFromToAssignment_1_2_0(), "rule__PojoAttributeDirective__FromToAssignment_1_2_0");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getNameAssignment_1_2_1_0(), "rule__PojoAttributeDirective__NameAssignment_1_2_1_0");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getTypeAssignment_1_2_1_2(), "rule__PojoAttributeDirective__TypeAssignment_1_2_1_2");
-					put(grammarAccess.getPojoAttributeDirectiveAccess().getIndexAssignment_3_3(), "rule__PojoAttributeDirective__IndexAssignment_3_3");
+					put(grammarAccess.getPojoAttributeDirectiveAccess().getIndexAssignment_3_2_1(), "rule__PojoAttributeDirective__IndexAssignment_3_2_1");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1Assignment_5_3(), "rule__PojoAttributeDirective__UpdateColumn1Assignment_5_3");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn2Assignment_5_5(), "rule__PojoAttributeDirective__UpdateColumn2Assignment_5_5");
 					put(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn1Assignment_6_3(), "rule__PojoAttributeDirective__CreateColumn1Assignment_6_3");

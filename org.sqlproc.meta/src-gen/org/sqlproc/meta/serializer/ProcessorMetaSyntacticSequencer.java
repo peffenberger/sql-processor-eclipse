@@ -10,6 +10,7 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -79,6 +80,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	protected AbstractElementAlias match_Mapping_WSTerminalRuleCall_0_a;
 	protected AbstractElementAlias match_Mapping_WSTerminalRuleCall_2_0_p;
 	protected AbstractElementAlias match_Mapping_WSTerminalRuleCall_3_a;
+	protected AbstractElementAlias match_MetaSql_NUMBERTerminalRuleCall_5_1_0_or_QualifiedNameParserRuleCall_5_1_1;
 	protected AbstractElementAlias match_MetaSql_WSTerminalRuleCall_4_1_a;
 	protected AbstractElementAlias match_MetagenProperty_WSTerminalRuleCall_0_1_p;
 	protected AbstractElementAlias match_MetagenProperty_WSTerminalRuleCall_0_4_0_p;
@@ -263,6 +265,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 		match_Mapping_WSTerminalRuleCall_0_a = new TokenAlias(true, true, grammarAccess.getMappingAccess().getWSTerminalRuleCall_0());
 		match_Mapping_WSTerminalRuleCall_2_0_p = new TokenAlias(true, false, grammarAccess.getMappingAccess().getWSTerminalRuleCall_2_0());
 		match_Mapping_WSTerminalRuleCall_3_a = new TokenAlias(true, true, grammarAccess.getMappingAccess().getWSTerminalRuleCall_3());
+		match_MetaSql_NUMBERTerminalRuleCall_5_1_0_or_QualifiedNameParserRuleCall_5_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getMetaSqlAccess().getNUMBERTerminalRuleCall_5_1_0()), new TokenAlias(false, false, grammarAccess.getMetaSqlAccess().getQualifiedNameParserRuleCall_5_1_1()));
 		match_MetaSql_WSTerminalRuleCall_4_1_a = new TokenAlias(true, true, grammarAccess.getMetaSqlAccess().getWSTerminalRuleCall_4_1());
 		match_MetagenProperty_WSTerminalRuleCall_0_1_p = new TokenAlias(true, false, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_0_1());
 		match_MetagenProperty_WSTerminalRuleCall_0_4_0_p = new TokenAlias(true, false, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_0_4_0());
@@ -416,6 +419,8 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 			return getPERCENTToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getPLUSRule())
 			return getPLUSToken(semanticObject, ruleCall, node);
+		else if(ruleCall.getRule() == grammarAccess.getQualifiedNameRule())
+			return getQualifiedNameToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getRBRACERule())
 			return getRBRACEToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getRPARENRule())
@@ -553,6 +558,15 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 		if (node != null)
 			return getTokenText(node);
 		return "+";
+	}
+	
+	/**
+	 * QualifiedName: (IDENT|IDENT_DOT);
+	 */
+	protected String getQualifiedNameToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "";
 	}
 	
 	/**
@@ -724,6 +738,8 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 				emit_Mapping_WSTerminalRuleCall_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Mapping_WSTerminalRuleCall_3_a.equals(syntax))
 				emit_Mapping_WSTerminalRuleCall_3_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_MetaSql_NUMBERTerminalRuleCall_5_1_0_or_QualifiedNameParserRuleCall_5_1_1.equals(syntax))
+				emit_MetaSql_NUMBERTerminalRuleCall_5_1_0_or_QualifiedNameParserRuleCall_5_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_MetaSql_WSTerminalRuleCall_4_1_a.equals(syntax))
 				emit_MetaSql_WSTerminalRuleCall_4_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_MetagenProperty_WSTerminalRuleCall_0_1_p.equals(syntax))
@@ -1712,6 +1728,17 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     mappingItems+=MappingItem (ambiguity) (rule end)
 	 */
 	protected void emit_Mapping_WSTerminalRuleCall_3_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     NUMBER | QualifiedName
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     type=HASH (ambiguity) ord=OrdSql
+	 */
+	protected void emit_MetaSql_NUMBERTerminalRuleCall_5_1_0_or_QualifiedNameParserRuleCall_5_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

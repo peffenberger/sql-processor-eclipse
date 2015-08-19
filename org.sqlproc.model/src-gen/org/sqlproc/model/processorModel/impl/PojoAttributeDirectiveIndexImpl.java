@@ -3,11 +3,14 @@
 package org.sqlproc.model.processorModel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.sqlproc.model.processorModel.IndexType;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveIndex;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
@@ -27,24 +30,14 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
 public class PojoAttributeDirectiveIndexImpl extends PojoAttributeDirectiveImpl implements PojoAttributeDirectiveIndex
 {
   /**
-   * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.
+   * The cached value of the '{@link #getIndex() <em>Index</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getIndex()
    * @generated
    * @ordered
    */
-  protected static final int INDEX_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getIndex() <em>Index</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getIndex()
-   * @generated
-   * @ordered
-   */
-  protected int index = INDEX_EDEFAULT;
+  protected IndexType index;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,7 +65,7 @@ public class PojoAttributeDirectiveIndexImpl extends PojoAttributeDirectiveImpl 
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getIndex()
+  public IndexType getIndex()
   {
     return index;
   }
@@ -82,12 +75,53 @@ public class PojoAttributeDirectiveIndexImpl extends PojoAttributeDirectiveImpl 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIndex(int newIndex)
+  public NotificationChain basicSetIndex(IndexType newIndex, NotificationChain msgs)
   {
-    int oldIndex = index;
+    IndexType oldIndex = index;
     index = newIndex;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX, oldIndex, index));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX, oldIndex, newIndex);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setIndex(IndexType newIndex)
+  {
+    if (newIndex != index)
+    {
+      NotificationChain msgs = null;
+      if (index != null)
+        msgs = ((InternalEObject)index).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX, null, msgs);
+      if (newIndex != null)
+        msgs = ((InternalEObject)newIndex).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX, null, msgs);
+      msgs = basicSetIndex(newIndex, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX, newIndex, newIndex));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX:
+        return basicSetIndex(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -117,7 +151,7 @@ public class PojoAttributeDirectiveIndexImpl extends PojoAttributeDirectiveImpl 
     switch (featureID)
     {
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX:
-        setIndex((Integer)newValue);
+        setIndex((IndexType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -134,7 +168,7 @@ public class PojoAttributeDirectiveIndexImpl extends PojoAttributeDirectiveImpl 
     switch (featureID)
     {
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX:
-        setIndex(INDEX_EDEFAULT);
+        setIndex((IndexType)null);
         return;
     }
     super.eUnset(featureID);
@@ -151,26 +185,9 @@ public class PojoAttributeDirectiveIndexImpl extends PojoAttributeDirectiveImpl 
     switch (featureID)
     {
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX:
-        return index != INDEX_EDEFAULT;
+        return index != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (index: ");
-    result.append(index);
-    result.append(')');
-    return result.toString();
   }
 
 } //PojoAttributeDirectiveIndexImpl

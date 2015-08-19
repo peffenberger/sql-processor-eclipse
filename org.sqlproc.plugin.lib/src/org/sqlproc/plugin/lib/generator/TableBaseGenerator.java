@@ -1402,6 +1402,37 @@ public class TableBaseGenerator {
         }
     }
 
+    protected String constName(PojoAttribute attr) {
+        return constantName(attr.getName());
+    }
+
+    protected String constName(Map<PojoAttribute, Boolean> l) {
+        StringBuilder result = new StringBuilder("");
+        boolean first = true;
+        for (Entry<PojoAttribute, Boolean> e : l.entrySet()) {
+            if (first) {
+                first = false;
+            } else {
+                result.append("_");
+            }
+            result.append(constantName(e.getKey().getName()));
+        }
+        return result.toString();
+    }
+
+    protected String constantName(String name) {
+        StringBuilder result = new StringBuilder("");
+        for (Character c : name.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                result.append("_");
+                result.append(c);
+            } else {
+                result.append(Character.toUpperCase(c));
+            }
+        }
+        return result.toString();
+    }
+
     // meta filter only-insert,get,update,delete,select,call add-filter XXXX
     public static class Filter {
         static final String ONLY_TABLE = "only-table";

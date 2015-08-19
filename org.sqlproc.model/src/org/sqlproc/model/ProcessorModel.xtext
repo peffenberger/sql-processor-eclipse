@@ -13,6 +13,7 @@ Artifacts: {Artifacts}
     )*;
 
 ValueType: value = STRING | number = INT | id = QualifiedName;
+IndexType: number = INT | id = QualifiedName;
 PojoType: '::' ident=ValueType | ':' ref=[PojoDefinitionModel|ValidID] | type=JvmParameterizedTypeReference;
 
 DatabaseCatalogAssignement: dbCatalog=ValueType;
@@ -236,7 +237,7 @@ DirectiveProperties:
 
 PojoDirective: 
 	{PojoDirectiveToString} '#ToString' LPAREN proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveIndex} '#Index' LPAREN index=INT COMMA proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveIndex} '#Index' LPAREN (index=IndexType COMMA)? proplist=DirectiveProperties RPAREN
 	| {PojoDirectiveOperators} '#Operators' (LPAREN operatorsSuffix=ValidID RPAREN)?
 	| {PojoDirectiveSerializable} '#Serializable' LPAREN sernum=INT RPAREN
 	| {PojoDirectiveDiscriminator} '#InheritanceChild' LPAREN discriminator=(ValidID) RPAREN
@@ -258,7 +259,7 @@ PojoAttributeDirective:
 	{PojoAttributeDirectiveRequired} '#Required'
 	| {PojoAttributeDirectivePrimaryKey} '#PrimaryKey' (fromTo=LPAREN (name=ValidID COMMA type=ValidID)? RPAREN)?
 	| {PojoAttributeDirectiveDiscriminator} '#InheritanceDiscriminator'
-	| {PojoAttributeDirectiveIndex} '#Index' LPAREN index=INT RPAREN
+	| {PojoAttributeDirectiveIndex} '#Index' (LPAREN index=IndexType RPAREN)?
 	| {PojoAttributeDirectiveVersion} '#Version'
 	| {PojoAttributeDirectiveUpdateCol} '#UpdateCol' LPAREN updateColumn1=ValidID COMMA updateColumn2=[PojoAttribute|ValidID] RPAREN
 	| {PojoAttributeDirectiveCreateCol} '#CreateCol' LPAREN createColumn1=[PojoAttribute|ValidID] COMMA createColumn2=ValidID RPAREN

@@ -23,30 +23,30 @@ package org.sqlproc.model.processorModel;
 public interface PojoDirectiveIndex extends PojoDirective
 {
   /**
-   * Returns the value of the '<em><b>Index</b></em>' attribute.
+   * Returns the value of the '<em><b>Index</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Index</em>' attribute isn't clear,
+   * If the meaning of the '<em>Index</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Index</em>' attribute.
-   * @see #setIndex(int)
+   * @return the value of the '<em>Index</em>' containment reference.
+   * @see #setIndex(IndexType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoDirectiveIndex_Index()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  int getIndex();
+  IndexType getIndex();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoDirectiveIndex#getIndex <em>Index</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoDirectiveIndex#getIndex <em>Index</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Index</em>' attribute.
+   * @param value the new value of the '<em>Index</em>' containment reference.
    * @see #getIndex()
    * @generated
    */
-  void setIndex(int value);
+  void setIndex(IndexType value);
 
   /**
    * Returns the value of the '<em><b>Proplist</b></em>' containment reference.

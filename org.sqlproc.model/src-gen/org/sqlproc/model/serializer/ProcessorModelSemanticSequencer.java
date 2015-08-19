@@ -118,6 +118,7 @@ import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveGenerics;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos;
 import org.sqlproc.model.processorModel.ImportAssignement;
+import org.sqlproc.model.processorModel.IndexType;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
 import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
@@ -333,6 +334,9 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 				return; 
 			case ProcessorModelPackage.IMPORT_ASSIGNEMENT:
 				sequence_ImportAssignement(context, (ImportAssignement) semanticObject); 
+				return; 
+			case ProcessorModelPackage.INDEX_TYPE:
+				sequence_IndexType(context, (IndexType) semanticObject); 
 				return; 
 			case ProcessorModelPackage.INHERITANCE_ASSIGNEMENT:
 				sequence_InheritanceAssignement(context, (InheritanceAssignement) semanticObject); 
@@ -1438,6 +1442,15 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
+	 *     (number=INT | id=QualifiedName)
+	 */
+	protected void sequence_IndexType(EObject context, IndexType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (discriminator=ValidID dbTable=ValidID dbColumns+=ValidID+)
 	 */
 	protected void sequence_InheritanceAssignement(EObject context, InheritanceAssignement semanticObject) {
@@ -1586,17 +1599,10 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     index=INT
+	 *     (index=IndexType?)
 	 */
 	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveIndex semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getIndexINTTerminalRuleCall_3_3_0(), semanticObject.getIndex());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1741,20 +1747,10 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (index=INT proplist=DirectiveProperties)
+	 *     (index=IndexType? proplist=DirectiveProperties)
 	 */
 	protected void sequence_PojoDirective(EObject context, PojoDirectiveIndex semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.POJO_DIRECTIVE_INDEX__INDEX) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.POJO_DIRECTIVE_INDEX__INDEX));
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.POJO_DIRECTIVE_INDEX__PROPLIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.POJO_DIRECTIVE_INDEX__PROPLIST));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPojoDirectiveAccess().getIndexINTTerminalRuleCall_1_3_0(), semanticObject.getIndex());
-		feeder.accept(grammarAccess.getPojoDirectiveAccess().getProplistDirectivePropertiesParserRuleCall_1_5_0(), semanticObject.getProplist());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

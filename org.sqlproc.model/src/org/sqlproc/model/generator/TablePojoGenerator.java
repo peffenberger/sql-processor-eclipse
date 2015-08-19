@@ -312,6 +312,8 @@ public class TablePojoGenerator extends TableBaseGenerator {
 
             for (String pojo : pojos.keySet()) {
                 // System.out.println("QQQQQ " + pojo);
+                if (pojo.equals("NEW_PERSON_RET_RS_RESULT"))
+                    System.out.println("XXX");
                 if (!onlyTables.isEmpty() && !onlyTables.contains(pojo))
                     continue;
                 if (ignoreTables.contains(pojo))
@@ -351,6 +353,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                         Set<String> indSet = new TreeSet<String>();
                         for (int i = 0, l = mainList.size(); i < l; i++) {
                             StringBuilder sb = new StringBuilder();
+                            boolean first = true;
                             for (PojoAttribute attr : mainList.get(i).keySet()) {
                                 if (attr.getDbName() != null) {
                                     if (ignoreColumns.containsKey(pojo)
@@ -365,7 +368,11 @@ public class TablePojoGenerator extends TableBaseGenerator {
                                     name = attr.getName();
                                 else
                                     name = columnToCamelCase(name);
-                                sb.append(",").append(name);
+                                if (!first)
+                                    sb.append(",");
+                                else
+                                    first = false;
+                                sb.append(name);
                             }
                             if (sb != null) {
                                 indSet.add(sb.toString());
@@ -506,8 +513,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                                 pkeys.add(name);
                             }
                             if (!generateMethods.contains(METHOD_INDEX) && attribute.getIndex() != null) {
-                                bufferMetaAttr.append(nlindent2()).append("#Index(").append(attribute.getIndex())
-                                        .append(")");
+                                bufferMetaAttr.append(nlindent2()).append("#Index");
                             }
                             if (attribute.getDependencyClassName() != null) {
                                 if (preserveForeignKeys.contains(pojo) || preserveForeignKeys.contains("_ALL_")) {

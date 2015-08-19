@@ -92,9 +92,18 @@ class ProcessorGeneratorUtils {
 		return if(d != null) true else false
 	}
 
-	def Integer getIndex(PojoAttribute f) {
+	def boolean isIndex(PojoAttribute f) {
 		val d = f.directives?.findFirst[x|x instanceof PojoAttributeDirectiveIndex] as PojoAttributeDirectiveIndex
-		return if (d != null) d.index else null
+		return d != null
+	}
+
+	def String getIndex(PojoAttribute f) {
+		val d = f.directives?.findFirst[x|x instanceof PojoAttributeDirectiveIndex] as PojoAttributeDirectiveIndex
+		if (d == null || d.index == null)
+			return null
+		if (d.index.id != null)
+			return d.index.id
+		return ""+d.index.number
 	}
 
 	def getUpdateColumn1(PojoAttribute f) {
@@ -249,11 +258,19 @@ class ProcessorGeneratorUtils {
 		return (se as PojoEntity).getOptLock
 		}
 
-    def Map<Integer, List<PojoAttribute>> getIndex(PojoEntity pojo) {
-        val Map<Integer, List<PojoAttribute>> result = new TreeMap()
+    def Map<String, List<PojoAttribute>> getIndex(PojoEntity pojo) {
+        val Map<String, List<PojoAttribute>> result = new TreeMap()
 		pojo?.directives.filter[x|x instanceof PojoDirectiveIndex].forEach[
 			val d = it as PojoDirectiveIndex
-			result.put(d.index, d.proplist.features)
+			if (d.index != null) {
+				if (d.index.id != null)
+					result.put(d.index.id, d.proplist.features)
+				else
+					result.put(""+d.index.number, d.proplist.features)
+			}
+			else {
+				result.put("____", d.proplist.features)
+			}
 		]
         return result
     }

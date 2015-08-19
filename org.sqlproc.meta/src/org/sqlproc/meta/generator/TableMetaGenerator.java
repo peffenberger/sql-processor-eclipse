@@ -936,7 +936,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
             Attribute attr = getStatementAttribute(pojo, pentry.getKey(), pentry.getValue(), false);
             if (attr == null || attr.attribute.getIndex() == null)
                 continue;
-            buffer.append("\n  {#").append(attr.attribute.getIndex()).append(" order by %");
+            buffer.append("\n  {#").append(constName(attr.attribute)).append(" order by %");
             if (prefix != null)
                 buffer.append(prefix).append(".");
             buffer.append(pentry.getKey());
@@ -949,6 +949,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
     boolean index2Columns(StringBuilder buffer, String pojo, boolean first, String statementName, String prefix) {
         List<Map<PojoAttribute, Boolean>> mainList = indexes.get(pojo);
         Map<String, String> indMap = new TreeMap<String, String>();
+        Map<String, Map<PojoAttribute, Boolean>> indMap2 = new TreeMap<String, Map<PojoAttribute, Boolean>>();
         for (int i = 0, l = mainList.size(); i < l; i++) {
             StringBuilder sb = new StringBuilder();
             StringBuilder sb2 = new StringBuilder();
@@ -980,6 +981,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
             }
             if (sb != null) {
                 indMap.put(sb2.toString(), sb.toString());
+                indMap2.put(sb2.toString(), mainList.get(i));
                 first = false;
             }
         }
@@ -987,7 +989,8 @@ public class TableMetaGenerator extends TableBaseGenerator {
         System.out.println(indMap);
         for (Entry<String, String> e : indMap.entrySet()) {
             ++i;
-            buffer.append("\n  {#").append(i).append(" order by").append(e.getValue()).append(" }");
+            buffer.append("\n  {#").append(indMap2.get(e.getKey())).append(" order by").append(e.getValue())
+                    .append(" }");
         }
         return first;
     }

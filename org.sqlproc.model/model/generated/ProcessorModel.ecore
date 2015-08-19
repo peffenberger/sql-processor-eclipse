@@ -21,6 +21,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndexType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ident" eType="#//ValueType"
         containment="true"/>
@@ -504,7 +508,8 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveIndex" eSuperTypes="#//PojoDirective">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="#//IndexType"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="proplist" eType="#//DirectiveProperties"
         containment="true"/>
   </eClassifiers>
@@ -534,7 +539,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveDiscriminator"
       eSuperTypes="#//PojoAttributeDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveIndex" eSuperTypes="#//PojoAttributeDirective">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="#//IndexType"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveVersion" eSuperTypes="#//PojoAttributeDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveUpdateCol" eSuperTypes="#//PojoAttributeDirective">

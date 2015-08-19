@@ -8870,23 +8870,32 @@ ruleMetaSql returns [EObject current=null]
 	    }
 
 )
-)this_NUMBER_23=RULE_NUMBER
+)(this_NUMBER_23=RULE_NUMBER
     { 
-    newLeafNode(this_NUMBER_23, grammarAccess.getMetaSqlAccess().getNUMBERTerminalRuleCall_5_1()); 
+    newLeafNode(this_NUMBER_23, grammarAccess.getMetaSqlAccess().getNUMBERTerminalRuleCall_5_1_0()); 
     }
-(
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getMetaSqlAccess().getQualifiedNameParserRuleCall_5_1_1()); 
+    }
+ruleQualifiedName
+    { 
+        afterParserOrEnumRuleCall();
+    }
+)(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getMetaSqlAccess().getOrdOrdSqlParserRuleCall_5_2_0()); 
 	    }
-		lv_ord_24_0=ruleOrdSql		{
+		lv_ord_25_0=ruleOrdSql		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMetaSqlRule());
 	        }
        		set(
        			$current, 
        			"ord",
-        		lv_ord_24_0, 
+        		lv_ord_25_0, 
         		"OrdSql");
 	        afterParserOrEnumRuleCall();
 	    }

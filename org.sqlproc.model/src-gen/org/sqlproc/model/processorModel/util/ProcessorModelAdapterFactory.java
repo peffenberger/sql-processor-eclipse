@@ -71,6 +71,7 @@ import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveGenerics;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos;
 import org.sqlproc.model.processorModel.ImportAssignement;
+import org.sqlproc.model.processorModel.IndexType;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
 import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
@@ -190,6 +191,11 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
       public Adapter caseValueType(ValueType object)
       {
         return createValueTypeAdapter();
+      }
+      @Override
+      public Adapter caseIndexType(IndexType object)
+      {
+        return createIndexTypeAdapter();
       }
       @Override
       public Adapter casePojoType(PojoType object)
@@ -769,6 +775,21 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createValueTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.IndexType <em>Index Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.IndexType
+   * @generated
+   */
+  public Adapter createIndexTypeAdapter()
   {
     return null;
   }

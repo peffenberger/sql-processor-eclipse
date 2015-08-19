@@ -72,6 +72,7 @@ import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveGenerics;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos;
 import org.sqlproc.model.processorModel.ImportAssignement;
+import org.sqlproc.model.processorModel.IndexType;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
 import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
@@ -174,6 +175,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
     {
       case ProcessorModelPackage.ARTIFACTS: return createArtifacts();
       case ProcessorModelPackage.VALUE_TYPE: return createValueType();
+      case ProcessorModelPackage.INDEX_TYPE: return createIndexType();
       case ProcessorModelPackage.POJO_TYPE: return createPojoType();
       case ProcessorModelPackage.DATABASE_CATALOG_ASSIGNEMENT: return createDatabaseCatalogAssignement();
       case ProcessorModelPackage.DATABASE_SCHEMA_ASSIGNEMENT: return createDatabaseSchemaAssignement();
@@ -305,6 +307,17 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
   {
     ValueTypeImpl valueType = new ValueTypeImpl();
     return valueType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IndexType createIndexType()
+  {
+    IndexTypeImpl indexType = new IndexTypeImpl();
+    return indexType;
   }
 
   /**

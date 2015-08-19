@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.sqlproc.model.processorModel.DirectiveProperties;
+import org.sqlproc.model.processorModel.IndexType;
 import org.sqlproc.model.processorModel.PojoDirectiveIndex;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
@@ -31,24 +32,14 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
 public class PojoDirectiveIndexImpl extends PojoDirectiveImpl implements PojoDirectiveIndex
 {
   /**
-   * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.
+   * The cached value of the '{@link #getIndex() <em>Index</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getIndex()
    * @generated
    * @ordered
    */
-  protected static final int INDEX_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getIndex() <em>Index</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getIndex()
-   * @generated
-   * @ordered
-   */
-  protected int index = INDEX_EDEFAULT;
+  protected IndexType index;
 
   /**
    * The cached value of the '{@link #getProplist() <em>Proplist</em>}' containment reference.
@@ -86,7 +77,7 @@ public class PojoDirectiveIndexImpl extends PojoDirectiveImpl implements PojoDir
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getIndex()
+  public IndexType getIndex()
   {
     return index;
   }
@@ -96,12 +87,37 @@ public class PojoDirectiveIndexImpl extends PojoDirectiveImpl implements PojoDir
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIndex(int newIndex)
+  public NotificationChain basicSetIndex(IndexType newIndex, NotificationChain msgs)
   {
-    int oldIndex = index;
+    IndexType oldIndex = index;
     index = newIndex;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_DIRECTIVE_INDEX__INDEX, oldIndex, index));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_DIRECTIVE_INDEX__INDEX, oldIndex, newIndex);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setIndex(IndexType newIndex)
+  {
+    if (newIndex != index)
+    {
+      NotificationChain msgs = null;
+      if (index != null)
+        msgs = ((InternalEObject)index).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.POJO_DIRECTIVE_INDEX__INDEX, null, msgs);
+      if (newIndex != null)
+        msgs = ((InternalEObject)newIndex).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.POJO_DIRECTIVE_INDEX__INDEX, null, msgs);
+      msgs = basicSetIndex(newIndex, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_DIRECTIVE_INDEX__INDEX, newIndex, newIndex));
   }
 
   /**
@@ -162,6 +178,8 @@ public class PojoDirectiveIndexImpl extends PojoDirectiveImpl implements PojoDir
   {
     switch (featureID)
     {
+      case ProcessorModelPackage.POJO_DIRECTIVE_INDEX__INDEX:
+        return basicSetIndex(null, msgs);
       case ProcessorModelPackage.POJO_DIRECTIVE_INDEX__PROPLIST:
         return basicSetProplist(null, msgs);
     }
@@ -197,7 +215,7 @@ public class PojoDirectiveIndexImpl extends PojoDirectiveImpl implements PojoDir
     switch (featureID)
     {
       case ProcessorModelPackage.POJO_DIRECTIVE_INDEX__INDEX:
-        setIndex((Integer)newValue);
+        setIndex((IndexType)newValue);
         return;
       case ProcessorModelPackage.POJO_DIRECTIVE_INDEX__PROPLIST:
         setProplist((DirectiveProperties)newValue);
@@ -217,7 +235,7 @@ public class PojoDirectiveIndexImpl extends PojoDirectiveImpl implements PojoDir
     switch (featureID)
     {
       case ProcessorModelPackage.POJO_DIRECTIVE_INDEX__INDEX:
-        setIndex(INDEX_EDEFAULT);
+        setIndex((IndexType)null);
         return;
       case ProcessorModelPackage.POJO_DIRECTIVE_INDEX__PROPLIST:
         setProplist((DirectiveProperties)null);
@@ -237,28 +255,11 @@ public class PojoDirectiveIndexImpl extends PojoDirectiveImpl implements PojoDir
     switch (featureID)
     {
       case ProcessorModelPackage.POJO_DIRECTIVE_INDEX__INDEX:
-        return index != INDEX_EDEFAULT;
+        return index != null;
       case ProcessorModelPackage.POJO_DIRECTIVE_INDEX__PROPLIST:
         return proplist != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (index: ");
-    result.append(index);
-    result.append(')');
-    return result.toString();
   }
 
 } //PojoDirectiveIndexImpl

@@ -79,6 +79,7 @@ import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveGenerics;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos;
 import org.sqlproc.model.processorModel.ImportAssignement;
+import org.sqlproc.model.processorModel.IndexType;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
 import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
@@ -148,6 +149,13 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * @generated
    */
   private EClass valueTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass indexTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1067,6 +1075,36 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
   public EAttribute getValueType_Id()
   {
     return (EAttribute)valueTypeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIndexType()
+  {
+    return indexTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIndexType_Number()
+  {
+    return (EAttribute)indexTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIndexType_Id()
+  {
+    return (EAttribute)indexTypeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3924,9 +3962,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoDirectiveIndex_Index()
+  public EReference getPojoDirectiveIndex_Index()
   {
-    return (EAttribute)pojoDirectiveIndexEClass.getEStructuralFeatures().get(0);
+    return (EReference)pojoDirectiveIndexEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -4114,9 +4152,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoAttributeDirectiveIndex_Index()
+  public EReference getPojoAttributeDirectiveIndex_Index()
   {
-    return (EAttribute)pojoAttributeDirectiveIndexEClass.getEStructuralFeatures().get(0);
+    return (EReference)pojoAttributeDirectiveIndexEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -4572,6 +4610,10 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     createEAttribute(valueTypeEClass, VALUE_TYPE__NUMBER);
     createEAttribute(valueTypeEClass, VALUE_TYPE__ID);
 
+    indexTypeEClass = createEClass(INDEX_TYPE);
+    createEAttribute(indexTypeEClass, INDEX_TYPE__NUMBER);
+    createEAttribute(indexTypeEClass, INDEX_TYPE__ID);
+
     pojoTypeEClass = createEClass(POJO_TYPE);
     createEReference(pojoTypeEClass, POJO_TYPE__IDENT);
     createEReference(pojoTypeEClass, POJO_TYPE__REF);
@@ -4926,7 +4968,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     createEReference(pojoDirectiveToStringEClass, POJO_DIRECTIVE_TO_STRING__PROPLIST);
 
     pojoDirectiveIndexEClass = createEClass(POJO_DIRECTIVE_INDEX);
-    createEAttribute(pojoDirectiveIndexEClass, POJO_DIRECTIVE_INDEX__INDEX);
+    createEReference(pojoDirectiveIndexEClass, POJO_DIRECTIVE_INDEX__INDEX);
     createEReference(pojoDirectiveIndexEClass, POJO_DIRECTIVE_INDEX__PROPLIST);
 
     pojoDirectiveOperatorsEClass = createEClass(POJO_DIRECTIVE_OPERATORS);
@@ -4954,7 +4996,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     pojoAttributeDirectiveDiscriminatorEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE_DISCRIMINATOR);
 
     pojoAttributeDirectiveIndexEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE_INDEX);
-    createEAttribute(pojoAttributeDirectiveIndexEClass, POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX);
+    createEReference(pojoAttributeDirectiveIndexEClass, POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX);
 
     pojoAttributeDirectiveVersionEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE_VERSION);
 
@@ -5124,6 +5166,10 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEAttribute(getValueType_Value(), ecorePackage.getEString(), "value", null, 0, 1, ValueType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getValueType_Number(), ecorePackage.getEInt(), "number", null, 0, 1, ValueType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getValueType_Id(), ecorePackage.getEString(), "id", null, 0, 1, ValueType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(indexTypeEClass, IndexType.class, "IndexType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIndexType_Number(), ecorePackage.getEInt(), "number", null, 0, 1, IndexType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getIndexType_Id(), ecorePackage.getEString(), "id", null, 0, 1, IndexType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoTypeEClass, PojoType.class, "PojoType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPojoType_Ident(), this.getValueType(), null, "ident", null, 0, 1, PojoType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5479,7 +5525,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEReference(getPojoDirectiveToString_Proplist(), this.getDirectiveProperties(), null, "proplist", null, 0, 1, PojoDirectiveToString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoDirectiveIndexEClass, PojoDirectiveIndex.class, "PojoDirectiveIndex", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPojoDirectiveIndex_Index(), ecorePackage.getEInt(), "index", null, 0, 1, PojoDirectiveIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoDirectiveIndex_Index(), this.getIndexType(), null, "index", null, 0, 1, PojoDirectiveIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoDirectiveIndex_Proplist(), this.getDirectiveProperties(), null, "proplist", null, 0, 1, PojoDirectiveIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoDirectiveOperatorsEClass, PojoDirectiveOperators.class, "PojoDirectiveOperators", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -5507,7 +5553,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEClass(pojoAttributeDirectiveDiscriminatorEClass, PojoAttributeDirectiveDiscriminator.class, "PojoAttributeDirectiveDiscriminator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(pojoAttributeDirectiveIndexEClass, PojoAttributeDirectiveIndex.class, "PojoAttributeDirectiveIndex", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPojoAttributeDirectiveIndex_Index(), ecorePackage.getEInt(), "index", null, 0, 1, PojoAttributeDirectiveIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoAttributeDirectiveIndex_Index(), this.getIndexType(), null, "index", null, 0, 1, PojoAttributeDirectiveIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoAttributeDirectiveVersionEClass, PojoAttributeDirectiveVersion.class, "PojoAttributeDirectiveVersion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

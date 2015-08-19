@@ -112,21 +112,21 @@ class PojoJvmModelInferrer {
  					initializer = '''«sernum»L'''
    				]
    			}
-   			for (attr : entity.attributes.filter(x | x.index != null)) {
-				members += entity.toField('ORDER_BY_'+attr.constName, typeRef(int)) [
+   			for (attr : entity.attributes.filter(x | x.isIndex)) {
+				members += entity.toField('ORDER_BY_'+attr.constName, typeRef(String)) [
  					static = true
  					final = true
  					visibility = JvmVisibility.PUBLIC
 	   				addAnnotationsX(entity.staticAnnotations.map[a|a.annotation])
- 					initializer = '''«attr.index»'''
+					initializer = if (attr.getIndex != null) '''"«attr.getIndex»"''' else '''"«attr.constName»"'''
    				]
    			}
    			for (entry : entity.index.entrySet) {
-				members += entity.toField('ORDER_BY_'+constName(entry.value), typeRef(int)) [
+				members += entity.toField('ORDER_BY_'+constName(entry.value), typeRef(String)) [
  					static = true
  					final = true
  					visibility = JvmVisibility.PUBLIC
- 					initializer = '''«entry.key»'''
+ 					initializer = if (entry.key.equals("____")) '''"«constName(entry.value)»"''' else '''"«entry.key»"'''
 	   				addAnnotationsX(entity.staticAnnotations.map[a|a.annotation])
    				]
    			}
