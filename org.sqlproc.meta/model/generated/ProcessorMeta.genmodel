@@ -312,6 +312,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//IfSqlBool/cond"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorMeta.ecore#//OrdSql">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//OrdSql/ident"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//OrdSql/sqls"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorMeta.ecore#//OrdSql2">

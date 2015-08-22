@@ -926,7 +926,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     sqls+=OrdSql2+
+	 *     ((ident=NUMBER | ident=QualifiedName) sqls+=OrdSql2+)
 	 */
 	protected void sequence_OrdSql(EObject context, OrdSql semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

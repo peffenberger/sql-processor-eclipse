@@ -5591,21 +5591,18 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
 		private final Assignment cTypeAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
 		private final RuleCall cTypeHASHTerminalRuleCall_5_0_0 = (RuleCall)cTypeAssignment_5_0.eContents().get(0);
-		private final Alternatives cAlternatives_5_1 = (Alternatives)cGroup_5.eContents().get(1);
-		private final RuleCall cNUMBERTerminalRuleCall_5_1_0 = (RuleCall)cAlternatives_5_1.eContents().get(0);
-		private final RuleCall cQualifiedNameParserRuleCall_5_1_1 = (RuleCall)cAlternatives_5_1.eContents().get(1);
-		private final Assignment cOrdAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
-		private final RuleCall cOrdOrdSqlParserRuleCall_5_2_0 = (RuleCall)cOrdAssignment_5_2.eContents().get(0);
+		private final Assignment cOrdAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cOrdOrdSqlParserRuleCall_5_1_0 = (RuleCall)cOrdAssignment_5_1.eContents().get(0);
 		
 		//MetaSql:
 		//	WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-		//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH (NUMBER
-		//	| QualifiedName) ord=OrdSql;
+		//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH
+		//	ord=OrdSql;
 		@Override public ParserRule getRule() { return rule; }
 
 		//WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-		//(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH (NUMBER
-		//| QualifiedName) ord=OrdSql
+		//(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH
+		//ord=OrdSql
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//WS ifs+=IfSql (BOR ifs+=IfSql)*
@@ -5746,7 +5743,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IfSql
 		public RuleCall getIfsIfSqlParserRuleCall_4_3_0() { return cIfsIfSqlParserRuleCall_4_3_0; }
 
-		//type=HASH (NUMBER | QualifiedName) ord=OrdSql
+		//type=HASH ord=OrdSql
 		public Group getGroup_5() { return cGroup_5; }
 
 		//type=HASH
@@ -5755,20 +5752,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//HASH
 		public RuleCall getTypeHASHTerminalRuleCall_5_0_0() { return cTypeHASHTerminalRuleCall_5_0_0; }
 
-		//NUMBER | QualifiedName
-		public Alternatives getAlternatives_5_1() { return cAlternatives_5_1; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_5_1_0() { return cNUMBERTerminalRuleCall_5_1_0; }
-
-		//QualifiedName
-		public RuleCall getQualifiedNameParserRuleCall_5_1_1() { return cQualifiedNameParserRuleCall_5_1_1; }
-
 		//ord=OrdSql
-		public Assignment getOrdAssignment_5_2() { return cOrdAssignment_5_2; }
+		public Assignment getOrdAssignment_5_1() { return cOrdAssignment_5_1; }
 
 		//OrdSql
-		public RuleCall getOrdOrdSqlParserRuleCall_5_2_0() { return cOrdOrdSqlParserRuleCall_5_2_0; }
+		public RuleCall getOrdOrdSqlParserRuleCall_5_1_0() { return cOrdOrdSqlParserRuleCall_5_1_0; }
 	}
 
 	public class IfSqlElements extends AbstractParserRuleElementFinder {
@@ -6530,18 +6518,38 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class OrdSqlElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OrdSql");
-		private final Assignment cSqlsAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cSqlsOrdSql2ParserRuleCall_0 = (RuleCall)cSqlsAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cIdentAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Alternatives cIdentAlternatives_0_0 = (Alternatives)cIdentAssignment_0.eContents().get(0);
+		private final RuleCall cIdentNUMBERTerminalRuleCall_0_0_0 = (RuleCall)cIdentAlternatives_0_0.eContents().get(0);
+		private final RuleCall cIdentQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cIdentAlternatives_0_0.eContents().get(1);
+		private final Assignment cSqlsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cSqlsOrdSql2ParserRuleCall_1_0 = (RuleCall)cSqlsAssignment_1.eContents().get(0);
 		
 		//OrdSql:
-		//	sqls+=OrdSql2+;
+		//	ident=(NUMBER | QualifiedName) sqls+=OrdSql2+;
 		@Override public ParserRule getRule() { return rule; }
 
+		//ident=(NUMBER | QualifiedName) sqls+=OrdSql2+
+		public Group getGroup() { return cGroup; }
+
+		//ident=(NUMBER | QualifiedName)
+		public Assignment getIdentAssignment_0() { return cIdentAssignment_0; }
+
+		//NUMBER | QualifiedName
+		public Alternatives getIdentAlternatives_0_0() { return cIdentAlternatives_0_0; }
+
+		//NUMBER
+		public RuleCall getIdentNUMBERTerminalRuleCall_0_0_0() { return cIdentNUMBERTerminalRuleCall_0_0_0; }
+
+		//QualifiedName
+		public RuleCall getIdentQualifiedNameParserRuleCall_0_0_1() { return cIdentQualifiedNameParserRuleCall_0_0_1; }
+
 		//sqls+=OrdSql2+
-		public Assignment getSqlsAssignment() { return cSqlsAssignment; }
+		public Assignment getSqlsAssignment_1() { return cSqlsAssignment_1; }
 
 		//OrdSql2
-		public RuleCall getSqlsOrdSql2ParserRuleCall_0() { return cSqlsOrdSql2ParserRuleCall_0; }
+		public RuleCall getSqlsOrdSql2ParserRuleCall_1_0() { return cSqlsOrdSql2ParserRuleCall_1_0; }
 	}
 
 	public class OrdSql2Elements extends AbstractParserRuleElementFinder {
@@ -8650,8 +8658,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 
 	//MetaSql:
 	//	WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-	//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH (NUMBER
-	//	| QualifiedName) ord=OrdSql;
+	//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH
+	//	ord=OrdSql;
 	public MetaSqlElements getMetaSqlAccess() {
 		return pMetaSql;
 	}
@@ -8729,7 +8737,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OrdSql:
-	//	sqls+=OrdSql2+;
+	//	ident=(NUMBER | QualifiedName) sqls+=OrdSql2+;
 	public OrdSqlElements getOrdSqlAccess() {
 		return pOrdSql;
 	}

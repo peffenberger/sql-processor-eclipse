@@ -3,6 +3,7 @@ package org.sqlproc.plugin.lib.resolver;
 import java.beans.PropertyDescriptor;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -14,6 +15,8 @@ public interface PojoResolver {
     Class<?> loadClass(String name, URI uri);
 
     public PropertyDescriptor[] getPropertyDescriptors(String name, URI uri);
+
+    public Map<String, String> getOrders(String name, URI uri);
 
     boolean isResolvePojo(EObject model);
 

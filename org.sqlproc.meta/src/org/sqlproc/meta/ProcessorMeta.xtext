@@ -214,7 +214,7 @@ MetaSql:
     | type=BAND ifs+=IfSql (BOR ifs+=IfSql)*
     | type=BOR ifs+=IfSql (BOR ifs+=IfSql)*
     | type=EQUALS WS* ftype=IDENT ifs+=IfSql
-    | type=HASH (NUMBER|QualifiedName) ord=OrdSql
+    | type=HASH ord=OrdSql
     ;
 
 IfSql: (sqls+=IfSqlFragment)+;
@@ -250,7 +250,7 @@ IfSqlBool:
     | (not?=NOT)? LPAREN cond=IfSqlCond RPAREN
     ;
 
-OrdSql: (sqls+=OrdSql2)+;
+OrdSql: ident=(NUMBER|QualifiedName) (sqls+=OrdSql2)+;
 
 OrdSql2:
     value=OrdSqlValue

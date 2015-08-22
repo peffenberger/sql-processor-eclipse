@@ -6,10 +6,13 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -198,6 +201,34 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
 
         // descriptorsCache.put(beanClass, descriptors);
         return descriptors;
+    }
+
+    @Override
+    public Map<String, String> getOrders(String name, URI uri) {
+        // platform:/resource/simple-jdbc-dao/src/main/resources/statements.meta
+        if (allLoaders == null)
+            init();
+        Class<?> beanClass = loadClass(name, uri);
+        if (beanClass == null)
+            return null;
+
+        Map<String, String> orders = new HashMap<>();
+        while (beanClass != null) {
+            Field[] fields = beanClass.getFields();
+            for (Field f : fields) {
+                if (Modifier.isStatic(f.getModifiers())) {
+                    try {
+                        if (f.getType() == int.class)
+                            orders.put(f.getName(), "" + f.getInt(null));
+                        else if (f.getType() == String.class)
+                            orders.put(f.getName(), (String) f.get(null));
+                    } catch (IllegalArgumentException | IllegalAccessException e) {
+                    }
+                }
+            }
+            beanClass = beanClass.getSuperclass();
+        }
+        return orders;
     }
 
     @Override

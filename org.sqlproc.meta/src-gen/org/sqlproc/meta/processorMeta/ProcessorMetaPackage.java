@@ -2850,13 +2850,22 @@ public interface ProcessorMetaPackage extends EPackage
   int ORD_SQL = 47;
 
   /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ORD_SQL__IDENT = 0;
+
+  /**
    * The feature id for the '<em><b>Sqls</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ORD_SQL__SQLS = 0;
+  int ORD_SQL__SQLS = 1;
 
   /**
    * The number of structural features of the '<em>Ord Sql</em>' class.
@@ -2865,7 +2874,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ORD_SQL_FEATURE_COUNT = 1;
+  int ORD_SQL_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.OrdSql2Impl <em>Ord Sql2</em>}' class.
@@ -6288,6 +6297,17 @@ public interface ProcessorMetaPackage extends EPackage
   EClass getOrdSql();
 
   /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.OrdSql#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see org.sqlproc.meta.processorMeta.OrdSql#getIdent()
+   * @see #getOrdSql()
+   * @generated
+   */
+  EAttribute getOrdSql_Ident();
+
+  /**
    * Returns the meta object for the containment reference list '{@link org.sqlproc.meta.processorMeta.OrdSql#getSqls <em>Sqls</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9024,6 +9044,14 @@ public interface ProcessorMetaPackage extends EPackage
      * @generated
      */
     EClass ORD_SQL = eINSTANCE.getOrdSql();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ORD_SQL__IDENT = eINSTANCE.getOrdSql_Ident();
 
     /**
      * The meta object literal for the '<em><b>Sqls</b></em>' containment reference list feature.

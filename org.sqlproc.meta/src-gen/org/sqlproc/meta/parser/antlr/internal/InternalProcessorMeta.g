@@ -8870,32 +8870,19 @@ ruleMetaSql returns [EObject current=null]
 	    }
 
 )
-)(this_NUMBER_23=RULE_NUMBER
-    { 
-    newLeafNode(this_NUMBER_23, grammarAccess.getMetaSqlAccess().getNUMBERTerminalRuleCall_5_1_0()); 
-    }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getMetaSqlAccess().getQualifiedNameParserRuleCall_5_1_1()); 
-    }
-ruleQualifiedName
-    { 
-        afterParserOrEnumRuleCall();
-    }
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMetaSqlAccess().getOrdOrdSqlParserRuleCall_5_2_0()); 
+	        newCompositeNode(grammarAccess.getMetaSqlAccess().getOrdOrdSqlParserRuleCall_5_1_0()); 
 	    }
-		lv_ord_25_0=ruleOrdSql		{
+		lv_ord_23_0=ruleOrdSql		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMetaSqlRule());
 	        }
        		set(
        			$current, 
        			"ord",
-        		lv_ord_25_0, 
+        		lv_ord_23_0, 
         		"OrdSql");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -10193,25 +10180,61 @@ ruleOrdSql returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
+((
 (
+(
+		lv_ident_0_1=RULE_NUMBER
+		{
+			newLeafNode(lv_ident_0_1, grammarAccess.getOrdSqlAccess().getIdentNUMBERTerminalRuleCall_0_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getOrdSqlRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"ident",
+        		lv_ident_0_1, 
+        		"NUMBER");
+	    }
+
+    |		{ 
+	        newCompositeNode(grammarAccess.getOrdSqlAccess().getIdentQualifiedNameParserRuleCall_0_0_1()); 
+	    }
+		lv_ident_0_2=ruleQualifiedName		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getOrdSqlRule());
+	        }
+       		set(
+       			$current, 
+       			"ident",
+        		lv_ident_0_2, 
+        		"QualifiedName");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+
+)
+)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getOrdSqlAccess().getSqlsOrdSql2ParserRuleCall_0()); 
+	        newCompositeNode(grammarAccess.getOrdSqlAccess().getSqlsOrdSql2ParserRuleCall_1_0()); 
 	    }
-		lv_sqls_0_0=ruleOrdSql2		{
+		lv_sqls_1_0=ruleOrdSql2		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getOrdSqlRule());
 	        }
        		add(
        			$current, 
        			"sqls",
-        		lv_sqls_0_0, 
+        		lv_sqls_1_0, 
         		"OrdSql2");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)+
+)+)
 ;
 
 

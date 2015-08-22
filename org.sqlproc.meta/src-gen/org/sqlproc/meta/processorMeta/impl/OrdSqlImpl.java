@@ -4,6 +4,7 @@ package org.sqlproc.meta.processorMeta.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -11,6 +12,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -27,6 +29,7 @@ import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.sqlproc.meta.processorMeta.impl.OrdSqlImpl#getIdent <em>Ident</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.OrdSqlImpl#getSqls <em>Sqls</em>}</li>
  * </ul>
  * </p>
@@ -35,6 +38,26 @@ import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
  */
 public class OrdSqlImpl extends MinimalEObjectImpl.Container implements OrdSql
 {
+  /**
+   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIdent()
+   * @generated
+   * @ordered
+   */
+  protected static final String IDENT_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIdent()
+   * @generated
+   * @ordered
+   */
+  protected String ident = IDENT_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getSqls() <em>Sqls</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -64,6 +87,29 @@ public class OrdSqlImpl extends MinimalEObjectImpl.Container implements OrdSql
   protected EClass eStaticClass()
   {
     return ProcessorMetaPackage.Literals.ORD_SQL;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getIdent()
+  {
+    return ident;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setIdent(String newIdent)
+  {
+    String oldIdent = ident;
+    ident = newIdent;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.ORD_SQL__IDENT, oldIdent, ident));
   }
 
   /**
@@ -106,6 +152,8 @@ public class OrdSqlImpl extends MinimalEObjectImpl.Container implements OrdSql
   {
     switch (featureID)
     {
+      case ProcessorMetaPackage.ORD_SQL__IDENT:
+        return getIdent();
       case ProcessorMetaPackage.ORD_SQL__SQLS:
         return getSqls();
     }
@@ -123,6 +171,9 @@ public class OrdSqlImpl extends MinimalEObjectImpl.Container implements OrdSql
   {
     switch (featureID)
     {
+      case ProcessorMetaPackage.ORD_SQL__IDENT:
+        setIdent((String)newValue);
+        return;
       case ProcessorMetaPackage.ORD_SQL__SQLS:
         getSqls().clear();
         getSqls().addAll((Collection<? extends OrdSql2>)newValue);
@@ -141,6 +192,9 @@ public class OrdSqlImpl extends MinimalEObjectImpl.Container implements OrdSql
   {
     switch (featureID)
     {
+      case ProcessorMetaPackage.ORD_SQL__IDENT:
+        setIdent(IDENT_EDEFAULT);
+        return;
       case ProcessorMetaPackage.ORD_SQL__SQLS:
         getSqls().clear();
         return;
@@ -158,10 +212,29 @@ public class OrdSqlImpl extends MinimalEObjectImpl.Container implements OrdSql
   {
     switch (featureID)
     {
+      case ProcessorMetaPackage.ORD_SQL__IDENT:
+        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
       case ProcessorMetaPackage.ORD_SQL__SQLS:
         return sqls != null && !sqls.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (ident: ");
+    result.append(ident);
+    result.append(')');
+    return result.toString();
   }
 
 } //OrdSqlImpl

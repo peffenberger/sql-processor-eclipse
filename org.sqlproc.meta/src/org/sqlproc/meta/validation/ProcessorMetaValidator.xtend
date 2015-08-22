@@ -48,6 +48,7 @@ import java.util.TreeMap
 import java.util.Map
 import java.beans.PropertyDescriptor
 import java.util.HashMap
+import org.sqlproc.meta.processorMeta.OrdSql
 
 enum ValidationResult {
 	OK, WARNING, ERROR
@@ -306,6 +307,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         val URI uri = statement.eResource?.URI
         val Map<String, PropertyDescriptor[]> descriptorsCache = new HashMap<String, PropertyDescriptor[]>() 
         val Map<String, Class<?>> classesCache = new HashMap<String, Class<?>>()
+        val Map<String, Map<String, String>> ordersCache = new HashMap<String, Map<String, String>>()
 
         var index = 0
         var String identPojoName
@@ -372,6 +374,11 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         		//println("identifier for "+pojoName+" "+identifier)
         		checkIdentifier(identifier, pojo, pojoName, statement, artifacts, uri, descriptorsCache, classesCache) 
         	]
+        	val orders = statement.getAllContentsOfType(typeof(OrdSql))
+        	orders.forEach[order |
+        		//println("identifier for "+pojoName+" "+identifier)
+        		checkOrder(order, pojo, pojoName, statement, artifacts, uri, ordersCache, classesCache) 
+        	]
         }
 
         if (colPojo != null) {
@@ -432,7 +439,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         if (!isResolvePojo(identifier))
             return;
 
-        val identifierName = identifier.getName()
+        val identifierName = identifier.name
         val identifierUsageClass = pojo.qualifiedName
         if (identifierUsageClass != null) {
             switch (checkClassProperty(identifierUsageClass, identifierName, uri, descriptorsCache, classesCache)) {
@@ -449,6 +456,32 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         if (pojoResolverFactory.getPojoResolver() != null) {
             error("Cannot check input form attribute : " + identifierName,
                     identifier, ProcessorMetaPackage.Literals.IDENTIFIER__NAME)
+        }
+    }
+
+    def checkOrder(OrdSql order, PojoDefinition pojo, String pojoName, MetaStatement statement, 
+    	Artifacts artifacts, URI uri, Map<String, Map<String, String>> ordersCache, Map<String, Class<?>> classesCache
+    ) {
+        if (!isResolvePojo(order))
+            return;
+
+        val identifierName = order.ident
+        val identifierUsageClass = pojo.qualifiedName
+        if (identifierUsageClass != null) {
+            switch (checkOrderProperty(identifierUsageClass, identifierName, uri, ordersCache, classesCache)) {
+            case ValidationResult.WARNING:
+                warning("Problem order : " + identifierName + "[" + identifierUsageClass + "]",
+                        order, ProcessorMetaPackage.Literals.ORD_SQL__IDENT)
+            case ValidationResult.ERROR:
+		        error("Cannot find order : " + identifierName + "[" + identifierUsageClass + "]",
+					order, ProcessorMetaPackage.Literals.ORD_SQL__IDENT)
+            }
+            return
+        }
+
+        if (pojoResolverFactory.getPojoResolver() != null) {
+            error("Cannot check order identifier : " + identifierName,
+                    order, ProcessorMetaPackage.Literals.ORD_SQL__IDENT)
         }
     }
 
@@ -691,6 +724,42 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             }
         }
         return ValidationResult.OK
+    }
+
+    def ValidationResult checkOrderProperty(String className, String property, URI uri, 
+    	Map<String, Map<String, String>> ordersCache, Map<String, Class<?>> classesCache
+    ) {
+ 		println("A "+property)
+        if (property == null || pojoResolverFactory.getPojoResolver() == null)
+            return ValidationResult.OK
+        if (className == null)
+            return ValidationResult.ERROR
+        //println(">>> "+className+" "+property+" "+uri)
+        var orders = ordersCache.get(uri.toString()+className)
+        if (orders == null)
+        	orders = pojoResolverFactory.getPojoResolver().getOrders(className, uri)
+        //println("<<< "+descriptors)
+        if (orders == null)
+            return ValidationResult.WARNING
+        else
+        	ordersCache.put(uri.toString()+className, orders)
+        
+ 		println("B "+orders)
+ 		orders.forEach[k, v |
+			println("K "+k.class)
+			println("V "+v.class)
+ 		]
+
+        val _orders = orders
+        val order = orders.keySet.findFirst[k |
+        	_orders.get(k).equals(property)
+        ]
+        println("O "+order)
+
+        if (order != null) 
+        	return ValidationResult.OK 
+        else 
+        	return ValidationResult.ERROR 
     }
 
     @Check

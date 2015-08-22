@@ -8,8 +8,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
@@ -70,6 +74,31 @@ public class StandalonePojoResolverImpl implements PojoResolver {
 
         // descriptorsCache.put(beanClass, descriptors);
         return descriptors;
+    }
+
+    @Override
+    public Map<String, String> getOrders(String name, URI uri) {
+        Class<?> beanClass = loadClass(name, uri);
+        if (beanClass == null)
+            return null;
+
+        Map<String, String> orders = new HashMap<>();
+        while (beanClass != null) {
+            Field[] fields = beanClass.getFields();
+            for (Field f : fields) {
+                if (Modifier.isStatic(f.getModifiers())) {
+                    try {
+                        if (f.getType() == int.class)
+                            orders.put(f.getName(), "" + f.getInt(null));
+                        else if (f.getType() == String.class)
+                            orders.put(f.getName(), (String) f.get(null));
+                    } catch (IllegalArgumentException | IllegalAccessException e) {
+                    }
+                }
+            }
+            beanClass = beanClass.getSuperclass();
+        }
+        return orders;
     }
 
     @Override

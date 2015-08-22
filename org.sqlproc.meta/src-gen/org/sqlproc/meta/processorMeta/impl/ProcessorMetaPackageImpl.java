@@ -3193,9 +3193,19 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getOrdSql_Ident()
+  {
+    return (EAttribute)ordSqlEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getOrdSql_Sqls()
   {
-    return (EReference)ordSqlEClass.getEStructuralFeatures().get(0);
+    return (EReference)ordSqlEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4043,6 +4053,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     createEReference(ifSqlBoolEClass, IF_SQL_BOOL__COND);
 
     ordSqlEClass = createEClass(ORD_SQL);
+    createEAttribute(ordSqlEClass, ORD_SQL__IDENT);
     createEReference(ordSqlEClass, ORD_SQL__SQLS);
 
     ordSql2EClass = createEClass(ORD_SQL2);
@@ -4453,6 +4464,7 @@ public class ProcessorMetaPackageImpl extends EPackageImpl implements ProcessorM
     initEReference(getIfSqlBool_Cond(), this.getIfSqlCond(), null, "cond", null, 0, 1, IfSqlBool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ordSqlEClass, OrdSql.class, "OrdSql", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getOrdSql_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, OrdSql.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getOrdSql_Sqls(), this.getOrdSql2(), null, "sqls", null, 0, -1, OrdSql.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ordSql2EClass, OrdSql2.class, "OrdSql2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

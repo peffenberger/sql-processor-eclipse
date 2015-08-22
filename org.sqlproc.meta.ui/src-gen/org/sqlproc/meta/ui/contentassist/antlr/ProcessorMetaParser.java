@@ -53,7 +53,6 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSqlValueAccess().getAlternatives_0(), "rule__SqlValue__Alternatives_0");
 					put(grammarAccess.getSqlValueAccess().getAlternatives_1_0(), "rule__SqlValue__Alternatives_1_0");
 					put(grammarAccess.getMetaSqlAccess().getAlternatives(), "rule__MetaSql__Alternatives");
-					put(grammarAccess.getMetaSqlAccess().getAlternatives_5_1(), "rule__MetaSql__Alternatives_5_1");
 					put(grammarAccess.getIfSqlFragmentAccess().getAlternatives(), "rule__IfSqlFragment__Alternatives");
 					put(grammarAccess.getIfSqlFragmentAccess().getAlternatives_6_1(), "rule__IfSqlFragment__Alternatives_6_1");
 					put(grammarAccess.getIfSqlValueAccess().getAlternatives_0(), "rule__IfSqlValue__Alternatives_0");
@@ -61,6 +60,7 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIfMetaSqlAccess().getAlternatives(), "rule__IfMetaSql__Alternatives");
 					put(grammarAccess.getIfSqlCondAccess().getOperAlternatives_3_0_0(), "rule__IfSqlCond__OperAlternatives_3_0_0");
 					put(grammarAccess.getIfSqlBoolAccess().getAlternatives(), "rule__IfSqlBool__Alternatives");
+					put(grammarAccess.getOrdSqlAccess().getIdentAlternatives_0_0(), "rule__OrdSql__IdentAlternatives_0_0");
 					put(grammarAccess.getOrdSql2Access().getAlternatives(), "rule__OrdSql2__Alternatives");
 					put(grammarAccess.getOrdSqlValueAccess().getAlternatives_0(), "rule__OrdSqlValue__Alternatives_0");
 					put(grammarAccess.getOrdSqlValueAccess().getAlternatives_1_0(), "rule__OrdSqlValue__Alternatives_1_0");
@@ -347,6 +347,7 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIfSqlBoolAccess().getGroup_0(), "rule__IfSqlBool__Group_0__0");
 					put(grammarAccess.getIfSqlBoolAccess().getGroup_1(), "rule__IfSqlBool__Group_1__0");
 					put(grammarAccess.getIfSqlBoolAccess().getGroup_2(), "rule__IfSqlBool__Group_2__0");
+					put(grammarAccess.getOrdSqlAccess().getGroup(), "rule__OrdSql__Group__0");
 					put(grammarAccess.getOrdSql2Access().getGroup_1(), "rule__OrdSql2__Group_1__0");
 					put(grammarAccess.getOrdSql2Access().getGroup_2(), "rule__OrdSql2__Group_2__0");
 					put(grammarAccess.getOrdSql2Access().getGroup_3(), "rule__OrdSql2__Group_3__0");
@@ -741,7 +742,7 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMetaSqlAccess().getFtypeAssignment_4_2(), "rule__MetaSql__FtypeAssignment_4_2");
 					put(grammarAccess.getMetaSqlAccess().getIfsAssignment_4_3(), "rule__MetaSql__IfsAssignment_4_3");
 					put(grammarAccess.getMetaSqlAccess().getTypeAssignment_5_0(), "rule__MetaSql__TypeAssignment_5_0");
-					put(grammarAccess.getMetaSqlAccess().getOrdAssignment_5_2(), "rule__MetaSql__OrdAssignment_5_2");
+					put(grammarAccess.getMetaSqlAccess().getOrdAssignment_5_1(), "rule__MetaSql__OrdAssignment_5_1");
 					put(grammarAccess.getIfSqlAccess().getSqlsAssignment(), "rule__IfSql__SqlsAssignment");
 					put(grammarAccess.getIfSqlFragmentAccess().getValueAssignment_0(), "rule__IfSqlFragment__ValueAssignment_0");
 					put(grammarAccess.getIfSqlFragmentAccess().getColAssignment_1_1(), "rule__IfSqlFragment__ColAssignment_1_1");
@@ -773,7 +774,8 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIfSqlBoolAccess().getIdentAssignment_1_2(), "rule__IfSqlBool__IdentAssignment_1_2");
 					put(grammarAccess.getIfSqlBoolAccess().getNotAssignment_2_0(), "rule__IfSqlBool__NotAssignment_2_0");
 					put(grammarAccess.getIfSqlBoolAccess().getCondAssignment_2_2(), "rule__IfSqlBool__CondAssignment_2_2");
-					put(grammarAccess.getOrdSqlAccess().getSqlsAssignment(), "rule__OrdSql__SqlsAssignment");
+					put(grammarAccess.getOrdSqlAccess().getIdentAssignment_0(), "rule__OrdSql__IdentAssignment_0");
+					put(grammarAccess.getOrdSqlAccess().getSqlsAssignment_1(), "rule__OrdSql__SqlsAssignment_1");
 					put(grammarAccess.getOrdSql2Access().getValueAssignment_0(), "rule__OrdSql2__ValueAssignment_0");
 					put(grammarAccess.getOrdSql2Access().getCnstAssignment_1_1(), "rule__OrdSql2__CnstAssignment_1_1");
 					put(grammarAccess.getOrdSql2Access().getIdentAssignment_2_1(), "rule__OrdSql2__IdentAssignment_2_1");
