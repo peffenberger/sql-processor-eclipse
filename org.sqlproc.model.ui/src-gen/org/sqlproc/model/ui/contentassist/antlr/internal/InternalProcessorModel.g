@@ -9652,11 +9652,9 @@ rule__PropertyCondition__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getPropertyConditionAccess().getEqualsSignKeyword_2()); }
-
-	'=' 
-
-{ after(grammarAccess.getPropertyConditionAccess().getEqualsSignKeyword_2()); }
+{ before(grammarAccess.getPropertyConditionAccess().getEQUALSTerminalRuleCall_2()); }
+	RULE_EQUALS
+{ after(grammarAccess.getPropertyConditionAccess().getEQUALSTerminalRuleCall_2()); }
 )
 
 ;
@@ -21012,9 +21010,9 @@ rule__PojoDirective__Group_1_3__1__Impl
     }
 :
 (
-{ before(grammarAccess.getPojoDirectiveAccess().getCOMMATerminalRuleCall_1_3_1()); }
-	RULE_COMMA
-{ after(grammarAccess.getPojoDirectiveAccess().getCOMMATerminalRuleCall_1_3_1()); }
+{ before(grammarAccess.getPojoDirectiveAccess().getEQUALSTerminalRuleCall_1_3_1()); }
+	RULE_EQUALS
+{ after(grammarAccess.getPojoDirectiveAccess().getEQUALSTerminalRuleCall_1_3_1()); }
 )
 
 ;
@@ -23853,11 +23851,9 @@ rule__PojoAttribute__Group_7__0__Impl
     }
 :
 (
-{ before(grammarAccess.getPojoAttributeAccess().getEqualsSignKeyword_7_0()); }
-
-	'=' 
-
-{ after(grammarAccess.getPojoAttributeAccess().getEqualsSignKeyword_7_0()); }
+{ before(grammarAccess.getPojoAttributeAccess().getEQUALSTerminalRuleCall_7_0()); }
+	RULE_EQUALS
+{ after(grammarAccess.getPojoAttributeAccess().getEQUALSTerminalRuleCall_7_0()); }
 )
 
 ;
@@ -24789,11 +24785,9 @@ rule__EnumAttributeValue__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getEnumAttributeValueAccess().getEqualsSignKeyword_1()); }
-
-	'=' 
-
-{ after(grammarAccess.getEnumAttributeValueAccess().getEqualsSignKeyword_1()); }
+{ before(grammarAccess.getEnumAttributeValueAccess().getEQUALSTerminalRuleCall_1()); }
+	RULE_EQUALS
+{ after(grammarAccess.getEnumAttributeValueAccess().getEQUALSTerminalRuleCall_1()); }
 )
 
 ;
@@ -25442,11 +25436,9 @@ rule__DescendantAssignment__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getDescendantAssignmentAccess().getEqualsSignKeyword_1()); }
-
-	'=' 
-
-{ after(grammarAccess.getDescendantAssignmentAccess().getEqualsSignKeyword_1()); }
+{ before(grammarAccess.getDescendantAssignmentAccess().getEQUALSTerminalRuleCall_1()); }
+	RULE_EQUALS
+{ after(grammarAccess.getDescendantAssignmentAccess().getEQUALSTerminalRuleCall_1()); }
 )
 
 ;
@@ -52818,6 +52810,8 @@ RULE_LPAREN : '(';
 RULE_RPAREN : ')';
 
 RULE_COMMA : ',';
+
+RULE_EQUALS : '=';
 
 RULE_HEX : ('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F'|'_')+ ('#' (('b'|'B') ('i'|'I')|('l'|'L')))?;
 

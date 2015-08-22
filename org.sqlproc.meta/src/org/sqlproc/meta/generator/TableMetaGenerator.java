@@ -989,7 +989,7 @@ public class TableMetaGenerator extends TableBaseGenerator {
         System.out.println(indMap);
         for (Entry<String, String> e : indMap.entrySet()) {
             ++i;
-            buffer.append("\n  {#").append(indMap2.get(e.getKey())).append(" order by").append(e.getValue())
+            buffer.append("\n  {#").append(constName(indMap2.get(e.getKey()))).append(" order by").append(e.getValue())
                     .append(" }");
         }
         return first;

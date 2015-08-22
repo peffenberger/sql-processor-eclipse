@@ -1933,9 +1933,9 @@ rulePropertyCondition returns [EObject current=null]
 	    }
 
 )
-)	otherlv_2='=' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getPropertyConditionAccess().getEqualsSignKeyword_2());
+)this_EQUALS_2=RULE_EQUALS
+    { 
+    newLeafNode(this_EQUALS_2, grammarAccess.getPropertyConditionAccess().getEQUALSTerminalRuleCall_2()); 
     }
 (
 (
@@ -7760,9 +7760,9 @@ this_LPAREN_7=RULE_LPAREN
 	    }
 
 )
-)this_COMMA_9=RULE_COMMA
+)this_EQUALS_9=RULE_EQUALS
     { 
-    newLeafNode(this_COMMA_9, grammarAccess.getPojoDirectiveAccess().getCOMMATerminalRuleCall_1_3_1()); 
+    newLeafNode(this_EQUALS_9, grammarAccess.getPojoDirectiveAccess().getEQUALSTerminalRuleCall_1_3_1()); 
     }
 )?(
 (
@@ -8654,9 +8654,9 @@ rulePojoAttribute returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_7='=' 
-    {
-    	newLeafNode(otherlv_7, grammarAccess.getPojoAttributeAccess().getEqualsSignKeyword_7_0());
+)(this_EQUALS_7=RULE_EQUALS
+    { 
+    newLeafNode(this_EQUALS_7, grammarAccess.getPojoAttributeAccess().getEQUALSTerminalRuleCall_7_0()); 
     }
 (
 (
@@ -9076,9 +9076,9 @@ ruleEnumAttributeValue returns [EObject current=null]
 	    }
 
 )
-)	otherlv_1='=' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getEnumAttributeValueAccess().getEqualsSignKeyword_1());
+)this_EQUALS_1=RULE_EQUALS
+    { 
+    newLeafNode(this_EQUALS_1, grammarAccess.getEnumAttributeValueAccess().getEQUALSTerminalRuleCall_1()); 
     }
 (
 (
@@ -9389,9 +9389,9 @@ ruleDescendantAssignment returns [EObject current=null]
 	    }
 
 )
-)	otherlv_1='=' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getDescendantAssignmentAccess().getEqualsSignKeyword_1());
+)this_EQUALS_1=RULE_EQUALS
+    { 
+    newLeafNode(this_EQUALS_1, grammarAccess.getDescendantAssignmentAccess().getEQUALSTerminalRuleCall_1()); 
     }
 (
 (
@@ -16948,6 +16948,8 @@ RULE_LPAREN : '(';
 RULE_RPAREN : ')';
 
 RULE_COMMA : ',';
+
+RULE_EQUALS : '=';
 
 RULE_HEX : ('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F'|'_')+ ('#' (('b'|'B') ('i'|'I')|('l'|'L')))?;
 

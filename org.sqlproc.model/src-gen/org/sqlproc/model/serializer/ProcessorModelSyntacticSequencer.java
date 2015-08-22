@@ -50,6 +50,8 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 			return getArrayBracketsToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getCOMMARule())
 			return getCOMMAToken(semanticObject, ruleCall, node);
+		else if(ruleCall.getRule() == grammarAccess.getEQUALSRule())
+			return getEQUALSToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getLPARENRule())
 			return getLPARENToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getOpSingleAssignRule())
@@ -77,6 +79,15 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 		if (node != null)
 			return getTokenText(node);
 		return ",";
+	}
+	
+	/**
+	 * terminal EQUALS: '=';
+	 */
+	protected String getEQUALSToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "=";
 	}
 	
 	/**

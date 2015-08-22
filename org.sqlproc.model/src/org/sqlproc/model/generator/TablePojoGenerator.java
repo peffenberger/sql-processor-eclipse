@@ -389,7 +389,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                         int i = 0;
                         for (String s : indSet) {
                             ++i;
-                            bufferMeta.append(nlindent()).append("#Index(").append(i).append(s).append(")");
+                            bufferMeta.append(nlindent()).append("#Index(").append(s).append(")");
                         }
                     }
                 }

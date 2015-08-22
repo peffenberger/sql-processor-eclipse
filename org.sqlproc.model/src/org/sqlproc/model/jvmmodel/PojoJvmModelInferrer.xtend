@@ -126,7 +126,7 @@ class PojoJvmModelInferrer {
  					static = true
  					final = true
  					visibility = JvmVisibility.PUBLIC
- 					initializer = if (entry.key.equals("____")) '''"«constName(entry.value)»"''' else '''"«entry.key»"'''
+ 					initializer = '''"«entry.key»"'''
 	   				addAnnotationsX(entity.staticAnnotations.map[a|a.annotation])
    				]
    			}

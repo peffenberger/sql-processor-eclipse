@@ -41,7 +41,7 @@ ImplementsAssignementGenerics: toImplement=PojoType ('+' (dbTables+=ValidID)+)? 
 ExtendsAssignementGenerics: toExtends=PojoType ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
 
 PropertyCondition:
-	'{' name=ValidID '=' value=ValueType '}'
+	'{' name=ValidID EQUALS value=ValueType '}'
 ;
 
 Property: (condition=PropertyCondition)?
@@ -237,7 +237,7 @@ DirectiveProperties:
 
 PojoDirective: 
 	{PojoDirectiveToString} '#ToString' LPAREN proplist=DirectiveProperties RPAREN
-	| {PojoDirectiveIndex} '#Index' LPAREN (index=IndexType COMMA)? proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveIndex} '#Index' LPAREN (index=IndexType EQUALS)? proplist=DirectiveProperties RPAREN
 	| {PojoDirectiveOperators} '#Operators' (LPAREN operatorsSuffix=ValidID RPAREN)?
 	| {PojoDirectiveSerializable} '#Serializable' LPAREN sernum=INT RPAREN
 	| {PojoDirectiveDiscriminator} '#InheritanceChild' LPAREN discriminator=(ValidID) RPAREN
@@ -273,7 +273,7 @@ PojoAttribute:
 	annotations+=Annotation* directives+=PojoAttributeDirective*
 	(final?='final'?) (static?='static'?) 
 	kind=('#Attr' | '#Simple') //modifiers+=Modifier* 
-	(type=JvmTypeReference)? name=ValidID ('=' initExpr=XExpression)?
+	(type=JvmTypeReference)? name=ValidID (EQUALS initExpr=XExpression)?
 ;
 
 PojoProcedure:
@@ -299,7 +299,7 @@ EnumEntity:
 	'}'
 ;
 
-EnumAttributeValue: name=ValidID '=' value = XExpression;
+EnumAttributeValue: name=ValidID EQUALS value = XExpression;
 
 EnumAttributeDirective:
 	{EnumAttributeDirectiveValues} '#Values' LPAREN values+=EnumAttributeValue (COMMA values+=EnumAttributeValue)* RPAREN
@@ -317,7 +317,7 @@ DaoDirectiveParameters:
 ;
 
 DescendantAssignment:
-	value = ValueType '=' descendant=JvmParameterizedTypeReference
+	value = ValueType EQUALS descendant=JvmParameterizedTypeReference
 ;
 
 FunProcType :
@@ -368,3 +368,4 @@ Annotation:
 terminal LPAREN: '(';
 terminal RPAREN: ')';
 terminal COMMA: ',';
+terminal EQUALS: '=';

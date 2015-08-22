@@ -269,7 +269,10 @@ class ProcessorGeneratorUtils {
 					result.put(""+d.index.number, d.proplist.features)
 			}
 			else {
-				result.put("____", d.proplist.features)
+				println(d.proplist.features)
+				val name = constName(d.proplist.features)
+				println(name)
+				result.put(name, d.proplist.features)
 			}
 		]
         return result

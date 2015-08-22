@@ -1017,16 +1017,16 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final RuleCall cEQUALSTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cValueValueTypeParserRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//PropertyCondition:
-		//	"{" name=ValidID "=" value=ValueType "}";
+		//	"{" name=ValidID EQUALS value=ValueType "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"{" name=ValidID "=" value=ValueType "}"
+		//"{" name=ValidID EQUALS value=ValueType "}"
 		public Group getGroup() { return cGroup; }
 
 		//"{"
@@ -1038,8 +1038,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//ValidID
 		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
 
-		//"="
-		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
+		//EQUALS
+		public RuleCall getEQUALSTerminalRuleCall_2() { return cEQUALSTerminalRuleCall_2; }
 
 		//value=ValueType
 		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
@@ -4525,7 +4525,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1_3 = (Group)cGroup_1.eContents().get(3);
 		private final Assignment cIndexAssignment_1_3_0 = (Assignment)cGroup_1_3.eContents().get(0);
 		private final RuleCall cIndexIndexTypeParserRuleCall_1_3_0_0 = (RuleCall)cIndexAssignment_1_3_0.eContents().get(0);
-		private final RuleCall cCOMMATerminalRuleCall_1_3_1 = (RuleCall)cGroup_1_3.eContents().get(1);
+		private final RuleCall cEQUALSTerminalRuleCall_1_3_1 = (RuleCall)cGroup_1_3.eContents().get(1);
 		private final Assignment cProplistAssignment_1_4 = (Assignment)cGroup_1.eContents().get(4);
 		private final RuleCall cProplistDirectivePropertiesParserRuleCall_1_4_0 = (RuleCall)cProplistAssignment_1_4.eContents().get(0);
 		private final RuleCall cRPARENTerminalRuleCall_1_5 = (RuleCall)cGroup_1.eContents().get(5);
@@ -4568,7 +4568,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PojoDirective:
 		//	{PojoDirectiveToString} "#ToString" LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveIndex} "#Index" LPAREN
-		//	(index=IndexType COMMA)? proplist=DirectiveProperties RPAREN | {PojoDirectiveOperators} "#Operators" (LPAREN
+		//	(index=IndexType EQUALS)? proplist=DirectiveProperties RPAREN | {PojoDirectiveOperators} "#Operators" (LPAREN
 		//	operatorsSuffix=ValidID RPAREN)? | {PojoDirectiveSerializable} "#Serializable" LPAREN sernum=INT RPAREN |
 		//	{PojoDirectiveDiscriminator} "#InheritanceChild" LPAREN discriminator=ValidID RPAREN | {PojoDirectiveEquals} "#Equals"
 		//	LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveHashCode} "#HashCode" LPAREN proplist=DirectiveProperties
@@ -4576,7 +4576,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		@Override public ParserRule getRule() { return rule; }
 
 		//{PojoDirectiveToString} "#ToString" LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveIndex} "#Index" LPAREN
-		//(index=IndexType COMMA)? proplist=DirectiveProperties RPAREN | {PojoDirectiveOperators} "#Operators" (LPAREN
+		//(index=IndexType EQUALS)? proplist=DirectiveProperties RPAREN | {PojoDirectiveOperators} "#Operators" (LPAREN
 		//operatorsSuffix=ValidID RPAREN)? | {PojoDirectiveSerializable} "#Serializable" LPAREN sernum=INT RPAREN |
 		//{PojoDirectiveDiscriminator} "#InheritanceChild" LPAREN discriminator=ValidID RPAREN | {PojoDirectiveEquals} "#Equals"
 		//LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveHashCode} "#HashCode" LPAREN proplist=DirectiveProperties
@@ -4604,7 +4604,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//RPAREN
 		public RuleCall getRPARENTerminalRuleCall_0_4() { return cRPARENTerminalRuleCall_0_4; }
 
-		//{PojoDirectiveIndex} "#Index" LPAREN (index=IndexType COMMA)? proplist=DirectiveProperties RPAREN
+		//{PojoDirectiveIndex} "#Index" LPAREN (index=IndexType EQUALS)? proplist=DirectiveProperties RPAREN
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{PojoDirectiveIndex}
@@ -4616,7 +4616,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//LPAREN
 		public RuleCall getLPARENTerminalRuleCall_1_2() { return cLPARENTerminalRuleCall_1_2; }
 
-		//(index=IndexType COMMA)?
+		//(index=IndexType EQUALS)?
 		public Group getGroup_1_3() { return cGroup_1_3; }
 
 		//index=IndexType
@@ -4625,8 +4625,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//IndexType
 		public RuleCall getIndexIndexTypeParserRuleCall_1_3_0_0() { return cIndexIndexTypeParserRuleCall_1_3_0_0; }
 
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_1_3_1() { return cCOMMATerminalRuleCall_1_3_1; }
+		//EQUALS
+		public RuleCall getEQUALSTerminalRuleCall_1_3_1() { return cEQUALSTerminalRuleCall_1_3_1; }
 
 		//proplist=DirectiveProperties
 		public Assignment getProplistAssignment_1_4() { return cProplistAssignment_1_4; }
@@ -5139,17 +5139,17 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_6 = (Assignment)cGroup.eContents().get(6);
 		private final RuleCall cNameValidIDParserRuleCall_6_0 = (RuleCall)cNameAssignment_6.eContents().get(0);
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
-		private final Keyword cEqualsSignKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final RuleCall cEQUALSTerminalRuleCall_7_0 = (RuleCall)cGroup_7.eContents().get(0);
 		private final Assignment cInitExprAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
 		private final RuleCall cInitExprXExpressionParserRuleCall_7_1_0 = (RuleCall)cInitExprAssignment_7_1.eContents().get(0);
 		
 		//PojoAttribute:
 		//	annotations+=Annotation* directives+=PojoAttributeDirective* final?="final"? static?="static"? kind=("#Attr" //modifiers+=Modifier* 
-		//	| "#Simple") type=JvmTypeReference? name=ValidID ("=" initExpr=XExpression)?;
+		//	| "#Simple") type=JvmTypeReference? name=ValidID (EQUALS initExpr=XExpression)?;
 		@Override public ParserRule getRule() { return rule; }
 
 		//annotations+=Annotation* directives+=PojoAttributeDirective* final?="final"? static?="static"? kind=("#Attr" //modifiers+=Modifier* 
-		//| "#Simple") type=JvmTypeReference? name=ValidID ("=" initExpr=XExpression)?
+		//| "#Simple") type=JvmTypeReference? name=ValidID (EQUALS initExpr=XExpression)?
 		public Group getGroup() { return cGroup; }
 
 		//annotations+=Annotation*
@@ -5202,11 +5202,11 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//ValidID
 		public RuleCall getNameValidIDParserRuleCall_6_0() { return cNameValidIDParserRuleCall_6_0; }
 
-		//("=" initExpr=XExpression)?
+		//(EQUALS initExpr=XExpression)?
 		public Group getGroup_7() { return cGroup_7; }
 
-		//"="
-		public Keyword getEqualsSignKeyword_7_0() { return cEqualsSignKeyword_7_0; }
+		//EQUALS
+		public RuleCall getEQUALSTerminalRuleCall_7_0() { return cEQUALSTerminalRuleCall_7_0; }
 
 		//initExpr=XExpression
 		public Assignment getInitExprAssignment_7_1() { return cInitExprAssignment_7_1; }
@@ -5427,15 +5427,15 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameValidIDParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cEQUALSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cValueXExpressionParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
 		//EnumAttributeValue:
-		//	name=ValidID "=" value=XExpression;
+		//	name=ValidID EQUALS value=XExpression;
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=ValidID "=" value=XExpression
+		//name=ValidID EQUALS value=XExpression
 		public Group getGroup() { return cGroup; }
 
 		//name=ValidID
@@ -5444,8 +5444,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//ValidID
 		public RuleCall getNameValidIDParserRuleCall_0_0() { return cNameValidIDParserRuleCall_0_0; }
 
-		//"="
-		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+		//EQUALS
+		public RuleCall getEQUALSTerminalRuleCall_1() { return cEQUALSTerminalRuleCall_1; }
 
 		//value=XExpression
 		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
@@ -5603,15 +5603,15 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cValueAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cValueValueTypeParserRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cEQUALSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Assignment cDescendantAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cDescendantJvmParameterizedTypeReferenceParserRuleCall_2_0 = (RuleCall)cDescendantAssignment_2.eContents().get(0);
 		
 		//DescendantAssignment:
-		//	value=ValueType "=" descendant=JvmParameterizedTypeReference;
+		//	value=ValueType EQUALS descendant=JvmParameterizedTypeReference;
 		@Override public ParserRule getRule() { return rule; }
 
-		//value=ValueType "=" descendant=JvmParameterizedTypeReference
+		//value=ValueType EQUALS descendant=JvmParameterizedTypeReference
 		public Group getGroup() { return cGroup; }
 
 		//value=ValueType
@@ -5620,8 +5620,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//ValueType
 		public RuleCall getValueValueTypeParserRuleCall_0_0() { return cValueValueTypeParserRuleCall_0_0; }
 
-		//"="
-		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+		//EQUALS
+		public RuleCall getEQUALSTerminalRuleCall_1() { return cEQUALSTerminalRuleCall_1; }
 
 		//descendant=JvmParameterizedTypeReference
 		public Assignment getDescendantAssignment_2() { return cDescendantAssignment_2; }
@@ -6244,6 +6244,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tLPAREN;
 	private final TerminalRule tRPAREN;
 	private final TerminalRule tCOMMA;
+	private final TerminalRule tEQUALS;
 	
 	private final Grammar grammar;
 
@@ -6322,6 +6323,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		this.tLPAREN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LPAREN");
 		this.tRPAREN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "RPAREN");
 		this.tCOMMA = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COMMA");
+		this.tEQUALS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "EQUALS");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -6623,7 +6625,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PropertyCondition:
-	//	"{" name=ValidID "=" value=ValueType "}";
+	//	"{" name=ValidID EQUALS value=ValueType "}";
 	public PropertyConditionElements getPropertyConditionAccess() {
 		return pPropertyCondition;
 	}
@@ -6900,7 +6902,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 
 	//PojoDirective:
 	//	{PojoDirectiveToString} "#ToString" LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveIndex} "#Index" LPAREN
-	//	(index=IndexType COMMA)? proplist=DirectiveProperties RPAREN | {PojoDirectiveOperators} "#Operators" (LPAREN
+	//	(index=IndexType EQUALS)? proplist=DirectiveProperties RPAREN | {PojoDirectiveOperators} "#Operators" (LPAREN
 	//	operatorsSuffix=ValidID RPAREN)? | {PojoDirectiveSerializable} "#Serializable" LPAREN sernum=INT RPAREN |
 	//	{PojoDirectiveDiscriminator} "#InheritanceChild" LPAREN discriminator=ValidID RPAREN | {PojoDirectiveEquals} "#Equals"
 	//	LPAREN proplist=DirectiveProperties RPAREN | {PojoDirectiveHashCode} "#HashCode" LPAREN proplist=DirectiveProperties
@@ -6943,7 +6945,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 
 	//PojoAttribute:
 	//	annotations+=Annotation* directives+=PojoAttributeDirective* final?="final"? static?="static"? kind=("#Attr" //modifiers+=Modifier* 
-	//	| "#Simple") type=JvmTypeReference? name=ValidID ("=" initExpr=XExpression)?;
+	//	| "#Simple") type=JvmTypeReference? name=ValidID (EQUALS initExpr=XExpression)?;
 	public PojoAttributeElements getPojoAttributeAccess() {
 		return pPojoAttribute;
 	}
@@ -6986,7 +6988,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EnumAttributeValue:
-	//	name=ValidID "=" value=XExpression;
+	//	name=ValidID EQUALS value=XExpression;
 	public EnumAttributeValueElements getEnumAttributeValueAccess() {
 		return pEnumAttributeValue;
 	}
@@ -7026,7 +7028,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DescendantAssignment:
-	//	value=ValueType "=" descendant=JvmParameterizedTypeReference;
+	//	value=ValueType EQUALS descendant=JvmParameterizedTypeReference;
 	public DescendantAssignmentElements getDescendantAssignmentAccess() {
 		return pDescendantAssignment;
 	}
@@ -7113,6 +7115,12 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	",";
 	public TerminalRule getCOMMARule() {
 		return tCOMMA;
+	} 
+
+	//terminal EQUALS:
+	//	"=";
+	public TerminalRule getEQUALSRule() {
+		return tEQUALS;
 	} 
 
 	//XAnnotation:
