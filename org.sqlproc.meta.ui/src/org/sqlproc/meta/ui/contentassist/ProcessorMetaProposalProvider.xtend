@@ -1101,4 +1101,34 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
         }
 		acceptFunctions(model, context, acceptor)
     }
+
+	override completeOrdSql_Ident(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+        if (!isResolvePojo(model)) {
+            super.completeOrdSql_Ident(model, assignment, context, acceptor)
+            return
+        }
+        val metaStatement = model.getContainerOfType(typeof(MetaStatement))
+        val artifacts = model.getContainerOfType(typeof(Artifacts))
+
+        val pojoName = Utils.getTokenFromModifier(metaStatement, IDENTIFIER_USAGE)
+        val pojoDefinition = if (pojoName != null) modelProperty.getModelPojos(artifacts).get(pojoName)
+
+        if (pojoDefinition == null) {
+            val proposal = getValueConverter().toString("Error: I can't load pojo for " + model, "IDENT")
+            acceptor.accept(createCompletionProposal(proposal, context))
+            return
+        }
+
+        if (pojoDefinition != null) {
+	        val URI uri = model.eResource?.URI
+            val clazz = pojoDefinition.qualifiedName
+            val orders = pojoResolver.getOrders(clazz, uri)
+            if (orders != null) {
+            	orders.values.forEach[order |
+				val proposal = getValueConverter().toString(order, "IDENT")
+				acceptor.accept(createCompletionProposal(proposal, context))
+            ]
+            }
+        }
+	}
 }
