@@ -616,7 +616,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 		}
 	}
 
-	val methods = newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", "enumInit", "index", "procId")
+	val methods = newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", "enumInit", "index", "procId", "enumIndex")
 
 	override completePojogenProperty_Methods(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {

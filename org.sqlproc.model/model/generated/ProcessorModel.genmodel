@@ -370,6 +370,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDirectiveIndex/index"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDirectiveIndex/proplist"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoDirectiveEnumIndex">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDirectiveEnumIndex/index"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDirectiveEnumIndex/proplist"/>
+    </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoDirectiveOperators">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoDirectiveOperators/operatorsSuffix"/>
     </genClasses>
@@ -394,6 +398,9 @@
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveDiscriminator"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveIndex">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAttributeDirectiveIndex/index"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveEnumIndex">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAttributeDirectiveEnumIndex/index"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveVersion"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveUpdateCol">

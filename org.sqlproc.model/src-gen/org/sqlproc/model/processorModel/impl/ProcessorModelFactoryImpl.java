@@ -86,6 +86,7 @@ import org.sqlproc.model.processorModel.PojoAttributeDirective;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumDef;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumIndex;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumInit;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveIndex;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveIsDef;
@@ -97,6 +98,7 @@ import org.sqlproc.model.processorModel.PojoAttributeDirectiveVersion;
 import org.sqlproc.model.processorModel.PojoDefinitionModel;
 import org.sqlproc.model.processorModel.PojoDirective;
 import org.sqlproc.model.processorModel.PojoDirectiveDiscriminator;
+import org.sqlproc.model.processorModel.PojoDirectiveEnumIndex;
 import org.sqlproc.model.processorModel.PojoDirectiveEquals;
 import org.sqlproc.model.processorModel.PojoDirectiveHashCode;
 import org.sqlproc.model.processorModel.PojoDirectiveIndex;
@@ -246,6 +248,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS: return createImplementsExtendsDirectiveExceptDaos();
       case ProcessorModelPackage.POJO_DIRECTIVE_TO_STRING: return createPojoDirectiveToString();
       case ProcessorModelPackage.POJO_DIRECTIVE_INDEX: return createPojoDirectiveIndex();
+      case ProcessorModelPackage.POJO_DIRECTIVE_ENUM_INDEX: return createPojoDirectiveEnumIndex();
       case ProcessorModelPackage.POJO_DIRECTIVE_OPERATORS: return createPojoDirectiveOperators();
       case ProcessorModelPackage.POJO_DIRECTIVE_SERIALIZABLE: return createPojoDirectiveSerializable();
       case ProcessorModelPackage.POJO_DIRECTIVE_DISCRIMINATOR: return createPojoDirectiveDiscriminator();
@@ -255,6 +258,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY: return createPojoAttributeDirectivePrimaryKey();
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_DISCRIMINATOR: return createPojoAttributeDirectiveDiscriminator();
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_INDEX: return createPojoAttributeDirectiveIndex();
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_ENUM_INDEX: return createPojoAttributeDirectiveEnumIndex();
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_VERSION: return createPojoAttributeDirectiveVersion();
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL: return createPojoAttributeDirectiveUpdateCol();
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL: return createPojoAttributeDirectiveCreateCol();
@@ -1095,6 +1099,17 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  public PojoDirectiveEnumIndex createPojoDirectiveEnumIndex()
+  {
+    PojoDirectiveEnumIndexImpl pojoDirectiveEnumIndex = new PojoDirectiveEnumIndexImpl();
+    return pojoDirectiveEnumIndex;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PojoDirectiveOperators createPojoDirectiveOperators()
   {
     PojoDirectiveOperatorsImpl pojoDirectiveOperators = new PojoDirectiveOperatorsImpl();
@@ -1187,6 +1202,17 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
   {
     PojoAttributeDirectiveIndexImpl pojoAttributeDirectiveIndex = new PojoAttributeDirectiveIndexImpl();
     return pojoAttributeDirectiveIndex;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoAttributeDirectiveEnumIndex createPojoAttributeDirectiveEnumIndex()
+  {
+    PojoAttributeDirectiveEnumIndexImpl pojoAttributeDirectiveEnumIndex = new PojoAttributeDirectiveEnumIndexImpl();
+    return pojoAttributeDirectiveEnumIndex;
   }
 
   /**

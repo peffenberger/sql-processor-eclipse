@@ -130,6 +130,20 @@ class PojoJvmModelInferrer {
 	   				addAnnotationsX(entity.staticAnnotations.map[a|a.annotation])
    				]
    			}
+   			val enumAttrIndexes = entity.attributes.filter(x | x.isEnumIndex)
+   			if (!enumAttrIndexes.isEmpty) {
+   				val orderType = entity.toEnumerationType('Order') []
+   				members += orderType
+	   			for (attr: enumAttrIndexes)
+	   				orderType.members += entity.toEnumerationLiteral(attr.constName)
+   			}
+   			val enumIndexes = entity.enumIndex.entrySet
+   			if (!enumIndexes.isEmpty) {
+   				val orderType = entity.toEnumerationType('Order') []
+   				members += orderType
+	   			for (entry: enumIndexes)
+	   				orderType.members += entity.toEnumerationLiteral(constName(entry.value))
+   			}
    			
    			members += entity.toConstructor [
    				addAnnotationsX(entity.constructorAnnotations.map[a|a.annotation])

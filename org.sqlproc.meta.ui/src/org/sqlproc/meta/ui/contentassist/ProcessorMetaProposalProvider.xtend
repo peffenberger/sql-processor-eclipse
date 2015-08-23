@@ -786,7 +786,7 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
     }
 
     val methods = newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef",
-            "enumInit", "index")
+            "enumInit", "index", "procId", "enumIndex")
 
     override completePojogenProperty_Methods(EObject model, Assignment assignment, ContentAssistContext context,
             ICompletionProposalAcceptor acceptor) {

@@ -680,6 +680,15 @@ public interface ProcessorModelFactory extends EFactory
   PojoDirectiveIndex createPojoDirectiveIndex();
 
   /**
+   * Returns a new object of class '<em>Pojo Directive Enum Index</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Directive Enum Index</em>'.
+   * @generated
+   */
+  PojoDirectiveEnumIndex createPojoDirectiveEnumIndex();
+
+  /**
    * Returns a new object of class '<em>Pojo Directive Operators</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -759,6 +768,15 @@ public interface ProcessorModelFactory extends EFactory
    * @generated
    */
   PojoAttributeDirectiveIndex createPojoAttributeDirectiveIndex();
+
+  /**
+   * Returns a new object of class '<em>Pojo Attribute Directive Enum Index</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Attribute Directive Enum Index</em>'.
+   * @generated
+   */
+  PojoAttributeDirectiveEnumIndex createPojoAttributeDirectiveEnumIndex();
 
   /**
    * Returns a new object of class '<em>Pojo Attribute Directive Version</em>'.

@@ -513,6 +513,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="proplist" eType="#//DirectiveProperties"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveEnumIndex" eSuperTypes="#//PojoDirective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="#//IndexType"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="proplist" eType="#//DirectiveProperties"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveOperators" eSuperTypes="#//PojoDirective">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatorsSuffix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -539,6 +545,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveDiscriminator"
       eSuperTypes="#//PojoAttributeDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveIndex" eSuperTypes="#//PojoAttributeDirective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="#//IndexType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveEnumIndex" eSuperTypes="#//PojoAttributeDirective">
     <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="#//IndexType"
         containment="true"/>
   </eClassifiers>

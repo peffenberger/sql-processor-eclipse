@@ -67,6 +67,8 @@ import org.sqlproc.model.processorModel.DaoFunProcDirective
 import org.sqlproc.model.util.Utils
 import org.sqlproc.model.processorModel.PackageDirectiveImplementation
 import org.sqlproc.plugin.lib.util.CommonUtils
+import org.sqlproc.model.processorModel.PojoDirectiveEnumIndex
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumIndex
 
 class ProcessorGeneratorUtils {
 
@@ -99,6 +101,20 @@ class ProcessorGeneratorUtils {
 
 	def String getIndex(PojoAttribute f) {
 		val d = f.directives?.findFirst[x|x instanceof PojoAttributeDirectiveIndex] as PojoAttributeDirectiveIndex
+		if (d == null || d.index == null)
+			return null
+		if (d.index.id != null)
+			return d.index.id
+		return ""+d.index.number
+	}
+
+	def boolean isEnumIndex(PojoAttribute f) {
+		val d = f.directives?.findFirst[x|x instanceof PojoAttributeDirectiveEnumIndex] as PojoAttributeDirectiveEnumIndex
+		return d != null
+	}
+
+	def String getEnumIndex(PojoAttribute f) {
+		val d = f.directives?.findFirst[x|x instanceof PojoAttributeDirectiveEnumIndex] as PojoAttributeDirectiveEnumIndex
 		if (d == null || d.index == null)
 			return null
 		if (d.index.id != null)
@@ -256,12 +272,32 @@ class ProcessorGeneratorUtils {
 		if (se == null || !(se instanceof PojoEntity))
 			return null
 		return (se as PojoEntity).getOptLock
-		}
+	}
 
     def Map<String, List<PojoAttribute>> getIndex(PojoEntity pojo) {
         val Map<String, List<PojoAttribute>> result = new TreeMap()
 		pojo?.directives.filter[x|x instanceof PojoDirectiveIndex].forEach[
 			val d = it as PojoDirectiveIndex
+			if (d.index != null) {
+				if (d.index.id != null)
+					result.put(d.index.id, d.proplist.features)
+				else
+					result.put(""+d.index.number, d.proplist.features)
+			}
+			else {
+				println(d.proplist.features)
+				val name = constName(d.proplist.features)
+				println(name)
+				result.put(name, d.proplist.features)
+			}
+		]
+        return result
+    }
+
+    def Map<String, List<PojoAttribute>> getEnumIndex(PojoEntity pojo) {
+        val Map<String, List<PojoAttribute>> result = new TreeMap()
+		pojo?.directives.filter[x|x instanceof PojoDirectiveEnumIndex].forEach[
+			val d = it as PojoDirectiveEnumIndex
 			if (d.index != null) {
 				if (d.index.id != null)
 					result.put(d.index.id, d.proplist.features)

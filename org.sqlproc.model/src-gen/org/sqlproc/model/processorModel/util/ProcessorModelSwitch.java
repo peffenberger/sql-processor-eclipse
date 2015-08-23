@@ -83,6 +83,7 @@ import org.sqlproc.model.processorModel.PojoAttributeDirective;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumDef;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumIndex;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumInit;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveIndex;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveIsDef;
@@ -94,6 +95,7 @@ import org.sqlproc.model.processorModel.PojoAttributeDirectiveVersion;
 import org.sqlproc.model.processorModel.PojoDefinitionModel;
 import org.sqlproc.model.processorModel.PojoDirective;
 import org.sqlproc.model.processorModel.PojoDirectiveDiscriminator;
+import org.sqlproc.model.processorModel.PojoDirectiveEnumIndex;
 import org.sqlproc.model.processorModel.PojoDirectiveEquals;
 import org.sqlproc.model.processorModel.PojoDirectiveHashCode;
 import org.sqlproc.model.processorModel.PojoDirectiveIndex;
@@ -705,6 +707,14 @@ public class ProcessorModelSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorModelPackage.POJO_DIRECTIVE_ENUM_INDEX:
+      {
+        PojoDirectiveEnumIndex pojoDirectiveEnumIndex = (PojoDirectiveEnumIndex)theEObject;
+        T result = casePojoDirectiveEnumIndex(pojoDirectiveEnumIndex);
+        if (result == null) result = casePojoDirective(pojoDirectiveEnumIndex);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorModelPackage.POJO_DIRECTIVE_OPERATORS:
       {
         PojoDirectiveOperators pojoDirectiveOperators = (PojoDirectiveOperators)theEObject;
@@ -774,6 +784,14 @@ public class ProcessorModelSwitch<T> extends Switch<T>
         PojoAttributeDirectiveIndex pojoAttributeDirectiveIndex = (PojoAttributeDirectiveIndex)theEObject;
         T result = casePojoAttributeDirectiveIndex(pojoAttributeDirectiveIndex);
         if (result == null) result = casePojoAttributeDirective(pojoAttributeDirectiveIndex);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_ENUM_INDEX:
+      {
+        PojoAttributeDirectiveEnumIndex pojoAttributeDirectiveEnumIndex = (PojoAttributeDirectiveEnumIndex)theEObject;
+        T result = casePojoAttributeDirectiveEnumIndex(pojoAttributeDirectiveEnumIndex);
+        if (result == null) result = casePojoAttributeDirective(pojoAttributeDirectiveEnumIndex);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2166,6 +2184,22 @@ public class ProcessorModelSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Enum Index</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Directive Enum Index</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoDirectiveEnumIndex(PojoDirectiveEnumIndex object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Pojo Directive Operators</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2305,6 +2339,22 @@ public class ProcessorModelSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePojoAttributeDirectiveIndex(PojoAttributeDirectiveIndex object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pojo Attribute Directive Enum Index</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pojo Attribute Directive Enum Index</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePojoAttributeDirectiveEnumIndex(PojoAttributeDirectiveEnumIndex object)
   {
     return null;
   }

@@ -389,7 +389,12 @@ public class TablePojoGenerator extends TableBaseGenerator {
                         int i = 0;
                         for (String s : indSet) {
                             ++i;
-                            bufferMeta.append(nlindent()).append("#Index(").append(s).append(")");
+                            bufferMeta.append(nlindent());
+                            if (generateMethods.contains(METHOD_ENUM_INDEX))
+                                bufferMeta.append("#EnumIndex(");
+                            else
+                                bufferMeta.append("#Index(");
+                            bufferMeta.append(s).append(")");
                         }
                     }
                 }
@@ -475,7 +480,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                                 // toInit.add(name);
                                 if (generateMethods.contains(METHOD_TO_INIT))
                                     bufferMetaAttr.append(nlindent2()).append("#ToInit");
-                                else if (generateMethods.contains(ENUM_TO_INIT))
+                                else if (generateMethods.contains(METHOD_ENUM_TO_INIT))
                                     bufferMetaAttr.append(nlindent2()).append("#EnumInit");
                             }
                             if (inheritanceColumns.containsKey(pojo)
@@ -519,7 +524,11 @@ public class TablePojoGenerator extends TableBaseGenerator {
                                 pkeys.add(name);
                             }
                             if (!generateMethods.contains(METHOD_INDEX) && attribute.getIndex() != null) {
-                                bufferMetaAttr.append(nlindent2()).append("#Index");
+                                bufferMetaAttr.append(nlindent2());
+                                if (generateMethods.contains(METHOD_ENUM_INDEX))
+                                    bufferMetaAttr.append("#EnumIndex(");
+                                else
+                                    bufferMetaAttr.append("#Index(");
                             }
                             if (attribute.getDependencyClassName() != null) {
                                 if (preserveForeignKeys.contains(pojo) || preserveForeignKeys.contains("_ALL_")) {
@@ -586,7 +595,7 @@ public class TablePojoGenerator extends TableBaseGenerator {
                     appendList(bufferMeta, toStr);
                     bufferMeta.append(")");
                 }
-                if (generateMethods.contains(PROC_ID) && !prodId.isEmpty()) {
+                if (generateMethods.contains(METHOD_PROC_ID) && !prodId.isEmpty()) {
                     bufferMeta.append(nlindent()).append("#ProcId(");
                     appendList(bufferMeta, prodId);
                     bufferMeta.append(")");

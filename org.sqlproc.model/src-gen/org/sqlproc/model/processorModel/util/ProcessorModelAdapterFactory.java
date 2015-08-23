@@ -85,6 +85,7 @@ import org.sqlproc.model.processorModel.PojoAttributeDirective;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumDef;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumIndex;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumInit;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveIndex;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveIsDef;
@@ -96,6 +97,7 @@ import org.sqlproc.model.processorModel.PojoAttributeDirectiveVersion;
 import org.sqlproc.model.processorModel.PojoDefinitionModel;
 import org.sqlproc.model.processorModel.PojoDirective;
 import org.sqlproc.model.processorModel.PojoDirectiveDiscriminator;
+import org.sqlproc.model.processorModel.PojoDirectiveEnumIndex;
 import org.sqlproc.model.processorModel.PojoDirectiveEquals;
 import org.sqlproc.model.processorModel.PojoDirectiveHashCode;
 import org.sqlproc.model.processorModel.PojoDirectiveIndex;
@@ -548,6 +550,11 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
         return createPojoDirectiveIndexAdapter();
       }
       @Override
+      public Adapter casePojoDirectiveEnumIndex(PojoDirectiveEnumIndex object)
+      {
+        return createPojoDirectiveEnumIndexAdapter();
+      }
+      @Override
       public Adapter casePojoDirectiveOperators(PojoDirectiveOperators object)
       {
         return createPojoDirectiveOperatorsAdapter();
@@ -591,6 +598,11 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
       public Adapter casePojoAttributeDirectiveIndex(PojoAttributeDirectiveIndex object)
       {
         return createPojoAttributeDirectiveIndexAdapter();
+      }
+      @Override
+      public Adapter casePojoAttributeDirectiveEnumIndex(PojoAttributeDirectiveEnumIndex object)
+      {
+        return createPojoAttributeDirectiveEnumIndexAdapter();
       }
       @Override
       public Adapter casePojoAttributeDirectiveVersion(PojoAttributeDirectiveVersion object)
@@ -1845,6 +1857,21 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.PojoDirectiveEnumIndex <em>Pojo Directive Enum Index</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.PojoDirectiveEnumIndex
+   * @generated
+   */
+  public Adapter createPojoDirectiveEnumIndexAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.PojoDirectiveOperators <em>Pojo Directive Operators</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1975,6 +2002,21 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPojoAttributeDirectiveIndexAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumIndex <em>Pojo Attribute Directive Enum Index</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumIndex
+   * @generated
+   */
+  public Adapter createPojoAttributeDirectiveEnumIndexAdapter()
   {
     return null;
   }
