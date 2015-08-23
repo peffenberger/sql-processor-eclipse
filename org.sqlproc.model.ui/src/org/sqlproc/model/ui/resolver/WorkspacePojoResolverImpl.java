@@ -228,6 +228,14 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
             }
             beanClass = beanClass.getSuperclass();
         }
+
+        beanClass = loadClass(name + "$Order", uri);
+        if (beanClass == null || !beanClass.isEnum())
+            return orders;
+        for (Object en : beanClass.getEnumConstants()) {
+            String ename = en.toString();
+            orders.put(ename, ename);
+        }
         return orders;
     }
 
