@@ -311,7 +311,9 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 
         var index = 0
         var String identPojoName
+        var String indexPojoName
         var PojoDefinition identPojo
+        var PojoDefinition indexPojo
         var String colPojoName
         var PojoDefinition colPojo
         var String constPojoName
@@ -331,6 +333,15 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	                }
 	                else
 	                	identPojoName = value
+	            }
+	            if (INDEX_USAGE.equals(key)) {
+	                indexPojo = modelProperty.getModelPojos(artifacts).get(value)
+	                if (indexPojo == null) {
+	                	indexPojo = identPojo;
+	                	indexPojoName = identPojoName;
+	                }
+	                else
+	                	indexPojoName = value
 	            }
 				else if (COLUMN_USAGE.equals(key)) {
 	                colPojo = modelProperty.getModelPojos(artifacts).get(value)
@@ -374,7 +385,11 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         		//println("identifier for "+pojoName+" "+identifier)
         		checkIdentifier(identifier, pojo, pojoName, statement, artifacts, uri, descriptorsCache, classesCache) 
         	]
+       	}
+        if (indexPojo != null) {
         	val orders = statement.getAllContentsOfType(typeof(OrdSql))
+        	val pojo = indexPojo
+        	val pojoName = indexPojoName
         	orders.forEach[order |
         		//println("identifier for "+pojoName+" "+identifier)
         		checkOrder(order, pojo, pojoName, statement, artifacts, uri, ordersCache, classesCache) 
