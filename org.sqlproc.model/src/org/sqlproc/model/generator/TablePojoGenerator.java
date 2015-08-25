@@ -526,9 +526,9 @@ public class TablePojoGenerator extends TableBaseGenerator {
                             if (!generateMethods.contains(METHOD_INDEX) && attribute.getIndex() != null) {
                                 bufferMetaAttr.append(nlindent2());
                                 if (generateMethods.contains(METHOD_ENUM_INDEX))
-                                    bufferMetaAttr.append("#EnumIndex(");
+                                    bufferMetaAttr.append("#EnumIndex");
                                 else
-                                    bufferMetaAttr.append("#Index(");
+                                    bufferMetaAttr.append("#Index");
                             }
                             if (attribute.getDependencyClassName() != null) {
                                 if (preserveForeignKeys.contains(pojo) || preserveForeignKeys.contains("_ALL_")) {

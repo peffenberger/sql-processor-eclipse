@@ -336,11 +336,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	            }
 	            if (INDEX_USAGE.equals(key)) {
 	                indexPojo = modelProperty.getModelPojos(artifacts).get(value)
-	                if (indexPojo == null) {
-	                	indexPojo = identPojo;
-	                	indexPojoName = identPojoName;
-	                }
-	                else
+	                if (indexPojo != null)
 	                	indexPojoName = value
 	            }
 				else if (COLUMN_USAGE.equals(key)) {
@@ -375,6 +371,10 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	            }
 	            index = index + 1
             }
+        }
+        if (indexPojo == null) {
+           	indexPojo = identPojo;
+           	indexPojoName = identPojoName;
         }
         
         if (identPojo != null) {

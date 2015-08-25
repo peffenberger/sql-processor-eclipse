@@ -93,7 +93,6 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
             else
                 allLoaders = loaders;
         }
-        allLoaders = loaders;
     }
 
     @SuppressWarnings("unused")
