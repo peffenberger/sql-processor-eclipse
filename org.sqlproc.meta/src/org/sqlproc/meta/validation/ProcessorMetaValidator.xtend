@@ -748,7 +748,6 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     def ValidationResult checkOrderProperty(String className, String property, URI uri, 
     	Map<String, Map<String, String>> ordersCache, Map<String, Class<?>> classesCache
     ) {
- 		println("A "+property)
         if (property == null || pojoResolverFactory.getPojoResolver() == null)
             return ValidationResult.OK
         if (className == null)
@@ -763,17 +762,10 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         else
         	ordersCache.put(uri.toString()+className, orders)
         
- 		println("B "+orders)
- 		orders.forEach[k, v |
-			println("K "+k.class)
-			println("V "+v.class)
- 		]
-
         val _orders = orders
         val order = orders.keySet.findFirst[k |
         	_orders.get(k).equals(property)
         ]
-        println("O "+order)
 
         if (order != null) 
         	return ValidationResult.OK 
