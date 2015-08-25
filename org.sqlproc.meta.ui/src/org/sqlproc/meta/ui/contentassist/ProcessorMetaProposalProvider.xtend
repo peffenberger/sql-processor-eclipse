@@ -885,6 +885,7 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
             acceptor.accept(createCompletionProposal(CONSTANT_USAGE + "=" + proposal, context))
             acceptor.accept(createCompletionProposal(IDENTIFIER_USAGE + "=" + proposal, context))
             acceptor.accept(createCompletionProposal(COLUMN_USAGE + "=" + proposal, context))
+            acceptor.accept(createCompletionProposal(INDEX_USAGE + "=" + proposal, context))
         ]
         val tables = listTables(artifacts.eResource().getResourceSet(),
                 getScopeProvider().getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES))
@@ -1110,7 +1111,9 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
         val metaStatement = model.getContainerOfType(typeof(MetaStatement))
         val artifacts = model.getContainerOfType(typeof(Artifacts))
 
-        val pojoName = Utils.getTokenFromModifier(metaStatement, IDENTIFIER_USAGE)
+        var pojoName = Utils.getTokenFromModifier(metaStatement, INDEX_USAGE)
+        if (pojoName == null)
+        	pojoName =  Utils.getTokenFromModifier(metaStatement, IDENTIFIER_USAGE)
         val pojoDefinition = if (pojoName != null) modelProperty.getModelPojos(artifacts).get(pojoName)
 
         if (pojoDefinition == null) {

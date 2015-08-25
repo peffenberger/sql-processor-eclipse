@@ -336,7 +336,11 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	            }
 	            if (INDEX_USAGE.equals(key)) {
 	                indexPojo = modelProperty.getModelPojos(artifacts).get(value)
-	                if (indexPojo != null)
+	                if (indexPojo == null) {
+	                    error("Cannot find pojo : " + value + "[" + INDEX_USAGE + "]",
+	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
+	                }
+	                else
 	                	indexPojoName = value
 	            }
 				else if (COLUMN_USAGE.equals(key)) {
